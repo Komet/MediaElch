@@ -496,8 +496,10 @@ void MusicWidgetAlbum::onBookletModelChanged()
         return;
     if (m_album != static_cast<Album*>(model->parent()))
         return;
-    if (model->hasChanged())
+    if (model->hasChanged()) {
         ui->buttonRevert->setVisible(true);
+        m_album->setHasChanged(true);
+    }
 }
 
 void MusicWidgetAlbum::onAddBooklet()

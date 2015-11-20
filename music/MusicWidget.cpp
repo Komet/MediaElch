@@ -164,6 +164,11 @@ void MusicWidget::onSaveAll()
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
+    if (!artistsToSave.isEmpty())
+        ui->artist->updateArtistInfo();
+    if (!albumsToSave.isEmpty())
+        ui->album->updateAlbumInfo();
+
     NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
     NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));
 }

@@ -359,9 +359,6 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "    height: 16px;"
         << "}";
 
-        if (!isTable)
-            styleSheet << "QComboBox { margin-left: 5px; padding-right: 5px; }";
-
         styleSheet
         << "QCheckBox::indicator:unchecked {"
         << "    image: url(':/img/ui_uncheck.png');"

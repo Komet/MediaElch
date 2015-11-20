@@ -51,6 +51,7 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget *parent) :
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
     ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
     ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
+    ui->chkStatus->setMyData(TvShowScraperInfos::Status);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)

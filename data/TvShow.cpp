@@ -1288,6 +1288,17 @@ void TvShow::setDir(const QString &dir)
     m_dir = dir;
 }
 
+QString TvShow::status() const
+{
+    return m_status;
+}
+
+void TvShow::setStatus(const QString &status)
+{
+    m_status = status;
+    setChanged(true);
+}
+
 int TvShow::votes() const
 {
     return m_votes;

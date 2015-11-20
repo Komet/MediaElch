@@ -85,6 +85,10 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(onAddTag(QString)));
     connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveTag(QString)));
 
+    ui->comboStatus->setItemData(0, "");
+    ui->comboStatus->setItemData(1, "Continuing");
+    ui->comboStatus->setItemData(2, "Ended");
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
     m_savingWidget = new QLabel(this);
@@ -129,6 +133,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
+    connect(ui->imdbId, SIGNAL(textEdited(QString)), this, SLOT(onImdbIdChange(QString)));
+    connect(ui->tvdbId, SIGNAL(textEdited(QString)), this, SLOT(onTvdbIdChange(QString)));
     connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
@@ -139,6 +145,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
     connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
+    connect(ui->comboStatus, SIGNAL(currentIndexChanged(int)), this, SLOT(onStatusChange(int)));
 
     onSetEnabled(false);
 
@@ -225,7 +232,13 @@ void TvShowWidgetTvShow::onClear()
     ui->runtime->clear();
     ui->runtime->blockSignals(blocked);
 
+    blocked = ui->comboStatus->blockSignals(true);
+    ui->comboStatus->setCurrentIndex(0);
+    ui->comboStatus->blockSignals(blocked);
+
     ui->showTitle->clear();
+    ui->imdbId->clear();
+    ui->tvdbId->clear();
     ui->actors->setRowCount(0);
     ui->dir->clear();
     ui->name->clear();
@@ -295,11 +308,14 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->firstAired->blockSignals(true);
     ui->overview->blockSignals(true);
     ui->runtime->blockSignals(true);
+    ui->comboStatus->blockSignals(true);
 
     onClear();
 
     ui->dir->setText(m_show->dir());
     ui->name->setText(m_show->name());
+    ui->imdbId->setText(m_show->imdbId());
+    ui->tvdbId->setText(m_show->tvdbId());
     ui->sortTitle->setText(m_show->sortTitle());
     ui->rating->setValue(m_show->rating());
     ui->votes->setValue(m_show->votes());
@@ -308,6 +324,12 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
     ui->runtime->setValue(m_show->runtime());
+    if (m_show->status() == "Continuing")
+        ui->comboStatus->setCurrentIndex(1);
+    else if (m_show->status() == "Ended")
+        ui->comboStatus->setCurrentIndex(2);
+    else
+        ui->comboStatus->setCurrentIndex(0);
 
     ui->actors->blockSignals(true);
     foreach (Actor *actor, m_show->actorsPointer()) {
@@ -347,6 +369,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->firstAired->blockSignals(false);
     ui->overview->blockSignals(false);
     ui->runtime->blockSignals(false);
+    ui->comboStatus->blockSignals(false);
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
@@ -893,6 +916,18 @@ void TvShowWidgetTvShow::onNameChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+void TvShowWidgetTvShow::onImdbIdChange(QString text)
+{
+    m_show->setImdbId(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onTvdbIdChange(QString text)
+{
+    m_show->setTvdbId(text);
+    ui->buttonRevert->setVisible(true);
+}
+
 void TvShowWidgetTvShow::onSortTitleChange(QString text)
 {
     m_show->setSortTitle(text);
@@ -1110,4 +1145,12 @@ void TvShowWidgetTvShow::onShowScraperProgress(TvShow *show, int current, int ma
         return;
     int id = show->property("progressBarId").toInt();
     NotificationBox::instance()->progressBarProgress(current, max, id);
+}
+
+void TvShowWidgetTvShow::onStatusChange(int index)
+{
+    if (!m_show)
+        return;
+    m_show->setStatus(ui->comboStatus->itemData(index).toString());
+    ui->buttonRevert->setVisible(true);
 }

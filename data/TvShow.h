@@ -164,6 +164,9 @@ public:
 
     void setDir(const QString &dir);
 
+    QString status() const;
+    void setStatus(const QString &status);
+
 signals:
     void sigLoaded(TvShow*);
     void sigChanged(TvShow*);
@@ -215,6 +218,7 @@ private:
     QMap<int, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;
+    QString m_status;
 
     QMap<int, QByteArray> m_images;
     QMap<int, QMap<int, QByteArray> > m_seasonImages;

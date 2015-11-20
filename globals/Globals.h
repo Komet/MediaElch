@@ -269,6 +269,7 @@ namespace TvShowScraperInfos {
     const int Thumb          = 22;
     const int SeasonThumb    = 23;
     const int Runtime        = 24;
+    const int Status         = 25;
 }
 
 namespace ConcertScraperInfos {

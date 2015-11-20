@@ -225,6 +225,9 @@
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
                 </property>
+                <property name="minimumContentsLength">
+                 <number>20</number>
+                </property>
                </widget>
               </item>
               <item row="6" column="0">
@@ -285,6 +288,9 @@
                 </property>
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
+                </property>
+                <property name="minimumContentsLength">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1744,15 +1750,15 @@ QPushButton::hover {
    <header>smallWidgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>smallWidgets/MySpinBox.h</header>
+  </customwidget>
+  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MySpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
   <customwidget>
    <class>MessageLabel</class>

@@ -65,114 +65,10 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="MyCheckBox" name="chkRuntime">
+        <item row="6" column="2">
+         <widget class="MyCheckBox" name="chkEpisodeThumbnail">
           <property name="text">
-           <string>Runtime</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="MyCheckBox" name="chkPoster">
-          <property name="text">
-           <string>Poster</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="MyCheckBox" name="chkNetwork">
-          <property name="text">
-           <string>Network</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">both</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="MyCheckBox" name="chkGenres">
-          <property name="text">
-           <string>Genres</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="MyCheckBox" name="chkFirstAired">
-          <property name="text">
-           <string>First aired</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">both</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="MyCheckBox" name="chkCertification">
-          <property name="text">
-           <string>Certification</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">both</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="MyCheckBox" name="chkOverview">
-          <property name="text">
-           <string>Overview</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">both</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="MyCheckBox" name="chkFanart">
-          <property name="text">
-           <string>Fanart</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="MyCheckBox" name="chkDirector">
-          <property name="text">
-           <string>Director</string>
+           <string>Episode Thumbnail</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -182,111 +78,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="MyCheckBox" name="chkWriter">
-          <property name="text">
-           <string>Writer</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">episode</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="MyCheckBox" name="chkActors">
-          <property name="text">
-           <string>Actors</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="MyCheckBox" name="chkRating">
-          <property name="text">
-           <string>Rating</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">both</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="MyCheckBox" name="chkBanner">
-          <property name="text">
-           <string>Banner</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="MyCheckBox" name="chkSeasonBanner">
-          <property name="text">
-           <string>Season Banner</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="MyCheckBox" name="chkSeasonFanart">
-          <property name="text">
-           <string>Season Fanart</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="MyCheckBox" name="chkSeasonPoster">
-          <property name="text">
-           <string>Season Poster</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="MyCheckBox" name="chkExtraArts">
-          <property name="text">
-           <string>Artwork</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="type" stdset="0">
-           <string notr="true">show</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
+        <item row="6" column="1">
          <widget class="MyCheckBox" name="chkSeasonThumb">
           <property name="text">
            <string>Season Thumb</string>
@@ -299,16 +91,237 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="MyCheckBox" name="chkEpisodeThumbnail">
+        <item row="6" column="0">
+         <widget class="MyCheckBox" name="chkSeasonBanner">
           <property name="text">
-           <string>Episode Thumbnail</string>
+           <string>Season Banner</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="MyCheckBox" name="chkSeasonFanart">
+          <property name="text">
+           <string>Season Fanart</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="MyCheckBox" name="chkSeasonPoster">
+          <property name="text">
+           <string>Season Poster</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="MyCheckBox" name="chkExtraArts">
+          <property name="text">
+           <string>Artwork</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="MyCheckBox" name="chkBanner">
+          <property name="text">
+           <string>Banner</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="MyCheckBox" name="chkPoster">
+          <property name="text">
+           <string>Poster</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="MyCheckBox" name="chkFanart">
+          <property name="text">
+           <string>Fanart</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="MyCheckBox" name="chkActors">
+          <property name="text">
+           <string>Actors</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="MyCheckBox" name="chkNetwork">
+          <property name="text">
+           <string>Network</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="MyCheckBox" name="chkGenres">
+          <property name="text">
+           <string>Genres</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="MyCheckBox" name="chkOverview">
+          <property name="text">
+           <string>Overview</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="MyCheckBox" name="chkCertification">
+          <property name="text">
+           <string>Certification</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="MyCheckBox" name="chkWriter">
+          <property name="text">
+           <string>Writer</string>
           </property>
           <property name="checked">
            <bool>true</bool>
           </property>
           <property name="type" stdset="0">
            <string notr="true">episode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="MyCheckBox" name="chkDirector">
+          <property name="text">
+           <string>Director</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">episode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="MyCheckBox" name="chkRuntime">
+          <property name="text">
+           <string>Runtime</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="MyCheckBox" name="chkFirstAired">
+          <property name="text">
+           <string>First aired</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="MyCheckBox" name="chkRating">
+          <property name="text">
+           <string>Rating</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="MyCheckBox" name="chkStatus">
+          <property name="text">
+           <string>Status</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
           </property>
          </widget>
         </item>

@@ -996,6 +996,8 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         show->setEpisodeGuideUrl(domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").at(0).toElement().text());
     if (!domDoc.elementsByTagName("runtime").isEmpty())
         show->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("status").isEmpty())
+        show->setStatus(domDoc.elementsByTagName("status").at(0).toElement().text());
 
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
         foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
@@ -1386,6 +1388,10 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     setTextValue(doc, "tvdbid", show->tvdbId());
     setTextValue(doc, "id", show->id());
     setTextValue(doc, "imdbid", show->imdbId());
+    if (show->status().isEmpty())
+        setTextValue(doc, "status", show->status());
+    else
+        removeChildNodes(doc, "status");
     if (show->runtime() > 0)
         setTextValue(doc, "runtime", QString("%1").arg(show->runtime()));
     else if (!showElem.elementsByTagName("runtime").isEmpty())
