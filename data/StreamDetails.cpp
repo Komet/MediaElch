@@ -163,7 +163,7 @@ void StreamDetails::loadWithLibrary()
         setVideoDetail("aspect", QString("%1").arg(aspectRatio));
         setVideoDetail("width", QString("%1").arg(width));
         setVideoDetail("height", QString("%1").arg(height));
-        setVideoDetail("scantype", scanType);
+        setVideoDetail("scantype", scanType.toLower());
         setVideoDetail("stereomode", stereoFormat(multiView));
     }
 
@@ -204,7 +204,7 @@ QString StreamDetails::videoFormat(QString format, QString version)
         format = (version.toLower() == "version 2") ? "mpeg2" : "mpeg";
     if (Settings::instance()->advanced()->videoCodecMappings().contains(format))
         return Settings::instance()->advanced()->videoCodecMappings().value(format);
-    return format;
+    return format.toLower();
 }
 
 /**
@@ -234,7 +234,7 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
 
     if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat))
         return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
-    return xbmcFormat;
+    return xbmcFormat.toLower();
 }
 
 QString StreamDetails::stereoFormat(const QString &format)
