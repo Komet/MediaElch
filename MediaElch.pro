@@ -195,7 +195,8 @@ SOURCES += main.cpp\
     imageProviders/Coverlib.cpp \
     globals/NetworkReplyWatcher.cpp \
     smallWidgets/TvShowTreeView.cpp \
-    tvShows/TvShowMultiScrapeDialog.cpp
+    tvShows/TvShowMultiScrapeDialog.cpp \
+    data/Subtitle.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -368,7 +369,8 @@ HEADERS  += main/MainWindow.h \
     imageProviders/Coverlib.h \
     globals/NetworkReplyWatcher.h \
     smallWidgets/TvShowTreeView.h \
-    tvShows/TvShowMultiScrapeDialog.h
+    tvShows/TvShowMultiScrapeDialog.h \
+    data/Subtitle.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

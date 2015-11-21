@@ -139,6 +139,10 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
     if (m_info == MovieFilters::Rating)
         return (m_hasInfo && movie->rating() != 0) || (!m_hasInfo && movie->rating() == 0);
+    if (m_info == MovieFilters::HasExternalSubtitle)
+        return (m_hasInfo && !movie->subtitles().isEmpty()) || (!m_hasInfo && movie->subtitles().isEmpty());
+    if (m_info == MovieFilters::HasSubtitle)
+        return (m_hasInfo && (!movie->subtitles().isEmpty() || !movie->streamDetails()->subtitleDetails().isEmpty())) || (!m_hasInfo && movie->subtitles().isEmpty() && movie->streamDetails()->subtitleDetails().isEmpty());
 
     if (m_info == MovieFilters::Quality) {
         if (m_shortText == "1080p")

@@ -1412,6 +1412,29 @@ QList<int> Movie::imageTypes()
                         << ImageType::MovieBackdrop;
 }
 
+QList<Subtitle *> Movie::subtitles() const
+{
+    return m_subtitles;
+}
+
+void Movie::setSubtitles(const QList<Subtitle *> &subtitles)
+{
+    m_subtitles = subtitles;
+}
+
+void Movie::addSubtitle(Subtitle *subtitle, bool fromLoad)
+{
+    m_subtitles.append(subtitle);
+    connect(subtitle, &Subtitle::sigChanged, this, &Movie::onSubtitleChanged);
+    if (!fromLoad)
+        setChanged(true);
+}
+
+void Movie::onSubtitleChanged()
+{
+    setChanged(true);
+}
+
 void Movie::setLabel(int label)
 {
     m_label = label;

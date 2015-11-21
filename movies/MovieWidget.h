@@ -102,6 +102,7 @@ private slots:
     void onImdbIdChange(QString text);
 
     void onActorEdited(QTableWidgetItem *item);
+    void onSubtitleEdited(QTableWidgetItem *item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);

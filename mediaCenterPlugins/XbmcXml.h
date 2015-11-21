@@ -87,7 +87,7 @@ private:
     QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
     void appendXmlNode(QDomDocument &doc, QDomNode &node);
     void removeChildNodes(QDomDocument &doc, const QString &name);
-    void writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails);
+    void writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle*> subtitles = QList<Subtitle*>());
 };
 
 #endif // XBMCXML_H

@@ -136,7 +136,7 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
         appendXmlNode(doc, elem);
     }
 
-    writeStreamDetails(doc, movie->streamDetails());
+    writeStreamDetails(doc, movie->streamDetails(), movie->subtitles());
 
     return doc.toByteArray(4);
 }
@@ -158,7 +158,6 @@ bool XbmcXml::saveMovie(Movie *movie)
     }
 
     movie->setNfoContent(xmlContent);
-    Manager::instance()->database()->update(movie);
 
     bool saved = false;
     QFileInfo fi(movie->files().at(0));
@@ -218,7 +217,6 @@ bool XbmcXml::saveMovie(Movie *movie)
         }
     }
 
-
     foreach (const Actor &actor, movie->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
@@ -228,6 +226,32 @@ bool XbmcXml::saveMovie(Movie *movie)
             saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
         }
     }
+
+    foreach (Subtitle *subtitle, movie->subtitles()) {
+        if (subtitle->changed()) {
+            QString subFileName = fi.completeBaseName();
+            if (!subtitle->language().isEmpty())
+                subFileName.append("." + subtitle->language());
+            if (subtitle->forced())
+                subFileName.append(".forced");
+
+            QStringList newFiles;
+            foreach (const QString &subFile, subtitle->files()) {
+                QFileInfo subFi(fi.absolutePath() + "/" + subFile);
+                QString newFileName = subFileName + "." + subFi.suffix();
+                QFile f(fi.absolutePath() + "/" + subFile);
+                if (f.rename(fi.absolutePath() + "/" + newFileName)) {
+                    newFiles << newFileName;
+                } else {
+                    qWarning() << "Could not rename" << subFi.absoluteFilePath() << "to" << fi.absolutePath() + "/" + newFileName;
+                    newFiles << subFi.fileName();
+                }
+            }
+            subtitle->setFiles(newFiles);
+        }
+    }
+
+    Manager::instance()->database()->update(movie);
 
     return true;
 }
@@ -366,7 +390,7 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("title").isEmpty() )
+    if (!domDoc.elementsByTagName("title").isEmpty())
         movie->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("originaltitle").isEmpty())
         movie->setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
@@ -524,6 +548,8 @@ void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
         for (int i=0, n=elem.elementsByTagName("subtitle").count() ; i<n ; ++i) {
             QStringList details = QStringList() << "language";
             QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
+            if (!subtitleElem.elementsByTagName("file").isEmpty())
+                continue;
             foreach (const QString &detail, details) {
                 if (!subtitleElem.elementsByTagName(detail).isEmpty())
                     streamDetails->setSubtitleDetail(i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
@@ -595,9 +621,9 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeEndElement();
 }
 
-void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails)
+void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle*> subtitles)
 {
-    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty() && streamDetails->subtitleDetails().isEmpty())
+    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty() && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())
         return;
 
     removeChildNodes(doc, "fileinfo");
@@ -658,6 +684,18 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
         elemSd.appendChild(elemSubtitle);
     }
 
+    foreach (Subtitle *subtitle, subtitles) {
+        QDomElement elemSubtitle = doc.createElement("subtitle");
+        QDomElement elem = doc.createElement("language");
+        elem.appendChild(doc.createTextNode(subtitle->language()));
+        elemSubtitle.appendChild(elem);
+
+        QDomElement elem2 = doc.createElement("file");
+        elem2.appendChild(doc.createTextNode(subtitle->files().first()));
+        elemSubtitle.appendChild(elem2);
+
+        elemSd.appendChild(elemSubtitle);
+    }
 
     elemFi.appendChild(elemSd);
     appendXmlNode(doc, elemFi);

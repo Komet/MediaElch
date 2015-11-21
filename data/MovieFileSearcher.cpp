@@ -9,6 +9,7 @@
 #include <QDirIterator>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
@@ -192,6 +193,33 @@ void MovieFileSearcher::reload(bool force)
                 movie->setDiscType(discType);
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
                 movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
+                if (discType == DiscSingle) {
+                    QFileInfo mFi(files.first());
+                    foreach (QFileInfo subFi, mFi.dir().entryInfoList(QStringList() << "*.sub" << "*.srt" << "*.smi" << "*.ssa", QDir::Files | QDir::NoDotAndDotDot)) {
+                        QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length()+1);
+                        QStringList parts = subFileName.split(QRegExp("\\s+|\\-+|\\.+"));
+                        if (parts.isEmpty())
+                            continue;
+                        parts.takeLast();
+
+                        QStringList subFiles = QStringList() << subFi.fileName();
+                        if (QString::compare(subFi.suffix(), "sub", Qt::CaseInsensitive) == 0) {
+                            QFileInfo subIdxFi(subFi.absolutePath() + "/" + subFi.completeBaseName() + ".idx");
+                            if (subIdxFi.exists())
+                                subFiles << subIdxFi.fileName();
+                        }
+                        Subtitle *subtitle = new Subtitle(movie);
+                        subtitle->setFiles(subFiles);
+                        if (parts.contains("forced", Qt::CaseInsensitive)) {
+                            subtitle->setForced(true);
+                            parts.removeAll("forced");
+                        }
+                        if (!parts.isEmpty())
+                            subtitle->setLanguage(parts.first());
+                        subtitle->setChanged(false);
+                        movie->addSubtitle(subtitle, true);
+                    }
+                }
                 Manager::instance()->database()->add(movie, con.path);
                 movies.append(movie);
                 emit currentDir(movie->name());

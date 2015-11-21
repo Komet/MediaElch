@@ -49,6 +49,8 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
     m_movie->clearImages();
     m_movie->clearExtraFanartData();
     m_movie->setSyncNeeded(true);
+    foreach (Subtitle *subtitle, m_movie->subtitles())
+        subtitle->setChanged(false);
     return saved;
 }
 

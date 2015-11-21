@@ -291,6 +291,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             FilmFiles.append(trailer.fileName());
                     }
 
+                    /*
                     QStringList filters;
                     foreach (const QString &extra, m_extraFiles)
                         filters << baseName + extra;
@@ -307,6 +308,35 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         }
                         else
                             FilmFiles.append(newSubName);
+                    }
+                    */
+
+                    foreach (Subtitle *subtitle, movie->subtitles()) {
+                        QString subFileName = QFileInfo(newFileName).completeBaseName();
+                        if (!subtitle->language().isEmpty())
+                            subFileName.append("." + subtitle->language());
+                        if (subtitle->forced())
+                            subFileName.append(".forced");
+
+                        QStringList newSubFiles;
+                        foreach (const QString &subFile, subtitle->files()) {
+                            QFileInfo subFi(fi.canonicalPath() + "/" + subFile);
+                            QString newSubFileName = subFileName + "." + subFi.suffix();
+                            ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFile).arg(newSubFileName));
+                            if (!dryRun) {
+                                if (!rename(fi.canonicalPath() + "/" + subFile, fi.canonicalPath() + "/" + newSubFileName)) {
+                                    newSubFiles << subFile;
+                                    ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                                } else {
+                                    newSubFiles << newSubFileName;
+                                    FilmFiles.append(newSubFileName);
+                                }
+                            } else {
+                                FilmFiles.append(newSubFileName);
+                            }
+                        }
+                        if (!dryRun)
+                            subtitle->setFiles(newSubFiles, false);
                     }
                 } else {
                     FilmFiles.append(fi.fileName());
