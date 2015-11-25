@@ -100,7 +100,8 @@ void MovieFileSearcher::reload(bool force)
 
                 if (it.fileInfo().dir().dirName() != lastDir) {
                     lastDir = it.fileInfo().dir().dirName();
-                    emit currentDir(it.fileInfo().dir().dirName());
+                    if (contents.count()%20 == 0)
+                        emit currentDir(it.fileInfo().dir().dirName());
                 }
 
                 if (QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
@@ -222,7 +223,7 @@ void MovieFileSearcher::reload(bool force)
                 }
                 Manager::instance()->database()->add(movie, con.path);
                 movies.append(movie);
-                emit currentDir(movie->name());
+                //emit currentDir(movie->name());
             } else {
                 QMap<QString, QStringList> stacked;
                 while (!files.isEmpty()) {
@@ -250,10 +251,12 @@ void MovieFileSearcher::reload(bool force)
                     movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
                     Manager::instance()->database()->add(movie, con.path);
                     movies.append(movie);
-                    emit currentDir(movie->name());
+                    //emit currentDir(movie->name());
                 }
             }
             emit progress(++movieCounter, movieSum, m_progressMessageId);
+            if (movieCounter%20 == 0)
+                emit currentDir("");
         }
         Manager::instance()->database()->commit();
     }
@@ -266,7 +269,8 @@ void MovieFileSearcher::reload(bool force)
         if (m_aborted)
             return;
         movies.append(movie);
-        emit currentDir(movie->name());
+        if (movieCounter%20 == 0)
+            emit currentDir(movie->name());
         emit progress(++movieCounter, movieSum, m_progressMessageId);
     }
 

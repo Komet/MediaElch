@@ -390,6 +390,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "QTabBar::tab:selected {"
         << "    border: 1px solid #dddddd;"
         << "    border-bottom: 1px solid #ffffff;"
+        << "    border-top: 2px solid #43a9e4;"
         << "    border-top-left-radius: 4px;"
         << "    border-top-right-radius: 4px;"
         << "}"
