@@ -379,12 +379,10 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
         movie->setTop250(rx.cap(1).toInt());
 
-    rx.setPattern("<h3>Company Credits</h3>[^<]*<div class=\"txt-block\">(.*)</div>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
-        QString content = rx.cap(1);
-        rx.setPattern("<span class=\"itemprop\" itemprop=\"name\">([^<]*)</span>");
+    if (infos.contains(MovieScraperInfos::Studios)) {
+        rx.setPattern("<span itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Organization\">.*<span class=\"itemprop\" itemprop=\"name\">([^<]*)</span>.*</span>");
         int pos = 0;
-        while ((pos = rx.indexIn(content, pos)) != -1) {
+        while ((pos = rx.indexIn(html, pos)) != -1) {
             movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
