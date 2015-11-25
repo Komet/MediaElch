@@ -13,6 +13,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "image/ImageCapture.h"
 #include "notifications/NotificationBox.h"
 #include "tvShows/TvShowSearch.h"
 
@@ -59,6 +60,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
     ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
+    ui->thumbnail->setShowCapture(true);
 
     m_posterDownloadManager = new DownloadManager(this);
 
@@ -77,6 +79,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->thumbnail, &ClosableImage::clicked, this, &TvShowWidgetEpisode::onChooseThumbnail);
     connect(ui->thumbnail, &ClosableImage::sigClose, this, &TvShowWidgetEpisode::onDeleteThumbnail);
     connect(ui->thumbnail, &ClosableImage::sigImageDropped, this, &TvShowWidgetEpisode::onImageDropped);
+    connect(ui->thumbnail, &ClosableImage::sigCapture, this, &TvShowWidgetEpisode::onCaptureImage);
 
     onClear();
 
@@ -1064,3 +1067,20 @@ void TvShowWidgetEpisode::onTop250Change(int value)
     ui->buttonRevert->setVisible(true);
 }
 
+void TvShowWidgetEpisode::onCaptureImage()
+{
+    if (!m_episode || m_episode->files().isEmpty())
+        return;
+    QImage img;
+    if (!ImageCapture::captureImage(m_episode->files().first(), m_episode->streamDetails(), img))
+        return;
+
+    QByteArray ba;
+    QBuffer buffer(&ba);
+    buffer.open(QIODevice::WriteOnly);
+    img.save(&buffer, "JPG", 85);
+
+    ui->thumbnail->setImage(ba);
+    ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    m_episode->setThumbnailImage(ba);
+}

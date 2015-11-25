@@ -2,6 +2,7 @@
 #define SUBTITLE_H
 
 #include <QObject>
+#include <QStringList>
 
 class Subtitle : public QObject
 {

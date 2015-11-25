@@ -45,6 +45,7 @@
         <file>img/placeholders/fanart.png</file>
         <file>img/placeholders/logo.png</file>
         <file>img/placeholders/thumb.png</file>
+        <file>img/photo.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

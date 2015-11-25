@@ -49,6 +49,7 @@ private slots:
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
     void onRevertChanges();
+    void onCaptureImage();
 
     void onNameChange(QString text);
     void onShowTitleChange(QString text);
