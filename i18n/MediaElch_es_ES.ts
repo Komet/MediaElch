@@ -5565,7 +5565,7 @@ Los directorios contienen tu música deben contener subdirectorios para cada art
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione qué sitio prefiere para cada elemento de una pserie y el episodio.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
@@ -6895,7 +6895,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Series multiple Scrape</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
@@ -7060,7 +7060,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episodios</numerusform><numerusform>%n episodios</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7310,7 +7310,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episodios</numerusform><numerusform>%n episodios</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7337,7 +7337,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Series y episodios guardados</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
@@ -7887,7 +7887,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="399"/>
         <source>Continuing</source>
-        <translation type="unfinished"/>
+        <translation>Continuando</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="404"/>
