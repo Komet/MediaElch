@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="no" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="no">
 <context>
     <name>AEBN</name>
     <message>
@@ -299,7 +301,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -336,7 +338,10 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation><numerusform> %n konserter</numerusform><numerusform>%n konserter</numerusform></translation>
+        <translation>
+            <numerusform> %n konserter</numerusform>
+            <numerusform>%n konserter</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -371,12 +376,15 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation><numerusform>%1 av %n koncertene</numerusform><numerusform>%1 av %n konsertene</numerusform></translation>
+        <translation>
+            <numerusform>%1 av %n koncertene</numerusform>
+            <numerusform>%1 av %n konsertene</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -762,7 +770,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -822,7 +830,10 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n fil(er)</numerusform><numerusform>%n file(s) </numerusform></translation>
+        <translation>
+            <numerusform>%n fil(er)</numerusform>
+            <numerusform>%n file(s) </numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1230,7 +1241,10 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation><numerusform>%n filmer</numerusform><numerusform>%n filmer</numerusform></translation>
+        <translation>
+            <numerusform>%n filmer</numerusform>
+            <numerusform>%n filmer</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1280,12 +1294,15 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation><numerusform>%1 av %n filmer</numerusform><numerusform>%1 of %n filmer</numerusform></translation>
+        <translation>
+            <numerusform>%1 av %n filmer</numerusform>
+            <numerusform>%1 of %n filmer</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1986,7 +2003,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +2012,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2107,28 +2124,28 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="38"/>
         <location filename="../image/ImageCapture.cpp" line="58"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="46"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="48"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="54"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2216,12 +2233,12 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2420,7 +2437,10 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>Import av %n filen(e) er ferdig</numerusform><numerusform>Import av %n filen(e) er ferdig</numerusform></translation>
+        <translation>
+            <numerusform>Import av %n filen(e) er ferdig</numerusform>
+            <numerusform>Import av %n filen(e) er ferdig</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3114,7 +3134,7 @@ Operasjon kansellert.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="320"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Lokale Trailer</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
@@ -3302,7 +3322,10 @@ Operasjon kansellert.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Skraping av %n filmer er ferdig.</numerusform><numerusform>Skraping av% n filmer er ferdig.</numerusform></translation>
+        <translation>
+            <numerusform>Skraping av %n filmer er ferdig.</numerusform>
+            <numerusform>Skraping av% n filmer er ferdig.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -3590,7 +3613,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
@@ -3758,12 +3781,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1376"/>
@@ -3912,7 +3935,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../movies/MovieWidget.cpp" line="872"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="918"/>
@@ -3958,37 +3981,52 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation><numerusform>%n artist(er)</numerusform><numerusform>%n artist(er)</numerusform></translation>
+        <translation>
+            <numerusform>%n artist(er)</numerusform>
+            <numerusform>%n artist(er)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation><numerusform>%n album(er)</numerusform><numerusform>%n album(er)</numerusform></translation>
+        <translation>
+            <numerusform>%n album(er)</numerusform>
+            <numerusform>%n album(er)</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation><numerusform>%n kunstnere</numerusform><numerusform>%n kunstnere</numerusform></translation>
+        <translation>
+            <numerusform>%n kunstnere</numerusform>
+            <numerusform>%n kunstnere</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation><numerusform>%n albumer</numerusform><numerusform>%n albumer</numerusform></translation>
+        <translation>
+            <numerusform>%n albumer</numerusform>
+            <numerusform>%n albumer</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation><numerusform>%1 av %n kunstnere</numerusform><numerusform>%1 av %n kunstnere</numerusform></translation>
+        <translation>
+            <numerusform>%1 av %n kunstnere</numerusform>
+            <numerusform>%1 av %n kunstnere</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4156,7 +4194,10 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>Skraping av %n elementer er ferdig.</numerusform><numerusform>Skraping av %n elementer er ferdig.</numerusform></translation>
+        <translation>
+            <numerusform>Skraping av %n elementer er ferdig.</numerusform>
+            <numerusform>Skraping av %n elementer er ferdig.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4327,7 +4368,10 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform>%n albumer</numerusform></translation>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform>%n albumer</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4405,12 +4449,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -4420,7 +4464,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="347"/>
         <source>Booklet</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="366"/>
@@ -4556,7 +4600,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
@@ -4988,7 +5032,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -5019,22 +5063,34 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>%n Film(er) endret navn</numerusform><numerusform>%n Film(er) endret navn</numerusform></translation>
+        <translation>
+            <numerusform>%n Film(er) endret navn</numerusform>
+            <numerusform>%n Film(er) endret navn</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>%n Konsert(er) endret navn</numerusform><numerusform>%n Concert(s) endret navn</numerusform></translation>
+        <translation>
+            <numerusform>%n Konsert(er) endret navn</numerusform>
+            <numerusform>%n Concert(s) endret navn</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="48"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>%n TV-serie(r) og %1</numerusform><numerusform>%n TV-serie(r) og %1</numerusform></translation>
+        <translation>
+            <numerusform>%n TV-serie(r) og %1</numerusform>
+            <numerusform>%n TV-serie(r) og %1</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="48"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>%n Episode(r) endret navn</numerusform><numerusform>%n Episode(r) får nytt navn</numerusform></translation>
+        <translation>
+            <numerusform>%n Episode(r) endret navn</numerusform>
+            <numerusform>%n Episode(r) får nytt navn</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="166"/>
@@ -5045,7 +5101,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="197"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="261"/>
@@ -5146,17 +5202,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="583"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="598"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="653"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="776"/>
@@ -5187,12 +5243,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="877"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="924"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5305,17 +5361,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5554,17 +5610,17 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -6173,7 +6229,7 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -6752,13 +6808,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n tv-serier</numerusform><numerusform>%n tv-serier</numerusform></translation>
+        <translation>
+            <numerusform>%n tv-serier</numerusform>
+            <numerusform>%n tv-serier</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n episoder</numerusform><numerusform>%n episoder</numerusform></translation>
+        <translation>
+            <numerusform>%n episoder</numerusform>
+            <numerusform>%n episoder</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6803,7 +6865,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
@@ -6830,7 +6892,10 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 av %n tv-serier</numerusform><numerusform>%1 av %n tv-serier</numerusform></translation>
+        <translation>
+            <numerusform>%1 av %n tv-serier</numerusform>
+            <numerusform>%1 av %n tv-serier</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -6889,12 +6954,12 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
@@ -7014,17 +7079,17 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="399"/>
@@ -7049,23 +7114,29 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished">
+            <numerusform>%n tv-serier</numerusform>
+            <numerusform>%n tv-serier</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished">
+            <numerusform>%n episoder</numerusform>
+            <numerusform>%n episoder</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7304,7 +7375,10 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished">
+            <numerusform>%n episoder</numerusform>
+            <numerusform>%n episoder</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -7331,7 +7405,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
@@ -7876,17 +7950,17 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="380"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="399"/>
         <source>Continuing</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="404"/>
         <source>Ended</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="412"/>
@@ -7997,7 +8071,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="656"/>

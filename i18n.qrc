@@ -24,5 +24,10 @@
         <file>i18n/MediaElch_ko.qm</file>
         <file>i18n/qt_it.qm</file>
         <file>i18n/qt_ko.qm</file>
+        <file>i18n/MediaElch_bg.qm</file>
+        <file>i18n/MediaElch_da.qm</file>
+        <file>i18n/MediaElch_ja.qm</file>
+        <file>i18n/MediaElch_ru.qm</file>
+        <file>i18n/MediaElch_sv.qm</file>
     </qresource>
 </RCC>

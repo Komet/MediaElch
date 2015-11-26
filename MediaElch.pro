@@ -454,4 +454,8 @@ TRANSLATIONS += \
     i18n/MediaElch_it.ts \
     i18n/MediaElch_fi.ts \
     i18n/MediaElch_zh_CN.ts \
-    i18n/MediaElch_bg.ts
+    i18n/MediaElch_bg.ts \
+    i18n/MediaElch_sv.ts \
+    i18n/MediaElch_ru.ts \
+    i18n/MediaElch_ja.ts \
+    i18n/MediaElch_da.ts
