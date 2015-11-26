@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Zufälligen Schnappschuss vom Video erstellen</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO Datei öffnen</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation>Konzerte gespeichert</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -1280,7 +1280,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO Datei öffnen</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
@@ -1986,7 +1986,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film hat Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +1995,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film hat keinen Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Kein Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film hat externen Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Externer Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film hat keinen externen Untertitel</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Kein externer Untertitel</translation>
     </message>
 </context>
 <context>
@@ -2107,28 +2107,28 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"/>
+        <translation>Laufzeit der Datei konnte nicht ermittelt werden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="38"/>
         <location filename="../image/ImageCapture.cpp" line="58"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"/>
+        <translation>Temporäre Datei konnte nicht geöffnet werden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="46"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"/>
+        <translation>ffmpeg konnte nicht gestartet werden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="48"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"/>
+        <translation>ffmpeg konnte nicht gestartet werden. Bitte installiere ffmpeg und stelle es in deinem $PATH bereit</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="54"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"/>
+        <translation>ffmpeg wurde nicht korrekt beendet</translation>
     </message>
 </context>
 <context>
@@ -3758,12 +3758,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Externe Untertitel</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"/>
+        <translation>Erzwungen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1376"/>
@@ -3912,7 +3912,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../movies/MovieWidget.cpp" line="872"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"/>
+        <translation>Filme gespeichert</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="918"/>
@@ -3968,12 +3968,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Verzeichnis öffnen</translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO Datei öffnen</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
@@ -4405,17 +4405,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz Album ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="296"/>
-        <source>mbReleaseGroupId</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz Release Group ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -5556,17 +5551,17 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"/>
+        <translation>TV Scraper</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"/>
+        <translation>Wähle aus welche Seite du für jedes Element einer Serie oder Episode bevorzugst.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation>Seite</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -6145,7 +6140,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="826"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Erste Ausstrahlung</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="848"/>
@@ -6764,7 +6759,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Load Information</source>
-        <translation type="unfinished"/>
+        <translation>Informationen Laden</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -6804,7 +6799,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO Datei öffnen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
@@ -6839,42 +6834,42 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../data/TvShowModel.cpp" line="107"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="109"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="111"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"/>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="113"/>
         <source>Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="115"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="117"/>
         <source>Clear Art</source>
-        <translation type="unfinished"/>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="119"/>
         <source>Character Art</source>
-        <translation type="unfinished"/>
+        <translation>Character Art</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="121"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
 </context>
 <context>
@@ -6889,184 +6884,184 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <name>TvShowMultiScrapeDialog</name>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
-        <source>Dialog</source>
+        <source>TV Show Multi Scrape</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="20"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"/>
+        <translation>Bitte wählen die Infos aus, die geladen werden sollen. MediaElch wird das beste Suchergebnis für jede ausgewählte Serie und Episode verwenden.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="49"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Lade Infos</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="58"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="62"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="71"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="75"/>
         <source>Episode Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Episoden Thumbnail</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="84"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="88"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Staffel Thumb</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="97"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="101"/>
         <source>Season Banner</source>
-        <translation type="unfinished"/>
+        <translation>Staffel-Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="110"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="114"/>
         <source>Season Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Staffel-Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="123"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="127"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Staffel-Poster</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="136"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="140"/>
         <source>Artwork</source>
-        <translation type="unfinished"/>
+        <translation>Artwork</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="149"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="153"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="162"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="166"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="175"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="179"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="188"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="192"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="201"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="205"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="214"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="218"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="227"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="231"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="240"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="244"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Freigabe</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="253"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="257"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Drehbuch</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="266"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="270"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Regisseur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="279"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="283"/>
         <source>Runtime</source>
-        <translation type="unfinished"/>
+        <translation>Laufzeit</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="292"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="296"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Erste Ausstrahlung</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="305"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="309"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Bewertung</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="318"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="322"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Status</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="340"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="344"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Alle aus/abwählen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="366"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"/>
+        <translation>DVD Sortierung</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="373"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Jede Serie und Episode nach dem Laden der Informationen automatisch speichern</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="380"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Nur Serien und Episoden mit TheTVDB ID aktualisieren</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="395"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="399"/>
         <source>1/20</source>
-        <translation type="unfinished"/>
+        <translation>1/20</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="427"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="431"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="450"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="454"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="463"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="467"/>
         <source>Start Scraping</source>
-        <translation type="unfinished"/>
+        <translation>Informationen Laden</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eine Serie</numerusform><numerusform>%n Serien</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eine Episode</numerusform><numerusform>%n Episoden</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"/>
+        <translation>Informationen für %1 und %2 wurden geladen.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"/>
+        <translation>Informationen für %1 wurden geladen.</translation>
     </message>
 </context>
 <context>
@@ -7099,7 +7094,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="132"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="142"/>
@@ -7305,7 +7300,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eine Episode</numerusform><numerusform>%n Episoden</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7332,7 +7327,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Serien und Episoden gespeichert</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
@@ -7450,12 +7445,12 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="485"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Stimmen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="518"/>
         <source>Top 250</source>
-        <translation type="unfinished"/>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="540"/>
@@ -7777,12 +7772,12 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="202"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Stimmen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="235"/>
         <source>Top 250</source>
-        <translation type="unfinished"/>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="254"/>
@@ -7877,27 +7872,27 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="380"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="399"/>
         <source>Continuing</source>
-        <translation type="unfinished"/>
+        <translation>Läuft noch</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="404"/>
         <source>Ended</source>
-        <translation type="unfinished"/>
+        <translation>Beendet</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="412"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="447"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB Id</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="618"/>
@@ -7998,7 +7993,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"/>
+        <translation>Bitte warte während die Informationen für die Serie geladen werden</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="656"/>
