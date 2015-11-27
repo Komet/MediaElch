@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
 <context>
     <name>AEBN</name>
     <message>
@@ -338,11 +336,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation>
-            <numerusform>%n koncert</numerusform>
-            <numerusform>%n koncertów</numerusform>
-            <numerusform>%n koncertów</numerusform>
-        </translation>
+        <translation><numerusform>%n koncert</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -382,11 +376,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation>
-            <numerusform>1 z 1 koncertu</numerusform>
-            <numerusform>%1 z %n koncertów</numerusform>
-            <numerusform>%1 z %n koncertów</numerusform>
-        </translation>
+        <translation><numerusform>1 z 1 koncertu</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -832,11 +822,7 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation>
-            <numerusform>%n plik</numerusform>
-            <numerusform>%n plików</numerusform>
-            <numerusform>%n plik(ów)</numerusform>
-        </translation>
+        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(ów)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1244,11 +1230,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation>
-            <numerusform>%n film</numerusform>
-            <numerusform>%n filmów</numerusform>
-            <numerusform>%n filmów</numerusform>
-        </translation>
+        <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1303,11 +1285,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation>
-            <numerusform>%1 z %n filmów</numerusform>
-            <numerusform>%1 z %n filmów</numerusform>
-            <numerusform>%1 z %n filmów</numerusform>
-        </translation>
+        <translation><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2034,7 +2012,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation>Film z plikiem napisów</translation>
+        <translation>Film z plikiem z napisami</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
@@ -2129,28 +2107,28 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"></translation>
+        <translation>Niemożliwe uzyskanie czasu trwania pliku</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="38"/>
         <location filename="../image/ImageCapture.cpp" line="58"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieudane otwarcie tymczasowego pliku wyjściowego</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="46"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można uruchomić ffmpeg</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="48"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można uruchomić ffmpeg. Zainstaluj je i upewnij się, że zostało dodane do zmienne środowiskowej $PATH</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="54"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"></translation>
+        <translation>ffmpeg w trakcie działania</translation>
     </message>
 </context>
 <context>
@@ -2442,11 +2420,7 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation>
-            <numerusform>Import pliku został zakończony</numerusform>
-            <numerusform>Import %n plików został zakończony</numerusform>
-            <numerusform>Import %n pliku(ów) został zakończony</numerusform>
-        </translation>
+        <translation><numerusform>Import pliku został zakończony</numerusform><numerusform>Import %n plików został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3328,11 +3302,7 @@ Operacja anulowana.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation>
-            <numerusform>Zakończono pobieranie informacji dla filmu.</numerusform>
-            <numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform>
-            <numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform>
-        </translation>
+        <translation><numerusform>Zakończono pobieranie informacji dla filmu.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3788,12 +3758,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation>Plik z napisami</translation>
+        <translation>Plik napisów</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuszone</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1376"/>
@@ -3988,25 +3958,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation>
-            <numerusform>%n wykonawca</numerusform>
-            <numerusform>%n wykonawców</numerusform>
-            <numerusform>%n wykonawców</numerusform>
-        </translation>
+        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation>
-            <numerusform>%n album</numerusform>
-            <numerusform>%n albumy</numerusform>
-            <numerusform>%n albumy(ów)</numerusform>
-        </translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumy(ów)</numerusform></translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz folder</translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
@@ -4016,29 +3978,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation>
-            <numerusform>%n wykonawca</numerusform>
-            <numerusform>%n wykonawców</numerusform>
-            <numerusform>%n wykonawców</numerusform>
-        </translation>
+        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation>
-            <numerusform>%n album</numerusform>
-            <numerusform>%n albumy</numerusform>
-            <numerusform>%n albumów</numerusform>
-        </translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation>
-            <numerusform>%1 z %n wykonawców</numerusform>
-            <numerusform>%1 z %n wykonawców</numerusform>
-            <numerusform>%1 z %n wykonawców</numerusform>
-        </translation>
+        <translation><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4206,11 +4156,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation>
-            <numerusform>Zakończono pobieranie informacji dla pozycji.</numerusform>
-            <numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform>
-            <numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform>
-        </translation>
+        <translation><numerusform>Zakończono pobieranie informacji dla pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4381,11 +4327,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation>
-            <numerusform>%n album</numerusform>
-            <numerusform>%n albumy</numerusform>
-            <numerusform>%n albumów</numerusform>
-        </translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4463,12 +4405,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Identyfikator albumu w MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Identyfikator wydawcy w MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -5046,7 +4988,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -5077,38 +5019,22 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation>
-            <numerusform>Nazwa pliku filmu zostanie zmieniona</numerusform>
-            <numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform>
-            <numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform>
-        </translation>
+        <translation><numerusform>Nazwa pliku filmu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation>
-            <numerusform>Nazwa pliku koncertu zostanie zmieniona</numerusform>
-            <numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform>
-            <numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform>
-        </translation>
+        <translation><numerusform>Nazwa pliku koncertu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="48"/>
         <source>%n TV Show(s) and %1</source>
-        <translation>
-            <numerusform>Nazwa folderu serialu i %1</numerusform>
-            <numerusform>Nazwy folderów %n seriali i %1</numerusform>
-            <numerusform>Nazwy folderów %n seriali i %1</numerusform>
-        </translation>
+        <translation><numerusform>Nazwa folderu serialu i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="48"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation>
-            <numerusform>nazwa pliku odcinka zostanie zmieniona</numerusform>
-            <numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform>
-            <numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform>
-        </translation>
+        <translation><numerusform>nazwa pliku odcinka zostanie zmieniona</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="166"/>
@@ -5607,7 +5533,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Aktywuj dostawców informacji o filmach dla dorosłych</translation>
+        <translation>Używaj dostawców informacji o filmach dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
@@ -5628,17 +5554,17 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostawca informacji o serialach</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz preferowany serwis dla każdego serialu i odcinka.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Serwis</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -6247,7 +6173,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;⏎
@@ -6825,21 +6751,13 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
         <source>%n tv shows</source>
-        <translation>
-            <numerusform>%n serial</numerusform>
-            <numerusform>%n seriali</numerusform>
-            <numerusform>%n seriali</numerusform>
-        </translation>
+        <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
         <source>%n episodes</source>
-        <translation>
-            <numerusform>%n odcinek</numerusform>
-            <numerusform>%n odcinków</numerusform>
-            <numerusform>%n odcinków</numerusform>
-        </translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6911,11 +6829,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
         <source>%1 of %n tv shows</source>
-        <translation>
-            <numerusform>%1 z %n seriali</numerusform>
-            <numerusform>%1 z %n seriali</numerusform>
-            <numerusform>%1 z %n seriali</numerusform>
-        </translation>
+        <translation><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
 </context>
 <context>
@@ -6974,12 +6888,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Wsadowe pobieranie informacji o serialu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz informacje, które chcesz wczytywać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
@@ -7099,17 +7013,17 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj kolejności wydania DVD</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisuj każdy serial/odcinek po pobraniu informacji</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj tylko seriale/odcinki z identyfikatorem TheTVDB</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="399"/>
@@ -7134,31 +7048,23 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform>%n serial</numerusform>
-            <numerusform>%n seriali</numerusform>
-            <numerusform>%n seriali</numerusform>
-        </translation>
+        <translation><numerusform>%n serial</numerusform><numerusform>%n seriale</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform>%n odcinek</numerusform>
-            <numerusform>%n odcinków</numerusform>
-            <numerusform>%n odcinków</numerusform>
-        </translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończono pobieranie informacji o %1 i %2.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończono pobieranie informacji o %1.</translation>
     </message>
 </context>
 <context>
@@ -7397,11 +7303,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform>%n odcinek</numerusform>
-            <numerusform>%n odcinków</numerusform>
-            <numerusform>%n odcinków</numerusform>
-        </translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
 </context>
 <context>
@@ -8094,7 +7996,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę czekać na pobranie informacji o serialu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="656"/>
