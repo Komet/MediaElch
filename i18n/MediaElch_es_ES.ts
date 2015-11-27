@@ -5191,8 +5191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="877"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation>&lt;b&gt;Serie&lt;/b&gt; &quot;%1&quot; haa sido editada pero no salvada
-</translation>
+        <translation>&lt;b&gt;Serie&lt;/b&gt; &quot;%1&quot; ha sido editada pero no guardada</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="924"/>
@@ -5526,9 +5525,9 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>Agregar uno o más directorios que contienen sus películas, programas de televisión, conciertos, música o archivos de import.
-TV Show Episodios tienen que estar en subcarpetas con el nombre de la show.
-Los directorios contienen tu música deben contener subdirectorios para cada artista que contiene los directorios de álbumes.</translation>
+        <translation>Agrega uno o más directorios que contienen tus películas, series, conciertos, música o archivos para importar.
+Los episodios de series tienen que estar en subcarpetas con el nombre de la serie.
+Los directorios que contienen tu música deben contener subdirectorios para cada artista que contienen los directorios de álbumes.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="253"/>
@@ -5565,7 +5564,7 @@ Los directorios contienen tu música deben contener subdirectorios para cada art
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Seleccione qué sitio prefiere para cada elemento de una pserie y el episodio.</translation>
+        <translation>Seleccione qué sitio prefiere para cada elemento de una serie y episodio.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
@@ -5701,7 +5700,7 @@ Los directorios contienen tu música deben contener subdirectorios para cada art
     <message>
         <location filename="../settings/SettingsWindow.ui" line="721"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abajo puedes ver los nombres de los archivos que se utilizan para cargar y guardar tus series. Usted puede editar a tu gusto, si usted desea utilizar varios archivos separados por coma.</translation>
+        <translation>Abajo puedes ver los nombres de los archivos que se utilizan para cargar y guardar tus series. Usted puede editar a su gusto, si usted desea utilizar varios archivos separados por coma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="731"/>
@@ -6192,7 +6191,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch hace uso de varias bases de datos de películas y series de televisión. Estas bases de datos también necesitan su ayuda para mantener sus servicios en marcha y funcionando de forma gratuita. Si no desea donar puede también aportar información y obras de arte desaparecidas, si es posible.</translation>
+        <translation>MediaElch hace uso de varias bases de datos de películas y series. Estas bases de datos también necesitan su ayuda para mantener sus servicios en marcha y funcionando de forma gratuita. Si no desea donar puede también aportar información y obras de arte desaparecidas, si es posible.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -6758,7 +6757,7 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n series tv</numerusform><numerusform>%n series tv</numerusform></translation>
+        <translation><numerusform>%n series tv</numerusform><numerusform>%n series</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
@@ -6836,7 +6835,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 of %n series tv</numerusform><numerusform>%1 of %n series tv</numerusform></translation>
+        <translation><numerusform>%1 of %n series tv</numerusform><numerusform>%1 of %n series</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7025,7 +7024,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation>Guardar automáticamente cada serie/episodio despues de scrapping</translation>
+        <translation>Guardar automáticamente cada serie/episodio despues de scraping</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
@@ -7055,7 +7054,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n series tv</numerusform><numerusform>%n series tv</numerusform></translation>
+        <translation><numerusform>%n series tv</numerusform><numerusform>%n series</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
