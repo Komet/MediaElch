@@ -3948,7 +3948,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
         <translation>Zoeken naar Muziek...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
         <source>Loading Music...</source>
         <translation>Muziek Laden...</translation>
     </message>
@@ -6731,12 +6731,12 @@ p, li { white-space: pre-wrap; }
         <translation>Laden van TV Programma&apos;s...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="185"/>
         <source>Searching for Episodes...</source>
         <translation>Zoeken naar Afleveringen...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="223"/>
         <source>Loading Episodes...</source>
         <translation>Laden van Afleveringen...</translation>
     </message>

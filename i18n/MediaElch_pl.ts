@@ -3948,7 +3948,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Wyszukiwanie muzyki...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
         <source>Loading Music...</source>
         <translation>Wczytywanie muzyki...</translation>
     </message>
@@ -6730,12 +6730,12 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Wczytywanie seriali...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="185"/>
         <source>Searching for Episodes...</source>
         <translation>Wyszukiwanie odcinków...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="223"/>
         <source>Loading Episodes...</source>
         <translation>Wczytywanie odcinków...</translation>
     </message>

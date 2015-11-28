@@ -3948,7 +3948,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
         <translation>Søke etter musikk ...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
         <source>Loading Music...</source>
         <translation>Laster musikk...</translation>
     </message>
@@ -6731,12 +6731,12 @@ p, li { white-space: pre-wrap; }
         <translation>Laster TV-serier...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="185"/>
         <source>Searching for Episodes...</source>
         <translation>Søke etter episoder ...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="223"/>
         <source>Loading Episodes...</source>
         <translation>Laster episoder...</translation>
     </message>
