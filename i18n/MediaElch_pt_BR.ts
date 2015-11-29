@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Captura de tela randômica</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Arquivo NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation>Concertos Salvos</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -1280,7 +1280,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Arquivo NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
@@ -1986,7 +1986,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Filme possui Legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +1995,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Filme sem legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Sem Legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Filme com legenda externa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Legenda Externa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Filme não possui legenda externa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Sem Legenda Externa</translation>
     </message>
 </context>
 <context>
@@ -2107,28 +2107,28 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"/>
+        <translation>Não obtive duração do arquivo</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="38"/>
         <location filename="../image/ImageCapture.cpp" line="58"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo temporário de saída não pôde ser aberto.</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="46"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"/>
+        <translation>Não pude iniciar ffmpeg</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="48"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"/>
+        <translation>Não pude iniciar o ffmpeg. Por favor instale-o e torne-o disponível em seu $PATH</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="54"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"/>
+        <translation>ffmpeg não finalizou</translation>
     </message>
 </context>
 <context>
@@ -3758,12 +3758,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Legendas Externas</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"/>
+        <translation>Forçada</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1376"/>
@@ -3912,7 +3912,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.cpp" line="872"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"/>
+        <translation>Filmes Salvos</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="918"/>
@@ -3968,12 +3968,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Pasta</translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Arquivo NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
@@ -4405,12 +4405,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"/>
+        <translation>Álbum ID MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"/>
+        <translation>ID grupo lançamento MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -5554,17 +5554,17 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"/>
+        <translation>TV scraper</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione qual site você prefere para cada elemento de um seriado e episódio.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation>Site</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -6802,7 +6802,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Arquivo NFO</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
@@ -6888,12 +6888,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Escraper múltipo para seriados</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor selecione as informações que você deseja sejam carregadas. Mediaelch irá usar o melhor resultado para cada seriado e episódio selecionado.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
@@ -7013,17 +7013,17 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"/>
+        <translation>Usar ordem dos episódios DVD</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Automaticamente salve cada seriado/episódio após escrapear</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Atualize somente episódios/seriados com ID no TheTVDB</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="399"/>
@@ -7048,23 +7048,23 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n seriados</numerusform><numerusform>%n seriados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"/>
+        <translation>Escrapeando %1 e %2 foi finalizado.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"/>
+        <translation>Escrapeando %1 foi finalizado.</translation>
     </message>
 </context>
 <context>
@@ -7303,7 +7303,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7330,7 +7330,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Seriados e Episódios Salvos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
@@ -7875,17 +7875,17 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="380"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="399"/>
         <source>Continuing</source>
-        <translation type="unfinished"/>
+        <translation>Continua</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="404"/>
         <source>Ended</source>
-        <translation type="unfinished"/>
+        <translation>Finalizada</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="412"/>
@@ -7996,7 +7996,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"/>
+        <translation>Por favor aguarde enquanto seu seriado é escrapeado</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="656"/>
