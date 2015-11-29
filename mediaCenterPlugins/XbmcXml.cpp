@@ -108,14 +108,16 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
             appendXmlNode(doc, elem);
         }
 
-        QDomElement fanartElem = doc.createElement("fanart");
-        foreach (const Poster &poster, movie->backdrops()) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            fanartElem.appendChild(elem);
+        if (!movie->backdrops().isEmpty()) {
+            QDomElement fanartElem = doc.createElement("fanart");
+            foreach (const Poster &poster, movie->backdrops()) {
+                QDomElement elem = doc.createElement("thumb");
+                elem.setAttribute("preview", poster.thumbUrl.toString());
+                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                fanartElem.appendChild(elem);
+            }
+            appendXmlNode(doc, fanartElem);
         }
-        appendXmlNode(doc, fanartElem);
     }
 
     removeChildNodes(doc, "actor");
@@ -764,14 +766,16 @@ QByteArray XbmcXml::getConcertXml(Concert *concert)
             appendXmlNode(doc, elem);
         }
 
-        QDomElement fanartElem = doc.createElement("fanart");
-        foreach (const Poster &poster, concert->backdrops()) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            fanartElem.appendChild(elem);
+        if (!concert->backdrops().isEmpty()) {
+            QDomElement fanartElem = doc.createElement("fanart");
+            foreach (const Poster &poster, concert->backdrops()) {
+                QDomElement elem = doc.createElement("thumb");
+                elem.setAttribute("preview", poster.thumbUrl.toString());
+                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                fanartElem.appendChild(elem);
+            }
+            appendXmlNode(doc, fanartElem);
         }
-        appendXmlNode(doc, fanartElem);
     }
 
     writeStreamDetails(doc, concert->streamDetails());
@@ -1509,14 +1513,16 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
             appendXmlNode(doc, elemSeason);
         }
 
-        QDomElement fanartElem = doc.createElement("fanart");
-        foreach (const Poster &poster, show->backdrops()) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            fanartElem.appendChild(elem);
+        if (!show->backdrops().isEmpty()) {
+            QDomElement fanartElem = doc.createElement("fanart");
+            foreach (const Poster &poster, show->backdrops()) {
+                QDomElement elem = doc.createElement("thumb");
+                elem.setAttribute("preview", poster.thumbUrl.toString());
+                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                fanartElem.appendChild(elem);
+            }
+            appendXmlNode(doc, fanartElem);
         }
-        appendXmlNode(doc, fanartElem);
 
         foreach (int season, show->seasons()) {
             foreach (const Poster &poster, show->seasonPosters(season)) {
@@ -2371,14 +2377,16 @@ QByteArray XbmcXml::getArtistXml(Artist *artist)
             appendXmlNode(doc, elem);
         }
 
-        QDomElement fanartElem = doc.createElement("fanart");
-        foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            fanartElem.appendChild(elem);
+        if (!artist->images(ImageType::ArtistFanart).isEmpty()) {
+            QDomElement fanartElem = doc.createElement("fanart");
+            foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
+                QDomElement elem = doc.createElement("thumb");
+                elem.setAttribute("preview", poster.thumbUrl.toString());
+                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                fanartElem.appendChild(elem);
+            }
+            appendXmlNode(doc, fanartElem);
         }
-        appendXmlNode(doc, fanartElem);
     }
 
     QList<QDomNode> albumNodes;
