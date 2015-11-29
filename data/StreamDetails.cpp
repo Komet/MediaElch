@@ -19,6 +19,13 @@ using namespace ZenLib;
 #define QString2wstring(_DATA) \
     Ztring().From_UTF8(_DATA.toUtf8())
 
+#ifdef Q_OS_WIN
+    #define QString2MI(_DATA) QString(_DATA).toStdWString()
+    #define MI2QString(_DATA) QString::fromStdWString(_DATA)
+#else
+    #define QString2MI(_DATA) QString(_DATA).toUtf8().data()
+    #define MI2QString(_DATA) QString(_DATA.c_str())
+#endif
 
 /**
  * @brief StreamDetails::StreamDetails
@@ -104,11 +111,7 @@ void StreamDetails::loadWithLibrary()
             fileName = dir.absolutePath() + "/" + files.first();
     }
 
-#ifdef Q_OS_WIN
-    MI.Open(fileName.toLatin1().data());
-#else
-    MI.Open(fileName.toUtf8().data());
-#endif
+    MI.Open(QString2MI(fileName));
 
     int duration = 0;
     double aspectRatio;
@@ -117,9 +120,9 @@ void StreamDetails::loadWithLibrary()
     QString scanType;
     QString videoCodec;
 
-    int videoCount = QString(MI.Get(Stream_General, 0, __T("VideoCount")).c_str()).toInt();
-    int audioCount = QString(MI.Get(Stream_General, 0, __T("AudioCount")).c_str()).toInt();
-    int textCount = QString(MI.Get(Stream_General, 0, __T("TextCount")).c_str()).toInt();
+    int videoCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("VideoCount"))).toInt();
+    int audioCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("AudioCount"))).toInt();
+    int textCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
 
     if (m_files.count() > 1) {
         foreach (const QString &file, m_files) {
@@ -127,37 +130,34 @@ void StreamDetails::loadWithLibrary()
             MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
             MI_duration.Option(__T("Internet"), __T("no"));
             MI_duration.Option(__T("Complete"), __T("1"));
-#ifdef Q_OS_WIN
-            MI_duration.Open(file.toLatin1().data());
-#else
-            MI_duration.Open(file.toUtf8().data());
-#endif
-            duration += qRound(QString(MI_duration.Get(Stream_General, 0, __T("Duration")).c_str()).toFloat()/1000);
+            MI_duration.Open(QString2MI(file));
+            duration += qRound(MI2QString(MI_duration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat()/1000);
+            MI_duration.Close();
         }
     } else {
-        duration = qRound(QString(MI.Get(Stream_General, 0, __T("Duration")).c_str()).toFloat()/1000);
+        duration += qRound(MI2QString(MI.Get(Stream_General, 0, QString2MI("Duration"))).toFloat()/1000);
     }
 
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
 
     if (videoCount > 0) {
-        aspectRatio = QString(MI.Get(Stream_Video, 0, __T("DisplayAspectRatio")).c_str()).toDouble();
-        width = QString(MI.Get(Stream_Video, 0, __T("Width")).c_str()).toInt();
-        height = QString(MI.Get(Stream_Video, 0, __T("Height")).c_str()).toInt();
-        scanType = QString(MI.Get(Stream_Video, 0, __T("ScanType")).c_str());
+        aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
+        width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
+        height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
+        scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
 
-        QString codec = QString(MI.Get(Stream_Video, 0, __T("CodecID/Hint")).c_str());
+        QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID/Hint")));
         QString version;
         if (codec.isEmpty()) {
-            codec = QString(MI.Get(Stream_Video, 0, __T("CodecID")).c_str());
+            codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID")));
             if (codec.isEmpty()) {
-                codec = QString(MI.Get(Stream_Video, 0, __T("Format")).c_str());
-                version = QString(MI.Get(Stream_Video, 0, __T("Format_Version")).c_str());
+                codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format")));
+                version = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format_Version")));
             }
         }
         videoCodec = videoFormat(codec, version);
 
-        QString multiView = QString(MI.Get(Stream_Video, 0, __T("MultiView_Layout")).c_str());
+        QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 
         setVideoDetail("codec", videoCodec);
         setVideoDetail("aspect", QString("%1").arg(aspectRatio));
@@ -168,12 +168,12 @@ void StreamDetails::loadWithLibrary()
     }
 
     for (int i=0 ; i<audioCount ; ++i) {
-        QString lang = QString(MI.Get(Stream_Audio, i, __T("Language/String3")).c_str()).toLower();
-        QString audioCodec = audioFormat(QString(MI.Get(Stream_Audio, i, __T("Codec")).c_str()),
-                                         QString(MI.Get(Stream_Audio, i, __T("Format_Profile")).c_str()));
-        QString channels = QString(MI.Get(Stream_Audio, i, __T("Channel(s)")).c_str());
-        if (!QString(MI.Get(Stream_Audio, i, __T("Channel(s)_Original")).c_str()).isEmpty())
-            channels = QString(MI.Get(Stream_Audio, i, __T("Channel(s)_Original")).c_str());
+        QString lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String3")));
+        QString audioCodec = audioFormat(MI2QString(MI.Get(Stream_Audio, i, QString2MI("Codec"))),
+                                         MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
+        QString channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)")));
+        if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty())
+            channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
         QRegExp rx("^(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
             channels = rx.cap(1);
@@ -185,9 +185,10 @@ void StreamDetails::loadWithLibrary()
     }
 
     for (int i=0 ; i<textCount ; ++i) {
-        QString lang = QString(MI.Get(Stream_Text, i, __T("Language/String3")).c_str()).toLower();
+        QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Languange/String3")));
         setSubtitleDetail(i, "language", lang);
     }
+
     MI.Close();
 }
 

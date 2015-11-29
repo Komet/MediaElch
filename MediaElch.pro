@@ -19,6 +19,9 @@ macx:LIBS += -framework Foundation
 unix:!macx {
     LIBS += -ldl
 }
+win32 {
+    DEFINES+=_UNICODE
+}
 
 TARGET = MediaElch
 TEMPLATE = app
