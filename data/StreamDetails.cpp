@@ -14,10 +14,6 @@ using namespace MediaInfoDLL;
 #include <ZenLib/Ztring.h>
 #include <ZenLib/ZtringListList.h>
 using namespace ZenLib;
-#define wstring2QString(_DATA) \
-    QString::fromUtf8(Ztring(_DATA).To_UTF8().c_str())
-#define QString2wstring(_DATA) \
-    Ztring().From_UTF8(_DATA.toUtf8())
 
 #ifdef Q_OS_WIN
     #define QString2MI(_DATA) QString(_DATA).toStdWString()
