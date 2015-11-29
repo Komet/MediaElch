@@ -3948,7 +3948,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
         <translation>Buscando Música...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
         <source>Loading Music...</source>
         <translation>Cargando Música</translation>
     </message>
@@ -6736,12 +6736,12 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Cargando series...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="185"/>
         <source>Searching for Episodes...</source>
         <translation>Buscando series...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="223"/>
         <source>Loading Episodes...</source>
         <translation>Cargando series...</translation>
     </message>
