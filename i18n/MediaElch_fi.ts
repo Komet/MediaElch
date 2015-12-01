@@ -7049,12 +7049,12 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n tv-sarja</numerusform><numerusform>%n tv-sarjaa</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7304,7 +7304,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7331,7 +7331,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>TV-sarjat ja jaksot tallennettu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
