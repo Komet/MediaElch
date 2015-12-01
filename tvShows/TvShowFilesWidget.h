@@ -35,6 +35,7 @@ public slots:
     void renewModel(bool force = false);
     void emitLastSelection();
     void multiScrape();
+    void updateProxy();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);

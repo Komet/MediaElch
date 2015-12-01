@@ -560,6 +560,11 @@ void TvShowFilesWidget::onViewUpdated()
     m_tvShowProxyModel->invalidate();
 }
 
+void TvShowFilesWidget::updateProxy()
+{
+    m_tvShowProxyModel->invalidate();
+}
+
 void TvShowFilesWidget::playEpisode(QModelIndex idx)
 {
     if (!idx.isValid())
