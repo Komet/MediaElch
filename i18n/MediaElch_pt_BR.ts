@@ -7322,18 +7322,18 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
         <translation>Formulário</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="158"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="202"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Salvando alterações em Seriados e Episódios</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
         <translation>Seriados e Episódios Salvos</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Todos os Seriados e Episódios foram salvos</translation>
     </message>

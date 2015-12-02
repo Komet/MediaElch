@@ -7311,18 +7311,18 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="158"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="202"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>保存电视剧及其播出季信息的变更</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>电视剧及其播出季资料已保存</translation>
     </message>

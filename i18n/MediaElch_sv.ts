@@ -7323,18 +7323,18 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="158"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="202"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Sparar ändrade TV-serier och avsnitt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Alla TV-serier och avsnitt sparade</translation>
     </message>

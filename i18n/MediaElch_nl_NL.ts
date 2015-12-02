@@ -7322,18 +7322,18 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>Formulier</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="158"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="202"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Gewijzigde TV Programma&apos;s en afleveringen opslaan</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Alle TV Programma&apos;s en afleveringen opgeslagen</translation>
     </message>

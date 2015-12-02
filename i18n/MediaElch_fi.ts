@@ -7323,18 +7323,18 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="158"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="202"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Tallennetaan muokattuja TV-sarjoja ja jaksoja</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="180"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
         <translation>TV-sarjat ja jaksot tallennettu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="221"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Kaikki sarjat ja jaksot tallennettu</translation>
     </message>
