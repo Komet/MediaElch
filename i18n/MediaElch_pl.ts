@@ -402,7 +402,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="95"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="33"/>
         <source>Custom Movie Scraper</source>
-        <translation>Dostawca niestandardowy</translation>
+        <translation>Niestandardowy</translation>
     </message>
 </context>
 <context>
@@ -3137,7 +3137,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="92"/>
@@ -3328,7 +3328,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="59"/>
@@ -4177,7 +4177,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="59"/>
@@ -5515,7 +5515,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="391"/>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="48"/>
@@ -5533,12 +5533,12 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Używaj dostawców informacji o filmach dla dorosłych</translation>
+        <translation>Aktywuj dostawców informacji o filmach dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
-        <translation>Dostawca niestandardowy</translation>
+        <translation>Niestandardowy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
@@ -5554,7 +5554,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation>Dostawca informacji o serialach</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
@@ -6632,7 +6632,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../globals/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
-        <translation>Dostawca informacji</translation>
+        <translation>Dostawca</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="93"/>
