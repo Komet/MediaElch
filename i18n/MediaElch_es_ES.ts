@@ -4705,7 +4705,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation>Sincronizadar con Kidi</translation>
+        <translation>Sincronizar con Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>

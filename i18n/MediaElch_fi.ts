@@ -7049,17 +7049,17 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n tv-sarja</numerusform><numerusform>%n tv-sarjaa</numerusform></translation>
+        <translation><numerusform>%n:n tv-sarjan</numerusform><numerusform>%n:n tv-sarjan</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
+        <translation><numerusform>%n:n jakson</numerusform><numerusform>%n:n jakson</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ja %2 tietojen hakeminen on valmis.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
