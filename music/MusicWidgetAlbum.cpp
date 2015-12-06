@@ -1,7 +1,9 @@
 #include "MusicWidgetAlbum.h"
 #include "ui_MusicWidgetAlbum.h"
 
-#include <QGLFormat>
+#ifdef Q_OS_WIN
+    #include <QGLFormat>
+#endif
 #include <QPainter>
 #include "../globals/Globals.h"
 #include "../globals/Helper.h"
@@ -62,6 +64,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
 
     m_bookletWidget = 0;
 
+#ifdef Q_OS_WIN
     if (QGLFormat::openGLVersionFlags() & QGLFormat::OpenGL_Version_1_5) {
         m_bookletWidget = new ImageWidget(this);
         ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
@@ -70,6 +73,12 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     } else {
         ui->tabWidget->removeTab(2);
     }
+#else
+    m_bookletWidget = new ImageWidget(this);
+    ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
+    connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
+#endif
 
     connect(ui->title, SIGNAL(textChanged(QString)), ui->albumName, SLOT(setText(QString)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
