@@ -3,6 +3,7 @@
 #include <QPainter>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 
 /**
  * @brief MovieModel::MovieModel
@@ -11,8 +12,15 @@
 MovieModel::MovieModel(QObject *parent) :
     QAbstractItemModel(parent)
 {
+#ifdef Q_OS_WIN
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
+#else
+    MyIconFont *font = new MyIconFont(this);
+    font->initFontAwesome();
+    m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
+    m_newIcon = font->icon("star", QColor(58, 135, 173), QColor(255, 255, 255), "", 0, 1.0);
+#endif
 }
 
 /**
@@ -51,6 +59,8 @@ void MovieModel::update()
  */
 Movie *MovieModel::movie(int row)
 {
+    if (row < 0 || row >= m_movies.count())
+        return 0;
     return m_movies.at(row);
 }
 

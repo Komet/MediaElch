@@ -9,6 +9,7 @@
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
 QMap<QUrl, QString> MediaPassion::m_contentCache;
@@ -181,7 +182,7 @@ void MediaPassion::onSearchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit searchDone(QList<ScraperSearchResult>());
         return;
@@ -221,6 +222,7 @@ void MediaPassion::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, 
         return;
     }
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("movie", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
@@ -235,7 +237,7 @@ void MediaPassion::onLoadFinished()
     if (!movie)
         return;
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
         return;

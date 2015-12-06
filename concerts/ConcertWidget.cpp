@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QScrollBar>
 #include "concerts/ConcertSearch.h"
+#include "concerts/ConcertFilesWidget.h"
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -622,15 +623,32 @@ void ConcertWidget::onReloadStreamDetails()
  */
 void ConcertWidget::onSaveInformation()
 {
-    qDebug() << "Entered";
+    QList<Concert*> concerts = ConcertFilesWidget::instance()->selectedConcerts();
+    if (concerts.count() == 0)
+        concerts.append(m_concert);
+
     setDisabledTrue();
     m_savingWidget->show();
-    m_concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
-    m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
-    updateConcertInfo();
+
+    if (concerts.count() == 1) {
+        m_concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
+        m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
+        updateConcertInfo();
+        NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
+    } else {
+        foreach (Concert *concert, concerts) {
+            if (concert->hasChanged()) {
+                concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
+                concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
+                if (m_concert == concert)
+                    updateConcertInfo();
+            }
+        }
+        NotificationBox::instance()->showMessage(tr("Concerts Saved"));
+    }
+
     setEnabledTrue();
     m_savingWidget->hide();
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
     ui->buttonRevert->setVisible(false);
 }
 

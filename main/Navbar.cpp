@@ -52,16 +52,22 @@ Navbar::Navbar(QWidget *parent) :
     navbarColors << QColor(107, 183, 228, 255);
     navbarColors << QColor(206, 139, 188, 255);
 
+    QStringList menuIcons = QStringList() << "scrape" << "save" << "saveall" << "rename" << "sync" << "export" << "reload" << "settings" << "about";
+
     int i=0;
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton*>()) {
-#ifdef Q_OS_WIN
+        if (!btn->property("iconName").isValid())
+            continue;
+#ifndef Q_OS_MAC
         btn->setIconSize(QSize(32, 32));
-#endif
+        btn->setIcon(QIcon(":/menu/" + menuIcons.takeFirst()));
+#else
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(),
                                                            navbarColors.at(i++%navbarColors.count()),
                                                            btn->property("iconPainter").toString(),
                                                            1.0
                                                            ));
+#endif
     }
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {

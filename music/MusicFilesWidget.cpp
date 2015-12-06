@@ -2,6 +2,7 @@
 #include "ui_MusicFilesWidget.h"
 
 #include <QDebug>
+#include <QDesktopServices>
 #include "../globals/Manager.h"
 #include "MusicMultiScrapeDialog.h"
 
@@ -27,6 +28,15 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
     ui->music->setAnimated(false);
 #endif
 
+    QAction *actionOpenFolder = new QAction(tr("Open Folder"), this);
+    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    m_contextMenu = new QMenu(ui->music);
+    m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addAction(actionOpenNfo);
+    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(onOpenFolder()));
+    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(onOpenNfo()));
+    connect(ui->music, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+
     connect(ui->music->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
     connect(m_proxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));
     connect(m_proxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));
@@ -35,6 +45,55 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
 MusicFilesWidget::~MusicFilesWidget()
 {
     delete ui;
+}
+
+void MusicFilesWidget::showContextMenu(QPoint point)
+{
+    m_contextMenu->exec(ui->music->mapToGlobal(point));
+}
+
+void MusicFilesWidget::onOpenFolder()
+{
+    m_contextMenu->close();
+    if (!ui->music->currentIndex().isValid())
+        return;
+    QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
+    MusicModelItem *item = Manager::instance()->musicModel()->getItem(index);
+    if (!item)
+        return;
+    QString dir;
+    if (item->type() == TypeArtist) {
+        dir = item->artist()->path();
+    } else if (item->type() == TypeAlbum) {
+        dir = item->album()->path();
+    }
+
+    if (dir.isEmpty())
+        return;
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
+}
+
+void MusicFilesWidget::onOpenNfo()
+{
+    m_contextMenu->close();
+    if (!ui->music->currentIndex().isValid())
+        return;
+    QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
+    MusicModelItem *item = Manager::instance()->musicModel()->getItem(index);
+    if (!item)
+        return;
+    QString file;
+    if (item->type() == TypeArtist) {
+        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->artist());
+    } else if (item->type() == TypeAlbum) {
+        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->album());
+    }
+
+    if (file.isEmpty())
+        return;
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(file));
 }
 
 MusicFilesWidget *MusicFilesWidget::instance()

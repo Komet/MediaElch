@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TvShowMultiScrapeDialog</class>
+ <widget class="QDialog" name="TvShowMultiScrapeDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>723</width>
+    <height>543</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TV Show Multi Scrape</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+    border-radius: 0px;
+    border-top: 5px solid #5BC0DE; 
+    background-color: #F4F8FA;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Infos to load</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="MyCheckBox" name="chkTitle">
+          <property name="text">
+           <string>Title</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <widget class="MyCheckBox" name="chkEpisodeThumbnail">
+          <property name="text">
+           <string>Episode Thumbnail</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">episode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="MyCheckBox" name="chkSeasonThumb">
+          <property name="text">
+           <string>Season Thumb</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="MyCheckBox" name="chkSeasonBanner">
+          <property name="text">
+           <string>Season Banner</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="MyCheckBox" name="chkSeasonFanart">
+          <property name="text">
+           <string>Season Fanart</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="MyCheckBox" name="chkSeasonPoster">
+          <property name="text">
+           <string>Season Poster</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="MyCheckBox" name="chkExtraArts">
+          <property name="text">
+           <string>Artwork</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="MyCheckBox" name="chkBanner">
+          <property name="text">
+           <string>Banner</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="MyCheckBox" name="chkPoster">
+          <property name="text">
+           <string>Poster</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="MyCheckBox" name="chkFanart">
+          <property name="text">
+           <string>Fanart</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="MyCheckBox" name="chkActors">
+          <property name="text">
+           <string>Actors</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="MyCheckBox" name="chkNetwork">
+          <property name="text">
+           <string>Network</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="MyCheckBox" name="chkGenres">
+          <property name="text">
+           <string>Genres</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="MyCheckBox" name="chkOverview">
+          <property name="text">
+           <string>Overview</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="MyCheckBox" name="chkCertification">
+          <property name="text">
+           <string>Certification</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="MyCheckBox" name="chkWriter">
+          <property name="text">
+           <string>Writer</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">episode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="MyCheckBox" name="chkDirector">
+          <property name="text">
+           <string>Director</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">episode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="MyCheckBox" name="chkRuntime">
+          <property name="text">
+           <string>Runtime</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="MyCheckBox" name="chkFirstAired">
+          <property name="text">
+           <string>First aired</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="MyCheckBox" name="chkRating">
+          <property name="text">
+           <string>Rating</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="MyCheckBox" name="chkStatus">
+          <property name="text">
+           <string>Status</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">show</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkUnCheckAll">
+        <property name="text">
+         <string>(Un)Check all</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>47</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkDvdOrder">
+     <property name="text">
+      <string>Use DVD episode order</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkAutoSave">
+     <property name="text">
+      <string>Automatically save each tv show/episode after scraping</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkOnlyId">
+     <property name="text">
+      <string>Update only tv shows/episodes with TheTVDB ID</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
+     <item>
+      <widget class="QLabel" name="itemCounter">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>1/20</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="title">
+       <property name="text">
+        <string notr="true">Item</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressItem">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressAll">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btnCancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnClose">
+       <property name="text">
+        <string>Close</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnStartScraping">
+       <property name="text">
+        <string>Start Scraping</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">smallWidgets/MyCheckBox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>btnCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>TvShowMultiScrapeDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>514</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>361</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnClose</sender>
+   <signal>clicked()</signal>
+   <receiver>TvShowMultiScrapeDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>514</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>361</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -138,13 +138,14 @@ void TvShowFileSearcher::reload(bool force)
         Manager::instance()->database()->commit();
     }
 
+    emit currentDir("");
+
     // Setup shows loaded from database
     foreach (TvShow *show, dbShows) {
         if (m_aborted)
             return;
 
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
-        emit currentDir(show->name());
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
         QMap<int, TvShowModelItem*> seasonItems;
@@ -157,6 +158,8 @@ void TvShowFileSearcher::reload(bool force)
                 seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
+            if (episodeCounter%1000 == 0)
+                emit currentDir("");
         }
     }
 

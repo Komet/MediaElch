@@ -9,7 +9,6 @@
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
-#include "data/TvShowDelegate.h"
 #include "globals/Filter.h"
 
 namespace Ui {
@@ -28,22 +27,25 @@ public:
     ~TvShowFilesWidget();
     void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();
-    QList<TvShowEpisode*> selectedEpisodes();
+    QList<TvShowEpisode*> selectedEpisodes(bool includeFromSeasonOrShow = true);
     QList<TvShow*> selectedShows();
+    QList<TvShow*> selectedSeasons();
 
 public slots:
     void renewModel(bool force = false);
     void emitLastSelection();
+    void multiScrape();
+    void updateProxy();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
     void sigTvShowSelected(TvShow *show);
     void sigSeasonSelected(TvShow *show, int season);
     void sigNothingSelected();
+    void sigStartSearch();
 
 private slots:
-    void onItemActivated(QModelIndex index, QModelIndex previous);
-    void onItemClicked(QModelIndex index);
+    void onItemSelected(QModelIndex index);
     void showContextMenu(QPoint point);
     void scanForEpisodes();
     void markAsWatched();
@@ -52,6 +54,7 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void openNfo();
     void showMissingEpisodes();
     void hideSpecialsInMissingEpisodes();
     void onViewUpdated();
@@ -60,7 +63,6 @@ private slots:
 private:
     Ui::TvShowFilesWidget *ui;
     TvShowProxyModel *m_tvShowProxyModel;
-    TvShowDelegate *m_tvShowDelegate;
     static TvShowFilesWidget *m_instance;
     QMenu *m_contextMenu;
     TvShow *m_lastTvShow;

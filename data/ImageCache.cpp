@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 ImageCache::ImageCache(QObject *parent) :
@@ -38,7 +39,7 @@ ImageCache *ImageCache::instance(QObject *parent)
 QImage ImageCache::image(QString path, int width, int height, int &origWidth, int &origHeight)
 {
     if (m_cacheDir.isEmpty())
-        return scaledImage(QImage(path), width, height);
+        return scaledImage(Helper::instance()->getImage(path), width, height);
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_%2_%3_").arg(md5).arg(width).arg(height);
@@ -58,7 +59,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
     }
 
     if (update) {
-        QImage origImg(path);
+        QImage origImg = Helper::instance()->getImage(path);
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
@@ -66,7 +67,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         return img;
     }
 
-    return QImage(m_cacheDir + "/" + files.first());
+    return Helper::instance()->getImage(m_cacheDir + "/" + files.first());
 }
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
@@ -97,18 +98,18 @@ void ImageCache::invalidateImages(QString path)
 QSize ImageCache::imageSize(QString path)
 {
     if (m_cacheDir.isEmpty())
-        return QImage(path).size();
+        return Helper::instance()->getImage(path).size();
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_").arg(md5);
     QDir dir(m_cacheDir);
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (files.isEmpty() || files.first().split("_").count() < 7)
-        return QImage(path).size();
+        return Helper::instance()->getImage(path).size();
 
     QStringList parts = files.first().split("_");
     if (!m_forceCache && getLastModified(path) != parts.at(5).toInt())
-        return QImage(path).size();
+        return Helper::instance()->getImage(path).size();
 
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());
 }

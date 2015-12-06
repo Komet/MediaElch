@@ -23,6 +23,7 @@ public slots:
     static MusicSearch *instance(QWidget *parent = 0);
     int scraperNo();
     QString scraperId();
+    QString scraperId2();
     QList<int> infosToLoad();
 
 private:

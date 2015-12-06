@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQml.Models 2.1
-import QtQuick.Controls 1.4
+import QtQuick.Controls 1.3
 
 Item {
     id: root
@@ -88,7 +88,7 @@ Item {
                                 color: "#ffffff"
                                 font.pixelSize: 24
                                 text: "\ue680"
-                                renderType: Text.NativeRendering
+                                renderType: isOsx ? Text.NativeRendering : Text.QtRendering
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: Text.AlignHCenter
                             }
@@ -102,7 +102,7 @@ Item {
                             anchors.top: img.bottom
                             anchors.left: img.left
                             anchors.topMargin: 4
-                            renderType: Text.NativeRendering
+                            renderType: isOsx ? Text.NativeRendering : Text.QtRendering
                             color: "#666666"
                             font.family: "Pe-icon-7-stroke"
                             font.pixelSize: 16
@@ -118,7 +118,7 @@ Item {
                             anchors.top: img.bottom
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.topMargin: 2
-                            renderType: Text.NativeRendering
+                            renderType: isOsx ? Text.NativeRendering : Text.QtRendering
                             color: "#666666"
                             font.family: "Pe-icon-7-stroke"
                             font.pixelSize: 20
@@ -138,7 +138,7 @@ Item {
                             anchors.topMargin: 6
                             text: img.sourceSize.width + "x" + img.sourceSize.height
                             font.pixelSize: 10
-                            renderType: Text.NativeRendering
+                            renderType: isOsx ? Text.NativeRendering : Text.QtRendering
                             color: "#666666"
                         }
                     }

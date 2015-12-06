@@ -20,6 +20,7 @@ public:
     explicit MusicWidgetArtist(QWidget *parent = 0);
     ~MusicWidgetArtist();
     void setArtist(Artist *artist);
+    void updateArtistInfo();
 
 public slots:
     void onSetEnabled(bool enabled);
@@ -61,7 +62,6 @@ private:
     Ui::MusicWidgetArtist *ui;
     QPointer<Artist> m_artist;
 
-    void updateArtistInfo();
     void clearContents(QLineEdit *widget);
     void setContent(QLineEdit *widget, const QString &content);
     void updateImage(int imageType, ClosableImage *image);

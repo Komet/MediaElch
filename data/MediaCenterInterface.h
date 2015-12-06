@@ -54,6 +54,7 @@ public:
     virtual QString nfoFilePath(Movie *movie) = 0;
     virtual QString nfoFilePath(Concert *concert) = 0;
     virtual QString nfoFilePath(TvShowEpisode *episode) = 0;
+    virtual QString nfoFilePath(TvShow *show) = 0;
     virtual QString nfoFilePath(Artist *artist) = 0;
     virtual QString nfoFilePath(Album *album) = 0;
 

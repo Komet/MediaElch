@@ -3,6 +3,7 @@
 #include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include "globals/Manager.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 #include "data/Storage.h"
 
@@ -151,6 +152,7 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface*, QString> ids, Movie *m
         QUrl url(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId).arg(TMDb::apiKey()));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        new NetworkReplyWatcher(this, reply);
         reply->setProperty("movie", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("ids", Storage::toVariant(reply, ids));
@@ -170,7 +172,7 @@ void CustomMovieScraper::onLoadTmdbFinished()
     QString tmdbId = reply->property("tmdbId").toString();
     reply->deleteLater();
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString imdbId;
         QScriptValue sc;
         QScriptEngine engine;

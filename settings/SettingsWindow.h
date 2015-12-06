@@ -77,6 +77,8 @@ private:
     void loadRemoteTemplates();
     QComboBox* comboForMovieScraperInfo(const int &info);
     QString titleForMovieScraperInfo(const int &info);
+    QComboBox* comboForTvScraperInfo(const int &info);
+    QString titleForTvScraperInfo(const int &info);
     void setPluginActionsEnabled(const bool &enabled);
 };
 

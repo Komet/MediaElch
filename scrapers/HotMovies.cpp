@@ -5,6 +5,7 @@
 #include <QRegExp>
 #include "data/Storage.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
 HotMovies::HotMovies(QObject *parent)
@@ -58,6 +59,7 @@ void HotMovies::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("http://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
@@ -66,7 +68,7 @@ void HotMovies::onSearchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit searchDone(QList<ScraperSearchResult>());
         return;
@@ -100,6 +102,7 @@ void HotMovies::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QLi
 
     QUrl url(ids.values().first());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
@@ -110,7 +113,7 @@ void HotMovies::onLoadFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
     } else {

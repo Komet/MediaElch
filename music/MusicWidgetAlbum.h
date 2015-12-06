@@ -6,6 +6,7 @@
 #include <QWidget>
 #include "../smallWidgets/ClosableImage.h"
 #include "../music/Album.h"
+#include "../image/ImageWidget.h"
 
 namespace Ui {
 class MusicWidgetAlbum;
@@ -25,6 +26,7 @@ public slots:
     void onClear();
     void onSaveInformation();
     void onStartScraperSearch();
+    void updateAlbumInfo();
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
@@ -57,8 +59,8 @@ private slots:
 private:
     Ui::MusicWidgetAlbum *ui;
     QPointer<Album> m_album;
+    ImageWidget *m_bookletWidget;
 
-    void updateAlbumInfo();
     void clearContents(QLineEdit *widget);
     void setContent(QLineEdit *widget, const QString &content);
     void updateImage(int imageType, ClosableImage *image);

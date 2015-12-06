@@ -80,6 +80,9 @@
    </item>
    <item>
     <widget class="MusicTreeView" name="music">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTreeView {
 	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);

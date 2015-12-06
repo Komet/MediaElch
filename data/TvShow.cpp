@@ -31,6 +31,8 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_runtime = 0;
     m_showMissingEpisodes = false;
     m_hideSpecialsInMissingEpisodes = false;
+    m_votes = 0;
+    m_top250 = 0;
 }
 
 /**
@@ -87,8 +89,11 @@ void TvShow::clear(QList<int> infos)
         m_images.insert(ImageType::TvShowPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::TvShowPoster, false);
     }
-    if (infos.contains(TvShowScraperInfos::Rating))
+    if (infos.contains(TvShowScraperInfos::Rating)) {
         m_rating = 0;
+        m_votes = 0;
+        m_top250 = 0;
+    }
     if (infos.contains(TvShowScraperInfos::SeasonPoster)) {
         clearSeasonImageType(ImageType::TvShowSeasonPoster);
         m_seasonPosters.clear();
@@ -216,7 +221,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  */
 void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad)
 {
-    if (tvScraperInterface->name() == "The TV DB")
+    if (tvScraperInterface->identifier() == "tvdb")
         setTvdbId(id);
     m_infosToLoad = infosToLoad;
     tvScraperInterface->loadTvShowData(id, this, type, infosToLoad);
@@ -1276,6 +1281,44 @@ QList<int> TvShow::seasonImageTypes()
 {
     return QList<int>() << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner
                         << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonThumb;
+}
+
+void TvShow::setDir(const QString &dir)
+{
+    m_dir = dir;
+}
+
+QString TvShow::status() const
+{
+    return m_status;
+}
+
+void TvShow::setStatus(const QString &status)
+{
+    m_status = status;
+    setChanged(true);
+}
+
+int TvShow::votes() const
+{
+    return m_votes;
+}
+
+void TvShow::setVotes(int votes)
+{
+    m_votes = votes;
+    setChanged(true);
+}
+
+int TvShow::top250() const
+{
+    return m_top250;
+}
+
+void TvShow::setTop250(int top250)
+{
+    m_top250 = top250;
+    setChanged(true);
 }
 
 bool TvShow::hasImage(int type)

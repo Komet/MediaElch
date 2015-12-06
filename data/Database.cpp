@@ -194,6 +194,25 @@ Database::Database(QObject *parent) :
             updateDbVersion(15);
         }
 
+        if (myDbVersion < 16) {
+            query.prepare("DROP TABLE IF EXISTS movieSubtitles;");
+            query.exec();
+
+            query.prepare("CREATE TABLE IF NOT EXISTS movieSubtitles( "
+                          "\"idSubtitle\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                          "\"idMovie\" integer NOT NULL, "
+                          "\"files\" text NOT NULL, "
+                          "\"language\" text NOT NULL, "
+                          "\"forced\" integer NOT NULL "
+                          ");");
+            query.exec();
+            query.prepare("CREATE INDEX id_subtitle_idx ON movieSubtitles(idMovie);");
+            query.exec();
+
+            myDbVersion = 16;
+            updateDbVersion(16);
+        }
+
         query.prepare("PRAGMA synchronous=0;");
         query.exec();
 
@@ -266,6 +285,9 @@ void Database::clearMovies(QString path)
         query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
         query.bindValue(":path", path.toUtf8());
         query.exec();
+        query.prepare("DELETE FROM movieSubtitles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
+        query.bindValue(":path", path.toUtf8());
+        query.exec();
         query.prepare("DELETE FROM movies WHERE path=:path");
         query.bindValue(":path", path.toUtf8());
         query.exec();
@@ -277,6 +299,10 @@ void Database::clearMovies(QString path)
         query.prepare("DELETE FROM movieFiles");
         query.exec();
         query.prepare("DELETE FROM sqlite_sequence WHERE name='movieFiles'");
+        query.exec();
+        query.prepare("DELETE FROM movieSubtitles");
+        query.exec();
+        query.prepare("DELETE FROM sqlite_sequence WHERE name='movieSubtitles'");
         query.exec();
     }
 }
@@ -309,6 +335,15 @@ void Database::add(Movie *movie, QString path)
         query.exec();
     }
 
+    foreach (Subtitle *subtitle, movie->subtitles()) {
+        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, :language, :forced)");
+        query.bindValue(":idMovie", insertId);
+        query.bindValue(":files", subtitle->files().join("%§%"));
+        query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
+        query.bindValue(":forced", subtitle->forced() ? 1 : 0);
+        query.exec();
+    }
+
     setLabel(movie->files(), movie->label());
 
     movie->setDatabaseId(insertId);
@@ -321,10 +356,33 @@ void Database::update(Movie *movie)
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent());
     query.bindValue(":idMovie", movie->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM movieFiles WHERE idMovie=:idMovie");
+    query.bindValue(":idMovie", movie->databaseId());
+    query.exec();
+    foreach (const QString &file, movie->files()) {
+        query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
+        query.bindValue(":idMovie", movie->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
+
+    query.prepare("DELETE FROM movieSubtitles WHERE idMovie=:idMovie");
+    query.bindValue(":idMovie", movie->databaseId());
+    query.exec();
+    foreach (Subtitle *subtitle, movie->subtitles()) {
+        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, :language, :forced)");
+        query.bindValue(":idMovie", movie->databaseId());
+        query.bindValue(":files", subtitle->files().join("%§%"));
+        query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
+        query.bindValue(":forced", subtitle->forced() ? 1 : 0);
+        query.exec();
+    }
 }
 
 QList<Movie*> Database::movies(QString path)
 {
+    transaction();
     QSqlQuery query(db());
     query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, M.hasLogo, M.hasClearArt, "
                   "M.hasCdArt, M.hasBanner, M.hasThumb, M.hasExtraFanarts, M.discType, MF.file, L.color "
@@ -335,6 +393,7 @@ QList<Movie*> Database::movies(QString path)
                   "ORDER BY M.idMovie, MF.file");
     query.bindValue(":path", path.toUtf8());
     query.exec();
+
     QMap<int, Movie*> movies;
     while (query.next()) {
         if (!movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
@@ -361,6 +420,23 @@ QList<Movie*> Database::movies(QString path)
         files << query.value(query.record().indexOf("file")).toByteArray();
         movies.value(query.value(query.record().indexOf("idMovie")).toInt())->setFiles(files);
     }
+
+    query.prepare("SELECT idMovie, files, language, forced FROM movieSubtitles");
+    query.exec();
+    while (query.next()) {
+        int movieId = query.value(query.record().indexOf("idMovie")).toInt();
+        Movie *movie = movies.value(movieId, 0);
+        if (!movie)
+            continue;
+        Subtitle *subtitle = new Subtitle(movie);
+        subtitle->setForced(query.value(query.record().indexOf("forced")).toInt() == 1);
+        subtitle->setLanguage(query.value(query.record().indexOf("language")).toString());
+        subtitle->setFiles(query.value(query.record().indexOf("files")).toString().split("%§%"));
+        subtitle->setChanged(false);
+        movie->addSubtitle(subtitle, true);
+    }
+
+    commit();
 
     return movies.values();
 }
@@ -414,6 +490,16 @@ void Database::update(Concert *concert)
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent());
     query.bindValue(":id", concert->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM concertFiles WHERE idConcert=:idConcert");
+    query.bindValue(":idConcert", concert->databaseId());
+    query.exec();
+    foreach (const QString &file, concert->files()) {
+        query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
+        query.bindValue(":idConcert", concert->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
 }
 
 QList<Concert*> Database::concerts(QString path)
@@ -541,8 +627,9 @@ void Database::add(TvShowEpisode *episode, QString path, int idShow)
 void Database::update(TvShow *show)
 {
     QSqlQuery query(db());
-    query.prepare("UPDATE shows SET content=:content WHERE idShow=:id");
+    query.prepare("UPDATE shows SET content=:content, dir=:dir WHERE idShow=:id");
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent());
+    query.bindValue(":dir", show->dir().toUtf8());
     query.bindValue(":id", show->databaseId());
     query.exec();
 
@@ -563,6 +650,17 @@ void Database::update(TvShowEpisode *episode)
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent());
     query.bindValue(":id", episode->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM episodeFiles WHERE idEpisode=:idEpisode");
+    query.bindValue(":idEpisode", episode->databaseId());
+    query.exec();
+
+    foreach (const QString &file, episode->files()) {
+        query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
+        query.bindValue(":idEpisode", episode->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
 }
 
 QList<TvShow*> Database::shows(QString path)

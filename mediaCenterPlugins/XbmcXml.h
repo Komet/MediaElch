@@ -61,6 +61,7 @@ public:
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
     QString nfoFilePath(TvShowEpisode *episode);
+    QString nfoFilePath(TvShow *show);
     QString nfoFilePath(Artist *artist);
     QString nfoFilePath(Album *album);
 
@@ -70,17 +71,23 @@ public:
     void loadBooklets(Album *album);
 
 private:
-    void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
-    void writeConcertXml(QXmlStreamWriter &xml, Concert *concert);
-    void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show);
-    void writeArtistXml(QXmlStreamWriter &xml, Artist *artist);
-    void writeAlbumXml(QXmlStreamWriter &xml, Album *album);
+    QByteArray getMovieXml(Movie *movie);
+    QByteArray getConcertXml(Concert *concert);
+    QByteArray getTvShowXml(TvShow *show);
+    QByteArray getArtistXml(Artist *artist);
+    QByteArray getAlbumXml(Album *album);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
     void loadStreamDetails(StreamDetails *streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
     QString getPath(Movie *movie);
     QString getPath(Concert *concert);
     QString movieSetFileName(QString setName, DataFile *dataFile);
+    QDomElement setTextValue(QDomDocument &doc, const QString &name, const QString &value);
+    void setListValue(QDomDocument &doc, const QString &name, const QStringList &values);
+    QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
+    void appendXmlNode(QDomDocument &doc, QDomNode &node);
+    void removeChildNodes(QDomDocument &doc, const QString &name);
+    void writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle*> subtitles = QList<Subtitle*>());
 };
 
 #endif // XBMCXML_H

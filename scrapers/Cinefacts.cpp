@@ -4,6 +4,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 /**
@@ -111,6 +112,7 @@ void Cinefacts::search(QString searchStr)
     QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
     QUrl url(QString("http://www.cinefacts.de/search/site/q/%1/").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
@@ -132,12 +134,13 @@ void Cinefacts::searchFinished()
             redirect.prepend("http://www.cinefacts.de");
         QUrl url(redirect);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+        new NetworkReplyWatcher(this, reply);
         connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
         return;
     }
 
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
@@ -189,6 +192,7 @@ void Cinefacts::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QLi
 
     QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("cinefactsId", ids.values().first());
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -209,7 +213,7 @@ void Cinefacts::loadFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
         reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Besetzung-Stab/").arg(cinefactsId))));
@@ -233,7 +237,7 @@ void Cinefacts::actorsFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignActors(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
         reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Bildergalerie/").arg(cinefactsId))));
@@ -256,7 +260,7 @@ void Cinefacts::imagesFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QStringList posters;
         QStringList backdrops;
@@ -435,7 +439,7 @@ void Cinefacts::posterFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QRegExp rx("<a href=\"([^\"]*)\" target=\"_blank\">Bild in Originalgr..e</a>");
         rx.setMinimal(true);
@@ -482,7 +486,7 @@ void Cinefacts::backdropFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QRegExp rx("<a href=\"([^\"]*)\" target=\"_blank\">Bild in Originalgr..e</a>");
         rx.setMinimal(true);

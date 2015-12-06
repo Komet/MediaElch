@@ -80,7 +80,7 @@ void FanartTvMusicArtists::onSearchArtistFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
@@ -133,7 +133,7 @@ void FanartTvMusicArtists::onLoadConcertFinished()
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseData(msg, info);
     }

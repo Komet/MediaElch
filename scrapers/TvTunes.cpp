@@ -4,6 +4,7 @@
 #include <QNetworkRequest>
 #include <QRegExp>
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 
 TvTunes::TvTunes(QObject *parent) :
     QObject(parent)
@@ -22,6 +23,7 @@ void TvTunes::search(QString searchStr)
     QUrl url(QString("http://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
     QNetworkRequest request(url);
     QNetworkReply *reply = m_qnam.get(request);
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -31,7 +33,7 @@ void TvTunes::onSearchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QList<ScraperSearchResult> results;
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit sigSearchDone(results);
         return;
@@ -72,6 +74,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
 
     ScraperSearchResult res = m_queue.dequeue();
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(QUrl(res.id)));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     reply->setProperty("name", res.name);
     connect(reply, SIGNAL(finished()), this, SLOT(onDownloadUrlFinished()));

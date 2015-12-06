@@ -43,6 +43,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    ui->tvScraperTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->tvScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->tvScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
     ui->stackedWidget->setCurrentIndex(0);
     //ui->stackedWidget->setAnimation(QEasingCurve::Linear);
     //ui->stackedWidget->setSpeed(200);
@@ -373,6 +377,22 @@ void SettingsWindow::loadSettings()
         ui->customScraperTable->setCellWidget(row, 1, comboForMovieScraperInfo(info));
     }
 
+
+    QList<int> tvInfos = QList<int>() << TvShowScraperInfos::Title << TvShowScraperInfos::Rating << TvShowScraperInfos::FirstAired
+                                      << TvShowScraperInfos::Runtime << TvShowScraperInfos::Director << TvShowScraperInfos::Writer
+                                      << TvShowScraperInfos::Certification << TvShowScraperInfos::Overview << TvShowScraperInfos::Genres
+                                      << TvShowScraperInfos::Actors;
+
+    ui->tvScraperTable->clearContents();
+    ui->tvScraperTable->setRowCount(0);
+
+    foreach (const int &info, tvInfos) {
+        int row = ui->tvScraperTable->rowCount();
+        ui->tvScraperTable->insertRow(row);
+        ui->tvScraperTable->setItem(row, 0, new QTableWidgetItem(titleForTvScraperInfo(info)));
+        ui->tvScraperTable->setCellWidget(row, 1, comboForTvScraperInfo(info));
+    }
+
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
     ui->unrarPath->setText(m_settings->unrar());
     ui->makemkvconPath->setText(m_settings->makeMkvCon());
@@ -463,6 +483,16 @@ void SettingsWindow::saveSettings()
         customMovieScraper.insert(info, scraper);
     }
     m_settings->setCustomMovieScraper(customMovieScraper);
+
+    // tv scraper
+    QMap<int, QString> tvScraper;
+    for (int row=0, n=ui->tvScraperTable->rowCount() ; row<n ; ++row) {
+        QComboBox *box = static_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
+        int info = box->itemData(0, Qt::UserRole+1).toInt();
+        QString scraper = box->itemData(box->currentIndex()).toString();
+        tvScraper.insert(info, scraper);
+    }
+    m_settings->setCustomTvScraper(tvScraper);
 
     // Downloads
     m_settings->setUnrar(ui->unrarPath->text());
@@ -763,6 +793,51 @@ QString SettingsWindow::titleForMovieScraperInfo(const int &info)
         return tr("Banner");
     case MovieScraperInfos::Thumb:
         return tr("Thumb");
+    default:
+        return tr("Unsupported");
+    }
+}
+
+QComboBox *SettingsWindow::comboForTvScraperInfo(const int &info)
+{
+    QString currentScraper = m_settings->customTvScraper().value(info, "notset");
+
+    QComboBox *box = new QComboBox();
+    box->addItem("The TV DB", "tvdb");
+    box->setItemData(0, info, Qt::UserRole+1);
+
+    box->addItem("IMDB", "imdb");
+    box->setItemData(1, info, Qt::UserRole+1);
+
+    if (currentScraper == "imdb")
+        box->setCurrentIndex(1);
+
+    return box;
+}
+
+QString SettingsWindow::titleForTvScraperInfo(const int &info)
+{
+    switch (info) {
+    case TvShowScraperInfos::Title:
+        return tr("Title");
+    case TvShowScraperInfos::Rating:
+        return tr("Rating");
+    case TvShowScraperInfos::FirstAired:
+        return tr("First Aired");
+    case TvShowScraperInfos::Runtime:
+        return tr("Runtime");
+    case TvShowScraperInfos::Director:
+        return tr("Director");
+    case TvShowScraperInfos::Writer:
+        return tr("Writer");
+    case TvShowScraperInfos::Certification:
+        return tr("Certification");
+    case TvShowScraperInfos::Overview:
+        return tr("Plot");
+    case TvShowScraperInfos::Genres:
+        return tr("Genres");
+    case TvShowScraperInfos::Actors:
+        return tr("Actors");
     default:
         return tr("Unsupported");
     }

@@ -6,6 +6,7 @@
 #include <QDateTimeEdit>
 #include <QDir>
 #include <QDoubleSpinBox>
+#include <QFile>
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
@@ -358,9 +359,6 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "    height: 16px;"
         << "}";
 
-        if (!isTable)
-            styleSheet << "QComboBox { margin-left: 5px; padding-right: 5px; }";
-
         styleSheet
         << "QCheckBox::indicator:unchecked {"
         << "    image: url(':/img/ui_uncheck.png');"
@@ -392,6 +390,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "QTabBar::tab:selected {"
         << "    border: 1px solid #dddddd;"
         << "    border-bottom: 1px solid #ffffff;"
+        << "    border-top: 2px solid #43a9e4;"
         << "    border-top-left-radius: 4px;"
         << "    border-top-right-radius: 4px;"
         << "}"
@@ -788,4 +787,31 @@ QString Helper::matchResolution(int width, int height, const QString &scanType)
     if (scanType.toLower() == "interlaced")
         return res + "i";
     return res;
+}
+
+QImage Helper::getImage(QString path)
+{
+    QImage img;
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly)) {
+        img = QImage::fromData(file.readAll());
+        file.close();
+    }
+    return img;
+}
+
+QString Helper::secondsToTimeCode(quint32 duration)
+{
+    QString res;
+    int seconds = (int) (duration % 60);
+    duration /= 60;
+    int minutes = (int) (duration % 60);
+    duration /= 60;
+    int hours = (int) (duration % 24);
+    int days = (int) (duration / 24);
+    if(hours == 0 && days == 0)
+        return res.sprintf("%02d:%02d", minutes, seconds);
+    if (days == 0)
+        return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);
+    return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds);
 }

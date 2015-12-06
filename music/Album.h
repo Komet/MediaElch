@@ -98,8 +98,11 @@ public:
     AlbumController *controller() const;
     void setController(AlbumController *controller);
 
-    QString mbId() const;
-    void setMbId(const QString &mbId);
+    QString mbReleaseGroupId() const;
+    void setMbReleaseGroupId(const QString &mbReleaseGroupId);
+
+    QString mbAlbumId() const;
+    void setMbAlbumId(const QString &mbAlbumId);
 
     QString allMusicId() const;
     void setAllMusicId(const QString &allMusicId);
@@ -135,7 +138,8 @@ private:
     int m_databaseId;
     Artist *m_artistObj;
     AlbumController *m_controller;
-    QString m_mbId;
+    QString m_mbAlbumId;
+    QString m_mbReleaseGroupId;
     QString m_allMusicId;
     ImageModel *m_bookletModel;
     ImageProxyModel *m_bookletProxyModel;

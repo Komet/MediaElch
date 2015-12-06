@@ -49,6 +49,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
     ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
     ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
+    ui->chkStatus->setMyData(TvShowScraperInfos::Status);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
@@ -56,8 +57,6 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     }
 
     connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
-
-    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
 }
 
 /**
@@ -98,6 +97,9 @@ int TvShowSearch::exec(QString searchString, QString id)
         ui->searchString->setText("id" + id);
     else
         ui->searchString->setText(searchString.replace(".", " "));
+
+    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
+
     onChkToggled();
     onSearch();
     return QDialog::exec();
@@ -256,6 +258,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkDirector->setEnabled(false);
         ui->chkWriter->setEnabled(false);
         ui->chkRuntime->setEnabled(true);
+        ui->chkStatus->setEnabled(true);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
@@ -270,9 +273,10 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
         ui->chkRuntime->setEnabled(true);
+        ui->chkStatus->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
-        ui->chkActors->setEnabled(false);
+        ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(false);
         ui->chkSeasonBackdrop->setEnabled(false);
         ui->chkSeasonBanner->setEnabled(false);
@@ -284,6 +288,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
         ui->chkRuntime->setEnabled(false);
+        ui->chkStatus->setEnabled(false);
     }
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())

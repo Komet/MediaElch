@@ -38,6 +38,7 @@ public slots:
     void setEnabledTrue(Movie *movie = 0);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
+    void updateMovieInfo();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -101,6 +102,7 @@ private slots:
     void onImdbIdChange(QString text);
 
     void onActorEdited(QTableWidgetItem *item);
+    void onSubtitleEdited(QTableWidgetItem *item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
@@ -123,7 +125,6 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
-    void updateMovieInfo();
     void updateImages(QList<int> images);
 };
 

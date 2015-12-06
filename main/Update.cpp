@@ -35,7 +35,7 @@ void Update::checkForUpdate()
 void Update::onCheckFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QString version;
         if (checkIfNewVersion(msg, version)) {

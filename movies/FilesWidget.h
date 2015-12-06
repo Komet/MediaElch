@@ -73,6 +73,7 @@ private slots:
     void onLabel();
     void onViewUpdated();
     void playMovie(QModelIndex idx);
+    void openNfoFile();
 
 private:
     Ui::FilesWidget *ui;

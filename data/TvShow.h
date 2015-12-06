@@ -34,6 +34,8 @@ public:
     virtual QString showTitle() const;
     virtual QString dir() const;
     virtual qreal rating() const;
+    virtual int votes() const;
+    virtual int top250() const;
     virtual QDate firstAired() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
@@ -83,6 +85,8 @@ public:
     void setName(QString name);
     void setShowTitle(QString title);
     void setRating(qreal rating);
+    void setVotes(int votes);
+    void setTop250(int top250);
     void setFirstAired(QDate aired);
     void setGenres(QStringList genres);
     void addGenre(QString genre);
@@ -158,6 +162,11 @@ public:
     static QList<int> imageTypes();
     static QList<int> seasonImageTypes();
 
+    void setDir(const QString &dir);
+
+    QString status() const;
+    void setStatus(const QString &status);
+
 signals:
     void sigLoaded(TvShow*);
     void sigChanged(TvShow*);
@@ -169,6 +178,8 @@ private:
     QString m_showTitle;
     QString m_sortTitle;
     qreal m_rating;
+    int m_votes;
+    int m_top250;
     QDate m_firstAired;
     int m_runtime;
     QStringList m_genres;
@@ -207,6 +218,7 @@ private:
     QMap<int, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;
+    QString m_status;
 
     QMap<int, QByteArray> m_images;
     QMap<int, QMap<int, QByteArray> > m_seasonImages;

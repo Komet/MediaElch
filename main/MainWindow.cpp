@@ -32,6 +32,7 @@
 #include "plugins/PluginManager.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShowMultiScrapeDialog.h"
 #include "tvShows/TvShowSearch.h"
 #include "tvShows/TvShowUpdater.h"
 #include "tvShows/TvTunesDialog.h"
@@ -143,6 +144,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode*)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode*)));
     connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onClear()));
     connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onSetDisabledTrue()));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigStartSearch()), this, SLOT(onActionSearch()));
 
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
@@ -194,6 +196,7 @@ MainWindow::MainWindow(QWidget *parent) :
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(this);
     MusicMultiScrapeDialog::instance(this);
+    TvShowMultiScrapeDialog::instance(this);
     Notificator::instance(0, ui->centralWidget);
 
 #ifdef Q_OS_WIN32
@@ -351,7 +354,10 @@ void MainWindow::onActionSearch()
         else
             QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 1) {
-        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
+        if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count() > 1)
+            ui->tvShowFilesWidget->multiScrape();
+        else
+            QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 7) {
@@ -614,16 +620,25 @@ void MainWindow::onXbmcSyncFinished()
 
 void MainWindow::onFilesRenamed(Renamer::RenameType type)
 {
-    m_fileScannerDialog->setForceReload(true);
-    if (type == Renamer::TypeMovies)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-    else if (type == Renamer::TypeConcerts)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-    else if (type == Renamer::TypeTvShows)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-    else if (type == Renamer::TypeAll)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
-    m_fileScannerDialog->exec();
+    if (m_renamer->renameErrorOccured()) {
+        m_fileScannerDialog->setForceReload(true);
+        if (type == Renamer::TypeMovies)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+        else if (type == Renamer::TypeConcerts)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+        else if (type == Renamer::TypeTvShows)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+        else if (type == Renamer::TypeAll)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+        m_fileScannerDialog->exec();
+    } else {
+        if (type == Renamer::TypeMovies)
+            ui->movieWidget->updateMovieInfo();
+        else if (type == Renamer::TypeConcerts)
+            ui->concertWidget->updateConcertInfo();
+        else if (type == Renamer::TypeTvShows)
+            ui->tvShowWidget->updateInfo();
+    }
 }
 
 void MainWindow::onRenewModels()

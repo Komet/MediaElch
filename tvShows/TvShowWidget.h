@@ -19,6 +19,7 @@ class TvShowWidget : public QWidget
 public:
     explicit TvShowWidget(QWidget *parent = 0);
     ~TvShowWidget();
+    void updateInfo();
 
 public slots:
     void onTvShowSelected(TvShow *show);

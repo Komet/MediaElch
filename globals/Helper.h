@@ -55,6 +55,8 @@ public:
     virtual void fillStereoModeCombo(QComboBox *box);
     virtual QMap<QString, QString> stereoModes();
     virtual QString matchResolution(int width, int height, const QString &scanType);
+    virtual QImage getImage(QString path);
+    virtual QString secondsToTimeCode(quint32 duration);
 };
 
 #endif // HELPER_H

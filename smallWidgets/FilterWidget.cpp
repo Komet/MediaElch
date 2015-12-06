@@ -676,6 +676,16 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Audio Quality SD"), "SD Audio",
                                  QStringList() << tr("Audio") << tr("SD Audio") << "MP3", MovieFilters::AudioQuality, true);
 
+    m_movieFilters << new Filter(tr("Movie has Subtitle"), tr("Subtitle"),
+                                 QStringList() << tr("Subtitle"), MovieFilters::HasSubtitle, true);
+    m_movieFilters << new Filter(tr("Movie has no Subtitle"), tr("No Subtitle"),
+                                 QStringList() << tr("No Subtitle") << tr("Subtitle"), MovieFilters::HasSubtitle, false);
+
+    m_movieFilters << new Filter(tr("Movie has external Subtitle"), tr("External Subtitle"),
+                                 QStringList() << tr("Subtitle") << tr("External Subtitle"), MovieFilters::HasExternalSubtitle, true);
+    m_movieFilters << new Filter(tr("Movie has no external Subtitle"), tr("No External Subtitle"),
+                                 QStringList() << tr("Subtitle") << tr("External Subtitle") << tr("No Subtitle") << tr("No External Subtitle"), MovieFilters::HasExternalSubtitle, false);
+
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 
     m_concertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);

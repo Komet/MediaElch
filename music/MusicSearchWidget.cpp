@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include "globals/Manager.h"
+#include "smallWidgets/MyLabel.h"
 
 MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
     QWidget(parent),
@@ -52,6 +53,9 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
             connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
     }
     connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+
+    m_signalMapper = new QSignalMapper(ui->results);
+    connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(resultClicked(int)));
 }
 
 MusicSearchWidget::~MusicSearchWidget()
@@ -92,22 +96,41 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
+
     foreach (const ScraperSearchResult &result, results) {
+        MyLabel *label = new MyLabel(ui->results);
         QString name = result.name;
         if (result.released.isValid())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
-        QTableWidgetItem *item = new QTableWidgetItem(name);
+
+        label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");
+        label->setMargin(8);
+
+        QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(Qt::UserRole, result.id);
+        item->setData(Qt::UserRole+1, result.id2);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
+        ui->results->setCellWidget(row, 0, label);
+
+        connect(label, SIGNAL(clicked()), m_signalMapper, SLOT(map()));
+        m_signalMapper->setMapping(label, row);
     }
 }
 
 void MusicSearchWidget::resultClicked(QTableWidgetItem *item)
 {
     m_scraperId = item->data(Qt::UserRole).toString();
+    m_scraperId2 = item->data(Qt::UserRole+1).toString();
     emit sigResultClicked();
+}
+
+void MusicSearchWidget::resultClicked(int row)
+{
+    if (row < 0 || row >= ui->results->rowCount())
+        return;
+    resultClicked(ui->results->item(row, 0));
 }
 
 void MusicSearchWidget::chkToggled()
@@ -143,6 +166,11 @@ int MusicSearchWidget::scraperNo()
 QString MusicSearchWidget::scraperId()
 {
     return m_scraperId;
+}
+
+QString MusicSearchWidget::scraperId2()
+{
+    return m_scraperId2;
 }
 
 QList<int> MusicSearchWidget::infosToLoad()

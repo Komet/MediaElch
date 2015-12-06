@@ -89,10 +89,48 @@ void MusicWidget::onStartScraperSearch()
 
 void MusicWidget::onSaveInformation()
 {
-    if (ui->stackedWidget->currentIndex() == 0)
+    QList<Artist*> artists = MusicFilesWidget::instance()->selectedArtists();
+    QList<Album*> albums = MusicFilesWidget::instance()->selectedAlbums();
+    QList<Album*> albumsToSave;
+    QList<Artist*> artistsToSave;
+
+    if (artists.count() == 1 && albums.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->artist->onSaveInformation();
-    else if (ui->stackedWidget->currentIndex() == 1)
+        return;
+    } else if (artists.count() == 0 && albums.count() == 1 && ui->stackedWidget->currentIndex() == 1) {
         ui->album->onSaveInformation();
+        return;
+    }
+
+    foreach (Artist *artist, artists) {
+        if (artist->hasChanged())
+            artistsToSave.append(artist);
+    }
+
+    foreach (Album *album, albums) {
+        if (album->hasChanged())
+            albumsToSave.append(album);
+    }
+
+    int itemsToSave = artistsToSave.count() + albumsToSave.count();
+    int itemsSaved = 0;
+    NotificationBox::instance()->showProgressBar(tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
+    qApp->processEvents();
+
+    foreach (Artist *artist, artistsToSave) {
+        artist->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    }
+
+    foreach (Album *album, albumsToSave) {
+        album->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    }
+
+    NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));
 }
 
 void MusicWidget::onSaveAll()
@@ -125,6 +163,11 @@ void MusicWidget::onSaveAll()
         NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
+
+    if (!artistsToSave.isEmpty())
+        ui->artist->updateArtistInfo();
+    if (!albumsToSave.isEmpty())
+        ui->album->updateAlbumInfo();
 
     NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
     NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));

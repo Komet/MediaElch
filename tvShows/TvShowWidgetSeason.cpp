@@ -95,25 +95,29 @@ void TvShowWidgetSeason::resizeEvent(QResizeEvent *event)
 
 void TvShowWidgetSeason::setSeason(TvShow *show, int season)
 {
-    onClear();
-
     m_show = show;
     m_season = season;
+    updateSeasonInfo();
+}
+
+void TvShowWidgetSeason::updateSeasonInfo()
+{
+    onClear();
 
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
-    ui->title->setText(QString(show->name()) + " - " + tr("Season %1").arg(season));
+    ui->title->setText(QString(m_show->name()) + " - " + tr("Season %1").arg(m_season));
 
     updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
 
-    ui->missingLabel->setVisible(show->isDummySeason(season));
-    if (show->isDummySeason(season)) {
+    ui->missingLabel->setVisible(m_show->isDummySeason(m_season));
+    if (m_show->isDummySeason(m_season)) {
         onSetEnabled(false);
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         return;
     }
 
-    onSetEnabled(!show->downloadsInProgress());
-    emit sigSetActionSaveEnabled(!show->downloadsInProgress(), WidgetTvShows);
+    onSetEnabled(!m_show->downloadsInProgress());
+    emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), WidgetTvShows);
 }
 
 void TvShowWidgetSeason::updateImages(QList<int> images)

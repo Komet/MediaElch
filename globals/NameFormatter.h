@@ -24,6 +24,7 @@ private slots:
 private:
     QStringList m_exWords;
     static NameFormatter *m_instance;
+    static bool lengthLessThan(const QString &s1, const QString &s2);
 };
 
 #endif // NAMEFORMATTER_H

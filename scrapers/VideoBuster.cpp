@@ -3,6 +3,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 /**
@@ -82,6 +83,7 @@ void VideoBuster::search(QString searchStr)
     QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
     QUrl url(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
@@ -95,7 +97,7 @@ void VideoBuster::searchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
 
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = reply->readAll();
         msg = replaceEntities(msg);
         results = parseSearch(msg);
@@ -142,6 +144,7 @@ void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, Q
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
     qDebug() << url;
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
@@ -160,7 +163,7 @@ void VideoBuster::loadFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = reply->readAll();
         msg = replaceEntities(msg);
         parseAndAssignInfos(msg, movie, infos);

@@ -74,7 +74,7 @@ void TvShowUpdater::onLoadFinished()
     if (!show)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QByteArray data = reply->readAll();
         QString msg = (reply->url().toString().endsWith(".zip")) ? unzipContent(data) : QString::fromUtf8(data);
         m_tvdb->fillDatabaseWithAllEpisodes(msg, show);

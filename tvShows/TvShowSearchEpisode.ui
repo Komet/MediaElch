@@ -6,15 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>330</height>
+    <width>587</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -62,169 +71,173 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	border: 1px solid rgba(0, 0, 0, 100);
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 200);
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    border-radius: 0px;
+    border-top: 5px solid #5BC0DE; 
+    background-color: #F4F8FA;
 }</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Infos to load</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>8</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkTitle">
-          <property name="text">
-           <string>Title</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkRating">
-          <property name="text">
-           <string>Rating</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkFirstAired">
-          <property name="text">
-           <string>First aired</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkDirector">
-          <property name="text">
-           <string>Director</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkWriter">
-          <property name="text">
-           <string>Writer</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkCertification">
-          <property name="text">
-           <string>Certification</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkOverview">
-          <property name="text">
-           <string>Overview</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkNetwork">
-          <property name="text">
-           <string>Network</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MyCheckBox" name="chkThumbnail">
-          <property name="text">
-           <string>Thumbnail</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="chkUnCheckAll">
-          <property name="text">
-           <string>(Un)Check all</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Infos to load</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>8</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkTitle">
+            <property name="text">
+             <string>Title</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkRating">
+            <property name="text">
+             <string>Rating</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkFirstAired">
+            <property name="text">
+             <string>First aired</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkDirector">
+            <property name="text">
+             <string>Director</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkWriter">
+            <property name="text">
+             <string>Writer</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkCertification">
+            <property name="text">
+             <string>Certification</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkOverview">
+            <property name="text">
+             <string>Overview</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkNetwork">
+            <property name="text">
+             <string>Network</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyCheckBox" name="chkThumbnail">
+            <property name="text">
+             <string>Thumbnail</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkUnCheckAll">
+            <property name="text">
+             <string>(Un)Check all</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

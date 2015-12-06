@@ -22,6 +22,7 @@ ClosableImage::ClosableImage(QWidget *parent) :
 {
     setMouseTracking(true);
     m_showZoomAndResolution = true;
+    m_showCapture = false;
     m_scaleTo = Qt::Horizontal;
     m_fixedSize = 180;
     m_fixedHeight = 0;
@@ -46,6 +47,14 @@ ClosableImage::ClosableImage(QWidget *parent) :
     p.fillRect(m_zoomIn.rect(), QColor(0, 0, 0, 150));
     p.end();
     m_zoomIn = m_zoomIn.scaledToWidth(16 * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+
+    m_capture = QPixmap(":/img/photo.png");
+    Helper::instance()->setDevicePixelRatio(m_capture, Helper::instance()->devicePixelRatio(this));
+    p.begin(&m_capture);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(m_capture.rect(), QColor(0, 0, 0, 150));
+    p.end();
+    m_capture = m_capture.scaledToWidth(16 * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
 
     setAcceptDrops(true);
 }
@@ -78,6 +87,8 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
             ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage(m_imagePath)));
             ImagePreviewDialog::instance()->exec();
         }
+    } else if (m_showCapture && captureRect().contains(ev->pos())) {
+        emit sigCapture();
     } else if (m_clickable && imgRect().contains(ev->pos())) {
         emit clicked();
     }
@@ -95,6 +106,12 @@ void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
         if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution && zoomRect().contains(ev->pos())) {
             setCursor(Qt::PointingHandCursor);
             setToolTip(tr("Zoom Image"));
+            return;
+        }
+
+        if (m_showCapture && captureRect().contains(ev->pos())) {
+            setCursor(Qt::PointingHandCursor);
+            setToolTip(tr("Capture random screenshot"));
             return;
         }
 
@@ -137,6 +154,8 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         int x = (width() - (m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
         int y = (height() - (m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
         p.drawPixmap(x, y, m_defaultPixmap);
+        if (m_showCapture)
+            p.drawPixmap(captureRect(), m_capture);
         drawTitle(p);
         return;
     }
@@ -154,7 +173,12 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         p.setFont(m_font);
         p.setPen(QColor(102, 102, 102));
         p.drawText(width()-resWidth-9, height()-20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
-        p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
+        p.drawPixmap(zoomRect(), m_zoomIn);
+        drawTitle(p);
+    }
+
+    if (m_showCapture) {
+        p.drawPixmap(captureRect(), m_capture);
         drawTitle(p);
     }
 }
@@ -325,6 +349,11 @@ QRect ClosableImage::zoomRect()
     return QRect(0, height()-16, 16, 16);
 }
 
+QRect ClosableImage::captureRect()
+{
+    return QRect(20, height()-16, 16, 16);
+}
+
 QRect ClosableImage::closeRect()
 {
     return QRect(width()-25, 0, 24, 24);
@@ -341,6 +370,16 @@ void ClosableImage::closed()
     m_image = QByteArray();
     m_imagePath.clear();
     update();
+}
+
+bool ClosableImage::showCapture() const
+{
+    return m_showCapture;
+}
+
+void ClosableImage::setShowCapture(bool showCapture)
+{
+    m_showCapture = showCapture;
 }
 
 bool ClosableImage::confirmDeleteImage()

@@ -34,6 +34,8 @@ public:
     static QString replaceCondition(QString &text, const QString &condition, const QString &replace);
     static QString replaceCondition(QString &text, const QString &condition, bool hasCondition);
 
+    bool renameErrorOccured() const;
+
 public slots:
     int exec();
     void reject();
@@ -59,6 +61,7 @@ private:
     RenameType m_renameType;
     bool m_filesRenamed;
     QStringList m_extraFiles;
+    bool m_renameErrorOccured;
 
     void renameMovies(QList<Movie*> movies, const QString &filePattern, const QString &filePatternMulti,
                       const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun = false);

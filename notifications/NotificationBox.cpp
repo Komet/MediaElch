@@ -130,6 +130,14 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
 }
 
+int NotificationBox::addProgressBar(QString message)
+{
+    m_msgCounter++;
+    int id = m_msgCounter;
+    showProgressBar(message, id, true);
+    return id;
+}
+
 /**
  * @brief Sets the value of a message with progress bar
  * @param current Current value

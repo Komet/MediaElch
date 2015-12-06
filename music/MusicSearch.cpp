@@ -35,7 +35,7 @@ int MusicSearch::exec(QString type, QString searchString, QString artistName)
 {
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    newSize.setWidth(qMin(700, parentWidget()->size().width()-200));
     resize(newSize);
     ui->musicSearchWidget->setType(type);
     ui->musicSearchWidget->setArtistName(artistName);
@@ -56,6 +56,11 @@ int MusicSearch::scraperNo()
 QString MusicSearch::scraperId()
 {
     return ui->musicSearchWidget->scraperId();
+}
+
+QString MusicSearch::scraperId2()
+{
+    return ui->musicSearchWidget->scraperId2();
 }
 
 QList<int> MusicSearch::infosToLoad()

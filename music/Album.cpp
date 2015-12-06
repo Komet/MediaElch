@@ -256,6 +256,8 @@ void Album::clear(QList<int> infos)
 {
     if (infos.contains(MusicScraperInfos::Artist))
         m_artist.clear();
+    if (infos.contains(MusicScraperInfos::Title))
+        m_title.clear();
     if (infos.contains(MusicScraperInfos::Genres))
         m_genres.clear();
     if (infos.contains(MusicScraperInfos::Styles))
@@ -354,14 +356,25 @@ void Album::setController(AlbumController *controller)
     m_controller = controller;
 }
 
-QString Album::mbId() const
+QString Album::mbReleaseGroupId() const
 {
-    return m_mbId;
+    return m_mbReleaseGroupId;
 }
 
-void Album::setMbId(const QString &mbId)
+void Album::setMbReleaseGroupId(const QString &mbId)
 {
-    m_mbId = mbId;
+    m_mbReleaseGroupId = mbId;
+}
+
+
+QString Album::mbAlbumId() const
+{
+    return m_mbAlbumId;
+}
+
+void Album::setMbAlbumId(const QString &mbAlbumId)
+{
+    m_mbAlbumId = mbAlbumId;
 }
 
 QString Album::allMusicId() const

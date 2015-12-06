@@ -19,7 +19,7 @@ public:
     void searchAlbum(QString artistName, QString searchStr);
     void searchArtist(QString searchStr);
     void loadData(QString mbId, Artist *artist, QList<int> infos);
-    void loadData(QString mbId, Album *album, QList<int> infos);
+    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album *album, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
@@ -66,6 +66,7 @@ private:
     bool infosLeft(QList<int> infos, Album *album);
     void appendDownloadElement(Artist *artist, QString source, QString type, QUrl url);
     void appendDownloadElement(Album *album, QString source, QString type, QUrl url);
+    void parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Artist *artist, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos);
     void parseAndAssignTadbDiscography(QString json, Artist *artist, QList<int> infos);

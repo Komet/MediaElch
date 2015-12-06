@@ -40,8 +40,12 @@ public:
     void setImageType(const int &type);
     int imageType() const;
 
+    bool showCapture() const;
+    void setShowCapture(bool showCapture);
+
 signals:
     void sigClose();
+    void sigCapture();
     void clicked();
     void sigImageDropped(int, QUrl);
 
@@ -66,7 +70,9 @@ private:
     QString m_title;
     QFont m_font;
     QPixmap m_zoomIn;
+    QPixmap m_capture;
     bool m_showZoomAndResolution;
+    bool m_showCapture;
     int m_fixedSize;
     int m_scaleTo;
     bool m_clickable;
@@ -78,6 +84,7 @@ private:
     QRect imgRect();
     QRect closeRect();
     QRect zoomRect();
+    QRect captureRect();
     bool confirmDeleteImage();
     void drawTitle(QPainter &p);
     int m_imageType;

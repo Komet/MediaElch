@@ -19,6 +19,32 @@ TvShowModel::TvShowModel(QObject *parent)
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
     m_missingIcon = QIcon(":/img/missing.png");
+
+    m_icons.insert(TvShowRoles::HasPoster, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasFanart, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasExtraFanart, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasThumb, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasLogo, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasClearArt, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasCharacterArt, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasBanner, QMap<bool, QIcon>());
+
+    m_icons[TvShowRoles::HasPoster].insert(false, QIcon(":mediaStatus/poster/red"));
+    m_icons[TvShowRoles::HasPoster].insert(true, QIcon(":mediaStatus/poster/green"));
+    m_icons[TvShowRoles::HasFanart].insert(false, QIcon(":mediaStatus/fanart/red"));
+    m_icons[TvShowRoles::HasFanart].insert(true, QIcon(":mediaStatus/fanart/green"));
+    m_icons[TvShowRoles::HasExtraFanart].insert(false, QIcon(":mediaStatus/extraFanarts/red"));
+    m_icons[TvShowRoles::HasExtraFanart].insert(true, QIcon(":mediaStatus/extraFanarts/green"));
+    m_icons[TvShowRoles::HasThumb].insert(false, QIcon(":mediaStatus/thumb/red"));
+    m_icons[TvShowRoles::HasThumb].insert(true, QIcon(":mediaStatus/thumb/green"));
+    m_icons[TvShowRoles::HasLogo].insert(false, QIcon(":mediaStatus/logo/red"));
+    m_icons[TvShowRoles::HasLogo].insert(true, QIcon(":mediaStatus/logo/green"));
+    m_icons[TvShowRoles::HasClearArt].insert(false, QIcon(":mediaStatus/clearart/red"));
+    m_icons[TvShowRoles::HasClearArt].insert(true, QIcon(":mediaStatus/clearart/green"));
+    m_icons[TvShowRoles::HasCharacterArt].insert(false, QIcon(":mediaStatus/actors/red"));
+    m_icons[TvShowRoles::HasCharacterArt].insert(true, QIcon(":mediaStatus/actors/green"));
+    m_icons[TvShowRoles::HasBanner].insert(false, QIcon(":mediaStatus/banner/red"));
+    m_icons[TvShowRoles::HasBanner].insert(true, QIcon(":mediaStatus/banner/green"));
 }
 
 /**
@@ -37,6 +63,8 @@ TvShowModel::~TvShowModel()
 int TvShowModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
+    if (!parent.isValid())
+        return 9;
     return m_rootItem->columnCount();
 }
 
@@ -52,16 +80,67 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     TvShowModelItem *item = getItem(index);
+
+    if (index.column() != 0) {
+        if (role == Qt::DecorationRole) {
+            switch (index.column()) {
+            case 1:
+                return m_icons.value(TvShowRoles::HasPoster).value(item->data(102).toBool());
+            case 2:
+                return m_icons.value(TvShowRoles::HasFanart).value(item->data(104).toBool());
+            case 3:
+                return m_icons.value(TvShowRoles::HasExtraFanart).value(item->data(103).toBool());
+            case 4:
+                return m_icons.value(TvShowRoles::HasThumb).value(item->data(106).toBool());
+            case 5:
+                return m_icons.value(TvShowRoles::HasLogo).value(item->data(105).toBool());
+            case 6:
+                return m_icons.value(TvShowRoles::HasClearArt).value(item->data(107).toBool());
+            case 7:
+                return m_icons.value(TvShowRoles::HasCharacterArt).value(item->data(108).toBool());
+            case 8:
+                return m_icons.value(TvShowRoles::HasBanner).value(item->data(101).toBool());
+            }
+        } else if (role == Qt::ToolTipRole) {
+            switch (index.column()) {
+            case 1:
+                return tr("Poster");
+            case 2:
+                return tr("Fanart");
+            case 3:
+                return tr("Extra Fanarts");
+            case 4:
+                return tr("Thumb");
+            case 5:
+                return tr("Logo");
+            case 6:
+                return tr("Clear Art");
+            case 7:
+                return tr("Character Art");
+            case 8:
+                return tr("Banner");
+            }
+        }
+        return QVariant();
+    }
+
     if (role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(item->data(0).toString());
-    } else if (role == Qt::DecorationRole) {
-        // new episodes or sync needed
-        if (item->data(3).toBool())
-            return m_newIcon;
-        else if (item->data(4).toBool())
-            return m_syncIcon;
-        else if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber()))
-            return m_missingIcon;
+    } else if (role == Qt::FontRole) {
+        QFont font;
+        if (item->data(2).toBool())
+            font.setItalic(true);
+        if (item->type() == TypeTvShow || item->type() == TypeSeason)
+            font.setBold(true);
+
+        if (item->type() == TypeSeason || item->type() == TypeEpisode) {
+#ifdef Q_OS_MAC
+            font.setPointSize(font.pointSize()-2);
+#endif
+        }
+        return font;
+    } else if (role == Qt::SizeHintRole) {
+        return QSize(0, (item->type() == TypeTvShow) ? 44 : (item->type() == TypeSeason) ? 26 : 22);
     } else if (role == TvShowRoles::Type) {
         return item->type();
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {
@@ -73,13 +152,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
             return QColor(150, 150, 150);
         if (item->type() == TypeSeason && item->tvShow()->isDummySeason(item->seasonNumber()))
             return QColor(150, 150, 150);
-    } else if (role == Qt::FontRole) {
-        QFont font;
-        if (!item->season().isEmpty())
-            font.setBold(true);
-        if (item->data(2).toBool())
-            font.setItalic(true);
-        return font;
+        return QColor(17, 51, 80);
     } else if (role == TvShowRoles::HasChanged) {
         return item->data(2);
     } else if (role == TvShowRoles::IsNew) {
@@ -106,9 +179,14 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(109);
     } else if (role == TvShowRoles::LogoPath) {
         return item->data(110);
+    } else if (role == TvShowRoles::SelectionForeground) {
+        return QColor(255, 255, 255);
     } else if (role == TvShowRoles::FilePath && item->type() == TypeEpisode) {
         if (!item->tvShowEpisode()->files().isEmpty())
             return item->tvShowEpisode()->files().first();
+    } else if (role == TvShowRoles::HasDummyEpisodes) {
+        if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber()))
+            return true;
     }
     return QVariant();
 }

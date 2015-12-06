@@ -41,6 +41,11 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     m_concertProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_concertProxyModel);
     ui->files->sortByColumn(0);
+#ifdef Q_OS_WIN
+    ui->files->setIconSize(QSize(12, 12));
+#else
+    ui->files->setIconSize(QSize(16, 16));
+#endif
 
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
@@ -48,6 +53,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     QAction *actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
+    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
@@ -58,12 +64,14 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionUnmarkForSync);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addAction(actionOpenNfo);
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
     connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
+    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfo()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
@@ -175,13 +183,29 @@ void ConcertFilesWidget::unmarkForSync()
 void ConcertFilesWidget::openFolder()
 {
     m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Concert *concert = Manager::instance()->concertModel()->concert(row);
-    if (concert->files().isEmpty())
+    if (!concert || concert->files().isEmpty())
         return;
     QFileInfo fi(concert->files().at(0));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
+
+void ConcertFilesWidget::openNfo()
+{
+    m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
+    int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
+    Concert *concert = Manager::instance()->concertModel()->concert(row);
+    if (!concert || concert->files().isEmpty())
+        return;
+    QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(concert));
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absoluteFilePath()));
+}
+
 /**
  * @brief Called when an item has selected
  * @param index

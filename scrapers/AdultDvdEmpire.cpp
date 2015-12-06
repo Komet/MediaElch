@@ -4,6 +4,7 @@
 #include <QRegExp>
 #include <QTextDocument>
 #include "data/Storage.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 AdultDvdEmpire::AdultDvdEmpire(QObject *parent)
@@ -59,6 +60,7 @@ void AdultDvdEmpire::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("http://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
@@ -67,7 +69,7 @@ void AdultDvdEmpire::onSearchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit searchDone(QList<ScraperSearchResult>());
         return;
@@ -101,6 +103,7 @@ void AdultDvdEmpire::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie
     movie->clear(infos);
     QUrl url(QString("http://www.adultdvdempire.com%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("id", ids.values().first());
@@ -113,7 +116,7 @@ void AdultDvdEmpire::onLoadFinished()
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
     } else {

@@ -225,6 +225,9 @@
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
                 </property>
+                <property name="minimumContentsLength">
+                 <number>20</number>
+                </property>
                </widget>
               </item>
               <item row="6" column="0">
@@ -285,6 +288,9 @@
                 </property>
                 <property name="sizeAdjustPolicy">
                  <enum>QComboBox::AdjustToContents</enum>
+                </property>
+                <property name="minimumContentsLength">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1116,6 +1122,66 @@
              </layout>
             </item>
             <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>External Subtitles</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="subtitles">
+              <property name="selectionMode">
+               <enum>QAbstractItemView::NoSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Files</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Language</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Forced</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1744,15 +1810,15 @@ QPushButton::hover {
    <header>smallWidgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>smallWidgets/MySpinBox.h</header>
+  </customwidget>
+  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MySpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
   <customwidget>
    <class>MessageLabel</class>

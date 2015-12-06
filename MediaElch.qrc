@@ -45,6 +45,7 @@
         <file>img/placeholders/fanart.png</file>
         <file>img/placeholders/logo.png</file>
         <file>img/placeholders/thumb.png</file>
+        <file>img/photo.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -107,5 +108,16 @@
         <file alias="logo/red">img/mediaStatus/logo_red.png</file>
         <file alias="thumb/green">img/mediaStatus/thumb_green.png</file>
         <file alias="thumb/red">img/mediaStatus/thumb_red.png</file>
+    </qresource>
+    <qresource prefix="/menu">
+        <file alias="about">img/menu/about.png</file>
+        <file alias="export">img/menu/export.png</file>
+        <file alias="reload">img/menu/reload.png</file>
+        <file alias="rename">img/menu/rename.png</file>
+        <file alias="save">img/menu/save.png</file>
+        <file alias="saveall">img/menu/saveall.png</file>
+        <file alias="scrape">img/menu/scrape.png</file>
+        <file alias="settings">img/menu/settings.png</file>
+        <file alias="sync">img/menu/sync.png</file>
     </qresource>
 </RCC>

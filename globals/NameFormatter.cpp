@@ -112,4 +112,10 @@ void NameFormatter::onUpdateExcludeWords()
 {
     m_exWords = Settings::instance()->excludeWords()
             .remove(" ").split(",", QString::SkipEmptyParts);
+    qSort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
+}
+
+bool NameFormatter::lengthLessThan(const QString &s1, const QString &s2)
+{
+    return s1.length() > s2.length();
 }

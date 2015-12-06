@@ -6,7 +6,7 @@
 
 include(quazip/quazip/quazip.pri)
 
-QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets
+QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
 
 LIBS += -lzen -lz -lmediainfo
 
@@ -18,6 +18,9 @@ unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
 unix:!macx {
     LIBS += -ldl
+}
+win32 {
+    DEFINES+=_UNICODE
 }
 
 TARGET = MediaElch
@@ -67,7 +70,6 @@ SOURCES += main.cpp\
     data/TvShowProxyModel.cpp \
     data/TvShowModelItem.cpp \
     data/TvShowEpisode.cpp \
-    data/TvShowDelegate.cpp \
     tvShows/TvShowWidget.cpp \
     tvShows/TvShowWidgetEpisode.cpp \
     tvShows/TvShowWidgetTvShow.cpp \
@@ -138,7 +140,6 @@ SOURCES += main.cpp\
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
-    tvShows/ItemWidgetShow.cpp \
     scrapers/CustomMovieScraper.cpp \
     scrapers/MediaPassion.cpp \
     imageProviders/MediaPassionImages.cpp \
@@ -194,7 +195,12 @@ SOURCES += main.cpp\
     image/ImageProxyModel.cpp \
     qml/AlbumImageProvider.cpp \
     image/ImageWidget.cpp \
-    imageProviders/Coverlib.cpp
+    imageProviders/Coverlib.cpp \
+    globals/NetworkReplyWatcher.cpp \
+    smallWidgets/TvShowTreeView.cpp \
+    tvShows/TvShowMultiScrapeDialog.cpp \
+    data/Subtitle.cpp \
+    image/ImageCapture.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -232,7 +238,6 @@ HEADERS  += main/MainWindow.h \
     data/TvShowProxyModel.h \
     data/TvShowModelItem.h \
     data/TvShowEpisode.h \
-    data/TvShowDelegate.h \
     tvShows/TvShowWidget.h \
     tvShows/TvShowWidgetEpisode.h \
     tvShows/TvShowWidgetTvShow.h \
@@ -308,7 +313,6 @@ HEADERS  += main/MainWindow.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
     smallWidgets/SearchOverlay.h \
-    tvShows/ItemWidgetShow.h \
     scrapers/CustomMovieScraper.h \
     scrapers/MediaPassion.h \
     imageProviders/MediaPassionImages.h \
@@ -366,7 +370,12 @@ HEADERS  += main/MainWindow.h \
     image/ImageProxyModel.h \
     qml/AlbumImageProvider.h \
     image/ImageWidget.h \
-    imageProviders/Coverlib.h
+    imageProviders/Coverlib.h \
+    globals/NetworkReplyWatcher.h \
+    smallWidgets/TvShowTreeView.h \
+    tvShows/TvShowMultiScrapeDialog.h \
+    data/Subtitle.h \
+    image/ImageCapture.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -425,7 +434,8 @@ FORMS    += main/MainWindow.ui \
     music/MusicSearchWidget.ui \
     music/MusicMultiScrapeDialog.ui \
     renamer/RenamerPlaceholders.ui \
-    image/ImageWidget.ui
+    image/ImageWidget.ui \
+    tvShows/TvShowMultiScrapeDialog.ui
 
 RESOURCES += \
     MediaElch.qrc \
@@ -447,4 +457,8 @@ TRANSLATIONS += \
     i18n/MediaElch_it.ts \
     i18n/MediaElch_fi.ts \
     i18n/MediaElch_zh_CN.ts \
-    i18n/MediaElch_bg.ts
+    i18n/MediaElch_bg.ts \
+    i18n/MediaElch_sv.ts \
+    i18n/MediaElch_ru.ts \
+    i18n/MediaElch_ja.ts \
+    i18n/MediaElch_da.ts

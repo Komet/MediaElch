@@ -47,6 +47,8 @@ namespace TvShowRoles {
     const int MissingEpisodes = Qt::UserRole+16;
     const int LogoPath = Qt::UserRole+17;
     const int FilePath = Qt::UserRole+18;
+    const int SelectionForeground = Qt::UserRole+19;
+    const int HasDummyEpisodes = Qt::UserRole+20;
 }
 
 namespace MusicRoles {
@@ -109,6 +111,7 @@ Q_DECLARE_METATYPE(DiscographyAlbum*)
  */
 struct ScraperSearchResult {
     QString id;
+    QString id2;
     QString name;
     QDate released;
 };
@@ -266,6 +269,7 @@ namespace TvShowScraperInfos {
     const int Thumb          = 22;
     const int SeasonThumb    = 23;
     const int Runtime        = 24;
+    const int Status         = 25;
 }
 
 namespace ConcertScraperInfos {
@@ -314,35 +318,37 @@ namespace MusicScraperInfos {
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
 namespace MovieFilters {
-    const int Released      = 1;
-    const int Certification = 2;
-    const int Trailer       = 3;
-    const int Poster        = 4;
-    const int Backdrop      = 5;
-    const int Watched       = 6;
-    const int Genres        = 7;
-    const int Title         = 8;
-    const int Logo          = 9;
-    const int ClearArt      = 10;
-    const int CdArt         = 11;
-    const int StreamDetails = 12;
-    const int ExtraFanarts  = 13;
-    const int Actors        = 14;
-    const int LocalTrailer  = 15;
-    const int Country       = 16;
-    const int Studio        = 17;
-    const int Path          = 18;
-    const int Director      = 19;
-    const int Tags          = 20;
-    const int Quality       = 21;
-    const int Banner        = 22;
-    const int Thumb         = 23;
-    const int ImdbId        = 24;
-    const int Set           = 25;
-    const int Rating        = 28;
-    const int Label         = 29;
-    const int AudioChannels = 30;
-    const int AudioQuality  = 31;
+    const int Released            = 1;
+    const int Certification       = 2;
+    const int Trailer             = 3;
+    const int Poster              = 4;
+    const int Backdrop            = 5;
+    const int Watched             = 6;
+    const int Genres              = 7;
+    const int Title               = 8;
+    const int Logo                = 9;
+    const int ClearArt            = 10;
+    const int CdArt               = 11;
+    const int StreamDetails       = 12;
+    const int ExtraFanarts        = 13;
+    const int Actors              = 14;
+    const int LocalTrailer        = 15;
+    const int Country             = 16;
+    const int Studio              = 17;
+    const int Path                = 18;
+    const int Director            = 19;
+    const int Tags                = 20;
+    const int Quality             = 21;
+    const int Banner              = 22;
+    const int Thumb               = 23;
+    const int ImdbId              = 24;
+    const int Set                 = 25;
+    const int Rating              = 28;
+    const int Label               = 29;
+    const int AudioChannels       = 30;
+    const int AudioQuality        = 31;
+    const int HasSubtitle         = 33;
+    const int HasExternalSubtitle = 34;
 }
 
 namespace TvShowFilters {

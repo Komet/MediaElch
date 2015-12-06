@@ -40,6 +40,7 @@ private slots:
 
 private:
     TvShowModelItem *m_rootItem;
+    QMap<int, QMap<bool, QIcon> > m_icons;
     QIcon m_newIcon;
     QIcon m_syncIcon;
     QIcon m_missingIcon;

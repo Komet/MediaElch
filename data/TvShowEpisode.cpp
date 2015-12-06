@@ -23,6 +23,8 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_displayEpisode = -1;
     m_playCount = 0;
     m_rating = 0;
+    m_votes = 0;
+    m_top250 = 0;
     m_thumbnailImageChanged = false;
     m_hasChanged = false;
     static int m_idCounter = 0;
@@ -78,8 +80,11 @@ void TvShowEpisode::clear(QList<int> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification))
         m_certification = "";
-    if (infos.contains(TvShowScraperInfos::Rating))
+    if (infos.contains(TvShowScraperInfos::Rating)) {
         m_rating = 0;
+        m_votes = 0;
+        m_top250 = 0;
+    }
     if (infos.contains(TvShowScraperInfos::Director))
         m_directors.clear();
     if (infos.contains(TvShowScraperInfos::Writer))
@@ -966,6 +971,39 @@ bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
         return false;
 
     return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
+}
+
+QString TvShowEpisode::imdbId() const
+{
+    return m_imdbId;
+}
+
+void TvShowEpisode::setImdbId(const QString &imdbId)
+{
+    m_imdbId = imdbId;
+    setChanged(true);
+}
+
+int TvShowEpisode::votes() const
+{
+    return m_votes;
+}
+
+void TvShowEpisode::setVotes(int votes)
+{
+    m_votes = votes;
+    setChanged(true);
+}
+
+int TvShowEpisode::top250() const
+{
+    return m_top250;
+}
+
+void TvShowEpisode::setTop250(int top250)
+{
+    m_top250 = top250;
+    setChanged(true);
 }
 
 /*** DEBUG ***/

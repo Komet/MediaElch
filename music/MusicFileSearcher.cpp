@@ -83,7 +83,8 @@ void MusicFileSearcher::reload(bool force)
         } else {
             QList<Artist*> artistsInPath = Manager::instance()->database()->artists(dir.path);
             foreach (Artist *artist, artistsInPath) {
-                emit currentDir(artist->path().mid(dir.path.length()));
+                if (artistsFromDb.count()%20 == 0)
+                    emit currentDir(artist->path().mid(dir.path.length()));
                 QList<Album*> albumsOfArtist = Manager::instance()->database()->albums(artist);
                 artistsFromDb.append(artist);
                 albumsFromDb.append(albumsOfArtist);
@@ -104,7 +105,8 @@ void MusicFileSearcher::reload(bool force)
             return;
         }
         artist->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-        emit currentDir(artist->name());
+        if (current%20 == 0)
+            emit currentDir(artist->name());
         emit progress(++current, max, m_progressMessageId);
         Manager::instance()->database()->add(artist, artistPaths.value(artist));
     }
@@ -114,7 +116,8 @@ void MusicFileSearcher::reload(bool force)
             return;
         }
         album->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-        emit currentDir(album->artist() + "/" + album->title());
+        if (current%20 == 0)
+            emit currentDir(album->artist() + "/" + album->title());
         emit progress(++current, max, m_progressMessageId);
         Manager::instance()->database()->add(album, albumPaths.value(album));
     }
