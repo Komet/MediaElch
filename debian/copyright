@@ -1,11 +1,11 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mediaelch
 Source: http://www.kvibes.de/mediaelch
-Copyright: 2012-2014 Daniel Kabel <daniel.kabel@me.com>
+Copyright: 2012-2015 Daniel Kabel <info@kvibes.de>
 
 Files: *
 Copyright: 
-  2012-2014 Daniel Kabel <daniel.kabel@me.com>
+  2012-2015 Daniel Kabel <info@kvibes.de>
 License: LGPL-2.1+
 
 Files: quazip/*
