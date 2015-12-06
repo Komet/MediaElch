@@ -2,7 +2,7 @@ Source: mediaelch
 Section: misc
 Priority: extra
 Maintainer: Daniel Kabel <daniel.kabel@me.com>
-Build-Depends: debhelper (>= 8.0.0), qt5-default, qtmultimedia5-dev, qtscript5-dev, qt5-qmake, cdbs, libmediainfo0 | libmediainfo0v5, libmediainfo-dev, zlib1g-dev, libzen-dev, libcurl4-openssl-dev, libpulse-dev, libqt5quickwidgets5, libqt5qml5, qtdeclarative5-dev, libqt5quick5, libqt5opengl5
+Build-Depends: debhelper (>= 8.0.0), qt5-default, qtmultimedia5-dev, qtscript5-dev, qt5-qmake, cdbs, libmediainfo0 | libmediainfo0v5, libmediainfo-dev, zlib1g-dev, libzen-dev, libcurl4-openssl-dev, libpulse-dev, libqt5quickwidgets5, libqt5qml5, qtdeclarative5-dev, libqt5quick5, libqt5opengl5-dev
 Standards-Version: 3.9.2
 Homepage: http://www.mediaelch.de
 Vcs-Git: git://github.com/Komet/MediaElch.git
