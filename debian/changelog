@@ -1,4 +1,4 @@
-mediaelch (2.4-1) trusty; urgency=low
+mediaelch (2.4.0.1-1) vivid; urgency=low
 
   * Custom TV scraper
   * Scrape multiple TV shows/episodes
@@ -21,7 +21,7 @@ mediaelch (2.4-1) trusty; urgency=low
   * Use lowercase video and audio codec in streamdetails
   * Save all selected items when saving
   * Votes and top 250 for tv shows and episodes
-  * TV Shows:   * UI in listview
+  * TV Shows: Improved UI in listview
   * Support image formats with wrong file extension
   * Musicscraper: Label, release date and artist is not set
   * IMDB: Studios not detected
@@ -30,7 +30,7 @@ mediaelch (2.4-1) trusty; urgency=low
   * StreamDetails: Sometimes not loaded in Windows when filename contains special characters
   * Crash when selecting open folder on empty list
 
- -- Daniel Kabel <info@kvibes.de>  Sun, 06 Dec 2015 11:26:20 +0100
+ -- Daniel Kabel <info@kvibes.de>  Sun, 06 Dec 2015 18:03:23 +0100
 
 
 mediaelch (2.3.2.1-1) vivid; urgency=low
