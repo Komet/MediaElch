@@ -4449,47 +4449,47 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>디스크 아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="188"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
         <source>Saving Album...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="194"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="476"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
