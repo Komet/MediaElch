@@ -4451,47 +4451,47 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <translation>Arte do Disco</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>Adicionar Gênero</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation>Humor</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation>Adicionar Humor</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation>Estilos</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation>Adicionar Estilo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="188"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
         <source>Saving Album...</source>
         <translation>Salvando Álbum...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="194"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="476"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
