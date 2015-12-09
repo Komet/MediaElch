@@ -165,6 +165,12 @@ void StreamDetails::loadWithLibrary()
 
     for (int i=0 ; i<audioCount ; ++i) {
         QString lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String3")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String2")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String1")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String")));
         QString audioCodec = audioFormat(MI2QString(MI.Get(Stream_Audio, i, QString2MI("Codec"))),
                                          MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
         QString channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)")));
@@ -181,7 +187,13 @@ void StreamDetails::loadWithLibrary()
     }
 
     for (int i=0 ; i<textCount ; ++i) {
-        QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Languange/String3")));
+        QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String3")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String2")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String1")));
+        if (lang.isEmpty())
+            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String")));
         setSubtitleDetail(i, "language", lang);
     }
 
