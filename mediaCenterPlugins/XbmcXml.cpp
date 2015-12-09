@@ -92,7 +92,7 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
         directors << director.trimmed();
     setListValue(doc, "director", directors);
 
-    setListValue(doc, "studio", movie->studios());
+    setListValue(doc, "studio", Settings::instance()->advanced()->useFirstStudioOnly() && !movie->studios().isEmpty() ? movie->studios().mid(0, 1) : movie->studios());
     setListValue(doc, "genre", movie->genres());
     setListValue(doc, "country", movie->countries());
     setListValue(doc, "tag", movie->tags());

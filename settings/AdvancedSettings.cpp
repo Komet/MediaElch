@@ -32,6 +32,7 @@ void AdvancedSettings::reset()
     m_studioMappings.clear();
     m_countryMappings.clear();
     m_writeThumbUrlsToNfo = true;
+    m_useFirstStudioOnly = false;
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
@@ -119,6 +120,7 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    countryMappings       " << m_countryMappings;
     qDebug() << "    writeThumbUrlsToNfo   " << m_writeThumbUrlsToNfo;
     qDebug() << "    bookletCut            " << m_bookletCut;
+    qDebug() << "    useFirstStudioOnly    " << m_useFirstStudioOnly;
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -239,6 +241,8 @@ void AdvancedSettings::loadStudioMappings(QXmlStreamReader &xml)
             if (!xml.attributes().value("from").isEmpty())
                 m_studioMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
+        } else if (xml.name() == "useFirstStudioOnly") {
+            m_useFirstStudioOnly = (xml.readElementText() == "true");
         } else {
             xml.skipCurrentElement();
         }
@@ -345,4 +349,9 @@ int AdvancedSettings::bookletCut() const
 bool AdvancedSettings::writeThumbUrlsToNfo() const
 {
     return m_writeThumbUrlsToNfo;
+}
+
+bool AdvancedSettings::useFirstStudioOnly() const
+{
+    return m_useFirstStudioOnly;
 }
