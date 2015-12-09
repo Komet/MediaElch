@@ -181,9 +181,11 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(110);
     } else if (role == TvShowRoles::SelectionForeground) {
         return QColor(255, 255, 255);
-    } else if (role == TvShowRoles::FilePath && item->type() == TypeEpisode) {
-        if (!item->tvShowEpisode()->files().isEmpty())
+    } else if (role == TvShowRoles::FilePath) {
+        if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty())
             return item->tvShowEpisode()->files().first();
+        if (item->type() == TypeTvShow)
+            return item->tvShow()->dir();
     } else if (role == TvShowRoles::HasDummyEpisodes) {
         if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber()))
             return true;
