@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation>Przechwyć losową klatkę</translation>
+        <translation>Przechwyć losowy zrzut</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="124"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="147"/>
@@ -1245,7 +1245,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
         <source>Load Information</source>
-        <translation>Wczytaj informacje</translation>
+        <translation>Wyszukaj informacje</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="87"/>
@@ -1648,25 +1648,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has local Trailer</source>
-        <translation>Film z lokalnym zwiastunem</translation>
+        <translation>Film ma zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>Local Trailer</source>
-        <translation>Lokalny zwiastun</translation>
+        <translation>Zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>Movie has no local Trailer</source>
-        <translation>Film bez lokalnego zwiastuna</translation>
+        <translation>Film bez zapisanego zwiastuna</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>No local Trailer</source>
-        <translation>Brak lokalnego zwiastuna</translation>
+        <translation>Brak zapisanego zwiastuna</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
@@ -2118,12 +2118,12 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="46"/>
         <source>Could not start ffmpeg</source>
-        <translation>Nie można uruchomić ffmpeg</translation>
+        <translation>Nieudane uruchomienie ffmpeg</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="48"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation>Nie można uruchomić ffmpeg. Zainstaluj je i upewnij się, że zostało dodane do zmienne środowiskowej $PATH</translation>
+        <translation>Nieudane uruchomienie ffmpeg. Zainstaluj pakiet ffmpeg i upewnij się, że został dodany do zmiennej środowiskowej $PATH</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="54"/>
@@ -2186,7 +2186,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="343"/>
         <source>Choose Local Image</source>
-        <translation>Wybierz obraz z dysku</translation>
+        <translation>Wybierz zapisany obraz</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="356"/>
@@ -2216,7 +2216,7 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation>Obrazy dostarczył  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
+        <translation>Obrazy dostarczone przez  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
@@ -3142,7 +3142,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="92"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="151"/>
@@ -3345,7 +3345,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="129"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="152"/>
@@ -3590,17 +3590,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation>Odtwórz lokalny zwiastun</translation>
+        <translation>Odtwórz zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
         <source>Local trailer is available</source>
-        <translation>Dostępny lokalny zwiastun</translation>
+        <translation>Dostępny zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="474"/>
         <source>Local Trailer</source>
-        <translation>Lokalny zwiastun</translation>
+        <translation>Zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="514"/>
@@ -4001,7 +4001,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
@@ -4194,7 +4194,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="135"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Dane do wczytaniaInformacje</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="158"/>
@@ -4868,7 +4868,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Nie sprawdzaj dostępności aktualizacji</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Nie pokazuj tej wskazówki ponownie</translation>
     </message>
@@ -5972,7 +5972,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1770"/>
         <source>Network</source>
-        <translation>Sieć</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1792"/>
@@ -6749,20 +6749,20 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Load Information</source>
-        <translation>Wczytaj informacje</translation>
+        <translation>Wyszukaj informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -6815,19 +6815,19 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Ukrywaj odcinki specjalne</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation>Niezbędna aktualizacja serialu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Należy jednorazowo zaktualizować serial, aby zobaczyć brakujące odcinki.
 Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odcinków podczas uruchomienia.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
@@ -6893,12 +6893,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>Wybierz informacje, które chcesz wczytywać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
+        <translation>Wybierz informacje, które chcesz pobierać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="62"/>
@@ -7087,7 +7087,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="99"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="122"/>
@@ -7245,7 +7245,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="97"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="120"/>
