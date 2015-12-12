@@ -4949,7 +4949,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6791,7 +6791,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6800,7 +6800,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6863,18 +6863,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation type="unfinished">
             <numerusform></numerusform>

@@ -4868,7 +4868,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
         <translation>Ikke se etter oppdateringer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Ikke vis dette tipset igjen</translation>
     </message>
@@ -6750,13 +6750,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n tv-serier</numerusform><numerusform>%n tv-serier</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation><numerusform>%n episoder</numerusform><numerusform>%n episoder</numerusform></translation>
     </message>
@@ -6816,19 +6816,19 @@ p, li { white-space: pre-wrap; }
         <translation>Skjule tilbud i manglende episoder</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation>Vis oppdatering som trengs</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Du må oppdatere showet en gang for å vise manglende episoder. ⏎
 Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 av %n tv-serier</numerusform><numerusform>%1 av %n tv-serier</numerusform></translation>
     </message>

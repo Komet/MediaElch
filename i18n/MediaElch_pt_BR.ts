@@ -4868,7 +4868,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <translation>Não verificar por atualizações</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Não apresentar esta dica novamente</translation>
     </message>
@@ -6749,13 +6749,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n seriados</numerusform><numerusform>%n seriados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
     </message>
@@ -6815,19 +6815,19 @@ p, li { white-space: pre-wrap; }
         <translation>Ocultar especiais em episódios ausentes</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation>Mostrar quando atualização for necessária</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Você precisa atualizar o seriado para mostrar episódios ausentes.
 Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na inicialização.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 de %n seriados</numerusform><numerusform>%1 de %n seriados</numerusform></translation>
     </message>
