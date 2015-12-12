@@ -30,7 +30,12 @@ bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QIma
 
     QProcess ffmpeg;
     qsrand(QTime::currentTime().msec());
-    int t = qrand()%streamDetails->videoDetails().value("durationinseconds", 0).toInt();
+    int duration = streamDetails->videoDetails().value("durationinseconds", 0).toInt();
+    if (duration == 0) {
+        NotificationBox::instance()->showMessage(tr("Could not detect runtime of file"), NotificationBox::NotificationError);
+        return false;
+    }
+    int t = qrand()%duration;
     QString timeCode = Helper::instance()->secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;
