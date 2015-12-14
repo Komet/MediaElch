@@ -942,7 +942,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation>Nie można utworzyć folderu eksportu.</translation>
+        <translation>Nieudane utworzenie folderu eksportu.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
@@ -2107,12 +2107,12 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation>Niemożliwe uzyskanie czasu trwania pliku</translation>
+        <translation>Nieudane uzyskanie czasu trwania pliku</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>Nieudane wykrycie czasu trwania pliku</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
@@ -5564,7 +5564,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Wybierz preferowanego dostawcę dla danych serialu i odcinka.</translation>
+        <translation>Wybierz preferowanego dostawcę pobierania danych seriali i odcinków.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>

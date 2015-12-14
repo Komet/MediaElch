@@ -2112,7 +2112,8 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>
+No se pudo detectar el tiempo de ejecución del archivo</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
