@@ -2112,7 +2112,7 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>Kestoa ei voitu lukea tiedostosta</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
