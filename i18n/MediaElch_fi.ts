@@ -4853,12 +4853,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="93"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Logfile could not be openened</source>
         <translation>Lokitiedostoa ei voitu avata</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="92"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Lokitiedostoa %1 ei voitu avata kirjoittamista varten.</translation>
     </message>
