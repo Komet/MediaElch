@@ -67,16 +67,14 @@ int main(int argc, char *argv[])
 
     // MediaElch localization
     QTranslator editTranslator;
-    QString filename;
-    filename = QString("MediaElch_%1").arg(QLocale::system().name());
-
     QString localFileName = QString("%1%2MediaElch_local.qm").arg(QCoreApplication::applicationDirPath())
                                                           .arg(QDir::separator());
     QFileInfo fi(localFileName);
-    if (fi.isFile())
+    if (fi.isFile()) {
         editTranslator.load(localFileName);
-    else
-        editTranslator.load(":/i18n/" + filename);
+    } else {
+        editTranslator.load(QLocale::system(), "MediaElch", "_", ":/i18n/", ".qm");
+    }
     a.installTranslator(&editTranslator);
 
     QCoreApplication::setOrganizationName("kvibes");
