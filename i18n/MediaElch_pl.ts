@@ -942,7 +942,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation>Nie można utworzyć folderu eksportu.</translation>
+        <translation>Nieudane utworzenie folderu eksportu.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
@@ -2107,26 +2107,31 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation>Niemożliwe uzyskanie czasu trwania pliku</translation>
+        <translation>Nieudane uzyskanie czasu trwania pliku</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="38"/>
-        <location filename="../image/ImageCapture.cpp" line="58"/>
+        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <source>Could not detect runtime of file</source>
+        <translation>Nieudane wykrycie czasu trwania pliku</translation>
+    </message>
+    <message>
+        <location filename="../image/ImageCapture.cpp" line="43"/>
+        <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
         <translation>Nieudane otwarcie tymczasowego pliku wyjściowego</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="46"/>
+        <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
         <translation>Nieudane uruchomienie ffmpeg</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="48"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation>Nieudane uruchomienie ffmpeg. Zainstaluj pakiet ffmpeg i upewnij się, że został dodany do zmiennej środowiskowej $PATH</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="54"/>
+        <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
         <translation>ffmpeg w trakcie działania</translation>
     </message>
@@ -5559,7 +5564,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Wybierz preferowanego dostawcę dla danych serialu i odcinka.</translation>
+        <translation>Wybierz preferowanego dostawcę pobierania danych seriali i odcinków.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>

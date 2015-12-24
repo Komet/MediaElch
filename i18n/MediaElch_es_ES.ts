@@ -2110,23 +2110,29 @@
         <translation>No se pudo obtener la duración del archivo</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="38"/>
-        <location filename="../image/ImageCapture.cpp" line="58"/>
+        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <source>Could not detect runtime of file</source>
+        <translation>
+No se pudo detectar el tiempo de ejecución del archivo</translation>
+    </message>
+    <message>
+        <location filename="../image/ImageCapture.cpp" line="43"/>
+        <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
         <translation>El archivo temporal de salida no se pudo abrir</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="46"/>
+        <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
         <translation>No se pudo empezar ffmpeg</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="48"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation>No se pudo empezar ffmpeg. Por favor instalalo y ponlo disponible en tu $PATH</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="54"/>
+        <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
         <translation>ffmpeg no acabó</translation>
     </message>
