@@ -8,7 +8,7 @@ include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
 
-LIBS += -lzen -lz -lmediainfo
+LIBS += -lz
 
 contains(DEFINES, PLUGINS){
     LIBS += -lqca
