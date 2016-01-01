@@ -1,2 +1,3 @@
 *.pro.user*
 doc/html
+Makefile
