@@ -202,12 +202,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>아티스트</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>앨범</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation>무작위 스크린샷 캡처</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -336,7 +336,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 콘서트</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -371,12 +371,12 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n 콘서트</numerusform></translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="196"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="203"/>
@@ -576,7 +576,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="246"/>
@@ -668,7 +668,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation>콘서트 저장됨</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -1182,7 +1182,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>사용자 API 키</translation>
     </message>
 </context>
 <context>
@@ -1190,7 +1190,7 @@
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
         <source>File Scanner</source>
-        <translation type="unfinished"/>
+        <translation>영화 스캐너</translation>
     </message>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="30"/>
@@ -1230,7 +1230,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 영화</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1280,12 +1280,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n 영화</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1924,7 +1924,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>2.0 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
@@ -1946,47 +1946,47 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>5.1 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>7.1 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>HD 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 보통</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>보동 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>SD 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 자막 있음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +1995,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>자막</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 외부 자막 있음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>외부 자막</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 외부 자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>외부 자막 없음</translation>
     </message>
 </context>
 <context>
@@ -2532,7 +2532,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>음악</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -2546,7 +2546,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="483"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>플러그인</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="927"/>
@@ -2604,7 +2604,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>스캔</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
@@ -3119,7 +3119,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="320"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>로컬 예고편</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
@@ -3217,7 +3217,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
@@ -3404,7 +3404,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="222"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="229"/>
@@ -3752,7 +3752,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1077"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1098"/>
@@ -3977,7 +3977,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
@@ -5839,7 +5839,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1817"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>플러그인</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1828"/>
@@ -5847,7 +5847,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>음악</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1458"/>
@@ -6800,7 +6800,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
@@ -6965,7 +6965,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="231"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="244"/>
@@ -7129,7 +7129,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="212"/>
@@ -7277,7 +7277,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="180"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="190"/>
@@ -7430,7 +7430,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="346"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="387"/>
@@ -7584,7 +7584,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1111"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1132"/>
@@ -7802,7 +7802,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="370"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="321"/>
