@@ -775,7 +775,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="33"/>
         <source>Custom Movie Scraper</source>
-        <translation>Filmowy dostosowany</translation>
+        <translation>Dostosowany</translation>
     </message>
 </context>
 <context>
@@ -5520,7 +5520,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="391"/>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
         <source>Scraper</source>
-        <translation>Dostawca</translation>
+        <translation>Dostawcy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="48"/>
@@ -5538,17 +5538,17 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Aktywuj dostawców informacji o filmach dla dorosłych</translation>
+        <translation>Aktywuj dostawców informacji filmów dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
-        <translation>Filmowy dostosowany</translation>
+        <translation>Filmy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Połącz wiele dostawców informacji w jednego niestandardowego dostawcę. Wybranie dostawców innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
+        <translation>Połącz wielu dostawców informacji w jednego niestandardowego dostawcę. Wybranie dostawców innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="386"/>
@@ -5559,17 +5559,17 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation>Telewizyjny dostosowany</translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Wybierz preferowanego dostawcę pobierania danych seriali i odcinków.</translation>
+        <translation>Wybierz preferowanego dostawcę informacji o serialach i odcinkach.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation>Dostawca</translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -7825,7 +7825,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="337"/>
         <source>Missing</source>
-        <translation>Brakuje</translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="353"/>
