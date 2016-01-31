@@ -4853,12 +4853,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="93"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Logfile could not be openened</source>
         <translation>Loggfilen kunde inte öppnas</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="92"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Loggfilen %1 kunde inte öppnas för skrivning.</translation>
     </message>
