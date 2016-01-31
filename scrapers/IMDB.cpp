@@ -172,7 +172,7 @@ void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
 
     QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(ids.values().first()).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
-    request.setRawHeader("Accept-Language", "en;q=0.8");
+    request.setRawHeader("Accept-Language", "en");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -363,16 +363,33 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setOverview(overview.trimmed());
     }
 
-    rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope itemprop=\"aggregateRating\">(.*)</div>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        QString content = rx.cap(1);
-        rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
-        if (rx.indexIn(content) != -1)
-            movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+    if (infos.contains(MovieScraperInfos::Rating)) {
+        rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope itemprop=\"aggregateRating\">(.*)</div>");
+        if (rx.indexIn(html) != -1) {
+            QString content = rx.cap(1);
+            rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
+            if (rx.indexIn(content) != -1)
+                movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
 
-        rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
-        if (rx.indexIn(content) != -1)
-            movie->setVotes(rx.cap(1).replace(",", "").replace(".", "").toInt());
+            rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
+            if (rx.indexIn(content) != -1)
+                movie->setVotes(rx.cap(1).replace(",", "").replace(".", "").toInt());
+        } else {
+            rx.setPattern("<div class=\"imdbRating\" itemtype=\"http://schema.org/AggregateRating\" itemscope=\"\" itemprop=\"aggregateRating\">(.*)</div>");
+            if (rx.indexIn(html) != -1) {
+                QString content = rx.cap(1);
+                rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
+                if (rx.indexIn(content) != -1) {
+                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+                    movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
+                }
+                rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
+                if (rx.indexIn(content) != -1) {
+                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+                    movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
+                }
+            }
+        }
     }
 
     rx.setPattern("<strong>Top 250 #([0-9]+)</strong>");
