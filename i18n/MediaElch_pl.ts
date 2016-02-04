@@ -5295,7 +5295,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation>To jest plik wideo 3D</translation>
+        <translation>Plik wideo 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
@@ -7058,7 +7058,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform></translation>
+        <translation><numerusform>%n odcinku</numerusform><numerusform>%n odcinkach</numerusform><numerusform>%n odcinkach</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
