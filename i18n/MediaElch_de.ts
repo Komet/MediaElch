@@ -1422,7 +1422,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>IMDB ID</source>
-        <translation>IMDB Id</translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
@@ -1845,13 +1845,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>Movie has no IMDB ID</source>
-        <translation>Film hat keine IMDB Id</translation>
+        <translation>Film hat keine IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <source>No IMDB ID</source>
-        <translation>Keine IMDB Id</translation>
+        <translation>Keine IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
@@ -2112,7 +2112,7 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>Laufzeit der Datei konnte nicht ermittelt werden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
@@ -3124,7 +3124,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
         <source>IMDB ID</source>
-        <translation>IMDB Id</translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3640,7 +3640,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../movies/MovieWidget.ui" line="636"/>
         <source>IMDB ID</source>
-        <translation>IMDB Id</translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="646"/>
@@ -5303,7 +5303,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation>IMDB Id</translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
@@ -7897,7 +7897,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="447"/>
         <source>IMDB ID</source>
-        <translation>IMDB Id</translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="618"/>
