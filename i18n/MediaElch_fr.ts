@@ -266,22 +266,22 @@
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
         <source>Add Certification</source>
-        <translation>Ajouter Certification</translation>
+        <translation>Ajouter classification</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
         <source>Delete Certification</source>
-        <translation>Supprimer certification</translation>
+        <translation>Supprimer classification</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="183"/>
         <source>New Certification</source>
-        <translation>Nouvelle Certification</translation>
+        <translation>Nouvelle classification</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="287"/>
         <source>All Movies Saved</source>
-        <translation>Tous les films sont sauvegardés</translation>
+        <translation>Tous les films sont enregistrés</translation>
     </message>
 </context>
 <context>
@@ -442,7 +442,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="182"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="189"/>
@@ -550,7 +550,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="273"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="290"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="419"/>
@@ -717,7 +717,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="75"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="79"/>
@@ -757,17 +757,17 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="637"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegardé</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Enregistré</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation>Concerts sauvegardés</translation>
+        <translation>Concerts enregistrés</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
         <source>All Concerts Saved</source>
-        <translation>Tous les concerts sont sauvegardés</translation>
+        <translation>Tous les concerts sont enregistrés</translation>
     </message>
 </context>
 <context>
@@ -1367,13 +1367,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="448"/>
         <source>Certification &quot;%1&quot;</source>
-        <translation>Certification &quot;%1&quot;</translation>
+        <translation>Classification &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="449"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="465"/>
@@ -1671,7 +1671,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
         <source>Movie is Watched</source>
-        <translation>Film est Vu</translation>
+        <translation>Film vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
@@ -1689,7 +1689,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
         <source>Movie is Unwatched</source>
-        <translation>Film est non vu</translation>
+        <translation>Film non vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
@@ -1700,18 +1700,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Unseen</source>
-        <translation>Non Vu</translation>
+        <translation>Non vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <source>Movie has no Certification</source>
-        <translation>Film ne possède pas de Certification</translation>
+        <translation>Film ne possède pas de classification</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>No Certification</source>
-        <translation>Aucune Certification</translation>
+        <translation>Aucune classification</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
@@ -2064,12 +2064,12 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="177"/>
         <source>Remove Current Movie</source>
-        <translation>Retirer le Film actuel</translation>
+        <translation>Retirer le film actuel</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation>Enlever Film</translation>
+        <translation>Retirer film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -2084,22 +2084,22 @@
     <message>
         <location filename="../movies/GenreWidget.cpp" line="36"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="37"/>
         <source>Delete Genre</source>
-        <translation>Supprimer genre</translation>
+        <translation>Supprimer un genre</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="187"/>
         <source>New Genre</source>
-        <translation>Nouveau Genre</translation>
+        <translation>Nouveau genre</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="296"/>
         <source>All Movies Saved</source>
-        <translation>Tous les films sont sauvegardés</translation>
+        <translation>Tous les films sont enregistrés</translation>
     </message>
 </context>
 <context>
@@ -2201,17 +2201,17 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="363"/>
         <source>Accept Images</source>
-        <translation>Accepter Images</translation>
+        <translation>Accepter les images</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="145"/>
         <source>Default</source>
-        <translation>Par défault</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="555"/>
         <source>Choose Image</source>
-        <translation>Choisir image</translation>
+        <translation>Choisir une image</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="555"/>
@@ -2311,7 +2311,7 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
-        <translation>Chargement Films...</translation>
+        <translation>Chargement des films...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="81"/>
@@ -2383,7 +2383,7 @@
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="406"/>
         <source>Renaming not possible</source>
-        <translation>Renommage non possible</translation>
+        <translation>Impossible de renommer</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="406"/>
@@ -2394,7 +2394,7 @@
         <location filename="../downloads/ImportDialog.cpp" line="431"/>
         <location filename="../downloads/ImportDialog.cpp" line="507"/>
         <source>Creating destination directory failed</source>
-        <translation>La création du répertoire de destination échoué</translation>
+        <translation>La création du répertoire de destination a échoué</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="432"/>
@@ -2448,7 +2448,7 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="89"/>
         <source>Episode Count</source>
-        <translation>Episode Count</translation>
+        <translation>Compteur d&apos;épisode</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="115"/>
@@ -2458,7 +2458,7 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="377"/>
         <source>new</source>
-        <translation>nouveau</translation>
+        <translation>Nouveau</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="399"/>
@@ -2471,12 +2471,12 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation>Chargement détails des flux</translation>
+        <translation>Chargement des détails des flux</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation>Chargement détails des flux...</translation>
+        <translation>Chargement des détails des flux...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
@@ -2510,7 +2510,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="214"/>
         <source>Certifications</source>
-        <translation>Certifications</translation>
+        <translation>Classifications</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="255"/>
@@ -2551,7 +2551,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="927"/>
         <source>Settings</source>
-        <translation>Réglages</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="932"/>
@@ -2571,27 +2571,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="762"/>
         <source>Reload all Movies (%1)</source>
-        <translation>Recharger tous les films (%1)</translation>
+        <translation>Rafraîchir tous les films (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="767"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation>Recharger toutes les séries TV (%1)</translation>
+        <translation>Rafraîchir toutes les séries TV (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="777"/>
         <source>Reload all Concerts (%1)</source>
-        <translation>Recharger tous les concerts (%1)</translation>
+        <translation>Rafraîchir tous les concerts (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="793"/>
         <source>Reload all Downloads (%1)</source>
-        <translation>Recharger tous les téléchargements (%1)</translation>
+        <translation>Rafraîchir tous les téléchargements (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="797"/>
         <source>Reload Music (%1)</source>
-        <translation>Rafraîchir toute la Musique (%1)</translation>
+        <translation>Rafraîchir toute la musique (%1)</translation>
     </message>
 </context>
 <context>
@@ -2629,7 +2629,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="221"/>
         <source>Loading movie...</source>
-        <translation>Chargement Films...</translation>
+        <translation>Chargement des films...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="243"/>
@@ -2639,7 +2639,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="251"/>
         <source>Original Title</source>
-        <translation>Titre d&apos;origine</translation>
+        <translation>Titre original</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="280"/>
@@ -2654,7 +2654,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="326"/>
         <source>File extension</source>
-        <translation>extension de fichier</translation>
+        <translation>Extension de fichier</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="342"/>
@@ -2965,7 +2965,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="80"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
@@ -3015,7 +3015,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="140"/>
         <source>Loading Movies...</source>
-        <translation>Chargement Films...</translation>
+        <translation>Chargement des films...</translation>
     </message>
 </context>
 <context>
@@ -3197,7 +3197,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
@@ -3395,7 +3395,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="208"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="215"/>
@@ -3549,7 +3549,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../movies/MovieWidget.ui" line="280"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="300"/>
@@ -3645,7 +3645,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../movies/MovieWidget.ui" line="646"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="678"/>
@@ -3836,7 +3836,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../movies/MovieWidget.cpp" line="86"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="90"/>
@@ -3907,7 +3907,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../movies/MovieWidget.cpp" line="879"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; enregistrés</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="857"/>
@@ -3918,12 +3918,12 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../movies/MovieWidget.cpp" line="872"/>
         <source>Movies Saved</source>
-        <translation>Tous les films sont sauvegardés</translation>
+        <translation>Tous les films sont enregistrés</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="918"/>
         <source>All Movies Saved</source>
-        <translation>Tous les films sont sauvegardés</translation>
+        <translation>Tous les films sont enregistrés</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="940"/>
@@ -4348,7 +4348,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
         <location filename="../music/MusicWidget.cpp" line="133"/>
         <location filename="../music/MusicWidget.cpp" line="173"/>
         <source>All Artists and Albums Saved</source>
-        <translation>Tous les artistes et les albums sont sauvegardés</translation>
+        <translation>Tous les artistes et les albums sont enregistrés</translation>
     </message>
 </context>
 <context>
@@ -4421,7 +4421,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="347"/>
@@ -4464,7 +4464,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
@@ -4494,7 +4494,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegardé</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Enregistré</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
@@ -4567,7 +4567,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="324"/>
@@ -4642,7 +4642,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="47"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
@@ -4672,7 +4672,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="196"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegardé</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Enregistré</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="457"/>
@@ -5987,7 +5987,7 @@ Les répertoires contenant votre musique doivent être rangés avec un répertoi
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="510"/>
         <source>Settings saved</source>
-        <translation>Réglages sauvergarder</translation>
+        <translation>Paramètres enregistrés</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
@@ -6077,7 +6077,7 @@ Les répertoires contenant votre musique doivent être rangés avec un répertoi
         <location filename="../settings/SettingsWindow.cpp" line="761"/>
         <location filename="../settings/SettingsWindow.cpp" line="834"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="763"/>
@@ -6979,7 +6979,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="244"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="257"/>
@@ -7133,7 +7133,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="192"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="202"/>
@@ -7281,7 +7281,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="170"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="180"/>
@@ -7336,12 +7336,12 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation>Toutes les séries TV et les épisodes sont sauvegardés</translation>
+        <translation>Toutes les séries TV et les épisodes sont enregistrés</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation>Toutes les séries TV sont sauvegardées</translation>
+        <translation>Toutes les séries TV sont enregistrées</translation>
     </message>
 </context>
 <context>
@@ -7404,7 +7404,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="295"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="312"/>
@@ -7464,7 +7464,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="540"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="577"/>
@@ -7643,7 +7643,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="555"/>
         <source>Episode Saved</source>
-        <translation>Épisode sauvegarder</translation>
+        <translation>Épisode enregistré</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="707"/>
@@ -7738,7 +7738,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="163"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Enregistré</translation>
     </message>
 </context>
 <context>
@@ -7791,7 +7791,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="254"/>
         <source>Certification</source>
-        <translation>Certification</translation>
+        <translation>Classification</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="274"/>
@@ -7851,7 +7851,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="482"/>
         <source>Extended</source>
-        <translation>Étendue</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="493"/>
@@ -7982,7 +7982,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
         <source>Add Genre</source>
-        <translation>Ajouter Genre</translation>
+        <translation>Ajouter un genre</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="83"/>
@@ -7997,7 +7997,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="415"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Enregistré</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
@@ -8371,7 +8371,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation>Terminer. Vos éléments les compteurs de lecture et la dernière date de lecture ont été mise à jour.</translation>
+        <translation>Terminé. Les compteurs et la date de dernière lecture ont été mis à jour.</translation>
     </message>
 </context>
 </TS>

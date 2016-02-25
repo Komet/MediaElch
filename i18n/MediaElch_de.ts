@@ -3137,7 +3137,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
-        <translation>Bitte wählen den Scraper und die Infos aus, die geladen werden sollen. MediaElch wird das beste Suchergebnis für jeden Film verwenden.</translation>
+        <translation>Bitte wähle den Scraper und die Infos aus, die geladen werden sollen. MediaElch wird das beste Suchergebnis für jeden Film verwenden.</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
@@ -6895,7 +6895,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>Bitte wählen die Infos aus, die geladen werden sollen. MediaElch wird das beste Suchergebnis für jede ausgewählte Serie und Episode verwenden.</translation>
+        <translation>Bitte wähle die Infos aus, die geladen werden sollen. MediaElch wird das beste Suchergebnis für jede ausgewählte Serie und Episode verwenden.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
