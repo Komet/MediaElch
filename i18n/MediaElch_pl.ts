@@ -6963,7 +6963,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="205"/>
         <source>Network</source>
-        <translation>Stacja</translation>
+        <translation>Sieć</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="218"/>
@@ -7147,7 +7147,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="222"/>
         <source>Network</source>
-        <translation>Stacja</translation>
+        <translation>Sieć</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="232"/>
@@ -7290,7 +7290,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="190"/>
         <source>Network</source>
-        <translation>Stacja</translation>
+        <translation>Sieć</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="200"/>
