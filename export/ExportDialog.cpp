@@ -197,6 +197,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
 {
     m.replace("{{ MOVIE.ID }}", QString::number(movie->movieId(), 'f', 0));
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
+    m.replace("{{ MOVIE.IMDB_ID }}", movie->id());
     m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId());
     m.replace("{{ MOVIE.TITLE }}", movie->name());
     m.replace("{{ MOVIE.YEAR }}", movie->released().isValid() ? movie->released().toString("yyyy") : "");
