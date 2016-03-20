@@ -21,6 +21,12 @@ public:
     enum RenameType {
         TypeMovies, TypeTvShows, TypeConcerts, TypeAll
     };
+    enum RenameResult {
+        RenameFailed, RenameSuccess
+    };
+    enum RenameOperation {
+        OperationCreateDir, OperationMove, OperationRename
+    };
 
     explicit Renamer(QWidget *parent = 0);
     ~Renamer();
@@ -73,6 +79,8 @@ private:
 
     bool rename(const QString &file, const QString &newName);
     bool rename(QDir &dir, QString newName);
+    int addResult(const QString &oldFileName, const QString &newFileName, RenameOperation operation);
+    void setResultStatus(int row, RenameResult result);
 };
 
 #endif // RENAMER_H
