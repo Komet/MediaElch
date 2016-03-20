@@ -3013,7 +3013,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>영화 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
         <source>Loading Movies...</source>
         <translation>영화 불러오는 중...</translation>
     </message>
@@ -4932,264 +4932,158 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
+        <location filename="../renamer/Renamer.ui" line="34"/>
+        <source>Pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
         <translation>시즌 디렉터리 사용</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="68"/>
+        <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
         <translation>복수 파일 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="78"/>
+        <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
         <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="85"/>
+        <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
         <translation>디렉터리 이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="95"/>
+        <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
         <translation>파일 이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="108"/>
+        <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="115"/>
+        <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
         <translation>디렉터리 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="125"/>
+        <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="132"/>
+        <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
         <translation>파일 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="139"/>
+        <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
         <translation>시즌 디렉터리 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="146"/>
+        <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
         <translation>시즌 &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="158"/>
+        <location filename="../renamer/Renamer.ui" line="179"/>
+        <source>Results</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="255"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="171"/>
+        <location filename="../renamer/Renamer.ui" line="272"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="194"/>
+        <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
         <translation>결과 미리보기</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="204"/>
+        <location filename="../renamer/Renamer.ui" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Rename</source>
         <translation>이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="26"/>
+        <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="42"/>
+        <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
         <translation><numerusform>%n 영화의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="45"/>
+        <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
         <translation><numerusform>%n 콘서트의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
         <translation><numerusform>%n TV 쇼와 %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
         <translation><numerusform>%n 에피소드의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="166"/>
-        <location filename="../renamer/Renamer.cpp" line="183"/>
+        <location filename="../renamer/Renamer.cpp" line="180"/>
+        <location filename="../renamer/Renamer.cpp" line="199"/>
         <source>Finished</source>
         <translation>완료</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="197"/>
+        <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="325"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="982"/>
-        <location filename="../renamer/Renamer.cpp" line="1000"/>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;파일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="329"/>
-        <location filename="../renamer/Renamer.cpp" line="359"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="405"/>
-        <location filename="../renamer/Renamer.cpp" line="428"/>
-        <location filename="../renamer/Renamer.cpp" line="451"/>
-        <location filename="../renamer/Renamer.cpp" line="474"/>
-        <location filename="../renamer/Renamer.cpp" line="497"/>
-        <location filename="../renamer/Renamer.cpp" line="520"/>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
-        <location filename="../renamer/Renamer.cpp" line="614"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
-        <location filename="../renamer/Renamer.cpp" line="762"/>
-        <location filename="../renamer/Renamer.cpp" line="779"/>
-        <location filename="../renamer/Renamer.cpp" line="804"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="839"/>
-        <location filename="../renamer/Renamer.cpp" line="855"/>
-        <location filename="../renamer/Renamer.cpp" line="862"/>
-        <location filename="../renamer/Renamer.cpp" line="893"/>
-        <location filename="../renamer/Renamer.cpp" line="985"/>
-        <location filename="../renamer/Renamer.cpp" line="1003"/>
-        <location filename="../renamer/Renamer.cpp" line="1022"/>
-        <location filename="../renamer/Renamer.cpp" line="1039"/>
-        <location filename="../renamer/Renamer.cpp" line="1056"/>
-        <location filename="../renamer/Renamer.cpp" line="1087"/>
-        <source>Failed</source>
-        <translation>실패</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="356"/>
-        <location filename="../renamer/Renamer.cpp" line="759"/>
-        <location filename="../renamer/Renamer.cpp" line="1019"/>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;NFO 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
-        <location filename="../renamer/Renamer.cpp" line="1036"/>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;포스터 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="1053"/>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;팬아트 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="425"/>
-        <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;배너 이름 변경r&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="448"/>
-        <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="471"/>
-        <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;로고 이름 변경&lt;/b&gt; &quot;%1&quot;에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="494"/>
-        <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;끌리어 아트 이름 변경t&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="517"/>
-        <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;CD 아트 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="888"/>
-        <location filename="../renamer/Renamer.cpp" line="1079"/>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;디렉터리 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="583"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
+        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <source>Create dir</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="598"/>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <source>Move</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="653"/>
+        <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="776"/>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="801"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;디렉터리 생성&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;에피소드 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="852"/>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;NFO 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="859"/>
-        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="877"/>
+        <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="924"/>
+        <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
