@@ -4185,144 +4185,137 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Dostawca</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="59"/>
-        <source>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation>Podczas korzystania z IMDB można używać identyfikatora IDMB jako wyrażenie do wyszukania.
-Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go prefiksem &quot;id&quot;.</translation>
-    </message>
-    <message>
-        <location filename="../music/MusicSearchWidget.ui" line="100"/>
+        <location filename="../music/MusicSearchWidget.ui" line="95"/>
         <source>Result</source>
         <translation>Wynik</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="135"/>
+        <location filename="../music/MusicSearchWidget.ui" line="130"/>
         <source>Infos to load</source>
         <translation>Dane do wczytaniaInformacje</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="158"/>
+        <location filename="../music/MusicSearchWidget.ui" line="153"/>
         <source>Name</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="168"/>
+        <location filename="../music/MusicSearchWidget.ui" line="163"/>
         <source>Born</source>
         <translation>Data urodzenia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="178"/>
+        <location filename="../music/MusicSearchWidget.ui" line="173"/>
         <source>Formed</source>
         <translation>Data utworzenia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="188"/>
+        <location filename="../music/MusicSearchWidget.ui" line="183"/>
         <source>Years Active</source>
         <translation>Lata aktywności</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="198"/>
+        <location filename="../music/MusicSearchWidget.ui" line="193"/>
         <source>Disbanded</source>
         <translation>Data rozwiązania</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="208"/>
+        <location filename="../music/MusicSearchWidget.ui" line="203"/>
         <source>Died</source>
         <translation>Data śmierci</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="218"/>
+        <location filename="../music/MusicSearchWidget.ui" line="213"/>
         <source>Biography</source>
         <translation>Biografia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="228"/>
+        <location filename="../music/MusicSearchWidget.ui" line="223"/>
         <source>Discography</source>
         <translation>Dyskografia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="238"/>
+        <location filename="../music/MusicSearchWidget.ui" line="233"/>
         <source>Artist</source>
         <translation>Wykonawca</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="248"/>
+        <location filename="../music/MusicSearchWidget.ui" line="243"/>
         <source>Label</source>
         <translation>Etykieta</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="258"/>
+        <location filename="../music/MusicSearchWidget.ui" line="253"/>
         <source>Review</source>
         <translation>Recenzja</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="268"/>
+        <location filename="../music/MusicSearchWidget.ui" line="263"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="278"/>
+        <location filename="../music/MusicSearchWidget.ui" line="273"/>
         <source>Rating</source>
         <translation>Ocena</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="288"/>
+        <location filename="../music/MusicSearchWidget.ui" line="283"/>
         <source>Release Date</source>
         <translation>Data wydania</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="298"/>
+        <location filename="../music/MusicSearchWidget.ui" line="293"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="308"/>
+        <location filename="../music/MusicSearchWidget.ui" line="303"/>
         <source>Genres</source>
         <translation>Gatunki</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="318"/>
+        <location filename="../music/MusicSearchWidget.ui" line="313"/>
         <source>Styles</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="328"/>
+        <location filename="../music/MusicSearchWidget.ui" line="323"/>
         <source>Moods</source>
         <translation>Nastroje</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="338"/>
+        <location filename="../music/MusicSearchWidget.ui" line="333"/>
         <source>Thumbnail</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="348"/>
+        <location filename="../music/MusicSearchWidget.ui" line="343"/>
         <source>Fanart</source>
         <translation>Fototapeta</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="358"/>
+        <location filename="../music/MusicSearchWidget.ui" line="353"/>
         <source>Extra Fanarts</source>
         <translation>Fototapety</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="368"/>
+        <location filename="../music/MusicSearchWidget.ui" line="363"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="378"/>
+        <location filename="../music/MusicSearchWidget.ui" line="373"/>
         <source>Cover</source>
         <translation>Okładka</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="388"/>
+        <location filename="../music/MusicSearchWidget.ui" line="383"/>
         <source>CD Art</source>
         <translation>Przezrocze dysku</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="405"/>
+        <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
         <translation>(Od)Zaznacz wszystko</translation>
     </message>
@@ -4996,15 +4989,6 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.ui" line="255"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
