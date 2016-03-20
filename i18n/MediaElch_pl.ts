@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation>Przechwyć losową klatkę</translation>
+        <translation>Przechwyć losowy zrzut</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="124"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="147"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="33"/>
         <source>Custom Movie Scraper</source>
-        <translation>Niestandardowy</translation>
+        <translation>Dostosowany</translation>
     </message>
 </context>
 <context>
@@ -942,7 +942,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation>Nie można utworzyć folderu eksportu.</translation>
+        <translation>Nieudane utworzenie folderu eksportu.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
@@ -1245,7 +1245,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
         <source>Load Information</source>
-        <translation>Wczytaj informacje</translation>
+        <translation>Wyszukaj informacje</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="87"/>
@@ -1648,25 +1648,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has local Trailer</source>
-        <translation>Film z lokalnym zwiastunem</translation>
+        <translation>Film ma zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>Local Trailer</source>
-        <translation>Lokalny zwiastun</translation>
+        <translation>Zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>Movie has no local Trailer</source>
-        <translation>Film bez lokalnego zwiastuna</translation>
+        <translation>Film bez zapisanego zwiastuna</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>No local Trailer</source>
-        <translation>Brak lokalnego zwiastuna</translation>
+        <translation>Brak zapisanego zwiastuna</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
@@ -2012,14 +2012,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation>Film z plikiem z napisami</translation>
+        <translation>Film z plikiem napisów</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation>Plik napisów</translation>
+        <translation>Pliki napisów</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
@@ -2030,7 +2030,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation>Brak pliku napisów</translation>
+        <translation>Brak plików napisów</translation>
     </message>
 </context>
 <context>
@@ -2107,26 +2107,31 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation>Niemożliwe uzyskanie czasu trwania pliku</translation>
+        <translation>Nieudane uzyskanie czasu trwania pliku</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="38"/>
-        <location filename="../image/ImageCapture.cpp" line="58"/>
+        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <source>Could not detect runtime of file</source>
+        <translation>Nieudane wykrycie czasu trwania pliku</translation>
+    </message>
+    <message>
+        <location filename="../image/ImageCapture.cpp" line="43"/>
+        <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
         <translation>Nieudane otwarcie tymczasowego pliku wyjściowego</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="46"/>
+        <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
-        <translation>Nie można uruchomić ffmpeg</translation>
+        <translation>Nieudane uruchomienie ffmpeg</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="48"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation>Nie można uruchomić ffmpeg. Zainstaluj je i upewnij się, że zostało dodane do zmienne środowiskowej $PATH</translation>
+        <translation>Nieudane uruchomienie ffmpeg. Zainstaluj pakiet ffmpeg i upewnij się, że został dodany do zmiennej środowiskowej $PATH</translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="54"/>
+        <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
         <translation>ffmpeg w trakcie działania</translation>
     </message>
@@ -2186,7 +2191,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="343"/>
         <source>Choose Local Image</source>
-        <translation>Wybierz obraz z dysku</translation>
+        <translation>Wybierz zapisany obraz</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="356"/>
@@ -2216,7 +2221,7 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation>Obrazy dostarczył  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
+        <translation>Obrazy dostarczone przez  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
@@ -3008,7 +3013,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Wyszukiwanie filmów...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
         <source>Loading Movies...</source>
         <translation>Wczytywanie filmów...</translation>
     </message>
@@ -3142,7 +3147,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="92"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="151"/>
@@ -3345,7 +3350,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="129"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="152"/>
@@ -3590,17 +3595,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation>Odtwórz lokalny zwiastun</translation>
+        <translation>Odtwórz zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
         <source>Local trailer is available</source>
-        <translation>Dostępny lokalny zwiastun</translation>
+        <translation>Dostępny zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="474"/>
         <source>Local Trailer</source>
-        <translation>Lokalny zwiastun</translation>
+        <translation>Zapisany zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="514"/>
@@ -3758,7 +3763,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation>Plik napisów</translation>
+        <translation>Pliki napisów</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
@@ -4001,7 +4006,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
@@ -4180,144 +4185,137 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Dostawca</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="59"/>
-        <source>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation>Podczas korzystania z IMDB można używać identyfikatora IDMB jako wyrażenie do wyszukania.
-Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go prefiksem &quot;id&quot;.</translation>
-    </message>
-    <message>
-        <location filename="../music/MusicSearchWidget.ui" line="100"/>
+        <location filename="../music/MusicSearchWidget.ui" line="95"/>
         <source>Result</source>
         <translation>Wynik</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="135"/>
+        <location filename="../music/MusicSearchWidget.ui" line="130"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Dane do wczytaniaInformacje</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="158"/>
+        <location filename="../music/MusicSearchWidget.ui" line="153"/>
         <source>Name</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="168"/>
+        <location filename="../music/MusicSearchWidget.ui" line="163"/>
         <source>Born</source>
         <translation>Data urodzenia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="178"/>
+        <location filename="../music/MusicSearchWidget.ui" line="173"/>
         <source>Formed</source>
         <translation>Data utworzenia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="188"/>
+        <location filename="../music/MusicSearchWidget.ui" line="183"/>
         <source>Years Active</source>
         <translation>Lata aktywności</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="198"/>
+        <location filename="../music/MusicSearchWidget.ui" line="193"/>
         <source>Disbanded</source>
         <translation>Data rozwiązania</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="208"/>
+        <location filename="../music/MusicSearchWidget.ui" line="203"/>
         <source>Died</source>
         <translation>Data śmierci</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="218"/>
+        <location filename="../music/MusicSearchWidget.ui" line="213"/>
         <source>Biography</source>
         <translation>Biografia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="228"/>
+        <location filename="../music/MusicSearchWidget.ui" line="223"/>
         <source>Discography</source>
         <translation>Dyskografia</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="238"/>
+        <location filename="../music/MusicSearchWidget.ui" line="233"/>
         <source>Artist</source>
         <translation>Wykonawca</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="248"/>
+        <location filename="../music/MusicSearchWidget.ui" line="243"/>
         <source>Label</source>
         <translation>Etykieta</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="258"/>
+        <location filename="../music/MusicSearchWidget.ui" line="253"/>
         <source>Review</source>
         <translation>Recenzja</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="268"/>
+        <location filename="../music/MusicSearchWidget.ui" line="263"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="278"/>
+        <location filename="../music/MusicSearchWidget.ui" line="273"/>
         <source>Rating</source>
         <translation>Ocena</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="288"/>
+        <location filename="../music/MusicSearchWidget.ui" line="283"/>
         <source>Release Date</source>
         <translation>Data wydania</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="298"/>
+        <location filename="../music/MusicSearchWidget.ui" line="293"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="308"/>
+        <location filename="../music/MusicSearchWidget.ui" line="303"/>
         <source>Genres</source>
         <translation>Gatunki</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="318"/>
+        <location filename="../music/MusicSearchWidget.ui" line="313"/>
         <source>Styles</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="328"/>
+        <location filename="../music/MusicSearchWidget.ui" line="323"/>
         <source>Moods</source>
         <translation>Nastroje</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="338"/>
+        <location filename="../music/MusicSearchWidget.ui" line="333"/>
         <source>Thumbnail</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="348"/>
+        <location filename="../music/MusicSearchWidget.ui" line="343"/>
         <source>Fanart</source>
         <translation>Fototapeta</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="358"/>
+        <location filename="../music/MusicSearchWidget.ui" line="353"/>
         <source>Extra Fanarts</source>
         <translation>Fototapety</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="368"/>
+        <location filename="../music/MusicSearchWidget.ui" line="363"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="378"/>
+        <location filename="../music/MusicSearchWidget.ui" line="373"/>
         <source>Cover</source>
         <translation>Okładka</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="388"/>
+        <location filename="../music/MusicSearchWidget.ui" line="383"/>
         <source>CD Art</source>
         <translation>Przezrocze dysku</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="405"/>
+        <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
         <translation>(Od)Zaznacz wszystko</translation>
     </message>
@@ -4405,12 +4403,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation>Identyfikator albumu w MusicBrainz</translation>
+        <translation>Identyfikator albumu</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation>Identyfikator wydawcy w MusicBrainz</translation>
+        <translation>Identyfikator wydawcy</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -4451,47 +4449,47 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Przezrocze dysku</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>Gatunki</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>Dodaj gatunek</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation>Nastroje</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation>Dodaj nastrój</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation>Dodaj styl</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="188"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
         <source>Saving Album...</source>
         <translation>Zapisywanie albumu...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="194"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>Zapisano dane &lt;b&gt;&quot;%1&quot;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="476"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>Pobieranie obrazów...</translation>
     </message>
@@ -4556,7 +4554,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation>Identyfikator MusicBrainz</translation>
+        <translation>Identyfikator wykonawcy</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
@@ -4848,12 +4846,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="93"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Logfile could not be openened</source>
         <translation>Plik dziennika nie może zostać otworzony</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="92"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Plik dziennika %1 nie może zostać otworzony do zapisu.</translation>
     </message>
@@ -4868,7 +4866,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Nie sprawdzaj dostępności aktualizacji</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Nie pokazuj tej wskazówki ponownie</translation>
     </message>
@@ -4929,268 +4927,149 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <translation>Wsadowa zmiana nazw</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
+        <location filename="../renamer/Renamer.ui" line="34"/>
+        <source>Pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
         <translation>Używaj oddzielnych folderów sezonów</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="68"/>
+        <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
         <translation>Nazewnictwo wielocześciowe</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="78"/>
+        <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
         <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="85"/>
+        <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
         <translation>Zmieniaj nazwy folderów</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="95"/>
+        <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
         <translation>Zmieniaj nazwy plików</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="108"/>
+        <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="115"/>
+        <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
         <translation>Nazewnictwo folderów</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="125"/>
+        <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="132"/>
+        <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
         <translation>Nazewnictwo plików</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="139"/>
+        <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
         <translation>Nazewnictwo folderu sezonu</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="146"/>
+        <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
         <translation>Sezon &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="158"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../renamer/Renamer.ui" line="179"/>
+        <source>Results</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="171"/>
+        <location filename="../renamer/Renamer.ui" line="272"/>
         <source>Close</source>
         <translation>Zamknij</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="194"/>
+        <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
         <translation>Testuj</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="204"/>
+        <location filename="../renamer/Renamer.ui" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Rename</source>
         <translation>Uruchom</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="26"/>
+        <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation>Zajrzyj do %1 po pomoc i przykłady jak używać wsadowej zmiany nazw.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="42"/>
+        <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
         <translation><numerusform>Nazwa pliku filmu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="45"/>
+        <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
         <translation><numerusform>Nazwa pliku koncertu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
         <translation><numerusform>Nazwa folderu serialu i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
         <translation><numerusform>nazwa pliku odcinka zostanie zmieniona</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="166"/>
-        <location filename="../renamer/Renamer.cpp" line="183"/>
+        <location filename="../renamer/Renamer.cpp" line="180"/>
+        <location filename="../renamer/Renamer.cpp" line="199"/>
         <source>Finished</source>
         <translation>Zakończono</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="197"/>
+        <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="325"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="982"/>
-        <location filename="../renamer/Renamer.cpp" line="1000"/>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy pliku&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <source>Create dir</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="329"/>
-        <location filename="../renamer/Renamer.cpp" line="359"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="405"/>
-        <location filename="../renamer/Renamer.cpp" line="428"/>
-        <location filename="../renamer/Renamer.cpp" line="451"/>
-        <location filename="../renamer/Renamer.cpp" line="474"/>
-        <location filename="../renamer/Renamer.cpp" line="497"/>
-        <location filename="../renamer/Renamer.cpp" line="520"/>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
-        <location filename="../renamer/Renamer.cpp" line="614"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
-        <location filename="../renamer/Renamer.cpp" line="762"/>
-        <location filename="../renamer/Renamer.cpp" line="779"/>
-        <location filename="../renamer/Renamer.cpp" line="804"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="839"/>
-        <location filename="../renamer/Renamer.cpp" line="855"/>
-        <location filename="../renamer/Renamer.cpp" line="862"/>
-        <location filename="../renamer/Renamer.cpp" line="893"/>
-        <location filename="../renamer/Renamer.cpp" line="985"/>
-        <location filename="../renamer/Renamer.cpp" line="1003"/>
-        <location filename="../renamer/Renamer.cpp" line="1022"/>
-        <location filename="../renamer/Renamer.cpp" line="1039"/>
-        <location filename="../renamer/Renamer.cpp" line="1056"/>
-        <location filename="../renamer/Renamer.cpp" line="1087"/>
-        <source>Failed</source>
-        <translation>Niepowodzenie</translation>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <source>Move</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="356"/>
-        <location filename="../renamer/Renamer.cpp" line="759"/>
-        <location filename="../renamer/Renamer.cpp" line="1019"/>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy pliku NFO&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
-        <location filename="../renamer/Renamer.cpp" line="1036"/>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy pliku plakatu&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="1053"/>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy pliku tapety&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="425"/>
-        <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy banera&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="448"/>
-        <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy miniatury&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="471"/>
-        <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy loga&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="494"/>
-        <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy przezrocza&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="517"/>
-        <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy przezrocza dysku&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="888"/>
-        <location filename="../renamer/Renamer.cpp" line="1079"/>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy folderu&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="583"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Utwórz folder&lt;/b&gt; &quot;%2&quot; w &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="598"/>
+        <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Przenieś plik&lt;/b&gt; z &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="653"/>
+        <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Odcinek&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="776"/>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy pliku miniatury&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="801"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Tworzenie folderu&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Przenoszenie odcinka&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="852"/>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Przenoszenie pliku NFO&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="859"/>
-        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Przenoszenie pliku miniatury&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="877"/>
+        <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Serial&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="924"/>
+        <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Koncert&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
     </message>
@@ -5290,7 +5169,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation>To jest plik wideo 3D</translation>
+        <translation>Plik wideo 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
@@ -5515,7 +5394,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="391"/>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
         <source>Scraper</source>
-        <translation>Dostawca</translation>
+        <translation>Dostawcy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="48"/>
@@ -5533,17 +5412,17 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Aktywuj dostawców informacji o filmach dla dorosłych</translation>
+        <translation>Aktywuj dostawców informacji filmów dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
-        <translation>Niestandardowy</translation>
+        <translation>Filmy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Połącz wiele dostawców informacji w jednego niestandardowego dostawcę. Wybranie dostawców innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
+        <translation>Połącz wielu dostawców informacji w jednego niestandardowego dostawcę. Wybranie dostawców innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="386"/>
@@ -5554,17 +5433,17 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation>Dostawca</translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Wybierz preferowany serwis dla każdego serialu i odcinka.</translation>
+        <translation>Wybierz preferowanego dostawcę informacji o serialach i odcinkach.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation>Serwis</translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -6749,20 +6628,20 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Load Information</source>
-        <translation>Wczytaj informacje</translation>
+        <translation>Wyszukaj informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -6815,19 +6694,19 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Ukrywaj odcinki specjalne</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation>Niezbędna aktualizacja serialu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Należy jednorazowo zaktualizować serial, aby zobaczyć brakujące odcinki.
 Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odcinków podczas uruchomienia.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
@@ -6893,12 +6772,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>Wybierz informacje, które chcesz wczytywać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
+        <translation>Wybierz informacje, które chcesz pobierać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="62"/>
@@ -6958,7 +6837,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="205"/>
         <source>Network</source>
-        <translation>Internet</translation>
+        <translation>Sieć</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="218"/>
@@ -7053,7 +6932,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform></translation>
+        <translation><numerusform>%n odcinku</numerusform><numerusform>%n odcinkach</numerusform><numerusform>%n odcinkach</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7087,7 +6966,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="99"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="122"/>
@@ -7245,7 +7124,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="97"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytania</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="120"/>
@@ -7820,7 +7699,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="337"/>
         <source>Missing</source>
-        <translation>Brakuje</translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="353"/>

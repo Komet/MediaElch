@@ -429,6 +429,8 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
                 show->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
             if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
                 show->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
+            if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("RatingCount").isEmpty())
+                show->setVotes(elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt());
             if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("SeriesName").isEmpty())
                 show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text().trimmed());
             if (infosToLoad.contains(TvShowScraperInfos::Runtime) && !elem.elementsByTagName("Runtime").isEmpty())
@@ -645,6 +647,8 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         episode->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
         episode->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
+    if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("RatingCount").isEmpty())
+        episode->setVotes(elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty())
         episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&

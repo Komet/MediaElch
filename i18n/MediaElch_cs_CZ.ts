@@ -2110,23 +2110,28 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="38"/>
-        <location filename="../image/ImageCapture.cpp" line="58"/>
+        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <source>Could not detect runtime of file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../image/ImageCapture.cpp" line="43"/>
+        <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="46"/>
+        <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="48"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="54"/>
+        <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
         <translation type="unfinished"/>
     </message>
@@ -3008,7 +3013,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Vyhledávání filmů...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
         <source>Loading Movies...</source>
         <translation>Načítání filmů...</translation>
     </message>
@@ -4179,143 +4184,137 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="59"/>
-        <source>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../music/MusicSearchWidget.ui" line="100"/>
+        <location filename="../music/MusicSearchWidget.ui" line="95"/>
         <source>Result</source>
         <translation>Výsledek</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="135"/>
+        <location filename="../music/MusicSearchWidget.ui" line="130"/>
         <source>Infos to load</source>
         <translation>Načíst tyto informace</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="158"/>
+        <location filename="../music/MusicSearchWidget.ui" line="153"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="168"/>
+        <location filename="../music/MusicSearchWidget.ui" line="163"/>
         <source>Born</source>
         <translation>Narození</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="178"/>
+        <location filename="../music/MusicSearchWidget.ui" line="173"/>
         <source>Formed</source>
         <translation>Založení</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="188"/>
+        <location filename="../music/MusicSearchWidget.ui" line="183"/>
         <source>Years Active</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="198"/>
+        <location filename="../music/MusicSearchWidget.ui" line="193"/>
         <source>Disbanded</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="208"/>
+        <location filename="../music/MusicSearchWidget.ui" line="203"/>
         <source>Died</source>
         <translation>Úmrtí</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="218"/>
+        <location filename="../music/MusicSearchWidget.ui" line="213"/>
         <source>Biography</source>
         <translation>Životopis</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="228"/>
+        <location filename="../music/MusicSearchWidget.ui" line="223"/>
         <source>Discography</source>
         <translation>Diskografie</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="238"/>
+        <location filename="../music/MusicSearchWidget.ui" line="233"/>
         <source>Artist</source>
         <translation>Umělec</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="248"/>
+        <location filename="../music/MusicSearchWidget.ui" line="243"/>
         <source>Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="258"/>
+        <location filename="../music/MusicSearchWidget.ui" line="253"/>
         <source>Review</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="268"/>
+        <location filename="../music/MusicSearchWidget.ui" line="263"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="278"/>
+        <location filename="../music/MusicSearchWidget.ui" line="273"/>
         <source>Rating</source>
         <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="288"/>
+        <location filename="../music/MusicSearchWidget.ui" line="283"/>
         <source>Release Date</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="298"/>
+        <location filename="../music/MusicSearchWidget.ui" line="293"/>
         <source>Title</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="308"/>
+        <location filename="../music/MusicSearchWidget.ui" line="303"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="318"/>
+        <location filename="../music/MusicSearchWidget.ui" line="313"/>
         <source>Styles</source>
         <translation>Styly</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="328"/>
+        <location filename="../music/MusicSearchWidget.ui" line="323"/>
         <source>Moods</source>
         <translation>Nálada</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="338"/>
+        <location filename="../music/MusicSearchWidget.ui" line="333"/>
         <source>Thumbnail</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="348"/>
+        <location filename="../music/MusicSearchWidget.ui" line="343"/>
         <source>Fanart</source>
         <translation>S fanartem</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="358"/>
+        <location filename="../music/MusicSearchWidget.ui" line="353"/>
         <source>Extra Fanarts</source>
         <translation>Extra fanarty</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="368"/>
+        <location filename="../music/MusicSearchWidget.ui" line="363"/>
         <source>Logo</source>
         <translation>S logem</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="378"/>
+        <location filename="../music/MusicSearchWidget.ui" line="373"/>
         <source>Cover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="388"/>
+        <location filename="../music/MusicSearchWidget.ui" line="383"/>
         <source>CD Art</source>
         <translation>CD art</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="405"/>
+        <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
         <translation>Zvolit vše</translation>
     </message>
@@ -4449,47 +4448,47 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>Přidat žánr</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation>Nálada</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation>Přidat náladu</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation>Styly</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation>Přidat styl</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="188"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
         <source>Saving Album...</source>
         <translation>Ukládám album</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="194"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="476"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>Stahování obrázků...</translation>
     </message>
@@ -4846,12 +4845,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="93"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Logfile could not be openened</source>
         <translation>Log soubor nemohl být otevřen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="92"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Log soubor %1 nemohl být otevřen pro zápis.</translation>
     </message>
@@ -4866,7 +4865,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Nehlídat aktualizace</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Již nezobrazovat</translation>
     </message>
@@ -4927,268 +4926,149 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Přejmenovávač</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
+        <location filename="../renamer/Renamer.ui" line="34"/>
+        <source>Pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
         <translation>Vytvořit adresář pro každou řadu</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="68"/>
+        <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
         <translation>Vícesouborový název</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="78"/>
+        <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
         <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="85"/>
+        <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
         <translation>Přejmenovat adresáře</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="95"/>
+        <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
         <translation>Přejmenovat soubory</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="108"/>
+        <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="115"/>
+        <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
         <translation>Pojmenování adresářů</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="125"/>
+        <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="132"/>
+        <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
         <translation>Pojmenování souborů</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="139"/>
+        <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
         <translation>Pojmenování adresářů Řady</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="146"/>
+        <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
         <translation>Season &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="158"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../renamer/Renamer.ui" line="179"/>
+        <source>Results</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="171"/>
+        <location filename="../renamer/Renamer.ui" line="272"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="194"/>
+        <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="204"/>
+        <location filename="../renamer/Renamer.ui" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="26"/>
+        <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="42"/>
+        <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
         <translation><numerusform>%n film bude přejmenován</numerusform><numerusform>%n filmy budou přejmenovány</numerusform><numerusform>%n filmů bude přejmenováno</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="45"/>
+        <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
         <translation><numerusform>%n Koncert bude přejmenován</numerusform><numerusform>%n Koncerty budou přejmenovány</numerusform><numerusform>%n Koncertů bude přejmenováno</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
         <translation><numerusform>%n TV Seriál a %1</numerusform><numerusform>%n TV Seriály a %1</numerusform><numerusform>%n TV Seriálů a %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
         <translation><numerusform>%n Epizoda bude přejmenována</numerusform><numerusform>%n Epizody budou přejmenovány</numerusform><numerusform>%n Epizod bude přejmenováno</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="166"/>
-        <location filename="../renamer/Renamer.cpp" line="183"/>
+        <location filename="../renamer/Renamer.cpp" line="180"/>
+        <location filename="../renamer/Renamer.cpp" line="199"/>
         <source>Finished</source>
         <translation>Dokončeno</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="197"/>
+        <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="325"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="982"/>
-        <location filename="../renamer/Renamer.cpp" line="1000"/>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat soubor&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="329"/>
-        <location filename="../renamer/Renamer.cpp" line="359"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="405"/>
-        <location filename="../renamer/Renamer.cpp" line="428"/>
-        <location filename="../renamer/Renamer.cpp" line="451"/>
-        <location filename="../renamer/Renamer.cpp" line="474"/>
-        <location filename="../renamer/Renamer.cpp" line="497"/>
-        <location filename="../renamer/Renamer.cpp" line="520"/>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
-        <location filename="../renamer/Renamer.cpp" line="614"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
-        <location filename="../renamer/Renamer.cpp" line="762"/>
-        <location filename="../renamer/Renamer.cpp" line="779"/>
-        <location filename="../renamer/Renamer.cpp" line="804"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="839"/>
-        <location filename="../renamer/Renamer.cpp" line="855"/>
-        <location filename="../renamer/Renamer.cpp" line="862"/>
-        <location filename="../renamer/Renamer.cpp" line="893"/>
-        <location filename="../renamer/Renamer.cpp" line="985"/>
-        <location filename="../renamer/Renamer.cpp" line="1003"/>
-        <location filename="../renamer/Renamer.cpp" line="1022"/>
-        <location filename="../renamer/Renamer.cpp" line="1039"/>
-        <location filename="../renamer/Renamer.cpp" line="1056"/>
-        <location filename="../renamer/Renamer.cpp" line="1087"/>
-        <source>Failed</source>
-        <translation>Neúspěšné</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="356"/>
-        <location filename="../renamer/Renamer.cpp" line="759"/>
-        <location filename="../renamer/Renamer.cpp" line="1019"/>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat NFO&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
-        <location filename="../renamer/Renamer.cpp" line="1036"/>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat Plakát&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="1053"/>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat Fanart&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="425"/>
-        <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <source>Create dir</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="448"/>
-        <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <source>Move</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="471"/>
-        <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="494"/>
-        <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="517"/>
-        <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="888"/>
-        <location filename="../renamer/Renamer.cpp" line="1079"/>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat adresář&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="583"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="598"/>
+        <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="653"/>
+        <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="776"/>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přejmenovat Náhled&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="801"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Vytvořit adresář&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přesunout Epizodu&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="852"/>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přesunout NFO&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="859"/>
-        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Přesunout Náhled&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="877"/>
+        <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="924"/>
+        <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
@@ -6746,13 +6626,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -6812,18 +6692,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>

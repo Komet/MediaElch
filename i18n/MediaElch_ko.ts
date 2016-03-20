@@ -202,12 +202,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>아티스트</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>앨범</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation>무작위 스크린샷 캡처</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -336,7 +336,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 콘서트</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -371,12 +371,12 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n 콘서트</numerusform></translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="196"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="203"/>
@@ -576,7 +576,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="246"/>
@@ -668,7 +668,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation>콘서트 저장됨</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -1182,7 +1182,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>사용자 API 키</translation>
     </message>
 </context>
 <context>
@@ -1190,7 +1190,7 @@
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
         <source>File Scanner</source>
-        <translation type="unfinished"/>
+        <translation>영화 스캐너</translation>
     </message>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="30"/>
@@ -1230,7 +1230,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 영화</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1280,12 +1280,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n 영화</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1924,7 +1924,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>2.0 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
@@ -1946,47 +1946,47 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>5.1 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>7.1 채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>HD 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 보통</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>보동 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>오디오 품질 SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>SD 오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 자막 있음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +1995,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>자막</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 외부 자막 있음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>외부 자막</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>영화 외부 자막 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>외부 자막 없음</translation>
     </message>
 </context>
 <context>
@@ -2110,23 +2110,28 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="38"/>
-        <location filename="../image/ImageCapture.cpp" line="58"/>
+        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <source>Could not detect runtime of file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../image/ImageCapture.cpp" line="43"/>
+        <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="46"/>
+        <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="48"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="54"/>
+        <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
         <translation type="unfinished"/>
     </message>
@@ -2527,7 +2532,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>음악</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -2541,7 +2546,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="483"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>플러그인</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="927"/>
@@ -2599,7 +2604,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>스캔</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
@@ -3008,7 +3013,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>영화 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
         <source>Loading Movies...</source>
         <translation>영화 불러오는 중...</translation>
     </message>
@@ -3114,7 +3119,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="320"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>로컬 예고편</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
@@ -3212,7 +3217,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
@@ -3399,7 +3404,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="222"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="229"/>
@@ -3747,7 +3752,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1077"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1098"/>
@@ -3972,7 +3977,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
@@ -4179,143 +4184,137 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>자료수집기</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="59"/>
-        <source>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../music/MusicSearchWidget.ui" line="100"/>
+        <location filename="../music/MusicSearchWidget.ui" line="95"/>
         <source>Result</source>
         <translation>결과</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="135"/>
+        <location filename="../music/MusicSearchWidget.ui" line="130"/>
         <source>Infos to load</source>
         <translation>가져올 정보</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="158"/>
+        <location filename="../music/MusicSearchWidget.ui" line="153"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="168"/>
+        <location filename="../music/MusicSearchWidget.ui" line="163"/>
         <source>Born</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="178"/>
+        <location filename="../music/MusicSearchWidget.ui" line="173"/>
         <source>Formed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="188"/>
+        <location filename="../music/MusicSearchWidget.ui" line="183"/>
         <source>Years Active</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="198"/>
+        <location filename="../music/MusicSearchWidget.ui" line="193"/>
         <source>Disbanded</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="208"/>
+        <location filename="../music/MusicSearchWidget.ui" line="203"/>
         <source>Died</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="218"/>
+        <location filename="../music/MusicSearchWidget.ui" line="213"/>
         <source>Biography</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="228"/>
+        <location filename="../music/MusicSearchWidget.ui" line="223"/>
         <source>Discography</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="238"/>
+        <location filename="../music/MusicSearchWidget.ui" line="233"/>
         <source>Artist</source>
         <translation>아티스트</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="248"/>
+        <location filename="../music/MusicSearchWidget.ui" line="243"/>
         <source>Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="258"/>
+        <location filename="../music/MusicSearchWidget.ui" line="253"/>
         <source>Review</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="268"/>
+        <location filename="../music/MusicSearchWidget.ui" line="263"/>
         <source>Year</source>
         <translation>연도</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="278"/>
+        <location filename="../music/MusicSearchWidget.ui" line="273"/>
         <source>Rating</source>
         <translation>평점</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="288"/>
+        <location filename="../music/MusicSearchWidget.ui" line="283"/>
         <source>Release Date</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="298"/>
+        <location filename="../music/MusicSearchWidget.ui" line="293"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="308"/>
+        <location filename="../music/MusicSearchWidget.ui" line="303"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="318"/>
+        <location filename="../music/MusicSearchWidget.ui" line="313"/>
         <source>Styles</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="328"/>
+        <location filename="../music/MusicSearchWidget.ui" line="323"/>
         <source>Moods</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="338"/>
+        <location filename="../music/MusicSearchWidget.ui" line="333"/>
         <source>Thumbnail</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="348"/>
+        <location filename="../music/MusicSearchWidget.ui" line="343"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="358"/>
+        <location filename="../music/MusicSearchWidget.ui" line="353"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="368"/>
+        <location filename="../music/MusicSearchWidget.ui" line="363"/>
         <source>Logo</source>
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="378"/>
+        <location filename="../music/MusicSearchWidget.ui" line="373"/>
         <source>Cover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="388"/>
+        <location filename="../music/MusicSearchWidget.ui" line="383"/>
         <source>CD Art</source>
         <translation>CD 아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicSearchWidget.ui" line="405"/>
+        <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
         <translation>모두 선택(해제)</translation>
     </message>
@@ -4449,47 +4448,47 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>디스크 아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Moods</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Add Mood</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Styles</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Add Style</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="188"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
         <source>Saving Album...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="194"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="476"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
@@ -4846,12 +4845,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="93"/>
+        <location filename="../main.cpp" line="91"/>
         <source>Logfile could not be openened</source>
         <translation>로그 파일을 열 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="92"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation type="unfinished"/>
     </message>
@@ -4866,7 +4865,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>업데이트 확인 안 함</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="381"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
         <source>Don&apos;t show this hint again</source>
         <translation>힌트 다시 보지 않기</translation>
     </message>
@@ -4927,264 +4926,149 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
+        <location filename="../renamer/Renamer.ui" line="34"/>
+        <source>Pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
         <translation>시즌 디렉터리 사용</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="68"/>
+        <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
         <translation>복수 파일 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="78"/>
+        <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
         <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="85"/>
+        <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
         <translation>디렉터리 이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="95"/>
+        <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
         <translation>파일 이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="108"/>
+        <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="115"/>
+        <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
         <translation>디렉터리 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="125"/>
+        <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="132"/>
+        <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
         <translation>파일 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="139"/>
+        <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
         <translation>시즌 디렉터리 이름 정리</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="146"/>
+        <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
         <translation>시즌 &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="158"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="../renamer/Renamer.ui" line="179"/>
+        <source>Results</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="171"/>
+        <location filename="../renamer/Renamer.ui" line="272"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="194"/>
+        <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
         <translation>결과 미리보기</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="204"/>
+        <location filename="../renamer/Renamer.ui" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Rename</source>
         <translation>이름 변경</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="26"/>
+        <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="42"/>
+        <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
         <translation><numerusform>%n 영화의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="45"/>
+        <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
         <translation><numerusform>%n 콘서트의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
         <translation><numerusform>%n TV 쇼와 %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
         <translation><numerusform>%n 에피소드의 이름이 변경됩니다</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="166"/>
-        <location filename="../renamer/Renamer.cpp" line="183"/>
+        <location filename="../renamer/Renamer.cpp" line="180"/>
+        <location filename="../renamer/Renamer.cpp" line="199"/>
         <source>Finished</source>
         <translation>완료</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="197"/>
+        <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="325"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="982"/>
-        <location filename="../renamer/Renamer.cpp" line="1000"/>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;파일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="329"/>
-        <location filename="../renamer/Renamer.cpp" line="359"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="405"/>
-        <location filename="../renamer/Renamer.cpp" line="428"/>
-        <location filename="../renamer/Renamer.cpp" line="451"/>
-        <location filename="../renamer/Renamer.cpp" line="474"/>
-        <location filename="../renamer/Renamer.cpp" line="497"/>
-        <location filename="../renamer/Renamer.cpp" line="520"/>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
-        <location filename="../renamer/Renamer.cpp" line="614"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
-        <location filename="../renamer/Renamer.cpp" line="762"/>
-        <location filename="../renamer/Renamer.cpp" line="779"/>
-        <location filename="../renamer/Renamer.cpp" line="804"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="839"/>
-        <location filename="../renamer/Renamer.cpp" line="855"/>
-        <location filename="../renamer/Renamer.cpp" line="862"/>
-        <location filename="../renamer/Renamer.cpp" line="893"/>
-        <location filename="../renamer/Renamer.cpp" line="985"/>
-        <location filename="../renamer/Renamer.cpp" line="1003"/>
-        <location filename="../renamer/Renamer.cpp" line="1022"/>
-        <location filename="../renamer/Renamer.cpp" line="1039"/>
-        <location filename="../renamer/Renamer.cpp" line="1056"/>
-        <location filename="../renamer/Renamer.cpp" line="1087"/>
-        <source>Failed</source>
-        <translation>실패</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="356"/>
-        <location filename="../renamer/Renamer.cpp" line="759"/>
-        <location filename="../renamer/Renamer.cpp" line="1019"/>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;NFO 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
-        <location filename="../renamer/Renamer.cpp" line="1036"/>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;포스터 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="1053"/>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;팬아트 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="425"/>
-        <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;배너 이름 변경r&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="448"/>
-        <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="471"/>
-        <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;로고 이름 변경&lt;/b&gt; &quot;%1&quot;에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="494"/>
-        <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;끌리어 아트 이름 변경t&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="517"/>
-        <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;CD 아트 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="888"/>
-        <location filename="../renamer/Renamer.cpp" line="1079"/>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;디렉터리 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="583"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
+        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <source>Create dir</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="598"/>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <source>Move</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="653"/>
+        <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="776"/>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="801"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;디렉터리 생성&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;에피소드 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="852"/>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;NFO 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="859"/>
-        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;썸네일 이동&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="877"/>
+        <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="924"/>
+        <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"/>
     </message>
@@ -5834,7 +5718,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1817"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>플러그인</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1828"/>
@@ -5842,7 +5726,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>음악</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1458"/>
@@ -6742,13 +6626,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="556"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
@@ -6795,7 +6679,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>NFO 파일 열기</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
@@ -6808,18 +6692,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="377"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
         <source>Show update needed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="378"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="558"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
@@ -6960,7 +6844,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="231"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="244"/>
@@ -7124,7 +7008,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="212"/>
@@ -7272,7 +7156,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="180"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="190"/>
@@ -7425,7 +7309,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="346"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="387"/>
@@ -7579,7 +7463,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1111"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>스테레오 모드</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1132"/>
@@ -7797,7 +7681,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="370"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>개요</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="321"/>

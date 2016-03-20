@@ -160,7 +160,23 @@ void TvShowFilesWidget::scanForEpisodes()
     else
         return;
     Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::TypeEpisodes);
+
+    QString dir = m_lastTvShow->dir();
+    ui->files->selectionModel()->blockSignals(true);
     Manager::instance()->fileScannerDialog()->exec();
+    ui->files->selectionModel()->blockSignals(false);
+    ui->files->selectionModel()->clearSelection();
+    ui->files->selectionModel()->clearCurrentIndex();
+    emit sigNothingSelected();
+    qApp->processEvents();
+    for (int row=0, n=ui->files->model()->rowCount() ; row<n ; ++row) {
+        QModelIndex proxyIdx = ui->files->model()->index(row, 0);
+        if (ui->files->model()->data(proxyIdx, TvShowRoles::FilePath).toString() == dir) {
+            ui->files->selectionModel()->setCurrentIndex(proxyIdx, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+            onItemSelected(proxyIdx);
+            break;
+        }
+    }
 }
 
 void TvShowFilesWidget::markAsWatched()

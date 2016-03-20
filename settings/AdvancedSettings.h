@@ -51,6 +51,7 @@ private:
     bool m_portableMode;
     int m_bookletCut;
     bool m_writeThumbUrlsToNfo;
+    bool m_useFirstStudioOnly;
 
     void loadSettings();
     void reset();

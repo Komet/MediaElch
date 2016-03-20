@@ -1,4 +1,20 @@
-mediaelch (2.4.0.1-1) vivid; urgency=low
+mediaelch (2.4.1-1) vivid; urgency=low
+
+  * Renamer: Show results in table view
+  * Export: Add IMDB ID to template
+  * IMDB: Adjusted scraper to new layout
+  * StreamDetails: Stereomode not detected
+  * IMDB: Rating and votes sometimes not scraped
+  * TheTVDB: Get votes for episodes and shows
+  * Image capture: Prevent possible crash
+  * StreamDetails: Language of subtitle not detected
+  * TvShows: Possible crash when scanning for new episodes of a single show
+  * TvShowEpisodes: epbookmark not saved
+  * AdvancedSettings: Use first studio only not working
+
+ -- Daniel Kabel <info@kvibes.de>  Sun, 20 Mar 2016 14:48:28 +0100
+
+mediaelch (2.4.0.4-1) vivid; urgency=low
 
   * Custom TV scraper
   * Scrape multiple TV shows/episodes
