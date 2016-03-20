@@ -3014,7 +3014,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Buscando películas...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="140"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
         <source>Loading Movies...</source>
         <translation>Cargando películas...</translation>
     </message>
@@ -4936,271 +4936,160 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
+        <location filename="../renamer/Renamer.ui" line="34"/>
+        <source>Pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
         <translation>Utiliza directorios de temporada</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="68"/>
+        <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
         <translation>Renombramiento de archivos multiple</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="78"/>
+        <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
         <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="85"/>
+        <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
         <translation>Renombrar directorios</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="95"/>
+        <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
         <translation>Renombrar archivos</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="108"/>
+        <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;-parte&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="115"/>
+        <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
         <translation>Nombre de directorio</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="125"/>
+        <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="132"/>
+        <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
         <translation>Nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="139"/>
+        <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
         <translation>Nombre de directorio de temporada</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="146"/>
+        <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
         <translation>Temporada &lt;season&gt;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="158"/>
+        <location filename="../renamer/Renamer.ui" line="179"/>
+        <source>Results</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="255"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="171"/>
+        <location filename="../renamer/Renamer.ui" line="272"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="194"/>
+        <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
         <translation>Probar</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="204"/>
+        <location filename="../renamer/Renamer.ui" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="26"/>
+        <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation>Por favor mira %1 para ayuda y ejemplos de como usar el renombrador.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="42"/>
+        <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
         <translation><numerusform>%n película(s) serán renombrados</numerusform><numerusform>%n película(s) serán renombrados</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="45"/>
+        <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
         <translation><numerusform>%n concierto(s) serán renombrados</numerusform><numerusform>%n película(s) serán renombrados</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
         <translation><numerusform>%n Series TV(s) y %1</numerusform><numerusform>%n serie(s) y %1</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="48"/>
+        <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
         <translation><numerusform>%n episodio(s) serán renombrados</numerusform><numerusform>%n</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="166"/>
-        <location filename="../renamer/Renamer.cpp" line="183"/>
+        <location filename="../renamer/Renamer.cpp" line="180"/>
+        <location filename="../renamer/Renamer.cpp" line="199"/>
         <source>Finished</source>
         <translation>Completado</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="197"/>
+        <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Película&lt;/b&gt; &quot;%1&quot; ha sido editada pero no guardada</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="325"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="982"/>
-        <location filename="../renamer/Renamer.cpp" line="1000"/>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar archivo&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
+        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <source>Create dir</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="329"/>
-        <location filename="../renamer/Renamer.cpp" line="359"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="405"/>
-        <location filename="../renamer/Renamer.cpp" line="428"/>
-        <location filename="../renamer/Renamer.cpp" line="451"/>
-        <location filename="../renamer/Renamer.cpp" line="474"/>
-        <location filename="../renamer/Renamer.cpp" line="497"/>
-        <location filename="../renamer/Renamer.cpp" line="520"/>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
-        <location filename="../renamer/Renamer.cpp" line="614"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
-        <location filename="../renamer/Renamer.cpp" line="762"/>
-        <location filename="../renamer/Renamer.cpp" line="779"/>
-        <location filename="../renamer/Renamer.cpp" line="804"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="839"/>
-        <location filename="../renamer/Renamer.cpp" line="855"/>
-        <location filename="../renamer/Renamer.cpp" line="862"/>
-        <location filename="../renamer/Renamer.cpp" line="893"/>
-        <location filename="../renamer/Renamer.cpp" line="985"/>
-        <location filename="../renamer/Renamer.cpp" line="1003"/>
-        <location filename="../renamer/Renamer.cpp" line="1022"/>
-        <location filename="../renamer/Renamer.cpp" line="1039"/>
-        <location filename="../renamer/Renamer.cpp" line="1056"/>
-        <location filename="../renamer/Renamer.cpp" line="1087"/>
-        <source>Failed</source>
-        <translation>Fallo</translation>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <source>Move</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="356"/>
-        <location filename="../renamer/Renamer.cpp" line="759"/>
-        <location filename="../renamer/Renamer.cpp" line="1019"/>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar NFO&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
-        <location filename="../renamer/Renamer.cpp" line="1036"/>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar poster&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="1053"/>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar fanart&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="425"/>
-        <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar banner&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="448"/>
-        <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar pulgar&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="471"/>
-        <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar logo&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="494"/>
-        <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar arte limpia&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="517"/>
-        <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar arte CD&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="888"/>
-        <location filename="../renamer/Renamer.cpp" line="1079"/>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar directorio&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="583"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Carperta creada&lt;/b&gt; &quot;%2&quot; en &quot;%1&quot;
-</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="598"/>
+        <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Archivo movido&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;
 </translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="653"/>
+        <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; ha sido editado pero no salvado
 </translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="776"/>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renombrar miniatura&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="801"/>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Crear directorio&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Mover episodio&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="852"/>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Mover NFOa&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="859"/>
-        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Mover miniatura&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <location filename="../renamer/Renamer.cpp" line="877"/>
+        <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Serie&lt;/b&gt; &quot;%1&quot; ha sido editada pero no guardada</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="924"/>
+        <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation>&lt;b&gt;Concierto&lt;/b&gt; &quot;%1&quot; ha sido editado pero no salvado</translation>
     </message>
