@@ -246,7 +246,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="178"/>
         <source>Remove Current Movie</source>
-        <translation>Retirer film actuel</translation>
+        <translation>Retirer le film actuel</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
@@ -256,12 +256,12 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Double-cliquez sur une certification pour la renommer, clique droit pour la supprimer. Si vous souhaitez fusionner deux certifications il suffit de leur donner le même nom.</translation>
+        <translation>Double-cliquez sur une classification pour la renommer, clique droit pour la supprimer. Si vous souhaitez fusionner 2 classifications, il suffit de leur donner le même nom.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer des certifications) seront effectuées pour chaque film.</translation>
+        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer des classifications) seront effectuées pour chaque film.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
@@ -309,7 +309,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="392"/>
         <source>Really delete image?</source>
-        <translation>Vraiment supprimer l&apos;image ?</translation>
+        <translation>Voulez-vous vraiment supprimer l&apos;image ?</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="393"/>
@@ -384,7 +384,7 @@
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation>Résultat de la recherche</translation>
+        <translation>Résultats de la recherche</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="48"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="124"/>
         <source>Infos to load</source>
-        <translation>Info a charger</translation>
+        <translation>Informations à charger</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="147"/>
@@ -4930,7 +4930,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../renamer/Renamer.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished"/>
+        <translation>Modèle</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="68"/>
@@ -4990,7 +4990,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"/>
+        <translation>Résultats</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="272"/>
@@ -5047,12 +5047,12 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../renamer/Renamer.cpp" line="1197"/>
         <source>Create dir</source>
-        <translation type="unfinished"/>
+        <translation>Créer le répertoire</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1198"/>
         <source>Move</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="616"/>
