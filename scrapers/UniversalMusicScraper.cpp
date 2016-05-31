@@ -81,6 +81,16 @@ void UniversalMusicScraper::onSearchArtistFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+        return;
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
@@ -126,6 +136,16 @@ void UniversalMusicScraper::onArtistRelsFinished()
     reply->deleteLater();
     if (!artist)
         return;
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        reply->setProperty("storage", Storage::toVariant(reply, artist));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        connect(reply, SIGNAL(finished()), this, SLOT(onArtistRelsFinished()));
+        return;
+    }
 
     QString discogsUrl;
     if (reply->error() == QNetworkReply::NoError) {
@@ -177,6 +197,24 @@ void UniversalMusicScraper::onArtistLoadFinished()
     Artist *artist = reply->property("storage").value<Storage*>()->artist();
     QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        for (int i=0, n=m_artistDownloads[artist].count() ; i<n ; ++i) {
+            if (m_artistDownloads[artist][i].url == reply->url()) {
+                m_artistDownloads[artist][i].url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+                break;
+            }
+        }
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        new NetworkReplyWatcher(this, reply);
+        reply->setProperty("storage", Storage::toVariant(reply, artist));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        connect(reply, SIGNAL(finished()), this, SLOT(onArtistLoadFinished()));
+        return;
+    }
+
     if (!artist)
         return;
 
@@ -279,6 +317,16 @@ void UniversalMusicScraper::onSearchAlbumFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+        return;
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
@@ -357,6 +405,18 @@ void UniversalMusicScraper::onAlbumRelsFinished()
     if (!album)
         return;
 
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        reply->setProperty("storage", Storage::toVariant(reply, album));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, SIGNAL(finished()), this, SLOT(onAlbumRelsFinished()));
+        return;
+    }
+
+
     QString discogsUrl;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -409,6 +469,23 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     reply->deleteLater();
     if (!album)
         return;
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        for (int i=0, n=m_albumDownloads[album].count() ; i<n ; ++i) {
+            if (m_albumDownloads[album][i].url == reply->url()) {
+                m_albumDownloads[album][i].url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+                break;
+            }
+        }
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        reply->setProperty("storage", Storage::toVariant(reply, album));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, SIGNAL(finished()), this, SLOT(onAlbumLoadFinished()));
+        return;
+    }
 
     if (!m_albumDownloads.contains(album))
         return;

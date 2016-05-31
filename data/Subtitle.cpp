@@ -3,6 +3,7 @@
 Subtitle::Subtitle(QObject *parent) : QObject(parent)
 {
     m_changed = false;
+    m_forced = false;
 }
 
 QString Subtitle::language() const
