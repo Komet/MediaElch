@@ -230,7 +230,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="101"/>
         <source>TextLabel</source>
-        <translation>Texto Etiqueta</translation>
+        <translation>Texto Rótulo</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="142"/>
@@ -256,12 +256,12 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Duplo clique na classificação indicativa para renomeá-la, clique direita para deletar. Se você deseje unir duas classificações, basta somente usar o mesmo nome.</translation>
+        <translation>Duplo clique na Classificação Indicativa para renomeá-la, clique direita para deletar. Se você deseje unir duas classificações, basta somente usar o mesmo nome.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>Por favor mantenha em mente que as alterações efetuadas aqui (renomear ou deletar classificações indicativas), devem ser efetuadas em cada filme.</translation>
+        <translation>Por favor tenha em mente que as alterações efetuadas aqui (renomear ou deletar Classificações Indicativas), devem ser efetuadas em cada filme.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
@@ -422,12 +422,12 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="154"/>
         <source>Tagline</source>
-        <translation>Linha de Tag</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="161"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="168"/>
@@ -442,7 +442,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="182"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="189"/>
@@ -530,12 +530,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="206"/>
         <source>Tagline</source>
-        <translation>Linha de tag</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="216"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="236"/>
@@ -550,7 +550,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="273"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="290"/>
@@ -727,7 +727,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Tag</source>
-        <translation>Adicionar Tag</translation>
+        <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="547"/>
@@ -1196,7 +1196,7 @@
         <location filename="../main/FileScannerDialog.ui" line="30"/>
         <location filename="../main/FileScannerDialog.ui" line="56"/>
         <source>TextLabel</source>
-        <translation>Texto Etiqueta</translation>
+        <translation>Texto Rótulo</translation>
     </message>
 </context>
 <context>
@@ -1209,7 +1209,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="223"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="250"/>
@@ -1240,7 +1240,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="75"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
@@ -1314,12 +1314,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="310"/>
         <source>Label &quot;%1&quot;</source>
-        <translation>Etiqueta &quot;%1&quot;</translation>
+        <translation>Rótulo &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="311"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="378"/>
@@ -1367,13 +1367,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="448"/>
         <source>Certification &quot;%1&quot;</source>
-        <translation>Classificação Indicativa&quot;%1&quot;</translation>
+        <translation>Classificação&quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="449"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="465"/>
@@ -1427,7 +1427,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
         <source>Movie has Poster</source>
-        <translation>Filme tem Poster</translation>
+        <translation>Filme Com Poster</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
@@ -1439,7 +1439,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
         <source>Movie has no Poster</source>
-        <translation>Filme não tem poster</translation>
+        <translation>Filme Sem Poster</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
@@ -1450,7 +1450,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>Filme possui Extra Fanarts</translation>
+        <translation>Filme Com Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
@@ -1462,7 +1462,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Filme não possuí Extra Fanarts</translation>
+        <translation>Filme Sem Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
@@ -1473,7 +1473,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <source>Movie has Backdrop</source>
-        <translation>Filme tem Imagem de Fundo</translation>
+        <translation>Filme Com Imagem de Fundo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
@@ -1491,7 +1491,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <source>Movie has no Backdrop</source>
-        <translation>Filme não tem Imagem de Fundo</translation>
+        <translation>Filme Sem Imagem de Fundo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
@@ -1507,7 +1507,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
         <source>Movie has Logo</source>
-        <translation>Filme tem Logo</translation>
+        <translation>Filme Com Logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
@@ -1519,7 +1519,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <source>Movie has no Logo</source>
-        <translation>Filme não tem Logo</translation>
+        <translation>Filme Sem Logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
@@ -1530,7 +1530,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
         <source>Movie has Clear Art</source>
-        <translation>Filme tem Clear Art</translation>
+        <translation>Filme Com Clear Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
@@ -1542,7 +1542,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
         <source>Movie has no Clear Art</source>
-        <translation>Filme não tem Clear Art</translation>
+        <translation>Filme Sem Clear Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
@@ -1553,7 +1553,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
         <source>Movie has Banner</source>
-        <translation>Filmes com Banner</translation>
+        <translation>Filmes Com Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
@@ -1565,7 +1565,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
         <source>Movie has no Banner</source>
-        <translation>Filmes sem Banner</translation>
+        <translation>Filmes Sem Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
@@ -1576,7 +1576,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="585"/>
         <source>Movie has Thumb</source>
-        <translation>Filme com miniatura</translation>
+        <translation>Filme Com Miniatura</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="585"/>
@@ -1588,7 +1588,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
         <source>Movie has no Thumb</source>
-        <translation>Filme sem miniatura</translation>
+        <translation>Filme Sem Miniatura</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
@@ -1599,19 +1599,19 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <source>Movie has CD Art</source>
-        <translation>Filme tem CD Art</translation>
+        <translation>Filme Com CD Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Com CD Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <source>Movie has no CD Art</source>
-        <translation>Filme não tem CD Art</translation>
+        <translation>Filme Sem CD Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
@@ -1622,7 +1622,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
         <source>Movie has Trailer</source>
-        <translation>Filme tem Trailer</translation>
+        <translation>Filme Com Trailer</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
@@ -1636,7 +1636,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <source>Movie has no Trailer</source>
-        <translation>Filme não tem Trailer</translation>
+        <translation>Filme Sem Trailer</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
@@ -1648,7 +1648,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has local Trailer</source>
-        <translation>Filme possui Trailer local</translation>
+        <translation>Filme Com Trailer Local</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
@@ -1660,7 +1660,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>Movie has no local Trailer</source>
-        <translation>Fillme não possui Trailer local</translation>
+        <translation>Fillme Sem Trailer Local</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
@@ -1705,18 +1705,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <source>Movie has no Certification</source>
-        <translation>Filme não tem Classificação Indicativa</translation>
+        <translation>Filme Sem Classificação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>No Certification</source>
-        <translation>Sem Classificação Indicativa</translation>
+        <translation>Sem Classificação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
         <source>Movie has no Genre</source>
-        <translation>Filme não tem Gênero</translation>
+        <translation>Filme Sem Gênero</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
@@ -1727,25 +1727,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
         <source>Movie has Rating</source>
-        <translation>Filme possui classificação</translation>
+        <translation>Filme Com Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Com Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <source>Movie has no Rating</source>
-        <translation>Filme sem classificação</translation>
+        <translation>Filme Sem Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>No Rating</source>
-        <translation>Sem Classificação</translation>
+        <translation>Sem Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
@@ -1773,30 +1773,30 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>Movie has Actors</source>
-        <translation>Filmes possui Atores</translation>
+        <translation>Filmes Com Info Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Com Info Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <source>Movie has no Actors</source>
-        <translation>Filme não possuí Atores</translation>
+        <translation>Filmes Sem Info Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>No Actors</source>
-        <translation>Sem Atores</translation>
+        <translation>Sem Info Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
         <source>Movie has no Studio</source>
-        <translation>Filme Não Tem Info de Estúdio</translation>
+        <translation>Filme Sem Info Estúdio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
@@ -1807,7 +1807,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <source>Movie has no Country</source>
-        <translation>Filme Não Tem Info de País</translation>
+        <translation>Filme Sem Info País</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
@@ -1818,7 +1818,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
         <source>Movie has no Director</source>
-        <translation>Filme Não Tem Info de Diretor</translation>
+        <translation>Filme Sem Info Diretor</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
@@ -1829,7 +1829,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <source>Movie has no Tags</source>
-        <translation>Filme Não tem Info de Etiquetas</translation>
+        <translation>Filme Sem Info Etiquetas</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
@@ -1845,7 +1845,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>Movie has no IMDB ID</source>
-        <translation>Filme não possui ID do IMDB</translation>
+        <translation>Filme Sem ID do IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
@@ -1986,7 +1986,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation>Filme possui Legenda</translation>
+        <translation>Filme Com Legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -2000,7 +2000,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation>Filme sem legenda</translation>
+        <translation>Filme Sem Legenda</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
@@ -2012,7 +2012,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation>Filme com legenda externa</translation>
+        <translation>Filme Com Legenda Externa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
@@ -2024,7 +2024,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation>Filme não possui legenda externa</translation>
+        <translation>Filme Sem Legenda Externa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
@@ -2048,7 +2048,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="100"/>
         <source>TextLabel</source>
-        <translation>Texto Etiqueta</translation>
+        <translation>Texto Rótulo</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="141"/>
@@ -2112,7 +2112,7 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível detectar o tempo de reprodução do arquivo</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
@@ -2960,12 +2960,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="78"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="80"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
@@ -3002,7 +3002,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/Message.ui" line="64"/>
         <source>TextLabel</source>
-        <translation>Etiqueta Texto</translation>
+        <translation>Texto Rótulo</translation>
     </message>
 </context>
 <context>
@@ -3084,7 +3084,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="306"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="308"/>
@@ -3162,7 +3162,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
@@ -3182,7 +3182,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
@@ -3197,12 +3197,12 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
         <source>Writer</source>
-        <translation>Escritor</translation>
+        <translation>Roteirista</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
@@ -3237,7 +3237,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
         <source>Tagline</source>
-        <translation>Linha de Tag</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="301"/>
@@ -3365,12 +3365,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="166"/>
         <source>Tagline</source>
-        <translation>Linha de tag</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="173"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="180"/>
@@ -3395,7 +3395,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="208"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="215"/>
@@ -3420,7 +3420,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="243"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="250"/>
@@ -3488,7 +3488,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="96"/>
         <source>Movie Name</source>
-        <translation>Nome do FIlme</translation>
+        <translation>Título do Filme</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="146"/>
@@ -3504,7 +3504,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="180"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>Título Local</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="190"/>
@@ -3529,7 +3529,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="246"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="253"/>
@@ -3544,12 +3544,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="270"/>
         <source>Writer</source>
-        <translation>Escritor</translation>
+        <translation>Roteirista</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="280"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="300"/>
@@ -3650,12 +3650,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="678"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="697"/>
         <source>Actor</source>
-        <translation>Ator</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="702"/>
@@ -3665,12 +3665,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="717"/>
         <source>Remove Actor</source>
-        <translation>Remover Ator</translation>
+        <translation>Remover Personagem</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="747"/>
         <source>Add Actor</source>
-        <translation>Adicionar Ator</translation>
+        <translation>Adicionar Personagem</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="784"/>
@@ -3845,7 +3845,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.cpp" line="91"/>
         <source>Add Tag</source>
-        <translation>Adicionar Tag</translation>
+        <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="95"/>
@@ -3927,7 +3927,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.cpp" line="940"/>
         <source>Unknown Actor</source>
-        <translation>Ator Desconhecido</translation>
+        <translation>Nome Desconhecido</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="941"/>
@@ -4091,7 +4091,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="263"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="276"/>
@@ -4101,7 +4101,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="289"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="302"/>
@@ -4242,7 +4242,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="243"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="253"/>
@@ -4257,7 +4257,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="273"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="283"/>
@@ -4378,12 +4378,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="207"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="214"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="221"/>
@@ -4830,7 +4830,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <location filename="../plugins/PluginsWidget.ui" line="38"/>
         <location filename="../plugins/PluginsWidget.ui" line="47"/>
         <source>TextLabel</source>
-        <translation>Etiqueta Texto</translation>
+        <translation>Texto Rótulo</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
@@ -4873,12 +4873,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../globals/Helper.cpp" line="528"/>
         <source>No Label</source>
-        <translation>Sem Etiqueta</translation>
+        <translation>Sem Rótulo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="529"/>
         <source>Red</source>
-        <translation>Vermelha</translation>
+        <translation>Vermelho</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="530"/>
@@ -4888,7 +4888,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../globals/Helper.cpp" line="531"/>
         <source>Yellow</source>
-        <translation>Amarela</translation>
+        <translation>Amarelo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="532"/>
@@ -4903,7 +4903,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../globals/Helper.cpp" line="534"/>
         <source>Purple</source>
-        <translation>Roxa</translation>
+        <translation>Roxo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="535"/>
@@ -4929,7 +4929,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/Renamer.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished"/>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="68"/>
@@ -4989,7 +4989,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"/>
+        <translation>Resultados</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="272"/>
@@ -5046,12 +5046,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/Renamer.cpp" line="1197"/>
         <source>Create dir</source>
-        <translation type="unfinished"/>
+        <translation>Criar dir</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1198"/>
         <source>Move</source>
-        <translation type="unfinished"/>
+        <translation>Mover</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="616"/>
@@ -5928,13 +5928,13 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="753"/>
         <source>Tagline</source>
-        <translation>Linha de Tag</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="755"/>
         <location filename="../settings/SettingsWindow.cpp" line="824"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="757"/>
@@ -5951,7 +5951,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.cpp" line="761"/>
         <location filename="../settings/SettingsWindow.cpp" line="834"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="763"/>
@@ -6832,7 +6832,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="192"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="205"/>
@@ -6852,7 +6852,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="244"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="257"/>
@@ -6877,7 +6877,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="309"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="322"/>
@@ -6981,7 +6981,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="142"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="152"/>
@@ -7001,12 +7001,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="182"/>
         <source>Writer</source>
-        <translation>Escritor</translation>
+        <translation>Roteirista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="192"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="202"/>
@@ -7026,7 +7026,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="232"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="242"/>
@@ -7134,7 +7134,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="130"/>
         <source>Rating</source>
-        <translation>Classificação</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="140"/>
@@ -7154,7 +7154,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="170"/>
         <source>Certification</source>
-        <translation>Certificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="180"/>
@@ -7272,12 +7272,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="295"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="312"/>
@@ -7367,27 +7367,27 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="549"/>
         <source>Writers</source>
-        <translation>Escritores</translation>
+        <translation>Roteiristas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="587"/>
         <source>Add Writer</source>
-        <translation>Adicionar Escritor</translation>
+        <translation>Adicionar Roteirista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="604"/>
         <source>Remove Writer</source>
-        <translation>Remover Escritor</translation>
+        <translation>Remover Roteirista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="753"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="778"/>
         <source>Actor</source>
-        <translation>Ator</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="783"/>
@@ -7397,12 +7397,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="828"/>
         <source>Add Actor</source>
-        <translation>Adicionar Ator</translation>
+        <translation>Adicionar Personagem</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="798"/>
         <source>Remove Actor</source>
-        <translation>Remover Ator</translation>
+        <translation>Remover Personagem</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="878"/>
@@ -7526,12 +7526,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="756"/>
         <source>Unknown Writer</source>
-        <translation>Escritor Desconhecido</translation>
+        <translation>Roteirista Desconhecido</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="975"/>
         <source>Unknown Actor</source>
-        <translation>Ator Desconhecido</translation>
+        <translation>Nome Desconhecido</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="976"/>
@@ -7649,7 +7649,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="170"/>
         <source>Rating</source>
-        <translation>Nota</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="202"/>
@@ -7664,7 +7664,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="254"/>
         <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="274"/>
@@ -7729,12 +7729,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="493"/>
         <source>Actors</source>
-        <translation>Atores</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="518"/>
         <source>Actor</source>
-        <translation>Ator</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="523"/>
@@ -7744,12 +7744,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="568"/>
         <source>Add Actor</source>
-        <translation>Adicionar Ator</translation>
+        <translation>Adicionar Personagem</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="538"/>
         <source>Remove Actor</source>
-        <translation>Remover Ator</translation>
+        <translation>Remover Personagem</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="380"/>
@@ -7885,7 +7885,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="792"/>
         <source>Unknown Actor</source>
-        <translation>Ator Desconhecido</translation>
+        <translation>Nome Desconhecido</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="793"/>
