@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detecção de detalhes do stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Info de Mídia&lt;/a&gt;</translation>
+        <translation>Detecção de detalhes do stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="151"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="210"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="217"/>
@@ -1473,14 +1473,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <source>Movie has Backdrop</source>
-        <translation>Filme Com Imagem de Fundo</translation>
+        <translation>Filme Com Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
@@ -1491,13 +1491,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <source>Movie has no Backdrop</source>
-        <translation>Filme Sem Imagem de Fundo</translation>
+        <translation>Filme Sem Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>No Backdrop</source>
-        <translation>Sem Imagem de Fundo</translation>
+        <translation>Sem Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
@@ -3232,7 +3232,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Backdrop</source>
-        <translation>Pano de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
@@ -3415,7 +3415,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="236"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="243"/>
@@ -5272,7 +5272,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../sets/SetsWidget.ui" line="293"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="69"/>
@@ -5475,7 +5475,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.ui" line="760"/>
         <location filename="../settings/SettingsWindow.ui" line="1029"/>
         <source>Backdrop</source>
-        <translation>Pano de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="503"/>
@@ -5599,7 +5599,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="802"/>
         <source>Season Backdrop</source>
-        <translation>Pano de fundo de temporadas</translation>
+        <translation>Fanart de Temporadas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="809"/>
@@ -6114,7 +6114,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
@@ -6134,7 +6134,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>English (US)</source>
-        <translation>English (US)</translation>
+        <translation>Inglês (USA)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
@@ -6247,7 +6247,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
@@ -6267,7 +6267,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>English (US)</source>
-        <translation>English (US)</translation>
+        <translation>Inglês (USA)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
@@ -6393,7 +6393,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
@@ -6493,7 +6493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation>Tuco</translation>
+        <translation>Turco</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="54"/>
