@@ -816,7 +816,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation>Importar filmes com MakeMKV</translation>
+        <translation>Importar filme com MakeMKV</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
@@ -1275,7 +1275,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="92"/>
         <source>Open Movie Folder</source>
-        <translation>Abrir Pasta de Filmes</translation>
+        <translation>Abrir Pasta do Filme</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
@@ -1553,7 +1553,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
         <source>Movie has Banner</source>
-        <translation>Filmes Com Banner</translation>
+        <translation>Filme Com Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
@@ -1565,7 +1565,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
         <source>Movie has no Banner</source>
-        <translation>Filmes Sem Banner</translation>
+        <translation>Filme Sem Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
@@ -1606,7 +1606,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>CD Art</source>
-        <translation>Com CD Art</translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
@@ -1722,7 +1722,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <source>No Genre</source>
-        <translation>Faltando Gênero</translation>
+        <translation>Sem Gênero</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
@@ -1734,7 +1734,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Rating</source>
-        <translation>Com Rating</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
@@ -1773,30 +1773,30 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>Movie has Actors</source>
-        <translation>Filmes Com Info Elenco</translation>
+        <translation>Filme Com Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Actors</source>
-        <translation>Com Info Elenco</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <source>Movie has no Actors</source>
-        <translation>Filmes Sem Info Elenco</translation>
+        <translation>Filme Sem Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>No Actors</source>
-        <translation>Sem Info Elenco</translation>
+        <translation>Sem Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
         <source>Movie has no Studio</source>
-        <translation>Filme Sem Info Estúdio</translation>
+        <translation>Filme Sem Estúdio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
@@ -1807,7 +1807,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <source>Movie has no Country</source>
-        <translation>Filme Sem Info País</translation>
+        <translation>Filme Sem País</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
@@ -1818,7 +1818,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
         <source>Movie has no Director</source>
-        <translation>Filme Sem Info Diretor</translation>
+        <translation>Filme Sem Diretor</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
@@ -1829,7 +1829,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <source>Movie has no Tags</source>
-        <translation>Filme Sem Info Etiquetas</translation>
+        <translation>Filme Sem Etiquetas</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
@@ -3132,7 +3132,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="23"/>
         <source>Movie Multi Scrape</source>
-        <translation>Filmes Multi Scrape</translation>
+        <translation>Multi Scrape de Filmes</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
@@ -5412,12 +5412,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Ativar scrapers de filmes adultos</translation>
+        <translation>Ativar scrapers de Filme Adulto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
-        <translation>Scraper de Filmes Customizado</translation>
+        <translation>Scraper Customizado de Filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
@@ -5527,12 +5527,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="639"/>
         <source>Movie Set Artwork</source>
-        <translation>Artes de Coletânea de Filmes</translation>
+        <translation>Artes das Coletâneas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="647"/>
         <source>Artwork next to movies</source>
-        <translation>Artes próximos aos filmes</translation>
+        <translation>Artes junto aos filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="652"/>
@@ -5542,7 +5542,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="660"/>
         <source>Movie Set Poster Filename</source>
-        <translation>Nome do arquivo Poster de Coletânea de Filmes</translation>
+        <translation>Nome de arquivo Poster de Coletânea</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="667"/>
