@@ -472,7 +472,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="224"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation>Logo, Clear Art, Disc Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="227"/>
@@ -482,7 +482,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="241"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -566,12 +566,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="300"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="335"/>
         <source>Last Played</source>
-        <translation>Última Reprodução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
@@ -707,7 +707,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1117"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="74"/>
@@ -1235,7 +1235,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
         <source>Media Status Columns</source>
-        <translation>Coluna de Estatus de Mídia</translation>
+        <translation>Colunas de Estatus da Mídia</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="75"/>
@@ -1599,25 +1599,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <source>Movie has CD Art</source>
-        <translation>Filme Com CD Art</translation>
+        <translation>Filme Com Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <source>Movie has no CD Art</source>
-        <translation>Filme Sem CD Art</translation>
+        <translation>Filme Sem Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>No CD Art</source>
-        <translation>Sem CD Art</translation>
+        <translation>Sem Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
@@ -2216,7 +2216,7 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="555"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation>Imagens (*.jpg*.jpeg)</translation>
+        <translation>Imagens (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
@@ -3247,7 +3247,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -3267,7 +3267,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar Tudo</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
@@ -3455,7 +3455,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="292"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="299"/>
@@ -3559,12 +3559,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="307"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="342"/>
         <source>Last Played</source>
-        <translation>Última Reprodução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
@@ -3814,12 +3814,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="1655"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1695"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1705"/>
@@ -4131,7 +4131,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="376"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
@@ -4317,7 +4317,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -4446,7 +4446,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <location filename="../music/MusicWidgetAlbum.ui" line="513"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="553"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
@@ -4534,7 +4534,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation>Anos em atividade</translation>
+        <translation>Anos em Atividade</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
@@ -4697,7 +4697,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation>Renomear arquivos selecionados</translation>
+        <translation>Renomear Arquivos Selecionados</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
@@ -5498,7 +5498,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.ui" line="1050"/>
         <location filename="../settings/SettingsWindow.cpp" line="789"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="584"/>
@@ -5654,7 +5654,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1206"/>
         <source>Album Disc Art</source>
-        <translation>Arte de Disco do Álbum</translation>
+        <translation>Disc Art do Álbum</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1223"/>
@@ -6887,7 +6887,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="344"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
@@ -7071,7 +7071,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="329"/>
         <source>(Un)Check all</source>
-        <translation>(Des)marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="362"/>
@@ -7174,7 +7174,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="217"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -7292,12 +7292,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="329"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="418"/>
         <source>Last Played</source>
-        <translation>Última Reprodução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="428"/>
@@ -8170,7 +8170,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation>Os campos Última Reprodução e Contador de Reprodução virão do Kodi.</translation>
+        <translation>Os campos Última Sessão e Contador Sessões virão do Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -8244,7 +8244,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation>Finalizado. Contador de Reproduzido e data da última reprodução de seus itens foram atualizados.</translation>
+        <translation>Finalizado. Seus itens Contador Sessões e Última Sessão foram atualizados.</translation>
     </message>
 </context>
 </TS>
