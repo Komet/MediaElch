@@ -873,7 +873,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
         <source>Please set the correct path to makemkvcon in MediaElchs settings.</source>
-        <translation>Por favor informe o caminho para makemkvcon nos ajustes do MediaElchs.</translation>
+        <translation>Por favor, informe o caminho para makemkvcon em MediaElch -&gt; Ajustes -&gt; Importar.</translation>
     </message>
 </context>
 <context>
@@ -3590,12 +3590,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="435"/>
         <source>Download Trailer</source>
-        <translation>Download Trailer</translation>
+        <translation>Baixar Trailer</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation>Reproduzir trailer local</translation>
+        <translation>Reproduzir Trailer Local</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
@@ -3655,7 +3655,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="697"/>
         <source>Actor</source>
-        <translation>Elenco</translation>
+        <translation>Artista</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="702"/>
@@ -5370,13 +5370,13 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="199"/>
         <source>Download actor images</source>
-        <translation>Transferir imagens dos artistas</translation>
+        <translation>Baixar imagens dos artistas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="227"/>
         <location filename="../settings/SettingsWindow.ui" line="246"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation>Palavras para excluir dos nomes das mídias (separados por vírgulas e não diferenciar maiúsculas de minúsculas)</translation>
+        <translation>Palavras para excluir dos nomes das mídias (separados por vírgulas e não diferencia maiúsculas de minúsculas)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="213"/>
@@ -5400,9 +5400,9 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>Adicione um ou mais diretórios contendo seus filmes, seriados, concertos, músicas ou arquivos por importar.
-Episódios de seriados devem estar localizados em subdiretórios com o nome do seriado.
-Os diretórios contendo suas músicas devem contem subdiretórios para cada artista com seus respectivos álbuns em subpastas.</translation>
+        <translation>Adicione um ou mais diretórios contendo seus Filmes, Seriados, Concertos, Músicas ou arquivos por importar.
+Episódios de seriados devem estar localizados em subpastas com o nome do seriado.
+Os diretórios de músicas devem conter subdiretórios para cada artista com suas respectivas subpastas para cada álbum.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="253"/>
@@ -5448,7 +5448,9 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus filmes. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus Filmes. Você pode editá-los como quiser.
+Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.
+Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="467"/>
@@ -5553,7 +5555,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="677"/>
         <source>Movie Set Fanart Filname</source>
-        <translation>Movie Set Fanart Filename</translation>
+        <translation>Nome do Fanart de Coletânea</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="684"/>
@@ -5564,7 +5566,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="694"/>
         <source>Artwork directory</source>
-        <translation>Diretório das Artes</translation>
+        <translation>Diretório Separado para Artes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="706"/>
@@ -5574,7 +5576,9 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="721"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus seriados. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus Seriados. Você pode editá-los como quiser.
+Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.
+Por exemplo:  poster.jpg,folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="731"/>
@@ -5624,12 +5628,16 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="990"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus concertos. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus Concertos. Você pode editá-los como quiser.
+Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.
+Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1123"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus artistas e álbuns. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus Artistas e Álbuns. Você pode editá-los como quiser.
+Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.
+Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1138"/>
@@ -5659,12 +5667,13 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1223"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation>Transferir Extrafanarts para Artistas</translation>
+        <translation>Baixar Extra Fanarts dos Artistas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1243"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>se você deseja usar o recurso de sincronização você deve antes ativer o webserver dentro do XBMC. (Ajustes -&gt;Rede -&gt;Webserver). Entre a porta do webserver aqui (usualmente 80 ou 8080).</translation>
+        <translation>Se deseja usar o recurso de sincronização você deve antes ativar o webserver dentro do Kodi (Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver).
+Especifique abaixo a Porta do webserver (usualmente 80 ou 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1279"/>
@@ -5734,7 +5743,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1458"/>
         <source>Automatically delete archives after extraction</source>
-        <translation>Automaticamente dele arquivos após descompactar</translation>
+        <translation>Automaticamente deletar arquivo zip/rar após descompactar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1484"/>
@@ -5866,7 +5875,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Downloads</source>
-        <translation>Transferências</translation>
+        <translation>Importação</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="582"/>
@@ -8150,12 +8159,14 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation>Por favor, certifique-se que você configurou suas fontes no Kodi e que seu webserver está habilitado (Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver)</translation>
+        <translation>Por favor, certifique-se que você configurou suas fontes no Kodi e que seu webserver está habilitado.
+Veja em  Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation>Isto dirá ao Kodi para remover Filmes, Concertos ou Seriados com alterações. Logo após o Kodi irá disparar uma atualização e os itens removidos serão coletados e reinseridos novamente.</translation>
+        <translation>Isto mandará o Kodi remover os Filmes, Concertos ou Seriados com alterações.
+Logo após o Kodi irá disparar uma atualização e os itens removidos serão novamente coletados e reinseridos.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
