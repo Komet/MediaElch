@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detecção de detalhes do stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Info de Mídia&lt;/a&gt;</translation>
+        <translation>Detecção de detalhes do stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="151"/>
@@ -341,12 +341,12 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
         <source>Mark as watched</source>
-        <translation>Marcar como assistido</translation>
+        <translation>Marcar como Assistido</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="51"/>
         <source>Mark as unwatched</source>
-        <translation>Marcar como não assistido</translation>
+        <translation>Marcar como Não Assistido</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="52"/>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="53"/>
         <source>Add to Synchronization Queue</source>
-        <translation>Adicionar para Fila de Sincronização</translation>
+        <translation>Adicionar na Fila de Sincronização</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="54"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="210"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="217"/>
@@ -472,7 +472,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="224"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation>Logo, Clear Art, Disc Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="227"/>
@@ -482,7 +482,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="241"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -566,12 +566,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="300"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="335"/>
         <source>Last Played</source>
-        <translation>Última Reprodução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
@@ -707,7 +707,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1117"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="74"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="33"/>
         <source>Custom Movie Scraper</source>
-        <translation>Scraper de Filme Customizado</translation>
+        <translation>Scraper Customizado de Filmes</translation>
     </message>
 </context>
 <context>
@@ -816,7 +816,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation>Importar filmes com MakeMKV</translation>
+        <translation>Importar filme com MakeMKV</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
@@ -1235,7 +1235,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
         <source>Media Status Columns</source>
-        <translation>Coluna de Estatus de Mídia</translation>
+        <translation>Colunas de Estatus da Mídia</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="75"/>
@@ -1250,12 +1250,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="87"/>
         <source>Mark as watched</source>
-        <translation>Marcar como assistido</translation>
+        <translation>Marcar como Assistido</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="88"/>
         <source>Mark as unwatched</source>
-        <translation>Marcar como não assistido</translation>
+        <translation>Marcar como Não Assistido</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="89"/>
@@ -1265,7 +1265,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="90"/>
         <source>Add to Synchronization Queue</source>
-        <translation>Adicionar para Fila de Sincronização</translation>
+        <translation>Adicionar na Fila de Sincronização</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="91"/>
@@ -1275,7 +1275,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="92"/>
         <source>Open Movie Folder</source>
-        <translation>Abrir Pasta de Filmes</translation>
+        <translation>Abrir Pasta do Filme</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
@@ -1473,14 +1473,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <source>Movie has Backdrop</source>
-        <translation>Filme Com Imagem de Fundo</translation>
+        <translation>Filme Com Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
@@ -1491,13 +1491,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <source>Movie has no Backdrop</source>
-        <translation>Filme Sem Imagem de Fundo</translation>
+        <translation>Filme Sem Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>No Backdrop</source>
-        <translation>Sem Imagem de Fundo</translation>
+        <translation>Sem Fanart</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
@@ -1553,7 +1553,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
         <source>Movie has Banner</source>
-        <translation>Filmes Com Banner</translation>
+        <translation>Filme Com Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
@@ -1565,7 +1565,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
         <source>Movie has no Banner</source>
-        <translation>Filmes Sem Banner</translation>
+        <translation>Filme Sem Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
@@ -1599,25 +1599,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <source>Movie has CD Art</source>
-        <translation>Filme Com CD Art</translation>
+        <translation>Filme Com Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>CD Art</source>
-        <translation>Com CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <source>Movie has no CD Art</source>
-        <translation>Filme Sem CD Art</translation>
+        <translation>Filme Sem Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>No CD Art</source>
-        <translation>Sem CD Art</translation>
+        <translation>Sem Disc Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
@@ -1671,7 +1671,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
         <source>Movie is Watched</source>
-        <translation>Filme foi Assistido</translation>
+        <translation>Filme Assistido</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
@@ -1689,7 +1689,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
         <source>Movie is Unwatched</source>
-        <translation>Filme não Assistido</translation>
+        <translation>Filme Não Assistido</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
@@ -1722,7 +1722,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <source>No Genre</source>
-        <translation>Faltando Gênero</translation>
+        <translation>Sem Gênero</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
@@ -1734,7 +1734,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Rating</source>
-        <translation>Com Rating</translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
@@ -1762,41 +1762,41 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <source>Stream Details not loaded</source>
-        <translation>Detalhes do Stream não foram carregados</translation>
+        <translation>Detalhes Stream Não Carregados</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>No Stream Details</source>
-        <translation>Sem Detalhes do Stream</translation>
+        <translation>Sem Detalhes Stream</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>Movie has Actors</source>
-        <translation>Filmes Com Info Elenco</translation>
+        <translation>Filme Com Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Actors</source>
-        <translation>Com Info Elenco</translation>
+        <translation>Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <source>Movie has no Actors</source>
-        <translation>Filmes Sem Info Elenco</translation>
+        <translation>Filme Sem Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>No Actors</source>
-        <translation>Sem Info Elenco</translation>
+        <translation>Sem Elenco</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
         <source>Movie has no Studio</source>
-        <translation>Filme Sem Info Estúdio</translation>
+        <translation>Filme Sem Estúdio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
@@ -1807,7 +1807,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <source>Movie has no Country</source>
-        <translation>Filme Sem Info País</translation>
+        <translation>Filme Sem País</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
@@ -1818,7 +1818,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
         <source>Movie has no Director</source>
-        <translation>Filme Sem Info Diretor</translation>
+        <translation>Filme Sem Diretor</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
@@ -1829,7 +1829,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <source>Movie has no Tags</source>
-        <translation>Filme Sem Info Etiquetas</translation>
+        <translation>Filme Sem Etiquetas</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
@@ -2216,7 +2216,7 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="555"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation>Imagens (*.jpg*.jpeg)</translation>
+        <translation>Imagens (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
@@ -3109,7 +3109,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="316"/>
         <source>Stream Details</source>
-        <translation>Detalhes do Stream</translation>
+        <translation>Detalhes Stream</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="318"/>
@@ -3132,7 +3132,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="23"/>
         <source>Movie Multi Scrape</source>
-        <translation>Filmes Multi Scrape</translation>
+        <translation>Multi Scrape de Filmes</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
@@ -3232,7 +3232,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Backdrop</source>
-        <translation>Pano de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
@@ -3247,7 +3247,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -3267,7 +3267,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar Tudo</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
@@ -3415,7 +3415,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="236"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="243"/>
@@ -3455,7 +3455,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="292"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="299"/>
@@ -3470,7 +3470,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="320"/>
         <source>(Un)Check all</source>
-        <translation>(Des)marcar todas</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -3559,12 +3559,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="307"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="342"/>
         <source>Last Played</source>
-        <translation>Última Execução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
@@ -3575,12 +3575,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="378"/>
         <source>Not watched</source>
-        <translation>Não assistido</translation>
+        <translation>Não Assistido</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="387"/>
         <source>Plot</source>
-        <translation>Enredo</translation>
+        <translation>Enredo (Plot)</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="411"/>
@@ -3635,7 +3635,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="616"/>
         <source>Outline</source>
-        <translation>Sinopse</translation>
+        <translation>Sinopse (Outline)</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="636"/>
@@ -3814,12 +3814,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="1655"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1695"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1705"/>
@@ -4001,7 +4001,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="17"/>
         <source>Music Multi Scrape</source>
-        <translation>Multi Scrape Música</translation>
+        <translation>Multi Scrape de Músicas</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
@@ -4131,7 +4131,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="376"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
@@ -4317,7 +4317,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -4446,7 +4446,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <location filename="../music/MusicWidgetAlbum.ui" line="513"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="553"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
@@ -4534,7 +4534,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation>Anos em atividade</translation>
+        <translation>Anos em Atividade</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
@@ -4697,12 +4697,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation>Renomear arquivos selecionados</translation>
+        <translation>Renomear Arquivos Selecionados</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation>Sincronizar para Kodi</translation>
+        <translation>Sincronizar com Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
@@ -5272,7 +5272,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../sets/SetsWidget.ui" line="293"/>
         <source>Backdrop</source>
-        <translation>Imagem de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="69"/>
@@ -5360,7 +5360,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="171"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Automaticamente carregar e salvar dados de stream dos arquivos.</translation>
+        <translation>Automaticamente carregar e salvar Dados do Stream dos arquivos.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="185"/>
@@ -5412,12 +5412,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Ativar scrapers de filmes adultos</translation>
+        <translation>Ativar scrapers de Filme Adulto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
-        <translation>Scraper de Filmes Customizado</translation>
+        <translation>Scraper Customizado de Filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
@@ -5433,12 +5433,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation>TV scraper</translation>
+        <translation>Scraper de Seriados</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Selecione qual site você prefere para cada elemento de um seriado e episódio.</translation>
+        <translation>Selecione o site para scraper de cada elemento dos Seriados ou Episódios.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
@@ -5448,19 +5448,19 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus filmes. Você pode editá-los como quiser, se você quiser usar vários arquivos de separá-los por vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus filmes. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="467"/>
         <location filename="../settings/SettingsWindow.ui" line="1000"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>Você pode usar o espaço reservado &lt;baseFileName&gt; que é o nome do arquivo sem extensão</translation>
+        <translation>Você pode usar o placeholder &lt;baseFileName&gt; que é o nome do arquivo da midia sem a extensão.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="482"/>
         <location filename="../settings/SettingsWindow.ui" line="1015"/>
         <source>Nfo</source>
-        <translation>Nfo</translation>
+        <translation>NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="489"/>
@@ -5475,7 +5475,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.ui" line="760"/>
         <location filename="../settings/SettingsWindow.ui" line="1029"/>
         <source>Backdrop</source>
-        <translation>Pano de Fundo</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="503"/>
@@ -5498,7 +5498,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.ui" line="1050"/>
         <location filename="../settings/SettingsWindow.cpp" line="789"/>
         <source>Disc Art</source>
-        <translation>Arte do Disco</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="584"/>
@@ -5517,32 +5517,32 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="625"/>
         <source>Movie outline</source>
-        <translation>Sinopse do filme</translation>
+        <translation>Sinopse (Outline) do Filme</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="632"/>
         <source>Use plot when outline is not available</source>
-        <translation>Usar enredo quando sinopse não estiver disponível</translation>
+        <translation>Usar Enredo (Plot) quando Sinopse (Outline) não estiver disponível</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="639"/>
         <source>Movie Set Artwork</source>
-        <translation>Artes de Coletânea de Filmes</translation>
+        <translation>Artes das Coletâneas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="647"/>
         <source>Artwork next to movies</source>
-        <translation>Artes próximos aos filmes</translation>
+        <translation>Artes junto aos filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="652"/>
         <source>Separate artwork directory</source>
-        <translation>Diretório de artes separados</translation>
+        <translation>Artes em Diretório Separado</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="660"/>
         <source>Movie Set Poster Filename</source>
-        <translation>Nome do arquivo Poster de Coletânea de Filmes</translation>
+        <translation>Nome do Poster de Coletânea</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="667"/>
@@ -5564,27 +5564,27 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="694"/>
         <source>Artwork directory</source>
-        <translation>Diretório de Artes</translation>
+        <translation>Diretório das Artes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="706"/>
         <source>Choose directory</source>
-        <translation>Escolha diretório</translation>
+        <translation>Escolha Diretório</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="721"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus seriados. Você pode editá-los como quiser, se você quiser usar vários arquivos de separá-los por vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus seriados. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="731"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Você pode usar o espaço reservado &lt;baseFileName&gt; que é o nome do arquivo sem extensão e para os posters da temporada &lt;seasonNumber&gt; que é o número da temporada.</translation>
+        <translation>Você pode usar o placeholder &lt;baseFileName&gt; que é o nome do arquivo da midia sem a extensão. E para os posters da temporada &lt;seasonNumber&gt; que é o número da temporada.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="746"/>
         <source>Show nfo</source>
-        <translation>Mostrar nfo</translation>
+        <translation>NFO do Seriado</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="788"/>
@@ -5599,12 +5599,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="802"/>
         <source>Season Backdrop</source>
-        <translation>Pano de fundo de temporadas</translation>
+        <translation>Fanart de Temporadas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="809"/>
         <source>Episode nfo</source>
-        <translation>Nfo do Episódio</translation>
+        <translation>NFO do Episódio</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="816"/>
@@ -5624,12 +5624,12 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="990"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus concertos. Você pode editá-los como quiser, se você quiser usar vários arquivos deve separá-los por vírgula.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus concertos. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1123"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus artistas e álbuns. Você pode editá-los como quiser, se você quiser usar múltiplos arquivos use a vírgula para separá-los.</translation>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus artistas e álbuns. Você pode editá-los como quiser. Se quiser salvar o mesmo arquivo com vários nomes deve separar os nomes com vírgula.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1138"/>
@@ -5654,7 +5654,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1206"/>
         <source>Album Disc Art</source>
-        <translation>Arte de Disco do Álbum</translation>
+        <translation>Disc Art do Álbum</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1223"/>
@@ -5962,7 +5962,7 @@ Os diretórios contendo suas músicas devem contem subdiretórios para cada arti
         <location filename="../settings/SettingsWindow.cpp" line="765"/>
         <location filename="../settings/SettingsWindow.cpp" line="836"/>
         <source>Plot</source>
-        <translation>Enredo</translation>
+        <translation>Enredo (Plot)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="769"/>
@@ -6114,7 +6114,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
@@ -6134,7 +6134,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>English (US)</source>
-        <translation>English (US)</translation>
+        <translation>Inglês (USA)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
@@ -6247,7 +6247,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
@@ -6267,7 +6267,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>English (US)</source>
-        <translation>English (US)</translation>
+        <translation>Inglês (USA)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
@@ -6393,7 +6393,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Czech</source>
-        <translation>Checo</translation>
+        <translation>Tcheco</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
@@ -6493,7 +6493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation>Tuco</translation>
+        <translation>Turco</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="54"/>
@@ -6651,22 +6651,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
         <source>Mark as watched</source>
-        <translation>Marcar como assistido</translation>
+        <translation>Marcar como Assistido</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
         <source>Mark as unwatched</source>
-        <translation>Marcar como não assistido</translation>
+        <translation>Marcar como Não Assistido</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Load Stream Details</source>
-        <translation>Carregar Detalhes do Stream</translation>
+        <translation>Carregar Detalhes Stream</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Add to Synchronization Queue</source>
-        <translation>Addcionar para Fila de Sincronização</translation>
+        <translation>Addcionar na Fila de Sincronização</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
@@ -6767,7 +6767,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation>Escraper múltipo para seriados</translation>
+        <translation>Multi Escrape de Seriados</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
@@ -6887,7 +6887,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="344"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
@@ -7071,7 +7071,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="329"/>
         <source>(Un)Check all</source>
-        <translation>(Des)marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="362"/>
@@ -7174,7 +7174,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="217"/>
         <source>(Un)Check all</source>
-        <translation>(Des)Marcar todos</translation>
+        <translation>(Des) Marcar Todas</translation>
     </message>
 </context>
 <context>
@@ -7232,7 +7232,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="105"/>
         <source>Episode Title</source>
-        <translation>Título Episódio</translation>
+        <translation>Título do Episódio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="176"/>
@@ -7292,12 +7292,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="329"/>
         <source>Play Count</source>
-        <translation>Contador de Reproduzido</translation>
+        <translation>Contador Sessões</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="418"/>
         <source>Last Played</source>
-        <translation>Última Reprodução</translation>
+        <translation>Última Sessão</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="428"/>
@@ -8140,7 +8140,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation>Recuperar estatus assistido</translation>
+        <translation>Recuperar estatus Assistido do Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
@@ -8150,17 +8150,17 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation>Por favor, certifique-se que você configurou suas fontes no Kodi e que seu webserver está habilitado (Kodi-&gt;Ajustes-&gt;Serviços-&gt;Webserver)</translation>
+        <translation>Por favor, certifique-se que você configurou suas fontes no Kodi e que seu webserver está habilitado (Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation>Isto dirá ao Kodi para remover filmes, concertos ou shows com alterações. Logo após o Kodi irá disparar uma atualização e os itens removidos serão coletados e reinseridos novamente.</translation>
+        <translation>Isto dirá ao Kodi para remover Filmes, Concertos ou Seriados com alterações. Logo após o Kodi irá disparar uma atualização e os itens removidos serão coletados e reinseridos novamente.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation>Remover itens não existentes da base de dados do Kodi (Limpar Coleção)</translation>
+        <translation>Remover itens não existentes da base de dados do Kodi (Limpar Coleção).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
@@ -8170,7 +8170,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation>Os campos última reprodução e contador de reprodução virão do Kodi.</translation>
+        <translation>Os campos Última Sessão e Contador Sessões virão do Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -8191,7 +8191,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation>Por favor preencha com seu Kodi host e porta.</translation>
+        <translation>Por favor insira os dados de Host e Porta no menu Ajustes -&gt; Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
@@ -8234,7 +8234,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation>Finalizado. Kodi está carregando agora seus itens atualizados.</translation>
+        <translation>Finalizado. Kodi está agora carregando seus itens atualizados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
@@ -8244,7 +8244,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation>Finalizado. Contador de Reproduzido e data da última reprodução de seus itens foram atualizados.</translation>
+        <translation>Finalizado. Seus itens Contador Sessões e Última Sessão foram atualizados.</translation>
     </message>
 </context>
 </TS>
