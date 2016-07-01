@@ -1,3 +1,9 @@
+mediaelch (2.4.2-1) vivid; urgency=low
+
+  * Bugfix: UniversalMusicScraper broken
+
+ -- Daniel Kabel <info@kvibes.de>  Fri, 01 Jul 2016 09:32:20 +0200
+
 mediaelch (2.4.1-1) vivid; urgency=low
 
   * Renamer: Show results in table view
