@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detecção de detalhes do stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
+        <translation>Detecção de Detalhes Stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="151"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Raspador</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="95"/>
@@ -1214,12 +1214,12 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="250"/>
         <source>Date Added</source>
-        <translation>Data de Adição</translation>
+        <translation>Data Adição</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="277"/>
         <source>Seen</source>
-        <translation>Atividade</translation>
+        <translation>Assistidos</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="304"/>
@@ -1845,13 +1845,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>Movie has no IMDB ID</source>
-        <translation>Filme Sem ID do IMDB</translation>
+        <translation>Filme Sem IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <source>No IMDB ID</source>
-        <translation>Sem ID do IMDB</translation>
+        <translation>Sem IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
@@ -3124,7 +3124,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
         <source>IMDB ID</source>
-        <translation>ID IMDB</translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3272,12 +3272,12 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Automatically save each movie after scraping</source>
-        <translation>Automaticamente salvar cada filme após scraping</translation>
+        <translation>Automaticamente salvar cada filme após scrapear</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation>Atualizar somente filmes com id IMDB/id TheMovieDb</translation>
+        <translation>Atualizar somente filmes com IMDB ID / TMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -3333,14 +3333,15 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Raspador</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="59"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation>Quando usando IMDB você pode usar também o id do IMDB em sua procura.
-Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com &quot;id&quot;.</translation>
+        <translation>Busca no IMDB também pode usar o IMDB ID.
+Busca no The Movie DB pode usar o TMDB ID colocando o prefixo &quot;id&quot;.
+Busca no OFDb pode usar o OFDb ID colocando o prefixo &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="100"/>
@@ -3691,7 +3692,8 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../movies/MovieWidget.ui" line="841"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Suporte para extrafanarts somente está disponível quando seus filmes estão armazenados em pastas separadas. Por favor verifique os ajustes se você está armazenando seus filmes em pastas separadas sempre.</translation>
+        <translation>Suporte para Extrafanarts somente está disponível quando seus Filmes estão armazenados em Pastas Separadas (Individuais).
+Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separadas.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="861"/>
@@ -4141,7 +4143,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="409"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation>Automaticamente salvar após escrapear artista e álbum</translation>
+        <translation>Automaticamente salvar cada artista e álbum após escrapear</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="456"/>
@@ -4182,7 +4184,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation>Raspador</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="95"/>
@@ -4999,7 +5001,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
-        <translation>Executar</translation>
+        <translation>Simular</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="305"/>
@@ -5010,7 +5012,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/Renamer.cpp" line="34"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation>Por favor veja %1 para ajuda e exemplos de como usar o renomeador.</translation>
+        <translation>Veja ajuda em %1 . Temos exemplos de como usar o renomeador.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
@@ -5144,7 +5146,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="447"/>
         <source>Sort Title</source>
-        <translation>Ordenar por Título</translation>
+        <translation>Título para Ordenar</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="479"/>
@@ -5320,7 +5322,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="95"/>
         <source>Items are in separate folders</source>
-        <translation>Itens estão em pastas separadas</translation>
+        <translation>Itens estão em Pastas Separadas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="100"/>
@@ -5360,7 +5362,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="171"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Automaticamente carregar e salvar Dados do Stream dos arquivos.</translation>
+        <translation>Automaticamente carregar e salvar Detalhes Stream</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="185"/>
@@ -5402,7 +5404,8 @@ TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
         <translation>Adicione um ou mais diretórios contendo seus Filmes, Seriados, Concertos, Músicas ou arquivos por importar.
 Episódios de seriados devem estar localizados em subpastas com o nome do seriado.
-Os diretórios de músicas devem conter subdiretórios para cada artista com suas respectivas subpastas para cada álbum.</translation>
+Os diretórios de músicas devem conter subdiretórios para cada artista com suas respectivas subpastas para cada álbum.
+Se Filmes e/ou Concertos estão em Pastas Separadas (individuais), habilite a opção.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="253"/>
@@ -5422,7 +5425,7 @@ Os diretórios de músicas devem conter subdiretórios para cada artista com sua
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Combine seus múltiplos scrapers em um scraper customizado. Se você selecionar outros srapers além do IMDB, The MovieDB e Fanart.tv serão necessárias múltiplas buscar, porque somente estes três compartilham o mesmo ID.</translation>
+        <translation>Combine seus múltiplos scrapers em um scraper customizado. Se você selecionar outros srapers além do IMDB, The Movie DB e Fanart.tv serão necessárias múltiplas buscar, porque somente estes três compartilham o mesmo ID.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="386"/>
@@ -5880,7 +5883,7 @@ Especifique abaixo a Porta do webserver (usualmente 80 ou 8080).</translation>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="582"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Organizar filmes somente funciona para filmes que não tenham sido já ordenados em pastas separadas.</translation>
+        <translation>Organizar filmes somente funciona para filmes que ainda não tenham sido organizados em Pastas Separadas.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="590"/>
@@ -6712,7 +6715,7 @@ p, li { white-space: pre-wrap; }
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Você precisa atualizar o seriado para mostrar episódios ausentes.
-Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na inicialização.</translation>
+Depois o MediaElch vai automaticamente procurar novos episódios na inicialização.</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
@@ -6906,7 +6909,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation>Automaticamente salve cada seriado/episódio após escrapear</translation>
+        <translation>Automaticamente salvar cada seriado e episódio após escrapear</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
@@ -7728,7 +7731,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="160"/>
         <source>Sort Title</source>
-        <translation>Ordenar por Título</translation>
+        <translation>Título para Ordenar</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="482"/>
