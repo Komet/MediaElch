@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detecção de Detalhes Stream com &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
+        <translation>Detecção de Detalhes Stream feita por &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;MediaInfo&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="151"/>
@@ -510,7 +510,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="158"/>
         <source>Files</source>
-        <translation>Arquivos</translation>
+        <translation>Caminho Arquivos</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="172"/>
@@ -1299,12 +1299,12 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="131"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="200"/>
         <source>Title contains &quot;%1&quot;</source>
-        <translation>Título contém &quot;%1&quot;</translation>
+        <translation>Título Local contém &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="137"/>
         <source>Filename contains &quot;%1&quot;</source>
-        <translation>Nome do arquivo contém &quot;%1&quot;</translation>
+        <translation>Caminho Arquivo contém &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="143"/>
@@ -1525,7 +1525,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <source>No Logo</source>
-        <translation>sem Logo</translation>
+        <translation>Sem Logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
@@ -1660,7 +1660,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>Movie has no local Trailer</source>
-        <translation>Fillme Sem Trailer Local</translation>
+        <translation>Filme Sem Trailer Local</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
@@ -3192,7 +3192,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
         <source>Title</source>
-        <translation>Título</translation>
+        <translation>Título Local</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
@@ -3217,7 +3217,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Overview</source>
-        <translation>Resumo</translation>
+        <translation>Enredo (Plot)</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
@@ -3356,7 +3356,7 @@ Busca no OFDb pode usar o OFDb ID colocando o prefixo &quot;id&quot;.</translati
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="152"/>
         <source>Title</source>
-        <translation>Título</translation>
+        <translation>Título Local</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="159"/>
@@ -3406,7 +3406,7 @@ Busca no OFDb pode usar o OFDb ID colocando o prefixo &quot;id&quot;.</translati
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="222"/>
         <source>Overview</source>
-        <translation>Resumo</translation>
+        <translation>Enredo (Plot)</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="229"/>
@@ -3500,7 +3500,7 @@ Busca no OFDb pode usar o OFDb ID colocando o prefixo &quot;id&quot;.</translati
         <location filename="../movies/MovieWidget.ui" line="166"/>
         <location filename="../movies/MovieWidget.ui" line="1169"/>
         <source>Files</source>
-        <translation>Arquivos</translation>
+        <translation>Caminho Arquivos</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="180"/>
@@ -5121,7 +5121,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="219"/>
         <source>Title</source>
-        <translation>Título</translation>
+        <translation>Título Local</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="186"/>
@@ -5312,12 +5312,12 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../settings/SettingsWindow.ui" line="87"/>
         <source>Path</source>
-        <translation>Caminho</translation>
+        <translation>Caminho Arquivos</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="92"/>
         <source>Sep. folders</source>
-        <translation>Sep. pastas</translation>
+        <translation>Pastas Separadas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="95"/>
@@ -5357,7 +5357,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../settings/SettingsWindow.ui" line="157"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Armazene as URLs dos trailers no formato do Plugin YouTube</translation>
+        <translation>Armazene URL de trailers no formato do Plugin YouTube</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="171"/>
@@ -5425,7 +5425,9 @@ Se Filmes e/ou Concertos estão em Pastas Separadas (individuais), habilite a op
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Combine seus múltiplos scrapers em um scraper customizado. Se você selecionar outros srapers além do IMDB, The Movie DB e Fanart.tv serão necessárias múltiplas buscar, porque somente estes três compartilham o mesmo ID.</translation>
+        <translation>Combine seus múltiplos scrapers em um Scraper Customizado de Filmes.
+Somente IMDB, The Movie DB e Fanart.tv compartilham o mesmo ID.
+Portanto, se você selecionar outros scrapers serão necessárias múltiplas buscas.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="386"/>
@@ -5586,7 +5588,8 @@ Por exemplo:  poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="731"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Você pode usar o placeholder &lt;baseFileName&gt; que é o nome do arquivo da midia sem a extensão. E para os posters da temporada &lt;seasonNumber&gt; que é o número da temporada.</translation>
+        <translation>Você pode usar o placeholder &lt;baseFileName&gt; que é o nome do arquivo da midia sem a extensão.
+Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o número da temporada.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="746"/>
@@ -7254,7 +7257,7 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="193"/>
         <source>Files</source>
-        <translation>Arquivos</translation>
+        <translation>Caminho Arquivos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="207"/>
