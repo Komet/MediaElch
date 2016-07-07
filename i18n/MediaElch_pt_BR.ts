@@ -4163,7 +4163,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>Busca de metados de %n itens foi finalizado.</numerusform><numerusform>Busca de metados de %n itens foi finalizado.</numerusform></translation>
+        <translation><numerusform>Busca de metados de %n itens foi finalizado.</numerusform><numerusform>Busca de metadados de %n itens foi finalizado.</numerusform></translation>
     </message>
 </context>
 <context>
