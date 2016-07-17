@@ -165,7 +165,11 @@ bool XbmcXml::saveMovie(Movie *movie)
     QFileInfo fi(movie->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        QFile file(fi.absolutePath() + "/" + saveFileName);
+        QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
+        QDir saveFileDir = QFileInfo(saveFilePath).dir();
+        if (!saveFileDir.exists())
+            saveFileDir.mkpath(".");
+        QFile file(saveFilePath);
         qDebug() << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "File could not be openend";
@@ -806,7 +810,11 @@ bool XbmcXml::saveConcert(Concert *concert)
     QFileInfo fi(concert->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-        QFile file(fi.absolutePath() + "/" + saveFileName);
+        QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
+        QDir saveFileDir = QFileInfo(saveFilePath).dir();
+        if (!saveFileDir.exists())
+            saveFileDir.mkpath(".");
+        QFile file(saveFilePath);
         qDebug() << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "File could not be openend";
@@ -1249,7 +1257,11 @@ bool XbmcXml::saveTvShow(TvShow *show)
     Manager::instance()->database()->update(show);
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
-        QFile file(show->dir() + "/" + dataFile.saveFileName(""));
+        QString saveFilePath = show->dir() + "/" + dataFile.saveFileName("");
+        QDir saveFileDir = QFileInfo(saveFilePath).dir();
+        if (!saveFileDir.exists())
+            saveFileDir.mkpath(".");
+        QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "Nfo file could not be openend for writing" << file.fileName();
             return false;
@@ -1362,7 +1374,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     QFileInfo fi(episode->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-        QFile file(fi.absolutePath() + "/" + saveFileName);
+        QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
+        QDir saveFileDir = QFileInfo(saveFilePath).dir();
+        if (!saveFileDir.exists())
+            saveFileDir.mkpath(".");
+        QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "Nfo file could not be opened for writing" << saveFileName;
             return false;
@@ -1689,7 +1705,11 @@ void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 
 bool XbmcXml::saveFile(QString filename, QByteArray data)
 {
+    QDir saveFileDir = QFileInfo(filename).dir();
+    if (!saveFileDir.exists())
+        saveFileDir.mkpath(".");
     QFile file(filename);
+
     if (file.open(QIODevice::WriteOnly)) {
         file.write(data);
         file.close();
@@ -2223,6 +2243,9 @@ bool XbmcXml::saveArtist(Artist *artist)
     if (fileName.isEmpty())
         return false;
 
+    QDir saveFileDir = QFileInfo(fileName).dir();
+    if (!saveFileDir.exists())
+        saveFileDir.mkpath(".");
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "File could not be openend";
@@ -2279,6 +2302,9 @@ bool XbmcXml::saveAlbum(Album *album)
     if (fileName.isEmpty())
         return false;
 
+    QDir saveFileDir = QFileInfo(fileName).dir();
+    if (!saveFileDir.exists())
+        saveFileDir.mkpath(".");
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "File could not be openend";
