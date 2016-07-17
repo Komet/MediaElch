@@ -17,7 +17,7 @@ public:
     explicit MovieDuplicateItem(QWidget *parent = 0);
     ~MovieDuplicateItem();
     void setDuplicateProperties(MovieDuplicate md);
-    void setMovie(Movie *movie);
+    void setMovie(Movie *movie, bool isOriginal);
 
 private:
     Ui::MovieDuplicateItem *ui;

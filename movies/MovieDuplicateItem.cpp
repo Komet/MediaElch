@@ -19,10 +19,14 @@ MovieDuplicateItem::~MovieDuplicateItem()
     delete ui;
 }
 
-void MovieDuplicateItem::setMovie(Movie *movie)
+void MovieDuplicateItem::setMovie(Movie *movie, bool isOriginal)
 {
     ui->labelMovieTitle->setText(movie->name());
     ui->labelFiles->setText(movie->files().join("\n"));
+    if (isOriginal) {
+        ui->widget->setStyleSheet("background-color: #f3f3f3;");
+        ui->widget_2->setVisible(false);
+    }
 }
 
 void MovieDuplicateItem::setDuplicateProperties(MovieDuplicate md)

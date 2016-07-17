@@ -73,7 +73,10 @@ void MovieDuplicates::detectDuplicates()
         movie->setHasDuplicates(false);
 
         QList<Movie*> dups;
+        dups << movie;
         foreach (Movie *subMovie, Manager::instance()->movieModel()->movies()) {
+            if (movie == subMovie)
+                continue;
             if (subMovie->isDuplicate(movie))
                 dups.append(subMovie);
         }
@@ -104,7 +107,7 @@ void MovieDuplicates::onItemActivated(QModelIndex index, QModelIndex previous)
 
     foreach (Movie *dup, m_duplicateMovies[movie]) {
         MovieDuplicateItem *item = new MovieDuplicateItem(ui->duplicates);
-        item->setMovie(dup);
+        item->setMovie(dup, dup == movie);
         item->setDuplicateProperties(movie->duplicateProperties(dup));
 
         int row = ui->duplicates->rowCount();
