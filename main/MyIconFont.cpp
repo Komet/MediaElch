@@ -342,6 +342,9 @@ bool MyIconFont::initFontAwesome( )
     m.insert("airplay", icon_airplay);
     m.insert("refresh_cloud", icon_refresh_cloud);
     m.insert("repeat", icon_repeat);
+    m.insert("copy_file", icon_copy_file);
+    m.insert("close_circle", icon_close_circle);
+    m.insert("check", icon_check);
 
     return true;
 }

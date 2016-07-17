@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("2.4.2");
+    QCoreApplication::setApplicationVersion("2.4.3-dev");
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 #endif

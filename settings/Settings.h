@@ -35,6 +35,7 @@ public:
     QPoint makeMkvDialogPosition();
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
+    QByteArray movieDuplicatesSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
@@ -99,6 +100,7 @@ public:
     void setMakeMkvDialogPosition(QPoint position);
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
+    void setMovieDuplicatesSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
@@ -184,6 +186,7 @@ private:
     QPoint m_makeMkvDialogPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
+    QByteArray m_movieDuplicatesSplitterState;
     bool m_useProxy;
     int m_proxyType;
     QString m_proxyHost;

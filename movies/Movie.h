@@ -181,6 +181,13 @@ public:
     void setSubtitles(const QList<Subtitle *> &subtitles);
     void addSubtitle(Subtitle *subtitle, bool fromLoad = false);
 
+    bool isDuplicate(Movie *movie);
+
+    bool hasDuplicates() const;
+    void setHasDuplicates(bool hasDuplicates);
+
+    MovieDuplicate duplicateProperties(Movie *movie);
+
 signals:
     void sigChanged(Movie*);
 
@@ -244,6 +251,7 @@ private:
     DiscType m_discType;
     int m_label;
     QList<Subtitle *> m_subtitles;
+    bool m_hasDuplicates;
 
     // Images
     QMap<int, QByteArray> m_images;

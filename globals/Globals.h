@@ -23,6 +23,7 @@ namespace Constants {
     const int TvShowProgressMessageId              = 40000;
     const int EpisodeProgressMessageId             = 60000;
     const int ConcertProgressMessageId             = 80000;
+    const int MovieDuplicatesProgressMessageId     = 90000;
     const int MusicArtistProgressMessageId         = 100000;
     const int MusicAlbumProgressMessageId          = 200000;
     const int MusicWidgetSaveProgressMessageId     = 300000;
@@ -446,5 +447,11 @@ namespace Labels {
     const int PURPLE = 6;
     const int GREY   = 7;
 }
+
+struct MovieDuplicate {
+    bool title;
+    bool imdbId;
+    bool tmdbId;
+};
 
 #endif // GLOBALS_H

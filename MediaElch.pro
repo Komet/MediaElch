@@ -200,7 +200,9 @@ SOURCES += main.cpp\
     smallWidgets/TvShowTreeView.cpp \
     tvShows/TvShowMultiScrapeDialog.cpp \
     data/Subtitle.cpp \
-    image/ImageCapture.cpp
+    image/ImageCapture.cpp \
+    movies/MovieDuplicates.cpp \
+    movies/MovieDuplicateItem.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -375,7 +377,9 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/TvShowTreeView.h \
     tvShows/TvShowMultiScrapeDialog.h \
     data/Subtitle.h \
-    image/ImageCapture.h
+    image/ImageCapture.h \
+    movies/MovieDuplicates.h \
+    movies/MovieDuplicateItem.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -435,7 +439,9 @@ FORMS    += main/MainWindow.ui \
     music/MusicMultiScrapeDialog.ui \
     renamer/RenamerPlaceholders.ui \
     image/ImageWidget.ui \
-    tvShows/TvShowMultiScrapeDialog.ui
+    tvShows/TvShowMultiScrapeDialog.ui \
+    movies/MovieDuplicates.ui \
+    movies/MovieDuplicateItem.ui
 
 RESOURCES += \
     MediaElch.qrc \

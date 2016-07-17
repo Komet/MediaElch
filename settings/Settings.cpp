@@ -98,6 +98,7 @@ void Settings::loadSettings()
     m_settingsWindowSize = settings()->value("SettingsWindowSize").toSize();
     m_mainWindowMaximized = settings()->value("MainWindowMaximized").toBool();
     m_mainSplitterState = settings()->value("MainSplitterState").toByteArray();
+    m_movieDuplicatesSplitterState = settings()->value("MovieDuplicatesSplitterState").toByteArray();
     m_debugModeActivated = settings()->value("DebugModeActivated", false).toBool();
     m_debugLogPath = settings()->value("DebugLogPath").toString();
     m_autoLoadStreamDetails = settings()->value("AutoLoadStreamDetails", true).toBool();
@@ -561,6 +562,11 @@ QByteArray Settings::mainSplitterState()
     return m_mainSplitterState;
 }
 
+QByteArray Settings::movieDuplicatesSplitterState()
+{
+    return m_movieDuplicatesSplitterState;
+}
+
 /**
  * @brief Returns a list of movie directories
  * @return List of movie directories
@@ -818,6 +824,12 @@ void Settings::setMainSplitterState(QByteArray state)
 {
     m_mainSplitterState = state;
     settings()->setValue("MainSplitterState", state);
+}
+
+void Settings::setMovieDuplicatesSplitterState(QByteArray state)
+{
+    m_movieDuplicatesSplitterState = state;
+    settings()->setValue("MovieDuplicatesSplitterState", state);
 }
 
 /**

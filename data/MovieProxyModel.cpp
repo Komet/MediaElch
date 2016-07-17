@@ -12,6 +12,7 @@ MovieProxyModel::MovieProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent)
 {
     m_sortBy = SortByNew;
+    m_filterDuplicates = false;
     sort(0, Qt::AscendingOrder);
 }
 
@@ -33,6 +34,9 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
         if (!filter->accepts(movie))
             return false;
     }
+
+    if (m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates())
+        return false;
 
     return true;
 }
@@ -75,6 +79,17 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
     }
 
     return (cmp < 0);
+}
+
+bool MovieProxyModel::filterDuplicates() const
+{
+    return m_filterDuplicates;
+}
+
+void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
+{
+    m_filterDuplicates = filterDuplicates;
+    invalidate();
 }
 
 /**

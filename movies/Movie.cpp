@@ -37,6 +37,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_databaseId = -1;
     m_discType = DiscSingle;
     m_label = Labels::NO_LABEL;
+    m_hasDuplicates = false;
     if (!files.isEmpty())
         setFiles(files);
 }
@@ -1435,6 +1436,19 @@ void Movie::onSubtitleChanged()
     setChanged(true);
 }
 
+bool Movie::hasDuplicates() const
+{
+    return m_hasDuplicates;
+}
+
+void Movie::setHasDuplicates(bool hasDuplicates)
+{
+    if (m_hasDuplicates == hasDuplicates)
+        return;
+    m_hasDuplicates = hasDuplicates;
+    emit sigChanged(this);
+}
+
 void Movie::setLabel(int label)
 {
     m_label = label;
@@ -1443,6 +1457,22 @@ void Movie::setLabel(int label)
 int Movie::label()
 {
     return m_label;
+}
+
+bool Movie::isDuplicate(Movie *movie)
+{
+    MovieDuplicate md = duplicateProperties(movie);
+    return md.imdbId || md.tmdbId || md.title;
+}
+
+MovieDuplicate Movie::duplicateProperties(Movie *movie)
+{
+    MovieDuplicate md;
+    md.imdbId = !movie->id().isEmpty() && movie->id() == id();
+    md.tmdbId = !movie->tmdbId().isEmpty() && movie->tmdbId() == tmdbId();
+    md.title = !movie->name().isEmpty() && movie->name() == name();
+
+    return md;
 }
 
 /*** DEBUG ***/

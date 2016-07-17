@@ -53,7 +53,10 @@ enum MyIconFontName {
     icon_attention = 0xe67b,
     icon_airplay = 0xe67f,
     icon_refresh_cloud = 0xe61d,
-    icon_repeat = 0xe61b
+    icon_repeat = 0xe61b,
+    icon_copy_file = 0xe665,
+    icon_close_circle = 0xe681,
+    icon_check = 0xe66c
 };
 
 
