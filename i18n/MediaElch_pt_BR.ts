@@ -256,12 +256,16 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Duplo clique na Classificação Indicativa para renomeá-la, clique direita para deletar. Se você deseje unir duas classificações, basta somente usar o mesmo nome.</translation>
+        <translation>Duplo clique numa Classificação Indicativa para renomeá-la.
+Se deseje unir duas Classificações, basta renomear com o mesmo nome.
+Clique da direita para deletar Classificação ou adicionar nova. 
+Numa Classificação nova ou pré existente você pode adicionar filmes clicando no botão abaixo Adicionar Filme.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>Por favor tenha em mente que as alterações efetuadas aqui (renomear ou deletar Classificações Indicativas), devem ser efetuadas em cada filme.</translation>
+        <translation>Lembre-se que, as alterações que fizer aqui (renomear ou deletar Classificação Indicativa), não são salvas automaticamente.
+Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar cada filme individualmente.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
@@ -586,7 +590,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="263"/>
         <source> Minutes</source>
-        <translation>Minutos</translation>
+        <translation> Minutos</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
@@ -873,7 +877,8 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
         <source>Please set the correct path to makemkvcon in MediaElchs settings.</source>
-        <translation>Por favor, informe o caminho para makemkvcon em MediaElch -&gt; Ajustes -&gt; Importar.</translation>
+        <translation>Por favor, informe o caminho para o makemkvcon.
+Veja em  Ajustes -&gt; Importar.</translation>
     </message>
 </context>
 <context>
@@ -927,12 +932,12 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation>Você necessita instalar ao menos um tema</translation>
+        <translation>Você precisa instalar pelo menos um tema. Veja em Ajustes &gt; Exportar.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation>Você necessita seleciona ao menos uma entrada para exportar.</translation>
+        <translation>Você precisa selecionar pelo menos um item para exportar.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
@@ -2074,12 +2079,16 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation>Duplo clique no gênero para renomeâ-lo, clique direita para deletar. Se você deseja unir dois gênero, basta então dar o mesmo nome.</translation>
+        <translation>Duplo clique num Gênero para renomeâ-lo.
+Se deseja unir dois Gêneros, basta renomear com o mesmo nome.
+Clique da direita para deletar Gênero ou adicionar novo.
+Num Gênero novo ou pré existente você pode adicionar filmes clicando no botão abaixo Adicionar Filme.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="206"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation>Por favor tenha em mente que as alterações que fizer aqui (renomear e deletar gêneros), devem ser feitas para cada filme.</translation>
+        <translation>Lembre-se que, as alterações que fizer aqui (renomear ou deletar Gênero), não são salvas automaticamente.
+Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar cada filme individualmente.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="36"/>
@@ -2388,7 +2397,7 @@
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="406"/>
         <source>Please enter all naming patterns</source>
-        <translation>Por favor entre todos padrões de nomeação</translation>
+        <translation>Por favor, insira todos os padrões de nomeação</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="431"/>
@@ -2515,7 +2524,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="249"/>
         <source>Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Duplicados</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="290"/>
@@ -3015,22 +3024,22 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="126"/>
         <source>Movie title</source>
-        <translation type="unfinished"/>
+        <translation>Título do Filme</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="155"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="162"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3038,12 +3047,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicates.ui" line="81"/>
         <source>Detect duplicate movies</source>
-        <translation type="unfinished"/>
+        <translation>Procurar Filmes Duplicados</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
-        <translation type="unfinished"/>
+        <translation>Procurando Filmes Duplicados...</translation>
     </message>
 </context>
 <context>
@@ -3178,7 +3187,8 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
-        <translation>Por favor selecione o scraper e as infos que você deseja carregar. MediaElch irá usar o melhor resultado possivel para cada filme que você selecionou.</translation>
+        <translation>Por favor, selecione o Scraper e as Informações que deseja carregar.
+MediaElch irá usar o melhor resultado possivel para cada filme que você selecionou.</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
@@ -3672,7 +3682,7 @@ Busca no OFDb pode usar o OFDb ID colocando o prefixo &quot;id&quot;.</translati
     <message>
         <location filename="../movies/MovieWidget.ui" line="604"/>
         <source> Minutes</source>
-        <translation>Minutos</translation>
+        <translation> Minutos</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="616"/>
@@ -5719,8 +5729,9 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1243"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>Se deseja usar o recurso de sincronização você deve antes ativar o webserver dentro do Kodi (Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver).
-Especifique abaixo a Porta do webserver (usualmente 80 ou 8080).</translation>
+        <translation>Se deseja usar o recurso de sincronização você deve antes ativar o webserver dentro do Kodi.
+Veja em Kodi -&gt; Ajustes -&gt; Serviços -&gt; Webserver. Anote os números de Host (IP) e da Porta.
+Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1279"/>
@@ -5750,7 +5761,7 @@ Especifique abaixo a Porta do webserver (usualmente 80 ou 8080).</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1563"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation>Instalar e atualizar plugins através do MediaElch, não possuí suporte neste momento para Linux. Você necessita  adicionar o ppa ou então compilar o plugin por conta própria.</translation>
+        <translation>Instalar e atualizar plugins através do MediaElch, não possuí suporte neste momento para Linux. Você precisa  adicionar o ppa ou então compilar o plugin por conta própria.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1583"/>
@@ -6121,7 +6132,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch faz uso de vários bancos de dados de filmes e seriados. Estes Bancos de Dados também necessitam de auxílio para manter seus serviços no ar e gratuíto. Se você não pode doar, você mesmo assim, pode contribuir com informações e artes faltantes se possivel.</translation>
+        <translation>MediaElch faz uso de vários bancos de dados de filmes e seriados. Estes Bancos de Dados também precisam de auxílio para manter seus serviços gratuítos e no ar. Caso não possa doar, você pode contribuir com informações e artes em falta.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -6828,7 +6839,8 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>Por favor selecione as informações que você deseja sejam carregadas. Mediaelch irá usar o melhor resultado para cada seriado e episódio selecionado.</translation>
+        <translation>Por favor, selecione as Informações que você deseja carregar.
+Mediaelch irá usar o melhor resultado possível para cada seriado e episódio que você selecionou.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
@@ -7770,7 +7782,7 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="301"/>
         <source> Minutes</source>
-        <translation>Minutos</translation>
+        <translation> Minutos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="160"/>
