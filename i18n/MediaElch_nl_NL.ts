@@ -299,7 +299,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Maak een willekeurige schermafdruk</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Open NFO Bestand</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"/>
+        <translation>Bewaarde Concerten</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="674"/>
@@ -1280,7 +1280,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Open NFO Bestand</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
@@ -1986,7 +1986,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film heeft Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
@@ -1995,42 +1995,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film heeft geen Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Geen Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film heeft externe Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Externe Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Film heeft geen externe Ondertitels</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"/>
+        <translation>Geen externe Ondertitels</translation>
     </message>
 </context>
 <context>
@@ -2107,33 +2107,33 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="20"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"/>
+        <translation>Kon de duur van het bestand niet vinden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="35"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"/>
+        <translation>Kon de speeltijd van het bestand niet vinden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="43"/>
         <location filename="../image/ImageCapture.cpp" line="63"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"/>
+        <translation>Tijdelijk bestand kon niet geopend worden</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="51"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"/>
+        <translation>Kon ffmpeg niet starten</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"/>
+        <translation>Kon ffmpeg niet starten. Instaleer het alstublieft en zorg ervoor dat het beschikbaar is in je $PATH</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="59"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"/>
+        <translation>ffmpeg werd onderbroken</translation>
     </message>
 </context>
 <context>
@@ -2221,12 +2221,12 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Afbeeldingen aangeleverd door &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Help mee door afbeeldingen te uploaden naar &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -2515,7 +2515,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="249"/>
         <source>Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>kopieën</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="290"/>
@@ -3020,12 +3020,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="126"/>
         <source>Movie title</source>
-        <translation type="unfinished"/>
+        <translation>Film titel</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="155"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="162"/>
@@ -3038,12 +3038,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicates.ui" line="81"/>
         <source>Detect duplicate movies</source>
-        <translation type="unfinished"/>
+        <translation>Zoek dubbele films</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met zoeken naar dubbele films...</translation>
     </message>
 </context>
 <context>
@@ -3160,7 +3160,7 @@ Opdracht geannuleerd.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="320"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Lokale Trailer</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="322"/>
@@ -3636,7 +3636,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"/>
+        <translation>Speel lokale trailer af</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
@@ -3804,12 +3804,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Externe Ondertitels</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"/>
+        <translation>Geforceerd</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1376"/>
@@ -3958,7 +3958,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../movies/MovieWidget.cpp" line="872"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"/>
+        <translation>Films Opgeslagen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="918"/>
@@ -4014,12 +4014,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Open Folder</translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Open NFO Bestand</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
@@ -4444,12 +4444,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz Album ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="289"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz Release Group ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="306"/>
@@ -4595,7 +4595,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
@@ -4970,7 +4970,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/Renamer.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished"/>
+        <translation>Patroon</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="68"/>
@@ -5030,7 +5030,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"/>
+        <translation>Resultaten</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="272"/>
@@ -5087,12 +5087,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/Renamer.cpp" line="1197"/>
         <source>Create dir</source>
-        <translation type="unfinished"/>
+        <translation>Maak folder</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1198"/>
         <source>Move</source>
-        <translation type="unfinished"/>
+        <translation>Verplaats</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="616"/>
@@ -5225,17 +5225,17 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"/>
+        <translation>Video Codec</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"/>
+        <translation>Audio Codec</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"/>
+        <translation>Aantal audio kanalen</translation>
     </message>
 </context>
 <context>
@@ -6723,7 +6723,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"/>
+        <translation>Open NFO Bestand</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
