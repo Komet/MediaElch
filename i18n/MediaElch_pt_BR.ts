@@ -147,7 +147,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="121"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
-        <translation>Icone Coletâneas: Retina por &quot;The Working Group&quot; e &quot;Capital Suite&quot;  por capital18 (Jugal Paryani)&quot;</translation>
+        <translation>Ícones: Retina por &quot;The Working Group&quot; e &quot;Capital Suite&quot;  por &quot;capital18 (Jugal Paryani)&quot;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="131"/>
