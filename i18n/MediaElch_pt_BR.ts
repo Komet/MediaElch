@@ -5655,12 +5655,12 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../settings/SettingsWindow.ui" line="795"/>
         <source>Season Poster</source>
-        <translation>Poster da Temporada</translation>
+        <translation>Temporada - Poster</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="802"/>
         <source>Season Backdrop</source>
-        <translation>Fanart de Temporadas</translation>
+        <translation>Temporada - Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="809"/>
@@ -5670,17 +5670,17 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../settings/SettingsWindow.ui" line="816"/>
         <source>Episode thumbnail</source>
-        <translation>Miniatura do Episódio</translation>
+        <translation>Episódio - Miniatura</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="823"/>
         <source>Season Banner</source>
-        <translation>Banner da Temporada</translation>
+        <translation>Temporada - Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="950"/>
         <source>Season Thumb</source>
-        <translation>Miniatura da Temporada</translation>
+        <translation>Temporada - Miniatura</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="990"/>
@@ -5699,27 +5699,27 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1138"/>
         <source>Artist Thumbnail</source>
-        <translation>Miniatura do Artista</translation>
+        <translation>Artista - Miniatura</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1155"/>
         <source>Artist Fanart</source>
-        <translation>Fanart do Artista</translation>
+        <translation>Artista - Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1172"/>
         <source>Artist Logo</source>
-        <translation>Logo do Artista</translation>
+        <translation>Artista - Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1189"/>
         <source>Album Thumbnail</source>
-        <translation>Miniatura do Álbum</translation>
+        <translation>Álbum - Miniatura</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1206"/>
         <source>Album Disc Art</source>
-        <translation>Disc Art do Álbum</translation>
+        <translation>Álbum - Disc Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1223"/>
