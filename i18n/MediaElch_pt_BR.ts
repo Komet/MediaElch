@@ -1372,7 +1372,7 @@ Veja em  Ajustes -&gt; Importar.</translation>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="448"/>
         <source>Certification &quot;%1&quot;</source>
-        <translation>Classificação&quot;%1&quot;</translation>
+        <translation>Classificação &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="449"/>
