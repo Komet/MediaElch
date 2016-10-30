@@ -98,7 +98,7 @@ void ImageModel::removeImage(Image *image)
     setHasChanged(true);
 }
 
-void ImageModel::ImageModel::move(int from, int to)
+void ImageModel::move(int from, int to)
 {
     if (from == to)
         return;

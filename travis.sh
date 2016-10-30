@@ -1,8 +1,8 @@
 #!/bin/sh
-qtchooser -list-versions
-export QT_SELECT=qt5
-
-set -evx
+#qtchooser -list-versions
+#export QT_SELECT=qt5
+#
+#set -evx
 
 #env | sort
 
