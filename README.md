@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/konserw/MediaElch.svg?branch=ci)](https://travis-ci.org/konserw/MediaElch)
 MediaElch
 =========
 

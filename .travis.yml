@@ -1,0 +1,18 @@
+language: cpp
+os:
+- linux
+sudo: required
+dist: trusty
+compiler:
+- clang
+- gcc
+install:
+- if [ "$CXX" = "g++" ]; then g++ -v; else clang -v; fi
+before_script:
+- sudo add-apt-repository -y ppa:beineri/opt-qt532-trusty
+- sudo apt-get -qq update
+- sudo apt-get install -y clang libmediainfo-dev qt53base qt53script qt53declarative qt53multimedia
+- QTDIR="/opt/qt53" && PATH="$QTDIR/bin:$PATH"
+- source /opt/qt53/bin/qt53-env.sh
+
+script: "./travis.sh"
