@@ -30,6 +30,7 @@ public:
     void fillDatabaseWithAllEpisodes(QString xml, TvShow *show);
     QString apiKey();
     QString language();
+    QString mirror() const;
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
@@ -37,7 +38,6 @@ signals:
     void sigLoadProgress(TvShow*, int, int);
 
 private slots:
-    void onMirrorsReady();
     void onSearchFinished();
     void onLoadFinished();
     void onEpisodeLoadFinished();
@@ -58,9 +58,7 @@ private:
     QString m_apiKey;
     QString m_language;
     QNetworkAccessManager m_qnam;
-    QStringList m_xmlMirrors;
-    QStringList m_bannerMirrors;
-    QStringList m_zipMirrors;
+    QString m_mirror;
     QComboBox *m_box;
     QWidget *m_widget;
     QMap<QUrl, CacheElement> m_cache;
@@ -69,7 +67,6 @@ private:
     QList<int> m_movieInfos;
 
     QNetworkAccessManager *qnam();
-    void setMirrors();
     QList<ScraperSearchResult> parseSearch(QString xml);
     void parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad, QList<TvShowEpisode*> &updatedEpisodes);
     void parseAndAssignActors(QString xml, TvShow *show);
