@@ -29,6 +29,7 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
     QString f = QString("%1").arg(context.function, -70, QChar(' '));
 
     switch (type) {
+    case QtInfoMsg:
     case QtDebugMsg:
         if (toFile)
             out << "[" << f << "] " << localMsg << newLine;

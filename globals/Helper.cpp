@@ -332,7 +332,7 @@ void Helper::removeFocusRect(QWidget *widget)
         dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 }
 
-void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
+void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 {
     if (removeFocusRect)
         Helper::instance()->removeFocusRect(widget);
