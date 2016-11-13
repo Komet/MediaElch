@@ -142,7 +142,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="108"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch został skompilowany przy wykorzystaniu bibliotek &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
+        <translation>MediaElch stworzony na bazie biblioteki &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="121"/>
@@ -2425,7 +2425,7 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>Import pliku został zakończony</numerusform><numerusform>Import %n plików został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform></translation>
+        <translation><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
