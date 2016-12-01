@@ -4233,7 +4233,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="130"/>
         <source>Infos to load</source>
-        <translation>Dane do wczytaniaInformacje</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="153"/>
