@@ -2221,12 +2221,12 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation>Obrazy dostarczone przez  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
+        <translation>Obrazy pochodzą z &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation>Pomóż przesyłając obrazy do  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
+        <translation>Pomóż przesyłając obrazy do &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -3043,7 +3043,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
-        <translation>Wykrywanie duplikatów filmó...</translation>
+        <translation>Wykrywanie duplikatów filmów...</translation>
     </message>
 </context>
 <context>
@@ -6813,7 +6813,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation>Wybierz informacje, które chcesz pobierać. MediaElch użyje najlepszego wyniku dla każdego wybranego serialu i odcinka.</translation>
+        <translation>Wybierz informacje, które chcesz pobierać. MediaElch użyje najlepszego dopasowania dla każdego wybranego serialu i odcinka.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
