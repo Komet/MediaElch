@@ -3626,7 +3626,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="411"/>
         <source>Insert YouTube Dummy Link</source>
-        <translation>Wstaw atrapę łącza YouTube</translation>
+        <translation>Wstaw szablon łącza YouTube</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="435"/>
