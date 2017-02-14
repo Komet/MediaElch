@@ -336,7 +336,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation><numerusform>%n koncert</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform></translation>
+        <translation><numerusform>%n koncert</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -376,7 +376,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation><numerusform>1 z 1 koncertu</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform></translation>
+        <translation><numerusform>1 z 1 koncertu</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -822,7 +822,7 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(ów)</numerusform></translation>
+        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(ów)</numerusform><numerusform>%n plik(ów)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1230,7 +1230,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
+        <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1285,7 +1285,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
+        <translation><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2425,7 +2425,7 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform></translation>
+        <translation><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform><numerusform>Import %n pliku(ów) został zakończony</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3348,7 +3348,7 @@ Operacja anulowana.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Zakończono pobieranie informacji dla filmu.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform></translation>
+        <translation><numerusform>Zakończono pobieranie informacji dla filmu.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform><numerusform>Zakończono pobieranie informacji dla %n filmów.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4004,12 +4004,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
+        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumy(ów)</numerusform></translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumy(ów)</numerusform><numerusform>%n albumy(ów)</numerusform></translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
@@ -4024,17 +4024,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
+        <translation><numerusform>%n wykonawca</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform><numerusform>%n wykonawców</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform></translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform><numerusform>%n albumów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform></translation>
+        <translation><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform><numerusform>%1 z %n wykonawców</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4202,7 +4202,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>Zakończono pobieranie informacji dla pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform></translation>
+        <translation><numerusform>Zakończono pobieranie informacji dla pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform><numerusform>Zakończono pobieranie informacji dla %n pozycji.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4366,7 +4366,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform></translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n albumy</numerusform><numerusform>%n albumów</numerusform><numerusform>%n albumów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -5056,22 +5056,22 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>Nazwa pliku filmu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Nazwa pliku filmu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform><numerusform>Nazwy plików %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>Nazwa pliku koncertu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Nazwa pliku koncertu zostanie zmieniona</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy plików %n koncertów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>Nazwa folderu serialu i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform></translation>
+        <translation><numerusform>Nazwa folderu serialu i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform><numerusform>Nazwy folderów %n seriali i %1</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>nazwa pliku odcinka zostanie zmieniona</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform></translation>
+        <translation><numerusform>nazwa pliku odcinka zostanie zmieniona</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform><numerusform>nazwy plików %n odcinków zostaną zmienione</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="180"/>
@@ -6671,13 +6671,13 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
+        <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6749,7 +6749,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
+        <translation><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
 </context>
 <context>
@@ -6968,12 +6968,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n serial</numerusform><numerusform>%n seriale</numerusform><numerusform>%n seriali</numerusform></translation>
+        <translation><numerusform>%n serial</numerusform><numerusform>%n seriale</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n odcinku</numerusform><numerusform>%n odcinkach</numerusform><numerusform>%n odcinkach</numerusform></translation>
+        <translation><numerusform>%n odcinku</numerusform><numerusform>%n odcinkach</numerusform><numerusform>%n odcinkach</numerusform><numerusform>%n odcinkach</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7223,7 +7223,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform></translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinki</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
 </context>
 <context>
