@@ -69,8 +69,9 @@ QString UniversalMusicScraper::identifier()
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
 {
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("http://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
+    request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
@@ -81,7 +82,6 @@ void UniversalMusicScraper::onSearchArtistFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
         reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
@@ -90,7 +90,6 @@ void UniversalMusicScraper::onSearchArtistFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
         return;
     }
-
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
@@ -121,8 +120,10 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> in
     artist->clear(infos);
     artist->setMbId(mbId);
     artist->setAllMusicId("");
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(QString("http://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent" , "MediaElch");
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onArtistRelsFinished()));
@@ -305,8 +306,9 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     QString searchQuery = "release:\"" + QString(QUrl::toPercentEncoding(cleanSearchStr)) + "\"";
     if (!artistName.isEmpty())
         searchQuery += "%20AND%20artist:\"" + QString(QUrl::toPercentEncoding(artistName)) + "\"";
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
+    QUrl url(QString("http://musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
+    request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
@@ -388,8 +390,10 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
     album->setAllMusicId("");
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(QString("http://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent" , "MediaElch");
+    QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
