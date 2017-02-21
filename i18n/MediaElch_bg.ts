@@ -2513,30 +2513,35 @@
         <translation>Категоризирания</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="255"/>
+        <location filename="../main/MainWindow.ui" line="249"/>
+        <source>Duplicates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.ui" line="290"/>
         <source>Shows</source>
         <translation>Предавания</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="271"/>
+        <location filename="../main/MainWindow.ui" line="306"/>
         <source>TV Shows</source>
         <translation>ТВ шоута</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="312"/>
-        <location filename="../main/MainWindow.ui" line="328"/>
+        <location filename="../main/MainWindow.ui" line="347"/>
+        <location filename="../main/MainWindow.ui" line="363"/>
         <source>Concerts</source>
         <translation>Концерти</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="369"/>
-        <location filename="../main/MainWindow.ui" line="385"/>
+        <location filename="../main/MainWindow.ui" line="404"/>
+        <location filename="../main/MainWindow.ui" line="420"/>
         <source>Music</source>
         <translation>Музика</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="426"/>
-        <location filename="../main/MainWindow.ui" line="442"/>
+        <location filename="../main/MainWindow.ui" line="461"/>
+        <location filename="../main/MainWindow.ui" line="477"/>
         <source>Import</source>
         <extracomment>Main menu entry
 ----------
@@ -2544,22 +2549,22 @@ Main menu entry (tooltip)</extracomment>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="483"/>
+        <location filename="../main/MainWindow.ui" line="518"/>
         <source>Plugins</source>
         <translation>Добавки</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="927"/>
+        <location filename="../main/MainWindow.ui" line="981"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="932"/>
+        <location filename="../main/MainWindow.ui" line="986"/>
         <source>Quit</source>
         <translation>Изход</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="937"/>
+        <location filename="../main/MainWindow.ui" line="991"/>
         <source>About</source>
         <translation>Относно</translation>
     </message>
@@ -3003,6 +3008,42 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../main/Message.ui" line="64"/>
         <source>TextLabel</source>
         <translation>Етикет</translation>
+    </message>
+</context>
+<context>
+    <name>MovieDuplicateItem</name>
+    <message>
+        <location filename="../movies/MovieDuplicateItem.ui" line="14"/>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieDuplicateItem.ui" line="126"/>
+        <source>Movie title</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../movies/MovieDuplicateItem.ui" line="155"/>
+        <source>TMDB ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../movies/MovieDuplicateItem.ui" line="162"/>
+        <source>IMDB ID</source>
+        <translation>IMDB ID</translation>
+    </message>
+</context>
+<context>
+    <name>MovieDuplicates</name>
+    <message>
+        <location filename="../movies/MovieDuplicates.ui" line="81"/>
+        <source>Detect duplicate movies</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../movies/MovieDuplicates.cpp" line="66"/>
+        <source>Detecting duplicate movies...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
