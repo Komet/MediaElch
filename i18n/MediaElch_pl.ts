@@ -351,7 +351,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="52"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumienia</translation>
+        <translation>Wczytaj metadane ścieżek</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="53"/>
@@ -482,7 +482,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="241"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="477"/>
         <source>Streamdetails</source>
-        <translation>Metadane</translation>
+        <translation>Ścieżki</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="633"/>
@@ -1260,7 +1260,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="89"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumienia</translation>
+        <translation>Wczytaj metadane ścieżek</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="90"/>
@@ -1750,14 +1750,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
         <source>Stream Details loaded</source>
-        <translation>Wczytano metadane strumienia</translation>
+        <translation>Wczytano metadane ścieżek</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>Stream Details</source>
-        <translation>Metadane</translation>
+        <translation>Ścieżki</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
@@ -3150,7 +3150,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="316"/>
         <source>Stream Details</source>
-        <translation>Metadane</translation>
+        <translation>Ścieżki</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="318"/>
@@ -3308,7 +3308,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
         <source>(Un)Check all</source>
-        <translation>Za(od)znacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
@@ -3511,7 +3511,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="320"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -3747,7 +3747,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="897"/>
         <source>Streamdetails</source>
-        <translation>Metadane</translation>
+        <translation>Ścieżki</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="935"/>
@@ -4172,7 +4172,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="376"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
@@ -4358,7 +4358,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="400"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -4404,7 +4404,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="158"/>
         <source>Path</source>
-        <translation>Ścieżka</translation>
+        <translation>Folder</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="179"/>
@@ -4555,7 +4555,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="158"/>
         <source>Path</source>
-        <translation>Ścieżka</translation>
+        <translation>Folder</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="179"/>
@@ -5351,7 +5351,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../settings/SettingsWindow.ui" line="87"/>
         <source>Path</source>
-        <translation>Ścieżka</translation>
+        <translation>Folder</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="92"/>
@@ -5401,7 +5401,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../settings/SettingsWindow.ui" line="171"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Wczytuj i zapisuj metadane strumienia automatycznie</translation>
+        <translation>Wczytuj i zapisuj metadane ścieżek automatycznie</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="185"/>
@@ -5428,7 +5428,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1493"/>
         <source>Path to makemkvcon</source>
-        <translation>Ścieżka do pliku makemkvcon</translation>
+        <translation>Folder programu makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="273"/>
@@ -5715,7 +5715,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1472"/>
         <source>Path to unrar</source>
-        <translation>Ścieżka do programu unrar</translation>
+        <translation>Folder programu unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1536"/>
@@ -6702,7 +6702,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumienia</translation>
+        <translation>Wczytaj metadane ścieżek</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
@@ -7112,7 +7112,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="329"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="362"/>
@@ -7215,7 +7215,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="217"/>
         <source>(Un)Check all</source>
-        <translation>(Od)Zaznacz wszystko</translation>
+        <translation>(Od/Za)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -7453,7 +7453,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="925"/>
         <source>Streamdetails</source>
-        <translation>Metadane</translation>
+        <translation>Ścieżki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="985"/>
@@ -8181,7 +8181,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation>Pobierz stan obejrzenia</translation>
+        <translation>Pobieraj stan obejrzenia</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
