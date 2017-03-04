@@ -1655,7 +1655,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>Local Trailer</source>
-        <translation>Zapisany zwiastun</translation>
+        <translation>Lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
@@ -3636,17 +3636,17 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="456"/>
         <source>Play local trailer</source>
-        <translation>Odtwórz zapisany zwiastun</translation>
+        <translation>Odtwórz lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="471"/>
         <source>Local trailer is available</source>
-        <translation>Dostępny zapisany zwiastun</translation>
+        <translation>Dostępny jest lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="474"/>
         <source>Local Trailer</source>
-        <translation>Zapisany zwiastun</translation>
+        <translation>Lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="514"/>
