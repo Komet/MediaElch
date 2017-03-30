@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detekcja metadanych strumienia przy pomocy &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
+        <translation>Detekcja metadanych ścieżek przy pomocy &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="151"/>
@@ -1762,13 +1762,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <source>Stream Details not loaded</source>
-        <translation>Nie wczytano metadanych strumienia</translation>
+        <translation>Nie wczytano metadanych ścieżek</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>No Stream Details</source>
-        <translation>Brak metadanych strumienia</translation>
+        <translation>Brak metadanych ścieżek</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
@@ -2471,12 +2471,12 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation>Wczytywanie metadanych strumienia</translation>
+        <translation>Wczytywanie metadanych ścieżek</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation>Wczytywanie metadanych strumienia...</translation>
+        <translation>Wczytywanie metadanych ścieżek...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
