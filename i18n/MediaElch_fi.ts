@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fi">
 <context>
     <name>AEBN</name>
     <message>
@@ -336,7 +338,10 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation><numerusform>%n konsertti</numerusform><numerusform>%n konserttia</numerusform></translation>
+        <translation>
+            <numerusform>%n konsertti</numerusform>
+            <numerusform>%n konserttia</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -376,7 +381,10 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation><numerusform>%1 / %n konsertista</numerusform><numerusform>%1 / %n konsertista</numerusform></translation>
+        <translation>
+            <numerusform>%1 / %n konsertista</numerusform>
+            <numerusform>%1 / %n konsertista</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -822,7 +830,10 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n tiedosto</numerusform><numerusform>%n tiedostoa</numerusform></translation>
+        <translation>
+            <numerusform>%n tiedosto</numerusform>
+            <numerusform>%n tiedostoa</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1230,7 +1241,10 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation><numerusform>%n elokuva</numerusform><numerusform>%n elokuvaa</numerusform></translation>
+        <translation>
+            <numerusform>%n elokuva</numerusform>
+            <numerusform>%n elokuvaa</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1285,7 +1299,10 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation><numerusform>%1 / %n elokuvasta</numerusform><numerusform>%1 / %n elokuvasta</numerusform></translation>
+        <translation>
+            <numerusform>%1 / %n elokuvasta</numerusform>
+            <numerusform>%1 / %n elokuvasta</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -2425,7 +2442,10 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>%n tiedoston tuonti valmis</numerusform><numerusform>%n tiedoston tuonti valmis</numerusform></translation>
+        <translation>
+            <numerusform>%n tiedoston tuonti valmis</numerusform>
+            <numerusform>%n tiedoston tuonti valmis</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3348,7 +3368,10 @@ Toiminto peruutettu.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>%n elokuvan tietojen hakeminen on valmis.</numerusform><numerusform>%n elokuvan tietojen hakeminen on valmis.</numerusform></translation>
+        <translation>
+            <numerusform>%n elokuvan tietojen hakeminen on valmis.</numerusform>
+            <numerusform>%n elokuvan tietojen hakeminen on valmis.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4004,12 +4027,18 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation><numerusform>%n artisti(a)</numerusform><numerusform>%n artisti(a)</numerusform></translation>
+        <translation>
+            <numerusform>%n artisti(a)</numerusform>
+            <numerusform>%n artisti(a)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation><numerusform>%n albumi(a)</numerusform><numerusform>%n albumi(a)</numerusform></translation>
+        <translation>
+            <numerusform>%n albumi(a)</numerusform>
+            <numerusform>%n albumi(a)</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
@@ -4024,17 +4053,26 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation><numerusform>%n artistia</numerusform><numerusform>%n artistia</numerusform></translation>
+        <translation>
+            <numerusform>%n artistia</numerusform>
+            <numerusform>%n artistia</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation><numerusform>%n albumia</numerusform><numerusform>%n albumia</numerusform></translation>
+        <translation>
+            <numerusform>%n albumia</numerusform>
+            <numerusform>%n albumia</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation><numerusform>%1 / %n artistista</numerusform><numerusform>%1 / %n artistista</numerusform></translation>
+        <translation>
+            <numerusform>%1 / %n artistista</numerusform>
+            <numerusform>%1 / %n artistista</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4202,7 +4240,10 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>%n kohteen tietojen hakeminen on valmis.</numerusform><numerusform>%n kohteen tietojen hakeminen on valmis.</numerusform></translation>
+        <translation>
+            <numerusform>%n kohteen tietojen hakeminen on valmis.</numerusform>
+            <numerusform>%n kohteen tietojen hakeminen on valmis.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4366,7 +4407,10 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation><numerusform>%n albumia</numerusform><numerusform>%n albumia</numerusform></translation>
+        <translation>
+            <numerusform>%n albumia</numerusform>
+            <numerusform>%n albumia</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -5056,22 +5100,34 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>%n Elokuva nimetään uudelleen</numerusform><numerusform>%n Elokuvaa nimetään uudelleen</numerusform></translation>
+        <translation>
+            <numerusform>%n Elokuva nimetään uudelleen</numerusform>
+            <numerusform>%n Elokuvaa nimetään uudelleen</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>%n konsertti nimetään uudelleen</numerusform><numerusform>%n konserttia nimetään uudelleen</numerusform></translation>
+        <translation>
+            <numerusform>%n konsertti nimetään uudelleen</numerusform>
+            <numerusform>%n konserttia nimetään uudelleen</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>%n TV-sarja ja %1</numerusform><numerusform>%n TV-sarjaa ja %1</numerusform></translation>
+        <translation>
+            <numerusform>%n TV-sarja ja %1</numerusform>
+            <numerusform>%n TV-sarjaa ja %1</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>%n jakso nimetään uudelleen</numerusform><numerusform>%n jaksoa nimetään uudelleen</numerusform></translation>
+        <translation>
+            <numerusform>%n jakso nimetään uudelleen</numerusform>
+            <numerusform>%n jaksoa nimetään uudelleen</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="180"/>
@@ -6093,7 +6149,7 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -6672,13 +6728,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n tv-sarja</numerusform><numerusform>%n tv-sarjaa</numerusform></translation>
+        <translation>
+            <numerusform>%n tv-sarja</numerusform>
+            <numerusform>%n tv-sarjaa</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
+        <translation>
+            <numerusform>%n jakso</numerusform>
+            <numerusform>%n jaksoa</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6750,7 +6812,10 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 / %n tv-sarjasta</numerusform><numerusform>%1 / %n tv-sarjasta</numerusform></translation>
+        <translation>
+            <numerusform>%1 / %n tv-sarjasta</numerusform>
+            <numerusform>%1 / %n tv-sarjasta</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -6969,12 +7034,18 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n:n tv-sarjan</numerusform><numerusform>%n:n tv-sarjan</numerusform></translation>
+        <translation>
+            <numerusform>%n:n tv-sarjan</numerusform>
+            <numerusform>%n:n tv-sarjan</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n:n jakson</numerusform><numerusform>%n:n jakson</numerusform></translation>
+        <translation>
+            <numerusform>%n:n jakson</numerusform>
+            <numerusform>%n:n jakson</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7224,7 +7295,10 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
+        <translation>
+            <numerusform>%n jakso</numerusform>
+            <numerusform>%n jaksoa</numerusform>
+        </translation>
     </message>
 </context>
 <context>
