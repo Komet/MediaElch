@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nl_NL">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl_NL" version="2.1">
 <context>
     <name>AEBN</name>
     <message>
@@ -338,10 +336,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation>
-            <numerusform>Concert</numerusform>
-            <numerusform>Concerten</numerusform>
-        </translation>
+        <translation><numerusform>Concert</numerusform><numerusform>Concerten</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -381,10 +376,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation>
-            <numerusform>%1 van %n concerten</numerusform>
-            <numerusform>%1 van %n concerten</numerusform>
-        </translation>
+        <translation><numerusform>%1 van %n concerten</numerusform><numerusform>%1 van %n concerten</numerusform></translation>
     </message>
 </context>
 <context>
@@ -830,10 +822,7 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation>
-            <numerusform>%n bestand(en)</numerusform>
-            <numerusform>%n bestand(en)</numerusform>
-        </translation>
+        <translation><numerusform>%n bestand(en)</numerusform><numerusform>%n bestand(en)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1241,10 +1230,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation>
-            <numerusform>%n films</numerusform>
-            <numerusform>%n films</numerusform>
-        </translation>
+        <translation><numerusform>%n films</numerusform><numerusform>%n films</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1299,10 +1285,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation>
-            <numerusform>%1 van %n films</numerusform>
-            <numerusform>%1 van %n films</numerusform>
-        </translation>
+        <translation><numerusform>%1 van %n films</numerusform><numerusform>%1 van %n films</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2442,10 +2425,7 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation>
-            <numerusform>Importeren van %n bestand(en) is klaar</numerusform>
-            <numerusform>Importeren van %n bestand(en) is klaar</numerusform>
-        </translation>
+        <translation><numerusform>Importeren van %n bestand(en) is klaar</numerusform><numerusform>Importeren van %n bestand(en) is klaar</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3368,10 +3348,7 @@ Opdracht geannuleerd.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -4027,18 +4004,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation>
-            <numerusform>%1 artiest</numerusform>
-            <numerusform>%1 artiest(en)</numerusform>
-        </translation>
+        <translation><numerusform>%1 artiest</numerusform><numerusform>%1 artiest(en)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation>
-            <numerusform>%n album(s)</numerusform>
-            <numerusform>%n album(s)</numerusform>
-        </translation>
+        <translation><numerusform>%n album(s)</numerusform><numerusform>%n album(s)</numerusform></translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
@@ -4053,26 +4024,17 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -4240,10 +4202,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -4407,10 +4366,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -4503,7 +4459,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="347"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="366"/>
@@ -5100,34 +5056,22 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="180"/>
@@ -5138,7 +5082,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/Renamer.cpp" line="213"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1197"/>
@@ -5153,22 +5097,22 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../renamer/Renamer.cpp" line="616"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="671"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="895"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="942"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5519,7 +5463,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="386"/>
@@ -5530,17 +5474,17 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="400"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="441"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="457"/>
@@ -5671,7 +5615,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="721"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="731"/>
@@ -5721,12 +5665,12 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="990"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1123"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1138"/>
@@ -5761,7 +5705,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1243"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1279"/>
@@ -5791,7 +5735,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1563"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1583"/>
@@ -6149,7 +6093,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -6728,19 +6672,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6806,15 +6744,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -6873,12 +6808,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="53"/>
@@ -6998,17 +6933,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="384"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="399"/>
@@ -7033,29 +6968,23 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7068,7 +6997,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
@@ -7294,10 +7223,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -7324,7 +7250,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
@@ -7869,17 +7795,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="380"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="399"/>
         <source>Continuing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="404"/>
         <source>Ended</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="412"/>
@@ -7990,7 +7916,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="443"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="656"/>
@@ -8194,27 +8120,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>
         <source>Extract without password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="92"/>
         <source>Extract</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="99"/>
         <source>Extract with password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="119"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
@@ -8224,12 +8150,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8237,12 +8163,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8260,32 +8186,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -8306,12 +8232,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -8319,7 +8245,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../xbmc/XbmcSync.cpp" line="300"/>
         <location filename="../xbmc/XbmcSync.cpp" line="328"/>
         <source>Network error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
@@ -8349,12 +8275,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="601"/>
