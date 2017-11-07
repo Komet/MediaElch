@@ -59,11 +59,7 @@ TheTvDb::TheTvDb(QObject *parent)
 
     m_apiKey = "A0BB9A0F6762942B";
     m_language = "en";
-    m_xmlMirrors.append("http://thetvdb.com");
-    m_bannerMirrors.append("http://thetvdb.com");
-    m_zipMirrors.append("http://thetvdb.com");
-
-    setMirrors();
+    m_mirror = "http://thetvdb.com";
 
     m_imdb = new IMDB(this);
     m_dummyMovie = new Movie(QStringList(), this);
@@ -142,53 +138,6 @@ void TheTvDb::saveSettings(QSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/TheTvDb/Language", m_language);
-}
-
-/**
- * @brief Starts loading a list of mirrors
- */
-void TheTvDb::setMirrors()
-{
-    QUrl url(QString("http://www.thetvdb.com/api/%1/mirrors.xml").arg(m_apiKey));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
-    new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onMirrorsReady()));
-}
-
-/**
- * @brief Called when mirrors are loaded
- * Parses and assigns mirrors
- */
-void TheTvDb::onMirrorsReady()
-{
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    m_xmlMirrors.clear();
-    m_bannerMirrors.clear();
-    m_zipMirrors.clear();
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
-        QDomDocument domDoc;
-        domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("Mirror").size() ; i<n ; ++i) {
-            QDomNode node = domDoc.elementsByTagName("Mirror").at(i);
-            QString mirror;
-            int typemask = 0;
-            if (!node.toElement().elementsByTagName("mirrorpath").isEmpty())
-                mirror = node.toElement().elementsByTagName("mirrorpath").at(0).toElement().text();
-            if (!node.toElement().elementsByTagName("typemask").isEmpty())
-                typemask = node.toElement().elementsByTagName("typemask").at(0).toElement().text().toInt();
-
-            if ((typemask & 1) == 1)
-                m_xmlMirrors.append(mirror);
-            if ((typemask & 2) == 2)
-                m_bannerMirrors.append(mirror);
-            if ((typemask & 4) == 4)
-                m_zipMirrors.append(mirror);
-        }
-    }
-
-    reply->deleteLater();
 }
 
 /**
@@ -272,9 +221,8 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
 {
     Q_UNUSED(infosToLoad)
     show->setTvdbId(id);
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
-    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
-    show->setEpisodeGuideUrl(QString("%1/api/%2/series/%3/all/%4.zip").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
+    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
+    show->setEpisodeGuideUrl(QString("%1/api/%2/series/%3/all/%4.zip").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, show));
@@ -310,8 +258,7 @@ void TheTvDb::onLoadFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
-    QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(mirror).arg(m_apiKey).arg(show->tvdbId()));
+    QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(m_mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -346,8 +293,7 @@ void TheTvDb::onActorsFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
-    QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(mirror).arg(m_apiKey).arg(show->tvdbId()));
+    QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(m_mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", updateType);
@@ -532,8 +478,7 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
         if (!elem.elementsByTagName("Role").isEmpty())
             actor.role = elem.elementsByTagName("Role").at(0).toElement().text();
         if (!elem.elementsByTagName("Image").isEmpty()) {
-            QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
-            actor.thumb = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("Image").at(0).toElement().text());
+            actor.thumb = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("Image").at(0).toElement().text());
         }
         show->addActor(actor);
     }
@@ -556,7 +501,6 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
         if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes)
             continue;
 
-        QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
         QString bannerType = elem.elementsByTagName("BannerType").at(0).toElement().text();
         QString bannerType2 = elem.elementsByTagName("BannerType2").at(0).toElement().text();
         if (bannerType == "fanart" && infosToLoad.contains(TvShowScraperInfos::Fanart)) {
@@ -564,9 +508,9 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty())
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             if (!elem.elementsByTagName("ThumbnailPath").isEmpty())
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("ThumbnailPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("ThumbnailPath").at(0).toElement().text());
             if (!elem.elementsByTagName("BannerType2").isEmpty()) {
                 QRegExp rx("(\\d+)x(\\d+)");
                 if (rx.indexIn(elem.elementsByTagName("BannerType2").at(0).toElement().text(), 0) != -1) {
@@ -580,8 +524,8 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("BannerType2").isEmpty()) {
                 QRegExp rx("(\\d+)x(\\d+)");
@@ -596,8 +540,8 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("Season").isEmpty()) {
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
@@ -608,8 +552,8 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("Season").isEmpty()) {
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
@@ -620,8 +564,8 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             show->addBanner(p);
         }
@@ -653,8 +597,7 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&
             !elem.elementsByTagName("filename").at(0).toElement().text().isEmpty()) {
-        QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
-        episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
+        episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(m_mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
     }
     if (!elem.elementsByTagName("airsafter_season").isEmpty() && !elem.elementsByTagName("airsafter_season").at(0).toElement().text().isEmpty() &&
             !elem.elementsByTagName("airsbefore_season").isEmpty() && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
@@ -679,8 +622,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
 {
     qDebug() << "Entered, id=" << id << "episode=" << episode->name();
     episode->clear(infosToLoad);
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
-    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
+    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
 
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
@@ -1006,6 +948,11 @@ void TheTvDb::onEpisodesImdbEpisodeFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
     loadEpisodes(show, episodes, infos);
+}
+
+QString TheTvDb::mirror() const
+{
+    return m_mirror;
 }
 
 void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad)

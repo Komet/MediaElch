@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/konserw/MediaElch.svg?branch=ci)](https://travis-ci.org/konserw/MediaElch) [![Build status](https://ci.appveyor.com/api/projects/status/aivmm594ovj47x7v?svg=true)](https://ci.appveyor.com/project/konserw/mediaelch)
+
 MediaElch
 =========
 

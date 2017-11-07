@@ -1,0 +1,18 @@
+language: cpp
+os:
+- linux
+sudo: required
+dist: trusty
+compiler:
+- clang
+- gcc
+env:
+- QTVER=53
+- QTVER=57
+#install:
+#- if [ "$CXX" = "g++" ]; then g++ -v; else clang -v; fi
+before_script:
+- source setupQt.sh  
+- sudo apt-get install -y clang libmediainfo-dev
+
+script: "./travis.sh"

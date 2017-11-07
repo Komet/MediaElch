@@ -4,23 +4,28 @@
 #
 #-------------------------------------------------
 
+DEFINES += QUAZIP_STATIC
 include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
-
-LIBS += -lz
+greaterThan(QT_VERSION, 5.7): CONFIG += c++11
 
 contains(DEFINES, PLUGINS){
     LIBS += -lqca
 }
 
-unix:LIBS += -lcurl
+unix {
+    LIBS += -lcurl
+    LIBS += -lz
+}
 macx:LIBS += -framework Foundation
 unix:!macx {
     LIBS += -ldl
 }
 win32 {
     DEFINES+=_UNICODE
+    LIBS += zlib/zlibstatic.lib
+    INCLUDEPATH += zlib 
 }
 
 TARGET = MediaElch

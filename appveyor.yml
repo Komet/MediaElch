@@ -1,0 +1,34 @@
+version: "{branch}-ci-{build}"
+os: Visual Studio 2013
+
+environment:
+  matrix:
+  - platform: x86
+    QTDIR: C:\Qt\5.3\msvc2013_opengl 
+  - platform: x86
+    QTDIR: C:\Qt\5.7\msvc2013 
+  - platform: x64
+    QTDIR: C:\Qt\5.3\msvc2013_64_opengl
+  - platform: x64
+    QTDIR: C:\Qt\5.7\msvc2013_64 
+
+install:
+- git submodule init
+- git submodule update
+- cmd: call "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%
+- cmd: set PATH=%PATH%;%QTDIR%\bin
+- nuget install zlib-msvc12-%PLATFORM%-master -Version 1.2.7.2 -Source https://ci.appveyor.com/nuget/zlib-shallow-x0n34b3pfq1b
+- cmd: mkdir zlib
+- ps: move zlib*\* zlib -force
+#- cmd: copy "MediaInfoDLL/%PLATFORM%/MediaInfo.dll" MediaInfo.dll
+
+build_script:
+- cmd: qmake
+- cmd: nmake
+
+#test_script:
+
+#branches:
+#  only:
+#  - master
+
