@@ -91,7 +91,7 @@ QNetworkAccessManager *AEBN::qnam()
 void AEBN::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://straight.theater.aebn.net/dispatcher/fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType=Large&theaterId=822&genreId=101")
+    QUrl url(QString("https://straight.theater.aebn.net/dispatcher/fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType=Large&theaterId=822&genreId=101")
              .arg(m_language)
              .arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
@@ -118,12 +118,13 @@ QList<ScraperSearchResult> AEBN::parseSearch(QString html)
 {
     QList<ScraperSearchResult> results;
     int offset = 0;
-    QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
+    QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" href=\"/dispatcher/movieDetail\\?genreId=([0-9]+)&amp;theaterId=([0-9]+)&amp;movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
+//    QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" href=\"/dispatcher/movieDetail\\?movieId=([0-9]+)([^\"]*)\" title=\"([^\"]*)\"><img src=\"([^\"]*)\" alt=\"([^\"]*)\" /></a>");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
-        result.id = rx.cap(1);
-        result.name = rx.cap(3);
+        result.id = rx.cap(3);
+        result.name = rx.cap(5);
         results << result;
         offset += rx.matchedLength();
     }
@@ -135,7 +136,7 @@ void AEBN::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
 {
     movie->clear(infos);
 
-    QUrl url(QString("http://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=101").arg(ids.values().first()).arg(m_language));
+    QUrl url(QString("https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=101").arg(ids.values().first()).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -190,8 +191,8 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img itemprop=\"thumbnailUrl\" src=\"([^\"]*)\" alt=\"([^\"]*)\" name=\"boxImage\" id=\"boxImage\" /></a>");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
-        p.thumbUrl = rx.cap(3);
-        p.originalUrl = rx.cap(1);
+        p.thumbUrl = QString("https:") + rx.cap(3);
+        p.originalUrl = QString("https:") + rx.cap(1);
         movie->addPoster(p);
     }
 
@@ -282,7 +283,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(QString("http://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=101").arg(id).arg(m_language));
+    QUrl url(QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=101").arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -315,7 +316,7 @@ void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
     if (rx.indexIn(html) != -1) {
         foreach (Actor *a, movie->actorsPointer()) {
             if (a->id == id)
-                a->thumb = rx.cap(1);
+                a->thumb = QString("https:") + rx.cap(1);
         }
     }
 }
