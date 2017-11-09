@@ -1,4 +1,5 @@
 #include "FanartTvMusic.h"
+#include <QApplication>
 #include <QDebug>
 #include <QSettings>
 #include <QtScript/QScriptValue>
@@ -53,6 +54,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
         searchQuery += "%20AND%20artist:" + QString(QUrl::toPercentEncoding(artistName));
     QUrl url(QString("http://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
 }
@@ -62,6 +64,7 @@ void FanartTvMusic::searchArtist(QString searchStr, int limit)
     Q_UNUSED(limit);
     QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
 }
@@ -131,6 +134,17 @@ void FanartTvMusic::onSearchArtistFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        QNetworkRequest request(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl());
+        request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+        reply = qnam()->get(request);
+        connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+        return;
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
@@ -159,6 +173,17 @@ void FanartTvMusic::onSearchAlbumFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        QNetworkRequest request(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl());
+        request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+        reply = qnam()->get(request);
+        connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+        return;
+    }
+
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
