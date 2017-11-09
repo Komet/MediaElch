@@ -58,7 +58,7 @@ QNetworkAccessManager *AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
+    QUrl url(QString("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -101,7 +101,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 void AdultDvdEmpire::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
-    QUrl url(QString("http://www.adultdvdempire.com%1").arg(ids.values().first()));
+    QUrl url(QString("https://www.adultdvdempire.com%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -138,15 +138,15 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
         movie->setName(doc.toPlainText());
     }
 
-    rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.</li>");
+    rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).toInt()*60 + rx.cap(2).toInt());
 
-    rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})</li>");
+    rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
 
-    rx.setPattern("<li><small>Studio: </small><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Studio - Details\">(.*)</a>");
+    rx.setPattern("<li><small>Studio: </small><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Studio - Details\">(.*)[\\s\\n]*</a>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         movie->addStudio(doc.toPlainText().trimmed());
@@ -164,7 +164,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
         }
     }
 
-    rx.setPattern("<a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Director\"><img src=\"[^\"]*\"[\\s\\n]*alt=\"[^\"]*\" title=\"[^\"]*\"[\\s\\n]*class=\"img-responsive headshot\"[\\s\\n]*style=\"[^\"]*\" />[\\s\\n]*(.*)<br /><small>Director</small></a>");
+    rx.setPattern("<a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Director\"><img src=\"[^\"]*\"[\\s\\n]*alt=\"[^\"]*\" title=\"[^\"]*\"[\\s\\n]*class=\"img-responsive headshot director\"[\\s\\n]*style=\"[^\"]*\" />[\\s\\n]*(.*)<br /><small>Director</small></a>");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
         movie->setDirector(rx.cap(1).trimmed());
 
@@ -185,7 +185,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
             movie->setOutline(doc.toPlainText());
     }
 
-    rx.setPattern("<a href=\"([^\"]*)\" id=\"front-cover\"");
+    rx.setPattern("href=\"([^\"]*)\"[\\s\\n]*id=\"front-cover\"");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);

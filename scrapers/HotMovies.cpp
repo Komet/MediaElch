@@ -57,7 +57,7 @@ QNetworkAccessManager *HotMovies::qnam()
 void HotMovies::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30").arg(encodedSearch));
+    QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -159,7 +159,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
             movie->setOutline(rx.cap(1).trimmed());
     }
 
-    rx.setPattern("<img itemprop=\"image\" alt=\"[^\"]*\" id=\"cover\" src=\"([^\"]*)\"");
+    rx.setPattern("<img itemprop=\"image\" alt=\"[^\"]*\" id=\"cover\"[\\s\\n]*src=\"([^\"]*)\"");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
@@ -168,16 +168,17 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
-        rx.setPattern("key=\"([^\"]*)\"/> <img src=\"http://imgcover-[0-9]+.hotmovies.com/vodimages/images/spacer.gif\" class=\"lg_star_image\" /> </span><a href=\"[^\"]*\".*"
-                      "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
+//        rx.setPattern("key=\"([^\"]*)\"/> <img src=\"https://img[0-9]+.vod.com/image[0-9]?/vodimages/images/spacer.gif\" class=\"lg_star_image\" itemprop=\"image\" alt\"\" /> </span><a href=\"[^\"]*\".*[\\s\\n]*title=\"[^\"]*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)<\/span></a>");
+//                      "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope itemtype=\"https://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
 
-        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
+//        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
+        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><span class=\"star_image_hover\">.*[\\s\\n]*title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
             a.name = rx.cap(2);
-            if (!rx.cap(1).endsWith("missing_f.gif") && !!rx.cap(1).endsWith("missing_m.gif"))
+            if (!rx.cap(1).endsWith("missing_f.gif") && !rx.cap(1).endsWith("missing_m.gif"))
                 a.thumb = rx.cap(1);
             movie->addActor(a);
         }
@@ -196,11 +197,11 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(rx.cap(1));
 
-    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\"><a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
+    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"https://schema.org/Person\"><a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
         movie->setDirector(rx.cap(1));
 
-    rx.setPattern("<a href=\"http://www.hotmovies.com/.*[/?]series/[^\"]*\" title=\"[^\"]*\" rel=\"tag\">(.*)</a>");
+    rx.setPattern("<a href=\"https://www.hotmovies.com/.*[/?]series/[^\"]*\" title=\"[^\"]*\" rel=\"tag\">(.*)</a>");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1)
         movie->setSet(rx.cap(1));
 }
