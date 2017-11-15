@@ -7,7 +7,7 @@
 include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
-
+greaterThan(QT_VERSION, 5.7): CONFIG += c++11
 LIBS += -lz
 
 contains(DEFINES, PLUGINS){
