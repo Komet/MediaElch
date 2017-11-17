@@ -298,7 +298,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="108"/>
         <source>Zoom Image</source>
-        <translation>Dar zoom na Imagem</translation>
+        <translation>Dar Zoom na Imagem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
@@ -308,7 +308,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
         <source>Select another image</source>
-        <translation>Selecionar outro imagem</translation>
+        <translation>Selecionar Outra imagem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="392"/>
@@ -820,7 +820,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation>Importar filme com MakeMKV</translation>
+        <translation>Importar Filme com MakeMKV</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
@@ -2155,7 +2155,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../globals/ImageDialog.ui" line="38"/>
         <source>Enter a search term or URL</source>
-        <translation>Entre uma palavra para busca ou URL</translation>
+        <translation>Digite Título de Filme, ID IMDB, Termo de Busca ou URL</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="107"/>
@@ -2585,7 +2585,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="762"/>
         <source>Reload all Movies (%1)</source>
-        <translation>Recarregar todos os Filmes (%1)</translation>
+        <translation>Recarregar Todos os Filmes (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="767"/>
@@ -2600,7 +2600,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="793"/>
         <source>Reload all Downloads (%1)</source>
-        <translation>Recarregar todos os Downloads (%1)</translation>
+        <translation>Recarregar Todos os Downloads (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="797"/>
@@ -7664,7 +7664,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="357"/>
         <source>Click to change</source>
-        <translation>Clique para alterar</translation>
+        <translation>Clique para Alterar</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
@@ -7848,7 +7848,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="618"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1252"/>
         <source>Click to change</source>
-        <translation>Clique para alterar</translation>
+        <translation>Clique para Alterar</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="637"/>
@@ -7883,7 +7883,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1158"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1205"/>
         <source>Click to Change</source>
-        <translation>Clique para ALterar</translation>
+        <translation>Clique para Alterar</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="966"/>
