@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fr">
 <context>
     <name>AEBN</name>
     <message>
@@ -336,7 +338,10 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation><numerusform>%n concerts</numerusform><numerusform>%n concerts</numerusform></translation>
+        <translation>
+            <numerusform>%n concerts</numerusform>
+            <numerusform>%n concerts</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -376,7 +381,10 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation><numerusform>g</numerusform><numerusform>%1 de %n concerts</numerusform></translation>
+        <translation>
+            <numerusform>g</numerusform>
+            <numerusform>%1 de %n concerts</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -822,7 +830,10 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n fichier</numerusform><numerusform>%n fichiers</numerusform></translation>
+        <translation>
+            <numerusform>%n fichier</numerusform>
+            <numerusform>%n fichiers</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1230,7 +1241,10 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation><numerusform>%n films</numerusform><numerusform>%n films</numerusform></translation>
+        <translation>
+            <numerusform>%n films</numerusform>
+            <numerusform>%n films</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1285,7 +1299,10 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation><numerusform>%1 de %n films</numerusform><numerusform>%1 de %n films</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n films</numerusform>
+            <numerusform>%1 de %n films</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -2425,7 +2442,10 @@
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>Importation de %n fichier est terminé</numerusform><numerusform>Importation de %n fichiers est terminé</numerusform></translation>
+        <translation>
+            <numerusform>Importation de %n fichier est terminé</numerusform>
+            <numerusform>Importation de %n fichiers est terminé</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -2515,7 +2535,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="249"/>
         <source>Duplicates</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="290"/>
@@ -3020,12 +3040,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="126"/>
         <source>Movie title</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="155"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="162"/>
@@ -3038,12 +3058,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicates.ui" line="81"/>
         <source>Detect duplicate movies</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3348,7 +3368,10 @@ Main menu entry (tooltip)</extracomment>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Le Scraping de %n Film est terminé.</numerusform><numerusform>Le scrape de %n films est terminé.</numerusform></translation>
+        <translation>
+            <numerusform>Le Scraping de %n Film est terminé.</numerusform>
+            <numerusform>Le scrape de %n films est terminé.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4005,12 +4028,18 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation><numerusform>%n artiste(s)</numerusform><numerusform>%n artiste(s)</numerusform></translation>
+        <translation>
+            <numerusform>%n artiste(s)</numerusform>
+            <numerusform>%n artiste(s)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation><numerusform>%n album(s)</numerusform><numerusform>%n album(s)</numerusform></translation>
+        <translation>
+            <numerusform>%n album(s)</numerusform>
+            <numerusform>%n album(s)</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
@@ -4025,17 +4054,26 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation><numerusform>%n artistes</numerusform><numerusform>%n artistes</numerusform></translation>
+        <translation>
+            <numerusform>%n artistes</numerusform>
+            <numerusform>%n artistes</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation><numerusform>%n albums</numerusform><numerusform>%n albums</numerusform></translation>
+        <translation>
+            <numerusform>%n albums</numerusform>
+            <numerusform>%n albums</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation><numerusform>%1 of %n artists</numerusform><numerusform>%1 de %n artistes</numerusform></translation>
+        <translation>
+            <numerusform>%1 of %n artists</numerusform>
+            <numerusform>%1 de %n artistes</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4203,7 +4241,10 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>Le scraping de %n éléments est terminé.</numerusform><numerusform>Le scrape de %n éléments est terminé.</numerusform></translation>
+        <translation>
+            <numerusform>Le scraping de %n éléments est terminé.</numerusform>
+            <numerusform>Le scrape de %n éléments est terminé.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4367,7 +4408,10 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation><numerusform>%n albums</numerusform><numerusform>%n albums</numerusform></translation>
+        <translation>
+            <numerusform>%n albums</numerusform>
+            <numerusform>%n albums</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -5057,22 +5101,34 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>%n Film sera renommé</numerusform><numerusform>%n Films seront renommés</numerusform></translation>
+        <translation>
+            <numerusform>%n Film sera renommé</numerusform>
+            <numerusform>%n Films seront renommés</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>%n Concert sera renommé</numerusform><numerusform>%n Concerts seront renommés</numerusform></translation>
+        <translation>
+            <numerusform>%n Concert sera renommé</numerusform>
+            <numerusform>%n Concerts seront renommés</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>%n Série TV et %1</numerusform><numerusform>%n Séries TV et %1</numerusform></translation>
+        <translation>
+            <numerusform>%n Série TV et %1</numerusform>
+            <numerusform>%n Séries TV et %1</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>%n Épisode sera renommé</numerusform><numerusform>%n Épisodes seront renommés</numerusform></translation>
+        <translation>
+            <numerusform>%n Épisode sera renommé</numerusform>
+            <numerusform>%n Épisodes seront renommés</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="180"/>
@@ -6093,7 +6149,7 @@ Les répertoires contenant votre musique doivent être rangés avec un répertoi
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -6672,13 +6728,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n séries TV</numerusform><numerusform>%n séries TV</numerusform></translation>
+        <translation>
+            <numerusform>%n séries TV</numerusform>
+            <numerusform>%n séries TV</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n épisodes</numerusform><numerusform>%n épisodes</numerusform></translation>
+        <translation>
+            <numerusform>%n épisodes</numerusform>
+            <numerusform>%n épisodes</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6750,7 +6812,10 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 de %n séries TV</numerusform><numerusform>%1 de %n séries TV</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n séries TV</numerusform>
+            <numerusform>%1 de %n séries TV</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -6969,12 +7034,18 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n séries TV</numerusform><numerusform>%n séries TV</numerusform></translation>
+        <translation>
+            <numerusform>%n séries TV</numerusform>
+            <numerusform>%n séries TV</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n épisodes </numerusform><numerusform>%n épisodes</numerusform></translation>
+        <translation>
+            <numerusform>%n épisodes </numerusform>
+            <numerusform>%n épisodes</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7224,7 +7295,10 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n épisodes</numerusform><numerusform>%n épisodes</numerusform></translation>
+        <translation>
+            <numerusform>%n épisodes</numerusform>
+            <numerusform>%n épisodes</numerusform>
+        </translation>
     </message>
 </context>
 <context>

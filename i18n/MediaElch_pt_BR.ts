@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pt_BR">
 <context>
     <name>AEBN</name>
     <message>
@@ -340,7 +342,10 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
         <source>%n concerts</source>
-        <translation><numerusform>%n concertos</numerusform><numerusform>%n concertos</numerusform></translation>
+        <translation>
+            <numerusform>%n concertos</numerusform>
+            <numerusform>%n concertos</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
@@ -380,7 +385,10 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
         <source>%1 of %n concerts</source>
-        <translation><numerusform>%1 de %n concertos</numerusform><numerusform>%1 de %n concertos</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n concertos</numerusform>
+            <numerusform>%1 de %n concertos</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -826,7 +834,10 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>um: %n arquivo(s)</numerusform><numerusform>outro: %n arquivo(s)</numerusform></translation>
+        <translation>
+            <numerusform>um: %n arquivo(s)</numerusform>
+            <numerusform>outro: %n arquivo(s)</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -1235,7 +1246,10 @@ Veja em  Ajustes -&gt; Importar.</translation>
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%n movies</source>
-        <translation><numerusform>%n filmes</numerusform><numerusform>%n filmes</numerusform></translation>
+        <translation>
+            <numerusform>%n filmes</numerusform>
+            <numerusform>%n filmes</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="65"/>
@@ -1290,7 +1304,10 @@ Veja em  Ajustes -&gt; Importar.</translation>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="537"/>
         <source>%1 of %n movies</source>
-        <translation><numerusform>%1 de %n filmes</numerusform><numerusform>%1 de %n filmes</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n filmes</numerusform>
+            <numerusform>%1 de %n filmes</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2451,10 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>um: importação de %n arquivo(s) foi finalizada</numerusform><numerusform>outro: importação de %n arquivo(s) foi finalizada</numerusform></translation>
+        <translation>
+            <numerusform>um: importação de %n arquivo(s) foi finalizada</numerusform>
+            <numerusform>outro: importação de %n arquivo(s) foi finalizada</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
@@ -3358,7 +3378,10 @@ MediaElch irá usar o melhor resultado possivel para cada filme que você seleci
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Scraping de %n filmes finalizado.</numerusform><numerusform>Scraping de %n filmes finalizado.</numerusform></translation>
+        <translation>
+            <numerusform>Scraping de %n filmes finalizado.</numerusform>
+            <numerusform>Scraping de %n filmes finalizado.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4016,12 +4039,18 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n artist(s)</source>
-        <translation><numerusform>%n artista(s)</numerusform><numerusform>%n artista(s)</numerusform></translation>
+        <translation>
+            <numerusform>%n artista(s)</numerusform>
+            <numerusform>%n artista(s)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="25"/>
         <source>%n album(s)</source>
-        <translation><numerusform>%n álbun(s)</numerusform><numerusform>%n álbun(s)</numerusform></translation>
+        <translation>
+            <numerusform>%n álbun(s)</numerusform>
+            <numerusform>%n álbun(s)</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
@@ -4036,17 +4065,26 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n artists</source>
-        <translation><numerusform>%n artistas</numerusform><numerusform>%n artistas</numerusform></translation>
+        <translation>
+            <numerusform>%n artistas</numerusform>
+            <numerusform>%n artistas</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="128"/>
         <source>%n albums</source>
-        <translation><numerusform>%n álbuns</numerusform><numerusform>%n álbuns</numerusform></translation>
+        <translation>
+            <numerusform>%n álbuns</numerusform>
+            <numerusform>%n álbuns</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="130"/>
         <source>%1 of %n artists</source>
-        <translation><numerusform>%1 de %n artistas</numerusform><numerusform>%1 de %n artistas</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n artistas</numerusform>
+            <numerusform>%1 de %n artistas</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4214,7 +4252,10 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation><numerusform>Busca de metados de %n itens foi finalizado.</numerusform><numerusform>Busca de metadados de %n itens foi finalizado.</numerusform></translation>
+        <translation>
+            <numerusform>Busca de metados de %n itens foi finalizado.</numerusform>
+            <numerusform>Busca de metadados de %n itens foi finalizado.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -4378,7 +4419,10 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation><numerusform>%n álbuns</numerusform><numerusform>%n álbuns</numerusform></translation>
+        <translation>
+            <numerusform>%n álbuns</numerusform>
+            <numerusform>%n álbuns</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -5068,22 +5112,34 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>%n Filme será renomeado</numerusform><numerusform>%n Filmes serão renomeados</numerusform></translation>
+        <translation>
+            <numerusform>%n Filme será renomeado</numerusform>
+            <numerusform>%n Filmes serão renomeados</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>%n Concerto será renomeado</numerusform><numerusform>%n Concertos serão renomeados</numerusform></translation>
+        <translation>
+            <numerusform>%n Concerto será renomeado</numerusform>
+            <numerusform>%n Concertos serão renomeados</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>%n Seriado e %1</numerusform><numerusform>%n Seriados e %1</numerusform></translation>
+        <translation>
+            <numerusform>%n Seriado e %1</numerusform>
+            <numerusform>%n Seriados e %1</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="56"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>%n Episódio será renomeado</numerusform><numerusform>%n Episódios serão renomeados</numerusform></translation>
+        <translation>
+            <numerusform>%n Episódio será renomeado</numerusform>
+            <numerusform>%n Episódios serão renomeados</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="180"/>
@@ -6119,7 +6175,7 @@ Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</trans
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -6697,13 +6753,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n seriados</numerusform><numerusform>%n seriados</numerusform></translation>
+        <translation>
+            <numerusform>%n seriados</numerusform>
+            <numerusform>%n seriados</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
+        <translation>
+            <numerusform>%n episódios</numerusform>
+            <numerusform>%n episódios</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6775,7 +6837,10 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
         <source>%1 of %n tv shows</source>
-        <translation><numerusform>%1 de %n seriados</numerusform><numerusform>%1 de %n seriados</numerusform></translation>
+        <translation>
+            <numerusform>%1 de %n seriados</numerusform>
+            <numerusform>%1 de %n seriados</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -6995,12 +7060,18 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
         <source>%n tv shows</source>
-        <translation><numerusform>%n seriados</numerusform><numerusform>%n seriados</numerusform></translation>
+        <translation>
+            <numerusform>%n seriados</numerusform>
+            <numerusform>%n seriados</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
+        <translation>
+            <numerusform>%n episódios</numerusform>
+            <numerusform>%n episódios</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
@@ -7250,7 +7321,10 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
         <source>%n episodes</source>
-        <translation><numerusform>%n episódios</numerusform><numerusform>%n episódios</numerusform></translation>
+        <translation>
+            <numerusform>%n episódios</numerusform>
+            <numerusform>%n episódios</numerusform>
+        </translation>
     </message>
 </context>
 <context>
