@@ -742,7 +742,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
         ui->searchTerm->setLoading(false);
         loadImagesFromProvider(mediaPassionId);
-    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty() && m_currentProvider->identifier() != "images.coverlib") {
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);
