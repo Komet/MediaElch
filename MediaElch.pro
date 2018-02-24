@@ -195,7 +195,6 @@ SOURCES += main.cpp\
     image/ImageProxyModel.cpp \
     qml/AlbumImageProvider.cpp \
     image/ImageWidget.cpp \
-    imageProviders/Coverlib.cpp \
     globals/NetworkReplyWatcher.cpp \
     smallWidgets/TvShowTreeView.cpp \
     tvShows/TvShowMultiScrapeDialog.cpp \
@@ -370,7 +369,6 @@ HEADERS  += main/MainWindow.h \
     image/ImageProxyModel.h \
     qml/AlbumImageProvider.h \
     image/ImageWidget.h \
-    imageProviders/Coverlib.h \
     globals/NetworkReplyWatcher.h \
     smallWidgets/TvShowTreeView.h \
     tvShows/TvShowMultiScrapeDialog.h \

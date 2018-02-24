@@ -4,7 +4,6 @@
 #include <QDesktopServices>
 #include <QSqlQuery>
 #include "globals/Globals.h"
-#include "imageProviders/Coverlib.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"
 #include "imageProviders/FanartTvMusicArtists.h"
@@ -64,7 +63,6 @@ Manager::Manager(QObject *parent) :
     m_imageProviders.append(new MediaPassionImages(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
-    m_imageProviders.append(new Coverlib(this));
 
     m_trailerProviders.append(new MovieMaze(this));
     m_trailerProviders.append(new HdTrailers(this));
