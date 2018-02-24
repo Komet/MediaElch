@@ -13,10 +13,10 @@
  * @param type
  */
 ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateType type) :
-    QItemDelegate(parent)
+    QItemDelegate(parent),
+    m_widget{widget},
+    m_type{type}
 {
-    m_widget = widget;
-    m_type = type;
 }
 
 /**

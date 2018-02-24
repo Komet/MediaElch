@@ -7,81 +7,81 @@ Storage::Storage(QObject *parent, Movie *movie) :
 }
 
 Storage::Storage(QObject *parent, Concert *concert) :
-    QObject(parent)
+    QObject(parent),
+    m_concert{QPointer<Concert>(concert)}
 {
-    m_concert = QPointer<Concert>(concert);
 }
 
 Storage::Storage(QObject *parent, TvShow *show) :
-    QObject(parent)
+    QObject(parent),
+    m_show{QPointer<TvShow>(show)}
 {
-    m_show = QPointer<TvShow>(show);
 }
 
 Storage::Storage(QObject *parent, TvShowEpisode *episode) :
-    QObject(parent)
+    QObject(parent),
+    m_episode{QPointer<TvShowEpisode>(episode)}
 {
-    m_episode = QPointer<TvShowEpisode>(episode);
 }
 
 Storage::Storage(QObject *parent, Artist *artist) :
-    QObject(parent)
+    QObject(parent),
+    m_artist{QPointer<Artist>(artist)}
 {
-    m_artist = QPointer<Artist>(artist);
 }
 
 Storage::Storage(QObject *parent, Album *album) :
-    QObject(parent)
+    QObject(parent),
+    m_album{QPointer<Album>(album)}
 {
-    m_album = QPointer<Album>(album);
 }
 
 Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) :
-    QObject(parent)
+    QObject(parent),
+    m_results{results}
 {
-    m_results = results;
 }
 
 Storage::Storage(QObject *parent, QList<int> infosToLoad) :
-    QObject(parent)
+    QObject(parent),
+    m_infosToLoad{infosToLoad}
 {
-    m_infosToLoad = infosToLoad;
 }
 
 Storage::Storage(QObject *parent, ExportTemplate *exportTemplate) :
-    QObject(parent)
+    QObject(parent),
+    m_exportTemplate{exportTemplate}
 {
-    m_exportTemplate = exportTemplate;
 }
 
 Storage::Storage(QObject *parent, QMap<ScraperInterface *, QString> ids) :
-    QObject(parent)
+    QObject(parent),
+    m_ids{ids}
 {
-    m_ids = ids;
 }
 
 Storage::Storage(QObject *parent, QTableWidgetItem *item) :
-    QObject(parent)
+    QObject(parent),
+    m_tableWidgetItem{item}
 {
-    m_tableWidgetItem = item;
 }
 
 Storage::Storage(QObject *parent, PluginInterface *plugin) :
-    QObject(parent)
+    QObject(parent),
+    m_pluginInterface{plugin}
 {
-    m_pluginInterface = plugin;
 }
 
 Storage::Storage(QObject *parent, PluginManager::Plugin plugin) :
-    QObject(parent)
+    QObject(parent),
+    m_plugin{plugin}
 {
-    m_plugin = plugin;
 }
 
 Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) :
-    QObject(parent)
+    QObject(parent),
+    m_episodes{episodes}
 {
-    m_episodes = episodes;
 }
 
 Movie *Storage::movie()

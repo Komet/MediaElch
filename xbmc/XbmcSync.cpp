@@ -14,15 +14,14 @@
 
 XbmcSync::XbmcSync(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::XbmcSync)
+    ui(new Ui::XbmcSync),
+    m_renameArtworkInProgress{false},
+    m_cancelRenameArtwork{false},
+    m_artworkWasRenamed{false},
+    m_reloadTimeOut{2000},
+    m_requestId{0}
 {
     ui->setupUi(this);
-
-    m_renameArtworkInProgress = false;
-    m_cancelRenameArtwork = false;
-    m_artworkWasRenamed = false;
-    m_reloadTimeOut = 2000;
-    m_requestId = 0;
 
     connect(&m_qnam, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)), this, SLOT(onAuthRequired(QNetworkReply*,QAuthenticator*)));
 

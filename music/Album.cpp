@@ -1,17 +1,18 @@
 #include "Album.h"
 
-Album::Album(QString path, QObject *parent) : QObject(parent)
+Album::Album(QString path, QObject *parent) :
+    QObject(parent),
+    m_hasChanged{false},
+    m_rating{0},
+    m_year{0},
+    m_modelItem{0},
+    m_databaseId{-1},
+    m_artistObj{0},
+    m_path{path},
+    m_bookletModel{new ImageModel(this)},
+    m_controller{new AlbumController(this)},
+    m_bookletProxyModel{new ImageProxyModel(this)}
 {
-    m_controller = new AlbumController(this);;
-    m_hasChanged = false;
-    m_rating = 0;
-    m_year = 0;
-    m_modelItem = 0;
-    m_databaseId = -1;
-    m_artistObj = 0;
-    m_path = path;
-    m_bookletModel = new ImageModel(this);
-    m_bookletProxyModel = new ImageProxyModel(this);
     m_bookletProxyModel->setSourceModel(m_bookletModel);
 }
 

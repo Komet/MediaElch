@@ -1,12 +1,13 @@
 #include "Artist.h"
 
-Artist::Artist(QString path, QObject *parent) : QObject(parent)
+Artist::Artist(QString path, QObject *parent) :
+    QObject(parent),
+    m_path{path},
+    m_hasChanged{false},
+    m_modelItem{0},
+    m_databaseId{-1},
+    m_controller{new ArtistController(this)}
 {
-    m_controller = new ArtistController(this);
-    m_hasChanged = false;
-    m_modelItem = 0;
-    m_databaseId = -1;
-    m_path = path;
 }
 
 Artist::~Artist()

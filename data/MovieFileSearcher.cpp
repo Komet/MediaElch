@@ -18,9 +18,9 @@
  * @param parent
  */
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_progressMessageId{Constants::MovieFileSearcherProgressMessageId}
 {
-    m_progressMessageId = Constants::MovieFileSearcherProgressMessageId;
 }
 
 /**

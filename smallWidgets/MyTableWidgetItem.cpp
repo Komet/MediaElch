@@ -4,15 +4,15 @@
 #include "globals/Helper.h"
 
 MyTableWidgetItem::MyTableWidgetItem(QString text) :
-    QTableWidgetItem(text)
+    QTableWidgetItem(text),
+    m_isSize{false}
 {
-    m_isSize = false;
 }
 
 MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) :
-    QTableWidgetItem(number)
+    QTableWidgetItem(number),
+    m_isSize{false}
 {
-    m_isSize = false;
     setData(1000, (qreal)number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setText(text);
@@ -20,7 +20,7 @@ MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) :
 
 MyTableWidgetItem::MyTableWidgetItem(qreal number, bool isSize) :
     QTableWidgetItem(number),
-    m_isSize(isSize)
+    m_isSize{isSize}
 {
     setData(1000, (qreal)number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);

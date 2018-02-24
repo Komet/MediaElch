@@ -13,9 +13,9 @@
 #include "scrapers/TheTvDb.h"
 
 TvShowUpdater::TvShowUpdater(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_tvdb{0}
 {
-    m_tvdb = 0;
     foreach (TvScraperInterface *interface, Manager::instance()->tvScrapers()) {
         if (interface->identifier() == "tvdb") {
             m_tvdb = static_cast<TheTvDb*>(interface);

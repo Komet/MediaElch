@@ -14,16 +14,16 @@
  * @param parent
  */
 MyLineEdit::MyLineEdit(QWidget *parent) :
-    QLineEdit(parent)
+    QLineEdit(parent),
+    m_loadingLabel{new QLabel(0)},
+    m_showMagnifier{false},
+    m_magnifierLabel{0},
+    m_paddingLeft{0}
 {
-    m_showMagnifier = false;
-    m_magnifierLabel = 0;
-    m_paddingLeft = 0;
     m_moreLabel = new QLabel(this);
     m_moreLabel->setText("...");
     m_moreLabel->setStyleSheet("font-size: 10px; color: #a0a0a0;");
     m_moreLabel->hide();
-    m_loadingLabel = new QLabel(0);
     m_loadingLabel->hide();
     connect(this, SIGNAL(textChanged(QString)), this, SLOT(myTextChanged(QString)));
 }

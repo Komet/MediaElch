@@ -17,13 +17,12 @@
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::SettingsWindow)
+    ui(new Ui::SettingsWindow),
+    m_pluginDialog{new PluginManagerDialog(this)},
+    m_buttonActiveColor{QColor(70, 155, 198)},
+    m_buttonColor{QColor(128, 129, 132)}
 {
     ui->setupUi(this);
-
-    m_pluginDialog = new PluginManagerDialog(this);
-    m_buttonActiveColor = QColor(70, 155, 198);
-    m_buttonColor = QColor(128, 129, 132);
 
 #ifdef Q_OS_MAC
     QFont smallFont = ui->labelGlobal->font();

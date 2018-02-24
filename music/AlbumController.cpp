@@ -5,15 +5,15 @@
 #include "../globals/Helper.h"
 #include "../globals/Manager.h"
 
-AlbumController::AlbumController(Album *parent) : QObject(parent)
+AlbumController::AlbumController(Album *parent) :
+    QObject(parent),
+    m_album{parent},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_downloadManager{new DownloadManager(this)},
+    m_downloadsInProgress{false},
+    m_downloadsSize{0}
 {
-    m_album = parent;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_downloadManager = new DownloadManager(this);
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
-
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager, SIGNAL(allDownloadsFinished(Album*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
 }

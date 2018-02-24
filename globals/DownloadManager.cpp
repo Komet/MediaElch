@@ -11,9 +11,9 @@
  * @param parent
  */
 DownloadManager::DownloadManager(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_downloading{false}
 {
-    m_downloading = false;
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(downloadTimeout()));
 }
 
