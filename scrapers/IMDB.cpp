@@ -84,12 +84,12 @@ void IMDB::search(QString searchStr)
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
-        QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchIdFinished()));
     } else {
-        QUrl url = QUrl::fromEncoded(QString("http://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
+        QUrl url = QUrl::fromEncoded(QString("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -140,7 +140,7 @@ void IMDB::onSearchIdFinished()
             }
         }
 
-        rx.setPattern("<link rel=\"canonical\" href=\"http://www.imdb.com/title/(.*)/\" />");
+        rx.setPattern("<link rel=\"canonical\" href=\"https://www.imdb.com/title/(.*)/\" />");
         if (rx.indexIn(msg) != -1)
             result.id = rx.cap(1);
 
@@ -177,7 +177,7 @@ void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     movie->clear(infos);
     movie->setId(ids.values().first());
 
-    QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(ids.values().first()).toUtf8());
+    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(ids.values().first()).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
     request.setRawHeader("Accept-Language", "en");
     QNetworkReply *reply = qnam()->get(request);
@@ -508,7 +508,7 @@ QString IMDB::parsePosters(QString html)
     if (rx.indexIn(content) == -1)
         return QString();
 
-    return QString("http://www.imdb.com%1").arg(rx.cap(1));
+    return QString("https://www.imdb.com%1").arg(rx.cap(1));
 }
 
 void IMDB::parseAndAssignPoster(QString html, Movie *movie, QList<int> infos)

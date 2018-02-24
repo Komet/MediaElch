@@ -32,7 +32,7 @@ QString TheTvDbImages::name()
 
 QUrl TheTvDbImages::siteUrl()
 {
-    return QUrl("http://www.thetvdb.com");
+    return QUrl("https://www.thetvdb.com");
 }
 
 QString TheTvDbImages::identifier()

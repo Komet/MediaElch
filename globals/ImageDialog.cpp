@@ -697,7 +697,7 @@ void ImageDialog::updateSourceLink()
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
     QString searchTerm = ui->searchTerm->text();
-    if (searchTerm.startsWith("http://")) {
+    if (searchTerm.startsWith("http://") || searchTerm.startsWith("https://")) {
         clearSearch();
         m_imageUrl = searchTerm;
         Poster poster;

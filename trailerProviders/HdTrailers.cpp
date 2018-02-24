@@ -46,7 +46,7 @@ void HdTrailers::searchMovie(QString searchStr)
     m_currentSearch = searchStr;
 
     if (!m_libraryPages.isEmpty()) {
-        QUrl url(QString("http://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
+        QUrl url(QString("https://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
         QNetworkRequest request(url);
         m_searchReply = m_qnam->get(request);
         connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -86,7 +86,7 @@ void HdTrailers::onSearchFinished()
 
 void HdTrailers::loadMovieTrailers(QString id)
 {
-    m_loadReply = m_qnam->get(QNetworkRequest(QUrl("http://www.hd-trailers.net" + id)));
+    m_loadReply = m_qnam->get(QNetworkRequest(QUrl("https://www.hd-trailers.net" + id)));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 
