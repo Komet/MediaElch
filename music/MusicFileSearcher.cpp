@@ -6,9 +6,10 @@
 #include <QFileInfo>
 #include "../globals/Manager.h"
 
-MusicFileSearcher::MusicFileSearcher(QObject *parent) : QObject(parent)
+MusicFileSearcher::MusicFileSearcher(QObject *parent) :
+    QObject(parent),
+    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}
 {
-    m_progressMessageId = Constants::MusicFileSearcherProgressMessageId;
 }
 
 MusicFileSearcher::~MusicFileSearcher()

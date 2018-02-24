@@ -1,10 +1,10 @@
 #include "DownloadManagerElement.h"
 
-DownloadManagerElement::DownloadManagerElement()
+DownloadManagerElement::DownloadManagerElement():
+    episode{0},
+    movie{0},
+    show{0},
+    concert{0},
+    directDownload{false}
 {
-    movie = 0;
-    episode = 0;
-    show = 0;
-    concert = 0;
-    directDownload = false;
 }

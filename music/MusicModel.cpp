@@ -3,10 +3,11 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 
-MusicModel::MusicModel(QObject *parent) : QAbstractItemModel(parent)
+MusicModel::MusicModel(QObject *parent) :
+    QAbstractItemModel(parent),
+    m_rootItem{new MusicModelItem(0)},
+    m_newIcon{QIcon(":/img/star_blue.png")}
 {
-    m_rootItem = new MusicModelItem(0);
-    m_newIcon = QIcon(":/img/star_blue.png");
 }
 
 MusicModel::~MusicModel()

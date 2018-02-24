@@ -7,12 +7,12 @@
 
 TagCloud::TagCloud(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TagCloud)
+    ui(new Ui::TagCloud),
+    m_badgeType{TagCloud::TypeBadge},
+    m_verticalSpace{4},
+    m_horizontalSpace{4}
 {
     ui->setupUi(this);
-    m_badgeType = TagCloud::TypeBadge;
-    m_horizontalSpace = 4;
-    m_verticalSpace = 4;
     connect(ui->scrollAreaWidgetContents, SIGNAL(resized()), this, SLOT(repositionTags()));
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(addTag()));
 }

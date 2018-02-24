@@ -7,9 +7,10 @@
 #include <QtMath>
 #include "settings/Settings.h"
 
-ImageModel::ImageModel(QObject *parent) : QAbstractListModel(parent)
+ImageModel::ImageModel(QObject *parent) :
+    QAbstractListModel(parent),
+    m_hasChanged{false}
 {
-    m_hasChanged = false;
 }
 
 ImageModel::~ImageModel()

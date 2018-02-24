@@ -2,10 +2,10 @@
 
 #include <QRegExp>
 
-MovieMaze::MovieMaze(QObject *parent)
+MovieMaze::MovieMaze(QObject *parent) :
+    m_qnam{new QNetworkAccessManager(this)}
 {
     setParent(parent);
-    m_qnam = new QNetworkAccessManager(this);
 }
 
 QString MovieMaze::name()

@@ -23,11 +23,10 @@
  */
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TvShowWidgetEpisode)
+    ui(new Ui::TvShowWidgetEpisode),
+    m_episode{0}
 {
     ui->setupUi(this);
-
-    m_episode = 0;
 
     ui->episodeName->clear();
     ui->directors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

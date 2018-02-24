@@ -17,9 +17,9 @@
  * @param parent
  */
 TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_progressMessageId{Constants::TvShowSearcherProgressMessageId}
 {
-    m_progressMessageId = Constants::TvShowSearcherProgressMessageId;
 }
 
 /**

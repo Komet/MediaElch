@@ -11,15 +11,14 @@
 #include "settings/Settings.h"
 
 ConcertController::ConcertController(Concert *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_concert{parent},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_downloadManager{new DownloadManager(this)},
+    m_downloadsInProgress{false},
+    m_downloadsSize{0}
 {
-    m_concert = parent;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_downloadManager = new DownloadManager(this);
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
-
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager, SIGNAL(allDownloadsFinished(Concert*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
 }

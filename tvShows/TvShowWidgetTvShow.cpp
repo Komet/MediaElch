@@ -21,11 +21,10 @@
  */
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TvShowWidgetTvShow)
+    ui(new Ui::TvShowWidgetTvShow),
+    m_show{0}
 {
     ui->setupUi(this);
-
-    m_show = 0;
 
     ui->showTitle->clear();
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

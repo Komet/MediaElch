@@ -3,10 +3,10 @@
 #include <QRegExp>
 #include "globals/Helper.h"
 
-HdTrailers::HdTrailers(QObject *parent)
+HdTrailers::HdTrailers(QObject *parent) :
+    m_qnam{new QNetworkAccessManager(this)}
 {
     setParent(parent);
-    m_qnam = new QNetworkAccessManager(this);
     m_libraryPages.enqueue("0");
     m_libraryPages.enqueue("a");
     m_libraryPages.enqueue("b");
