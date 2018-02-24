@@ -20,7 +20,7 @@ void TvTunes::search(QString searchStr)
     m_queue.clear();
     m_results.clear();
 
-    QUrl url(QString("http://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
+    QUrl url(QString("https://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
     QNetworkRequest request(url);
     QNetworkReply *reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
@@ -56,7 +56,7 @@ QList<ScraperSearchResult> TvTunes::parseSearch(QString html)
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
         ScraperSearchResult result;
-        result.id = QString("http://www.televisiontunes.com%1").arg(rx.cap(1));
+        result.id = QString("https://www.televisiontunes.com%1").arg(rx.cap(1));
         result.name = rx.cap(2);
         results.append(result);
         pos += rx.matchedLength();
@@ -93,7 +93,7 @@ void TvTunes::onDownloadUrlFinished()
         QRegExp rx("<a id=\"download_song\" href=\"([^\"]*)\">");
         rx.setMinimal(true);
         if (rx.indexIn(msg) != -1) {
-            res.id = QString("http://www.televisiontunes.com%1").arg(rx.cap(1));
+            res.id = QString("https://www.televisiontunes.com%1").arg(rx.cap(1));
             m_results.append(res);
         }
     }

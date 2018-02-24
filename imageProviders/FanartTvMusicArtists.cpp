@@ -69,7 +69,7 @@ QNetworkAccessManager *FanartTvMusicArtists::qnam()
 void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
@@ -108,7 +108,7 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
@@ -120,7 +120,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ConcertLogo);

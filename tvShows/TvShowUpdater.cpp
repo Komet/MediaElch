@@ -46,7 +46,7 @@ void TvShowUpdater::updateShow(TvShow *show, bool force)
         connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
     } else if (!show->id().isEmpty() || !show->tvdbId().isEmpty()) {
         QString id = show->tvdbId().isEmpty() ? show->id() : show->tvdbId();
-        QUrl url(QString("http://www.thetvdb.com/api/%1/series/%2/all/%3.xml").arg(m_tvdb->apiKey()).arg(id).arg(m_tvdb->language()));
+        QUrl url(QString("https://www.thetvdb.com/api/%1/series/%2/all/%3.xml").arg(m_tvdb->apiKey()).arg(id).arg(m_tvdb->language()));
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));

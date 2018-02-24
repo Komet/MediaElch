@@ -59,9 +59,9 @@ TheTvDb::TheTvDb(QObject *parent)
 
     m_apiKey = "A0BB9A0F6762942B";
     m_language = "en";
-    m_xmlMirrors.append("http://thetvdb.com");
-    m_bannerMirrors.append("http://thetvdb.com");
-    m_zipMirrors.append("http://thetvdb.com");
+    m_xmlMirrors.append("https://www.thetvdb.com");
+    m_bannerMirrors.append("https://www.thetvdb.com");
+    m_zipMirrors.append("https://www.thetvdb.com");
 
     setMirrors();
 
@@ -149,7 +149,7 @@ void TheTvDb::saveSettings(QSettings &settings)
  */
 void TheTvDb::setMirrors()
 {
-    QUrl url(QString("http://www.thetvdb.com/api/%1/mirrors.xml").arg(m_apiKey));
+    QUrl url(QString("https://www.thetvdb.com/api/%1/mirrors.xml").arg(m_apiKey));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onMirrorsReady()));
@@ -202,9 +202,9 @@ void TheTvDb::search(QString searchStr)
     QUrl url;
     QRegExp rxId("^id(\\d+)$");
     if (rxId.exactMatch(searchStr))
-        url.setUrl(QString("http://www.thetvdb.com/api/%1/series/%2/%3.xml").arg(m_apiKey).arg(rxId.cap(1)).arg(m_language));
+        url.setUrl(QString("https://www.thetvdb.com/api/%1/series/%2/%3.xml").arg(m_apiKey).arg(rxId.cap(1)).arg(m_language));
     else
-        url.setUrl(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
+        url.setUrl(QString("https://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -381,7 +381,7 @@ void TheTvDb::onBannersFinished()
 
     if (shouldLoadImdb(infos) && !show->imdbId().isEmpty()) {
         qDebug() << "Now loading IMDB entry for" << show->imdbId();
-        QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(show->imdbId()));
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(show->imdbId()));
         QNetworkRequest request = QNetworkRequest(url);
         request.setRawHeader("Accept-Language", "en;q=0.8");
         QNetworkReply *reply = qnam()->get(request);
@@ -734,14 +734,14 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<int>
         int airedEpisode = episode->episode();
         getAiredSeasonAndEpisode(msg, episode, airedSeason, airedEpisode);
         qDebug() << "Now loading IMDB entry for" << episode->tvShow()->imdbId() << "season" << airedSeason << "episode" << airedEpisode;
-        QUrl url = QUrl(QString("http://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(airedSeason));
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(airedSeason));
 
         if (!episode->imdbId().isEmpty() || (m_cache.contains(url) && m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180))) {
             QString imdbId = !episode->imdbId().isEmpty() ? episode->imdbId() : getImdbIdForEpisode(m_cache.value(url).data, airedEpisode);
             if (!imdbId.isEmpty()) {
                 if (episode->imdbId().isEmpty())
                     episode->setImdbId(imdbId);
-                QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
+                QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
                 QNetworkRequest request = QNetworkRequest(url);
                 request.setRawHeader("Accept-Language", "en;q=0.8");
                 QNetworkReply *reply = qnam()->get(request);
@@ -902,7 +902,7 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<i
     TvShowEpisode *episode = episodes.takeFirst();
 
     if (!episode->imdbId().isEmpty()) {
-        QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(episode->imdbId()));
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(episode->imdbId()));
         QNetworkRequest request = QNetworkRequest(url);
         request.setRawHeader("Accept-Language", "en;q=0.8");
         QNetworkReply *reply = qnam()->get(request);
@@ -916,13 +916,13 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<i
     }
 
 
-    QUrl url = QUrl(QString("http://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(episode->property("airedSeason").toInt()));
+    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(episode->property("airedSeason").toInt()));
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
             QString imdbId = getImdbIdForEpisode(m_cache.value(url).data, episode->property("airedEpisode").toInt());
             if (!imdbId.isEmpty()) {
                 qDebug() << "Now loading IMDB entry for" << imdbId;
-                QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
+                QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
                 QNetworkRequest request = QNetworkRequest(url);
                 request.setRawHeader("Accept-Language", "en;q=0.8");
                 QNetworkReply *reply = qnam()->get(request);
@@ -969,7 +969,7 @@ void TheTvDb::onEpisodesImdbSeasonFinished()
         QString imdbId = getImdbIdForEpisode(msg, episode->property("airedEpisode").toInt());
         if (!imdbId.isEmpty()) {
             qDebug() << "Now loading IMDB entry for" << imdbId;
-            QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
+            QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
             QNetworkRequest request = QNetworkRequest(url);
             request.setRawHeader("Accept-Language", "en;q=0.8");
             QNetworkReply *reply = qnam()->get(request);
@@ -1082,7 +1082,7 @@ void TheTvDb::onImdbSeasonFinished()
             if (episode->imdbId().isEmpty())
                 episode->setImdbId(imdbId);
             qDebug() << "Now loading IMDB entry for" << imdbId;
-            QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
+            QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
             QNetworkRequest request = QNetworkRequest(url);
             request.setRawHeader("Accept-Language", "en;q=0.8");
             QNetworkReply *reply = qnam()->get(request);

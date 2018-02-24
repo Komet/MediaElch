@@ -166,7 +166,7 @@ QList<int> TMDbConcerts::scraperSupports()
  */
 void TMDbConcerts::setup()
 {
-    QUrl url(QString("http://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
+    QUrl url(QString("https://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -207,11 +207,11 @@ void TMDbConcerts::search(QString searchStr)
     QRegExp rx("^tt\\d+$");
     QRegExp rxTmdbId("^id\\d+$");
     if (rx.exactMatch(searchStr))
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(m_apiKey).arg(m_language));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(m_apiKey).arg(m_language));
     else if (rxTmdbId.exactMatch(searchStr))
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(m_apiKey).arg(m_language));
     else
-        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
+        url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -247,7 +247,7 @@ void TMDbConcerts::searchFinished()
     if (nextPage == -1) {
         emit searchDone(results);
     } else {
-        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(searchString));
+        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(searchString));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply *reply = qnam()->get(request);
@@ -329,7 +329,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
 
     // Infos
     loadsLeft.append(DataInfos);
-    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
+    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     new NetworkReplyWatcher(this, reply);
@@ -340,7 +340,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     // Trailers
     if (infos.contains(ConcertScraperInfos::Trailer)) {
         loadsLeft.append(DataTrailers);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -352,7 +352,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     // Images
     if (infos.contains(ConcertScraperInfos::Poster) || infos.contains(ConcertScraperInfos::Backdrop)) {
         loadsLeft.append(DataImages);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -364,7 +364,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     // Releases
     if (infos.contains(ConcertScraperInfos::Certification)) {
         loadsLeft.append(DataReleases);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -511,7 +511,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
+            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
     }

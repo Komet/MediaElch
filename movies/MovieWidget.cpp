@@ -1462,7 +1462,7 @@ void MovieWidget::onInsertYoutubeLink()
     if (Settings::instance()->useYoutubePluginUrls())
         ui->trailer->setText("plugin://plugin.video.youtube/?action=play_video&videoid=");
     else
-        ui->trailer->setText("http://www.youtube.com/watch?v=");
+        ui->trailer->setText("https://www.youtube.com/watch?v=");
     ui->trailer->setFocus();
 }
 
