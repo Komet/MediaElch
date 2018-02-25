@@ -2,6 +2,7 @@
 #define TVSCRAPERINTERFACE_H
 
 #include <QSettings>
+
 #include "data/MediaCenterInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

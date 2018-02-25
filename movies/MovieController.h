@@ -3,6 +3,7 @@
 
 #include <QMutex>
 #include <QObject>
+
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "movies/Movie.h"

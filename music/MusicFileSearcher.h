@@ -2,6 +2,7 @@
 #define MUSICFILESEARCHER_H
 
 #include <QObject>
+
 #include "../globals/Globals.h"
 #include "../music/Album.h"
 #include "../music/Artist.h"

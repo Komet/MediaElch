@@ -9,6 +9,7 @@
 #include <QDirIterator>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 #include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

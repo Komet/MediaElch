@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QQueue>
+
 #include "globals/Globals.h"
 
 class TvTunes : public QObject

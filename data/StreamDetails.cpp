@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 

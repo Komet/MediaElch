@@ -1,6 +1,7 @@
 #include "AlbumController.h"
 
 #include <QFileInfo>
+
 #include "../data/ImageCache.h"
 #include "../globals/Helper.h"
 #include "../globals/Manager.h"

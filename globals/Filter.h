@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+
 #include "data/Concert.h"
 #include "movies/Movie.h"
 #include "data/TvShow.h"

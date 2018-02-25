@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QPointer>
 #include <QQueue>
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvScraperInterface.h"

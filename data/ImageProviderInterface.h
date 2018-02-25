@@ -2,6 +2,7 @@
 #define IMAGEPROVIDERINTERFACE_H
 
 #include <QObject>
+
 #include "data/Concert.h"
 #include "movies/Movie.h"
 #include "data/TvShow.h"

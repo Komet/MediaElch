@@ -2,6 +2,7 @@
 #define MOVIEPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**

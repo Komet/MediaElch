@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include <QPointer>
 #include <QWidget>
+
 #include "../smallWidgets/ClosableImage.h"
 #include "../music/Album.h"
 #include "../image/ImageWidget.h"

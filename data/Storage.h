@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QTableWidgetItem>
+
 #include "data/Concert.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

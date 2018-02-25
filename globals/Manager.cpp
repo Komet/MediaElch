@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QDesktopServices>
 #include <QSqlQuery>
+
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"

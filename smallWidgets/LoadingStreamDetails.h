@@ -2,6 +2,7 @@
 #define LOADINGSTREAMDETAILS_H
 
 #include <QDialog>
+
 #include "data/Concert.h"
 #include "movies/Movie.h"
 #include "data/TvShowEpisode.h"

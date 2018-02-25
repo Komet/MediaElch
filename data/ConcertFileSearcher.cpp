@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 

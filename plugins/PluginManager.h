@@ -4,6 +4,7 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QXmlStreamReader>
+
 #include "plugins/PluginInterface.h"
 
 class PluginManager : public QObject

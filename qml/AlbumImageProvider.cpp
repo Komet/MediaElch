@@ -1,7 +1,8 @@
 #include "AlbumImageProvider.h"
 
-#include "globals/Manager.h"
 #include <QDebug>
+
+#include "globals/Manager.h"
 
 AlbumImageProvider::AlbumImageProvider() : QQuickImageProvider(QQuickImageProvider::Image)
 {

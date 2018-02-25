@@ -2,6 +2,7 @@
 #define MANAGER_H
 
 #include <QObject>
+
 #include "settings/Settings.h"
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"

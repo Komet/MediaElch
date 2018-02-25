@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QResizeEvent>
 #include <QWidget>
+
 #include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"

@@ -5,6 +5,7 @@
 #include <QIcon>
 #include <QModelIndex>
 #include <QVariant>
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 

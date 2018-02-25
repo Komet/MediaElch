@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

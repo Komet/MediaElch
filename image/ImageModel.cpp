@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QImage>
 #include <QtMath>
+
 #include "settings/Settings.h"
 
 ImageModel::ImageModel(QObject *parent) :

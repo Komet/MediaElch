@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QMessageBox>
+
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
 #include "smallWidgets/LoadingStreamDetails.h"

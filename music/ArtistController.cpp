@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QFileInfo>
+
 #include "../data/ImageCache.h"
 #include "../globals/Helper.h"
 #include "../globals/Manager.h"

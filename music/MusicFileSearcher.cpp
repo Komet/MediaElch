@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDirIterator>
 #include <QFileInfo>
+
 #include "../globals/Manager.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject *parent) :

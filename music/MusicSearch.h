@@ -2,6 +2,7 @@
 #define MUSICSEARCH_H
 
 #include <QDialog>
+
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 

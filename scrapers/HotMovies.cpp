@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QRegExp>
+
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"

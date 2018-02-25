@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QVariant>
 #include <QVector>
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 

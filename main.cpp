@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QTimer>
 #include <QTranslator>
+
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 

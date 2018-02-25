@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"

@@ -2,6 +2,7 @@
 #include "ui_ExportDialog.h"
 
 #include <QFileDialog>
+
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 

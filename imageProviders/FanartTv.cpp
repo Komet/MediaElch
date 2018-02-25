@@ -1,4 +1,5 @@
 #include "FanartTv.h"
+
 #include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
@@ -6,6 +7,7 @@
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
+
 #include "data/Storage.h"
 #include "main/MainWindow.h"
 #include "scrapers/TMDb.h"

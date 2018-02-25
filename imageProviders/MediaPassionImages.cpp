@@ -4,6 +4,7 @@
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
 #include <QSettings>
+
 #include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 

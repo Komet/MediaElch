@@ -1,7 +1,6 @@
 #ifndef SLIDINGSTACKEDWIDGET_H
 #define SLIDINGSTACKEDWIDGET_H
 
-
 #include <QDebug>
 #include <QEasingCurve>
 #include <QStackedWidget>

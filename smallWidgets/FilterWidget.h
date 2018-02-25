@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QListWidget>
 #include <QWidget>
+
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 

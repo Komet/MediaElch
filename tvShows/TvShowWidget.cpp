@@ -2,6 +2,7 @@
 #include "ui_TvShowWidget.h"
 
 #include <QTimer>
+
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"

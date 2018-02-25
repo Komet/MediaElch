@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSortFilterProxyModel>
+
 #include "../globals/Filter.h"
 
 class MusicProxyModel : public QSortFilterProxyModel

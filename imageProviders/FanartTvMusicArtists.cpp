@@ -1,9 +1,11 @@
 #include "FanartTvMusicArtists.h"
+
 #include <QDebug>
 #include <QSettings>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
+
 #include "data/Storage.h"
 #include "imageProviders/FanartTv.h"
 #include "scrapers/TMDb.h"

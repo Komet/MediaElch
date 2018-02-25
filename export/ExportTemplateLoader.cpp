@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QNetworkReply>
 #include <QXmlStreamReader>
+
 #include "quazip/quazip/quazip.h"
 #include "quazip/quazip/quazipfile.h"
 #include "settings/Settings.h"

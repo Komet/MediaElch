@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "mediaCenterPlugins/XbmcXml.h"

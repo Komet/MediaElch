@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QTextDocument>
+
 #include "data/Storage.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"

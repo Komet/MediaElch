@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QPointer>
+
 #include "downloads/MakeMkvCon.h"
 #include "movies/Movie.h"
 

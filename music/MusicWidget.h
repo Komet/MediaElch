@@ -2,6 +2,7 @@
 #define MUSICWIDGET_H
 
 #include <QWidget>
+
 #include "Artist.h"
 #include "Album.h"
 

@@ -2,6 +2,7 @@
 #define PLUGINMANAGERDIALOG_H
 
 #include <QDialog>
+
 #include "plugins/PluginManager.h"
 
 namespace Ui {

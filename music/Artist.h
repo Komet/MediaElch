@@ -2,6 +2,7 @@
 #define ARTIST_H
 
 #include <QObject>
+
 #include "globals/Globals.h"
 #include "MusicModelItem.h"
 #include "ArtistController.h"

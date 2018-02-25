@@ -2,6 +2,7 @@
 #define CONCERTSCRAPERINTERFACE_H
 
 #include <QSettings>
+
 #include "data/MediaCenterInterface.h"
 #include "data/Concert.h"
 #include "globals/Globals.h"

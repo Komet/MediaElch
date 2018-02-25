@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
+
 #include "../data/MusicScraperInterface.h"
 
 class UniversalMusicScraper : public MusicScraperInterface

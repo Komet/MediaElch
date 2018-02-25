@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QSpacerItem>
+
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/Helper.h"

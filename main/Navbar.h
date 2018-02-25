@@ -2,6 +2,7 @@
 #define NAVBAR_H
 
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "globals/Filter.h"
 

@@ -12,6 +12,7 @@
 #include <QSize>
 #include <QStandardPaths>
 #include <QTimer>
+
 #include "data/ImageProviderInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

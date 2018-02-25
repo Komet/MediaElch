@@ -5,6 +5,7 @@
 #include <QMovie>
 #include <QResizeEvent>
 #include <QWidget>
+
 #include "data/TvShow.h"
 #include "globals/DownloadManager.h"
 #include "globals/Globals.h"

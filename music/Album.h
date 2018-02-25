@@ -2,6 +2,7 @@
 #define ALBUM_H
 
 #include <QObject>
+
 #include "globals/Globals.h"
 #include "MusicModelItem.h"
 #include "Artist.h"

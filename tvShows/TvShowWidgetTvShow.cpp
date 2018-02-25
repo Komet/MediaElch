@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
+
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"

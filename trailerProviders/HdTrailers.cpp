@@ -1,6 +1,7 @@
 #include "HdTrailers.h"
 
 #include <QRegExp>
+
 #include "globals/Helper.h"
 
 HdTrailers::HdTrailers(QObject *parent) :

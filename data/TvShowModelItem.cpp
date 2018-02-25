@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QStringList>
+
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 

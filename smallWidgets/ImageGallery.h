@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QToolButton>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "smallWidgets/ClosableImage.h"
 

@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QMovie>
+
 #include "globals/Helper.h"
 #include "data/ImageCache.h"
 #include "data/TvShowFileSearcher.h"

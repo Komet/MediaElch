@@ -3,6 +3,7 @@
 #include "globals/Manager.h"
 
 #include <QTimer>
+
 #include "data/ImageCache.h"
 
 /**

@@ -3,6 +3,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QtCore/qmath.h>
+
 #include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"

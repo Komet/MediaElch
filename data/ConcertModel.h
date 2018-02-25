@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QIcon>
+
 #include "data/Concert.h"
 
 /**

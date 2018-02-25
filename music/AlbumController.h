@@ -2,6 +2,7 @@
 #define ALBUMCONTROLLER_H
 
 #include <QObject>
+
 #include "data/MediaCenterInterface.h"
 #include "data/MusicScraperInterface.h"
 #include "globals/DownloadManager.h"

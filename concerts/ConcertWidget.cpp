@@ -8,6 +8,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+
 #include "concerts/ConcertSearch.h"
 #include "concerts/ConcertFilesWidget.h"
 #include "data/ImageCache.h"

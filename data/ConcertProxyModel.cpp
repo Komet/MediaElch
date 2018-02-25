@@ -1,6 +1,7 @@
 #include "ConcertProxyModel.h"
 
 #include <QDebug>
+
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 

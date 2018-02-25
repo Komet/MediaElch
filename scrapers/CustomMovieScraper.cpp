@@ -2,6 +2,7 @@
 
 #include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
+
 #include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"

@@ -2,6 +2,7 @@
 #define MUSICMODELITEM_H
 
 #include <QObject>
+
 #include "Artist.h"
 #include "Album.h"
 

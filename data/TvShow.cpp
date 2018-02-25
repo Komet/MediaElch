@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

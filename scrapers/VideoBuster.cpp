@@ -1,5 +1,7 @@
 #include "VideoBuster.h"
+
 #include <QTextDocument>
+
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"

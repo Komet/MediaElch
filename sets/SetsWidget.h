@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "movies/Movie.h"
 
 namespace Ui {

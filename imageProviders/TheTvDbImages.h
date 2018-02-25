@@ -2,6 +2,7 @@
 #define THETVDBIMAGES_H
 
 #include <QObject>
+
 #include "data/ImageProviderInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

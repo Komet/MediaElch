@@ -1,6 +1,8 @@
 #include "Cinefacts.h"
+
 #include <QTextDocument>
 #include <QWidget>
+
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"

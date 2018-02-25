@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QTimer>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/Notificator.h"

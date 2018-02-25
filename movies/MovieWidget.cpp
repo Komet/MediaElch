@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QPixmapCache>
 #include <QScrollBar>
+
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"

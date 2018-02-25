@@ -9,6 +9,7 @@
 #include <QScriptValue>
 #include <QTcpSocket>
 #include <QTimer>
+
 #include "movies/Movie.h"
 
 namespace Ui {

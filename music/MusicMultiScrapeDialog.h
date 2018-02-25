@@ -2,6 +2,7 @@
 #define MUSICMULTISCRAPEDIALOG_H
 
 #include <QDialog>
+
 #include "Artist.h"
 #include "Album.h"
 

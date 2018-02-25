@@ -4,6 +4,7 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowEpisode.h"

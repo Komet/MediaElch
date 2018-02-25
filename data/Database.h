@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include <QObject>
 #include <QSqlDatabase>
+
 #include "data/Concert.h"
 #include "movies/Movie.h"
 #include "data/TvShow.h"

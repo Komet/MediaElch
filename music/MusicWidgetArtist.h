@@ -5,6 +5,7 @@
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "../smallWidgets/ClosableImage.h"
 #include "../music/Artist.h"
 

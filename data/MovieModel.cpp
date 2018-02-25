@@ -1,6 +1,7 @@
 #include "MovieModel.h"
 
 #include <QPainter>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

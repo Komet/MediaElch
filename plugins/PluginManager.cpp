@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QPluginLoader>
 #include <QUrlQuery>
+
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
