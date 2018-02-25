@@ -38,6 +38,6 @@ private:
     int m_data;
 };
 
-Q_DECLARE_METATYPE(Filter*)
+Q_DECLARE_METATYPE(Filter *)
 
 #endif // FILTER_H

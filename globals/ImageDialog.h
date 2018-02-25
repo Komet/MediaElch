@@ -84,7 +84,8 @@ private:
     /**
      * @brief The DownloadElement struct
      */
-    struct DownloadElement {
+    struct DownloadElement
+    {
         QUrl thumbUrl;
         QUrl originalUrl;
         QPixmap pixmap;
@@ -103,7 +104,7 @@ private:
     QUrl m_imageUrl;
     QList<QUrl> m_imageUrls;
     int m_type;
-    QList<ImageProviderInterface*> m_providers;
+    QList<ImageProviderInterface *> m_providers;
     Concert *m_concert;
     Movie *m_movie;
     TvShow *m_tvShow;

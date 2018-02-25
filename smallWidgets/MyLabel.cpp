@@ -6,10 +6,7 @@
  * @brief MyLabel::MyLabel
  * @param parent
  */
-MyLabel::MyLabel(QWidget *parent) :
-    QLabel(parent),
-    m_season{-2},
-    m_imageSet{false}
+MyLabel::MyLabel(QWidget *parent) : QLabel(parent), m_season{-2}, m_imageSet{false}
 {
 }
 

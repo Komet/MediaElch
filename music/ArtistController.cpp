@@ -16,8 +16,15 @@ ArtistController::ArtistController(Artist *parent) :
     m_downloadsInProgress{false},
     m_downloadsSize{0}
 {
-    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
-    connect(m_downloadManager, SIGNAL(allDownloadsFinished(Artist*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
+    connect(m_downloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager,
+        SIGNAL(allDownloadsFinished(Artist *)),
+        this,
+        SLOT(onAllDownloadsFinished()),
+        Qt::UniqueConnection);
 }
 
 ArtistController::~ArtistController()
@@ -26,7 +33,8 @@ ArtistController::~ArtistController()
 
 bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || m_artist->hasChanged()) && !force && (m_infoFromNfoLoaded || (m_artist->hasChanged() && !m_infoFromNfoLoaded) ))
+    if ((m_infoLoaded || m_artist->hasChanged()) && !force
+        && (m_infoFromNfoLoaded || (m_artist->hasChanged() && !m_infoFromNfoLoaded)))
         return m_infoLoaded;
 
     m_artist->blockSignals(true);
@@ -124,7 +132,8 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
         Helper::instance()->resizeBackdrop(elem.data);
         m_artist->addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
+        ImageCache::instance()->invalidateImages(
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
         if (elem.imageType == ImageType::ArtistFanart)
             Helper::instance()->resizeBackdrop(elem.data);
         m_artist->setRawImage(elem.imageType, elem.data);
@@ -149,7 +158,7 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
     emit sigInfoLoadDone(m_artist);
 
     if (!scraper) {
-        onFanartLoadDone(m_artist, QMap<int, QList<Poster> >());
+        onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
         return;
     }
 
@@ -179,31 +188,36 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
             }
         }
         if (!imageProvider) {
-            onFanartLoadDone(m_artist, QMap<int, QList<Poster> >());
+            onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
             return;
         }
-        connect(imageProvider, SIGNAL(sigImagesLoaded(Artist*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Artist*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
+        connect(imageProvider,
+            SIGNAL(sigImagesLoaded(Artist *, QMap<int, QList<Poster>>)),
+            this,
+            SLOT(onFanartLoadDone(Artist *, QMap<int, QList<Poster>>)),
+            Qt::UniqueConnection);
         imageProvider->artistImages(m_artist, m_artist->mbId(), images);
     } else {
-        onFanartLoadDone(m_artist, QMap<int, QList<Poster> >());
+        onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
     }
 }
 
-void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster> > posters)
+void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>> posters)
 {
     if (artist != m_artist)
         return;
 
     QList<DownloadManagerElement> downloads;
     QList<int> imageTypes;
-    QMapIterator<int, QList<Poster> > it(posters);
+    QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty())
             continue;
 
         if (it.key() == ImageType::ArtistExtraFanart) {
-            for (int i=0, n=it.value().length() ; i<n && i<Settings::instance()->extraFanartsMusicArtists() ; ++i) {
+            for (int i = 0, n = it.value().length(); i < n && i < Settings::instance()->extraFanartsMusicArtists();
+                 ++i) {
                 DownloadManagerElement d;
                 d.imageType = it.key();
                 d.url = it.value().at(i).originalUrl;

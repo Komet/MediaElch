@@ -39,7 +39,8 @@ private slots:
     void onAlbumLoadFinished();
 
 private:
-    struct DownloadElement {
+    struct DownloadElement
+    {
         QString source;
         QString type;
         QUrl url;
@@ -54,8 +55,8 @@ private:
     QWidget *m_widget;
     QComboBox *m_box;
     QComboBox *m_preferBox;
-    QMap<Artist*, QList<DownloadElement> > m_artistDownloads;
-    QMap<Album*, QList<DownloadElement> > m_albumDownloads;
+    QMap<Artist *, QList<DownloadElement>> m_artistDownloads;
+    QMap<Album *, QList<DownloadElement>> m_albumDownloads;
     QMutex m_artistMutex;
     QMutex m_albumMutex;
 

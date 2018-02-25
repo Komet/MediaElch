@@ -73,7 +73,7 @@ TheTvDb::TheTvDb(QObject *parent)
                  << MovieScraperInfos::Certification << MovieScraperInfos::Overview << MovieScraperInfos::Genres
                  << MovieScraperInfos::Actors;
 
-    connect(m_dummyMovie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onImdbFinished()));
+    connect(m_dummyMovie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onImdbFinished()));
 }
 
 QWidget *TheTvDb::settingsWidget()
@@ -129,7 +129,7 @@ bool TheTvDb::hasSettings()
 void TheTvDb::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language)
             m_box->setCurrentIndex(i);
     }
@@ -161,7 +161,7 @@ void TheTvDb::setMirrors()
  */
 void TheTvDb::onMirrorsReady()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     m_xmlMirrors.clear();
     m_bannerMirrors.clear();
     m_zipMirrors.clear();
@@ -170,7 +170,7 @@ void TheTvDb::onMirrorsReady()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("Mirror").size() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("Mirror").size(); i < n; ++i) {
             QDomNode node = domDoc.elementsByTagName("Mirror").at(i);
             QString mirror;
             int typemask = 0;
@@ -202,9 +202,12 @@ void TheTvDb::search(QString searchStr)
     QUrl url;
     QRegExp rxId("^id(\\d+)$");
     if (rxId.exactMatch(searchStr))
-        url.setUrl(QString("https://www.thetvdb.com/api/%1/series/%2/%3.xml").arg(m_apiKey).arg(rxId.cap(1)).arg(m_language));
+        url.setUrl(
+            QString("https://www.thetvdb.com/api/%1/series/%2/%3.xml").arg(m_apiKey).arg(rxId.cap(1)).arg(m_language));
     else
-        url.setUrl(QString("https://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
+        url.setUrl(QString("https://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2")
+                       .arg(m_language)
+                       .arg(searchStr));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -217,7 +220,7 @@ void TheTvDb::search(QString searchStr)
  */
 void TheTvDb::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -240,7 +243,7 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("Series").size() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("Series").size(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Series").at(i).toElement();
         ScraperSearchResult result;
         if (!elem.elementsByTagName("SeriesName").isEmpty())
@@ -248,10 +251,11 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
         if (!elem.elementsByTagName("id").isEmpty())
             result.id = elem.elementsByTagName("id").at(0).toElement().text();
         if (!elem.elementsByTagName("FirstAired").isEmpty())
-            result.released = QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd");
+            result.released =
+                QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd");
 
         bool alreadyAdded = false;
-        for (int n=0, s=results.count() ; n<s ; ++n) {
+        for (int n = 0, s = results.count(); n < s; ++n) {
             if (results[n].id == result.id)
                 alreadyAdded = true;
         }
@@ -272,9 +276,10 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
 {
     Q_UNUSED(infosToLoad)
     show->setTvdbId(id);
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
+    QString mirror = m_xmlMirrors.at(qrand() % m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
-    show->setEpisodeGuideUrl(QString("%1/api/%2/series/%3/all/%4.zip").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
+    show->setEpisodeGuideUrl(
+        QString("%1/api/%2/series/%3/all/%4.zip").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, show));
@@ -291,15 +296,15 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
  */
 void TheTvDb::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShow *show = reply->property("storage").value<Storage*>()->show();
+    TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     if (!show)
         return;
 
-    QList<TvShowEpisode*> updatedEpisodes;
+    QList<TvShowEpisode *> updatedEpisodes;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, show, updateType, infos, updatedEpisodes);
@@ -310,7 +315,7 @@ void TheTvDb::onLoadFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
+    QString mirror = m_xmlMirrors.at(qrand() % m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
@@ -329,24 +334,25 @@ void TheTvDb::onLoadFinished()
  */
 void TheTvDb::onActorsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShow *show = reply->property("storage").value<Storage*>()->show();
+    TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
-    QList<TvShowEpisode*> updatedEpisodes = reply->property("updatedEpisodes").value<Storage*>()->episodes();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
     if (!show)
         return;
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        if (show->infosToLoad().contains(TvShowScraperInfos::Actors) &&
-                (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes))
+        if (show->infosToLoad().contains(TvShowScraperInfos::Actors)
+            && (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes
+                   || updateType == UpdateShowAndNewEpisodes))
             parseAndAssignActors(msg, show);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
+    QString mirror = m_xmlMirrors.at(qrand() % m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
@@ -363,12 +369,12 @@ void TheTvDb::onActorsFinished()
  */
 void TheTvDb::onBannersFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShow *show = reply->property("storage").value<Storage*>()->show();
+    TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
-    QList<TvShowEpisode*> updatedEpisodes = reply->property("updatedEpisodes").value<Storage*>()->episodes();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
     if (!show)
         return;
 
@@ -402,7 +408,11 @@ void TheTvDb::onBannersFinished()
  * @param show Tv Show object
  * @param updateAllEpisodes Update all child episodes (regardless if they already have infos or not)
  */
-void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad, QList<TvShowEpisode *> &updatedEpisodes)
+void TheTvDb::parseAndAssignInfos(QString xml,
+    TvShow *show,
+    TvShowUpdateType updateType,
+    QList<int> infosToLoad,
+    QList<TvShowEpisode *> &updatedEpisodes)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -417,12 +427,16 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
         show->clear(infosToLoad);
         if (!domDoc.elementsByTagName("Series").isEmpty()) {
             QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
-            if (infosToLoad.contains(TvShowScraperInfos::Certification) && !elem.elementsByTagName("ContentRating").isEmpty())
-                show->setCertification(Helper::instance()->mapCertification(elem.elementsByTagName("ContentRating").at(0).toElement().text()));
+            if (infosToLoad.contains(TvShowScraperInfos::Certification)
+                && !elem.elementsByTagName("ContentRating").isEmpty())
+                show->setCertification(Helper::instance()->mapCertification(
+                    elem.elementsByTagName("ContentRating").at(0).toElement().text()));
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
-                show->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
+                show->setFirstAired(
+                    QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty())
-                show->setGenres(Helper::instance()->mapGenre(elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
+                show->setGenres(Helper::instance()->mapGenre(
+                    elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
             if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty())
                 show->setNetwork(elem.elementsByTagName("Network").at(0).toElement().text());
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
@@ -440,16 +454,16 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
         }
     }
 
-    if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes) {
-        for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+    if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes || updateType == UpdateShowAndAllEpisodes
+        || updateType == UpdateShowAndNewEpisodes) {
+        for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
 
             TvShowEpisode *episode = 0;
-            if (Settings::instance()->tvShowDvdOrder() &&
-                    !elem.elementsByTagName("DVD_season").isEmpty() &&
-                    !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
+            if (Settings::instance()->tvShowDvdOrder() && !elem.elementsByTagName("DVD_season").isEmpty()
+                && !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty()
+                && !elem.elementsByTagName("DVD_episodenumber").isEmpty()
+                && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int seasonNumber = -1;
                 int episodeNumber = -1;
@@ -460,7 +474,8 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
                 if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
                     episodeNumber = rx.cap(1).toInt();
                 episode = show->episode(seasonNumber, episodeNumber);
-            } else if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
+            } else if (!elem.elementsByTagName("SeasonNumber").isEmpty()
+                       && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                 int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
                 int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
                 episode = show->episode(seasonNumber, episodeNumber);
@@ -469,8 +484,9 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
             if (!episode || !episode->isValid())
                 continue;
 
-            if (updateType == UpdateAllEpisodes || updateType == UpdateShowAndAllEpisodes ||
-                    ((updateType == UpdateNewEpisodes || updateType == UpdateShowAndNewEpisodes) && !episode->infoLoaded())) {
+            if (updateType == UpdateAllEpisodes || updateType == UpdateShowAndAllEpisodes
+                || ((updateType == UpdateNewEpisodes || updateType == UpdateShowAndNewEpisodes)
+                       && !episode->infoLoaded())) {
                 episode->clear(infosToLoad);
                 parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
                 updatedEpisodes << episode;
@@ -499,7 +515,7 @@ void TheTvDb::fillDatabaseWithAllEpisodes(QString xml, TvShow *show)
     TvShowEpisode *episode = new TvShowEpisode();
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
         if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
             episode->clear();
@@ -524,7 +540,7 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("Actor").count() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("Actor").count(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Actor").at(i).toElement();
         Actor actor;
         if (!elem.elementsByTagName("Name").isEmpty())
@@ -532,8 +548,9 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
         if (!elem.elementsByTagName("Role").isEmpty())
             actor.role = elem.elementsByTagName("Role").at(0).toElement().text();
         if (!elem.elementsByTagName("Image").isEmpty()) {
-            QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
-            actor.thumb = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("Image").at(0).toElement().text());
+            QString mirror = m_bannerMirrors.at(qrand() % m_bannerMirrors.count());
+            actor.thumb =
+                QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("Image").at(0).toElement().text());
         }
         show->addActor(actor);
     }
@@ -548,7 +565,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("Banner").count() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("Banner").count(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Banner").at(i).toElement();
         if (elem.elementsByTagName("BannerType").isEmpty())
             continue;
@@ -556,7 +573,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
         if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes)
             continue;
 
-        QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
+        QString mirror = m_bannerMirrors.at(qrand() % m_bannerMirrors.count());
         QString bannerType = elem.elementsByTagName("BannerType").at(0).toElement().text();
         QString bannerType2 = elem.elementsByTagName("BannerType2").at(0).toElement().text();
         if (bannerType == "fanart" && infosToLoad.contains(TvShowScraperInfos::Fanart)) {
@@ -564,9 +581,13 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty())
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2")
+                                    .arg(mirror)
+                                    .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             if (!elem.elementsByTagName("ThumbnailPath").isEmpty())
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("ThumbnailPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2")
+                                 .arg(mirror)
+                                 .arg(elem.elementsByTagName("ThumbnailPath").at(0).toElement().text());
             if (!elem.elementsByTagName("BannerType2").isEmpty()) {
                 QRegExp rx("(\\d+)x(\\d+)");
                 if (rx.indexIn(elem.elementsByTagName("BannerType2").at(0).toElement().text(), 0) != -1) {
@@ -580,8 +601,12 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2")
+                                    .arg(mirror)
+                                    .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2")
+                                 .arg(mirror)
+                                 .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("BannerType2").isEmpty()) {
                 QRegExp rx("(\\d+)x(\\d+)");
@@ -591,37 +616,53 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
                 }
             }
             show->addPoster(p);
-        } else if (bannerType == "season" && bannerType2 == "season" && infosToLoad.contains(TvShowScraperInfos::SeasonPoster)) {
+        } else if (bannerType == "season" && bannerType2 == "season"
+                   && infosToLoad.contains(TvShowScraperInfos::SeasonPoster)) {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2")
+                                    .arg(mirror)
+                                    .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2")
+                                 .arg(mirror)
+                                 .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("Season").isEmpty()) {
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
                 show->addSeasonPoster(season, p);
             }
-        } else if (bannerType == "season" && bannerType2 == "seasonwide" && infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
+        } else if (bannerType == "season" && bannerType2 == "seasonwide"
+                   && infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2")
+                                    .arg(mirror)
+                                    .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2")
+                                 .arg(mirror)
+                                 .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             if (!elem.elementsByTagName("Season").isEmpty()) {
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
                 show->addSeasonBanner(season, p);
             }
-        } else if (bannerType == "series" && (infosToLoad.contains(TvShowScraperInfos::Banner) || infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
+        } else if (bannerType == "series"
+                   && (infosToLoad.contains(TvShowScraperInfos::Banner)
+                          || infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
-                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
-                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.originalUrl = QString("%1/banners/%2")
+                                    .arg(mirror)
+                                    .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2")
+                                 .arg(mirror)
+                                 .arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             }
             show->addBanner(p);
         }
@@ -638,11 +679,13 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
     if (!elem.elementsByTagName("IMDB_ID").isEmpty())
         episode->setImdbId(elem.elementsByTagName("IMDB_ID").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Director) && !elem.elementsByTagName("Director").isEmpty())
-        episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
+        episode->setDirectors(
+            elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("EpisodeName").isEmpty())
         episode->setName(elem.elementsByTagName("EpisodeName").at(0).toElement().text().trimmed());
     if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
-        episode->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
+        episode->setFirstAired(
+            QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
     if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
         episode->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
@@ -650,19 +693,25 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
     if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("RatingCount").isEmpty())
         episode->setVotes(elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty())
-        episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
-    if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&
-            !elem.elementsByTagName("filename").at(0).toElement().text().isEmpty()) {
-        QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
-        episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
+        episode->setWriters(
+            elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
+    if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty()
+        && !elem.elementsByTagName("filename").at(0).toElement().text().isEmpty()) {
+        QString mirror = m_bannerMirrors.at(qrand() % m_bannerMirrors.count());
+        episode->setThumbnail(QUrl(
+            QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
     }
-    if (!elem.elementsByTagName("airsafter_season").isEmpty() && !elem.elementsByTagName("airsafter_season").at(0).toElement().text().isEmpty() &&
-            !elem.elementsByTagName("airsbefore_season").isEmpty() && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
+    if (!elem.elementsByTagName("airsafter_season").isEmpty()
+        && !elem.elementsByTagName("airsafter_season").at(0).toElement().text().isEmpty()
+        && !elem.elementsByTagName("airsbefore_season").isEmpty()
+        && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
         episode->setDisplaySeason(elem.elementsByTagName("airsafter_season").at(0).toElement().text().toInt());
         episode->setDisplayEpisode(4096);
-    } else if (!elem.elementsByTagName("airsbefore_season").isEmpty() && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
+    } else if (!elem.elementsByTagName("airsbefore_season").isEmpty()
+               && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
         episode->setDisplaySeason(elem.elementsByTagName("airsbefore_season").at(0).toElement().text().toInt());
-        if (!elem.elementsByTagName("airsbefore_episode").isEmpty() && !elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().isEmpty())
+        if (!elem.elementsByTagName("airsbefore_episode").isEmpty()
+            && !elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().isEmpty())
             episode->setDisplayEpisode(elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().toInt());
     }
 
@@ -679,7 +728,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
 {
     qDebug() << "Entered, id=" << id << "episode=" << episode->name();
     episode->clear(infosToLoad);
-    QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
+    QString mirror = m_xmlMirrors.at(qrand() % m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
 
     if (m_cache.contains(url)) {
@@ -705,10 +754,10 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
  */
 void TheTvDb::onEpisodeLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
+    TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
     if (!episode)
         return;
 
@@ -733,11 +782,16 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<int>
         int airedSeason = episode->season();
         int airedEpisode = episode->episode();
         getAiredSeasonAndEpisode(msg, episode, airedSeason, airedEpisode);
-        qDebug() << "Now loading IMDB entry for" << episode->tvShow()->imdbId() << "season" << airedSeason << "episode" << airedEpisode;
-        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(airedSeason));
+        qDebug() << "Now loading IMDB entry for" << episode->tvShow()->imdbId() << "season" << airedSeason << "episode"
+                 << airedEpisode;
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2")
+                            .arg(episode->tvShow()->imdbId())
+                            .arg(airedSeason));
 
-        if (!episode->imdbId().isEmpty() || (m_cache.contains(url) && m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180))) {
-            QString imdbId = !episode->imdbId().isEmpty() ? episode->imdbId() : getImdbIdForEpisode(m_cache.value(url).data, airedEpisode);
+        if (!episode->imdbId().isEmpty()
+            || (m_cache.contains(url) && m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180))) {
+            QString imdbId = !episode->imdbId().isEmpty() ? episode->imdbId()
+                                                          : getImdbIdForEpisode(m_cache.value(url).data, airedEpisode);
             if (!imdbId.isEmpty()) {
                 if (episode->imdbId().isEmpty())
                     episode->setImdbId(imdbId);
@@ -772,7 +826,7 @@ void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<int> in
     domDoc.setContent(msg);
     QDomElement dvdElem;
     QDomElement airedElem;
-    for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
         if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
             int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
@@ -780,10 +834,10 @@ void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<int> in
             if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
                 airedElem = elem;
         }
-        if (!elem.elementsByTagName("DVD_season").isEmpty() &&
-                !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
-                !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
-                !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
+        if (!elem.elementsByTagName("DVD_season").isEmpty()
+            && !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty()
+            && !elem.elementsByTagName("DVD_episodenumber").isEmpty()
+            && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
             QRegExp rx("^(\\d*)\\D*");
             int seasonNumber = -1;
             int episodeNumber = -1;
@@ -816,12 +870,12 @@ void TheTvDb::getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int 
     if (Settings::instance()->tvShowDvdOrder()) {
         QDomDocument domDoc;
         domDoc.setContent(xml);
-        for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
-            if (!elem.elementsByTagName("DVD_season").isEmpty() &&
-                    !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
+            if (!elem.elementsByTagName("DVD_season").isEmpty()
+                && !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty()
+                && !elem.elementsByTagName("DVD_episodenumber").isEmpty()
+                && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int dvdSeasonNumber = -1;
                 int dvdEpisodeNumber = -1;
@@ -832,7 +886,8 @@ void TheTvDb::getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int 
                 if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
                     dvdEpisodeNumber = rx.cap(1).toInt();
                 if (episode->season() == dvdSeasonNumber && episode->episode() == dvdEpisodeNumber) {
-                    if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
+                    if (!elem.elementsByTagName("SeasonNumber").isEmpty()
+                        && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                         seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
                         episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
                         return;
@@ -865,12 +920,12 @@ bool TheTvDb::shouldLoadFromImdb(int info, QList<int> infosToLoad)
 
 void TheTvDb::onImdbFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShow *show = reply->property("storage").value<Storage*>()->show();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    TvShow *show = reply->property("storage").value<Storage *>()->show();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<TvShowEpisode*> updatedEpisodes = reply->property("updatedEpisodes").value<Storage*>()->episodes();
+    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
 
     if (!show)
         return;
@@ -891,14 +946,15 @@ void TheTvDb::onImdbFinished()
     loadEpisodes(show, updatedEpisodes, infos);
 }
 
-void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<int> infosToLoad)
+void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<int> infosToLoad)
 {
     if (episodes.isEmpty()) {
         show->scraperLoadDone();
         return;
     }
 
-    emit sigLoadProgress(show, show->property("episodesToLoad").toInt() - episodes.count(), show->property("episodesToLoad").toInt());
+    emit sigLoadProgress(
+        show, show->property("episodesToLoad").toInt() - episodes.count(), show->property("episodesToLoad").toInt());
     TvShowEpisode *episode = episodes.takeFirst();
 
     if (!episode->imdbId().isEmpty()) {
@@ -916,7 +972,9 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<i
     }
 
 
-    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(episode->property("airedSeason").toInt()));
+    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2")
+                        .arg(episode->tvShow()->imdbId())
+                        .arg(episode->property("airedSeason").toInt()));
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
             QString imdbId = getImdbIdForEpisode(m_cache.value(url).data, episode->property("airedEpisode").toInt());
@@ -950,12 +1008,12 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<i
 
 void TheTvDb::onEpisodesImdbSeasonFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
-    QList<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
-    TvShow *show = reply->property("show").value<Storage*>()->show();
+    TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
+    TvShow *show = reply->property("show").value<Storage *>()->show();
 
     if (!episode)
         return;
@@ -989,12 +1047,12 @@ void TheTvDb::onEpisodesImdbSeasonFinished()
 
 void TheTvDb::onEpisodesImdbEpisodeFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
-    QList<TvShowEpisode*> episodes = reply->property("episodes").value<Storage*>()->episodes();
-    TvShow *show = reply->property("show").value<Storage*>()->show();
+    TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
+    TvShow *show = reply->property("show").value<Storage *>()->show();
 
     if (!episode)
         return;
@@ -1032,7 +1090,8 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShow *show, TvShowUpdateTyp
         if (shouldLoadFromImdb(TvShowScraperInfos::Runtime, infosToLoad) && m_dummyMovie->runtime() != 0)
             show->setRuntime(m_dummyMovie->runtime());
 
-        if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad) && !m_dummyMovie->certification().isEmpty())
+        if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad)
+            && !m_dummyMovie->certification().isEmpty())
             show->setCertification(m_dummyMovie->certification());
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Overview, infosToLoad) && !m_dummyMovie->overview().isEmpty())
@@ -1062,10 +1121,10 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShow *show, TvShowUpdateTyp
 
 void TheTvDb::onImdbSeasonFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     int episodeNumber = reply->property("episodeNumber").toInt();
 
     if (!episode)
@@ -1100,10 +1159,10 @@ void TheTvDb::onImdbSeasonFinished()
 
 void TheTvDb::onImdbEpisodeFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
 
     if (!episode)
         return;

@@ -2,11 +2,11 @@
 
 #include <QMessageBox>
 #ifdef Q_OS_MAC
-#   include <ApplicationServices/ApplicationServices.h>
-#   include "notifications/MacNotificationHandler.h"
+#include "notifications/MacNotificationHandler.h"
+#include <ApplicationServices/ApplicationServices.h>
 #endif
 
-Notificator::Notificator(QSystemTrayIcon *trayIcon, QWidget *parent):
+Notificator::Notificator(QSystemTrayIcon *trayIcon, QWidget *parent) :
     QObject(parent),
     m_mode(None),
     m_parent(parent),
@@ -24,21 +24,18 @@ void Notificator::notifySystray(Class cls, const QString &title, const QString &
 {
     Q_UNUSED(icon);
     QSystemTrayIcon::MessageIcon sicon = QSystemTrayIcon::NoIcon;
-    switch(cls) {
-    case Information:
-        sicon = QSystemTrayIcon::Information;
-        break;
-    case Warning:
-        sicon = QSystemTrayIcon::Warning;
-        break;
-    case Critical:
-        sicon = QSystemTrayIcon::Critical;
-        break;
+    switch (cls) {
+    case Information: sicon = QSystemTrayIcon::Information; break;
+    case Warning: sicon = QSystemTrayIcon::Warning; break;
+    case Critical: sicon = QSystemTrayIcon::Critical; break;
     }
     m_trayIcon->showMessage(title, text, sicon, timeout);
 }
 
-void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon)
+void Notificator::notifyMacUserNotificationCenter(Class cls,
+    const QString &title,
+    const QString &text,
+    const QIcon &icon)
 {
     Q_UNUSED(cls);
     Q_UNUSED(icon);
@@ -52,15 +49,11 @@ void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &titl
 
 void Notificator::notify(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout)
 {
-    switch(m_mode) {
-    case QSystemTray:
-        notifySystray(cls, title, text, icon, timeout);
-        break;
-    #ifdef Q_OS_MAC
-    case UserNotificationCenter:
-        notifyMacUserNotificationCenter(cls, title, text, icon);
-        break;
-    #endif
+    switch (m_mode) {
+    case QSystemTray: notifySystray(cls, title, text, icon, timeout); break;
+#ifdef Q_OS_MAC
+    case UserNotificationCenter: notifyMacUserNotificationCenter(cls, title, text, icon); break;
+#endif
     default:
         if (cls == Critical)
             QMessageBox::critical(m_parent, title, text, QMessageBox::Ok, QMessageBox::Ok);

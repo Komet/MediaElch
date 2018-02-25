@@ -25,9 +25,7 @@
  * @brief ConcertWidget::ConcertWidget
  * @param parent
  */
-ConcertWidget::ConcertWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ConcertWidget)
+ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConcertWidget)
 {
     ui->setupUi(this);
     ui->concertName->clear();
@@ -36,16 +34,16 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->concertName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->concertName->setFont(nameFont);
 #endif
 
     QFont font = ui->labelClearArt->font();
-    #ifdef Q_OS_WIN32
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
 
     ui->labelClearArt->setFont(font);
     ui->labelDiscArt->setFont(font);
@@ -62,7 +60,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->logo->setImageType(ImageType::ConcertLogo);
     ui->cdArt->setImageType(ImageType::ConcertCdArt);
     ui->clearArt->setImageType(ImageType::ConcertClearArt);
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &ConcertWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &ConcertWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);
@@ -154,7 +152,7 @@ ConcertWidget::~ConcertWidget()
  */
 void ConcertWidget::resizeEvent(QResizeEvent *event)
 {
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -281,8 +279,10 @@ void ConcertWidget::setConcert(Concert *concert)
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         concert->controller()->loadStreamDetailsFromFile();
-        if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0) {
-            concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
+        if (concert->streamDetailsLoaded()
+            && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0) {
+            concert->setRuntime(
+                qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
         }
     }
     updateConcertInfo();
@@ -317,8 +317,9 @@ void ConcertWidget::onStartScraperSearch()
     ConcertSearch::instance()->exec(m_concert->name());
     if (ConcertSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(), Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
-                            ConcertSearch::instance()->infosToLoad());
+        m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(),
+            Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
+            ConcertSearch::instance()->infosToLoad());
     } else {
         emit setActionSearchEnabled(true, WidgetConcerts);
         emit setActionSaveEnabled(true, WidgetConcerts);
@@ -361,7 +362,7 @@ void ConcertWidget::onLoadingImages(Concert *concert, QList<int> imageTypes)
         return;
 
     foreach (const int &imageType, imageTypes) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
                 cImage->setLoading(true);
         }
@@ -382,7 +383,7 @@ void ConcertWidget::onSetImage(Concert *concert, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -395,7 +396,7 @@ void ConcertWidget::onDownloadProgress(Concert *concert, int current, int maximu
     Q_UNUSED(concert);
     Q_UNUSED(current);
     Q_UNUSED(maximum);
-    //emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
+    // emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
 }
 
 
@@ -463,7 +464,8 @@ void ConcertWidget::updateConcertInfo()
     ui->videoScantype->setEnabled(m_concert->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_concert->streamDetailsLoaded());
 
-    updateImages(QList<int>() << ImageType::ConcertPoster << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertCdArt << ImageType::ConcertClearArt);
+    updateImages(QList<int>() << ImageType::ConcertPoster << ImageType::ConcertBackdrop << ImageType::ConcertLogo
+                              << ImageType::ConcertCdArt << ImageType::ConcertClearArt);
 
     ui->fanarts->setImages(m_concert->extraFanarts(Manager::instance()->mediaCenterInterfaceConcert()));
 
@@ -476,11 +478,16 @@ void ConcertWidget::updateConcertInfo()
 
     emit setActionSaveEnabled(true, WidgetConcerts);
 
-    ui->rating->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertRating));
-    ui->tagline->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTagline));
-    ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertCertification));
-    ui->trailer->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTrailer));
-    ui->badgeWatched->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
+    ui->rating->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertRating));
+    ui->tagline->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTagline));
+    ui->certification->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertCertification));
+    ui->trailer->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTrailer));
+    ui->badgeWatched->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
 
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
@@ -488,7 +495,7 @@ void ConcertWidget::updateConcertInfo()
 void ConcertWidget::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -530,7 +537,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
-    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+    for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
         if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
             ui->stereoMode->setCurrentIndex(i);
     }
@@ -538,7 +545,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile)
-        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt()/60));
+        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt() / 60));
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();
@@ -547,9 +554,9 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     int audioTracks = streamDetails->audioDetails().count();
-    for (int i=0 ; i<audioTracks ; ++i) {
-        QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-        ui->streamDetails->addWidget(label, 8+i, 0);
+    for (int i = 0; i < audioTracks; ++i) {
+        QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+        ui->streamDetails->addWidget(label, 8 + i, 0);
         QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
         QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
         QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
@@ -565,9 +572,9 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 8+i, 1);
+        ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
         connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -578,21 +585,21 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         label->setFont(font);
-        ui->streamDetails->addWidget(label, 8+audioTracks, 0);
+        ui->streamDetails->addWidget(label, 8 + audioTracks, 0);
         m_streamDetailsWidgets << label;
 
-        for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
-            QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-            ui->streamDetails->addWidget(label, 9+audioTracks+i, 0);
+        for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+            QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+            ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 9+audioTracks+i, 1);
+            ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
-            m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
+            m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
             connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         }
     }
@@ -627,7 +634,7 @@ void ConcertWidget::onReloadStreamDetails()
  */
 void ConcertWidget::onSaveInformation()
 {
-    QList<Concert*> concerts = ConcertFilesWidget::instance()->selectedConcerts();
+    QList<Concert *> concerts = ConcertFilesWidget::instance()->selectedConcerts();
     if (concerts.count() == 0)
         concerts.append(m_concert);
 
@@ -916,12 +923,12 @@ void ConcertWidget::onStreamDetailsEdited()
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
-    for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i=0, n=m_streamDetailsSubtitles.count() ; i<n ; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
 
     m_concert->setChanged(true);
@@ -979,7 +986,7 @@ void ConcertWidget::onChooseImage()
     if (m_concert == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1006,7 +1013,7 @@ void ConcertWidget::onDeleteImage()
     if (m_concert == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

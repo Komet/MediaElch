@@ -22,16 +22,16 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->title->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->title->setFont(nameFont);
 #endif
 
     QFont font = ui->labelPoster->font();
-    #ifdef Q_OS_WIN32
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
 
     ui->labelFanart->setFont(font);
     ui->labelBanner->setFont(font);
@@ -68,14 +68,17 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->backdrop->setImageType(ImageType::TvShowSeasonBackdrop);
     ui->banner->setImageType(ImageType::TvShowSeasonBanner);
     ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &TvShowWidgetSeason::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &TvShowWidgetSeason::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
     }
 
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onDownloadFinished(DownloadManagerElement)));
 
     ui->missingLabel->setVisible(false);
 
@@ -90,7 +93,7 @@ TvShowWidgetSeason::~TvShowWidgetSeason()
 
 void TvShowWidgetSeason::resizeEvent(QResizeEvent *event)
 {
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -108,7 +111,8 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     ui->title->setText(QString(m_show->name()) + " - " + tr("Season %1").arg(m_season));
 
-    updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
+    updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop
+                              << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
 
     ui->missingLabel->setVisible(m_show->isDummySeason(m_season));
     if (m_show->isDummySeason(m_season)) {
@@ -126,7 +130,7 @@ void TvShowWidgetSeason::updateImages(QList<int> images)
     foreach (const int &imageType, images) {
         ClosableImage *image = 0;
 
-        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
                 image = cImage;
         }
@@ -136,9 +140,14 @@ void TvShowWidgetSeason::updateImages(QList<int> images)
 
         if (!m_show->seasonImage(m_season, imageType).isNull())
             image->setImage(m_show->seasonImage(m_season, imageType));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season).isEmpty() &&
-                (!m_show->imagesToRemove().contains(imageType) || !m_show->imagesToRemove().value(imageType).contains(m_season)))
-            image->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season));
+        else if (!Manager::instance()
+                      ->mediaCenterInterfaceTvShow()
+                      ->imageFileName(m_show, imageType, m_season)
+                      .isEmpty()
+                 && (!m_show->imagesToRemove().contains(imageType)
+                        || !m_show->imagesToRemove().value(imageType).contains(m_season)))
+            image->setImage(
+                Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season));
     }
 }
 
@@ -180,13 +189,14 @@ void TvShowWidgetSeason::onRevertChanges()
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop)
                 Helper::instance()->resizeBackdrop(elem.data);
             if (m_show == elem.show)
                 image->setImage(elem.data);
-            ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
+            ImageCache::instance()->invalidateImages(
+                Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
             elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
             break;
         }
@@ -201,7 +211,7 @@ void TvShowWidgetSeason::onChooseImage()
     if (m_show == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -240,7 +250,7 @@ void TvShowWidgetSeason::onDeleteImage()
     if (m_show == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -252,7 +262,7 @@ void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_show)
         return;
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

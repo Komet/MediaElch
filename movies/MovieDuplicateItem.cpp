@@ -1,12 +1,10 @@
 #include "MovieDuplicateItem.h"
 #include "ui_MovieDuplicateItem.h"
 
-#include <QDebug>
 #include "../globals/Manager.h"
+#include <QDebug>
 
-MovieDuplicateItem::MovieDuplicateItem(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MovieDuplicateItem)
+MovieDuplicateItem::MovieDuplicateItem(QWidget *parent) : QWidget(parent), ui(new Ui::MovieDuplicateItem)
 {
     ui->setupUi(this);
     ui->iconImdbId->setFont(Manager::instance()->iconFont()->font(16));

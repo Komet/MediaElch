@@ -33,8 +33,8 @@ public slots:
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
     void sigSetActionSaveEnabled(bool, MainWidgets);
-    void sigDownloadsStarted(QString,int);
-    void sigDownloadsProgress(int,int,int);
+    void sigDownloadsStarted(QString, int);
+    void sigDownloadsProgress(int, int, int);
     void sigDownloadsFinished(int);
 
 private:

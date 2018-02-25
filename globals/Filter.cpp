@@ -25,7 +25,8 @@ Filter::Filter(QString text, QString shortText, QStringList filterText, int info
  */
 bool Filter::accepts(QString text) const
 {
-    if (m_info == MovieFilters::Title || (m_info == MovieFilters::ImdbId && m_hasInfo) || m_info == MovieFilters::Path || m_info == TvShowFilters::Title || m_info == ConcertFilters::Title)
+    if (m_info == MovieFilters::Title || (m_info == MovieFilters::ImdbId && m_hasInfo) || m_info == MovieFilters::Path
+        || m_info == TvShowFilters::Title || m_info == ConcertFilters::Title)
         return true;
     foreach (const QString &filterText, m_filterText) {
         if (filterText.startsWith(text, Qt::CaseInsensitive))
@@ -92,23 +93,30 @@ int Filter::info() const
 bool Filter::accepts(Movie *movie)
 {
     if (m_info == MovieFilters::Poster)
-        return (m_hasInfo && movie->hasImage(ImageType::MoviePoster)) || (!m_hasInfo && !movie->hasImage(ImageType::MoviePoster));
+        return (m_hasInfo && movie->hasImage(ImageType::MoviePoster))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MoviePoster));
     if (m_info == MovieFilters::Backdrop)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieBackdrop)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieBackdrop));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieBackdrop))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieBackdrop));
     if (m_info == MovieFilters::ExtraFanarts)
         return (m_hasInfo && movie->hasExtraFanarts()) || (!m_hasInfo && !movie->hasExtraFanarts());
     if (m_info == MovieFilters::Actors)
         return (m_hasInfo && !movie->actors().isEmpty()) || (!m_hasInfo && movie->actors().isEmpty());
     if (m_info == MovieFilters::Logo)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieLogo)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieLogo));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieLogo))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieLogo));
     if (m_info == MovieFilters::ClearArt)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieClearArt)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieClearArt));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieClearArt))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieClearArt));
     if (m_info == MovieFilters::Banner)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieBanner)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieBanner));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieBanner))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieBanner));
     if (m_info == MovieFilters::Thumb)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieThumb)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieThumb));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieThumb))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieThumb));
     if (m_info == MovieFilters::CdArt)
-        return (m_hasInfo && movie->hasImage(ImageType::MovieCdArt)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieCdArt));
+        return (m_hasInfo && movie->hasImage(ImageType::MovieCdArt))
+               || (!m_hasInfo && !movie->hasImage(ImageType::MovieCdArt));
     if (m_info == MovieFilters::Trailer)
         return (m_hasInfo && !movie->trailer().isEmpty()) || (!m_hasInfo && movie->trailer().isEmpty());
     if (m_info == MovieFilters::LocalTrailer)
@@ -142,7 +150,8 @@ bool Filter::accepts(Movie *movie)
     if (m_info == MovieFilters::HasExternalSubtitle)
         return (m_hasInfo && !movie->subtitles().isEmpty()) || (!m_hasInfo && movie->subtitles().isEmpty());
     if (m_info == MovieFilters::HasSubtitle)
-        return (m_hasInfo && (!movie->subtitles().isEmpty() || !movie->streamDetails()->subtitleDetails().isEmpty())) || (!m_hasInfo && movie->subtitles().isEmpty() && movie->streamDetails()->subtitleDetails().isEmpty());
+        return (m_hasInfo && (!movie->subtitles().isEmpty() || !movie->streamDetails()->subtitleDetails().isEmpty()))
+               || (!m_hasInfo && movie->subtitles().isEmpty() && movie->streamDetails()->subtitleDetails().isEmpty());
 
     if (m_info == MovieFilters::Quality) {
         if (m_shortText == "1080p")
@@ -150,7 +159,8 @@ bool Filter::accepts(Movie *movie)
         else if (m_shortText == "720p")
             return movie->streamDetails()->videoDetails().value("width").toInt() == 1280;
         else if (m_shortText == "SD")
-            return movie->streamDetails()->videoDetails().value("width").toInt() > 0 && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
+            return movie->streamDetails()->videoDetails().value("width").toInt() > 0
+                   && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
         else if (m_shortText == "BluRay")
             return movie->discType() == DiscBluRay;
         else if (m_shortText == "DVD")

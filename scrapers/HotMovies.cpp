@@ -12,17 +12,10 @@
 HotMovies::HotMovies(QObject *parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Rating
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Director
-                      << MovieScraperInfos::Set;
+    m_scraperSupports << MovieScraperInfos::Title << MovieScraperInfos::Rating << MovieScraperInfos::Released
+                      << MovieScraperInfos::Runtime << MovieScraperInfos::Overview << MovieScraperInfos::Poster
+                      << MovieScraperInfos::Actors << MovieScraperInfos::Genres << MovieScraperInfos::Studios
+                      << MovieScraperInfos::Director << MovieScraperInfos::Set;
 }
 
 QString HotMovies::name()
@@ -58,7 +51,8 @@ QNetworkAccessManager *HotMovies::qnam()
 void HotMovies::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30").arg(encodedSearch));
+    QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30")
+                 .arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -66,7 +60,7 @@ void HotMovies::search(QString searchStr)
 
 void HotMovies::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -84,7 +78,8 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     QList<ScraperSearchResult> results;
     int offset = 0;
 
-    QRegExp rx("<tr>.*<td colspan=\"2\" class=\"td_title\">.*<h3 class=\"title\">.*<a href=\"(.*)\" title=\".*\">(.*)</a>");
+    QRegExp rx(
+        "<tr>.*<td colspan=\"2\" class=\"td_title\">.*<h3 class=\"title\">.*<a href=\"(.*)\" title=\".*\">(.*)</a>");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
@@ -97,7 +92,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
+void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
 
@@ -111,12 +106,12 @@ void HotMovies::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QLi
 
 void HotMovies::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->infosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -148,7 +143,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         QStringList runtime = rx.cap(1).split(":");
         if (runtime.count() == 3)
-            movie->setRuntime(runtime.at(0).toInt()*60 + runtime.at(1).toInt());
+            movie->setRuntime(runtime.at(0).toInt() * 60 + runtime.at(1).toInt());
         else if (runtime.count() == 2)
             movie->setRuntime(runtime.at(0).toInt());
     }
@@ -169,11 +164,18 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
-//        rx.setPattern("key=\"([^\"]*)\"/> <img src=\"https://img[0-9]+.vod.com/image[0-9]?/vodimages/images/spacer.gif\" class=\"lg_star_image\" itemprop=\"image\" alt\"\" /> </span><a href=\"[^\"]*\".*[\\s\\n]*title=\"[^\"]*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)<\/span></a>");
-//                      "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope itemtype=\"https://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
+        //        rx.setPattern("key=\"([^\"]*)\"/> <img
+        //        src=\"https://img[0-9]+.vod.com/image[0-9]?/vodimages/images/spacer.gif\" class=\"lg_star_image\"
+        //        itemprop=\"image\" alt\"\" /> </span><a href=\"[^\"]*\".*[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"
+        //        itemprop=\"url\"><span itemprop=\"name\">(.*)<\/span></a>");
+        //                      "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope
+        //                      itemtype=\"https://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
 
-//        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
-        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><span class=\"star_image_hover\">.*[\\s\\n]*title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
+        //        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\"
+        //        itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
+        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><span "
+                      "class=\"star_image_hover\">.*[\\s\\n]*title=\".*\" rel=\"tag\" itemprop=\"url\"><span "
+                      "itemprop=\"name\">(.*)</span></a></div>");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
@@ -194,11 +196,13 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         }
     }
 
-    rx.setPattern("<strong>Studio:</strong> <a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\"><span itemprop=\"name\">(.*)</span></a>");
+    rx.setPattern("<strong>Studio:</strong> <a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\"><span "
+                  "itemprop=\"name\">(.*)</span></a>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(rx.cap(1));
 
-    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"https://schema.org/Person\"><a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
+    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"https://schema.org/Person\"><a itemprop=\"url\" "
+                  "href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
         movie->setDirector(rx.cap(1));
 

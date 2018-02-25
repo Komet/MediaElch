@@ -34,15 +34,25 @@ private:
     Ui::ExportDialog *ui;
     bool m_canceled;
 
-    void parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QList<Movie*> movies);
-    void parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QList<Concert*> concerts);
-    void parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow*> shows);
+    void parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QList<Movie *> movies);
+    void parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QList<Concert *> concerts);
+    void parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow *> shows);
     void saveImage(QSize size, QString imageFile, QString destinationFile, const char *format, int quality);
-    void replaceImages(QString &m, const QDir &dir, const bool &subDir, Movie *movie = 0, Concert *concert = 0, TvShow *tvShow = 0, TvShowEpisode *episode = nullptr);
+    void replaceImages(QString &m,
+        const QDir &dir,
+        const bool &subDir,
+        Movie *movie = 0,
+        Concert *concert = 0,
+        TvShow *tvShow = 0,
+        TvShowEpisode *episode = nullptr);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Movie *movie);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Concert *concert);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShow *tvShow);
-    bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShowEpisode *episode);
+    bool saveImageForType(const QString &type,
+        const QSize &size,
+        const QDir &dir,
+        QString &destFile,
+        TvShowEpisode *episode);
     void replaceVars(QString &m, Movie *movie, QDir dir, bool subDir = false);
     void replaceVars(QString &m, Concert *concert, QDir dir, bool subDir = false);
     void replaceVars(QString &m, TvShow *show, QDir dir, bool subDir = false);

@@ -37,24 +37,24 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->episodeName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->episodeName->setFont(nameFont);
 #endif
 
     QFont font = ui->labelThumbnail->font();
-    #ifdef Q_OS_WIN32
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
     ui->labelThumbnail->setFont(font);
 
     font = ui->actorResolution->font();
-    #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
-    #else
-    font.setPointSize(font.pointSize()-2);
-    #endif
+#ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
     ui->actorResolution->setFont(font);
 
     ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
@@ -69,7 +69,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->buttonRemoveDirector, SIGNAL(clicked()), this, SLOT(onRemoveDirector()));
     connect(ui->buttonAddWriter, SIGNAL(clicked()), this, SLOT(onAddWriter()));
     connect(ui->buttonRemoveWriter, SIGNAL(clicked()), this, SLOT(onRemoveWriter()));
-    connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
+    connect(m_posterDownloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
@@ -107,7 +110,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onActorEdited(QTableWidgetItem *)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -148,7 +151,7 @@ TvShowWidgetEpisode::~TvShowWidgetEpisode()
  */
 void TvShowWidgetEpisode::resizeEvent(QResizeEvent *event)
 {
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -394,8 +397,12 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     if (!m_episode->thumbnailImage().isNull())
         ui->thumbnail->setImage(m_episode->thumbnailImage());
-    else if (!Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    else if (!Manager::instance()
+                  ->mediaCenterInterface()
+                  ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
+                  .isEmpty())
+        ui->thumbnail->setImage(
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
@@ -411,9 +418,12 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->overview->blockSignals(false);
     ui->epBookmark->blockSignals(false);
 
-    ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
-    ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
-    ui->studio->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
+    ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(
+        MediaCenterFeatures::EditTvShowEpisodeCertification));
+    ui->showTitle->setEnabled(
+        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
+    ui->studio->setEnabled(
+        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
     ui->buttonRevert->setVisible(m_episode->hasChanged());
 }
 
@@ -442,7 +452,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
-    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+    for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
         if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
             ui->stereoMode->setCurrentIndex(i);
     }
@@ -457,9 +467,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     int audioTracks = streamDetails->audioDetails().count();
-    for (int i=0 ; i<audioTracks ; ++i) {
-        QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-        ui->streamDetails->addWidget(label, 8+i, 0);
+    for (int i = 0; i < audioTracks; ++i) {
+        QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+        ui->streamDetails->addWidget(label, 8 + i, 0);
         QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
         QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
         QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
@@ -475,9 +485,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 8+i, 1);
+        ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
         connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -488,21 +498,21 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         label->setFont(font);
-        ui->streamDetails->addWidget(label, 8+audioTracks, 0);
+        ui->streamDetails->addWidget(label, 8 + audioTracks, 0);
         m_streamDetailsWidgets << label;
 
-        for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
-            QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-            ui->streamDetails->addWidget(label, 9+audioTracks+i, 0);
+        for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+            QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+            ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 9+audioTracks+i, 1);
+            ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
-            m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
+            m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
             connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         }
     }
@@ -586,7 +596,9 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
         connect(m_episode, SIGNAL(sigLoaded()), this, SLOT(onLoadDone()), Qt::UniqueConnection);
-        m_episode->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->infosToLoad());
+        m_episode->loadData(TvShowSearch::instance()->scraperId(),
+            Manager::instance()->tvScrapers().at(0),
+            TvShowSearch::instance()->infosToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
@@ -688,7 +700,8 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         qDebug() << "Got a backdrop";
         if (m_episode == elem.episode)
             ui->thumbnail->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
+        ImageCache::instance()->invalidateImages(
+            Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -727,7 +740,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
     if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected())
         return;
 
-    QString *director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    QString *director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeDirector(director);
     ui->directors->blockSignals(true);
     ui->directors->removeRow(row);
@@ -741,7 +754,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
  */
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
 {
-    QString *director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    QString *director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);
@@ -776,7 +789,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
     if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected())
         return;
 
-    QString *writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    QString *writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeWriter(writer);
     ui->writers->blockSignals(true);
     ui->writers->removeRow(row);
@@ -790,7 +803,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
  */
 void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
 {
-    QString *writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    QString *writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
@@ -927,8 +940,13 @@ void TvShowWidgetEpisode::onOverviewChange()
 void TvShowWidgetEpisode::onDeleteThumbnail()
 {
     m_episode->removeImage(ImageType::TvShowEpisodeThumb);
-    if (!m_episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    if (!m_episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)
+        && !Manager::instance()
+                ->mediaCenterInterface()
+                ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
+                .isEmpty())
+        ui->thumbnail->setImage(
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -946,12 +964,12 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
-    for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i=0, n=m_streamDetailsSubtitles.count() ; i<n ; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
 
     m_episode->setChanged(true);
@@ -960,7 +978,7 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
 
 void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -995,7 +1013,7 @@ void TvShowWidgetEpisode::onRemoveActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_episode->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1005,14 +1023,14 @@ void TvShowWidgetEpisode::onRemoveActor()
 
 void TvShowWidgetEpisode::onActorChanged()
 {
-    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
-        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
+        || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         ui->actor->setPixmap(QPixmap(":/img/man.png"));
         ui->actorResolution->setText("");
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1029,19 +1047,20 @@ void TvShowWidgetEpisode::onActorChanged()
 
 void TvShowWidgetEpisode::onChangeActorImage()
 {
-    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
-        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
+        || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         return;
     }
 
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    QString fileName =
+        QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
     if (!fileName.isNull()) {
         QImage img(fileName);
         if (!img.isNull()) {
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();
@@ -1081,6 +1100,7 @@ void TvShowWidgetEpisode::onCaptureImage()
     img.save(&buffer, "JPG", 85);
 
     ui->thumbnail->setImage(ba);
-    ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    ImageCache::instance()->invalidateImages(
+        Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
     m_episode->setThumbnailImage(ba);
 }

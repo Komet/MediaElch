@@ -34,7 +34,7 @@ public:
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
     void sigImagesLoaded(QString, QString);
-    void sigLoadProgress(TvShow*, int, int);
+    void sigLoadProgress(TvShow *, int, int);
 
 private slots:
     void onMirrorsReady();
@@ -50,7 +50,8 @@ private slots:
     void onEpisodesImdbEpisodeFinished();
 
 private:
-    struct CacheElement {
+    struct CacheElement
+    {
         QDateTime date;
         QString data;
     };
@@ -71,7 +72,11 @@ private:
     QNetworkAccessManager *qnam();
     void setMirrors();
     QList<ScraperSearchResult> parseSearch(QString xml);
-    void parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad, QList<TvShowEpisode*> &updatedEpisodes);
+    void parseAndAssignInfos(QString xml,
+        TvShow *show,
+        TvShowUpdateType updateType,
+        QList<int> infosToLoad,
+        QList<TvShowEpisode *> &updatedEpisodes);
     void parseAndAssignActors(QString xml, TvShow *show);
     void parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<int> infosToLoad);
@@ -83,7 +88,7 @@ private:
     void getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int &seasonNumber, int &episodeNumber);
     QString getImdbIdForEpisode(QString html, int episodeNumber);
     bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<int> infos);
-    void loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<int> infosToLoad);
+    void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<int> infosToLoad);
 };
 
 #endif // THETVDB_H

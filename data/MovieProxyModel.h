@@ -13,7 +13,7 @@ class MovieProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 public:
     explicit MovieProxyModel(QObject *parent = nullptr);
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
     void setSortBy(SortBy sortBy);
 
     bool filterDuplicates() const;
@@ -24,7 +24,7 @@ protected:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
 private:
-    QList<Filter*> m_filters;
+    QList<Filter *> m_filters;
     QString m_filterText;
     SortBy m_sortBy;
     bool m_filterDuplicates;

@@ -14,8 +14,7 @@
  * @param files List of files for this concert
  * @param parent
  */
-Concert::Concert(QStringList files, QObject *parent) :
-    QObject(parent)
+Concert::Concert(QStringList files, QObject *parent) : QObject(parent)
 {
     moveToThread(QApplication::instance()->thread());
     m_controller = new ConcertController(this);
@@ -61,19 +60,19 @@ void Concert::setFiles(QStringList files)
 void Concert::clear()
 {
     QList<int> infos;
-    infos << ConcertScraperInfos::Title          //
-          << ConcertScraperInfos::Tagline        //
-          << ConcertScraperInfos::Rating         //
-          << ConcertScraperInfos::Released       //
-          << ConcertScraperInfos::Runtime        //
-          << ConcertScraperInfos::Certification  //
-          << ConcertScraperInfos::Trailer        //
-          << ConcertScraperInfos::Overview       //
-          << ConcertScraperInfos::Poster         //
-          << ConcertScraperInfos::Backdrop       //
-          << ConcertScraperInfos::Genres         //
-          << ConcertScraperInfos::Tags           //
-          << ConcertScraperInfos::ExtraArts      //
+    infos << ConcertScraperInfos::Title         //
+          << ConcertScraperInfos::Tagline       //
+          << ConcertScraperInfos::Rating        //
+          << ConcertScraperInfos::Released      //
+          << ConcertScraperInfos::Runtime       //
+          << ConcertScraperInfos::Certification //
+          << ConcertScraperInfos::Trailer       //
+          << ConcertScraperInfos::Overview      //
+          << ConcertScraperInfos::Poster        //
+          << ConcertScraperInfos::Backdrop      //
+          << ConcertScraperInfos::Genres        //
+          << ConcertScraperInfos::Tags          //
+          << ConcertScraperInfos::ExtraArts     //
           << ConcertScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
@@ -265,10 +264,10 @@ QStringList Concert::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the concert genres
  */
-QList<QString*> Concert::genresPointer()
+QList<QString *> Concert::genresPointer()
 {
-    QList<QString*> genres;
-    for (int i=0, n=m_genres.size() ; i<n ; ++i)
+    QList<QString *> genres;
+    for (int i = 0, n = m_genres.size(); i < n; ++i)
         genres.append(&m_genres[i]);
     return genres;
 }
@@ -932,15 +931,17 @@ void Concert::removeImage(int type)
 
 bool Concert::lessThan(Concert *a, Concert *b)
 {
-    return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(
+                Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
+            < 0);
 }
 
 QList<int> Concert::imageTypes()
 {
-    return QList<int>() << ImageType::ConcertPoster    //
-                        << ImageType::ConcertCdArt     //
-                        << ImageType::ConcertClearArt  //
-                        << ImageType::ConcertLogo      //
+    return QList<int>() << ImageType::ConcertPoster   //
+                        << ImageType::ConcertCdArt    //
+                        << ImageType::ConcertClearArt //
+                        << ImageType::ConcertLogo     //
                         << ImageType::ConcertBackdrop;
 }
 

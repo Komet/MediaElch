@@ -121,9 +121,9 @@ private:
     QPointer<Movie> m_movie;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget*> m_streamDetailsWidgets;
-    QList< QList<QLineEdit*> > m_streamDetailsAudio;
-    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
+    QList<QWidget *> m_streamDetailsWidgets;
+    QList<QList<QLineEdit *>> m_streamDetailsAudio;
+    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
     void updateImages(QList<int> images);
 };

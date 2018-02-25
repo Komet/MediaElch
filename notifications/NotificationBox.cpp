@@ -8,9 +8,7 @@
  * @brief NotificationBox::NotificationBox
  * @param parent
  */
-NotificationBox::NotificationBox(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::NotificationBox)
+NotificationBox::NotificationBox(QWidget *parent) : QWidget(parent), ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
     m_msgCounter = 0;
@@ -45,7 +43,7 @@ NotificationBox *NotificationBox::instance(QWidget *parent)
  */
 void NotificationBox::reposition(QSize size)
 {
-    move(size.width()-this->size().width(), 40);
+    move(size.width() - this->size().width(), 40);
     m_parentSize = size;
 }
 
@@ -81,7 +79,7 @@ int NotificationBox::showMessage(QString message, NotificationBox::NotificationT
     adjustSize();
     show();
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
-    //qApp->processEvents(QEventLoop::WaitForMoreEvents);
+    // qApp->processEvents(QEventLoop::WaitForMoreEvents);
     return m_msgCounter;
 }
 

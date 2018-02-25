@@ -12,7 +12,8 @@ public:
     explicit MakeMkvCon(QObject *parent = nullptr);
     ~MakeMkvCon();
 
-    struct Track {
+    struct Track
+    {
         QString name;
         int chapters;
         QString duration;
@@ -40,7 +41,7 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QList<QProcess*> m_processes;
+    QList<QProcess *> m_processes;
     QMap<int, QString> m_drives;
     QMap<int, Track> m_tracks;
     QString m_lastOutput;

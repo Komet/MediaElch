@@ -31,7 +31,7 @@ public:
     TvShowModelItem *appendChild(TvShow *show);
     void clear();
     TvShowModelItem *getItem(const QModelIndex &index) const;
-    QList<TvShow*> tvShows();
+    QList<TvShow *> tvShows();
     int hasNewShowOrEpisode();
     void removeShow(TvShow *show);
 
@@ -41,7 +41,7 @@ private slots:
 
 private:
     TvShowModelItem *m_rootItem;
-    QMap<int, QMap<bool, QIcon> > m_icons;
+    QMap<int, QMap<bool, QIcon>> m_icons;
     QIcon m_newIcon;
     QIcon m_syncIcon;
     QIcon m_missingIcon;

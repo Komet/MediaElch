@@ -11,9 +11,15 @@ class ExportTemplate : public QObject
 {
     Q_OBJECT
 public:
-    enum ExportSection {
-        SectionMovies, SectionTvShows, SectionConcerts, SectionMovie,
-        SectionConcert, SectionTvShow, SectionEpisode
+    enum ExportSection
+    {
+        SectionMovies,
+        SectionTvShows,
+        SectionConcerts,
+        SectionMovie,
+        SectionConcert,
+        SectionTvShow,
+        SectionEpisode
     };
 
     explicit ExportTemplate(QObject *parent = nullptr);

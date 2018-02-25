@@ -28,8 +28,8 @@ public:
     QString videoCodec();
 
     virtual QMap<QString, QString> videoDetails();
-    virtual QList<QMap<QString, QString> > audioDetails();
-    virtual QList<QMap<QString, QString> > subtitleDetails();
+    virtual QList<QMap<QString, QString>> audioDetails();
+    virtual QList<QMap<QString, QString>> subtitleDetails();
 
 private:
     QString videoFormat(QString format, QString version);
@@ -39,8 +39,8 @@ private:
 
     QStringList m_files;
     QMap<QString, QString> m_videoDetails;
-    QList<QMap<QString, QString> > m_audioDetails;
-    QList<QMap<QString, QString> > m_subtitles;
+    QList<QMap<QString, QString>> m_audioDetails;
+    QList<QMap<QString, QString>> m_subtitles;
     QList<int> m_availableChannels;
     QList<QString> m_availableQualities;
 

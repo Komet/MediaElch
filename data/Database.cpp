@@ -16,8 +16,7 @@
  * @brief Database::Database
  * @param parent
  */
-Database::Database(QObject *parent) :
-    QObject(parent)
+Database::Database(QObject *parent) : QObject(parent)
 {
     QString dataLocation = Settings::instance()->databaseDir();
     QDir dir(dataLocation);
@@ -311,13 +310,13 @@ void Database::clearMovies(QString path)
 void Database::add(Movie *movie, QString path)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
-                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasBanner, :hasThumb, :hasExtraFanarts, :discType, :path)");
+    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, "
+                  "hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
+                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, "
+                  ":hasClearArt, :hasCdArt, :hasBanner, :hasThumb, :hasExtraFanarts, :discType, :path)");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent().toUtf8());
-    query.bindValue(":lastModified",
-      movie->fileLastModified().isNull()
-        ? QDateTime::currentDateTime()
-        : movie->fileLastModified());
+    query.bindValue(
+        ":lastModified", movie->fileLastModified().isNull() ? QDateTime::currentDateTime() : movie->fileLastModified());
     query.bindValue(":inSeparateFolder", (movie->inSeparateFolder() ? 1 : 0));
     query.bindValue(":hasPoster", movie->hasImage(ImageType::MoviePoster) ? 1 : 0);
     query.bindValue(":hasBackdrop", movie->hasImage(ImageType::MovieBackdrop) ? 1 : 0);
@@ -340,7 +339,8 @@ void Database::add(Movie *movie, QString path)
     }
 
     foreach (Subtitle *subtitle, movie->subtitles()) {
-        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, :language, :forced)");
+        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, "
+                      ":language, :forced)");
         query.bindValue(":idMovie", insertId);
         query.bindValue(":files", subtitle->files().join("%§%"));
         query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
@@ -375,7 +375,8 @@ void Database::update(Movie *movie)
     query.bindValue(":idMovie", movie->databaseId());
     query.exec();
     foreach (Subtitle *subtitle, movie->subtitles()) {
-        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, :language, :forced)");
+        query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, "
+                      ":language, :forced)");
         query.bindValue(":idMovie", movie->databaseId());
         query.bindValue(":files", subtitle->files().join("%§%"));
         query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
@@ -384,11 +385,12 @@ void Database::update(Movie *movie)
     }
 }
 
-QList<Movie*> Database::movies(QString path)
+QList<Movie *> Database::movies(QString path)
 {
     transaction();
     QSqlQuery query(db());
-    query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, M.hasLogo, M.hasClearArt, "
+    query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, "
+                  "M.hasLogo, M.hasClearArt, "
                   "M.hasCdArt, M.hasBanner, M.hasThumb, M.hasExtraFanarts, M.discType, MF.file, L.color "
                   "FROM movies M "
                   "LEFT JOIN movieFiles MF ON MF.idMovie=M.idMovie "
@@ -398,7 +400,7 @@ QList<Movie*> Database::movies(QString path)
     query.bindValue(":path", path.toUtf8());
     query.exec();
 
-    QMap<int, Movie*> movies;
+    QMap<int, Movie *> movies;
     while (query.next()) {
         if (!movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
             int label = query.value(query.record().indexOf("color")).toInt();
@@ -408,9 +410,11 @@ QList<Movie*> Database::movies(QString path)
             movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
             movie->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
             movie->setHasImage(ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
+            movie->setHasImage(
+                ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
             movie->setHasImage(ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
+            movie->setHasImage(
+                ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
             movie->setHasImage(ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
             movie->setHasImage(ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
             movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
@@ -506,9 +510,9 @@ void Database::update(Concert *concert)
     }
 }
 
-QList<Concert*> Database::concerts(QString path)
+QList<Concert *> Database::concerts(QString path)
 {
-    QList<Concert*> concerts;
+    QList<Concert *> concerts;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idConcert, content, inSeparateFolder FROM concerts WHERE path=:path");
@@ -547,9 +551,11 @@ void Database::add(TvShow *show, QString path)
     query.exec();
     if (query.next()) {
         show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1);
-        show->setHideSpecialsInMissingEpisodes(query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1);
+        show->setHideSpecialsInMissingEpisodes(
+            query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1);
     } else {
-        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tvdbid, url) VALUES(0, 0, :dir, :tvdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tvdbid, url) "
+                      "VALUES(0, 0, :dir, :tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
@@ -574,7 +580,8 @@ void Database::setShowMissingEpisodes(TvShow *show, bool showMissing)
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
-        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
+        query.prepare(
+            "INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
@@ -591,14 +598,16 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow *show, bool hideSpecials)
     query.bindValue(":dir", show->dir().toUtf8());
     query.exec();
     if (query.next()) {
-        query.prepare("UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
+        query.prepare(
+            "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
         query.bindValue(":show", hideSpecials ? 1 : 0);
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
-        query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tvdbid, url) VALUES(:hide, :dir, :tvdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tvdbid, url) VALUES(:hide, :dir, "
+                      ":tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
@@ -638,7 +647,8 @@ void Database::update(TvShow *show)
     query.exec();
 
     int id = showsSettingsId(show);
-    query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE idShow=:idShow");
+    query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, hideSpecialsInMissingEpisodes=:hide, url=:url, "
+                  "tvdbid=:tvdbid WHERE idShow=:idShow");
     query.bindValue(":show", show->showMissingEpisodes());
     query.bindValue(":hide", show->hideSpecialsInMissingEpisodes());
     query.bindValue(":idShow", id);
@@ -667,15 +677,16 @@ void Database::update(TvShowEpisode *episode)
     }
 }
 
-QList<TvShow*> Database::shows(QString path)
+QList<TvShow *> Database::shows(QString path)
 {
-    QList<TvShow*> shows;
+    QList<TvShow *> shows;
     QSqlQuery query(db());
     query.prepare("SELECT idShow, dir, content, path FROM shows WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
-        TvShow *show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()), Manager::instance()->tvShowFileSearcher());
+        TvShow *show = new TvShow(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+            Manager::instance()->tvShowFileSearcher());
         show->setDatabaseId(query.value(query.record().indexOf("idShow")).toInt());
         show->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         shows.append(show);
@@ -686,17 +697,19 @@ QList<TvShow*> Database::shows(QString path)
         query.bindValue(":dir", show->dir().toUtf8());
         query.exec();
         if (query.next()) {
-            show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1, false);
-            show->setHideSpecialsInMissingEpisodes(query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1, false);
+            show->setShowMissingEpisodes(
+                query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1, false);
+            show->setHideSpecialsInMissingEpisodes(
+                query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1, false);
         }
     }
 
     return shows;
 }
 
-QList<TvShowEpisode*> Database::episodes(int idShow)
+QList<TvShowEpisode *> Database::episodes(int idShow)
 {
-    QList<TvShowEpisode*> episodes;
+    QList<TvShowEpisode *> episodes;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM episodes WHERE idShow=:idShow");
@@ -790,7 +803,8 @@ int Database::showsSettingsId(TvShow *show)
     if (query.next())
         return query.value(0).toInt();
 
-    query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir) VALUES(:show, :hide, :dir)");
+    query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir) VALUES(:show, "
+                  ":hide, :dir)");
     query.bindValue(":dir", show->dir().toUtf8());
     query.bindValue(":show", 0);
     query.bindValue(":hide", 0);
@@ -821,7 +835,8 @@ void Database::addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId,
     query.exec();
     if (query.next()) {
         int idEpisode = query.value(0).toInt();
-        query.prepare("UPDATE showsEpisodes SET seasonNumber=:seasonNumber, episodeNumber=:episodeNumber, updated=1, content=:content WHERE idEpisode=:idEpisode");
+        query.prepare("UPDATE showsEpisodes SET seasonNumber=:seasonNumber, episodeNumber=:episodeNumber, updated=1, "
+                      "content=:content WHERE idEpisode=:idEpisode");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idEpisode", idEpisode);
         query.bindValue(":seasonNumber", episode->season());
@@ -847,10 +862,10 @@ void Database::cleanUpEpisodeList(int showsSettingsId)
     query.exec();
 }
 
-QList<TvShowEpisode*> Database::showsEpisodes(TvShow *show)
+QList<TvShowEpisode *> Database::showsEpisodes(TvShow *show)
 {
     int id = showsSettingsId(show);
-    QList<TvShowEpisode*> episodes;
+    QList<TvShowEpisode *> episodes;
     QSqlQuery query(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM showsEpisodes WHERE idShow=:idShow");
     query.bindValue(":idShow", id);
@@ -872,7 +887,7 @@ void Database::addImport(QString fileName, QString type, QString path)
     query.prepare("SELECT MAX(id) FROM importCache");
     query.exec();
     if (query.next())
-        id = query.value(0).toInt()+1;
+        id = query.value(0).toInt() + 1;
 
     query.prepare("INSERT INTO importCache(id, filename, type, path) VALUES(:id, :filename, :type, :path)");
     query.bindValue(":id", id);
@@ -908,7 +923,7 @@ void Database::setLabel(QStringList fileNames, int color)
     query.prepare("SELECT MAX(idLabel) FROM labels");
     query.exec();
     if (query.next())
-        id = query.value(0).toInt()+1;
+        id = query.value(0).toInt() + 1;
 
     foreach (const QString &fileName, fileNames) {
         query.prepare("SELECT idLabel FROM labels WHERE fileName=:fileName");
@@ -982,15 +997,16 @@ void Database::update(Artist *artist)
     query.exec();
 }
 
-QList<Artist*> Database::artists(QString path)
+QList<Artist *> Database::artists(QString path)
 {
-    QList<Artist*> artists;
+    QList<Artist *> artists;
     QSqlQuery query(db());
     query.prepare("SELECT idArtist, content, dir FROM artists WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
-        Artist *artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()), Manager::instance()->musicFileSearcher());
+        Artist *artist = new Artist(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+            Manager::instance()->musicFileSearcher());
         artist->setDatabaseId(query.value(query.record().indexOf("idArtist")).toInt());
         artist->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         artists.append(artist);
@@ -1035,15 +1051,16 @@ void Database::update(Album *album)
     query.exec();
 }
 
-QList<Album*> Database::albums(Artist *artist)
+QList<Album *> Database::albums(Artist *artist)
 {
-    QList<Album*> albums;
+    QList<Album *> albums;
     QSqlQuery query(db());
     query.prepare("SELECT idAlbum, content, dir FROM albums WHERE idArtist=:idArtist");
     query.bindValue(":idArtist", artist->databaseId());
     query.exec();
     while (query.next()) {
-        Album *album = new Album(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()), Manager::instance()->musicFileSearcher());
+        Album *album = new Album(QString::fromUtf8(query.value(query.record().indexOf("dir")).toByteArray()),
+            Manager::instance()->musicFileSearcher());
         album->setDatabaseId(query.value(query.record().indexOf("idAlbum")).toInt());
         album->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         album->setArtistObj(artist);

@@ -10,8 +10,7 @@
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
-ImageCache::ImageCache(QObject *parent) :
-    QObject(parent)
+ImageCache::ImageCache(QObject *parent) : QObject(parent)
 {
     QString location = Settings::instance()->imageCacheDir();
     QDir dir(location);
@@ -64,7 +63,16 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
-        img.save(m_cacheDir + "/" + QString("%1_%2_%3_%4_%5_%6_.png").arg(md5).arg(width).arg(height).arg(origWidth).arg(origHeight).arg(getLastModified(path)), "png", -1);
+        img.save(m_cacheDir + "/"
+                     + QString("%1_%2_%3_%4_%5_%6_.png")
+                           .arg(md5)
+                           .arg(width)
+                           .arg(height)
+                           .arg(origWidth)
+                           .arg(origHeight)
+                           .arg(getLastModified(path)),
+            "png",
+            -1);
         return img;
     }
 
@@ -118,7 +126,7 @@ QSize ImageCache::imageSize(QString path)
 int ImageCache::getLastModified(const QString &fileName)
 {
     int now = QDateTime::currentDateTime().toTime_t();
-    if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now-10) {
+    if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
         int lastMod = QFileInfo(fileName).lastModified().toTime_t();
         m_lastModifiedTimes.insert(fileName, QList<int>() << now << lastMod);
     }

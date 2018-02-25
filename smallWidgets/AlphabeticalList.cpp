@@ -17,17 +17,19 @@ AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView
 {
     m_layout->setMargin(0);
     setContentsMargins(0, 0, 0, 0);
-    QString style = "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";
-    style.append("QToolButton { background-color: transparent; border: none; color: rgb(255, 255, 255); font-weight: bold; } ");
+    QString style =
+        "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";
+    style.append(
+        "QToolButton { background-color: transparent; border: none; color: rgb(255, 255, 255); font-weight: bold; } ");
     setStyleSheet(style);
     setFixedWidth(20);
 }
 
 void AlphabeticalList::adjustSize()
 {
-    int parentHeight = static_cast<QWidget*>(parent())->size().height();
+    int parentHeight = static_cast<QWidget *>(parent())->size().height();
     move(-width(), m_topSpace);
-    setFixedHeight(parentHeight-m_topSpace-m_bottomSpace);
+    setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
 }
 
 void AlphabeticalList::paintEvent(QPaintEvent *event)
@@ -48,8 +50,8 @@ void AlphabeticalList::show()
         return;
 
     int duration = m_animDuration;
-    if (width()+m_leftSpace != 0)
-        duration *= 1-((pos().x()+width())/(width()+m_leftSpace));
+    if (width() + m_leftSpace != 0)
+        duration *= 1 - ((pos().x() + width()) / (width() + m_leftSpace));
 
     m_inAnim = new QPropertyAnimation(this, "pos");
     m_inAnim->setDuration(duration);
@@ -67,8 +69,8 @@ void AlphabeticalList::hide()
         return;
 
     int duration = m_animDuration;
-    if (width()+m_leftSpace != 0)
-        duration *= (pos().x()+width())/(width()+m_leftSpace);
+    if (width() + m_leftSpace != 0)
+        duration *= (pos().x() + width()) / (width() + m_leftSpace);
 
     m_outAnim = new QPropertyAnimation(this, "pos");
     m_outAnim->setDuration(duration);
@@ -94,7 +96,7 @@ void AlphabeticalList::setRightSpace(const int space)
 
 void AlphabeticalList::setAlphas(QStringList alphas)
 {
-    foreach (QToolButton *button, findChildren<QToolButton*>()) {
+    foreach (QToolButton *button, findChildren<QToolButton *>()) {
         m_layout->removeWidget(button);
         button->deleteLater();
     }
@@ -110,7 +112,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 
 void AlphabeticalList::onAlphaClicked()
 {
-    QToolButton *button = static_cast<QToolButton*>(sender());
+    QToolButton *button = static_cast<QToolButton *>(sender());
     if (!button)
         return;
     emit sigAlphaClicked(button->text());

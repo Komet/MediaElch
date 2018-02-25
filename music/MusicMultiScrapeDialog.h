@@ -18,7 +18,7 @@ public:
     explicit MusicMultiScrapeDialog(QWidget *parent = nullptr);
     ~MusicMultiScrapeDialog();
     static MusicMultiScrapeDialog *instance(QWidget *parent = nullptr);
-    void setItems(QList<Artist*> artists, QList<Album*> albums);
+    void setItems(QList<Artist *> artists, QList<Album *> albums);
 
 public slots:
     int exec();
@@ -38,7 +38,8 @@ private slots:
 private:
     Ui::MusicMultiScrapeDialog *ui;
 
-    struct QueueItem {
+    struct QueueItem
+    {
         Artist *artist;
         Album *album;
     };
@@ -52,8 +53,8 @@ private:
     Album *m_currentAlbum;
     QList<int> m_artistInfosToLoad;
     QList<int> m_albumInfosToLoad;
-    QList<Artist*> m_artists;
-    QList<Album*> m_albums;
+    QList<Artist *> m_artists;
+    QList<Album *> m_albums;
     MusicScraperInterface *m_scraperInterface;
 };
 

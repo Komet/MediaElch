@@ -5,18 +5,19 @@
 
 #include "globals/Manager.h"
 
-TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowSearchEpisode)
+TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowSearchEpisode)
 {
     ui->setupUi(this);
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    connect(Manager::instance()->tvScrapers().at(0), SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onShowResults(QList<ScraperSearchResult>)));
+    connect(Manager::instance()->tvScrapers().at(0),
+        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onShowResults(QList<ScraperSearchResult>)));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
 
     ui->chkCertification->setMyData(TvShowScraperInfos::Certification);
     ui->chkDirector->setMyData(TvShowScraperInfos::Director);
@@ -28,7 +29,7 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) :
     ui->chkTitle->setMyData(TvShowScraperInfos::Title);
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
     }
@@ -50,7 +51,7 @@ void TvShowSearchEpisode::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
             m_infosToLoad.append(box->myData().toInt());
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
@@ -65,7 +66,7 @@ void TvShowSearchEpisode::onChkToggled()
 void TvShowSearchEpisode::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled())
             box->setChecked(checked);
     }
@@ -111,7 +112,8 @@ void TvShowSearchEpisode::onShowResults(QList<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     foreach (const ScraperSearchResult &result, results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        QTableWidgetItem *item =
+            new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

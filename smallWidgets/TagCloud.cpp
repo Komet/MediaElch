@@ -82,9 +82,9 @@ void TagCloud::drawTags()
         if (m_activeTags.contains(word))
             badge->setActive(true);
         badge->show();
-        if (x+badge->width()+m_horizontalSpace > width) {
+        if (x + badge->width() + m_horizontalSpace > width) {
             x = 0;
-            y += badge->height()+m_verticalSpace;
+            y += badge->height() + m_verticalSpace;
         }
         if (badge->height() > heightToAdd)
             heightToAdd = badge->height();
@@ -92,8 +92,8 @@ void TagCloud::drawTags()
         m_badges.append(badge);
         x += badge->width() + m_horizontalSpace;
     }
-    ui->scrollAreaWidgetContents->setFixedHeight(y+heightToAdd);
-    setMaximumHeight(qMax(80, y+heightToAdd+qMax(30, ui->lineEdit->height())+25));
+    ui->scrollAreaWidgetContents->setFixedHeight(y + heightToAdd);
+    setMaximumHeight(qMax(80, y + heightToAdd + qMax(30, ui->lineEdit->height()) + 25));
 }
 
 void TagCloud::repositionTags()
@@ -104,22 +104,22 @@ void TagCloud::repositionTags()
     int heightToAdd = 0;
 
     foreach (Badge *badge, m_badges) {
-        if (x+badge->width()+2 > width) {
+        if (x + badge->width() + 2 > width) {
             x = 0;
-            y += badge->height()+m_verticalSpace;
+            y += badge->height() + m_verticalSpace;
         }
         if (badge->height() > heightToAdd)
             heightToAdd = badge->height();
         badge->move(x, y);
         x += badge->width() + 2;
     }
-    ui->scrollAreaWidgetContents->setFixedHeight(y+heightToAdd);
-    setMaximumHeight(qMax(80, y+heightToAdd+qMax(30, ui->lineEdit->height())+25));
+    ui->scrollAreaWidgetContents->setFixedHeight(y + heightToAdd);
+    setMaximumHeight(qMax(80, y + heightToAdd + qMax(30, ui->lineEdit->height()) + 25));
 }
 
 void TagCloud::mousePressEvent(QMouseEvent *event)
 {
-    Badge *child = static_cast<Badge*>(childAt(event->pos()));
+    Badge *child = static_cast<Badge *>(childAt(event->pos()));
     if (!child || !child->inherits("Badge"))
         return;
 

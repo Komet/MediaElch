@@ -13,14 +13,15 @@ class ConcertModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    enum ConcertRoles {
-         NameRole = Qt::UserRole + 1,
-         FileNameRole
+    enum ConcertRoles
+    {
+        NameRole = Qt::UserRole + 1,
+        FileNameRole
     };
     explicit ConcertModel(QObject *parent = nullptr);
     void addConcert(Concert *concert);
     void clear();
-    QList<Concert*> concerts();
+    QList<Concert *> concerts();
     Concert *concert(int row);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -34,7 +35,7 @@ private slots:
     void onConcertChanged(Concert *concert);
 
 private:
-    QList<Concert*> m_concerts;
+    QList<Concert *> m_concerts;
     QIcon m_newIcon;
     QIcon m_syncIcon;
 };

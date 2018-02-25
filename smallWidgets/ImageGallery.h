@@ -45,7 +45,7 @@ private slots:
 
 private:
     QLabel *m_loadingLabel;
-    QList<ClosableImage*> m_imageLabels;
+    QList<ClosableImage *> m_imageLabels;
     QWidget *m_imagesWidget;
     QScrollArea *m_scrollArea;
     QToolButton *m_buttonLeft;

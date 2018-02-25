@@ -6,8 +6,7 @@
 
 NameFormatter *NameFormatter::m_instance = 0;
 
-NameFormatter::NameFormatter(QObject *parent) :
-    QObject(parent)
+NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
 {
     onUpdateExcludeWords();
     connect(Settings::instance(), SIGNAL(sigSettingsSaved()), this, SLOT(onUpdateExcludeWords()));
@@ -44,14 +43,17 @@ QString NameFormatter::excludeWords(QString name)
             pos = rx.indexIn(name);
         }
 
-        QStringList braces = QStringList() << "(" << ")" << "[" << "]";
+        QStringList braces = QStringList() << "("
+                                           << ")"
+                                           << "["
+                                           << "]";
         if (braces.contains(word))
             name.replace(word, "");
     }
 
     // remove " - _" at the end of a name
     rx.setPattern("[\\-\\s_]");
-    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
         name.chop(1);
 
     return name;
@@ -85,7 +87,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 
     // remove " - " at the end of a name
     rx.setPattern("[\\-\\s]");
-    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
         name.chop(1);
     return name;
 }
@@ -98,9 +100,9 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
  */
 QString NameFormatter::formatParts(QString name)
 {
-    QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)" \
+    QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)"
                "[\\-\\s\\._]*\\d+))[\\-_\\s\\.\\(\\)]*)",
-               Qt::CaseInsensitive);
+        Qt::CaseInsensitive);
     int pos = rx.lastIndexIn(name);
     name = name.left(pos);
     return name;
@@ -108,8 +110,7 @@ QString NameFormatter::formatParts(QString name)
 
 void NameFormatter::onUpdateExcludeWords()
 {
-    m_exWords = Settings::instance()->excludeWords()
-            .remove(" ").split(",", QString::SkipEmptyParts);
+    m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", QString::SkipEmptyParts);
     qSort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
 }
 

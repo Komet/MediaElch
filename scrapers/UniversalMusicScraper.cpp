@@ -69,9 +69,10 @@ QString UniversalMusicScraper::identifier()
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
 {
-    QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"")
+                 .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent" , "MediaElch");
+    request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
@@ -80,10 +81,10 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
 void UniversalMusicScraper::onSearchArtistFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         new NetworkReplyWatcher(this, reply);
@@ -94,7 +95,7 @@ void UniversalMusicScraper::onSearchArtistFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("artist").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("name").isEmpty())
@@ -122,7 +123,7 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> in
     artist->setAllMusicId("");
     QUrl url(QString("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent" , "MediaElch");
+    request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -131,15 +132,15 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> in
 
 void UniversalMusicScraper::onArtistRelsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage*>()->artist();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Artist *artist = reply->property("storage").value<Storage *>()->artist();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!artist)
         return;
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("storage", Storage::toVariant(reply, artist));
@@ -153,7 +154,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("relation").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("relation").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("relation").at(i).toElement();
             if (elem.attribute("type") == "allmusic" && elem.elementsByTagName("target").count() > 0) {
                 QString url = elem.elementsByTagName("target").at(0).toElement().text();
@@ -170,18 +171,35 @@ void UniversalMusicScraper::onArtistRelsFinished()
         m_artistDownloads.insert(artist, QList<DownloadElement>());
     m_artistDownloads[artist].clear();
 
-    appendDownloadElement(artist, "theaudiodb", "tadb_data", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2").arg(m_tadbApiKey).arg(artist->mbId())));
-    appendDownloadElement(artist, "theaudiodb", "tadb_discography", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2").arg(m_tadbApiKey).arg(artist->mbId())));
+    appendDownloadElement(artist,
+        "theaudiodb",
+        "tadb_data",
+        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
+                 .arg(m_tadbApiKey)
+                 .arg(artist->mbId())));
+    appendDownloadElement(artist,
+        "theaudiodb",
+        "tadb_discography",
+        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
+                 .arg(m_tadbApiKey)
+                 .arg(artist->mbId())));
     if (!artist->allMusicId().isEmpty()) {
-        appendDownloadElement(artist, "allmusic", "am_data", QUrl(QString("https://www.allmusic.com/artist/%1").arg(artist->allMusicId())));
-        appendDownloadElement(artist, "allmusic", "am_biography", QUrl(QString("https://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId())));
+        appendDownloadElement(artist,
+            "allmusic",
+            "am_data",
+            QUrl(QString("https://www.allmusic.com/artist/%1").arg(artist->allMusicId())));
+        appendDownloadElement(artist,
+            "allmusic",
+            "am_biography",
+            QUrl(QString("https://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId())));
     }
     if (!discogsUrl.isEmpty())
         appendDownloadElement(artist, "discogs", "discogs_data", QUrl(discogsUrl + "?type=Releases&subtype=Albums"));
 
     foreach (DownloadElement elem, m_artistDownloads[artist]) {
         QNetworkRequest request(elem.url);
-        request.setRawHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
+        request.setRawHeader(
+            "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
         QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, artist));
@@ -194,17 +212,18 @@ void UniversalMusicScraper::onArtistLoadFinished()
 {
     QMutexLocker locker(&m_artistMutex);
 
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage*>()->artist();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Artist *artist = reply->property("storage").value<Storage *>()->artist();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        for (int i=0, n=m_artistDownloads[artist].count() ; i<n ; ++i) {
+        for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
             if (m_artistDownloads[artist][i].url == reply->url()) {
-                m_artistDownloads[artist][i].url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+                m_artistDownloads[artist][i].url =
+                    reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
                 break;
             }
         }
@@ -223,7 +242,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
 
     int index = -1;
-    for (int i=0, n=m_artistDownloads[artist].count() ; i<n ; ++i) {
+    for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (m_artistDownloads[artist][i].url == reply->url()) {
             index = i;
             break;
@@ -240,7 +259,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
     m_artistDownloads[artist][index].downloaded = true;
 
     bool finished = true;
-    for (int i=0, n=m_artistDownloads[artist].count() ; i<n ; ++i) {
+    for (int i = 0, n = m_artistDownloads[artist].count(); i < n; ++i) {
         if (!m_artistDownloads[artist][i].downloaded) {
             finished = false;
             break;
@@ -308,7 +327,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
         searchQuery += "%20AND%20artist:\"" + QString(QUrl::toPercentEncoding(artistName)) + "\"";
     QUrl url(QString("https://musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent" , "MediaElch");
+    request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
@@ -317,11 +336,11 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 void UniversalMusicScraper::onSearchAlbumFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         new NetworkReplyWatcher(this, reply);
@@ -333,7 +352,7 @@ void UniversalMusicScraper::onSearchAlbumFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("release").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("title").isEmpty())
@@ -343,12 +362,12 @@ void UniversalMusicScraper::onSearchAlbumFinished()
 
             QMap<QString, int> mediumList;
             if (!elem.elementsByTagName("medium-list").isEmpty()) {
-                for (int i=0, n=elem.elementsByTagName("medium-list").count() ; i<n ; ++i) {
+                for (int i = 0, n = elem.elementsByTagName("medium-list").count(); i < n; ++i) {
                     QDomElement mediumElem = elem.elementsByTagName("medium-list").at(i).toElement();
                     if (mediumElem.elementsByTagName("format").isEmpty())
                         continue;
                     QString medium = mediumElem.elementsByTagName("format").at(0).toElement().text();
-                    mediumList.insert(medium, mediumList.value(medium, 0)+1);
+                    mediumList.insert(medium, mediumList.value(medium, 0) + 1);
                 }
             }
             QStringList media;
@@ -392,7 +411,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
     album->setAllMusicId("");
     QUrl url(QString("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent" , "MediaElch");
+    request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, album));
@@ -402,15 +421,15 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
 
 void UniversalMusicScraper::onAlbumRelsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage*>()->album();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Album *album = reply->property("storage").value<Storage *>()->album();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!album)
         return;
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("storage", Storage::toVariant(reply, album));
@@ -427,7 +446,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         parseAndAssignMusicbrainzInfos(msg, album, infos);
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("relation").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("relation").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("relation").at(i).toElement();
             if (elem.attribute("type") == "allmusic" && elem.elementsByTagName("target").count() > 0) {
                 QString url = elem.elementsByTagName("target").at(0).toElement().text();
@@ -446,15 +465,22 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         m_albumDownloads.insert(album, QList<DownloadElement>());
     m_albumDownloads[album].clear();
 
-    appendDownloadElement(album, "theaudiodb", "tadb_data", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2").arg(m_tadbApiKey).arg(album->mbReleaseGroupId())));
+    appendDownloadElement(album,
+        "theaudiodb",
+        "tadb_data",
+        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
+                 .arg(m_tadbApiKey)
+                 .arg(album->mbReleaseGroupId())));
     if (!album->allMusicId().isEmpty())
-        appendDownloadElement(album, "allmusic", "am_data", QString("https://www.allmusic.com/album/%1").arg(album->allMusicId()));
+        appendDownloadElement(
+            album, "allmusic", "am_data", QString("https://www.allmusic.com/album/%1").arg(album->allMusicId()));
     if (!discogsUrl.isEmpty())
         appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
 
     foreach (DownloadElement elem, m_albumDownloads[album]) {
         QNetworkRequest request(elem.url);
-        request.setRawHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
+        request.setRawHeader(
+            "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
         QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, album));
@@ -467,17 +493,17 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 {
     QMutexLocker locker(&m_albumMutex);
 
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage*>()->album();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Album *album = reply->property("storage").value<Storage *>()->album();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!album)
         return;
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        for (int i=0, n=m_albumDownloads[album].count() ; i<n ; ++i) {
+        for (int i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
             if (m_albumDownloads[album][i].url == reply->url()) {
                 m_albumDownloads[album][i].url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
                 break;
@@ -495,7 +521,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         return;
 
     int index = -1;
-    for (int i=0, n=m_albumDownloads[album].count() ; i<n ; ++i) {
+    for (int i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (m_albumDownloads[album][i].url == reply->url()) {
             index = i;
             break;
@@ -511,7 +537,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     m_albumDownloads[album][index].downloaded = true;
 
     bool finished = true;
-    for (int i=0, n=m_albumDownloads[album].count() ; i<n ; ++i) {
+    for (int i = 0, n = m_albumDownloads[album].count(); i < n; ++i) {
         if (!m_albumDownloads[album][i].downloaded) {
             finished = false;
             break;
@@ -563,7 +589,8 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Artist *artist
     if (sc.property("strMusicBrainzID").isValid() && !sc.property("strMusicBrainzID").toString().isEmpty())
         artist->setMbId(sc.property("strMusicBrainzID").toString());
 
-    if (shouldLoad(MusicScraperInfos::Name, infos, artist) && !sc.property("strArtist").isNull() && !sc.property("strArtist").toString().isEmpty())
+    if (shouldLoad(MusicScraperInfos::Name, infos, artist) && !sc.property("strArtist").isNull()
+        && !sc.property("strArtist").toString().isEmpty())
         artist->setName(sc.property("strArtist").toString());
 
     if (shouldLoad(MusicScraperInfos::Died, infos, artist) && !sc.property("intDiedYear").isNull())
@@ -578,13 +605,16 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Artist *artist
     if (shouldLoad(MusicScraperInfos::Disbanded, infos, artist) && !sc.property("strDisbanded").isNull())
         artist->setDisbanded(sc.property("strDisbanded").toString());
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && !sc.property("strGenre").isNull() && sc.property("strGenre").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && !sc.property("strGenre").isNull()
+        && sc.property("strGenre").toString() != "...")
         artist->addGenre(sc.property("strGenre").toString());
 
-    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && !sc.property("strStyle").isNull() && sc.property("strStyle").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && !sc.property("strStyle").isNull()
+        && sc.property("strStyle").toString() != "...")
         artist->addStyle(sc.property("strStyle").toString());
 
-    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && !sc.property("strMood").isNull() && sc.property("strMood").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && !sc.property("strMood").isNull()
+        && sc.property("strMood").toString() != "...")
         artist->addMood(sc.property("strMood").toString());
 
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {
@@ -714,7 +744,8 @@ void UniversalMusicScraper::parseAndAssignAmBiography(QString html, Artist *arti
 void UniversalMusicScraper::parseAndAssignAmDiscography(QString html, Artist *artist, QList<int> infos)
 {
     if (shouldLoad(MusicScraperInfos::Discography, infos, artist)) {
-        QRegExp rx("<td class=\"year\" data\\-sort\\-value=\"[^\"]*\">[\\n\\s]*(.*)[\\n\\s]*</td>[\\n\\s]*<td class=\"title\" data\\-sort\\-value=\"(.*)\">");
+        QRegExp rx("<td class=\"year\" data\\-sort\\-value=\"[^\"]*\">[\\n\\s]*(.*)[\\n\\s]*</td>[\\n\\s]*<td "
+                   "class=\"title\" data\\-sort\\-value=\"(.*)\">");
         rx.setMinimal(true);
         int pos = 0;
         while ((pos = rx.indexIn(html, pos)) != -1) {
@@ -783,8 +814,9 @@ void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *a
     if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !domDoc.elementsByTagName("artist-credit").isEmpty()) {
         QString artist;
         QString joinPhrase;
-        QDomNodeList artistList = domDoc.elementsByTagName("artist-credit").at(0).toElement().elementsByTagName("name-credit");
-        for (int i=0, n=artistList.count() ; i<n ; ++i) {
+        QDomNodeList artistList =
+            domDoc.elementsByTagName("artist-credit").at(0).toElement().elementsByTagName("name-credit");
+        for (int i = 0, n = artistList.count(); i < n; ++i) {
             QDomElement artistElem = artistList.at(i).toElement();
             joinPhrase = artistElem.attribute("joinphrase");
             if (artistElem.elementsByTagName("artist").isEmpty())
@@ -794,7 +826,13 @@ void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *a
 
             if (!artist.isEmpty())
                 artist.append(joinPhrase.isEmpty() ? ", " : joinPhrase);
-            artist.append(artistElem.elementsByTagName("artist").at(0).toElement().elementsByTagName("name").at(0).toElement().text());
+            artist.append(artistElem.elementsByTagName("artist")
+                              .at(0)
+                              .toElement()
+                              .elementsByTagName("name")
+                              .at(0)
+                              .toElement()
+                              .text());
         }
         if (!artist.isEmpty())
             album->setArtist(artist);
@@ -802,21 +840,30 @@ void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *a
 
     if (shouldLoad(MusicScraperInfos::Label, infos, album) && !domDoc.elementsByTagName("label-info-list").isEmpty()) {
         QStringList labels;
-        QDomNodeList labelList = domDoc.elementsByTagName("label-info-list").at(0).toElement().elementsByTagName("label-info");
-        for (int i=0, n=labelList.count() ; i<n ; ++i) {
+        QDomNodeList labelList =
+            domDoc.elementsByTagName("label-info-list").at(0).toElement().elementsByTagName("label-info");
+        for (int i = 0, n = labelList.count(); i < n; ++i) {
             QDomElement labelElem = labelList.at(i).toElement();
             if (labelElem.elementsByTagName("label").isEmpty())
                 continue;
             if (labelElem.elementsByTagName("label").at(0).toElement().elementsByTagName("name").isEmpty())
                 continue;
-            labels << labelElem.elementsByTagName("label").at(0).toElement().elementsByTagName("name").at(0).toElement().text();
+            labels << labelElem.elementsByTagName("label")
+                          .at(0)
+                          .toElement()
+                          .elementsByTagName("name")
+                          .at(0)
+                          .toElement()
+                          .text();
         }
         if (!labels.isEmpty())
             album->setLabel(labels.join(", "));
     }
 
-    if (shouldLoad(MusicScraperInfos::ReleaseDate, infos, album) && !domDoc.elementsByTagName("release-event-list").isEmpty()) {
-        QDomNodeList releaseList = domDoc.elementsByTagName("release-event-list").at(0).toElement().elementsByTagName("release-event");
+    if (shouldLoad(MusicScraperInfos::ReleaseDate, infos, album)
+        && !domDoc.elementsByTagName("release-event-list").isEmpty()) {
+        QDomNodeList releaseList =
+            domDoc.elementsByTagName("release-event-list").at(0).toElement().elementsByTagName("release-event");
         if (!releaseList.isEmpty() && !releaseList.at(0).toElement().elementsByTagName("date").isEmpty())
             album->setReleaseDate(releaseList.at(0).toElement().elementsByTagName("date").at(0).toElement().text());
     }
@@ -839,25 +886,31 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Album *album, 
     if (sc.property("strMusicBrainzID").isValid() && !sc.property("strMusicBrainzID").toString().isEmpty())
         album->setMbReleaseGroupId(sc.property("strMusicBrainzID").toString());
 
-    if (shouldLoad(MusicScraperInfos::Title, infos, album) && !sc.property("strAlbum").isNull() && !sc.property("strAlbum").toString().isEmpty())
+    if (shouldLoad(MusicScraperInfos::Title, infos, album) && !sc.property("strAlbum").isNull()
+        && !sc.property("strAlbum").toString().isEmpty())
         album->setTitle(sc.property("strAlbum").toString());
 
-    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !sc.property("strArtist").isNull() && !sc.property("strArtist").toString().isEmpty())
+    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !sc.property("strArtist").isNull()
+        && !sc.property("strArtist").toString().isEmpty())
         album->setArtist(sc.property("strArtist").toString());
 
     if (shouldLoad(MusicScraperInfos::Rating, infos, album) && !sc.property("intScore").isNull())
         album->setRating(sc.property("intScore").toString().toInt());
 
-    if (shouldLoad(MusicScraperInfos::Year, infos, album) && !sc.property("intYearReleased").isNull() && sc.property("intYearReleased").toInt32() > 0)
+    if (shouldLoad(MusicScraperInfos::Year, infos, album) && !sc.property("intYearReleased").isNull()
+        && sc.property("intYearReleased").toInt32() > 0)
         album->setYear(sc.property("intYearReleased").toString().toInt());
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && !sc.property("strGenre").isNull() && sc.property("strGenre").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && !sc.property("strGenre").isNull()
+        && sc.property("strGenre").toString() != "...")
         album->addGenre(sc.property("strGenre").toString());
 
-    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && !sc.property("strStyle").isNull() && sc.property("strStyle").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && !sc.property("strStyle").isNull()
+        && sc.property("strStyle").toString() != "...")
         album->addStyle(sc.property("strStyle").toString());
 
-    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && !sc.property("strMood").isNull() && sc.property("strMood").toString() != "...")
+    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && !sc.property("strMood").isNull()
+        && sc.property("strMood").toString() != "...")
         album->addMood(sc.property("strMood").toString());
 
     if (shouldLoad(MusicScraperInfos::Review, infos, album)) {
@@ -901,7 +954,8 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
     }
 
     if (shouldLoad(MusicScraperInfos::Rating, infos, album)) {
-        rx.setPattern("<div class=\"allmusic-rating rating-allmusic-\\d\" itemprop=\"ratingValue\">[\\n\\s]*(\\d)[\\n\\s]*</div>");
+        rx.setPattern("<div class=\"allmusic-rating rating-allmusic-\\d\" "
+                      "itemprop=\"ratingValue\">[\\n\\s]*(\\d)[\\n\\s]*</div>");
         if (rx.indexIn(html) != -1)
             album->setRating(rx.cap(1).toFloat());
     }
@@ -958,7 +1012,8 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     rx.setMinimal(true);
 
     if (shouldLoad(MusicScraperInfos::Artist, infos, album)) {
-        rx.setPattern("<span itemprop=\"byArtist\" itemscope itemtype=\"http://schema.org/MusicGroup\">[\\n\\s]*<span itemprop=\"name\" title=\"(.*)\" >");
+        rx.setPattern("<span itemprop=\"byArtist\" itemscope itemtype=\"http://schema.org/MusicGroup\">[\\n\\s]*<span "
+                      "itemprop=\"name\" title=\"(.*)\" >");
         if (rx.indexIn(html) != -1)
             album->setArtist(trim(rx.cap(1)));
     }
@@ -996,7 +1051,8 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     }
 
     if (shouldLoad(MusicScraperInfos::Year, infos, album)) {
-        rx.setPattern("<div class=\"head\">Year:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*<a href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
+        rx.setPattern("<div class=\"head\">Year:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*<a "
+                      "href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
         if (rx.indexIn(html) != -1)
             album->setYear(trim(rx.cap(1)).toInt());
     }
@@ -1010,12 +1066,12 @@ bool UniversalMusicScraper::hasSettings()
 void UniversalMusicScraper::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/UniversalMusicScraper/Language", "en").toString();
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language)
             m_box->setCurrentIndex(i);
     }
     m_prefer = settings.value("Scrapers/UniversalMusicScraper/Prefer", "theaudiodb").toString();
-    for (int i=0, n=m_preferBox->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_preferBox->count(); i < n; ++i) {
         if (m_preferBox->itemData(i).toString() == m_prefer)
             m_preferBox->setCurrentIndex(i);
     }
@@ -1031,30 +1087,14 @@ void UniversalMusicScraper::saveSettings(QSettings &settings)
 
 QList<int> UniversalMusicScraper::scraperSupports()
 {
-    return QList<int>() << MusicScraperInfos::Name
-                        << MusicScraperInfos::Genres
-                        << MusicScraperInfos::Styles
-                        << MusicScraperInfos::Moods
-                        << MusicScraperInfos::Formed
-                        << MusicScraperInfos::Born
-                        << MusicScraperInfos::Died
-                        << MusicScraperInfos::Disbanded
-                        << MusicScraperInfos::Biography
-                        << MusicScraperInfos::Thumb
-                        << MusicScraperInfos::Fanart
-                        << MusicScraperInfos::Logo
-                        << MusicScraperInfos::Title
-                        << MusicScraperInfos::Artist
-                        << MusicScraperInfos::Review
-                        << MusicScraperInfos::Rating
-                        << MusicScraperInfos::Year
-                        << MusicScraperInfos::CdArt
-                        << MusicScraperInfos::Cover
-                        << MusicScraperInfos::YearsActive
-                        << MusicScraperInfos::ReleaseDate
-                        << MusicScraperInfos::Year
-                        << MusicScraperInfos::ExtraFanarts
-                        << MusicScraperInfos::Discography
+    return QList<int>() << MusicScraperInfos::Name << MusicScraperInfos::Genres << MusicScraperInfos::Styles
+                        << MusicScraperInfos::Moods << MusicScraperInfos::Formed << MusicScraperInfos::Born
+                        << MusicScraperInfos::Died << MusicScraperInfos::Disbanded << MusicScraperInfos::Biography
+                        << MusicScraperInfos::Thumb << MusicScraperInfos::Fanart << MusicScraperInfos::Logo
+                        << MusicScraperInfos::Title << MusicScraperInfos::Artist << MusicScraperInfos::Review
+                        << MusicScraperInfos::Rating << MusicScraperInfos::Year << MusicScraperInfos::CdArt
+                        << MusicScraperInfos::Cover << MusicScraperInfos::YearsActive << MusicScraperInfos::ReleaseDate
+                        << MusicScraperInfos::Year << MusicScraperInfos::ExtraFanarts << MusicScraperInfos::Discography
                         << MusicScraperInfos::Label;
 }
 
@@ -1074,28 +1114,17 @@ bool UniversalMusicScraper::shouldLoad(int info, QList<int> infos, Album *album)
         return false;
 
     switch (info) {
-    case MusicScraperInfos::Title:
-        return album->title().isEmpty();
-    case MusicScraperInfos::Artist:
-        return album->artist().isEmpty();
-    case MusicScraperInfos::Review:
-        return album->review().isEmpty();
-    case MusicScraperInfos::ReleaseDate:
-        return album->releaseDate().isEmpty();
-    case MusicScraperInfos::Label:
-        return album->label().isEmpty();
-    case MusicScraperInfos::Rating:
-        return album->rating() == 0;
-    case MusicScraperInfos::Year:
-        return album->year() == 0;
-    case MusicScraperInfos::Genres:
-        return album->genres().isEmpty();
-    case MusicScraperInfos::Styles:
-        return album->styles().isEmpty();
-    case MusicScraperInfos::Moods:
-        return album->moods().isEmpty();
-    default:
-        break;
+    case MusicScraperInfos::Title: return album->title().isEmpty();
+    case MusicScraperInfos::Artist: return album->artist().isEmpty();
+    case MusicScraperInfos::Review: return album->review().isEmpty();
+    case MusicScraperInfos::ReleaseDate: return album->releaseDate().isEmpty();
+    case MusicScraperInfos::Label: return album->label().isEmpty();
+    case MusicScraperInfos::Rating: return album->rating() == 0;
+    case MusicScraperInfos::Year: return album->year() == 0;
+    case MusicScraperInfos::Genres: return album->genres().isEmpty();
+    case MusicScraperInfos::Styles: return album->styles().isEmpty();
+    case MusicScraperInfos::Moods: return album->moods().isEmpty();
+    default: break;
     }
 
     return false;
@@ -1107,30 +1136,18 @@ bool UniversalMusicScraper::shouldLoad(int info, QList<int> infos, Artist *artis
         return false;
 
     switch (info) {
-    case MusicScraperInfos::Name:
-        return artist->name().isEmpty();
-    case MusicScraperInfos::YearsActive:
-        return artist->yearsActive().isEmpty();
-    case MusicScraperInfos::Formed:
-        return artist->formed().isEmpty();
-    case MusicScraperInfos::Born:
-        return artist->born().isEmpty();
-    case MusicScraperInfos::Died:
-        return artist->died().isEmpty();
-    case MusicScraperInfos::Disbanded:
-        return artist->disbanded().isEmpty();
-    case MusicScraperInfos::Biography:
-        return artist->biography().isEmpty();
-    case MusicScraperInfos::Genres:
-        return artist->genres().isEmpty();
-    case MusicScraperInfos::Styles:
-        return artist->styles().isEmpty();
-    case MusicScraperInfos::Moods:
-        return artist->moods().isEmpty();
-    case MusicScraperInfos::Discography:
-        return artist->discographyAlbums().isEmpty();
-    default:
-        break;
+    case MusicScraperInfos::Name: return artist->name().isEmpty();
+    case MusicScraperInfos::YearsActive: return artist->yearsActive().isEmpty();
+    case MusicScraperInfos::Formed: return artist->formed().isEmpty();
+    case MusicScraperInfos::Born: return artist->born().isEmpty();
+    case MusicScraperInfos::Died: return artist->died().isEmpty();
+    case MusicScraperInfos::Disbanded: return artist->disbanded().isEmpty();
+    case MusicScraperInfos::Biography: return artist->biography().isEmpty();
+    case MusicScraperInfos::Genres: return artist->genres().isEmpty();
+    case MusicScraperInfos::Styles: return artist->styles().isEmpty();
+    case MusicScraperInfos::Moods: return artist->moods().isEmpty();
+    case MusicScraperInfos::Discography: return artist->discographyAlbums().isEmpty();
+    default: break;
     }
 
     return false;

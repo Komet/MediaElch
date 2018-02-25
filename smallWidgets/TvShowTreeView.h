@@ -20,7 +20,6 @@ private:
     QPixmap m_newIcon;
     QPixmap m_syncIcon;
     QPixmap m_missingIcon;
-
 };
 
 #endif // TVSHOWTREEVIEW_H

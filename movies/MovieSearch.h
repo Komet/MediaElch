@@ -28,7 +28,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QList<int> infosToLoad();
-    QMap<ScraperInterface*, QString> customScraperIds();
+    QMap<ScraperInterface *, QString> customScraperIds();
 
 private:
     Ui::MovieSearch *ui;

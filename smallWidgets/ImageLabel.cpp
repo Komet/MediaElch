@@ -5,17 +5,15 @@
  * @brief ImageLabel::ImageLabel
  * @param parent
  */
-ImageLabel::ImageLabel(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ImageLabel)
+ImageLabel::ImageLabel(QWidget *parent) : QWidget(parent), ui(new Ui::ImageLabel)
 {
     ui->setupUi(this);
     ui->resolution->setText("");
     QFont font = ui->resolution->font();
 #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
+    font.setPointSize(font.pointSize() - 1);
 #else
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
 #endif
     ui->resolution->setFont(font);
 }

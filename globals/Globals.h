@@ -80,18 +80,33 @@ namespace MediaCenterFeatures {
 }
 // clang-format on
 
-enum MainActions {
-    ActionSearch, ActionSave, ActionSaveAll, ActionFilterWidget, ActionRename, ActionExport
+enum MainActions
+{
+    ActionSearch,
+    ActionSave,
+    ActionSaveAll,
+    ActionFilterWidget,
+    ActionRename,
+    ActionExport
 };
 
-enum MainWidgets {
-    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetMusic, WidgetGenres, WidgetCertifications, WidgetDownloads
+enum MainWidgets
+{
+    WidgetMovies,
+    WidgetMovieSets,
+    WidgetTvShows,
+    WidgetConcerts,
+    WidgetMusic,
+    WidgetGenres,
+    WidgetCertifications,
+    WidgetDownloads
 };
 
 /**
  * @brief The Actor struct
  */
-struct Actor {
+struct Actor
+{
     QString name;
     QString role;
     QString thumb;
@@ -99,27 +114,30 @@ struct Actor {
     bool imageHasChanged{false};
     QString id;
 };
-Q_DECLARE_METATYPE(Actor*)
-Q_DECLARE_METATYPE(QString*)
+Q_DECLARE_METATYPE(Actor *)
+Q_DECLARE_METATYPE(QString *)
 Q_DECLARE_METATYPE(QList<int>)
 
-struct DiscographyAlbum {
+struct DiscographyAlbum
+{
     QString title;
     QString year;
 };
-Q_DECLARE_METATYPE(DiscographyAlbum*)
+Q_DECLARE_METATYPE(DiscographyAlbum *)
 
 /**
  * @brief The ScraperSearchResult struct
  */
-struct ScraperSearchResult {
+struct ScraperSearchResult
+{
     QString id;
     QString id2;
     QString name;
     QDate released;
 };
 
-struct TrailerResult {
+struct TrailerResult
+{
     QUrl preview;
     QString name;
     QString language;
@@ -131,7 +149,8 @@ struct TrailerResult {
 /**
  * @brief The Poster struct
  */
-struct Poster {
+struct Poster
+{
     QString id;
     QUrl originalUrl;
     QUrl thumbUrl;
@@ -141,41 +160,68 @@ struct Poster {
     int season{0};
 };
 
-enum TvShowType {
-    TypeTvShow, TypeEpisode, TypeSeason
+enum TvShowType
+{
+    TypeTvShow,
+    TypeEpisode,
+    TypeSeason
 };
 
-enum MusicType {
-    TypeArtist, TypeAlbum
+enum MusicType
+{
+    TypeArtist,
+    TypeAlbum
 };
 
-enum ItemType {
-    ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert, ItemArtist, ItemAlbum
+enum ItemType
+{
+    ItemMovie,
+    ItemTvShow,
+    ItemTvShowEpisode,
+    ItemConcert,
+    ItemArtist,
+    ItemAlbum
 };
 
-enum DiscType {
-    DiscSingle, DiscBluRay, DiscDvd
+enum DiscType
+{
+    DiscSingle,
+    DiscBluRay,
+    DiscDvd
 };
 
-enum MovieSetArtworkType {
-    MovieSetArtworkSingleSetFolder, MovieSetArtworkSingleArtworkFolder
+enum MovieSetArtworkType
+{
+    MovieSetArtworkSingleSetFolder,
+    MovieSetArtworkSingleArtworkFolder
 };
 
 /**
  * @brief The SettingsDir struct
  */
-struct SettingsDir {
+struct SettingsDir
+{
     QString path;
     bool separateFolders;
     bool autoReload;
 };
 
-enum SettingsDirType {
-    DirTypeMovies, DirTypeTvShows, DirTypeConcerts, DirTypeDownloads, DirTypeMusic
+enum SettingsDirType
+{
+    DirTypeMovies,
+    DirTypeTvShows,
+    DirTypeConcerts,
+    DirTypeDownloads,
+    DirTypeMusic
 };
 
-enum ComboDelegateType {
-    ComboDelegateGenres, ComboDelegateStudios, ComboDelegateCountries, ComboDelegateWriters, ComboDelegateDirectors
+enum ComboDelegateType
+{
+    ComboDelegateGenres,
+    ComboDelegateStudios,
+    ComboDelegateCountries,
+    ComboDelegateWriters,
+    ComboDelegateDirectors
 };
 
 // clang-format off
@@ -368,8 +414,13 @@ namespace MusicFilters {
 }
 // clang-format on
 
-enum SortBy {
-    SortByName, SortBySeen, SortByAdded, SortByYear, SortByNew
+enum SortBy
+{
+    SortByName,
+    SortBySeen,
+    SortByAdded,
+    SortByYear,
+    SortByNew
 };
 
 // clang-format off
@@ -414,20 +465,32 @@ namespace DataFileType {
 }
 // clang-format on
 
-enum TvShowUpdateType {
-    UpdateShow, UpdateShowAndAllEpisodes, UpdateShowAndNewEpisodes, UpdateNewEpisodes, UpdateAllEpisodes
+enum TvShowUpdateType
+{
+    UpdateShow,
+    UpdateShowAndAllEpisodes,
+    UpdateShowAndNewEpisodes,
+    UpdateNewEpisodes,
+    UpdateAllEpisodes
 };
 
-enum ScraperData {
-    DataInfos, DataCasts, DataTrailers, DataImages, DataReleases
+enum ScraperData
+{
+    DataInfos,
+    DataCasts,
+    DataTrailers,
+    DataImages,
+    DataReleases
 };
 
-struct ExtraFanart {
+struct ExtraFanart
+{
     QByteArray image;
     QString path;
 };
 
-enum MediaStatusColumns {
+enum MediaStatusColumns
+{
     MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
@@ -456,7 +519,8 @@ namespace Labels {
 }
 // clang-format on
 
-struct MovieDuplicate {
+struct MovieDuplicate
+{
     bool title;
     bool imdbId;
     bool tmdbId;

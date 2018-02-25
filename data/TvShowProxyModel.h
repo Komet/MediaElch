@@ -13,7 +13,7 @@ class TvShowProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 public:
     explicit TvShowProxyModel(QObject *parent = nullptr);
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
 
 protected:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
@@ -22,7 +22,7 @@ protected:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
 private:
-    QList<Filter*> m_filters;
+    QList<Filter *> m_filters;
     QString m_filterText;
 };
 

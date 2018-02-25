@@ -33,6 +33,7 @@ signals:
     void sigHideMessage(int);
 private slots:
     void timeout();
+
 private:
     Ui::Message *ui;
     int m_id;

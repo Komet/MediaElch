@@ -2,8 +2,7 @@
 
 #include <QFileInfo>
 
-MyFile::MyFile(const QString &name) :
-    QFile(name)
+MyFile::MyFile(const QString &name) : QFile(name)
 {
 }
 
@@ -17,9 +16,9 @@ bool MyFile::copy(const QString &newName)
         return false;
     unsetError();
     close();
-    if(error() == QFile::NoError) {
+    if (error() == QFile::NoError) {
         bool error = false;
-        if(!open(QFile::ReadOnly)) {
+        if (!open(QFile::ReadOnly)) {
             error = true;
         } else {
             QFile out(newName);
@@ -31,12 +30,12 @@ bool MyFile::copy(const QString &newName)
             } else {
                 char block[4096];
                 qint64 totalRead = 0;
-                while(!atEnd()) {
+                while (!atEnd()) {
                     qint64 in = read(block, sizeof(block));
                     if (in <= 0)
                         break;
                     totalRead += in;
-                    if(in != out.write(block, in)) {
+                    if (in != out.write(block, in)) {
                         close();
                         error = true;
                         break;
@@ -52,7 +51,7 @@ bool MyFile::copy(const QString &newName)
                     out.remove();
             }
         }
-        if(!error) {
+        if (!error) {
             QFile::setPermissions(newName, permissions());
             close();
             unsetError();

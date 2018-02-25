@@ -21,7 +21,7 @@ public:
     explicit Settings(QObject *parent = nullptr);
 
     static Settings *instance(QObject *parent = nullptr);
-    AdvancedSettings* advanced();
+    AdvancedSettings *advanced();
     void loadSettings();
     QSettings *settings();
 
@@ -63,7 +63,11 @@ public:
     QList<DataFile> dataFilesFrodo(int type = -1);
     bool usePlotForOutline();
     QList<int> scraperInfos(MainWidgets widget, QString scraperId);
-    void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
+    void renamePatterns(int renameType,
+        QString &fileNamePattern,
+        QString &fileNamePatternMulti,
+        QString &directoryPattern,
+        QString &seasonPattern);
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
@@ -128,7 +132,11 @@ public:
     void setXbmcUser(QString user);
     void setXbmcPassword(QString password);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
-    void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
+    void setRenamePatterns(int renameType,
+        QString fileNamePattern,
+        QString fileNamePatternMulti,
+        QString directoryPattern,
+        QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);

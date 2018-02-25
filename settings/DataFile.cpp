@@ -14,10 +14,7 @@
  * @param fileName Name of this file
  * @param pos Position
  */
-DataFile::DataFile(int type, QString fileName, int pos) :
-    m_fileName{fileName},
-    m_pos{pos},
-    m_type{type}
+DataFile::DataFile(int type, QString fileName, int pos) : m_fileName{fileName}, m_pos{pos}, m_type{type}
 {
 }
 
@@ -104,69 +101,40 @@ bool DataFile::lessThan(DataFile a, DataFile b)
 int DataFile::dataFileTypeForImageType(int imageType)
 {
     switch (imageType) {
-    case ImageType::MovieBackdrop:
-        return DataFileType::MovieBackdrop;
-    case ImageType::MovieBanner:
-        return DataFileType::MovieBanner;
-    case ImageType::MovieCdArt:
-        return DataFileType::MovieCdArt;
-    case ImageType::MovieClearArt:
-        return DataFileType::MovieClearArt;
-    case ImageType::MovieLogo:
-        return DataFileType::MovieLogo;
-    case ImageType::MoviePoster:
-        return DataFileType::MoviePoster;
-    case ImageType::MovieThumb:
-        return DataFileType::MovieThumb;
+    case ImageType::MovieBackdrop: return DataFileType::MovieBackdrop;
+    case ImageType::MovieBanner: return DataFileType::MovieBanner;
+    case ImageType::MovieCdArt: return DataFileType::MovieCdArt;
+    case ImageType::MovieClearArt: return DataFileType::MovieClearArt;
+    case ImageType::MovieLogo: return DataFileType::MovieLogo;
+    case ImageType::MoviePoster: return DataFileType::MoviePoster;
+    case ImageType::MovieThumb: return DataFileType::MovieThumb;
 
-    case ImageType::ConcertBackdrop:
-        return DataFileType::ConcertBackdrop;
-    case ImageType::ConcertCdArt:
-        return DataFileType::ConcertCdArt;
-    case ImageType::ConcertClearArt:
-        return DataFileType::ConcertClearArt;
-    case ImageType::ConcertLogo:
-        return DataFileType::ConcertLogo;
-    case ImageType::ConcertPoster:
-        return DataFileType::ConcertPoster;
+    case ImageType::ConcertBackdrop: return DataFileType::ConcertBackdrop;
+    case ImageType::ConcertCdArt: return DataFileType::ConcertCdArt;
+    case ImageType::ConcertClearArt: return DataFileType::ConcertClearArt;
+    case ImageType::ConcertLogo: return DataFileType::ConcertLogo;
+    case ImageType::ConcertPoster: return DataFileType::ConcertPoster;
 
-    case ImageType::TvShowBackdrop:
-        return DataFileType::TvShowBackdrop;
-    case ImageType::TvShowBanner:
-        return DataFileType::TvShowBanner;
-    case ImageType::TvShowCharacterArt:
-        return DataFileType::TvShowCharacterArt;
-    case ImageType::TvShowClearArt:
-        return DataFileType::TvShowClearArt;
-    case ImageType::TvShowLogos:
-        return DataFileType::TvShowLogo;
-    case ImageType::TvShowPoster:
-        return DataFileType::TvShowPoster;
-    case ImageType::TvShowThumb:
-        return DataFileType::TvShowThumb;
+    case ImageType::TvShowBackdrop: return DataFileType::TvShowBackdrop;
+    case ImageType::TvShowBanner: return DataFileType::TvShowBanner;
+    case ImageType::TvShowCharacterArt: return DataFileType::TvShowCharacterArt;
+    case ImageType::TvShowClearArt: return DataFileType::TvShowClearArt;
+    case ImageType::TvShowLogos: return DataFileType::TvShowLogo;
+    case ImageType::TvShowPoster: return DataFileType::TvShowPoster;
+    case ImageType::TvShowThumb: return DataFileType::TvShowThumb;
 
-    case ImageType::TvShowSeasonBackdrop:
-        return DataFileType::TvShowSeasonBackdrop;
-    case ImageType::TvShowSeasonPoster:
-        return DataFileType::TvShowSeasonPoster;
-    case ImageType::TvShowSeasonBanner:
-        return DataFileType::TvShowSeasonBanner;
-    case ImageType::TvShowSeasonThumb:
-        return DataFileType::TvShowSeasonThumb;
+    case ImageType::TvShowSeasonBackdrop: return DataFileType::TvShowSeasonBackdrop;
+    case ImageType::TvShowSeasonPoster: return DataFileType::TvShowSeasonPoster;
+    case ImageType::TvShowSeasonBanner: return DataFileType::TvShowSeasonBanner;
+    case ImageType::TvShowSeasonThumb: return DataFileType::TvShowSeasonThumb;
 
-    case ImageType::AlbumCdArt:
-        return DataFileType::AlbumCdArt;
-    case ImageType::AlbumThumb:
-        return DataFileType::AlbumThumb;
+    case ImageType::AlbumCdArt: return DataFileType::AlbumCdArt;
+    case ImageType::AlbumThumb: return DataFileType::AlbumThumb;
 
-    case ImageType::ArtistFanart:
-        return DataFileType::ArtistFanart;
-    case ImageType::ArtistLogo:
-        return DataFileType::ArtistLogo;
-    case ImageType::ArtistThumb:
-        return DataFileType::ArtistThumb;
+    case ImageType::ArtistFanart: return DataFileType::ArtistFanart;
+    case ImageType::ArtistLogo: return DataFileType::ArtistLogo;
+    case ImageType::ArtistThumb: return DataFileType::ArtistThumb;
 
-    default:
-        return -1;
+    default: return -1;
     }
 }

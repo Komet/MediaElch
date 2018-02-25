@@ -27,7 +27,8 @@ ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateT
  * @param index
  * @return
  */
-QWidget *ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *
+ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option);
     Q_UNUSED(index);
@@ -44,7 +45,7 @@ QWidget *ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
 void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    QComboBox *box = static_cast<QComboBox*>(editor);
+    QComboBox *box = static_cast<QComboBox *>(editor);
     QStringList items;
     if (m_widget == WidgetMovies && m_type == ComboDelegateGenres) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -113,7 +114,7 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
  */
 void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *box = static_cast<QComboBox*>(editor);
+    QComboBox *box = static_cast<QComboBox *>(editor);
     QString value = box->currentText();
     model->setData(index, value, Qt::EditRole);
 }
@@ -124,7 +125,9 @@ void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, con
  * @param option
  * @param index
  */
-void ComboDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void ComboDelegate::updateEditorGeometry(QWidget *editor,
+    const QStyleOptionViewItem &option,
+    const QModelIndex &index) const
 {
     Q_UNUSED(index);
     editor->setGeometry(option.rect);

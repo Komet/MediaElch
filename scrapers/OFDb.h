@@ -18,7 +18,7 @@ public:
     QString name();
     QString identifier();
     void search(QString searchStr);
-    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);

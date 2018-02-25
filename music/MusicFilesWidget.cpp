@@ -9,9 +9,7 @@
 
 MusicFilesWidget *MusicFilesWidget::m_instance;
 
-MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MusicFilesWidget)
+MusicFilesWidget::MusicFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicFilesWidget)
 {
     m_instance = this;
     Manager::instance()->setMusicFilesWidget(this);
@@ -38,9 +36,13 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
     connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(onOpenNfo()));
     connect(ui->music, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
-    connect(ui->music->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
-    connect(m_proxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));
-    connect(m_proxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));
+    connect(ui->music->selectionModel(),
+        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+        this,
+        SLOT(onItemSelected(QModelIndex)),
+        Qt::QueuedConnection);
+    connect(m_proxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateStatusLabel()));
+    connect(m_proxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateStatusLabel()));
 }
 
 MusicFilesWidget::~MusicFilesWidget()
@@ -126,15 +128,17 @@ void MusicFilesWidget::updateStatusLabel()
         int albumCount = 0;
         foreach (Artist *artist, Manager::instance()->musicModel()->artists())
             albumCount += artist->albums().count();
-        ui->statusLabel->setText(tr("%n artists", "", m_proxyModel->rowCount()) + ", " + tr("%n albums", "", albumCount));
+        ui->statusLabel->setText(
+            tr("%n artists", "", m_proxyModel->rowCount()) + ", " + tr("%n albums", "", albumCount));
     } else {
-        ui->statusLabel->setText(tr("%1 of %n artists", "", Manager::instance()->musicModel()->artists().count()).arg(m_proxyModel->rowCount()));
+        ui->statusLabel->setText(tr("%1 of %n artists", "", Manager::instance()->musicModel()->artists().count())
+                                     .arg(m_proxyModel->rowCount()));
     }
 }
 
-QList<Artist*> MusicFilesWidget::selectedArtists()
+QList<Artist *> MusicFilesWidget::selectedArtists()
 {
-    QList<Artist*> artists;
+    QList<Artist *> artists;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == TypeArtist)
@@ -143,9 +147,9 @@ QList<Artist*> MusicFilesWidget::selectedArtists()
     return artists;
 }
 
-QList<Album*> MusicFilesWidget::selectedAlbums()
+QList<Album *> MusicFilesWidget::selectedAlbums()
 {
-    QList<Album*> albums;
+    QList<Album *> albums;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == TypeAlbum)

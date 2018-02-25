@@ -13,8 +13,7 @@
 #include "notifications/Notificator.h"
 #include "settings/Settings.h"
 
-PluginManager::PluginManager(QObject *parent) :
-    QObject(parent)
+PluginManager::PluginManager(QObject *parent) : QObject(parent)
 {
 #if defined(Q_OS_MAC)
     m_os = "osx";
@@ -75,7 +74,7 @@ void PluginManager::downloadPluginList()
 
 void PluginManager::onPluginListDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
@@ -96,7 +95,8 @@ void PluginManager::onPluginListDownloaded()
 
     foreach (PluginManager::Plugin plugin, m_plugins) {
         if (plugin.updateAvailable) {
-            NotificationBox::instance()->showMessage(tr("Plugin updates available"), NotificationBox::NotificationInfo, 5000);
+            NotificationBox::instance()->showMessage(
+                tr("Plugin updates available"), NotificationBox::NotificationInfo, 5000);
             break;
         }
     }
@@ -139,11 +139,12 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
         }
     }
 
-    for (int i=0, n=m_plugins.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_plugins.count(); i < n; ++i) {
         if (m_plugins[i].identifier == identifier) {
             m_plugins[i].version = version;
             m_plugins[i].files = files;
-            m_plugins[i].updateAvailable = (Helper::instance()->compareVersionNumbers(m_plugins[i].installedVersion, version) == 1);
+            m_plugins[i].updateAvailable =
+                (Helper::instance()->compareVersionNumbers(m_plugins[i].installedVersion, version) == 1);
             return;
         }
     }
@@ -171,21 +172,28 @@ bool PluginManager::loadPlugin(const QString &fileName)
         if (iPlugin) {
             qDebug() << "Loading plugin" << iPlugin->name();
 
-            if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion()) == 1) {
-                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2").arg(iPlugin->name()).arg(iPlugin->minimumVersion()),
-                                                         NotificationBox::NotificationError,
-                                                         7000);
+            if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion())
+                == 1) {
+                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2")
+                                                             .arg(iPlugin->name())
+                                                             .arg(iPlugin->minimumVersion()),
+                    NotificationBox::NotificationError,
+                    7000);
                 return false;
             }
 
             qApp->installTranslator(iPlugin->pluginTranslator(QLocale::system().name()));
-            iPlugin->init(Manager::instance()->movieModel(), Manager::instance()->tvShowModel(),
-                          Manager::instance()->concertModel(), NotificationBox::instance(), Notificator::instance(), Helper::instance());
+            iPlugin->init(Manager::instance()->movieModel(),
+                Manager::instance()->tvShowModel(),
+                Manager::instance()->concertModel(),
+                NotificationBox::instance(),
+                Notificator::instance(),
+                Helper::instance());
             iPlugin->loadSettings(Settings::instance()->settings());
             Helper::instance()->applyStyle(iPlugin->widget());
 
             bool pluginFound = false;
-            for (int i=0, n=m_plugins.count() ; i<n ; ++i) {
+            for (int i = 0, n = m_plugins.count(); i < n; ++i) {
                 if (m_plugins[i].identifier == iPlugin->identifier()) {
                     m_plugins[i].installed = true;
                     m_plugins[i].installedVersion = iPlugin->version();
@@ -221,10 +229,12 @@ bool PluginManager::loadPlugin(const QString &fileName)
 
 void PluginManager::installPlugin(PluginManager::Plugin plugin)
 {
-
-    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
+    for (int i = 0, n = plugin.files.count(); i < n; ++i) {
         if (plugin.files[i].downloaded == false) {
-            QUrl url(QString("http://community.kvibes.de/api/plugin/%1/%2/%3").arg(plugin.identifier).arg(m_os).arg(plugin.files[i].fileName));
+            QUrl url(QString("http://community.kvibes.de/api/plugin/%1/%2/%3")
+                         .arg(plugin.identifier)
+                         .arg(m_os)
+                         .arg(plugin.files[i].fileName));
             QNetworkRequest request(url);
             request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
             QNetworkReply *reply = m_qnam.get(request);
@@ -235,8 +245,9 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin)
     }
 
     bool loaded = false;
-    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
-        if (!Settings::instance()->pluginDirs().isEmpty() && loadPlugin(Settings::instance()->pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
+    for (int i = 0, n = plugin.files.count(); i < n; ++i) {
+        if (!Settings::instance()->pluginDirs().isEmpty()
+            && loadPlugin(Settings::instance()->pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
             loaded = true;
     }
 
@@ -255,11 +266,11 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin)
 
 void PluginManager::onPluginDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
-    PluginManager::Plugin plugin = reply->property("storage").value<Storage*>()->plugin();
+    PluginManager::Plugin plugin = reply->property("storage").value<Storage *>()->plugin();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -278,7 +289,7 @@ void PluginManager::onPluginDownloaded()
 
     QByteArray ba = reply->readAll();
     QString sha1 = QCryptographicHash::hash(ba, QCryptographicHash::Sha1).toHex();
-    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
+    for (int i = 0, n = plugin.files.count(); i < n; ++i) {
         if (plugin.files[i].fileName == fileName) {
             plugin.files[i].downloaded = true;
             if (sha1 != plugin.files[i].sha1) {
@@ -309,12 +320,12 @@ void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
     if (!fi.isFile() || !fi.exists())
         return;
 
-    for (int i=0, n=m_plugins.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_plugins.count(); i < n; ++i) {
         if (m_plugins[i].localFileName == plugin.localFileName) {
             m_plugins[i].installed = false;
             m_plugins[i].updateAvailable = false;
             m_plugins[i].localFileName = "";
-            for (int x=0, y=m_plugins[i].files.count() ; x<y ; ++x)
+            for (int x = 0, y = m_plugins[i].files.count(); x < y; ++x)
                 m_plugins[i].files[x].downloaded = false;
             break;
         }

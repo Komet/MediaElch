@@ -23,7 +23,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QList<int> infosToLoad();
-    QMap<ScraperInterface*, QString> customScraperIds();
+    QMap<ScraperInterface *, QString> customScraperIds();
     void search(QString searchString, QString id, QString tmdbId);
 
 signals:
@@ -43,7 +43,7 @@ private:
     QString m_scraperId;
     QString m_scraperMovieId;
     QList<int> m_infosToLoad;
-    QMap<ScraperInterface*, QString> m_customScraperIds;
+    QMap<ScraperInterface *, QString> m_customScraperIds;
     ScraperInterface *m_currentCustomScraper;
     QString m_id;
     QString m_tmdbId;

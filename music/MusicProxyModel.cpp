@@ -2,8 +2,7 @@
 
 #include "globals/Globals.h"
 
-MusicProxyModel::MusicProxyModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+MusicProxyModel::MusicProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 }
@@ -59,7 +58,7 @@ bool MusicProxyModel::hasAcceptedChildren(int sourceRow, const QModelIndex &sour
     if (index.model()->rowCount(index) == 0)
         return false;
 
-    for (int i=0, n=index.model()->rowCount(index) ; i<n ; ++i) {
+    for (int i = 0, n = index.model()->rowCount(index); i < n; ++i) {
         if (QSortFilterProxyModel::filterAcceptsRow(i, index))
             return true;
     }

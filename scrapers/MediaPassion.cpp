@@ -157,8 +157,9 @@ QNetworkAccessManager *MediaPassion::qnam()
 void MediaPassion::search(QString searchStr)
 {
     if (!checkUserAndPass()) {
-        QMessageBox::warning(MainWindow::instance(), tr("No username and password"),
-                             tr("In order to use this scraper you have to set your username and password in MediaElchs settings."));
+        QMessageBox::warning(MainWindow::instance(),
+            tr("No username and password"),
+            tr("In order to use this scraper you have to set your username and password in MediaElchs settings."));
         emit searchDone(QList<ScraperSearchResult>());
         return;
     }
@@ -166,13 +167,14 @@ void MediaPassion::search(QString searchStr)
     searchStr = QUrl::toPercentEncoding(searchStr);
     QRegExp rx("^tt\\d+$");
     QString query = (rx.exactMatch(searchStr)) ? "IMDB" : "Title";
-    QUrl url(QString("%1/Movie.Search/%2/%3/%4/%5/XML/%6/%7").arg(m_baseUrl)
-                                                             .arg(m_usernameEnc)
-                                                             .arg(m_passwordEnc)
-                                                             .arg(query)
-                                                             .arg(m_language)
-                                                             .arg(MediaPassion::apiKey())
-                                                             .arg(searchStr));
+    QUrl url(QString("%1/Movie.Search/%2/%3/%4/%5/XML/%6/%7")
+                 .arg(m_baseUrl)
+                 .arg(m_usernameEnc)
+                 .arg(m_passwordEnc)
+                 .arg(query)
+                 .arg(m_language)
+                 .arg(MediaPassion::apiKey())
+                 .arg(searchStr));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -180,7 +182,7 @@ void MediaPassion::search(QString searchStr)
 
 void MediaPassion::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -192,30 +194,34 @@ void MediaPassion::onSearchFinished()
     QString msg = QString::fromUtf8(reply->readAll());
     QString errorMsg;
     if (hasError(msg, errorMsg)) {
-        QMessageBox::warning(MainWindow::instance(), tr("Scraper returned an error"), tr("The scraper returned the following error: %1").arg(errorMsg));
+        QMessageBox::warning(MainWindow::instance(),
+            tr("Scraper returned an error"),
+            tr("The scraper returned the following error: %1").arg(errorMsg));
         emit searchDone(QList<ScraperSearchResult>());
         return;
     }
     emit searchDone(parseSearch(msg));
 }
 
-void MediaPassion::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
+void MediaPassion::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     if (!checkUserAndPass()) {
-        QMessageBox::warning(MainWindow::instance(), tr("No username and password"),
-                             tr("In order to use this scraper you have to set your username and password in MediaElchs settings."));
+        QMessageBox::warning(MainWindow::instance(),
+            tr("No username and password"),
+            tr("In order to use this scraper you have to set your username and password in MediaElchs settings."));
         movie->controller()->scraperLoadDone(this);
         return;
     }
 
     movie->clear(infos);
 
-    QUrl url(QString("%1/Movie.GetInfo/%2/%3/ID/%4/XML/%5/%6").arg(m_baseUrl)
-                                                              .arg(m_usernameEnc)
-                                                              .arg(m_passwordEnc)
-                                                              .arg(m_language)
-                                                              .arg(MediaPassion::apiKey())
-                                                              .arg(ids.values().first()));
+    QUrl url(QString("%1/Movie.GetInfo/%2/%3/ID/%4/XML/%5/%6")
+                 .arg(m_baseUrl)
+                 .arg(m_usernameEnc)
+                 .arg(m_passwordEnc)
+                 .arg(m_language)
+                 .arg(MediaPassion::apiKey())
+                 .arg(ids.values().first()));
 
     if (MediaPassion::m_contentCache.contains(url)) {
         parseAndAssignInfos(m_contentCache.value(url), movie, infos);
@@ -231,10 +237,10 @@ void MediaPassion::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, 
 
 void MediaPassion::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    Movie *movie = reply->property("movie").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    Movie *movie = reply->property("movie").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     if (!movie)
         return;
 
@@ -247,7 +253,9 @@ void MediaPassion::onLoadFinished()
     QString msg = QString::fromUtf8(reply->readAll());
     QString errorMsg;
     if (hasError(msg, errorMsg)) {
-        QMessageBox::warning(MainWindow::instance(), tr("Scraper returned an error"), tr("The scraper returned the following error: %1").arg(errorMsg));
+        QMessageBox::warning(MainWindow::instance(),
+            tr("Scraper returned an error"),
+            tr("The scraper returned the following error: %1").arg(errorMsg));
         movie->controller()->scraperLoadDone(this);
         return;
     }
@@ -267,22 +275,24 @@ void MediaPassion::loadSettings(QSettings &settings)
     m_username = settings.value("Scrapers/MediaPassion/Username", "").toString();
     m_password = settings.value("Scrapers/MediaPassion/Password", "").toString();
     m_usernameEnc = QString(m_username.toUtf8().toBase64());
-    m_passwordEnc = QCryptographicHash::hash(QString("%1%2").arg(m_username.toLower()).arg(m_password).toUtf8(), QCryptographicHash::Sha1).toHex();
+    m_passwordEnc = QCryptographicHash::hash(
+        QString("%1%2").arg(m_username.toLower()).arg(m_password).toUtf8(), QCryptographicHash::Sha1)
+                        .toHex();
     m_ratingType = settings.value("Scrapers/MediaPassion/Rating", "cinepassion").toString();
     m_certificationNation = settings.value("Scrapers/MediaPassion/Certification", "France").toString();
     m_language = settings.value("Scrapers/MediaPassion/Language", "fr").toString();
 
     m_usernameEdit->setText(m_username);
     m_passwordEdit->setText(m_password);
-    for (int i=0, n=m_ratingCombo->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_ratingCombo->count(); i < n; ++i) {
         if (m_ratingCombo->itemData(i).toString() == m_ratingType)
             m_ratingCombo->setCurrentIndex(i);
     }
-    for (int i=0, n=m_certificationCombo->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_certificationCombo->count(); i < n; ++i) {
         if (m_certificationCombo->itemData(i).toString() == m_certificationNation)
             m_certificationCombo->setCurrentIndex(i);
     }
-    for (int i=0, n=m_languageCombo->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_languageCombo->count(); i < n; ++i) {
         if (m_languageCombo->itemData(i).toString() == m_language)
             m_languageCombo->setCurrentIndex(i);
     }
@@ -330,9 +340,10 @@ QList<ScraperSearchResult> MediaPassion::parseSearch(QString xml)
     QDomDocument domDoc;
     domDoc.setContent(xml);
 
-    for (int i=0, n=domDoc.elementsByTagName("movie").count() ; i<n ; ++i) {
+    for (int i = 0, n = domDoc.elementsByTagName("movie").count(); i < n; ++i) {
         QDomElement entry = domDoc.elementsByTagName("movie").at(i).toElement();
-        if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
+        if (entry.elementsByTagName("id").size() == 0
+            || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
             continue;
         ScraperSearchResult result;
         result.id = entry.elementsByTagName("id").at(0).toElement().text();
@@ -457,8 +468,8 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
             while (xml.readNextStartElement()) {
                 if (xml.name() == "person") {
                     Actor actor;
-                    actor.name  = xml.attributes().value("name").toString();
-                    actor.role  = xml.attributes().value("character").toString();
+                    actor.name = xml.attributes().value("name").toString();
+                    actor.role = xml.attributes().value("character").toString();
                     actor.thumb = xml.attributes().value("thumb").toString();
                     movie->addActor(actor);
                     xml.readElementText();
@@ -468,7 +479,8 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
             }
         } else if (infos.contains(MovieScraperInfos::Certification) && xml.name() == "certifications") {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "certification" && xml.attributes().value("nation").toString() == m_certificationNation)
+                if (xml.name() == "certification"
+                    && xml.attributes().value("nation").toString() == m_certificationNation)
                     movie->setCertification(xml.readElementText());
                 else
                     xml.skipCurrentElement();
@@ -515,7 +527,8 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                         p.thumbUrl = xml.attributes().value("url").toString();
                     }
                     fanarts.insert(id, p);
-                } else if (infos.contains(MovieScraperInfos::CdArt) && QString::compare("cdart", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
+                } else if (infos.contains(MovieScraperInfos::CdArt)
+                           && QString::compare("cdart", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
                     int id = xml.attributes().value("id").toString().toInt();
                     Poster p;
                     if (discArts.contains(id))
@@ -528,7 +541,9 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                         p.thumbUrl = xml.attributes().value("url").toString();
                     }
                     discArts.insert(id, p);
-                } else if (infos.contains(MovieScraperInfos::ClearArt) && QString::compare("hdclearart", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
+                } else if (infos.contains(MovieScraperInfos::ClearArt)
+                           && QString::compare("hdclearart", xml.attributes().value("type"), Qt::CaseInsensitive)
+                                  == 0) {
                     int id = xml.attributes().value("id").toString().toInt();
                     Poster p;
                     if (clearArts.contains(id))
@@ -541,7 +556,8 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                         p.thumbUrl = xml.attributes().value("url").toString();
                     }
                     clearArts.insert(id, p);
-                } else if (infos.contains(MovieScraperInfos::Logo) && QString::compare("hdlogo", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
+                } else if (infos.contains(MovieScraperInfos::Logo)
+                           && QString::compare("hdlogo", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
                     int id = xml.attributes().value("id").toString().toInt();
                     Poster p;
                     if (logos.contains(id))
@@ -604,7 +620,7 @@ bool MediaPassion::hasError(QString xml, QString &errorMsg)
     QDomDocument domDoc;
     domDoc.setContent(xml);
     int numOfErrors = domDoc.elementsByTagName("error").count();
-    for (int i=0,n=numOfErrors ; i<n ; ++i) {
+    for (int i = 0, n = numOfErrors; i < n; ++i) {
         if (domDoc.elementsByTagName("error").at(i).toElement().text() == "No Results") {
             numOfErrors--;
             continue;

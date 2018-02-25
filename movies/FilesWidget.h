@@ -33,20 +33,20 @@ public:
     explicit FilesWidget(QWidget *parent = nullptr);
     ~FilesWidget();
     static FilesWidget *instance();
-    QList<Movie*> selectedMovies();
+    QList<Movie *> selectedMovies();
     void renewModel();
     void selectMovie(Movie *movie);
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
     void movieSelectedEmitter();
     void multiScrape();
     void setAlphaListData();
 
 signals:
     void noMovieSelected();
-    void movieSelected(Movie*);
+    void movieSelected(Movie *);
     void sigStartSearch();
 
 protected:
