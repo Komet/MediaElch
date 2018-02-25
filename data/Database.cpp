@@ -314,7 +314,10 @@ void Database::add(Movie *movie, QString path)
     query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
                   "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasBanner, :hasThumb, :hasExtraFanarts, :discType, :path)");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent().toUtf8());
-    query.bindValue(":lastModified", movie->fileLastModified().isNull() ? QDateTime::currentDateTime() : movie->fileLastModified());
+    query.bindValue(":lastModified",
+      movie->fileLastModified().isNull()
+        ? QDateTime::currentDateTime()
+        : movie->fileLastModified());
     query.bindValue(":inSeparateFolder", (movie->inSeparateFolder() ? 1 : 0));
     query.bindValue(":hasPoster", movie->hasImage(ImageType::MoviePoster) ? 1 : 0);
     query.bindValue(":hasBackdrop", movie->hasImage(ImageType::MovieBackdrop) ? 1 : 0);

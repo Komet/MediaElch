@@ -281,17 +281,20 @@ void ConcertWidget::setConcert(Concert *concert)
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         concert->controller()->loadStreamDetailsFromFile();
-        if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
+        if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0) {
             concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
+        }
     }
     updateConcertInfo();
 
+    // clang-format off
     connect(m_concert->controller(), SIGNAL(sigInfoLoadDone(Concert*)), this, SLOT(onInfoLoadDone(Concert*)), Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigDownloadProgress(Concert*,int, int)), this, SLOT(onDownloadProgress(Concert*,int,int)), Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigLoadingImages(Concert*,QList<int>)), this, SLOT(onLoadingImages(Concert*,QList<int>)), Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigLoadImagesStarted(Concert*)), this, SLOT(onLoadImagesStarted(Concert*)), Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigImage(Concert*,int,QByteArray)), this, SLOT(onSetImage(Concert*,int,QByteArray)), Qt::UniqueConnection);
+    // clang-format on
 
     if (concert->controller()->downloadsInProgress())
         setDisabledTrue();

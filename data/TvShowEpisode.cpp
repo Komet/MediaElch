@@ -64,14 +64,14 @@ void TvShowEpisode::setShow(TvShow *show)
 void TvShowEpisode::clear()
 {
     QList<int> infos;
-    infos << TvShowScraperInfos::Certification
-          << TvShowScraperInfos::Rating
-          << TvShowScraperInfos::Director
-          << TvShowScraperInfos::Writer
-          << TvShowScraperInfos::Overview
-          << TvShowScraperInfos::Network
-          << TvShowScraperInfos::FirstAired
-          << TvShowScraperInfos::Thumbnail
+    infos << TvShowScraperInfos::Certification //
+          << TvShowScraperInfos::Rating        //
+          << TvShowScraperInfos::Director      //
+          << TvShowScraperInfos::Writer        //
+          << TvShowScraperInfos::Overview      //
+          << TvShowScraperInfos::Network       //
+          << TvShowScraperInfos::FirstAired    //
+          << TvShowScraperInfos::Thumbnail     //
           << TvShowScraperInfos::Actors;
     clear(infos);
     m_nfoContent.clear();

@@ -58,17 +58,17 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << ConcertScraperInfos::Title
-                      << ConcertScraperInfos::Tagline
-                      << ConcertScraperInfos::Rating
-                      << ConcertScraperInfos::Released
-                      << ConcertScraperInfos::Runtime
-                      << ConcertScraperInfos::Certification
-                      << ConcertScraperInfos::Trailer
-                      << ConcertScraperInfos::Overview
-                      << ConcertScraperInfos::Poster
-                      << ConcertScraperInfos::Backdrop
-                      << ConcertScraperInfos::Genres
+    m_scraperSupports << ConcertScraperInfos::Title         //
+                      << ConcertScraperInfos::Tagline       //
+                      << ConcertScraperInfos::Rating        //
+                      << ConcertScraperInfos::Released      //
+                      << ConcertScraperInfos::Runtime       //
+                      << ConcertScraperInfos::Certification //
+                      << ConcertScraperInfos::Trailer       //
+                      << ConcertScraperInfos::Overview      //
+                      << ConcertScraperInfos::Poster        //
+                      << ConcertScraperInfos::Backdrop      //
+                      << ConcertScraperInfos::Genres        //
                       << ConcertScraperInfos::ExtraArts;
 
     m_baseUrl = "http://cf2.imgobject.com/t/p/";

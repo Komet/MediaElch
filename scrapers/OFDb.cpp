@@ -17,13 +17,13 @@
 OFDb::OFDb(QObject *parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Rating
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Countries
+    m_scraperSupports << MovieScraperInfos::Title     //
+                      << MovieScraperInfos::Released  //
+                      << MovieScraperInfos::Poster    //
+                      << MovieScraperInfos::Rating    //
+                      << MovieScraperInfos::Genres    //
+                      << MovieScraperInfos::Actors    //
+                      << MovieScraperInfos::Countries //
                       << MovieScraperInfos::Overview;
 }
 

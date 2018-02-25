@@ -12,17 +12,17 @@ AdultDvdEmpire::AdultDvdEmpire(QObject *parent)
 {
     setParent(parent);
 
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Backdrop
-                      << MovieScraperInfos::Set
-                      << MovieScraperInfos::Rating
+    m_scraperSupports << MovieScraperInfos::Title     //
+                      << MovieScraperInfos::Released  //
+                      << MovieScraperInfos::Runtime   //
+                      << MovieScraperInfos::Overview  //
+                      << MovieScraperInfos::Poster    //
+                      << MovieScraperInfos::Actors    //
+                      << MovieScraperInfos::Genres    //
+                      << MovieScraperInfos::Studios   //
+                      << MovieScraperInfos::Backdrop  //
+                      << MovieScraperInfos::Set       //
+                      << MovieScraperInfos::Rating    //
                       << MovieScraperInfos::Director;
 }
 

@@ -72,29 +72,29 @@ MovieController *Movie::controller()
 void Movie::clear()
 {
     QList<int> infos;
-    infos << MovieScraperInfos::Title
-          << MovieScraperInfos::Set
-          << MovieScraperInfos::Tagline
-          << MovieScraperInfos::Rating
-          << MovieScraperInfos::Released
-          << MovieScraperInfos::Runtime
-          << MovieScraperInfos::Certification
-          << MovieScraperInfos::Trailer
-          << MovieScraperInfos::Overview
-          << MovieScraperInfos::Poster
-          << MovieScraperInfos::Backdrop
-          << MovieScraperInfos::Actors
-          << MovieScraperInfos::Genres
-          << MovieScraperInfos::Studios
-          << MovieScraperInfos::Countries
-          << MovieScraperInfos::Writer
-          << MovieScraperInfos::Director
-          << MovieScraperInfos::Tags
-          << MovieScraperInfos::ExtraFanarts
-          << MovieScraperInfos::Logo
-          << MovieScraperInfos::CdArt
-          << MovieScraperInfos::Banner
-          << MovieScraperInfos::Thumb
+    infos << MovieScraperInfos::Title         //
+          << MovieScraperInfos::Set           //
+          << MovieScraperInfos::Tagline       //
+          << MovieScraperInfos::Rating        //
+          << MovieScraperInfos::Released      //
+          << MovieScraperInfos::Runtime       //
+          << MovieScraperInfos::Certification //
+          << MovieScraperInfos::Trailer       //
+          << MovieScraperInfos::Overview      //
+          << MovieScraperInfos::Poster        //
+          << MovieScraperInfos::Backdrop      //
+          << MovieScraperInfos::Actors        //
+          << MovieScraperInfos::Genres        //
+          << MovieScraperInfos::Studios       //
+          << MovieScraperInfos::Countries     //
+          << MovieScraperInfos::Writer        //
+          << MovieScraperInfos::Director      //
+          << MovieScraperInfos::Tags          //
+          << MovieScraperInfos::ExtraFanarts  //
+          << MovieScraperInfos::Logo          //
+          << MovieScraperInfos::CdArt         //
+          << MovieScraperInfos::Banner        //
+          << MovieScraperInfos::Thumb         //
           << MovieScraperInfos::ClearArt;
     clear(infos);
     m_nfoContent.clear();

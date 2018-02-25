@@ -12,20 +12,20 @@
 IMDB::IMDB(QObject *parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Director
-                      << MovieScraperInfos::Writer
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Tags
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Certification
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Rating
-                      << MovieScraperInfos::Tagline
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Countries
-                      << MovieScraperInfos::Actors
+    m_scraperSupports << MovieScraperInfos::Title         //
+                      << MovieScraperInfos::Director      //
+                      << MovieScraperInfos::Writer        //
+                      << MovieScraperInfos::Genres        //
+                      << MovieScraperInfos::Tags          //
+                      << MovieScraperInfos::Released      //
+                      << MovieScraperInfos::Certification //
+                      << MovieScraperInfos::Runtime       //
+                      << MovieScraperInfos::Overview      //
+                      << MovieScraperInfos::Rating        //
+                      << MovieScraperInfos::Tagline       //
+                      << MovieScraperInfos::Studios       //
+                      << MovieScraperInfos::Countries     //
+                      << MovieScraperInfos::Actors        //
                       << MovieScraperInfos::Poster;
 }
 

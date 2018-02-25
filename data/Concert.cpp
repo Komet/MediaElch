@@ -61,19 +61,19 @@ void Concert::setFiles(QStringList files)
 void Concert::clear()
 {
     QList<int> infos;
-    infos << ConcertScraperInfos::Title
-          << ConcertScraperInfos::Tagline
-          << ConcertScraperInfos::Rating
-          << ConcertScraperInfos::Released
-          << ConcertScraperInfos::Runtime
-          << ConcertScraperInfos::Certification
-          << ConcertScraperInfos::Trailer
-          << ConcertScraperInfos::Overview
-          << ConcertScraperInfos::Poster
-          << ConcertScraperInfos::Backdrop
-          << ConcertScraperInfos::Genres
-          << ConcertScraperInfos::Tags
-          << ConcertScraperInfos::ExtraArts
+    infos << ConcertScraperInfos::Title          //
+          << ConcertScraperInfos::Tagline        //
+          << ConcertScraperInfos::Rating         //
+          << ConcertScraperInfos::Released       //
+          << ConcertScraperInfos::Runtime        //
+          << ConcertScraperInfos::Certification  //
+          << ConcertScraperInfos::Trailer        //
+          << ConcertScraperInfos::Overview       //
+          << ConcertScraperInfos::Poster         //
+          << ConcertScraperInfos::Backdrop       //
+          << ConcertScraperInfos::Genres         //
+          << ConcertScraperInfos::Tags           //
+          << ConcertScraperInfos::ExtraArts      //
           << ConcertScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
@@ -937,8 +937,10 @@ bool Concert::lessThan(Concert *a, Concert *b)
 
 QList<int> Concert::imageTypes()
 {
-    return QList<int>() << ImageType::ConcertPoster << ImageType::ConcertCdArt
-                        << ImageType::ConcertClearArt << ImageType::ConcertLogo
+    return QList<int>() << ImageType::ConcertPoster    //
+                        << ImageType::ConcertCdArt     //
+                        << ImageType::ConcertClearArt  //
+                        << ImageType::ConcertLogo      //
                         << ImageType::ConcertBackdrop;
 }
 
