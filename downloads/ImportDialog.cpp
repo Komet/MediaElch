@@ -4,9 +4,9 @@
 #include <QMessageBox>
 #include <QMovie>
 
-#include "globals/Helper.h"
 #include "data/ImageCache.h"
 #include "data/TvShowFileSearcher.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "notifications/Notificator.h"

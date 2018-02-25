@@ -5,9 +5,9 @@
 #include <QPointer>
 #include <QWidget>
 
-#include "../smallWidgets/ClosableImage.h"
-#include "../music/Album.h"
 #include "../image/ImageWidget.h"
+#include "../music/Album.h"
+#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetAlbum;

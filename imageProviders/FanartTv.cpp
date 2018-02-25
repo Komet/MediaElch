@@ -4,9 +4,9 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
 
 #include "data/Storage.h"
 #include "main/MainWindow.h"

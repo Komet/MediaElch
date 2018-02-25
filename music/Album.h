@@ -3,10 +3,10 @@
 
 #include <QObject>
 
-#include "globals/Globals.h"
-#include "MusicModelItem.h"
-#include "Artist.h"
 #include "AlbumController.h"
+#include "Artist.h"
+#include "MusicModelItem.h"
+#include "globals/Globals.h"
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
 

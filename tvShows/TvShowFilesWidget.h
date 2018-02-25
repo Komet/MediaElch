@@ -6,11 +6,11 @@
 #include <QModelIndex>
 #include <QWidget>
 
-#include "globals/Globals.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
 #include "globals/Filter.h"
+#include "globals/Globals.h"
 
 namespace Ui {
 class TvShowFilesWidget;

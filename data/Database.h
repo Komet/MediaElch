@@ -6,8 +6,8 @@
 #include <QSqlDatabase>
 
 #include "data/Concert.h"
-#include "movies/Movie.h"
 #include "data/TvShow.h"
+#include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 

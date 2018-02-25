@@ -4,8 +4,8 @@
 #include <QDialog>
 
 #include "data/Concert.h"
-#include "movies/Movie.h"
 #include "data/TvShowEpisode.h"
+#include "movies/Movie.h"
 
 namespace Ui {
 class LoadingStreamDetails;

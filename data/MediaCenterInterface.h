@@ -1,13 +1,13 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
-#include "globals/Globals.h"
 #include "data/Concert.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "settings/DataFile.h"
 
 class Album;

@@ -2,10 +2,10 @@
 #define TMDBCONCERTS_H
 
 #include <QComboBox>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <QObject>
 #include <QWidget>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 #include "data/ConcertScraperInterface.h"
 

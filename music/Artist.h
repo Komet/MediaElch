@@ -3,9 +3,9 @@
 
 #include <QObject>
 
-#include "globals/Globals.h"
-#include "MusicModelItem.h"
 #include "ArtistController.h"
+#include "MusicModelItem.h"
+#include "globals/Globals.h"
 
 class ArtistController;
 class MusicModelItem;

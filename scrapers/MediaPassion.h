@@ -3,11 +3,11 @@
 
 #include <QComboBox>
 #include <QLineEdit>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <QObject>
 #include <QPointer>
 #include <QWidget>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 #include "data/ScraperInterface.h"
 

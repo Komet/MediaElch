@@ -3,12 +3,12 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QUrl>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <QResizeEvent>
 
 #include "data/Concert.h"
 #include "data/ImageProviderInterface.h"

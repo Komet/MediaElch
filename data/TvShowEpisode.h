@@ -10,6 +10,7 @@
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
+#include "globals/Globals.h"
 
 class MediaCenterInterface;
 class StreamDetails;

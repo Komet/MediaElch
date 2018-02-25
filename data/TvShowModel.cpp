@@ -1,12 +1,12 @@
-#include <QtGui>
 #include <QDebug>
 #include <QPainter>
+#include <QtGui>
 
+#include "TvShowModel.h"
+#include "TvShowModelItem.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "TvShowModel.h"
-#include "TvShowModelItem.h"
 
 /**
  * @brief TvShowModel::TvShowModel

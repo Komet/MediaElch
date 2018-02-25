@@ -7,11 +7,11 @@
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrentMap>
 
-#include "globals/Helper.h"
-#include "globals/Manager.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowModelItem.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
 
 /**
  * @brief TvShowFileSearcher::TvShowFileSearcher

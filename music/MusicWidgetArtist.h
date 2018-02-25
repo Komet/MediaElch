@@ -6,8 +6,8 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "../smallWidgets/ClosableImage.h"
 #include "../music/Artist.h"
+#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetArtist;

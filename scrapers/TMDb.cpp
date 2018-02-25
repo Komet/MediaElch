@@ -1,12 +1,12 @@
 #include "TMDb.h"
 
 #include <QDebug>
+#include <QGridLayout>
 #include <QLabel>
+#include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
-#include <QSettings>
-#include <QGridLayout>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"

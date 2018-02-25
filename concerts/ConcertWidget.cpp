@@ -1,16 +1,16 @@
 #include "ConcertWidget.h"
 #include "ui_ConcertWidget.h"
 
-#include <QtCore/qmath.h>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+#include <QtCore/qmath.h>
 
-#include "concerts/ConcertSearch.h"
 #include "concerts/ConcertFilesWidget.h"
+#include "concerts/ConcertSearch.h"
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"

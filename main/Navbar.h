@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "globals/Globals.h"
 #include "globals/Filter.h"
+#include "globals/Globals.h"
 
 namespace Ui {
 class Navbar;

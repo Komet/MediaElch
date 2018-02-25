@@ -1,7 +1,7 @@
 #include "Database.h"
 
-#include <QDesktopServices>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QDir>
 #include <QSqlError>
 #include <QSqlQuery>

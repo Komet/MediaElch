@@ -3,10 +3,10 @@
 #include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 
+#include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
-#include "data/Storage.h"
 
 CustomMovieScraper::CustomMovieScraper(QObject *parent)
 {

@@ -2,8 +2,8 @@
 #define DOWNLOADMANAGER_H
 
 #include <QMutex>
-#include <QQueue>
 #include <QObject>
+#include <QQueue>
 #include <QTimer>
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>

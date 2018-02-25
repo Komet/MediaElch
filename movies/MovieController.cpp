@@ -7,8 +7,8 @@
 #include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"
-#include "globals/NameFormatter.h"
 #include "globals/Manager.h"
+#include "globals/NameFormatter.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 

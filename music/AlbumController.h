@@ -3,14 +3,13 @@
 
 #include <QObject>
 
-#include "data/MediaCenterInterface.h"
-#include "data/MusicScraperInterface.h"
-#include "globals/DownloadManager.h"
+#include "globals/DownloadManagerElement.h"
 #include "music/Album.h"
 
 class Album;
 class DownloadManager;
 class MediaCenterInterface;
+class MusicScraperInterface;
 
 class AlbumController : public QObject
 {

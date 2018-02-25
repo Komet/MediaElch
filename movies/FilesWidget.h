@@ -8,10 +8,10 @@
 #include <QResizeEvent>
 #include <QWidget>
 
-#include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "globals/Filter.h"
+#include "movies/Movie.h"
 #include "smallWidgets/AlphabeticalList.h"
 #include "smallWidgets/SearchOverlay.h"
 

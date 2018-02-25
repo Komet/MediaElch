@@ -3,16 +3,16 @@
 
 #include <QDate>
 #include <QDebug>
-#include <QPixmap>
 #include <QObject>
+#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 
-#include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
+#include "globals/Globals.h"
 #include "movies/MovieController.h"
 
 class MovieController;

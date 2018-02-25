@@ -6,10 +6,10 @@
 #include <QProgressBar>
 #include <QToolButton>
 
-#include "globals/Filter.h"
-#include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "export/ExportDialog.h"
+#include "globals/Filter.h"
+#include "globals/Globals.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
 #include "plugins/PluginInterface.h"

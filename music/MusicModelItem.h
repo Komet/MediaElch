@@ -3,8 +3,8 @@
 
 #include <QObject>
 
-#include "Artist.h"
 #include "Album.h"
+#include "Artist.h"
 
 class Artist;
 class Album;

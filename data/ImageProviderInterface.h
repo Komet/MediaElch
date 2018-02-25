@@ -4,9 +4,9 @@
 #include <QObject>
 
 #include "data/Concert.h"
-#include "movies/Movie.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 class TvShow;
 

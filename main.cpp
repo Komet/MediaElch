@@ -1,9 +1,9 @@
+#include <QApplication>
 #include <QFile>
+#include <QFontDatabase>
 #include <QLibraryInfo>
 #include <QMessageBox>
 #include <QObject>
-#include <QApplication>
-#include <QFontDatabase>
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTimer>

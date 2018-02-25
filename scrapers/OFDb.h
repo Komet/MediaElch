@@ -1,9 +1,9 @@
 #ifndef OFDB_H
 #define OFDB_H
 
+#include <QObject>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <QObject>
 
 #include "data/ScraperInterface.h"
 
