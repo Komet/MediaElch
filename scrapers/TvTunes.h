@@ -1,9 +1,10 @@
 #ifndef TVTUNES_H
 #define TVTUNES_H
 
-#include <QObject>
 #include <QNetworkAccessManager>
+#include <QObject>
 #include <QQueue>
+
 #include "globals/Globals.h"
 
 class TvTunes : public QObject

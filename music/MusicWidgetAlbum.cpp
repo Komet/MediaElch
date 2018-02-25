@@ -2,9 +2,10 @@
 #include "ui_MusicWidgetAlbum.h"
 
 #ifdef Q_OS_WIN
-    #include <QGLFormat>
+#   include <QGLFormat>
 #endif
 #include <QPainter>
+
 #include "../globals/Globals.h"
 #include "../globals/Helper.h"
 #include "../globals/ImageDialog.h"

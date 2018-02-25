@@ -6,6 +6,7 @@
 #include <QScrollBar>
 #include <QTableWidget>
 #include <QTimer>
+
 #include "globals/Globals.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"

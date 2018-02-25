@@ -1,9 +1,10 @@
 #include "MusicFileSearcher.h"
 
-#include <QtConcurrent>
 #include <QDebug>
 #include <QDirIterator>
 #include <QFileInfo>
+#include <QtConcurrent>
+
 #include "../globals/Manager.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject *parent) :

@@ -6,6 +6,7 @@
 #include <QMap>
 #include <QMutex>
 #include <QWidget>
+
 #include "downloads/Extractor.h"
 #include "downloads/MakeMkvDialog.h"
 

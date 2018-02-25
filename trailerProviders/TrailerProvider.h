@@ -2,6 +2,7 @@
 #define TRAILERPROVIDER_H
 
 #include <QObject>
+
 #include "globals/Globals.h"
 
 /**

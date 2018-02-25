@@ -4,6 +4,7 @@
 #include <QAbstractItemModel>
 #include <QIcon>
 #include <QObject>
+
 #include "Artist.h"
 
 class MusicModel : public QAbstractItemModel

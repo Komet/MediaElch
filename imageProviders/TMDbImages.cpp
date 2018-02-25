@@ -1,8 +1,9 @@
 #include "TMDbImages.h"
 
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
+
 #include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 

@@ -5,6 +5,7 @@
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "data/TvShowEpisode.h"
 #include "globals/DownloadManager.h"
 

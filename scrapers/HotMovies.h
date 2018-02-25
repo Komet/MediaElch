@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
+
 #include "data/ScraperInterface.h"
 
 class HotMovies : public ScraperInterface

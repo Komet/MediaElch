@@ -3,6 +3,7 @@
 
 #include <QDir>
 #include <QObject>
+
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 

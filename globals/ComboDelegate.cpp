@@ -3,6 +3,7 @@
 #include <QComboBox>
 #include <QDebug>
 #include <QLineEdit>
+
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 

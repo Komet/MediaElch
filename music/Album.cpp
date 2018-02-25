@@ -237,17 +237,17 @@ void Album::clearImages()
 void Album::clear()
 {
     QList<int> infos;
-    infos << MusicScraperInfos::Title
-          << MusicScraperInfos::Artist
-          << MusicScraperInfos::Genres
-          << MusicScraperInfos::Styles
-          << MusicScraperInfos::Moods
-          << MusicScraperInfos::Review
-          << MusicScraperInfos::ReleaseDate
-          << MusicScraperInfos::Label
-          << MusicScraperInfos::Rating
-          << MusicScraperInfos::Year
-          << MusicScraperInfos::Cover
+    infos << MusicScraperInfos::Title       //
+          << MusicScraperInfos::Artist      //
+          << MusicScraperInfos::Genres      //
+          << MusicScraperInfos::Styles      //
+          << MusicScraperInfos::Moods       //
+          << MusicScraperInfos::Review      //
+          << MusicScraperInfos::ReleaseDate //
+          << MusicScraperInfos::Label       //
+          << MusicScraperInfos::Rating      //
+          << MusicScraperInfos::Year        //
+          << MusicScraperInfos::Cover       //
           << MusicScraperInfos::CdArt;
     clear(infos);
     m_nfoContent.clear();

@@ -4,9 +4,10 @@
 #include <QDialog>
 #include <QPointer>
 #include <QQueue>
+
+#include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "data/TvScraperInterface.h"
 #include "globals/DownloadManager.h"
 
 namespace Ui {

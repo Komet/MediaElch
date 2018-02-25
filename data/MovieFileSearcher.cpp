@@ -1,14 +1,15 @@
 #include "MovieFileSearcher.h"
 
 #include <QApplication>
-#include <QtConcurrent/QtConcurrent>
-#include <QtConcurrent/QtConcurrentFilter>
-#include <QtConcurrent/QtConcurrentMap>
-#include <QtConcurrent/QtConcurrentRun>
 #include <QDebug>
 #include <QDirIterator>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QtConcurrent/QtConcurrent>
+#include <QtConcurrent/QtConcurrentFilter>
+#include <QtConcurrent/QtConcurrentMap>
+#include <QtConcurrent/QtConcurrentRun>
+
 #include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

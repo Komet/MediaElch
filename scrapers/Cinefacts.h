@@ -1,10 +1,10 @@
 #ifndef CINEFACTS_H
 #define CINEFACTS_H
 
+#include <QObject>
+#include <QQueue>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <QQueue>
-#include <QObject>
 
 #include "data/ScraperInterface.h"
 

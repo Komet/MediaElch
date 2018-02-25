@@ -2,8 +2,9 @@
 #define MUSICWIDGET_H
 
 #include <QWidget>
-#include "Artist.h"
+
 #include "Album.h"
+#include "Artist.h"
 
 namespace Ui {
 class MusicWidget;

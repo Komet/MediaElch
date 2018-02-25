@@ -4,14 +4,15 @@
 #include <QBuffer>
 #include <QDebug>
 #include <QFileDialog>
-#include <QSettings>
-#include <QtCore/qmath.h>
 #include <QLabel>
 #include <QMovie>
 #include <QPainter>
+#include <QSettings>
 #include <QSize>
 #include <QStandardPaths>
 #include <QTimer>
+#include <QtCore/qmath.h>
+
 #include "data/ImageProviderInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

@@ -2,10 +2,8 @@
 #define MUSICSCRAPERINTERFACE
 
 #include <QSettings>
-#include "../data/MediaCenterInterface.h"
+
 #include "../globals/Globals.h"
-#include "../music/Album.h"
-#include "../music/Artist.h"
 
 class Album;
 class Artist;

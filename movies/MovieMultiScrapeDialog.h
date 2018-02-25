@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QPointer>
 #include <QQueue>
+
 #include "movies/Movie.h"
 
 namespace Ui {

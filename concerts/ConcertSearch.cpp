@@ -2,6 +2,7 @@
 #include "ui_ConcertSearch.h"
 
 #include <QDebug>
+
 #include "globals/Manager.h"
 
 /**

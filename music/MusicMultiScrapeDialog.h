@@ -2,8 +2,9 @@
 #define MUSICMULTISCRAPEDIALOG_H
 
 #include <QDialog>
-#include "Artist.h"
+
 #include "Album.h"
+#include "Artist.h"
 
 namespace Ui {
 class MusicMultiScrapeDialog;

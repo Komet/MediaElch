@@ -1,9 +1,9 @@
 #include "MusicSearchWidget.h"
 #include "ui_MusicSearchWidget.h"
 
-#include <QDebug>
 #include "globals/Manager.h"
 #include "smallWidgets/MyLabel.h"
+#include <QDebug>
 
 MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
     QWidget(parent),

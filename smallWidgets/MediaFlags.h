@@ -2,6 +2,7 @@
 #define MEDIAFLAGS_H
 
 #include <QWidget>
+
 #include "data/StreamDetails.h"
 
 namespace Ui {

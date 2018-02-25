@@ -1,8 +1,9 @@
 #include "FileScannerDialog.h"
-#include "ui_FileScannerDialog.h"
 #include "globals/Manager.h"
+#include "ui_FileScannerDialog.h"
 
 #include <QTimer>
+
 #include "data/ImageCache.h"
 
 /**

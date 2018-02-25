@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+
 #include "data/MovieFilesOrganizer.h"
 #include "data/Storage.h"
 #include "export/ExportTemplateLoader.h"

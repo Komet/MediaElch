@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 

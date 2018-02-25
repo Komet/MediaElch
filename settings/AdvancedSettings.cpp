@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFile>
+
 #include "Settings.h"
 
 AdvancedSettings::AdvancedSettings(QObject *parent) :

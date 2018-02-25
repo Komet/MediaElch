@@ -4,10 +4,11 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+
 #include "data/Concert.h"
-#include "movies/Movie.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 /**
  * @brief The Filter class

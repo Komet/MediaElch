@@ -4,11 +4,13 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+
 #include "data/MediaCenterInterface.h"
 #include "data/StreamDetails.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
+#include "globals/Globals.h"
 
 class MediaCenterInterface;
 class StreamDetails;

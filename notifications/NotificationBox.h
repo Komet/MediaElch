@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "main/Message.h"
 

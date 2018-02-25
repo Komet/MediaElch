@@ -8,6 +8,7 @@
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueIterator>
+
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
 #include "settings/Settings.h"

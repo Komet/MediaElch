@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QStringList>
+
 #include "trailerProviders/TrailerProvider.h"
 
 class MovieMaze : public TrailerProvider

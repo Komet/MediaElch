@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetSeason.h"
 
 #include <QPainter>
+
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"

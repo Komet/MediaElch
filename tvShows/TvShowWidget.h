@@ -2,6 +2,7 @@
 #define TVSHOWWIDGET_H
 
 #include <QWidget>
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 

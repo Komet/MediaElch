@@ -8,6 +8,7 @@
 #include <QNetworkReply>
 #include <QTableWidgetItem>
 #include <QVideoWidget>
+
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 

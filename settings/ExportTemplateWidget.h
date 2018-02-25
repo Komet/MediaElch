@@ -2,6 +2,7 @@
 #define EXPORTTEMPLATEWIDGET_H
 
 #include <QWidget>
+
 #include "export/ExportTemplate.h"
 
 namespace Ui {

@@ -4,8 +4,8 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QMessageBox>
 #include <QDir>
+#include <QMessageBox>
 
 /**
  * @brief MovieFilesOrganizer::MovieFilesOrganizer

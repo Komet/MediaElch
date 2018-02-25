@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QTableWidgetItem>
+
 #include "globals/Globals.h"
 
 namespace Ui {

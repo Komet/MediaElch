@@ -5,10 +5,10 @@
 #include <QModelIndex>
 #include <QWidget>
 
-#include "globals/Filter.h"
-#include "Artist.h"
 #include "Album.h"
+#include "Artist.h"
 #include "MusicProxyModel.h"
+#include "globals/Filter.h"
 
 namespace Ui {
 class MusicFilesWidget;

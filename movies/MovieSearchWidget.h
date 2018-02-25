@@ -3,6 +3,7 @@
 
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 

@@ -2,9 +2,9 @@
 #define CLOSABLEIMAGE_H
 
 #include <QLabel>
-#include <QPaintEvent>
 #include <QMouseEvent>
 #include <QMovie>
+#include <QPaintEvent>
 #include <QPropertyAnimation>
 #include <QWidget>
 

@@ -2,6 +2,7 @@
 #define IMAGECAPTURE_H
 
 #include <QObject>
+
 #include "data/StreamDetails.h"
 
 class ImageCapture : public QObject

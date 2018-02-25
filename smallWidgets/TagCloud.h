@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QPointer>
 #include <QWidget>
+
 #include "smallWidgets/Badge.h"
 
 namespace Ui {

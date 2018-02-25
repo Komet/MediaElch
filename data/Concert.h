@@ -4,8 +4,8 @@
 #include <QDate>
 #include <QDebug>
 #include <QMutex>
-#include <QPixmap>
 #include <QObject>
+#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 

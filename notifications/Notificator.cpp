@@ -2,8 +2,8 @@
 
 #include <QMessageBox>
 #ifdef Q_OS_MAC
-    #include <ApplicationServices/ApplicationServices.h>
-    #include "notifications/MacNotificationHandler.h"
+#   include <ApplicationServices/ApplicationServices.h>
+#   include "notifications/MacNotificationHandler.h"
 #endif
 
 Notificator::Notificator(QSystemTrayIcon *trayIcon, QWidget *parent):

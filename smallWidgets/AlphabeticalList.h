@@ -7,6 +7,7 @@
 #include <QResizeEvent>
 #include <QVBoxLayout>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "smallWidgets/MyTableView.h"
 

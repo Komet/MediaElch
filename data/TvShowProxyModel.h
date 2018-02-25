@@ -2,6 +2,7 @@
 #define TVSHOWPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**

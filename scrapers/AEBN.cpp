@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QRegExp>
+
 #include "data/Storage.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
@@ -45,16 +46,16 @@ AEBN::AEBN(QObject *parent)
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Director
-                      << MovieScraperInfos::Set
+    m_scraperSupports << MovieScraperInfos::Title    //
+                      << MovieScraperInfos::Released //
+                      << MovieScraperInfos::Runtime  //
+                      << MovieScraperInfos::Overview //
+                      << MovieScraperInfos::Poster   //
+                      << MovieScraperInfos::Actors   //
+                      << MovieScraperInfos::Genres   //
+                      << MovieScraperInfos::Studios  //
+                      << MovieScraperInfos::Director //
+                      << MovieScraperInfos::Set      //
                       << MovieScraperInfos::Tags;
 }
 

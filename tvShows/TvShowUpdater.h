@@ -3,6 +3,7 @@
 
 #include <QNetworkAccessManager>
 #include <QObject>
+
 #include "data/TvShow.h"
 #include "scrapers/TheTvDb.h"
 

@@ -1,9 +1,9 @@
 #ifndef MOVIEFILESEARCHER_H
 #define MOVIEFILESEARCHER_H
 
-#include <QObject>
 #include <QDir>
 #include <QHash>
+#include <QObject>
 #include <QTime>
 
 #include "movies/Movie.h"

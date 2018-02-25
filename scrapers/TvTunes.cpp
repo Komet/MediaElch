@@ -3,6 +3,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QRegExp>
+
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
 

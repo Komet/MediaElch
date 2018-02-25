@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QDesktopServices>
+
 #include "../globals/Manager.h"
 #include "MusicMultiScrapeDialog.h"
 

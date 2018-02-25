@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QObject>
+
 #include "downloads/MyFile.h"
 
 class FileWorker : public QObject

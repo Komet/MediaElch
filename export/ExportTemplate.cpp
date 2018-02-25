@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QStringList>
+
 #include "settings/Settings.h"
 
 ExportTemplate::ExportTemplate(QObject *parent) :

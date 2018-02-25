@@ -2,6 +2,7 @@
 #include "ui_MovieSearchWidget.h"
 
 #include <QDebug>
+
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
 

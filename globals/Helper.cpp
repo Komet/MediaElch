@@ -16,6 +16,7 @@
 #include <QRegExp>
 #include <QSpinBox>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 

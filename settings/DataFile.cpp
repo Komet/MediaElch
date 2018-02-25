@@ -1,8 +1,10 @@
 #include "DataFile.h"
+
 #include <QDebug>
 #include <QFileInfo>
 #include <QRegExp>
 #include <QStringList>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 

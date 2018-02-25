@@ -1,8 +1,9 @@
 #ifndef IMDB_H
 #define IMDB_H
 
-#include "QNetworkAccessManager"
-#include "QNetworkReply"
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
 #include "data/ScraperInterface.h"
 
 class IMDB : public ScraperInterface

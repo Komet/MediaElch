@@ -6,9 +6,9 @@
 #include <QLabel>
 #include <QMutexLocker>
 #include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
 
 #include "../data/Storage.h"
 #include "../globals/NetworkReplyWatcher.h"

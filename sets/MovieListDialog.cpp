@@ -1,8 +1,8 @@
 #include "MovieListDialog.h"
 #include "ui_MovieListDialog.h"
 
-#include "globals/Manager.h"
 #include "globals/Globals.h"
+#include "globals/Manager.h"
 
 /**
  * @brief MovieListDialog::MovieListDialog

@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QWidget>
+
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"

@@ -2,6 +2,7 @@
 #define IMAGEWIDGET_H
 
 #include <QWidget>
+
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
 #include "music/Album.h"

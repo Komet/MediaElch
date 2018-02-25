@@ -2,6 +2,7 @@
 #define CONCERTPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**

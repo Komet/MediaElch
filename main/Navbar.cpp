@@ -3,6 +3,7 @@
 
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"

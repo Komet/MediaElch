@@ -3,11 +3,12 @@
 
 #include <QMutex>
 #include <QObject>
+
 #include "data/Concert.h"
 #include "data/ConcertScraperInterface.h"
 #include "data/MediaCenterInterface.h"
-#include "globals/DownloadManagerElement.h"
 #include "globals/DownloadManager.h"
+#include "globals/DownloadManagerElement.h"
 
 class ConcertScraperInterface;
 class DownloadManager;

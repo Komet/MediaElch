@@ -4,12 +4,13 @@
 #include <QDebug>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include "quazip/quazip/quazip.h"
-#include "quazip/quazip/quazipfile.h"
+
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
+#include "quazip/quazip/quazip.h"
+#include "quazip/quazip/quazipfile.h"
 #include "scrapers/TheTvDb.h"
 
 TvShowUpdater::TvShowUpdater(QObject *parent) :

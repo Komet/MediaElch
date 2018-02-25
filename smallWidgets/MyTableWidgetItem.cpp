@@ -1,6 +1,7 @@
 #include "MyTableWidgetItem.h"
 
 #include <QDebug>
+
 #include "globals/Helper.h"
 
 MyTableWidgetItem::MyTableWidgetItem(QString text) :

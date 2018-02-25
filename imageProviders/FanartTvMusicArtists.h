@@ -4,8 +4,9 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-#include "globals/Globals.h"
+
 #include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TheTvDb.h"
 

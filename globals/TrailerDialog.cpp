@@ -2,6 +2,7 @@
 #include "ui_TrailerDialog.h"
 
 #include <QMessageBox>
+
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 

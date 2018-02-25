@@ -2,6 +2,7 @@
 #define PLUGINSWIDGET_H
 
 #include <QWidget>
+
 #include "plugins/PluginManager.h"
 
 namespace Ui {

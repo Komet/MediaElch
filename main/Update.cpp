@@ -9,6 +9,7 @@
 #include <QRegExp>
 #include <QUrl>
 #include <QXmlStreamReader>
+
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 

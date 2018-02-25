@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QXmlStreamReader>
+
 #include "globals/Globals.h"
 
 class AdvancedSettings : public QObject

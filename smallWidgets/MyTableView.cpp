@@ -1,4 +1,5 @@
 #include "MyTableView.h"
+
 #include <QDebug>
 
 MyTableView::MyTableView(QWidget *parent) :
