@@ -13,7 +13,8 @@
  */
 ConcertFileSearcher::ConcertFileSearcher(QObject *parent) :
     QObject(parent),
-    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
+    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId},
+    m_aborted{false}
 {
 }
 

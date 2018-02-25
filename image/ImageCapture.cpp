@@ -21,11 +21,12 @@ bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QIma
         return false;
     }
 
-    QString ffmpegbin = "ffmpeg";
 #ifdef Q_OS_OSX
-    ffmpegbin = QCoreApplication::applicationDirPath() + "/ffmpeg";
+    QString ffmpegbin = QCoreApplication::applicationDirPath() + "/ffmpeg";
 #elif defined(Q_OS_WIN)
-    ffmpegbin = QCoreApplication::applicationDirPath() + "/vendor/ffmpeg.exe";
+    QString ffmpegbin = QCoreApplication::applicationDirPath() + "/vendor/ffmpeg.exe";
+#else
+    QString ffmpegbin = "ffmpeg";
 #endif
 
     QProcess ffmpeg;

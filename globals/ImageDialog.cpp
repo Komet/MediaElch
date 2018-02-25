@@ -112,9 +112,10 @@ int ImageDialog::exec(int type)
     QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
     QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
 
-    bool isMac = false;
 #ifdef Q_OS_MAC
-    isMac = true;
+    bool isMac = true;
+#else
+    bool isMac = false;
 #endif
 
     if (savedSize.isValid() && !savedSize.isNull() && !isMac) {

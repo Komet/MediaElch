@@ -17,20 +17,20 @@ class DownloadManagerElement
 {
 public:
     DownloadManagerElement();
-    int imageType;
+    int imageType{0};
     QUrl url;
     QByteArray data;
-    qint64 bytesReceived;
-    qint64 bytesTotal;
-    Actor *actor;
-    TvShowEpisode *episode;
-    Movie *movie;
-    TvShow *show;
-    Concert *concert;
-    Album *album;
-    Artist *artist;
-    int season;
-    bool directDownload;
+    qint64 bytesReceived{0};
+    qint64 bytesTotal{0};
+    Actor *actor{nullptr};
+    TvShowEpisode *episode{nullptr};
+    Movie *movie{nullptr};
+    TvShow *show{nullptr};
+    Concert *concert{nullptr};
+    Album *album{nullptr};
+    Artist *artist{nullptr};
+    int season{0};
+    bool directDownload{false};
 };
 
 #endif // DOWNLOADMANAGERELEMENT_H

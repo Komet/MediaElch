@@ -13,9 +13,9 @@
  * @param pos Position
  */
 DataFile::DataFile(int type, QString fileName, int pos) :
-    m_type{type},
     m_fileName{fileName},
-    m_pos{pos}
+    m_pos{pos},
+    m_type{type}
 {
 }
 

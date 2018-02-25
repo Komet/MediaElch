@@ -4,9 +4,9 @@
 
 SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     QStackedWidget(parent),
-    m_vertical{false},
     m_speed{500},
     m_animationType{QEasingCurve::OutBack},
+    m_vertical{false},
     m_now{0},
     m_next{0},
     m_wrap{false},

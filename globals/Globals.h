@@ -93,7 +93,7 @@ struct Actor {
     QString role;
     QString thumb;
     QByteArray image;
-    bool imageHasChanged;
+    bool imageHasChanged{false};
     QString id;
 };
 Q_DECLARE_METATYPE(Actor*)
@@ -135,7 +135,7 @@ struct Poster {
     QSize originalSize;
     QString language;
     QString hint;
-    int season;
+    int season{0};
 };
 
 enum TvShowType {

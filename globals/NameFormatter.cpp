@@ -33,13 +33,11 @@ NameFormatter *NameFormatter::instance(QObject *parent)
  */
 QString NameFormatter::excludeWords(QString name)
 {
-    int pos;
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (const QString &word, m_exWords) {
-        pos = 0;
         rx.setPattern("(^|[\\(\\s\\-\\.\\[]+)" + word + "([\\s\\-\\.\\)\\],]+|$)");
-        pos = rx.indexIn(name);
+        int pos = rx.indexIn(name);
         while (pos >= 0) {
             name = name.remove(pos, rx.cap(0).length());
             name = name.insert(pos, ' ');

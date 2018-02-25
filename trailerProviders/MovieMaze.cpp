@@ -5,7 +5,8 @@
 MovieMaze::MovieMaze(QObject *parent) :
     m_qnam{new QNetworkAccessManager(this)},
     m_searchReply{nullptr},
-    m_previewLoadReply{nullptr}
+    m_previewLoadReply{nullptr},
+    m_currentPreviewLoad{0}
 {
     setParent(parent);
 }

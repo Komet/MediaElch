@@ -19,7 +19,8 @@
  */
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
     QObject(parent),
-    m_progressMessageId{Constants::MovieFileSearcherProgressMessageId}
+    m_progressMessageId{Constants::MovieFileSearcherProgressMessageId},
+    m_aborted{false}
 {
 }
 
