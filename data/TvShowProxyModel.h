@@ -2,6 +2,7 @@
 #define TVSHOWPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**
@@ -11,7 +12,7 @@ class TvShowProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit TvShowProxyModel(QObject *parent = 0);
+    explicit TvShowProxyModel(QObject *parent = nullptr);
     void setFilter(QList<Filter*> filters, QString text);
 
 protected:

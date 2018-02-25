@@ -2,6 +2,7 @@
 #define MEDIAFLAGS_H
 
 #include <QWidget>
+
 #include "data/StreamDetails.h"
 
 namespace Ui {
@@ -17,7 +18,7 @@ class MediaFlags : public QWidget
     Q_OBJECT
 
 public:
-    explicit MediaFlags(QWidget *parent = 0);
+    explicit MediaFlags(QWidget *parent = nullptr);
     ~MediaFlags();
     void setStreamDetails(StreamDetails *streamDetails);
     void clear();

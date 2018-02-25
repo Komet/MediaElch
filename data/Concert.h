@@ -4,8 +4,8 @@
 #include <QDate>
 #include <QDebug>
 #include <QMutex>
-#include <QPixmap>
 #include <QObject>
+#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 
@@ -47,7 +47,7 @@ class Concert : public QObject
     Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
-    explicit Concert(QStringList files, QObject *parent = 0);
+    explicit Concert(QStringList files, QObject *parent = nullptr);
     ~Concert();
 
     ConcertController *controller();

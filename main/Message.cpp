@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QGraphicsDropShadowEffect>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "notifications/NotificationBox.h"

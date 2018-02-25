@@ -12,6 +12,7 @@
 #include <QStyleOption>
 #include <QToolTip>
 #include <qmath.h>
+
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImagePreviewDialog.h"

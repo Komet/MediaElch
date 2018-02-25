@@ -10,8 +10,8 @@ class CustomMovieScraper : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit CustomMovieScraper(QObject *parent = 0);
-    static CustomMovieScraper *instance(QObject *parent = 0);
+    explicit CustomMovieScraper(QObject *parent = nullptr);
+    static CustomMovieScraper *instance(QObject *parent = nullptr);
 
     QString name();
     QString identifier();

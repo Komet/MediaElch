@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QObject>
+
 #include "data/MediaCenterInterface.h"
 
 /**

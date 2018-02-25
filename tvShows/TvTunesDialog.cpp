@@ -7,11 +7,10 @@
 
 TvTunesDialog::TvTunesDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TvTunesDialog)
+    ui(new Ui::TvTunesDialog),
+    m_totalTime{0}
 {
     ui->setupUi(this);
-
-    m_totalTime = 0;
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);

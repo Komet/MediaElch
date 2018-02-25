@@ -4,8 +4,9 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-#include "globals/Globals.h"
+
 #include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TheTvDb.h"
 
@@ -16,7 +17,7 @@ class FanartTvMusicArtists : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit FanartTvMusicArtists(QObject *parent = 0);
+    explicit FanartTvMusicArtists(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

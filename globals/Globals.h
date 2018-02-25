@@ -10,6 +10,7 @@
 #include <QUrl>
 #include <QVariant>
 
+// clang-format off
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
     const int MovieWidgetProgressMessageId         = 10001;
@@ -77,6 +78,7 @@ namespace MediaCenterFeatures {
     const int EditConcertTrailer             = 8;
     const int EditConcertWatched             = 9;
 }
+// clang-format on
 
 enum MainActions {
     ActionSearch, ActionSave, ActionSaveAll, ActionFilterWidget, ActionRename, ActionExport
@@ -94,7 +96,7 @@ struct Actor {
     QString role;
     QString thumb;
     QByteArray image;
-    bool imageHasChanged;
+    bool imageHasChanged{false};
     QString id;
 };
 Q_DECLARE_METATYPE(Actor*)
@@ -136,7 +138,7 @@ struct Poster {
     QSize originalSize;
     QString language;
     QString hint;
-    int season;
+    int season{0};
 };
 
 enum TvShowType {
@@ -176,6 +178,7 @@ enum ComboDelegateType {
     ComboDelegateGenres, ComboDelegateStudios, ComboDelegateCountries, ComboDelegateWriters, ComboDelegateDirectors
 };
 
+// clang-format off
 namespace ImageType {
     const int MoviePoster          = 1;
     const int MovieBackdrop        = 2;
@@ -363,11 +366,13 @@ namespace ConcertFilters {
 namespace MusicFilters {
     const int Title         = 32;
 }
+// clang-format on
 
 enum SortBy {
     SortByName, SortBySeen, SortByAdded, SortByYear, SortByNew
 };
 
+// clang-format off
 namespace DataFileType {
     const int MovieNfo             = 1;
     const int MoviePoster          = 2;
@@ -407,6 +412,7 @@ namespace DataFileType {
     const int AlbumThumb           = 36;
     const int AlbumCdArt           = 37;
 }
+// clang-format on
 
 enum TvShowUpdateType {
     UpdateShow, UpdateShowAndAllEpisodes, UpdateShowAndNewEpisodes, UpdateNewEpisodes, UpdateAllEpisodes
@@ -437,6 +443,7 @@ enum MediaStatusColumns {
     MediaStatusLast = MediaStatusActors
 };
 
+// clang-format off
 namespace Labels {
     const int NO_LABEL = 0;
     const int RED    = 1;
@@ -447,6 +454,7 @@ namespace Labels {
     const int PURPLE = 6;
     const int GREY   = 7;
 }
+// clang-format on
 
 struct MovieDuplicate {
     bool title;

@@ -6,6 +6,7 @@
 #include <QHeaderView>
 #include <QMovie>
 #include <QPainter>
+
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -23,11 +24,10 @@
  */
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TvShowWidgetEpisode)
+    ui(new Ui::TvShowWidgetEpisode),
+    m_episode{0}
 {
     ui->setupUi(this);
-
-    m_episode = 0;
 
     ui->episodeName->clear();
     ui->directors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

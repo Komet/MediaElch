@@ -6,8 +6,8 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 
-#include "data/TvShowModel.h"
 #include "data/Storage.h"
+#include "data/TvShowModel.h"
 #include "downloads/ImportActions.h"
 #include "downloads/UnpackButtons.h"
 #include "globals/Helper.h"
@@ -15,8 +15,8 @@
 #include "notifications/MacNotificationHandler.h"
 #include "notifications/Notificator.h"
 #include "settings/Settings.h"
-#include "smallWidgets/MyTableWidgetItem.h"
 #include "smallWidgets/MessageLabel.h"
+#include "smallWidgets/MyTableWidgetItem.h"
 
 DownloadsWidget::DownloadsWidget(QWidget *parent) :
     QWidget(parent),

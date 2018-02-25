@@ -2,6 +2,7 @@
 #define TVSHOWWIDGET_H
 
 #include <QWidget>
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 
@@ -17,7 +18,7 @@ class TvShowWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidget(QWidget *parent = 0);
+    explicit TvShowWidget(QWidget *parent = nullptr);
     ~TvShowWidget();
     void updateInfo();
 

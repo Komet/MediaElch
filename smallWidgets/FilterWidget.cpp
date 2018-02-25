@@ -2,6 +2,7 @@
 #include "ui_FilterWidget.h"
 
 #include <QGraphicsDropShadowEffect>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"

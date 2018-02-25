@@ -4,6 +4,7 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QXmlStreamReader>
+
 #include "plugins/PluginInterface.h"
 
 class PluginManager : public QObject
@@ -29,8 +30,8 @@ public:
         QString localFileName;
     };
 
-    explicit PluginManager(QObject *parent = 0);
-    static PluginManager *instance(QObject *parent = 0);
+    explicit PluginManager(QObject *parent = nullptr);
+    static PluginManager *instance(QObject *parent = nullptr);
     QList<PluginManager::Plugin> plugins();
 
 public slots:

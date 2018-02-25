@@ -5,8 +5,9 @@
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
-#include "../smallWidgets/ClosableImage.h"
+
 #include "../music/Artist.h"
+#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetArtist;
@@ -17,7 +18,7 @@ class MusicWidgetArtist : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidgetArtist(QWidget *parent = 0);
+    explicit MusicWidgetArtist(QWidget *parent = nullptr);
     ~MusicWidgetArtist();
     void setArtist(Artist *artist);
     void updateArtistInfo();

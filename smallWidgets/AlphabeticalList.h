@@ -7,6 +7,7 @@
 #include <QResizeEvent>
 #include <QVBoxLayout>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "smallWidgets/MyTableView.h"
 
@@ -14,7 +15,7 @@ class AlphabeticalList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlphabeticalList(QWidget *parent = 0, MyTableView *parentTableView = 0);
+    explicit AlphabeticalList(QWidget *parent = 0, MyTableView *parentTableView = nullptr);
     void setTopSpace(const int space);
     void setBottomSpace(const int space);
     void setRightSpace(const int space);

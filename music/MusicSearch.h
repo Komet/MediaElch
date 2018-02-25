@@ -2,6 +2,7 @@
 #define MUSICSEARCH_H
 
 #include <QDialog>
+
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 
@@ -14,13 +15,13 @@ class MusicSearch : public QDialog
     Q_OBJECT
 
 public:
-    explicit MusicSearch(QWidget *parent = 0);
+    explicit MusicSearch(QWidget *parent = nullptr);
     ~MusicSearch();
 
 public slots:
     int exec();
     int exec(QString type, QString searchString, QString artistName = QString());
-    static MusicSearch *instance(QWidget *parent = 0);
+    static MusicSearch *instance(QWidget *parent = nullptr);
     int scraperNo();
     QString scraperId();
     QString scraperId2();

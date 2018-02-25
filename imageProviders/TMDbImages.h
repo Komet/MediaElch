@@ -12,7 +12,7 @@ class TMDbImages : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit TMDbImages(QObject *parent = 0);
+    explicit TMDbImages(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

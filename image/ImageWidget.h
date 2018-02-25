@@ -2,6 +2,7 @@
 #define IMAGEWIDGET_H
 
 #include <QWidget>
+
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
 #include "music/Album.h"
@@ -15,7 +16,7 @@ class ImageWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageWidget(QWidget *parent = 0);
+    explicit ImageWidget(QWidget *parent = nullptr);
     ~ImageWidget();
     void setAlbum(Album *album);
 

@@ -1,9 +1,9 @@
 #ifndef MOVIEFILESEARCHER_H
 #define MOVIEFILESEARCHER_H
 
-#include <QObject>
 #include <QDir>
 #include <QHash>
+#include <QObject>
 #include <QTime>
 
 #include "movies/Movie.h"
@@ -15,7 +15,7 @@ class MovieFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MovieFileSearcher(QObject *parent = 0);
+    explicit MovieFileSearcher(QObject *parent = nullptr);
     ~MovieFileSearcher();
 
     void setMovieDirectories(QList<SettingsDir> directories);

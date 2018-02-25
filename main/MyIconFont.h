@@ -72,7 +72,7 @@ Q_OBJECT
 
 public:
 
-    MyIconFont(QObject *parent = 0);
+    explicit MyIconFont(QObject *parent = nullptr);
     virtual ~MyIconFont();
 
     void init( const QString& fontname );

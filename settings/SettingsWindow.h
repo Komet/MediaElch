@@ -25,7 +25,7 @@ class SettingsWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit SettingsWindow(QWidget *parent = 0);
+    explicit SettingsWindow(QWidget *parent = nullptr);
     ~SettingsWindow();
 
 public slots:
@@ -54,7 +54,7 @@ private slots:
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
     void onChooseUnrar();
     void onChooseMakeMkvCon();
-    void onDirTypeChanged(QComboBox *comboBox = 0);
+    void onDirTypeChanged(QComboBox *comboBox = nullptr);
     void onShowAdultScrapers();
     void onPluginListUpdated(QList<PluginManager::Plugin> plugins);
     void onPluginActivated(QListWidgetItem *item);

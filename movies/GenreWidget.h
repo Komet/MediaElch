@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 
@@ -20,7 +21,7 @@ class GenreWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit GenreWidget(QWidget *parent = 0);
+    explicit GenreWidget(QWidget *parent = nullptr);
     ~GenreWidget();
 
 signals:

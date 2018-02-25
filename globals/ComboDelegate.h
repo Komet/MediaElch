@@ -2,6 +2,7 @@
 #define COMBODELEGATE_H
 
 #include <QItemDelegate>
+
 #include "globals/Globals.h"
 
 /**

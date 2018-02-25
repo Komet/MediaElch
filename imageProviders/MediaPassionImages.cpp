@@ -1,9 +1,10 @@
 #include "MediaPassionImages.h"
 
+#include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
-#include <QSettings>
+
 #include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 

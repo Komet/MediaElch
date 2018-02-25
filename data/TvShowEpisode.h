@@ -4,11 +4,13 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+
 #include "data/MediaCenterInterface.h"
 #include "data/StreamDetails.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
+#include "globals/Globals.h"
 
 class MediaCenterInterface;
 class StreamDetails;
@@ -38,7 +40,7 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
-    explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
+    explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = nullptr);
     void clear();
     void clear(QList<int> infos);
 

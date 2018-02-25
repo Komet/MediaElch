@@ -2,7 +2,7 @@
 #define MANAGER_H
 
 #include <QObject>
-#include "settings/Settings.h"
+
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertScraperInterface.h"
@@ -10,22 +10,23 @@
 #include "data/ImageProviderInterface.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
+#include "data/MovieModel.h"
 #include "data/MusicScraperInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowFileSearcher.h"
-#include "data/MovieModel.h"
 #include "data/TvShowModel.h"
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
 #include "main/MyIconFont.h"
+#include "music/MusicFileSearcher.h"
+#include "music/MusicFilesWidget.h"
+#include "music/MusicModel.h"
 #include "scrapers/TvTunes.h"
+#include "settings/Settings.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
-#include "music/MusicFileSearcher.h"
-#include "music/MusicModel.h"
-#include "music/MusicFilesWidget.h"
 
 /**
  * @brief The Manager class
@@ -35,7 +36,7 @@ class Manager : public QObject
 {
     Q_OBJECT
 public:
-    explicit Manager(QObject *parent = 0);
+    explicit Manager(QObject *parent = nullptr);
     ~Manager();
 
     static Manager *instance();

@@ -2,9 +2,10 @@
 #define ARTIST_H
 
 #include <QObject>
-#include "globals/Globals.h"
-#include "MusicModelItem.h"
+
 #include "ArtistController.h"
+#include "MusicModelItem.h"
+#include "globals/Globals.h"
 
 class ArtistController;
 class MusicModelItem;
@@ -14,7 +15,7 @@ class Artist : public QObject
     Q_OBJECT
     Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 public:
-    explicit Artist(QString path, QObject *parent = 0);
+    explicit Artist(QString path, QObject *parent = nullptr);
     ~Artist();
 
     QString path() const;

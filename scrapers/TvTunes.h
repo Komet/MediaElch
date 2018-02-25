@@ -1,16 +1,17 @@
 #ifndef TVTUNES_H
 #define TVTUNES_H
 
-#include <QObject>
 #include <QNetworkAccessManager>
+#include <QObject>
 #include <QQueue>
+
 #include "globals/Globals.h"
 
 class TvTunes : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvTunes(QObject *parent = 0);
+    explicit TvTunes(QObject *parent = nullptr);
     void search(QString searchStr);
 
 signals:

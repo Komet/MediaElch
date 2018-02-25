@@ -1,9 +1,10 @@
 #include "Subtitle.h"
 
-Subtitle::Subtitle(QObject *parent) : QObject(parent)
+Subtitle::Subtitle(QObject *parent) :
+    QObject(parent),
+    m_forced{false},
+    m_changed{false}
 {
-    m_changed = false;
-    m_forced = false;
 }
 
 QString Subtitle::language() const

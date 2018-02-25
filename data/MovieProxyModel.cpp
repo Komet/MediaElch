@@ -1,6 +1,7 @@
 #include "MovieProxyModel.h"
 
 #include <QDebug>
+
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 
@@ -9,10 +10,9 @@
  * @param parent
  */
 MovieProxyModel::MovieProxyModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+    QSortFilterProxyModel(parent),
+    m_sortBy{SortByNew}
 {
-    m_sortBy = SortByNew;
-    m_filterDuplicates = false;
     sort(0, Qt::AscendingOrder);
 }
 

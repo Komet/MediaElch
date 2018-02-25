@@ -3,6 +3,7 @@
 
 #include <QQmlContext>
 #include <QQuickView>
+
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MainWindow.h"

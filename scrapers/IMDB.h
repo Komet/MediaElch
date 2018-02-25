@@ -1,15 +1,16 @@
 #ifndef IMDB_H
 #define IMDB_H
 
-#include "QNetworkAccessManager"
-#include "QNetworkReply"
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
 #include "data/ScraperInterface.h"
 
 class IMDB : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit IMDB(QObject *parent = 0);
+    explicit IMDB(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

@@ -13,8 +13,8 @@ class ExportTemplateLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit ExportTemplateLoader(QObject *parent = 0);
-    static ExportTemplateLoader *instance(QObject *parent = 0);
+    explicit ExportTemplateLoader(QObject *parent = nullptr);
+    static ExportTemplateLoader *instance(QObject *parent = nullptr);
     QList<ExportTemplate*> installedTemplates();
     ExportTemplate *getTemplateByIdentifier(QString identifier);
 

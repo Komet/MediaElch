@@ -8,8 +8,8 @@ class Update : public QObject
 {
     Q_OBJECT
 public:
-    explicit Update(QObject *parent = 0);
-    static Update *instance(QObject *parent = 0);
+    explicit Update(QObject *parent = nullptr);
+    static Update *instance(QObject *parent = nullptr);
 
 public slots:
     void checkForUpdate();

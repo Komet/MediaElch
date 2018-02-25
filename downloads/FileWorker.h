@@ -3,13 +3,14 @@
 
 #include <QMap>
 #include <QObject>
+
 #include "downloads/MyFile.h"
 
 class FileWorker : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileWorker(QObject *parent = 0);
+    explicit FileWorker(QObject *parent = nullptr);
     void setFiles(QMap<QString, QString> files);
     QMap<QString, QString> files();
 

@@ -5,11 +5,12 @@
 #include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
-#include "globals/Globals.h"
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
 #include "globals/Filter.h"
+#include "globals/Globals.h"
 
 namespace Ui {
 class TvShowFilesWidget;
@@ -23,7 +24,7 @@ class TvShowFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowFilesWidget(QWidget *parent = 0);
+    explicit TvShowFilesWidget(QWidget *parent = nullptr);
     ~TvShowFilesWidget();
     void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();

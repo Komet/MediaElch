@@ -2,8 +2,9 @@
 #define MUSICWIDGET_H
 
 #include <QWidget>
-#include "Artist.h"
+
 #include "Album.h"
+#include "Artist.h"
 
 namespace Ui {
 class MusicWidget;
@@ -14,7 +15,7 @@ class MusicWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidget(QWidget *parent = 0);
+    explicit MusicWidget(QWidget *parent = nullptr);
     ~MusicWidget();
 
 public slots:

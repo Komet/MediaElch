@@ -7,7 +7,7 @@ class MyFile : public QFile
 {
     Q_OBJECT
 public:
-    MyFile(const QString &name);
+    explicit MyFile(const QString &name);
     bool copy(const QString &newName);
 };
 

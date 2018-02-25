@@ -2,6 +2,7 @@
 #include "ui_TvShowMultiScrapeDialog.h"
 
 #include <QDebug>
+
 #include "data/ImageCache.h"
 #include "data/TvScraperInterface.h"
 #include "globals/Helper.h"

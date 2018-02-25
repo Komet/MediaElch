@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QWidget>
+
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"
@@ -24,7 +25,7 @@ class ConcertFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertFilesWidget(QWidget *parent = 0);
+    explicit ConcertFilesWidget(QWidget *parent = nullptr);
     ~ConcertFilesWidget();
     static ConcertFilesWidget *instance();
     QList<Concert*> selectedConcerts();

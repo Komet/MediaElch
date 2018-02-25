@@ -6,13 +6,14 @@
 #include <QObject>
 #include <QPointer>
 #include <QStringList>
+
 #include "trailerProviders/TrailerProvider.h"
 
 class MovieMaze : public TrailerProvider
 {
     Q_OBJECT
 public:
-    explicit MovieMaze(QObject *parent = 0);
+    explicit MovieMaze(QObject *parent = nullptr);
     QString name();
 
 public slots:

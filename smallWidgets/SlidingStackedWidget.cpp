@@ -3,22 +3,21 @@
 #include <QHBoxLayout>
 
 SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
-    QStackedWidget(parent)
+    QStackedWidget(parent),
+    m_speed{500},
+    m_animationType{QEasingCurve::OutBack},
+    m_vertical{false},
+    m_now{0},
+    m_next{0},
+    m_wrap{false},
+    m_pNow{QPoint(0,0)},
+    m_active{false},
+    m_expanded{false}
 {
     if (parent!=0)
         m_mainWindow = parent;
     else
         m_mainWindow = this;
-
-    m_vertical = false;
-    m_speed = 500;
-    m_animationType = QEasingCurve::OutBack;
-    m_now = 0;
-    m_next = 0;
-    m_wrap = false;
-    m_pNow = QPoint(0,0);
-    m_active = false;
-    m_expanded = false;
 }
 
 

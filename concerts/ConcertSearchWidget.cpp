@@ -2,6 +2,7 @@
 #include "ui_ConcertSearchWidget.h"
 
 #include <QDebug>
+
 #include "globals/Manager.h"
 
 ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) :

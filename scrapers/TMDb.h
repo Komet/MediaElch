@@ -2,10 +2,10 @@
 #define TMDB_H
 
 #include <QComboBox>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <QObject>
 #include <QPointer>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 #include "data/ScraperInterface.h"
 
@@ -16,7 +16,7 @@ class TMDb : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TMDb(QObject *parent = 0);
+    explicit TMDb(QObject *parent = nullptr);
     ~TMDb();
     QString name();
     QString identifier();

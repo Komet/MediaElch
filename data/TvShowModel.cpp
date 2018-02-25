@@ -1,12 +1,12 @@
-#include <QtGui>
 #include <QDebug>
 #include <QPainter>
+#include <QtGui>
 
+#include "TvShowModel.h"
+#include "TvShowModelItem.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "TvShowModel.h"
-#include "TvShowModelItem.h"
 
 /**
  * @brief TvShowModel::TvShowModel
@@ -273,10 +273,9 @@ QModelIndex TvShowModel::parent(const QModelIndex &index) const
 bool TvShowModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
     TvShowModelItem *parentItem = getItem(parent);
-    bool success = true;
 
     beginRemoveRows(parent, position, position + rows - 1);
-    success = parentItem->removeChildren(position, rows);
+    bool success = parentItem->removeChildren(position, rows);
     endRemoveRows();
 
     return success;

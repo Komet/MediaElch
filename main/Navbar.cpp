@@ -3,6 +3,7 @@
 
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"
@@ -54,7 +55,6 @@ Navbar::Navbar(QWidget *parent) :
 
     QStringList menuIcons = QStringList() << "scrape" << "save" << "saveall" << "rename" << "sync" << "export" << "reload" << "settings" << "about";
 
-    int i=0;
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton*>()) {
         if (!btn->property("iconName").isValid())
             continue;

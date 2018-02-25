@@ -6,20 +6,20 @@
 #include <QPropertyAnimation>
 #include <QScrollArea>
 #include <QScrollBar>
+
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 
 ImageGallery::ImageGallery(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_imageWidth{200},
+    m_imageHeight{100},
+    m_horizontalSpace{10},
+    m_verticalSpace{10},
+    m_alignment{Qt::Vertical},
+    m_scrollValue{50},
+    m_showZoomAndResolution{true}
 {
-    m_imageWidth = 200;
-    m_imageHeight = 100;
-    m_alignment = Qt::Vertical;
-    m_horizontalSpace = 10;
-    m_verticalSpace = 10;
-    m_showZoomAndResolution = true;
-    m_scrollValue = 50;
-
     QMovie *loadingMovie = new QMovie(":/img/spinner.gif");
     loadingMovie->start();
     m_loadingLabel = new QLabel(this);

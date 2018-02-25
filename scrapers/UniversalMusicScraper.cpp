@@ -6,9 +6,9 @@
 #include <QLabel>
 #include <QMutexLocker>
 #include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
 
 #include "../data/Storage.h"
 #include "../globals/NetworkReplyWatcher.h"
@@ -69,7 +69,7 @@ QString UniversalMusicScraper::identifier()
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
 {
-    QUrl url(QString("http://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
@@ -120,7 +120,7 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> in
     artist->clear(infos);
     artist->setMbId(mbId);
     artist->setAllMusicId("");
-    QUrl url(QString("http://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
+    QUrl url(QString("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
@@ -173,8 +173,8 @@ void UniversalMusicScraper::onArtistRelsFinished()
     appendDownloadElement(artist, "theaudiodb", "tadb_data", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2").arg(m_tadbApiKey).arg(artist->mbId())));
     appendDownloadElement(artist, "theaudiodb", "tadb_discography", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2").arg(m_tadbApiKey).arg(artist->mbId())));
     if (!artist->allMusicId().isEmpty()) {
-        appendDownloadElement(artist, "allmusic", "am_data", QUrl(QString("http://www.allmusic.com/artist/%1").arg(artist->allMusicId())));
-        appendDownloadElement(artist, "allmusic", "am_biography", QUrl(QString("http://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId())));
+        appendDownloadElement(artist, "allmusic", "am_data", QUrl(QString("https://www.allmusic.com/artist/%1").arg(artist->allMusicId())));
+        appendDownloadElement(artist, "allmusic", "am_biography", QUrl(QString("https://www.allmusic.com/artist/%1/biography").arg(artist->allMusicId())));
     }
     if (!discogsUrl.isEmpty())
         appendDownloadElement(artist, "discogs", "discogs_data", QUrl(discogsUrl + "?type=Releases&subtype=Albums"));
@@ -306,7 +306,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     QString searchQuery = "release:\"" + QString(QUrl::toPercentEncoding(cleanSearchStr)) + "\"";
     if (!artistName.isEmpty())
         searchQuery += "%20AND%20artist:\"" + QString(QUrl::toPercentEncoding(artistName)) + "\"";
-    QUrl url(QString("http://musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
+    QUrl url(QString("https://musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
@@ -390,7 +390,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
     album->setAllMusicId("");
-    QUrl url(QString("http://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
+    QUrl url(QString("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent" , "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
@@ -448,7 +448,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
 
     appendDownloadElement(album, "theaudiodb", "tadb_data", QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2").arg(m_tadbApiKey).arg(album->mbReleaseGroupId())));
     if (!album->allMusicId().isEmpty())
-        appendDownloadElement(album, "allmusic", "am_data", QString("http://www.allmusic.com/album/%1").arg(album->allMusicId()));
+        appendDownloadElement(album, "allmusic", "am_data", QString("https://www.allmusic.com/album/%1").arg(album->allMusicId()));
     if (!discogsUrl.isEmpty())
         appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
 

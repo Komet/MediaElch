@@ -1,7 +1,6 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
-#include <QtCore/qmath.h>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
@@ -9,6 +8,8 @@
 #include <QPainter>
 #include <QPixmapCache>
 #include <QScrollBar>
+#include <QtCore/qmath.h>
+
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -18,10 +19,10 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
-#include "notifications/NotificationBox.h"
 #include "main/MainWindow.h"
 #include "movies/FilesWidget.h"
 #include "movies/MovieSearch.h"
+#include "notifications/NotificationBox.h"
 
 /**
  * @brief MovieWidget::MovieWidget
@@ -1462,7 +1463,7 @@ void MovieWidget::onInsertYoutubeLink()
     if (Settings::instance()->useYoutubePluginUrls())
         ui->trailer->setText("plugin://plugin.video.youtube/?action=play_video&videoid=");
     else
-        ui->trailer->setText("http://www.youtube.com/watch?v=");
+        ui->trailer->setText("https://www.youtube.com/watch?v=");
     ui->trailer->setFocus();
 }
 

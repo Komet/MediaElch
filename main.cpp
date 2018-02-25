@@ -1,13 +1,14 @@
+#include <QApplication>
 #include <QFile>
+#include <QFontDatabase>
 #include <QLibraryInfo>
 #include <QMessageBox>
 #include <QObject>
-#include <QApplication>
-#include <QFontDatabase>
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTimer>
 #include <QTranslator>
+
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 
@@ -21,14 +22,17 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
     QTextStream out;
     if (toFile)
         out.setDevice(&data);
+
+#ifdef Q_OS_WIN32
+    QString newLine = "\r\n";
+#else
     QString newLine = "\n";
-    #ifdef Q_OS_WIN32
-        newLine = "\r\n";
-    #endif
+#endif
 
     QString f = QString("%1").arg(context.function, -70, QChar(' '));
 
     switch (type) {
+    case QtInfoMsg:
     case QtDebugMsg:
         if (toFile)
             out << "[" << f << "] " << localMsg << newLine;

@@ -1,13 +1,13 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
-#include "globals/Globals.h"
 #include "data/Concert.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "settings/DataFile.h"
 
 class Album;
@@ -58,12 +58,14 @@ public:
     virtual QString nfoFilePath(Artist *artist) = 0;
     virtual QString nfoFilePath(Album *album) = 0;
 
+    // clang-format off
     virtual QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(TvShow *show, int type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    // clang-format on
 
     virtual void loadBooklets(Album *album) = 0;
 };

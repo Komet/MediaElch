@@ -3,12 +3,12 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QUrl>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <QResizeEvent>
 
 #include "data/Concert.h"
 #include "data/ImageProviderInterface.h"
@@ -33,9 +33,9 @@ class ImageDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImageDialog(QWidget *parent = 0);
+    explicit ImageDialog(QWidget *parent = nullptr);
     ~ImageDialog();
-    static ImageDialog *instance(QWidget *parent = 0);
+    static ImageDialog *instance(QWidget *parent = nullptr);
     void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     QList<QUrl> imageUrls();

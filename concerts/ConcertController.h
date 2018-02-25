@@ -3,11 +3,12 @@
 
 #include <QMutex>
 #include <QObject>
+
 #include "data/Concert.h"
 #include "data/ConcertScraperInterface.h"
 #include "data/MediaCenterInterface.h"
-#include "globals/DownloadManagerElement.h"
 #include "globals/DownloadManager.h"
+#include "globals/DownloadManagerElement.h"
 
 class ConcertScraperInterface;
 class DownloadManager;
@@ -17,7 +18,7 @@ class ConcertController : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertController(Concert *parent = 0);
+    explicit ConcertController(Concert *parent = nullptr);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

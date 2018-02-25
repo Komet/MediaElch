@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QToolButton>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "smallWidgets/ClosableImage.h"
 
@@ -12,7 +13,7 @@ class ImageGallery : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ImageGallery(QWidget *parent = 0);
+    explicit ImageGallery(QWidget *parent = nullptr);
     void clear();
     void setImages(QList<ExtraFanart> images);
     void addImage(const QByteArray &img, const QString &url = QString());

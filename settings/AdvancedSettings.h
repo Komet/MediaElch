@@ -5,13 +5,14 @@
 #include <QObject>
 #include <QStringList>
 #include <QXmlStreamReader>
+
 #include "globals/Globals.h"
 
 class AdvancedSettings : public QObject
 {
     Q_OBJECT
 public:
-    explicit AdvancedSettings(QObject *parent = 0);
+    explicit AdvancedSettings(QObject *parent = nullptr);
     ~AdvancedSettings();
 
     bool debugLog() const;

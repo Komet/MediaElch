@@ -4,12 +4,13 @@
 #include <QAbstractItemModel>
 #include <QIcon>
 #include <QObject>
+
 #include "Artist.h"
 
 class MusicModel : public QAbstractItemModel
 {
 public:
-    MusicModel(QObject *parent = 0);
+    explicit MusicModel(QObject *parent = nullptr);
     ~MusicModel();
 
     QVariant data(const QModelIndex &index, int role) const;

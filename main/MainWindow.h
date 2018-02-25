@@ -5,10 +5,11 @@
 #include <QMainWindow>
 #include <QProgressBar>
 #include <QToolButton>
-#include "globals/Filter.h"
-#include "globals/Globals.h"
+
 #include "data/MovieFileSearcher.h"
 #include "export/ExportDialog.h"
+#include "globals/Filter.h"
+#include "globals/Globals.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
 #include "plugins/PluginInterface.h"
@@ -30,7 +31,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     static MainWindow* instance();
@@ -45,7 +46,7 @@ private slots:
     void progressProgress(int current, int max, int id);
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
-    void onMenu(QToolButton *button = 0);
+    void onMenu(QToolButton *button = nullptr);
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();

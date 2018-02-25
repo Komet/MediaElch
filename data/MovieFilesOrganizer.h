@@ -1,11 +1,11 @@
 #ifndef MOVIEFILESORGANIZER_H
 #define MOVIEFILESORGANIZER_H
 
-#include <QThread>
 #include <QDir>
+#include <QThread>
 
-#include "movies/Movie.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 /**
  * @brief The MovieFilesOrganizer class
@@ -14,7 +14,7 @@ class MovieFilesOrganizer : public QThread
 {
     Q_OBJECT
 public:
-    explicit MovieFilesOrganizer(QObject *parent = 0);
+    explicit MovieFilesOrganizer(QObject *parent = nullptr);
     ~MovieFilesOrganizer();
     void canceled(QString msg);
     void moveToDirs(QString dir);

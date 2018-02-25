@@ -1,10 +1,12 @@
 #include "FanartTvMusic.h"
+
 #include <QApplication>
 #include <QDebug>
 #include <QSettings>
+#include <QtScript/QScriptEngine>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
-#include <QtScript/QScriptEngine>
+
 #include "data/Storage.h"
 #include "imageProviders/FanartTv.h"
 #include "scrapers/TMDb.h"
@@ -52,7 +54,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
     QString searchQuery = "release:" + QString(QUrl::toPercentEncoding(searchStr));
     if (!artistName.isEmpty())
         searchQuery += "%20AND%20artist:" + QString(QUrl::toPercentEncoding(artistName));
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
+    QUrl url(QString("https://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
@@ -62,7 +64,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
 void FanartTvMusic::searchArtist(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
@@ -74,7 +76,7 @@ void FanartTvMusic::artistFanarts(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistFanart);
@@ -86,7 +88,7 @@ void FanartTvMusic::artistLogos(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistLogo);
@@ -98,7 +100,7 @@ void FanartTvMusic::artistThumbs(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistThumb);
@@ -110,7 +112,7 @@ void FanartTvMusic::albumCdArts(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::AlbumCdArt);
@@ -122,7 +124,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::AlbumThumb);
@@ -486,7 +488,7 @@ void FanartTvMusic::artistImages(Artist *artist, QString mbId, QList<int> types)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, artist));
@@ -499,7 +501,7 @@ void FanartTvMusic::albumImages(Album *album, QString mbId, QList<int> types)
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, album));

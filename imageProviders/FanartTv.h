@@ -5,8 +5,9 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-#include "globals/Globals.h"
+
 #include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TheTvDb.h"
 
@@ -17,7 +18,7 @@ class FanartTv : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit FanartTv(QObject *parent = 0);
+    explicit FanartTv(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetSeason.h"
 
 #include <QPainter>
+
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
@@ -11,11 +12,11 @@
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TvShowWidgetSeason)
+    ui(new Ui::TvShowWidgetSeason),
+    m_show{0},
+    m_season{-1}
 {
     ui->setupUi(this);
-    m_show = 0;
-    m_season = -1;
 
     ui->title->clear();
 

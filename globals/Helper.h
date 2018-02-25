@@ -18,8 +18,8 @@ public:
         ButtonPrimary, ButtonInfo, ButtonDanger, ButtonSuccess, ButtonWarning
     };
 
-    Helper(QObject *parent = 0);
-    static Helper *instance(QObject *parent = 0);
+    explicit Helper(QObject *parent = nullptr);
+    static Helper *instance(QObject *parent = nullptr);
     virtual QString toLatin1PercentEncoding(QString str);
     virtual QString urlDecode(QString str);
     virtual QString urlEncode(QString str);

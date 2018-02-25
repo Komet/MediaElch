@@ -1,6 +1,7 @@
 #include "MovieModel.h"
 
 #include <QPainter>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -138,6 +139,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
+        // clang-format off
         switch (MovieModel::columnToMediaStatus(index.column())) {
         case MediaStatusActors:
             icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
@@ -176,6 +178,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         default:
             break;
         }
+        // clang-format on
 
         if (!icon.isEmpty()) {
             static QHash<QString, QIcon> icons;

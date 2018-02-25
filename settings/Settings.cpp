@@ -5,6 +5,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QNetworkProxy>
+
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
 #include "plugins/PluginManager.h"

@@ -2,6 +2,7 @@
 #define CONCERTPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**
@@ -11,7 +12,7 @@ class ConcertProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit ConcertProxyModel(QObject *parent = 0);
+    explicit ConcertProxyModel(QObject *parent = nullptr);
     void setFilter(QList<Filter*> filters, QString text);
 
 protected:

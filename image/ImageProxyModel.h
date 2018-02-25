@@ -8,7 +8,7 @@ class ImageProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit ImageProxyModel(QObject *parent = 0);
+    explicit ImageProxyModel(QObject *parent = nullptr);
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 };
 

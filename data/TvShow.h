@@ -4,6 +4,7 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowEpisode.h"
@@ -24,7 +25,7 @@ class TvShow : public QObject
     Q_OBJECT
 
 public:
-    explicit TvShow(QString dir = QString(), QObject *parent = 0);
+    explicit TvShow(QString dir = QString(), QObject *parent = nullptr);
     void clear();
     void clear(QList<int> infos);
     void addEpisode(TvShowEpisode *episode);

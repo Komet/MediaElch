@@ -2,6 +2,7 @@
 #define MUSICFILESEARCHER_H
 
 #include <QObject>
+
 #include "../globals/Globals.h"
 #include "../music/Album.h"
 #include "../music/Artist.h"
@@ -10,7 +11,7 @@ class MusicFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileSearcher(QObject *parent = 0);
+    explicit MusicFileSearcher(QObject *parent = nullptr);
     ~MusicFileSearcher();
 
     void setMusicDirectories(QList<SettingsDir> directories);

@@ -2,13 +2,14 @@
 
 #include <QDir>
 #include <QStringList>
+
 #include "settings/Settings.h"
 
 ExportTemplate::ExportTemplate(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_isRemote{false},
+    m_isInstalled{false}
 {
-    m_isInstalled = false;
-    m_isRemote = false;
 }
 
 void ExportTemplate::setAuthor(QString author)

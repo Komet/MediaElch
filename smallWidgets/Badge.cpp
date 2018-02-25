@@ -3,23 +3,23 @@
 #include <QPainter>
 
 Badge::Badge(QWidget *parent) :
-    QLabel(parent)
+    QLabel(parent),
+    m_active{false},
+    m_closable{false},
+    m_fontBold{true},
+    m_showActiveMark{true}
 {
-    m_active = false;
-    m_closable = false;
-    m_fontBold = true;
-    m_showActiveMark = true;
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Badge::LabelDefault);
 }
 
 Badge::Badge(const QString &text, QWidget *parent) :
-    QLabel(text, parent)
+    QLabel(text, parent),
+    m_active{false},
+    m_closable{false},
+    m_fontBold{true},
+    m_showActiveMark{true}
 {
-    m_active = false;
-    m_closable = false;
-    m_fontBold = true;
-    m_showActiveMark = true;
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Badge::LabelDefault);
 }

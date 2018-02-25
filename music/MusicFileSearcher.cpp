@@ -1,14 +1,16 @@
 #include "MusicFileSearcher.h"
 
-#include <QtConcurrent>
 #include <QDebug>
 #include <QDirIterator>
 #include <QFileInfo>
+#include <QtConcurrent>
+
 #include "../globals/Manager.h"
 
-MusicFileSearcher::MusicFileSearcher(QObject *parent) : QObject(parent)
+MusicFileSearcher::MusicFileSearcher(QObject *parent) :
+    QObject(parent),
+    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}
 {
-    m_progressMessageId = Constants::MusicFileSearcherProgressMessageId;
 }
 
 MusicFileSearcher::~MusicFileSearcher()

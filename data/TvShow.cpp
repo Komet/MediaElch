@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
+
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -41,23 +42,23 @@ TvShow::TvShow(QString dir, QObject *parent) :
 void TvShow::clear()
 {
     QList<int> infos;
-    infos << TvShowScraperInfos::Actors
-          << TvShowScraperInfos::Banner
-          << TvShowScraperInfos::Certification
-          << TvShowScraperInfos::Fanart
-          << TvShowScraperInfos::FirstAired
-          << TvShowScraperInfos::Genres
-          << TvShowScraperInfos::Network
-          << TvShowScraperInfos::Overview
-          << TvShowScraperInfos::Poster
-          << TvShowScraperInfos::Rating
-          << TvShowScraperInfos::SeasonPoster
-          << TvShowScraperInfos::Title
-          << TvShowScraperInfos::Tags
-          << TvShowScraperInfos::ExtraArts
-          << TvShowScraperInfos::ExtraFanarts
-          << TvShowScraperInfos::Thumb
-          << TvShowScraperInfos::SeasonThumb
+    infos << TvShowScraperInfos::Actors         //
+          << TvShowScraperInfos::Banner         //
+          << TvShowScraperInfos::Certification  //
+          << TvShowScraperInfos::Fanart         //
+          << TvShowScraperInfos::FirstAired     //
+          << TvShowScraperInfos::Genres         //
+          << TvShowScraperInfos::Network        //
+          << TvShowScraperInfos::Overview       //
+          << TvShowScraperInfos::Poster         //
+          << TvShowScraperInfos::Rating         //
+          << TvShowScraperInfos::SeasonPoster   //
+          << TvShowScraperInfos::Title          //
+          << TvShowScraperInfos::Tags           //
+          << TvShowScraperInfos::ExtraArts      //
+          << TvShowScraperInfos::ExtraFanarts   //
+          << TvShowScraperInfos::Thumb          //
+          << TvShowScraperInfos::SeasonThumb    //
           << TvShowScraperInfos::Runtime;
     clear(infos);
     m_nfoContent.clear();

@@ -2,9 +2,10 @@
 
 #include <QDebug>
 
-NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) : QObject(parent)
+NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) :
+    QObject(parent),
+    m_reply{0}
 {
-    m_reply = 0;
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     setReply(reply);
 }

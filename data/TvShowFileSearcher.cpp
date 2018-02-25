@@ -6,20 +6,22 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrentMap>
-#include "globals/Helper.h"
-#include "globals/Manager.h"
+
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowModelItem.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
 
 /**
  * @brief TvShowFileSearcher::TvShowFileSearcher
  * @param parent
  */
 TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_progressMessageId{Constants::TvShowSearcherProgressMessageId},
+    m_aborted{false}
 {
-    m_progressMessageId = Constants::TvShowSearcherProgressMessageId;
 }
 
 /**

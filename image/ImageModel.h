@@ -11,7 +11,7 @@ class ImageModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    explicit ImageModel(QObject *parent = 0);
+    explicit ImageModel(QObject *parent = nullptr);
     ~ImageModel();
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

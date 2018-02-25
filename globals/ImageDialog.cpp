@@ -4,14 +4,15 @@
 #include <QBuffer>
 #include <QDebug>
 #include <QFileDialog>
-#include <QSettings>
-#include <QtCore/qmath.h>
 #include <QLabel>
 #include <QMovie>
 #include <QPainter>
+#include <QSettings>
 #include <QSize>
 #include <QStandardPaths>
 #include <QTimer>
+#include <QtCore/qmath.h>
+
 #include "data/ImageProviderInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -112,9 +113,10 @@ int ImageDialog::exec(int type)
     QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
     QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
 
-    bool isMac = false;
 #ifdef Q_OS_MAC
-    isMac = true;
+    bool isMac = true;
+#else
+    bool isMac = false;
 #endif
 
     if (savedSize.isValid() && !savedSize.isNull() && !isMac) {
@@ -697,7 +699,7 @@ void ImageDialog::updateSourceLink()
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
     QString searchTerm = ui->searchTerm->text();
-    if (searchTerm.startsWith("http://")) {
+    if (searchTerm.startsWith("http://") || searchTerm.startsWith("https://")) {
         clearSearch();
         m_imageUrl = searchTerm;
         Poster poster;
@@ -742,7 +744,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
         ui->searchTerm->setLoading(false);
         loadImagesFromProvider(mediaPassionId);
-    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty() && m_currentProvider->identifier() != "images.coverlib") {
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);

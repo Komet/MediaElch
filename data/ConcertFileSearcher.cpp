@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlRecord>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
@@ -12,9 +13,10 @@
  * @param parent
  */
 ConcertFileSearcher::ConcertFileSearcher(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId},
+    m_aborted{false}
 {
-    m_progressMessageId = Constants::ConcertFileSearcherProgressMessageId;
 }
 
 /**

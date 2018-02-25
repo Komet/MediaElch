@@ -2,19 +2,20 @@
 
 #include <QDebug>
 #include <QFileInfo>
+
 #include "../data/ImageCache.h"
 #include "../globals/Helper.h"
 #include "../globals/Manager.h"
 
-ArtistController::ArtistController(Artist *parent) : QObject(parent)
+ArtistController::ArtistController(Artist *parent) :
+    QObject(parent),
+    m_artist{parent},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_downloadManager{new DownloadManager(this)},
+    m_downloadsInProgress{false},
+    m_downloadsSize{0}
 {
-    m_artist = parent;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_downloadManager = new DownloadManager(this);
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
-
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager, SIGNAL(allDownloadsFinished(Artist*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
 }

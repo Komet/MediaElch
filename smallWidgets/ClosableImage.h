@@ -2,9 +2,9 @@
 #define CLOSABLEIMAGE_H
 
 #include <QLabel>
-#include <QPaintEvent>
 #include <QMouseEvent>
 #include <QMovie>
+#include <QPaintEvent>
 #include <QPropertyAnimation>
 #include <QWidget>
 
@@ -17,7 +17,7 @@ class ClosableImage : public QLabel
     Q_PROPERTY(QString title READ title WRITE setTitle DESIGNABLE true)
 
 public:
-    explicit ClosableImage(QWidget *parent = 0);
+    explicit ClosableImage(QWidget *parent = nullptr);
     void setMyData(const QVariant &data);
     QVariant myData() const;
     void setImage(const QByteArray &image);

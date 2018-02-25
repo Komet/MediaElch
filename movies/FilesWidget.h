@@ -7,10 +7,11 @@
 #include <QMouseEvent>
 #include <QResizeEvent>
 #include <QWidget>
-#include "movies/Movie.h"
+
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "globals/Filter.h"
+#include "movies/Movie.h"
 #include "smallWidgets/AlphabeticalList.h"
 #include "smallWidgets/SearchOverlay.h"
 
@@ -29,7 +30,7 @@ class FilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit FilesWidget(QWidget *parent = 0);
+    explicit FilesWidget(QWidget *parent = nullptr);
     ~FilesWidget();
     static FilesWidget *instance();
     QList<Movie*> selectedMovies();

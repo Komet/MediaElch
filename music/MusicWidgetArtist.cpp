@@ -2,6 +2,7 @@
 #include "ui_MusicWidgetArtist.h"
 
 #include <QPainter>
+
 #include "../globals/Globals.h"
 #include "../globals/Helper.h"
 #include "../globals/ImageDialog.h"

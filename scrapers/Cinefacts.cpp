@@ -1,6 +1,8 @@
 #include "Cinefacts.h"
+
 #include <QTextDocument>
 #include <QWidget>
+
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -14,18 +16,18 @@
 Cinefacts::Cinefacts(QObject *parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Countries
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Certification
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Backdrop
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Director
+    m_scraperSupports << MovieScraperInfos::Title         //
+                      << MovieScraperInfos::Genres        //
+                      << MovieScraperInfos::Released      //
+                      << MovieScraperInfos::Countries     //
+                      << MovieScraperInfos::Actors        //
+                      << MovieScraperInfos::Studios       //
+                      << MovieScraperInfos::Certification //
+                      << MovieScraperInfos::Runtime       //
+                      << MovieScraperInfos::Overview      //
+                      << MovieScraperInfos::Backdrop      //
+                      << MovieScraperInfos::Poster        //
+                      << MovieScraperInfos::Director      //
                       << MovieScraperInfos::Writer;
 }
 

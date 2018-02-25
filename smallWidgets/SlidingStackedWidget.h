@@ -1,12 +1,11 @@
 #ifndef SLIDINGSTACKEDWIDGET_H
 #define SLIDINGSTACKEDWIDGET_H
 
-
 #include <QDebug>
 #include <QEasingCurve>
 #include <QStackedWidget>
-#include <QtGui>
 #include <QWidget>
+#include <QtGui>
 
 /**
  * @brief SlidingStackedWidget is a class that is derived from QtStackedWidget

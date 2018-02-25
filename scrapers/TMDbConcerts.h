@@ -2,10 +2,10 @@
 #define TMDBCONCERTS_H
 
 #include <QComboBox>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <QObject>
 #include <QWidget>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 #include "data/ConcertScraperInterface.h"
 
@@ -16,7 +16,7 @@ class TMDbConcerts : public ConcertScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TMDbConcerts(QObject *parent = 0);
+    explicit TMDbConcerts(QObject *parent = nullptr);
     ~TMDbConcerts();
     QString name();
     void search(QString searchStr);

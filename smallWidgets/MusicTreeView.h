@@ -9,7 +9,7 @@ class MusicTreeView : public QTreeView
 {
     Q_OBJECT
 public:
-    MusicTreeView(QWidget *parent = 0);
+    explicit MusicTreeView(QWidget *parent = nullptr);
     ~MusicTreeView();
 
 protected:

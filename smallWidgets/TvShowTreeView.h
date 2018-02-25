@@ -9,7 +9,7 @@ class TvShowTreeView : public QTreeView
 {
     Q_OBJECT
 public:
-    TvShowTreeView(QWidget *parent = 0);
+    explicit TvShowTreeView(QWidget *parent = nullptr);
     ~TvShowTreeView();
 
 protected:

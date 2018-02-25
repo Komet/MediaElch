@@ -2,6 +2,7 @@
 #define MOVIEPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "globals/Filter.h"
 
 /**
@@ -11,7 +12,7 @@ class MovieProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit MovieProxyModel(QObject *parent = 0);
+    explicit MovieProxyModel(QObject *parent = nullptr);
     void setFilter(QList<Filter*> filters, QString text);
     void setSortBy(SortBy sortBy);
 

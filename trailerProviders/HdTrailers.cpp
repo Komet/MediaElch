@@ -1,12 +1,15 @@
 #include "HdTrailers.h"
 
 #include <QRegExp>
+
 #include "globals/Helper.h"
 
-HdTrailers::HdTrailers(QObject *parent)
+HdTrailers::HdTrailers(QObject *parent) :
+    m_qnam{new QNetworkAccessManager(this)},
+    m_searchReply{nullptr},
+    m_loadReply{nullptr}
 {
     setParent(parent);
-    m_qnam = new QNetworkAccessManager(this);
     m_libraryPages.enqueue("0");
     m_libraryPages.enqueue("a");
     m_libraryPages.enqueue("b");
@@ -46,7 +49,7 @@ void HdTrailers::searchMovie(QString searchStr)
     m_currentSearch = searchStr;
 
     if (!m_libraryPages.isEmpty()) {
-        QUrl url(QString("http://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
+        QUrl url(QString("https://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
         QNetworkRequest request(url);
         m_searchReply = m_qnam->get(request);
         connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -86,7 +89,7 @@ void HdTrailers::onSearchFinished()
 
 void HdTrailers::loadMovieTrailers(QString id)
 {
-    m_loadReply = m_qnam->get(QNetworkRequest(QUrl("http://www.hd-trailers.net" + id)));
+    m_loadReply = m_qnam->get(QNetworkRequest(QUrl("https://www.hd-trailers.net" + id)));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 

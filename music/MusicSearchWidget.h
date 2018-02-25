@@ -4,6 +4,7 @@
 #include <QSignalMapper>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 
@@ -16,7 +17,7 @@ class MusicSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicSearchWidget(QWidget *parent = 0);
+    explicit MusicSearchWidget(QWidget *parent = nullptr);
     ~MusicSearchWidget();
 
 public slots:

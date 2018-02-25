@@ -3,11 +3,12 @@
 
 #include <QMutex>
 #include <QObject>
+
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
-#include "movies/Movie.h"
-#include "globals/DownloadManagerElement.h"
 #include "globals/DownloadManager.h"
+#include "globals/DownloadManagerElement.h"
+#include "movies/Movie.h"
 
 class DownloadManager;
 class DownloadManagerElement;
@@ -19,7 +20,7 @@ class MovieController : public QObject
 {
     Q_OBJECT
 public:
-    explicit MovieController(Movie *parent = 0);
+    explicit MovieController(Movie *parent = nullptr);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

@@ -6,9 +6,10 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QSpacerItem>
+
 #include "data/Storage.h"
-#include "globals/Manager.h"
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
@@ -83,48 +84,48 @@ MediaPassion::MediaPassion(QObject *parent)
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Tagline
-                      << MovieScraperInfos::Rating
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Certification
-                      << MovieScraperInfos::Trailer
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Backdrop
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Countries
-                      << MovieScraperInfos::Director
-                      << MovieScraperInfos::Writer
-                      << MovieScraperInfos::Logo
-                      << MovieScraperInfos::Banner
-                      << MovieScraperInfos::Thumb
-                      << MovieScraperInfos::CdArt
-                      << MovieScraperInfos::ClearArt
+    m_scraperSupports << MovieScraperInfos::Title         //
+                      << MovieScraperInfos::Tagline       //
+                      << MovieScraperInfos::Rating        //
+                      << MovieScraperInfos::Released      //
+                      << MovieScraperInfos::Runtime       //
+                      << MovieScraperInfos::Certification //
+                      << MovieScraperInfos::Trailer       //
+                      << MovieScraperInfos::Overview      //
+                      << MovieScraperInfos::Poster        //
+                      << MovieScraperInfos::Backdrop      //
+                      << MovieScraperInfos::Actors        //
+                      << MovieScraperInfos::Genres        //
+                      << MovieScraperInfos::Studios       //
+                      << MovieScraperInfos::Countries     //
+                      << MovieScraperInfos::Director      //
+                      << MovieScraperInfos::Writer        //
+                      << MovieScraperInfos::Logo          //
+                      << MovieScraperInfos::Banner        //
+                      << MovieScraperInfos::Thumb         //
+                      << MovieScraperInfos::CdArt         //
+                      << MovieScraperInfos::ClearArt      //
                       << MovieScraperInfos::Set;
 
-    m_scraperNativelySupports << MovieScraperInfos::Title
-                              << MovieScraperInfos::Tagline
-                              << MovieScraperInfos::Rating
-                              << MovieScraperInfos::Released
-                              << MovieScraperInfos::Runtime
-                              << MovieScraperInfos::Certification
-                              << MovieScraperInfos::Trailer
-                              << MovieScraperInfos::Overview
-                              << MovieScraperInfos::Poster
-                              << MovieScraperInfos::Backdrop
-                              << MovieScraperInfos::Actors
-                              << MovieScraperInfos::Genres
-                              << MovieScraperInfos::Studios
-                              << MovieScraperInfos::Countries
-                              << MovieScraperInfos::Director
-                              << MovieScraperInfos::Writer
-                              << MovieScraperInfos::Set
-                              << MovieScraperInfos::CdArt
-                              << MovieScraperInfos::ClearArt
+    m_scraperNativelySupports << MovieScraperInfos::Title         //
+                              << MovieScraperInfos::Tagline       //
+                              << MovieScraperInfos::Rating        //
+                              << MovieScraperInfos::Released      //
+                              << MovieScraperInfos::Runtime       //
+                              << MovieScraperInfos::Certification //
+                              << MovieScraperInfos::Trailer       //
+                              << MovieScraperInfos::Overview      //
+                              << MovieScraperInfos::Poster        //
+                              << MovieScraperInfos::Backdrop      //
+                              << MovieScraperInfos::Actors        //
+                              << MovieScraperInfos::Genres        //
+                              << MovieScraperInfos::Studios       //
+                              << MovieScraperInfos::Countries     //
+                              << MovieScraperInfos::Director      //
+                              << MovieScraperInfos::Writer        //
+                              << MovieScraperInfos::Set           //
+                              << MovieScraperInfos::CdArt         //
+                              << MovieScraperInfos::ClearArt      //
                               << MovieScraperInfos::Logo;
 }
 

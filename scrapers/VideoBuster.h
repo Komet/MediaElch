@@ -1,10 +1,10 @@
 #ifndef VIDEOBUSTER_H
 #define VIDEOBUSTER_H
 
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <QObject>
 #include <QWidget>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 #include "data/ScraperInterface.h"
 
@@ -15,7 +15,7 @@ class VideoBuster : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit VideoBuster(QObject *parent = 0);
+    explicit VideoBuster(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

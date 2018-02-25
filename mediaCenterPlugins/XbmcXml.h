@@ -7,9 +7,9 @@
 
 #include "data/Concert.h"
 #include "data/MediaCenterInterface.h"
-#include "movies/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 
@@ -20,7 +20,7 @@ class XbmcXml : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit XbmcXml(QObject *parent = 0);
+    explicit XbmcXml(QObject *parent = nullptr);
     ~XbmcXml();
 
     bool saveMovie(Movie *movie);

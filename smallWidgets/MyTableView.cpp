@@ -1,11 +1,12 @@
 #include "MyTableView.h"
+
 #include <QDebug>
 
 MyTableView::MyTableView(QWidget *parent) :
-    QTableView(parent)
+    QTableView(parent),
+    m_useSearchOverlay{false},
+    m_searchOverlay{new SearchOverlay(this)}
 {
-    m_useSearchOverlay = false;
-    m_searchOverlay = new SearchOverlay(this);
     connect(&m_searchOverlayTimer, SIGNAL(timeout()), this, SLOT(onSearchOverlayTimeout()));
 }
 

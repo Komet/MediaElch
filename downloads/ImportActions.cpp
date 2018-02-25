@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QMessageBox>
+
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 

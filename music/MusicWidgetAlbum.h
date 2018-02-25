@@ -4,9 +4,10 @@
 #include <QLineEdit>
 #include <QPointer>
 #include <QWidget>
-#include "../smallWidgets/ClosableImage.h"
-#include "../music/Album.h"
+
 #include "../image/ImageWidget.h"
+#include "../music/Album.h"
+#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetAlbum;
@@ -17,7 +18,7 @@ class MusicWidgetAlbum : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidgetAlbum(QWidget *parent = 0);
+    explicit MusicWidgetAlbum(QWidget *parent = nullptr);
     ~MusicWidgetAlbum();
     void setAlbum(Album *album);
 

@@ -8,7 +8,7 @@ class MyWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyWidget(QWidget *parent = 0);
+    explicit MyWidget(QWidget *parent = nullptr);
 
 signals:
     void resized();

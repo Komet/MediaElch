@@ -12,7 +12,7 @@ class Image : public QObject
     Q_PROPERTY(int imageId READ imageId CONSTANT)
 
 public:
-    explicit Image(QObject *parent = 0);
+    explicit Image(QObject *parent = nullptr);
 
     QString fileName() const;
     void setFileName(const QString &fileName);

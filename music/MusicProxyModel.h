@@ -3,13 +3,14 @@
 
 #include <QObject>
 #include <QSortFilterProxyModel>
+
 #include "../globals/Filter.h"
 
 class MusicProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    MusicProxyModel(QObject *parent = 0);
+    explicit MusicProxyModel(QObject *parent = nullptr);
     ~MusicProxyModel();
 
     void setFilter(QList<Filter*> filters, QString text);

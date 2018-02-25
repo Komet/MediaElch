@@ -4,9 +4,10 @@
 #include <QDateTime>
 #include <QObject>
 #include <QSqlDatabase>
+
 #include "data/Concert.h"
-#include "movies/Movie.h"
 #include "data/TvShow.h"
+#include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 
@@ -14,7 +15,7 @@ class Database : public QObject
 {
     Q_OBJECT
 public:
-    explicit Database(QObject *parent = 0);
+    explicit Database(QObject *parent = nullptr);
     ~Database();
     QSqlDatabase db();
     void transaction();

@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
@@ -110,9 +111,6 @@ void StreamDetails::loadWithLibrary()
     MI.Open(QString2MI(fileName));
 
     int duration = 0;
-    double aspectRatio;
-    int width = 0;
-    int height = 0;
     QString scanType;
     QString videoCodec;
 
@@ -137,9 +135,9 @@ void StreamDetails::loadWithLibrary()
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
 
     if (videoCount > 0) {
-        aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
-        width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
-        height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
+        double aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
+        int width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
+        int height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
         scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
 
         QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID/Hint")));

@@ -6,15 +6,15 @@
 #include <QToolButton>
 
 AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView) :
-    QWidget(parent)
+    QWidget(parent),
+    m_layout{new QVBoxLayout(this)},
+    m_bottomSpace{10},
+    m_topSpace{10},
+    m_rightSpace{10},
+    m_leftSpace{10},
+    m_animDuration{100},
+    m_tableView{parentTableView}
 {
-    m_tableView = parentTableView;
-    m_animDuration = 100;
-    m_topSpace = 10;
-    m_bottomSpace = 10;
-    m_rightSpace = 10;
-    m_leftSpace = 10;
-    m_layout = new QVBoxLayout(this);
     m_layout->setMargin(0);
     setContentsMargins(0, 0, 0, 0);
     QString style = "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";

@@ -2,6 +2,7 @@
 #include "ui_MusicWidget.h"
 
 #include <QDebug>
+
 #include "../globals/Manager.h"
 #include "../notifications/NotificationBox.h"
 

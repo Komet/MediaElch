@@ -3,16 +3,16 @@
 
 #include <QDate>
 #include <QDebug>
-#include <QPixmap>
 #include <QObject>
+#include <QPixmap>
 #include <QStringList>
 #include <QUrl>
 
-#include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
+#include "globals/Globals.h"
 #include "movies/MovieController.h"
 
 class MovieController;
@@ -29,7 +29,7 @@ class Movie : public QObject
     Q_OBJECT
 
 public:
-    explicit Movie(QStringList files, QObject *parent = 0);
+    explicit Movie(QStringList files, QObject *parent = nullptr);
     ~Movie();
 
     MovieController *controller();

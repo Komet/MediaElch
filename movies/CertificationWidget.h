@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 
@@ -20,7 +21,7 @@ class CertificationWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit CertificationWidget(QWidget *parent = 0);
+    explicit CertificationWidget(QWidget *parent = nullptr);
     ~CertificationWidget();
 
 signals:

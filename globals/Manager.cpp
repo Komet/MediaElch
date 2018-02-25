@@ -3,8 +3,8 @@
 #include <QApplication>
 #include <QDesktopServices>
 #include <QSqlQuery>
+
 #include "globals/Globals.h"
-#include "imageProviders/Coverlib.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"
 #include "imageProviders/FanartTvMusicArtists.h"
@@ -12,18 +12,18 @@
 #include "imageProviders/TMDbImages.h"
 #include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcXml.h"
-#include "scrapers/AdultDvdEmpire.h"
 #include "scrapers/AEBN.h"
+#include "scrapers/AdultDvdEmpire.h"
 #include "scrapers/Cinefacts.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "scrapers/HotMovies.h"
 #include "scrapers/IMDB.h"
 #include "scrapers/MediaPassion.h"
 #include "scrapers/OFDb.h"
-#include "scrapers/UniversalMusicScraper.h"
-#include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
+#include "scrapers/TheTvDb.h"
+#include "scrapers/UniversalMusicScraper.h"
 #include "scrapers/VideoBuster.h"
 #include "trailerProviders/HdTrailers.h"
 #include "trailerProviders/MovieMaze.h"
@@ -64,7 +64,6 @@ Manager::Manager(QObject *parent) :
     m_imageProviders.append(new MediaPassionImages(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
-    m_imageProviders.append(new Coverlib(this));
 
     m_trailerProviders.append(new MovieMaze(this));
     m_trailerProviders.append(new HdTrailers(this));

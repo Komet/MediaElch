@@ -3,29 +3,29 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QtCore/qmath.h>
+
 #include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"
-#include "globals/NameFormatter.h"
 #include "globals/Manager.h"
+#include "globals/NameFormatter.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_movie{parent},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_downloadManager{new DownloadManager(this)},
+    m_downloadsInProgress{false},
+    m_downloadsSize{0},
+    m_forceFanartBackdrop{false},
+    m_forceFanartPoster{false},
+    m_forceFanartClearArt{false},
+    m_forceFanartCdArt{false},
+    m_forceFanartLogo{false}
 {
-    m_movie = parent;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_downloadManager = new DownloadManager(this);
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
-    m_forceFanartPoster = false;
-    m_forceFanartBackdrop = false;
-    m_forceFanartClearArt = false;
-    m_forceFanartCdArt = false;
-    m_forceFanartLogo = false;
-
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
 }
