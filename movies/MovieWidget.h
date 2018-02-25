@@ -26,7 +26,7 @@ class MovieWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieWidget(QWidget *parent = 0);
+    explicit MovieWidget(QWidget *parent = nullptr);
     ~MovieWidget();
 
 public slots:
@@ -35,7 +35,7 @@ public slots:
     void startScraperSearch();
     void saveInformation();
     void saveAll();
-    void setEnabledTrue(Movie *movie = 0);
+    void setEnabledTrue(Movie *movie = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
     void updateMovieInfo();

@@ -10,7 +10,7 @@
 class MusicModel : public QAbstractItemModel
 {
 public:
-    MusicModel(QObject *parent = 0);
+    explicit MusicModel(QObject *parent = nullptr);
     ~MusicModel();
 
     QVariant data(const QModelIndex &index, int role) const;

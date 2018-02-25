@@ -18,7 +18,7 @@ class MusicWidgetAlbum : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidgetAlbum(QWidget *parent = 0);
+    explicit MusicWidgetAlbum(QWidget *parent = nullptr);
     ~MusicWidgetAlbum();
     void setAlbum(Album *album);
 

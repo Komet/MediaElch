@@ -11,7 +11,7 @@ class MusicFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileSearcher(QObject *parent = 0);
+    explicit MusicFileSearcher(QObject *parent = nullptr);
     ~MusicFileSearcher();
 
     void setMusicDirectories(QList<SettingsDir> directories);

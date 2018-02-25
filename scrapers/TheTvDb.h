@@ -17,7 +17,7 @@ class TheTvDb : public TvScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TheTvDb(QObject *parent = 0);
+    explicit TheTvDb(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

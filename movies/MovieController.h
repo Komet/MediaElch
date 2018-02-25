@@ -20,7 +20,7 @@ class MovieController : public QObject
 {
     Q_OBJECT
 public:
-    explicit MovieController(Movie *parent = 0);
+    explicit MovieController(Movie *parent = nullptr);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

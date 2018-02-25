@@ -19,10 +19,10 @@ class MovieListDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MovieListDialog(QWidget *parent = 0);
+    explicit MovieListDialog(QWidget *parent = nullptr);
     ~MovieListDialog();
     QList<Movie*> selectedMovies();
-    static MovieListDialog *instance(QWidget *parent = 0);
+    static MovieListDialog *instance(QWidget *parent = nullptr);
 
 public slots:
     int exec();

@@ -16,7 +16,7 @@ public:
         SectionConcert, SectionTvShow, SectionEpisode
     };
 
-    explicit ExportTemplate(QObject *parent = 0);
+    explicit ExportTemplate(QObject *parent = nullptr);
     bool isRemote() const;
     bool isInstalled() const;
     bool updateAvailable() const;

@@ -19,7 +19,7 @@ public:
         TypeAll, TypeMovies, TypeTvShows, TypeConcerts, TypeEpisodes, TypeMusic
     };
 
-    explicit FileScannerDialog(QWidget *parent = 0);
+    explicit FileScannerDialog(QWidget *parent = nullptr);
     ~FileScannerDialog();
     void setForceReload(bool force);
     void setReloadType(ReloadType type);

@@ -18,7 +18,7 @@ class TvShowWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidget(QWidget *parent = 0);
+    explicit TvShowWidget(QWidget *parent = nullptr);
     ~TvShowWidget();
     void updateInfo();
 

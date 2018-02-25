@@ -6,7 +6,7 @@
 class MyTableWidgetItem : public QTableWidgetItem
 {
 public:
-    MyTableWidgetItem(QString text);
+    explicit MyTableWidgetItem(QString text);
     MyTableWidgetItem(QString text, qreal number);
     MyTableWidgetItem(qreal number, bool isSize = false);
     QVariant data(int role) const;

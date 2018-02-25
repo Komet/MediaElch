@@ -29,7 +29,7 @@ class Movie : public QObject
     Q_OBJECT
 
 public:
-    explicit Movie(QStringList files, QObject *parent = 0);
+    explicit Movie(QStringList files, QObject *parent = nullptr);
     ~Movie();
 
     MovieController *controller();

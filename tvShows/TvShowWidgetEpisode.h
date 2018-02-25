@@ -21,7 +21,7 @@ class TvShowWidgetEpisode : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidgetEpisode(QWidget *parent = 0);
+    explicit TvShowWidgetEpisode(QWidget *parent = nullptr);
     ~TvShowWidgetEpisode();
     void setEpisode(TvShowEpisode *episode);
     void updateEpisodeInfo();

@@ -16,7 +16,7 @@ class TMDbConcerts : public ConcertScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TMDbConcerts(QObject *parent = 0);
+    explicit TMDbConcerts(QObject *parent = nullptr);
     ~TMDbConcerts();
     QString name();
     void search(QString searchStr);

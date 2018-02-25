@@ -16,7 +16,7 @@ class TheTvDbImages : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit TheTvDbImages(QObject *parent = 0);
+    explicit TheTvDbImages(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

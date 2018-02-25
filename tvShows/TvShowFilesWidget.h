@@ -24,7 +24,7 @@ class TvShowFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowFilesWidget(QWidget *parent = 0);
+    explicit TvShowFilesWidget(QWidget *parent = nullptr);
     ~TvShowFilesWidget();
     void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();

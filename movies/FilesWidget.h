@@ -30,7 +30,7 @@ class FilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit FilesWidget(QWidget *parent = 0);
+    explicit FilesWidget(QWidget *parent = nullptr);
     ~FilesWidget();
     static FilesWidget *instance();
     QList<Movie*> selectedMovies();

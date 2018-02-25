@@ -11,7 +11,7 @@ class MyLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MyLabel(QWidget *parent = 0);
+    explicit MyLabel(QWidget *parent = nullptr);
     void setSeason(int season);
     void setImageSet(bool set);
     bool imageSet();

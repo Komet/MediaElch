@@ -13,7 +13,7 @@ class UniversalMusicScraper : public MusicScraperInterface
 {
     Q_OBJECT
 public:
-    explicit UniversalMusicScraper(QObject *parent = 0);
+    explicit UniversalMusicScraper(QObject *parent = nullptr);
 
     QString name();
     QString identifier();

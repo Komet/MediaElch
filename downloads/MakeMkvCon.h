@@ -9,7 +9,7 @@ class MakeMkvCon : public QObject
 {
     Q_OBJECT
 public:
-    explicit MakeMkvCon(QObject *parent = 0);
+    explicit MakeMkvCon(QObject *parent = nullptr);
     ~MakeMkvCon();
 
     struct Track {

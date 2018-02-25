@@ -10,7 +10,7 @@ class IMDB : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit IMDB(QObject *parent = 0);
+    explicit IMDB(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

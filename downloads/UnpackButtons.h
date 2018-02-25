@@ -12,7 +12,7 @@ class UnpackButtons : public QWidget
     Q_OBJECT
 
 public:
-    explicit UnpackButtons(QWidget *parent = 0);
+    explicit UnpackButtons(QWidget *parent = nullptr);
     ~UnpackButtons();
     void setBaseName(QString baseName);
     QString baseName() const;

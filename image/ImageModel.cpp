@@ -62,7 +62,6 @@ QVariant ImageModel::data(const QModelIndex &index, int role) const
     {
         img->load();
         return img->rawData();
-        break;
     }
     case Qt::UserRole+5:
         return m_images.indexOf(img);

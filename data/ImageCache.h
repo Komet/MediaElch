@@ -9,8 +9,8 @@ class ImageCache : public QObject
 {
     Q_OBJECT
 public:
-    explicit ImageCache(QObject *parent = 0);
-    static ImageCache *instance(QObject *parent = 0);
+    explicit ImageCache(QObject *parent = nullptr);
+    static ImageCache *instance(QObject *parent = nullptr);
     QImage image(QString path, int width, int height, int &origWidth, int &origHeight);
     QSize imageSize(QString path);
     void invalidateImages(QString path);

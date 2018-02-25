@@ -16,7 +16,7 @@ class MyTableView : public QTableView
     Q_PROPERTY(bool useSearchOverlay READ useSearchOverlay WRITE setUseSearchOverlay DESIGNABLE true)
 
 public:
-    explicit MyTableView(QWidget *parent = 0);
+    explicit MyTableView(QWidget *parent = nullptr);
     int lastColumnWidth() const;
     void setLastColumnWidth(int &width);
     int firstColumnWidth() const;

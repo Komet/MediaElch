@@ -9,7 +9,7 @@ class MediaPassionImages : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit MediaPassionImages(QObject *parent = 0);
+    explicit MediaPassionImages(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

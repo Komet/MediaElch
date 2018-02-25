@@ -24,7 +24,7 @@ public:
         TypeClear
     };
 
-    explicit MyLineEdit(QWidget *parent = 0);
+    explicit MyLineEdit(QWidget *parent = nullptr);
     void setLoading(bool loading);
     void setType(LineEditType type);
     void addAdditionalStyleSheet(QString style);

@@ -5,7 +5,9 @@
 #include "globals/Helper.h"
 
 HdTrailers::HdTrailers(QObject *parent) :
-    m_qnam{new QNetworkAccessManager(this)}
+    m_qnam{new QNetworkAccessManager(this)},
+    m_searchReply{nullptr},
+    m_loadReply{nullptr}
 {
     setParent(parent);
     m_libraryPages.enqueue("0");

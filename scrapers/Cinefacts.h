@@ -15,7 +15,7 @@ class Cinefacts : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit Cinefacts(QObject *parent = 0);
+    explicit Cinefacts(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

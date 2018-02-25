@@ -20,7 +20,7 @@ class XbmcXml : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit XbmcXml(QObject *parent = 0);
+    explicit XbmcXml(QObject *parent = nullptr);
     ~XbmcXml();
 
     bool saveMovie(Movie *movie);

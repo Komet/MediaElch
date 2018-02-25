@@ -19,7 +19,7 @@ class ExportDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ExportDialog(QWidget *parent = 0);
+    explicit ExportDialog(QWidget *parent = nullptr);
     ~ExportDialog();
 
 public slots:
@@ -38,7 +38,7 @@ private:
     void parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QList<Concert*> concerts);
     void parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow*> shows);
     void saveImage(QSize size, QString imageFile, QString destinationFile, const char *format, int quality);
-    void replaceImages(QString &m, const QDir &dir, const bool &subDir, Movie *movie = 0, Concert *concert = 0, TvShow *tvShow = 0, TvShowEpisode *episode = 0);
+    void replaceImages(QString &m, const QDir &dir, const bool &subDir, Movie *movie = 0, Concert *concert = 0, TvShow *tvShow = 0, TvShowEpisode *episode = nullptr);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Movie *movie);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Concert *concert);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShow *tvShow);

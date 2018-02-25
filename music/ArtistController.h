@@ -17,7 +17,7 @@ class ArtistController : public QObject
 {
     Q_OBJECT
 public:
-    explicit ArtistController(Artist *parent = 0);
+    explicit ArtistController(Artist *parent = nullptr);
     ~ArtistController();
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);

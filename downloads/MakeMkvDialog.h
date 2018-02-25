@@ -16,7 +16,7 @@ class MakeMkvDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MakeMkvDialog(QWidget *parent = 0);
+    explicit MakeMkvDialog(QWidget *parent = nullptr);
     ~MakeMkvDialog();
 
 public slots:

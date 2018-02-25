@@ -18,7 +18,7 @@ class Message : public QWidget
     Q_PROPERTY(int id READ id WRITE setId)
 
 public:
-    explicit Message(QWidget *parent = 0);
+    explicit Message(QWidget *parent = nullptr);
     ~Message();
     void setType(int type);
     void setMessage(QString message, int timeout = 3000);

@@ -13,7 +13,7 @@ class MusicModelItem : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicModelItem(MusicModelItem *parent = 0);
+    explicit MusicModelItem(MusicModelItem *parent = nullptr);
     ~MusicModelItem();
 
     MusicModelItem *child(int number);

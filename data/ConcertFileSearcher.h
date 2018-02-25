@@ -14,7 +14,7 @@ class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertFileSearcher(QObject *parent = 0);
+    explicit ConcertFileSearcher(QObject *parent = nullptr);
     void setConcertDirectories(QList<SettingsDir> directories);
 
 public slots:

@@ -20,8 +20,8 @@ MovieController::MovieController(Movie *parent) :
     m_downloadManager{new DownloadManager(this)},
     m_downloadsInProgress{false},
     m_downloadsSize{0},
-    m_forceFanartPoster{false},
     m_forceFanartBackdrop{false},
+    m_forceFanartPoster{false},
     m_forceFanartClearArt{false},
     m_forceFanartCdArt{false},
     m_forceFanartLogo{false}

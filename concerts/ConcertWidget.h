@@ -24,7 +24,7 @@ class ConcertWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertWidget(QWidget *parent = 0);
+    explicit ConcertWidget(QWidget *parent = nullptr);
     ~ConcertWidget();
 
 public slots:
@@ -33,7 +33,7 @@ public slots:
     void onStartScraperSearch();
     void onSaveInformation();
     void onSaveAll();
-    void setEnabledTrue(Concert *concert = 0);
+    void setEnabledTrue(Concert *concert = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
     void updateConcertInfo();

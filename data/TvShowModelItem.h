@@ -19,7 +19,7 @@ class TvShowModelItem : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvShowModelItem(TvShowModelItem *parent = 0);
+    explicit TvShowModelItem(TvShowModelItem *parent = nullptr);
     ~TvShowModelItem();
 
     TvShowModelItem *child(int number);

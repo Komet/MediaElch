@@ -20,7 +20,7 @@ class SetsWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SetsWidget(QWidget *parent = 0);
+    explicit SetsWidget(QWidget *parent = nullptr);
     ~SetsWidget();
 
 public slots:

@@ -11,7 +11,7 @@ class AdultDvdEmpire : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit AdultDvdEmpire(QObject *parent = 0);
+    explicit AdultDvdEmpire(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

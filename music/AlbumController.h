@@ -15,7 +15,7 @@ class AlbumController : public QObject
 {
     Q_OBJECT
 public:
-    explicit AlbumController(Album *parent = 0);
+    explicit AlbumController(Album *parent = nullptr);
     ~AlbumController();
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);

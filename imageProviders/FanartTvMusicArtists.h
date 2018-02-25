@@ -17,7 +17,7 @@ class FanartTvMusicArtists : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit FanartTvMusicArtists(QObject *parent = 0);
+    explicit FanartTvMusicArtists(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

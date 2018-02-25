@@ -15,9 +15,9 @@ class ImagePreviewDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImagePreviewDialog(QWidget *parent = 0);
+    explicit ImagePreviewDialog(QWidget *parent = nullptr);
     ~ImagePreviewDialog();
-    static ImagePreviewDialog *instance(QWidget *parent = 0);
+    static ImagePreviewDialog *instance(QWidget *parent = nullptr);
     void setImage(QPixmap img);
 
 public slots:

@@ -11,8 +11,8 @@ class NameFormatter : public QObject
 {
     Q_OBJECT
 public:
-    explicit NameFormatter(QObject *parent = 0);
-    static NameFormatter *instance(QObject *parent = 0);
+    explicit NameFormatter(QObject *parent = nullptr);
+    static NameFormatter *instance(QObject *parent = nullptr);
 
     QString excludeWords(QString name);
     QString formatName(QString name, bool replaceDots = true, bool replaceUnderscores = true);

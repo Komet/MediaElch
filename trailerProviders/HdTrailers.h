@@ -13,7 +13,7 @@ class HdTrailers : public TrailerProvider
 {
     Q_OBJECT
 public:
-    explicit HdTrailers(QObject *parent = 0);
+    explicit HdTrailers(QObject *parent = nullptr);
     QString name();
 
 public slots:

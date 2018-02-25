@@ -14,7 +14,7 @@ class OFDb : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit OFDb(QObject *parent = 0);
+    explicit OFDb(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

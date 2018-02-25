@@ -16,7 +16,7 @@ class MovieSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieSearchWidget(QWidget *parent = 0);
+    explicit MovieSearchWidget(QWidget *parent = nullptr);
     ~MovieSearchWidget();
 
 public slots:

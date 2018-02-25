@@ -18,7 +18,7 @@ class ConcertController : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertController(Concert *parent = 0);
+    explicit ConcertController(Concert *parent = nullptr);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

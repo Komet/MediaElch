@@ -22,7 +22,7 @@ class DownloadManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit DownloadManager(QObject *parent = 0);
+    explicit DownloadManager(QObject *parent = nullptr);
     void addDownload(DownloadManagerElement elem);
     void setDownloads(QList<DownloadManagerElement> elements);
     void abortDownloads();

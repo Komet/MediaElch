@@ -29,7 +29,7 @@ public:
         OperationCreateDir, OperationMove, OperationRename
     };
 
-    explicit Renamer(QWidget *parent = 0);
+    explicit Renamer(QWidget *parent = nullptr);
     ~Renamer();
     void setMovies(QList<Movie*> movies);
     void setConcerts(QList<Concert*> concerts);

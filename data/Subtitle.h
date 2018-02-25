@@ -8,7 +8,7 @@ class Subtitle : public QObject
 {
     Q_OBJECT
 public:
-    explicit Subtitle(QObject *parent = 0);
+    explicit Subtitle(QObject *parent = nullptr);
 
     QString language() const;
     void setLanguage(const QString &language);

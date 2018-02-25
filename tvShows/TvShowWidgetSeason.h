@@ -19,7 +19,7 @@ class TvShowWidgetSeason : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidgetSeason(QWidget *parent = 0);
+    explicit TvShowWidgetSeason(QWidget *parent = nullptr);
     ~TvShowWidgetSeason();
     void setSeason(TvShow *show, int season);
     void updateSeasonInfo();
