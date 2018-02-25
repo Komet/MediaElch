@@ -11,7 +11,7 @@ class AEBN : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit AEBN(QObject *parent = 0);
+    explicit AEBN(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

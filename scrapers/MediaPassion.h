@@ -15,7 +15,7 @@ class MediaPassion : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit MediaPassion(QObject *parent = 0);
+    explicit MediaPassion(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

@@ -9,7 +9,7 @@ class SearchOverlay : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SearchOverlay(QWidget *parent = 0);
+    explicit SearchOverlay(QWidget *parent = nullptr);
     void setText(QString text);
     void fadeIn();
     void fadeOut();

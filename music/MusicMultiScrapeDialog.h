@@ -14,9 +14,9 @@ class MusicMultiScrapeDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MusicMultiScrapeDialog(QWidget *parent = 0);
+    explicit MusicMultiScrapeDialog(QWidget *parent = nullptr);
     ~MusicMultiScrapeDialog();
-    static MusicMultiScrapeDialog *instance(QWidget *parent = 0);
+    static MusicMultiScrapeDialog *instance(QWidget *parent = nullptr);
     void setItems(QList<Artist*> artists, QList<Album*> albums);
 
 public slots:

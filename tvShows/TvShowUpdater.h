@@ -10,8 +10,8 @@ class TvShowUpdater : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvShowUpdater(QObject *parent = 0);
-    static TvShowUpdater *instance(QObject *parent = 0);
+    explicit TvShowUpdater(QObject *parent = nullptr);
+    static TvShowUpdater *instance(QObject *parent = nullptr);
     void updateShow(TvShow *show, bool force = false);
 
 private slots:

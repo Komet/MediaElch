@@ -14,7 +14,7 @@ class Database : public QObject
 {
     Q_OBJECT
 public:
-    explicit Database(QObject *parent = 0);
+    explicit Database(QObject *parent = nullptr);
     ~Database();
     QSqlDatabase db();
     void transaction();

@@ -20,7 +20,7 @@ public:
         TypeSimpleLabel, TypeBadge
     };
 
-    explicit TagCloud(QWidget *parent = 0);
+    explicit TagCloud(QWidget *parent = nullptr);
     ~TagCloud();
     void setTags(const QStringList &tags, const QStringList &activeTags);
     QStringList activeTags() const;

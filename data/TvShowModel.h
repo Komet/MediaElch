@@ -18,7 +18,7 @@ class TvShowModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    TvShowModel(QObject *parent = 0);
+    explicit TvShowModel(QObject *parent = nullptr);
     ~TvShowModel();
 
     QVariant data(const QModelIndex &index, int role) const;

@@ -13,7 +13,7 @@ class ExportTemplateWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ExportTemplateWidget(QWidget *parent = 0);
+    explicit ExportTemplateWidget(QWidget *parent = nullptr);
     ~ExportTemplateWidget();
     void setExportTemplate(ExportTemplate *exportTemplate);
 

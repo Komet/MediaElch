@@ -17,7 +17,7 @@ class FanartTv : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit FanartTv(QObject *parent = 0);
+    explicit FanartTv(QObject *parent = nullptr);
     QString name();
     QUrl siteUrl();
     QString identifier();

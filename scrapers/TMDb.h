@@ -16,7 +16,7 @@ class TMDb : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TMDb(QObject *parent = 0);
+    explicit TMDb(QObject *parent = nullptr);
     ~TMDb();
     QString name();
     QString identifier();

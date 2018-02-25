@@ -15,7 +15,7 @@ class ConcertSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertSearchWidget(QWidget *parent = 0);
+    explicit ConcertSearchWidget(QWidget *parent = nullptr);
     ~ConcertSearchWidget();
 
 public slots:

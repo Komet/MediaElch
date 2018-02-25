@@ -20,9 +20,9 @@ class TrailerDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit TrailerDialog(QWidget *parent = 0);
+    explicit TrailerDialog(QWidget *parent = nullptr);
     ~TrailerDialog();
-    static TrailerDialog *instance(QWidget *parent = 0);
+    static TrailerDialog *instance(QWidget *parent = nullptr);
 
 public slots:
     int exec();

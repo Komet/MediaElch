@@ -31,7 +31,7 @@ class DownloadsWidget : public QWidget
     };
 
 public:
-    explicit DownloadsWidget(QWidget *parent = 0);
+    explicit DownloadsWidget(QWidget *parent = nullptr);
     ~DownloadsWidget();
     void updatePackagesList(QMap<QString, Package> packages);
     void updateImportsList(QMap<QString, Import> imports);
@@ -50,8 +50,8 @@ private slots:
     void onExtractorError(QString baseName, QString msg);
     void onExtractorFinished(QString baseName, bool success);
     void onExtractorProgress(QString baseName, int progress);
-    void onChangeImportType(int currentIndex, QComboBox *sender = 0);
-    void onChangeImportDetail(int currentIndex, QComboBox *sender = 0);
+    void onChangeImportType(int currentIndex, QComboBox *sender = nullptr);
+    void onChangeImportDetail(int currentIndex, QComboBox *sender = nullptr);
     void onImportWithMakeMkv();
 
 private:

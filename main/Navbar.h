@@ -14,7 +14,7 @@ class Navbar : public QWidget
     Q_OBJECT
 
 public:
-    explicit Navbar(QWidget *parent = 0);
+    explicit Navbar(QWidget *parent = nullptr);
     ~Navbar();
     void setActionSearchEnabled(bool enabled);
     void setActionSaveEnabled(bool enabled);

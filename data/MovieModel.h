@@ -16,7 +16,7 @@ public:
          NameRole = Qt::UserRole + 1,
          FileNameRole
     };
-    explicit MovieModel(QObject *parent = 0);
+    explicit MovieModel(QObject *parent = nullptr);
     void addMovie(Movie *movie);
     void clear();
     virtual QList<Movie*> movies();

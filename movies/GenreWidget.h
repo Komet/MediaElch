@@ -20,7 +20,7 @@ class GenreWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit GenreWidget(QWidget *parent = 0);
+    explicit GenreWidget(QWidget *parent = nullptr);
     ~GenreWidget();
 
 signals:

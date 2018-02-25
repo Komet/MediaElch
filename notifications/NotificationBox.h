@@ -19,9 +19,9 @@ public:
         NotificationInfo, NotificationWarning, NotificationSuccess, NotificationError
     };
 
-    explicit NotificationBox(QWidget *parent = 0);
+    explicit NotificationBox(QWidget *parent = nullptr);
     ~NotificationBox();
-    static NotificationBox *instance(QWidget *parent = 0);
+    static NotificationBox *instance(QWidget *parent = nullptr);
     void reposition(QSize size);
     virtual int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
     void showProgressBar(QString message, int id, bool unique = false);

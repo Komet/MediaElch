@@ -8,7 +8,7 @@ class ImageCapture : public QObject
 {
     Q_OBJECT
 public:
-    explicit ImageCapture(QObject *parent = 0);
+    explicit ImageCapture(QObject *parent = nullptr);
     static bool captureImage(QString file, StreamDetails *streamDetails, QImage &img);
 };
 

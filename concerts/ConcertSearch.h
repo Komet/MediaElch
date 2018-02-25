@@ -16,13 +16,13 @@ class ConcertSearch : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ConcertSearch(QWidget *parent = 0);
+    explicit ConcertSearch(QWidget *parent = nullptr);
     ~ConcertSearch();
 
 public slots:
     int exec();
     int exec(QString searchString);
-    static ConcertSearch *instance(QWidget *parent = 0);
+    static ConcertSearch *instance(QWidget *parent = nullptr);
     int scraperNo();
     QString scraperId();
     QList<int> infosToLoad();

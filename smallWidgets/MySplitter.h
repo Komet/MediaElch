@@ -7,7 +7,7 @@ class MySplitter : public QSplitter
 {
     Q_OBJECT
 public:
-    explicit MySplitter(QWidget *parent = 0);
+    explicit MySplitter(QWidget *parent = nullptr);
 
 protected:
      QSplitterHandle *createHandle();

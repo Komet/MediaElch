@@ -17,7 +17,7 @@ class TvShowSearch : public QDialog
     Q_OBJECT
 
 public:
-    explicit TvShowSearch(QWidget *parent = 0);
+    explicit TvShowSearch(QWidget *parent = nullptr);
     ~TvShowSearch();
     QString scraperId();
     QList<int> infosToLoad();
@@ -27,7 +27,7 @@ public:
 public slots:
     int exec();
     int exec(QString searchString, QString id);
-    static TvShowSearch *instance(QWidget *parent = 0);
+    static TvShowSearch *instance(QWidget *parent = nullptr);
 
 private slots:
     void onSearch();

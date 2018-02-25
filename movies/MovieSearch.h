@@ -17,13 +17,13 @@ class MovieSearch : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MovieSearch(QWidget *parent = 0);
+    explicit MovieSearch(QWidget *parent = nullptr);
     ~MovieSearch();
 
 public slots:
     int exec();
     int exec(QString searchString, QString id, QString tmdbId);
-    static MovieSearch *instance(QWidget *parent = 0);
+    static MovieSearch *instance(QWidget *parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
     QList<int> infosToLoad();

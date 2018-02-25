@@ -15,7 +15,7 @@ class VideoBuster : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit VideoBuster(QObject *parent = 0);
+    explicit VideoBuster(QObject *parent = nullptr);
     QString name();
     QString identifier();
     void search(QString searchStr);

@@ -13,7 +13,7 @@ class PluginsWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PluginsWidget(QWidget *parent = 0);
+    explicit PluginsWidget(QWidget *parent = nullptr);
     ~PluginsWidget();
 
     void setPlugin(PluginManager::Plugin plugin);

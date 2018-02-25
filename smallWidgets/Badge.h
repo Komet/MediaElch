@@ -14,8 +14,8 @@ public:
         BadgeSuccess, BadgeDefault, BadgeWarning, BadgeImportant, BadgeInfo, BadgeInverse
     };
 
-    explicit Badge(QWidget *parent = 0);
-    explicit Badge(const QString &text, QWidget *parent = 0);
+    explicit Badge(QWidget *parent = nullptr);
+    explicit Badge(const QString &text, QWidget *parent = nullptr);
     void setBadgeType(Badge::BadgeType type);
     void setClosable(const bool &closable);
     void setActive(const bool &active);

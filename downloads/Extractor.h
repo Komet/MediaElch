@@ -10,7 +10,7 @@ class Extractor : public QObject
 {
     Q_OBJECT
 public:
-    explicit Extractor(QObject *parent = 0);
+    explicit Extractor(QObject *parent = nullptr);
     ~Extractor();
 
 public slots:

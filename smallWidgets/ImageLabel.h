@@ -16,7 +16,7 @@ class ImageLabel : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageLabel(QWidget *parent = 0);
+    explicit ImageLabel(QWidget *parent = nullptr);
     ~ImageLabel();
     void setImage(QPixmap img);
     void setHint(QSize resolution, QString hint = "");

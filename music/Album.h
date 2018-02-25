@@ -22,7 +22,7 @@ class Album : public QObject
     Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 
 public:
-    explicit Album(QString path, QObject *parent = 0);
+    explicit Album(QString path, QObject *parent = nullptr);
     ~Album();
 
     QString path() const;

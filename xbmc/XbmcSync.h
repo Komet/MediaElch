@@ -20,7 +20,7 @@ class XbmcSync : public QDialog
     Q_OBJECT
 
 public:
-    explicit XbmcSync(QWidget *parent = 0);
+    explicit XbmcSync(QWidget *parent = nullptr);
     ~XbmcSync();
     enum Elements {
         ElementMovies, ElementConcerts, ElementTvShows, ElementEpisodes

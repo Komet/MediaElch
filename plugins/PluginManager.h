@@ -29,8 +29,8 @@ public:
         QString localFileName;
     };
 
-    explicit PluginManager(QObject *parent = 0);
-    static PluginManager *instance(QObject *parent = 0);
+    explicit PluginManager(QObject *parent = nullptr);
+    static PluginManager *instance(QObject *parent = nullptr);
     QList<PluginManager::Plugin> plugins();
 
 public slots:

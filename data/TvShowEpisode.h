@@ -38,7 +38,7 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
-    explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
+    explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = nullptr);
     void clear();
     void clear(QList<int> infos);
 

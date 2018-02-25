@@ -16,7 +16,7 @@ public:
          NameRole = Qt::UserRole + 1,
          FileNameRole
     };
-    explicit ConcertModel(QObject *parent = 0);
+    explicit ConcertModel(QObject *parent = nullptr);
     void addConcert(Concert *concert);
     void clear();
     QList<Concert*> concerts();

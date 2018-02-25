@@ -14,7 +14,7 @@ class MusicWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidget(QWidget *parent = 0);
+    explicit MusicWidget(QWidget *parent = nullptr);
     ~MusicWidget();
 
 public slots:

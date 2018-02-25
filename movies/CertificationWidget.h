@@ -20,7 +20,7 @@ class CertificationWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit CertificationWidget(QWidget *parent = 0);
+    explicit CertificationWidget(QWidget *parent = nullptr);
     ~CertificationWidget();
 
 signals:

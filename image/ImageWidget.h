@@ -15,7 +15,7 @@ class ImageWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageWidget(QWidget *parent = 0);
+    explicit ImageWidget(QWidget *parent = nullptr);
     ~ImageWidget();
     void setAlbum(Album *album);
 

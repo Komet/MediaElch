@@ -13,7 +13,7 @@ class PluginManagerDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit PluginManagerDialog(QWidget *parent = 0);
+    explicit PluginManagerDialog(QWidget *parent = nullptr);
     ~PluginManagerDialog();
 
     void installPlugin(PluginManager::Plugin plugin);

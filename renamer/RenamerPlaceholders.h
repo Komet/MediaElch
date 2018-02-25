@@ -12,7 +12,7 @@ class RenamerPlaceholders : public QWidget
     Q_OBJECT
 
 public:
-    explicit RenamerPlaceholders(QWidget *parent = 0);
+    explicit RenamerPlaceholders(QWidget *parent = nullptr);
     ~RenamerPlaceholders();
     void setType(int renameType);
 
