@@ -4,127 +4,127 @@
 <context>
     <name>AEBN</name>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="17"/>
+        <location filename="../scrapers/AEBN.cpp" line="18"/>
         <source>Bulgarian</source>
         <translation>Bulgariska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="18"/>
+        <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Chinese</source>
         <translation>Kinesiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="19"/>
+        <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Croatian</source>
         <translation>Kroatiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="20"/>
+        <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Czech</source>
         <translation>Tjeckiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="21"/>
+        <location filename="../scrapers/AEBN.cpp" line="22"/>
         <source>Danish</source>
         <translation>Danska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="22"/>
+        <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Dutch</source>
         <translation>Nederländska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="23"/>
+        <location filename="../scrapers/AEBN.cpp" line="24"/>
         <source>English</source>
         <translation>Engelska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="24"/>
+        <location filename="../scrapers/AEBN.cpp" line="25"/>
         <source>Finnish</source>
         <translation>Finska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="25"/>
+        <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>French</source>
         <translation>Franska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="26"/>
+        <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>German</source>
         <translation>Tyska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="27"/>
+        <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Greek</source>
         <translation>Grekiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="28"/>
+        <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Hebrew</source>
         <translation>Hebreeiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="29"/>
+        <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Hungarian</source>
         <translation>Ungerska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="30"/>
+        <location filename="../scrapers/AEBN.cpp" line="31"/>
         <source>Italian</source>
         <translation>Italienska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="31"/>
+        <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Japanese</source>
         <translation>Japanska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="32"/>
+        <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Korean</source>
         <translation>Koreanska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="33"/>
+        <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Norwegian</source>
         <translation>Norska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="34"/>
+        <location filename="../scrapers/AEBN.cpp" line="35"/>
         <source>Polish</source>
         <translation>Polska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="35"/>
+        <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Portuguese</source>
         <translation>Portugisiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="36"/>
+        <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Russian</source>
         <translation>Ryska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="37"/>
+        <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Slovene</source>
         <translation>Sloveniska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="38"/>
+        <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Spanish</source>
         <translation>Spanska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="39"/>
+        <location filename="../scrapers/AEBN.cpp" line="40"/>
         <source>Swedish</source>
         <translation>Svenska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="40"/>
+        <location filename="../scrapers/AEBN.cpp" line="41"/>
         <source>Turkish</source>
         <translation>Turkiska</translation>
     </message>
     <message>
-        <location filename="../scrapers/AEBN.cpp" line="42"/>
+        <location filename="../scrapers/AEBN.cpp" line="43"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
@@ -289,32 +289,32 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="102"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="103"/>
         <source>Delete Image</source>
         <translation>Ta bort bild</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="108"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="109"/>
         <source>Zoom Image</source>
         <translation>Zooma bild</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="114"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="115"/>
         <source>Capture random screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="120"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="121"/>
         <source>Select another image</source>
         <translation>Välj en annan bild</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="392"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="393"/>
         <source>Really delete image?</source>
         <translation>Vill du ta bort bilden?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="393"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="394"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Är du säker på att du vill ta bort den här bilden?</translation>
     </message>
@@ -322,12 +322,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="48"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="50"/>
         <source>Searching for Concerts...</source>
         <translation>Söker efter Konserter...</translation>
     </message>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="67"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="69"/>
         <source>Loading Concerts...</source>
         <translation>Laddar Konserter...</translation>
     </message>
@@ -335,8 +335,8 @@
 <context>
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="345"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="27"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="346"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n konsert</numerusform>
@@ -344,42 +344,42 @@
         </translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="51"/>
         <source>Mark as watched</source>
         <translation>Markera som sedd</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="51"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="52"/>
         <source>Mark as unwatched</source>
         <translation>Markera som osedd</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="52"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="53"/>
         <source>Load Stream Details</source>
         <translation>Ladda Ström-detaljer</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="53"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="54"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lägg till i Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="54"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="55"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Ta bort ifrån Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="55"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
         <source>Open Concert Folder</source>
         <translation>Öppna mapp för Konserter</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="57"/>
         <source>Open NFO File</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="348"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 av %n konsert</numerusform>
@@ -643,8 +643,8 @@
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="485"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="554"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="557"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="561"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -718,62 +718,62 @@
         <translation>CD Omslag</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="75"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="76"/>
         <source>Add Genre</source>
         <translation>Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="80"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="81"/>
         <source>Add Tag</source>
         <translation>Lägg till Tagg</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="547"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="581"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="551"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="585"/>
         <source>Track %1</source>
         <translation>Spår %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="553"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="556"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="584"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="585"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="557"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="560"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="588"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="589"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="555"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="559"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="562"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="573"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="577"/>
         <source>Subtitles</source>
         <translation>Undertexer</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="637"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="641"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparade</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="647"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="651"/>
         <source>Concerts Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="674"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="678"/>
         <source>All Concerts Saved</source>
         <translation>Alla konserter sparade</translation>
     </message>
@@ -781,7 +781,7 @@
 <context>
     <name>CustomMovieScraper</name>
     <message>
-        <location filename="../scrapers/CustomMovieScraper.cpp" line="33"/>
+        <location filename="../scrapers/CustomMovieScraper.cpp" line="34"/>
         <source>Custom Movie Scraper</source>
         <translation>Anpassad Filmskrapa</translation>
     </message>
@@ -936,27 +936,27 @@
         <translation>Stäng</translation>
     </message>
     <message>
-        <location filename="../export/ExportDialog.cpp" line="30"/>
+        <location filename="../export/ExportDialog.cpp" line="31"/>
         <source>You need to install at least one theme.</source>
         <translation>Du behöver installera minst ett tema.</translation>
     </message>
     <message>
-        <location filename="../export/ExportDialog.cpp" line="63"/>
+        <location filename="../export/ExportDialog.cpp" line="64"/>
         <source>You need to select at least one entry to export.</source>
         <translation>Du måste markera minst ett objekt att exportera.</translation>
     </message>
     <message>
-        <location filename="../export/ExportDialog.cpp" line="72"/>
+        <location filename="../export/ExportDialog.cpp" line="73"/>
         <source>Export directory</source>
         <translation>Exporteringskälla</translation>
     </message>
     <message>
-        <location filename="../export/ExportDialog.cpp" line="80"/>
+        <location filename="../export/ExportDialog.cpp" line="81"/>
         <source>Could not create export directory.</source>
         <translation>Kunde inte skapa exporteringskälla</translation>
     </message>
     <message>
-        <location filename="../export/ExportDialog.cpp" line="126"/>
+        <location filename="../export/ExportDialog.cpp" line="127"/>
         <source>Export completed.</source>
         <translation>Exportering slutförd</translation>
     </message>
@@ -1046,152 +1046,152 @@
 <context>
     <name>FanartTv</name>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="26"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="28"/>
         <source>Bulgarian</source>
         <translation>Bulgariska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="27"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Chinese</source>
         <translation>Kinesiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="28"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Croatian</source>
         <translation>Kroatiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="29"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Czech</source>
         <translation>Tjeckiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="30"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="32"/>
         <source>Danish</source>
         <translation>Danska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="31"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Dutch</source>
         <translation>Nederländska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="32"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>English</source>
         <translation>Engelska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="33"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="35"/>
         <source>Finnish</source>
         <translation>Finska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="34"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>French</source>
         <translation>Franska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="35"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>German</source>
         <translation>Tyska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="36"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Greek</source>
         <translation>Grekiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="37"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Hebrew</source>
         <translation>Hebreiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="38"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Hungarian</source>
         <translation>Ungerska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="39"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Italian</source>
         <translation>Italienska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="40"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Japanese</source>
         <translation>Japanska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="41"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Korean</source>
         <translation>Koeranska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="42"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Norwegian</source>
         <translation>Norska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="43"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Polish</source>
         <translation>Polska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="44"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Portuguese</source>
         <translation>Portugisiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="45"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Russian</source>
         <translation>Ryska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="46"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Slovene</source>
         <translation>Sloveniska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="47"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Spanish</source>
         <translation>Spanska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="48"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="50"/>
         <source>Swedish</source>
         <translation>Svenska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="49"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>Turkish</source>
         <translation>Turkiska</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="51"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="53"/>
         <source>3D</source>
         <translation>3D</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="52"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="54"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="53"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="56"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Preferred Disc Type</source>
         <translation>Föredragen skivtyp</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="62"/>
         <source>Personal API key</source>
         <translation>Personlig API-nyckel</translation>
     </message>
@@ -1238,8 +1238,8 @@
         <translation>År</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="535"/>
+        <location filename="../movies/FilesWidget.cpp" line="30"/>
+        <location filename="../movies/FilesWidget.cpp" line="536"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n film</numerusform>
@@ -1247,57 +1247,57 @@
         </translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="65"/>
+        <location filename="../movies/FilesWidget.cpp" line="66"/>
         <source>Media Status Columns</source>
         <translation>Media Status Kolumner</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="75"/>
+        <location filename="../movies/FilesWidget.cpp" line="76"/>
         <source>Label</source>
         <translation>Etikett</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="86"/>
+        <location filename="../movies/FilesWidget.cpp" line="87"/>
         <source>Load Information</source>
         <translation>Ladda Information</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="87"/>
+        <location filename="../movies/FilesWidget.cpp" line="88"/>
         <source>Mark as watched</source>
         <translation>Markera som sedd</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="88"/>
+        <location filename="../movies/FilesWidget.cpp" line="89"/>
         <source>Mark as unwatched</source>
         <translation>Markera som osedd</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="89"/>
+        <location filename="../movies/FilesWidget.cpp" line="90"/>
         <source>Load Stream Details</source>
         <translation>Ladda Ström-detaljer</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="90"/>
+        <location filename="../movies/FilesWidget.cpp" line="91"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lägg till i Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="91"/>
+        <location filename="../movies/FilesWidget.cpp" line="92"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Ta bort ifrån Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="92"/>
+        <location filename="../movies/FilesWidget.cpp" line="93"/>
         <source>Open Movie Folder</source>
         <translation>Öppna mapp för Film</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="93"/>
+        <location filename="../movies/FilesWidget.cpp" line="94"/>
         <source>Open NFO File</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="537"/>
+        <location filename="../movies/FilesWidget.cpp" line="538"/>
         <source>%1 of %n movies</source>
         <translation>
             <numerusform>%1 av %n film</numerusform>
@@ -1313,739 +1313,739 @@
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="131"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="200"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="132"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="201"/>
         <source>Title contains &quot;%1&quot;</source>
         <translation>Titeln innehåller &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="137"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="138"/>
         <source>Filename contains &quot;%1&quot;</source>
         <translation>Filnamnet innehåller &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="143"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="144"/>
         <source>IMDB ID &quot;%1&quot;</source>
         <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="310"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="311"/>
         <source>Label &quot;%1&quot;</source>
         <translation>Etikett &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="311"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="312"/>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="378"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="379"/>
         <source>Genre &quot;%1&quot;</source>
         <translation>Genre &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="379"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="380"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="620"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="396"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="397"/>
         <source>Studio &quot;%1&quot;</source>
         <translation>Studio &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="397"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="398"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="414"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Country &quot;%1&quot;</source>
         <translation>Land &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="415"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="416"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="431"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="432"/>
         <source>Released %1</source>
         <translation>Releasedatum %1</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="432"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="433"/>
         <source>Year</source>
         <translation>År</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="448"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="449"/>
         <source>Certification &quot;%1&quot;</source>
         <translation>Åldersgräns &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="449"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="450"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="617"/>
         <source>Certification</source>
         <translation>Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="465"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="466"/>
         <source>Set &quot;%1&quot;</source>
         <translation>Ange &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="466"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="467"/>
         <source>Set</source>
         <translation>Samling</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="482"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="483"/>
         <source>Tag &quot;%1&quot;</source>
         <translation>Tagg &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="484"/>
         <source>Tag</source>
         <translation>Tagg</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="499"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="500"/>
         <source>Director &quot;%1&quot;</source>
         <translation>Regissör &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="500"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="501"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <source>Director</source>
         <translation>Regissör</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="689"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="691"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="693"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="690"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="692"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="694"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>Filename</source>
         <translation>Filnamn</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="548"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <source>Movie has Poster</source>
         <translation>Film har Poster</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
         <source>Movie has no Poster</source>
         <translation>Filmen har ingen Poster</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <source>No Poster</source>
         <translation>Ingen Poster</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
         <source>Movie has Extra Fanarts</source>
         <translation>Filmen har Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="560"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <source>Movie has no Extra Fanarts</source>
         <translation>Filmen har ingen Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="560"/>
         <source>No Extra Fanarts</source>
         <translation>Ingen Extra Fanar</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <source>Movie has Backdrop</source>
         <translation>Filmen har ingen bakgrund</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="563"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <source>Backdrop</source>
         <translation>Bakgrund</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="563"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>Movie has no Backdrop</source>
         <translation>Filmen har ingen bakgrund</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <source>No Backdrop</source>
         <translation>Ingen bakgrund</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <source>No Fanart</source>
         <translation>Ingen Fanart</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
         <source>Movie has Logo</source>
         <translation>Filmen har logo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="569"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="572"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <source>Movie has no Logo</source>
         <translation>Filmen har ingen Logo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="572"/>
         <source>No Logo</source>
         <translation>Ingen logo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>Movie has Clear Art</source>
         <translation>Filmen har Clear Art</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="578"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
         <source>Movie has no Clear Art</source>
         <translation>Filmen har ingen Clear Art</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="578"/>
         <source>No Clear Art</source>
         <translation>Ingen Clear Art</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="580"/>
         <source>Movie has Banner</source>
         <translation>Filmen har Banner</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="579"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="580"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="583"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="581"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="584"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="583"/>
         <source>Movie has no Banner</source>
         <translation>Filmen har ingen Banner</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="583"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="584"/>
         <source>No Banner</source>
         <translation>Ingen Banner</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="585"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="586"/>
         <source>Movie has Thumb</source>
         <translation>Filmen har Miniatyr</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="585"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="586"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="587"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="590"/>
         <source>Thumb</source>
         <translation>Miniatyr</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
         <source>Movie has no Thumb</source>
         <translation>Filmen har ingen Miniatyr</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="590"/>
         <source>No Thumb</source>
         <translation>Ingen Miniatyr</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <source>Movie has CD Art</source>
         <translation>Filmen har CD omslag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="593"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="596"/>
         <source>CD Art</source>
         <translation>CD Omslag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>Movie has no CD Art</source>
         <translation>Filmen har inget CD-omslag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="596"/>
         <source>No CD Art</source>
         <translation>Inget CD-omslag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
         <source>Movie has Trailer</source>
         <translation>Filmen har Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <source>Movie has no Trailer</source>
         <translation>Filmen har ingen Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>No Trailer</source>
         <translation>Ingen Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Movie has local Trailer</source>
         <translation>Filmen har lokal trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>Local Trailer</source>
         <translation>Lokal Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>Movie has no local Trailer</source>
         <translation>Filmen har ingen lokal Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>No local Trailer</source>
         <translation>Ingen lokal Trailer</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
         <source>Movie is Watched</source>
         <translation>Filmen är Sedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>Watched</source>
         <translation>Sedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>Seen</source>
         <translation>Sedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Movie is Unwatched</source>
         <translation>Filmen är Osedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>Unwatched</source>
         <translation>Osedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>Unseen</source>
         <translation>Ej sedd</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>Movie has no Certification</source>
         <translation>Filmen har ingen Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="617"/>
         <source>No Certification</source>
         <translation>Ingen Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <source>Movie has no Genre</source>
         <translation>Filmen har ingen Genre</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="620"/>
         <source>No Genre</source>
         <translation>Ingen Genre</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <source>Movie has Rating</source>
         <translation>Film har betyg</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="623"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="626"/>
         <source>Rating</source>
         <translation>Betyg</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Movie has no Rating</source>
         <translation>Film har inget betyg</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="626"/>
         <source>No Rating</source>
         <translation>Inget betyg</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <source>Stream Details loaded</source>
         <translation>Ströminfo laddad</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
         <source>Stream Details</source>
         <translation>Ströminfo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>Stream Details not loaded</source>
         <translation>Ströminfo ej laddat</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
         <source>No Stream Details</source>
         <translation>Ingen Ströminfo</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <source>Movie has Actors</source>
         <translation>Filmen har Skådespelare</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>Actors</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Movie has no Actors</source>
         <translation>Filmen har inga skådespelare</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>No Actors</source>
         <translation>Inga Skådespelare</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
         <source>Movie has no Studio</source>
         <translation>Filmen har ingen Studio</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
         <source>No Studio</source>
         <translation>Ingen Studio</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
         <source>Movie has no Country</source>
         <translation>Filmen har inget Land</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>No Country</source>
         <translation>Inget Land</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <source>Movie has no Director</source>
         <translation>Filmen har ingen Regissör</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="645"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <source>No Director</source>
         <translation>Ingen Regissör</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
         <source>Movie has no Tags</source>
         <translation>Filmen har inga Taggar</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="650"/>
         <source>No Tags</source>
         <translation>Inga Taggar</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="650"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <source>Movie has no IMDB ID</source>
         <translation>Filmen har inget IMDB ID</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
         <source>No IMDB ID</source>
         <translation>Inget IMDB ID</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
         <source>IMDB</source>
         <translation>IMDB</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="654"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="655"/>
         <source>Resolution 720p</source>
         <translation>Upplösning 720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="655"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="656"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="655"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="656"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <source>Resolution</source>
         <translation>Upplösning</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="656"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <source>Resolution 1080p</source>
         <translation>Upplösning 1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Resolution SD</source>
         <translation>Upplösning SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
         <source>Format DVD</source>
         <translation>Format DVD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="663"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="663"/>
         <source>BluRay Format</source>
         <translation>BluRay Format</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="663"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Channels 2.0</source>
         <translation>Kanaler 2.0</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="670"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="671"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="678"/>
         <source>Audio</source>
         <translation>Ljud</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="670"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="671"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
         <source>Channels 5.1</source>
         <translation>Kanaler 5.1</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="670"/>
         <source>Channels 7.1</source>
         <translation>Kanaler 7.1</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>Audio Quality HD</source>
         <translation>Ljudkvalité HD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
         <source>HD Audio</source>
         <translation>HD ljud</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
         <source>Audio Quality Normal</source>
         <translation>Ljudkvalité Normal</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Normal Audio</source>
         <translation>Normal ljud</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
         <source>Audio Quality SD</source>
         <translation>Ljudkvalité SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="678"/>
         <source>SD Audio</source>
         <translation>SD ljud</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="680"/>
         <source>Movie has Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="679"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="680"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="683"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="688"/>
         <source>Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
         <source>Movie has no Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="681"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="682"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="683"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="688"/>
         <source>No Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
         <source>Movie has external Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="684"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="685"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="688"/>
         <source>External Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
         <source>Movie has no external Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="686"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="687"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="688"/>
         <source>No External Subtitle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2122,33 +2122,33 @@
 <context>
     <name>ImageCapture</name>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="20"/>
+        <location filename="../image/ImageCapture.cpp" line="21"/>
         <source>Could not get duration of file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="35"/>
+        <location filename="../image/ImageCapture.cpp" line="37"/>
         <source>Could not detect runtime of file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="43"/>
-        <location filename="../image/ImageCapture.cpp" line="63"/>
+        <location filename="../image/ImageCapture.cpp" line="45"/>
+        <location filename="../image/ImageCapture.cpp" line="65"/>
         <source>Temporary output file could not be opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="51"/>
+        <location filename="../image/ImageCapture.cpp" line="53"/>
         <source>Could not start ffmpeg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="53"/>
+        <location filename="../image/ImageCapture.cpp" line="55"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image/ImageCapture.cpp" line="59"/>
+        <location filename="../image/ImageCapture.cpp" line="61"/>
         <source>ffmpeg did not finish</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2180,8 +2180,8 @@
         <translation>Ny kolumn</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="684"/>
-        <location filename="../globals/ImageDialog.cpp" line="689"/>
+        <location filename="../globals/ImageDialog.cpp" line="686"/>
+        <location filename="../globals/ImageDialog.cpp" line="691"/>
         <source>No images found</source>
         <translation>Hittade inga bilder</translation>
     </message>
@@ -2221,27 +2221,27 @@
         <translation>Acceptera Bilder</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="145"/>
+        <location filename="../globals/ImageDialog.cpp" line="147"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="555"/>
+        <location filename="../globals/ImageDialog.cpp" line="557"/>
         <source>Choose Image</source>
         <translation>Välj Bild</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="555"/>
+        <location filename="../globals/ImageDialog.cpp" line="557"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="687"/>
+        <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="689"/>
+        <location filename="../globals/ImageDialog.cpp" line="691"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2298,12 +2298,12 @@
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="118"/>
+        <location filename="../downloads/ImportActions.cpp" line="119"/>
         <source>Delete file?</source>
         <translation>Radera fil?</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="119"/>
+        <location filename="../downloads/ImportActions.cpp" line="120"/>
         <source>Do you really want to delete this file?</source>
         <translation>Vill du verkligen radera den här filen?</translation>
     </message>
@@ -2367,80 +2367,80 @@
         <translation>Importera</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="255"/>
+        <location filename="../downloads/ImportDialog.cpp" line="256"/>
         <source>Loading movie information...</source>
         <translation>Laddar filminformation</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="271"/>
+        <location filename="../downloads/ImportDialog.cpp" line="272"/>
         <source>Loading concert information...</source>
         <translation>Laddar konsertinformation</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="289"/>
+        <location filename="../downloads/ImportDialog.cpp" line="290"/>
         <source>Loading episode information...</source>
         <translation>Laddar avsnittsinformatio</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="346"/>
+        <location filename="../downloads/ImportDialog.cpp" line="347"/>
         <source>Movie information was loaded</source>
         <translation>Filminformation har laddats</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="359"/>
+        <location filename="../downloads/ImportDialog.cpp" line="360"/>
         <source>Concert information was loaded</source>
         <translation>Konsertinformation har laddats</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="377"/>
-        <location filename="../downloads/ImportDialog.cpp" line="394"/>
+        <location filename="../downloads/ImportDialog.cpp" line="378"/>
+        <location filename="../downloads/ImportDialog.cpp" line="395"/>
         <source>Episode information was loaded</source>
         <translation>Avsnittsinformation har laddats</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="406"/>
+        <location filename="../downloads/ImportDialog.cpp" line="407"/>
         <source>Renaming not possible</source>
         <translation>Namnändring ej möjlig</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="406"/>
+        <location filename="../downloads/ImportDialog.cpp" line="407"/>
         <source>Please enter all naming patterns</source>
         <translation>Ange alla namnändringsmönster</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="431"/>
-        <location filename="../downloads/ImportDialog.cpp" line="507"/>
+        <location filename="../downloads/ImportDialog.cpp" line="432"/>
+        <location filename="../downloads/ImportDialog.cpp" line="508"/>
         <source>Creating destination directory failed</source>
         <translation>Skapandet av destinationsmappen misslyckades</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="432"/>
-        <location filename="../downloads/ImportDialog.cpp" line="508"/>
+        <location filename="../downloads/ImportDialog.cpp" line="433"/>
+        <location filename="../downloads/ImportDialog.cpp" line="509"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Den angivna katalogen %1 kunde inte skapas</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="455"/>
+        <location filename="../downloads/ImportDialog.cpp" line="456"/>
         <source>Importing movie...</source>
         <translation>Importerar film...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="488"/>
+        <location filename="../downloads/ImportDialog.cpp" line="489"/>
         <source>Importing episode...</source>
         <translation>Importerar avsnitt..</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="529"/>
+        <location filename="../downloads/ImportDialog.cpp" line="530"/>
         <source>Importing concert...</source>
         <translation>Importerar konsert</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="638"/>
+        <location filename="../downloads/ImportDialog.cpp" line="639"/>
         <source>Import finished</source>
         <translation>Importering slutförd</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/ImportDialog.cpp" line="638"/>
+        <location filename="../downloads/ImportDialog.cpp" line="639"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>Importeringen av %n fil har slutförts</numerusform>
@@ -2448,7 +2448,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="641"/>
+        <location filename="../downloads/ImportDialog.cpp" line="642"/>
         <source>Import has finished</source>
         <translation>Importering slutförd</translation>
     </message>
@@ -2732,47 +2732,47 @@ Main menu entry (tooltip)</extracomment>
         <translation>Importera</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="191"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
         <source>No tracks selected</source>
         <translation>Inga spår valda</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="193"/>
         <source>Please select at least one track you want to import.</source>
         <translation>Välj minst ett spår som du vill importera.</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="227"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="228"/>
         <source>Loading movie information...</source>
         <translation>Laddar filminformation</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="252"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="253"/>
         <source>Movie information was loaded</source>
         <translation>Filminformation har laddats</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="273"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="274"/>
         <source>Creating destination directory failed</source>
         <translation>Skapandet av destinationsmappen misslyckades</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="274"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="275"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Den angivna katalogen %1 kunde inte skapas</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="359"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV importering slutförd</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="359"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Importering med MakeMKV har slutförts</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="361"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="362"/>
         <source>Import has finished</source>
         <translation>Importering slutförd</translation>
     </message>
@@ -2788,231 +2788,231 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MediaPassion</name>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="30"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="31"/>
         <source>English</source>
         <translation>Engelska</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="31"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="32"/>
         <source>French</source>
         <translation>Franska</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="34"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="35"/>
         <source>Allocine</source>
         <translation>Allocine</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="35"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="36"/>
         <source>IMDB</source>
         <translation>IMDB</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="36"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="37"/>
         <source>Cine Passion</source>
         <translation>Cine Passion</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="39"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="40"/>
         <source>Argentina</source>
         <translation>Argentina</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="40"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="41"/>
         <source>Australia</source>
         <translation>Australien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="41"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="42"/>
         <source>Belgium</source>
         <translation>Belgien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="42"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="43"/>
         <source>Brazil</source>
         <translation>Brasilien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="43"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="44"/>
         <source>Canada</source>
         <translation>Kanada</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="44"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="45"/>
         <source>Chile</source>
         <translation>Chile</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="45"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="46"/>
         <source>Finland</source>
         <translation>Finland</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="46"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="47"/>
         <source>France</source>
         <translation>Frankrike</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="47"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="48"/>
         <source>Germany</source>
         <translation>Tyskland</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="48"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="49"/>
         <source>Hong Kong</source>
         <translation>Hong Kong</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="49"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="50"/>
         <source>Iceland</source>
         <translation>Island</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="50"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="51"/>
         <source>India</source>
         <translation>Indien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="51"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="52"/>
         <source>Ireland</source>
         <translation>Irland</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="52"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="53"/>
         <source>Israel</source>
         <translation>Israel</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="53"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Italy</source>
         <translation>Italien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="54"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="55"/>
         <source>Japan</source>
         <translation>Japan</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="55"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="56"/>
         <source>Malaysia</source>
         <translation>Malaysia</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="56"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="57"/>
         <source>Netherlands</source>
         <translation>Nederländerna</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="57"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="58"/>
         <source>New Zealand</source>
         <translation>Nya Zealand</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="58"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="59"/>
         <source>Norway</source>
         <translation>Norge</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="59"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="60"/>
         <source>Peru</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="60"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="61"/>
         <source>Philippines</source>
         <translation>Filippinerna</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="61"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="62"/>
         <source>Portugal</source>
         <translation>Portugal</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="62"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="63"/>
         <source>Singapore</source>
         <translation>Singapore</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="63"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="64"/>
         <source>South Africa</source>
         <translation>Sydafrika</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="64"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="65"/>
         <source>South Korea</source>
         <translation>Sydkorea</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="65"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="66"/>
         <source>Spain</source>
         <translation>Spanien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="66"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="67"/>
         <source>Sweden</source>
         <translation>Sverige</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="67"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="68"/>
         <source>Switzerland</source>
         <translation>Schweiz</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="68"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="69"/>
         <source>UK</source>
         <translation>Storbritannien</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="69"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="70"/>
         <source>USA</source>
         <translation>USA</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="72"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="73"/>
         <source>Username</source>
         <translation>Användarnamn</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="74"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="75"/>
         <source>Password</source>
         <translation>Lösenord</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="76"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="77"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="78"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="79"/>
         <source>Rating</source>
         <translation>Betyg</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="80"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="81"/>
         <source>Certification</source>
         <translation>Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="159"/>
-        <location filename="../scrapers/MediaPassion.cpp" line="204"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="160"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="205"/>
         <source>No username and password</source>
         <translation>Inget användarnamn och lösenord</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="160"/>
-        <location filename="../scrapers/MediaPassion.cpp" line="205"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="161"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="206"/>
         <source>In order to use this scraper you have to set your username and password in MediaElchs settings.</source>
         <translation>För att använda den här skrapan, behöver du fylla i användarnamn och lösenord i inställningarna.</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="194"/>
-        <location filename="../scrapers/MediaPassion.cpp" line="249"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="195"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="250"/>
         <source>Scraper returned an error</source>
         <translation>Skrapan har mottagit ett felmeddelande</translation>
     </message>
     <message>
-        <location filename="../scrapers/MediaPassion.cpp" line="194"/>
-        <location filename="../scrapers/MediaPassion.cpp" line="249"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="195"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="250"/>
         <source>The scraper returned the following error: %1</source>
         <translation>Skrapan tog emot felmeddelandet: %1</translation>
     </message>
@@ -3069,12 +3069,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="36"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="38"/>
         <source>Searching for Movies...</source>
         <translation>Söker efter Filmer...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="141"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="143"/>
         <source>Loading Movies...</source>
         <translation>Laddar Filmer...</translation>
     </message>
@@ -3130,12 +3130,12 @@ Processen avbruten.</translation>
 <context>
     <name>MovieMaze</name>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="135"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="138"/>
         <source>German</source>
         <translation>Tyska</translation>
     </message>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="137"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="140"/>
         <source>English</source>
         <translation>Engelska</translation>
     </message>
@@ -3143,47 +3143,47 @@ Processen avbruten.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="306"/>
+        <location filename="../data/MovieModel.cpp" line="309"/>
         <source>Actors</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="308"/>
+        <location filename="../data/MovieModel.cpp" line="311"/>
         <source>Extra Arts</source>
         <translation>Extra Art</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="310"/>
+        <location filename="../data/MovieModel.cpp" line="313"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="312"/>
+        <location filename="../data/MovieModel.cpp" line="315"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="314"/>
+        <location filename="../data/MovieModel.cpp" line="317"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="316"/>
+        <location filename="../data/MovieModel.cpp" line="319"/>
         <source>Stream Details</source>
         <translation>Ströminfo</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="318"/>
+        <location filename="../data/MovieModel.cpp" line="321"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="320"/>
+        <location filename="../data/MovieModel.cpp" line="323"/>
         <source>Local Trailer</source>
         <translation type="unfinished">Lokal Trailer</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="322"/>
+        <location filename="../data/MovieModel.cpp" line="325"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -3784,8 +3784,8 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1067"/>
-        <location filename="../movies/MovieWidget.cpp" line="755"/>
-        <location filename="../movies/MovieWidget.cpp" line="758"/>
+        <location filename="../movies/MovieWidget.cpp" line="756"/>
+        <location filename="../movies/MovieWidget.cpp" line="759"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -3892,119 +3892,119 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="85"/>
+        <location filename="../movies/MovieWidget.cpp" line="86"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="86"/>
+        <location filename="../movies/MovieWidget.cpp" line="87"/>
         <source>Add Genre</source>
         <translation>Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="90"/>
+        <location filename="../movies/MovieWidget.cpp" line="91"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="91"/>
+        <location filename="../movies/MovieWidget.cpp" line="92"/>
         <source>Add Tag</source>
         <translation>Lägg till Tagg</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="95"/>
+        <location filename="../movies/MovieWidget.cpp" line="96"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="96"/>
+        <location filename="../movies/MovieWidget.cpp" line="97"/>
         <source>Add Country</source>
         <translation>Lägg till Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="100"/>
+        <location filename="../movies/MovieWidget.cpp" line="101"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="101"/>
+        <location filename="../movies/MovieWidget.cpp" line="102"/>
         <source>Add Studio</source>
         <translation>Lägg till Studio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="491"/>
+        <location filename="../movies/MovieWidget.cpp" line="492"/>
         <source>Downloading images...</source>
         <translation>Laddar ner bilder...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="747"/>
-        <location filename="../movies/MovieWidget.cpp" line="783"/>
+        <location filename="../movies/MovieWidget.cpp" line="748"/>
+        <location filename="../movies/MovieWidget.cpp" line="784"/>
         <source>Track %1</source>
         <translation>Spår %1</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1174"/>
-        <location filename="../movies/MovieWidget.cpp" line="754"/>
-        <location filename="../movies/MovieWidget.cpp" line="757"/>
-        <location filename="../movies/MovieWidget.cpp" line="787"/>
+        <location filename="../movies/MovieWidget.cpp" line="755"/>
+        <location filename="../movies/MovieWidget.cpp" line="758"/>
         <location filename="../movies/MovieWidget.cpp" line="788"/>
+        <location filename="../movies/MovieWidget.cpp" line="789"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="756"/>
-        <location filename="../movies/MovieWidget.cpp" line="759"/>
+        <location filename="../movies/MovieWidget.cpp" line="757"/>
+        <location filename="../movies/MovieWidget.cpp" line="760"/>
         <source>Channels</source>
         <translation>Kanaler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="774"/>
+        <location filename="../movies/MovieWidget.cpp" line="775"/>
         <source>Subtitles</source>
         <translation>Undertexter</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="874"/>
+        <location filename="../movies/MovieWidget.cpp" line="875"/>
         <source>Saving movie...</source>
         <translation>Sparar film...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="879"/>
+        <location filename="../movies/MovieWidget.cpp" line="880"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="857"/>
-        <location filename="../movies/MovieWidget.cpp" line="902"/>
+        <location filename="../movies/MovieWidget.cpp" line="858"/>
+        <location filename="../movies/MovieWidget.cpp" line="903"/>
         <source>Saving movies...</source>
         <translation>Sparar filmer...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="872"/>
+        <location filename="../movies/MovieWidget.cpp" line="873"/>
         <source>Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="918"/>
+        <location filename="../movies/MovieWidget.cpp" line="919"/>
         <source>All Movies Saved</source>
         <translation>Alla filmer sparade</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="940"/>
+        <location filename="../movies/MovieWidget.cpp" line="941"/>
         <source>Unknown Actor</source>
         <translation>Okänd Skådespelare</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="941"/>
+        <location filename="../movies/MovieWidget.cpp" line="942"/>
         <source>Unknown Role</source>
         <translation>Okänd Roll</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1093"/>
+        <location filename="../movies/MovieWidget.cpp" line="1094"/>
         <source>Choose Image</source>
         <translation>Välj Bild</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1093"/>
+        <location filename="../movies/MovieWidget.cpp" line="1094"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -4012,12 +4012,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="32"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="34"/>
         <source>Searching for Music...</source>
         <translation>Söker efter Musik...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="98"/>
         <source>Loading Music...</source>
         <translation>Laddar Musik...</translation>
     </message>
@@ -4025,7 +4025,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>MusicFilesWidget</name>
     <message numerus="yes">
-        <location filename="../music/MusicFilesWidget.cpp" line="25"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="26"/>
         <source>%n artist(s)</source>
         <translation>
             <numerusform>%n artist</numerusform>
@@ -4033,7 +4033,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../music/MusicFilesWidget.cpp" line="25"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="26"/>
         <source>%n album(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4041,17 +4041,17 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message>
-        <location filename="../music/MusicFilesWidget.cpp" line="31"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="32"/>
         <source>Open Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../music/MusicFilesWidget.cpp" line="32"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="33"/>
         <source>Open NFO File</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../music/MusicFilesWidget.cpp" line="128"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="129"/>
         <source>%n artists</source>
         <translation>
             <numerusform>%n artist</numerusform>
@@ -4059,7 +4059,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../music/MusicFilesWidget.cpp" line="128"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="129"/>
         <source>%n albums</source>
         <translation>
             <numerusform>%n album</numerusform>
@@ -4067,7 +4067,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../music/MusicFilesWidget.cpp" line="130"/>
+        <location filename="../music/MusicFilesWidget.cpp" line="131"/>
         <source>%1 of %n artists</source>
         <translation>
             <numerusform>%1 av %n artister</numerusform>
@@ -4405,7 +4405,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>MusicTreeView</name>
     <message numerus="yes">
-        <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
+        <location filename="../smallWidgets/MusicTreeView.cpp" line="98"/>
         <source>%n albums</source>
         <translation>
             <numerusform>%n album</numerusform>
@@ -4416,14 +4416,14 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="117"/>
-        <location filename="../music/MusicWidget.cpp" line="152"/>
+        <location filename="../music/MusicWidget.cpp" line="118"/>
+        <location filename="../music/MusicWidget.cpp" line="153"/>
         <source>Saving changed Artists and Albums</source>
         <translation>Sparar ändrade Artister och Album</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="133"/>
-        <location filename="../music/MusicWidget.cpp" line="173"/>
+        <location filename="../music/MusicWidget.cpp" line="134"/>
+        <location filename="../music/MusicWidget.cpp" line="174"/>
         <source>All Artists and Albums Saved</source>
         <translation>Alla Artister och Album har sparats</translation>
     </message>
@@ -4534,47 +4534,47 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Skivomslag</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="42"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="43"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Add Genre</source>
         <translation>Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
         <source>Moods</source>
         <translation>Humör</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="48"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Add Mood</source>
         <translation>Lägg till Humör</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
         <source>Styles</source>
         <translation>Stilar</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="53"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="54"/>
         <source>Add Style</source>
         <translation>Lägg till Stil</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="197"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="198"/>
         <source>Saving Album...</source>
         <translation>Spara Album...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="203"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="204"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="485"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="486"/>
         <source>Downloading images...</source>
         <translation>Hämtar bilder...</translation>
     </message>
@@ -4712,52 +4712,52 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="46"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="47"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="47"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="48"/>
         <source>Add Genre</source>
         <translation>Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
         <source>Moods</source>
         <translation>Humör</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="53"/>
         <source>Add Mood</source>
         <translation>Lägg till Humör</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Styles</source>
         <translation>Stilar</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="58"/>
         <source>Add Style</source>
         <translation>Lägg till Stil</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="190"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="191"/>
         <source>Saving Artist...</source>
         <translation>Sparar Artist...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="196"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="197"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="457"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="458"/>
         <source>Downloading images...</source>
         <translation>Hämtar bilder...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="530"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="531"/>
         <source>Unknown Album</source>
         <translation>Okänt Album</translation>
     </message>
@@ -4815,22 +4815,22 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Donera</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="17"/>
+        <location filename="../main/Navbar.cpp" line="18"/>
         <source>Scrape (%1)</source>
         <translation>Skrapa (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="20"/>
+        <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save (%1)</source>
         <translation>Spara (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="24"/>
+        <location filename="../main/Navbar.cpp" line="25"/>
         <source>Save All (%1)</source>
         <translation>Spara alla (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="27"/>
+        <location filename="../main/Navbar.cpp" line="28"/>
         <source>Reload all files (%1)</source>
         <translation>Ladda om alla filer (%1)</translation>
     </message>
@@ -4846,12 +4846,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>PluginManager</name>
     <message>
-        <location filename="../plugins/PluginManager.cpp" line="98"/>
+        <location filename="../plugins/PluginManager.cpp" line="99"/>
         <source>Plugin updates available</source>
         <translation>Tilläggsuppdateringar tillgängliga</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManager.cpp" line="174"/>
+        <location filename="../plugins/PluginManager.cpp" line="175"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
         <translation>Tillägg %1 kräver minst MediaElch %2</translation>
     </message>
@@ -4931,67 +4931,67 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="91"/>
+        <location filename="../main.cpp" line="95"/>
         <source>Logfile could not be openened</source>
         <translation>Loggfilen kunde inte öppnas</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="96"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Loggfilen %1 kunde inte öppnas för skrivning.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="395"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="396"/>
         <source>Do not ask again</source>
         <translation>Fråga inte igen</translation>
     </message>
     <message>
-        <location filename="../main/Update.cpp" line="48"/>
+        <location filename="../main/Update.cpp" line="49"/>
         <source>Don&apos;t check for updates</source>
         <translation>Leta inte efter uppdateringar</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="397"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="398"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Visa inte det här meddelandet igen</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="528"/>
+        <location filename="../globals/Helper.cpp" line="529"/>
         <source>No Label</source>
         <translation>Ingen etikett</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="529"/>
+        <location filename="../globals/Helper.cpp" line="530"/>
         <source>Red</source>
         <translation>Röd</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="530"/>
+        <location filename="../globals/Helper.cpp" line="531"/>
         <source>Orange</source>
         <translation>Orange</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="531"/>
+        <location filename="../globals/Helper.cpp" line="532"/>
         <source>Yellow</source>
         <translation>Gul</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="532"/>
+        <location filename="../globals/Helper.cpp" line="533"/>
         <source>Green</source>
         <translation>Grön</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="533"/>
+        <location filename="../globals/Helper.cpp" line="534"/>
         <source>Blue</source>
         <translation>Blå</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="534"/>
+        <location filename="../globals/Helper.cpp" line="535"/>
         <source>Purple</source>
         <translation>Lila</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="535"/>
+        <location filename="../globals/Helper.cpp" line="536"/>
         <source>Grey</source>
         <translation>Grå</translation>
     </message>
@@ -5088,17 +5088,17 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="305"/>
-        <location filename="../renamer/Renamer.cpp" line="1199"/>
+        <location filename="../renamer/Renamer.cpp" line="1200"/>
         <source>Rename</source>
         <translation>Ändra namn</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="34"/>
+        <location filename="../renamer/Renamer.cpp" line="35"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation>Se %1 för hjälp och exempel hur man använder omdöparen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="50"/>
+        <location filename="../renamer/Renamer.cpp" line="51"/>
         <source>%n Movie(s) will be renamed</source>
         <translation>
             <numerusform>%n Film(er) kommer att byta namn</numerusform>
@@ -5106,7 +5106,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="53"/>
+        <location filename="../renamer/Renamer.cpp" line="54"/>
         <source>%n Concert(s) will be renamed</source>
         <translation>
             <numerusform>%n Konsert(er) komer ändra namn</numerusform>
@@ -5114,7 +5114,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="56"/>
+        <location filename="../renamer/Renamer.cpp" line="57"/>
         <source>%n TV Show(s) and %1</source>
         <translation>
             <numerusform>%n TV-serie(r) och %1</numerusform>
@@ -5122,7 +5122,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="56"/>
+        <location filename="../renamer/Renamer.cpp" line="57"/>
         <source>%n Episode(s) will be renamed</source>
         <translation>
             <numerusform>%n Avsnitt kommer byta namn</numerusform>
@@ -5130,43 +5130,43 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         </translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="180"/>
-        <location filename="../renamer/Renamer.cpp" line="199"/>
+        <location filename="../renamer/Renamer.cpp" line="181"/>
+        <location filename="../renamer/Renamer.cpp" line="200"/>
         <source>Finished</source>
         <translation>Slutförd</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="213"/>
+        <location filename="../renamer/Renamer.cpp" line="214"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="1197"/>
+        <location filename="../renamer/Renamer.cpp" line="1198"/>
         <source>Create dir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="1198"/>
+        <location filename="../renamer/Renamer.cpp" line="1199"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="616"/>
+        <location filename="../renamer/Renamer.cpp" line="617"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="671"/>
+        <location filename="../renamer/Renamer.cpp" line="672"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="895"/>
+        <location filename="../renamer/Renamer.cpp" line="896"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="942"/>
+        <location filename="../renamer/Renamer.cpp" line="943"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5372,22 +5372,22 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Bakgrund</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="69"/>
+        <location filename="../sets/SetsWidget.cpp" line="70"/>
         <source>Add Movie Set</source>
         <translation>Lägg till Filmsamling</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="70"/>
+        <location filename="../sets/SetsWidget.cpp" line="71"/>
         <source>Delete Movie Set</source>
         <translation>Ta bort Filmsamling</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="444"/>
+        <location filename="../sets/SetsWidget.cpp" line="445"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="470"/>
+        <location filename="../sets/SetsWidget.cpp" line="471"/>
         <source>New Movie Set</source>
         <translation>Ny Filmsamling</translation>
     </message>
@@ -5811,7 +5811,6 @@ Kataloger som med din musik måste ligga i underkataloger för varje artists som
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1803"/>
         <location filename="../settings/SettingsWindow.ui" line="1806"/>
-        <location filename="../settings/SettingsWindow.cpp" line="182"/>
         <source>Import</source>
         <translation>Importera</translation>
     </message>
@@ -5823,7 +5822,6 @@ Kataloger som med din musik måste ligga i underkataloger för varje artists som
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1828"/>
         <location filename="../settings/SettingsWindow.ui" line="1831"/>
-        <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Music</source>
         <translation>Musik</translation>
@@ -5921,21 +5919,18 @@ Kataloger som med din musik måste ligga i underkataloger för varje artists som
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1715"/>
-        <location filename="../settings/SettingsWindow.cpp" line="178"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Movies</source>
         <translation>Filmer</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1726"/>
-        <location filename="../settings/SettingsWindow.cpp" line="179"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>TV Shows</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1737"/>
-        <location filename="../settings/SettingsWindow.cpp" line="180"/>
         <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>Concerts</source>
         <translation>Konserter</translation>
@@ -6674,22 +6669,22 @@ p, li { white-space: pre-wrap; }
         <translation>Tillbaka till Trailers</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="313"/>
+        <location filename="../globals/TrailerDialog.cpp" line="314"/>
         <source>Download Finished</source>
         <translation>Hämtning slutförd</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="323"/>
+        <location filename="../globals/TrailerDialog.cpp" line="324"/>
         <source>The file %1 already exists.</source>
         <translation>Filen %1 existerar redan</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="324"/>
+        <location filename="../globals/TrailerDialog.cpp" line="325"/>
         <source>Do you want to overwrite it?</source>
         <translation>Vill du ersätta den?</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="336"/>
+        <location filename="../globals/TrailerDialog.cpp" line="337"/>
         <source>Download Canceled</source>
         <translation>Hämtning avbruten</translation>
     </message>
@@ -6697,22 +6692,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="52"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="54"/>
         <source>Searching for TV Shows...</source>
         <translation>Letar efter TV-serier</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="71"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="73"/>
         <source>Loading TV Shows...</source>
         <translation>Laddar TV-serier</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="185"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="187"/>
         <source>Searching for Episodes...</source>
         <translation>Letar efter Avsnitt...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="223"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="225"/>
         <source>Loading Episodes...</source>
         <translation>Laddar Avsnitt...</translation>
     </message>
@@ -6725,8 +6720,8 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="28"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="573"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%tv-serie</numerusform>
@@ -6734,8 +6729,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="572"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="28"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="573"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n avsnitt</numerusform>
@@ -6743,74 +6738,74 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
         <source>Load Information</source>
         <translation>Ladda Information</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
         <source>Search for new episodes</source>
         <translation>Leta efter nya avsnitt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
         <source>Mark as watched</source>
         <translation>Markera som sedd</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Mark as unwatched</source>
         <translation>Markera som osedd</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Load Stream Details</source>
         <translation>Ladda Ström-detaljer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
         <source>Add to Synchronization Queue</source>
         <translation>Lägg till i Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Ta bort ifrån Synkroniseringskön</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Open TV Show Folder</source>
         <translation>Öppna mapp för TV-serier</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
         <source>Open NFO File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="60"/>
         <source>Show missing episodes</source>
         <translation>Visa saknade avsnitt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="61"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="62"/>
         <source>Hide specials in missing episodes</source>
         <translation>Dölj specialavsnitt bland saknade avsnitt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="393"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
         <source>Show update needed</source>
         <translation>Uppdatering av serie krävs</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="394"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="395"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Du behöver göra en uppdatering av serien för att visa saknade avsnitt.
 MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="574"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="575"/>
         <source>%1 of %n tv shows</source>
         <translation>
             <numerusform>%1 av %n tv-serie</numerusform>
@@ -6864,7 +6859,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="147"/>
+        <location filename="../data/TvShowModelItem.cpp" line="149"/>
         <source>Season %1</source>
         <translation>Säsong %1</translation>
     </message>
@@ -7032,7 +7027,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Starta skrapning</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="311"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
         <source>%n tv shows</source>
         <translation type="unfinished">
             <numerusform>%tv-serie</numerusform>
@@ -7040,7 +7035,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="312"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="313"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform>%n avsnitt</numerusform>
@@ -7048,13 +7043,13 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         </translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="314"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="315"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="316"/>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="318"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="317"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="319"/>
         <source>Scraping of %1 has finished.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7293,7 +7288,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
 <context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
-        <location filename="../smallWidgets/TvShowTreeView.cpp" line="124"/>
+        <location filename="../smallWidgets/TvShowTreeView.cpp" line="125"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform>%n avsnitt</numerusform>
@@ -7304,7 +7299,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
+        <location filename="../tvShows/TvShowUpdater.cpp" line="58"/>
         <source>Updating TV Shows</source>
         <translation>Uppdaterar TV-serier</translation>
     </message>
@@ -7317,18 +7312,18 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="161"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="206"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="162"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="207"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Sparar ändrade TV-serier och avsnitt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="184"/>
         <source>TV Shows and Episodes Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="225"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="226"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Alla TV-serier och avsnitt sparade</translation>
     </message>
@@ -7720,12 +7715,12 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Säsong saknas</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="108"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="109"/>
         <source>Season %1</source>
         <translation>Säsong %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="163"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="164"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
@@ -7964,24 +7959,20 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="78"/>
         <source>Genres</source>
-        <translation>Genrer</translation>
+        <translation type="vanished">Genrer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
         <source>Add Genre</source>
-        <translation>Lägg till Genre</translation>
+        <translation type="vanished">Lägg till Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="83"/>
         <source>Tags</source>
-        <translation>Taggar</translation>
+        <translation type="vanished">Taggar</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="84"/>
         <source>Add Tag</source>
-        <translation>Lägg till Tag</translation>
+        <translation type="vanished">Lägg till Tag</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="415"/>
@@ -8057,22 +8048,22 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Stäng</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvTunesDialog.cpp" line="245"/>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="244"/>
         <source>Download Finished</source>
         <translation>Hämtning slutförd</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="249"/>
         <source>The file %1 already exists.</source>
         <translation>Filen %1 finns redan.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvTunesDialog.cpp" line="251"/>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
         <source>Do you want to overwrite it?</source>
         <translation>Vill du ersätta den?</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvTunesDialog.cpp" line="265"/>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="264"/>
         <source>Download Canceled</source>
         <translation>Hämtning avbruten</translation>
     </message>
@@ -8213,22 +8204,22 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Radera detta arkiv</translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="51"/>
         <source>Extraction password</source>
         <translation>Uppackningslösenord</translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="50"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="51"/>
         <source>Password</source>
         <translation>Lösenord</translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="64"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
         <translation>Radera arkiv?</translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="65"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
         <translation>Vill du verkligen radera detta arkiv?</translation>
     </message>
@@ -8236,12 +8227,12 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
 <context>
     <name>Update</name>
     <message>
-        <location filename="../main/Update.cpp" line="44"/>
+        <location filename="../main/Update.cpp" line="45"/>
         <source>Updates available</source>
         <translation>Uppdateringar finns tillgängliga</translation>
     </message>
     <message>
-        <location filename="../main/Update.cpp" line="45"/>
+        <location filename="../main/Update.cpp" line="46"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 är nu tillgängligt.&lt;br&gt;Skaffa det nu på %2</translation>
     </message>
