@@ -6,8 +6,7 @@
  * @brief MyTreeView::MyTreeView
  * @param parent
  */
-MyTreeView::MyTreeView(QWidget *parent) :
-    QTreeView(parent)
+MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
 {
 }
 

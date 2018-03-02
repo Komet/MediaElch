@@ -12,8 +12,7 @@
  * @brief TvShowModel::TvShowModel
  * @param parent
  */
-TvShowModel::TvShowModel(QObject *parent)
-    : QAbstractItemModel(parent)
+TvShowModel::TvShowModel(QObject *parent) : QAbstractItemModel(parent)
 {
     m_rootItem = new TvShowModelItem(0);
     m_newIcon = QIcon(":/img/star_blue.png");
@@ -84,41 +83,25 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     if (index.column() != 0) {
         if (role == Qt::DecorationRole) {
             switch (index.column()) {
-            case 1:
-                return m_icons.value(TvShowRoles::HasPoster).value(item->data(102).toBool());
-            case 2:
-                return m_icons.value(TvShowRoles::HasFanart).value(item->data(104).toBool());
-            case 3:
-                return m_icons.value(TvShowRoles::HasExtraFanart).value(item->data(103).toBool());
-            case 4:
-                return m_icons.value(TvShowRoles::HasThumb).value(item->data(106).toBool());
-            case 5:
-                return m_icons.value(TvShowRoles::HasLogo).value(item->data(105).toBool());
-            case 6:
-                return m_icons.value(TvShowRoles::HasClearArt).value(item->data(107).toBool());
-            case 7:
-                return m_icons.value(TvShowRoles::HasCharacterArt).value(item->data(108).toBool());
-            case 8:
-                return m_icons.value(TvShowRoles::HasBanner).value(item->data(101).toBool());
+            case 1: return m_icons.value(TvShowRoles::HasPoster).value(item->data(102).toBool());
+            case 2: return m_icons.value(TvShowRoles::HasFanart).value(item->data(104).toBool());
+            case 3: return m_icons.value(TvShowRoles::HasExtraFanart).value(item->data(103).toBool());
+            case 4: return m_icons.value(TvShowRoles::HasThumb).value(item->data(106).toBool());
+            case 5: return m_icons.value(TvShowRoles::HasLogo).value(item->data(105).toBool());
+            case 6: return m_icons.value(TvShowRoles::HasClearArt).value(item->data(107).toBool());
+            case 7: return m_icons.value(TvShowRoles::HasCharacterArt).value(item->data(108).toBool());
+            case 8: return m_icons.value(TvShowRoles::HasBanner).value(item->data(101).toBool());
             }
         } else if (role == Qt::ToolTipRole) {
             switch (index.column()) {
-            case 1:
-                return tr("Poster");
-            case 2:
-                return tr("Fanart");
-            case 3:
-                return tr("Extra Fanarts");
-            case 4:
-                return tr("Thumb");
-            case 5:
-                return tr("Logo");
-            case 6:
-                return tr("Clear Art");
-            case 7:
-                return tr("Character Art");
-            case 8:
-                return tr("Banner");
+            case 1: return tr("Poster");
+            case 2: return tr("Fanart");
+            case 3: return tr("Extra Fanarts");
+            case 4: return tr("Thumb");
+            case 5: return tr("Logo");
+            case 6: return tr("Clear Art");
+            case 7: return tr("Character Art");
+            case 8: return tr("Banner");
             }
         }
         return QVariant();
@@ -135,7 +118,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 
         if (item->type() == TypeSeason || item->type() == TypeEpisode) {
 #ifdef Q_OS_MAC
-            font.setPointSize(font.pointSize()-2);
+            font.setPointSize(font.pointSize() - 2);
 #endif
         }
         return font;
@@ -201,8 +184,9 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        TvShowModelItem *item = static_cast<TvShowModelItem*>(index.internalPointer());
-        if (item) return item;
+        TvShowModelItem *item = static_cast<TvShowModelItem *>(index.internalPointer());
+        if (item)
+            return item;
     }
     return m_rootItem;
 }
@@ -239,8 +223,11 @@ TvShowModelItem *TvShowModel::appendChild(TvShow *show)
     beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
     TvShowModelItem *item = parentItem->appendChild(show);
     endInsertRows();
-    connect(item, SIGNAL(sigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)));
-    connect(show, SIGNAL(sigChanged(TvShow*)), this, SLOT(onShowChanged(TvShow*)));
+    connect(item,
+        SIGNAL(sigChanged(TvShowModelItem *, TvShowModelItem *, TvShowModelItem *)),
+        this,
+        SLOT(onSigChanged(TvShowModelItem *, TvShowModelItem *, TvShowModelItem *)));
+    connect(show, SIGNAL(sigChanged(TvShow *)), this, SLOT(onShowChanged(TvShow *)));
     return item;
 }
 
@@ -330,10 +317,10 @@ void TvShowModel::onShowChanged(TvShow *show)
  * @brief TvShowModel::tvShows
  * @return
  */
-QList<TvShow*> TvShowModel::tvShows()
+QList<TvShow *> TvShowModel::tvShows()
 {
-    QList<TvShow*> shows;
-    for (int i=0, n=m_rootItem->childCount() ; i<n ; ++i) {
+    QList<TvShow *> shows;
+    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         shows.append(m_rootItem->child(i)->tvShow());
     }
     return shows;
@@ -363,7 +350,7 @@ int TvShowModel::hasNewShowOrEpisode()
  */
 void TvShowModel::removeShow(TvShow *show)
 {
-    for (int i=0, n=m_rootItem->childCount() ; i<n ; ++i) {
+    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         if (m_rootItem->child(i)->tvShow() == show) {
             removeRow(m_rootItem->child(i)->childNumber());
             return;

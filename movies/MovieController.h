@@ -24,7 +24,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QMap<ScraperInterface*, QString> ids, ScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QMap<ScraperInterface *, QString> ids, ScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void scraperLoadDone(ScraperInterface *scraper);
     QList<int> infosToLoad();
@@ -43,15 +43,15 @@ public:
     void setForceFanartLogo(const bool &force);
 
 signals:
-    void sigInfoLoadDone(Movie*);
-    void sigLoadDone(Movie*);
-    void sigLoadImagesStarted(Movie*);
-    void sigDownloadProgress(Movie*, int, int);
-    void sigLoadingImages(Movie*, QList<int>);
-    void sigImage(Movie*,int,QByteArray);
+    void sigInfoLoadDone(Movie *);
+    void sigLoadDone(Movie *);
+    void sigLoadImagesStarted(Movie *);
+    void sigDownloadProgress(Movie *, int, int);
+    void sigLoadingImages(Movie *, QList<int>);
+    void sigImage(Movie *, int, QByteArray);
 
 private slots:
-    void onFanartLoadDone(Movie* movie, QMap<int, QList<Poster> > posters);
+    void onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> posters);
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
 

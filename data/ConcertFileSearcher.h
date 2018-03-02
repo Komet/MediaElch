@@ -30,7 +30,11 @@ signals:
 private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
-    void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+    void scanDir(QString startPath,
+        QString path,
+        QList<QStringList> &contents,
+        bool separateFolders = false,
+        bool firstScan = false);
     QStringList getFiles(QString path);
     bool m_aborted;
 };

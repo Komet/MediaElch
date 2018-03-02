@@ -34,7 +34,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    static MainWindow* instance();
+    static MainWindow *instance();
 
 public slots:
     void setNewMarks();
@@ -53,7 +53,7 @@ private slots:
     void onActionReload();
     void onActionXbmc();
     void onActionRename();
-    void onFilterChanged(QList<Filter*> filters, QString text);
+    void onFilterChanged(QList<Filter *> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
@@ -87,10 +87,10 @@ private:
     QAction *m_actionReload;
     QAction *m_actionRename;
     QAction *m_actionExport;
-    QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
+    QMap<MainWidgets, QMap<MainActions, bool>> m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow *m_instance;
-    QMap<int, PluginInterface*> m_plugins;
+    QMap<int, PluginInterface *> m_plugins;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
     void setupToolbar();

@@ -7,9 +7,7 @@
  * @brief MovieSearch::MovieSearch
  * @param parent
  */
-MovieSearch::MovieSearch(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::MovieSearch)
+MovieSearch::MovieSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MovieSearch)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -35,7 +33,7 @@ MovieSearch::~MovieSearch()
  * @param parent Parent widget
  * @return Instance of MovieSearch
  */
-MovieSearch* MovieSearch::instance(QWidget *parent)
+MovieSearch *MovieSearch::instance(QWidget *parent)
 {
     static MovieSearch *m_instance = 0;
     if (m_instance == 0) {
@@ -54,8 +52,8 @@ int MovieSearch::exec(QString searchString, QString id, QString tmdbId)
 {
     qDebug() << "Entered";
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    newSize.setHeight(parentWidget()->size().height() - 200);
+    newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
     ui->movieSearchWidget->search(searchString, id, tmdbId);
@@ -96,7 +94,7 @@ QList<int> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QMap<ScraperInterface*, QString> MovieSearch::customScraperIds()
+QMap<ScraperInterface *, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

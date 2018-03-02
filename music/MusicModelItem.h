@@ -32,14 +32,14 @@ public:
     int type() const;
 
 signals:
-    void sigIntChanged(MusicModelItem*, MusicModelItem*);
-    void sigChanged(MusicModelItem*, MusicModelItem*);
+    void sigIntChanged(MusicModelItem *, MusicModelItem *);
+    void sigChanged(MusicModelItem *, MusicModelItem *);
 
 private slots:
     void onAlbumChanged(Album *album);
 
 private:
-    QList<MusicModelItem*> m_childItems;
+    QList<MusicModelItem *> m_childItems;
     MusicModelItem *m_parentItem;
     Artist *m_artist;
     Album *m_album;

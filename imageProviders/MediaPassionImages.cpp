@@ -11,12 +11,16 @@
 MediaPassionImages::MediaPassionImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::MovieCdArt << ImageType::MovieLogo << ImageType::MovieClearArt;
+    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::MovieCdArt << ImageType::MovieLogo
+               << ImageType::MovieClearArt;
     m_searchResultLimit = 0;
     m_mediaPassion = new MediaPassion(this);
     m_dummyMovie = new Movie(QStringList(), this);
-    connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie*)), this, SLOT(onLoadImagesFinished()));
-    connect(m_mediaPassion, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
+    connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie *)), this, SLOT(onLoadImagesFinished()));
+    connect(m_mediaPassion,
+        SIGNAL(searchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
 
 QString MediaPassionImages::name()
@@ -59,7 +63,7 @@ void MediaPassionImages::moviePosters(QString id)
     m_mediaPassion->loadSettings(*Settings::instance()->settings());
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, id);
     m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::Poster);
 }
@@ -69,7 +73,7 @@ void MediaPassionImages::movieBackdrops(QString id)
     m_mediaPassion->loadSettings(*Settings::instance()->settings());
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, id);
     m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::Backdrop);
 }
@@ -79,7 +83,7 @@ void MediaPassionImages::movieCdArts(QString id)
     m_mediaPassion->loadSettings(*Settings::instance()->settings());
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieCdArt;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, id);
     m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::CdArt);
 }
@@ -123,7 +127,7 @@ void MediaPassionImages::movieLogos(QString id)
     m_mediaPassion->loadSettings(*Settings::instance()->settings());
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieLogo;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, id);
     m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::Logo);
 }
@@ -143,7 +147,7 @@ void MediaPassionImages::movieClearArts(QString id)
     m_mediaPassion->loadSettings(*Settings::instance()->settings());
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieClearArt;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, id);
     m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::ClearArt);
 }
@@ -270,7 +274,7 @@ void MediaPassionImages::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-QWidget* MediaPassionImages::settingsWidget()
+QWidget *MediaPassionImages::settingsWidget()
 {
     return 0;
 }

@@ -16,8 +16,11 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_tvdb = new TheTvDb(this);
     m_searchResultLimit = 0;
-    connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
-    connect(m_dummyShow, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onLoadTvShowDataFinished()));
+    connect(m_tvdb,
+        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
+    connect(m_dummyShow, SIGNAL(sigLoaded(TvShow *)), this, SLOT(onLoadTvShowDataFinished()));
     connect(m_dummyEpisode, SIGNAL(sigLoaded()), this, SLOT(onLoadTvShowDataFinished()));
 }
 
@@ -408,7 +411,7 @@ void TheTvDbImages::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-QWidget* TheTvDbImages::settingsWidget()
+QWidget *TheTvDbImages::settingsWidget()
 {
     return 0;
 }

@@ -52,15 +52,15 @@ public:
     virtual QString writer() const;
     virtual QString director() const;
     virtual QStringList genres() const;
-    virtual QList<QString*> genresPointer();
+    virtual QList<QString *> genresPointer();
     virtual QStringList countries() const;
-    virtual QList<QString*> countriesPointer();
+    virtual QList<QString *> countriesPointer();
     virtual QStringList studios() const;
     virtual QStringList tags() const;
-    virtual QList<QString*> studiosPointer();
+    virtual QList<QString *> studiosPointer();
     virtual QUrl trailer() const;
     virtual QList<Actor> actors() const;
-    virtual QList<Actor*> actorsPointer();
+    virtual QList<Actor *> actorsPointer();
     virtual QStringList files() const;
     virtual QString folderName() const;
     virtual int playcount() const;
@@ -189,7 +189,7 @@ public:
     MovieDuplicate duplicateProperties(Movie *movie);
 
 signals:
-    void sigChanged(Movie*);
+    void sigChanged(Movie *);
 
 private slots:
     void onSubtitleChanged();
@@ -261,7 +261,7 @@ private:
     QList<int> m_imagesToRemove;
 };
 
-Q_DECLARE_METATYPE(Movie*)
+Q_DECLARE_METATYPE(Movie *)
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
 QDebug operator<<(QDebug dbg, const Movie *movie);

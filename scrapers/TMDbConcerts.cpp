@@ -115,7 +115,7 @@ void TMDbConcerts::loadSettings(QSettings &settings)
     }
 
     bool found = false;
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
             m_box->setCurrentIndex(i);
             found = true;
@@ -180,7 +180,7 @@ void TMDbConcerts::setup()
  */
 void TMDbConcerts::setupFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -207,11 +207,20 @@ void TMDbConcerts::search(QString searchStr)
     QRegExp rx("^tt\\d+$");
     QRegExp rxTmdbId("^id\\d+$");
     if (rx.exactMatch(searchStr))
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(m_apiKey).arg(m_language));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+                       .arg(searchStr)
+                       .arg(m_apiKey)
+                       .arg(m_language));
     else if (rxTmdbId.exactMatch(searchStr))
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(m_apiKey).arg(m_language));
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+                       .arg(searchStr.mid(2))
+                       .arg(m_apiKey)
+                       .arg(m_language));
     else
-        url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
+        url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3")
+                       .arg(m_apiKey)
+                       .arg(m_language)
+                       .arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -228,8 +237,8 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    QList<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    QList<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -247,7 +256,11 @@ void TMDbConcerts::searchFinished()
     if (nextPage == -1) {
         emit searchDone(results);
     } else {
-        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(searchString));
+        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
+                     .arg(m_apiKey)
+                     .arg(m_language)
+                     .arg(nextPage)
+                     .arg(searchString));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply *reply = qnam()->get(request);
@@ -274,29 +287,29 @@ QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int *nextPage
 
     // only get the first 3 pages
     if (sc.property("page").toInteger() < sc.property("total_pages").toInteger() && sc.property("page").toInteger() < 3)
-        *nextPage = sc.property("page").toInteger()+1;
+        *nextPage = sc.property("page").toInteger() + 1;
 
-    if (sc.property("results").isArray() ) {
+    if (sc.property("results").isArray()) {
         QScriptValueIterator it(sc.property("results"));
-        while (it.hasNext() ) {
+        while (it.hasNext()) {
             it.next();
             if (it.value().property("id").toString().isEmpty()) {
                 continue;
             }
             ScraperSearchResult result;
-            result.name     = it.value().property("title").toString();
+            result.name = it.value().property("title").toString();
             if (result.name.isEmpty())
                 it.value().property("original_title").toString();
-            result.id       = it.value().property("id").toString();
+            result.id = it.value().property("id").toString();
             result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
     } else if (!sc.property("id").toString().isEmpty()) {
         ScraperSearchResult result;
-        result.name     = sc.property("title").toString();
+        result.name = sc.property("title").toString();
         if (result.name.isEmpty())
             sc.property("original_title").toString();
-        result.id       = sc.property("id").toString();
+        result.id = sc.property("id").toString();
         result.released = QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd");
         results.append(result);
     }
@@ -329,7 +342,8 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
 
     // Infos
     loadsLeft.append(DataInfos);
-    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
+    url.setUrl(
+        QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     new NetworkReplyWatcher(this, reply);
@@ -381,9 +395,9 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
  */
 void TMDbConcerts::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage*>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage *>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
@@ -403,9 +417,9 @@ void TMDbConcerts::loadFinished()
  */
 void TMDbConcerts::loadTrailersFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage*>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage *>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
@@ -425,9 +439,9 @@ void TMDbConcerts::loadTrailersFinished()
  */
 void TMDbConcerts::loadImagesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage*>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage *>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
@@ -447,9 +461,9 @@ void TMDbConcerts::loadImagesFinished()
  */
 void TMDbConcerts::loadReleasesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage*>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage *>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
@@ -482,11 +496,13 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
         concert->setId(sc.property("imdb_id").toString());
     if (infos.contains(ConcertScraperInfos::Title) && sc.property("title").isValid())
         concert->setName(sc.property("title").toString());
-    if (infos.contains(ConcertScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull())
+    if (infos.contains(ConcertScraperInfos::Overview) && sc.property("overview").isValid()
+        && !sc.property("overview").isNull())
         concert->setOverview(sc.property("overview").toString());
     if (infos.contains(ConcertScraperInfos::Rating) && sc.property("vote_average").isValid())
         concert->setRating(sc.property("vote_average").toNumber());
-    if (infos.contains(ConcertScraperInfos::Tagline) && sc.property("tagline").isValid() && !sc.property("tagline").isNull())
+    if (infos.contains(ConcertScraperInfos::Tagline) && sc.property("tagline").isValid()
+        && !sc.property("tagline").isNull())
         concert->setTagline(sc.property("tagline").toString());
     if (infos.contains(ConcertScraperInfos::Released) && sc.property("release_date").isValid())
         concert->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd"));
@@ -511,7 +527,8 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
+            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(
+                QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
     }

@@ -4,14 +4,12 @@
 #include "export/ExportTemplateLoader.h"
 #include "globals/Helper.h"
 
-ExportTemplateWidget::ExportTemplateWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ExportTemplateWidget)
+ExportTemplateWidget::ExportTemplateWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ExportTemplateWidget)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
     QFont smallFont = ui->description->font();
-    smallFont.setPointSize(smallFont.pointSize()-1);
+    smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->description->setFont(smallFont);
 #endif
 }

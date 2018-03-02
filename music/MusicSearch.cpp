@@ -1,9 +1,7 @@
 #include "MusicSearch.h"
 #include "ui_MusicSearch.h"
 
-MusicSearch::MusicSearch(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::MusicSearch)
+MusicSearch::MusicSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MusicSearch)
 {
     ui->setupUi(this);
 
@@ -23,7 +21,7 @@ MusicSearch::~MusicSearch()
     delete ui;
 }
 
-MusicSearch* MusicSearch::instance(QWidget *parent)
+MusicSearch *MusicSearch::instance(QWidget *parent)
 {
     static MusicSearch *m_instance = 0;
     if (!m_instance)
@@ -34,8 +32,8 @@ MusicSearch* MusicSearch::instance(QWidget *parent)
 int MusicSearch::exec(QString type, QString searchString, QString artistName)
 {
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(700, parentWidget()->size().width()-200));
+    newSize.setHeight(parentWidget()->size().height() - 200);
+    newSize.setWidth(qMin(700, parentWidget()->size().width() - 200));
     resize(newSize);
     ui->musicSearchWidget->setType(type);
     ui->musicSearchWidget->setArtistName(artistName);

@@ -24,7 +24,10 @@ XbmcSync::XbmcSync(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(&m_qnam, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)), this, SLOT(onAuthRequired(QNetworkReply*,QAuthenticator*)));
+    connect(&m_qnam,
+        SIGNAL(authenticationRequired(QNetworkReply *, QAuthenticator *)),
+        this,
+        SLOT(onAuthRequired(QNetworkReply *, QAuthenticator *)));
 
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(onButtonClose()));
@@ -126,8 +129,8 @@ void XbmcSync::startSync()
 
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
-                    //m_episodesToSync.append(episode);
-                    //updateFolderLastModified(episode);
+                    // m_episodesToSync.append(episode);
+                    // updateFolderLastModified(episode);
                     m_tvShowsToSync.append(show);
                     break;
                 } else if (m_syncType == SyncWatched) {
@@ -170,11 +173,11 @@ void XbmcSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onMovieListFinished()));
     }
 
@@ -185,11 +188,11 @@ void XbmcSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onConcertListFinished()));
     }
 
@@ -200,11 +203,11 @@ void XbmcSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onTvShowListFinished()));
     }
 
@@ -215,15 +218,16 @@ void XbmcSync::startSync()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeListFinished()));
     }
 
-    if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty() && m_episodesToSync.isEmpty()) {
+    if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty()
+        && m_episodesToSync.isEmpty()) {
         QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
     } else {
         ui->status->setText(tr("Getting contents from Kodi"));
@@ -233,7 +237,7 @@ void XbmcSync::startSync()
 
 void XbmcSync::onMovieListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -261,7 +265,7 @@ void XbmcSync::onMovieListFinished()
 
 void XbmcSync::onConcertListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -289,7 +293,7 @@ void XbmcSync::onConcertListFinished()
 
 void XbmcSync::onTvShowListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -317,7 +321,7 @@ void XbmcSync::onTvShowListFinished()
 
 void XbmcSync::onEpisodeListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -355,8 +359,10 @@ void XbmcSync::checkIfListsReady(Elements element)
 
     if (m_syncType == SyncContents) {
         setupItemsToRemove();
-        if (!m_moviesToRemove.isEmpty() || !m_episodesToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_concertsToRemove.isEmpty()) {
-            ui->progressBar->setMaximum(m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count() + m_concertsToRemove.count());
+        if (!m_moviesToRemove.isEmpty() || !m_episodesToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
+            || !m_concertsToRemove.isEmpty()) {
+            ui->progressBar->setMaximum(m_moviesToRemove.count() + m_episodesToRemove.count()
+                                        + m_tvShowsToRemove.count() + m_concertsToRemove.count());
             ui->progressBar->setValue(0);
             ui->progressBar->setVisible(true);
         }
@@ -420,11 +426,11 @@ void XbmcSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -439,11 +445,11 @@ void XbmcSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -458,11 +464,11 @@ void XbmcSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -478,11 +484,11 @@ void XbmcSync::removeItems()
         QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        #else
-            QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-        #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -492,14 +498,17 @@ void XbmcSync::removeItems()
 
 void XbmcSync::onRemoveFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (reply)
         reply->deleteLater();
 
-    ui->progressBar->setValue(ui->progressBar->maximum()-(m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count() + m_concertsToRemove.count()));
+    ui->progressBar->setValue(ui->progressBar->maximum()
+                              - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
+                                    + m_concertsToRemove.count()));
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
-    if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_episodesToRemove.isEmpty())
+    if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
+        || !m_episodesToRemove.isEmpty())
         removeItems();
     else
         QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
@@ -517,11 +526,11 @@ void XbmcSync::triggerReload()
     QNetworkRequest request(xbmcUrl());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-    #else
-        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-    #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+    QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
     connect(reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
 }
 
@@ -541,11 +550,11 @@ void XbmcSync::triggerClean()
     QNetworkRequest request(xbmcUrl());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-    #else
-        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
-    #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+#else
+    QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+#endif
     connect(reply, SIGNAL(finished()), this, SLOT(onCleanFinished()));
 }
 
@@ -640,7 +649,7 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
     if (files.count() == 1 && xbmcFiles.count() == 1) {
         QStringList file = splitFile(files.at(0));
         QStringList xbmcFile = splitFile(xbmcFiles.at(0));
-        for (int i=0 ; i<=level ; ++i) {
+        for (int i = 0; i <= level; ++i) {
             if (file.isEmpty() || xbmcFile.isEmpty())
                 return false;
             if (QString::compare(file.takeLast(), xbmcFile.takeLast(), Qt::CaseInsensitive) != 0)
@@ -656,7 +665,7 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
             if (parts.count() < level)
                 return false;
             QStringList partsNew;
-            for (int i=0 ; i<=level ; ++i)
+            for (int i = 0; i <= level; ++i)
                 partsNew << parts.takeLast();
             xbmcStack << partsNew.join("/");
         }
@@ -666,7 +675,7 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
             if (parts.count() < level)
                 return false;
             QStringList partsNew;
-            for (int i=0 ; i<=level ; ++i)
+            for (int i = 0; i <= level; ++i)
                 partsNew << parts.takeLast();
             stack << partsNew.join("/");
         }
@@ -675,7 +684,6 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
         qSort(xbmcStack);
 
         return (stack == xbmcStack);
-
     }
     return false;
 }

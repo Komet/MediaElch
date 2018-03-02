@@ -15,21 +15,11 @@
 VideoBuster::VideoBuster(QObject *parent)
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title
-                      << MovieScraperInfos::Released
-                      << MovieScraperInfos::Countries
-                      << MovieScraperInfos::Certification
-                      << MovieScraperInfos::Actors
-                      << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Runtime
-                      << MovieScraperInfos::Rating
-                      << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Tagline
-                      << MovieScraperInfos::Overview
-                      << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Backdrop
-                      << MovieScraperInfos::Tags
-                      << MovieScraperInfos::Director;
+    m_scraperSupports << MovieScraperInfos::Title << MovieScraperInfos::Released << MovieScraperInfos::Countries
+                      << MovieScraperInfos::Certification << MovieScraperInfos::Actors << MovieScraperInfos::Studios
+                      << MovieScraperInfos::Runtime << MovieScraperInfos::Rating << MovieScraperInfos::Genres
+                      << MovieScraperInfos::Tagline << MovieScraperInfos::Overview << MovieScraperInfos::Poster
+                      << MovieScraperInfos::Backdrop << MovieScraperInfos::Tags << MovieScraperInfos::Director;
 }
 
 /**
@@ -83,7 +73,10 @@ void VideoBuster::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
-    QUrl url(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
+    QUrl url(QString("https://www.videobuster.de/"
+                     "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
+                 .arg(encodedSearch)
+                 .toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -96,7 +89,7 @@ void VideoBuster::search(QString searchStr)
  */
 void VideoBuster::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
 
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
@@ -124,8 +117,8 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
     rx.setMinimal(true);
     while ((pos = rx.indexIn(html, pos)) != -1) {
         ScraperSearchResult result;
-        result.name     = rx.cap(2);
-        result.id       = rx.cap(1);
+        result.name = rx.cap(2);
+        result.id = rx.cap(1);
         results.append(result);
         pos += rx.matchedLength();
     }
@@ -139,7 +132,7 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
+void VideoBuster::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
 
@@ -158,9 +151,9 @@ void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, Q
  */
 void VideoBuster::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -221,7 +214,8 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Actors
     pos = 0;
 
-    rx.setPattern("<span itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><a href=\"[^\"]*\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></span>");
+    rx.setPattern("<span itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><a href=\"[^\"]*\" "
+                  "itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></span>");
     while (infos.contains(MovieScraperInfos::Actors) && (pos = rx.indexIn(html, pos)) != -1) {
         Actor a;
         a.name = rx.cap(1).trimmed();
@@ -258,7 +252,8 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     }
 
     // Studio
-    rx.setPattern("<label>Studio</label><br><span itemprop=\"publisher\" itemscope itemtype=\"http://schema.org/Organization\">.*<span itemprop=\"name\">(.*)</span></a></span>");
+    rx.setPattern("<label>Studio</label><br><span itemprop=\"publisher\" itemscope "
+                  "itemtype=\"http://schema.org/Organization\">.*<span itemprop=\"name\">(.*)</span></a></span>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
 
@@ -307,7 +302,8 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         if (rx.indexIn(html) != -1) {
             QString contents = rx.cap(1);
             pos = 0;
-            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" rel=\"gallery_posters\" target=\"_blank\" class=\"image\">");
+            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" "
+                          "rel=\"gallery_posters\" target=\"_blank\" class=\"image\">");
             while ((pos = rx.indexIn(contents, pos)) != -1) {
                 Poster p;
                 p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
@@ -324,7 +320,8 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         if (rx.indexIn(html) != -1) {
             QString contents = rx.cap(1);
             pos = 0;
-            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" rel=\"gallery_pictures\" target=\"_blank\" class=\"image\">");
+            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" "
+                          "rel=\"gallery_pictures\" target=\"_blank\" class=\"image\">");
             while ((pos = rx.indexIn(contents, pos)) != -1) {
                 Poster p;
                 p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);

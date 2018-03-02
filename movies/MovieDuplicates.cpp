@@ -1,21 +1,19 @@
 #include "MovieDuplicates.h"
 #include "ui_MovieDuplicates.h"
 
-#include <QDebug>
 #include "../globals/Helper.h"
 #include "../globals/Manager.h"
 #include "../notifications/NotificationBox.h"
 #include "MovieDuplicateItem.h"
+#include <QDebug>
 
-MovieDuplicates::MovieDuplicates(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MovieDuplicates)
+MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::MovieDuplicates)
 {
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
     QFont font = ui->movies->font();
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
     ui->movies->setFont(font);
 #endif
 
@@ -29,7 +27,7 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) :
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setFilterDuplicates(true);
     ui->movies->setModel(m_movieProxyModel);
-    for (int i=1, n=ui->movies->model()->columnCount() ; i<n ; ++i) {
+    for (int i = 1, n = ui->movies->model()->columnCount(); i < n; ++i) {
         ui->movies->setColumnWidth(i, 24);
         ui->movies->setColumnHidden(i, true);
     }
@@ -45,7 +43,10 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) :
     Helper::instance()->applyStyle(ui->movieDuplicatesWidget);
 
     connect(ui->btnDetect, &QPushButton::clicked, this, &MovieDuplicates::detectDuplicates);
-    connect(ui->movies->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex, QModelIndex)));
+    connect(ui->movies->selectionModel(),
+        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+        this,
+        SLOT(onItemActivated(QModelIndex, QModelIndex)));
 }
 
 MovieDuplicates::~MovieDuplicates()
@@ -63,16 +64,18 @@ void MovieDuplicates::detectDuplicates()
 
     int counter = 0;
     int movieCount = Manager::instance()->movieModel()->movies().count();
-    NotificationBox::instance()->showProgressBar(tr("Detecting duplicate movies..."), Constants::MovieDuplicatesProgressMessageId);
+    NotificationBox::instance()->showProgressBar(
+        tr("Detecting duplicate movies..."), Constants::MovieDuplicatesProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, movieCount, Constants::MovieDuplicatesProgressMessageId);
     qApp->processEvents();
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         counter++;
-        NotificationBox::instance()->progressBarProgress(counter, movieCount, Constants::MovieDuplicatesProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(
+            counter, movieCount, Constants::MovieDuplicatesProgressMessageId);
         movie->setHasDuplicates(false);
 
-        QList<Movie*> dups;
+        QList<Movie *> dups;
         dups << movie;
         foreach (Movie *subMovie, Manager::instance()->movieModel()->movies()) {
             if (movie == subMovie)

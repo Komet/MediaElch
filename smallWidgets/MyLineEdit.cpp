@@ -36,16 +36,17 @@ void MyLineEdit::resizeEvent(QResizeEvent *)
     if (m_type == TypeLoading) {
         QSize size = m_loadingLabel->sizeHint();
         int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-        m_loadingLabel->move(rect().right()-frameWidth-size.width(), (rect().bottom()+1-size.height())/2);
+        m_loadingLabel->move(rect().right() - frameWidth - size.width(), (rect().bottom() + 1 - size.height()) / 2);
     } else if (m_type == TypeClear) {
         QSize size = m_clearButton->sizeHint();
         int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-        m_clearButton->move(rect().right()-frameWidth-size.width()+2, (rect().bottom()+1-size.height()+6)/2);
+        m_clearButton->move(
+            rect().right() - frameWidth - size.width() + 2, (rect().bottom() + 1 - size.height() + 6) / 2);
     }
 
     if (m_showMagnifier) {
         QSize size = m_magnifierLabel->sizeHint();
-        m_magnifierLabel->move(6, (rect().bottom()+1-size.height())/2);
+        m_magnifierLabel->move(6, (rect().bottom() + 1 - size.height()) / 2);
     }
 }
 
@@ -117,10 +118,11 @@ void MyLineEdit::setType(LineEditType type)
         m_loadingLabel->setMovie(movie);
         QSize minimumSize = minimumSizeHint();
         int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-        m_styleSheets.append(QString("QLineEdit { padding-right: %2px; }").arg(m_loadingLabel->sizeHint().width() + frameWidth + 1));
+        m_styleSheets.append(
+            QString("QLineEdit { padding-right: %2px; }").arg(m_loadingLabel->sizeHint().width() + frameWidth + 1));
         setStyleSheet(m_styleSheets.join(" ") + QString(" QLineEdit { padding-left: %1px; }").arg(m_paddingLeft));
         setMinimumSize(qMax(minimumSize.width(), m_loadingLabel->sizeHint().width() + frameWidth * 2 + 2),
-                             qMax(minimumSize.height(), m_loadingLabel->sizeHint().height() + frameWidth * 2 + 2));
+            qMax(minimumSize.height(), m_loadingLabel->sizeHint().height() + frameWidth * 2 + 2));
         m_loadingLabel->setHidden(true);
     }
 
@@ -132,10 +134,11 @@ void MyLineEdit::setType(LineEditType type)
         m_clearButton->setStyleSheet("background-color: transparent; border: none;");
         QSize minimumSize = minimumSizeHint();
         int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-        m_styleSheets.append(QString("QLineEdit { padding-right: %2px; } ").arg(m_clearButton->sizeHint().width() + frameWidth + 1));
+        m_styleSheets.append(
+            QString("QLineEdit { padding-right: %2px; } ").arg(m_clearButton->sizeHint().width() + frameWidth + 1));
         setStyleSheet(m_styleSheets.join(" ") + QString(" QLineEdit { padding-left: %1px; }").arg(m_paddingLeft));
         setMinimumSize(qMax(minimumSize.width(), m_clearButton->sizeHint().width() + frameWidth * 2 + 2),
-                             (12 + frameWidth * 2 + 2));
+            (12 + frameWidth * 2 + 2));
         m_clearButton->setVisible(!text().isEmpty());
         connect(m_clearButton, SIGNAL(clicked()), this, SLOT(myClear()), Qt::UniqueConnection);
     }
@@ -196,7 +199,8 @@ void MyLineEdit::setShowMagnifier(bool show)
         if (m_magnifierLabel != 0)
             delete m_magnifierLabel;
         QPixmap magn(":/img/magnifier.png");
-        magn = magn.scaled(QSize(14, 14) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        magn = magn.scaled(
+            QSize(14, 14) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(magn, Helper::instance()->devicePixelRatio(this));
         QPainter p;
         p.begin(&magn);
@@ -218,13 +222,17 @@ void MyLineEdit::setShowMagnifier(bool show)
 void MyLineEdit::addFilter(Filter *filter)
 {
     QLabel *label = new QLabel(this);
-    if (filter->info() == MovieFilters::Title || filter->info() == MovieFilters::Path ||
-            filter->info() == ConcertFilters::Title || filter->info() == TvShowFilters::Title || filter->info() == MusicFilters::Title)
-        label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: 10px; color: #ffffff;");
+    if (filter->info() == MovieFilters::Title || filter->info() == MovieFilters::Path
+        || filter->info() == ConcertFilters::Title || filter->info() == TvShowFilters::Title
+        || filter->info() == MusicFilters::Title)
+        label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: "
+                             "10px; color: #ffffff;");
     else if (filter->info() == MovieFilters::ImdbId)
-        label->setStyleSheet("background-color: #F0AD4E; border: 1px solid #F0AD4E; border-radius: 2px; font-size: 10px; color: #ffffff;");
+        label->setStyleSheet("background-color: #F0AD4E; border: 1px solid #F0AD4E; border-radius: 2px; font-size: "
+                             "10px; color: #ffffff;");
     else
-        label->setStyleSheet("background-color: #5BC0DE; border: 1px solid #5BC0DE; border-radius: 2px; font-size: 10px; color: #ffffff;");
+        label->setStyleSheet("background-color: #5BC0DE; border: 1px solid #5BC0DE; border-radius: 2px; font-size: "
+                             "10px; color: #ffffff;");
     label->setText(filter->shortText());
     label->show();
     m_filterLabels.append(label);
@@ -264,15 +272,15 @@ void MyLineEdit::drawFilters()
     int labelWidth = 0;
     int hidden = 0;
     foreach (QLabel *l, m_filterLabels) {
-        labelWidth += l->width()+2;
+        labelWidth += l->width() + 2;
         l->show();
     }
-    while (labelWidth+50 > width() && hidden<m_filterLabels.count()) {
+    while (labelWidth + 50 > width() && hidden < m_filterLabels.count()) {
         m_filterLabels.at(hidden++)->hide();
         labelWidth = 0;
         foreach (QLabel *l, m_filterLabels) {
             if (l->isVisible())
-                labelWidth += l->width()+2;
+                labelWidth += l->width() + 2;
         }
     }
 
@@ -287,7 +295,7 @@ void MyLineEdit::drawFilters()
     foreach (QLabel *l, m_filterLabels) {
         if (l->isVisible() || l == m_filterLabels.last()) {
             l->move(paddingLeft, 1);
-            paddingLeft += l->width()+2;
+            paddingLeft += l->width() + 2;
         }
     }
 
@@ -306,7 +314,7 @@ int MyLineEdit::paddingLeft()
         paddingLeft += m_moreLabel->width();
     foreach (QLabel *l, m_filterLabels) {
         if (l->isVisible())
-            paddingLeft += l->width()+2;
+            paddingLeft += l->width() + 2;
     }
     return paddingLeft;
 }

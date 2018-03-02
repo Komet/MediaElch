@@ -52,7 +52,7 @@ private slots:
     void onAddActor();
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters);
+    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
 
     void onChooseImage();
     void onDeleteImage();

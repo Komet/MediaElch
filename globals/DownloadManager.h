@@ -37,11 +37,11 @@ signals:
     void downloadFinished(DownloadManagerElement);
     void sigElemDownloaded(DownloadManagerElement);
     void allDownloadsFinished();
-    void allDownloadsFinished(Movie*);
-    void allDownloadsFinished(TvShow*);
-    void allDownloadsFinished(Concert*);
-    void allDownloadsFinished(Artist*);
-    void allDownloadsFinished(Album*);
+    void allDownloadsFinished(Movie *);
+    void allDownloadsFinished(TvShow *);
+    void allDownloadsFinished(Concert *);
+    void allDownloadsFinished(Artist *);
+    void allDownloadsFinished(Album *);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);

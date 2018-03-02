@@ -12,8 +12,7 @@
 
 #include "data/Storage.h"
 
-ExportTemplateLoader::ExportTemplateLoader(QObject *parent) :
-    QObject(parent)
+ExportTemplateLoader::ExportTemplateLoader(QObject *parent) : QObject(parent)
 {
     loadLocalTemplates();
 }
@@ -39,8 +38,8 @@ void ExportTemplateLoader::getRemoteTemplates()
 
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
-    QList<ExportTemplate*> templates;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QList<ExportTemplate *> templates;
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
@@ -149,10 +148,10 @@ void ExportTemplateLoader::installTemplate(ExportTemplate *exportTemplate)
 
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
-    ExportTemplate *exportTemplate = reply->property("storage").value<Storage*>()->exportTemplate();
+    ExportTemplate *exportTemplate = reply->property("storage").value<Storage *>()->exportTemplate();
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -215,7 +214,7 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer &buffer, ExportTemplate *expor
         return false;
     }
     QuaZipFile file(&zip);
-    for (bool more=zip.goToFirstFile() ; more ; more=zip.goToNextFile()) {
+    for (bool more = zip.goToFirstFile(); more; more = zip.goToNextFile()) {
         if (zip.getCurrentFileName().endsWith("/")) {
             if (!storageDir.mkdir(zip.getCurrentFileName())) {
                 qWarning() << "Could not create subdirectory";
@@ -246,7 +245,9 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
     bool result = true;
     QDir dir(dirName);
     if (dir.exists(dirName)) {
-        foreach (QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+        foreach (QFileInfo info,
+            dir.entryInfoList(
+                QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
             if (info.isDir())
                 result = removeDir(info.absoluteFilePath());
             else
@@ -261,9 +262,10 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
     return result;
 }
 
-QList<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate *> local, QList<ExportTemplate *> remote)
+QList<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate *> local,
+    QList<ExportTemplate *> remote)
 {
-    QList<ExportTemplate*> templates = local;
+    QList<ExportTemplate *> templates = local;
     foreach (ExportTemplate *remoteTemplate, remote) {
         bool found = false;
         foreach (ExportTemplate *localTemplate, templates) {
@@ -284,7 +286,7 @@ QList<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate
     return templates;
 }
 
-QList<ExportTemplate*> ExportTemplateLoader::installedTemplates()
+QList<ExportTemplate *> ExportTemplateLoader::installedTemplates()
 {
     qSort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
     return m_localTemplates;

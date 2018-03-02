@@ -1,86 +1,59 @@
 #include "Storage.h"
 
-Storage::Storage(QObject *parent, Movie *movie) :
-    QObject(parent)
+Storage::Storage(QObject *parent, Movie *movie) : QObject(parent)
 {
     m_movie = QPointer<Movie>(movie);
 }
 
-Storage::Storage(QObject *parent, Concert *concert) :
-    QObject(parent),
-    m_concert{QPointer<Concert>(concert)}
+Storage::Storage(QObject *parent, Concert *concert) : QObject(parent), m_concert{QPointer<Concert>(concert)}
 {
 }
 
-Storage::Storage(QObject *parent, TvShow *show) :
-    QObject(parent),
-    m_show{QPointer<TvShow>(show)}
+Storage::Storage(QObject *parent, TvShow *show) : QObject(parent), m_show{QPointer<TvShow>(show)}
 {
 }
 
-Storage::Storage(QObject *parent, TvShowEpisode *episode) :
-    QObject(parent),
-    m_episode{QPointer<TvShowEpisode>(episode)}
+Storage::Storage(QObject *parent, TvShowEpisode *episode) : QObject(parent), m_episode{QPointer<TvShowEpisode>(episode)}
 {
 }
 
-Storage::Storage(QObject *parent, Artist *artist) :
-    QObject(parent),
-    m_artist{QPointer<Artist>(artist)}
+Storage::Storage(QObject *parent, Artist *artist) : QObject(parent), m_artist{QPointer<Artist>(artist)}
 {
 }
 
-Storage::Storage(QObject *parent, Album *album) :
-    QObject(parent),
-    m_album{QPointer<Album>(album)}
+Storage::Storage(QObject *parent, Album *album) : QObject(parent), m_album{QPointer<Album>(album)}
 {
 }
 
-Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) :
-    QObject(parent),
-    m_results{results}
+Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) : QObject(parent), m_results{results}
 {
 }
 
-Storage::Storage(QObject *parent, QList<int> infosToLoad) :
-    QObject(parent),
-    m_infosToLoad{infosToLoad}
+Storage::Storage(QObject *parent, QList<int> infosToLoad) : QObject(parent), m_infosToLoad{infosToLoad}
 {
 }
 
-Storage::Storage(QObject *parent, ExportTemplate *exportTemplate) :
-    QObject(parent),
-    m_exportTemplate{exportTemplate}
+Storage::Storage(QObject *parent, ExportTemplate *exportTemplate) : QObject(parent), m_exportTemplate{exportTemplate}
 {
 }
 
-Storage::Storage(QObject *parent, QMap<ScraperInterface *, QString> ids) :
-    QObject(parent),
-    m_ids{ids}
+Storage::Storage(QObject *parent, QMap<ScraperInterface *, QString> ids) : QObject(parent), m_ids{ids}
 {
 }
 
-Storage::Storage(QObject *parent, QTableWidgetItem *item) :
-    QObject(parent),
-    m_tableWidgetItem{item}
+Storage::Storage(QObject *parent, QTableWidgetItem *item) : QObject(parent), m_tableWidgetItem{item}
 {
 }
 
-Storage::Storage(QObject *parent, PluginInterface *plugin) :
-    QObject(parent),
-    m_pluginInterface{plugin}
+Storage::Storage(QObject *parent, PluginInterface *plugin) : QObject(parent), m_pluginInterface{plugin}
 {
 }
 
-Storage::Storage(QObject *parent, PluginManager::Plugin plugin) :
-    QObject(parent),
-    m_plugin{plugin}
+Storage::Storage(QObject *parent, PluginManager::Plugin plugin) : QObject(parent), m_plugin{plugin}
 {
 }
 
-Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) :
-    QObject(parent),
-    m_episodes{episodes}
+Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) : QObject(parent), m_episodes{episodes}
 {
 }
 
@@ -140,7 +113,7 @@ QTableWidgetItem *Storage::tableWidgetItem()
     return 0;
 }
 
-QMap<ScraperInterface*, QString> Storage::ids()
+QMap<ScraperInterface *, QString> Storage::ids()
 {
     return m_ids;
 }
@@ -155,7 +128,7 @@ PluginManager::Plugin Storage::plugin()
     return m_plugin;
 }
 
-QList<TvShowEpisode*> Storage::episodes()
+QList<TvShowEpisode *> Storage::episodes()
 {
     return m_episodes;
 }
@@ -264,7 +237,7 @@ QVariant Storage::toVariant(QObject *parent, PluginManager::Plugin plugin)
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode*> episodes)
+QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode *> episodes)
 {
     Storage *storage = new Storage(parent, episodes);
     QVariant var;

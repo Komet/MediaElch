@@ -51,8 +51,8 @@ private slots:
 
 private:
     Ui::SetsWidget *ui;
-    QMap<QString, QList<Movie*> > m_sets;
-    QMap<QString, QList<Movie*> > m_moviesToSave;
+    QMap<QString, QList<Movie *>> m_sets;
+    QMap<QString, QList<Movie *>> m_moviesToSave;
     QMap<QString, QImage> m_setPosters;
     QMap<QString, QImage> m_setBackdrops;
     QImage m_currentPoster;

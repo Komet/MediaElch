@@ -16,11 +16,13 @@ public:
     void setImageSet(bool set);
     bool imageSet();
     int season();
+
 protected:
     void mousePressEvent(QMouseEvent *ev);
 signals:
     void clicked();
     void seasonClicked(int);
+
 private:
     int m_season;
     bool m_imageSet;

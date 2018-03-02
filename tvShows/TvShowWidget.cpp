@@ -11,23 +11,43 @@
  * @brief TvShowWidget::TvShowWidget
  * @param parent
  */
-TvShowWidget::TvShowWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidget)
+TvShowWidget::TvShowWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowWidget)
 {
     ui->setupUi(this);
 
-    connect(ui->tvShowWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
-    connect(ui->tvShowWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SIGNAL(sigDownloadsStarted(QString,int)));
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SIGNAL(sigDownloadsProgress(int,int,int)));
+    connect(ui->tvShowWidget,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
+    connect(ui->tvShowWidget,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
+    connect(
+        ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
+    connect(ui->tvShowWidget,
+        SIGNAL(sigDownloadsProgress(int, int, int)),
+        this,
+        SIGNAL(sigDownloadsProgress(int, int, int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
 
-    connect(ui->episodeWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->episodeWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
+    connect(ui->episodeWidget,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
+    connect(ui->episodeWidget,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
 
-    connect(ui->seasonWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->seasonWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
+    connect(ui->seasonWidget,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
+    connect(ui->seasonWidget,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
 }
 
 /**
@@ -134,19 +154,21 @@ void TvShowWidget::onSetDisabledTrue()
  */
 void TvShowWidget::onSaveInformation()
 {
-    QList<TvShow*> shows = TvShowFilesWidget::instance()->selectedShows();
-    QList<TvShowEpisode*> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
-    QList<TvShow*> seasons = TvShowFilesWidget::instance()->selectedSeasons();
+    QList<TvShow *> shows = TvShowFilesWidget::instance()->selectedShows();
+    QList<TvShowEpisode *> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
+    QList<TvShow *> seasons = TvShowFilesWidget::instance()->selectedSeasons();
 
     if (shows.count() == 1 && episodes.count() == 0 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->onSaveInformation();
         TvShowFilesWidget::instance()->updateProxy();
         return;
-    } else if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 1) {
+    } else if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0
+               && ui->stackedWidget->currentIndex() == 1) {
         ui->episodeWidget->onSaveInformation();
         TvShowFilesWidget::instance()->updateProxy();
         return;
-    } else if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1 && ui->stackedWidget->currentIndex() == 2) {
+    } else if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1
+               && ui->stackedWidget->currentIndex() == 2) {
         ui->seasonWidget->onSaveInformation();
         TvShowFilesWidget::instance()->updateProxy();
         return;
@@ -159,23 +181,26 @@ void TvShowWidget::onSaveInformation()
 
     int itemsToSave = shows.count() + episodes.count();
     int itemsSaved = 0;
-    NotificationBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showProgressBar(
+        tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     qApp->processEvents();
 
-    for (int i=0, n=shows.count() ; i<n ; ++i) {
+    for (int i = 0, n = shows.count(); i < n; ++i) {
         itemsSaved++;
         if (shows.at(i)->hasChanged()) {
             shows.at(i)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-            NotificationBox::instance()->progressBarProgress(itemsSaved, itemsToSave, Constants::TvShowWidgetSaveProgressMessageId);
+            NotificationBox::instance()->progressBarProgress(
+                itemsSaved, itemsToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
     }
 
-    for (int i=0, n=episodes.count() ; i<n ; ++i) {
+    for (int i = 0, n = episodes.count(); i < n; ++i) {
         itemsSaved++;
         if (episodes.at(i)->hasChanged()) {
             episodes.at(i)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-            NotificationBox::instance()->progressBarProgress(itemsSaved, itemsToSave, Constants::TvShowWidgetSaveProgressMessageId);
+            NotificationBox::instance()->progressBarProgress(
+                itemsSaved, itemsToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
     }
@@ -191,33 +216,36 @@ void TvShowWidget::onSaveInformation()
 void TvShowWidget::onSaveAll()
 {
     qDebug() << "Entered";
-    QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    QList<TvShow *> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
-    for (int i=0, n=shows.count() ; i<n ; ++i) {
+    for (int i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged())
             episodesToSave++;
-        for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
+        for (int x = 0, y = shows[i]->episodes().count(); x < y; ++x) {
             if (shows[i]->episodes().at(x)->hasChanged())
                 episodesToSave++;
         }
     }
     qDebug() << "episodesToSave=" << episodesToSave;
 
-    NotificationBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showProgressBar(
+        tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     qApp->processEvents();
 
-    for (int i=0, n=shows.count() ; i<n ; ++i) {
+    for (int i = 0, n = shows.count(); i < n; ++i) {
         if (shows[i]->hasChanged()) {
             qDebug() << "SAVING TV SHOW" << shows[i]->name();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-            NotificationBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+            NotificationBox::instance()->progressBarProgress(
+                ++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
-        for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
+        for (int x = 0, y = shows[i]->episodes().count(); x < y; ++x) {
             if (shows[i]->episodes().at(x)->hasChanged()) {
                 shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-                NotificationBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+                NotificationBox::instance()->progressBarProgress(
+                    ++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
                 qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
             }
         }

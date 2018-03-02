@@ -66,17 +66,23 @@ FanartTv::FanartTv(QObject *parent)
     m_widget->setLayout(layout);
 
     m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
-               << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster
-               << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
-               << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb << ImageType::TvShowSeasonPoster
-               << ImageType::TvShowLogos << ImageType::TvShowCharacterArt << ImageType::TvShowPoster
-               << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
+               << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster << ImageType::TvShowClearArt
+               << ImageType::TvShowBackdrop << ImageType::TvShowBanner << ImageType::TvShowThumb
+               << ImageType::TvShowSeasonThumb << ImageType::TvShowSeasonPoster << ImageType::TvShowLogos
+               << ImageType::TvShowCharacterArt << ImageType::TvShowPoster << ImageType::ConcertBackdrop
+               << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     m_tvdb = new TheTvDb(this);
     m_tmdb = new TMDb(this);
-    connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
-    connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
+    connect(m_tvdb,
+        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
+    connect(m_tmdb,
+        SIGNAL(searchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
 
 /**
@@ -335,7 +341,7 @@ void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concer
  */
 void FanartTv::onLoadMovieDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -351,13 +357,13 @@ void FanartTv::onLoadMovieDataFinished()
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
-    QMap<int, QList<Poster> > posters;
+    QMap<int, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
+        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
     }
     emit sigImagesLoaded(movie, posters);
@@ -369,13 +375,13 @@ void FanartTv::onLoadAllMovieDataFinished()
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage *>()->concert();
     reply->deleteLater();
-    QMap<int, QList<Poster> > posters;
+    QMap<int, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
+        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
     }
     emit sigImagesLoaded(concert, posters);
@@ -392,14 +398,22 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
     QMap<int, QStringList> map;
     map.insert(ImageType::MoviePoster, QStringList() << "movieposter");
     map.insert(ImageType::MovieBackdrop, QStringList() << "moviebackground");
-    map.insert(ImageType::MovieLogo, QStringList() << "hdmovielogo" << "movielogo");
-    map.insert(ImageType::MovieClearArt, QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::MovieLogo,
+        QStringList() << "hdmovielogo"
+                      << "movielogo");
+    map.insert(ImageType::MovieClearArt,
+        QStringList() << "hdmovieclearart"
+                      << "movieart");
     map.insert(ImageType::MovieCdArt, QStringList() << "moviedisc");
     map.insert(ImageType::MovieBanner, QStringList() << "moviebanner");
     map.insert(ImageType::MovieThumb, QStringList() << "moviethumb");
     map.insert(ImageType::ConcertBackdrop, QStringList() << "moviebackground");
-    map.insert(ImageType::ConcertLogo, QStringList() << "hdmovielogo" << "movielogo");
-    map.insert(ImageType::ConcertClearArt, QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::ConcertLogo,
+        QStringList() << "hdmovielogo"
+                      << "movielogo");
+    map.insert(ImageType::ConcertClearArt,
+        QStringList() << "hdmovieclearart"
+                      << "movieart");
     map.insert(ImageType::ConcertCdArt, QStringList() << "moviedisc");
     QList<Poster> posters;
     QScriptValue sc;
@@ -513,7 +527,7 @@ void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -529,13 +543,13 @@ void FanartTv::onLoadTvShowDataFinished()
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    TvShow *show = reply->property("storage").value<Storage*>()->show();
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    TvShow *show = reply->property("storage").value<Storage *>()->show();
     reply->deleteLater();
-    QMap<int, QList<Poster> > posters;
+    QMap<int, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
+        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
             posters.insert(type, parseTvShowData(msg, type));
     }
     reply->deleteLater();
@@ -651,8 +665,12 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
 {
     QMap<int, QStringList> map;
     map.insert(ImageType::TvShowBackdrop, QStringList() << "showbackground");
-    map.insert(ImageType::TvShowLogos, QStringList() << "hdtvlogo" << "clearlogo");
-    map.insert(ImageType::TvShowClearArt, QStringList() << "hdclearart" << "clearart");
+    map.insert(ImageType::TvShowLogos,
+        QStringList() << "hdtvlogo"
+                      << "clearlogo");
+    map.insert(ImageType::TvShowClearArt,
+        QStringList() << "hdclearart"
+                      << "clearart");
     map.insert(ImageType::TvShowBanner, QStringList() << "tvbanner");
     map.insert(ImageType::TvShowCharacterArt, QStringList() << "characterart");
     map.insert(ImageType::TvShowThumb, QStringList() << "tvthumb");
@@ -673,7 +691,9 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
                 if (vB.property("url").toString().isEmpty())
                     continue;
 
-                if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
+                if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2
+                    && !vB.property("season").toString().isEmpty()
+                    && vB.property("season").toString().toInt() != season)
                     continue;
 
                 Poster b;
@@ -711,11 +731,11 @@ void FanartTv::loadSettings(QSettings &settings)
     m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
     m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
     m_personalApiKey = settings.value("Scrapers/FanartTv/PersonalApiKey").toString();
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language)
             m_box->setCurrentIndex(i);
     }
-    for (int i=0, n=m_discBox->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_discBox->count(); i < n; ++i) {
         if (m_discBox->itemData(i).toString() == m_preferredDiscType)
             m_discBox->setCurrentIndex(i);
     }
@@ -732,7 +752,7 @@ void FanartTv::saveSettings(QSettings &settings)
     settings.setValue("Scrapers/FanartTv/PersonalApiKey", m_personalApiKey);
 }
 
-QWidget* FanartTv::settingsWidget()
+QWidget *FanartTv::settingsWidget()
 {
     return m_widget;
 }
@@ -743,7 +763,7 @@ void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language, 
     int lastInPreferredLang = -1;
     int lastHd = -1;
 
-    for (int i=0, n=posters.count() ; i<n ; ++i) {
+    for (int i = 0, n = posters.count(); i < n; ++i) {
         if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType))
             lastInPreferredLangAndHd = i;
         if (posters[i].language == language)
@@ -753,18 +773,19 @@ void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language, 
     }
 
     if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType))
-        posters.insert(lastInPreferredLangAndHd+1, b);
+        posters.insert(lastInPreferredLangAndHd + 1, b);
     else if (b.language == language)
-        posters.insert(lastInPreferredLang+1, b);
+        posters.insert(lastInPreferredLang + 1, b);
     else if (b.hint == "HD" || b.hint == preferredDiscType)
-        posters.insert(lastHd+1, b);
+        posters.insert(lastHd + 1, b);
     else
         posters.append(b);
 }
 
 QString FanartTv::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey) : QString("api_key=%1").arg(m_apiKey);
+    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
+                                         : QString("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTv::searchAlbum(QString artistName, QString searchStr, int limit)

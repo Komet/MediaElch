@@ -9,8 +9,7 @@
  * @brief MyTableWidget::MyTableWidget
  * @param parent
  */
-MyTableWidget::MyTableWidget(QWidget *parent) :
-    QTableWidget(parent)
+MyTableWidget::MyTableWidget(QWidget *parent) : QTableWidget(parent)
 {
 }
 
@@ -39,11 +38,17 @@ void MyTableWidget::dragEnterEvent(QDragEnterEvent *event)
 void MyTableWidget::dropEvent(QDropEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
-    if( mimeData->hasUrls() ) {
+    if (mimeData->hasUrls()) {
         if (mimeData->urls().size() > 0) {
             QUrl url = mimeData->urls().at(0);
             QStringList filters;
-            filters << ".jpg" << ".JPG" << ".jpeg" << ".JPeg" << ".Jpg" << ".png" << ".PNG";
+            filters << ".jpg"
+                    << ".JPG"
+                    << ".jpeg"
+                    << ".JPeg"
+                    << ".Jpg"
+                    << ".png"
+                    << ".PNG";
             foreach (const QString &filter, filters) {
                 if (url.toString().endsWith(filter)) {
                     emit sigDroppedImage(url);

@@ -235,20 +235,20 @@ void Artist::setHasChanged(bool hasChanged)
 void Artist::clear()
 {
     QList<int> infos;
-    infos << MusicScraperInfos::Name          //
-          << MusicScraperInfos::Genres        //
-          << MusicScraperInfos::Styles        //
-          << MusicScraperInfos::Moods         //
-          << MusicScraperInfos::YearsActive   //
-          << MusicScraperInfos::Formed        //
-          << MusicScraperInfos::Died          //
-          << MusicScraperInfos::Born          //
-          << MusicScraperInfos::Disbanded     //
-          << MusicScraperInfos::Biography     //
-          << MusicScraperInfos::Thumb         //
-          << MusicScraperInfos::Fanart        //
-          << MusicScraperInfos::Logo          //
-          << MusicScraperInfos::Discography   //
+    infos << MusicScraperInfos::Name        //
+          << MusicScraperInfos::Genres      //
+          << MusicScraperInfos::Styles      //
+          << MusicScraperInfos::Moods       //
+          << MusicScraperInfos::YearsActive //
+          << MusicScraperInfos::Formed      //
+          << MusicScraperInfos::Died        //
+          << MusicScraperInfos::Born        //
+          << MusicScraperInfos::Disbanded   //
+          << MusicScraperInfos::Biography   //
+          << MusicScraperInfos::Thumb       //
+          << MusicScraperInfos::Fanart      //
+          << MusicScraperInfos::Logo        //
+          << MusicScraperInfos::Discography //
           << MusicScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
@@ -325,8 +325,7 @@ void Artist::setNfoContent(const QString &nfoContent)
 
 QList<int> Artist::imageTypes()
 {
-    return QList<int>() << ImageType::ArtistThumb << ImageType::ArtistLogo
-                        << ImageType::ArtistFanart;
+    return QList<int>() << ImageType::ArtistThumb << ImageType::ArtistLogo << ImageType::ArtistFanart;
 }
 
 QList<int> Artist::imagesToRemove() const
@@ -369,12 +368,12 @@ void Artist::setMbId(const QString &mbId)
     m_mbId = mbId;
 }
 
-QList<Album*> Artist::albums() const
+QList<Album *> Artist::albums() const
 {
     return m_albums;
 }
 
-void Artist::setAlbums(const QList<Album*> &albums)
+void Artist::setAlbums(const QList<Album *> &albums)
 {
     m_albums = albums;
 }
@@ -464,7 +463,7 @@ void Artist::addDiscographyAlbum(DiscographyAlbum album)
 
 void Artist::removeDiscographyAlbum(DiscographyAlbum *album)
 {
-    for (int i=0, n=m_discography.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_discography.size(); i < n; ++i) {
         if (&m_discography[i] == album) {
             m_discography.removeAt(i);
             break;
@@ -478,10 +477,10 @@ QList<DiscographyAlbum> Artist::discographyAlbums() const
     return m_discography;
 }
 
-QList<DiscographyAlbum*> Artist::discographyAlbumsPointer()
+QList<DiscographyAlbum *> Artist::discographyAlbumsPointer()
 {
-    QList<DiscographyAlbum*> albums;
-    for (int i=0, n=m_discography.size() ; i<n ; i++)
+    QList<DiscographyAlbum *> albums;
+    for (int i = 0, n = m_discography.size(); i < n; i++)
         albums.append(&(m_discography[i]));
     return albums;
 }

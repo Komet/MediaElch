@@ -21,4 +21,3 @@ public:
 };
 
 #endif // MOVIEFILESORGANIZER_H
-

@@ -26,7 +26,7 @@ public:
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);
-    void sigJumpToMovie(Movie*);
+    void sigJumpToMovie(Movie *);
 
 public slots:
     void onSaveInformation();

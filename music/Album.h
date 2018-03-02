@@ -17,10 +17,10 @@ class MusicModelItem;
 class Album : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(ImageModel* bookletModel READ bookletModel CONSTANT)
-    Q_PROPERTY(ImageProxyModel* bookletProxyModel READ bookletProxyModel CONSTANT)
-    Q_PROPERTY(Artist* artistObj READ artistObj NOTIFY artistObjChanged)
-    Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
+    Q_PROPERTY(ImageModel *bookletModel READ bookletModel CONSTANT)
+    Q_PROPERTY(ImageProxyModel *bookletProxyModel READ bookletProxyModel CONSTANT)
+    Q_PROPERTY(Artist *artistObj READ artistObj NOTIFY artistObjChanged)
+    Q_PROPERTY(MusicModelItem *modelItem READ modelItem NOTIFY modelItemChanged)
 
 public:
     explicit Album(QString path, QObject *parent = nullptr);
@@ -114,7 +114,7 @@ public:
     void loadBooklets(MediaCenterInterface *mediaCenterInterface);
 
 signals:
-    void sigChanged(Album*);
+    void sigChanged(Album *);
     void artistObjChanged();
     void modelItemChanged();
 
@@ -131,7 +131,7 @@ private:
     QString m_label;
     qreal m_rating;
     int m_year;
-    QMap<int, QList<Poster> > m_images;
+    QMap<int, QList<Poster>> m_images;
     QMap<int, QByteArray> m_rawImages;
     QList<int> m_imagesToRemove;
     MusicModelItem *m_modelItem;

@@ -2,8 +2,7 @@
 
 #include "smallWidgets/MySplitterHandle.h"
 
-MySplitter::MySplitter(QWidget *parent) :
-    QSplitter(parent)
+MySplitter::MySplitter(QWidget *parent) : QSplitter(parent)
 {
 }
 

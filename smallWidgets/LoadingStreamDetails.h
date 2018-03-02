@@ -18,9 +18,9 @@ class LoadingStreamDetails : public QDialog
 public:
     explicit LoadingStreamDetails(QWidget *parent = nullptr);
     ~LoadingStreamDetails();
-    void loadMovies(QList<Movie*> movies);
-    void loadConcerts(QList<Concert*> concerts);
-    void loadTvShowEpisodes(QList<TvShowEpisode*> episodes);
+    void loadMovies(QList<Movie *> movies);
+    void loadConcerts(QList<Concert *> concerts);
+    void loadTvShowEpisodes(QList<TvShowEpisode *> episodes);
 
 private:
     Ui::LoadingStreamDetails *ui;

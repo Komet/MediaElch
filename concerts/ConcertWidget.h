@@ -96,9 +96,9 @@ private:
     QPointer<Concert> m_concert;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget*> m_streamDetailsWidgets;
-    QList< QList<QLineEdit*> > m_streamDetailsAudio;
-    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
+    QList<QWidget *> m_streamDetailsWidgets;
+    QList<QList<QLineEdit *>> m_streamDetailsAudio;
+    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     void updateImages(QList<int> images);
 };
 

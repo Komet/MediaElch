@@ -44,7 +44,7 @@ private slots:
     void scrapeNext();
     void onInfoLoadDone(TvShow *show);
     void onEpisodeLoadDone();
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters);
+    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished();
     void onChkDvdOrderToggled();
@@ -55,8 +55,8 @@ private:
     QList<TvShowEpisode *> m_episodes;
     bool m_executed;
     QList<int> m_infosToLoad;
-    QQueue<TvShow*> m_showQueue;
-    QQueue<TvShowEpisode*> m_episodeQueue;
+    QQueue<TvShow *> m_showQueue;
+    QQueue<TvShowEpisode *> m_episodeQueue;
     QPointer<TvShow> m_currentShow;
     QPointer<TvShowEpisode> m_currentEpisode;
     TvScraperInterface *m_scraperInterface;

@@ -9,30 +9,30 @@
 
 QDebug operator<<(QDebug lhs, const ScraperSearchResult &rhs)
 {
-    lhs << QString("(\"%1\", \"%2\", %3)").arg(rhs.id)
-                                          .arg(rhs.name)
-                                          .arg(rhs.released.toString("yyyy"));
+    lhs << QString("(\"%1\", \"%2\", %3)").arg(rhs.id).arg(rhs.name).arg(rhs.released.toString("yyyy"));
     return lhs;
 }
 
 
-MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MovieSearchWidget)
+MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
 {
     ui->setupUi(this);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
-        connect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
+        connect(scraper,
+            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            this,
+            SLOT(showResults(QList<ScraperSearchResult>)));
     setupScrapers();
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(onUpdateSearchString()), Qt::QueuedConnection);
+    connect(
+        ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(onUpdateSearchString()), Qt::QueuedConnection);
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()), Qt::QueuedConnection);
     connect(ui->searchString, SIGNAL(textEdited(QString)), this, SLOT(onStoreSearchString(QString)));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
 
     ui->chkActors->setMyData(MovieScraperInfos::Actors);
     ui->chkBackdrop->setMyData(MovieScraperInfos::Backdrop);
@@ -58,7 +58,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
     ui->chkThumb->setMyData(MovieScraperInfos::Thumb);
     ui->chkTags->setMyData(MovieScraperInfos::Tags);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
     }
@@ -89,7 +89,9 @@ void MovieSearchWidget::setupScrapers()
         else
             ui->comboScraper->addItem(scraper->name(), scraper->identifier());
     }
-    ui->comboScraper->setCurrentIndex((Settings::instance()->currentMovieScraper() < ui->comboScraper->count()) ? Settings::instance()->currentMovieScraper() : 0);
+    ui->comboScraper->setCurrentIndex((Settings::instance()->currentMovieScraper() < ui->comboScraper->count())
+                                          ? Settings::instance()->currentMovieScraper()
+                                          : 0);
     ui->comboScraper->blockSignals(false);
 }
 
@@ -183,13 +185,14 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
             m_customScraperIds.clear();
 
         m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-        QList<ScraperInterface*> scrapers = CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
+        QList<ScraperInterface *> scrapers =
+            CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
         if (scrapers.isEmpty()) {
             m_scraperId = "custom-movie";
             emit sigResultClicked();
         } else {
             m_currentCustomScraper = scrapers.first();
-            for (int i=0, n=ui->comboScraper->count() ; i<n ; ++i) {
+            for (int i = 0, n = ui->comboScraper->count(); i < n; ++i) {
                 if (ui->comboScraper->itemData(i, Qt::UserRole).toString() == m_currentCustomScraper->identifier()) {
                     ui->comboScraper->setCurrentIndex(i);
                     break;
@@ -207,7 +210,7 @@ void MovieSearchWidget::chkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0)
             m_infosToLoad.append(box->myData().toInt());
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
@@ -221,7 +224,7 @@ void MovieSearchWidget::chkToggled()
 
 void MovieSearchWidget::chkAllToggled(bool toggled)
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled())
             box->setChecked(toggled);
     }
@@ -248,14 +251,15 @@ void MovieSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
     QList<int> infos = Settings::instance()->scraperInfos(WidgetMovies, scraperId);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));
-        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty())
+                        && scraperSupports.contains(box->myData().toInt()));
     }
     chkToggled();
 }
 
-QMap<ScraperInterface*, QString> MovieSearchWidget::customScraperIds()
+QMap<ScraperInterface *, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }

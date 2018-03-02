@@ -2,7 +2,7 @@
 #include "ui_MusicWidgetAlbum.h"
 
 #ifdef Q_OS_WIN
-#   include <QGLFormat>
+#include <QGLFormat>
 #endif
 #include <QPainter>
 
@@ -13,9 +13,7 @@
 #include "../notifications/NotificationBox.h"
 #include "MusicSearch.h"
 
-MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MusicWidgetAlbum)
+MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
 {
     ui->setupUi(this);
 
@@ -24,16 +22,16 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->albumName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->albumName->setFont(nameFont);
 #endif
 
     QFont font = ui->labelCover->font();
-    #ifndef Q_OS_MAC
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifndef Q_OS_MAC
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
     ui->labelCover->setFont(font);
     ui->labelDiscArt->setFont(font);
 
@@ -57,7 +55,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
 
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetAlbum::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
@@ -121,13 +119,37 @@ void MusicWidgetAlbum::setAlbum(Album *album)
     m_album = album;
     updateAlbumInfo();
 
-    connect(m_album->controller(), SIGNAL(sigInfoLoadDone(Album*)), this, SLOT(onInfoLoadDone(Album*)), Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigLoadDone(Album*)), this, SLOT(onLoadDone(Album*)), Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigDownloadProgress(Album*,int, int)), this, SLOT(onDownloadProgress(Album*,int,int)), Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigLoadingImages(Album*,QList<int>)), this, SLOT(onLoadingImages(Album*,QList<int>)), Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigLoadImagesStarted(Album*)), this, SLOT(onLoadImagesStarted(Album*)), Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigImage(Album*,int,QByteArray)), this, SLOT(onSetImage(Album*,int,QByteArray)), Qt::UniqueConnection);
-    connect(m_album->bookletModel(), SIGNAL(hasChangedChanged()), this, SLOT(onBookletModelChanged()), Qt::UniqueConnection);
+    connect(m_album->controller(),
+        SIGNAL(sigInfoLoadDone(Album *)),
+        this,
+        SLOT(onInfoLoadDone(Album *)),
+        Qt::UniqueConnection);
+    connect(m_album->controller(), SIGNAL(sigLoadDone(Album *)), this, SLOT(onLoadDone(Album *)), Qt::UniqueConnection);
+    connect(m_album->controller(),
+        SIGNAL(sigDownloadProgress(Album *, int, int)),
+        this,
+        SLOT(onDownloadProgress(Album *, int, int)),
+        Qt::UniqueConnection);
+    connect(m_album->controller(),
+        SIGNAL(sigLoadingImages(Album *, QList<int>)),
+        this,
+        SLOT(onLoadingImages(Album *, QList<int>)),
+        Qt::UniqueConnection);
+    connect(m_album->controller(),
+        SIGNAL(sigLoadImagesStarted(Album *)),
+        this,
+        SLOT(onLoadImagesStarted(Album *)),
+        Qt::UniqueConnection);
+    connect(m_album->controller(),
+        SIGNAL(sigImage(Album *, int, QByteArray)),
+        this,
+        SLOT(onSetImage(Album *, int, QByteArray)),
+        Qt::UniqueConnection);
+    connect(m_album->bookletModel(),
+        SIGNAL(hasChangedChanged()),
+        this,
+        SLOT(onBookletModelChanged()),
+        Qt::UniqueConnection);
 
     onSetEnabled(!album->controller()->downloadsInProgress());
 }
@@ -213,14 +235,16 @@ void MusicWidgetAlbum::onStartScraperSearch()
     emit sigSetActionSearchEnabled(false, WidgetMusic);
     emit sigSetActionSaveEnabled(false, WidgetMusic);
 
-    MusicSearch::instance()->exec("album", m_album->title(), (m_album->artist().isEmpty() && m_album->artistObj()) ? m_album->artistObj()->name() : m_album->artist());
+    MusicSearch::instance()->exec("album",
+        m_album->title(),
+        (m_album->artist().isEmpty() && m_album->artistObj()) ? m_album->artistObj()->name() : m_album->artist());
 
     if (MusicSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
         m_album->controller()->loadData(MusicSearch::instance()->scraperId(),
-                                        MusicSearch::instance()->scraperId2(),
-                                        Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
-                                        MusicSearch::instance()->infosToLoad());
+            MusicSearch::instance()->scraperId2(),
+            Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
+            MusicSearch::instance()->infosToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, WidgetMusic);
         emit sigSetActionSaveEnabled(true, WidgetMusic);
@@ -262,7 +286,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
         genres << artist->genres();
         styles << artist->styles();
         moods << artist->moods();
-        for (int i=0, n=artist->modelItem()->childNumber() ; i<n ; ++i) {
+        for (int i = 0, n = artist->modelItem()->childNumber(); i < n; ++i) {
             if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album()) {
                 genres << artist->modelItem()->child(i)->album()->genres();
                 styles << artist->modelItem()->child(i)->album()->styles();
@@ -298,7 +322,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
     if (!m_album)
         return;
 
-    QLineEdit *lineEdit = static_cast<QLineEdit*>(sender());
+    QLineEdit *lineEdit = static_cast<QLineEdit *>(sender());
     if (!lineEdit)
         return;
 
@@ -391,7 +415,7 @@ void MusicWidgetAlbum::onChooseImage()
     if (m_album == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -418,7 +442,7 @@ void MusicWidgetAlbum::onDeleteImage()
     if (m_album == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -448,7 +472,7 @@ void MusicWidgetAlbum::onInfoLoadDone(Album *album)
 
 void MusicWidgetAlbum::onLoadDone(Album *album)
 {
-    emit sigDownloadsFinished(Constants::MusicAlbumProgressMessageId+album->databaseId());
+    emit sigDownloadsFinished(Constants::MusicAlbumProgressMessageId + album->databaseId());
 
     if (m_album != album)
         return;
@@ -460,7 +484,7 @@ void MusicWidgetAlbum::onLoadDone(Album *album)
 
 void MusicWidgetAlbum::onDownloadProgress(Album *album, int current, int maximum)
 {
-    emit sigDownloadsProgress(maximum-current, maximum, Constants::MusicAlbumProgressMessageId+album->databaseId());
+    emit sigDownloadsProgress(maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
 void MusicWidgetAlbum::onLoadingImages(Album *album, QList<int> imageTypes)
@@ -469,7 +493,7 @@ void MusicWidgetAlbum::onLoadingImages(Album *album, QList<int> imageTypes)
         return;
 
     foreach (const int &imageType, imageTypes) {
-        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
                 cImage->setLoading(true);
         }
@@ -483,7 +507,7 @@ void MusicWidgetAlbum::onLoadingImages(Album *album, QList<int> imageTypes)
 
 void MusicWidgetAlbum::onLoadImagesStarted(Album *album)
 {
-    emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicAlbumProgressMessageId+album->databaseId());
+    emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
 void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
@@ -491,7 +515,7 @@ void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
     if (m_album != album)
         return;
 
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -501,10 +525,10 @@ void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
 
 void MusicWidgetAlbum::onBookletModelChanged()
 {
-    ImageModel *model = static_cast<ImageModel*>(sender());
+    ImageModel *model = static_cast<ImageModel *>(sender());
     if (!model)
         return;
-    if (m_album != static_cast<Album*>(model->parent()))
+    if (m_album != static_cast<Album *>(model->parent()))
         return;
     if (model->hasChanged()) {
         ui->buttonRevert->setVisible(true);

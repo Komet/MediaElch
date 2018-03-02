@@ -28,7 +28,7 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QList<QProcess*> m_processes;
+    QList<QProcess *> m_processes;
 };
 
 #endif // EXTRACTOR_H

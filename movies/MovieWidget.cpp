@@ -28,9 +28,7 @@
  * @brief MovieWidget::MovieWidget
  * @param parent
  */
-MovieWidget::MovieWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MovieWidget)
+MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWidget)
 {
     ui->setupUi(this);
     m_backgroundLabel = new QLabel(this);
@@ -49,16 +47,16 @@ MovieWidget::MovieWidget(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->movieName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->movieName->setFont(nameFont);
 #endif
 
     QFont font = ui->actorResolution->font();
-    #ifndef Q_OS_MAC
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifndef Q_OS_MAC
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
     ui->actorResolution->setFont(font);
 
     ui->labelBanner->setFont(font);
@@ -79,9 +77,11 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
 
-    ui->buttonDownloadTrailer->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonDownloadTrailer->setIcon(
+        Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
     ui->buttonYoutubeDummy->setIcon(Manager::instance()->iconFont()->icon("pen", QColor(150, 150, 150), "", -1, 1.0));
-    ui->buttonPlayLocalTrailer->setIcon(Manager::instance()->iconFont()->icon("play", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonPlayLocalTrailer->setIcon(
+        Manager::instance()->iconFont()->icon("play", QColor(150, 150, 150), "", -1, 1.0));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
@@ -113,7 +113,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->banner->setImageType(ImageType::MovieBanner);
     ui->thumb->setImageType(ImageType::MovieThumb);
     ui->clearArt->setImageType(ImageType::MovieClearArt);
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
@@ -122,10 +122,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(addActor()));
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(removeActor()));
-    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onActorEdited(QTableWidgetItem *)));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
-    connect(ui->subtitles, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSubtitleEdited(QTableWidgetItem*)));
+    connect(ui->subtitles, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onSubtitleEdited(QTableWidgetItem *)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
 
@@ -206,7 +206,7 @@ MovieWidget::~MovieWidget()
  */
 void MovieWidget::resizeEvent(QResizeEvent *event)
 {
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -413,18 +413,39 @@ void MovieWidget::setMovie(Movie *movie)
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
-        if (movie->streamDetailsLoaded() && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
-            movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
+        if (movie->streamDetailsLoaded()
+            && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
+            movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
     }
     m_movie = movie;
     updateMovieInfo();
 
-    connect(m_movie->controller(), SIGNAL(sigInfoLoadDone(Movie*)), this, SLOT(onInfoLoadDone(Movie*)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigDownloadProgress(Movie*,int, int)), this, SLOT(onDownloadProgress(Movie*,int,int)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigLoadingImages(Movie*,QList<int>)), this, SLOT(onLoadingImages(Movie*,QList<int>)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigLoadImagesStarted(Movie*)), this, SLOT(onLoadImagesStarted(Movie*)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigImage(Movie*,int,QByteArray)), this, SLOT(onSetImage(Movie*,int,QByteArray)), Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        SIGNAL(sigInfoLoadDone(Movie *)),
+        this,
+        SLOT(onInfoLoadDone(Movie *)),
+        Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        SIGNAL(sigDownloadProgress(Movie *, int, int)),
+        this,
+        SLOT(onDownloadProgress(Movie *, int, int)),
+        Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        SIGNAL(sigLoadingImages(Movie *, QList<int>)),
+        this,
+        SLOT(onLoadingImages(Movie *, QList<int>)),
+        Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        SIGNAL(sigLoadImagesStarted(Movie *)),
+        this,
+        SLOT(onLoadImagesStarted(Movie *)),
+        Qt::UniqueConnection);
+    connect(m_movie->controller(),
+        SIGNAL(sigImage(Movie *, int, QByteArray)),
+        this,
+        SLOT(onSetImage(Movie *, int, QByteArray)),
+        Qt::UniqueConnection);
 
     ui->btnAddExtraFanart->setEnabled(movie->inSeparateFolder());
     ui->labelSepFoldersWarning->setVisible(!movie->inSeparateFolder());
@@ -450,7 +471,7 @@ void MovieWidget::startScraperSearch()
     MovieSearch::instance()->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        QMap<ScraperInterface*, QString> ids;
+        QMap<ScraperInterface *, QString> ids;
         QList<int> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();
@@ -459,8 +480,8 @@ void MovieWidget::startScraperSearch()
             ids.insert(0, MovieSearch::instance()->scraperMovieId());
             infosToLoad = MovieSearch::instance()->infosToLoad();
         }
-        m_movie->controller()->loadData(ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()),
-                                        infosToLoad);
+        m_movie->controller()->loadData(
+            ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()), infosToLoad);
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);
@@ -480,7 +501,7 @@ void MovieWidget::onInfoLoadDone(Movie *movie)
 
 void MovieWidget::onLoadDone(Movie *movie)
 {
-    emit actorDownloadFinished(Constants::MovieProgressMessageId+movie->movieId());
+    emit actorDownloadFinished(Constants::MovieProgressMessageId + movie->movieId());
     if (m_movie == 0 || m_movie != movie)
         return;
     setEnabledTrue();
@@ -489,7 +510,7 @@ void MovieWidget::onLoadDone(Movie *movie)
 
 void MovieWidget::onLoadImagesStarted(Movie *movie)
 {
-    emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
+    emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId + movie->movieId());
 }
 
 void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
@@ -498,7 +519,7 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
         return;
 
     foreach (const int &imageType, imageTypes) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
                 cImage->setLoading(true);
         }
@@ -519,7 +540,7 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -529,7 +550,7 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
 
 void MovieWidget::onDownloadProgress(Movie *movie, int current, int maximum)
 {
-    emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
+    emit actorDownloadProgress(maximum - current, maximum, Constants::MovieProgressMessageId + movie->movieId());
 }
 
 /**
@@ -661,7 +682,9 @@ void MovieWidget::updateMovieInfo()
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
 
-    updateImages(QList<int>() << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieCdArt << ImageType::MovieClearArt << ImageType::MovieBanner << ImageType::MovieThumb);
+    updateImages(QList<int>() << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo
+                              << ImageType::MovieCdArt << ImageType::MovieClearArt << ImageType::MovieBanner
+                              << ImageType::MovieThumb);
 
     ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
@@ -685,7 +708,7 @@ void MovieWidget::updateMovieInfo()
 void MovieWidget::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -727,7 +750,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
-    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+    for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
         if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
             ui->stereoMode->setCurrentIndex(i);
     }
@@ -735,7 +758,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile)
-        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt()/60));
+        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt() / 60));
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();
@@ -744,10 +767,10 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     int audioTracks = streamDetails->audioDetails().count();
-    for (int i=0 ; i<audioTracks ; ++i) {
-        QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+    for (int i = 0; i < audioTracks; ++i) {
+        QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
         label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-        ui->streamDetails->addWidget(label, 8+i, 0);
+        ui->streamDetails->addWidget(label, 8 + i, 0);
         QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
         QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
         QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
@@ -763,9 +786,9 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 8+i, 1);
+        ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
         connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -777,22 +800,22 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         QFont f = ui->labelStreamDetailsAudio->font();
         f.setBold(true);
         label->setFont(f);
-        ui->streamDetails->addWidget(label, 8+audioTracks, 0);
+        ui->streamDetails->addWidget(label, 8 + audioTracks, 0);
         m_streamDetailsWidgets << label;
 
-        for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
-            QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+        for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
+            QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
             label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-            ui->streamDetails->addWidget(label, 9+audioTracks+i, 0);
+            ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 9+audioTracks+i, 1);
+            ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
-            m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
+            m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
             connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
         }
     }
@@ -846,7 +869,7 @@ void MovieWidget::saveInformation()
     qDebug() << "Entered";
     setDisabledTrue();
 
-    QList<Movie*> movies = FilesWidget::instance()->selectedMovies();
+    QList<Movie *> movies = FilesWidget::instance()->selectedMovies();
     if (movies.isEmpty())
         movies.append(m_movie);
 
@@ -861,7 +884,8 @@ void MovieWidget::saveInformation()
         foreach (Movie *movie, movies) {
             counter++;
             if (movie->hasChanged()) {
-                NotificationBox::instance()->progressBarProgress(counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
+                NotificationBox::instance()->progressBarProgress(
+                    counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
                 qApp->processEvents();
                 movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -905,7 +929,8 @@ void MovieWidget::saveAll()
     qApp->processEvents();
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
-            NotificationBox::instance()->progressBarProgress(counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);
+            NotificationBox::instance()->progressBarProgress(
+                counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);
             qApp->processEvents();
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -964,7 +989,7 @@ void MovieWidget::removeActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_movie->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -978,7 +1003,7 @@ void MovieWidget::removeActor()
  */
 void MovieWidget::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -989,7 +1014,7 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
 
 void MovieWidget::onSubtitleEdited(QTableWidgetItem *item)
 {
-    Subtitle *subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle*>();
+    Subtitle *subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle *>();
     if (!subtitle)
         return;
     if (item->column() == 1)
@@ -1049,8 +1074,8 @@ void MovieWidget::removeCountry(QString country)
  */
 void MovieWidget::onActorChanged()
 {
-    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
-        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
+        || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         QPixmap pixmap(":/img/man.png");
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
@@ -1058,17 +1083,21 @@ void MovieWidget::onActorChanged()
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else {
@@ -1084,18 +1113,19 @@ void MovieWidget::onActorChanged()
  */
 void MovieWidget::onChangeActorImage()
 {
-    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
-        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
+        || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         return;
     }
 
     static QString lastPath = QDir::homePath();
 
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), lastPath, tr("Images (*.jpg *.jpeg)"));
+    QString fileName =
+        QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), lastPath, tr("Images (*.jpg *.jpeg)"));
     if (!fileName.isNull()) {
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly)) {
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = file.readAll();
             actor->imageHasChanged = true;
             onActorChanged();
@@ -1400,12 +1430,12 @@ void MovieWidget::onStreamDetailsEdited()
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
-    for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i=0, n=m_streamDetailsSubtitles.count() ; i<n ; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
 
     m_movie->setChanged(true);
@@ -1472,7 +1502,7 @@ void MovieWidget::onChooseImage()
     if (m_movie == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1510,7 +1540,7 @@ void MovieWidget::onDeleteImage()
     if (m_movie == 0)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

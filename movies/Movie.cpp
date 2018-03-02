@@ -15,8 +15,7 @@
  * @param files List of files for this movie
  * @param parent
  */
-Movie::Movie(QStringList files, QObject *parent) :
-    QObject(parent)
+Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
 {
     m_controller = new MovieController(this);
     m_files = files;
@@ -137,7 +136,7 @@ void Movie::clear(QList<int> infos)
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
         m_genres.clear();
-    if (infos.contains(MovieScraperInfos::Poster)){
+    if (infos.contains(MovieScraperInfos::Poster)) {
         m_posters.clear();
         m_images.insert(ImageType::MoviePoster, QByteArray());
         m_hasImageChanged.insert(ImageType::MoviePoster, false);
@@ -374,10 +373,10 @@ QStringList Movie::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies genres
  */
-QList<QString*> Movie::genresPointer()
+QList<QString *> Movie::genresPointer()
 {
-    QList<QString*> genres;
-    for (int i=0, n=m_genres.size() ; i<n ; ++i)
+    QList<QString *> genres;
+    for (int i = 0, n = m_genres.size(); i < n; ++i)
         genres.append(&m_genres[i]);
     return genres;
 }
@@ -400,10 +399,10 @@ QStringList Movie::countries() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies production countries
  */
-QList<QString*> Movie::countriesPointer()
+QList<QString *> Movie::countriesPointer()
 {
-    QList<QString*> countries;
-    for (int i=0, n=m_countries.size() ; i<n ; ++i)
+    QList<QString *> countries;
+    for (int i = 0, n = m_countries.size(); i < n; ++i)
         countries.append(&m_countries[i]);
     return countries;
 }
@@ -426,10 +425,10 @@ QStringList Movie::studios() const
  * @brief Returns a list of pointers of QStrings
  * @return List of pointers to the movies studios
  */
-QList<QString*> Movie::studiosPointer()
+QList<QString *> Movie::studiosPointer()
 {
-    QList<QString*> studios;
-    for (int i=0, n=m_studios.size() ; i<n ; ++i)
+    QList<QString *> studios;
+    for (int i = 0, n = m_studios.size(); i < n; ++i)
         studios.append(&m_studios[i]);
     return studios;
 }
@@ -463,10 +462,10 @@ QList<Actor> Movie::actors() const
  * @brief Returns a list of pointers of Actor
  * @return List of pointers to movies actors
  */
-QList<Actor*> Movie::actorsPointer()
+QList<Actor *> Movie::actorsPointer()
 {
-    QList<Actor*> actors;
-    for (int i=0, n=m_actors.size() ; i<n ; i++)
+    QList<Actor *> actors;
+    for (int i = 0, n = m_actors.size(); i < n; i++)
         actors.append(&(m_actors[i]));
     return actors;
 }
@@ -1104,10 +1103,10 @@ void Movie::addTag(QString tag)
  */
 void Movie::addPoster(Poster poster, bool primaryLang)
 {
-    if(primaryLang){
-        m_posters.insert(m_numPrimaryLangPosters,poster);
+    if (primaryLang) {
+        m_posters.insert(m_numPrimaryLangPosters, poster);
         m_numPrimaryLangPosters++;
-    } else{
+    } else {
         m_posters.append(poster);
     }
     setChanged(true);
@@ -1151,7 +1150,7 @@ void Movie::addLogo(Poster logo)
  */
 void Movie::removeActor(Actor *actor)
 {
-    for (int i=0, n=m_actors.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_actors.size(); i < n; ++i) {
         if (&m_actors[i] == actor) {
             m_actors.removeAt(i);
             break;
@@ -1167,7 +1166,7 @@ void Movie::removeActor(Actor *actor)
  */
 void Movie::removeCountry(QString *country)
 {
-    for (int i=0, n=m_countries.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_countries.size(); i < n; ++i) {
         if (&m_countries[i] == country) {
             m_countries.removeAt(i);
             break;
@@ -1194,7 +1193,7 @@ void Movie::removeCountry(QString country)
  */
 void Movie::removeGenre(QString *genre)
 {
-    for (int i=0, n=m_genres.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_genres.size(); i < n; ++i) {
         if (&m_genres[i] == genre) {
             m_genres.removeAt(i);
             break;
@@ -1221,7 +1220,7 @@ void Movie::removeGenre(QString genre)
  */
 void Movie::removeStudio(QString *studio)
 {
-    for (int i=0, n=m_studios.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_studios.size(); i < n; ++i) {
         if (&m_studios[i] == studio) {
             m_studios.removeAt(i);
             break;
@@ -1403,14 +1402,15 @@ void Movie::setImage(int imageType, QByteArray image)
 
 bool Movie::lessThan(Movie *a, Movie *b)
 {
-    return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(
+                Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
+            < 0);
 }
 
 QList<int> Movie::imageTypes()
 {
-    return QList<int>() << ImageType::MoviePoster << ImageType::MovieBanner
-                        << ImageType::MovieCdArt << ImageType::MovieClearArt
-                        << ImageType::MovieLogo << ImageType::MovieThumb
+    return QList<int>() << ImageType::MoviePoster << ImageType::MovieBanner << ImageType::MovieCdArt
+                        << ImageType::MovieClearArt << ImageType::MovieLogo << ImageType::MovieThumb
                         << ImageType::MovieBackdrop;
 }
 

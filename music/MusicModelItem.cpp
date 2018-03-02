@@ -2,11 +2,7 @@
 
 #include "../globals/Globals.h"
 
-MusicModelItem::MusicModelItem(MusicModelItem *parent) :
-    QObject(0),
-    m_parentItem{parent},
-    m_artist{0},
-    m_album{0}
+MusicModelItem::MusicModelItem(MusicModelItem *parent) : QObject(0), m_parentItem{parent}, m_artist{0}, m_album{0}
 {
 }
 
@@ -28,7 +24,7 @@ int MusicModelItem::childCount() const
 int MusicModelItem::childNumber() const
 {
     if (m_parentItem)
-        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
+        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem *>(this));
 
     return 0;
 }
@@ -41,9 +37,7 @@ int MusicModelItem::columnCount() const
 QVariant MusicModelItem::data(int column) const
 {
     switch (column) {
-    case MusicRoles::Type:
-        return type();
-        break;
+    case MusicRoles::Type: return type(); break;
     case MusicRoles::HasChanged:
         if (m_album)
             return m_album->hasChanged();
@@ -53,8 +47,7 @@ QVariant MusicModelItem::data(int column) const
         if (m_artist)
             return m_artist->albums().count();
         break;
-    case MusicRoles::IsNew:
-    {
+    case MusicRoles::IsNew: {
         if (m_album)
             return !m_album->controller()->infoLoaded();
 
@@ -74,7 +67,6 @@ QVariant MusicModelItem::data(int column) const
             return m_artist->name();
         else if (m_album)
             return m_album->title();
-
     }
 
     return QVariant();
@@ -95,8 +87,8 @@ MusicModelItem *MusicModelItem::appendChild(Album *album)
     item->setAlbum(album);
     album->setModelItem(item);
     m_childItems.append(item);
-    connect(album, SIGNAL(sigChanged(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
-    connect(album->controller(), SIGNAL(sigSaved(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
+    connect(album, SIGNAL(sigChanged(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
+    connect(album->controller(), SIGNAL(sigSaved(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
     return item;
 }
 

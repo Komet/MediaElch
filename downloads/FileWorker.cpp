@@ -3,8 +3,7 @@
 #include <QDebug>
 #include <QFile>
 
-FileWorker::FileWorker(QObject *parent) :
-    QObject(parent)
+FileWorker::FileWorker(QObject *parent) : QObject(parent)
 {
 }
 

@@ -12,9 +12,7 @@
  * @brief Message::Message
  * @param parent
  */
-Message::Message(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Message)
+Message::Message(QWidget *parent) : QWidget(parent), ui(new Ui::Message)
 {
     ui->setupUi(this);
     ui->progressBar->hide();
@@ -88,7 +86,7 @@ int Message::id()
 void Message::showProgressBar(bool show)
 {
     ui->progressBar->setVisible(show);
-    m_timer->start(10*60*1000);
+    m_timer->start(10 * 60 * 1000);
 }
 
 /**
@@ -100,7 +98,7 @@ void Message::setProgress(int current, int max)
 {
     ui->progressBar->setRange(0, max);
     ui->progressBar->setValue(current);
-    m_timer->start(10*60*1000);
+    m_timer->start(10 * 60 * 1000);
 }
 
 /**

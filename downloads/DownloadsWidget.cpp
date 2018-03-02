@@ -18,9 +18,7 @@
 #include "smallWidgets/MessageLabel.h"
 #include "smallWidgets/MyTableWidgetItem.h"
 
-DownloadsWidget::DownloadsWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::DownloadsWidget)
+DownloadsWidget::DownloadsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DownloadsWidget)
 {
     ui->setupUi(this);
 
@@ -38,7 +36,7 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QFont titleFont = ui->labelArchives->font();
-    titleFont.setPointSize(titleFont.pointSize()-4);
+    titleFont.setPointSize(titleFont.pointSize() - 4);
     ui->labelArchives->setFont(titleFont);
     ui->labelImportable->setFont(titleFont);
 #endif
@@ -46,9 +44,9 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     m_extractor = new Extractor(this);
     m_makeMkvDialog = new MakeMkvDialog(this);
 
-    connect(m_extractor, SIGNAL(sigError(QString,QString)), this, SLOT(onExtractorError(QString,QString)));
+    connect(m_extractor, SIGNAL(sigError(QString, QString)), this, SLOT(onExtractorError(QString, QString)));
     connect(m_extractor, SIGNAL(sigFinished(QString, bool)), this, SLOT(onExtractorFinished(QString, bool)));
-    connect(m_extractor, SIGNAL(sigProgress(QString,int)), this, SLOT(onExtractorProgress(QString,int)));
+    connect(m_extractor, SIGNAL(sigProgress(QString, int)), this, SLOT(onExtractorProgress(QString, int)));
     connect(ui->btnImportMakeMkv, SIGNAL(clicked()), this, SLOT(onImportWithMakeMkv()));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
@@ -72,7 +70,9 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     QMap<QString, Import> imports;
     foreach (SettingsDir settingsDir, Settings::instance()->downloadDirectories()) {
         QString dir = settingsDir.path;
-        QDirIterator it(dir, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
+        QDirIterator it(dir,
+            QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
+            QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
         while (it.hasNext()) {
             it.next();
             if (isPackage(it.fileInfo())) {
@@ -132,7 +132,7 @@ QString DownloadsWidget::baseName(QFileInfo fileInfo) const
     QString fileName = fileInfo.fileName();
     QRegExp rx("(.*)(part[0-9]*)\\.rar");
     if (rx.exactMatch(fileName))
-        return rx.cap(1).endsWith(".") ? rx.cap(1).mid(0, rx.cap(1).length()-1) : rx.cap(1);
+        return rx.cap(1).endsWith(".") ? rx.cap(1).mid(0, rx.cap(1).length() - 1) : rx.cap(1);
 
     rx.setPattern("(.*)\\.r(ar|[0-9]*)");
     if (rx.exactMatch(fileName))
@@ -207,7 +207,7 @@ void DownloadsWidget::updatePackagesList(QMap<QString, Package> packages)
 
         UnpackButtons *buttons = new UnpackButtons(this);
         buttons->setBaseName(it.value().baseName);
-        connect(buttons, SIGNAL(sigUnpack(QString,QString)), this, SLOT(onUnpack(QString,QString)));
+        connect(buttons, SIGNAL(sigUnpack(QString, QString)), this, SLOT(onUnpack(QString, QString)));
         connect(buttons, SIGNAL(sigStop(QString)), m_extractor, SLOT(stopExtraction(QString)));
         connect(buttons, SIGNAL(sigDelete(QString)), this, SLOT(onDelete(QString)));
         ui->tablePackages->setCellWidget(row, 3, buttons);
@@ -219,10 +219,10 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
     if (!m_packages.contains(baseName))
         return;
 
-    for (int row=0, n=ui->tablePackages->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(0);
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
+            static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setProgress(0);
+            static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
             ui->tablePackages->setCellWidget(row, 4, 0);
         }
     }
@@ -237,7 +237,7 @@ void DownloadsWidget::onDelete(QString baseName)
     foreach (const QString &fileName, m_packages[baseName].files)
         QFile::remove(fileName);
 
-    for (int row=0, n=ui->tablePackages->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
             ui->tablePackages->removeRow(row);
             break;
@@ -255,7 +255,7 @@ void DownloadsWidget::onDeleteImport(QString baseName)
     foreach (const QString &fileName, m_imports[baseName].files)
         QFile::remove(fileName);
 
-    for (int row=0, n=ui->tableImports->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->tableImports->rowCount(); row < n; ++row) {
         if (ui->tableImports->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
             ui->tableImports->removeRow(row);
             break;
@@ -269,9 +269,12 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
 #ifdef Q_OS_MAC
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport())
-        Notificator::instance()->notify(Notificator::Warning, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
+        Notificator::instance()->notify(Notificator::Warning,
+            tr("Extraction failed"),
+            tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
     else
-        QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
+        QMessageBox::warning(
+            this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #else
     QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #endif
@@ -279,14 +282,14 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 
 void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
 {
-    for (int row=0, n=ui->tablePackages->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
             MessageLabel *label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
             if (success)
                 label->setSuccessMessage(tr("Extraction finished"));
             else
                 label->setErrorMessage(tr("Extraction failed"));
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(false);
+            static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(false);
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
@@ -294,17 +297,18 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
         onDelete(baseName);
 
     if (success)
-        Notificator::instance()->notify(Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
+        Notificator::instance()->notify(
+            Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
 
     scanDownloadFolders(true, true);
 }
 
 void DownloadsWidget::onExtractorProgress(QString baseName, int progress)
 {
-    for (int row=0, n=ui->tablePackages->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(progress);
+            static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
+            static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setProgress(progress);
         }
     }
 }
@@ -366,7 +370,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
             if (guessedType == "movie") {
                 importType->setCurrentIndex(0);
                 onChangeImportType(0, importType);
-                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
+                for (int i = 0, n = importDetail->count(); i < n; ++i) {
                     if (importDetail->itemText(i) == guessedDir) {
                         importDetail->setCurrentIndex(i);
                         onChangeImportDetail(i, importDetail);
@@ -376,8 +380,8 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
             } else if (guessedType == "tvshow") {
                 importType->setCurrentIndex(1);
                 onChangeImportType(1, importType);
-                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
-                    if (importDetail->itemData(i, Qt::UserRole).value<Storage*>()->show()->dir() == guessedDir) {
+                for (int i = 0, n = importDetail->count(); i < n; ++i) {
+                    if (importDetail->itemData(i, Qt::UserRole).value<Storage *>()->show()->dir() == guessedDir) {
                         importDetail->setCurrentIndex(i);
                         onChangeImportDetail(i, importDetail);
                         break;
@@ -386,7 +390,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
             } else if (guessedType == "concert") {
                 importType->setCurrentIndex(2);
                 onChangeImportType(2, importType);
-                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
+                for (int i = 0, n = importDetail->count(); i < n; ++i) {
                     if (importDetail->itemText(i) == guessedDir) {
                         importDetail->setCurrentIndex(i);
                         onChangeImportDetail(i, importDetail);
@@ -406,14 +410,14 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
     if (sender)
         box = sender;
     else
-        box = static_cast<QComboBox*>(QObject::sender());
+        box = static_cast<QComboBox *>(QObject::sender());
     if (currentIndex < 0 || currentIndex >= box->count())
         return;
 
     QString type = box->itemData(currentIndex, Qt::UserRole).toString();
     QString baseName = box->property("baseName").toString();
     int row = -1;
-    for (int i=0, n=ui->tableImports->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = ui->tableImports->rowCount(); i < n; ++i) {
         if (ui->tableImports->item(i, 0)->data(Qt::UserRole).toString() == baseName) {
             row = i;
             break;
@@ -422,7 +426,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
     if (row == -1)
         return;
 
-    QComboBox *detailBox = static_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
+    QComboBox *detailBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 4));
     detailBox->clear();
 
     bool sub = false;
@@ -443,7 +447,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
         }
     }
 
-    static_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5))->setButtonEnabled(sub);
+    static_cast<ImportActions *>(ui->tableImports->cellWidget(row, 5))->setButtonEnabled(sub);
 }
 
 void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
@@ -452,7 +456,7 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
     if (sender)
         box = sender;
     else
-        box = static_cast<QComboBox*>(QObject::sender());
+        box = static_cast<QComboBox *>(QObject::sender());
     if (currentIndex < 0 || currentIndex >= box->count())
         return;
 
@@ -461,7 +465,7 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
         return;
 
     int row = -1;
-    for (int i=0, n=ui->tableImports->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = ui->tableImports->rowCount(); i < n; ++i) {
         if (ui->tableImports->item(i, 0)->data(Qt::UserRole).toString() == baseName) {
             row = i;
             break;
@@ -470,14 +474,14 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
     if (row == -1)
         return;
 
-    QComboBox *typeBox = static_cast<QComboBox*>(ui->tableImports->cellWidget(row, 3));
-    ImportActions *actions = static_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
+    QComboBox *typeBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 3));
+    ImportActions *actions = static_cast<ImportActions *>(ui->tableImports->cellWidget(row, 5));
     QString type = typeBox->itemData(typeBox->currentIndex(), Qt::UserRole).toString();
     actions->setType(type);
     if (type == "movie")
         actions->setImportDir(box->currentText());
     else if (type == "tvshow")
-        actions->setTvShow(box->itemData(currentIndex, Qt::UserRole).value<Storage*>()->show());
+        actions->setTvShow(box->itemData(currentIndex, Qt::UserRole).value<Storage *>()->show());
     else if (type == "concert")
         actions->setImportDir(box->currentText());
 
@@ -493,9 +497,10 @@ int DownloadsWidget::hasNewItems()
 void DownloadsWidget::onImportWithMakeMkv()
 {
     if (!QFileInfo(Settings::instance()->makeMkvCon()).isExecutable()) {
-        QMessageBox::warning(this, tr("makemkvcon missing"),
-                             tr("Please set the correct path to makemkvcon in MediaElchs settings."),
-                             QMessageBox::Ok);
+        QMessageBox::warning(this,
+            tr("makemkvcon missing"),
+            tr("Please set the correct path to makemkvcon in MediaElchs settings."),
+            QMessageBox::Ok);
         return;
     }
 

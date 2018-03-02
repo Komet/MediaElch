@@ -1,9 +1,9 @@
 #ifndef MOVIEDUPLICATEITEM_H
 #define MOVIEDUPLICATEITEM_H
 
-#include <QWidget>
 #include "../globals/Globals.h"
 #include "Movie.h"
+#include <QWidget>
 
 namespace Ui {
 class MovieDuplicateItem;

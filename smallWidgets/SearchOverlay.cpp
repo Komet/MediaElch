@@ -3,12 +3,12 @@
 #include <QPainter>
 #include <QStyleOption>
 
-SearchOverlay::SearchOverlay(QWidget *parent) :
-    QWidget(parent)
+SearchOverlay::SearchOverlay(QWidget *parent) : QWidget(parent)
 {
     QSize size(100, 100);
 
-    QString style = "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";
+    QString style =
+        "QWidget { background-color: rgba(0, 0, 0, 80); border: 1px solid rgba(0, 0, 0, 20); border-radius: 7px; }";
     setStyleSheet(style);
     setFixedSize(size);
 

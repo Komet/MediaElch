@@ -29,11 +29,11 @@ public:
     explicit Storage(QObject *parent, QList<ScraperSearchResult> results);
     explicit Storage(QObject *parent, QList<int> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
-    explicit Storage(QObject *parent, QMap<ScraperInterface*, QString> ids);
+    explicit Storage(QObject *parent, QMap<ScraperInterface *, QString> ids);
     explicit Storage(QObject *parent, QTableWidgetItem *item);
     explicit Storage(QObject *parent, PluginInterface *pluginInterface);
     explicit Storage(QObject *parent, PluginManager::Plugin plugin);
-    explicit Storage(QObject *parent, QList<TvShowEpisode*> episodes);
+    explicit Storage(QObject *parent, QList<TvShowEpisode *> episodes);
     Movie *movie();
     Concert *concert();
     TvShow *show();
@@ -43,11 +43,11 @@ public:
     QList<ScraperSearchResult> results();
     QList<int> infosToLoad();
     ExportTemplate *exportTemplate();
-    QMap<ScraperInterface*, QString> ids();
+    QMap<ScraperInterface *, QString> ids();
     QTableWidgetItem *tableWidgetItem();
     PluginInterface *pluginInterface();
     PluginManager::Plugin plugin();
-    QList<TvShowEpisode*> episodes();
+    QList<TvShowEpisode *> episodes();
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
@@ -57,11 +57,11 @@ public:
     static QVariant toVariant(QObject *parent, QList<ScraperSearchResult> results);
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
-    static QVariant toVariant(QObject *parent, QMap<ScraperInterface*, QString> ids);
+    static QVariant toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids);
     static QVariant toVariant(QObject *parent, QTableWidgetItem *item);
     static QVariant toVariant(QObject *parent, PluginInterface *pluginInterface);
     static QVariant toVariant(QObject *parent, PluginManager::Plugin plugin);
-    static QVariant toVariant(QObject *parent, QList<TvShowEpisode*> episodes);
+    static QVariant toVariant(QObject *parent, QList<TvShowEpisode *> episodes);
 
 private:
     QPointer<Movie> m_movie;
@@ -73,13 +73,13 @@ private:
     QList<ScraperSearchResult> m_results;
     QList<int> m_infosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
-    QMap<ScraperInterface*, QString> m_ids;
+    QMap<ScraperInterface *, QString> m_ids;
     QTableWidgetItem *m_tableWidgetItem;
     PluginInterface *m_pluginInterface;
     PluginManager::Plugin m_plugin;
-    QList<TvShowEpisode*> m_episodes;
+    QList<TvShowEpisode *> m_episodes;
 };
 
-Q_DECLARE_METATYPE(Storage*)
+Q_DECLARE_METATYPE(Storage *)
 
 #endif // STORAGE_H

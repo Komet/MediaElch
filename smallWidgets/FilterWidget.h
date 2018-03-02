@@ -26,7 +26,7 @@ public:
     void setActiveWidget(MainWidgets widget);
 signals:
     void sigFilterTextChanged(QString);
-    void sigFilterChanged(QList<Filter*>, QString);
+    void sigFilterChanged(QList<Filter *>, QString);
 private slots:
     void onFilterTextChanged(QString text);
     void onKeyDown();
@@ -35,26 +35,27 @@ private slots:
     void addSelectedFilter();
     void addFilterFromItem(QListWidgetItem *item);
     void removeLastFilter();
+
 private:
     Ui::FilterWidget *ui;
-    QList<Filter*> m_filters;
-    QList<Filter*> m_movieFilters;
-    QList<Filter*> m_movieGenreFilters;
-    QList<Filter*> m_movieStudioFilters;
-    QList<Filter*> m_movieCountryFilters;
-    QList<Filter*> m_movieYearFilters;
-    QList<Filter*> m_movieCertificationFilters;
-    QList<Filter*> m_movieDirectorFilters;
-    QList<Filter*> m_movieTagsFilters;
-    QList<Filter*> m_movieSetsFilters;
-    QList<Filter*> m_tvShowFilters;
-    QList<Filter*> m_concertFilters;
-    QList<Filter*> m_musicFilters;
-    QList<Filter*> m_movieLabelFilters;
+    QList<Filter *> m_filters;
+    QList<Filter *> m_movieFilters;
+    QList<Filter *> m_movieGenreFilters;
+    QList<Filter *> m_movieStudioFilters;
+    QList<Filter *> m_movieCountryFilters;
+    QList<Filter *> m_movieYearFilters;
+    QList<Filter *> m_movieCertificationFilters;
+    QList<Filter *> m_movieDirectorFilters;
+    QList<Filter *> m_movieTagsFilters;
+    QList<Filter *> m_movieSetsFilters;
+    QList<Filter *> m_tvShowFilters;
+    QList<Filter *> m_concertFilters;
+    QList<Filter *> m_musicFilters;
+    QList<Filter *> m_movieLabelFilters;
     QListWidget *m_list;
-    QList<Filter*> m_activeFilters;
+    QList<Filter *> m_activeFilters;
     MainWidgets m_activeWidget;
-    QMap<MainWidgets, QList<Filter*> > m_storedFilters;
+    QMap<MainWidgets, QList<Filter *>> m_storedFilters;
     void initFilters();
     void setupMovieFilters();
     void setupTvShowFilters();

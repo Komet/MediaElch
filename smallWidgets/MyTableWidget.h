@@ -15,6 +15,7 @@ class MyTableWidget : public QTableWidget
     Q_OBJECT
 public:
     explicit MyTableWidget(QWidget *parent = nullptr);
+
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);

@@ -18,9 +18,7 @@ TvShowFilesWidget *TvShowFilesWidget::m_instance;
  * @brief TvShowFilesWidget::TvShowFilesWidget
  * @param parent
  */
-TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowFilesWidget)
+TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -92,12 +90,16 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(m_actionShowMissingEpisodes, SIGNAL(triggered()), this, SLOT(showMissingEpisodes()));
     connect(m_actionHideSpecialsInMissingEpisodes, SIGNAL(triggered()), this, SLOT(hideSpecialsInMissingEpisodes()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
+    connect(ui->files->selectionModel(),
+        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+        this,
+        SLOT(onItemSelected(QModelIndex)),
+        Qt::QueuedConnection);
     connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playEpisode(QModelIndex)));
     Manager::instance()->setTvShowFilesWidget(this);
 
-    connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
-    connect(m_tvShowProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
+    connect(m_tvShowProxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onViewUpdated()));
 }
 
@@ -170,10 +172,11 @@ void TvShowFilesWidget::scanForEpisodes()
     ui->files->selectionModel()->clearCurrentIndex();
     emit sigNothingSelected();
     qApp->processEvents();
-    for (int row=0, n=ui->files->model()->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->files->model()->rowCount(); row < n; ++row) {
         QModelIndex proxyIdx = ui->files->model()->index(row, 0);
         if (ui->files->model()->data(proxyIdx, TvShowRoles::FilePath).toString() == dir) {
-            ui->files->selectionModel()->setCurrentIndex(proxyIdx, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+            ui->files->selectionModel()->setCurrentIndex(
+                proxyIdx, QItemSelectionModel::Select | QItemSelectionModel::Rows);
             onItemSelected(proxyIdx);
             break;
         }
@@ -245,7 +248,7 @@ void TvShowFilesWidget::markAsUnwatched()
 void TvShowFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QList<TvShowEpisode*> episodes;
+    QList<TvShowEpisode *> episodes;
 
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
@@ -294,8 +297,9 @@ void TvShowFilesWidget::markForSync()
                 episode->setSyncNeeded(true);
             }
 
-            for (int i=0, n=item->childCount() ; i<n ; ++i)
-                ui->files->update(m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
+            for (int i = 0, n = item->childCount(); i < n; ++i)
+                ui->files->update(
+                    m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
         } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->isDummy()) {
             item->tvShowEpisode()->setSyncNeeded(true);
         }
@@ -319,8 +323,9 @@ void TvShowFilesWidget::unmarkForSync()
                     continue;
                 episode->setSyncNeeded(false);
             }
-            for (int i=0, n=item->childCount() ; i<n ; ++i)
-                ui->files->update(m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
+            for (int i = 0, n = item->childCount(); i < n; ++i)
+                ui->files->update(
+                    m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
         } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->isDummy()) {
             item->tvShowEpisode()->setSyncNeeded(false);
         }
@@ -342,7 +347,8 @@ void TvShowFilesWidget::openFolder()
         dir = item->tvShow()->dir();
     } else if (item->type() == TypeSeason) {
         dir = item->tvShow()->dir();
-    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty() && !item->tvShowEpisode()->isDummy()) {
+    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty()
+               && !item->tvShowEpisode()->isDummy()) {
         QFileInfo fi(item->tvShowEpisode()->files().at(0));
         dir = fi.absolutePath();
     }
@@ -365,7 +371,8 @@ void TvShowFilesWidget::openNfo()
     QString file;
     if (item->type() == TypeTvShow) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->tvShow());
-    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty() && !item->tvShowEpisode()->isDummy()) {
+    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty()
+               && !item->tvShowEpisode()->isDummy()) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->tvShowEpisode());
     }
 
@@ -386,14 +393,15 @@ void TvShowFilesWidget::showMissingEpisodes()
             m_actionShowMissingEpisodes->setChecked(item->tvShow()->showMissingEpisodes());
             if (item->tvShow()->showMissingEpisodes()) {
                 item->tvShow()->fillMissingEpisodes();
-                if (item->tvShow()->id().isEmpty() && item->tvShow()->tvdbId().isEmpty() &&
-                        item->tvShow()->episodeGuideUrl().isEmpty()) {
+                if (item->tvShow()->id().isEmpty() && item->tvShow()->tvdbId().isEmpty()
+                    && item->tvShow()->episodeGuideUrl().isEmpty()) {
                     if (Settings::instance()->showMissingEpisodesHint()) {
                         QMessageBox msgBox;
                         msgBox.setIcon(QMessageBox::Information);
                         msgBox.setWindowTitle(tr("Show update needed"));
-                        msgBox.setText(tr("You need to update the show once to show missing episodes.\n"
-                                          "Afterwards MediaElch will check automatically for new episodes on startup."));
+                        msgBox.setText(
+                            tr("You need to update the show once to show missing episodes.\n"
+                               "Afterwards MediaElch will check automatically for new episodes on startup."));
                         msgBox.setStandardButtons(QMessageBox::Ok);
                         QCheckBox dontShowAgain(QObject::tr("Don't show this hint again"), &msgBox);
                         dontShowAgain.blockSignals(true);
@@ -450,20 +458,27 @@ void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "Renewing model" << force;
     if (force) {
-        disconnect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)));
+        disconnect(ui->files->selectionModel(),
+            SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+            this,
+            SLOT(onItemSelected(QModelIndex)));
         m_tvShowProxyModel->setSourceModel(0);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
         ui->files->setModel(0);
         ui->files->setModel(m_tvShowProxyModel);
         ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-        connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
+        connect(ui->files->selectionModel(),
+            SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+            this,
+            SLOT(onItemSelected(QModelIndex)),
+            Qt::QueuedConnection);
 
-        for (int row=0, n=ui->files->model()->rowCount() ; row<n ; ++row) {
+        for (int row = 0, n = ui->files->model()->rowCount(); row < n; ++row) {
             QModelIndex showIndex = ui->files->model()->index(row, 0);
-            for (int seasonRow=0, x=ui->files->model()->rowCount(showIndex) ; seasonRow<x ; ++seasonRow) {
+            for (int seasonRow = 0, x = ui->files->model()->rowCount(showIndex); seasonRow < x; ++seasonRow) {
                 QModelIndex seasonIndex = ui->files->model()->index(seasonRow, 0, showIndex);
                 ui->files->setFirstColumnSpanned(seasonRow, showIndex, true);
-                for (int episodeRow=0, y=ui->files->model()->rowCount(seasonIndex) ; episodeRow<y ; ++episodeRow)
+                for (int episodeRow = 0, y = ui->files->model()->rowCount(seasonIndex); episodeRow < y; ++episodeRow)
                     ui->files->setFirstColumnSpanned(episodeRow, seasonIndex, true);
             }
         }
@@ -513,9 +528,9 @@ void TvShowFilesWidget::emitLastSelection()
         emit sigEpisodeSelected(m_lastEpisode);
 }
 
-QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
+QList<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
 {
-    QList<TvShowEpisode*> episodes;
+    QList<TvShowEpisode *> episodes;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -540,9 +555,9 @@ QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeason
     return episodes;
 }
 
-QList<TvShow*> TvShowFilesWidget::selectedShows()
+QList<TvShow *> TvShowFilesWidget::selectedShows()
 {
-    QList<TvShow*> shows;
+    QList<TvShow *> shows;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -552,9 +567,9 @@ QList<TvShow*> TvShowFilesWidget::selectedShows()
     return shows;
 }
 
-QList<TvShow*> TvShowFilesWidget::selectedSeasons()
+QList<TvShow *> TvShowFilesWidget::selectedSeasons()
 {
-    QList<TvShow*> shows;
+    QList<TvShow *> shows;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -566,13 +581,16 @@ QList<TvShow*> TvShowFilesWidget::selectedSeasons()
 
 void TvShowFilesWidget::onViewUpdated()
 {
-    if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty() || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
+    if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty()
+        || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
         int episodeCount = 0;
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
             episodeCount += show->episodeCount();
-        ui->statusLabel->setText(tr("%n tv shows", "", m_tvShowProxyModel->rowCount()) + ", " + tr("%n episodes", "", episodeCount));
+        ui->statusLabel->setText(
+            tr("%n tv shows", "", m_tvShowProxyModel->rowCount()) + ", " + tr("%n episodes", "", episodeCount));
     } else {
-        ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count()).arg(m_tvShowProxyModel->rowCount()));
+        ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count())
+                                     .arg(m_tvShowProxyModel->rowCount()));
     }
     m_tvShowProxyModel->invalidate();
 }
@@ -600,8 +618,8 @@ void TvShowFilesWidget::multiScrape()
 {
     m_contextMenu->close();
 
-    QList<TvShow*> shows = selectedShows();
-    QList<TvShowEpisode*> episodes = selectedEpisodes(false);
+    QList<TvShow *> shows = selectedShows();
+    QList<TvShowEpisode *> episodes = selectedEpisodes(false);
 
     qDebug() << "Selected" << shows.count() << "shows and" << episodes.count() << "episodes";
     if (shows.isEmpty() && episodes.isEmpty())

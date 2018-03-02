@@ -109,7 +109,9 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
     QList<TrailerResult> results;
 
     int pos = 0;
-    QRegExp rx("<tr  itemprop=\"trailer\" itemscope itemtype=\"http://schema.org/VideoObject\">.*<td class=\"bottomTableName\" rowspan=\"2\"><span class=\"standardTrailerName\" itemprop=\"name\">(.*)</span>.*</td>(.*)</tr>");
+    QRegExp rx("<tr  itemprop=\"trailer\" itemscope itemtype=\"http://schema.org/VideoObject\">.*<td "
+               "class=\"bottomTableName\" rowspan=\"2\"><span class=\"standardTrailerName\" "
+               "itemprop=\"name\">(.*)</span>.*</td>(.*)</tr>");
     rx.setMinimal(true);
     while ((pos = rx.indexIn(html, pos)) != -1) {
         QRegExp rx2("<td class=\"bottomTableResolution\"><a href=\"([^\"]*)\".*>([^<]*)</a></td>");

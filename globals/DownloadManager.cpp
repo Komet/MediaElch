@@ -10,9 +10,7 @@
  * @brief DownloadManager::DownloadManager
  * @param parent
  */
-DownloadManager::DownloadManager(QObject *parent) :
-    QObject(parent),
-    m_downloading{false}
+DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloading{false}
 {
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(downloadTimeout()));
 }
@@ -73,7 +71,7 @@ void DownloadManager::startNextDownload()
     m_timer.stop();
     if (m_currentDownloadElement.movie) {
         int numDownloadsLeft = 0;
-        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+        for (int i = 0, n = m_queue.size(); i < n; ++i) {
             if (m_queue[i].movie == m_currentDownloadElement.movie)
                 numDownloadsLeft++;
         }
@@ -83,7 +81,7 @@ void DownloadManager::startNextDownload()
 
     if (m_currentDownloadElement.show) {
         int numDownloadsLeft = 0;
-        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+        for (int i = 0, n = m_queue.size(); i < n; ++i) {
             if (m_queue[i].show == m_currentDownloadElement.show)
                 numDownloadsLeft++;
         }
@@ -93,7 +91,7 @@ void DownloadManager::startNextDownload()
 
     if (m_currentDownloadElement.concert) {
         int numDownloadsLeft = 0;
-        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+        for (int i = 0, n = m_queue.size(); i < n; ++i) {
             if (m_queue[i].concert == m_currentDownloadElement.concert)
                 numDownloadsLeft++;
         }
@@ -103,7 +101,7 @@ void DownloadManager::startNextDownload()
 
     if (m_currentDownloadElement.artist) {
         int numDownloadsLeft = 0;
-        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+        for (int i = 0, n = m_queue.size(); i < n; ++i) {
             if (m_queue[i].artist == m_currentDownloadElement.artist)
                 numDownloadsLeft++;
         }
@@ -113,7 +111,7 @@ void DownloadManager::startNextDownload()
 
     if (m_currentDownloadElement.album) {
         int numDownloadsLeft = 0;
-        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+        for (int i = 0, n = m_queue.size(); i < n; ++i) {
             if (m_queue[i].album == m_currentDownloadElement.album)
                 numDownloadsLeft++;
         }
@@ -135,14 +133,15 @@ void DownloadManager::startNextDownload()
     if (!m_currentDownloadElement.url.toString().startsWith("//")) {
         m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
         connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+        connect(m_currentReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
     }
 
-    if (m_currentDownloadElement.imageType == ImageType::Actor || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
+    if (m_currentDownloadElement.imageType == ImageType::Actor
+        || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
         if (m_currentDownloadElement.movie) {
             int numDownloadsLeft = 0;
             m_mutex.lock();
-            for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            for (int i = 0, n = m_queue.size(); i < n; ++i) {
                 if (m_queue[i].movie == m_currentDownloadElement.movie)
                     numDownloadsLeft++;
             }
@@ -151,7 +150,7 @@ void DownloadManager::startNextDownload()
         } else if (m_currentDownloadElement.show) {
             int numDownloadsLeft = 0;
             m_mutex.lock();
-            for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            for (int i = 0, n = m_queue.size(); i < n; ++i) {
                 if (m_queue[i].show == m_currentDownloadElement.show)
                     numDownloadsLeft++;
             }
@@ -172,7 +171,8 @@ void DownloadManager::startNextDownload()
         m_currentDownloadElement.data = data;
         if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
             m_currentDownloadElement.actor->image = data;
-        else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)
+        else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
+                 && !m_currentDownloadElement.directDownload)
             m_currentDownloadElement.episode->setThumbnailImage(data);
         else
             emit downloadFinished(m_currentDownloadElement);
@@ -222,13 +222,14 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
 
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         reply->deleteLater();
-        m_currentReply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_currentReply =
+            qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+        connect(m_currentReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
         return;
     }
 
@@ -244,7 +245,8 @@ void DownloadManager::downloadFinished()
     reply->deleteLater();
     if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = data;
-    else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)
+    else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
+             && !m_currentDownloadElement.directDownload)
         m_currentDownloadElement.episode->setThumbnailImage(data);
     else
         emit downloadFinished(m_currentDownloadElement);
@@ -295,7 +297,7 @@ int DownloadManager::downloadsLeftForShow(TvShow *show)
     qDebug() << "Entered, show=" << show->name();
     int left = 0;
     m_mutex.lock();
-    for (int i=0, n=m_queue.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_queue.count(); i < n; ++i) {
         if (m_queue[i].show == show)
             left++;
     }

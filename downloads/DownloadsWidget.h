@@ -18,13 +18,15 @@ class DownloadsWidget : public QWidget
 {
     Q_OBJECT
 
-    struct Package {
+    struct Package
+    {
         QString baseName;
         QStringList files;
         qreal size;
     };
 
-    struct Import {
+    struct Import
+    {
         QString baseName;
         QStringList files;
         QStringList extraFiles;

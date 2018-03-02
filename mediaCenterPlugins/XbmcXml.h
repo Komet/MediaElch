@@ -51,12 +51,25 @@ public:
     QString actorImageName(TvShow *show, Actor actor);
     QString actorImageName(TvShowEpisode *episode, Actor actor);
 
-    QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShow *show, int type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString
+    imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Concert *concert,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false);
+    QString imageFileName(TvShowEpisode *episode,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false);
+    QString imageFileName(TvShow *show,
+        int type,
+        int season = -1,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false);
+    QString
+    imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString
+    imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
 
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
@@ -87,7 +100,9 @@ private:
     QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
     void appendXmlNode(QDomDocument &doc, QDomNode &node);
     void removeChildNodes(QDomDocument &doc, const QString &name);
-    void writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle*> subtitles = QList<Subtitle*>());
+    void writeStreamDetails(QDomDocument &doc,
+        StreamDetails *streamDetails,
+        QList<Subtitle *> subtitles = QList<Subtitle *>());
 };
 
 #endif // XBMCXML_H

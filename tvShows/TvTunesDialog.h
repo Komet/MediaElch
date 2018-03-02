@@ -21,7 +21,7 @@ class TvTunesDialog : public QDialog
 public:
     explicit TvTunesDialog(QWidget *parent = nullptr);
     ~TvTunesDialog();
-    static TvTunesDialog* instance(QWidget *parent = nullptr);
+    static TvTunesDialog *instance(QWidget *parent = nullptr);
     void setTvShow(TvShow *show);
 
 public slots:

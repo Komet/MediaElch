@@ -40,7 +40,8 @@ protected:
 private slots:
     void onAction();
     void chooseDirToAdd();
-    void addDir(QString dir, bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
+    void
+    addDir(QString dir, bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
@@ -49,7 +50,7 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
-    void onTemplatesLoaded(QList<ExportTemplate*> templates);
+    void onTemplatesLoaded(QList<ExportTemplate *> templates);
     void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
     void onChooseUnrar();
@@ -65,8 +66,8 @@ private slots:
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
-    QMap<ScraperInterface*, int> m_scraperRows;
-    QMap<int, PluginInterface*> m_plugins;
+    QMap<ScraperInterface *, int> m_scraperRows;
+    QMap<int, PluginInterface *> m_plugins;
     PluginManagerDialog *m_pluginDialog;
     bool m_pluginsInstallable;
     QColor m_buttonColor;
@@ -75,9 +76,9 @@ private:
     void loadSettings();
     void saveSettings();
     void loadRemoteTemplates();
-    QComboBox* comboForMovieScraperInfo(const int &info);
+    QComboBox *comboForMovieScraperInfo(const int &info);
     QString titleForMovieScraperInfo(const int &info);
-    QComboBox* comboForTvScraperInfo(const int &info);
+    QComboBox *comboForTvScraperInfo(const int &info);
     QString titleForTvScraperInfo(const int &info);
     void setPluginActionsEnabled(const bool &enabled);
 };

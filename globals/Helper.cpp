@@ -20,8 +20,7 @@
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 
-Helper::Helper(QObject *parent) :
-    QObject(parent)
+Helper::Helper(QObject *parent) : QObject(parent)
 {
 }
 
@@ -125,7 +124,8 @@ bool Helper::isDvd(QString path, bool noSubFolder)
     }
     QDir dir(path);
     QStringList filters;
-    filters << "VIDEO_TS" << "VIDEO TS";
+    filters << "VIDEO_TS"
+            << "VIDEO TS";
     if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() > 0) {
         foreach (const QString filter, filters) {
             dir.setPath(path + QDir::separator() + filter);
@@ -166,14 +166,14 @@ bool Helper::isBluRay(QString path)
 QImage &Helper::resizeBackdrop(QImage &image, bool &resized)
 {
     resized = false;
-    if ((image.width() != 1920 || image.height() != 1080) &&
-        image.width() > 1915 && image.width() < 1925 && image.height() > 1075 && image.height() < 1085) {
+    if ((image.width() != 1920 || image.height() != 1080) && image.width() > 1915 && image.width() < 1925
+        && image.height() > 1075 && image.height() < 1085) {
         image = image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         resized = true;
     }
 
-    if ((image.width() != 1280 || image.height() != 720) &&
-        image.width() > 1275 && image.width() < 1285 && image.height() > 715 && image.height() < 725) {
+    if ((image.width() != 1280 || image.height() != 720) && image.width() > 1275 && image.width() < 1285
+        && image.height() > 715 && image.height() < 725) {
         image = image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         resized = true;
     }
@@ -216,7 +216,7 @@ QString Helper::stackedBaseName(const QString &fileName)
     QRegExp rx2a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _.-]*[a-d])(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
     QRegExp rx2b("(.*)([ _\\.-]+)$");
 
-    QList<QList<QRegExp> > regex;
+    QList<QList<QRegExp>> regex;
     regex << (QList<QRegExp>() << rx1a << rx1b);
     regex << (QList<QRegExp>() << rx2a << rx2b);
 
@@ -245,7 +245,7 @@ QString Helper::appendArticle(const QString &text)
     QString name = text;
     foreach (const QString &article, Settings::instance()->advanced()->sortTokens()) {
         if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
-            name = text.mid(article.length()+1) + ", " + text.mid(0, article.length());
+            name = text.mid(article.length() + 1) + ", " + text.mid(0, article.length());
             break;
         }
     }
@@ -305,31 +305,31 @@ QString Helper::mapCountry(const QString &text)
 
 QString Helper::formatFileSize(const qint64 &size)
 {
-    if (size > 1024*1024*1024)
-        return QString("%1 GB").arg(QString::number((float)size/1024/1024/1024, 'f', 2));
-    else if (size > 1024*1024)
-        return QString("%1 MB").arg(QString::number((float)size/1024/1024, 'f', 2));
+    if (size > 1024 * 1024 * 1024)
+        return QString("%1 GB").arg(QString::number((float)size / 1024 / 1024 / 1024, 'f', 2));
+    else if (size > 1024 * 1024)
+        return QString("%1 MB").arg(QString::number((float)size / 1024 / 1024, 'f', 2));
     else if (size > 1024)
-        return QString("%1 kB").arg(QString::number((float)size/1024, 'f', 2));
+        return QString("%1 kB").arg(QString::number((float)size / 1024, 'f', 2));
     else
         return QString("%1 B").arg(QString::number((float)size, 'f', 2));
 }
 
 void Helper::removeFocusRect(QWidget *widget)
 {
-    foreach (QListWidget *list, widget->findChildren<QListWidget*>())
+    foreach (QListWidget *list, widget->findChildren<QListWidget *>())
         list->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QLineEdit *edit, widget->findChildren<QLineEdit*>())
+    foreach (QLineEdit *edit, widget->findChildren<QLineEdit *>())
         edit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QComboBox *box, widget->findChildren<QComboBox*>())
+    foreach (QComboBox *box, widget->findChildren<QComboBox *>())
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QSpinBox *box, widget->findChildren<QSpinBox*>())
+    foreach (QSpinBox *box, widget->findChildren<QSpinBox *>())
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDoubleSpinBox *box, widget->findChildren<QDoubleSpinBox*>())
+    foreach (QDoubleSpinBox *box, widget->findChildren<QDoubleSpinBox *>())
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDateEdit *dateEdit, widget->findChildren<QDateEdit*>())
+    foreach (QDateEdit *dateEdit, widget->findChildren<QDateEdit *>())
         dateEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDateTimeEdit *dateTimeEdit, widget->findChildren<QDateTimeEdit*>())
+    foreach (QDateTimeEdit *dateTimeEdit, widget->findChildren<QDateTimeEdit *>())
         dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 }
 
@@ -339,28 +339,28 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
         Helper::instance()->removeFocusRect(widget);
 
     QStringList styleSheet = QStringList()
-        << "QLabel {"
-        << "    color: #666666;"
-    #ifndef Q_OS_WIN
-        << "    font-family: \"Helvetica Neue\";"
-       #ifndef Q_OS_MACX
-        << "    font-size: 12px;"
-       #endif
-    #endif
-        << "}"
+                             << "QLabel {"
+                             << "    color: #666666;"
+#ifndef Q_OS_WIN
+                             << "    font-family: \"Helvetica Neue\";"
+#ifndef Q_OS_MACX
+                             << "    font-size: 12px;"
+#endif
+#endif
+                             << "}"
 
-        << "QLineEdit, QSpinBox, QDateTimeEdit, QTextEdit, QComboBox, QDoubleSpinBox, QCheckBox {"
-        << "    border: 0;"
-        << "    border-bottom: 1px dotted #e0e0e0;"
-        << "}"
+                             << "QLineEdit, QSpinBox, QDateTimeEdit, QTextEdit, QComboBox, QDoubleSpinBox, QCheckBox {"
+                             << "    border: 0;"
+                             << "    border-bottom: 1px dotted #e0e0e0;"
+                             << "}"
 
-        << "QComboBox::down-arrow {"
-        << "    image: url(':/img/ui_select.png');"
-        << "    width: 16px;"
-        << "    height: 16px;"
-        << "}";
+                             << "QComboBox::down-arrow {"
+                             << "    image: url(':/img/ui_select.png');"
+                             << "    width: 16px;"
+                             << "    height: 16px;"
+                             << "}";
 
-        styleSheet
+    styleSheet
         << "QCheckBox::indicator:unchecked {"
         << "    image: url(':/img/ui_uncheck.png');"
         << "    width: 16px;"
@@ -402,7 +402,8 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
         << "QTableWidget {"
         << "    border: none;"
-        << "    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);"
+        << "    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 "
+           "#1b6aa5);"
         << "    alternate-background-color: #f9f9f9;"
         << "    selection-color: #ffffff;"
         << "}"
@@ -429,9 +430,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
         << "    border: 1px solid #2D6CA2;"
         << "    border-radius: 4px;"
         << "    padding: 4px;"
-   #if defined(Q_OS_MAC)
+#if defined(Q_OS_MAC)
         << "    font-size: 11px;"
-   #endif
+#endif
         << "}"
 
         << "QPushButton::pressed {"
@@ -445,21 +446,21 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
         << ";";
 
-        foreach (QTabWidget *tabWidget, widget->findChildren<QTabWidget*>()) {
-            QFont font = tabWidget->font();
-            font.setFamily("Helvetica Neue");
-            #ifdef Q_OS_MAC
-                font.setPointSize(13);
-            #else
-                font.setPixelSize(12);
-            #endif
-            font.setWeight(QFont::DemiBold);
-            tabWidget->setFont(font);
-        }
+    foreach (QTabWidget *tabWidget, widget->findChildren<QTabWidget *>()) {
+        QFont font = tabWidget->font();
+        font.setFamily("Helvetica Neue");
+#ifdef Q_OS_MAC
+        font.setPointSize(13);
+#else
+        font.setPixelSize(12);
+#endif
+        font.setWeight(QFont::DemiBold);
+        tabWidget->setFont(font);
+    }
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
 
-    foreach (QPushButton *button, widget->findChildren<QPushButton*>()) {
+    foreach (QPushButton *button, widget->findChildren<QPushButton *>()) {
         QString styleType = button->property("styleType").toString();
         if (styleType.isEmpty())
             continue;
@@ -479,7 +480,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
 void Helper::applyEffect(QWidget *parent)
 {
-    foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
+    foreach (QPushButton *button, parent->findChildren<QPushButton *>()) {
         if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
@@ -501,26 +502,26 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
     if (len1 == 0 || len2 == 0)
         return 0;
 
-    QList<QList<int> > d;
+    QList<QList<int>> d;
 
     d.insert(0, QList<int>());
     d[0].insert(0, 0);
-    for (int i=1 ; i<=len1 ; ++i) {
+    for (int i = 1; i <= len1; ++i) {
         d.insert(i, QList<int>());
         d[i].insert(0, i);
     }
-    for (int i=1; i<=len2 ; ++i)
+    for (int i = 1; i <= len2; ++i)
         d[0].insert(i, i);
 
-    for (int i=1 ; i<=len1; ++i) {
-        for (int j=1 ; j<=len2 ; ++j) {
-            d[i].insert(j, qMin(qMin(d[i - 1][j] + 1,d[i][j - 1] + 1),
-                                d[i - 1][j - 1] + (s1.at(i-1) == s2.at(j-1) ? 0 : 1) ));
+    for (int i = 1; i <= len1; ++i) {
+        for (int j = 1; j <= len2; ++j) {
+            d[i].insert(j,
+                qMin(qMin(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + (s1.at(i - 1) == s2.at(j - 1) ? 0 : 1)));
         }
     }
 
     qreal dist = d[len1][len2];
-    return 1-(dist/qMax(len1, len2));
+    return 1 - (dist / qMax(len1, len2));
 }
 
 QMap<int, QString> Helper::labels()
@@ -540,31 +541,15 @@ QMap<int, QString> Helper::labels()
 QColor Helper::colorForLabel(int label)
 {
     switch (label) {
-    case Labels::RED:
-        return QColor(252, 124, 126);
-        break;
-    case Labels::ORANGE:
-        return QColor(253, 189, 65);
-        break;
-    case Labels::YELLOW:
-        return QColor(245, 228, 68);
-        break;
-    case Labels::GREEN:
-        return QColor(182, 223, 55);
-        break;
-    case Labels::BLUE:
-        return QColor(132, 201, 253);
-        break;
-    case Labels::PURPLE:
-        return QColor(226, 167, 253);
-        break;
-    case Labels::GREY:
-        return QColor(200, 200, 200);
-        break;
+    case Labels::RED: return QColor(252, 124, 126); break;
+    case Labels::ORANGE: return QColor(253, 189, 65); break;
+    case Labels::YELLOW: return QColor(245, 228, 68); break;
+    case Labels::GREEN: return QColor(182, 223, 55); break;
+    case Labels::BLUE: return QColor(132, 201, 253); break;
+    case Labels::PURPLE: return QColor(226, 167, 253); break;
+    case Labels::GREY: return QColor(200, 200, 200); break;
     case Labels::NO_LABEL:
-    default:
-        return QColor(0, 0, 0, 0);
-        break;
+    default: return QColor(0, 0, 0, 0); break;
     }
 }
 
@@ -703,27 +688,36 @@ void Helper::setButtonStyle(QPushButton *button, Helper::ButtonStyle style)
     styleSheet.append("}");
 
     if (style == Helper::ButtonDanger) {
-        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255)); border: 1px solid #C12E2A;}");
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, "
+                          "x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255)); border: 1px "
+                          "solid #C12E2A;}");
         styleSheet.append("QPushButton::pressed { background-color: rgb(189, 53, 47); }");
         styleSheet.append("QPushButton::disabled { background-color: rgb(213, 125, 120); }");
         styleSheet.append("margin-bottom: 2px;");
     } else if (style == Helper::ButtonPrimary) {
-        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255)); border: 1px solid #2D6CA2; }");
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, "
+                          "x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255)); border: 1px "
+                          "solid #2D6CA2; }");
         styleSheet.append("QPushButton::pressed { background-color: rgb(48, 113, 169); }");
         styleSheet.append("QPushButton::disabled { background-color: rgb(66, 139, 202); }");
         styleSheet.append("margin-bottom: 2px;");
     } else if (style == Helper::ButtonInfo) {
-        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5BC0DE, stop:1 #31B0D5); border: 1px solid #2AABD2; }");
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, "
+                          "x2:0, y2:1, stop:0 #5BC0DE, stop:1 #31B0D5); border: 1px solid #2AABD2; }");
         styleSheet.append("QPushButton::pressed { background-color: #31B0D5; }");
         styleSheet.append("QPushButton::disabled { background-color: #79cce4; }");
         styleSheet.append("margin-bottom: 2px;");
     } else if (style == Helper::ButtonWarning) {
-        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(251, 180, 80, 255), stop:1 rgba(248, 148, 6, 255)); border: 1px solid #EB9316; }");
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, "
+                          "x2:0, y2:1, stop:0 rgba(251, 180, 80, 255), stop:1 rgba(248, 148, 6, 255)); border: 1px "
+                          "solid #EB9316; }");
         styleSheet.append("QPushButton::pressed { background-color: rgb(248, 148, 6); }");
         styleSheet.append("QPushButton::disabled { background-color: rgb(247, 177, 79); }");
         styleSheet.append("margin-bottom: 2px;");
     } else if (style == Helper::ButtonSuccess) {
-        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255)); border: 1px solid #419641; }");
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, "
+                          "x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255)); border: 1px "
+                          "solid #419641; }");
         styleSheet.append("QPushButton::pressed { background-color: rgb(81, 163, 81); }");
         styleSheet.append("QPushButton::disabled { background-color: rgb(142, 196, 142); }");
         styleSheet.append("margin-bottom: 2px;");
@@ -808,13 +802,13 @@ QImage Helper::getImage(QString path)
 QString Helper::secondsToTimeCode(quint32 duration)
 {
     QString res;
-    int seconds = (int) (duration % 60);
+    int seconds = (int)(duration % 60);
     duration /= 60;
-    int minutes = (int) (duration % 60);
+    int minutes = (int)(duration % 60);
     duration /= 60;
-    int hours = (int) (duration % 24);
-    int days = (int) (duration / 24);
-    if(hours == 0 && days == 0)
+    int hours = (int)(duration % 24);
+    int days = (int)(duration / 24);
+    if (hours == 0 && days == 0)
         return res.sprintf("%02d:%02d", minutes, seconds);
     if (days == 0)
         return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);

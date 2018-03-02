@@ -15,8 +15,10 @@
 #include <QVariantMap>
 
 /// A list of all icon-names with the codepoint (unicode-value) on the right
-/// You can use the names on the page  http://fortawesome.github.io/Font-Awesome/design.html  ( replace every dash '-' with an underscore '_')
-enum MyIconFontName {
+/// You can use the names on the page  http://fortawesome.github.io/Font-Awesome/design.html  ( replace every dash '-'
+/// with an underscore '_')
+enum MyIconFontName
+{
     icon_film = 0xe6a5,
     icon_monitor = 0xe634,
     icon_micro = 0xe635,
@@ -65,45 +67,54 @@ enum MyIconFontName {
 class MyIconFontIconPainter;
 
 /// The main class for managing icons
-/// This class requires a 2-phase construction. You must first create the class and then initialize it via an init* method
+/// This class requires a 2-phase construction. You must first create the class and then initialize it via an init*
+/// method
 class MyIconFont : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-
     explicit MyIconFont(QObject *parent = nullptr);
     virtual ~MyIconFont();
 
-    void init( const QString& fontname );
+    void init(const QString &fontname);
     bool initFontAwesome();
 
-    void addNamedCodepoint( const QString& name, int codePoint );
-    QHash<QString,int> namedCodePoints() { return namedCodepoints_; }
+    void addNamedCodepoint(const QString &name, int codePoint);
+    QHash<QString, int> namedCodePoints() { return namedCodepoints_; }
 
-    void setDefaultOption( const QString& name, const QVariant& value  );
-    QVariant defaultOption( const QString& name );
+    void setDefaultOption(const QString &name, const QVariant &value);
+    QVariant defaultOption(const QString &name);
 
-    QIcon icon( int character, const QVariantMap& options = QVariantMap() );
-    QIcon icon( const QString& name, const QVariantMap& options = QVariantMap() );
-    QIcon icon(const QString& name, const QColor &color, const QString &painterName = QString(), int markerNum = -1, float scaleFactor = 0.9);
-    QIcon icon(const QString& name, const QColor &color, const QColor &selectionColor, const QString &painterName = QString(), int markerNum = -1, float scaleFactor = 0.9);
-    QIcon icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap = QVariantMap() );
+    QIcon icon(int character, const QVariantMap &options = QVariantMap());
+    QIcon icon(const QString &name, const QVariantMap &options = QVariantMap());
+    QIcon icon(const QString &name,
+        const QColor &color,
+        const QString &painterName = QString(),
+        int markerNum = -1,
+        float scaleFactor = 0.9);
+    QIcon icon(const QString &name,
+        const QColor &color,
+        const QColor &selectionColor,
+        const QString &painterName = QString(),
+        int markerNum = -1,
+        float scaleFactor = 0.9);
+    QIcon icon(MyIconFontIconPainter *painter, const QVariantMap &optionMap = QVariantMap());
 
-    void give( const QString& name, MyIconFontIconPainter* painter );
+    void give(const QString &name, MyIconFontIconPainter *painter);
 
-    QFont font( int size );
+    QFont font(int size);
 
     /// Returns the font-name that is used as icon-map
-    QString fontName() { return fontName_ ; }
+    QString fontName() { return fontName_; }
 
 private:
-    QString fontName_;                                     ///< The font name used for this map
-    QHash<QString,int> namedCodepoints_;                   ///< A map with names mapped to code-points
+    QString fontName_;                    ///< The font name used for this map
+    QHash<QString, int> namedCodepoints_; ///< A map with names mapped to code-points
 
-    QHash<QString, MyIconFontIconPainter*> painterMap_;     ///< A map of custom painters
-    QVariantMap defaultOptions_;                           ///< The default icon options
-    MyIconFontIconPainter* fontIconPainter_;                ///< A special painter fo painting codepoints
+    QHash<QString, MyIconFontIconPainter *> painterMap_; ///< A map of custom painters
+    QVariantMap defaultOptions_;                         ///< The default icon options
+    MyIconFontIconPainter *fontIconPainter_;             ///< A special painter fo painting codepoints
 };
 
 
@@ -116,7 +127,12 @@ class MyIconFontIconPainter
 {
 public:
     virtual ~MyIconFontIconPainter() {}
-    virtual void paint( MyIconFont* awesome, QPainter* painter, const QRect& rect, QIcon::Mode mode, QIcon::State state, const QVariantMap& options ) = 0;
+    virtual void paint(MyIconFont *awesome,
+        QPainter *painter,
+        const QRect &rect,
+        QIcon::Mode mode,
+        QIcon::State state,
+        const QVariantMap &options) = 0;
 };
 
 #endif // MYICONFONT_H

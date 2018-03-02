@@ -20,7 +20,7 @@ public:
     void addImage(Image *image);
     void removeImage(Image *image);
     Q_INVOKABLE void move(int from, int to);
-    QList<Image*> images();
+    QList<Image *> images();
     Image *image(int row) const;
     Image *image(const QModelIndex &index) const;
     int rowById(int id) const;
@@ -42,7 +42,7 @@ protected:
     QHash<int, QByteArray> roleNames() const;
 
 private:
-    QList<Image*> m_images;
+    QList<Image *> m_images;
     bool m_hasChanged;
 };
 

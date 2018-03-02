@@ -7,8 +7,7 @@
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
 
-TvTunes::TvTunes(QObject *parent) :
-    QObject(parent)
+TvTunes::TvTunes(QObject *parent) : QObject(parent)
 {
 }
 
@@ -31,7 +30,7 @@ void TvTunes::search(QString searchStr)
 
 void TvTunes::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     QList<ScraperSearchResult> results;
     if (reply->error() != QNetworkReply::NoError) {
@@ -83,7 +82,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
 
 void TvTunes::onDownloadUrlFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() == QNetworkReply::NoError) {
@@ -101,4 +100,3 @@ void TvTunes::onDownloadUrlFinished()
 
     getNextDownloadUrl(reply->property("searchStr").toString());
 }
-

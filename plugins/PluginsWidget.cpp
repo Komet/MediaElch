@@ -1,9 +1,7 @@
 #include "PluginsWidget.h"
 #include "ui_PluginsWidget.h"
 
-PluginsWidget::PluginsWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::PluginsWidget)
+PluginsWidget::PluginsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::PluginsWidget)
 {
     ui->setupUi(this);
     ui->installed->setBadgeType(Badge::LabelSuccess);

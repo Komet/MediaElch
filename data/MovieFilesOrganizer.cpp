@@ -11,8 +11,7 @@
  * @brief MovieFilesOrganizer::MovieFilesOrganizer
  * @param parent
  */
-MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) :
-    QThread(parent)
+MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
 {
 }
 
@@ -41,7 +40,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     fileSearcher->deleteLater();
 
     int pos = path.lastIndexOf(QDir::separator());
-    QString dirName = path.right(path.length() - pos -1);
+    QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
     NameFormatter *nameFormat = NameFormatter::instance(this);
 
@@ -61,8 +60,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
         if (movie.length() == 1)
             newFolder = path + QDir::separator() + nameFormat->formatName(fileName);
         else if (movie.length() > 1)
-            newFolder = path + QDir::separator() + nameFormat->formatName(
-                        nameFormat->formatParts(fileName));
+            newFolder = path + QDir::separator() + nameFormat->formatName(nameFormat->formatParts(fileName));
         else
             continue;
 
@@ -70,11 +68,9 @@ void MovieFilesOrganizer::moveToDirs(QString path)
             continue;
 
         foreach (QString file, movie) {
-            if (!dir->rename(file, newFolder +
-                             QDir::separator() +
-                             file.right(file.length() -
-                                        file.lastIndexOf
-                                        (QDir::separator()) - 1)))
+            if (!dir->rename(file,
+                    newFolder + QDir::separator()
+                        + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1)))
                 qDebug() << "Moving " << file << "to " << newFolder << " failed.";
         }
     }

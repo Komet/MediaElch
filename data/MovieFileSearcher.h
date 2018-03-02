@@ -19,7 +19,11 @@ public:
     ~MovieFileSearcher();
 
     void setMovieDirectories(QList<SettingsDir> directories);
-    void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+    void scanDir(QString startPath,
+        QString path,
+        QList<QStringList> &contents,
+        bool separateFolders = false,
+        bool firstScan = false);
     static Movie *loadMovieData(Movie *movie);
 
 public slots:
@@ -40,7 +44,8 @@ private:
     QHash<QString, QDateTime> m_lastModifications;
     bool m_aborted;
 
-    struct MovieContents {
+    struct MovieContents
+    {
         QString path;
         bool inSeparateFolder;
         QMap<QString, QStringList> contents;

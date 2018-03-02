@@ -15,8 +15,15 @@ AlbumController::AlbumController(Album *parent) :
     m_downloadsInProgress{false},
     m_downloadsSize{0}
 {
-    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
-    connect(m_downloadManager, SIGNAL(allDownloadsFinished(Album*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
+    connect(m_downloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager,
+        SIGNAL(allDownloadsFinished(Album *)),
+        this,
+        SLOT(onAllDownloadsFinished()),
+        Qt::UniqueConnection);
 }
 
 AlbumController::~AlbumController()
@@ -25,7 +32,8 @@ AlbumController::~AlbumController()
 
 bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || m_album->hasChanged()) && !force && (m_infoFromNfoLoaded || (m_album->hasChanged() && !m_infoFromNfoLoaded) ))
+    if ((m_infoLoaded || m_album->hasChanged()) && !force
+        && (m_infoFromNfoLoaded || (m_album->hasChanged() && !m_infoFromNfoLoaded)))
         return m_infoLoaded;
 
     m_album->blockSignals(true);
@@ -124,7 +132,8 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
         image->setRawData(elem.data);
         m_album->bookletModel()->addImage(image);
     } else if (!elem.data.isEmpty()) {
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_album, elem.imageType));
+        ImageCache::instance()->invalidateImages(
+            Manager::instance()->mediaCenterInterface()->imageFileName(m_album, elem.imageType));
         m_album->setRawImage(elem.imageType, elem.data);
     }
 
@@ -147,7 +156,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
     emit sigInfoLoadDone(m_album);
 
     if (!scraper) {
-        onFanartLoadDone(m_album, QMap<int, QList<Poster> >());
+        onFanartLoadDone(m_album, QMap<int, QList<Poster>>());
         return;
     }
 
@@ -170,24 +179,28 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
             }
         }
         if (!imageProvider) {
-            onFanartLoadDone(m_album, QMap<int, QList<Poster> >());
+            onFanartLoadDone(m_album, QMap<int, QList<Poster>>());
             return;
         }
-        connect(imageProvider, SIGNAL(sigImagesLoaded(Album*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Album*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
+        connect(imageProvider,
+            SIGNAL(sigImagesLoaded(Album *, QMap<int, QList<Poster>>)),
+            this,
+            SLOT(onFanartLoadDone(Album *, QMap<int, QList<Poster>>)),
+            Qt::UniqueConnection);
         imageProvider->albumImages(m_album, m_album->mbReleaseGroupId(), images);
     } else {
-        onFanartLoadDone(m_album, QMap<int, QList<Poster> >());
+        onFanartLoadDone(m_album, QMap<int, QList<Poster>>());
     }
 }
 
-void AlbumController::onFanartLoadDone(Album *album, QMap<int, QList<Poster> > posters)
+void AlbumController::onFanartLoadDone(Album *album, QMap<int, QList<Poster>> posters)
 {
     if (album != m_album)
         return;
 
     QList<DownloadManagerElement> downloads;
     QList<int> imageTypes;
-    QMapIterator<int, QList<Poster> > it(posters);
+    QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty())

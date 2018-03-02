@@ -8,9 +8,7 @@
  * @brief MovieListDialog::MovieListDialog
  * @param parent
  */
-MovieListDialog::MovieListDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::MovieListDialog)
+MovieListDialog::MovieListDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MovieListDialog)
 {
     ui->setupUi(this);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -38,7 +36,7 @@ MovieListDialog::~MovieListDialog()
  * @param parent Parent widget (used the first time for constructing)
  * @return Instance of MovieListDialog
  */
-MovieListDialog* MovieListDialog::instance(QWidget *parent)
+MovieListDialog *MovieListDialog::instance(QWidget *parent)
 {
     static MovieListDialog *m_instance = 0;
     if (m_instance == 0) {
@@ -63,7 +61,9 @@ int MovieListDialog::exec()
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid()) ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy")) : movie->name();
+        QString title = (movie->released().isValid())
+                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
+                            : movie->name();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -89,7 +89,9 @@ int MovieListDialog::execWithoutGenre(QString genre)
             continue;
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid()) ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy")) : movie->name();
+        QString title = (movie->released().isValid())
+                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
+                            : movie->name();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -115,7 +117,9 @@ int MovieListDialog::execWithoutCertification(QString certification)
             continue;
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid()) ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy")) : movie->name();
+        QString title = (movie->released().isValid())
+                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
+                            : movie->name();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -130,24 +134,24 @@ int MovieListDialog::execWithoutCertification(QString certification)
 void MovieListDialog::reposition()
 {
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(1000, parentWidget()->size().width()-400));
+    newSize.setHeight(parentWidget()->size().height() - 200);
+    newSize.setWidth(qMin(1000, parentWidget()->size().width() - 400));
     resize(newSize);
 
-    int xMove = (parentWidget()->size().width()-size().width())/2;
+    int xMove = (parentWidget()->size().width() - size().width()) / 2;
     QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x()+xMove, globalPos.y());
+    move(globalPos.x() + xMove, globalPos.y());
 }
 
 void MovieListDialog::onAddMovies()
 {
     m_selectedMovies.clear();
-    foreach (QTableWidgetItem* item, ui->movies->selectedItems())
-        m_selectedMovies << item->data(Qt::UserRole).value<Movie*>();
+    foreach (QTableWidgetItem *item, ui->movies->selectedItems())
+        m_selectedMovies << item->data(Qt::UserRole).value<Movie *>();
     accept();
 }
 
-QList<Movie*> MovieListDialog::selectedMovies()
+QList<Movie *> MovieListDialog::selectedMovies()
 {
     return m_selectedMovies;
 }
@@ -158,7 +162,7 @@ QList<Movie*> MovieListDialog::selectedMovies()
  */
 void MovieListDialog::onFilterEdited(QString text)
 {
-    for (int row=0, n=ui->movies->rowCount() ; row<n ; ++row) {
+    for (int row = 0, n = ui->movies->rowCount(); row < n; ++row) {
         bool contains = ui->movies->item(row, 0)->text().contains(text, Qt::CaseInsensitive);
         ui->movies->setRowHidden(row, !contains);
     }

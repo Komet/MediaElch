@@ -86,10 +86,9 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    QList<QWidget*> m_streamDetailsWidgets;
-    QList< QList<QLineEdit*> > m_streamDetailsAudio;
-    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
-
+    QList<QWidget *> m_streamDetailsWidgets;
+    QList<QList<QLineEdit *>> m_streamDetailsAudio;
+    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
 };
 
 #endif // TVSHOWWIDGETEPISODE_H

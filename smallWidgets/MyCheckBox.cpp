@@ -1,7 +1,6 @@
 #include "MyCheckBox.h"
 
-MyCheckBox::MyCheckBox(QWidget *parent) :
-    QCheckBox(parent)
+MyCheckBox::MyCheckBox(QWidget *parent) : QCheckBox(parent)
 {
 }
 

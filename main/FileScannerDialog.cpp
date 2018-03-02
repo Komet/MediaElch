@@ -10,9 +10,7 @@
  * @brief FileScannerDialog::FileScannerDialog
  * @param parent
  */
-FileScannerDialog::FileScannerDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::FileScannerDialog)
+FileScannerDialog::FileScannerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -23,9 +21,9 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
 
     QFont font = ui->currentDir->font();
 #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
+    font.setPointSize(font.pointSize() - 1);
 #else
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
 #endif
     ui->currentDir->setFont(font);
 
@@ -34,19 +32,35 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
 
     Manager::instance()->setFileScannerDialog(this);
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
-    connect(Manager::instance()->musicFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
+    connect(
+        Manager::instance()->movieFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
+    connect(
+        Manager::instance()->concertFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
+    connect(
+        Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
+    connect(
+        Manager::instance()->musicFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->musicFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
-    connect(Manager::instance()->musicFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
+    connect(Manager::instance()->movieFileSearcher(),
+        SIGNAL(searchStarted(QString, int)),
+        ui->status,
+        SLOT(setText(QString)));
+    connect(Manager::instance()->tvShowFileSearcher(),
+        SIGNAL(searchStarted(QString, int)),
+        ui->status,
+        SLOT(setText(QString)));
+    connect(Manager::instance()->concertFileSearcher(),
+        SIGNAL(searchStarted(QString, int)),
+        ui->status,
+        SLOT(setText(QString)));
+    connect(Manager::instance()->musicFileSearcher(),
+        SIGNAL(searchStarted(QString, int)),
+        ui->status,
+        SLOT(setText(QString)));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onLoadDone(int)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onLoadDone(int)));

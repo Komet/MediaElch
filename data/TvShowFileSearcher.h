@@ -35,7 +35,7 @@ signals:
 private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
-    void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
+    void getTvShows(QString path, QMap<QString, QList<QStringList>> &contents);
     void scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents);
     QStringList getFiles(QString path);
     bool m_aborted;

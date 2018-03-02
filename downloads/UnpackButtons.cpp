@@ -6,9 +6,7 @@
 
 #include "globals/Helper.h"
 
-UnpackButtons::UnpackButtons(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::UnpackButtons)
+UnpackButtons::UnpackButtons(QWidget *parent) : QWidget(parent), ui(new Ui::UnpackButtons)
 {
     ui->setupUi(this);
     Helper::instance()->setButtonStyle(ui->btnUnpack, Helper::ButtonPrimary);
@@ -48,7 +46,8 @@ void UnpackButtons::onUnpack()
 void UnpackButtons::onUnpackWithPassword()
 {
     bool ok;
-    QString password = QInputDialog::getText(this, tr("Extraction password"), tr("Password"), QLineEdit::Password, "", &ok);
+    QString password =
+        QInputDialog::getText(this, tr("Extraction password"), tr("Password"), QLineEdit::Password, "", &ok);
     if (!ok)
         return;
     emit sigUnpack(m_baseName, password);

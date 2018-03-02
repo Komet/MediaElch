@@ -2,9 +2,7 @@
 
 #include <QDebug>
 
-NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) :
-    QObject(parent),
-    m_reply{0}
+NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) : QObject(parent), m_reply{0}
 {
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     setReply(reply);
@@ -20,8 +18,8 @@ void NetworkReplyWatcher::setReply(QNetworkReply *reply)
     if (!m_reply)
         return;
     connect(m_reply, SIGNAL(finished()), &m_timer, SLOT(stop()));
-    connect(m_reply, SIGNAL(destroyed(QObject*)), this, SLOT(deleteLater()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onProgress()));
+    connect(m_reply, SIGNAL(destroyed(QObject *)), this, SLOT(deleteLater()));
+    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(onProgress()));
     m_timer.start(3000);
 }
 

@@ -67,11 +67,11 @@ public slots:
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
     void sigImagesLoaded(QList<Poster>);
-    void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >);
-    void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >);
-    void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >);
-    void sigImagesLoaded(Artist *, QMap<int, QList<Poster> >);
-    void sigImagesLoaded(Album *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(Movie *, QMap<int, QList<Poster>>);
+    void sigImagesLoaded(Concert *, QMap<int, QList<Poster>>);
+    void sigImagesLoaded(TvShow *, QMap<int, QList<Poster>>);
+    void sigImagesLoaded(Artist *, QMap<int, QList<Poster>>);
+    void sigImagesLoaded(Album *, QMap<int, QList<Poster>>);
 
 private slots:
     void onSearchMovieFinished(QList<ScraperSearchResult> results);

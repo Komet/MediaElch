@@ -17,9 +17,7 @@
  * @brief SetsWidget::SetsWidget
  * @param parent
  */
-SetsWidget::SetsWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SetsWidget)
+SetsWidget::SetsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::SetsWidget)
 {
     ui->setupUi(this);
 
@@ -31,13 +29,13 @@ SetsWidget::SetsWidget(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     QFont setsFont = ui->sets->font();
-    setsFont.setPointSize(setsFont.pointSize()-2);
+    setsFont.setPointSize(setsFont.pointSize() - 2);
     ui->sets->setFont(setsFont);
 #endif
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->setName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->setName->setFont(nameFont);
 #endif
 
@@ -54,16 +52,19 @@ SetsWidget::SetsWidget(QWidget *parent) :
     m_downloadManager = new DownloadManager(this);
 
     connect(ui->sets, SIGNAL(itemSelectionChanged()), this, SLOT(onSetSelected()));
-    connect(ui->sets, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSetNameChanged(QTableWidgetItem*)));
-    connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSortTitleChanged(QTableWidgetItem*)));
-    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
+    connect(ui->sets, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onSetNameChanged(QTableWidgetItem *)));
+    connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onSortTitleChanged(QTableWidgetItem *)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this, SLOT(onJumpToMovie(QTableWidgetItem *)));
     connect(ui->buttonAddMovie, SIGNAL(clicked()), this, SLOT(onAddMovie()));
     connect(ui->buttonRemoveMovie, SIGNAL(clicked()), this, SLOT(onRemoveMovie()));
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseSetPoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseSetBackdrop()));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
-    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onDownloadFinished(DownloadManagerElement)));
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->sets);
@@ -77,11 +78,17 @@ SetsWidget::SetsWidget(QWidget *parent) :
 
     clear();
 
-    QPixmap pixmap = QPixmap(":/img/placeholders/poster.png").scaled(QSize(160, 260) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap pixmap = QPixmap(":/img/placeholders/poster.png")
+                         .scaled(QSize(160, 260) * Helper::instance()->devicePixelRatio(this),
+                             Qt::KeepAspectRatio,
+                             Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
     ui->poster->setPixmap(pixmap);
 
-    QPixmap pixmap2 = QPixmap(":/img/placeholders/fanart.png").scaled(QSize(160, 72) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap pixmap2 = QPixmap(":/img/placeholders/fanart.png")
+                          .scaled(QSize(160, 72) * Helper::instance()->devicePixelRatio(this),
+                              Qt::KeepAspectRatio,
+                              Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(pixmap2, Helper::instance()->devicePixelRatio(this));
     ui->backdrop->setPixmap(pixmap2);
 }
@@ -118,7 +125,8 @@ void SetsWidget::loadSets()
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
-    int currentRow = (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()) ? ui->sets->currentRow() : 0;
+    int currentRow =
+        (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()) ? ui->sets->currentRow() : 0;
     ui->sets->clear();
     ui->sets->setRowCount(0);
     m_sets.clear();
@@ -130,8 +138,8 @@ void SetsWidget::loadSets()
             if (m_sets.contains(movie->set())) {
                 m_sets[movie->set()].append(movie);
             } else {
-                QList<Movie*> l;
-                QList<Movie*> el;
+                QList<Movie *> l;
+                QList<Movie *> el;
                 l << movie;
                 m_sets.insert(movie->set(), l);
                 m_moviesToSave.insert(movie->set(), el);
@@ -142,13 +150,13 @@ void SetsWidget::loadSets()
     }
     foreach (const QString &set, m_addedSets) {
         if (!set.isEmpty() && !m_sets.contains(set)) {
-            m_sets.insert(set, QList<Movie*>());
-            m_moviesToSave.insert(set, QList<Movie*>());
+            m_sets.insert(set, QList<Movie *>());
+            m_moviesToSave.insert(set, QList<Movie *>());
             m_setPosters.insert(set, QImage());
             m_setBackdrops.insert(set, QImage());
         }
     }
-    QMapIterator<QString, QList<Movie*> > it(m_sets);
+    QMapIterator<QString, QList<Movie *>> it(m_sets);
     while (it.hasNext()) {
         it.next();
         int row = ui->sets->rowCount();
@@ -212,7 +220,7 @@ void SetsWidget::loadSet(QString set)
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         ui->movies->setItem(row, 0, new QTableWidgetItem(movie->name()));
-        ui->movies->item(row, 0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        ui->movies->item(row, 0)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
         ui->movies->setItem(row, 1, new QTableWidgetItem(movie->sortTitle()));
     }
@@ -220,23 +228,30 @@ void SetsWidget::loadSet(QString set)
 
     if (!m_setPosters[set].isNull()) {
         QImage poster = m_setPosters[set];
-        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = poster;
-    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
-        !Manager::instance()->mediaCenterInterface()->movieSetPoster(set).isNull()) {
+    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)
+               && !Manager::instance()->mediaCenterInterface()->movieSetPoster(set).isNull()) {
         QImage poster = Manager::instance()->mediaCenterInterface()->movieSetPoster(set);
-        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = poster;
     } else {
-        QPixmap pixmap = QPixmap(":/img/placeholders/poster.png").scaled(QSize(120, 120) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap = QPixmap(":/img/placeholders/poster.png")
+                             .scaled(QSize(120, 120) * Helper::instance()->devicePixelRatio(this),
+                                 Qt::KeepAspectRatio,
+                                 Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->buttonPreviewPoster->setEnabled(false);
@@ -244,23 +259,32 @@ void SetsWidget::loadSet(QString set)
 
     if (!m_setBackdrops[set].isNull()) {
         QImage backdrop = m_setBackdrops[set];
-        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap =
+            QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this),
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = backdrop;
-    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
-        !Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set).isNull()) {
+    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)
+               && !Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set).isNull()) {
         QImage backdrop = Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set);
-        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap =
+            QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this),
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = backdrop;
     } else {
-        QPixmap pixmap = QPixmap(":/img/placeholders/fanart.png").scaled(QSize(96, 96) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap = QPixmap(":/img/placeholders/fanart.png")
+                             .scaled(QSize(96, 96) * Helper::instance()->devicePixelRatio(this),
+                                 Qt::KeepAspectRatio,
+                                 Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->buttonPreviewBackdrop->setEnabled(false);
@@ -280,7 +304,7 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem *item)
         qDebug() << "Invalid row";
         return;
     }
-    Movie *movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
+    Movie *movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie *>();
     movie->setSortTitle(item->text());
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
     if (!m_moviesToSave[movie->set()].contains(movie))
@@ -299,7 +323,7 @@ void SetsWidget::onAddMovie()
         return;
     }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty())
             return;
 
@@ -315,7 +339,6 @@ void SetsWidget::onAddMovie()
             m_sets[setName].append(movie);
             if (!m_moviesToSave[setName].contains(movie))
                 m_moviesToSave[setName].append(movie);
-
         }
         loadSet(setName);
     }
@@ -336,7 +359,7 @@ void SetsWidget::onRemoveMovie()
         qDebug() << "Invalid current row in movies";
         return;
     }
-    Movie *movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    Movie *movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie *>();
     m_sets[movie->set()].removeOne(movie);
     if (!m_moviesToSave[movie->set()].contains(movie))
         m_moviesToSave[movie->set()].append(movie);
@@ -432,17 +455,20 @@ void SetsWidget::saveSet()
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_moviesToSave[setName].clear();
 
-        if (!m_setPosters[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
+        if (!m_setPosters[setName].isNull()
+            && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
             Manager::instance()->mediaCenterInterface()->saveMovieSetPoster(setName, m_setPosters[setName]);
             m_setPosters[setName] = QImage();
         }
-        if (!m_setBackdrops[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
+        if (!m_setBackdrops[setName].isNull()
+            && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
             Manager::instance()->mediaCenterInterface()->saveMovieSetBackdrop(setName, m_setBackdrops[setName]);
             m_setBackdrops[setName] = QImage();
         }
     }
 
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(ui->sets->item(ui->sets->currentRow(), 0)->text()));
+    NotificationBox::instance()->showMessage(
+        tr("<b>\"%1\"</b> Saved").arg(ui->sets->item(ui->sets->currentRow(), 0)->text()));
 }
 
 /**
@@ -474,22 +500,22 @@ void SetsWidget::onAddMovieSet()
     do {
         adder++;
         setExists = false;
-        for (int i=0, n=ui->sets->rowCount() ; i<n ; ++i) {
-            if ((adder == 0 && ui->sets->item(i, 0)->text() == setName) ||
-                (adder > 0 && ui->sets->item(i, 0)->text() == QString("%1 %2").arg(setName).arg(adder))) {
+        for (int i = 0, n = ui->sets->rowCount(); i < n; ++i) {
+            if ((adder == 0 && ui->sets->item(i, 0)->text() == setName)
+                || (adder > 0 && ui->sets->item(i, 0)->text() == QString("%1 %2").arg(setName).arg(adder))) {
                 setExists = true;
                 break;
             }
         }
-    } while(setExists);
+    } while (setExists);
 
     if (adder > 0)
         setName.append(QString(" %1").arg(adder));
 
     m_addedSets << setName;
 
-    QList<Movie*> l;
-    QList<Movie*> el;
+    QList<Movie *> l;
+    QList<Movie *> el;
     m_sets.insert(setName, l);
     m_moviesToSave.insert(setName, el);
     m_setPosters.insert(setName, QImage());
@@ -532,7 +558,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     if (newName == origSetName)
         return;
 
-    for (int i=0, n=ui->sets->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = ui->sets->rowCount(); i < n; ++i) {
         if (i != item->row() && ui->sets->item(i, 0)->text() == newName) {
             ui->sets->removeRow(i);
             break;
@@ -540,7 +566,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     }
 
     if (!m_moviesToSave.contains(newName))
-        m_moviesToSave.insert(newName, QList<Movie*>());
+        m_moviesToSave.insert(newName, QList<Movie *>());
 
     foreach (Movie *movie, m_sets[origSetName]) {
         m_moviesToSave[newName].append(movie);
@@ -550,7 +576,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     m_moviesToSave[origSetName].clear();
 
     if (!m_sets.contains(newName))
-        m_sets[newName].append(QList<Movie*>());
+        m_sets[newName].append(QList<Movie *>());
 
     m_sets[newName].append(m_sets[origSetName]);
     m_sets.remove(origSetName);
@@ -575,12 +601,14 @@ void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
     if (elem.imageType == ImageType::MovieSetPoster) {
         if (m_setPosters.contains(setName))
             m_setPosters[setName] = QImage::fromData(elem.data);
-        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
+        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()
+            && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
             loadSet(setName);
     } else if (elem.imageType == ImageType::MovieSetBackdrop) {
         if (m_setBackdrops.contains(setName))
             m_setBackdrops[setName] = QImage::fromData(elem.data);
-        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
+        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()
+            && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
             loadSet(setName);
     }
     if (elem.movie)
@@ -592,6 +620,6 @@ void SetsWidget::onJumpToMovie(QTableWidgetItem *item)
     if (item->column() != 0)
         return;
 
-    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    Movie *movie = item->data(Qt::UserRole).value<Movie *>();
     emit sigJumpToMovie(movie);
 }

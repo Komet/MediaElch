@@ -38,18 +38,18 @@ public:
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:
-    void sigInfoLoadDone(Artist*);
-    void sigLoadingImages(Artist*, QList<int>);
-    void sigLoadDone(Artist*);
-    void sigImage(Artist*,int,QByteArray);
-    void sigLoadImagesStarted(Artist*);
-    void sigDownloadProgress(Artist*, int, int);
-    void sigSaved(Artist*);
+    void sigInfoLoadDone(Artist *);
+    void sigLoadingImages(Artist *, QList<int>);
+    void sigLoadDone(Artist *);
+    void sigImage(Artist *, int, QByteArray);
+    void sigLoadImagesStarted(Artist *);
+    void sigDownloadProgress(Artist *, int, int);
+    void sigSaved(Artist *);
 
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Artist* artist, QMap<int, QList<Poster> > posters);
+    void onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>> posters);
 
 private:
     Artist *m_artist;
