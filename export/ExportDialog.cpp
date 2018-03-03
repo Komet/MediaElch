@@ -152,7 +152,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     QString listMovieItem;
     QString listMovieBlock;
     QStringList movieList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_MOVIE \\}\\}(.*)\\{\\{ END_BLOCK_MOVIE \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_MOVIE \}\}(.*)\{\{ END_BLOCK_MOVIE \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -263,7 +263,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     QString listConcertItem;
     QString listConcertBlock;
     QStringList concertList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_CONCERT \\}\\}(.*)\\{\\{ END_BLOCK_CONCERT \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_CONCERT \}\}(.*)\{\{ END_BLOCK_CONCERT \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -341,7 +341,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     QString listTvShowItem;
     QString listTvShowBlock;
     QStringList tvShowList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_TVSHOW \\}\\}(.*)\\{\\{ END_BLOCK_TVSHOW \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_TVSHOW \}\}(.*)\{\{ END_BLOCK_TVSHOW \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -434,7 +434,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     QStringList seasonList;
     QRegExp rx;
     rx.setMinimal(true);
-    rx.setPattern("\\{\\{ BEGIN_BLOCK_SEASON \\}\\}(.*)\\{\\{ END_BLOCK_SEASON \\}\\}");
+    rx.setPattern(R"(\{\{ BEGIN_BLOCK_SEASON \}\}(.*)\{\{ END_BLOCK_SEASON \}\})");
 
     int pos = 0;
     while ((pos = rx.indexIn(m, pos)) != -1) {
@@ -458,7 +458,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         QString listEpisodeItem;
         QString listEpisodeBlock;
         QStringList episodeList;
-        rx.setPattern("\\{\\{ BEGIN_BLOCK_EPISODE \\}\\}(.*)\\{\\{ END_BLOCK_EPISODE \\}\\}");
+        rx.setPattern(R"(\{\{ BEGIN_BLOCK_EPISODE \}\}(.*)\{\{ END_BLOCK_EPISODE \}\})");
 
         int pos = 0;
         while ((pos = rx.indexIn(s, pos)) != -1) {
@@ -535,7 +535,7 @@ void ExportDialog::replaceMultiBlock(QString &m, QString blockName, QStringList 
 {
     QRegExp rx;
     rx.setMinimal(true);
-    rx.setPattern("\\{\\{ BEGIN_BLOCK_" + blockName + " \\}\\}(.*)\\{\\{ END_BLOCK_" + blockName + " \\}\\}");
+    rx.setPattern("\\{\\{ BEGIN_BLOCK_" + blockName + R"( \}\}(.*)\{\{ END_BLOCK_)" + blockName + " \\}\\}");
     if (rx.indexIn(m) != -1) {
         QString block = rx.cap(0);
         QString item = rx.cap(1).trimmed();
@@ -574,7 +574,7 @@ void ExportDialog::replaceImages(QString &m,
 {
     QString item;
     QSize size;
-    QRegExp rx("\\{\\{ IMAGE.(.*)\\[(\\d*),(\\d*)\\] \\}\\}");
+    QRegExp rx(R"(\{\{ IMAGE.(.*)\[(\d*),(\d*)\] \}\})");
     rx.setMinimal(true);
     int pos = 0;
     while (rx.indexIn(m, pos) != -1) {

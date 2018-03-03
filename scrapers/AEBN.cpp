@@ -180,7 +180,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<h1 itemprop=\"name\"  class=\"md-movieTitle\"  >(.*)</h1>");
+    rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
@@ -331,7 +331,7 @@ void AEBN::onActorLoadFinished()
 
 void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
 {
-    QRegExp rx("<img itemprop=\"image\" src=\"([^\"]*)\" alt=\"([^\"]*)\" class=\"star\" />");
+    QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
         foreach (Actor *a, movie->actorsPointer()) {

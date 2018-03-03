@@ -278,7 +278,7 @@ void TMDb::search(QString searchStr)
                        .arg(includeAdult)
                        .arg(encodedSearch));
         QList<QRegExp> rxYears;
-        rxYears << QRegExp("^(.*) \\((\\d{4})\\)$") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
+        rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
         foreach (QRegExp rxYear, rxYears) {
             rxYear.setMinimal(true);
             if (rxYear.exactMatch(searchStr)) {

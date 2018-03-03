@@ -35,7 +35,7 @@ QString NameFormatter::excludeWords(QString name)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (const QString &word, m_exWords) {
-        rx.setPattern("(^|[\\(\\s\\-\\.\\[]+)" + word + "([\\s\\-\\.\\)\\],]+|$)");
+        rx.setPattern(R"((^|[\(\s\-\.\[]+))" + word + R"(([\s\-\.\)\],]+|$))");
         int pos = rx.indexIn(name);
         while (pos >= 0) {
             name = name.remove(pos, rx.cap(0).length());
@@ -78,7 +78,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     name = excludeWords(name);
 
     // remove resulting empty brackets
-    QRegExp rx("\\([\\s\\-]*\\)");
+    QRegExp rx(R"(\([\s\-]*\))");
     int pos = rx.indexIn(name);
     while (rx.indexIn(name) >= 0) {
         name = name.remove(pos, rx.cap(0).length());

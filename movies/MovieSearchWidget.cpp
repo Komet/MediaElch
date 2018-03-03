@@ -9,7 +9,7 @@
 
 QDebug operator<<(QDebug lhs, const ScraperSearchResult &rhs)
 {
-    lhs << QString("(\"%1\", \"%2\", %3)").arg(rhs.id).arg(rhs.name).arg(rhs.released.toString("yyyy"));
+    lhs << QString(R"(("%1", "%2", %3))").arg(rhs.id).arg(rhs.name).arg(rhs.released.toString("yyyy"));
     return lhs;
 }
 

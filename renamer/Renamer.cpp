@@ -650,7 +650,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (dir.dirName() != newFolderName) {
                         int row = addResult(
                             fi.fileName(), dir.dirName() + "/" + newFolderName + "/" + fi.fileName(), OperationMove);
-                        ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"")
+                        ui->results->append(tr(R"(<b>Move File</b> "%1" to "%2")")
                                                 .arg(fi.fileName())
                                                 .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
                         if (!dryRun) {

@@ -200,7 +200,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
 
     // Country
     pos = 0;
-    rx.setPattern("<label>Produktion</label><br><a href=\"[^\"]*\">(.*)</a>");
+    rx.setPattern(R"(<label>Produktion</label><br><a href="[^"]*">(.*)</a>)");
     while (infos.contains(MovieScraperInfos::Countries) && (pos = rx.indexIn(html, pos)) != -1) {
         movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
         pos += rx.matchedLength();
@@ -229,7 +229,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
             pos = 0;
             QString contents = rx.cap(1);
             QStringList directors;
-            rx.setPattern("<a href=\"/persondtl.php/[^\"]*\">(.*)</a>");
+            rx.setPattern(R"(<a href="/persondtl.php/[^"]*">(.*)</a>)");
             while ((pos = rx.indexIn(contents, pos)) != -1) {
                 directors.append(rx.cap(1).trimmed());
                 pos += rx.matchedLength();
@@ -243,7 +243,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         if (rx.indexIn(html) != -1) {
             pos = 0;
             QString contents = rx.cap(1);
-            rx.setPattern("<a href=\"/titlesearch.php[^\"]*\">(.*)</a>");
+            rx.setPattern(R"(<a href="/titlesearch.php[^"]*">(.*)</a>)");
             while ((pos = rx.indexIn(contents, pos)) != -1) {
                 movie->addTag(rx.cap(1).trimmed());
                 pos += rx.matchedLength();
@@ -275,7 +275,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Genres
     if (infos.contains(MovieScraperInfos::Genres)) {
         pos = 0;
-        rx.setPattern("<a href=\"/genrelist\\.php/.*\">(.*)</a>");
+        rx.setPattern(R"(<a href="/genrelist\.php/.*">(.*)</a>)");
         while ((pos = rx.indexIn(html, pos)) != -1) {
             movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
@@ -283,7 +283,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     }
 
     // Tagline
-    rx.setPattern("<p class=\"long_name\" itemprop=\"alternativeHeadline\">(.*)</p>");
+    rx.setPattern(R"(<p class="long_name" itemprop="alternativeHeadline">(.*)</p>)");
     if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1)
         movie->setTagline(rx.cap(1).trimmed());
 

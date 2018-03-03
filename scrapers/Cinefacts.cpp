@@ -326,12 +326,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     // Year
-    rx.setPattern("<time datetime=\"[^\"]*\" itemprop=\"dateCreated\" >([0-9]{4})</time>");
+    rx.setPattern(R"(<time datetime="[^"]*" itemprop="dateCreated" >([0-9]{4})</time>)");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
-    rx.setPattern("<span itemprop=\"genre\" >[^>]*</span> \\| (.*) \\(<time datetime=");
+    rx.setPattern(R"(<span itemprop="genre" >[^>]*</span> \| (.*) \(<time datetime=)");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1)
         movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
 
@@ -347,12 +347,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
 
     // Runtime
-    rx.setPattern("<time itemprop=\"duration\" datetime=\"PT[^\"]*\" >([0-9]*)</time>");
+    rx.setPattern(R"(<time itemprop="duration" datetime="PT[^"]*" >([0-9]*)</time>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).trimmed().toInt());
 
     // Overview
-    rx.setPattern("<span class=\"thisSummary\" itemprop=\"description\">.*<strong>Inhalt: </strong>(.*)</span>");
+    rx.setPattern(R"(<span class="thisSummary" itemprop="description">.*<strong>Inhalt: </strong>(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());

@@ -85,7 +85,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     QTextDocument doc;
     QList<ScraperSearchResult> results;
     int offset = 0;
-    QRegExp rx("<a href=\"([^\"]*)\"[\\s\\n]*title=\"([^\"]*)\" Category \"List Page\" Label=\"Title\">");
+    QRegExp rx(R"lit(<a href="([^"]*)"[\s\n]*title="([^"]*)" Category "List Page" Label="Title">)lit");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         doc.setHtml(rx.cap(2).trimmed());
@@ -201,7 +201,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     }
 
     rx.setPattern(
-        "<a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\" Label=\"Series\"[\\s\\n]*class=\"\">[\\s\\n]*(.*)<");
+        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*(.*)<)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();

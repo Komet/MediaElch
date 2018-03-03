@@ -653,7 +653,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
     rx.setMinimal(true);
 
     if (shouldLoad(MusicScraperInfos::Name, infos, artist)) {
-        rx.setPattern("<h2 class=\"artist-name\" itemprop=\"name\">[\\n\\s]*(.*)[\\n\\s]*</h2>");
+        rx.setPattern(R"(<h2 class="artist-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         if (rx.indexIn(html) != -1)
             artist->setName(trim(rx.cap(1)));
     }
@@ -665,31 +665,31 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
     }
 
     if (shouldLoad(MusicScraperInfos::Formed, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Formed[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Formed[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1)
             artist->setFormed(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Born, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Born[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Born[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1)
             artist->setBorn(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Died, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Died[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Died[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1)
             artist->setDied(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Disbanded, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Disbanded[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Disbanded[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1)
             artist->setDisbanded(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Genres, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Genre[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Genre[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1) {
             QString genres = rx.cap(1);
             rx.setPattern("<a[^>]*>(.*)</a>");
@@ -702,7 +702,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
     }
 
     if (shouldLoad(MusicScraperInfos::Styles, infos, artist)) {
-        rx.setPattern("<h4>[\\n\\s]*Styles[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Styles[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1) {
             QString styles = rx.cap(1);
             rx.setPattern("<a [^>]*>(.*)</a>");
@@ -715,7 +715,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
     }
 
     if (shouldLoad(MusicScraperInfos::Moods, infos, artist)) {
-        rx.setPattern("<h3 class=\"headline\">Artists Moods</h3>[\\n\\s]*<ul>(.*)</ul>");
+        rx.setPattern(R"(<h3 class="headline">Artists Moods</h3>[\n\s]*<ul>(.*)</ul>)");
         if (rx.indexIn(html) != -1) {
             QString moods = rx.cap(1);
             rx.setPattern("<a [^>]*>(.*)</a>");
@@ -731,7 +731,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
 void UniversalMusicScraper::parseAndAssignAmBiography(QString html, Artist *artist, QList<int> infos)
 {
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {
-        QRegExp rx("<div class=\"text\" itemprop=\"reviewBody\">(.*)</div>");
+        QRegExp rx(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
         rx.setMinimal(true);
         if (rx.indexIn(html) != -1) {
             QString biography = rx.cap(1);
@@ -765,13 +765,13 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist *art
     rx.setMinimal(true);
 
     if (shouldLoad(MusicScraperInfos::Name, infos, artist)) {
-        rx.setPattern("<div class=\"body\">[\\n\\s]*<h1 class=\"hide_desktop\">(.*)</h1>");
+        rx.setPattern(R"(<div class="body">[\n\s]*<h1 class="hide_desktop">(.*)</h1>)");
         if (rx.indexIn(html) != -1)
             artist->setName(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {
-        rx.setPattern("<div [^>]* id=\"profile\">[\\n\\s]*(.*)[\\n\\s]*</div>");
+        rx.setPattern(R"(<div [^>]* id="profile">[\n\s]*(.*)[\n\s]*</div>)");
         if (rx.indexIn(html) != -1)
             artist->setBiography(trim(rx.cap(1)));
     }
@@ -780,17 +780,17 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist *art
         rx.setPattern("<table [^>]* id=\"artist\">(.*)</table>");
         if (rx.indexIn(html) != -1) {
             QString table = rx.cap(1);
-            rx.setPattern("<tr[^>]*data\\-object\\-id=\"[^\"]*\"[^>]*>(.*)</tr>");
+            rx.setPattern(R"(<tr[^>]*data\-object\-id="[^"]*"[^>]*>(.*)</tr>)");
             int pos = 0;
             while ((pos = rx.indexIn(table, pos)) != -1) {
-                QRegExp rx2("<td class=\"title\"[^>]*>.*<a href=\"[^\"]*\">(.*)</a>.*</td>");
+                QRegExp rx2(R"(<td class="title"[^>]*>.*<a href="[^"]*">(.*)</a>.*</td>)");
                 rx2.setMinimal(true);
 
                 DiscographyAlbum a;
                 if (rx2.indexIn(rx.cap(1)) != -1)
                     a.title = trim(rx2.cap(1));
 
-                rx2.setPattern("<td class=\"year has_header\" data\\-header=\"Year: \">(.*)</td>");
+                rx2.setPattern(R"(<td class="year has_header" data\-header="Year: ">(.*)</td>)");
                 if (rx2.indexIn(rx.cap(1)) != -1)
                     a.year = trim(rx2.cap(1));
 
@@ -927,19 +927,19 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
     rx.setMinimal(true);
 
     if (shouldLoad(MusicScraperInfos::Title, infos, album)) {
-        rx.setPattern("<h2 class=\"album-name\" itemprop=\"name\">[\\n\\s]*(.*)[\\n\\s]*</h2>");
+        rx.setPattern(R"(<h2 class="album-name" itemprop="name">[\n\s]*(.*)[\n\s]*</h2>)");
         if (rx.indexIn(html) != -1)
             album->setTitle(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Artist, infos, album)) {
-        rx.setPattern("<h3 class=\"album-artist\"[^>]*>[\\n\\s]*<span itemprop=\"name\">[\\n\\s]*<a [^>]*>(.*)</a>");
+        rx.setPattern(R"(<h3 class="album-artist"[^>]*>[\n\s]*<span itemprop="name">[\n\s]*<a [^>]*>(.*)</a>)");
         if (rx.indexIn(html) != -1)
             album->setArtist(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Review, infos, album)) {
-        rx.setPattern("<div class=\"text\" itemprop=\"reviewBody\">(.*)</div>");
+        rx.setPattern(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
         if (rx.indexIn(html) != -1) {
             QString review = rx.cap(1);
             review.remove(QRegExp("<[^>]*>"));
@@ -948,7 +948,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
     }
 
     if (shouldLoad(MusicScraperInfos::ReleaseDate, infos, album)) {
-        rx.setPattern("<h4>[\\n\\s]*Release Date[\\n\\s]*</h4>[\\n\\s]*<span>(.*)</span>");
+        rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>(.*)</span>)");
         if (rx.indexIn(html) != -1)
             album->setReleaseDate(trim(rx.cap(1)));
     }
@@ -961,13 +961,13 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
     }
 
     if (shouldLoad(MusicScraperInfos::Year, infos, album)) {
-        rx.setPattern("<h4>[\\n\\s]*Release Date[\\n\\s]*</h4>[\\n\\s]*<span>.*([0-9]{4}).*</span>");
+        rx.setPattern(R"(<h4>[\n\s]*Release Date[\n\s]*</h4>[\n\s]*<span>.*([0-9]{4}).*</span>)");
         if (rx.indexIn(html) != -1)
             album->setYear(rx.cap(1).toInt());
     }
 
     if (shouldLoad(MusicScraperInfos::Genres, infos, album)) {
-        rx.setPattern("<h4>[\\n\\s]*Genre[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Genre[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1) {
             QString genres = rx.cap(1);
             rx.setPattern("<a[^>]*>(.*)</a>");
@@ -980,7 +980,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
     }
 
     if (shouldLoad(MusicScraperInfos::Styles, infos, album)) {
-        rx.setPattern("<h4>[\\n\\s]*Styles[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
+        rx.setPattern(R"(<h4>[\n\s]*Styles[\n\s]*</h4>[\n\s]*<div>(.*)</div>)");
         if (rx.indexIn(html) != -1) {
             QString styles = rx.cap(1);
             rx.setPattern("<a [^>]*>([^<]*)</a>");
@@ -1019,16 +1019,16 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     }
 
     if (shouldLoad(MusicScraperInfos::Title, infos, album)) {
-        rx.setPattern("<span itemprop=\"name\">[\\n\\s]*(.*)[\\n\\s]*</span>");
+        rx.setPattern(R"(<span itemprop="name">[\n\s]*(.*)[\n\s]*</span>)");
         if (rx.indexIn(html) != -1)
             album->setTitle(trim(rx.cap(1)));
     }
 
     if (shouldLoad(MusicScraperInfos::Genres, infos, album)) {
-        rx.setPattern("<div class=\"content\" itemprop=\"genre\">[\\n\\s]*(.*)[\\n\\s]*</div>");
+        rx.setPattern(R"(<div class="content" itemprop="genre">[\n\s]*(.*)[\n\s]*</div>)");
         if (rx.indexIn(html) != -1) {
             QString genres = rx.cap(1);
-            rx.setPattern("<a href=\"[^\"]*\">([^<]*)</a>");
+            rx.setPattern(R"(<a href="[^"]*">([^<]*)</a>)");
             int pos = 0;
             while ((pos = rx.indexIn(genres, pos)) != -1) {
                 album->addGenre(trim(rx.cap(1)));
@@ -1038,10 +1038,10 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     }
 
     if (shouldLoad(MusicScraperInfos::Styles, infos, album)) {
-        rx.setPattern("<div class=\"head\">Style:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*(.*)[\\n\\s]*</div>");
+        rx.setPattern(R"(<div class="head">Style:</div>[\n\s]*<div class="content">[\n\s]*(.*)[\n\s]*</div>)");
         if (rx.indexIn(html) != -1) {
             QString styles = rx.cap(1);
-            rx.setPattern("<a href=\"[^\"]*\">(.*)</a>");
+            rx.setPattern(R"(<a href="[^"]*">(.*)</a>)");
             int pos = 0;
             while ((pos = rx.indexIn(styles, pos)) != -1) {
                 album->addStyle(trim(rx.cap(1)));

@@ -45,7 +45,7 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
     QDomDocument doc;
     doc.setContent(movie->nfoContent());
     if (movie->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("movie"));
     }
@@ -765,7 +765,7 @@ QByteArray XbmcXml::getConcertXml(Concert *concert)
     QDomDocument doc;
     doc.setContent(concert->nfoContent());
     if (concert->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("musicvideo"));
     }
@@ -1500,7 +1500,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     QDomDocument doc;
     doc.setContent(show->nfoContent());
     if (show->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("tvshow"));
     }
@@ -2385,7 +2385,7 @@ QByteArray XbmcXml::getArtistXml(Artist *artist)
     QDomDocument doc;
     doc.setContent(artist->nfoContent());
     if (artist->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("artist"));
     }
@@ -2485,7 +2485,7 @@ QByteArray XbmcXml::getAlbumXml(Album *album)
     QDomDocument doc;
     doc.setContent(album->nfoContent());
     if (album->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("album"));
     }

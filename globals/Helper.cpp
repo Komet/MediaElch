@@ -211,7 +211,7 @@ QString &Helper::sanitizeFileName(QString &fileName)
 QString Helper::stackedBaseName(const QString &fileName)
 {
     QString baseName = fileName;
-    QRegExp rx1a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\\.-]*[0-9]+)(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
+    QRegExp rx1a(R"((.*)([ _\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\.-]*[0-9]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
     QRegExp rx1b("(.*)([ _\\.-]+)$");
     QRegExp rx2a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _.-]*[a-d])(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
     QRegExp rx2b("(.*)([ _\\.-]+)$");

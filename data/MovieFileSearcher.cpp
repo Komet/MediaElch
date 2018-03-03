@@ -213,7 +213,7 @@ void MovieFileSearcher::reload(bool force)
                                                               << "*.ssa",
                             QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
-                        QStringList parts = subFileName.split(QRegExp("\\s+|\\-+|\\.+"));
+                        QStringList parts = subFileName.split(QRegExp(R"(\s+|\-+|\.+)"));
                         if (parts.isEmpty())
                             continue;
                         parts.takeLast();

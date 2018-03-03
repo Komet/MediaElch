@@ -141,7 +141,7 @@ void MakeMkvCon::parseMsg(QString line)
 
 void MakeMkvCon::parseScanDrive(QString line)
 {
-    QRegExp rx("DRV:(\\d+),\\d+,\\d+,\\d+,\"(.*)\",\"(.*)\",\".*\"");
+    QRegExp rx(R"lit(DRV:(\d+),\d+,\d+,\d+,"(.*)","(.*)",".*")lit");
     rx.setMinimal(true);
     if (rx.indexIn(line) != -1 && !rx.cap(2).isEmpty())
         m_drives.insert(rx.cap(1).toInt(), QString("%1 (%2)").arg(rx.cap(2)).arg(rx.cap(3)));
@@ -174,7 +174,7 @@ void MakeMkvCon::parseInfo(QString line)
 
 void MakeMkvCon::parseProgress(QString line)
 {
-    QRegExp rx("^PRGV:(\\d+),(\\d+),(\\d+)$");
+    QRegExp rx(R"(^PRGV:(\d+),(\d+),(\d+)$)");
     rx.setMinimal(true);
     if (rx.indexIn(line) != -1)
         emit sigProgress(rx.cap(2).toInt(), rx.cap(3).toInt());
