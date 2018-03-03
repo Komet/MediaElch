@@ -9,9 +9,7 @@ MusicTreeView::MusicTreeView(QWidget *parent) : QTreeView(parent)
 {
 }
 
-MusicTreeView::~MusicTreeView()
-{
-}
+MusicTreeView::~MusicTreeView() = default;
 
 void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {

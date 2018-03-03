@@ -18,9 +18,7 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
 /**
  * @brief MovieFilesOrganizer::~MovieFilesOrganizer
  */
-MovieFilesOrganizer::~MovieFilesOrganizer()
-{
-}
+MovieFilesOrganizer::~MovieFilesOrganizer() = default;
 
 /**
  * @brief moves all movies in given path to seperate directories

@@ -35,9 +35,7 @@ Concert::Concert(QStringList files, QObject *parent) : QObject(parent)
     setFiles(files);
 }
 
-Concert::~Concert()
-{
-}
+Concert::~Concert() = default;
 
 void Concert::setFiles(QStringList files)
 {

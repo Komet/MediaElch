@@ -8,9 +8,7 @@ NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) 
     setReply(reply);
 }
 
-NetworkReplyWatcher::~NetworkReplyWatcher()
-{
-}
+NetworkReplyWatcher::~NetworkReplyWatcher() = default;
 
 void NetworkReplyWatcher::setReply(QNetworkReply *reply)
 {

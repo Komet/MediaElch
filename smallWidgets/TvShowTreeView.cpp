@@ -14,9 +14,7 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) : QTreeView(parent)
     m_missingIcon = QPixmap(":/img/missing.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
-TvShowTreeView::~TvShowTreeView()
-{
-}
+TvShowTreeView::~TvShowTreeView() = default;
 
 void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {

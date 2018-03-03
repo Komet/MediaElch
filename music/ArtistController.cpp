@@ -27,9 +27,7 @@ ArtistController::ArtistController(Artist *parent) :
         Qt::UniqueConnection);
 }
 
-ArtistController::~ArtistController()
-{
-}
+ArtistController::~ArtistController() = default;
 
 bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {

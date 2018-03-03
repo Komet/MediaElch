@@ -1,5 +1,3 @@
 #include "DownloadManagerElement.h"
 
-DownloadManagerElement::DownloadManagerElement()
-{
-}
+DownloadManagerElement::DownloadManagerElement() = default;

@@ -75,9 +75,7 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     setup();
 }
 
-TMDbConcerts::~TMDbConcerts()
-{
-}
+TMDbConcerts::~TMDbConcerts() = default;
 /**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper

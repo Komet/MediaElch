@@ -83,9 +83,7 @@ Manager::Manager(QObject *parent) : QObject(parent)
 /**
  * @brief Manager::~Manager
  */
-Manager::~Manager()
-{
-}
+Manager::~Manager() = default;
 
 /**
  * @brief Returns an instance of the Manager

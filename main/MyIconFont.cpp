@@ -213,7 +213,7 @@ public:
     {
     }
 
-    ~MyIconFontIconPainterIconEngine() override {}
+    ~MyIconFontIconPainterIconEngine() override = default;
 
     MyIconFontIconPainterIconEngine *clone() const override
     {

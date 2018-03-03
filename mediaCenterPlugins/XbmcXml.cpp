@@ -25,9 +25,7 @@ XbmcXml::XbmcXml(QObject *parent)
 /**
  * @brief XbmcXml::~XbmcXml
  */
-XbmcXml::~XbmcXml()
-{
-}
+XbmcXml::~XbmcXml() = default;
 
 /**
  * @brief Checks if our MediaCenterPlugin supports a feature

@@ -7,9 +7,7 @@ MusicProxyModel::MusicProxyModel(QObject *parent) : QSortFilterProxyModel(parent
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 }
 
-MusicProxyModel::~MusicProxyModel()
-{
-}
+MusicProxyModel::~MusicProxyModel() = default;
 
 bool MusicProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {

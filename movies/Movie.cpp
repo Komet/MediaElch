@@ -42,9 +42,7 @@ Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
         setFiles(files);
 }
 
-Movie::~Movie()
-{
-}
+Movie::~Movie() = default;
 
 void Movie::setFiles(QStringList files)
 {

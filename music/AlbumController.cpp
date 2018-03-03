@@ -26,9 +26,7 @@ AlbumController::AlbumController(Album *parent) :
         Qt::UniqueConnection);
 }
 
-AlbumController::~AlbumController()
-{
-}
+AlbumController::~AlbumController() = default;
 
 bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {

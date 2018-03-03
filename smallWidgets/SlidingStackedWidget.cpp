@@ -21,9 +21,7 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
 }
 
 
-SlidingStackedWidget::~SlidingStackedWidget()
-{
-}
+SlidingStackedWidget::~SlidingStackedWidget() = default;
 
 void SlidingStackedWidget::setVerticalMode(bool vertical)
 {

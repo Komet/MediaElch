@@ -14,9 +14,7 @@ AdvancedSettings::AdvancedSettings(QObject *parent) : QObject(parent)
     loadSettings();
 }
 
-AdvancedSettings::~AdvancedSettings()
-{
-}
+AdvancedSettings::~AdvancedSettings() = default;
 
 void AdvancedSettings::reset()
 {

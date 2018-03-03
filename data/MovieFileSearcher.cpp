@@ -28,9 +28,7 @@ MovieFileSearcher::MovieFileSearcher(QObject *parent) :
 /**
  * @brief MovieFileSearcher::~MovieFileSearcher
  */
-MovieFileSearcher::~MovieFileSearcher()
-{
-}
+MovieFileSearcher::~MovieFileSearcher() = default;
 
 void MovieFileSearcher::reload(bool force)
 {

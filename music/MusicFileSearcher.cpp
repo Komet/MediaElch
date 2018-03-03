@@ -13,9 +13,7 @@ MusicFileSearcher::MusicFileSearcher(QObject *parent) :
 {
 }
 
-MusicFileSearcher::~MusicFileSearcher()
-{
-}
+MusicFileSearcher::~MusicFileSearcher() = default;
 
 void MusicFileSearcher::setMusicDirectories(QList<SettingsDir> directories)
 {

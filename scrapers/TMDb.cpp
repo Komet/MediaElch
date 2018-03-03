@@ -103,9 +103,7 @@ TMDb::TMDb(QObject *parent)
     setup();
 }
 
-TMDb::~TMDb()
-{
-}
+TMDb::~TMDb() = default;
 
 QString TMDb::apiKey()
 {
