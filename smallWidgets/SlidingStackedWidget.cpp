@@ -142,7 +142,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animGroup->start();
 }
 
-void SlidingStackedWidget::animationDoneSlot(void)
+void SlidingStackedWidget::animationDoneSlot()
 {
     setCurrentIndex(m_next);
     widget(m_now)->hide();

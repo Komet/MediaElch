@@ -29,7 +29,7 @@ public:
     };
 
     SlidingStackedWidget(QWidget *parent);
-    ~SlidingStackedWidget(void);
+    ~SlidingStackedWidget();
     bool isExpanded() const;
 
 public slots:
@@ -44,10 +44,10 @@ public slots:
     void collapse();
 
 signals:
-    void animationFinished(void);
+    void animationFinished();
 
 protected slots:
-    void animationDoneSlot(void);
+    void animationDoneSlot();
 
 protected:
     void slideInWgt(QWidget *widget, enum t_direction direction = AUTOMATIC);
