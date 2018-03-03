@@ -43,6 +43,7 @@ QVariant MusicModelItem::data(int column) const
             return m_album->hasChanged();
         if (m_artist)
             return m_artist->hasChanged();
+        break;
     case MusicRoles::NumOfAlbums:
         if (m_artist)
             return m_artist->albums().count();
