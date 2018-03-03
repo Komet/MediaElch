@@ -433,10 +433,10 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<int, QList<Poster>> 
 
     if (m_infosToLoad.contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = show->actorsPointer();
-        for (int i = 0, n = actors.size(); i < n; ++i) {
-            if (actors.at(i)->thumb.isEmpty())
+        for (const auto &actor : actors) {
+            if (actor->thumb.isEmpty())
                 continue;
-            addDownload(ImageType::Actor, QUrl(actors.at(i)->thumb), show, actors.at(i));
+            addDownload(ImageType::Actor, QUrl(actor->thumb), show, actor);
             downloadsSize++;
         }
     }

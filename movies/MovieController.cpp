@@ -284,13 +284,13 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> po
     QList<DownloadManagerElement> downloads;
     if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = m_movie->actorsPointer();
-        for (int i = 0, n = actors.size(); i < n; i++) {
-            if (actors.at(i)->thumb.isEmpty())
+        for (const auto &actor : actors) {
+            if (actor->thumb.isEmpty())
                 continue;
             DownloadManagerElement d;
             d.imageType = ImageType::Actor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
+            d.url = QUrl(actor->thumb);
+            d.actor = actor;
             d.movie = movie;
             downloads.append(d);
         }

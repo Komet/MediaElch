@@ -607,13 +607,13 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
 
     if (show->infosToLoad().contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = show->actorsPointer();
-        for (int i = 0, n = actors.size(); i < n; ++i) {
-            if (actors.at(i)->thumb.isEmpty())
+        for (const auto &actor : actors) {
+            if (actor->thumb.isEmpty())
                 continue;
             DownloadManagerElement d;
             d.imageType = ImageType::Actor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
+            d.url = QUrl(actor->thumb);
+            d.actor = actor;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
