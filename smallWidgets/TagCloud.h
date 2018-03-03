@@ -24,7 +24,7 @@ public:
     };
 
     explicit TagCloud(QWidget *parent = nullptr);
-    ~TagCloud();
+    ~TagCloud() override;
     void setTags(const QStringList &tags, const QStringList &activeTags);
     QStringList activeTags() const;
     void setText(const QString &text);
@@ -38,7 +38,7 @@ signals:
     void deactivated(QString);
 
 protected:
-    void mousePressEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event) override;
 
 private slots:
     void repositionTags();

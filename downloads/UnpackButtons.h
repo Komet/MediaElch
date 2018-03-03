@@ -13,7 +13,7 @@ class UnpackButtons : public QWidget
 
 public:
     explicit UnpackButtons(QWidget *parent = nullptr);
-    ~UnpackButtons();
+    ~UnpackButtons() override;
     void setBaseName(QString baseName);
     QString baseName() const;
     void setShowProgress(bool showProgress);

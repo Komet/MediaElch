@@ -29,7 +29,7 @@ public:
     };
 
     SlidingStackedWidget(QWidget *parent);
-    ~SlidingStackedWidget();
+    ~SlidingStackedWidget() override;
     bool isExpanded() const;
 
 public slots:

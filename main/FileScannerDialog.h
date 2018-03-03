@@ -26,14 +26,14 @@ public:
     };
 
     explicit FileScannerDialog(QWidget *parent = nullptr);
-    ~FileScannerDialog();
+    ~FileScannerDialog() override;
     void setForceReload(bool force);
     void setReloadType(ReloadType type);
     void setScanDir(QString dir);
 
 public slots:
-    int exec();
-    void reject();
+    int exec() override;
+    void reject() override;
 
 private slots:
     void onProgress(int current, int max);

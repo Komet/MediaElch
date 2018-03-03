@@ -44,10 +44,10 @@ signals:
     void backspaceInFront();
 
 protected:
-    void resizeEvent(QResizeEvent *);
-    void keyPressEvent(QKeyEvent *event);
-    void focusOutEvent(QFocusEvent *event);
-    void focusInEvent(QFocusEvent *event);
+    void resizeEvent(QResizeEvent *) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void focusOutEvent(QFocusEvent *event) override;
+    void focusInEvent(QFocusEvent *event) override;
 
 private slots:
     void myTextChanged(QString text);

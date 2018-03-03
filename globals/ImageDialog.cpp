@@ -697,7 +697,7 @@ void ImageDialog::updateSourceLink()
         ui->noResultsLabel->setText(tr("No images found"));
     } else {
         auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
-                      .value<ImageProviderInterface *>();
+                     .value<ImageProviderInterface *>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(

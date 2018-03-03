@@ -20,7 +20,7 @@ class MusicFilesWidget : public QWidget
 
 public:
     explicit MusicFilesWidget(QWidget *parent = nullptr);
-    ~MusicFilesWidget();
+    ~MusicFilesWidget() override;
     static MusicFilesWidget *instance();
     QList<Artist *> selectedArtists();
     QList<Album *> selectedAlbums();

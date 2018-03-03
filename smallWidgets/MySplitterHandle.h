@@ -12,10 +12,10 @@ public:
     explicit MySplitterHandle(Qt::Orientation orientation, QSplitter *parent = nullptr);
 
 protected:
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
 private:
-    QSize sizeHint() const;
+    QSize sizeHint() const override;
 };
 
 #endif // MYSPLITTERHANDLE_H

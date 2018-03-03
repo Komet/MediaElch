@@ -17,14 +17,14 @@ class MovieMultiScrapeDialog : public QDialog
 
 public:
     explicit MovieMultiScrapeDialog(QWidget *parent = nullptr);
-    ~MovieMultiScrapeDialog();
+    ~MovieMultiScrapeDialog() override;
     static MovieMultiScrapeDialog *instance(QWidget *parent = nullptr);
     void setMovies(QList<Movie *> movies);
 
 public slots:
-    int exec();
-    void reject();
-    void accept();
+    int exec() override;
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onStartScraping();

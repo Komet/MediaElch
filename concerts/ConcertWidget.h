@@ -25,7 +25,7 @@ class ConcertWidget : public QWidget
 
 public:
     explicit ConcertWidget(QWidget *parent = nullptr);
-    ~ConcertWidget();
+    ~ConcertWidget() override;
 
 public slots:
     void clear();
@@ -39,7 +39,7 @@ public slots:
     void updateConcertInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void setActionSearchEnabled(bool, MainWidgets);

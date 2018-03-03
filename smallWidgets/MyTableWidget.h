@@ -17,9 +17,9 @@ public:
     explicit MyTableWidget(QWidget *parent = nullptr);
 
 protected:
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-    void dragMoveEvent(QDragMoveEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
 signals:
     void sigDroppedImage(QUrl);
 };

@@ -26,7 +26,7 @@ class SettingsWindow : public QMainWindow
 
 public:
     explicit SettingsWindow(QWidget *parent = nullptr);
-    ~SettingsWindow();
+    ~SettingsWindow() override;
 
 public slots:
     void show();
@@ -35,7 +35,7 @@ signals:
     void sigSaved();
 
 protected:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void onAction();

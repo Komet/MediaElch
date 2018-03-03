@@ -32,7 +32,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
     static MainWindow *instance();
 
@@ -40,7 +40,7 @@ public slots:
     void setNewMarks();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void progressProgress(int current, int max, int id);

@@ -16,12 +16,12 @@ class ImagePreviewDialog : public QDialog
 
 public:
     explicit ImagePreviewDialog(QWidget *parent = nullptr);
-    ~ImagePreviewDialog();
+    ~ImagePreviewDialog() override;
     static ImagePreviewDialog *instance(QWidget *parent = nullptr);
     void setImage(QPixmap img);
 
 public slots:
-    int exec();
+    int exec() override;
 
 private:
     Ui::ImagePreviewDialog *ui;

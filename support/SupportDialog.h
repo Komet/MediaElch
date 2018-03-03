@@ -16,7 +16,7 @@ class SupportDialog : public QDialog
 
 public:
     explicit SupportDialog(QWidget *parent = nullptr);
-    ~SupportDialog();
+    ~SupportDialog() override;
 
 private slots:
     void onAlreadyDonated();

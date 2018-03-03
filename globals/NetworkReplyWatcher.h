@@ -10,7 +10,7 @@ class NetworkReplyWatcher : public QObject
     Q_OBJECT
 public:
     explicit NetworkReplyWatcher(QObject *parent = nullptr, QNetworkReply *reply = nullptr);
-    ~NetworkReplyWatcher();
+    ~NetworkReplyWatcher() override;
     void setReply(QNetworkReply *reply);
 
 public slots:

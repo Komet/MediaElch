@@ -20,10 +20,10 @@ class ExportDialog : public QDialog
 
 public:
     explicit ExportDialog(QWidget *parent = nullptr);
-    ~ExportDialog();
+    ~ExportDialog() override;
 
 public slots:
-    int exec();
+    int exec() override;
 
 private slots:
     void onBtnExport();

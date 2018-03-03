@@ -14,7 +14,7 @@ signals:
     void resized();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 };
 
 #endif // MYWIDGET_H

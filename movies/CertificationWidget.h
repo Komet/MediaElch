@@ -22,7 +22,7 @@ class CertificationWidget : public QWidget
 
 public:
     explicit CertificationWidget(QWidget *parent = nullptr);
-    ~CertificationWidget();
+    ~CertificationWidget() override;
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);

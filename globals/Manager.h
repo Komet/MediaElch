@@ -37,7 +37,7 @@ class Manager : public QObject
     Q_OBJECT
 public:
     explicit Manager(QObject *parent = nullptr);
-    ~Manager();
+    ~Manager() override;
 
     static Manager *instance();
     QList<MediaCenterInterface *> mediaCenters();

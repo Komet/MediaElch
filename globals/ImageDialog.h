@@ -34,7 +34,7 @@ class ImageDialog : public QDialog
 
 public:
     explicit ImageDialog(QWidget *parent = nullptr);
-    ~ImageDialog();
+    ~ImageDialog() override;
     static ImageDialog *instance(QWidget *parent = nullptr);
     void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
@@ -53,13 +53,13 @@ public:
     void cancelDownloads();
 
 public slots:
-    void accept();
-    void reject();
-    int exec();
+    void accept() override;
+    void reject() override;
+    int exec() override;
     int exec(int type);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void downloadFinished();

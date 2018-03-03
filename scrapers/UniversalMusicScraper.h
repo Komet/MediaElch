@@ -15,20 +15,20 @@ class UniversalMusicScraper : public MusicScraperInterface
 public:
     explicit UniversalMusicScraper(QObject *parent = nullptr);
 
-    QString name();
-    QString identifier();
-    void searchAlbum(QString artistName, QString searchStr);
-    void searchArtist(QString searchStr);
-    void loadData(QString mbId, Artist *artist, QList<int> infos);
-    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album *album, QList<int> infos);
-    bool hasSettings();
-    void loadSettings(QSettings &settings);
-    void saveSettings(QSettings &settings);
-    QList<int> scraperSupports();
-    QWidget *settingsWidget();
+    QString name() override;
+    QString identifier() override;
+    void searchAlbum(QString artistName, QString searchStr) override;
+    void searchArtist(QString searchStr) override;
+    void loadData(QString mbId, Artist *artist, QList<int> infos) override;
+    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album *album, QList<int> infos) override;
+    bool hasSettings() override;
+    void loadSettings(QSettings &settings) override;
+    void saveSettings(QSettings &settings) override;
+    QList<int> scraperSupports() override;
+    QWidget *settingsWidget() override;
 
 signals:
-    void sigSearchDone(QList<ScraperSearchResult>);
+    void sigSearchDone(QList<ScraperSearchResult>) override;
 
 private slots:
     void onSearchArtistFinished();

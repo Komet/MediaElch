@@ -19,14 +19,14 @@ class TvShowSearch : public QDialog
 
 public:
     explicit TvShowSearch(QWidget *parent = nullptr);
-    ~TvShowSearch();
+    ~TvShowSearch() override;
     QString scraperId();
     QList<int> infosToLoad();
     void setSearchType(TvShowType type);
     TvShowUpdateType updateType();
 
 public slots:
-    int exec();
+    int exec() override;
     int exec(QString searchString, QString id);
     static TvShowSearch *instance(QWidget *parent = nullptr);
 

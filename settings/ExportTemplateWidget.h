@@ -15,7 +15,7 @@ class ExportTemplateWidget : public QWidget
 
 public:
     explicit ExportTemplateWidget(QWidget *parent = nullptr);
-    ~ExportTemplateWidget();
+    ~ExportTemplateWidget() override;
     void setExportTemplate(ExportTemplate *exportTemplate);
 
 private slots:

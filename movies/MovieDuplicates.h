@@ -15,7 +15,7 @@ class MovieDuplicates : public QWidget
 
 public:
     explicit MovieDuplicates(QWidget *parent = nullptr);
-    ~MovieDuplicates();
+    ~MovieDuplicates() override;
 
 private slots:
     void detectDuplicates();

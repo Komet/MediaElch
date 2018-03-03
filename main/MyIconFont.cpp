@@ -14,12 +14,12 @@
 class StarIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -87,12 +87,12 @@ public:
 class DuplicateIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -151,12 +151,12 @@ public:
 class MyIconFontCharIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -213,21 +213,21 @@ public:
     {
     }
 
-    virtual ~MyIconFontIconPainterIconEngine() {}
+    ~MyIconFontIconPainterIconEngine() override {}
 
-    MyIconFontIconPainterIconEngine *clone() const
+    MyIconFontIconPainterIconEngine *clone() const override
     {
         return new MyIconFontIconPainterIconEngine(awesomeRef_, iconPainterRef_, options_);
     }
 
-    virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
         iconPainterRef_->paint(awesomeRef_, painter, rect, mode, state, options_);
     }
 
-    virtual QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         QPixmap pm(size);
         pm.fill(Qt::transparent); // we need transparency

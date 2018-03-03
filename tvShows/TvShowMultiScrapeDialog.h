@@ -20,7 +20,7 @@ class TvShowMultiScrapeDialog : public QDialog
 
 public:
     explicit TvShowMultiScrapeDialog(QWidget *parent = nullptr);
-    ~TvShowMultiScrapeDialog();
+    ~TvShowMultiScrapeDialog() override;
 
     static TvShowMultiScrapeDialog *instance(QWidget *parent = nullptr);
 
@@ -31,9 +31,9 @@ public:
     void setEpisodes(const QList<TvShowEpisode *> &episodes);
 
 public slots:
-    int exec();
-    void reject();
-    void accept();
+    int exec() override;
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onChkToggled();

@@ -19,7 +19,7 @@ class TvShowWidget : public QWidget
 
 public:
     explicit TvShowWidget(QWidget *parent = nullptr);
-    ~TvShowWidget();
+    ~TvShowWidget() override;
     void updateInfo();
 
 public slots:

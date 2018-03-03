@@ -14,15 +14,15 @@ class MovieMaze : public TrailerProvider
     Q_OBJECT
 public:
     explicit MovieMaze(QObject *parent = nullptr);
-    QString name();
+    QString name() override;
 
 public slots:
-    void searchMovie(QString searchStr);
-    void loadMovieTrailers(QString id);
+    void searchMovie(QString searchStr) override;
+    void loadMovieTrailers(QString id) override;
 
 signals:
-    void sigSearchDone(QList<ScraperSearchResult>);
-    void sigLoadDone(QList<TrailerResult>);
+    void sigSearchDone(QList<ScraperSearchResult>) override;
+    void sigLoadDone(QList<TrailerResult>) override;
 
 private slots:
     void onSearchFinished();
