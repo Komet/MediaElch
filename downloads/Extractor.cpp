@@ -51,7 +51,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     parameters << file;
     // parameters << fi.path();
 
-    QProcess *process = new QProcess(this);
+    auto process = new QProcess(this);
     m_processes.append(process);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
@@ -65,7 +65,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 
 void Extractor::onReadyRead()
 {
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     QString msg = process->readAllStandardOutput();
     QRegExp rx("([0-9]*)%");
     if (rx.indexIn(msg) != -1)
@@ -74,7 +74,7 @@ void Extractor::onReadyRead()
 
 void Extractor::onReadyReadError()
 {
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     QString msg = process->readAllStandardError();
     qDebug() << "ERROR" << msg;
     process->setProperty("hasError", true);
@@ -86,7 +86,7 @@ void Extractor::onFinished(int exitCode, QProcess::ExitStatus status)
 {
     Q_UNUSED(exitCode);
     Q_UNUSED(status);
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     m_processes.removeAll(process);
     process->deleteLater();
     emit sigFinished(process->property("baseName").toString(), !process->property("hasError").toBool());

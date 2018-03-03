@@ -802,7 +802,7 @@ void TvShowWidgetTvShow::onRemoveTag(QString tag)
  */
 void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -843,7 +843,7 @@ void TvShowWidgetTvShow::onRemoveActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_show->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -865,7 +865,7 @@ void TvShowWidgetTvShow::onActorChanged()
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
@@ -908,7 +908,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();
@@ -1088,7 +1088,7 @@ void TvShowWidgetTvShow::onChooseImage()
     if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1121,7 +1121,7 @@ void TvShowWidgetTvShow::onDeleteImage()
     if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1134,7 +1134,7 @@ void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_show)
         return;
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

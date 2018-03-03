@@ -281,7 +281,7 @@ void SettingsWindow::onCancel()
 
 void SettingsWindow::onAction()
 {
-    QAction *triggeredAction = static_cast<QAction *>(sender());
+    auto triggeredAction = static_cast<QAction *>(sender());
     foreach (QAction *action, ui->toolBar->actions())
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     triggeredAction->setIcon(
@@ -511,7 +511,7 @@ void SettingsWindow::saveSettings()
     // Custom movie scraper
     QMap<int, QString> customMovieScraper;
     for (int row = 0, n = ui->customScraperTable->rowCount(); row < n; ++row) {
-        QComboBox *box = static_cast<QComboBox *>(ui->customScraperTable->cellWidget(row, 1));
+        auto box = static_cast<QComboBox *>(ui->customScraperTable->cellWidget(row, 1));
         int info = box->itemData(0, Qt::UserRole + 1).toInt();
         QString scraper = box->itemData(box->currentIndex()).toString();
         customMovieScraper.insert(info, scraper);
@@ -521,7 +521,7 @@ void SettingsWindow::saveSettings()
     // tv scraper
     QMap<int, QString> tvScraper;
     for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
-        QComboBox *box = static_cast<QComboBox *>(ui->tvScraperTable->cellWidget(row, 1));
+        auto box = static_cast<QComboBox *>(ui->tvScraperTable->cellWidget(row, 1));
         int info = box->itemData(0, Qt::UserRole + 1).toInt();
         QString scraper = box->itemData(box->currentIndex()).toString();
         tvScraper.insert(info, scraper);
@@ -557,22 +557,22 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
         if (!exists) {
             int row = ui->dirs->rowCount();
             ui->dirs->insertRow(row);
-            QTableWidgetItem *item = new QTableWidgetItem(dir);
+            auto item = new QTableWidgetItem(dir);
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
-            QTableWidgetItem *itemCheck = new QTableWidgetItem();
+            auto itemCheck = new QTableWidgetItem();
             if (separateFolders)
                 itemCheck->setCheckState(Qt::Checked);
             else
                 itemCheck->setCheckState(Qt::Unchecked);
 
-            QTableWidgetItem *itemCheckReload = new QTableWidgetItem();
+            auto itemCheckReload = new QTableWidgetItem();
             if (autoReload)
                 itemCheckReload->setCheckState(Qt::Checked);
             else
                 itemCheckReload->setCheckState(Qt::Unchecked);
 
-            QComboBox *box = new QComboBox();
+            auto box = new QComboBox();
             box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
             box->addItems(
@@ -609,7 +609,7 @@ void SettingsWindow::removeDir()
 
 void SettingsWindow::organize()
 {
-    MovieFilesOrganizer *organizer = new MovieFilesOrganizer(this);
+    auto organizer = new MovieFilesOrganizer(this);
 
     int row = ui->dirs->currentRow();
     if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
@@ -711,7 +711,7 @@ void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate *> templates)
     ui->exportTemplates->setRowCount(0);
 
     foreach (ExportTemplate *exportTemplate, templates) {
-        ExportTemplateWidget *widget = new ExportTemplateWidget(ui->exportTemplates);
+        auto widget = new ExportTemplateWidget(ui->exportTemplates);
         widget->setExportTemplate(exportTemplate);
 
         int row = ui->exportTemplates->rowCount();
@@ -745,7 +745,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
 {
     QString currentScraper = m_settings->customMovieScraper().value(info, "notset");
 
-    QComboBox *box = new QComboBox();
+    auto box = new QComboBox();
     int index = 0;
     if (info != MovieScraperInfos::Title) {
         box->addItem(tr("Don't use"), "");
@@ -818,7 +818,7 @@ QComboBox *SettingsWindow::comboForTvScraperInfo(const int &info)
 {
     QString currentScraper = m_settings->customTvScraper().value(info, "notset");
 
-    QComboBox *box = new QComboBox();
+    auto box = new QComboBox();
     box->addItem("The TV DB", "tvdb");
     box->setItemData(0, info, Qt::UserRole + 1);
 
@@ -930,10 +930,10 @@ void SettingsWindow::onPluginListUpdated(QList<PluginManager::Plugin> plugins)
         } else {
             page = 2;
         }
-        PluginsWidget *widget = new PluginsWidget(ui->pluginList);
+        auto widget = new PluginsWidget(ui->pluginList);
         widget->setPlugin(plugins[i]);
 
-        QListWidgetItem *item = new QListWidgetItem();
+        auto item = new QListWidgetItem();
         item->setSizeHint(widget->sizeHint());
         item->setData(Qt::UserRole, page);
         item->setData(Qt::UserRole + 1, i);

@@ -540,7 +540,7 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
     if (!m_executed)
         return;
 
-    TvShowEpisode *episode = static_cast<TvShowEpisode *>(QObject::sender());
+    auto episode = static_cast<TvShowEpisode *>(QObject::sender());
     if (!episode)
         return;
 

@@ -2612,7 +2612,7 @@ void XbmcXml::loadBooklets(Album *album)
                                         << "*.Jpeg"
                                         << "*.JPeg";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
-        Image *img = new Image;
+        auto img = new Image;
         img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
         album->bookletModel()->addImage(img);
     }

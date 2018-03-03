@@ -79,7 +79,7 @@ QVariant MusicModelItem::data(int column) const
 
 MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setArtist(artist);
     artist->setModelItem(item);
     m_childItems.append(item);
@@ -88,7 +88,7 @@ MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 
 MusicModelItem *MusicModelItem::appendChild(Album *album)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setAlbum(album);
     album->setModelItem(item);
     m_childItems.append(item);

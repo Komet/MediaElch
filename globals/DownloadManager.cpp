@@ -21,7 +21,7 @@ DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloadi
  */
 QNetworkAccessManager *DownloadManager::qnam()
 {
-    static QNetworkAccessManager *qnam = new QNetworkAccessManager();
+    static auto qnam = new QNetworkAccessManager();
     return qnam;
 }
 
@@ -222,7 +222,7 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
 
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         reply->deleteLater();

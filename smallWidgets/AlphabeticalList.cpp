@@ -102,7 +102,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
     }
 
     foreach (const QString &alpha, alphas) {
-        QToolButton *button = new QToolButton(this);
+        auto button = new QToolButton(this);
         button->setText(alpha);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
         m_layout->addWidget(button);
@@ -112,7 +112,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 
 void AlphabeticalList::onAlphaClicked()
 {
-    QToolButton *button = static_cast<QToolButton *>(sender());
+    auto button = static_cast<QToolButton *>(sender());
     if (!button)
         return;
     emit sigAlphaClicked(button->text());

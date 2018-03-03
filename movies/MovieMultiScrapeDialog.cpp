@@ -269,7 +269,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
     }
 
     if (m_scraperInterface->identifier() == "custom-movie") {
-        ScraperInterface *scraper = static_cast<ScraperInterface *>(QObject::sender());
+        auto scraper = static_cast<ScraperInterface *>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QList<ScraperInterface *> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);

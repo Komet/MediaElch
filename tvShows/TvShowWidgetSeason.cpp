@@ -211,7 +211,7 @@ void TvShowWidgetSeason::onChooseImage()
     if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -250,7 +250,7 @@ void TvShowWidgetSeason::onDeleteImage()
     if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -262,7 +262,7 @@ void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_show)
         return;
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

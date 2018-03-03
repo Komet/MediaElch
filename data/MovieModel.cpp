@@ -16,7 +16,7 @@ MovieModel::MovieModel(QObject *parent) : QAbstractItemModel(parent)
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
 #else
-    MyIconFont *font = new MyIconFont(this);
+    auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
     m_newIcon = font->icon("star", QColor(58, 135, 173), QColor(255, 255, 255), "", 0, 1.0);

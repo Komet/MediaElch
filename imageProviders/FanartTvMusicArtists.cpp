@@ -81,7 +81,7 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 void FanartTvMusicArtists::onSearchArtistFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -132,7 +132,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
 
 void FanartTvMusicArtists::onLoadConcertFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;

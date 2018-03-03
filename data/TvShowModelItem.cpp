@@ -159,7 +159,7 @@ QVariant TvShowModelItem::data(int column) const
  */
 TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setTvShow(show);
     show->setModelItem(item);
     m_childItems.append(item);
@@ -173,7 +173,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
  */
 TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setTvShowEpisode(episode);
     episode->setModelItem(item);
     m_childItems.append(item);
@@ -193,7 +193,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
  */
 TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, TvShow *show)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setSeason(season);
     item->setSeasonNumber(seasonNumber);
     item->setTvShow(show);

@@ -305,7 +305,7 @@ void MusicWidgetArtist::onItemChanged(QString text)
     if (!m_artist)
         return;
 
-    QLineEdit *lineEdit = static_cast<QLineEdit *>(sender());
+    auto lineEdit = static_cast<QLineEdit *>(sender());
     if (!lineEdit)
         return;
 
@@ -383,7 +383,7 @@ void MusicWidgetArtist::onChooseImage()
     if (m_artist == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -410,7 +410,7 @@ void MusicWidgetArtist::onDeleteImage()
     if (m_artist == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -572,7 +572,7 @@ void MusicWidgetArtist::onRemoveAlbum()
     if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected())
         return;
 
-    DiscographyAlbum *album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
+    auto album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
     if (!album)
         return;
     m_artist->removeDiscographyAlbum(album);
@@ -584,7 +584,7 @@ void MusicWidgetArtist::onRemoveAlbum()
 
 void MusicWidgetArtist::onAlbumEdited(QTableWidgetItem *item)
 {
-    DiscographyAlbum *album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
+    auto album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
     if (item->column() == 0)
         album->title = item->text();
     else if (item->column() == 1)

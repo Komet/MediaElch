@@ -130,7 +130,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animNext->setStartValue(QPoint(-offsetX + pNext.x(), offsetY + pNext.y()));
     animNext->setEndValue(QPoint(pNext.x(), pNext.y()));
 
-    QParallelAnimationGroup *animGroup = new QParallelAnimationGroup;
+    auto animGroup = new QParallelAnimationGroup;
 
     animGroup->addAnimation(animNow);
     animGroup->addAnimation(animNext);
@@ -168,7 +168,7 @@ void SlidingStackedWidget::expandToOne()
         removeWidget(widget);
 
     QWidget *pWidget = new QWidget();
-    QHBoxLayout *layout = new QHBoxLayout(pWidget);
+    auto layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);
 

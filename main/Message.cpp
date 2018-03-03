@@ -22,7 +22,7 @@ Message::Message(QWidget *parent) : QWidget(parent), ui(new Ui::Message)
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        auto effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(4);
         effect->setBlurRadius(8);

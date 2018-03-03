@@ -128,7 +128,7 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_album, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::AlbumBooklet) {
-        Image *image = new Image;
+        auto image = new Image;
         image->setRawData(elem.data);
         m_album->bookletModel()->addImage(image);
     } else if (!elem.data.isEmpty()) {

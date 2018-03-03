@@ -99,7 +99,7 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
     ui->searchString->setFocus();
 
     foreach (const ScraperSearchResult &result, results) {
-        MyLabel *label = new MyLabel(ui->results);
+        auto label = new MyLabel(ui->results);
         QString name = result.name;
         if (result.released.isValid())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
@@ -107,7 +107,7 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
         label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");
         label->setMargin(8);
 
-        QTableWidgetItem *item = new QTableWidgetItem;
+        auto item = new QTableWidgetItem;
         item->setData(Qt::UserRole, result.id);
         item->setData(Qt::UserRole + 1, result.id2);
         int row = ui->results->rowCount();

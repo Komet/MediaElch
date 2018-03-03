@@ -39,7 +39,7 @@ AEBN::AEBN(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -104,7 +104,7 @@ void AEBN::search(QString searchStr)
 
 void AEBN::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -157,7 +157,7 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
 
 void AEBN::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
 
@@ -314,7 +314,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
 
 void AEBN::onActorLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QStringList actorIds = reply->property("actorIds").toStringList();
     QString actorId = reply->property("actorId").toString();

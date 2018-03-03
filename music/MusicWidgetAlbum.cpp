@@ -322,7 +322,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
     if (!m_album)
         return;
 
-    QLineEdit *lineEdit = static_cast<QLineEdit *>(sender());
+    auto lineEdit = static_cast<QLineEdit *>(sender());
     if (!lineEdit)
         return;
 
@@ -415,7 +415,7 @@ void MusicWidgetAlbum::onChooseImage()
     if (m_album == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -442,7 +442,7 @@ void MusicWidgetAlbum::onDeleteImage()
     if (m_album == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -525,7 +525,7 @@ void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
 
 void MusicWidgetAlbum::onBookletModelChanged()
 {
-    ImageModel *model = static_cast<ImageModel *>(sender());
+    auto model = static_cast<ImageModel *>(sender());
     if (!model)
         return;
     if (m_album != static_cast<Album *>(model->parent()))

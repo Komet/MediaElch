@@ -237,7 +237,7 @@ void XbmcSync::startSync()
 
 void XbmcSync::onMovieListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -265,7 +265,7 @@ void XbmcSync::onMovieListFinished()
 
 void XbmcSync::onConcertListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -293,7 +293,7 @@ void XbmcSync::onConcertListFinished()
 
 void XbmcSync::onTvShowListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -321,7 +321,7 @@ void XbmcSync::onTvShowListFinished()
 
 void XbmcSync::onEpisodeListFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
@@ -498,7 +498,7 @@ void XbmcSync::removeItems()
 
 void XbmcSync::onRemoveFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (reply)
         reply->deleteLater();
 

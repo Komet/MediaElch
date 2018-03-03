@@ -270,7 +270,7 @@ void TvShowFilesWidget::loadStreamDetails()
         episodes.at(0)->loadStreamDetailsFromFile();
         episodes.at(0)->setChanged(true);
     } else {
-        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        auto loader = new LoadingStreamDetails(this);
         loader->loadTvShowEpisodes(episodes);
         delete loader;
     }

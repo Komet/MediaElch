@@ -37,7 +37,7 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     if (Helper::instance()->devicePixelRatio(m_list) == 1) {
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        auto effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);
         effect->setColor(QColor(0, 0, 0, 100));
@@ -218,7 +218,7 @@ void FilterWidget::addFilterFromItem(QListWidgetItem *item)
         return;
     }
     m_list->hide();
-    Filter *filter = item->data(Qt::UserRole).value<Filter *>();
+    auto filter = item->data(Qt::UserRole).value<Filter *>();
     if (m_activeFilters.contains(filter))
         return;
     m_activeFilters.append(filter);

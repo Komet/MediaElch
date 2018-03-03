@@ -645,7 +645,7 @@ void MovieWidget::updateMovieInfo()
         item1->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
         ui->subtitles->setItem(row, 1, item1);
 
-        QTableWidgetItem *item2 = new QTableWidgetItem;
+        auto item2 = new QTableWidgetItem;
         item2->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item2->setCheckState(subtitle->forced() ? Qt::Checked : Qt::Unchecked);
         ui->subtitles->setItem(row, 2, item2);
@@ -668,7 +668,7 @@ void MovieWidget::updateMovieInfo()
     ui->tagCloud->setTags(tags, m_movie->tags());
     ui->countryCloud->setTags(countries, m_movie->countries());
     ui->studioCloud->setTags(m_movie->studios(), m_movie->studios());
-    QCompleter *completer = new QCompleter(studios, this);
+    auto completer = new QCompleter(studios, this);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->studioCloud->setCompleter(completer);
 
@@ -781,7 +781,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         edit1->setPlaceholderText(tr("Language"));
         edit2->setPlaceholderText(tr("Codec"));
         edit2->setPlaceholderText(tr("Channels"));
-        QHBoxLayout *layout = new QHBoxLayout();
+        auto layout = new QHBoxLayout();
         layout->addWidget(edit1);
         layout->addWidget(edit2);
         layout->addWidget(edit3);
@@ -810,7 +810,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
-            QHBoxLayout *layout = new QHBoxLayout();
+            auto layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
@@ -989,7 +989,7 @@ void MovieWidget::removeActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_movie->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1003,7 +1003,7 @@ void MovieWidget::removeActor()
  */
 void MovieWidget::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -1014,7 +1014,7 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
 
 void MovieWidget::onSubtitleEdited(QTableWidgetItem *item)
 {
-    Subtitle *subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle *>();
+    auto subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle *>();
     if (!subtitle)
         return;
     if (item->column() == 1)
@@ -1083,7 +1083,7 @@ void MovieWidget::onActorChanged()
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
@@ -1125,7 +1125,7 @@ void MovieWidget::onChangeActorImage()
     if (!fileName.isNull()) {
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly)) {
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = file.readAll();
             actor->imageHasChanged = true;
             onActorChanged();
@@ -1502,7 +1502,7 @@ void MovieWidget::onChooseImage()
     if (m_movie == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1540,7 +1540,7 @@ void MovieWidget::onDeleteImage()
     if (m_movie == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

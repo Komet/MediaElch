@@ -75,7 +75,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
 MusicModelItem *MusicModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        MusicModelItem *item = static_cast<MusicModelItem *>(index.internalPointer());
+        auto item = static_cast<MusicModelItem *>(index.internalPointer());
         if (item)
             return item;
     }

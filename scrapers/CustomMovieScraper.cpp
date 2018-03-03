@@ -57,7 +57,7 @@ void CustomMovieScraper::search(QString searchStr)
 
 void CustomMovieScraper::onTitleSearchDone(QList<ScraperSearchResult> results)
 {
-    ScraperInterface *scraper = static_cast<ScraperInterface *>(QObject::sender());
+    auto scraper = static_cast<ScraperInterface *>(QObject::sender());
     if (!scraper)
         return;
 
@@ -170,7 +170,7 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
 
 void CustomMovieScraper::onLoadTmdbFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("movie").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     QMap<ScraperInterface *, QString> ids = reply->property("ids").value<Storage *>()->ids();

@@ -54,7 +54,7 @@ FanartTv::FanartTv(QObject *parent)
     m_discBox->addItem(tr("BluRay"), "BluRay");
     m_discBox->addItem(tr("DVD"), "DVD");
     m_personalApiKeyEdit = new QLineEdit(m_widget);
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->addWidget(new QLabel(tr("Preferred Disc Type")), 1, 0);
@@ -341,7 +341,7 @@ void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concer
  */
 void FanartTv::onLoadMovieDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -357,7 +357,7 @@ void FanartTv::onLoadMovieDataFinished()
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
     QMap<int, QList<Poster>> posters;
@@ -375,7 +375,7 @@ void FanartTv::onLoadAllMovieDataFinished()
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     reply->deleteLater();
     QMap<int, QList<Poster>> posters;
@@ -527,7 +527,7 @@ void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -543,7 +543,7 @@ void FanartTv::onLoadTvShowDataFinished()
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     reply->deleteLater();
     QMap<int, QList<Poster>> posters;

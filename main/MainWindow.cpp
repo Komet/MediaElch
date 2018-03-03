@@ -693,7 +693,7 @@ void MainWindow::updateTvShows()
 void MainWindow::onAddPlugin(PluginInterface *plugin)
 {
     int index = ui->stackedWidget->addWidget(plugin->widget());
-    QToolButton *button = new QToolButton(this);
+    auto button = new QToolButton(this);
     button->setIconSize(QSize(28, 28));
     button->setIcon(plugin->menuIcon());
     button->setStyleSheet("QToolButton { border: 0; margin-left: 10px; margin-right: 10px;}");

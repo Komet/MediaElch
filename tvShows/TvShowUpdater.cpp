@@ -71,7 +71,7 @@ void TvShowUpdater::onLoadFinished()
     if (value + 1 == maxValue)
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
 
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     if (!show)

@@ -184,7 +184,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        TvShowModelItem *item = static_cast<TvShowModelItem *>(index.internalPointer());
+        auto item = static_cast<TvShowModelItem *>(index.internalPointer());
         if (item)
             return item;
     }

@@ -205,7 +205,7 @@ void DownloadsWidget::updatePackagesList(QMap<QString, Package> packages)
         ui->tablePackages->setItem(row, 1, item1);
         ui->tablePackages->setItem(row, 2, new MyTableWidgetItem(it.value().size, true));
 
-        UnpackButtons *buttons = new UnpackButtons(this);
+        auto buttons = new UnpackButtons(this);
         buttons->setBaseName(it.value().baseName);
         connect(buttons, SIGNAL(sigUnpack(QString, QString)), this, SLOT(onUnpack(QString, QString)));
         connect(buttons, SIGNAL(sigStop(QString)), m_extractor, SLOT(stopExtraction(QString)));
@@ -284,7 +284,7 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
 {
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            MessageLabel *label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
+            auto label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
             if (success)
                 label->setSuccessMessage(tr("Extraction finished"));
             else
@@ -342,7 +342,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         QString guessedDir;
         bool guessed = Manager::instance()->database()->guessImport(it.value().baseName, guessedType, guessedDir);
 
-        QComboBox *importType = new QComboBox(this);
+        auto importType = new QComboBox(this);
         importType->setProperty("baseName", it.value().baseName);
         importType->addItem(tr("Movie"), "movie");
         importType->addItem(tr("TV Show"), "tvshow");
@@ -350,12 +350,12 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         connect(importType, SIGNAL(currentIndexChanged(int)), this, SLOT(onChangeImportType(int)));
         ui->tableImports->setCellWidget(row, 3, importType);
 
-        QComboBox *importDetail = new QComboBox(this);
+        auto importDetail = new QComboBox(this);
         importDetail->setProperty("baseName", it.value().baseName);
         connect(importDetail, SIGNAL(currentIndexChanged(int)), this, SLOT(onChangeImportDetail(int)));
         ui->tableImports->setCellWidget(row, 4, importDetail);
 
-        ImportActions *actions = new ImportActions(this);
+        auto actions = new ImportActions(this);
         actions->setButtonEnabled(false);
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
@@ -426,7 +426,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
     if (row == -1)
         return;
 
-    QComboBox *detailBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 4));
+    auto detailBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 4));
     detailBox->clear();
 
     bool sub = false;
@@ -474,8 +474,8 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
     if (row == -1)
         return;
 
-    QComboBox *typeBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 3));
-    ImportActions *actions = static_cast<ImportActions *>(ui->tableImports->cellWidget(row, 5));
+    auto typeBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 3));
+    auto actions = static_cast<ImportActions *>(ui->tableImports->cellWidget(row, 5));
     QString type = typeBox->itemData(typeBox->currentIndex(), Qt::UserRole).toString();
     actions->setType(type);
     if (type == "movie")

@@ -394,9 +394,9 @@ void ImageDialog::renderTable()
         int row = (i - (i % cols)) / cols;
         if (i % cols == 0)
             ui->table->insertRow(row);
-        QTableWidgetItem *item = new QTableWidgetItem;
+        auto item = new QTableWidgetItem;
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
-        ImageLabel *label = new ImageLabel(ui->table);
+        auto label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
             QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(
                 (getColumnWidth() - 10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
@@ -696,8 +696,8 @@ void ImageDialog::updateSourceLink()
         ui->imageSource->setVisible(false);
         ui->noResultsLabel->setText(tr("No images found"));
     } else {
-        ImageProviderInterface *p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
-                                        .value<ImageProviderInterface *>();
+        auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
+                      .value<ImageProviderInterface *>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
@@ -797,7 +797,7 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
         if (!result.released.isNull())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
 
-        QTableWidgetItem *item = new QTableWidgetItem(name);
+        auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

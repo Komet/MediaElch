@@ -95,7 +95,7 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
  */
 bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    TvShowModel *model = static_cast<TvShowModel *>(sourceModel());
+    auto model = static_cast<TvShowModel *>(sourceModel());
     TvShowModelItem *leftItem = model->getItem(left);
     TvShowModelItem *rightItem = model->getItem(right);
 

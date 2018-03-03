@@ -70,7 +70,7 @@ void NotificationBox::adjustSize()
 int NotificationBox::showMessage(QString message, NotificationBox::NotificationType type, int timeout)
 {
     m_msgCounter++;
-    Message *msg = new Message(this);
+    auto msg = new Message(this);
     msg->setMessage(message, timeout);
     msg->setType(type);
     msg->setId(m_msgCounter);
@@ -117,7 +117,7 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
         }
     }
     m_msgCounter++;
-    Message *msg = new Message(this);
+    auto msg = new Message(this);
     msg->setMessage(message);
     msg->setId(id);
     msg->showProgressBar(true);

@@ -22,7 +22,7 @@ void MakeMkvCon::onGetDrives()
                << "info"
                << "disc:9999";
 
-    QProcess *process = new QProcess(this);
+    auto process = new QProcess(this);
     m_processes.append(process);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
@@ -41,7 +41,7 @@ void MakeMkvCon::onScanDrive(int id)
     parameters << "-r"
                << "info" << QString("disc:%1").arg(id);
 
-    QProcess *process = new QProcess(this);
+    auto process = new QProcess(this);
     m_processes.append(process);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
@@ -58,7 +58,7 @@ void MakeMkvCon::onImportTrack(int trackId, int driveId, QString importFolder)
                << "--progress=-stdout"
                << "mkv" << QString("disc:%1").arg(driveId) << QString("%1").arg(trackId) << importFolder;
 
-    QProcess *process = new QProcess(this);
+    auto process = new QProcess(this);
     m_processes.append(process);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
@@ -76,7 +76,7 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
                << "--progress=-stdout"
                << "backup" << QString("disc:%1").arg(driveId) << importFolder;
 
-    QProcess *process = new QProcess(this);
+    auto process = new QProcess(this);
     m_processes.append(process);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
     connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
@@ -88,7 +88,7 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
 
 void MakeMkvCon::onReadyRead()
 {
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     QString msg = process->readAllStandardOutput();
     msg.prepend(m_lastOutput);
 
@@ -110,7 +110,7 @@ void MakeMkvCon::onReadyRead()
 
 void MakeMkvCon::onReadyReadError()
 {
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     qWarning() << process->readAllStandardError();
 }
 
@@ -118,7 +118,7 @@ void MakeMkvCon::onFinished(int exitCode, QProcess::ExitStatus status)
 {
     Q_UNUSED(exitCode);
     Q_UNUSED(status);
-    QProcess *process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess *>(QObject::sender());
     QString job = process->property("job").toString();
 
     if (job == "scanDrives")

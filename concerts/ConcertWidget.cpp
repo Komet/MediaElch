@@ -567,7 +567,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
         edit1->setPlaceholderText(tr("Language"));
         edit2->setPlaceholderText(tr("Codec"));
         edit2->setPlaceholderText(tr("Channels"));
-        QHBoxLayout *layout = new QHBoxLayout();
+        auto layout = new QHBoxLayout();
         layout->addWidget(edit1);
         layout->addWidget(edit2);
         layout->addWidget(edit3);
@@ -594,7 +594,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
-            QHBoxLayout *layout = new QHBoxLayout();
+            auto layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
@@ -986,7 +986,7 @@ void ConcertWidget::onChooseImage()
     if (m_concert == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1013,7 +1013,7 @@ void ConcertWidget::onDeleteImage()
     if (m_concert == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

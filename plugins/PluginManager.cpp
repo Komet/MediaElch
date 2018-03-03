@@ -74,7 +74,7 @@ void PluginManager::downloadPluginList()
 
 void PluginManager::onPluginListDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
@@ -266,7 +266,7 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin)
 
 void PluginManager::onPluginDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();

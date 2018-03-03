@@ -436,7 +436,7 @@ QList<Movie *> Database::movies(QString path)
         Movie *movie = movies.value(movieId, 0);
         if (!movie)
             continue;
-        Subtitle *subtitle = new Subtitle(movie);
+        auto subtitle = new Subtitle(movie);
         subtitle->setForced(query.value(query.record().indexOf("forced")).toInt() == 1);
         subtitle->setLanguage(query.value(query.record().indexOf("language")).toString());
         subtitle->setFiles(query.value(query.record().indexOf("files")).toString().split("%§%"));

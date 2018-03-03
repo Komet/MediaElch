@@ -120,7 +120,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
 {
     clear();
     foreach (ExtraFanart fanart, images) {
-        ClosableImage *label = new ClosableImage(m_imagesWidget);
+        auto label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);
         if (m_alignment == Qt::Vertical)
@@ -141,7 +141,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
 
 void ImageGallery::addImage(const QByteArray &img, const QString &url)
 {
-    ClosableImage *label = new ClosableImage(m_imagesWidget);
+    auto label = new ClosableImage(m_imagesWidget);
     label->hide();
     label->setShowZoomAndResolution(m_showZoomAndResolution);
     if (m_alignment == Qt::Vertical)
@@ -202,7 +202,7 @@ void ImageGallery::positionImages()
 
 void ImageGallery::onCloseImage()
 {
-    ClosableImage *label = static_cast<ClosableImage *>(QObject::sender());
+    auto label = static_cast<ClosableImage *>(QObject::sender());
     label->hide();
     label->deleteLater();
     m_imageLabels.removeOne(label);

@@ -35,7 +35,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     }
 
     QList<QStringList> contents;
-    MovieFileSearcher *fileSearcher = new MovieFileSearcher(this);
+    auto fileSearcher = new MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 

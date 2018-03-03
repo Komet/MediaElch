@@ -153,7 +153,7 @@ void ConcertFilesWidget::loadStreamDetails()
         concerts.at(0)->controller()->loadStreamDetailsFromFile();
         concerts.at(0)->setChanged(true);
     } else {
-        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        auto loader = new LoadingStreamDetails(this);
         loader->loadConcerts(concerts);
         delete loader;
     }
