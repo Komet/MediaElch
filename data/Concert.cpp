@@ -40,7 +40,7 @@ Concert::~Concert() = default;
 void Concert::setFiles(QStringList files)
 {
     m_files = files;
-    if (files.size() > 0) {
+    if (!files.empty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty())

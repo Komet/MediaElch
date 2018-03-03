@@ -156,7 +156,7 @@ bool XbmcXml::saveMovie(Movie *movie)
     qDebug() << "Entered, movie=" << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return false;
     }
@@ -277,7 +277,7 @@ bool XbmcXml::saveMovie(Movie *movie)
 QString XbmcXml::nfoFilePath(Movie *movie)
 {
     QString nfoFile;
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return nfoFile;
     }
@@ -302,7 +302,7 @@ QString XbmcXml::nfoFilePath(Movie *movie)
 QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
 {
     QString nfoFile;
-    if (episode->files().size() == 0) {
+    if (episode->files().empty()) {
         qWarning() << "Episode has no files";
         return nfoFile;
     }
@@ -351,7 +351,7 @@ QString XbmcXml::nfoFilePath(TvShow *show)
 QString XbmcXml::nfoFilePath(Concert *concert)
 {
     QString nfoFile;
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return nfoFile;
     }
@@ -829,7 +829,7 @@ bool XbmcXml::saveConcert(Concert *concert)
     qDebug() << "Entered, concert=" << concert->name();
     QByteArray xmlContent = getConcertXml(concert);
 
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return false;
     }
@@ -1870,7 +1870,7 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
     }
 
     QString fileName;
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return fileName;
     }
@@ -1909,7 +1909,7 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
     }
 
     QString fileName;
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return fileName;
     }

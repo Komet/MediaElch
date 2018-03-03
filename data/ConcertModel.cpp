@@ -105,7 +105,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(concert->name());
     } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
-        if (concert->files().size() == 0)
+        if (concert->files().empty())
             return QVariant();
         return concert->files().at(0);
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
@@ -166,7 +166,7 @@ QModelIndex ConcertModel::index(int row, int column, const QModelIndex &parent) 
  */
 void ConcertModel::clear()
 {
-    if (m_concerts.size() == 0)
+    if (m_concerts.empty())
         return;
     beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
     foreach (Concert *concert, m_concerts)

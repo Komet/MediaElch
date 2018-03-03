@@ -67,7 +67,7 @@ QList<ScraperSearchResult> TvTunes::parseSearch(QString html)
 
 void TvTunes::getNextDownloadUrl(QString searchStr)
 {
-    if (m_queue.size() == 0 && searchStr == m_searchStr) {
+    if (m_queue.empty() && searchStr == m_searchStr) {
         emit sigSearchDone(m_results);
         return;
     }
