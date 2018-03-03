@@ -77,7 +77,7 @@ Settings *Settings::instance(QObject *parent)
 {
     static QMutex mutex;
     QMutexLocker locker(&mutex);
-    static Settings *m_instance = 0;
+    static Settings *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Settings(parent);
     return m_instance;

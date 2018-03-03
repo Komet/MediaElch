@@ -459,7 +459,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
         for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
 
-            TvShowEpisode *episode = 0;
+            TvShowEpisode *episode = nullptr;
             if (Settings::instance()->tvShowDvdOrder() && !elem.elementsByTagName("DVD_season").isEmpty()
                 && !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty()
                 && !elem.elementsByTagName("DVD_episodenumber").isEmpty()

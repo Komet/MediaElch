@@ -362,7 +362,7 @@ void VideoBuster::saveSettings(QSettings &settings)
 
 QWidget *VideoBuster::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 /**

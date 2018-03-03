@@ -258,7 +258,7 @@ void ConcertController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone(0);
+        scraperLoadDone(nullptr);
     }
     m_loadMutex.unlock();
 }

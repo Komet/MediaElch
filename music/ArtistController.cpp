@@ -180,7 +180,7 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
     }
 
     if (!images.isEmpty() && !m_artist->mbId().isEmpty()) {
-        ImageProviderInterface *imageProvider = 0;
+        ImageProviderInterface *imageProvider = nullptr;
         foreach (ImageProviderInterface *interface, Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;

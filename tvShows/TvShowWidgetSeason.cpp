@@ -13,7 +13,7 @@
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetSeason),
-    m_show{0},
+    m_show{nullptr},
     m_season{-1}
 {
     ui->setupUi(this);
@@ -128,7 +128,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
 void TvShowWidgetSeason::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        ClosableImage *image = 0;
+        ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
@@ -208,7 +208,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 
 void TvShowWidgetSeason::onChooseImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
@@ -247,7 +247,7 @@ void TvShowWidgetSeason::onChooseImage()
 
 void TvShowWidgetSeason::onDeleteImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());

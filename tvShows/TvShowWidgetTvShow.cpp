@@ -20,7 +20,10 @@
  * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
  * @param parent
  */
-TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{0}
+TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetTvShow),
+    m_show{nullptr}
 {
     ui->setupUi(this);
 
@@ -302,7 +305,7 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -384,7 +387,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 void TvShowWidgetTvShow::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        ClosableImage *image = 0;
+        ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
@@ -408,7 +411,7 @@ void TvShowWidgetTvShow::updateImages(QList<int> images)
 void TvShowWidgetTvShow::onSaveInformation()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -440,7 +443,7 @@ void TvShowWidgetTvShow::onRevertChanges()
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -499,7 +502,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters)
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -1082,7 +1085,7 @@ void TvShowWidgetTvShow::onDownloadTune()
 
 void TvShowWidgetTvShow::onChooseImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
@@ -1115,7 +1118,7 @@ void TvShowWidgetTvShow::onChooseImage()
 
 void TvShowWidgetTvShow::onDeleteImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());

@@ -60,7 +60,7 @@ void MovieModel::update()
 Movie *MovieModel::movie(int row)
 {
     if (row < 0 || row >= m_movies.count())
-        return 0;
+        return nullptr;
     return m_movies.at(row);
 }
 

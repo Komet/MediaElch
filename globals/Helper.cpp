@@ -26,7 +26,7 @@ Helper::Helper(QObject *parent) : QObject(parent)
 
 Helper *Helper::instance(QObject *parent)
 {
-    static Helper *m_instance = 0;
+    static Helper *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Helper(parent);
     return m_instance;

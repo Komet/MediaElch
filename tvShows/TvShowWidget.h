@@ -26,7 +26,7 @@ public slots:
     void onTvShowSelected(TvShow *show);
     void onSeasonSelected(TvShow *show, int season);
     void onEpisodeSelected(TvShowEpisode *episode);
-    void onSetEnabledTrue(TvShow *show = 0, int season = -1);
+    void onSetEnabledTrue(TvShow *show = nullptr, int season = -1);
     void onSetEnabledTrue(TvShowEpisode *episode);
     void onSetDisabledTrue();
     void onClear();

@@ -14,7 +14,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new 
 {
     ui->setupUi(this);
 
-    m_artist = 0;
+    m_artist = nullptr;
 
     ui->artistName->clear();
 #ifndef Q_OS_MAC
@@ -380,7 +380,7 @@ void MusicWidgetArtist::onRemoveCloudItem(QString text)
 
 void MusicWidgetArtist::onChooseImage()
 {
-    if (m_artist == 0)
+    if (m_artist == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
@@ -407,7 +407,7 @@ void MusicWidgetArtist::onChooseImage()
 
 void MusicWidgetArtist::onDeleteImage()
 {
-    if (m_artist == 0)
+    if (m_artist == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());

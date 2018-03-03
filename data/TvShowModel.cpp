@@ -14,7 +14,7 @@
  */
 TvShowModel::TvShowModel(QObject *parent) : QAbstractItemModel(parent)
 {
-    m_rootItem = new TvShowModelItem(0);
+    m_rootItem = new TvShowModelItem(nullptr);
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
     m_missingIcon = QIcon(":/img/missing.png");

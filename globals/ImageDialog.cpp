@@ -59,7 +59,7 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->labelSpinner->setMovie(movie);
     clearSearch();
     setImageType(ImageType::MoviePoster);
-    m_currentDownloadReply = 0;
+    m_currentDownloadReply = nullptr;
     m_multiSelection = false;
 
     QPixmap zoomOut(":/img/zoom_out.png");
@@ -223,8 +223,8 @@ void ImageDialog::reject()
  */
 ImageDialog *ImageDialog::instance(QWidget *parent)
 {
-    static ImageDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static ImageDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ImageDialog(parent);
     }
     return m_instance;
@@ -440,7 +440,7 @@ int ImageDialog::getColumnWidth()
  */
 void ImageDialog::imageClicked(int row, int col)
 {
-    if (ui->table->item(row, col) == 0) {
+    if (ui->table->item(row, col) == nullptr) {
         qDebug() << "Invalid item";
         return;
     }

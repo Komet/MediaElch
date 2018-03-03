@@ -14,7 +14,7 @@ class MovieDuplicates : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieDuplicates(QWidget *parent = 0);
+    explicit MovieDuplicates(QWidget *parent = nullptr);
     ~MovieDuplicates();
 
 private slots:

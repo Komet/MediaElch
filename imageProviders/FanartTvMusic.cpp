@@ -475,7 +475,7 @@ void FanartTvMusic::saveSettings(QSettings &settings)
 
 QWidget *FanartTvMusic::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 QString FanartTvMusic::keyParameter()

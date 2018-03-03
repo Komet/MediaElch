@@ -228,5 +228,5 @@ void HotMovies::saveSettings(QSettings &settings)
 
 QWidget *HotMovies::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

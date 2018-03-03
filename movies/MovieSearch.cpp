@@ -35,8 +35,8 @@ MovieSearch::~MovieSearch()
  */
 MovieSearch *MovieSearch::instance(QWidget *parent)
 {
-    static MovieSearch *m_instance = 0;
-    if (m_instance == 0) {
+    static MovieSearch *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new MovieSearch(parent);
     }
     return m_instance;

@@ -108,7 +108,7 @@ QList<Image *> ImageModel::images()
 Image *ImageModel::image(int row) const
 {
     if (row < 0 || row >= m_images.count())
-        return 0;
+        return nullptr;
     return m_images.at(row);
 }
 

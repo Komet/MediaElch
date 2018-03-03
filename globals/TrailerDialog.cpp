@@ -74,8 +74,8 @@ TrailerDialog::~TrailerDialog()
 
 TrailerDialog *TrailerDialog::instance(QWidget *parent)
 {
-    static TrailerDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static TrailerDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new TrailerDialog(parent);
     }
     return m_instance;

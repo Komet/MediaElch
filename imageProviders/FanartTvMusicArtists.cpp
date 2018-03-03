@@ -353,7 +353,7 @@ void FanartTvMusicArtists::saveSettings(QSettings &settings)
 
 QWidget *FanartTvMusicArtists::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 QString FanartTvMusicArtists::keyParameter()

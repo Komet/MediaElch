@@ -11,10 +11,10 @@
  * @param parent
  */
 TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
-    QObject(0),
+    QObject(nullptr),
     m_parentItem{parent},
-    m_tvShow{0},
-    m_tvShowEpisode{0},
+    m_tvShow{nullptr},
+    m_tvShowEpisode{nullptr},
     m_seasonNumber{0}
 {
 }

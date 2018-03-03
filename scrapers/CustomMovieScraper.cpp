@@ -26,7 +26,7 @@ QNetworkAccessManager *CustomMovieScraper::qnam()
 
 CustomMovieScraper *CustomMovieScraper::instance(QObject *parent)
 {
-    static CustomMovieScraper *m_instance = 0;
+    static CustomMovieScraper *m_instance = nullptr;
     if (!m_instance)
         m_instance = new CustomMovieScraper(parent);
     return m_instance;
@@ -254,7 +254,7 @@ ScraperInterface *CustomMovieScraper::scraperForInfo(int info)
 {
     QString identifier = Settings::instance()->customMovieScraper().value(info, "");
     if (identifier.isEmpty())
-        return 0;
+        return nullptr;
     foreach (ScraperInterface *scraper, m_scrapers) {
         if (scraper->identifier() == identifier) {
             if (scraper->hasSettings())
@@ -262,7 +262,7 @@ ScraperInterface *CustomMovieScraper::scraperForInfo(int info)
             return scraper;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 QList<ScraperInterface *> CustomMovieScraper::scrapersForInfos(QList<int> infos)
@@ -331,5 +331,5 @@ void CustomMovieScraper::saveSettings(QSettings &settings)
 
 QWidget *CustomMovieScraper::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

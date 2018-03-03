@@ -7,7 +7,7 @@ class MessageLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MessageLabel(QWidget *parent = 0, int alignment = Qt::AlignLeft | Qt::AlignVCenter);
+    explicit MessageLabel(QWidget *parent = nullptr, int alignment = Qt::AlignLeft | Qt::AlignVCenter);
     void setErrorMessage(const QString &text);
     void setSuccessMessage(const QString &text);
 

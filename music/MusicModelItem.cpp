@@ -2,7 +2,11 @@
 
 #include "../globals/Globals.h"
 
-MusicModelItem::MusicModelItem(MusicModelItem *parent) : QObject(0), m_parentItem{parent}, m_artist{0}, m_album{0}
+MusicModelItem::MusicModelItem(MusicModelItem *parent) :
+    QObject(nullptr),
+    m_parentItem{parent},
+    m_artist{nullptr},
+    m_album{nullptr}
 {
 }
 

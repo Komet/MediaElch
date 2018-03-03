@@ -24,7 +24,7 @@ PluginManager::PluginManager(QObject *parent) : QObject(parent)
 
 PluginManager *PluginManager::instance(QObject *parent)
 {
-    static PluginManager *m_instance = 0;
+    static PluginManager *m_instance = nullptr;
     if (!m_instance)
         m_instance = new PluginManager(parent);
     return m_instance;

@@ -33,7 +33,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(ne
 #endif
     m_mouseIsIn = false;
     m_alphaList = new AlphabeticalList(this);
-    m_lastConcert = 0;
+    m_lastConcert = nullptr;
     m_concertProxyModel = new ConcertProxyModel(this);
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
     m_concertProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -218,7 +218,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
-        m_lastConcert = 0;
+        m_lastConcert = nullptr;
         emit noConcertSelected();
         return;
     }

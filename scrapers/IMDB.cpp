@@ -56,7 +56,7 @@ bool IMDB::hasSettings()
 
 QWidget *IMDB::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void IMDB::loadSettings(QSettings &settings)

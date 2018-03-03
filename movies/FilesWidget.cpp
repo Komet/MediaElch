@@ -36,7 +36,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
-    m_lastMovie = 0;
+    m_lastMovie = nullptr;
     m_mouseIsIn = false;
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
@@ -310,7 +310,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
-        m_lastMovie = 0;
+        m_lastMovie = nullptr;
         emit noMovieSelected();
         return;
     }

@@ -181,7 +181,7 @@ void FilterWidget::onFilterTextChanged(QString text)
 void FilterWidget::addSelectedFilter()
 {
     m_list->hide();
-    Filter *filter = 0;
+    Filter *filter = nullptr;
     if (m_list->currentRow() < 1 || m_list->currentRow() >= m_list->count() - 1) {
         if (ui->lineEdit->text().isEmpty())
             return;
@@ -193,7 +193,7 @@ void FilterWidget::addSelectedFilter()
                 break;
             }
         }
-        if (filter == 0)
+        if (filter == nullptr)
             return;
         filter->setText(tr("Title contains \"%1\"").arg(ui->lineEdit->text()));
         filter->setShortText(ui->lineEdit->text());
@@ -367,7 +367,7 @@ void FilterWidget::setupMovieFilters()
     QList<Filter *> genreFilters;
     // Add new filters
     foreach (const QString &genre, genres) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieGenreFilters) {
             if (filter->shortText() == genre) {
                 f = filter;
@@ -388,7 +388,7 @@ void FilterWidget::setupMovieFilters()
     QList<Filter *> studioFilters;
     // Add new filters
     foreach (const QString &studio, studios) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieStudioFilters) {
             if (filter->shortText() == studio) {
                 f = filter;
@@ -409,7 +409,7 @@ void FilterWidget::setupMovieFilters()
     QList<Filter *> countryFilters;
     // Add new filters
     foreach (const QString &country, countries) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieCountryFilters) {
             if (filter->shortText() == country) {
                 f = filter;
@@ -429,7 +429,7 @@ void FilterWidget::setupMovieFilters()
 
     QList<Filter *> yearFilters;
     foreach (const QString &year, years) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieYearFilters) {
             if (filter->shortText() == year) {
                 f = filter;
@@ -446,7 +446,7 @@ void FilterWidget::setupMovieFilters()
 
     QList<Filter *> certificationFilters;
     foreach (const QString &certification, certifications) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieCertificationFilters) {
             if (filter->shortText() == certification) {
                 f = filter;
@@ -466,7 +466,7 @@ void FilterWidget::setupMovieFilters()
 
     QList<Filter *> setsFilters;
     foreach (const QString &set, sets) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieSetsFilters) {
             if (filter->shortText() == set) {
                 f = filter;
@@ -483,7 +483,7 @@ void FilterWidget::setupMovieFilters()
 
     QList<Filter *> tagsFilters;
     foreach (const QString &tag, tags) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieTagsFilters) {
             if (filter->shortText() == tag) {
                 f = filter;
@@ -500,7 +500,7 @@ void FilterWidget::setupMovieFilters()
 
     QList<Filter *> directorFilters;
     foreach (const QString &director, directors) {
-        Filter *f = 0;
+        Filter *f = nullptr;
         foreach (Filter *filter, m_movieDirectorFilters) {
             if (filter->shortText() == director) {
                 f = filter;

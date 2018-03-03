@@ -104,7 +104,7 @@ void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
     m_tmdbId = tmdbId;
     ui->comboScraper->setEnabled(true);
     ui->groupBox->setEnabled(true);
-    m_currentCustomScraper = 0;
+    m_currentCustomScraper = nullptr;
     m_customScraperIds.clear();
 
     int index = ui->comboScraper->currentIndex();

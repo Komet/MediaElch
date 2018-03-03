@@ -223,7 +223,7 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
             static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setProgress(0);
             static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
-            ui->tablePackages->setCellWidget(row, 4, 0);
+            ui->tablePackages->setCellWidget(row, 4, nullptr);
         }
     }
     m_extractor->extract(baseName, m_packages[baseName].files, password);

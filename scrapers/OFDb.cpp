@@ -356,5 +356,5 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 
 QWidget *OFDb::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

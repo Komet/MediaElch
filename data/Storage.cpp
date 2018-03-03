@@ -61,56 +61,56 @@ Movie *Storage::movie()
 {
     if (m_movie)
         return m_movie;
-    return 0;
+    return nullptr;
 }
 
 Concert *Storage::concert()
 {
     if (m_concert)
         return m_concert;
-    return 0;
+    return nullptr;
 }
 
 TvShow *Storage::show()
 {
     if (m_show)
         return m_show;
-    return 0;
+    return nullptr;
 }
 
 TvShowEpisode *Storage::episode()
 {
     if (m_episode)
         return m_episode;
-    return 0;
+    return nullptr;
 }
 
 Artist *Storage::artist()
 {
     if (m_artist)
         return m_artist;
-    return 0;
+    return nullptr;
 }
 
 Album *Storage::album()
 {
     if (m_album)
         return m_album;
-    return 0;
+    return nullptr;
 }
 
 ExportTemplate *Storage::exportTemplate()
 {
     if (m_exportTemplate)
         return m_exportTemplate;
-    return 0;
+    return nullptr;
 }
 
 QTableWidgetItem *Storage::tableWidgetItem()
 {
     if (m_tableWidgetItem)
         return m_tableWidgetItem;
-    return 0;
+    return nullptr;
 }
 
 QMap<ScraperInterface *, QString> Storage::ids()

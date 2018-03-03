@@ -67,7 +67,7 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->labelPoster->setFont(font);
     ui->labelThumb->setFont(font);
 
-    m_movie = 0;
+    m_movie = nullptr;
 
     ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
@@ -462,7 +462,7 @@ void MovieWidget::setMovie(Movie *movie)
 void MovieWidget::startScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_movie == 0) {
+    if (m_movie == nullptr) {
         qDebug() << "My movie is invalid";
         return;
     }
@@ -490,7 +490,7 @@ void MovieWidget::startScraperSearch()
 
 void MovieWidget::onInfoLoadDone(Movie *movie)
 {
-    if (m_movie == 0)
+    if (m_movie == nullptr)
         return;
     if (m_movie == movie) {
         updateMovieInfo();
@@ -502,7 +502,7 @@ void MovieWidget::onInfoLoadDone(Movie *movie)
 void MovieWidget::onLoadDone(Movie *movie)
 {
     emit actorDownloadFinished(Constants::MovieProgressMessageId + movie->movieId());
-    if (m_movie == 0 || m_movie != movie)
+    if (m_movie == nullptr || m_movie != movie)
         return;
     setEnabledTrue();
     ui->fanarts->setLoading(false);
@@ -558,7 +558,7 @@ void MovieWidget::onDownloadProgress(Movie *movie, int current, int maximum)
  */
 void MovieWidget::updateMovieInfo()
 {
-    if (m_movie == 0)
+    if (m_movie == nullptr)
         return;
 
     ui->rating->blockSignals(true);
@@ -1499,7 +1499,7 @@ void MovieWidget::onInsertYoutubeLink()
 
 void MovieWidget::onChooseImage()
 {
-    if (m_movie == 0)
+    if (m_movie == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
@@ -1537,7 +1537,7 @@ void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
 
 void MovieWidget::onDeleteImage()
 {
-    if (m_movie == 0)
+    if (m_movie == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());

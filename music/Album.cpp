@@ -6,7 +6,7 @@ Album::Album(QString path, QObject *parent) :
     m_hasChanged{false},
     m_rating{0},
     m_year{0},
-    m_modelItem{0},
+    m_modelItem{nullptr},
     m_databaseId{-1},
     m_artistObj{nullptr},
     m_controller{new AlbumController(this)},

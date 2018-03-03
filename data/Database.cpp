@@ -229,7 +229,7 @@ Database::~Database()
     if (m_db && m_db->isOpen()) {
         m_db->close();
         delete m_db;
-        m_db = 0;
+        m_db = nullptr;
     }
 }
 

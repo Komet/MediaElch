@@ -613,7 +613,7 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->database()->add(m_movie, importDir());
         Manager::instance()->database()->commit();
         Manager::instance()->movieModel()->addMovie(m_movie);
-        m_movie = 0;
+        m_movie = nullptr;
     } else if (m_type == "tvshow") {
         if (m_show->showMissingEpisodes())
             m_show->clearMissingEpisodes();
@@ -651,8 +651,8 @@ void ImportDialog::onMovingFilesFinished()
         else if (newSeason)
             TvShowFilesWidget::instance()->renewModel(true);
 
-        m_episode = 0;
-        m_show = 0;
+        m_episode = nullptr;
+        m_show = nullptr;
     } else if (m_type == "concert") {
         m_concert->setFiles(m_newFiles);
         m_concert->controller()->loadStreamDetailsFromFile();
@@ -661,7 +661,7 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->database()->add(m_concert, importDir());
         Manager::instance()->database()->commit();
         Manager::instance()->concertModel()->addConcert(m_concert);
-        m_concert = 0;
+        m_concert = nullptr;
     }
 
     Notificator::instance()->notify(

@@ -9,7 +9,7 @@ class NetworkReplyWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit NetworkReplyWatcher(QObject *parent = 0, QNetworkReply *reply = nullptr);
+    explicit NetworkReplyWatcher(QObject *parent = nullptr, QNetworkReply *reply = nullptr);
     ~NetworkReplyWatcher();
     void setReply(QNetworkReply *reply);
 

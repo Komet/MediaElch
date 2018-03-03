@@ -19,7 +19,7 @@ ExportTemplateLoader::ExportTemplateLoader(QObject *parent) : QObject(parent)
 
 ExportTemplateLoader *ExportTemplateLoader::instance(QObject *parent)
 {
-    static ExportTemplateLoader *instance = 0;
+    static ExportTemplateLoader *instance = nullptr;
     if (!instance)
         instance = new ExportTemplateLoader(parent);
     return instance;
@@ -299,5 +299,5 @@ ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier
             return exportTemplate;
     }
 
-    return 0;
+    return nullptr;
 }

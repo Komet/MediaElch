@@ -276,7 +276,7 @@ void MediaPassionImages::saveSettings(QSettings &settings)
 
 QWidget *MediaPassionImages::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void MediaPassionImages::searchAlbum(QString artistName, QString searchStr, int limit)

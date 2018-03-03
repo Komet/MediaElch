@@ -649,7 +649,7 @@ void SettingsWindow::dirListRowChanged(int currentRow)
         ui->buttonMovieFilesToDirs->setDisabled(true);
     } else {
         ui->buttonRemoveDir->setDisabled(false);
-        if (ui->dirs->cellWidget(currentRow, 0) != 0
+        if (ui->dirs->cellWidget(currentRow, 0) != nullptr
             && static_cast<QComboBox *>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
             && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
             ui->buttonMovieFilesToDirs->setDisabled(false);

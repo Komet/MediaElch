@@ -38,7 +38,7 @@
 #include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
-MainWindow *MainWindow::m_instance = 0;
+MainWindow *MainWindow::m_instance = nullptr;
 
 /**
  * @brief MainWindow::MainWindow
@@ -218,7 +218,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     MovieMultiScrapeDialog::instance(this);
     MusicMultiScrapeDialog::instance(this);
     TvShowMultiScrapeDialog::instance(this);
-    Notificator::instance(0, ui->centralWidget);
+    Notificator::instance(nullptr, ui->centralWidget);
 
 #ifdef Q_OS_WIN32
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -746,7 +746,7 @@ void MainWindow::onRemovePlugin(PluginInterface *plugin)
 
 void MainWindow::onMenu(QToolButton *button)
 {
-    if (button == 0)
+    if (button == nullptr)
         button = static_cast<QToolButton *>(QObject::sender());
 
     if (!button)

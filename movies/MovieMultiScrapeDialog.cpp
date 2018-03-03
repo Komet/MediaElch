@@ -24,7 +24,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->movieCounter->setFont(font);
 
     m_executed = false;
-    m_currentMovie = 0;
+    m_currentMovie = nullptr;
 
     ui->chkActors->setMyData(MovieScraperInfos::Actors);
     ui->chkBackdrop->setMyData(MovieScraperInfos::Backdrop);
@@ -69,8 +69,8 @@ MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
 
 MovieMultiScrapeDialog *MovieMultiScrapeDialog::instance(QWidget *parent)
 {
-    static MovieMultiScrapeDialog *m_instance = 0;
-    if (m_instance == 0)
+    static MovieMultiScrapeDialog *m_instance = nullptr;
+    if (m_instance == nullptr)
         m_instance = new MovieMultiScrapeDialog(parent);
     return m_instance;
 }
@@ -90,7 +90,7 @@ int MovieMultiScrapeDialog::exec()
     ui->progressMovie->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->movie->clear();
-    m_currentMovie = 0;
+    m_currentMovie = nullptr;
     m_executed = true;
     setChkBoxesEnabled();
     adjustSize();

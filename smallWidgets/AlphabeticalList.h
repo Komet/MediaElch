@@ -15,7 +15,7 @@ class AlphabeticalList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlphabeticalList(QWidget *parent = 0, MyTableView *parentTableView = nullptr);
+    explicit AlphabeticalList(QWidget *parent = nullptr, MyTableView *parentTableView = nullptr);
     void setTopSpace(const int space);
     void setBottomSpace(const int space);
     void setRightSpace(const int space);

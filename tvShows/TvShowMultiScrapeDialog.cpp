@@ -27,8 +27,8 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget *parent) : QDialog(pare
     ui->itemCounter->setFont(font);
 
     m_executed = false;
-    m_currentShow = 0;
-    m_currentEpisode = 0;
+    m_currentShow = nullptr;
+    m_currentEpisode = nullptr;
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -78,8 +78,8 @@ TvShowMultiScrapeDialog::~TvShowMultiScrapeDialog()
 
 TvShowMultiScrapeDialog *TvShowMultiScrapeDialog::instance(QWidget *parent)
 {
-    static TvShowMultiScrapeDialog *m_instance = 0;
-    if (m_instance == 0)
+    static TvShowMultiScrapeDialog *m_instance = nullptr;
+    if (m_instance == nullptr)
         m_instance = new TvShowMultiScrapeDialog(parent);
     return m_instance;
 }
@@ -120,8 +120,8 @@ int TvShowMultiScrapeDialog::exec()
     ui->progressItem->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->title->clear();
-    m_currentEpisode = 0;
-    m_currentShow = 0;
+    m_currentEpisode = nullptr;
+    m_currentShow = nullptr;
     m_showIds.clear();
     m_executed = true;
     setChkBoxesEnabled();
@@ -250,8 +250,8 @@ void TvShowMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    m_currentShow = 0;
-    m_currentEpisode = 0;
+    m_currentShow = nullptr;
+    m_currentEpisode = nullptr;
 
     if (!m_showQueue.isEmpty()) {
         m_currentShow = m_showQueue.dequeue();

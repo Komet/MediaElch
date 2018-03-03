@@ -14,7 +14,7 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     m_active{false},
     m_expanded{false}
 {
-    if (parent != 0)
+    if (parent != nullptr)
         m_mainWindow = parent;
     else
         m_mainWindow = this;

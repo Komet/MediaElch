@@ -9,8 +9,8 @@ class Notificator : public QObject
 {
     Q_OBJECT
 public:
-    explicit Notificator(QSystemTrayIcon *trayIcon = 0, QWidget *parent = nullptr);
-    static Notificator *instance(QSystemTrayIcon *trayIcon = 0, QWidget *parent = nullptr);
+    explicit Notificator(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
+    static Notificator *instance(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
 
     enum Class
     {

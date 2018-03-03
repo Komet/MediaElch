@@ -30,8 +30,8 @@ NotificationBox::~NotificationBox()
  */
 NotificationBox *NotificationBox::instance(QWidget *parent)
 {
-    static NotificationBox *m_instance = 0;
-    if (m_instance == 0) {
+    static NotificationBox *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new NotificationBox(parent);
     }
     return m_instance;

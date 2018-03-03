@@ -53,7 +53,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
 
     ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
 
-    m_concert = 0;
+    m_concert = nullptr;
 
     ui->poster->setImageType(ImageType::ConcertPoster);
     ui->backdrop->setImageType(ImageType::ConcertBackdrop);
@@ -308,7 +308,7 @@ void ConcertWidget::setConcert(Concert *concert)
 void ConcertWidget::onStartScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_concert == 0) {
+    if (m_concert == nullptr) {
         qDebug() << "My concert is invalid";
         return;
     }
@@ -332,7 +332,7 @@ void ConcertWidget::onStartScraperSearch()
  */
 void ConcertWidget::onInfoLoadDone(Concert *concert)
 {
-    if (m_concert == 0)
+    if (m_concert == nullptr)
         return;
 
     if (m_concert == concert) {
@@ -344,7 +344,7 @@ void ConcertWidget::onInfoLoadDone(Concert *concert)
 
 void ConcertWidget::onLoadDone(Concert *concert)
 {
-    if (m_concert == 0 || m_concert != concert)
+    if (m_concert == nullptr || m_concert != concert)
         return;
     setEnabledTrue();
     ui->fanarts->setLoading(false);
@@ -406,7 +406,7 @@ void ConcertWidget::onDownloadProgress(Concert *concert, int current, int maximu
 void ConcertWidget::updateConcertInfo()
 {
     qDebug() << "Entered";
-    if (m_concert == 0) {
+    if (m_concert == nullptr) {
         qDebug() << "My concert is invalid";
         return;
     }
@@ -983,7 +983,7 @@ void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
 
 void ConcertWidget::onChooseImage()
 {
-    if (m_concert == 0)
+    if (m_concert == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
@@ -1010,7 +1010,7 @@ void ConcertWidget::onChooseImage()
 
 void ConcertWidget::onDeleteImage()
 {
-    if (m_concert == 0)
+    if (m_concert == nullptr)
         return;
 
     ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());

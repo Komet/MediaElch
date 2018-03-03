@@ -363,7 +363,7 @@ void MakeMkvDialog::importFinished()
     Manager::instance()->database()->add(m_movie, ui->comboImportDir->currentText());
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovie(m_movie);
-    m_movie = 0;
+    m_movie = nullptr;
 
     Notificator::instance()->notify(
         Notificator::Information, tr("MakeMKV import finished"), tr("Import with MakeMKV has finished"));

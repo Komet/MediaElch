@@ -251,5 +251,5 @@ void AdultDvdEmpire::saveSettings(QSettings &settings)
 
 QWidget *AdultDvdEmpire::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

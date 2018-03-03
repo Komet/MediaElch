@@ -19,7 +19,7 @@ Update::Update(QObject *parent) : QObject(parent)
 
 Update *Update::instance(QObject *parent)
 {
-    static Update *m_instance = 0;
+    static Update *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Update(parent);
     return m_instance;

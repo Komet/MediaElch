@@ -93,8 +93,8 @@ Manager::~Manager()
  */
 Manager *Manager::instance()
 {
-    static Manager *m_instance = 0;
-    if (m_instance == 0) {
+    static Manager *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new Manager(qApp);
     }
     return m_instance;
@@ -175,7 +175,7 @@ ScraperInterface *Manager::scraper(const QString &identifier)
             return scraper;
     }
 
-    return 0;
+    return nullptr;
 }
 
 /**

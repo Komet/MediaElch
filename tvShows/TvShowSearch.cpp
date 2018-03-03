@@ -75,8 +75,8 @@ TvShowSearch::~TvShowSearch()
  */
 TvShowSearch *TvShowSearch::instance(QWidget *parent)
 {
-    static TvShowSearch *m_instance = 0;
-    if (m_instance == 0) {
+    static TvShowSearch *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new TvShowSearch(parent);
     }
     return m_instance;

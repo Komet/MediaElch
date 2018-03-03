@@ -25,7 +25,7 @@
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetEpisode),
-    m_episode{0}
+    m_episode{nullptr}
 {
     ui->setupUi(this);
 
@@ -308,7 +308,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -548,7 +548,7 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
 void TvShowWidgetEpisode::onSaveInformation()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -581,7 +581,7 @@ void TvShowWidgetEpisode::onRevertChanges()
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -612,7 +612,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 void TvShowWidgetEpisode::onLoadDone()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -642,7 +642,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 {
     qDebug() << "Entered";
 
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }

@@ -17,8 +17,8 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->itemCounter->setFont(font);
 
     m_executed = false;
-    m_currentArtist = 0;
-    m_currentAlbum = 0;
+    m_currentArtist = nullptr;
+    m_currentAlbum = nullptr;
 
     ui->chkName->setMyData(MusicScraperInfos::Name);
     ui->chkBorn->setMyData(MusicScraperInfos::Born);
@@ -60,8 +60,8 @@ MusicMultiScrapeDialog::~MusicMultiScrapeDialog()
 
 MusicMultiScrapeDialog *MusicMultiScrapeDialog::instance(QWidget *parent)
 {
-    static MusicMultiScrapeDialog *m_instance = 0;
-    if (m_instance == 0)
+    static MusicMultiScrapeDialog *m_instance = nullptr;
+    if (m_instance == nullptr)
         m_instance = new MusicMultiScrapeDialog(parent);
     return m_instance;
 }
@@ -113,8 +113,8 @@ int MusicMultiScrapeDialog::exec()
     ui->progressItem->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->itemName->clear();
-    m_currentArtist = 0;
-    m_currentAlbum = 0;
+    m_currentArtist = nullptr;
+    m_currentAlbum = nullptr;
     m_executed = true;
     onChkToggled();
     adjustSize();
@@ -169,14 +169,14 @@ void MusicMultiScrapeDialog::onStartScraping()
     QList<Album *> queueAlbums;
     foreach (Artist *artist, m_artists) {
         QueueItem item1;
-        item1.album = 0;
+        item1.album = nullptr;
         item1.artist = artist;
         m_queue.append(item1);
         if (ui->chkScrapeAllAlbums->isChecked()) {
             foreach (Album *album, artist->albums()) {
                 QueueItem item2;
                 item2.album = album;
-                item2.artist = 0;
+                item2.artist = nullptr;
                 m_queue.append(item2);
                 queueAlbums.append(album);
             }
@@ -187,7 +187,7 @@ void MusicMultiScrapeDialog::onStartScraping()
         if (!queueAlbums.contains(album)) {
             QueueItem item;
             item.album = album;
-            item.artist = 0;
+            item.artist = nullptr;
             m_queue.append(item);
             queueAlbums.append(album);
         }

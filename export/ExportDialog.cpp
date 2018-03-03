@@ -328,7 +328,7 @@ void ExportDialog::replaceVars(QString &m, Concert *concert, QDir dir, bool subD
     replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
-    replaceImages(m, dir, subDir, 0, concert);
+    replaceImages(m, dir, subDir, nullptr, concert);
 }
 
 void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow *> shows)
@@ -427,7 +427,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         QList<QStringList>() << actorNames << actorRoles);
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
-    replaceImages(m, dir, subDir, 0, 0, show);
+    replaceImages(m, dir, subDir, nullptr, nullptr, show);
 
     QString listSeasonItem;
     QString listSeasonBlock;
@@ -502,7 +502,7 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
-    replaceImages(m, dir, subDir, 0, 0, 0, episode);
+    replaceImages(m, dir, subDir, nullptr, nullptr, nullptr, episode);
 }
 
 void ExportDialog::replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails)
