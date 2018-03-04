@@ -66,6 +66,10 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
                                           << "settings"
                                           << "about";
 
+#ifdef Q_OS_MAC
+    int i = 0;
+#endif
+
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton *>()) {
         if (!btn->property("iconName").isValid())
             continue;
