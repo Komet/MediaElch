@@ -19,7 +19,7 @@ class MediaFlags : public QWidget
 
 public:
     explicit MediaFlags(QWidget *parent = nullptr);
-    ~MediaFlags();
+    ~MediaFlags() override;
     void setStreamDetails(StreamDetails *streamDetails);
     void clear();
 

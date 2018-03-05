@@ -16,7 +16,7 @@ class MusicWidget : public QWidget
 
 public:
     explicit MusicWidget(QWidget *parent = nullptr);
-    ~MusicWidget();
+    ~MusicWidget() override;
 
 public slots:
     void onArtistSelected(Artist *artist);

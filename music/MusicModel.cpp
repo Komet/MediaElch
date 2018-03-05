@@ -5,7 +5,7 @@
 
 MusicModel::MusicModel(QObject *parent) :
     QAbstractItemModel(parent),
-    m_rootItem{new MusicModelItem(0)},
+    m_rootItem{new MusicModelItem(nullptr)},
     m_newIcon{QIcon(":/img/star_blue.png")}
 {
 }
@@ -75,7 +75,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
 MusicModelItem *MusicModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        MusicModelItem *item = static_cast<MusicModelItem *>(index.internalPointer());
+        auto item = static_cast<MusicModelItem *>(index.internalPointer());
         if (item)
             return item;
     }

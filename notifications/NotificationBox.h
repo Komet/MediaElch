@@ -25,7 +25,7 @@ public:
     };
 
     explicit NotificationBox(QWidget *parent = nullptr);
-    ~NotificationBox();
+    ~NotificationBox() override;
     static NotificationBox *instance(QWidget *parent = nullptr);
     void reposition(QSize size);
     virtual int

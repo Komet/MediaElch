@@ -16,7 +16,7 @@ class ImportActions : public QWidget
 
 public:
     explicit ImportActions(QWidget *parent = nullptr);
-    ~ImportActions();
+    ~ImportActions() override;
     void setButtonEnabled(bool enabled);
     void setBaseName(QString baseName);
     QString baseName();

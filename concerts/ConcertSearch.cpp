@@ -39,8 +39,8 @@ ConcertSearch::~ConcertSearch()
  */
 ConcertSearch *ConcertSearch::instance(QWidget *parent)
 {
-    static ConcertSearch *m_instance = 0;
-    if (m_instance == 0) {
+    static ConcertSearch *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ConcertSearch(parent);
     }
     return m_instance;

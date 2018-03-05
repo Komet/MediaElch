@@ -16,7 +16,7 @@ class ConcertSearchWidget : public QWidget
 
 public:
     explicit ConcertSearchWidget(QWidget *parent = nullptr);
-    ~ConcertSearchWidget();
+    ~ConcertSearchWidget() override;
 
 public slots:
     void search(QString searchString);

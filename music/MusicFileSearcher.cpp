@@ -13,9 +13,7 @@ MusicFileSearcher::MusicFileSearcher(QObject *parent) :
 {
 }
 
-MusicFileSearcher::~MusicFileSearcher()
-{
-}
+MusicFileSearcher::~MusicFileSearcher() = default;
 
 void MusicFileSearcher::setMusicDirectories(QList<SettingsDir> directories)
 {
@@ -138,7 +136,7 @@ void MusicFileSearcher::reload(bool force)
     }
     foreach (Album *album, albums) {
         MusicModelItem *artistItem = artistModelItems.value(album->artistObj(), 0);
-        if (artistItem == 0) {
+        if (artistItem == nullptr) {
             qWarning() << "Artist item was not found for album" << album->path();
             continue;
         }

@@ -26,7 +26,7 @@ QNetworkAccessManager *CustomMovieScraper::qnam()
 
 CustomMovieScraper *CustomMovieScraper::instance(QObject *parent)
 {
-    static CustomMovieScraper *m_instance = 0;
+    static CustomMovieScraper *m_instance = nullptr;
     if (!m_instance)
         m_instance = new CustomMovieScraper(parent);
     return m_instance;
@@ -57,7 +57,7 @@ void CustomMovieScraper::search(QString searchStr)
 
 void CustomMovieScraper::onTitleSearchDone(QList<ScraperSearchResult> results)
 {
-    ScraperInterface *scraper = static_cast<ScraperInterface *>(QObject::sender());
+    auto scraper = static_cast<ScraperInterface *>(QObject::sender());
     if (!scraper)
         return;
 
@@ -170,7 +170,7 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
 
 void CustomMovieScraper::onLoadTmdbFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("movie").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     QMap<ScraperInterface *, QString> ids = reply->property("ids").value<Storage *>()->ids();
@@ -254,7 +254,7 @@ ScraperInterface *CustomMovieScraper::scraperForInfo(int info)
 {
     QString identifier = Settings::instance()->customMovieScraper().value(info, "");
     if (identifier.isEmpty())
-        return 0;
+        return nullptr;
     foreach (ScraperInterface *scraper, m_scrapers) {
         if (scraper->identifier() == identifier) {
             if (scraper->hasSettings())
@@ -262,7 +262,7 @@ ScraperInterface *CustomMovieScraper::scraperForInfo(int info)
             return scraper;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 QList<ScraperInterface *> CustomMovieScraper::scrapersForInfos(QList<int> infos)
@@ -331,5 +331,5 @@ void CustomMovieScraper::saveSettings(QSettings &settings)
 
 QWidget *CustomMovieScraper::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

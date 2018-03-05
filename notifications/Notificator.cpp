@@ -63,7 +63,7 @@ void Notificator::notify(Class cls, const QString &title, const QString &text, c
 
 Notificator *Notificator::instance(QSystemTrayIcon *trayIcon, QWidget *parent)
 {
-    static Notificator *m_instance = 0;
+    static Notificator *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Notificator(trayIcon, parent);
     return m_instance;

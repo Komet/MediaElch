@@ -14,7 +14,7 @@
  */
 TvShowModel::TvShowModel(QObject *parent) : QAbstractItemModel(parent)
 {
-    m_rootItem = new TvShowModelItem(0);
+    m_rootItem = new TvShowModelItem(nullptr);
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
     m_missingIcon = QIcon(":/img/missing.png");
@@ -184,7 +184,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        TvShowModelItem *item = static_cast<TvShowModelItem *>(index.internalPointer());
+        auto item = static_cast<TvShowModelItem *>(index.internalPointer());
         if (item)
             return item;
     }

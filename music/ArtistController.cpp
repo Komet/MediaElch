@@ -27,9 +27,7 @@ ArtistController::ArtistController(Artist *parent) :
         Qt::UniqueConnection);
 }
 
-ArtistController::~ArtistController()
-{
-}
+ArtistController::~ArtistController() = default;
 
 bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
@@ -180,7 +178,7 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
     }
 
     if (!images.isEmpty() && !m_artist->mbId().isEmpty()) {
-        ImageProviderInterface *imageProvider = 0;
+        ImageProviderInterface *imageProvider = nullptr;
         foreach (ImageProviderInterface *interface, Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;

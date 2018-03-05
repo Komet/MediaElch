@@ -209,7 +209,7 @@ void QuaZipFile::setFileName(const QString& fileName, QuaZip::CaseSensitivity cs
 
 void QuaZipFilePrivate::setZipError(int zipError) const
 {
-  QuaZipFilePrivate *fakeThis = const_cast<QuaZipFilePrivate*>(this); // non-const
+  auto fakeThis = const_cast<QuaZipFilePrivate*>(this); // non-const
   fakeThis->zipError=zipError;
   if(zipError==UNZ_OK)
     q->setErrorString(QString());

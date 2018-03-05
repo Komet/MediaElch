@@ -22,13 +22,13 @@ class TrailerDialog : public QDialog
 
 public:
     explicit TrailerDialog(QWidget *parent = nullptr);
-    ~TrailerDialog();
+    ~TrailerDialog() override;
     static TrailerDialog *instance(QWidget *parent = nullptr);
 
 public slots:
-    int exec();
+    int exec() override;
     int exec(Movie *movie);
-    void reject();
+    void reject() override;
 
 private slots:
     void search();

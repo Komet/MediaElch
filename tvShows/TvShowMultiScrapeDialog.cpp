@@ -27,8 +27,8 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget *parent) : QDialog(pare
     ui->itemCounter->setFont(font);
 
     m_executed = false;
-    m_currentShow = 0;
-    m_currentEpisode = 0;
+    m_currentShow = nullptr;
+    m_currentEpisode = nullptr;
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -78,8 +78,8 @@ TvShowMultiScrapeDialog::~TvShowMultiScrapeDialog()
 
 TvShowMultiScrapeDialog *TvShowMultiScrapeDialog::instance(QWidget *parent)
 {
-    static TvShowMultiScrapeDialog *m_instance = 0;
-    if (m_instance == 0)
+    static TvShowMultiScrapeDialog *m_instance = nullptr;
+    if (m_instance == nullptr)
         m_instance = new TvShowMultiScrapeDialog(parent);
     return m_instance;
 }
@@ -120,8 +120,8 @@ int TvShowMultiScrapeDialog::exec()
     ui->progressItem->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->title->clear();
-    m_currentEpisode = 0;
-    m_currentShow = 0;
+    m_currentEpisode = nullptr;
+    m_currentShow = nullptr;
     m_showIds.clear();
     m_executed = true;
     setChkBoxesEnabled();
@@ -250,8 +250,8 @@ void TvShowMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    m_currentShow = 0;
-    m_currentEpisode = 0;
+    m_currentShow = nullptr;
+    m_currentEpisode = nullptr;
 
     if (!m_showQueue.isEmpty()) {
         m_currentShow = m_showQueue.dequeue();
@@ -381,17 +381,17 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<int, QList<Poster>> 
         return;
 
     int downloadsSize = 0;
-    if (show->posters().size() > 0 && m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
+    if (!show->posters().empty() && m_infosToLoad.contains(TvShowScraperInfos::Poster)) {
         addDownload(ImageType::TvShowPoster, show->posters().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (show->backdrops().size() > 0 && m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
+    if (!show->backdrops().empty() && m_infosToLoad.contains(TvShowScraperInfos::Fanart)) {
         addDownload(ImageType::TvShowBackdrop, show->backdrops().at(0).originalUrl, show);
         downloadsSize++;
     }
 
-    if (show->banners().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
+    if (!show->banners().empty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         addDownload(ImageType::TvShowBanner, show->banners().at(0).originalUrl, show);
         downloadsSize++;
     }
@@ -433,10 +433,10 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<int, QList<Poster>> 
 
     if (m_infosToLoad.contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = show->actorsPointer();
-        for (int i = 0, n = actors.size(); i < n; ++i) {
-            if (actors.at(i)->thumb.isEmpty())
+        for (const auto &actor : actors) {
+            if (actor->thumb.isEmpty())
                 continue;
-            addDownload(ImageType::Actor, QUrl(actors.at(i)->thumb), show, actors.at(i));
+            addDownload(ImageType::Actor, QUrl(actor->thumb), show, actor);
             downloadsSize++;
         }
     }
@@ -540,7 +540,7 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
     if (!m_executed)
         return;
 
-    TvShowEpisode *episode = static_cast<TvShowEpisode *>(QObject::sender());
+    auto episode = static_cast<TvShowEpisode *>(QObject::sender());
     if (!episode)
         return;
 

@@ -56,7 +56,7 @@ bool IMDB::hasSettings()
 
 QWidget *IMDB::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void IMDB::loadSettings(QSettings &settings)
@@ -100,7 +100,7 @@ void IMDB::search(QString searchStr)
 
 void IMDB::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -114,7 +114,7 @@ void IMDB::onSearchFinished()
 
 void IMDB::onSearchIdFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -122,7 +122,7 @@ void IMDB::onSearchIdFinished()
 
         QRegExp rx;
         rx.setMinimal(true);
-        rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">(.*)</span>");
+        rx.setPattern(R"(<h1 class="header"> <span class="itemprop" itemprop="name">(.*)</span>)");
         if (rx.indexIn(msg) != -1) {
             result.name = rx.cap(1);
 
@@ -145,7 +145,7 @@ void IMDB::onSearchIdFinished()
             }
         }
 
-        rx.setPattern("<link rel=\"canonical\" href=\"https://www.imdb.com/title/(.*)/\" />");
+        rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
         if (rx.indexIn(msg) != -1)
             result.id = rx.cap(1);
 
@@ -195,7 +195,7 @@ void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
 
 void IMDB::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
@@ -223,7 +223,7 @@ void IMDB::onLoadFinished()
 
 void IMDB::onPosterLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
@@ -244,11 +244,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<h1 class=\"header\">[^<]*<span class=\"itemprop\" itemprop=\"name\">([^<]*)</span>");
+    rx.setPattern(R"(<h1 class="header">[^<]*<span class="itemprop" itemprop="name">([^<]*)</span>)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
-    rx.setPattern("<h1 itemprop=\"name\" class=\"\">(.*)&nbsp;<span id=\"titleYear\">");
+    rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
@@ -259,7 +259,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         if (rx.indexIn(html) != -1) {
             directorsBlock = rx.cap(1);
         } else {
-            rx.setPattern("<div class=\"credit_summary_item\">[^<]*<h4 class=\"inline\">Director:</h4>(.*)</div>");
+            rx.setPattern(R"(<div class="credit_summary_item">[^<]*<h4 class="inline">Director:</h4>(.*)</div>)");
             if (rx.indexIn(html) != -1)
                 directorsBlock = rx.cap(1);
         }
@@ -267,7 +267,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         if (!directorsBlock.isEmpty()) {
             QStringList directors;
             rx.setPattern(
-                "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+                R"(<a href="[^"]*"(.*)itemprop='url'><span class="itemprop" itemprop="name">([^<]*)</span></a>)");
             int pos = 0;
             while ((pos = rx.indexIn(directorsBlock, pos)) != -1) {
                 directors << rx.cap(2);
@@ -279,12 +279,12 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 
     if (infos.contains(MovieScraperInfos::Writer)) {
         rx.setPattern(
-            "<div class=\"txt-block\" itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Person\">(.*)</div>");
+            R"(<div class="txt-block" itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
         QString writersBlock;
         if (rx.indexIn(html) != -1) {
             writersBlock = rx.cap(1);
         } else {
-            rx.setPattern("<div class=\"credit_summary_item\">[^<]*<h4 class=\"inline\">Writers:</h4>(.*)</div>");
+            rx.setPattern(R"(<div class="credit_summary_item">[^<]*<h4 class="inline">Writers:</h4>(.*)</div>)");
             if (rx.indexIn(html) != -1)
                 writersBlock = rx.cap(1);
         }
@@ -292,7 +292,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         if (!writersBlock.isEmpty()) {
             QStringList writers;
             rx.setPattern(
-                "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+                R"(<a href="[^"]*"(.*)itemprop='url'><span class="itemprop" itemprop="name">([^<]*)</span></a>)");
             int pos = 0;
             while ((pos = rx.indexIn(writersBlock, pos)) != -1) {
                 writers << rx.cap(2);
@@ -303,10 +303,10 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     }
 
     rx.setPattern(
-        "<div class=\"see-more inline canwrap\" itemprop=\"genre\">[^<]*<h4 class=\"inline\">Genres:</h4>(.*)</div>");
+        R"(<div class="see-more inline canwrap" itemprop="genre">[^<]*<h4 class="inline">Genres:</h4>(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
         QString genres = rx.cap(1);
-        rx.setPattern("<a href=\"[^\"]*\"[^>]*>([^<]*)</a>");
+        rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(genres, pos)) != -1) {
             movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
@@ -314,7 +314,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
-    rx.setPattern("<div class=\"txt-block\">.*<h4 class=\"inline\">Taglines:</h4>(.*)</div>");
+    rx.setPattern(R"(<div class="txt-block">.*<h4 class="inline">Taglines:</h4>(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1) {
         QString tagline = rx.cap(1);
         QRegExp rxMore("<span class=\"see-more inline\">.*</span>");
@@ -323,10 +323,10 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setTagline(tagline.trimmed());
     }
 
-    rx.setPattern("<div class=\"see-more inline canwrap\" itemprop=\"keywords\">(.*)</div>");
+    rx.setPattern(R"(<div class="see-more inline canwrap" itemprop="keywords">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Tags) && rx.indexIn(html) != -1) {
         QString keywords = rx.cap(1);
-        rx.setPattern("<span class=\"itemprop\" itemprop=\"keywords\">([^<]*)</span>");
+        rx.setPattern(R"(<span class="itemprop" itemprop="keywords">([^<]*)</span>)");
         int pos = 0;
         while ((pos = rx.indexIn(keywords, pos)) != -1) {
             movie->addTag(rx.cap(1).trimmed());
@@ -382,11 +382,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
         movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
 
-    rx.setPattern("<time itemprop=\"duration\" datetime=\"PT([0-9]+)M\" >");
+    rx.setPattern(R"(<time itemprop="duration" datetime="PT([0-9]+)M" >)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).toInt());
 
-    rx.setPattern("<h4 class=\"inline\">Runtime:</h4>[^<]*<time itemprop=\"duration\" datetime=\"PT([0-9]+)M\">");
+    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time itemprop="duration" datetime="PT([0-9]+)M">)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).toInt());
 
@@ -397,13 +397,13 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setOutline(outline);
     }
 
-    rx.setPattern("<div class=\"summary_text\" itemprop=\"description\">(.*)</div>");
+    rx.setPattern(R"(<div class="summary_text" itemprop="description">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         QString outline = rx.cap(1).remove(QRegExp("<[^>]*>")).trimmed();
         movie->setOutline(outline);
     }
 
-    rx.setPattern("<div class=\"inline canwrap\" itemprop=\"description\">(.*)</div>");
+    rx.setPattern(R"(<div class="inline canwrap" itemprop="description">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         QString overview = rx.cap(1).trimmed();
         QRegExp rxWrittenBy("<em class=\"nobr\">.*</em>");
@@ -457,10 +457,10 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
-    rx.setPattern("<div class=\"txt-block\">[^<]*<h4 class=\"inline\">Country:</h4>(.*)</div>");
+    rx.setPattern(R"(<div class="txt-block">[^<]*<h4 class="inline">Country:</h4>(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
         QString content = rx.cap(1);
-        rx.setPattern("<a href=\"[^\"]*\"[\\n\\s]*itemprop='url'>([^<]*)</a>");
+        rx.setPattern(R"(<a href="[^"]*"[\n\s]*itemprop='url'>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
             movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
@@ -471,7 +471,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     rx.setPattern("<table class=\"cast_list\">(.*)</table>");
     if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
         QString content = rx.cap(1);
-        rx.setPattern("<tr class=\"[^\"]*\">(.*)</tr>");
+        rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
             QString actor = rx.cap(1);
@@ -479,16 +479,16 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 
             Actor a;
 
-            QRegExp rxName("<span class=\"itemprop\" itemprop=\"name\">(.*)</span>");
+            QRegExp rxName(R"(<span class="itemprop" itemprop="name">(.*)</span>)");
             rxName.setMinimal(true);
             if (rxName.indexIn(actor) != -1)
                 a.name = rxName.cap(1).trimmed();
 
-            QRegExp rxRole("<td class=\"character\">[\\s\\n]*<div>[\\s\\n](.*)[\\s\\n]*</div>");
+            QRegExp rxRole(R"(<td class="character">[\s\n]*<div>[\s\n](.*)[\s\n]*</div>)");
             rxRole.setMinimal(true);
             if (rxRole.indexIn(actor) != -1) {
                 QString role = rxRole.cap(1);
-                rxRole.setPattern("<a href=\"[^\"]*\" >(.*)</a>");
+                rxRole.setPattern(R"(<a href="[^"]*" >(.*)</a>)");
                 if (rxRole.indexIn(role) != -1)
                     role = rxRole.cap(1);
                 a.role = role.trimmed().replace(QRegExp("[\\s\\n]+"), " ");

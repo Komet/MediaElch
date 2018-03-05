@@ -51,7 +51,7 @@ TMDb::TMDb(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -103,9 +103,7 @@ TMDb::TMDb(QObject *parent)
     setup();
 }
 
-TMDb::~TMDb()
-{
-}
+TMDb::~TMDb() = default;
 
 QString TMDb::apiKey()
 {
@@ -229,7 +227,7 @@ void TMDb::setup()
  */
 void TMDb::setupFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -278,7 +276,7 @@ void TMDb::search(QString searchStr)
                        .arg(includeAdult)
                        .arg(encodedSearch));
         QList<QRegExp> rxYears;
-        rxYears << QRegExp("^(.*) \\((\\d{4})\\)$") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
+        rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
         foreach (QRegExp rxYear, rxYears) {
             rxYear.setMinimal(true);
             if (rxYear.exactMatch(searchStr)) {
@@ -316,7 +314,7 @@ void TMDb::search(QString searchStr)
  */
 void TMDb::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     QList<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -510,7 +508,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
  */
 void TMDb::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -532,7 +530,7 @@ void TMDb::loadFinished()
  */
 void TMDb::loadCastsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -554,7 +552,7 @@ void TMDb::loadCastsFinished()
  */
 void TMDb::loadTrailersFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -576,7 +574,7 @@ void TMDb::loadTrailersFinished()
  */
 void TMDb::loadImagesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -598,7 +596,7 @@ void TMDb::loadImagesFinished()
  */
 void TMDb::loadReleasesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();

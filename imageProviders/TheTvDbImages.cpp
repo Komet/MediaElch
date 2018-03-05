@@ -413,7 +413,7 @@ void TheTvDbImages::saveSettings(QSettings &settings)
 
 QWidget *TheTvDbImages::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void TheTvDbImages::searchAlbum(QString artistName, QString searchStr, int limit)

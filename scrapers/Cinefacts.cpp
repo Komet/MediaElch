@@ -61,7 +61,7 @@ bool Cinefacts::hasSettings()
 
 QWidget *Cinefacts::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 /**
@@ -125,7 +125,7 @@ void Cinefacts::search(QString searchStr)
  */
 void Cinefacts::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -207,7 +207,7 @@ void Cinefacts::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QL
  */
 void Cinefacts::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     QString cinefactsId = reply->property("cinefactsId").toString();
@@ -232,7 +232,7 @@ void Cinefacts::loadFinished()
 
 void Cinefacts::actorsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     QString cinefactsId = reply->property("cinefactsId").toString();
@@ -257,7 +257,7 @@ void Cinefacts::actorsFinished()
 
 void Cinefacts::imagesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -326,12 +326,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     // Year
-    rx.setPattern("<time datetime=\"[^\"]*\" itemprop=\"dateCreated\" >([0-9]{4})</time>");
+    rx.setPattern(R"(<time datetime="[^"]*" itemprop="dateCreated" >([0-9]{4})</time>)");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
-    rx.setPattern("<span itemprop=\"genre\" >[^>]*</span> \\| (.*) \\(<time datetime=");
+    rx.setPattern(R"(<span itemprop="genre" >[^>]*</span> \| (.*) \(<time datetime=)");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1)
         movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
 
@@ -347,12 +347,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
 
     // Runtime
-    rx.setPattern("<time itemprop=\"duration\" datetime=\"PT[^\"]*\" >([0-9]*)</time>");
+    rx.setPattern(R"(<time itemprop="duration" datetime="PT[^"]*" >([0-9]*)</time>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).trimmed().toInt());
 
     // Overview
-    rx.setPattern("<span class=\"thisSummary\" itemprop=\"description\">.*<strong>Inhalt: </strong>(.*)</span>");
+    rx.setPattern(R"(<span class="thisSummary" itemprop="description">.*<strong>Inhalt: </strong>(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
@@ -440,7 +440,7 @@ void Cinefacts::parseImages(QString data, QStringList &posters, QStringList &bac
  */
 void Cinefacts::posterFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QStringList posters = reply->property("posters").toStringList();
@@ -489,7 +489,7 @@ void Cinefacts::posterFinished()
  */
 void Cinefacts::backdropFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QStringList backdrops = reply->property("backdrops").toStringList();

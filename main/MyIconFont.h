@@ -75,7 +75,7 @@ class MyIconFont : public QObject
 
 public:
     explicit MyIconFont(QObject *parent = nullptr);
-    virtual ~MyIconFont();
+    ~MyIconFont() override;
 
     void init(const QString &fontname);
     bool initFontAwesome();
@@ -126,7 +126,7 @@ private:
 class MyIconFontIconPainter
 {
 public:
-    virtual ~MyIconFontIconPainter() {}
+    virtual ~MyIconFontIconPainter() = default;
     virtual void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,

@@ -42,14 +42,12 @@ Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
         setFiles(files);
 }
 
-Movie::~Movie()
-{
-}
+Movie::~Movie() = default;
 
 void Movie::setFiles(QStringList files)
 {
     m_files = files;
-    if (files.size() > 0) {
+    if (!files.empty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty())

@@ -16,14 +16,14 @@ class MusicMultiScrapeDialog : public QDialog
 
 public:
     explicit MusicMultiScrapeDialog(QWidget *parent = nullptr);
-    ~MusicMultiScrapeDialog();
+    ~MusicMultiScrapeDialog() override;
     static MusicMultiScrapeDialog *instance(QWidget *parent = nullptr);
     void setItems(QList<Artist *> artists, QList<Album *> albums);
 
 public slots:
-    int exec();
-    void reject();
-    void accept();
+    int exec() override;
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onChkToggled();

@@ -16,7 +16,7 @@ ConcertModel::ConcertModel(QObject *parent) : QAbstractItemModel(parent)
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
 #else
-    MyIconFont *font = new MyIconFont(this);
+    auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
     m_newIcon = font->icon("star", QColor(58, 135, 173), QColor(255, 255, 255), "", 0, 1.0);
@@ -60,7 +60,7 @@ void ConcertModel::update()
 Concert *ConcertModel::concert(int row)
 {
     if (row < 0 || row >= m_concerts.count())
-        return 0;
+        return nullptr;
     return m_concerts.at(row);
 }
 
@@ -105,7 +105,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(concert->name());
     } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
-        if (concert->files().size() == 0)
+        if (concert->files().empty())
             return QVariant();
         return concert->files().at(0);
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
@@ -166,7 +166,7 @@ QModelIndex ConcertModel::index(int row, int column, const QModelIndex &parent) 
  */
 void ConcertModel::clear()
 {
-    if (m_concerts.size() == 0)
+    if (m_concerts.empty())
         return;
     beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
     foreach (Concert *concert, m_concerts)

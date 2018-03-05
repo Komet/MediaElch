@@ -19,7 +19,7 @@ class Message : public QWidget
 
 public:
     explicit Message(QWidget *parent = nullptr);
-    ~Message();
+    ~Message() override;
     void setType(int type);
     void setMessage(QString message, int timeout = 3000);
     void showProgressBar(bool show);

@@ -13,7 +13,7 @@ ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ImageWid
 {
     ui->setupUi(this);
     ui->quickWidget->rootContext()->setContextProperty("imageWidget", this);
-    ui->quickWidget->rootContext()->setContextProperty("album", 0);
+    ui->quickWidget->rootContext()->setContextProperty("album", nullptr);
     ui->quickWidget->rootContext()->setContextProperty("loading", false);
 #ifdef Q_OS_MAC
     ui->quickWidget->rootContext()->setContextProperty("isOsx", true);

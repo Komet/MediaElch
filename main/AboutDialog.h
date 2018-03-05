@@ -16,10 +16,10 @@ class AboutDialog : public QDialog
 
 public:
     explicit AboutDialog(QWidget *parent = nullptr);
-    ~AboutDialog();
+    ~AboutDialog() override;
 
 public slots:
-    int exec();
+    int exec() override;
 
 private:
     Ui::AboutDialog *ui;

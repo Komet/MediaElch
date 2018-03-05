@@ -386,7 +386,7 @@ void TMDbImages::loadSettings(QSettings &settings)
 
 QWidget *TMDbImages::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void TMDbImages::searchAlbum(QString artistName, QString searchStr, int limit)

@@ -19,7 +19,7 @@ Update::Update(QObject *parent) : QObject(parent)
 
 Update *Update::instance(QObject *parent)
 {
-    static Update *m_instance = 0;
+    static Update *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Update(parent);
     return m_instance;
@@ -34,7 +34,7 @@ void Update::checkForUpdate()
 
 void Update::onCheckFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QString version;

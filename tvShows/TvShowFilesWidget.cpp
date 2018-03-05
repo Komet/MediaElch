@@ -29,8 +29,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
-    m_lastTvShow = 0;
-    m_lastEpisode = 0;
+    m_lastTvShow = nullptr;
+    m_lastEpisode = nullptr;
     m_lastSeason = -1;
     m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
@@ -270,7 +270,7 @@ void TvShowFilesWidget::loadStreamDetails()
         episodes.at(0)->loadStreamDetailsFromFile();
         episodes.at(0)->setChanged(true);
     } else {
-        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        auto loader = new LoadingStreamDetails(this);
         loader->loadTvShowEpisodes(episodes);
         delete loader;
     }
@@ -462,9 +462,9 @@ void TvShowFilesWidget::renewModel(bool force)
             SIGNAL(currentChanged(QModelIndex, QModelIndex)),
             this,
             SLOT(onItemSelected(QModelIndex)));
-        m_tvShowProxyModel->setSourceModel(0);
+        m_tvShowProxyModel->setSourceModel(nullptr);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
-        ui->files->setModel(0);
+        ui->files->setModel(nullptr);
         ui->files->setModel(m_tvShowProxyModel);
         ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
         connect(ui->files->selectionModel(),
@@ -501,8 +501,8 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
         return;
     }
 
-    m_lastEpisode = 0;
-    m_lastTvShow = 0;
+    m_lastEpisode = nullptr;
+    m_lastTvShow = nullptr;
     m_lastSeason = -1;
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
     if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {

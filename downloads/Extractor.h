@@ -11,7 +11,7 @@ class Extractor : public QObject
     Q_OBJECT
 public:
     explicit Extractor(QObject *parent = nullptr);
-    ~Extractor();
+    ~Extractor() override;
 
 public slots:
     void extract(QString baseName, QStringList files, QString password);

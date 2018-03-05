@@ -17,7 +17,7 @@ class MovieSearchWidget : public QWidget
 
 public:
     explicit MovieSearchWidget(QWidget *parent = nullptr);
-    ~MovieSearchWidget();
+    ~MovieSearchWidget() override;
 
 public slots:
     QString scraperId();

@@ -17,7 +17,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui
 {
     ui->setupUi(this);
 
-    m_album = 0;
+    m_album = nullptr;
     ui->albumName->clear();
 
 #ifndef Q_OS_MAC
@@ -61,7 +61,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
     }
 
-    m_bookletWidget = 0;
+    m_bookletWidget = nullptr;
 
 #ifdef Q_OS_WIN
     if (QGLFormat::openGLVersionFlags() & QGLFormat::OpenGL_Version_1_5) {
@@ -195,7 +195,7 @@ void MusicWidgetAlbum::onClear()
     ui->discArt->clear();
 
     if (m_bookletWidget)
-        m_bookletWidget->setAlbum(0);
+        m_bookletWidget->setAlbum(nullptr);
 
     ui->buttonRevert->setVisible(false);
 }
@@ -322,7 +322,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
     if (!m_album)
         return;
 
-    QLineEdit *lineEdit = static_cast<QLineEdit *>(sender());
+    auto lineEdit = static_cast<QLineEdit *>(sender());
     if (!lineEdit)
         return;
 
@@ -412,10 +412,10 @@ void MusicWidgetAlbum::onRemoveCloudItem(QString text)
 
 void MusicWidgetAlbum::onChooseImage()
 {
-    if (m_album == 0)
+    if (m_album == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -439,10 +439,10 @@ void MusicWidgetAlbum::onChooseImage()
 
 void MusicWidgetAlbum::onDeleteImage()
 {
-    if (m_album == 0)
+    if (m_album == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -525,7 +525,7 @@ void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
 
 void MusicWidgetAlbum::onBookletModelChanged()
 {
-    ImageModel *model = static_cast<ImageModel *>(sender());
+    auto model = static_cast<ImageModel *>(sender());
     if (!model)
         return;
     if (m_album != static_cast<Album *>(model->parent()))

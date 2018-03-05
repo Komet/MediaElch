@@ -14,12 +14,12 @@
 class StarIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -87,12 +87,12 @@ public:
 class DuplicateIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -151,12 +151,12 @@ public:
 class MyIconFontCharIconPainter : public MyIconFontIconPainter
 {
 public:
-    virtual void paint(MyIconFont *awesome,
+    void paint(MyIconFont *awesome,
         QPainter *painter,
         const QRect &rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options)
+        const QVariantMap &options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -213,21 +213,21 @@ public:
     {
     }
 
-    virtual ~MyIconFontIconPainterIconEngine() {}
+    ~MyIconFontIconPainterIconEngine() override = default;
 
-    MyIconFontIconPainterIconEngine *clone() const
+    MyIconFontIconPainterIconEngine *clone() const override
     {
         return new MyIconFontIconPainterIconEngine(awesomeRef_, iconPainterRef_, options_);
     }
 
-    virtual void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
         iconPainterRef_->paint(awesomeRef_, painter, rect, mode, state, options_);
     }
 
-    virtual QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         QPixmap pm(size);
         pm.fill(Qt::transparent); // we need transparency
@@ -475,7 +475,7 @@ QIcon MyIconFont::icon(MyIconFontIconPainter *painter, const QVariantMap &option
     // Warning, when you use memoryleak detection. You should turn it of for the next call
     // QIcon's placed in gui items are often cached and not deleted when my memory-leak detection checks for leaks.
     // I'm not sure if it's a Qt bug or something I do wrong
-    MyIconFontIconPainterIconEngine *engine = new MyIconFontIconPainterIconEngine(this, painter, optionMap);
+    auto engine = new MyIconFontIconPainterIconEngine(this, painter, optionMap);
     return QIcon(engine);
 }
 

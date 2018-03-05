@@ -15,13 +15,13 @@ class PluginManagerDialog : public QDialog
 
 public:
     explicit PluginManagerDialog(QWidget *parent = nullptr);
-    ~PluginManagerDialog();
+    ~PluginManagerDialog() override;
 
     void installPlugin(PluginManager::Plugin plugin);
     void updatePlugin(PluginManager::Plugin plugin);
 
 public slots:
-    int exec();
+    int exec() override;
 
 private slots:
     void onInstallPlugin();

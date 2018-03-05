@@ -18,7 +18,7 @@ public:
     int season();
 
 protected:
-    void mousePressEvent(QMouseEvent *ev);
+    void mousePressEvent(QMouseEvent *ev) override;
 signals:
     void clicked();
     void seasonClicked(int);

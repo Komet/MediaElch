@@ -18,7 +18,7 @@ class ArtistController : public QObject
     Q_OBJECT
 public:
     explicit ArtistController(Artist *parent = nullptr);
-    ~ArtistController();
+    ~ArtistController() override;
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

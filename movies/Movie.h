@@ -30,7 +30,7 @@ class Movie : public QObject
 
 public:
     explicit Movie(QStringList files, QObject *parent = nullptr);
-    ~Movie();
+    ~Movie() override;
 
     MovieController *controller();
 

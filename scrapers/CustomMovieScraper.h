@@ -13,19 +13,19 @@ public:
     explicit CustomMovieScraper(QObject *parent = nullptr);
     static CustomMovieScraper *instance(QObject *parent = nullptr);
 
-    QString name();
-    QString identifier();
-    void search(QString searchStr);
-    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos);
-    bool hasSettings();
-    void loadSettings(QSettings &settings);
-    void saveSettings(QSettings &settings);
-    QList<int> scraperSupports();
-    QList<int> scraperNativelySupports();
+    QString name() override;
+    QString identifier() override;
+    void search(QString searchStr) override;
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos) override;
+    bool hasSettings() override;
+    void loadSettings(QSettings &settings) override;
+    void saveSettings(QSettings &settings) override;
+    QList<int> scraperSupports() override;
+    QList<int> scraperNativelySupports() override;
     QList<ScraperInterface *> scrapersNeedSearch(QList<int> infos, QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();
-    QWidget *settingsWidget();
-    bool isAdult();
+    QWidget *settingsWidget() override;
+    bool isAdult() override;
     ScraperInterface *scraperForInfo(int info);
 
 private slots:
@@ -33,7 +33,7 @@ private slots:
     void onLoadTmdbFinished();
 
 signals:
-    void searchDone(QList<ScraperSearchResult>);
+    void searchDone(QList<ScraperSearchResult>) override;
 
 private:
     QList<ScraperInterface *> m_scrapers;

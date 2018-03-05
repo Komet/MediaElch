@@ -13,7 +13,7 @@ class AdvancedSettings : public QObject
     Q_OBJECT
 public:
     explicit AdvancedSettings(QObject *parent = nullptr);
-    ~AdvancedSettings();
+    ~AdvancedSettings() override;
 
     bool debugLog() const;
     QString logFile() const;

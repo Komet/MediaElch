@@ -66,6 +66,10 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
                                           << "settings"
                                           << "about";
 
+#ifdef Q_OS_MAC
+    int i = 0;
+#endif
+
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton *>()) {
         if (!btn->property("iconName").isValid())
             continue;
@@ -81,7 +85,7 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
     }
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        auto effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(2);
         effect->setBlurRadius(4);

@@ -25,7 +25,7 @@
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetEpisode),
-    m_episode{0}
+    m_episode{nullptr}
 {
     ui->setupUi(this);
 
@@ -308,7 +308,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -480,7 +480,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         edit1->setPlaceholderText(tr("Language"));
         edit2->setPlaceholderText(tr("Codec"));
         edit2->setPlaceholderText(tr("Channels"));
-        QHBoxLayout *layout = new QHBoxLayout();
+        auto layout = new QHBoxLayout();
         layout->addWidget(edit1);
         layout->addWidget(edit2);
         layout->addWidget(edit3);
@@ -507,7 +507,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
-            QHBoxLayout *layout = new QHBoxLayout();
+            auto layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
@@ -548,7 +548,7 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
 void TvShowWidgetEpisode::onSaveInformation()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -581,7 +581,7 @@ void TvShowWidgetEpisode::onRevertChanges()
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -612,7 +612,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 void TvShowWidgetEpisode::onLoadDone()
 {
     qDebug() << "Entered";
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -642,7 +642,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 {
     qDebug() << "Entered";
 
-    if (m_episode == 0) {
+    if (m_episode == nullptr) {
         qWarning() << "My episode is invalid";
         return;
     }
@@ -740,7 +740,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
     if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected())
         return;
 
-    QString *director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString *>();
+    auto director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeDirector(director);
     ui->directors->blockSignals(true);
     ui->directors->removeRow(row);
@@ -754,7 +754,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
  */
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
 {
-    QString *director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
+    auto director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);
@@ -789,7 +789,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
     if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected())
         return;
 
-    QString *writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString *>();
+    auto writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeWriter(writer);
     ui->writers->blockSignals(true);
     ui->writers->removeRow(row);
@@ -803,7 +803,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
  */
 void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
 {
-    QString *writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
+    auto writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
@@ -978,7 +978,7 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
 
 void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -1013,7 +1013,7 @@ void TvShowWidgetEpisode::onRemoveActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_episode->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1030,7 +1030,7 @@ void TvShowWidgetEpisode::onActorChanged()
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1060,7 +1060,7 @@ void TvShowWidgetEpisode::onChangeActorImage()
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();

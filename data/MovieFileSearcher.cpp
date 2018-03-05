@@ -28,9 +28,7 @@ MovieFileSearcher::MovieFileSearcher(QObject *parent) :
 /**
  * @brief MovieFileSearcher::~MovieFileSearcher
  */
-MovieFileSearcher::~MovieFileSearcher()
-{
-}
+MovieFileSearcher::~MovieFileSearcher() = default;
 
 void MovieFileSearcher::reload(bool force)
 {
@@ -213,7 +211,7 @@ void MovieFileSearcher::reload(bool force)
                                                               << "*.ssa",
                             QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
-                        QStringList parts = subFileName.split(QRegExp("\\s+|\\-+|\\.+"));
+                        QStringList parts = subFileName.split(QRegExp(R"(\s+|\-+|\.+)"));
                         if (parts.isEmpty())
                             continue;
                         parts.takeLast();
@@ -224,7 +222,7 @@ void MovieFileSearcher::reload(bool force)
                             if (subIdxFi.exists())
                                 subFiles << subIdxFi.fileName();
                         }
-                        Subtitle *subtitle = new Subtitle(movie);
+                        auto subtitle = new Subtitle(movie);
                         subtitle->setFiles(subFiles);
                         if (parts.contains("forced", Qt::CaseInsensitive)) {
                             subtitle->setForced(true);

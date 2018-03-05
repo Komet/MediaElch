@@ -83,9 +83,7 @@ Manager::Manager(QObject *parent) : QObject(parent)
 /**
  * @brief Manager::~Manager
  */
-Manager::~Manager()
-{
-}
+Manager::~Manager() = default;
 
 /**
  * @brief Returns an instance of the Manager
@@ -93,8 +91,8 @@ Manager::~Manager()
  */
 Manager *Manager::instance()
 {
-    static Manager *m_instance = 0;
-    if (m_instance == 0) {
+    static Manager *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new Manager(qApp);
     }
     return m_instance;
@@ -175,7 +173,7 @@ ScraperInterface *Manager::scraper(const QString &identifier)
             return scraper;
     }
 
-    return 0;
+    return nullptr;
 }
 
 /**

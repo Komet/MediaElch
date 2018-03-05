@@ -25,9 +25,7 @@ XbmcXml::XbmcXml(QObject *parent)
 /**
  * @brief XbmcXml::~XbmcXml
  */
-XbmcXml::~XbmcXml()
-{
-}
+XbmcXml::~XbmcXml() = default;
 
 /**
  * @brief Checks if our MediaCenterPlugin supports a feature
@@ -45,7 +43,7 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
     QDomDocument doc;
     doc.setContent(movie->nfoContent());
     if (movie->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("movie"));
     }
@@ -158,7 +156,7 @@ bool XbmcXml::saveMovie(Movie *movie)
     qDebug() << "Entered, movie=" << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return false;
     }
@@ -279,7 +277,7 @@ bool XbmcXml::saveMovie(Movie *movie)
 QString XbmcXml::nfoFilePath(Movie *movie)
 {
     QString nfoFile;
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return nfoFile;
     }
@@ -304,7 +302,7 @@ QString XbmcXml::nfoFilePath(Movie *movie)
 QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
 {
     QString nfoFile;
-    if (episode->files().size() == 0) {
+    if (episode->files().empty()) {
         qWarning() << "Episode has no files";
         return nfoFile;
     }
@@ -353,7 +351,7 @@ QString XbmcXml::nfoFilePath(TvShow *show)
 QString XbmcXml::nfoFilePath(Concert *concert)
 {
     QString nfoFile;
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return nfoFile;
     }
@@ -765,7 +763,7 @@ QByteArray XbmcXml::getConcertXml(Concert *concert)
     QDomDocument doc;
     doc.setContent(concert->nfoContent());
     if (concert->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("musicvideo"));
     }
@@ -831,7 +829,7 @@ bool XbmcXml::saveConcert(Concert *concert)
     qDebug() << "Entered, concert=" << concert->name();
     QByteArray xmlContent = getConcertXml(concert);
 
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return false;
     }
@@ -1500,7 +1498,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     QDomDocument doc;
     doc.setContent(show->nfoContent());
     if (show->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("tvshow"));
     }
@@ -1872,7 +1870,7 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
     }
 
     QString fileName;
-    if (movie->files().size() == 0) {
+    if (movie->files().empty()) {
         qWarning() << "Movie has no files";
         return fileName;
     }
@@ -1911,7 +1909,7 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
     }
 
     QString fileName;
-    if (concert->files().size() == 0) {
+    if (concert->files().empty()) {
         qWarning() << "Concert has no files";
         return fileName;
     }
@@ -2385,7 +2383,7 @@ QByteArray XbmcXml::getArtistXml(Artist *artist)
     QDomDocument doc;
     doc.setContent(artist->nfoContent());
     if (artist->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("artist"));
     }
@@ -2485,7 +2483,7 @@ QByteArray XbmcXml::getAlbumXml(Album *album)
     QDomDocument doc;
     doc.setContent(album->nfoContent());
     if (album->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("album"));
     }
@@ -2612,7 +2610,7 @@ void XbmcXml::loadBooklets(Album *album)
                                         << "*.Jpeg"
                                         << "*.JPeg";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
-        Image *img = new Image;
+        auto img = new Image;
         img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
         album->bookletModel()->addImage(img);
     }

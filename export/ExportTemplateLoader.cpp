@@ -19,7 +19,7 @@ ExportTemplateLoader::ExportTemplateLoader(QObject *parent) : QObject(parent)
 
 ExportTemplateLoader *ExportTemplateLoader::instance(QObject *parent)
 {
-    static ExportTemplateLoader *instance = 0;
+    static ExportTemplateLoader *instance = nullptr;
     if (!instance)
         instance = new ExportTemplateLoader(parent);
     return instance;
@@ -39,7 +39,7 @@ void ExportTemplateLoader::getRemoteTemplates()
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
     QList<ExportTemplate *> templates;
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
@@ -99,7 +99,7 @@ void ExportTemplateLoader::loadLocalTemplates()
 
 ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
 {
-    ExportTemplate *exportTemplate = new ExportTemplate(this);
+    auto exportTemplate = new ExportTemplate(this);
     exportTemplate->setRemote(true);
 
     while (xml.readNextStartElement()) {
@@ -148,7 +148,7 @@ void ExportTemplateLoader::installTemplate(ExportTemplate *exportTemplate)
 
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     ExportTemplate *exportTemplate = reply->property("storage").value<Storage *>()->exportTemplate();
@@ -299,5 +299,5 @@ ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier
             return exportTemplate;
     }
 
-    return 0;
+    return nullptr;
 }

@@ -15,9 +15,9 @@
  */
 MyLineEdit::MyLineEdit(QWidget *parent) :
     QLineEdit(parent),
-    m_loadingLabel{new QLabel(0)},
+    m_loadingLabel{new QLabel(nullptr)},
     m_showMagnifier{false},
-    m_magnifierLabel{0},
+    m_magnifierLabel{nullptr},
     m_paddingLeft{0}
 {
     m_moreLabel = new QLabel(this);
@@ -196,7 +196,7 @@ void MyLineEdit::setShowMagnifier(bool show)
     m_showMagnifier = show;
 
     if (show) {
-        if (m_magnifierLabel != 0)
+        if (m_magnifierLabel != nullptr)
             delete m_magnifierLabel;
         QPixmap magn(":/img/magnifier.png");
         magn = magn.scaled(

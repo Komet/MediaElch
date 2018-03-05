@@ -32,7 +32,7 @@ ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
 {
     Q_UNUSED(option);
     Q_UNUSED(index);
-    QComboBox *box = new QComboBox(parent);
+    auto box = new QComboBox(parent);
     box->setEditable(true);
     return box;
 }
@@ -45,7 +45,7 @@ ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
 void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    QComboBox *box = static_cast<QComboBox *>(editor);
+    auto box = static_cast<QComboBox *>(editor);
     QStringList items;
     if (m_widget == WidgetMovies && m_type == ComboDelegateGenres) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -114,7 +114,7 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
  */
 void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *box = static_cast<QComboBox *>(editor);
+    auto box = static_cast<QComboBox *>(editor);
     QString value = box->currentText();
     model->setData(index, value, Qt::EditRole);
 }

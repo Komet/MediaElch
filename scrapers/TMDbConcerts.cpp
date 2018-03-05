@@ -51,7 +51,7 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -75,9 +75,7 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     setup();
 }
 
-TMDbConcerts::~TMDbConcerts()
-{
-}
+TMDbConcerts::~TMDbConcerts() = default;
 /**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
@@ -180,7 +178,7 @@ void TMDbConcerts::setup()
  */
 void TMDbConcerts::setupFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -237,7 +235,7 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     QList<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -395,7 +393,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
  */
 void TMDbConcerts::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -417,7 +415,7 @@ void TMDbConcerts::loadFinished()
  */
 void TMDbConcerts::loadTrailersFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -439,7 +437,7 @@ void TMDbConcerts::loadTrailersFinished()
  */
 void TMDbConcerts::loadImagesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
@@ -461,7 +459,7 @@ void TMDbConcerts::loadImagesFinished()
  */
 void TMDbConcerts::loadReleasesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();

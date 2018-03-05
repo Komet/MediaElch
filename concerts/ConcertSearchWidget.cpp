@@ -87,7 +87,7 @@ void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)
         QString name = result.name;
         if (result.released.isValid())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
-        QTableWidgetItem *item = new QTableWidgetItem(name);
+        auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

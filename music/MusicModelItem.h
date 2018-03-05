@@ -14,7 +14,7 @@ class MusicModelItem : public QObject
     Q_OBJECT
 public:
     explicit MusicModelItem(MusicModelItem *parent = nullptr);
-    ~MusicModelItem();
+    ~MusicModelItem() override;
 
     MusicModelItem *child(int number);
     int childCount() const;

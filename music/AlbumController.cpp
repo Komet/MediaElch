@@ -26,9 +26,7 @@ AlbumController::AlbumController(Album *parent) :
         Qt::UniqueConnection);
 }
 
-AlbumController::~AlbumController()
-{
-}
+AlbumController::~AlbumController() = default;
 
 bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
@@ -128,7 +126,7 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_album, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::AlbumBooklet) {
-        Image *image = new Image;
+        auto image = new Image;
         image->setRawData(elem.data);
         m_album->bookletModel()->addImage(image);
     } else if (!elem.data.isEmpty()) {
@@ -171,7 +169,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
     }
 
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
-        ImageProviderInterface *imageProvider = 0;
+        ImageProviderInterface *imageProvider = nullptr;
         foreach (ImageProviderInterface *interface, Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;

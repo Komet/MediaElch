@@ -19,7 +19,7 @@ class MusicWidgetAlbum : public QWidget
 
 public:
     explicit MusicWidgetAlbum(QWidget *parent = nullptr);
-    ~MusicWidgetAlbum();
+    ~MusicWidgetAlbum() override;
     void setAlbum(Album *album);
 
 public slots:

@@ -13,7 +13,7 @@
 #include "quazip/quazip/quazipfile.h"
 #include "scrapers/TheTvDb.h"
 
-TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{0}
+TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{nullptr}
 {
     foreach (TvScraperInterface *interface, Manager::instance()->tvScrapers()) {
         if (interface->identifier() == "tvdb") {
@@ -25,7 +25,7 @@ TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{0}
 
 TvShowUpdater *TvShowUpdater::instance(QObject *parent)
 {
-    static TvShowUpdater *instance = 0;
+    static TvShowUpdater *instance = nullptr;
     if (!instance)
         instance = new TvShowUpdater(parent);
     return instance;
@@ -71,7 +71,7 @@ void TvShowUpdater::onLoadFinished()
     if (value + 1 == maxValue)
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
 
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     if (!show)

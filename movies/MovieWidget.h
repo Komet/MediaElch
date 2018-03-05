@@ -27,7 +27,7 @@ class MovieWidget : public QWidget
 
 public:
     explicit MovieWidget(QWidget *parent = nullptr);
-    ~MovieWidget();
+    ~MovieWidget() override;
 
 public slots:
     void clear();
@@ -41,7 +41,7 @@ public slots:
     void updateMovieInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void actorDownloadStarted(QString, int);

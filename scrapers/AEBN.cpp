@@ -39,7 +39,7 @@ AEBN::AEBN(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -104,7 +104,7 @@ void AEBN::search(QString searchStr)
 
 void AEBN::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -157,7 +157,7 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
 
 void AEBN::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
 
@@ -180,7 +180,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<h1 itemprop=\"name\"  class=\"md-movieTitle\"  >(.*)</h1>");
+    rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
@@ -314,7 +314,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
 
 void AEBN::onActorLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QStringList actorIds = reply->property("actorIds").toStringList();
     QString actorId = reply->property("actorId").toString();
@@ -331,7 +331,7 @@ void AEBN::onActorLoadFinished()
 
 void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
 {
-    QRegExp rx("<img itemprop=\"image\" src=\"([^\"]*)\" alt=\"([^\"]*)\" class=\"star\" />");
+    QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
         foreach (Actor *a, movie->actorsPointer()) {

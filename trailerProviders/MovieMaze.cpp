@@ -79,7 +79,7 @@ void MovieMaze::onLoadFinished()
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
         int pos = 0;
-        QRegExp rx("<meta itemprop=\"url\" content=\"([^\"]*)\">[^<]*<meta itemprop=\"name\" content=\"([^\"]*)\">");
+        QRegExp rx(R"lit(<meta itemprop="url" content="([^"]*)">[^<]*<meta itemprop="name" content="([^"]*)">)lit");
         rx.setMinimal(true);
 
         while ((pos = rx.indexIn(msg, pos)) != -1) {
@@ -123,7 +123,7 @@ QList<TrailerResult> MovieMaze::parseTrailers(QString html)
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<h1 itemprop=\"name\" class=\"headline\">([^<]*)</h1>");
+    rx.setPattern(R"(<h1 itemprop="name" class="headline">([^<]*)</h1>)");
     if (rx.indexIn(html, 0) != -1)
         name = rx.cap(1);
 

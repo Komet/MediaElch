@@ -20,10 +20,10 @@ class ExportDialog : public QDialog
 
 public:
     explicit ExportDialog(QWidget *parent = nullptr);
-    ~ExportDialog();
+    ~ExportDialog() override;
 
 public slots:
-    int exec();
+    int exec() override;
 
 private slots:
     void onBtnExport();
@@ -41,9 +41,9 @@ private:
     void replaceImages(QString &m,
         const QDir &dir,
         const bool &subDir,
-        Movie *movie = 0,
-        Concert *concert = 0,
-        TvShow *tvShow = 0,
+        Movie *movie = nullptr,
+        Concert *concert = nullptr,
+        TvShow *tvShow = nullptr,
         TvShowEpisode *episode = nullptr);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Movie *movie);
     bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Concert *concert);

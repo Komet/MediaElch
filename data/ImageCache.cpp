@@ -30,7 +30,7 @@ ImageCache::ImageCache(QObject *parent) : QObject(parent)
 
 ImageCache *ImageCache::instance(QObject *parent)
 {
-    static ImageCache *m_instance = 0;
+    static ImageCache *m_instance = nullptr;
     if (!m_instance)
         m_instance = new ImageCache(parent);
     return m_instance;

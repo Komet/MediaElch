@@ -22,7 +22,7 @@ class TvShowWidgetEpisode : public QWidget
 
 public:
     explicit TvShowWidgetEpisode(QWidget *parent = nullptr);
-    ~TvShowWidgetEpisode();
+    ~TvShowWidgetEpisode() override;
     void setEpisode(TvShowEpisode *episode);
     void updateEpisodeInfo();
 
@@ -37,7 +37,7 @@ signals:
     void sigSetActionSaveEnabled(bool, MainWidgets);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void onAddDirector();

@@ -37,7 +37,7 @@ voidpf ZCALLBACK qiodevice_open_file_func (
    voidpf file,
    int mode)
 {
-    QIODevice *iodevice = reinterpret_cast<QIODevice*>(file);
+    auto iodevice = reinterpret_cast<QIODevice*>(file);
     if ((mode & ZLIB_FILEFUNC_MODE_READWRITEFILTER)==ZLIB_FILEFUNC_MODE_READ)
         iodevice->open(QIODevice::ReadOnly);
     else

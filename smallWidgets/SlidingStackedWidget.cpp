@@ -14,16 +14,14 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     m_active{false},
     m_expanded{false}
 {
-    if (parent != 0)
+    if (parent != nullptr)
         m_mainWindow = parent;
     else
         m_mainWindow = this;
 }
 
 
-SlidingStackedWidget::~SlidingStackedWidget()
-{
-}
+SlidingStackedWidget::~SlidingStackedWidget() = default;
 
 void SlidingStackedWidget::setVerticalMode(bool vertical)
 {
@@ -130,7 +128,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animNext->setStartValue(QPoint(-offsetX + pNext.x(), offsetY + pNext.y()));
     animNext->setEndValue(QPoint(pNext.x(), pNext.y()));
 
-    QParallelAnimationGroup *animGroup = new QParallelAnimationGroup;
+    auto animGroup = new QParallelAnimationGroup;
 
     animGroup->addAnimation(animNow);
     animGroup->addAnimation(animNext);
@@ -142,7 +140,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animGroup->start();
 }
 
-void SlidingStackedWidget::animationDoneSlot(void)
+void SlidingStackedWidget::animationDoneSlot()
 {
     setCurrentIndex(m_next);
     widget(m_now)->hide();
@@ -168,7 +166,7 @@ void SlidingStackedWidget::expandToOne()
         removeWidget(widget);
 
     QWidget *pWidget = new QWidget();
-    QHBoxLayout *layout = new QHBoxLayout(pWidget);
+    auto layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);
 

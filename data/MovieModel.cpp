@@ -16,7 +16,7 @@ MovieModel::MovieModel(QObject *parent) : QAbstractItemModel(parent)
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
 #else
-    MyIconFont *font = new MyIconFont(this);
+    auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
     m_newIcon = font->icon("star", QColor(58, 135, 173), QColor(255, 255, 255), "", 0, 1.0);
@@ -60,7 +60,7 @@ void MovieModel::update()
 Movie *MovieModel::movie(int row)
 {
     if (row < 0 || row >= m_movies.count())
-        return 0;
+        return nullptr;
     return m_movies.at(row);
 }
 
@@ -107,7 +107,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         if (role == Qt::DisplayRole) {
             return Helper::instance()->appendArticle(movie->name());
         } else if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
-            if (movie->files().size() == 0)
+            if (movie->files().empty())
                 return QVariant();
             return movie->files().at(0);
         } else if (role == Qt::UserRole + 1) {
@@ -223,7 +223,7 @@ QModelIndex MovieModel::index(int row, int column, const QModelIndex &parent) co
  */
 void MovieModel::clear()
 {
-    if (m_movies.size() == 0)
+    if (m_movies.empty())
         return;
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
     foreach (Movie *movie, m_movies)

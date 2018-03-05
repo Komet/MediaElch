@@ -39,7 +39,7 @@ void MyTableWidget::dropEvent(QDropEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls()) {
-        if (mimeData->urls().size() > 0) {
+        if (!mimeData->urls().empty()) {
             QUrl url = mimeData->urls().at(0);
             QStringList filters;
             filters << ".jpg"

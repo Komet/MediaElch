@@ -25,7 +25,7 @@ class ImportDialog : public QDialog
 
 public:
     explicit ImportDialog(QWidget *parent = nullptr);
-    ~ImportDialog();
+    ~ImportDialog() override;
     void setFiles(QStringList files);
     QStringList files();
     void setExtraFiles(QStringList extraFiles);
@@ -34,12 +34,12 @@ public:
     QString importDir();
 
 public slots:
-    int exec();
+    int exec() override;
     int execMovie(QString searchString);
     int execTvShow(QString searchString, TvShow *tvShow);
     int execConcert(QString searchString);
-    void reject();
-    void accept();
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onMovieChosen();

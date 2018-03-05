@@ -35,7 +35,7 @@ class DownloadsWidget : public QWidget
 
 public:
     explicit DownloadsWidget(QWidget *parent = nullptr);
-    ~DownloadsWidget();
+    ~DownloadsWidget() override;
     void updatePackagesList(QMap<QString, Package> packages);
     void updateImportsList(QMap<QString, Import> imports);
     int hasNewItems();

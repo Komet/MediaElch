@@ -38,8 +38,8 @@ MovieListDialog::~MovieListDialog()
  */
 MovieListDialog *MovieListDialog::instance(QWidget *parent)
 {
-    static MovieListDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static MovieListDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new MovieListDialog(parent);
     }
     return m_instance;

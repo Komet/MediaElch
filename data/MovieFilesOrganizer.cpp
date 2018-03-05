@@ -18,9 +18,7 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
 /**
  * @brief MovieFilesOrganizer::~MovieFilesOrganizer
  */
-MovieFilesOrganizer::~MovieFilesOrganizer()
-{
-}
+MovieFilesOrganizer::~MovieFilesOrganizer() = default;
 
 /**
  * @brief moves all movies in given path to seperate directories
@@ -35,7 +33,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     }
 
     QList<QStringList> contents;
-    MovieFileSearcher *fileSearcher = new MovieFileSearcher(this);
+    auto fileSearcher = new MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 

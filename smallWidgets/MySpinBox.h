@@ -10,7 +10,7 @@ public:
     explicit MySpinBox(QWidget *parent = nullptr);
 
 protected:
-    QString textFromValue(int val) const;
+    QString textFromValue(int val) const override;
 };
 
 #endif // MYSPINBOX_H

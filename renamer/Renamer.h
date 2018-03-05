@@ -39,7 +39,7 @@ public:
     };
 
     explicit Renamer(QWidget *parent = nullptr);
-    ~Renamer();
+    ~Renamer() override;
     void setMovies(QList<Movie *> movies);
     void setConcerts(QList<Concert *> concerts);
     void setShows(QList<TvShow *> shows);
@@ -53,8 +53,8 @@ public:
     bool renameErrorOccured() const;
 
 public slots:
-    int exec();
-    void reject();
+    int exec() override;
+    void reject() override;
 
 signals:
     void sigFilesRenamed(Renamer::RenameType);

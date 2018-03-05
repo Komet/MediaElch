@@ -17,12 +17,12 @@ class MakeMkvDialog : public QDialog
 
 public:
     explicit MakeMkvDialog(QWidget *parent = nullptr);
-    ~MakeMkvDialog();
+    ~MakeMkvDialog() override;
 
 public slots:
-    int exec();
-    void reject();
-    void accept();
+    int exec() override;
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onGotDrives(QMap<int, QString> drives);

@@ -14,8 +14,8 @@ class MovieDuplicateItem : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieDuplicateItem(QWidget *parent = 0);
-    ~MovieDuplicateItem();
+    explicit MovieDuplicateItem(QWidget *parent = nullptr);
+    ~MovieDuplicateItem() override;
     void setDuplicateProperties(MovieDuplicate md);
     void setMovie(Movie *movie, bool isOriginal);
 

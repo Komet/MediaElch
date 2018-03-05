@@ -55,7 +55,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     m_mediaPlayer = new QMediaPlayer();
     m_videoWidget = new QVideoWidget(this);
     m_mediaPlayer->setVideoOutput(m_videoWidget);
-    QVBoxLayout *layout = new QVBoxLayout(ui->video);
+    auto layout = new QVBoxLayout(ui->video);
     layout->addWidget(m_videoWidget);
     ui->video->setLayout(layout);
 
@@ -74,8 +74,8 @@ TrailerDialog::~TrailerDialog()
 
 TrailerDialog *TrailerDialog::instance(QWidget *parent)
 {
-    static TrailerDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static TrailerDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new TrailerDialog(parent);
     }
     return m_instance;
@@ -180,7 +180,7 @@ void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
                 QPixmap::fromImage(trailer.previewImage.scaledToWidth(100, Qt::SmoothTransformation)));
             hasPreview = true;
         }
-        QTableWidgetItem *item = new QTableWidgetItem(trailer.name);
+        auto item = new QTableWidgetItem(trailer.name);
         item->setData(Qt::UserRole, i);
         ui->trailers->setCellWidget(row, 0, trailerPreview);
         ui->trailers->setItem(row, 1, new QTableWidgetItem(trailer.language));

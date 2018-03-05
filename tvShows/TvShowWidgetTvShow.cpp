@@ -20,7 +20,10 @@
  * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
  * @param parent
  */
-TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{0}
+TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetTvShow),
+    m_show{nullptr}
 {
     ui->setupUi(this);
 
@@ -302,7 +305,7 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -384,7 +387,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 void TvShowWidgetTvShow::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        ClosableImage *image = 0;
+        ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
@@ -408,7 +411,7 @@ void TvShowWidgetTvShow::updateImages(QList<int> images)
 void TvShowWidgetTvShow::onSaveInformation()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -440,7 +443,7 @@ void TvShowWidgetTvShow::onRevertChanges()
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -499,7 +502,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters)
 {
     qDebug() << "Entered";
-    if (m_show == 0) {
+    if (m_show == nullptr) {
         qDebug() << "My show is invalid";
         return;
     }
@@ -510,7 +513,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
         qDebug() << "Show has changed";
 
     int downloadsSize = 0;
-    if (show->posters().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
+    if (!show->posters().empty() && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowPoster;
@@ -522,7 +525,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
             ui->poster->setLoading(true);
     }
 
-    if (show->backdrops().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
+    if (!show->backdrops().empty() && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBackdrop;
@@ -534,7 +537,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
             ui->backdrop->setLoading(true);
     }
 
-    if (show->banners().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
+    if (!show->banners().empty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBanner;
@@ -607,13 +610,13 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
 
     if (show->infosToLoad().contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = show->actorsPointer();
-        for (int i = 0, n = actors.size(); i < n; ++i) {
-            if (actors.at(i)->thumb.isEmpty())
+        for (const auto &actor : actors) {
+            if (actor->thumb.isEmpty())
                 continue;
             DownloadManagerElement d;
             d.imageType = ImageType::Actor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
+            d.url = QUrl(actor->thumb);
+            d.actor = actor;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
@@ -799,7 +802,7 @@ void TvShowWidgetTvShow::onRemoveTag(QString tag)
  */
 void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
 {
-    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
     if (item->column() == 0)
         actor->name = item->text();
     else if (item->column() == 1)
@@ -840,7 +843,7 @@ void TvShowWidgetTvShow::onRemoveActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
 
-    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_show->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -862,7 +865,7 @@ void TvShowWidgetTvShow::onActorChanged()
         return;
     }
 
-    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
@@ -905,7 +908,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
             actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();
@@ -1082,10 +1085,10 @@ void TvShowWidgetTvShow::onDownloadTune()
 
 void TvShowWidgetTvShow::onChooseImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1115,10 +1118,10 @@ void TvShowWidgetTvShow::onChooseImage()
 
 void TvShowWidgetTvShow::onDeleteImage()
 {
-    if (m_show == 0)
+    if (m_show == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -1131,7 +1134,7 @@ void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_show)
         return;
-    ClosableImage *image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 

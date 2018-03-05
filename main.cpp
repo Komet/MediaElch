@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
         data.setFileName(Settings::instance()->advanced()->logFile());
         if (!data.open(QFile::WriteOnly | QFile::Truncate))
-            QMessageBox::critical(0,
+            QMessageBox::critical(nullptr,
                 QObject::tr("Logfile could not be openened"),
                 QObject::tr("The logfile %1 could not be openend for writing.")
                     .arg(Settings::instance()->advanced()->logFile()));

@@ -19,7 +19,7 @@ class MusicWidgetArtist : public QWidget
 
 public:
     explicit MusicWidgetArtist(QWidget *parent = nullptr);
-    ~MusicWidgetArtist();
+    ~MusicWidgetArtist() override;
     void setArtist(Artist *artist);
     void updateArtistInfo();
 

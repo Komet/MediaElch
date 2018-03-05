@@ -20,7 +20,7 @@ class TvShowWidgetSeason : public QWidget
 
 public:
     explicit TvShowWidgetSeason(QWidget *parent = nullptr);
-    ~TvShowWidgetSeason();
+    ~TvShowWidgetSeason() override;
     void setSeason(TvShow *show, int season);
     void updateSeasonInfo();
 
@@ -30,7 +30,7 @@ public slots:
     void onSetEnabled(bool enabled);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);

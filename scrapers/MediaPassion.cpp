@@ -69,7 +69,7 @@ MediaPassion::MediaPassion(QObject *parent)
     m_certificationCombo->addItem(tr("UK"), "UK");
     m_certificationCombo->addItem(tr("USA"), "USA");
 
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Username")), 0, 0);
     layout->addWidget(m_usernameEdit, 0, 1);
     layout->addWidget(new QLabel(tr("Password")), 1, 0);
@@ -182,7 +182,7 @@ void MediaPassion::search(QString searchStr)
 
 void MediaPassion::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -237,7 +237,7 @@ void MediaPassion::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie,
 
 void MediaPassion::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("movie").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();

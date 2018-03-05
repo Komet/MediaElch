@@ -35,14 +35,12 @@ Concert::Concert(QStringList files, QObject *parent) : QObject(parent)
     setFiles(files);
 }
 
-Concert::~Concert()
-{
-}
+Concert::~Concert() = default;
 
 void Concert::setFiles(QStringList files)
 {
     m_files = files;
-    if (files.size() > 0) {
+    if (!files.empty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty())

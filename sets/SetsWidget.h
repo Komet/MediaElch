@@ -21,7 +21,7 @@ class SetsWidget : public QWidget
 
 public:
     explicit SetsWidget(QWidget *parent = nullptr);
-    ~SetsWidget();
+    ~SetsWidget() override;
 
 public slots:
     void loadSets();

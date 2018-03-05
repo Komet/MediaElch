@@ -11,13 +11,13 @@ class MusicProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 public:
     explicit MusicProxyModel(QObject *parent = nullptr);
-    ~MusicProxyModel();
+    ~MusicProxyModel() override;
 
     void setFilter(QList<Filter *> filters, QString text);
 
 protected:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
 private:
     QList<Filter *> m_filters;

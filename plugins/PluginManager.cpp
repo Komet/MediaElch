@@ -24,7 +24,7 @@ PluginManager::PluginManager(QObject *parent) : QObject(parent)
 
 PluginManager *PluginManager::instance(QObject *parent)
 {
-    static PluginManager *m_instance = 0;
+    static PluginManager *m_instance = nullptr;
     if (!m_instance)
         m_instance = new PluginManager(parent);
     return m_instance;
@@ -74,7 +74,7 @@ void PluginManager::downloadPluginList()
 
 void PluginManager::onPluginListDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();
@@ -266,7 +266,7 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin)
 
 void PluginManager::onPluginDownloaded()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply)
         return;
     reply->deleteLater();

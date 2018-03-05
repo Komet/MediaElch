@@ -108,7 +108,7 @@ QList<Image *> ImageModel::images()
 Image *ImageModel::image(int row) const
 {
     if (row < 0 || row >= m_images.count())
-        return 0;
+        return nullptr;
     return m_images.at(row);
 }
 
@@ -224,7 +224,7 @@ void ImageModel::cutImage(int row)
     img2.save(&buffer2, "JPG", 90);
     buffer2.close();
 
-    Image *image2 = new Image;
+    auto image2 = new Image;
     image2->setRawData(ba2);
 
     beginInsertRows(QModelIndex(), row + 1, row + 1);

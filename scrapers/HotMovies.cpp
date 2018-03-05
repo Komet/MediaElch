@@ -60,7 +60,7 @@ void HotMovies::search(QString searchStr)
 
 void HotMovies::onSearchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -79,7 +79,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     int offset = 0;
 
     QRegExp rx(
-        "<tr>.*<td colspan=\"2\" class=\"td_title\">.*<h3 class=\"title\">.*<a href=\"(.*)\" title=\".*\">(.*)</a>");
+        R"lit(<tr>.*<td colspan="2" class="td_title">.*<h3 class="title">.*<a href="(.*)" title=".*">(.*)</a>)lit");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
@@ -106,7 +106,7 @@ void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QL
 
 void HotMovies::onLoadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
@@ -131,7 +131,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
         movie->setRating(rx.cap(1).toFloat());
 
-    rx.setPattern("<span class=\"rating_number \" itemprop=\"ratingCount\">(\\d+) Rating");
+    rx.setPattern(R"(<span class="rating_number " itemprop="ratingCount">(\d+) Rating)");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
         movie->setVotes(rx.cap(1).toInt());
 
@@ -139,7 +139,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
 
-    rx.setPattern("<span itemprop=\"duration\" datetime=\"PT[^\"]*\">(.*)</span>");
+    rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]*">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         QStringList runtime = rx.cap(1).split(":");
         if (runtime.count() == 3)
@@ -148,14 +148,14 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
             movie->setRuntime(runtime.at(0).toInt());
     }
 
-    rx.setPattern("<div class=\"video_description\" itemprop=\"description\">(.*)</div>");
+    rx.setPattern(R"(<div class="video_description" itemprop="description">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(rx.cap(1).trimmed());
         if (Settings::instance()->usePlotForOutline())
             movie->setOutline(rx.cap(1).trimmed());
     }
 
-    rx.setPattern("<img itemprop=\"image\" alt=\"[^\"]*\" id=\"cover\"[\\s\\n]*src=\"([^\"]*)\"");
+    rx.setPattern(R"lit(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*src="([^"]*)")lit");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
@@ -206,7 +206,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
         movie->setDirector(rx.cap(1));
 
-    rx.setPattern("<a href=\"https://www.hotmovies.com/.*[/?]series/[^\"]*\" title=\"[^\"]*\" rel=\"tag\">(.*)</a>");
+    rx.setPattern(R"(<a href="https://www.hotmovies.com/.*[/?]series/[^"]*" title="[^"]*" rel="tag">(.*)</a>)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1)
         movie->setSet(rx.cap(1));
 }
@@ -228,5 +228,5 @@ void HotMovies::saveSettings(QSettings &settings)
 
 QWidget *HotMovies::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

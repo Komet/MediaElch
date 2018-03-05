@@ -36,7 +36,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
-    m_lastMovie = 0;
+    m_lastMovie = nullptr;
     m_mouseIsIn = false;
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
@@ -75,7 +75,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     QMapIterator<int, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
-        QAction *action = new QAction(it.value(), this);
+        auto action = new QAction(it.value(), this);
         action->setIcon(Helper::instance()->iconForLabel(it.key()));
         action->setProperty("color", it.key());
         connect(action, SIGNAL(triggered()), this, SLOT(onLabel()));
@@ -237,7 +237,7 @@ void FilesWidget::loadStreamDetails()
         movies.at(0)->controller()->loadStreamDetailsFromFile();
         movies.at(0)->setChanged(true);
     } else {
-        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        auto loader = new LoadingStreamDetails(this);
         loader->loadMovies(movies);
         delete loader;
     }
@@ -310,7 +310,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
-        m_lastMovie = 0;
+        m_lastMovie = nullptr;
         emit noMovieSelected();
         return;
     }
@@ -499,7 +499,7 @@ void FilesWidget::selectMovie(Movie *movie)
 void FilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
-    QAction *action = static_cast<QAction *>(QObject::sender());
+    auto action = static_cast<QAction *>(QObject::sender());
     if (!action)
         return;
     action->setChecked(action->isChecked());
@@ -518,7 +518,7 @@ void FilesWidget::onActionMediaStatusColumn()
 void FilesWidget::onLabel()
 {
     m_contextMenu->close();
-    QAction *action = static_cast<QAction *>(QObject::sender());
+    auto action = static_cast<QAction *>(QObject::sender());
     if (!action)
         return;
 

@@ -2,7 +2,11 @@
 
 #include "../globals/Globals.h"
 
-MusicModelItem::MusicModelItem(MusicModelItem *parent) : QObject(0), m_parentItem{parent}, m_artist{0}, m_album{0}
+MusicModelItem::MusicModelItem(MusicModelItem *parent) :
+    QObject(nullptr),
+    m_parentItem{parent},
+    m_artist{nullptr},
+    m_album{nullptr}
 {
 }
 
@@ -43,6 +47,7 @@ QVariant MusicModelItem::data(int column) const
             return m_album->hasChanged();
         if (m_artist)
             return m_artist->hasChanged();
+        break;
     case MusicRoles::NumOfAlbums:
         if (m_artist)
             return m_artist->albums().count();
@@ -74,7 +79,7 @@ QVariant MusicModelItem::data(int column) const
 
 MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setArtist(artist);
     artist->setModelItem(item);
     m_childItems.append(item);
@@ -83,7 +88,7 @@ MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 
 MusicModelItem *MusicModelItem::appendChild(Album *album)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setAlbum(album);
     album->setModelItem(item);
     m_childItems.append(item);

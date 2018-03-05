@@ -38,8 +38,8 @@ ImagePreviewDialog::~ImagePreviewDialog()
  */
 ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
 {
-    static ImagePreviewDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static ImagePreviewDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ImagePreviewDialog(parent);
     }
     return m_instance;

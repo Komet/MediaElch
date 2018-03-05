@@ -22,7 +22,7 @@ class GenreWidget : public QWidget
 
 public:
     explicit GenreWidget(QWidget *parent = nullptr);
-    ~GenreWidget();
+    ~GenreWidget() override;
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);

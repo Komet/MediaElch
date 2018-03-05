@@ -22,7 +22,7 @@ class XbmcSync : public QDialog
 
 public:
     explicit XbmcSync(QWidget *parent = nullptr);
-    ~XbmcSync();
+    ~XbmcSync() override;
     enum Elements
     {
         ElementMovies,
@@ -46,8 +46,8 @@ public:
     };
 
 public slots:
-    int exec();
-    void reject();
+    int exec() override;
+    void reject() override;
 
 signals:
     void sigTriggerReload();
