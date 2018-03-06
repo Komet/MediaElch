@@ -8,9 +8,7 @@
  * @brief NotificationBox::NotificationBox
  * @param parent
  */
-NotificationBox::NotificationBox(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::NotificationBox)
+NotificationBox::NotificationBox(QWidget *parent) : QWidget(parent), ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
     m_msgCounter = 0;
@@ -32,8 +30,8 @@ NotificationBox::~NotificationBox()
  */
 NotificationBox *NotificationBox::instance(QWidget *parent)
 {
-    static NotificationBox *m_instance = 0;
-    if (m_instance == 0) {
+    static NotificationBox *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new NotificationBox(parent);
     }
     return m_instance;
@@ -45,7 +43,7 @@ NotificationBox *NotificationBox::instance(QWidget *parent)
  */
 void NotificationBox::reposition(QSize size)
 {
-    move(size.width()-this->size().width(), 40);
+    move(size.width() - this->size().width(), 40);
     m_parentSize = size;
 }
 
@@ -72,7 +70,7 @@ void NotificationBox::adjustSize()
 int NotificationBox::showMessage(QString message, NotificationBox::NotificationType type, int timeout)
 {
     m_msgCounter++;
-    Message *msg = new Message(this);
+    auto msg = new Message(this);
     msg->setMessage(message, timeout);
     msg->setType(type);
     msg->setId(m_msgCounter);
@@ -81,7 +79,7 @@ int NotificationBox::showMessage(QString message, NotificationBox::NotificationT
     adjustSize();
     show();
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
-    //qApp->processEvents(QEventLoop::WaitForMoreEvents);
+    // qApp->processEvents(QEventLoop::WaitForMoreEvents);
     return m_msgCounter;
 }
 
@@ -100,7 +98,7 @@ void NotificationBox::removeMessage(int id)
             adjustSize();
         }
     }
-    if (m_messages.size() == 0)
+    if (m_messages.empty())
         hide();
 }
 
@@ -119,7 +117,7 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
         }
     }
     m_msgCounter++;
-    Message *msg = new Message(this);
+    auto msg = new Message(this);
     msg->setMessage(message);
     msg->setId(id);
     msg->showProgressBar(true);

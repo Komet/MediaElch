@@ -16,15 +16,20 @@ class NotificationBox : public QWidget
     Q_OBJECT
 
 public:
-    enum NotificationType {
-        NotificationInfo, NotificationWarning, NotificationSuccess, NotificationError
+    enum NotificationType
+    {
+        NotificationInfo,
+        NotificationWarning,
+        NotificationSuccess,
+        NotificationError
     };
 
     explicit NotificationBox(QWidget *parent = nullptr);
-    ~NotificationBox();
+    ~NotificationBox() override;
     static NotificationBox *instance(QWidget *parent = nullptr);
     void reposition(QSize size);
-    virtual int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
+    virtual int
+    showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
     void showProgressBar(QString message, int id, bool unique = false);
     int addProgressBar(QString message);
     void hideProgressBar(int id);
@@ -39,7 +44,7 @@ private:
     Ui::NotificationBox *ui;
     QSize m_parentSize;
     int m_msgCounter;
-    QList<Message*> m_messages;
+    QList<Message *> m_messages;
     void adjustSize();
 };
 

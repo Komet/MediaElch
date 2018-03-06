@@ -3,10 +3,10 @@
 #include "../globals/Globals.h"
 
 MusicModelItem::MusicModelItem(MusicModelItem *parent) :
-    QObject(0),
+    QObject(nullptr),
     m_parentItem{parent},
-    m_artist{0},
-    m_album{0}
+    m_artist{nullptr},
+    m_album{nullptr}
 {
 }
 
@@ -28,7 +28,7 @@ int MusicModelItem::childCount() const
 int MusicModelItem::childNumber() const
 {
     if (m_parentItem)
-        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
+        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem *>(this));
 
     return 0;
 }
@@ -41,20 +41,18 @@ int MusicModelItem::columnCount() const
 QVariant MusicModelItem::data(int column) const
 {
     switch (column) {
-    case MusicRoles::Type:
-        return type();
-        break;
+    case MusicRoles::Type: return type(); break;
     case MusicRoles::HasChanged:
         if (m_album)
             return m_album->hasChanged();
         if (m_artist)
             return m_artist->hasChanged();
+        break;
     case MusicRoles::NumOfAlbums:
         if (m_artist)
             return m_artist->albums().count();
         break;
-    case MusicRoles::IsNew:
-    {
+    case MusicRoles::IsNew: {
         if (m_album)
             return !m_album->controller()->infoLoaded();
 
@@ -74,7 +72,6 @@ QVariant MusicModelItem::data(int column) const
             return m_artist->name();
         else if (m_album)
             return m_album->title();
-
     }
 
     return QVariant();
@@ -82,7 +79,7 @@ QVariant MusicModelItem::data(int column) const
 
 MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setArtist(artist);
     artist->setModelItem(item);
     m_childItems.append(item);
@@ -91,12 +88,12 @@ MusicModelItem *MusicModelItem::appendChild(Artist *artist)
 
 MusicModelItem *MusicModelItem::appendChild(Album *album)
 {
-    MusicModelItem *item = new MusicModelItem(this);
+    auto item = new MusicModelItem(this);
     item->setAlbum(album);
     album->setModelItem(item);
     m_childItems.append(item);
-    connect(album, SIGNAL(sigChanged(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
-    connect(album->controller(), SIGNAL(sigSaved(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
+    connect(album, SIGNAL(sigChanged(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
+    connect(album->controller(), SIGNAL(sigSaved(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
     return item;
 }
 

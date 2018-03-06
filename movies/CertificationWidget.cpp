@@ -11,9 +11,7 @@
  * @brief CertificationWidget::CertificationWidget
  * @param parent
  */
-CertificationWidget::CertificationWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CertificationWidget)
+CertificationWidget::CertificationWidget(QWidget *parent) : QWidget(parent), ui(new Ui::CertificationWidget)
 {
     ui->setupUi(this);
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -21,13 +19,13 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     QFont certificationsFont = ui->certifications->font();
-    certificationsFont.setPointSize(certificationsFont.pointSize()-2);
+    certificationsFont.setPointSize(certificationsFont.pointSize() - 2);
     ui->certifications->setFont(certificationsFont);
 #endif
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->certificationName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->certificationName->setFont(nameFont);
 #endif
 
@@ -39,11 +37,17 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     m_tableContextMenu->addAction(actionDeleteCertification);
     connect(actionAddCertification, SIGNAL(triggered()), this, SLOT(addCertification()));
     connect(actionDeleteCertification, SIGNAL(triggered()), this, SLOT(deleteCertification()));
-    connect(ui->certifications, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showCertificationsContextMenu(QPoint)));
+    connect(ui->certifications,
+        SIGNAL(customContextMenuRequested(QPoint)),
+        this,
+        SLOT(showCertificationsContextMenu(QPoint)));
 
     connect(ui->certifications, SIGNAL(itemSelectionChanged()), this, SLOT(onCertificationSelected()));
-    connect(ui->certifications, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCertificationNameChanged(QTableWidgetItem*)));
-    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
+    connect(ui->certifications,
+        SIGNAL(itemChanged(QTableWidgetItem *)),
+        this,
+        SLOT(onCertificationNameChanged(QTableWidgetItem *)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this, SLOT(onJumpToMovie(QTableWidgetItem *)));
 
     Helper::instance()->applyStyle(ui->groupBox);
     Helper::instance()->applyStyle(ui->certifications);
@@ -112,7 +116,7 @@ void CertificationWidget::loadCertifications()
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
 
     foreach (const QString &certification, certifications) {
-        QTableWidgetItem *item = new QTableWidgetItem(certification);
+        auto item = new QTableWidgetItem(certification);
         item->setData(Qt::UserRole, certification);
         int row = ui->certifications->rowCount();
         ui->certifications->insertRow(row);
@@ -186,14 +190,16 @@ void CertificationWidget::addCertification()
     do {
         adder++;
         certificationExists = false;
-        for (int i=0, n=ui->certifications->rowCount() ; i<n ; ++i) {
-            if ((adder == 0 && ui->certifications->item(i, 0)->text() == certificationName) ||
-                (adder > 0 && ui->certifications->item(i, 0)->text() == QString("%1 %2").arg(certificationName).arg(adder))) {
+        for (int i = 0, n = ui->certifications->rowCount(); i < n; ++i) {
+            if ((adder == 0 && ui->certifications->item(i, 0)->text() == certificationName)
+                || (adder > 0
+                       && ui->certifications->item(i, 0)->text()
+                              == QString("%1 %2").arg(certificationName).arg(adder))) {
                 certificationExists = true;
                 break;
             }
         }
-    } while(certificationExists);
+    } while (certificationExists);
 
     if (adder > 0)
         certificationName.append(QString(" %1").arg(adder));
@@ -201,7 +207,7 @@ void CertificationWidget::addCertification()
     m_addedCertifications << certificationName;
 
     ui->certifications->blockSignals(true);
-    QTableWidgetItem *item = new QTableWidgetItem(certificationName);
+    auto item = new QTableWidgetItem(certificationName);
     item->setData(Qt::UserRole, certificationName);
     int row = ui->certifications->rowCount();
     ui->certifications->insertRow(row);
@@ -220,8 +226,10 @@ void CertificationWidget::deleteCertification()
         return;
     }
 
-    QString certificationName = ui->certifications->item(ui->certifications->currentRow(), 0)->data(Qt::UserRole).toString();
-    QString origCertificationName = ui->certifications->item(ui->certifications->currentRow(), 0)->data(Qt::UserRole).toString();
+    QString certificationName =
+        ui->certifications->item(ui->certifications->currentRow(), 0)->data(Qt::UserRole).toString();
+    QString origCertificationName =
+        ui->certifications->item(ui->certifications->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->certifications->removeRow(ui->certifications->currentRow());
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -245,7 +253,7 @@ void CertificationWidget::removeMovie()
         return;
     }
 
-    Movie *movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie *>();
     movie->setCertification("");
     ui->movies->removeRow(ui->movies->currentRow());
 }
@@ -261,8 +269,10 @@ void CertificationWidget::addMovie()
     }
 
 
-    if (MovieListDialog::instance()->execWithoutCertification(ui->certifications->item(ui->certifications->currentRow(), 0)->text()) == QDialog::Accepted) {
-        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+    if (MovieListDialog::instance()->execWithoutCertification(
+            ui->certifications->item(ui->certifications->currentRow(), 0)->text())
+        == QDialog::Accepted) {
+        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty())
             return;
 
@@ -289,6 +299,6 @@ void CertificationWidget::onSaveInformation()
 
 void CertificationWidget::onJumpToMovie(QTableWidgetItem *item)
 {
-    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    auto movie = item->data(Qt::UserRole).value<Movie *>();
     emit sigJumpToMovie(movie);
 }

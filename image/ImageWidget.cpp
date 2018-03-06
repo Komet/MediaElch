@@ -9,13 +9,11 @@
 #include "main/MainWindow.h"
 #include "qml/AlbumImageProvider.h"
 
-ImageWidget::ImageWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ImageWidget)
+ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ImageWidget)
 {
     ui->setupUi(this);
     ui->quickWidget->rootContext()->setContextProperty("imageWidget", this);
-    ui->quickWidget->rootContext()->setContextProperty("album", 0);
+    ui->quickWidget->rootContext()->setContextProperty("album", nullptr);
     ui->quickWidget->rootContext()->setContextProperty("loading", false);
 #ifdef Q_OS_MAC
     ui->quickWidget->rootContext()->setContextProperty("isOsx", true);
@@ -49,7 +47,8 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
     Album *album = artist->albums().at(albumIndex);
 
     int row = album->bookletModel()->rowById(imageId);
-    QImage img = QImage::fromData(album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole+4).toByteArray());
+    QImage img = QImage::fromData(
+        album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole + 4).toByteArray());
 
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(img));
     ImagePreviewDialog::instance()->exec();

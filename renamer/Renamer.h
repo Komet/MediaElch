@@ -19,22 +19,31 @@ class Renamer : public QDialog
     Q_OBJECT
 
 public:
-    enum RenameType {
-        TypeMovies, TypeTvShows, TypeConcerts, TypeAll
+    enum RenameType
+    {
+        TypeMovies,
+        TypeTvShows,
+        TypeConcerts,
+        TypeAll
     };
-    enum RenameResult {
-        RenameFailed, RenameSuccess
+    enum RenameResult
+    {
+        RenameFailed,
+        RenameSuccess
     };
-    enum RenameOperation {
-        OperationCreateDir, OperationMove, OperationRename
+    enum RenameOperation
+    {
+        OperationCreateDir,
+        OperationMove,
+        OperationRename
     };
 
     explicit Renamer(QWidget *parent = nullptr);
-    ~Renamer();
-    void setMovies(QList<Movie*> movies);
-    void setConcerts(QList<Concert*> concerts);
-    void setShows(QList<TvShow*> shows);
-    void setEpisodes(QList<TvShowEpisode*> episodes);
+    ~Renamer() override;
+    void setMovies(QList<Movie *> movies);
+    void setConcerts(QList<Concert *> concerts);
+    void setShows(QList<TvShow *> shows);
+    void setEpisodes(QList<TvShowEpisode *> episodes);
     void setRenameType(RenameType type);
 
     static QString replace(QString &text, const QString &search, const QString &replace);
@@ -44,8 +53,8 @@ public:
     bool renameErrorOccured() const;
 
 public slots:
-    int exec();
-    void reject();
+    int exec() override;
+    void reject() override;
 
 signals:
     void sigFilesRenamed(Renamer::RenameType);
@@ -61,22 +70,40 @@ private slots:
 private:
     Ui::Renamer *ui;
 
-    QList<Movie*> m_movies;
-    QList<Concert*> m_concerts;
-    QList<TvShow*> m_shows;
-    QList<TvShowEpisode*> m_episodes;
+    QList<Movie *> m_movies;
+    QList<Concert *> m_concerts;
+    QList<TvShow *> m_shows;
+    QList<TvShowEpisode *> m_episodes;
     RenameType m_renameType;
     bool m_filesRenamed;
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
 
-    void renameMovies(QList<Movie*> movies, const QString &filePattern, const QString &filePatternMulti,
-                      const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun = false);
-    void renameConcerts(QList<Concert*> concerts, const QString &filePattern, const QString &filePatternMulti,
-                        const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun = false);
-    void renameEpisodes(QList<TvShowEpisode*> episodes, const QString &filePattern, const QString &filePatternMulti, const QString &seasonPattern, const bool &renameFiles,
-                        const bool &useSeasonDirectories, const bool &dryRun = false);
-    void renameShows(QList<TvShow*> shows, const QString &directoryPattern, const bool &renameDirectories, const bool &dryRun = false);
+    void renameMovies(QList<Movie *> movies,
+        const QString &filePattern,
+        const QString &filePatternMulti,
+        const QString &directoryPattern,
+        const bool &renameFiles,
+        const bool &renameDirectories,
+        const bool &dryRun = false);
+    void renameConcerts(QList<Concert *> concerts,
+        const QString &filePattern,
+        const QString &filePatternMulti,
+        const QString &directoryPattern,
+        const bool &renameFiles,
+        const bool &renameDirectories,
+        const bool &dryRun = false);
+    void renameEpisodes(QList<TvShowEpisode *> episodes,
+        const QString &filePattern,
+        const QString &filePatternMulti,
+        const QString &seasonPattern,
+        const bool &renameFiles,
+        const bool &useSeasonDirectories,
+        const bool &dryRun = false);
+    void renameShows(QList<TvShow *> shows,
+        const QString &directoryPattern,
+        const bool &renameDirectories,
+        const bool &dryRun = false);
 
     bool rename(const QString &file, const QString &newName);
     bool rename(QDir &dir, QString newName);

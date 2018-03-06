@@ -27,7 +27,7 @@ signals:
     void sigImageDropped(QUrl);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void onCloseImage();
@@ -39,13 +39,13 @@ private slots:
     void onButtonBottom();
     void onVerticalScrollBarRangeChanged(int min, int max);
     void onHorizontalScrollBarRangeChanged(int min, int max);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dragMoveEvent(QDragMoveEvent *event);
-    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 
 private:
     QLabel *m_loadingLabel;
-    QList<ClosableImage*> m_imageLabels;
+    QList<ClosableImage *> m_imageLabels;
     QWidget *m_imagesWidget;
     QScrollArea *m_scrollArea;
     QToolButton *m_buttonLeft;

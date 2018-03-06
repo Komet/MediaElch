@@ -3,17 +3,19 @@
 
 #include "settings/Settings.h"
 
-PluginManagerDialog::PluginManagerDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::PluginManagerDialog)
+PluginManagerDialog::PluginManagerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PluginManagerDialog)
 {
     ui->setupUi(this);
 
     connect(ui->btnInstallPlugin, SIGNAL(clicked()), this, SLOT(onInstallPlugin()));
     connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
-    connect(PluginManager::instance(), SIGNAL(sigPluginInstalled(PluginManager::Plugin)), this, SLOT(onPluginInstalled()));
+    connect(
+        PluginManager::instance(), SIGNAL(sigPluginInstalled(PluginManager::Plugin)), this, SLOT(onPluginInstalled()));
     connect(PluginManager::instance(), SIGNAL(sigPluginUpdated(PluginManager::Plugin)), this, SLOT(onPluginUpdated()));
-    connect(PluginManager::instance(), SIGNAL(sigPluginInstallFailure(PluginManager::Plugin)), this, SLOT(onPluginFailure()));
+    connect(PluginManager::instance(),
+        SIGNAL(sigPluginInstallFailure(PluginManager::Plugin)),
+        this,
+        SLOT(onPluginFailure()));
 }
 
 PluginManagerDialog::~PluginManagerDialog()

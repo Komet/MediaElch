@@ -11,17 +11,14 @@
  * @brief MovieFilesOrganizer::MovieFilesOrganizer
  * @param parent
  */
-MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) :
-    QThread(parent)
+MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
 {
 }
 
 /**
  * @brief MovieFilesOrganizer::~MovieFilesOrganizer
  */
-MovieFilesOrganizer::~MovieFilesOrganizer()
-{
-}
+MovieFilesOrganizer::~MovieFilesOrganizer() = default;
 
 /**
  * @brief moves all movies in given path to seperate directories
@@ -36,12 +33,12 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     }
 
     QList<QStringList> contents;
-    MovieFileSearcher *fileSearcher = new MovieFileSearcher(this);
+    auto fileSearcher = new MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 
     int pos = path.lastIndexOf(QDir::separator());
-    QString dirName = path.right(path.length() - pos -1);
+    QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
     NameFormatter *nameFormat = NameFormatter::instance(this);
 
@@ -61,8 +58,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
         if (movie.length() == 1)
             newFolder = path + QDir::separator() + nameFormat->formatName(fileName);
         else if (movie.length() > 1)
-            newFolder = path + QDir::separator() + nameFormat->formatName(
-                        nameFormat->formatParts(fileName));
+            newFolder = path + QDir::separator() + nameFormat->formatName(nameFormat->formatParts(fileName));
         else
             continue;
 
@@ -70,11 +66,9 @@ void MovieFilesOrganizer::moveToDirs(QString path)
             continue;
 
         foreach (QString file, movie) {
-            if (!dir->rename(file, newFolder +
-                             QDir::separator() +
-                             file.right(file.length() -
-                                        file.lastIndexOf
-                                        (QDir::separator()) - 1)))
+            if (!dir->rename(file,
+                    newFolder + QDir::separator()
+                        + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1)))
                 qDebug() << "Moving " << file << "to " << newFolder << " failed.";
         }
     }

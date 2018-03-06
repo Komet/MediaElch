@@ -10,27 +10,25 @@
 #include "../notifications/NotificationBox.h"
 #include "MusicSearch.h"
 
-MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MusicWidgetArtist)
+MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidgetArtist)
 {
     ui->setupUi(this);
 
-    m_artist = 0;
+    m_artist = nullptr;
 
     ui->artistName->clear();
 #ifndef Q_OS_MAC
     QFont nameFont = ui->artistName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->artistName->setFont(nameFont);
 #endif
 
     QFont font = ui->labelFanart->font();
-    #ifndef Q_OS_MAC
-        font.setPointSize(font.pointSize()-1);
-    #else
-        font.setPointSize(font.pointSize()-2);
-    #endif
+#ifndef Q_OS_MAC
+    font.setPointSize(font.pointSize() - 1);
+#else
+    font.setPointSize(font.pointSize() - 2);
+#endif
     ui->labelFanart->setFont(font);
     ui->labelLogo->setFont(font);
     ui->labelThumb->setFont(font);
@@ -62,7 +60,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->logo->setImageType(ImageType::ArtistLogo);
     ui->fanart->setImageType(ImageType::ArtistFanart);
     ui->thumb->setImageType(ImageType::ArtistThumb);
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetArtist::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetArtist::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetArtist::onImageDropped);
@@ -90,7 +88,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
 
     connect(ui->btnAddAlbum, SIGNAL(clicked()), this, SLOT(onAddAlbum()));
     connect(ui->btnRemoveAlbum, SIGNAL(clicked()), this, SLOT(onRemoveAlbum()));
-    connect(ui->discography, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onAlbumEdited(QTableWidgetItem*)));
+    connect(ui->discography, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onAlbumEdited(QTableWidgetItem *)));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -116,12 +114,33 @@ void MusicWidgetArtist::setArtist(Artist *artist)
     m_artist = artist;
     updateArtistInfo();
 
-    connect(m_artist->controller(), SIGNAL(sigInfoLoadDone(Artist*)), this, SLOT(onInfoLoadDone(Artist*)), Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigLoadDone(Artist*)), this, SLOT(onLoadDone(Artist*)), Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigDownloadProgress(Artist*,int, int)), this, SLOT(onDownloadProgress(Artist*,int,int)), Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigLoadingImages(Artist*,QList<int>)), this, SLOT(onLoadingImages(Artist*,QList<int>)), Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigLoadImagesStarted(Artist*)), this, SLOT(onLoadImagesStarted(Artist*)), Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigImage(Artist*,int,QByteArray)), this, SLOT(onSetImage(Artist*,int,QByteArray)), Qt::UniqueConnection);
+    connect(m_artist->controller(),
+        SIGNAL(sigInfoLoadDone(Artist *)),
+        this,
+        SLOT(onInfoLoadDone(Artist *)),
+        Qt::UniqueConnection);
+    connect(
+        m_artist->controller(), SIGNAL(sigLoadDone(Artist *)), this, SLOT(onLoadDone(Artist *)), Qt::UniqueConnection);
+    connect(m_artist->controller(),
+        SIGNAL(sigDownloadProgress(Artist *, int, int)),
+        this,
+        SLOT(onDownloadProgress(Artist *, int, int)),
+        Qt::UniqueConnection);
+    connect(m_artist->controller(),
+        SIGNAL(sigLoadingImages(Artist *, QList<int>)),
+        this,
+        SLOT(onLoadingImages(Artist *, QList<int>)),
+        Qt::UniqueConnection);
+    connect(m_artist->controller(),
+        SIGNAL(sigLoadImagesStarted(Artist *)),
+        this,
+        SLOT(onLoadImagesStarted(Artist *)),
+        Qt::UniqueConnection);
+    connect(m_artist->controller(),
+        SIGNAL(sigImage(Artist *, int, QByteArray)),
+        this,
+        SLOT(onSetImage(Artist *, int, QByteArray)),
+        Qt::UniqueConnection);
 
     onSetEnabled(!artist->controller()->downloadsInProgress());
 }
@@ -211,8 +230,8 @@ void MusicWidgetArtist::onStartScraperSearch()
     if (MusicSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
         m_artist->controller()->loadData(MusicSearch::instance()->scraperId(),
-                                         Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
-                                         MusicSearch::instance()->infosToLoad());
+            Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
+            MusicSearch::instance()->infosToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, WidgetMusic);
         emit sigSetActionSaveEnabled(true, WidgetMusic);
@@ -286,7 +305,7 @@ void MusicWidgetArtist::onItemChanged(QString text)
     if (!m_artist)
         return;
 
-    QLineEdit *lineEdit = static_cast<QLineEdit*>(sender());
+    auto lineEdit = static_cast<QLineEdit *>(sender());
     if (!lineEdit)
         return;
 
@@ -361,10 +380,10 @@ void MusicWidgetArtist::onRemoveCloudItem(QString text)
 
 void MusicWidgetArtist::onChooseImage()
 {
-    if (m_artist == 0)
+    if (m_artist == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -388,10 +407,10 @@ void MusicWidgetArtist::onChooseImage()
 
 void MusicWidgetArtist::onDeleteImage()
 {
-    if (m_artist == 0)
+    if (m_artist == nullptr)
         return;
 
-    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = static_cast<ClosableImage *>(QObject::sender());
     if (!image)
         return;
 
@@ -421,7 +440,7 @@ void MusicWidgetArtist::onInfoLoadDone(Artist *artist)
 
 void MusicWidgetArtist::onLoadDone(Artist *artist)
 {
-    emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId+artist->databaseId());
+    emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId + artist->databaseId());
 
     if (m_artist != artist)
         return;
@@ -432,7 +451,8 @@ void MusicWidgetArtist::onLoadDone(Artist *artist)
 
 void MusicWidgetArtist::onDownloadProgress(Artist *artist, int current, int maximum)
 {
-    emit sigDownloadsProgress(maximum-current, maximum, Constants::MusicArtistProgressMessageId+artist->databaseId());
+    emit sigDownloadsProgress(
+        maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
 void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
@@ -441,7 +461,7 @@ void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
         return;
 
     foreach (const int &imageType, imageTypes) {
-        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage*>()) {
+        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType)
                 cImage->setLoading(true);
         }
@@ -455,7 +475,8 @@ void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
 
 void MusicWidgetArtist::onLoadImagesStarted(Artist *artist)
 {
-    emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicArtistProgressMessageId+artist->databaseId());
+    emit sigDownloadsStarted(
+        tr("Downloading images..."), Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
 void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
@@ -468,7 +489,7 @@ void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -551,7 +572,7 @@ void MusicWidgetArtist::onRemoveAlbum()
     if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected())
         return;
 
-    DiscographyAlbum *album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    auto album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
     if (!album)
         return;
     m_artist->removeDiscographyAlbum(album);
@@ -563,7 +584,7 @@ void MusicWidgetArtist::onRemoveAlbum()
 
 void MusicWidgetArtist::onAlbumEdited(QTableWidgetItem *item)
 {
-    DiscographyAlbum *album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    auto album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
     if (item->column() == 0)
         album->title = item->text();
     else if (item->column() == 1)

@@ -13,14 +13,13 @@
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
-Update::Update(QObject *parent) :
-    QObject(parent)
+Update::Update(QObject *parent) : QObject(parent)
 {
 }
 
 Update *Update::instance(QObject *parent)
 {
-    static Update *m_instance = 0;
+    static Update *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Update(parent);
     return m_instance;
@@ -35,7 +34,7 @@ void Update::checkForUpdate()
 
 void Update::onCheckFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QString version;
@@ -43,7 +42,9 @@ void Update::onCheckFinished()
             QMessageBox msgBox;
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setWindowTitle(tr("Updates available"));
-            msgBox.setText(tr("%1 is now available.<br>Get it now on %2").arg(version).arg("<a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>"));
+            msgBox.setText(tr("%1 is now available.<br>Get it now on %2")
+                               .arg(version)
+                               .arg("<a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>"));
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.setIconPixmap(QPixmap(":/img/MediaElch.png").scaledToWidth(64, Qt::SmoothTransformation));
             QCheckBox dontCheck(QObject::tr("Don't check for updates"), &msgBox);

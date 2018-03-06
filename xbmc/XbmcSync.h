@@ -22,24 +22,32 @@ class XbmcSync : public QDialog
 
 public:
     explicit XbmcSync(QWidget *parent = nullptr);
-    ~XbmcSync();
-    enum Elements {
-        ElementMovies, ElementConcerts, ElementTvShows, ElementEpisodes
+    ~XbmcSync() override;
+    enum Elements
+    {
+        ElementMovies,
+        ElementConcerts,
+        ElementTvShows,
+        ElementEpisodes
     };
 
-    enum SyncType {
-        SyncContents, SyncWatched, SyncClean
+    enum SyncType
+    {
+        SyncContents,
+        SyncWatched,
+        SyncClean
     };
 
-    struct XbmcData {
+    struct XbmcData
+    {
         QString file;
         QDateTime lastPlayed;
         int playCount;
     };
 
 public slots:
-    int exec();
-    void reject();
+    int exec() override;
+    void reject() override;
 
 signals:
     void sigTriggerReload();
@@ -66,10 +74,10 @@ private:
     Ui::XbmcSync *ui;
 
     QNetworkAccessManager m_qnam;
-    QList<Movie*> m_moviesToSync;
-    QList<Concert*> m_concertsToSync;
-    QList<TvShow*> m_tvShowsToSync;
-    QList<TvShowEpisode*> m_episodesToSync;
+    QList<Movie *> m_moviesToSync;
+    QList<Concert *> m_concertsToSync;
+    QList<TvShow *> m_tvShowsToSync;
+    QList<TvShowEpisode *> m_episodesToSync;
     QList<Elements> m_elements;
     QMap<int, XbmcData> m_xbmcMovies;
     QMap<int, XbmcData> m_xbmcConcerts;

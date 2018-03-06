@@ -6,15 +6,13 @@
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 
-TrailerDialog::TrailerDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::TrailerDialog)
+TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TrailerDialog)
 {
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
     QFont font = ui->trailers->font();
-    font.setPointSize(font.pointSize()-1);
+    font.setPointSize(font.pointSize() - 1);
     ui->trailers->setFont(font);
     ui->time->setFont(font);
 #endif
@@ -37,14 +35,17 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
 
     foreach (TrailerProvider *provider, Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
-        connect(provider, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
+        connect(provider,
+            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            this,
+            SLOT(showResults(QList<ScraperSearchResult>)));
         connect(provider, SIGNAL(sigLoadDone(QList<TrailerResult>)), this, SLOT(showTrailers(QList<TrailerResult>)));
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
-    connect(ui->trailers, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(trailerClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
+    connect(ui->trailers, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(trailerClicked(QTableWidgetItem *)));
     connect(ui->buttonBackToResults, SIGNAL(clicked()), this, SLOT(backToResults()));
     connect(ui->buttonBackToTrailers, SIGNAL(clicked()), this, SLOT(backToTrailers()));
     connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
@@ -54,7 +55,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     m_mediaPlayer = new QMediaPlayer();
     m_videoWidget = new QVideoWidget(this);
     m_mediaPlayer->setVideoOutput(m_videoWidget);
-    QVBoxLayout *layout = new QVBoxLayout(ui->video);
+    auto layout = new QVBoxLayout(ui->video);
     layout->addWidget(m_videoWidget);
     ui->video->setLayout(layout);
 
@@ -71,10 +72,10 @@ TrailerDialog::~TrailerDialog()
     delete ui;
 }
 
-TrailerDialog* TrailerDialog::instance(QWidget *parent)
+TrailerDialog *TrailerDialog::instance(QWidget *parent)
 {
-    static TrailerDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static TrailerDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new TrailerDialog(parent);
     }
     return m_instance;
@@ -92,8 +93,8 @@ int TrailerDialog::exec(Movie *movie)
 {
     m_videoWidget->hide();
     QSize newSize;
-    newSize.setHeight(qMin(600, parentWidget()->size().height()-200));
-    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    newSize.setHeight(qMin(600, parentWidget()->size().height() - 200));
+    newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
     m_downloadInProgress = false;
@@ -168,17 +169,18 @@ void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
     m_currentTrailers = trailers;
     bool hasPreview = false;
     bool hasLanguage = false;
-    for (int i=0, n=trailers.size() ; i<n ; ++i) {
+    for (int i = 0, n = trailers.size(); i < n; ++i) {
         TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);
         QLabel *trailerPreview = new QLabel(ui->trailers);
         trailerPreview->setMargin(4);
         if (!trailer.previewImage.isNull()) {
-            trailerPreview->setPixmap(QPixmap::fromImage(trailer.previewImage.scaledToWidth(100, Qt::SmoothTransformation)));
+            trailerPreview->setPixmap(
+                QPixmap::fromImage(trailer.previewImage.scaledToWidth(100, Qt::SmoothTransformation)));
             hasPreview = true;
         }
-        QTableWidgetItem *item = new QTableWidgetItem(trailer.name);
+        auto item = new QTableWidgetItem(trailer.name);
         item->setData(Qt::UserRole, i);
         ui->trailers->setCellWidget(row, 0, trailerPreview);
         ui->trailers->setItem(row, 1, new QTableWidgetItem(trailer.language));
@@ -230,7 +232,8 @@ void TrailerDialog::startDownload()
         return;
 
     QFileInfo fi(m_currentMovie->files().at(0));
-    m_trailerFileName = QString("%1%2%3-trailer").arg(fi.canonicalPath()).arg(QDir::separator()).arg(fi.completeBaseName());
+    m_trailerFileName =
+        QString("%1%2%3-trailer").arg(fi.canonicalPath()).arg(QDir::separator()).arg(fi.completeBaseName());
     m_output.setFileName(QString("%1.download").arg(m_trailerFileName));
 
     if (!m_output.open(QIODevice::WriteOnly)) {
@@ -246,13 +249,14 @@ void TrailerDialog::startDownload()
     QNetworkRequest request;
     request.setUrl(QUrl(ui->url->text()));
 
-    if (ui->url->text().contains("http://trailers.apple.com") || ui->url->text().contains("http://movietrailers.apple.com"))
+    if (ui->url->text().contains("http://trailers.apple.com")
+        || ui->url->text().contains("http://movietrailers.apple.com"))
         request.setRawHeader("User-Agent", "QuickTime/7.7");
 
     m_downloadInProgress = true;
     m_downloadReply = m_qnam->get(request);
     connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+    connect(m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
     connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
     m_downloadTime.start();
 }
@@ -283,11 +287,11 @@ void TrailerDialog::downloadProgress(qint64 received, qint64 total)
     QString unit;
     if (speed < 1024) {
         unit = "bytes/sec";
-    } else if (speed < 1024*1024) {
+    } else if (speed < 1024 * 1024) {
         speed /= 1024;
         unit = "kB/s";
     } else {
-        speed /= 1024*1024;
+        speed /= 1024 * 1024;
         unit = "MB/s";
     }
     ui->progress->setText(QString("%1 %2").arg(speed, 3, 'f', 1).arg(unit));
@@ -295,13 +299,15 @@ void TrailerDialog::downloadProgress(qint64 received, qint64 total)
 
 void TrailerDialog::downloadFinished()
 {
-    if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
-        m_downloadReply = m_qnam->get(QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_downloadReply = m_qnam->get(
+            QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+        connect(
+            m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
         connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
         return;
     }
@@ -314,7 +320,7 @@ void TrailerDialog::downloadFinished()
         ui->progress->setText(tr("Download Finished"));
         QString extension = QUrl(ui->url->text()).path();
         if (extension.lastIndexOf(".") != -1)
-            extension = extension.right(extension.length()-extension.lastIndexOf(".")-1);
+            extension = extension.right(extension.length() - extension.lastIndexOf(".") - 1);
         else
             extension = "mov";
         QString newFileName = QString("%1.%2").arg(m_trailerFileName).arg(extension);
@@ -361,39 +367,31 @@ void TrailerDialog::onNewTotalTime(qint64 totalTime)
 
 void TrailerDialog::onUpdateTime(qint64 currentTime)
 {
-    QString tTime = QString("%1:%2").arg(m_totalTime/1000/60).arg((m_totalTime/1000)%60, 2, 10, QChar('0'));
-    QString cTime = QString("%1:%2").arg(currentTime/1000/60).arg((currentTime/1000)%60, 2, 10, QChar('0'));
+    QString tTime = QString("%1:%2").arg(m_totalTime / 1000 / 60).arg((m_totalTime / 1000) % 60, 2, 10, QChar('0'));
+    QString cTime = QString("%1:%2").arg(currentTime / 1000 / 60).arg((currentTime / 1000) % 60, 2, 10, QChar('0'));
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
 
     int position = 0;
     if (m_totalTime > 0)
-        position = qRound(((float)currentTime/m_totalTime)*100);
+        position = qRound(((float)currentTime / m_totalTime) * 100);
     ui->seekSlider->setValue(position);
 }
 
 void TrailerDialog::onStateChanged(QMediaPlayer::State newState)
 {
     switch (newState) {
-    case QMediaPlayer::PlayingState:
-        ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png"));
-        break;
+    case QMediaPlayer::PlayingState: ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png")); break;
     case QMediaPlayer::StoppedState:
-    case QMediaPlayer::PausedState:
-        ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png"));
-        break;
+    case QMediaPlayer::PausedState: ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png")); break;
     }
 }
 
 void TrailerDialog::onPlayPause()
 {
     switch (m_mediaPlayer->state()) {
-    case QMediaPlayer::PlayingState:
-        m_mediaPlayer->pause();
-        break;
+    case QMediaPlayer::PlayingState: m_mediaPlayer->pause(); break;
     case QMediaPlayer::StoppedState:
-    case QMediaPlayer::PausedState:
-        m_mediaPlayer->play();
-        break;
+    case QMediaPlayer::PausedState: m_mediaPlayer->play(); break;
     }
 }
 
@@ -407,5 +405,5 @@ void TrailerDialog::onSliderPositionChanged()
 {
     if (m_totalTime == 0)
         return;
-    m_mediaPlayer->setPosition(qRound((float)m_totalTime*ui->seekSlider->value()/100));
+    m_mediaPlayer->setPosition(qRound((float)m_totalTime * ui->seekSlider->value() / 100));
 }

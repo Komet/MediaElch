@@ -5,10 +5,7 @@
 
 #include "settings/Settings.h"
 
-ExportTemplate::ExportTemplate(QObject *parent) :
-    QObject(parent),
-    m_isRemote{false},
-    m_isInstalled{false}
+ExportTemplate::ExportTemplate(QObject *parent) : QObject(parent), m_isRemote{false}, m_isInstalled{false}
 {
 }
 
@@ -203,9 +200,12 @@ void ExportTemplate::copyTo(QString path)
 {
     QStringList excludes;
     excludes << "metadata.xml"
-             << "movies.html" << "movies"
-             << "concerts.html" << "concerts"
-             << "tvshows.html" << "tvshows"
+             << "movies.html"
+             << "movies"
+             << "concerts.html"
+             << "concerts"
+             << "tvshows.html"
+             << "tvshows"
              << "episode";
 
     QDir templateDir(getTemplateLocation());
@@ -227,7 +227,7 @@ bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
         return false;
 
     QDir srcDir(srcPath);
-    foreach(const QFileInfo &info, srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
+    foreach (const QFileInfo &info, srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
         QString srcItemPath = srcPath + "/" + info.fileName();
         QString dstItemPath = dstPath + "/" + info.fileName();
         if (info.isDir()) {

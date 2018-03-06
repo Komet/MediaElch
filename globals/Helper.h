@@ -14,8 +14,13 @@
 class Helper : public QObject
 {
 public:
-    enum ButtonStyle {
-        ButtonPrimary, ButtonInfo, ButtonDanger, ButtonSuccess, ButtonWarning
+    enum ButtonStyle
+    {
+        ButtonPrimary,
+        ButtonInfo,
+        ButtonDanger,
+        ButtonSuccess,
+        ButtonWarning
     };
 
     explicit Helper(QObject *parent = nullptr);

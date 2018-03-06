@@ -32,7 +32,7 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
     qDebug() << "Entered";
     m_directories.clear();
-    for (int i=0, n=directories.count() ; i<n ; ++i) {
+    for (int i = 0, n = directories.count(); i < n; ++i) {
         QFileInfo fi(directories.at(i).path);
         if (fi.isDir()) {
             qDebug() << "Adding tv show directory" << directories.at(i).path;
@@ -52,15 +52,15 @@ void TvShowFileSearcher::reload(bool force)
         Manager::instance()->database()->clearTvShows();
 
     emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
-    QList<TvShow*> dbShows;
+    QList<TvShow *> dbShows;
     Manager::instance()->tvShowModel()->clear();
     Manager::instance()->tvShowFilesWidget()->renewModel();
-    QMap<QString, QList<QStringList> > contents;
+    QMap<QString, QList<QStringList>> contents;
     foreach (SettingsDir dir, m_directories) {
         if (m_aborted)
             return;
 
-        QList<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
+        QList<TvShow *> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
             getTvShows(dir.path, contents);
@@ -71,9 +71,9 @@ void TvShowFileSearcher::reload(bool force)
     emit currentDir("");
 
     emit searchStarted(tr("Loading TV Shows..."), m_progressMessageId);
-    int episodeCounter=0;
-    int episodeSum=Manager::instance()->database()->episodeCount();
-    QMapIterator<QString, QList<QStringList> > it(contents);
+    int episodeCounter = 0;
+    int episodeSum = Manager::instance()->database()->episodeCount();
+    QMapIterator<QString, QList<QStringList>> it(contents);
     while (it.hasNext()) {
         it.next();
         episodeSum += it.value().size();
@@ -90,7 +90,7 @@ void TvShowFileSearcher::reload(bool force)
         // get path
         QString path;
         int index = -1;
-        for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+        for (int i = 0, n = m_directories.count(); i < n; ++i) {
             if (it.key().startsWith(m_directories[i].path)) {
                 if (index == -1)
                     index = i;
@@ -109,8 +109,8 @@ void TvShowFileSearcher::reload(bool force)
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
         Manager::instance()->database()->transaction();
-        QMap<int, TvShowModelItem*> seasonItems;
-        QList<TvShowEpisode*> episodes;
+        QMap<int, TvShowModelItem *> seasonItems;
+        QList<TvShowEpisode *> episodes;
 
         // Setup episodes list
         foreach (const QStringList &files, it.value()) {
@@ -132,7 +132,8 @@ void TvShowFileSearcher::reload(bool force)
             Manager::instance()->database()->add(episode, path, show->databaseId());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+                seasonItems.insert(
+                    episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         }
@@ -150,17 +151,18 @@ void TvShowFileSearcher::reload(bool force)
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
-        QMap<int, TvShowModelItem*> seasonItems;
-        QList<TvShowEpisode*> episodes = Manager::instance()->database()->episodes(show->databaseId());
+        QMap<int, TvShowModelItem *> seasonItems;
+        QList<TvShowEpisode *> episodes = Manager::instance()->database()->episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
         foreach (TvShowEpisode *episode, episodes) {
             episode->setShow(show);
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+                seasonItems.insert(
+                    episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-            if (episodeCounter%1000 == 0)
+            if (episodeCounter % 1000 == 0)
                 emit currentDir("");
         }
     }
@@ -200,7 +202,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     // get path
     QString path;
     int index = -1;
-    for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_directories.count(); i < n; ++i) {
         if (m_aborted)
             return;
 
@@ -227,8 +229,8 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
-    QMap<int, TvShowModelItem*> seasonItems;
-    QList<TvShowEpisode*> episodes;
+    QMap<int, TvShowModelItem *> seasonItems;
+    QList<TvShowEpisode *> episodes;
     foreach (const QStringList &files, contents) {
         if (m_aborted)
             return;
@@ -248,7 +250,8 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
         Manager::instance()->database()->add(episode, path, show->databaseId());
         show->addEpisode(episode);
         if (!seasonItems.contains(episode->season()))
-            seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+            seasonItems.insert(
+                episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
         seasonItems.value(episode->season())->appendChild(episode);
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         qApp->processEvents();
@@ -268,7 +271,7 @@ TvShowEpisode *TvShowFileSearcher::reloadEpisodeData(TvShowEpisode *episode)
  * @param path Directory to scan
  * @param contents
  */
-void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
+void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList>> &contents)
 {
     QDir dir(path);
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -299,9 +302,9 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
             return;
 
         // Skip "Extras" folder
-        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0
+            || QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0
+            || QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -333,7 +336,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
     files.sort();
 
     QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
-    for (int i=0, n=files.size() ; i<n ; i++) {
+    for (int i = 0, n = files.size(); i < n; i++) {
         if (m_aborted)
             return;
 
@@ -347,8 +350,8 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
         int pos = rx.indexIn(file);
         if (pos != -1) {
             QString left = file.left(pos) + rx.cap(1);
-            QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
-            for (int x=0 ; x<n ; x++) {
+            QString right = file.mid(pos + rx.cap(1).size() + rx.cap(2).size());
+            for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
@@ -358,7 +361,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
                 }
             }
         }
-        if (tvShowFiles.count() > 0 )
+        if (tvShowFiles.count() > 0)
             contents.append(tvShowFiles);
     }
 }
@@ -390,15 +393,15 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 1 && Helper::instance()->isDvd(files.at(0)))
-            filename = filenameParts.at(filenameParts.count()-3);
+            filename = filenameParts.at(filenameParts.count() - 3);
         else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files.at(0), true))
-            filename = filenameParts.at(filenameParts.count()-2);
+            filename = filenameParts.at(filenameParts.count() - 2);
     } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 2)
-            filename = filenameParts.at(filenameParts.count()-3);
+            filename = filenameParts.at(filenameParts.count() - 3);
     }
 
-    QRegExp rx("S(\\d+)[\\._\\-]?E", Qt::CaseInsensitive);
+    QRegExp rx(R"(S(\d+)[\._\-]?E)", Qt::CaseInsensitive);
     if (rx.indexIn(filename) != -1)
         return rx.cap(1).toInt();
     rx.setPattern("(\\d+)?x(\\d+)");
@@ -424,16 +427,20 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 1 && Helper::instance()->isDvd(files.at(0)))
-            filename = filenameParts.at(filenameParts.count()-3);
+            filename = filenameParts.at(filenameParts.count() - 3);
         else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files.at(0), true))
-            filename = filenameParts.at(filenameParts.count()-2);
+            filename = filenameParts.at(filenameParts.count() - 2);
     } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 2)
-            filename = filenameParts.at(filenameParts.count()-3);
+            filename = filenameParts.at(filenameParts.count() - 3);
     }
 
     QStringList patterns;
-    patterns << "S(\\d+)[\\._\\-]?E(\\d+)" << "S(\\d+)EP(\\d+)" << "(\\d+)x(\\d+)" << "(\\d+)(\\d){2}" << "Season[._ ]?(\\d+)[._ ]?Episode[._ ]?(\\d+)";
+    patterns << R"(S(\d+)[\._\-]?E(\d+))"
+             << "S(\\d+)EP(\\d+)"
+             << "(\\d+)x(\\d+)"
+             << "(\\d+)(\\d){2}"
+             << "Season[._ ]?(\\d+)[._ ]?Episode[._ ]?(\\d+)";
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
@@ -444,7 +451,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         while ((pos = rx.indexIn(filename, pos)) != -1) {
             // if between the last match and this one are more than five characters: break
             // this way we can try to filter "false matches" like in "21x04 - Hammond vs. 6x6.mp4"
-            if (lastPos != -1 && lastPos < pos+5)
+            if (lastPos != -1 && lastPos < pos + 5)
                 break;
             episodes << rx.cap(2).toInt();
             pos += rx.matchedLength();
@@ -455,10 +462,10 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // Pattern matched
         if (!episodes.isEmpty()) {
             if (episodes.count() == 1) {
-                rx.setPattern("^[-_EeXx]+([0-9]+)($|[\\-\\._\\sE])");
+                rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
                 while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
                     episodes << rx.cap(1).toInt();
-                    pos += rx.matchedLength()-1;
+                    pos += rx.matchedLength() - 1;
                 }
             }
             break;

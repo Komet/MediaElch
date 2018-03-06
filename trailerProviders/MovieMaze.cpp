@@ -34,7 +34,8 @@ void MovieMaze::onSearchFinished()
         m_searchReply->deleteLater();
 
         int pos = 0;
-        QRegExp rx("<a itemprop=\"url\" href=\"/media/trailer/([^\"]*)\" title=\"[^\"]*\"><span itemprop=\"name\">([^<]*)</span></a>");
+        QRegExp rx("<a itemprop=\"url\" href=\"/media/trailer/([^\"]*)\" title=\"[^\"]*\"><span "
+                   "itemprop=\"name\">([^<]*)</span></a>");
         rx.setMinimal(true);
         while ((pos = rx.indexIn(msg, pos)) != -1) {
             if (rx.cap(2).contains(m_currentSearch, Qt::CaseInsensitive)) {
@@ -62,8 +63,8 @@ void MovieMaze::loadMovieTrailers(QString id)
 
 void MovieMaze::onLoadFinished()
 {
-    if (m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         QString url = m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
         if (!url.startsWith("http://"))
@@ -77,8 +78,8 @@ void MovieMaze::onLoadFinished()
     if (m_loadReply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
-        int pos=0;
-        QRegExp rx("<meta itemprop=\"url\" content=\"([^\"]*)\">[^<]*<meta itemprop=\"name\" content=\"([^\"]*)\">");
+        int pos = 0;
+        QRegExp rx(R"lit(<meta itemprop="url" content="([^"]*)">[^<]*<meta itemprop="name" content="([^"]*)">)lit");
         rx.setMinimal(true);
 
         while ((pos = rx.indexIn(msg, pos)) != -1) {
@@ -118,17 +119,19 @@ QList<TrailerResult> MovieMaze::parseTrailers(QString html)
 {
     QList<TrailerResult> results;
     QString name;
-    int pos=0;
+    int pos = 0;
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<h1 itemprop=\"name\" class=\"headline\">([^<]*)</h1>");
+    rx.setPattern(R"(<h1 itemprop="name" class="headline">([^<]*)</h1>)");
     if (rx.indexIn(html, 0) != -1)
         name = rx.cap(1);
 
-    rx.setPattern("<a onclick=\"[^\"]*\" class=\"[^\"]*\" data-title=\"[^\"]*\" data-playlist=\"[0-9]*\" data-clip=\"[0-9]*\" "
-                  "data-clip-id=\"[0-9]*\" data-width=\"[0-9]*\" data-height=\"[0-9]*\" data-image=\"([^\"]*)\" data-length=\"[^\"]*\" data-embedurl=\"[^\"]*\" data-downloadurl=\"([^\"]*)\">[^<]*"
-                  "<img src=\"/assets/images/icon-flag-(.*).png\" alt=\"\">[^<]*</a>");
+    rx.setPattern(
+        "<a onclick=\"[^\"]*\" class=\"[^\"]*\" data-title=\"[^\"]*\" data-playlist=\"[0-9]*\" data-clip=\"[0-9]*\" "
+        "data-clip-id=\"[0-9]*\" data-width=\"[0-9]*\" data-height=\"[0-9]*\" data-image=\"([^\"]*)\" "
+        "data-length=\"[^\"]*\" data-embedurl=\"[^\"]*\" data-downloadurl=\"([^\"]*)\">[^<]*"
+        "<img src=\"/assets/images/icon-flag-(.*).png\" alt=\"\">[^<]*</a>");
     while ((pos = rx.indexIn(html, pos)) != -1) {
         TrailerResult result;
         result.name = name;
@@ -148,7 +151,7 @@ QList<TrailerResult> MovieMaze::parseTrailers(QString html)
 
 void MovieMaze::loadPreviewImages()
 {
-    for (int i=0, n=m_currentTrailers.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_currentTrailers.size(); i < n; ++i) {
         if (!m_currentTrailers[i].previewImageLoaded) {
             m_currentPreviewLoad = i;
             m_previewLoadReply = m_qnam->get(QNetworkRequest(m_currentTrailers[i].preview));

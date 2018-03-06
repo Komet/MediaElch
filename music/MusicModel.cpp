@@ -5,7 +5,7 @@
 
 MusicModel::MusicModel(QObject *parent) :
     QAbstractItemModel(parent),
-    m_rootItem{new MusicModelItem(0)},
+    m_rootItem{new MusicModelItem(nullptr)},
     m_newIcon{QIcon(":/img/star_blue.png")}
 {
 }
@@ -47,7 +47,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
             font.setBold(true);
         } else {
 #ifdef Q_OS_MAC
-            font.setPointSize(font.pointSize()-2);
+            font.setPointSize(font.pointSize() - 2);
 #endif
         }
         return font;
@@ -75,7 +75,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
 MusicModelItem *MusicModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        MusicModelItem *item = static_cast<MusicModelItem*>(index.internalPointer());
+        auto item = static_cast<MusicModelItem *>(index.internalPointer());
         if (item)
             return item;
     }
@@ -159,10 +159,10 @@ void MusicModel::onArtistChanged(Artist *artist)
     emit dataChanged(index, index);
 }
 
-QList<Artist*> MusicModel::artists()
+QList<Artist *> MusicModel::artists()
 {
-    QList<Artist*> artists;
-    for (int i=0, n=m_rootItem->childCount() ; i<n ; ++i) {
+    QList<Artist *> artists;
+    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         artists.append(m_rootItem->child(i)->artist());
     }
     return artists;
@@ -170,7 +170,7 @@ QList<Artist*> MusicModel::artists()
 
 void MusicModel::removeArtist(Artist *artist)
 {
-    for (int i=0, n=m_rootItem->childCount() ; i<n ; ++i) {
+    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         if (m_rootItem->child(i)->artist() == artist) {
             removeRow(m_rootItem->child(i)->childNumber());
             return;
@@ -185,8 +185,9 @@ int MusicModel::hasNewArtistsOrAlbums()
     foreach (Artist *artist, artists()) {
         if (!artist->controller()->infoLoaded())
             newItems++;
-        for (int i=0, n=artist->modelItem()->childNumber() ; i<n ; ++i) {
-            if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album() && !artist->modelItem()->child(i)->album()->controller()->infoLoaded())
+        for (int i = 0, n = artist->modelItem()->childNumber(); i < n; ++i) {
+            if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album()
+                && !artist->modelItem()->child(i)->album()->controller()->infoLoaded())
                 newItems++;
         }
     }

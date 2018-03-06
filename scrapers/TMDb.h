@@ -17,23 +17,23 @@ class TMDb : public ScraperInterface
     Q_OBJECT
 public:
     explicit TMDb(QObject *parent = nullptr);
-    ~TMDb();
-    QString name();
-    QString identifier();
-    void search(QString searchStr);
-    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
-    bool hasSettings();
-    void loadSettings(QSettings &settings);
-    void saveSettings(QSettings &settings);
-    QList<int> scraperSupports();
-    QList<int> scraperNativelySupports();
-    QWidget *settingsWidget();
+    ~TMDb() override;
+    QString name() override;
+    QString identifier() override;
+    void search(QString searchStr) override;
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos) override;
+    bool hasSettings() override;
+    void loadSettings(QSettings &settings) override;
+    void saveSettings(QSettings &settings) override;
+    QList<int> scraperSupports() override;
+    QList<int> scraperNativelySupports() override;
+    QWidget *settingsWidget() override;
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();
-    bool isAdult();
+    bool isAdult() override;
 
 signals:
-    void searchDone(QList<ScraperSearchResult>);
+    void searchDone(QList<ScraperSearchResult>) override;
 
 private slots:
     void searchFinished();

@@ -7,8 +7,7 @@
  * @brief TvShowProxyModel::TvShowProxyModel
  * @param parent
  */
-TvShowProxyModel::TvShowProxyModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+TvShowProxyModel::TvShowProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
 }
 
@@ -41,7 +40,7 @@ bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sourc
     if (filterAcceptsRowItself(source_row, source_parent))
         return true;
 
-    //accept if any of the parents is accepted on it's own merits
+    // accept if any of the parents is accepted on it's own merits
     QModelIndex parent = source_parent;
     while (parent.isValid()) {
         if (filterAcceptsRowItself(parent.row(), parent.parent()))
@@ -49,7 +48,7 @@ bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sourc
         parent = parent.parent();
     }
 
-    //accept if any of the children is accepted on it's own merits
+    // accept if any of the children is accepted on it's own merits
     if (hasAcceptedChildren(source_row, source_parent)) {
         return true;
     }
@@ -66,11 +65,11 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
 {
     QModelIndex item = sourceModel()->index(source_row, 0, source_parent);
     if (!item.isValid()) {
-        //qDebug() << "item invalid" << source_parent << source_row;
+        // qDebug() << "item invalid" << source_parent << source_row;
         return false;
     }
 
-    //check if there are children
+    // check if there are children
     int childCount = item.model()->rowCount(item);
     if (childCount == 0)
         return false;
@@ -78,7 +77,8 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
     for (int i = 0; i < childCount; ++i) {
         if (filterAcceptsRowItself(i, item))
             return true;
-        //recursive call -> NOTICE that this is depth-first searching, you're probably better off with breadth first search...
+        // recursive call -> NOTICE that this is depth-first searching, you're probably better off with breadth first
+        // search...
         if (hasAcceptedChildren(i, item))
             return true;
     }
@@ -95,7 +95,7 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
  */
 bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    TvShowModel *model = static_cast<TvShowModel*>(sourceModel());
+    auto model = static_cast<TvShowModel *>(sourceModel());
     TvShowModelItem *leftItem = model->getItem(left);
     TvShowModelItem *rightItem = model->getItem(right);
 
@@ -114,7 +114,8 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
             return false;
     }
 
-    return (QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) < 0);
+    return (
+        QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) < 0);
 }
 
 /**
@@ -122,7 +123,7 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
  * @param filters
  * @param text
  */
-void TvShowProxyModel::setFilter(QList<Filter*> filters, QString text)
+void TvShowProxyModel::setFilter(QList<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

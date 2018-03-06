@@ -9,8 +9,7 @@
  * @brief ConcertProxyModel::ConcertProxyModel
  * @param parent
  */
-ConcertProxyModel::ConcertProxyModel(QObject *parent) :
-    QSortFilterProxyModel(parent)
+ConcertProxyModel::ConcertProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
 }
 
@@ -23,7 +22,7 @@ ConcertProxyModel::ConcertProxyModel(QObject *parent) :
 bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QList<Concert*> concerts = Manager::instance()->concertModel()->concerts();
+    QList<Concert *> concerts = Manager::instance()->concertModel()->concerts();
     if (sourceRow < 0 || sourceRow >= concerts.count())
         return true;
 
@@ -44,9 +43,9 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourc
  */
 bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    if (sourceModel()->data(left, Qt::UserRole+1).toBool() && !sourceModel()->data(right, Qt::UserRole+1).toBool() )
+    if (sourceModel()->data(left, Qt::UserRole + 1).toBool() && !sourceModel()->data(right, Qt::UserRole + 1).toBool())
         return true;
-    if (!sourceModel()->data(left, Qt::UserRole+1).toBool() && sourceModel()->data(right, Qt::UserRole+1).toBool() )
+    if (!sourceModel()->data(left, Qt::UserRole + 1).toBool() && sourceModel()->data(right, Qt::UserRole + 1).toBool())
         return false;
     int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
     return !(cmp < 0);
@@ -57,7 +56,7 @@ bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
  * @param filters
  * @param text
  */
-void ConcertProxyModel::setFilter(QList<Filter*> filters, QString text)
+void ConcertProxyModel::setFilter(QList<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

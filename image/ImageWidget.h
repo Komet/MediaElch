@@ -17,7 +17,7 @@ class ImageWidget : public QWidget
 
 public:
     explicit ImageWidget(QWidget *parent = nullptr);
-    ~ImageWidget();
+    ~ImageWidget() override;
     void setAlbum(Album *album);
 
 public slots:

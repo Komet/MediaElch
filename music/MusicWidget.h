@@ -16,7 +16,7 @@ class MusicWidget : public QWidget
 
 public:
     explicit MusicWidget(QWidget *parent = nullptr);
-    ~MusicWidget();
+    ~MusicWidget() override;
 
 public slots:
     void onArtistSelected(Artist *artist);
@@ -33,8 +33,8 @@ public slots:
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
     void sigSetActionSaveEnabled(bool, MainWidgets);
-    void sigDownloadsStarted(QString,int);
-    void sigDownloadsProgress(int,int,int);
+    void sigDownloadsStarted(QString, int);
+    void sigDownloadsProgress(int, int, int);
     void sigDownloadsFinished(int);
 
 private:

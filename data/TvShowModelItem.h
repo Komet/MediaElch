@@ -43,15 +43,15 @@ public:
     int type();
 
 signals:
-    void sigIntChanged(TvShowModelItem*, TvShowModelItem*);
-    void sigChanged(TvShowModelItem*, TvShowModelItem*, TvShowModelItem*);
+    void sigIntChanged(TvShowModelItem *, TvShowModelItem *);
+    void sigChanged(TvShowModelItem *, TvShowModelItem *, TvShowModelItem *);
 
 private slots:
     void onTvShowEpisodeChanged(TvShowEpisode *episode);
-    void onSeasonChanged(TvShowModelItem* seasonItem, TvShowModelItem* episodeItem);
+    void onSeasonChanged(TvShowModelItem *seasonItem, TvShowModelItem *episodeItem);
 
 private:
-    QList<TvShowModelItem*> m_childItems;
+    QList<TvShowModelItem *> m_childItems;
     TvShowModelItem *m_parentItem;
     TvShow *m_tvShow;
     TvShowEpisode *m_tvShowEpisode;

@@ -26,25 +26,25 @@ class ConcertFilesWidget : public QWidget
 
 public:
     explicit ConcertFilesWidget(QWidget *parent = nullptr);
-    ~ConcertFilesWidget();
+    ~ConcertFilesWidget() override;
     static ConcertFilesWidget *instance();
-    QList<Concert*> selectedConcerts();
+    QList<Concert *> selectedConcerts();
     void renewModel();
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
     void concertSelectedEmitter();
     void setAlphaListData();
 
 signals:
     void noConcertSelected();
-    void concertSelected(Concert*);
+    void concertSelected(Concert *);
 
 protected:
-    void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
-    void resizeEvent(QResizeEvent *event);
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);

@@ -11,9 +11,7 @@
  * @brief ImagePreviewDialog::ImagePreviewDialog
  * @param parent
  */
-ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ImagePreviewDialog)
+ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
 {
     ui->setupUi(this);
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(accept()));
@@ -40,8 +38,8 @@ ImagePreviewDialog::~ImagePreviewDialog()
  */
 ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
 {
-    static ImagePreviewDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static ImagePreviewDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ImagePreviewDialog(parent);
     }
     return m_instance;
@@ -68,13 +66,13 @@ int ImagePreviewDialog::exec()
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-50);
-    newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
+    newSize.setHeight(parentWidget()->size().height() - 50);
+    newSize.setWidth(qMin(1200, parentWidget()->size().width() - 100));
     resize(newSize);
 
-    int xMove = (parentWidget()->size().width()-size().width())/2;
+    int xMove = (parentWidget()->size().width() - size().width()) / 2;
     QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x()+xMove, globalPos.y());
+    move(globalPos.x() + xMove, globalPos.y());
 
     return QDialog::exec();
 }

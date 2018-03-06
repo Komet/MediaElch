@@ -41,19 +41,22 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
         break;
     case QtWarningMsg:
         if (toFile)
-            out << "[" << f << "] " << "WARNING: " << localMsg << newLine;
+            out << "[" << f << "] "
+                << "WARNING: " << localMsg << newLine;
         else
             fprintf(stderr, "%s WARNING: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtCriticalMsg:
         if (toFile)
-            out << "[" << f << "] " << "CRITICAL: " << localMsg << newLine;
+            out << "[" << f << "] "
+                << "CRITICAL: " << localMsg << newLine;
         else
             fprintf(stderr, "%s CRITICAL: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtFatalMsg:
         if (toFile)
-            out << "[" << f << "] " << "FATAL: " << localMsg << newLine;
+            out << "[" << f << "] "
+                << "FATAL: " << localMsg << newLine;
         else
             fprintf(stderr, "%s FATAL: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         abort();
@@ -71,8 +74,8 @@ int main(int argc, char *argv[])
 
     // MediaElch localization
     QTranslator editTranslator;
-    QString localFileName = QString("%1%2MediaElch_local.qm").arg(QCoreApplication::applicationDirPath())
-                                                          .arg(QDir::separator());
+    QString localFileName =
+        QString("%1%2MediaElch_local.qm").arg(QCoreApplication::applicationDirPath()).arg(QDir::separator());
     QFileInfo fi(localFileName);
     if (fi.isFile()) {
         editTranslator.load(localFileName);
@@ -92,8 +95,10 @@ int main(int argc, char *argv[])
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
         data.setFileName(Settings::instance()->advanced()->logFile());
         if (!data.open(QFile::WriteOnly | QFile::Truncate))
-            QMessageBox::critical(0, QObject::tr("Logfile could not be openened"),
-                                  QObject::tr("The logfile %1 could not be openend for writing.").arg(Settings::instance()->advanced()->logFile()));
+            QMessageBox::critical(nullptr,
+                QObject::tr("Logfile could not be openened"),
+                QObject::tr("The logfile %1 could not be openend for writing.")
+                    .arg(Settings::instance()->advanced()->logFile()));
     }
     qInstallMessageHandler(messageOutput);
 

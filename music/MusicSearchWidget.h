@@ -18,7 +18,7 @@ class MusicSearchWidget : public QWidget
 
 public:
     explicit MusicSearchWidget(QWidget *parent = nullptr);
-    ~MusicSearchWidget();
+    ~MusicSearchWidget() override;
 
 public slots:
     void search(QString searchString);

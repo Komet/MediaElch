@@ -13,9 +13,7 @@
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
 
-ImportDialog::ImportDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ImportDialog)
+ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {
     ui->setupUi(this);
 
@@ -32,7 +30,10 @@ ImportDialog::ImportDialog(QWidget *parent) :
     m_timer.setInterval(500);
 
     m_posterDownloadManager = new DownloadManager(this);
-    connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onEpisodeDownloadFinished(DownloadManagerElement)));
+    connect(m_posterDownloadManager,
+        SIGNAL(downloadFinished(DownloadManagerElement)),
+        this,
+        SLOT(onEpisodeDownloadFinished(DownloadManagerElement)));
 
     connect(ui->movieSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(onMovieChosen()));
     connect(ui->concertSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(onConcertChosen()));
@@ -138,11 +139,12 @@ int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
     // get path
     QString path;
     int index = -1;
-    for (int i=0, n=Settings::instance()->tvShowDirectories().count() ; i<n ; ++i) {
+    for (int i = 0, n = Settings::instance()->tvShowDirectories().count(); i < n; ++i) {
         if (tvShow->dir().startsWith(Settings::instance()->tvShowDirectories().at(i).path)) {
             if (index == -1)
                 index = i;
-            else if (Settings::instance()->tvShowDirectories().at(index).path.length() < Settings::instance()->tvShowDirectories().at(i).path.length())
+            else if (Settings::instance()->tvShowDirectories().at(index).path.length()
+                     < Settings::instance()->tvShowDirectories().at(i).path.length())
                 index = i;
         }
     }
@@ -238,7 +240,7 @@ void ImportDialog::storeDefaults()
 
 void ImportDialog::onMovieChosen()
 {
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
@@ -259,7 +261,7 @@ void ImportDialog::onMovieChosen()
 
     m_movie = new Movie(files());
     m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
 }
 
 void ImportDialog::onConcertChosen()
@@ -275,9 +277,13 @@ void ImportDialog::onConcertChosen()
 
     m_concert = new Concert(files());
     m_concert->controller()->loadData(ui->concertSearchWidget->scraperId(),
-                                      Manager::instance()->concertScrapers().at(ui->concertSearchWidget->scraperNo()),
-                                      ui->concertSearchWidget->infosToLoad());
-    connect(m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
+        Manager::instance()->concertScrapers().at(ui->concertSearchWidget->scraperNo()),
+        ui->concertSearchWidget->infosToLoad());
+    connect(m_concert->controller(),
+        SIGNAL(sigLoadDone(Concert *)),
+        this,
+        SLOT(onLoadDone(Concert *)),
+        Qt::UniqueConnection);
 }
 
 void ImportDialog::onTvShowChosen()
@@ -296,7 +302,9 @@ void ImportDialog::onTvShowChosen()
     QList<int> episodes = TvShowFileSearcher::getEpisodeNumbers(files());
     if (!episodes.isEmpty())
         m_episode->setEpisode(episodes.first());
-    m_episode->loadData(ui->tvShowSearchEpisode->scraperId(), Manager::instance()->tvScrapers().at(0), ui->tvShowSearchEpisode->infosToLoad());
+    m_episode->loadData(ui->tvShowSearchEpisode->scraperId(),
+        Manager::instance()->tvScrapers().at(0),
+        ui->tvShowSearchEpisode->infosToLoad());
     connect(m_episode, SIGNAL(sigLoaded()), this, SLOT(onEpisodeLoadDone()), Qt::UniqueConnection);
 }
 
@@ -324,7 +332,9 @@ QStringList ImportDialog::extraFiles()
 
 void ImportDialog::setImportDir(QString dir)
 {
-    foreach (SettingsDir settingsDir, QList<SettingsDir>() << Settings::instance()->movieDirectories() << Settings::instance()->concertDirectories()) {
+    foreach (SettingsDir settingsDir,
+        QList<SettingsDir>() << Settings::instance()->movieDirectories()
+                             << Settings::instance()->concertDirectories()) {
         if (settingsDir.path == dir) {
             m_separateFolders = settingsDir.separateFolders;
             break;
@@ -389,7 +399,8 @@ void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
     if (!m_episode)
         return;
 
-    ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
+    ImageCache::instance()->invalidateImages(
+        Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
     elem.episode->setThumbnailImage(elem.data);
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Episode information was loaded"));
@@ -402,8 +413,8 @@ void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
 void ImportDialog::onImport()
 {
     if (ui->fileNaming->text().isEmpty()
-            || ((m_type == "movie" || m_type == "concert") && m_separateFolders && ui->directoryNaming->text().isEmpty())
-            || (m_type == "tvshow" && ui->chkSeasonDirectories->isChecked() && ui->seasonNaming->text().isEmpty())) {
+        || ((m_type == "movie" || m_type == "concert") && m_separateFolders && ui->directoryNaming->text().isEmpty())
+        || (m_type == "tvshow" && ui->chkSeasonDirectories->isChecked() && ui->seasonNaming->text().isEmpty())) {
         QMessageBox::warning(this, tr("Renaming not possible"), tr("Please enter all naming patterns"));
         return;
     }
@@ -412,7 +423,6 @@ void ImportDialog::onImport()
     m_filesToMove.clear();
 
     if (m_type == "movie") {
-
         QDir dir(importDir());
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
@@ -420,17 +430,22 @@ void ImportDialog::onImport()
             Renamer::replace(newFolderName, "originalTitle", m_movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", m_movie->sortTitle());
             Renamer::replace(newFolderName, "year", m_movie->released().toString("yyyy"));
-            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                              m_movie->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                              m_movie->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFolderName,
+                "resolution",
+                Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
+                    m_movie->streamDetails()->videoDetails().value("height").toInt(),
+                    m_movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscDvd);
-            Renamer::replaceCondition(newFolderName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFolderName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", m_movie->set());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
-                QMessageBox::warning(this, tr("Creating destination directory failed"),
-                                     tr("The destination directory %1 could not be created").arg(dir.absolutePath() + QDir::separator() + newFolderName));
+                QMessageBox::warning(this,
+                    tr("Creating destination directory failed"),
+                    tr("The destination directory %1 could not be created")
+                        .arg(dir.absolutePath() + QDir::separator() + newFolderName));
             }
             dir.cd(newFolderName);
         }
@@ -442,12 +457,15 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "sortTitle", m_movie->sortTitle());
             Renamer::replace(newFileName, "year", m_movie->released().toString("yyyy"));
             Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                            m_movie->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                            m_movie->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFileName,
+                "resolution",
+                Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
+                    m_movie->streamDetails()->videoDetails().value("height").toInt(),
+                    m_movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFileName, "imdbId", m_movie->id());
             Renamer::replaceCondition(newFileName, "movieset", m_movie->set());
-            Renamer::replaceCondition(newFileName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFileName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
@@ -456,7 +474,6 @@ void ImportDialog::onImport()
         ui->labelLoading->setText(tr("Importing movie..."));
 
     } else if (m_type == "tvshow") {
-
         QDir dir(m_show->dir());
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
@@ -476,10 +493,13 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "extension", fi.suffix());
             Renamer::replace(newFileName, "episode", m_episode->episodeString());
             Renamer::replace(newFileName, "season", m_episode->seasonString());
-            Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(m_episode->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                            m_episode->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                            m_episode->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFileName, "3D", m_episode->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replace(newFileName,
+                "resolution",
+                Helper::instance()->matchResolution(m_episode->streamDetails()->videoDetails().value("width").toInt(),
+                    m_episode->streamDetails()->videoDetails().value("height").toInt(),
+                    m_episode->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replaceCondition(
+                newFileName, "3D", m_episode->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
@@ -489,7 +509,6 @@ void ImportDialog::onImport()
         ui->labelLoading->setText(tr("Importing episode..."));
 
     } else if (m_type == "concert") {
-
         QDir dir(importDir());
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
@@ -497,16 +516,21 @@ void ImportDialog::onImport()
             Renamer::replace(newFolderName, "artist", m_concert->artist());
             Renamer::replace(newFolderName, "album", m_concert->album());
             Renamer::replace(newFolderName, "year", m_concert->released().toString("yyyy"));
-            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                              m_concert->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                              m_concert->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFolderName,
+                "resolution",
+                Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
+                    m_concert->streamDetails()->videoDetails().value("height").toInt(),
+                    m_concert->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscDvd);
-            Renamer::replaceCondition(newFolderName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFolderName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
-                QMessageBox::warning(this, tr("Creating destination directory failed"),
-                                     tr("The destination directory %1 could not be created").arg(dir.absolutePath() + QDir::separator() + newFolderName));
+                QMessageBox::warning(this,
+                    tr("Creating destination directory failed"),
+                    tr("The destination directory %1 could not be created")
+                        .arg(dir.absolutePath() + QDir::separator() + newFolderName));
             }
             dir.cd(newFolderName);
         }
@@ -518,17 +542,19 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "album", m_concert->album());
             Renamer::replace(newFileName, "year", m_concert->released().toString("yyyy"));
             Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                            m_concert->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                            m_concert->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFileName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replace(newFileName,
+                "resolution",
+                Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
+                    m_concert->streamDetails()->videoDetails().value("height").toInt(),
+                    m_concert->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replaceCondition(
+                newFileName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
         }
         ui->labelLoading->setText(tr("Importing concert..."));
-
     }
 
     ui->loading->setVisible(true);
@@ -569,7 +595,7 @@ void ImportDialog::onFileWatcherTimeout()
     if (sourceSize == 0)
         return;
 
-    ui->progressBar->setValue(qRound((float)destinationSize*100/sourceSize));
+    ui->progressBar->setValue(qRound((float)destinationSize * 100 / sourceSize));
 }
 
 void ImportDialog::onMovingFilesFinished()
@@ -587,7 +613,7 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->database()->add(m_movie, importDir());
         Manager::instance()->database()->commit();
         Manager::instance()->movieModel()->addMovie(m_movie);
-        m_movie = 0;
+        m_movie = nullptr;
     } else if (m_type == "tvshow") {
         if (m_show->showMissingEpisodes())
             m_show->clearMissingEpisodes();
@@ -607,9 +633,11 @@ void ImportDialog::onMovingFilesFinished()
         }
 
         if (newSeason) {
-            m_show->modelItem()->appendChild(m_episode->season(), m_episode->seasonString(), m_show)->appendChild(m_episode);
+            m_show->modelItem()
+                ->appendChild(m_episode->season(), m_episode->seasonString(), m_show)
+                ->appendChild(m_episode);
         } else {
-            for (int i=0, n=m_show->modelItem()->childCount() ; i<n ; ++i) {
+            for (int i = 0, n = m_show->modelItem()->childCount(); i < n; ++i) {
                 TvShowModelItem *item = m_show->modelItem()->child(i);
                 if (item->type() == TypeSeason && item->season() == m_episode->seasonString()) {
                     item->appendChild(m_episode);
@@ -623,8 +651,8 @@ void ImportDialog::onMovingFilesFinished()
         else if (newSeason)
             TvShowFilesWidget::instance()->renewModel(true);
 
-        m_episode = 0;
-        m_show = 0;
+        m_episode = nullptr;
+        m_show = nullptr;
     } else if (m_type == "concert") {
         m_concert->setFiles(m_newFiles);
         m_concert->controller()->loadStreamDetailsFromFile();
@@ -633,10 +661,11 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->database()->add(m_concert, importDir());
         Manager::instance()->database()->commit();
         Manager::instance()->concertModel()->addConcert(m_concert);
-        m_concert = 0;
+        m_concert = nullptr;
     }
 
-    Notificator::instance()->notify(Notificator::Information, tr("Import finished"), tr("Import of %n file(s) has finished", "", files().count()));
+    Notificator::instance()->notify(
+        Notificator::Information, tr("Import finished"), tr("Import of %n file(s) has finished", "", files().count()));
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Import has finished"));

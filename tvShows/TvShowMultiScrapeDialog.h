@@ -20,7 +20,7 @@ class TvShowMultiScrapeDialog : public QDialog
 
 public:
     explicit TvShowMultiScrapeDialog(QWidget *parent = nullptr);
-    ~TvShowMultiScrapeDialog();
+    ~TvShowMultiScrapeDialog() override;
 
     static TvShowMultiScrapeDialog *instance(QWidget *parent = nullptr);
 
@@ -31,9 +31,9 @@ public:
     void setEpisodes(const QList<TvShowEpisode *> &episodes);
 
 public slots:
-    int exec();
-    void reject();
-    void accept();
+    int exec() override;
+    void reject() override;
+    void accept() override;
 
 private slots:
     void onChkToggled();
@@ -44,7 +44,7 @@ private slots:
     void scrapeNext();
     void onInfoLoadDone(TvShow *show);
     void onEpisodeLoadDone();
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters);
+    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished();
     void onChkDvdOrderToggled();
@@ -55,8 +55,8 @@ private:
     QList<TvShowEpisode *> m_episodes;
     bool m_executed;
     QList<int> m_infosToLoad;
-    QQueue<TvShow*> m_showQueue;
-    QQueue<TvShowEpisode*> m_episodeQueue;
+    QQueue<TvShow *> m_showQueue;
+    QQueue<TvShowEpisode *> m_episodeQueue;
     QPointer<TvShow> m_currentShow;
     QPointer<TvShowEpisode> m_currentEpisode;
     TvScraperInterface *m_scraperInterface;

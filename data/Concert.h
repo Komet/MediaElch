@@ -66,7 +66,7 @@ public:
     virtual QString certification() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
-    virtual QList<QString*> genresPointer();
+    virtual QList<QString *> genresPointer();
     virtual QUrl trailer() const;
     virtual QStringList files() const;
     virtual QString folderName() const;
@@ -160,7 +160,7 @@ public:
     static QList<int> imageTypes();
 
 signals:
-    void sigChanged(Concert*);
+    void sigChanged(Concert *);
 
 private:
     ConcertController *m_controller;

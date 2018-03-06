@@ -18,16 +18,14 @@ ConcertFilesWidget *ConcertFilesWidget::m_instance;
  * @brief ConcertFilesWidget::ConcertFilesWidget
  * @param parent
  */
-ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ConcertFilesWidget)
+ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConcertFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
     ui->statusLabel->setText(tr("%n concerts", "", 0));
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
     ui->files->setFont(font);
 #endif
 #ifdef Q_OS_WIN32
@@ -35,7 +33,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 #endif
     m_mouseIsIn = false;
     m_alphaList = new AlphabeticalList(this);
-    m_lastConcert = 0;
+    m_lastConcert = nullptr;
     m_concertProxyModel = new ConcertProxyModel(this);
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
     m_concertProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -75,15 +73,18 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfo()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
-    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
+    connect(ui->files->selectionModel(),
+        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+        this,
+        SLOT(itemActivated(QModelIndex, QModelIndex)));
+    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(setAlphaListData()));
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
     connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playConcert(QModelIndex)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
-    connect(m_concertProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
-    connect(m_concertProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(m_concertProxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
+    connect(m_concertProxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
 }
 
 /**
@@ -142,7 +143,7 @@ void ConcertFilesWidget::markAsUnwatched()
 void ConcertFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QList<Concert*> concerts;
+    QList<Concert *> concerts;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -152,7 +153,7 @@ void ConcertFilesWidget::loadStreamDetails()
         concerts.at(0)->controller()->loadStreamDetailsFromFile();
         concerts.at(0)->setChanged(true);
     } else {
-        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        auto loader = new LoadingStreamDetails(this);
         loader->loadConcerts(concerts);
         delete loader;
     }
@@ -217,7 +218,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
-        m_lastConcert = 0;
+        m_lastConcert = nullptr;
         emit noConcertSelected();
         return;
     }
@@ -242,7 +243,7 @@ void ConcertFilesWidget::concertSelectedEmitter()
  * @param filters List of filters
  * @param text Filter text
  */
-void ConcertFilesWidget::setFilter(QList<Filter*> filters, QString text)
+void ConcertFilesWidget::setFilter(QList<Filter *> filters, QString text)
 {
     m_concertProxyModel->setFilter(filters, text);
     m_concertProxyModel->setFilterWildcard("*" + text + "*");
@@ -258,9 +259,9 @@ void ConcertFilesWidget::restoreLastSelection()
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 
-QList<Concert*> ConcertFilesWidget::selectedConcerts()
+QList<Concert *> ConcertFilesWidget::selectedConcerts()
 {
-    QList<Concert*> concerts;
+    QList<Concert *> concerts;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         concerts.append(Manager::instance()->concertModel()->concert(row));
@@ -277,7 +278,7 @@ void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
     m_alphaList->setBottomSpace(10);
-    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->adjustSize();
 }
 
@@ -297,7 +298,7 @@ void ConcertFilesWidget::leaveEvent(QEvent *event)
 void ConcertFilesWidget::setAlphaListData()
 {
     QStringList alphas;
-    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = ui->files->model()->rowCount(); i < n; ++i) {
         QString title = ui->files->model()->data(ui->files->model()->index(i, 0)).toString();
         QString first = title.left(1).toUpper();
         if (!alphas.contains(first))
@@ -307,13 +308,13 @@ void ConcertFilesWidget::setAlphaListData()
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
-    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->setAlphas(alphas);
 }
 
 void ConcertFilesWidget::scrollToAlpha(QString alpha)
 {
-    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = ui->files->model()->rowCount(); i < n; ++i) {
         QModelIndex index = ui->files->model()->index(i, 0);
         QString title = ui->files->model()->data(index).toString();
         QString first = title.left(1).toUpper();
@@ -352,7 +353,7 @@ void ConcertFilesWidget::playConcert(QModelIndex idx)
 {
     if (!idx.isValid())
         return;
-    QString fileName = m_concertProxyModel->data(idx, Qt::UserRole+4).toString();
+    QString fileName = m_concertProxyModel->data(idx, Qt::UserRole + 4).toString();
     if (fileName.isEmpty())
         return;
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));

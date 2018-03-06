@@ -10,17 +10,16 @@ class TvShowTreeView : public QTreeView
     Q_OBJECT
 public:
     explicit TvShowTreeView(QWidget *parent = nullptr);
-    ~TvShowTreeView();
+    ~TvShowTreeView() override;
 
 protected:
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
-    void drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
+    void drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 private:
     QPixmap m_newIcon;
     QPixmap m_syncIcon;
     QPixmap m_missingIcon;
-
 };
 
 #endif // TVSHOWTREEVIEW_H

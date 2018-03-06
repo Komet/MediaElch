@@ -6,9 +6,7 @@
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 
-ExportDialog::ExportDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ExportDialog)
+ExportDialog::ExportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ExportDialog)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -26,7 +24,7 @@ ExportDialog::~ExportDialog()
 int ExportDialog::exec()
 {
     m_canceled = false;
-    QList<ExportTemplate*> templates = ExportTemplateLoader::instance()->installedTemplates();
+    QList<ExportTemplate *> templates = ExportTemplateLoader::instance()->installedTemplates();
     if (templates.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
         ui->btnExport->setEnabled(false);
@@ -65,7 +63,8 @@ void ExportDialog::onBtnExport()
         return;
     }
 
-    ExportTemplate *exportTemplate = ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
+    ExportTemplate *exportTemplate =
+        ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
     if (!exportTemplate)
         return;
 
@@ -134,7 +133,8 @@ void ExportDialog::onThemeChanged()
     if (index < 0 || index >= ui->comboTheme->count())
         return;
 
-    ExportTemplate *exportTemplate = ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
+    ExportTemplate *exportTemplate =
+        ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
     if (!exportTemplate)
         return;
 
@@ -152,7 +152,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     QString listMovieItem;
     QString listMovieBlock;
     QStringList movieList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_MOVIE \\}\\}(.*)\\{\\{ END_BLOCK_MOVIE \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_MOVIE \}\}(.*)\{\{ END_BLOCK_MOVIE \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -181,7 +181,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
         QString m = listMovieItem;
         replaceVars(m, movie, dir);
         movieList << m;
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
@@ -219,9 +219,12 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.VOTES }}", QString::number(movie->votes(), 'f', 0));
     m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
-    m.replace("{{ MOVIE.LAST_PLAYED }}", movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
-    m.replace("{{ MOVIE.DATE_ADDED }}", movie->dateAdded().isValid() ? movie->dateAdded().toString("yyyy-MM-dd hh:mm") : "");
-    m.replace("{{ MOVIE.FILE_LAST_MODIFIED }}", movie->fileLastModified().isValid() ? movie->fileLastModified().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ MOVIE.LAST_PLAYED }}",
+        movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace(
+        "{{ MOVIE.DATE_ADDED }}", movie->dateAdded().isValid() ? movie->dateAdded().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ MOVIE.FILE_LAST_MODIFIED }}",
+        movie->fileLastModified().isValid() ? movie->fileLastModified().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ MOVIE.FILENAME }}", (!movie->files().isEmpty()) ? movie->files().first() : "");
     if (!movie->files().isEmpty()) {
         QFileInfo fi(movie->files().first());
@@ -241,7 +244,11 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
         actorNames << actor.name;
         actorRoles << actor.role;
     }
-    replaceMultiBlock(m, "ACTORS", QStringList() << "ACTOR.NAME" << "ACTOR.ROLE", QList<QStringList>() << actorNames << actorRoles);
+    replaceMultiBlock(m,
+        "ACTORS",
+        QStringList() << "ACTOR.NAME"
+                      << "ACTOR.ROLE",
+        QList<QStringList>() << actorNames << actorRoles);
 
     replaceStreamDetailsVars(m, movie->streamDetails());
     replaceImages(m, dir, subDir, movie);
@@ -256,7 +263,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     QString listConcertItem;
     QString listConcertBlock;
     QStringList concertList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_CONCERT \\}\\}(.*)\\{\\{ END_BLOCK_CONCERT \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_CONCERT \}\}(.*)\{\{ END_BLOCK_CONCERT \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -285,7 +292,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
         QString c = listConcertItem;
         replaceVars(c, concert, dir);
         concertList << c;
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
@@ -312,7 +319,8 @@ void ExportDialog::replaceVars(QString &m, Concert *concert, QDir dir, bool subD
     m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification());
     m.replace("{{ CONCERT.TRAILER }}", concert->trailer().toString());
     m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));
-    m.replace("{{ CONCERT.LAST_PLAYED }}", concert->lastPlayed().isValid() ? concert->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ CONCERT.LAST_PLAYED }}",
+        concert->lastPlayed().isValid() ? concert->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ CONCERT.PLOT }}", concert->overview().replace("\n", "<br />"));
     m.replace("{{ CONCERT.TAGS }}", concert->tags().join(", "));
     m.replace("{{ CONCERT.GENRES }}", concert->genres().join(", "));
@@ -320,7 +328,7 @@ void ExportDialog::replaceVars(QString &m, Concert *concert, QDir dir, bool subD
     replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
-    replaceImages(m, dir, subDir, 0, concert);
+    replaceImages(m, dir, subDir, nullptr, concert);
 }
 
 void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow *> shows)
@@ -333,7 +341,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     QString listTvShowItem;
     QString listTvShowBlock;
     QStringList tvShowList;
-    QRegExp rx("\\{\\{ BEGIN_BLOCK_TVSHOW \\}\\}(.*)\\{\\{ END_BLOCK_TVSHOW \\}\\}");
+    QRegExp rx(R"(\{\{ BEGIN_BLOCK_TVSHOW \}\}(.*)\{\{ END_BLOCK_TVSHOW \}\})");
     rx.setMinimal(true);
 
     int pos = 0;
@@ -364,7 +372,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
         QString s = listTvShowItem;
         replaceVars(s, show, dir);
         tvShowList << s;
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
         foreach (TvShowEpisode *episode, show->episodes()) {
@@ -377,7 +385,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
                 file.write(episodeTemplate.toUtf8());
                 file.close();
             }
-            ui->progressBar->setValue(ui->progressBar->value()+1);
+            ui->progressBar->setValue(ui->progressBar->value() + 1);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
     }
@@ -399,7 +407,8 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     m.replace("{{ TVSHOW.TITLE }}", show->name());
     m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification());
-    m.replace("{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");
+    m.replace(
+        "{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");
     m.replace("{{ TVSHOW.STUDIO }}", show->network());
     m.replace("{{ TVSHOW.PLOT }}", show->overview().replace("\n", "<br />"));
     m.replace("{{ TVSHOW.TAGS }}", show->tags().join(", "));
@@ -411,17 +420,21 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         actorNames << actor.name;
         actorRoles << actor.role;
     }
-    replaceMultiBlock(m, "ACTORS", QStringList() << "ACTOR.NAME" << "ACTOR.ROLE", QList<QStringList>() << actorNames << actorRoles);
+    replaceMultiBlock(m,
+        "ACTORS",
+        QStringList() << "ACTOR.NAME"
+                      << "ACTOR.ROLE",
+        QList<QStringList>() << actorNames << actorRoles);
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
-    replaceImages(m, dir, subDir, 0, 0, show);
+    replaceImages(m, dir, subDir, nullptr, nullptr, show);
 
     QString listSeasonItem;
     QString listSeasonBlock;
     QStringList seasonList;
     QRegExp rx;
     rx.setMinimal(true);
-    rx.setPattern("\\{\\{ BEGIN_BLOCK_SEASON \\}\\}(.*)\\{\\{ END_BLOCK_SEASON \\}\\}");
+    rx.setPattern(R"(\{\{ BEGIN_BLOCK_SEASON \}\}(.*)\{\{ END_BLOCK_SEASON \}\})");
 
     int pos = 0;
     while ((pos = rx.indexIn(m, pos)) != -1) {
@@ -437,7 +450,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     QList<int> seasons = show->seasons(false);
     qSort(seasons);
     foreach (const int &season, seasons) {
-        QList<TvShowEpisode*> episodes = show->episodes(season);
+        QList<TvShowEpisode *> episodes = show->episodes(season);
         qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
         s.replace("{{ SEASON }}", QString::number(season));
@@ -445,7 +458,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         QString listEpisodeItem;
         QString listEpisodeBlock;
         QStringList episodeList;
-        rx.setPattern("\\{\\{ BEGIN_BLOCK_EPISODE \\}\\}(.*)\\{\\{ END_BLOCK_EPISODE \\}\\}");
+        rx.setPattern(R"(\{\{ BEGIN_BLOCK_EPISODE \}\}(.*)\{\{ END_BLOCK_EPISODE \}\})");
 
         int pos = 0;
         while ((pos = rx.indexIn(s, pos)) != -1) {
@@ -477,8 +490,10 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     m.replace("{{ EPISODE.EPISODE }}", episode->episodeString());
     m.replace("{{ EPISODE.RATING }}", QString::number(episode->rating(), 'f', 1));
     m.replace("{{ EPISODE.CERTIFICATION }}", episode->certification());
-    m.replace("{{ EPISODE.FIRST_AIRED }}", episode->firstAired().isValid() ? episode->firstAired().toString("yyyy-MM-dd") : "");
-    m.replace("{{ EPISODE.LAST_PLAYED }}", episode->lastPlayed().isValid() ? episode->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ EPISODE.FIRST_AIRED }}",
+        episode->firstAired().isValid() ? episode->firstAired().toString("yyyy-MM-dd") : "");
+    m.replace("{{ EPISODE.LAST_PLAYED }}",
+        episode->lastPlayed().isValid() ? episode->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ EPISODE.STUDIO }}", episode->network());
     m.replace("{{ EPISODE.PLOT }}", episode->overview().replace("\n", "<br />"));
     m.replace("{{ EPISODE.WRITERS }}", episode->writers().join(", "));
@@ -487,7 +502,7 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
-    replaceImages(m, dir, subDir, 0, 0, 0, episode);
+    replaceImages(m, dir, subDir, nullptr, nullptr, nullptr, episode);
 }
 
 void ExportDialog::replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails)
@@ -501,7 +516,7 @@ void ExportDialog::replaceStreamDetailsVars(QString &m, StreamDetails *streamDet
     QStringList audioCodecs;
     QStringList audioChannels;
     QStringList audioLanguages;
-    for (int i=0, n=streamDetails->audioDetails().count() ; i<n ; ++i) {
+    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         audioCodecs << streamDetails->audioDetails().at(i).value("codec");
         audioChannels << streamDetails->audioDetails().at(i).value("channels");
         audioLanguages << streamDetails->audioDetails().at(i).value("language");
@@ -520,14 +535,14 @@ void ExportDialog::replaceMultiBlock(QString &m, QString blockName, QStringList 
 {
     QRegExp rx;
     rx.setMinimal(true);
-    rx.setPattern("\\{\\{ BEGIN_BLOCK_" + blockName + " \\}\\}(.*)\\{\\{ END_BLOCK_" + blockName + " \\}\\}");
+    rx.setPattern("\\{\\{ BEGIN_BLOCK_" + blockName + R"( \}\}(.*)\{\{ END_BLOCK_)" + blockName + " \\}\\}");
     if (rx.indexIn(m) != -1) {
         QString block = rx.cap(0);
         QString item = rx.cap(1).trimmed();
         QStringList list;
-        for (int i=0, n=replaces.at(0).count() ; i<n ; ++i) {
+        for (int i = 0, n = replaces.at(0).count(); i < n; ++i) {
             QString subItem = item;
-            for (int x=0, y=itemNames.count() ; x<y ; ++x) {
+            for (int x = 0, y = itemNames.count(); x < y; ++x) {
                 subItem.replace("{{ " + itemNames.at(x) + " }}", replaces.at(x).at(i));
             }
             list << subItem;
@@ -549,11 +564,17 @@ void ExportDialog::onBtnClose()
     QDialog::reject();
 }
 
-void ExportDialog::replaceImages(QString &m, const QDir &dir, const bool &subDir, Movie *movie, Concert *concert, TvShow *tvShow, TvShowEpisode *episode)
+void ExportDialog::replaceImages(QString &m,
+    const QDir &dir,
+    const bool &subDir,
+    Movie *movie,
+    Concert *concert,
+    TvShow *tvShow,
+    TvShowEpisode *episode)
 {
     QString item;
     QSize size;
-    QRegExp rx("\\{\\{ IMAGE.(.*)\\[(\\d*),(\\d*)\\] \\}\\}");
+    QRegExp rx(R"(\{\{ IMAGE.(.*)\[(\d*),(\d*)\] \}\})");
     rx.setMinimal(true);
     int pos = 0;
     while (rx.indexIn(m, pos) != -1) {
@@ -583,16 +604,27 @@ void ExportDialog::replaceImages(QString &m, const QDir &dir, const bool &subDir
             if (imageSaved) {
                 m.replace(item, (subDir ? "../" : "") + destFile);
             } else {
-                m.replace(item, (subDir ? "../" : "") + QString("defaults/%1_%2_%3x%4.png").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
+                m.replace(item,
+                    (subDir ? "../" : "")
+                        + QString("defaults/%1_%2_%3x%4.png")
+                              .arg(typeName)
+                              .arg(type)
+                              .arg(size.width())
+                              .arg(size.height()));
             }
         }
         pos += rx.matchedLength();
     }
 }
 
-bool ExportDialog::saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Movie *movie)
+bool ExportDialog::saveImageForType(const QString &type,
+    const QSize &size,
+    const QDir &dir,
+    QString &destFile,
+    Movie *movie)
 {
-    destFile = "movie_images/" + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
+    destFile = "movie_images/"
+               + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MoviePoster);
@@ -626,17 +658,24 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Concert *concert)
+bool ExportDialog::saveImageForType(const QString &type,
+    const QSize &size,
+    const QDir &dir,
+    QString &destFile,
+    Concert *concert)
 {
-    destFile = "concert_images/" + QString("%1-%2_%3x%4.jpg").arg(concert->concertId()).arg(type).arg(size.width()).arg(size.height());
+    destFile = "concert_images/"
+               + QString("%1-%2_%3x%4.jpg").arg(concert->concertId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
@@ -646,7 +685,8 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertClearArt);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertClearArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
@@ -662,9 +702,14 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShow *tvShow)
+bool ExportDialog::saveImageForType(const QString &type,
+    const QSize &size,
+    const QDir &dir,
+    QString &destFile,
+    TvShow *tvShow)
 {
-    destFile = "tvshow_images/" + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
+    destFile = "tvshow_images/"
+               + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowPoster);
@@ -672,7 +717,8 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBackdrop);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBackdrop);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
@@ -687,12 +733,14 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowClearArt);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowClearArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "characterart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowCharacterArt);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowCharacterArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
@@ -703,12 +751,18 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShowEpisode *episode)
+bool ExportDialog::saveImageForType(const QString &type,
+    const QSize &size,
+    const QDir &dir,
+    QString &destFile,
+    TvShowEpisode *episode)
 {
-    destFile = "episode_images/" + QString("%1-%2_%3x%4.jpg").arg(episode->episodeId()).arg(type).arg(size.width()).arg(size.height());
+    destFile = "episode_images/"
+               + QString("%1-%2_%3x%4.jpg").arg(episode->episodeId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "thumbnail") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
+        QString filename =
+            Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);

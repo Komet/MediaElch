@@ -10,19 +10,17 @@
  * @brief ConcertModel::ConcertModel
  * @param parent
  */
-ConcertModel::ConcertModel(QObject *parent) :
-    QAbstractItemModel(parent)
+ConcertModel::ConcertModel(QObject *parent) : QAbstractItemModel(parent)
 {
 #ifdef Q_OS_WIN
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
 #else
-    MyIconFont *font = new MyIconFont(this);
+    auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
     m_newIcon = font->icon("star", QColor(58, 135, 173), QColor(255, 255, 255), "", 0, 1.0);
 #endif
-
 }
 
 /**
@@ -34,7 +32,7 @@ void ConcertModel::addConcert(Concert *concert)
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_concerts.append(concert);
     endInsertRows();
-    connect(concert, SIGNAL(sigChanged(Concert*)), this, SLOT(onConcertChanged(Concert*)), Qt::UniqueConnection);
+    connect(concert, SIGNAL(sigChanged(Concert *)), this, SLOT(onConcertChanged(Concert *)), Qt::UniqueConnection);
 }
 
 /**
@@ -62,7 +60,7 @@ void ConcertModel::update()
 Concert *ConcertModel::concert(int row)
 {
     if (row < 0 || row >= m_concerts.count())
-        return 0;
+        return nullptr;
     return m_concerts.at(row);
 }
 
@@ -106,23 +104,23 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
     Concert *concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(concert->name());
-    } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole+4)) {
-        if (concert->files().size() == 0)
+    } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
+        if (concert->files().empty())
             return QVariant();
         return concert->files().at(0);
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
         return concert->folderName();
-    } else if (role == Qt::UserRole+1) {
+    } else if (role == Qt::UserRole + 1) {
         return concert->controller()->infoLoaded();
-    } else if (role == Qt::UserRole+2) {
+    } else if (role == Qt::UserRole + 2) {
         return concert->hasChanged();
-    } else if (role == Qt::UserRole+3) {
+    } else if (role == Qt::UserRole + 3) {
         return concert->syncNeeded();
-    /*
-    } else if (role == Qt::ForegroundRole) {
-        if (concert->hasChanged())
-            return QColor(255, 0, 0);
-    */
+        /*
+        } else if (role == Qt::ForegroundRole) {
+            if (concert->hasChanged())
+                return QColor(255, 0, 0);
+        */
     } else if (role == Qt::FontRole) {
         if (concert->hasChanged()) {
             QFont font;
@@ -168,9 +166,9 @@ QModelIndex ConcertModel::index(int row, int column, const QModelIndex &parent) 
  */
 void ConcertModel::clear()
 {
-    if (m_concerts.size() == 0)
+    if (m_concerts.empty())
         return;
-    beginRemoveRows(QModelIndex(), 0, m_concerts.size()-1);
+    beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
     foreach (Concert *concert, m_concerts)
         delete concert;
     m_concerts.clear();
@@ -181,7 +179,7 @@ void ConcertModel::clear()
  * @brief Returns a list of all concerts
  * @return List of concerts
  */
-QList<Concert*> ConcertModel::concerts()
+QList<Concert *> ConcertModel::concerts()
 {
     return m_concerts;
 }

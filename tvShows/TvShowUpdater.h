@@ -21,7 +21,7 @@ private slots:
 private:
     QNetworkAccessManager m_qnam;
     TheTvDb *m_tvdb;
-    QList<TvShow*> m_updatedShows;
+    QList<TvShow *> m_updatedShows;
     QString unzipContent(QByteArray content);
 };
 

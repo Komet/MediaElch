@@ -4,10 +4,9 @@
 #include <QRegExp>
 #include <QStringList>
 
-NameFormatter *NameFormatter::m_instance = 0;
+NameFormatter *NameFormatter::m_instance = nullptr;
 
-NameFormatter::NameFormatter(QObject *parent) :
-    QObject(parent)
+NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
 {
     onUpdateExcludeWords();
     connect(Settings::instance(), SIGNAL(sigSettingsSaved()), this, SLOT(onUpdateExcludeWords()));
@@ -20,7 +19,7 @@ NameFormatter::NameFormatter(QObject *parent) :
  */
 NameFormatter *NameFormatter::instance(QObject *parent)
 {
-    if (m_instance == 0) {
+    if (m_instance == nullptr) {
         m_instance = new NameFormatter(parent);
     }
     return m_instance;
@@ -36,7 +35,7 @@ QString NameFormatter::excludeWords(QString name)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (const QString &word, m_exWords) {
-        rx.setPattern("(^|[\\(\\s\\-\\.\\[]+)" + word + "([\\s\\-\\.\\)\\],]+|$)");
+        rx.setPattern(R"((^|[\(\s\-\.\[]+))" + word + R"(([\s\-\.\)\],]+|$))");
         int pos = rx.indexIn(name);
         while (pos >= 0) {
             name = name.remove(pos, rx.cap(0).length());
@@ -44,14 +43,17 @@ QString NameFormatter::excludeWords(QString name)
             pos = rx.indexIn(name);
         }
 
-        QStringList braces = QStringList() << "(" << ")" << "[" << "]";
+        QStringList braces = QStringList() << "("
+                                           << ")"
+                                           << "["
+                                           << "]";
         if (braces.contains(word))
             name.replace(word, "");
     }
 
     // remove " - _" at the end of a name
     rx.setPattern("[\\-\\s_]");
-    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
         name.chop(1);
 
     return name;
@@ -76,7 +78,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
     name = excludeWords(name);
 
     // remove resulting empty brackets
-    QRegExp rx("\\([\\s\\-]*\\)");
+    QRegExp rx(R"(\([\s\-]*\))");
     int pos = rx.indexIn(name);
     while (rx.indexIn(name) >= 0) {
         name = name.remove(pos, rx.cap(0).length());
@@ -85,7 +87,7 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 
     // remove " - " at the end of a name
     rx.setPattern("[\\-\\s]");
-    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
         name.chop(1);
     return name;
 }
@@ -98,9 +100,9 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
  */
 QString NameFormatter::formatParts(QString name)
 {
-    QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)" \
+    QRegExp rx("([\\-\\s\\(\\)\\._]+((a|b|c|d|e|f)|((part|cd|xvid)"
                "[\\-\\s\\._]*\\d+))[\\-_\\s\\.\\(\\)]*)",
-               Qt::CaseInsensitive);
+        Qt::CaseInsensitive);
     int pos = rx.lastIndexIn(name);
     name = name.left(pos);
     return name;
@@ -108,8 +110,7 @@ QString NameFormatter::formatParts(QString name)
 
 void NameFormatter::onUpdateExcludeWords()
 {
-    m_exWords = Settings::instance()->excludeWords()
-            .remove(" ").split(",", QString::SkipEmptyParts);
+    m_exWords = Settings::instance()->excludeWords().remove(" ").split(",", QString::SkipEmptyParts);
     qSort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
 }
 

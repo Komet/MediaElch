@@ -23,7 +23,7 @@ class TvShowWidgetTvShow : public QWidget
 
 public:
     explicit TvShowWidgetTvShow(QWidget *parent = nullptr);
-    ~TvShowWidgetTvShow();
+    ~TvShowWidgetTvShow() override;
     void setTvShow(TvShow *show);
     void updateTvShowInfo();
 
@@ -42,7 +42,7 @@ signals:
     void sigDownloadsFinished(int);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void onAddGenre(QString genre);
@@ -52,7 +52,7 @@ private slots:
     void onAddActor();
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters);
+    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
 
     void onChooseImage();
     void onDeleteImage();

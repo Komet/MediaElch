@@ -10,10 +10,7 @@
  * @brief MediaFlags::MediaFlags
  * @param parent
  */
-MediaFlags::MediaFlags(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MediaFlags),
-    m_height{14}
+MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags), m_height{14}
 {
     ui->setupUi(this);
 }
@@ -69,7 +66,12 @@ void MediaFlags::setupResolution(StreamDetails *streamDetails)
  */
 void MediaFlags::setupAspect(StreamDetails *streamDetails)
 {
-    QStringList availableAspects = QStringList() << "1.33" << "1.66" << "1.78" << "1.85" << "2.35" << "2.39";
+    QStringList availableAspects = QStringList() << "1.33"
+                                                 << "1.66"
+                                                 << "1.78"
+                                                 << "1.85"
+                                                 << "2.35"
+                                                 << "2.39";
     double aspect = streamDetails->videoDetails().value("aspect").toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
@@ -83,7 +85,12 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
  */
 void MediaFlags::setupCodec(StreamDetails *streamDetails)
 {
-    QStringList availableCodecs = QStringList() << "avc1" << "avchd" << "divx" << "flv" << "h264" << "xvid";
+    QStringList availableCodecs = QStringList() << "avc1"
+                                                << "avchd"
+                                                << "divx"
+                                                << "flv"
+                                                << "h264"
+                                                << "xvid";
     QString codec = streamDetails->videoDetails().value("codec").toLower();
     if (codec.startsWith("divx"))
         codec = "divx";
@@ -99,7 +106,15 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
 void MediaFlags::setupAudio(StreamDetails *streamDetails)
 {
     bool visible = false;
-    QStringList availableCodecs = QStringList() << "dtshdma" << "dtshdhra" << "dolbytruehd" << "dts" << "dolbydigital" << "flac" << "vorbis" << "mp3" << "mp2";
+    QStringList availableCodecs = QStringList() << "dtshdma"
+                                                << "dtshdhra"
+                                                << "dolbytruehd"
+                                                << "dts"
+                                                << "dolbydigital"
+                                                << "flac"
+                                                << "vorbis"
+                                                << "mp3"
+                                                << "mp2";
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value("codec").toLower();
         if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma")
@@ -124,7 +139,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
 void MediaFlags::setupChannels(StreamDetails *streamDetails)
 {
     int channels = -1;
-    for (int i=0, n=streamDetails->audioDetails().count() ; i<n ; ++i ) {
+    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         if (streamDetails->audioDetails().at(i).value("channels").toInt() > channels)
             channels = streamDetails->audioDetails().at(i).value("channels").toInt();
     }
@@ -143,7 +158,8 @@ QPixmap MediaFlags::colorIcon(QString icon)
     if (pixmaps.contains(icon))
         return pixmaps.value(icon);
 
-    QPixmap pixmap = QPixmap(icon).scaledToHeight(m_height * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+    QPixmap pixmap =
+        QPixmap(icon).scaledToHeight(m_height * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
     QPainter p;
     p.begin(&pixmap);

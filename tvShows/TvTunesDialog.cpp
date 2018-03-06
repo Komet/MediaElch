@@ -5,10 +5,7 @@
 
 #include "globals/Manager.h"
 
-TvTunesDialog::TvTunesDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::TvTunesDialog),
-    m_totalTime{0}
+TvTunesDialog::TvTunesDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_totalTime{0}
 {
     ui->setupUi(this);
 
@@ -24,7 +21,7 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     QFont font = ui->time->font();
-    font.setPointSize(font.pointSize()-1);
+    font.setPointSize(font.pointSize() - 1);
     ui->time->setFont(font);
 #endif
 
@@ -32,10 +29,13 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) :
 
     connect(ui->btnClose, SIGNAL(clicked()), this, SLOT(onClose()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
     connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
     connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
-    connect(Manager::instance()->tvTunes(), SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onShowResults(QList<ScraperSearchResult>)));
+    connect(Manager::instance()->tvTunes(),
+        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onShowResults(QList<ScraperSearchResult>)));
 
     m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
@@ -52,7 +52,7 @@ TvTunesDialog::~TvTunesDialog()
 
 TvTunesDialog *TvTunesDialog::instance(QWidget *parent)
 {
-    static TvTunesDialog *m_instance = 0;
+    static TvTunesDialog *m_instance = nullptr;
     if (!m_instance)
         m_instance = new TvTunesDialog(parent);
     return m_instance;
@@ -126,39 +126,31 @@ void TvTunesDialog::onNewTotalTime(qint64 totalTime)
 
 void TvTunesDialog::onUpdateTime(qint64 currentTime)
 {
-    QString tTime = QString("%1:%2").arg(m_totalTime/1000/60).arg((m_totalTime/1000)%60, 2, 10, QChar('0'));
-    QString cTime = QString("%1:%2").arg(currentTime/1000/60).arg((currentTime/1000)%60, 2, 10, QChar('0'));
+    QString tTime = QString("%1:%2").arg(m_totalTime / 1000 / 60).arg((m_totalTime / 1000) % 60, 2, 10, QChar('0'));
+    QString cTime = QString("%1:%2").arg(currentTime / 1000 / 60).arg((currentTime / 1000) % 60, 2, 10, QChar('0'));
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
 
     int position = 0;
     if (m_totalTime > 0)
-        position = qRound(((float)currentTime/m_totalTime)*100);
+        position = qRound(((float)currentTime / m_totalTime) * 100);
     ui->seekSlider->setValue(position);
 }
 
 void TvTunesDialog::onStateChanged(QMediaPlayer::State newState)
 {
     switch (newState) {
-    case QMediaPlayer::PlayingState:
-        ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png"));
-        break;
+    case QMediaPlayer::PlayingState: ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png")); break;
     case QMediaPlayer::StoppedState:
-    case QMediaPlayer::PausedState:
-        ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png"));
-        break;
+    case QMediaPlayer::PausedState: ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png")); break;
     }
 }
 
 void TvTunesDialog::onPlayPause()
 {
     switch (m_mediaPlayer->state()) {
-    case QMediaPlayer::PlayingState:
-        m_mediaPlayer->stop();
-        break;
+    case QMediaPlayer::PlayingState: m_mediaPlayer->stop(); break;
     case QMediaPlayer::StoppedState:
-    case QMediaPlayer::PausedState:
-        m_mediaPlayer->play();
-        break;
+    case QMediaPlayer::PausedState: m_mediaPlayer->play(); break;
     }
 }
 
@@ -183,7 +175,7 @@ void TvTunesDialog::startDownload()
     m_downloadInProgress = true;
     m_downloadReply = m_qnam->get(QNetworkRequest(m_themeUrl));
     connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+    connect(m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
     connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
     m_downloadTime.start();
 }
@@ -214,11 +206,11 @@ void TvTunesDialog::downloadProgress(qint64 received, qint64 total)
     QString unit;
     if (speed < 1024) {
         unit = "bytes/sec";
-    } else if (speed < 1024*1024) {
+    } else if (speed < 1024 * 1024) {
         speed /= 1024;
         unit = "kB/s";
     } else {
-        speed /= 1024*1024;
+        speed /= 1024 * 1024;
         unit = "MB/s";
     }
     ui->progress->setText(QString("%1 %2").arg(speed, 3, 'f', 1).arg(unit));
@@ -226,12 +218,14 @@ void TvTunesDialog::downloadProgress(qint64 received, qint64 total)
 
 void TvTunesDialog::downloadFinished()
 {
-    if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        m_downloadReply = m_qnam->get(QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_downloadReply = m_qnam->get(
+            QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+        connect(
+            m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
         connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
         return;
     }

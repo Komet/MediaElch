@@ -15,13 +15,13 @@ class ExportTemplateLoader : public QObject
 public:
     explicit ExportTemplateLoader(QObject *parent = nullptr);
     static ExportTemplateLoader *instance(QObject *parent = nullptr);
-    QList<ExportTemplate*> installedTemplates();
+    QList<ExportTemplate *> installedTemplates();
     ExportTemplate *getTemplateByIdentifier(QString identifier);
 
 signals:
-    void sigTemplatesLoaded(QList<ExportTemplate*>);
-    void sigTemplateInstalled(ExportTemplate*, bool);
-    void sigTemplateUninstalled(ExportTemplate*, bool);
+    void sigTemplatesLoaded(QList<ExportTemplate *>);
+    void sigTemplateInstalled(ExportTemplate *, bool);
+    void sigTemplateUninstalled(ExportTemplate *, bool);
 
 public slots:
     void getRemoteTemplates();
@@ -34,14 +34,14 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QList<ExportTemplate*> m_localTemplates;
-    QList<ExportTemplate*> m_remoteTemplates;
+    QList<ExportTemplate *> m_localTemplates;
+    QList<ExportTemplate *> m_remoteTemplates;
     QNetworkAccessManager *qnam();
     void loadLocalTemplates();
     ExportTemplate *parseTemplate(QXmlStreamReader &xml);
     bool unpackTemplate(QBuffer &buffer, ExportTemplate *exportTemplate);
     bool removeDir(const QString &dirName);
-    QList<ExportTemplate*> mergeTemplates(QList<ExportTemplate*> local, QList<ExportTemplate*> remote);
+    QList<ExportTemplate *> mergeTemplates(QList<ExportTemplate *> local, QList<ExportTemplate *> remote);
 };
 
 #endif // EXPORTTEMPLATELOADER_H

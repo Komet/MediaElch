@@ -51,7 +51,7 @@ TMDb::TMDb(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QGridLayout *layout = new QGridLayout(m_widget);
+    auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->setColumnStretch(2, 1);
@@ -103,9 +103,7 @@ TMDb::TMDb(QObject *parent)
     setup();
 }
 
-TMDb::~TMDb()
-{
-}
+TMDb::~TMDb() = default;
 
 QString TMDb::apiKey()
 {
@@ -159,7 +157,7 @@ void TMDb::loadSettings(QSettings &settings)
     }
 
     bool found = false;
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+    for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
             m_box->setCurrentIndex(i);
             found = true;
@@ -229,7 +227,7 @@ void TMDb::setup()
  */
 void TMDb::setupFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -261,35 +259,36 @@ void TMDb::search(QString searchStr)
     QRegExp rxTmdbId("^id\\d+$");
     if (rx.exactMatch(searchStr)) {
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3&include_adult=%4")
-                   .arg(searchStr)
-                   .arg(TMDb::apiKey())
-                   .arg(m_language)
-                   .arg(includeAdult));
+                       .arg(searchStr)
+                       .arg(TMDb::apiKey())
+                       .arg(m_language)
+                       .arg(includeAdult));
     } else if (rxTmdbId.exactMatch(searchStr)) {
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3&include_adult=%4")
-                   .arg(searchStr.mid(2))
-                   .arg(TMDb::apiKey())
-                   .arg(m_language)
-                   .arg(includeAdult));
+                       .arg(searchStr.mid(2))
+                       .arg(TMDb::apiKey())
+                       .arg(m_language)
+                       .arg(includeAdult));
     } else {
         url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&include_adult=%3&query=%4")
-                   .arg(TMDb::apiKey())
-                   .arg(m_language)
-                   .arg(includeAdult)
-                   .arg(encodedSearch));
+                       .arg(TMDb::apiKey())
+                       .arg(m_language)
+                       .arg(includeAdult)
+                       .arg(encodedSearch));
         QList<QRegExp> rxYears;
-        rxYears << QRegExp("^(.*) \\((\\d{4})\\)$") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
+        rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
         foreach (QRegExp rxYear, rxYears) {
             rxYear.setMinimal(true);
             if (rxYear.exactMatch(searchStr)) {
                 searchTitle = rxYear.cap(1);
                 searchYear = rxYear.cap(2);
-                url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&include_adult=%3&year=%4&query=%5")
-                           .arg(TMDb::apiKey())
-                           .arg(m_language)
-                           .arg(includeAdult)
-                           .arg(searchYear)
-                           .arg(QString(QUrl::toPercentEncoding(searchTitle))));
+                url.setUrl(QString("https://api.themoviedb.org/3/search/"
+                                   "movie?api_key=%1&language=%2&include_adult=%3&year=%4&query=%5")
+                               .arg(TMDb::apiKey())
+                               .arg(m_language)
+                               .arg(includeAdult)
+                               .arg(searchYear)
+                               .arg(QString(QUrl::toPercentEncoding(searchTitle))));
                 break;
             }
         }
@@ -315,8 +314,8 @@ void TMDb::search(QString searchStr)
  */
 void TMDb::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    QList<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    QList<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -337,10 +336,19 @@ void TMDb::searchFinished()
     if (nextPage == -1) {
         emit searchDone(results);
     } else {
-        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(TMDb::apiKey()).arg(m_language).arg(nextPage).arg(searchString));
+        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
+                     .arg(TMDb::apiKey())
+                     .arg(m_language)
+                     .arg(nextPage)
+                     .arg(searchString));
         if (!searchTitle.isEmpty() && !searchYear.isEmpty())
-            url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&year=%4&query=%5")
-                       .arg(TMDb::apiKey()).arg(m_language).arg(nextPage).arg(searchYear).arg(searchTitle));
+            url.setUrl(
+                QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&year=%4&query=%5")
+                    .arg(TMDb::apiKey())
+                    .arg(m_language)
+                    .arg(nextPage)
+                    .arg(searchYear)
+                    .arg(searchTitle));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply *reply = qnam()->get(request);
@@ -368,29 +376,29 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
 
     // only get the first 3 pages
     if (page < sc.property("total_pages").toInteger() && page < 3)
-        *nextPage = page+1;
+        *nextPage = page + 1;
 
-    if (sc.property("results").isArray() ) {
+    if (sc.property("results").isArray()) {
         QScriptValueIterator it(sc.property("results"));
-        while (it.hasNext() ) {
+        while (it.hasNext()) {
             it.next();
             if (it.value().property("id").toString().isEmpty()) {
                 continue;
             }
             ScraperSearchResult result;
-            result.name     = it.value().property("title").toString();
+            result.name = it.value().property("title").toString();
             if (result.name.isEmpty())
                 it.value().property("original_title").toString();
-            result.id       = it.value().property("id").toString();
+            result.id = it.value().property("id").toString();
             result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
     } else if (!sc.property("id").toString().isEmpty()) {
         ScraperSearchResult result;
-        result.name     = sc.property("title").toString();
+        result.name = sc.property("title").toString();
         if (result.name.isEmpty())
             sc.property("original_title").toString();
-        result.id       = sc.property("id").toString();
+        result.id = sc.property("id").toString();
         result.released = QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd");
         results.append(result);
     }
@@ -409,7 +417,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
+void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     if (!ids.values().first().startsWith("tt"))
         movie->setTmdbId(ids.values().first());
@@ -423,7 +431,10 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
 
     // Infos
     loadsLeft.append(DataInfos);
-    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(ids.values().first()).arg(TMDb::apiKey()).arg(m_language));
+    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+                   .arg(ids.values().first())
+                   .arg(TMDb::apiKey())
+                   .arg(m_language));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     new NetworkReplyWatcher(this, reply);
@@ -432,11 +443,12 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 
     // Casts
-    if (infos.contains(MovieScraperInfos::Actors) ||
-        infos.contains(MovieScraperInfos::Director) ||
-        infos.contains(MovieScraperInfos::Writer)) {
+    if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)
+        || infos.contains(MovieScraperInfos::Writer)) {
         loadsLeft.append(DataCasts);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/casts?api_key=%2").arg(ids.values().first()).arg(TMDb::apiKey()));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/casts?api_key=%2")
+                       .arg(ids.values().first())
+                       .arg(TMDb::apiKey()));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -448,7 +460,10 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer)) {
         loadsLeft.append(DataTrailers);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2&language=%3").arg(ids.values().first()).arg(TMDb::apiKey()).arg(m_language));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2&language=%3")
+                       .arg(ids.values().first())
+                       .arg(TMDb::apiKey())
+                       .arg(m_language));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -460,7 +475,9 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     // Images
     if (infos.contains(MovieScraperInfos::Poster) || infos.contains(MovieScraperInfos::Backdrop)) {
         loadsLeft.append(DataImages);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(ids.values().first()).arg(TMDb::apiKey()));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2")
+                       .arg(ids.values().first())
+                       .arg(TMDb::apiKey()));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -472,7 +489,9 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     // Releases
     if (infos.contains(MovieScraperInfos::Certification)) {
         loadsLeft.append(DataReleases);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(ids.values().first()).arg(TMDb::apiKey()));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2")
+                       .arg(ids.values().first())
+                       .arg(TMDb::apiKey()));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         new NetworkReplyWatcher(this, reply);
@@ -489,9 +508,9 @@ void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
  */
 void TMDb::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -511,9 +530,9 @@ void TMDb::loadFinished()
  */
 void TMDb::loadCastsFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -533,9 +552,9 @@ void TMDb::loadCastsFinished()
  */
 void TMDb::loadTrailersFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -555,9 +574,9 @@ void TMDb::loadTrailersFinished()
  */
 void TMDb::loadImagesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -577,9 +596,9 @@ void TMDb::loadImagesFinished()
  */
 void TMDb::loadReleasesFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -616,7 +635,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         movie->setSet(sc.property("belongs_to_collection").property("name").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("original_title").isValid())
         movie->setOriginalName(sc.property("original_title").toString());
-    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull()) {
+    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid()
+        && !sc.property("overview").isNull()) {
         movie->setOverview(sc.property("overview").toString());
         if (Settings::instance()->usePlotForOutline())
             movie->setOutline(sc.property("overview").toString());
@@ -625,8 +645,9 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         movie->setRating(sc.property("vote_average").toNumber());
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("vote_count").isValid())
         movie->setVotes(sc.property("vote_count").toInteger());
-    if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid() && !sc.property("tagline").isNull())
-       movie->setTagline(sc.property("tagline").toString());
+    if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid()
+        && !sc.property("tagline").isNull())
+        movie->setTagline(sc.property("tagline").toString());
     if (infos.contains(MovieScraperInfos::Released) && sc.property("release_date").isValid())
         movie->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd"));
     if (infos.contains(MovieScraperInfos::Runtime) && sc.property("runtime").isValid())
@@ -680,7 +701,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     }
 
     // Crew
-    if ((infos.contains(MovieScraperInfos::Director) || infos.contains(MovieScraperInfos::Writer)) && sc.property("crew").isArray()) {
+    if ((infos.contains(MovieScraperInfos::Director) || infos.contains(MovieScraperInfos::Writer))
+        && sc.property("crew").isArray()) {
         QScriptValueIterator itC(sc.property("crew"));
         while (itC.hasNext()) {
             itC.next();
@@ -696,7 +718,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
                 writer.append(vC.property("name").toString());
                 movie->setWriter(writer);
             }
-            if (infos.contains(MovieScraperInfos::Director) && vC.property("job").toString() == "Director" && vC.property("department").toString() == "Directing")
+            if (infos.contains(MovieScraperInfos::Director) && vC.property("job").toString() == "Director"
+                && vC.property("department").toString() == "Directing")
                 movie->setDirector(vC.property("name").toString());
         }
     }
@@ -709,7 +732,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            movie->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
+            movie->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(
+                QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
     }
@@ -744,8 +768,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             b.originalSize.setWidth(vB.property("width").toString().toInt());
             b.originalSize.setHeight(vB.property("height").toString().toInt());
             b.language = vB.property("iso_639_1").toString();
-            bool primaryLang = (b.language==m_language);
-            movie->addPoster(b,primaryLang);
+            bool primaryLang = (b.language == m_language);
+            movie->addPoster(b, primaryLang);
         }
     }
 
@@ -777,5 +801,4 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         else if (!gb.isEmpty())
             movie->setCertification(Helper::instance()->mapCertification(gb));
     }
-
 }

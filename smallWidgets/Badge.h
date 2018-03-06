@@ -9,9 +9,20 @@ class Badge : public QLabel
 {
     Q_OBJECT
 public:
-    enum BadgeType {
-        LabelSuccess, LabelDefault, LabelWarning, LabelImportant, LabelInfo, LabelInverse,
-        BadgeSuccess, BadgeDefault, BadgeWarning, BadgeImportant, BadgeInfo, BadgeInverse
+    enum BadgeType
+    {
+        LabelSuccess,
+        LabelDefault,
+        LabelWarning,
+        LabelImportant,
+        LabelInfo,
+        LabelInverse,
+        BadgeSuccess,
+        BadgeDefault,
+        BadgeWarning,
+        BadgeImportant,
+        BadgeInfo,
+        BadgeInverse
     };
 
     explicit Badge(QWidget *parent = nullptr);
@@ -25,8 +36,8 @@ public:
     void setShowActiveMark(const bool &showActiveMark);
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *ev);
+    void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *ev) override;
 
 signals:
     void clicked();

@@ -13,10 +13,10 @@ class MusicModelItem;
 class Artist : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
+    Q_PROPERTY(MusicModelItem *modelItem READ modelItem NOTIFY modelItemChanged)
 public:
     explicit Artist(QString path, QObject *parent = nullptr);
-    ~Artist();
+    ~Artist() override;
 
     QString path() const;
     void setPath(const QString &path);
@@ -91,8 +91,8 @@ public:
     QString mbId() const;
     void setMbId(const QString &mbId);
 
-    QList<Album*> albums() const;
-    void setAlbums(const QList<Album*> &albums);
+    QList<Album *> albums() const;
+    void setAlbums(const QList<Album *> &albums);
     void addAlbum(Album *album);
 
     QString allMusicId() const;
@@ -110,10 +110,10 @@ public:
     void addDiscographyAlbum(DiscographyAlbum album);
     void removeDiscographyAlbum(DiscographyAlbum *album);
     QList<DiscographyAlbum> discographyAlbums() const;
-    QList<DiscographyAlbum*> discographyAlbumsPointer();
+    QList<DiscographyAlbum *> discographyAlbumsPointer();
 
 signals:
-    void sigChanged(Artist*);
+    void sigChanged(Artist *);
     void modelItemChanged();
 
 private:
@@ -129,7 +129,7 @@ private:
     QString m_died;
     QString m_disbanded;
     bool m_hasChanged;
-    QMap<int, QList<Poster> > m_images;
+    QMap<int, QList<Poster>> m_images;
     QMap<int, QByteArray> m_rawImages;
     QList<int> m_imagesToRemove;
     MusicModelItem *m_modelItem;
@@ -138,7 +138,7 @@ private:
     ArtistController *m_controller;
     QString m_mbId;
     QString m_allMusicId;
-    QList<Album*> m_albums;
+    QList<Album *> m_albums;
     QList<DiscographyAlbum> m_discography;
 
     QStringList m_extraFanartsToRemove;

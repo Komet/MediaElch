@@ -74,8 +74,8 @@ public:
     virtual bool thumbnailImageChanged() const;
     virtual TvShowModelItem *modelItem();
     virtual bool hasChanged() const;
-    virtual QList<QString*> writersPointer();
-    virtual QList<QString*> directorsPointer();
+    virtual QList<QString *> writersPointer();
+    virtual QList<QString *> directorsPointer();
     virtual bool infoLoaded() const;
     virtual int episodeId() const;
     virtual StreamDetails *streamDetails();
@@ -121,7 +121,7 @@ public:
     void removeDirector(QString *director);
 
     QList<Actor> actors() const;
-    QList<Actor*> actorsPointer();
+    QList<Actor *> actorsPointer();
     void addActor(Actor actor);
     void removeActor(Actor *actor);
 
@@ -144,7 +144,7 @@ public:
 
 signals:
     void sigLoaded();
-    void sigChanged(TvShowEpisode*);
+    void sigChanged(TvShowEpisode *);
 
 private:
     QStringList m_files;
@@ -190,6 +190,6 @@ private:
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);
 QDebug operator<<(QDebug dbg, const TvShowEpisode *episode);
 
-Q_DECLARE_METATYPE(TvShowEpisode*)
+Q_DECLARE_METATYPE(TvShowEpisode *)
 
 #endif // TVSHOWEPISODE_H

@@ -10,7 +10,7 @@ public:
     explicit MySplitter(QWidget *parent = nullptr);
 
 protected:
-     QSplitterHandle *createHandle();
+    QSplitterHandle *createHandle() override;
 };
 
 #endif // MYSPLITTER_H

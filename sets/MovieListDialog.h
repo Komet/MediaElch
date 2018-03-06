@@ -20,12 +20,12 @@ class MovieListDialog : public QDialog
 
 public:
     explicit MovieListDialog(QWidget *parent = nullptr);
-    ~MovieListDialog();
-    QList<Movie*> selectedMovies();
+    ~MovieListDialog() override;
+    QList<Movie *> selectedMovies();
     static MovieListDialog *instance(QWidget *parent = nullptr);
 
 public slots:
-    int exec();
+    int exec() override;
     int execWithoutGenre(QString genre);
     int execWithoutCertification(QString certification);
 
@@ -35,7 +35,7 @@ private slots:
 
 private:
     Ui::MovieListDialog *ui;
-    QList<Movie*> m_selectedMovies;
+    QList<Movie *> m_selectedMovies;
     void reposition();
 };
 

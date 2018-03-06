@@ -17,11 +17,11 @@ using namespace MediaInfoDLL;
 using namespace ZenLib;
 
 #ifdef Q_OS_WIN
-    #define QString2MI(_DATA) QString(_DATA).toStdWString()
-    #define MI2QString(_DATA) QString::fromStdWString(_DATA)
+#define QString2MI(_DATA) QString(_DATA).toStdWString()
+#define MI2QString(_DATA) QString::fromStdWString(_DATA)
 #else
-    #define QString2MI(_DATA) QString(_DATA).toUtf8().data()
-    #define MI2QString(_DATA) QString(_DATA.c_str())
+#define QString2MI(_DATA) QString(_DATA).toUtf8().data()
+#define MI2QString(_DATA) QString(_DATA.c_str())
 #endif
 
 /**
@@ -29,12 +29,17 @@ using namespace ZenLib;
  * @param parent
  * @param file
  */
-StreamDetails::StreamDetails(QObject *parent, QStringList files) :
-    QObject(parent)
+StreamDetails::StreamDetails(QObject *parent, QStringList files) : QObject(parent)
 {
     m_files = files;
-    m_hdAudioCodecs << "dtshd_ma" << "dtshd_hra" << "truehd";
-    m_normalAudioCodecs << "DTS" << "dts" << "ac3" << "eac3" << "flac";
+    m_hdAudioCodecs << "dtshd_ma"
+                    << "dtshd_hra"
+                    << "truehd";
+    m_normalAudioCodecs << "DTS"
+                        << "dts"
+                        << "ac3"
+                        << "eac3"
+                        << "flac";
     m_sdAudioCodecs << "mp3";
 }
 
@@ -68,7 +73,11 @@ void StreamDetails::loadStreamDetails()
         QString biggest;
         qint64 biggestSize = 0;
         QFileInfo fi(m_files.first());
-        foreach (const QFileInfo &fiVob, fi.dir().entryInfoList(QStringList() << "VTS_*.VOB" << "vts_*.vob", QDir::Files, QDir::Name)) {
+        foreach (const QFileInfo &fiVob,
+            fi.dir().entryInfoList(QStringList() << "VTS_*.VOB"
+                                                 << "vts_*.vob",
+                QDir::Files,
+                QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
             rx.setMinimal(true);
             rx.setCaseSensitivity(Qt::CaseInsensitive);
@@ -125,11 +134,11 @@ void StreamDetails::loadWithLibrary()
             MI_duration.Option(__T("Internet"), __T("no"));
             MI_duration.Option(__T("Complete"), __T("1"));
             MI_duration.Open(QString2MI(file));
-            duration += qRound(MI2QString(MI_duration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat()/1000);
+            duration += qRound(MI2QString(MI_duration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
             MI_duration.Close();
         }
     } else {
-        duration += qRound(MI2QString(MI.Get(Stream_General, 0, QString2MI("Duration"))).toFloat()/1000);
+        duration += qRound(MI2QString(MI.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
     }
 
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
@@ -161,7 +170,7 @@ void StreamDetails::loadWithLibrary()
         setVideoDetail("stereomode", stereoFormat(multiView));
     }
 
-    for (int i=0 ; i<audioCount ; ++i) {
+    for (int i = 0; i < audioCount; ++i) {
         QString lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String3")));
         if (lang.isEmpty())
             lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String2")));
@@ -170,7 +179,7 @@ void StreamDetails::loadWithLibrary()
         if (lang.isEmpty())
             lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String")));
         QString audioCodec = audioFormat(MI2QString(MI.Get(Stream_Audio, i, QString2MI("Codec"))),
-                                         MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
+            MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
         QString channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)")));
         if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty())
             channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
@@ -184,7 +193,7 @@ void StreamDetails::loadWithLibrary()
         setAudioDetail(i, "channels", channels);
     }
 
-    for (int i=0 ; i<textCount ; ++i) {
+    for (int i = 0; i < textCount; ++i) {
         QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String3")));
         if (lang.isEmpty())
             lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String2")));
@@ -314,7 +323,7 @@ QMap<QString, QString> StreamDetails::videoDetails()
  * @brief Access audio details
  * @return
  */
-QList<QMap<QString, QString> > StreamDetails::audioDetails()
+QList<QMap<QString, QString>> StreamDetails::audioDetails()
 {
     return m_audioDetails;
 }
@@ -323,7 +332,7 @@ QList<QMap<QString, QString> > StreamDetails::audioDetails()
  * @brief Access subtitles
  * @return
  */
-QList<QMap<QString, QString> > StreamDetails::subtitleDetails()
+QList<QMap<QString, QString>> StreamDetails::subtitleDetails()
 {
     return m_subtitles;
 }
@@ -353,7 +362,7 @@ QString StreamDetails::audioCodec()
     QString hdCodec;
     QString normalCodec;
     QString sdCodec;
-    for (int i=0, n=m_audioDetails.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_audioDetails.count(); i < n; ++i) {
         QString codec = m_audioDetails.at(i).value("codec");
         if (m_hdAudioCodecs.contains(codec))
             hdCodec = codec;

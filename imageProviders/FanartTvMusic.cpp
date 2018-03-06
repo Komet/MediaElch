@@ -14,9 +14,8 @@
 FanartTvMusic::FanartTvMusic(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::AlbumCdArt << ImageType::AlbumThumb <<
-                  ImageType::ArtistFanart << ImageType::ArtistLogo << ImageType::ArtistThumb <<
-                  ImageType::ArtistExtraFanart;
+    m_provides << ImageType::AlbumCdArt << ImageType::AlbumThumb << ImageType::ArtistFanart << ImageType::ArtistLogo
+               << ImageType::ArtistThumb << ImageType::ArtistExtraFanart;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     m_language = "en";
@@ -56,7 +55,8 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
         searchQuery += "%20AND%20artist:" + QString(QUrl::toPercentEncoding(artistName));
     QUrl url(QString("https://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+    request.setRawHeader("User-Agent",
+        QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
 }
@@ -64,9 +64,11 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
 void FanartTvMusic::searchArtist(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
-    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
+                 .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+    request.setRawHeader("User-Agent",
+        QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
 }
@@ -134,14 +136,15 @@ void FanartTvMusic::albumThumbs(QString mbId)
 void FanartTvMusic::onSearchArtistFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         QNetworkRequest request(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl());
-        request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+        request.setRawHeader("User-Agent",
+            QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
         reply = qnam()->get(request);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
         return;
@@ -151,7 +154,7 @@ void FanartTvMusic::onSearchArtistFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("artist").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("name").isEmpty())
@@ -173,14 +176,15 @@ void FanartTvMusic::onSearchArtistFinished()
 void FanartTvMusic::onSearchAlbumFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         QNetworkRequest request(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl());
-        request.setRawHeader("User-Agent", QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
+        request.setRawHeader("User-Agent",
+            QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
         reply = qnam()->get(request);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
         return;
@@ -191,7 +195,7 @@ void FanartTvMusic::onSearchAlbumFinished()
         QDomDocument domDoc;
         domDoc.setContent(msg);
         QStringList searchIds;
-        for (int i=0, n=domDoc.elementsByTagName("release").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("title").isEmpty())
@@ -202,7 +206,7 @@ void FanartTvMusic::onSearchAlbumFinished()
             if (!elem.elementsByTagName("date").isEmpty())
                 name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
 
-            for (int x=0, y=elem.elementsByTagName("release-group").count() ; x<y ; ++x) {
+            for (int x = 0, y = elem.elementsByTagName("release-group").count(); x < y; ++x) {
                 QDomElement releaseGroupElem = elem.elementsByTagName("release-group").at(x).toElement();
                 if (!releaseGroupElem.attribute("id").isEmpty()) {
                     ScraperSearchResult result;
@@ -221,7 +225,7 @@ void FanartTvMusic::onSearchAlbumFinished()
 
 void FanartTvMusic::onLoadArtistFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
@@ -234,7 +238,7 @@ void FanartTvMusic::onLoadArtistFinished()
 
 void FanartTvMusic::onLoadAlbumFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
@@ -250,7 +254,9 @@ QList<Poster> FanartTvMusic::parseData(QString json, int type)
     QMap<int, QStringList> map;
     map.insert(ImageType::ArtistFanart, QStringList() << "artistbackground");
     map.insert(ImageType::ArtistExtraFanart, QStringList() << "artistbackground");
-    map.insert(ImageType::ArtistLogo, QStringList() << "hdmusiclogo" << "musiclogo");
+    map.insert(ImageType::ArtistLogo,
+        QStringList() << "hdmusiclogo"
+                      << "musiclogo");
     map.insert(ImageType::ArtistThumb, QStringList() << "artistthumb");
     map.insert(ImageType::AlbumCdArt, QStringList() << "cdart");
     map.insert(ImageType::AlbumThumb, QStringList() << "albumcover");
@@ -467,14 +473,15 @@ void FanartTvMusic::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-QWidget* FanartTvMusic::settingsWidget()
+QWidget *FanartTvMusic::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 QString FanartTvMusic::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey) : QString("api_key=%1").arg(m_apiKey);
+    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
+                                         : QString("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTvMusic::searchConcert(QString searchStr, int limit)
@@ -511,13 +518,13 @@ void FanartTvMusic::albumImages(Album *album, QString mbId, QList<int> types)
 
 void FanartTvMusic::onLoadAllAlbumDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage*>()->album();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Album *album = reply->property("storage").value<Storage *>()->album();
     reply->deleteLater();
-    QMap<int, QList<Poster> > posters;
+    QMap<int, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
+        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
             posters.insert(type, parseData(msg, type));
     }
     emit sigImagesLoaded(album, posters);
@@ -525,13 +532,13 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
 
 void FanartTvMusic::onLoadAllArtistDataFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage*>()->artist();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Artist *artist = reply->property("storage").value<Storage *>()->artist();
     reply->deleteLater();
-    QMap<int, QList<Poster> > posters;
+    QMap<int, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
+        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
             posters.insert(type, parseData(msg, type));
     }
     emit sigImagesLoaded(artist, posters);

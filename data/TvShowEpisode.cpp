@@ -14,8 +14,7 @@
  * @param files Files of the episode
  * @param parent
  */
-TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
-    QObject(parent)
+TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) : QObject(parent)
 {
     m_parent = parent;
     m_season = -2;
@@ -135,12 +134,12 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
             QString filename = filenameParts.last();
             if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
                 if (filenameParts.count() > 1 && Helper::instance()->isDvd(files().at(0)))
-                    filename = filenameParts.at(filenameParts.count()-3);
+                    filename = filenameParts.at(filenameParts.count() - 3);
                 else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files().at(0), true))
-                    filename = filenameParts.at(filenameParts.count()-2);
+                    filename = filenameParts.at(filenameParts.count() - 2);
             } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
                 if (filenameParts.count() > 2)
-                    filename = filenameParts.at(filenameParts.count()-3);
+                    filename = filenameParts.at(filenameParts.count() - 3);
             }
             setName(filename.replace(".", " ").replace("_", " "));
         }
@@ -255,9 +254,7 @@ QString TvShowEpisode::name() const
  */
 QString TvShowEpisode::completeEpisodeName() const
 {
-    return QString("S%1E%2 %3").arg(seasonString())
-                               .arg(episodeString())
-                               .arg(name());
+    return QString("S%1E%2 %3").arg(seasonString()).arg(episodeString()).arg(name());
 }
 
 /**
@@ -510,10 +507,10 @@ bool TvShowEpisode::hasChanged() const
  * @brief Returns a list of pointer to the writers
  * @return List of pointers
  */
-QList<QString*> TvShowEpisode::writersPointer()
+QList<QString *> TvShowEpisode::writersPointer()
 {
-    QList<QString*> writers;
-    for (int i=0, n=m_writers.size() ; i<n ; ++i)
+    QList<QString *> writers;
+    for (int i = 0, n = m_writers.size(); i < n; ++i)
         writers.append(&m_writers[i]);
     return writers;
 }
@@ -522,10 +519,10 @@ QList<QString*> TvShowEpisode::writersPointer()
  * @brief Returns a list of pointers to the directors
  * @return List of pointers
  */
-QList<QString*> TvShowEpisode::directorsPointer()
+QList<QString *> TvShowEpisode::directorsPointer()
 {
-    QList<QString*> directors;
-    for (int i=0, n=m_directors.size() ; i<n ; ++i)
+    QList<QString *> directors;
+    for (int i = 0, n = m_directors.size(); i < n; ++i)
         directors.append(&m_directors[i]);
     return directors;
 }
@@ -850,7 +847,7 @@ void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
  */
 void TvShowEpisode::removeWriter(QString *writer)
 {
-    for (int i=0, n=m_writers.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_writers.size(); i < n; ++i) {
         if (&m_writers[i] == writer) {
             m_writers.removeAt(i);
             break;
@@ -866,7 +863,7 @@ void TvShowEpisode::removeWriter(QString *writer)
  */
 void TvShowEpisode::removeDirector(QString *director)
 {
-    for (int i=0, n=m_directors.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_directors.size(); i < n; ++i) {
         if (&m_directors[i] == director) {
             m_directors.removeAt(i);
             break;
@@ -914,8 +911,7 @@ void TvShowEpisode::removeImage(int type)
             m_imagesToRemove.append(type);
         }
         break;
-    default:
-        break;
+    default: break;
     }
     setChanged(true);
 }
@@ -935,10 +931,10 @@ QList<Actor> TvShowEpisode::actors() const
     return m_actors;
 }
 
-QList<Actor*> TvShowEpisode::actorsPointer()
+QList<Actor *> TvShowEpisode::actorsPointer()
 {
-    QList<Actor*> actors;
-    for (int i=0, n=m_actors.size() ; i<n ; i++)
+    QList<Actor *> actors;
+    for (int i = 0, n = m_actors.size(); i < n; i++)
         actors.append(&(m_actors[i]));
     return actors;
 }
@@ -951,7 +947,7 @@ void TvShowEpisode::addActor(Actor actor)
 
 void TvShowEpisode::removeActor(Actor *actor)
 {
-    for (int i=0, n=m_actors.size() ; i<n ; ++i) {
+    for (int i = 0, n = m_actors.size(); i < n; ++i) {
         if (&m_actors[i] == actor) {
             m_actors.removeAt(i);
             break;
@@ -971,7 +967,9 @@ bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
     if (a->episode() > b->episode())
         return false;
 
-    return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(
+                Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
+            < 0);
 }
 
 QString TvShowEpisode::imdbId() const

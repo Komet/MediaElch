@@ -15,8 +15,7 @@
  * @brief Settings::Settings
  * @param parent
  */
-Settings::Settings(QObject *parent) :
-    QObject(parent)
+Settings::Settings(QObject *parent) : QObject(parent)
 {
     m_advancedSettings = new AdvancedSettings(parent);
 
@@ -78,7 +77,7 @@ Settings *Settings::instance(QObject *parent)
 {
     static QMutex mutex;
     QMutexLocker locker(&mutex);
-    static Settings *m_instance = 0;
+    static Settings *m_instance = nullptr;
     if (!m_instance)
         m_instance = new Settings(parent);
     return m_instance;
@@ -142,7 +141,7 @@ void Settings::loadSettings()
     // Movie Directories
     m_movieDirectories.clear();
     int moviesSize = settings()->beginReadArray("Directories/Movies");
-    for (int i=0 ; i<moviesSize ; ++i) {
+    for (int i = 0; i < moviesSize; ++i) {
         settings()->setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
@@ -155,7 +154,7 @@ void Settings::loadSettings()
     // TV Show Directories
     m_tvShowDirectories.clear();
     int tvShowSize = settings()->beginReadArray("Directories/TvShows");
-    for (int i=0 ; i<tvShowSize ; ++i) {
+    for (int i = 0; i < tvShowSize; ++i) {
         settings()->setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
@@ -168,7 +167,7 @@ void Settings::loadSettings()
     // Concert Directories
     m_concertDirectories.clear();
     int concertsSize = settings()->beginReadArray("Directories/Concerts");
-    for (int i=0 ; i<concertsSize ; ++i) {
+    for (int i = 0; i < concertsSize; ++i) {
         settings()->setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
@@ -180,7 +179,7 @@ void Settings::loadSettings()
 
     m_downloadDirectories.clear();
     int downloadsSize = settings()->beginReadArray("Directories/Downloads");
-    for (int i=0 ; i<downloadsSize ; ++i) {
+    for (int i = 0; i < downloadsSize; ++i) {
         settings()->setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
@@ -192,7 +191,7 @@ void Settings::loadSettings()
 
     m_musicDirectories.clear();
     int musicSize = settings()->beginReadArray("Directories/Music");
-    for (int i=0 ; i<musicSize ; ++i) {
+    for (int i = 0; i < musicSize; ++i) {
         settings()->setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
@@ -204,9 +203,12 @@ void Settings::loadSettings()
 
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty())
-        m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
-                         "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
-                         "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,xvid,xvidvd,xxx,www,mkv";
+        m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
+                         "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
+                         "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
+                         "read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
+                         "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
+                         "xvid,xvidvd,xxx,www,mkv";
 
     // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
@@ -228,7 +230,7 @@ void Settings::loadSettings()
     // Data Files
     QList<DataFile> dataFiles;
     int dataFileSize = settings()->beginReadArray("AllDataFiles");
-    for (int i=0 ; i<dataFileSize ; ++i) {
+    for (int i = 0; i < dataFileSize; ++i) {
         settings()->setArrayIndex(i);
         int type = settings()->value("type").toInt();
         QString fileName = settings()->value("fileName").toString();
@@ -253,7 +255,6 @@ void Settings::loadSettings()
                 found = true;
                 break;
             }
-
         }
         if (!found)
             dataFiles << initialDataFile;
@@ -276,7 +277,7 @@ void Settings::loadSettings()
 
     m_customMovieScraper.clear();
     int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
-    for (int i=0 ; i<customMovieScraperSize ; ++i) {
+    for (int i = 0; i < customMovieScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customMovieScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
     }
@@ -284,7 +285,7 @@ void Settings::loadSettings()
 
     m_customTvScraper.clear();
     int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
-    for (int i=0 ; i<customTvScraperSize ; ++i) {
+    for (int i = 0; i < customTvScraperSize; ++i) {
         settings()->setArrayIndex(i);
         m_customTvScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
     }
@@ -350,7 +351,7 @@ void Settings::saveSettings()
     settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
     settings()->beginWriteArray("Directories/Movies");
-    for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_movieDirectories.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("path", m_movieDirectories.at(i).path);
         settings()->setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
@@ -359,7 +360,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->beginWriteArray("Directories/TvShows");
-    for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("path", m_tvShowDirectories.at(i).path);
         settings()->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
@@ -367,7 +368,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->beginWriteArray("Directories/Concerts");
-    for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_concertDirectories.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("path", m_concertDirectories.at(i).path);
         settings()->setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
@@ -376,7 +377,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->beginWriteArray("Directories/Downloads");
-    for (int i=0, n=m_downloadDirectories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_downloadDirectories.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("path", m_downloadDirectories.at(i).path);
         settings()->setValue("sepFolders", m_downloadDirectories.at(i).separateFolders);
@@ -385,7 +386,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->beginWriteArray("Directories/Music");
-    for (int i=0, n=m_musicDirectories.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_musicDirectories.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("path", m_musicDirectories.at(i).path);
         settings()->setValue("sepFolders", m_musicDirectories.at(i).separateFolders);
@@ -419,7 +420,7 @@ void Settings::saveSettings()
     settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
 
     settings()->beginWriteArray("AllDataFiles");
-    for (int i=0, n=m_dataFiles.count() ; i<n ; ++i) {
+    for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
         settings()->setValue("type", m_dataFiles.at(i).type());
         settings()->setValue("fileName", m_dataFiles.at(i).fileName());
@@ -435,7 +436,7 @@ void Settings::saveSettings()
         columns.append(column);
     settings()->setValue("MediaStatusColumns", columns);
 
-    int i=0;
+    int i = 0;
     settings()->beginWriteArray("CustomMovieScraper");
     QMapIterator<int, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
@@ -446,7 +447,7 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    i=0;
+    i = 0;
     settings()->beginWriteArray("CustomTvScraper");
     QMapIterator<int, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
@@ -1005,7 +1006,8 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
     else if (widget == WidgetMusic)
         item = "Music";
     QList<int> infos;
-    foreach (const QString &info, settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
+    foreach (const QString &info,
+        settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
         infos << info.toInt();
 
     if (!infos.isEmpty() && infos.first() == 0)
@@ -1041,7 +1043,11 @@ void Settings::setDownloadActorImages(bool download)
     m_downloadActorImages = download;
 }
 
-void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern)
+void Settings::renamePatterns(int renameType,
+    QString &fileNamePattern,
+    QString &fileNamePatternMulti,
+    QString &directoryPattern,
+    QString &seasonPattern)
 {
     QString fileNamePatternDefault = "<title>.<extension>";
     QString fileNamePatternMultiDefault = "<title>-part<partNo>.<extension>";
@@ -1049,13 +1055,23 @@ void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString 
         fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
         fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
     }
-    fileNamePattern = settings()->value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
-    fileNamePatternMulti = settings()->value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault).toString();
-    directoryPattern = settings()->value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
-    seasonPattern = settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
+    fileNamePattern =
+        settings()->value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
+    fileNamePatternMulti =
+        settings()
+            ->value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault)
+            .toString();
+    directoryPattern =
+        settings()->value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
+    seasonPattern =
+        settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
 }
 
-void Settings::setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern)
+void Settings::setRenamePatterns(int renameType,
+    QString fileNamePattern,
+    QString fileNamePatternMulti,
+    QString directoryPattern,
+    QString seasonPattern)
 {
     settings()->setValue(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePattern);
     settings()->setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMulti);
@@ -1074,7 +1090,8 @@ void Settings::renamings(int renameType, bool &files, bool &folders, bool &seaso
 {
     files = settings()->value(QString("RenamePattern/%1/RenameFiles").arg(renameType), true).toBool();
     folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
-    seasonDirectories = settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
+    seasonDirectories =
+        settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
 }
 
 int Settings::tvShowUpdateOption()
@@ -1293,7 +1310,6 @@ QString Settings::exportTemplatesDir()
         return applicationDir() + QDir::separator() + "export_themes";
     else
         return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
-
 }
 
 void Settings::setShowAdultScrapers(bool show)
@@ -1373,8 +1389,8 @@ QString Settings::lastImagePath()
 QStringList Settings::pluginDirs()
 {
 #if defined(PLUGIN_DIR_OVERRIDE)
-    #define str_(x) #x
-    #define str(x) str_(x)
+#define str_(x) #x
+#define str(x) str_(x)
     return QStringList() << str(PLUGIN_DIR_OVERRIDE);
 #endif
 
@@ -1408,7 +1424,8 @@ QStringList Settings::pluginDirs()
         if (pluginDir.cd("plugins"))
             dirs << pluginDir.absolutePath();
     }
-    dirs << "/usr/lib/MediaElch" << "/usr/local/lib/MediaElch";
+    dirs << "/usr/lib/MediaElch"
+         << "/usr/local/lib/MediaElch";
     return dirs;
 #endif
     return QStringList();

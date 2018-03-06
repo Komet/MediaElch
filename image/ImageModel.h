@@ -12,19 +12,19 @@ class ImageModel : public QAbstractListModel
 
 public:
     explicit ImageModel(QObject *parent = nullptr);
-    ~ImageModel();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
+    ~ImageModel() override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
     Q_INVOKABLE QVariant data(int row, const QString &roleName) const;
     int role(const QString &roleName) const;
     void addImage(Image *image);
     void removeImage(Image *image);
     Q_INVOKABLE void move(int from, int to);
-    QList<Image*> images();
+    QList<Image *> images();
     Image *image(int row) const;
     Image *image(const QModelIndex &index) const;
     int rowById(int id) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     bool setData(int row, const QVariant &value, int role);
     Q_INVOKABLE bool setData(int row, const QVariant &value, const QString &roleName);
     void clear();
@@ -39,10 +39,10 @@ signals:
     void hasChangedChanged();
 
 protected:
-    QHash<int, QByteArray> roleNames() const;
+    QHash<int, QByteArray> roleNames() const override;
 
 private:
-    QList<Image*> m_images;
+    QList<Image *> m_images;
     bool m_hasChanged;
 };
 

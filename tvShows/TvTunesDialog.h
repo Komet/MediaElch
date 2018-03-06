@@ -20,12 +20,12 @@ class TvTunesDialog : public QDialog
 
 public:
     explicit TvTunesDialog(QWidget *parent = nullptr);
-    ~TvTunesDialog();
-    static TvTunesDialog* instance(QWidget *parent = nullptr);
+    ~TvTunesDialog() override;
+    static TvTunesDialog *instance(QWidget *parent = nullptr);
     void setTvShow(TvShow *show);
 
 public slots:
-    int exec();
+    int exec() override;
 
 private slots:
     void onSearch();

@@ -31,28 +31,28 @@ class FilesWidget : public QWidget
 
 public:
     explicit FilesWidget(QWidget *parent = nullptr);
-    ~FilesWidget();
+    ~FilesWidget() override;
     static FilesWidget *instance();
-    QList<Movie*> selectedMovies();
+    QList<Movie *> selectedMovies();
     void renewModel();
     void selectMovie(Movie *movie);
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
     void movieSelectedEmitter();
     void multiScrape();
     void setAlphaListData();
 
 signals:
     void noMovieSelected();
-    void movieSelected(Movie*);
+    void movieSelected(Movie *);
     void sigStartSearch();
 
 protected:
-    void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
-    void resizeEvent(QResizeEvent *event);
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);

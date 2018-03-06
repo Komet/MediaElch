@@ -19,16 +19,16 @@ class MovieSearch : public QDialog
     Q_OBJECT
 public:
     explicit MovieSearch(QWidget *parent = nullptr);
-    ~MovieSearch();
+    ~MovieSearch() override;
 
 public slots:
-    int exec();
+    int exec() override;
     int exec(QString searchString, QString id, QString tmdbId);
     static MovieSearch *instance(QWidget *parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
     QList<int> infosToLoad();
-    QMap<ScraperInterface*, QString> customScraperIds();
+    QMap<ScraperInterface *, QString> customScraperIds();
 
 private:
     Ui::MovieSearch *ui;

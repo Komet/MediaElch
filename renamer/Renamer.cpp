@@ -8,9 +8,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-Renamer::Renamer(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Renamer)
+Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
 {
     ui->setupUi(this);
 
@@ -18,7 +16,7 @@ Renamer::Renamer(QWidget *parent) :
     ui->resultsTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
 #ifdef Q_OS_MAC
     QFont font = ui->resultsTable->font();
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
     ui->resultsTable->setFont(font);
 #endif
 
@@ -33,7 +31,9 @@ Renamer::Renamer(QWidget *parent) :
 
     m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
-                           .arg("<a href=\"http://community.kvibes.de/topic/show/renamer\">http://community.kvibes.de/topic/show/renamer</a>"));
+                               .arg("<a "
+                                    "href=\"http://community.kvibes.de/topic/show/renamer\">http://community.kvibes.de/"
+                                    "topic/show/renamer</a>"));
 }
 
 Renamer::~Renamer()
@@ -47,17 +47,13 @@ int Renamer::exec()
     m_renameErrorOccured = false;
 
     switch (m_renameType) {
-    case TypeMovies:
-        ui->infoLabel->setText(tr("%n Movie(s) will be renamed", "", m_movies.count()));
-        break;
-    case TypeConcerts:
-        ui->infoLabel->setText(tr("%n Concert(s) will be renamed", "", m_concerts.count()));
-        break;
+    case TypeMovies: ui->infoLabel->setText(tr("%n Movie(s) will be renamed", "", m_movies.count())); break;
+    case TypeConcerts: ui->infoLabel->setText(tr("%n Concert(s) will be renamed", "", m_concerts.count())); break;
     case TypeTvShows:
-        ui->infoLabel->setText(tr("%n TV Show(s) and %1", "", m_shows.count()).arg(tr("%n Episode(s) will be renamed", "", m_episodes.count())));
+        ui->infoLabel->setText(tr("%n TV Show(s) and %1", "", m_shows.count())
+                                   .arg(tr("%n Episode(s) will be renamed", "", m_episodes.count())));
         break;
-    default:
-        break;
+    default: break;
     }
 
     QString fileName;
@@ -100,8 +96,15 @@ void Renamer::reject()
     m_shows.clear();
     m_episodes.clear();
 
-    Settings::instance()->setRenamePatterns(m_renameType, ui->fileNaming->text(), ui->fileNamingMulti->text(), ui->directoryNaming->text(), ui->seasonNaming->text());
-    Settings::instance()->setRenamings(m_renameType, ui->chkFileNaming->isChecked(), ui->chkDirectoryNaming->isChecked(), ui->chkSeasonDirectories->isChecked());
+    Settings::instance()->setRenamePatterns(m_renameType,
+        ui->fileNaming->text(),
+        ui->fileNamingMulti->text(),
+        ui->directoryNaming->text(),
+        ui->seasonNaming->text());
+    Settings::instance()->setRenamings(m_renameType,
+        ui->chkFileNaming->isChecked(),
+        ui->chkDirectoryNaming->isChecked(),
+        ui->chkSeasonDirectories->isChecked());
 
     QDialog::reject();
     if (m_filesRenamed)
@@ -167,14 +170,26 @@ void Renamer::onRename()
     ui->btnRename->setEnabled(false);
     ui->btnDryRun->setEnabled(false);
     if (m_renameType == TypeMovies) {
-        renameMovies(m_movies, ui->fileNaming->text(), ui->fileNamingMulti->text(),
-                     ui->directoryNaming->text(), ui->chkFileNaming->isChecked(), ui->chkDirectoryNaming->isChecked());
+        renameMovies(m_movies,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->directoryNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkDirectoryNaming->isChecked());
     } else if (m_renameType == TypeConcerts) {
-        renameConcerts(m_concerts, ui->fileNaming->text(), ui->fileNamingMulti->text(),
-                     ui->directoryNaming->text(), ui->chkFileNaming->isChecked(), ui->chkDirectoryNaming->isChecked());
+        renameConcerts(m_concerts,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->directoryNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkDirectoryNaming->isChecked());
     } else if (m_renameType == TypeTvShows) {
-        renameEpisodes(m_episodes, ui->fileNaming->text(), ui->fileNamingMulti->text(), ui->seasonNaming->text(),
-                       ui->chkFileNaming->isChecked(), ui->chkSeasonDirectories->isChecked());
+        renameEpisodes(m_episodes,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->seasonNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkSeasonDirectories->isChecked());
         renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked());
     }
     m_filesRenamed = true;
@@ -187,21 +202,41 @@ void Renamer::onDryRun()
     ui->results->clear();
     ui->resultsTable->setRowCount(0);
     if (m_renameType == TypeMovies) {
-        renameMovies(m_movies, ui->fileNaming->text(), ui->fileNamingMulti->text(),
-                     ui->directoryNaming->text(), ui->chkFileNaming->isChecked(), ui->chkDirectoryNaming->isChecked(), true);
+        renameMovies(m_movies,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->directoryNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkDirectoryNaming->isChecked(),
+            true);
     } else if (m_renameType == TypeConcerts) {
-        renameConcerts(m_concerts, ui->fileNaming->text(), ui->fileNamingMulti->text(),
-                       ui->directoryNaming->text(), ui->chkFileNaming->isChecked(), ui->chkDirectoryNaming->isChecked(), true);
+        renameConcerts(m_concerts,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->directoryNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkDirectoryNaming->isChecked(),
+            true);
     } else if (m_renameType == TypeTvShows) {
-        renameEpisodes(m_episodes, ui->fileNaming->text(), ui->fileNamingMulti->text(), ui->seasonNaming->text(),
-                       ui->chkFileNaming->isChecked(), ui->chkSeasonDirectories->isChecked(), true);
+        renameEpisodes(m_episodes,
+            ui->fileNaming->text(),
+            ui->fileNamingMulti->text(),
+            ui->seasonNaming->text(),
+            ui->chkFileNaming->isChecked(),
+            ui->chkSeasonDirectories->isChecked(),
+            true);
         renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked(), true);
     }
     ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
 }
 
-void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, const QString &filePatternMulti,
-                           const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun)
+void Renamer::renameMovies(QList<Movie *> movies,
+    const QString &filePattern,
+    const QString &filePatternMulti,
+    const QString &directoryPattern,
+    const bool &renameFiles,
+    const bool &renameDirectories,
+    const bool &dryRun)
 {
     if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty()))
         return;
@@ -267,17 +302,20 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 Renamer::replace(newFileName, "videoCodec", movie->streamDetails()->videoCodec());
                 Renamer::replace(newFileName, "audioCodec", movie->streamDetails()->audioCodec());
                 Renamer::replace(newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                                movie->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                                movie->streamDetails()->videoDetails().value("scantype")));
+                Renamer::replace(newFileName,
+                    "resolution",
+                    Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                        movie->streamDetails()->videoDetails().value("height").toInt(),
+                        movie->streamDetails()->videoDetails().value("scantype")));
                 Renamer::replaceCondition(newFileName, "imdbId", movie->id());
                 Renamer::replaceCondition(newFileName, "movieset", movie->set());
-                Renamer::replaceCondition(newFileName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+                Renamer::replaceCondition(
+                    newFileName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
                     if (!dryRun) {
-                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)){
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
                             setResultStatus(row, RenameFailed);
                             errorOccured = true;
                             continue;
@@ -289,22 +327,24 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         FilmFiles.append(newFileName);
                     }
 
-                    foreach (const QString &trailerFile, currentDir.entryList(QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
+                    foreach (const QString &trailerFile,
+                        currentDir.entryList(QStringList() << fi.completeBaseName() + "-trailer.*",
+                            QDir::Files | QDir::NoDotAndDotDot)) {
                         QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
                         QString newTrailerFileName = newFileName;
-                        newTrailerFileName = newTrailerFileName.left(newTrailerFileName.lastIndexOf(".")) + "-trailer." + trailer.suffix();
+                        newTrailerFileName = newTrailerFileName.left(newTrailerFileName.lastIndexOf(".")) + "-trailer."
+                                             + trailer.suffix();
                         if (trailer.fileName() != newTrailerFileName) {
                             int row = addResult(trailer.fileName(), newTrailerFileName, OperationRename);
                             if (!dryRun) {
-                                if (!rename(fi.canonicalPath() + "/" + trailerFile, fi.canonicalPath() + "/" + newTrailerFileName))
+                                if (!rename(fi.canonicalPath() + "/" + trailerFile,
+                                        fi.canonicalPath() + "/" + newTrailerFileName))
                                     setResultStatus(row, RenameFailed);
                                 else
                                     FilmFiles.append(newTrailerFileName);
-                            }
-                            else
+                            } else
                                 FilmFiles.append(newTrailerFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(trailer.fileName());
                     }
 
@@ -312,16 +352,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     QStringList filters;
                     foreach (const QString &extra, m_extraFiles)
                         filters << baseName + extra;
-                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
-                        QString subSuffix = subFileName.mid(baseName.length());
-                        QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
-                        QString newSubName = newBaseName + subSuffix;
+                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files |
+                    QDir::NoDotAndDotDot)) { QString subSuffix = subFileName.mid(baseName.length()); QString newBaseName
+                    = newFileName.left(newFileName.lastIndexOf(".")); QString newSubName = newBaseName + subSuffix;
                         ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
                         if (!dryRun) {
-                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
-                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
-                            else
-                                FilmFiles.append(newSubName);
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/"
+                    + newSubName)) ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") +
+                    "</b></span>"); else FilmFiles.append(newSubName);
                         }
                         else
                             FilmFiles.append(newSubName);
@@ -341,7 +379,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             QString newSubFileName = subFileName + "." + subFi.suffix();
                             int row = addResult(subFile, newSubFileName, OperationRename);
                             if (!dryRun) {
-                                if (!rename(fi.canonicalPath() + "/" + subFile, fi.canonicalPath() + "/" + newSubFileName)) {
+                                if (!rename(fi.canonicalPath() + "/" + subFile,
+                                        fi.canonicalPath() + "/" + newSubFileName)) {
                                     newSubFiles << subFile;
                                     setResultStatus(row, RenameFailed);
                                 } else {
@@ -359,7 +398,6 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     FilmFiles.append(fi.fileName());
                     newMovieFiles.append(fi.fileName());
                 }
-
             }
 
             // Rename nfo
@@ -376,11 +414,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newNfoFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newNfoFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(nfoFileName);
                 }
             }
@@ -390,7 +426,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString posterFileName = QFileInfo(poster).fileName();
                 QList<DataFile> posterFiles = Settings::instance()->dataFiles(DataFileType::MoviePoster);
                 if (!posterFiles.isEmpty()) {
-                    QString newPosterFileName = posterFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newPosterFileName =
+                        posterFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
@@ -399,11 +436,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newPosterFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newPosterFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(posterFileName);
                 }
             }
@@ -413,7 +448,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString fanartFileName = QFileInfo(fanart).fileName();
                 QList<DataFile> fanartFiles = Settings::instance()->dataFiles(DataFileType::MovieBackdrop);
                 if (!fanartFiles.isEmpty()) {
-                    QString newFanartFileName = fanartFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newFanartFileName =
+                        fanartFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
@@ -422,11 +458,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newFanartFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newFanartFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(fanartFileName);
                 }
             }
@@ -436,7 +470,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString bannerFileName = QFileInfo(banner).fileName();
                 QList<DataFile> bannerFiles = Settings::instance()->dataFiles(DataFileType::MovieBanner);
                 if (!bannerFiles.isEmpty()) {
-                    QString newBannerFileName = bannerFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newBannerFileName =
+                        bannerFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newBannerFileName);
                     if (newBannerFileName != bannerFileName) {
                         int row = addResult(bannerFileName, newBannerFileName, OperationRename);
@@ -445,11 +480,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newBannerFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newBannerFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(bannerFileName);
                 }
             }
@@ -459,7 +492,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString thumbFileName = QFileInfo(thumb).fileName();
                 QList<DataFile> thumbFiles = Settings::instance()->dataFiles(DataFileType::MovieThumb);
                 if (!thumbFiles.isEmpty()) {
-                    QString newThumbFileName = thumbFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newThumbFileName =
+                        thumbFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newThumbFileName);
                     if (newThumbFileName != thumbFileName) {
                         int row = addResult(thumbFileName, newThumbFileName, OperationRename);
@@ -468,11 +502,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newThumbFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newThumbFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(thumbFileName);
                 }
             }
@@ -482,7 +514,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString logoFileName = QFileInfo(logo).fileName();
                 QList<DataFile> logoFiles = Settings::instance()->dataFiles(DataFileType::MovieLogo);
                 if (!logoFiles.isEmpty()) {
-                    QString newLogoFileName = logoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newLogoFileName =
+                        logoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newLogoFileName);
                     if (newLogoFileName != logoFileName) {
                         int row = addResult(logoFileName, newLogoFileName, OperationRename);
@@ -491,11 +524,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newLogoFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newLogoFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(logoFileName);
                 }
             }
@@ -505,7 +536,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString clearArtFileName = QFileInfo(clearArt).fileName();
                 QList<DataFile> clearArtFiles = Settings::instance()->dataFiles(DataFileType::MovieClearArt);
                 if (!clearArtFiles.isEmpty()) {
-                    QString newClearArtFileName = clearArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newClearArtFileName =
+                        clearArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newClearArtFileName);
                     if (newClearArtFileName != clearArtFileName) {
                         int row = addResult(clearArtFileName, newClearArtFileName, OperationRename);
@@ -514,11 +546,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newClearArtFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newClearArtFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(clearArtFileName);
                 }
             }
@@ -528,7 +558,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString cdArtFileName = QFileInfo(cdArt).fileName();
                 QList<DataFile> cdArtFiles = Settings::instance()->dataFiles(DataFileType::MovieCdArt);
                 if (!cdArtFiles.isEmpty()) {
-                    QString newCdArtFileName = cdArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    QString newCdArtFileName =
+                        cdArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newCdArtFileName);
                     if (newCdArtFileName != cdArtFileName) {
                         int row = addResult(cdArtFileName, newCdArtFileName, OperationRename);
@@ -537,11 +568,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                                 setResultStatus(row, RenameFailed);
                             else
                                 FilmFiles.append(newCdArtFileName);
-                        }
-                        else
+                        } else
                             FilmFiles.append(newCdArtFileName);
-                    }
-                    else
+                    } else
                         FilmFiles.append(cdArtFileName);
                 }
             }
@@ -550,7 +579,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         int renameRow = -1;
         QString newMovieFolder = dir.path();
         QString extension = (!movie->files().isEmpty()) ? QFileInfo(movie->files().first()).suffix() : "";
-        //rename dir for already existe films dir
+        // rename dir for already existe films dir
         if (renameDirectories && movie->inSeparateFolder()) {
             Renamer::replace(newFolderName, "title", movie->name());
             Renamer::replace(newFolderName, "extension", extension);
@@ -560,19 +589,22 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
             Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                              movie->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                              movie->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFolderName,
+                "resolution",
+                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                    movie->streamDetails()->videoDetails().value("height").toInt(),
+                    movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
         }
-        //create dir for new dir structure
+        // create dir for new dir structure
         else if (renameDirectories) {
             Renamer::replace(newFolderName, "title", movie->name());
             Renamer::replace(newFolderName, "extension", extension);
@@ -582,26 +614,29 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
             Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                              movie->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                              movie->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFolderName,
+                "resolution",
+                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                    movie->streamDetails()->videoDetails().value("height").toInt(),
+                    movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
 
-            if (dir.dirName() != newFolderName){ //check if movie is not already on good folder
-                int i = 0 ;
-                while (dir.exists(newFolderName)){
+            if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
+                int i = 0;
+                while (dir.exists(newFolderName)) {
                     newFolderName = newFolderName + " " + QString::number(++i);
                 }
 
                 int row = addResult(dir.dirName(), newFolderName, OperationCreateDir);
 
                 if (!dryRun) {
-                    if (!dir.mkdir(newFolderName)){
+                    if (!dir.mkdir(newFolderName)) {
                         setResultStatus(row, RenameFailed);
                         errorOccured = true;
                         continue;
@@ -613,12 +648,15 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 foreach (const QString &fileName, FilmFiles) {
                     QFileInfo fi(fileName);
                     if (dir.dirName() != newFolderName) {
-                        int row = addResult(fi.fileName(), dir.dirName() + "/" + newFolderName + "/" + fi.fileName(), OperationMove);
-                        ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
+                        int row = addResult(
+                            fi.fileName(), dir.dirName() + "/" + newFolderName + "/" + fi.fileName(), OperationMove);
+                        ui->results->append(tr(R"(<b>Move File</b> "%1" to "%2")")
+                                                .arg(fi.fileName())
+                                                .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
                         if (!dryRun) {
-                            if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
+                            if (!rename(dir.absolutePath() + "/" + fileName,
+                                    dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
                                 setResultStatus(row, RenameFailed);
-
                         }
                     }
                 }
@@ -655,17 +693,22 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
     }
 }
 
-void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &filePattern, const QString &filePatternMulti, const QString &seasonPattern,
-                             const bool &renameFiles, const bool &useSeasonDirectories, const bool &dryRun)
+void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
+    const QString &filePattern,
+    const QString &filePatternMulti,
+    const QString &seasonPattern,
+    const bool &renameFiles,
+    const bool &useSeasonDirectories,
+    const bool &dryRun)
 {
     if (renameFiles && filePattern.isEmpty())
         return;
 
-    QList<TvShowEpisode*> episodesRenamed;
+    QList<TvShowEpisode *> episodesRenamed;
 
     foreach (TvShowEpisode *episode, episodes) {
-        if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty()) ||
-                episodesRenamed.contains(episode))
+        if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty())
+            || episodesRenamed.contains(episode))
             continue;
 
         if (episode->hasChanged()) {
@@ -673,7 +716,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             continue;
         }
 
-        QList<TvShowEpisode*> multiEpisodes;
+        QList<TvShowEpisode *> multiEpisodes;
         foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
             if (subEpisode->files() == episode->files()) {
                 multiEpisodes.append(subEpisode);
@@ -689,7 +732,8 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
         QStringList episodeFiles = episode->files();
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
         QString newNfoFileName = nfo;
-        QString thumbnail = Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
+        QString thumbnail =
+            Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         QString newThumbnailFileName = thumbnail;
         QStringList newEpisodeFiles;
         foreach (const QString &file, episode->files()) {
@@ -719,10 +763,13 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 Renamer::replace(newFileName, "videoCodec", episode->streamDetails()->videoCodec());
                 Renamer::replace(newFileName, "audioCodec", episode->streamDetails()->audioCodec());
                 Renamer::replace(newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                                episode->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                                episode->streamDetails()->videoDetails().value("scantype")));
-                Renamer::replaceCondition(newFileName, "3D", episode->streamDetails()->videoDetails().value("stereomode") != "");
+                Renamer::replace(newFileName,
+                    "resolution",
+                    Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
+                        episode->streamDetails()->videoDetails().value("height").toInt(),
+                        episode->streamDetails()->videoDetails().value("scantype")));
+                Renamer::replaceCondition(
+                    newFileName, "3D", episode->streamDetails()->videoDetails().value("stereomode") != "");
 
                 if (multiEpisodes.count() > 1) {
                     QStringList episodeStrings;
@@ -749,13 +796,15 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                     QStringList filters;
                     foreach (const QString &extra, m_extraFiles)
                         filters << baseName + extra;
-                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                    foreach (
+                        const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subSuffix = subFileName.mid(baseName.length());
                         QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                         QString newSubName = newBaseName + subSuffix;
                         int row = addResult(subFileName, newSubName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName)) {
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName,
+                                    currentDir.canonicalPath() + "/" + newSubName)) {
                                 setResultStatus(row, RenameFailed);
                                 m_renameErrorOccured = true;
                             }
@@ -789,7 +838,8 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 QString thumbnailFileName = QFileInfo(thumbnail).fileName();
                 QList<DataFile> thumbnailFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
                 if (!thumbnailFiles.isEmpty()) {
-                    newThumbnailFileName = thumbnailFiles.first().saveFileName(newFileName, -1, episode->files().count() > 1);
+                    newThumbnailFileName =
+                        thumbnailFiles.first().saveFileName(newFileName, -1, episode->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newThumbnailFileName);
                     if (newThumbnailFileName != thumbnailFileName) {
                         int row = addResult(thumbnailFileName, newThumbnailFileName, OperationRename);
@@ -877,7 +927,8 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
                     int row = addResult(newThumbnailFileName, seasonDirName, OperationMove);
                     if (!dryRun) {
-                        if (!rename(fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))
+                        if (!rename(fiCanonicalPath + "/" + newThumbnailFileName,
+                                seasonDir.path() + "/" + newThumbnailFileName))
                             setResultStatus(row, RenameFailed);
                     }
                 }
@@ -886,7 +937,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
     }
 }
 
-void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern, const bool &renameDirectories, const bool &dryRun)
+void Renamer::renameShows(QList<TvShow *> shows,
+    const QString &directoryPattern,
+    const bool &renameDirectories,
+    const bool &dryRun)
 {
     if ((renameDirectories && directoryPattern.isEmpty()) || !renameDirectories)
         return;
@@ -929,8 +983,13 @@ void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern
     }
 }
 
-void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePattern, const QString &filePatternMulti,
-                           const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun)
+void Renamer::renameConcerts(QList<Concert *> concerts,
+    const QString &filePattern,
+    const QString &filePatternMulti,
+    const QString &directoryPattern,
+    const bool &renameFiles,
+    const bool &renameDirectories,
+    const bool &dryRun)
 {
     if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty()))
         return;
@@ -952,7 +1011,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         QString newFileName;
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(concert);
         QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
-        QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
+        QString fanart =
+            Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
         QStringList newConcertFiles;
         QString parentDirName;
 
@@ -992,10 +1052,13 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 Renamer::replace(newFileName, "videoCodec", concert->streamDetails()->videoCodec());
                 Renamer::replace(newFileName, "audioCodec", concert->streamDetails()->audioCodec());
                 Renamer::replace(newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                                concert->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                                concert->streamDetails()->videoDetails().value("scantype")));
-                Renamer::replaceCondition(newFileName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+                Renamer::replace(newFileName,
+                    "resolution",
+                    Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                        concert->streamDetails()->videoDetails().value("height").toInt(),
+                        concert->streamDetails()->videoDetails().value("scantype")));
+                Renamer::replaceCondition(
+                    newFileName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
@@ -1012,13 +1075,15 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                     QStringList filters;
                     foreach (const QString &extra, m_extraFiles)
                         filters << baseName + extra;
-                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                    foreach (
+                        const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subSuffix = subFileName.mid(baseName.length());
                         QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                         QString newSubName = newBaseName + subSuffix;
                         int row = addResult(subFileName, newSubName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName,
+                                    currentDir.canonicalPath() + "/" + newSubName))
                                 setResultStatus(row, RenameFailed);
                         }
                     }
@@ -1032,7 +1097,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 QString nfoFileName = QFileInfo(nfo).fileName();
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::ConcertNfo);
                 if (!nfoFiles.isEmpty()) {
-                    QString newNfoFileName = nfoFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
+                    QString newNfoFileName =
+                        nfoFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
@@ -1049,7 +1115,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 QString posterFileName = QFileInfo(poster).fileName();
                 QList<DataFile> posterFiles = Settings::instance()->dataFiles(DataFileType::ConcertPoster);
                 if (!posterFiles.isEmpty()) {
-                    QString newPosterFileName = posterFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
+                    QString newPosterFileName =
+                        posterFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
@@ -1066,7 +1133,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 QString fanartFileName = QFileInfo(fanart).fileName();
                 QList<DataFile> fanartFiles = Settings::instance()->dataFiles(DataFileType::ConcertBackdrop);
                 if (!fanartFiles.isEmpty()) {
-                    QString newFanartFileName = fanartFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
+                    QString newFanartFileName =
+                        fanartFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
@@ -1087,13 +1155,16 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
             Renamer::replace(newFolderName, "year", concert->released().toString("yyyy"));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(newFolderName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(
+                newFolderName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replace(newFolderName, "videoCodec", concert->streamDetails()->videoCodec());
             Renamer::replace(newFolderName, "audioCodec", concert->streamDetails()->audioCodec());
             Renamer::replace(newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
-                                                                                              concert->streamDetails()->videoDetails().value("height").toInt(),
-                                                                                              concert->streamDetails()->videoDetails().value("scantype")));
+            Renamer::replace(newFolderName,
+                "resolution",
+                Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                    concert->streamDetails()->videoDetails().value("height").toInt(),
+                    concert->streamDetails()->videoDetails().value("scantype")));
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
@@ -1215,7 +1286,7 @@ int Renamer::addResult(const QString &oldFileName, const QString &newFileName, R
 
 void Renamer::setResultStatus(int row, RenameResult result)
 {
-    for (int col=0, n=ui->resultsTable->columnCount() ; col<n ; ++col) {
+    for (int col = 0, n = ui->resultsTable->columnCount(); col < n; ++col) {
         if (result == RenameFailed) {
             ui->resultsTable->item(row, col)->setBackgroundColor(QColor(242, 222, 222));
             ui->resultsTable->item(row, col)->setTextColor(QColor(0, 0, 0));

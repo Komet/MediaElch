@@ -27,7 +27,7 @@ void ConcertFileSearcher::setConcertDirectories(QList<SettingsDir> directories)
 {
     qDebug() << "Entered";
     m_directories.clear();
-    for (int i=0, n=directories.count() ; i<n ; ++i) {
+    for (int i = 0, n = directories.count(); i < n; ++i) {
         QFileInfo fi(directories.at(i).path);
         if (fi.isDir()) {
             qDebug() << "Adding concert directory" << directories.at(i).path;
@@ -49,14 +49,14 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->concertModel()->clear();
     emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
 
-    QList<Concert*> concerts;
-    QList<Concert*> dbConcerts;
+    QList<Concert *> concerts;
+    QList<Concert *> dbConcerts;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
         if (m_aborted)
             return;
 
-        QList<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        QList<Concert *> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
             Manager::instance()->database()->clearConcerts(dir.path);
             scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
@@ -67,8 +67,8 @@ void ConcertFileSearcher::reload(bool force)
     emit currentDir("");
 
     emit searchStarted(tr("Loading Concerts..."), m_progressMessageId);
-    int concertCounter=0;
-    int concertSum=contents.size()+dbConcerts.size();
+    int concertCounter = 0;
+    int concertSum = contents.size() + dbConcerts.size();
 
     // Setup concerts
     Manager::instance()->database()->transaction();
@@ -81,7 +81,7 @@ void ConcertFileSearcher::reload(bool force)
         // get directory
         if (!files.isEmpty()) {
             int index = -1;
-            for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+            for (int i = 0, n = m_directories.count(); i < n; ++i) {
                 if (files.at(0).startsWith(m_directories[i].path)) {
                     if (index == -1)
                         index = i;
@@ -132,7 +132,11 @@ void ConcertFileSearcher::reload(bool force)
  * @param separateFolders Are concerts in separate folders
  * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
  */
-void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
+void ConcertFileSearcher::scanDir(QString startPath,
+    QString path,
+    QList<QStringList> &contents,
+    bool separateFolders,
+    bool firstScan)
 {
     emit currentDir(path.mid(startPath.length()));
 
@@ -142,9 +146,9 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
             return;
 
         // Skip "Extras" folder
-        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0
+            || QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0
+            || QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -187,7 +191,7 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
     }
 
     QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
-    for (int i=0, n=files.size() ; i<n ; i++) {
+    for (int i = 0, n = files.size(); i < n; i++) {
         if (m_aborted)
             return;
 
@@ -201,8 +205,8 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
         int pos = rx.indexIn(file);
         if (pos != -1) {
             QString left = file.left(pos) + rx.cap(1);
-            QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
-            for (int x=0 ; x<n ; x++) {
+            QString right = file.mid(pos + rx.cap(1).size() + rx.cap(2).size());
+            for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
@@ -212,7 +216,7 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
                 }
             }
         }
-        if (concertFiles.count() > 0 )
+        if (concertFiles.count() > 0)
             contents.append(concertFiles);
     }
 }

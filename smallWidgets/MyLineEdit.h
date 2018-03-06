@@ -19,7 +19,8 @@ class MyLineEdit : public QLineEdit
     Q_PROPERTY(LineEditType type READ type WRITE setType)
     Q_ENUMS(LineEditType)
 public:
-    enum LineEditType {
+    enum LineEditType
+    {
         TypeLoading,
         TypeClear
     };
@@ -43,10 +44,10 @@ signals:
     void backspaceInFront();
 
 protected:
-    void resizeEvent(QResizeEvent *);
-    void keyPressEvent(QKeyEvent *event);
-    void focusOutEvent(QFocusEvent *event);
-    void focusInEvent(QFocusEvent *event);
+    void resizeEvent(QResizeEvent *) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void focusOutEvent(QFocusEvent *event) override;
+    void focusInEvent(QFocusEvent *event) override;
 
 private slots:
     void myTextChanged(QString text);
@@ -58,7 +59,7 @@ private:
     LineEditType m_type;
     bool m_showMagnifier;
     QLabel *m_magnifierLabel;
-    QList<QLabel*> m_filterLabels;
+    QList<QLabel *> m_filterLabels;
     QStringList m_styleSheets;
     QLabel *m_moreLabel;
     int m_paddingLeft;

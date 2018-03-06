@@ -20,18 +20,18 @@ class TvShowModel : public QAbstractItemModel
 
 public:
     explicit TvShowModel(QObject *parent = nullptr);
-    ~TvShowModel();
+    ~TvShowModel() override;
 
-    QVariant data(const QModelIndex &index, int role) const;
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex &index) const;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());
+    QVariant data(const QModelIndex &index, int role) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex &index) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex()) override;
     TvShowModelItem *appendChild(TvShow *show);
     void clear();
     TvShowModelItem *getItem(const QModelIndex &index) const;
-    QList<TvShow*> tvShows();
+    QList<TvShow *> tvShows();
     int hasNewShowOrEpisode();
     void removeShow(TvShow *show);
 
@@ -41,7 +41,7 @@ private slots:
 
 private:
     TvShowModelItem *m_rootItem;
-    QMap<int, QMap<bool, QIcon> > m_icons;
+    QMap<int, QMap<bool, QIcon>> m_icons;
     QIcon m_newIcon;
     QIcon m_syncIcon;
     QIcon m_missingIcon;

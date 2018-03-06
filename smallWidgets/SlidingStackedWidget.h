@@ -19,7 +19,8 @@ class SlidingStackedWidget : public QStackedWidget
     Q_OBJECT
 
 public:
-    enum t_direction {
+    enum t_direction
+    {
         LEFT2RIGHT,
         RIGHT2LEFT,
         TOP2BOTTOM,
@@ -28,7 +29,7 @@ public:
     };
 
     SlidingStackedWidget(QWidget *parent);
-    ~SlidingStackedWidget(void);
+    ~SlidingStackedWidget() override;
     bool isExpanded() const;
 
 public slots:
@@ -43,13 +44,13 @@ public slots:
     void collapse();
 
 signals:
-    void animationFinished(void);
+    void animationFinished();
 
 protected slots:
-    void animationDoneSlot(void);
+    void animationDoneSlot();
 
 protected:
-    void slideInWgt(QWidget * widget, enum t_direction direction = AUTOMATIC);
+    void slideInWgt(QWidget *widget, enum t_direction direction = AUTOMATIC);
     QWidget *m_mainWindow;
     int m_speed;
     enum QEasingCurve::Type m_animationType;
@@ -59,7 +60,7 @@ protected:
     bool m_wrap;
     QPoint m_pNow;
     bool m_active;
-    QList<QWidget*> m_widgets;
+    QList<QWidget *> m_widgets;
     bool m_expanded;
 };
 

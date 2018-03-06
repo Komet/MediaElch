@@ -17,10 +17,10 @@ class ConcertSearch : public QDialog
     Q_OBJECT
 public:
     explicit ConcertSearch(QWidget *parent = nullptr);
-    ~ConcertSearch();
+    ~ConcertSearch() override;
 
 public slots:
-    int exec();
+    int exec() override;
     int exec(QString searchString);
     static ConcertSearch *instance(QWidget *parent = nullptr);
     int scraperNo();

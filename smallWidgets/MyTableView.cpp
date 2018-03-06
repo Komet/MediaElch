@@ -12,19 +12,20 @@ MyTableView::MyTableView(QWidget *parent) :
 
 void MyTableView::resizeEvent(QResizeEvent *event)
 {
-    m_searchOverlay->setFixedWidth(event->size().width()-80);
-    m_searchOverlay->move((event->size().width()-m_searchOverlay->width())/2, (event->size().height()-m_searchOverlay->height())/2);
+    m_searchOverlay->setFixedWidth(event->size().width() - 80);
+    m_searchOverlay->move((event->size().width() - m_searchOverlay->width()) / 2,
+        (event->size().height() - m_searchOverlay->height()) / 2);
     QTableView::resizeEvent(event);
 }
 
 void MyTableView::setLastColumnWidth(int &width)
 {
-    setColumnWidth(model()->columnCount()-1, width);
+    setColumnWidth(model()->columnCount() - 1, width);
 }
 
 int MyTableView::lastColumnWidth() const
 {
-    return columnWidth(model()->columnCount()-1);
+    return columnWidth(model()->columnCount() - 1);
 }
 
 void MyTableView::setFirstColumnWidth(int &width)
@@ -59,7 +60,8 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
 
 void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
 {
-    if (!m_useSearchOverlay || keyEvent->key() == Qt::Key_Escape || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
+    if (!m_useSearchOverlay || keyEvent->key() == Qt::Key_Escape
+        || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
         QTableView::keyPressEvent(keyEvent);
         return;
     }
@@ -68,7 +70,7 @@ void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
         return;
 
     if (keyEvent->key() == Qt::Key_Backspace)
-        m_currentSearchText.remove(m_currentSearchText.length()-1, 1);
+        m_currentSearchText.remove(m_currentSearchText.length() - 1, 1);
     else if (!keyEvent->text().isEmpty())
         m_currentSearchText.append(keyEvent->text());
 
@@ -77,7 +79,7 @@ void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
     m_searchOverlayTimer.start(1000);
 
     int matchingRow = -1;
-    for (int i=0, n=model()->rowCount() ; i<n ; ++i) {
+    for (int i = 0, n = model()->rowCount(); i < n; ++i) {
         QModelIndex index = model()->index(i, 0);
         QString title = model()->data(index).toString();
         if (title.startsWith(m_currentSearchText, Qt::CaseInsensitive)) {

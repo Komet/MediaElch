@@ -7,17 +7,14 @@
 
 #include "Settings.h"
 
-AdvancedSettings::AdvancedSettings(QObject *parent) :
-    QObject(parent)
+AdvancedSettings::AdvancedSettings(QObject *parent) : QObject(parent)
 {
     m_portableMode = false;
     m_bookletCut = 2;
     loadSettings();
 }
 
-AdvancedSettings::~AdvancedSettings()
-{
-}
+AdvancedSettings::~AdvancedSettings() = default;
 
 void AdvancedSettings::reset()
 {
@@ -25,7 +22,16 @@ void AdvancedSettings::reset()
     m_forceCache = false;
     m_bookletCut = 2;
     m_logFile = "";
-    m_sortTokens = QStringList() << "Der" << "Die" << "Das" << "The" << "Le" << "La" << "Les" << "Un" << "Une" << "Des";
+    m_sortTokens = QStringList() << "Der"
+                                 << "Die"
+                                 << "Das"
+                                 << "The"
+                                 << "Le"
+                                 << "La"
+                                 << "Les"
+                                 << "Un"
+                                 << "Une"
+                                 << "Des";
     m_genreMappings.clear();
     m_audioCodecMappings.clear();
     m_videoCodecMappings.clear();
@@ -35,19 +41,85 @@ void AdvancedSettings::reset()
     m_writeThumbUrlsToNfo = true;
     m_useFirstStudioOnly = false;
 
-    m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-                   << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-                   << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
+    m_movieFilters << "*.mkv"
+                   << "*.avi"
+                   << "*.mpg"
+                   << "*.mpeg"
+                   << "*.mp4"
+                   << "*.m2ts"
+                   << "*.disc"
+                   << "*.m4v"
+                   << "*.strm"
+                   << "*.dat"
+                   << "*.flv"
+                   << "*.vob"
+                   << "*.ts"
+                   << "*.iso"
+                   << "*.ogg"
+                   << "*.ogm"
+                   << "*.rmvb"
+                   << "*.img"
+                   << "*.wmv"
+                   << "*.mov"
+                   << "*.divx"
+                   << "VIDEO_TS.IFO"
+                   << "index.bdmv"
+                   << "*.wtv";
 
-    m_tvShowFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-                    << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
+    m_tvShowFilters << "*.mkv"
+                    << "*.avi"
+                    << "*.mpg"
+                    << "*.mpeg"
+                    << "*.mp4"
+                    << "*.m2ts"
+                    << "*.disc"
+                    << "*.m4v"
+                    << "*.strm"
+                    << "*.dat"
+                    << "*.flv"
+                    << "*.vob"
+                    << "*.ts"
+                    << "*.iso"
+                    << "*.ogg"
+                    << "*.ogm"
+                    << "*.rmvb"
+                    << "*.img"
+                    << "*.wmv"
+                    << "*.mov"
+                    << "*.divx"
+                    << "VIDEO_TS.IFO"
+                    << "index.bdmv"
+                    << "*.wtv";
 
-    m_concertFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-                     << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-                     << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
+    m_concertFilters << "*.mkv"
+                     << "*.avi"
+                     << "*.mpg"
+                     << "*.mpeg"
+                     << "*.mp4"
+                     << "*.m2ts"
+                     << "*.disc"
+                     << "*.m4v"
+                     << "*.strm"
+                     << "*.dat"
+                     << "*.flv"
+                     << "*.vob"
+                     << "*.ts"
+                     << "*.iso"
+                     << "*.ogg"
+                     << "*.ogm"
+                     << "*.rmvb"
+                     << "*.img"
+                     << "*.wmv"
+                     << "*.mov"
+                     << "*.divx"
+                     << "VIDEO_TS.IFO"
+                     << "index.bdmv"
+                     << "*.wtv";
 
-    m_subtitleFilters << "*.idx" << "*.sub" << "*.srr" << "*.srt";
+    m_subtitleFilters << "*.idx"
+                      << "*.sub"
+                      << "*.srr"
+                      << "*.srt";
 
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 }
@@ -162,7 +234,8 @@ void AdvancedSettings::loadGenreMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_genreMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_genreMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else {
             xml.skipCurrentElement();
@@ -201,7 +274,8 @@ void AdvancedSettings::loadAudioCodecMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_audioCodecMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_audioCodecMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else {
             xml.skipCurrentElement();
@@ -214,7 +288,8 @@ void AdvancedSettings::loadVideoCodecMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_videoCodecMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_videoCodecMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else {
             xml.skipCurrentElement();
@@ -227,7 +302,8 @@ void AdvancedSettings::loadCertificationMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_certificationMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_certificationMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else {
             xml.skipCurrentElement();
@@ -240,7 +316,8 @@ void AdvancedSettings::loadStudioMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_studioMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_studioMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else if (xml.name() == "useFirstStudioOnly") {
             m_useFirstStudioOnly = (xml.readElementText() == "true");
@@ -255,7 +332,8 @@ void AdvancedSettings::loadCountryMappings(QXmlStreamReader &xml)
     while (xml.readNextStartElement()) {
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
-                m_countryMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+                m_countryMappings.insert(
+                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
         } else {
             xml.skipCurrentElement();

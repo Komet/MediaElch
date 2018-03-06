@@ -16,7 +16,7 @@ class Navbar : public QWidget
 
 public:
     explicit Navbar(QWidget *parent = nullptr);
-    ~Navbar();
+    ~Navbar() override;
     void setActionSearchEnabled(bool enabled);
     void setActionSaveEnabled(bool enabled);
     void setActionSaveAllEnabled(bool enabled);
@@ -39,7 +39,7 @@ signals:
     void sigExport();
     void sigAbout();
     void sigLike();
-    void sigFilterChanged(QList<Filter*>, QString);
+    void sigFilterChanged(QList<Filter *>, QString);
 
 private slots:
     void onDonated(bool donated);

@@ -6,8 +6,7 @@
 #include "../globals/Globals.h"
 #include "../globals/Manager.h"
 
-TvShowTreeView::TvShowTreeView(QWidget *parent) :
-    QTreeView(parent)
+TvShowTreeView::TvShowTreeView(QWidget *parent) : QTreeView(parent)
 {
     setAllColumnsShowFocus(true);
     m_newIcon = QPixmap(":/img/star_blue.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -15,9 +14,7 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) :
     m_missingIcon = QPixmap(":/img/missing.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
-TvShowTreeView::~TvShowTreeView()
-{
-}
+TvShowTreeView::~TvShowTreeView() = default;
 
 void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
@@ -31,7 +28,7 @@ void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QM
     painter->setPen(QColor(70, 155, 198));
     painter->setPen(QColor(180, 180, 180));
     painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-    painter->drawText(rect, text, QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+    painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 
     painter->restore();
 }
@@ -52,7 +49,7 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
         opt.rect.setX(opt.rect.x() + episodeIndent - 4);
 
     if (alternatingRowColors() && index.data(TvShowRoles::Type).toInt() != TypeTvShow) {
-        if (index.row()%2 == 0)
+        if (index.row() % 2 == 0)
             opt.features |= QStyleOptionViewItem::Alternate;
         else
             opt.features &= ~QStyleOptionViewItem::Alternate;
@@ -77,38 +74,50 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
 #endif
 
     if (index.data(TvShowRoles::Type).toInt() == TypeTvShow) {
-
         QHeaderView *horizontalHeader = header();
-        for (int col=1, n=index.model()->columnCount() ; col<n ; ++col) {
-            QRect iconRect(option.rect.x() + columnViewportPosition(col), option.rect.y(), horizontalHeader->sectionSize(col), option.rect.height());
+        for (int col = 1, n = index.model()->columnCount(); col < n; ++col) {
+            QRect iconRect(option.rect.x() + columnViewportPosition(col),
+                option.rect.y(),
+                horizontalHeader->sectionSize(col),
+                option.rect.height());
             QPixmap icon = model()->index(index.row(), col).data(Qt::DecorationRole).value<QIcon>().pixmap(iconSize());
-            painter->drawPixmap(iconRect.x() + (iconRect.width()-icon.width())/2, iconRect.y() + (iconRect.height()-icon.height()) - 6, icon);
+            painter->drawPixmap(iconRect.x() + (iconRect.width() - icon.width()) / 2,
+                iconRect.y() + (iconRect.height() - icon.height()) - 6,
+                icon);
         }
 
-        QRect branches(option.rect.x()+5, option.rect.y()+5, 20, option.rect.height()-10);
+        QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
         drawBranches(painter, branches, index);
 
         int rowPadding = 4;
-        int textRowHeight = (option.rect.height()-2*rowPadding)/2;
+        int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
         QFont font = painter->font();
 
         int itemIndent = 0;
         if (index.data(TvShowRoles::IsNew).toBool()) {
             itemIndent = 20;
 #ifdef Q_OS_WIN
-            QRect iconRect(option.rect.x()+branchIndent, option.rect.y(), itemIndent-6, option.rect.height());
-            painter->drawPixmap(iconRect.x() + (iconRect.width()-m_newIcon.width())/2, iconRect.y() + (iconRect.height()-m_newIcon.height())/2, m_newIcon);
+            QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), itemIndent - 6, option.rect.height());
+            painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
+                iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
+                m_newIcon);
 #else
-            QRect iconRect(option.rect.x()+branchIndent, option.rect.y(), itemIndent-6, option.rect.height());
+            QRect iconRect(option.rect.x() + branchIndent, option.rect.y(), itemIndent - 6, option.rect.height());
             int drawSize = qRound(iconRect.width() * 1.0);
             painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
             painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-            painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+            painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
         }
 
-        QRect showRect(option.rect.x()+branchIndent+itemIndent, option.rect.y()+rowPadding+1, option.rect.width()-branchIndent-itemIndent, textRowHeight);
-        QRect episodesRect(option.rect.x()+branchIndent+itemIndent, option.rect.y()+textRowHeight+rowPadding, option.rect.width()-branchIndent-itemIndent, textRowHeight);
+        QRect showRect(option.rect.x() + branchIndent + itemIndent,
+            option.rect.y() + rowPadding + 1,
+            option.rect.width() - branchIndent - itemIndent,
+            textRowHeight);
+        QRect episodesRect(option.rect.x() + branchIndent + itemIndent,
+            option.rect.y() + textRowHeight + rowPadding,
+            option.rect.width() - branchIndent - itemIndent,
+            textRowHeight);
 
         painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
         painter->setFont(index.data(Qt::FontRole).value<QFont>());
@@ -116,77 +125,86 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
 
         font = painter->font();
 #ifdef Q_OS_MAC
-        font.setPointSize(font.pointSize()-2);
+        font.setPointSize(font.pointSize() - 2);
 #else
-        font.setPointSize(font.pointSize()-1);
+        font.setPointSize(font.pointSize() - 1);
 #endif
         font.setBold(false);
         painter->setFont(font);
-        painter->drawText(episodesRect, tr("%n episodes", "", index.data(TvShowRoles::EpisodeCount).toInt()), QTextOption(Qt::AlignVCenter));
+        painter->drawText(episodesRect,
+            tr("%n episodes", "", index.data(TvShowRoles::EpisodeCount).toInt()),
+            QTextOption(Qt::AlignVCenter));
 
         QPoint lineStart(option.rect.x(), option.rect.y());
-        QPoint lineEnd(option.rect.x()+option.rect.width()-1, option.rect.y());
+        QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
         painter->setPen(QColor(220, 220, 220));
         painter->drawLine(lineStart, lineEnd);
 
     } else {
-
         int itemIndent = (index.data(TvShowRoles::Type).toInt() == TypeSeason) ? seasonIndent : episodeIndent;
 
         if (index.data(TvShowRoles::Type).toInt() == TypeSeason) {
-            QRect branches(option.rect.x()+25, option.rect.y()+5, 20, option.rect.height()-10);
+            QRect branches(option.rect.x() + 25, option.rect.y() + 5, 20, option.rect.height() - 10);
             drawBranches(painter, branches, index);
             itemIndent += 20;
         }
 
         if (index.data(TvShowRoles::IsNew).toBool()) {
 #ifdef Q_OS_WIN
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 18, option.rect.height());
-            painter->drawPixmap(iconRect.x() + (iconRect.width()-m_newIcon.width())/2, iconRect.y() + (iconRect.height()-m_newIcon.height())/2, m_newIcon);
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 18, option.rect.height());
+            painter->drawPixmap(iconRect.x() + (iconRect.width() - m_newIcon.width()) / 2,
+                iconRect.y() + (iconRect.height() - m_newIcon.height()) / 2,
+                m_newIcon);
 #else
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 14, option.rect.height());
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 14, option.rect.height());
             int drawSize = qRound(iconRect.width() * 1.0);
             painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
             painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-            painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+            painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
             itemIndent += 20;
         }
 
         if (index.data(TvShowRoles::SyncNeeded).toBool()) {
 #ifdef Q_OS_WIN
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 18, option.rect.height());
-            painter->drawPixmap(iconRect.x() + (iconRect.width()-m_syncIcon.width())/2, iconRect.y() + (iconRect.height()-m_syncIcon.height())/2, m_syncIcon);
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 18, option.rect.height());
+            painter->drawPixmap(iconRect.x() + (iconRect.width() - m_syncIcon.width()) / 2,
+                iconRect.y() + (iconRect.height() - m_syncIcon.height()) / 2,
+                m_syncIcon);
 #else
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 14, option.rect.height());
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 14, option.rect.height());
             int drawSize = qRound(iconRect.width() * 1.0);
             painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(248, 148, 6));
             painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-            painter->drawText(iconRect, QString(QChar(icon_refresh_cloud)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+            painter->drawText(
+                iconRect, QString(QChar(icon_refresh_cloud)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
             itemIndent += 20;
         }
 
         if (index.data(TvShowRoles::Type).toInt() == TypeSeason && index.data(TvShowRoles::HasDummyEpisodes).toBool()) {
 #ifdef Q_OS_WIN
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 18, option.rect.height());
-            painter->drawPixmap(iconRect.x() + (iconRect.width()-m_missingIcon.width())/2, iconRect.y() + (iconRect.height()-m_missingIcon.height())/2, m_missingIcon);
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 18, option.rect.height());
+            painter->drawPixmap(iconRect.x() + (iconRect.width() - m_missingIcon.width()) / 2,
+                iconRect.y() + (iconRect.height() - m_missingIcon.height()) / 2,
+                m_missingIcon);
 #else
-            QRect iconRect(option.rect.x()+itemIndent, option.rect.y(), 14, option.rect.height());
+            QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 14, option.rect.height());
             int drawSize = qRound(iconRect.width() * 1.0);
             painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(241, 96, 106));
             painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-            painter->drawText(iconRect, QString(QChar(icon_attention)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+            painter->drawText(
+                iconRect, QString(QChar(icon_attention)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
             itemIndent += 20;
         }
 
-        QRect itemRect(option.rect.x()+itemIndent, option.rect.y(), option.rect.width()-itemIndent, option.rect.height()-1);
+        QRect itemRect(
+            option.rect.x() + itemIndent, option.rect.y(), option.rect.width() - itemIndent, option.rect.height() - 1);
         QFont font = index.data(Qt::FontRole).value<QFont>();
         painter->setFont(font);
         painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
         painter->drawText(itemRect, index.data().toString(), QTextOption(Qt::AlignVCenter));
-
     }
 
     painter->restore();

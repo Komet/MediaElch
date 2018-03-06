@@ -8,24 +8,24 @@
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 
-Navbar::Navbar(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Navbar)
+Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
 {
     ui->setupUi(this);
 
     ui->btnSearch->setShortcut(QKeySequence::Find);
-    ui->btnSearch->setToolTip(tr("Scrape (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
+    ui->btnSearch->setToolTip(
+        tr("Scrape (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
 
     ui->btnSave->setShortcut(QKeySequence::Save);
     ui->btnSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
 
-    QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
+    QKeySequence seqSaveAll(Qt::CTRL + Qt::ShiftModifier + Qt::Key_S);
     ui->btnSaveAll->setShortcut(seqSaveAll);
     ui->btnSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
     ui->btnReload->setShortcut(QKeySequence::Refresh);
-    ui->btnReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+    ui->btnReload->setToolTip(
+        tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
     connect(ui->btnSearch, SIGNAL(clicked()), this, SIGNAL(sigSearch()));
     connect(ui->btnSave, SIGNAL(clicked()), this, SIGNAL(sigSave()));
@@ -38,7 +38,10 @@ Navbar::Navbar(QWidget *parent) :
     connect(ui->btnAbout, SIGNAL(clicked()), this, SIGNAL(sigAbout()));
     connect(ui->btnDonate, SIGNAL(clicked()), this, SIGNAL(sigLike()));
 
-    connect(ui->filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SIGNAL(sigFilterChanged(QList<Filter*>,QString)));
+    connect(ui->filterWidget,
+        SIGNAL(sigFilterChanged(QList<Filter *>, QString)),
+        this,
+        SIGNAL(sigFilterChanged(QList<Filter *>, QString)));
 
     connect(Settings::instance(), SIGNAL(sigDonated(bool)), this, SLOT(onDonated(bool)));
 
@@ -53,9 +56,21 @@ Navbar::Navbar(QWidget *parent) :
     navbarColors << QColor(107, 183, 228, 255);
     navbarColors << QColor(206, 139, 188, 255);
 
-    QStringList menuIcons = QStringList() << "scrape" << "save" << "saveall" << "rename" << "sync" << "export" << "reload" << "settings" << "about";
+    QStringList menuIcons = QStringList() << "scrape"
+                                          << "save"
+                                          << "saveall"
+                                          << "rename"
+                                          << "sync"
+                                          << "export"
+                                          << "reload"
+                                          << "settings"
+                                          << "about";
 
-    foreach (QToolButton *btn, ui->widget->findChildren<QToolButton*>()) {
+#ifdef Q_OS_MAC
+    int i = 0;
+#endif
+
+    foreach (QToolButton *btn, ui->widget->findChildren<QToolButton *>()) {
         if (!btn->property("iconName").isValid())
             continue;
 #ifndef Q_OS_MAC
@@ -63,15 +78,14 @@ Navbar::Navbar(QWidget *parent) :
         btn->setIcon(QIcon(":/menu/" + menuIcons.takeFirst()));
 #else
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(),
-                                                           navbarColors.at(i++%navbarColors.count()),
-                                                           btn->property("iconPainter").toString(),
-                                                           1.0
-                                                           ));
+            navbarColors.at(i++ % navbarColors.count()),
+            btn->property("iconPainter").toString(),
+            1.0));
 #endif
     }
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {
-        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        auto effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(2);
         effect->setBlurRadius(4);

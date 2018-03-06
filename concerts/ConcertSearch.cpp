@@ -9,9 +9,7 @@
  * @brief ConcertSearch::ConcertSearch
  * @param parent
  */
-ConcertSearch::ConcertSearch(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ConcertSearch)
+ConcertSearch::ConcertSearch(QWidget *parent) : QDialog(parent), ui(new Ui::ConcertSearch)
 {
     ui->setupUi(this);
 
@@ -39,10 +37,10 @@ ConcertSearch::~ConcertSearch()
  * @param parent Parent widget
  * @return Instance of ConcertSearch
  */
-ConcertSearch* ConcertSearch::instance(QWidget *parent)
+ConcertSearch *ConcertSearch::instance(QWidget *parent)
 {
-    static ConcertSearch *m_instance = 0;
-    if (m_instance == 0) {
+    static ConcertSearch *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ConcertSearch(parent);
     }
     return m_instance;
@@ -58,8 +56,8 @@ int ConcertSearch::exec(QString searchString)
 {
     qDebug() << "Entered";
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    newSize.setHeight(parentWidget()->size().height() - 200);
+    newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
     ui->concertSearchWidget->search(searchString);
     return QDialog::exec();

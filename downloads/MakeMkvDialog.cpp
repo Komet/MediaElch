@@ -10,9 +10,7 @@
 #include "notifications/Notificator.h"
 #include "renamer/Renamer.h"
 
-MakeMkvDialog::MakeMkvDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::MakeMkvDialog)
+MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
 {
     ui->setupUi(this);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
@@ -29,11 +27,14 @@ MakeMkvDialog::MakeMkvDialog(QWidget *parent) :
     m_makeMkvCon = new MakeMkvCon(this);
 
     connect(m_makeMkvCon, SIGNAL(sigMessage(QString)), ui->messages, SLOT(appendPlainText(QString)));
-    connect(m_makeMkvCon, SIGNAL(sigGotDrives(QMap<int,QString>)), this, SLOT(onGotDrives(QMap<int,QString>)));
-    connect(m_makeMkvCon, SIGNAL(sigScannedDrive(QString, QMap<int, MakeMkvCon::Track>)), this, SLOT(onScanFinished(QString, QMap<int, MakeMkvCon::Track>)));
+    connect(m_makeMkvCon, SIGNAL(sigGotDrives(QMap<int, QString>)), this, SLOT(onGotDrives(QMap<int, QString>)));
+    connect(m_makeMkvCon,
+        SIGNAL(sigScannedDrive(QString, QMap<int, MakeMkvCon::Track>)),
+        this,
+        SLOT(onScanFinished(QString, QMap<int, MakeMkvCon::Track>)));
     connect(m_makeMkvCon, SIGNAL(sigDiscBackedUp()), this, SLOT(onDiscBackedUp()));
     connect(m_makeMkvCon, SIGNAL(sigTrackImported(int)), this, SLOT(onTrackImported(int)));
-    connect(m_makeMkvCon, SIGNAL(sigProgress(int,int)), this, SLOT(onImportProgress(int,int)));
+    connect(m_makeMkvCon, SIGNAL(sigProgress(int, int)), this, SLOT(onImportProgress(int, int)));
     connect(ui->btnScanDrive, SIGNAL(clicked()), this, SLOT(onScanDrive()));
     connect(ui->btnClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->btnImportTracks, SIGNAL(clicked()), this, SLOT(onImportTracks()));
@@ -80,7 +81,8 @@ void MakeMkvDialog::accept()
 
 int MakeMkvDialog::exec()
 {
-    if (Settings::instance()->makeMkvDialogSize().isValid() && !Settings::instance()->makeMkvDialogPosition().isNull()) {
+    if (Settings::instance()->makeMkvDialogSize().isValid()
+        && !Settings::instance()->makeMkvDialogPosition().isNull()) {
         move(Settings::instance()->makeMkvDialogPosition());
         resize(Settings::instance()->makeMkvDialogSize());
     }
@@ -165,11 +167,14 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
     QMapIterator<int, MakeMkvCon::Track> it(tracks);
     while (it.hasNext()) {
         it.next();
-        QListWidgetItem *item = new QListWidgetItem(QString("%1 (%3, %2)").arg(it.value().name).arg(it.value().duration).arg(Helper::instance()->formatFileSize(it.value().size)));
+        QListWidgetItem *item = new QListWidgetItem(QString("%1 (%3, %2)")
+                                                        .arg(it.value().name)
+                                                        .arg(it.value().duration)
+                                                        .arg(Helper::instance()->formatFileSize(it.value().size)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(Qt::Unchecked);
         item->setData(Qt::UserRole, it.key());
-        item->setData(Qt::UserRole+1, it.value().fileName);
+        item->setData(Qt::UserRole + 1, it.value().fileName);
         ui->tracks->addItem(item);
     }
     ui->tracksWidget->setVisible(true);
@@ -183,15 +188,17 @@ void MakeMkvDialog::onImportTracks()
 {
     m_importComplete = false;
     m_tracks.clear();
-    for (int i=0, n=ui->tracks->count() ; i<n ; ++i) {
+    for (int i = 0, n = ui->tracks->count(); i < n; ++i) {
         if (ui->tracks->item(i)->checkState() == Qt::Checked)
-            m_tracks.insert(ui->tracks->item(i)->data(Qt::UserRole).toInt(), ui->tracks->item(i)->data(Qt::UserRole+1).toString());
+            m_tracks.insert(ui->tracks->item(i)->data(Qt::UserRole).toInt(),
+                ui->tracks->item(i)->data(Qt::UserRole + 1).toString());
     }
 
     if (m_tracks.isEmpty()) {
-        QMessageBox::warning(this, tr("No tracks selected"),
-                             tr("Please select at least one track you want to import."),
-                             QMessageBox::Ok);
+        QMessageBox::warning(this,
+            tr("No tracks selected"),
+            tr("Please select at least one track you want to import."),
+            QMessageBox::Ok);
         return;
     }
 
@@ -209,7 +216,7 @@ void MakeMkvDialog::onImportComplete()
 
 void MakeMkvDialog::onMovieChosen()
 {
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
@@ -241,7 +248,7 @@ void MakeMkvDialog::onMovieChosen()
 
     m_movie = new Movie(QStringList());
     m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
 }
 
 void MakeMkvDialog::onLoadDone(Movie *movie)
@@ -271,8 +278,10 @@ void MakeMkvDialog::onImport()
         newFolderName.replace("<year>", m_movie->released().toString("yyyy"));
         Helper::instance()->sanitizeFileName(newFolderName);
         if (!dir.mkdir(newFolderName)) {
-            QMessageBox::warning(this, tr("Creating destination directory failed"),
-                                 tr("The destination directory %1 could not be created").arg(dir.absolutePath() + QDir::separator() + newFolderName));
+            QMessageBox::warning(this,
+                tr("Creating destination directory failed"),
+                tr("The destination directory %1 could not be created")
+                    .arg(dir.absolutePath() + QDir::separator() + newFolderName));
             return;
         }
         dir.cd(newFolderName);
@@ -354,9 +363,10 @@ void MakeMkvDialog::importFinished()
     Manager::instance()->database()->add(m_movie, ui->comboImportDir->currentText());
     Manager::instance()->database()->commit();
     Manager::instance()->movieModel()->addMovie(m_movie);
-    m_movie = 0;
+    m_movie = nullptr;
 
-    Notificator::instance()->notify(Notificator::Information, tr("MakeMKV import finished"), tr("Import with MakeMKV has finished"));
+    Notificator::instance()->notify(
+        Notificator::Information, tr("MakeMKV import finished"), tr("Import with MakeMKV has finished"));
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Import has finished"));

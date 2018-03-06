@@ -27,7 +27,7 @@ class MovieWidget : public QWidget
 
 public:
     explicit MovieWidget(QWidget *parent = nullptr);
-    ~MovieWidget();
+    ~MovieWidget() override;
 
 public slots:
     void clear();
@@ -41,7 +41,7 @@ public slots:
     void updateMovieInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void actorDownloadStarted(QString, int);
@@ -121,9 +121,9 @@ private:
     QPointer<Movie> m_movie;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget*> m_streamDetailsWidgets;
-    QList< QList<QLineEdit*> > m_streamDetailsAudio;
-    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
+    QList<QWidget *> m_streamDetailsWidgets;
+    QList<QList<QLineEdit *>> m_streamDetailsAudio;
+    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
     void updateImages(QList<int> images);
 };

@@ -8,9 +8,7 @@
  * @brief TvShowSearch::TvShowSearch
  * @param parent
  */
-TvShowSearch::TvShowSearch(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::TvShowSearch)
+TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShowSearch)
 {
     ui->setupUi(this);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -23,9 +21,12 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-    connect(Manager::instance()->tvScrapers().at(0), SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onShowResults(QList<ScraperSearchResult>)));
+    connect(Manager::instance()->tvScrapers().at(0),
+        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onShowResults(QList<ScraperSearchResult>)));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->comboUpdate, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
     connect(ui->chkDvdOrder, SIGNAL(clicked()), this, SLOT(onChkDvdOrderToggled()));
@@ -51,7 +52,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
     ui->chkStatus->setMyData(TvShowScraperInfos::Status);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
     }
@@ -72,10 +73,10 @@ TvShowSearch::~TvShowSearch()
  * @param parent Parent widget (used only the first time for constructing)
  * @return Instance of the dialog
  */
-TvShowSearch* TvShowSearch::instance(QWidget *parent)
+TvShowSearch *TvShowSearch::instance(QWidget *parent)
 {
-    static TvShowSearch *m_instance = 0;
-    if (m_instance == 0) {
+    static TvShowSearch *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new TvShowSearch(parent);
     }
     return m_instance;
@@ -89,8 +90,8 @@ TvShowSearch* TvShowSearch::instance(QWidget *parent)
 int TvShowSearch::exec(QString searchString, QString id)
 {
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    newSize.setHeight(parentWidget()->size().height() - 200);
+    newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
     if (!id.isEmpty())
@@ -141,7 +142,8 @@ void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     foreach (const ScraperSearchResult &result, results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        QTableWidgetItem *item =
+            new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -191,7 +193,7 @@ void TvShowSearch::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
             m_infosToLoad.append(box->myData().toInt());
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
@@ -209,7 +211,7 @@ void TvShowSearch::onChkToggled()
 void TvShowSearch::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled())
             box->setChecked(checked);
     }
@@ -291,7 +293,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkStatus->setEnabled(false);
     }
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>())
         box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && box->isEnabled());
     onChkToggled();
 }

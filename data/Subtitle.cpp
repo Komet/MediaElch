@@ -1,9 +1,6 @@
 #include "Subtitle.h"
 
-Subtitle::Subtitle(QObject *parent) :
-    QObject(parent),
-    m_forced{false},
-    m_changed{false}
+Subtitle::Subtitle(QObject *parent) : QObject(parent), m_forced{false}, m_changed{false}
 {
 }
 
@@ -52,4 +49,3 @@ void Subtitle::setChanged(bool changed)
     if (changed)
         emit sigChanged();
 }
-

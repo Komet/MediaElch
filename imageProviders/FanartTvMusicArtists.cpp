@@ -71,7 +71,8 @@ QNetworkAccessManager *FanartTvMusicArtists::qnam()
 void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
-    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
+                 .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
@@ -80,13 +81,13 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
 void FanartTvMusicArtists::onSearchArtistFinished()
 {
     QList<ScraperSearchResult> results;
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i=0, n=domDoc.elementsByTagName("artist").count() ; i<n ; ++i) {
+        for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("name").isEmpty())
@@ -131,7 +132,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
 
 void FanartTvMusicArtists::onLoadConcertFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
@@ -146,7 +147,9 @@ QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
 {
     QMap<int, QStringList> map;
     map.insert(ImageType::ConcertBackdrop, QStringList() << "artistbackground");
-    map.insert(ImageType::ConcertLogo, QStringList() << "hdmusiclogo" << "musiclogo");
+    map.insert(ImageType::ConcertLogo,
+        QStringList() << "hdmusiclogo"
+                      << "musiclogo");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
@@ -348,14 +351,15 @@ void FanartTvMusicArtists::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-QWidget* FanartTvMusicArtists::settingsWidget()
+QWidget *FanartTvMusicArtists::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 QString FanartTvMusicArtists::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey) : QString("api_key=%1").arg(m_apiKey);
+    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
+                                         : QString("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTvMusicArtists::searchAlbum(QString artistName, QString searchStr, int limit)

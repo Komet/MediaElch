@@ -15,10 +15,9 @@ class MovieFilesOrganizer : public QThread
     Q_OBJECT
 public:
     explicit MovieFilesOrganizer(QObject *parent = nullptr);
-    ~MovieFilesOrganizer();
+    ~MovieFilesOrganizer() override;
     void canceled(QString msg);
     void moveToDirs(QString dir);
 };
 
 #endif // MOVIEFILESORGANIZER_H
-

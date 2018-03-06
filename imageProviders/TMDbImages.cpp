@@ -14,13 +14,16 @@
 TMDbImages::TMDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster
-               << ImageType::ConcertBackdrop << ImageType::ConcertPoster;
+    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::ConcertBackdrop
+               << ImageType::ConcertPoster;
     m_searchResultLimit = 0;
     m_tmdb = new TMDb(this);
     m_dummyMovie = new Movie(QStringList(), this);
-    connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie*)), this, SLOT(onLoadImagesFinished()));
-    connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
+    connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie *)), this, SLOT(onLoadImagesFinished()));
+    connect(m_tmdb,
+        SIGNAL(searchDone(QList<ScraperSearchResult>)),
+        this,
+        SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
 
 /**
@@ -99,7 +102,7 @@ void TMDbImages::moviePosters(QString tmdbId)
     m_imageType = ImageType::MoviePoster;
     QList<int> infos;
     infos << MovieScraperInfos::Poster;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, tmdbId);
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -114,7 +117,7 @@ void TMDbImages::movieBackdrops(QString tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QList<int> infos;
     infos << MovieScraperInfos::Backdrop;
-    QMap<ScraperInterface*, QString> ids;
+    QMap<ScraperInterface *, QString> ids;
     ids.insert(0, tmdbId);
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -381,9 +384,9 @@ void TMDbImages::loadSettings(QSettings &settings)
     m_tmdb->loadSettings(settings);
 }
 
-QWidget* TMDbImages::settingsWidget()
+QWidget *TMDbImages::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }
 
 void TMDbImages::searchAlbum(QString artistName, QString searchStr, int limit)

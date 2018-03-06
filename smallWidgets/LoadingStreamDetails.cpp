@@ -1,9 +1,7 @@
 #include "LoadingStreamDetails.h"
 #include "ui_LoadingStreamDetails.h"
 
-LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LoadingStreamDetails)
+LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingStreamDetails)
 {
     ui->setupUi(this);
 
@@ -15,9 +13,9 @@ LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) :
 
     QFont font = ui->currentFile->font();
 #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
+    font.setPointSize(font.pointSize() - 1);
 #else
-    font.setPointSize(font.pointSize()-2);
+    font.setPointSize(font.pointSize() - 2);
 #endif
     ui->currentFile->setFont(font);
 }
@@ -27,7 +25,7 @@ LoadingStreamDetails::~LoadingStreamDetails()
     delete ui;
 }
 
-void LoadingStreamDetails::loadMovies(QList<Movie*> movies)
+void LoadingStreamDetails::loadMovies(QList<Movie *> movies)
 {
     ui->progressBar->setRange(0, movies.count());
     ui->progressBar->setValue(0);
@@ -39,14 +37,14 @@ void LoadingStreamDetails::loadMovies(QList<Movie*> movies)
         movie->controller()->loadStreamDetailsFromFile();
         movie->setChanged(true);
         movie->blockSignals(false);
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(movie->name());
         qApp->processEvents();
     }
     accept();
 }
 
-void LoadingStreamDetails::loadConcerts(QList<Concert*> concerts)
+void LoadingStreamDetails::loadConcerts(QList<Concert *> concerts)
 {
     ui->progressBar->setRange(0, concerts.count());
     ui->progressBar->setValue(0);
@@ -56,7 +54,7 @@ void LoadingStreamDetails::loadConcerts(QList<Concert*> concerts)
     foreach (Concert *concert, concerts) {
         concert->controller()->loadStreamDetailsFromFile();
         concert->setChanged(true);
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(concert->name());
         qApp->processEvents();
     }
@@ -73,7 +71,7 @@ void LoadingStreamDetails::loadTvShowEpisodes(QList<TvShowEpisode *> episodes)
     foreach (TvShowEpisode *episode, episodes) {
         episode->loadStreamDetailsFromFile();
         episode->setChanged(true);
-        ui->progressBar->setValue(ui->progressBar->value()+1);
+        ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(episode->name());
         qApp->processEvents();
     }

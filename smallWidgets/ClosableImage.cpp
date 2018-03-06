@@ -18,8 +18,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 
-ClosableImage::ClosableImage(QWidget *parent) :
-    QLabel(parent)
+ClosableImage::ClosableImage(QWidget *parent) : QLabel(parent)
 {
     setMouseTracking(true);
     m_showZoomAndResolution = true;
@@ -30,11 +29,11 @@ ClosableImage::ClosableImage(QWidget *parent) :
     m_clickable = false;
     m_loading = false;
     m_font = QApplication::font();
-    #ifdef Q_OS_WIN32
-    m_font.setPointSize(m_font.pointSize()-1);
-    #else
-    m_font.setPointSize(m_font.pointSize()-2);
-    #endif
+#ifdef Q_OS_WIN32
+    m_font.setPointSize(m_font.pointSize() - 1);
+#else
+    m_font.setPointSize(m_font.pointSize() - 2);
+#endif
     m_font.setFamily("Helvetica Neue");
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
@@ -74,13 +73,14 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         m_anim->setEasingCurve(QEasingCurve::InQuad);
         m_anim->setTargetObject(this);
         m_anim->setStartValue(0);
-        m_anim->setEndValue(width()/2);
+        m_anim->setEndValue(width() / 2);
         m_anim->setPropertyName("mySize");
         m_anim->setDuration(400);
         m_anim->start(QPropertyAnimation::DeleteWhenStopped);
         connect(m_anim, SIGNAL(finished()), this, SIGNAL(sigClose()));
         connect(m_anim, SIGNAL(finished()), this, SLOT(closed()), Qt::QueuedConnection);
-    } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution && zoomRect().contains(ev->pos())) {
+    } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
+               && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
             ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
             ImagePreviewDialog::instance()->exec();
@@ -104,7 +104,8 @@ void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
             return;
         }
 
-        if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution && zoomRect().contains(ev->pos())) {
+        if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution
+            && zoomRect().contains(ev->pos())) {
             setCursor(Qt::PointingHandCursor);
             setToolTip(tr("Zoom Image"));
             return;
@@ -136,8 +137,10 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     }
 
     if (!m_pixmap.isNull()) {
-        int h = height()*(width()-2*m_mySize)/width();
-        p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth((width()-2*m_mySize) * Helper::instance()->devicePixelRatio(this)));
+        int h = height() * (width() - 2 * m_mySize) / width();
+        p.drawPixmap(m_mySize,
+            (height() - h) / 2,
+            m_pixmap.scaledToWidth((width() - 2 * m_mySize) * Helper::instance()->devicePixelRatio(this)));
         return;
     }
 
@@ -148,9 +151,10 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         img = QImage::fromData(m_image);
         origWidth = img.width();
         origHeight = img.height();
-        img = img.scaledToWidth((width()-9)*Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+        img = img.scaledToWidth((width() - 9) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
     } else if (!m_imagePath.isEmpty()) {
-        img = ImageCache::instance()->image(m_imagePath, (width()-9)*Helper::instance()->devicePixelRatio(this), 0, origWidth, origHeight);
+        img = ImageCache::instance()->image(
+            m_imagePath, (width() - 9) * Helper::instance()->devicePixelRatio(this), 0, origWidth, origHeight);
     } else {
         int x = (width() - (m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
         int y = (height() - (m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
@@ -164,16 +168,19 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     Helper::instance()->setDevicePixelRatio(img, Helper::instance()->devicePixelRatio(this));
     QRect r = rect();
     p.drawImage(0, 7, img);
-    QImage closeImg = QImage(":/img/closeImage.png").scaled(QSize(20, 20) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QImage closeImg = QImage(":/img/closeImage.png")
+                          .scaled(QSize(20, 20) * Helper::instance()->devicePixelRatio(this),
+                              Qt::KeepAspectRatio,
+                              Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(closeImg, Helper::instance()->devicePixelRatio(this));
-    p.drawImage(r.width()-21, 0, closeImg);
+    p.drawImage(r.width() - 21, 0, closeImg);
     if (m_showZoomAndResolution) {
         QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
         QFontMetrics fm(m_font);
         int resWidth = fm.width(res);
         p.setFont(m_font);
         p.setPen(QColor(102, 102, 102));
-        p.drawText(width()-resWidth-9, height()-20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
+        p.drawText(width() - resWidth - 9, height() - 20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
         p.drawPixmap(zoomRect(), m_zoomIn);
         drawTitle(p);
     }
@@ -243,7 +250,7 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         if (imageWidth == 0 || imageHeight == 0) {
             setFixedHeight((m_fixedHeight != 0) ? m_fixedHeight : 135);
         } else {
-            int calcHeight = qCeil((((qreal)width()-9)/imageWidth)*imageHeight+7+zoomSpace);
+            int calcHeight = qCeil((((qreal)width() - 9) / imageWidth) * imageHeight + 7 + zoomSpace);
             setFixedHeight((m_fixedHeight != 0 && calcHeight < m_fixedHeight) ? m_fixedHeight : calcHeight);
         }
     } else {
@@ -252,7 +259,7 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         if (imageWidth == 0 || imageHeight == 0)
             setFixedWidth(180);
         else
-            setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
+            setFixedWidth(qCeil((((qreal)height() - 7 - zoomSpace) / imageHeight) * imageWidth + 9));
     }
     update();
 }
@@ -269,7 +276,7 @@ QByteArray ClosableImage::image()
     return m_image;
 }
 
-int ClosableImage::mySize()const
+int ClosableImage::mySize() const
 {
     return m_mySize;
 }
@@ -329,7 +336,7 @@ void ClosableImage::setLoading(const bool &loading)
         m_imagePath.clear();
         update();
     } else {
-        setMovie(0);
+        setMovie(nullptr);
     }
 }
 
@@ -341,28 +348,28 @@ void ClosableImage::clear()
     m_image = QByteArray();
     m_pixmap = m_emptyPixmap;
     m_loading = false;
-    setMovie(0);
+    setMovie(nullptr);
     update();
 }
 
 QRect ClosableImage::zoomRect()
 {
-    return QRect(0, height()-16, 16, 16);
+    return QRect(0, height() - 16, 16, 16);
 }
 
 QRect ClosableImage::captureRect()
 {
-    return QRect(20, height()-16, 16, 16);
+    return QRect(20, height() - 16, 16, 16);
 }
 
 QRect ClosableImage::closeRect()
 {
-    return QRect(width()-25, 0, 24, 24);
+    return QRect(width() - 25, 0, 24, 24);
 }
 
 QRect ClosableImage::imgRect()
 {
-    return QRect(0, 7, width()-9, height()-23);
+    return QRect(0, 7, width() - 9, height() - 23);
 }
 
 void ClosableImage::closed()
@@ -426,7 +433,9 @@ void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    QStringList filters = QStringList() << ".jpg"
+                                        << ".jpeg"
+                                        << ".png";
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -439,7 +448,9 @@ void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    QStringList filters = QStringList() << ".jpg"
+                                        << ".jpeg"
+                                        << ".png";
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -453,7 +464,9 @@ void ClosableImage::dropEvent(QDropEvent *event)
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
-        QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+        QStringList filters = QStringList() << ".jpg"
+                                            << ".jpeg"
+                                            << ".png";
         foreach (const QString &filter, filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(m_imageType, url);

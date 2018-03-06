@@ -36,15 +36,15 @@ public:
     void setInfosToLoad(QList<int> infos);
 
 signals:
-    void sigInfoLoadDone(Concert*);
-    void sigLoadDone(Concert*);
-    void sigLoadImagesStarted(Concert*);
-    void sigDownloadProgress(Concert*, int, int);
-    void sigLoadingImages(Concert*, QList<int>);
-    void sigImage(Concert*, int, QByteArray);
+    void sigInfoLoadDone(Concert *);
+    void sigLoadDone(Concert *);
+    void sigLoadImagesStarted(Concert *);
+    void sigDownloadProgress(Concert *, int, int);
+    void sigLoadingImages(Concert *, QList<int>);
+    void sigImage(Concert *, int, QByteArray);
 
 private slots:
-    void onFanartLoadDone(Concert* concert, QMap<int, QList<Poster> > posters);
+    void onFanartLoadDone(Concert *concert, QMap<int, QList<Poster>> posters);
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
 

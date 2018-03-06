@@ -15,7 +15,7 @@ class PluginsWidget : public QWidget
 
 public:
     explicit PluginsWidget(QWidget *parent = nullptr);
-    ~PluginsWidget();
+    ~PluginsWidget() override;
 
     void setPlugin(PluginManager::Plugin plugin);
 

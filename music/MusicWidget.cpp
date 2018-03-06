@@ -6,21 +6,31 @@
 #include "../globals/Manager.h"
 #include "../notifications/NotificationBox.h"
 
-MusicWidget::MusicWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MusicWidget)
+MusicWidget::MusicWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidget)
 {
     ui->setupUi(this);
 
-    connect(ui->artist, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
-    connect(ui->artist, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->artist, SIGNAL(sigDownloadsStarted(QString,int)), this, SIGNAL(sigDownloadsStarted(QString,int)));
-    connect(ui->artist, SIGNAL(sigDownloadsProgress(int,int,int)), this, SIGNAL(sigDownloadsProgress(int,int,int)));
+    connect(ui->artist,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
+    connect(ui->artist,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
+    connect(ui->artist, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
+    connect(ui->artist, SIGNAL(sigDownloadsProgress(int, int, int)), this, SIGNAL(sigDownloadsProgress(int, int, int)));
     connect(ui->artist, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
-    connect(ui->album, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->album, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
-    connect(ui->album, SIGNAL(sigDownloadsStarted(QString,int)), this, SIGNAL(sigDownloadsStarted(QString,int)));
-    connect(ui->album, SIGNAL(sigDownloadsProgress(int,int,int)), this, SIGNAL(sigDownloadsProgress(int,int,int)));
+    connect(ui->album,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
+    connect(ui->album,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
+        this,
+        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
+    connect(ui->album, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
+    connect(ui->album, SIGNAL(sigDownloadsProgress(int, int, int)), this, SIGNAL(sigDownloadsProgress(int, int, int)));
     connect(ui->album, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
 }
 
@@ -90,10 +100,10 @@ void MusicWidget::onStartScraperSearch()
 
 void MusicWidget::onSaveInformation()
 {
-    QList<Artist*> artists = MusicFilesWidget::instance()->selectedArtists();
-    QList<Album*> albums = MusicFilesWidget::instance()->selectedAlbums();
-    QList<Album*> albumsToSave;
-    QList<Artist*> artistsToSave;
+    QList<Artist *> artists = MusicFilesWidget::instance()->selectedArtists();
+    QList<Album *> albums = MusicFilesWidget::instance()->selectedAlbums();
+    QList<Album *> albumsToSave;
+    QList<Artist *> artistsToSave;
 
     if (artists.count() == 1 && albums.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->artist->onSaveInformation();
@@ -115,18 +125,21 @@ void MusicWidget::onSaveInformation()
 
     int itemsToSave = artistsToSave.count() + albumsToSave.count();
     int itemsSaved = 0;
-    NotificationBox::instance()->showProgressBar(tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showProgressBar(
+        tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
     qApp->processEvents();
 
     foreach (Artist *artist, artistsToSave) {
         artist->controller()->saveData(Manager::instance()->mediaCenterInterface());
-        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(
+            ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
     foreach (Album *album, albumsToSave) {
         album->controller()->saveData(Manager::instance()->mediaCenterInterface());
-        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(
+            ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
@@ -136,8 +149,8 @@ void MusicWidget::onSaveInformation()
 
 void MusicWidget::onSaveAll()
 {
-    QList<Album*> albumsToSave;
-    QList<Artist*> artistsToSave;
+    QList<Album *> albumsToSave;
+    QList<Artist *> artistsToSave;
 
     foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
         if (artist->hasChanged())
@@ -150,18 +163,21 @@ void MusicWidget::onSaveAll()
 
     int itemsToSave = artistsToSave.count() + albumsToSave.count();
     int itemsSaved = 0;
-    NotificationBox::instance()->showProgressBar(tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showProgressBar(
+        tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
     qApp->processEvents();
 
     foreach (Artist *artist, artistsToSave) {
         artist->controller()->saveData(Manager::instance()->mediaCenterInterface());
-        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(
+            ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
     foreach (Album *album, albumsToSave) {
         album->controller()->saveData(Manager::instance()->mediaCenterInterface());
-        NotificationBox::instance()->progressBarProgress(++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(
+            ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 

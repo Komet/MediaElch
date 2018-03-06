@@ -9,20 +9,23 @@ class Notificator : public QObject
 {
     Q_OBJECT
 public:
-    explicit Notificator(QSystemTrayIcon *trayIcon = 0, QWidget *parent = nullptr);
-    static Notificator *instance(QSystemTrayIcon *trayIcon = 0, QWidget *parent = nullptr);
+    explicit Notificator(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
+    static Notificator *instance(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
 
-    enum Class {
+    enum Class
+    {
         Information,
         Warning,
         Critical
     };
 
 public slots:
-    virtual void notify(Class cls, const QString &title, const QString &text, const QIcon &icon = QIcon(), int timeout = 10000);
+    virtual void
+    notify(Class cls, const QString &title, const QString &text, const QIcon &icon = QIcon(), int timeout = 10000);
 
 private:
-    enum Mode {
+    enum Mode
+    {
         None,
         QSystemTray,
         UserNotificationCenter

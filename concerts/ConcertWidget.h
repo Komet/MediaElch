@@ -25,7 +25,7 @@ class ConcertWidget : public QWidget
 
 public:
     explicit ConcertWidget(QWidget *parent = nullptr);
-    ~ConcertWidget();
+    ~ConcertWidget() override;
 
 public slots:
     void clear();
@@ -39,7 +39,7 @@ public slots:
     void updateConcertInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void setActionSearchEnabled(bool, MainWidgets);
@@ -96,9 +96,9 @@ private:
     QPointer<Concert> m_concert;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget*> m_streamDetailsWidgets;
-    QList< QList<QLineEdit*> > m_streamDetailsAudio;
-    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
+    QList<QWidget *> m_streamDetailsWidgets;
+    QList<QList<QLineEdit *>> m_streamDetailsAudio;
+    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     void updateImages(QList<int> images);
 };
 

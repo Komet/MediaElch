@@ -19,7 +19,7 @@ class MusicWidgetAlbum : public QWidget
 
 public:
     explicit MusicWidgetAlbum(QWidget *parent = nullptr);
-    ~MusicWidgetAlbum();
+    ~MusicWidgetAlbum() override;
     void setAlbum(Album *album);
 
 public slots:
@@ -32,8 +32,8 @@ public slots:
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
     void sigSetActionSaveEnabled(bool, MainWidgets);
-    void sigDownloadsStarted(QString,int);
-    void sigDownloadsProgress(int,int,int);
+    void sigDownloadsStarted(QString, int);
+    void sigDownloadsProgress(int, int, int);
     void sigDownloadsFinished(int);
 
 private slots:

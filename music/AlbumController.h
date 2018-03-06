@@ -16,7 +16,7 @@ class AlbumController : public QObject
     Q_OBJECT
 public:
     explicit AlbumController(Album *parent = nullptr);
-    ~AlbumController();
+    ~AlbumController() override;
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
@@ -36,18 +36,18 @@ public:
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:
-    void sigInfoLoadDone(Album*);
-    void sigLoadingImages(Album*, QList<int>);
-    void sigLoadDone(Album*);
-    void sigImage(Album*,int,QByteArray);
-    void sigLoadImagesStarted(Album*);
-    void sigDownloadProgress(Album*, int, int);
-    void sigSaved(Album*);
+    void sigInfoLoadDone(Album *);
+    void sigLoadingImages(Album *, QList<int>);
+    void sigLoadDone(Album *);
+    void sigImage(Album *, int, QByteArray);
+    void sigLoadImagesStarted(Album *);
+    void sigDownloadProgress(Album *, int, int);
+    void sigSaved(Album *);
 
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Album* album, QMap<int, QList<Poster> > posters);
+    void onFanartLoadDone(Album *album, QMap<int, QList<Poster>> posters);
 
 private:
     Album *m_album;

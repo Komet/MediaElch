@@ -5,9 +5,7 @@
 
 #include "globals/Manager.h"
 
-ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ConcertSearchWidget)
+ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConcertSearchWidget)
 {
     ui->setupUi(this);
 
@@ -16,12 +14,15 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) :
 
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->concertScrapers().indexOf(scraper));
-        connect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
+        connect(scraper,
+            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            this,
+            SLOT(showResults(QList<ScraperSearchResult>)));
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
 
     ui->chkBackdrop->setMyData(ConcertScraperInfos::Backdrop);
     ui->chkCertification->setMyData(ConcertScraperInfos::Certification);
@@ -36,7 +37,7 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) :
     ui->chkTitle->setMyData(ConcertScraperInfos::Title);
     ui->chkTrailer->setMyData(ConcertScraperInfos::Trailer);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
     }
@@ -86,7 +87,7 @@ void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)
         QString name = result.name;
         if (result.released.isValid())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
-        QTableWidgetItem *item = new QTableWidgetItem(name);
+        auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -105,7 +106,7 @@ void ConcertSearchWidget::chkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
             m_infosToLoad.append(box->myData().toInt());
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
@@ -119,7 +120,7 @@ void ConcertSearchWidget::chkToggled()
 
 void ConcertSearchWidget::chkAllToggled(bool toggled)
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled())
             box->setChecked(toggled);
     }
@@ -148,9 +149,10 @@ void ConcertSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
     QList<int> infos = Settings::instance()->scraperInfos(WidgetConcerts, QString::number(scraperNo));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));
-        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty())
+                        && scraperSupports.contains(box->myData().toInt()));
     }
     chkToggled();
 }

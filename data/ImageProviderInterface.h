@@ -69,14 +69,14 @@ public slots:
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
-    virtual void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >) = 0;
-    virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >) = 0;
-    virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >) = 0;
-    virtual void sigImagesLoaded(Artist *, QMap<int, QList<Poster> >) = 0;
-    virtual void sigImagesLoaded(Album *, QMap<int, QList<Poster> >) = 0;
+    virtual void sigImagesLoaded(Movie *, QMap<int, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Artist *, QMap<int, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Album *, QMap<int, QList<Poster>>) = 0;
 };
 
-Q_DECLARE_METATYPE(ImageProviderInterface*)
-Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface*)
+Q_DECLARE_METATYPE(ImageProviderInterface *)
+Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface *)
 
 #endif // IMAGEPROVIDERINTERFACE_H

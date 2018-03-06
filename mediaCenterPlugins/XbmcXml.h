@@ -21,54 +21,73 @@ class XbmcXml : public MediaCenterInterface
     Q_OBJECT
 public:
     explicit XbmcXml(QObject *parent = nullptr);
-    ~XbmcXml();
+    ~XbmcXml() override;
 
-    bool saveMovie(Movie *movie);
-    bool loadMovie(Movie *movie, QString initialNfoContent = "");
-    bool saveConcert(Concert *concert);
-    bool loadConcert(Concert *concert, QString initialNfoContent = "");
+    bool saveMovie(Movie *movie) override;
+    bool loadMovie(Movie *movie, QString initialNfoContent = "") override;
+    bool saveConcert(Concert *concert) override;
+    bool loadConcert(Concert *concert, QString initialNfoContent = "") override;
     void loadConcertImages(Concert *concert);
-    bool loadTvShow(TvShow *show, QString initialNfoContent = "");
-    bool loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent = "");
-    bool saveTvShow(TvShow *show);
-    bool saveTvShowEpisode(TvShowEpisode *episode);
-    bool hasFeature(int feature);
-    QStringList extraFanartNames(Movie *movie);
-    QStringList extraFanartNames(Concert *concert);
-    QStringList extraFanartNames(TvShow *show);
-    QStringList extraFanartNames(Artist *artist);
-    QImage movieSetPoster(QString setName);
-    QImage movieSetBackdrop(QString setName);
-    void saveMovieSetPoster(QString setName, QImage poster);
-    void saveMovieSetBackdrop(QString setName, QImage backdrop);
+    bool loadTvShow(TvShow *show, QString initialNfoContent = "") override;
+    bool loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent = "") override;
+    bool saveTvShow(TvShow *show) override;
+    bool saveTvShowEpisode(TvShowEpisode *episode) override;
+    bool hasFeature(int feature) override;
+    QStringList extraFanartNames(Movie *movie) override;
+    QStringList extraFanartNames(Concert *concert) override;
+    QStringList extraFanartNames(TvShow *show) override;
+    QStringList extraFanartNames(Artist *artist) override;
+    QImage movieSetPoster(QString setName) override;
+    QImage movieSetBackdrop(QString setName) override;
+    void saveMovieSetPoster(QString setName, QImage poster) override;
+    void saveMovieSetBackdrop(QString setName, QImage backdrop) override;
 
-    bool saveArtist(Artist *artist);
-    bool saveAlbum(Album *album);
-    bool loadArtist(Artist *artist, QString initialNfoContent = "");
-    bool loadAlbum(Album *album, QString initialNfoContent = "");
+    bool saveArtist(Artist *artist) override;
+    bool saveAlbum(Album *album) override;
+    bool loadArtist(Artist *artist, QString initialNfoContent = "") override;
+    bool loadAlbum(Album *album, QString initialNfoContent = "") override;
 
-    QString actorImageName(Movie *movie, Actor actor);
-    QString actorImageName(TvShow *show, Actor actor);
-    QString actorImageName(TvShowEpisode *episode, Actor actor);
+    QString actorImageName(Movie *movie, Actor actor) override;
+    QString actorImageName(TvShow *show, Actor actor) override;
+    QString actorImageName(TvShowEpisode *episode, Actor actor) override;
 
-    QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShow *show, int type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Movie *movie,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
+    QString imageFileName(Concert *concert,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
+    QString imageFileName(TvShowEpisode *episode,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
+    QString imageFileName(TvShow *show,
+        int type,
+        int season = -1,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
+    QString imageFileName(Artist *artist,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
+    QString imageFileName(Album *album,
+        int type,
+        QList<DataFile> dataFiles = QList<DataFile>(),
+        bool constructName = false) override;
 
-    QString nfoFilePath(Movie *movie);
-    QString nfoFilePath(Concert *concert);
-    QString nfoFilePath(TvShowEpisode *episode);
-    QString nfoFilePath(TvShow *show);
-    QString nfoFilePath(Artist *artist);
-    QString nfoFilePath(Album *album);
+    QString nfoFilePath(Movie *movie) override;
+    QString nfoFilePath(Concert *concert) override;
+    QString nfoFilePath(TvShowEpisode *episode) override;
+    QString nfoFilePath(TvShow *show) override;
+    QString nfoFilePath(Artist *artist) override;
+    QString nfoFilePath(Album *album) override;
 
     static void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
 
-    void loadBooklets(Album *album);
+    void loadBooklets(Album *album) override;
 
 private:
     QByteArray getMovieXml(Movie *movie);
@@ -87,7 +106,9 @@ private:
     QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
     void appendXmlNode(QDomDocument &doc, QDomNode &node);
     void removeChildNodes(QDomDocument &doc, const QString &name);
-    void writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle*> subtitles = QList<Subtitle*>());
+    void writeStreamDetails(QDomDocument &doc,
+        StreamDetails *streamDetails,
+        QList<Subtitle *> subtitles = QList<Subtitle *>());
 };
 
 #endif // XBMCXML_H

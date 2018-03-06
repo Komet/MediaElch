@@ -22,9 +22,7 @@
  * @brief ImageDialog::ImageDialog
  * @param parent
  */
-ImageDialog::ImageDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ImageDialog)
+ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDialog)
 {
     ui->setupUi(this);
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
@@ -41,7 +39,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
 
     resize(Settings::instance()->settings()->value("ImageDialog/Size").toSize());
 
-    connect(ui->table, SIGNAL(cellClicked(int,int)), this, SLOT(imageClicked(int, int)));
+    connect(ui->table, SIGNAL(cellClicked(int, int)), this, SLOT(imageClicked(int, int)));
     connect(ui->table, SIGNAL(sigDroppedImage(QUrl)), this, SLOT(onImageDropped(QUrl)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->buttonChoose, SIGNAL(clicked()), this, SLOT(chooseLocalImage()));
@@ -50,7 +48,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
     connect(ui->buttonZoomOut, SIGNAL(clicked()), this, SLOT(onZoomOut()));
     connect(ui->searchTerm, SIGNAL(returnPressed()), this, SLOT(onSearch()));
     connect(ui->imageProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
     connect(ui->gallery, SIGNAL(sigRemoveImage(QString)), this, SLOT(onImageClosed(QString)));
     connect(ui->btnAcceptImages, SIGNAL(clicked()), this, SLOT(accept()));
 
@@ -61,7 +59,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
     ui->labelSpinner->setMovie(movie);
     clearSearch();
     setImageType(ImageType::MoviePoster);
-    m_currentDownloadReply = 0;
+    m_currentDownloadReply = nullptr;
     m_multiSelection = false;
 
     QPixmap zoomOut(":/img/zoom_out.png");
@@ -79,7 +77,10 @@ ImageDialog::ImageDialog(QWidget *parent) :
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
     foreach (ImageProviderInterface *provider, Manager::instance()->imageProviders()) {
-        connect(provider, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+        connect(provider,
+            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            this,
+            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
         connect(provider, SIGNAL(sigImagesLoaded(QList<Poster>)), this, SLOT(onProviderImagesLoaded(QList<Poster>)));
     }
 }
@@ -108,7 +109,8 @@ int ImageDialog::exec(int type)
     m_type = type;
 
     // set slider value
-    ui->previewSizeSlider->setValue(Settings::instance()->settings()->value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
+    ui->previewSizeSlider->setValue(
+        Settings::instance()->settings()->value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
 
     QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
     QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
@@ -124,8 +126,8 @@ int ImageDialog::exec(int type)
     } else {
         // resize
         QSize newSize;
-        newSize.setHeight(parentWidget()->size().height()-50);
-        newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
+        newSize.setHeight(parentWidget()->size().height() - 50);
+        newSize.setWidth(qMin(1200, parentWidget()->size().width() - 100));
         resize(newSize);
     }
 
@@ -133,9 +135,9 @@ int ImageDialog::exec(int type)
         move(savedPos);
     } else {
         // move to center
-        int xMove = (parentWidget()->size().width()-size().width())/2;
+        int xMove = (parentWidget()->size().width() - size().width()) / 2;
         QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-        move(globalPos.x()+xMove, qMax(0, globalPos.y()-100));
+        move(globalPos.x() + xMove, qMax(0, globalPos.y() - 100));
     }
 
     // get image providers and setup combo box
@@ -145,13 +147,13 @@ int ImageDialog::exec(int type)
     ui->imageProvider->clear();
     if (haveDefault) {
         ui->imageProvider->addItem(tr("Default"));
-        ui->imageProvider->setItemData(0, true, Qt::UserRole+1);
+        ui->imageProvider->setItemData(0, true, Qt::UserRole + 1);
     }
     foreach (ImageProviderInterface *provider, m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
-        ui->imageProvider->setItemData(row, false, Qt::UserRole+1);
+        ui->imageProvider->setItemData(row, false, Qt::UserRole + 1);
     }
     ui->imageProvider->blockSignals(false);
     updateSourceLink();
@@ -221,8 +223,8 @@ void ImageDialog::reject()
  */
 ImageDialog *ImageDialog::instance(QWidget *parent)
 {
-    static ImageDialog *m_instance = 0;
-    if (m_instance == 0) {
+    static ImageDialog *m_instance = nullptr;
+    if (m_instance == nullptr) {
         m_instance = new ImageDialog(parent);
     }
     return m_instance;
@@ -316,7 +318,7 @@ void ImageDialog::startNextDownload()
 {
     qDebug() << "Entered";
     int nextIndex = -1;
-    for (int i=0, n=m_elements.size() ; i<n ; i++) {
+    for (int i = 0, n = m_elements.size(); i < n; i++) {
         if (!m_elements[i].downloaded) {
             nextIndex = i;
             break;
@@ -342,10 +344,11 @@ void ImageDialog::downloadFinished()
 {
     qDebug() << "Entered";
 
-    if (m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         m_currentDownloadReply->deleteLater();
-        m_currentDownloadReply = qnam()->get(QNetworkRequest(m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        m_currentDownloadReply = qnam()->get(
+            QNetworkRequest(m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_currentDownloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
         return;
     }
@@ -357,12 +360,16 @@ void ImageDialog::downloadFinished()
     }
 
     m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-    Helper::instance()->setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, Helper::instance()->devicePixelRatio(this));
+    Helper::instance()->setDevicePixelRatio(
+        m_elements[m_currentDownloadIndex].pixmap, Helper::instance()->devicePixelRatio(this));
     if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(m_elements[m_currentDownloadIndex].scaledPixmap, Helper::instance()->devicePixelRatio(this));
+        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(
+            (getColumnWidth() - 10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(
+            m_elements[m_currentDownloadIndex].scaledPixmap, Helper::instance()->devicePixelRatio(this));
         m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
-        m_elements[m_currentDownloadIndex].cellWidget->setHint(m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
+        m_elements[m_currentDownloadIndex].cellWidget->setHint(
+            m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
     }
     ui->table->resizeRowsToContents();
     m_elements[m_currentDownloadIndex].downloaded = true;
@@ -380,25 +387,26 @@ void ImageDialog::renderTable()
     ui->table->setRowCount(0);
     ui->table->clearContents();
 
-    for (int i=0, n=ui->table->columnCount() ; i<n ; i++)
+    for (int i = 0, n = ui->table->columnCount(); i < n; i++)
         ui->table->setColumnWidth(i, getColumnWidth());
 
-    for (int i=0, n=m_elements.size() ; i<n ; i++) {
-        int row = (i-(i%cols))/cols;
-        if (i%cols == 0)
+    for (int i = 0, n = m_elements.size(); i < n; i++) {
+        int row = (i - (i % cols)) / cols;
+        if (i % cols == 0)
             ui->table->insertRow(row);
-        QTableWidgetItem *item = new QTableWidgetItem;
+        auto item = new QTableWidgetItem;
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
-        ImageLabel *label = new ImageLabel(ui->table);
+        auto label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
-            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(
+                (getColumnWidth() - 10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
             Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
             label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }
         m_elements[i].cellWidget = label;
-        ui->table->setItem(row, i%cols, item);
-        ui->table->setCellWidget(row, i%cols, label);
+        ui->table->setItem(row, i % cols, item);
+        ui->table->setCellWidget(row, i % cols, label);
         ui->table->resizeRowToContents(row);
     }
 }
@@ -410,8 +418,8 @@ void ImageDialog::renderTable()
 int ImageDialog::calcColumnCount()
 {
     int width = ui->table->size().width();
-    int colWidth = getColumnWidth()+4;
-    int cols = qFloor((qreal)width/colWidth);
+    int colWidth = getColumnWidth() + 4;
+    int cols = qFloor((qreal)width / colWidth);
     return cols;
 }
 
@@ -421,7 +429,7 @@ int ImageDialog::calcColumnCount()
  */
 int ImageDialog::getColumnWidth()
 {
-    return ui->previewSizeSlider->value()*16;
+    return ui->previewSizeSlider->value() * 16;
 }
 
 /**
@@ -432,7 +440,7 @@ int ImageDialog::getColumnWidth()
  */
 void ImageDialog::imageClicked(int row, int col)
 {
-    if (ui->table->item(row, col) == 0) {
+    if (ui->table->item(row, col) == nullptr) {
         qDebug() << "Invalid item";
         return;
     }
@@ -443,7 +451,7 @@ void ImageDialog::imageClicked(int row, int col)
             m_imageUrls.append(url);
             QByteArray ba;
             QBuffer buffer(&ba);
-            QImage img = static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
+            QImage img = static_cast<ImageLabel *>(ui->table->cellWidget(row, col))->image();
             img.save(&buffer, "jpg", 100);
             ui->gallery->addImage(ba, url.toString());
         }
@@ -554,7 +562,8 @@ void ImageDialog::chooseLocalImage()
     path.append("/*");
 #endif
 #endif
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), path, tr("Images (*.jpg *.jpeg *.png)"));
+    QString fileName =
+        QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), path, tr("Images (*.jpg *.jpeg *.png)"));
     if (!fileName.isNull()) {
         QFileInfo fi(fileName);
         Settings::instance()->setLastImagePath(fi.absoluteDir().canonicalPath());
@@ -566,7 +575,8 @@ void ImageDialog::chooseLocalImage()
         m_elements.append(d);
         renderTable();
         m_elements[index].pixmap = QPixmap(fileName);
-        m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
+        m_elements[index].pixmap =
+            m_elements[index].pixmap.scaledToWidth(getColumnWidth() - 10, Qt::SmoothTransformation);
         m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
         m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
         ui->table->resizeRowsToContents();
@@ -604,7 +614,8 @@ void ImageDialog::onImageDropped(QUrl url)
     renderTable();
     if (url.toString().startsWith("file://")) {
         m_elements[index].pixmap = QPixmap(url.toLocalFile());
-        m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
+        m_elements[index].pixmap =
+            m_elements[index].pixmap.scaledToWidth(getColumnWidth() - 10, Qt::SmoothTransformation);
         m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
         m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
     }
@@ -642,7 +653,7 @@ void ImageDialog::onPreviewSizeChange(int value)
  */
 void ImageDialog::onZoomIn()
 {
-    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()+1);
+    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value() + 1);
 }
 
 /**
@@ -650,7 +661,7 @@ void ImageDialog::onZoomIn()
  */
 void ImageDialog::onZoomOut()
 {
-    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()-1);
+    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value() - 1);
 }
 
 /**
@@ -663,7 +674,7 @@ void ImageDialog::onProviderChanged(int index)
         return;
 
     updateSourceLink();
-    if (ui->imageProvider->itemData(index, Qt::UserRole+1).toBool()) {
+    if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
@@ -681,14 +692,17 @@ void ImageDialog::updateSourceLink()
     if (index < 0 || index >= ui->imageProvider->count())
         return;
 
-    if (ui->imageProvider->itemData(index, Qt::UserRole+1).toBool()) {
+    if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
         ui->imageSource->setVisible(false);
         ui->noResultsLabel->setText(tr("No images found"));
     } else {
-        ImageProviderInterface *p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
+        auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
+                     .value<ImageProviderInterface *>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
-        ui->noResultsLabel->setText(tr("No images found") + "<br />" + tr("Contribute by uploading images to <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
+        ui->noResultsLabel->setText(
+            tr("No images found") + "<br />"
+            + tr("Contribute by uploading images to <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
     }
 }
 
@@ -740,11 +754,14 @@ void ImageDialog::onSearch(bool onlyFirstResult)
 
     clearSearch();
     ui->searchTerm->setLoading(true);
-    m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
-    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
+    m_currentProvider =
+        ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface *>();
+    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm
+        && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
         ui->searchTerm->setLoading(false);
         loadImagesFromProvider(mediaPassionId);
-    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty()
+               && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);
@@ -780,7 +797,7 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
         if (!result.released.isNull())
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
 
-        QTableWidgetItem *item = new QTableWidgetItem(name);
+        auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -794,7 +811,6 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
         ui->stackedWidget->setCurrentIndex(2);
     else
         ui->stackedWidget->setCurrentIndex(0);
-
 }
 
 /**

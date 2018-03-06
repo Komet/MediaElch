@@ -230,7 +230,7 @@ void QuaZip::setIoDevice(QIODevice *ioDevice)
 
 int QuaZip::getEntriesCount()const
 {
-  QuaZip *fakeThis=(QuaZip*)this; // non-const
+  auto fakeThis=(QuaZip*)this; // non-const
   fakeThis->p->zipError=UNZ_OK;
   if(p->mode!=mdUnzip) {
     qWarning("QuaZip::getEntriesCount(): ZIP is not open in mdUnzip mode");
@@ -244,7 +244,7 @@ int QuaZip::getEntriesCount()const
 
 QString QuaZip::getComment()const
 {
-  QuaZip *fakeThis=(QuaZip*)this; // non-const
+  auto fakeThis=(QuaZip*)this; // non-const
   fakeThis->p->zipError=UNZ_OK;
   if(p->mode!=mdUnzip) {
     qWarning("QuaZip::getComment(): ZIP is not open in mdUnzip mode");
@@ -325,7 +325,7 @@ bool QuaZip::goToNextFile()
 
 bool QuaZip::getCurrentFileInfo(QuaZipFileInfo *info)const
 {
-  QuaZip *fakeThis=(QuaZip*)this; // non-const
+  auto fakeThis=(QuaZip*)this; // non-const
   fakeThis->p->zipError=UNZ_OK;
   if(p->mode!=mdUnzip) {
     qWarning("QuaZip::getCurrentFileInfo(): ZIP is not open in mdUnzip mode");
@@ -368,7 +368,7 @@ bool QuaZip::getCurrentFileInfo(QuaZipFileInfo *info)const
 
 QString QuaZip::getCurrentFileName()const
 {
-  QuaZip *fakeThis=(QuaZip*)this; // non-const
+  auto fakeThis=(QuaZip*)this; // non-const
   fakeThis->p->zipError=UNZ_OK;
   if(p->mode!=mdUnzip) {
     qWarning("QuaZip::getCurrentFileName(): ZIP is not open in mdUnzip mode");
@@ -491,7 +491,7 @@ QString QuaZip_getFileInfo(QuaZip *zip, bool *ok)
 template<typename TFileInfo>
 bool QuaZipPrivate::getFileInfoList(QList<TFileInfo> *result) const
 {
-  QuaZipPrivate *fakeThis=const_cast<QuaZipPrivate*>(this);
+  auto fakeThis=const_cast<QuaZipPrivate*>(this);
   fakeThis->zipError=UNZ_OK;
   if (mode!=QuaZip::mdUnzip) {
     qWarning("QuaZip::getFileNameList/getFileInfoList(): "

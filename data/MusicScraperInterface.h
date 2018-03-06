@@ -28,4 +28,3 @@ signals:
 };
 
 #endif // MUSICSCRAPERINTERFACE
-

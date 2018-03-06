@@ -7,16 +7,14 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-ImportActions::ImportActions(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ImportActions)
+ImportActions::ImportActions(QWidget *parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
     Helper::instance()->setButtonStyle(ui->btnImport, Helper::ButtonSuccess);
     Helper::instance()->setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
     connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
     connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
-    m_tvShow = 0;
+    m_tvShow = nullptr;
     m_importDialog = new ImportDialog(parent);
 }
 
@@ -68,7 +66,7 @@ void ImportActions::setImportDir(QString dir)
 
 QString ImportActions::importDir()
 {
-    m_tvShow = 0;
+    m_tvShow = nullptr;
     return m_importDir;
 }
 

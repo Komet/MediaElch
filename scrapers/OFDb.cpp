@@ -125,12 +125,12 @@ void OFDb::search(QString searchStr)
  */
 void OFDb::searchFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
     QString searchStr = reply->property("searchString").toString();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply->deleteLater();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
@@ -185,9 +185,10 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
             result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
         results.append(result);
     } else {
-        for (int i=0, n=domDoc.elementsByTagName("eintrag").size() ; i<n ; i++) {
+        for (int i = 0, n = domDoc.elementsByTagName("eintrag").size(); i < n; i++) {
             QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
-            if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
+            if (entry.elementsByTagName("id").size() == 0
+                || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
                 continue;
             ScraperSearchResult result;
             result.id = entry.elementsByTagName("id").at(0).toElement().text();
@@ -208,7 +209,7 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
+void OFDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
 
@@ -228,16 +229,16 @@ void OFDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
  */
 void OFDb::loadFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
+    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (!movie)
         return;
 
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
+        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply->deleteLater();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
@@ -355,5 +356,5 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 
 QWidget *OFDb::settingsWidget()
 {
-    return 0;
+    return nullptr;
 }

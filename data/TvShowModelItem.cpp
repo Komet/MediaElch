@@ -11,10 +11,10 @@
  * @param parent
  */
 TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
-    QObject(0),
+    QObject(nullptr),
     m_parentItem{parent},
-    m_tvShow{0},
-    m_tvShowEpisode{0},
+    m_tvShow{nullptr},
+    m_tvShowEpisode{nullptr},
     m_seasonNumber{0}
 {
 }
@@ -53,7 +53,7 @@ int TvShowModelItem::childCount() const
 int TvShowModelItem::childNumber() const
 {
     if (m_parentItem)
-        return m_parentItem->m_childItems.indexOf(const_cast<TvShowModelItem*>(this));
+        return m_parentItem->m_childItems.indexOf(const_cast<TvShowModelItem *>(this));
 
     return 0;
 }
@@ -74,8 +74,7 @@ int TvShowModelItem::columnCount() const
  */
 QVariant TvShowModelItem::data(int column) const
 {
-    switch (column)
-    {
+    switch (column) {
     case 101:
         if (m_tvShow)
             return m_tvShow->hasImage(ImageType::TvShowBanner);
@@ -113,7 +112,8 @@ QVariant TvShowModelItem::data(int column) const
             return m_tvShow->hasDummyEpisodes();
         break;
     case 110:
-        if (m_tvShow && !Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos).isEmpty())
+        if (m_tvShow
+            && !Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos).isEmpty())
             return Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos);
         break;
     case 4:
@@ -159,7 +159,7 @@ QVariant TvShowModelItem::data(int column) const
  */
 TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setTvShow(show);
     show->setModelItem(item);
     m_childItems.append(item);
@@ -173,11 +173,15 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
  */
 TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setTvShowEpisode(episode);
     episode->setModelItem(item);
     m_childItems.append(item);
-    connect(episode, SIGNAL(sigChanged(TvShowEpisode*)), this, SLOT(onTvShowEpisodeChanged(TvShowEpisode*)), Qt::UniqueConnection);
+    connect(episode,
+        SIGNAL(sigChanged(TvShowEpisode *)),
+        this,
+        SLOT(onTvShowEpisodeChanged(TvShowEpisode *)),
+        Qt::UniqueConnection);
     return item;
 }
 
@@ -189,12 +193,16 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
  */
 TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, TvShow *show)
 {
-    TvShowModelItem *item = new TvShowModelItem(this);
+    auto item = new TvShowModelItem(this);
     item->setSeason(season);
     item->setSeasonNumber(seasonNumber);
     item->setTvShow(show);
     m_childItems.append(item);
-    connect(item, SIGNAL(sigIntChanged(TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSeasonChanged(TvShowModelItem*, TvShowModelItem*)), Qt::UniqueConnection);
+    connect(item,
+        SIGNAL(sigIntChanged(TvShowModelItem *, TvShowModelItem *)),
+        this,
+        SLOT(onSeasonChanged(TvShowModelItem *, TvShowModelItem *)),
+        Qt::UniqueConnection);
     return item;
 }
 

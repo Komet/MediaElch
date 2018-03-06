@@ -16,10 +16,10 @@ class MusicSearch : public QDialog
 
 public:
     explicit MusicSearch(QWidget *parent = nullptr);
-    ~MusicSearch();
+    ~MusicSearch() override;
 
 public slots:
-    int exec();
+    int exec() override;
     int exec(QString type, QString searchString, QString artistName = QString());
     static MusicSearch *instance(QWidget *parent = nullptr);
     int scraperNo();

@@ -11,13 +11,15 @@ class PluginManager : public QObject
 {
     Q_OBJECT
 public:
-    struct PluginFile {
+    struct PluginFile
+    {
         QString fileName;
         QString sha1;
         bool downloaded;
     };
 
-    struct Plugin {
+    struct Plugin
+    {
         QString name;
         QString identifier;
         QString version;
@@ -43,8 +45,8 @@ public slots:
     void updatePlugin(PluginManager::Plugin plugin);
 
 signals:
-    void sigAddPlugin(PluginInterface*);
-    void sigRemovePlugin(PluginInterface*);
+    void sigAddPlugin(PluginInterface *);
+    void sigRemovePlugin(PluginInterface *);
     void sigPluginListUpdated(QList<PluginManager::Plugin>);
     void sigLicenseInvalid(PluginManager::Plugin);
     void sigPluginInstalled(PluginManager::Plugin);

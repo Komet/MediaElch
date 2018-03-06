@@ -11,9 +11,7 @@
  * @brief GenreWidget::GenreWidget
  * @param parent
  */
-GenreWidget::GenreWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::GenreWidget)
+GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWidget)
 {
     ui->setupUi(this);
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -21,13 +19,13 @@ GenreWidget::GenreWidget(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     QFont genresFont = ui->genres->font();
-    genresFont.setPointSize(genresFont.pointSize()-2);
+    genresFont.setPointSize(genresFont.pointSize() - 2);
     ui->genres->setFont(genresFont);
 #endif
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->genreName->font();
-    nameFont.setPointSize(nameFont.pointSize()-4);
+    nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->genreName->setFont(nameFont);
 #endif
 
@@ -40,10 +38,10 @@ GenreWidget::GenreWidget(QWidget *parent) :
     connect(actionAddGenre, SIGNAL(triggered()), this, SLOT(addGenre()));
     connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteGenre()));
     connect(ui->genres, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showGenresContextMenu(QPoint)));
-    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this, SLOT(onJumpToMovie(QTableWidgetItem *)));
 
     connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
-    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreNameChanged(QTableWidgetItem*)));
+    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onGenreNameChanged(QTableWidgetItem *)));
 
     Helper::instance()->applyStyle(ui->genres);
     Helper::instance()->applyStyle(ui->groupBox);
@@ -102,7 +100,8 @@ void GenreWidget::loadGenres()
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         foreach (const QString &genre, movie->genres()) {
             if (!genre.isEmpty() && !genres.contains(genre))
-                genres.append(genre);;
+                genres.append(genre);
+            ;
         }
     }
     foreach (const QString &genre, m_addedGenres) {
@@ -113,7 +112,7 @@ void GenreWidget::loadGenres()
     qSort(genres.begin(), genres.end(), LocaleStringCompare());
 
     foreach (const QString &genre, genres) {
-        QTableWidgetItem *item = new QTableWidgetItem(genre);
+        auto item = new QTableWidgetItem(genre);
         item->setData(Qt::UserRole, genre);
         int row = ui->genres->rowCount();
         ui->genres->insertRow(row);
@@ -190,14 +189,14 @@ void GenreWidget::addGenre()
     do {
         adder++;
         genreExists = false;
-        for (int i=0, n=ui->genres->rowCount() ; i<n ; ++i) {
-            if ((adder == 0 && ui->genres->item(i, 0)->text() == genreName) ||
-                (adder > 0 && ui->genres->item(i, 0)->text() == QString("%1 %2").arg(genreName).arg(adder))) {
+        for (int i = 0, n = ui->genres->rowCount(); i < n; ++i) {
+            if ((adder == 0 && ui->genres->item(i, 0)->text() == genreName)
+                || (adder > 0 && ui->genres->item(i, 0)->text() == QString("%1 %2").arg(genreName).arg(adder))) {
                 genreExists = true;
                 break;
             }
         }
-    } while(genreExists);
+    } while (genreExists);
 
     if (adder > 0)
         genreName.append(QString(" %1").arg(adder));
@@ -205,7 +204,7 @@ void GenreWidget::addGenre()
     m_addedGenres << genreName;
 
     ui->genres->blockSignals(true);
-    QTableWidgetItem *item = new QTableWidgetItem(genreName);
+    auto item = new QTableWidgetItem(genreName);
     item->setData(Qt::UserRole, genreName);
     int row = ui->genres->rowCount();
     ui->genres->insertRow(row);
@@ -251,7 +250,7 @@ void GenreWidget::removeMovie()
     }
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
-    Movie *movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
+    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie *>();
     movie->removeGenre(genreName);
     ui->movies->removeRow(ui->movies->currentRow());
 }
@@ -266,8 +265,9 @@ void GenreWidget::addMovie()
         return;
     }
 
-    if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text()) == QDialog::Accepted) {
-        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+    if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text())
+        == QDialog::Accepted) {
+        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty())
             return;
 
@@ -298,6 +298,6 @@ void GenreWidget::onSaveInformation()
 
 void GenreWidget::onJumpToMovie(QTableWidgetItem *item)
 {
-    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    auto movie = item->data(Qt::UserRole).value<Movie *>();
     emit sigJumpToMovie(movie);
 }

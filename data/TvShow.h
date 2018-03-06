@@ -40,7 +40,7 @@ public:
     virtual QDate firstAired() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
-    virtual QList<QString*> genresPointer();
+    virtual QList<QString *> genresPointer();
     virtual QString certification() const;
     virtual QString network() const;
     virtual QString overview() const;
@@ -50,7 +50,7 @@ public:
     virtual QString episodeGuideUrl() const;
     virtual QStringList certifications() const;
     virtual QList<Actor> actors() const;
-    virtual QList<Actor*> actorsPointer();
+    virtual QList<Actor *> actorsPointer();
     virtual QList<Poster> posters() const;
     virtual QList<Poster> backdrops() const;
     virtual QList<Poster> banners() const;
@@ -60,8 +60,8 @@ public:
     virtual QList<Poster> seasonThumbs(int season, bool returnAll = false) const;
     virtual TvShowEpisode *episode(int season, int episode);
     virtual QList<int> seasons(bool includeDummies = true);
-    virtual QList<TvShowEpisode*> episodes();
-    virtual QList<TvShowEpisode*> episodes(int season);
+    virtual QList<TvShowEpisode *> episodes();
+    virtual QList<TvShowEpisode *> episodes(int season);
     virtual TvShowModelItem *modelItem();
     virtual bool hasChanged() const;
     virtual bool infoLoaded() const;
@@ -139,7 +139,7 @@ public:
 
     // Images
     void removeImage(int type, int season = -2);
-    QMap<int, QList<int> > imagesToRemove() const;
+    QMap<int, QList<int>> imagesToRemove() const;
     QByteArray image(int imageType);
     QByteArray seasonImage(int season, int imageType);
     void setImage(int imageType, QByteArray image);
@@ -169,11 +169,11 @@ public:
     void setStatus(const QString &status);
 
 signals:
-    void sigLoaded(TvShow*);
-    void sigChanged(TvShow*);
+    void sigLoaded(TvShow *);
+    void sigChanged(TvShow *);
 
 private:
-    QList<TvShowEpisode*> m_episodes;
+    QList<TvShowEpisode *> m_episodes;
     QString m_dir;
     QString m_name;
     QString m_showTitle;
@@ -196,10 +196,10 @@ private:
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
     QList<Poster> m_banners;
-    QMap<int, QList<Poster> > m_seasonPosters;
-    QMap<int, QList<Poster> > m_seasonBackdrops;
-    QMap<int, QList<Poster> > m_seasonBanners;
-    QMap<int, QList<Poster> > m_seasonThumbs;
+    QMap<int, QList<Poster>> m_seasonPosters;
+    QMap<int, QList<Poster>> m_seasonBackdrops;
+    QMap<int, QList<Poster>> m_seasonBanners;
+    QMap<int, QList<Poster>> m_seasonThumbs;
     bool m_hasTune;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
@@ -215,16 +215,16 @@ private:
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QMap<int, QList<int> > m_imagesToRemove;
+    QMap<int, QList<int>> m_imagesToRemove;
     QMap<int, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;
     QString m_status;
 
     QMap<int, QByteArray> m_images;
-    QMap<int, QMap<int, QByteArray> > m_seasonImages;
+    QMap<int, QMap<int, QByteArray>> m_seasonImages;
     QMap<int, bool> m_hasImageChanged;
-    QMap<int, QMap<int, bool> > m_hasSeasonImageChanged;
+    QMap<int, QMap<int, bool>> m_hasSeasonImageChanged;
 
     void clearSeasonImageType(int imageType);
 };
@@ -232,6 +232,6 @@ private:
 QDebug operator<<(QDebug dbg, const TvShow &show);
 QDebug operator<<(QDebug dbg, const TvShow *show);
 
-Q_DECLARE_METATYPE(TvShow*)
+Q_DECLARE_METATYPE(TvShow *)
 
 #endif // TVSHOW_H

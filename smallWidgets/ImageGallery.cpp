@@ -39,9 +39,16 @@ ImageGallery::ImageGallery(QWidget *parent) :
     m_scrollArea->setStyleSheet("background-color: transparent;");
 
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(onVerticalScrollBarMoved(int)));
-    connect(m_scrollArea->horizontalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(onHorizontalScrollBarMoved(int)));
-    connect(m_scrollArea->verticalScrollBar(), SIGNAL(rangeChanged(int,int)), this, SLOT(onVerticalScrollBarRangeChanged(int,int)));
-    connect(m_scrollArea->horizontalScrollBar(), SIGNAL(rangeChanged(int,int)), this, SLOT(onHorizontalScrollBarRangeChanged(int,int)));
+    connect(
+        m_scrollArea->horizontalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(onHorizontalScrollBarMoved(int)));
+    connect(m_scrollArea->verticalScrollBar(),
+        SIGNAL(rangeChanged(int, int)),
+        this,
+        SLOT(onVerticalScrollBarRangeChanged(int, int)));
+    connect(m_scrollArea->horizontalScrollBar(),
+        SIGNAL(rangeChanged(int, int)),
+        this,
+        SLOT(onHorizontalScrollBarRangeChanged(int, int)));
 
     m_buttonLeft = new QToolButton(this);
     m_buttonLeft->setIcon(QIcon(":/img/imgButtonLeft.png"));
@@ -84,13 +91,15 @@ void ImageGallery::resizeEvent(QResizeEvent *event)
     if (m_alignment == Qt::Vertical) {
         m_imagesWidget->setFixedWidth(event->size().width());
         setMinimumWidth(m_imageWidth);
-        m_buttonTop->move((event->size().width()-m_buttonTop->width())/2, 0);
-        m_buttonBottom->move((event->size().width()-m_buttonBottom->width())/2, event->size().height()-m_buttonBottom->width());
+        m_buttonTop->move((event->size().width() - m_buttonTop->width()) / 2, 0);
+        m_buttonBottom->move(
+            (event->size().width() - m_buttonBottom->width()) / 2, event->size().height() - m_buttonBottom->width());
     } else {
         m_imagesWidget->setFixedHeight(m_imageHeight);
         setMinimumHeight(m_imageHeight);
-        m_buttonLeft->move(0, (event->size().height()-m_buttonLeft->height())/2);
-        m_buttonRight->move(event->size().width()-m_buttonRight->width(), (event->size().height()-m_buttonRight->height())/2);
+        m_buttonLeft->move(0, (event->size().height() - m_buttonLeft->height()) / 2);
+        m_buttonRight->move(
+            event->size().width() - m_buttonRight->width(), (event->size().height() - m_buttonRight->height()) / 2);
     }
     m_scrollArea->setFixedSize(size());
 
@@ -111,7 +120,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
 {
     clear();
     foreach (ExtraFanart fanart, images) {
-        ClosableImage *label = new ClosableImage(m_imagesWidget);
+        auto label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);
         if (m_alignment == Qt::Vertical)
@@ -132,7 +141,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
 
 void ImageGallery::addImage(const QByteArray &img, const QString &url)
 {
-    ClosableImage *label = new ClosableImage(m_imagesWidget);
+    auto label = new ClosableImage(m_imagesWidget);
     label->hide();
     label->setShowZoomAndResolution(m_showZoomAndResolution);
     if (m_alignment == Qt::Vertical)
@@ -153,14 +162,14 @@ void ImageGallery::addImage(const QByteArray &img, const QString &url)
 void ImageGallery::positionImages()
 {
     int maxHeightInRow = 0;
-    int x = (m_alignment == Qt::Horizontal) ? m_buttonLeft->width()-20 : 0;
-    int y = (m_alignment == Qt::Vertical) ? m_buttonTop->height()-20 : 0;
+    int x = (m_alignment == Qt::Horizontal) ? m_buttonLeft->width() - 20 : 0;
+    int y = (m_alignment == Qt::Vertical) ? m_buttonTop->height() - 20 : 0;
 
     foreach (ClosableImage *label, m_imageLabels) {
         if (m_alignment == Qt::Vertical) {
-            if (x > 0 && x+m_imageWidth+m_horizontalSpace > width()) {
+            if (x > 0 && x + m_imageWidth + m_horizontalSpace > width()) {
                 x = 0;
-                y += m_verticalSpace+maxHeightInRow;
+                y += m_verticalSpace + maxHeightInRow;
                 maxHeightInRow = 0;
             }
             label->move(x, y);
@@ -174,22 +183,26 @@ void ImageGallery::positionImages()
         }
     }
     if (m_alignment == Qt::Vertical) {
-        m_imagesWidget->setFixedHeight(y+maxHeightInRow+m_buttonBottom->height()-10);
+        m_imagesWidget->setFixedHeight(y + maxHeightInRow + m_buttonBottom->height() - 10);
         m_buttonTop->setEnabled(m_scrollArea->verticalScrollBar()->value() != 0);
-        m_buttonBottom->setEnabled(m_scrollArea->verticalScrollBar()->value() != m_scrollArea->verticalScrollBar()->maximum());
-        onVerticalScrollBarRangeChanged(m_scrollArea->verticalScrollBar()->minimum(), m_scrollArea->verticalScrollBar()->maximum());
+        m_buttonBottom->setEnabled(
+            m_scrollArea->verticalScrollBar()->value() != m_scrollArea->verticalScrollBar()->maximum());
+        onVerticalScrollBarRangeChanged(
+            m_scrollArea->verticalScrollBar()->minimum(), m_scrollArea->verticalScrollBar()->maximum());
     } else {
-        m_imagesWidget->setFixedWidth(x + m_buttonRight->width()-30);
+        m_imagesWidget->setFixedWidth(x + m_buttonRight->width() - 30);
         setFixedHeight(m_imageHeight);
         m_buttonLeft->setEnabled(m_scrollArea->horizontalScrollBar()->value() != 0);
-        m_buttonRight->setEnabled(m_scrollArea->horizontalScrollBar()->value() != m_scrollArea->horizontalScrollBar()->maximum());
-        onHorizontalScrollBarRangeChanged(m_scrollArea->horizontalScrollBar()->minimum(), m_scrollArea->horizontalScrollBar()->maximum());
+        m_buttonRight->setEnabled(
+            m_scrollArea->horizontalScrollBar()->value() != m_scrollArea->horizontalScrollBar()->maximum());
+        onHorizontalScrollBarRangeChanged(
+            m_scrollArea->horizontalScrollBar()->minimum(), m_scrollArea->horizontalScrollBar()->maximum());
     }
 }
 
 void ImageGallery::onCloseImage()
 {
-    ClosableImage *label = static_cast<ClosableImage*>(QObject::sender());
+    auto label = static_cast<ClosableImage *>(QObject::sender());
     label->hide();
     label->deleteLater();
     m_imageLabels.removeOne(label);
@@ -247,7 +260,7 @@ void ImageGallery::onButtonLeft()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
-    anim->setEndValue(m_scrollArea->horizontalScrollBar()->value()-width()+50);
+    anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() - width() + 50);
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::InOutQuad);
     anim->start(QAbstractAnimation::DeleteWhenStopped);
@@ -257,7 +270,7 @@ void ImageGallery::onButtonRight()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
-    anim->setEndValue(m_scrollArea->horizontalScrollBar()->value()+width()-50);
+    anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() + width() - 50);
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::InOutQuad);
     anim->start(QAbstractAnimation::DeleteWhenStopped);
@@ -267,7 +280,7 @@ void ImageGallery::onButtonTop()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
-    anim->setEndValue(m_scrollArea->verticalScrollBar()->value()-height()+100);
+    anim->setEndValue(m_scrollArea->verticalScrollBar()->value() - height() + 100);
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::InOutQuad);
     anim->start(QAbstractAnimation::DeleteWhenStopped);
@@ -277,7 +290,7 @@ void ImageGallery::onButtonBottom()
 {
     QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
-    anim->setEndValue(m_scrollArea->verticalScrollBar()->value()+height()-100);
+    anim->setEndValue(m_scrollArea->verticalScrollBar()->value() + height() - 100);
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::InOutQuad);
     anim->start(QAbstractAnimation::DeleteWhenStopped);
@@ -299,7 +312,9 @@ void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    QStringList filters = QStringList() << ".jpg"
+                                        << ".jpeg"
+                                        << ".png";
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -312,7 +327,9 @@ void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    QStringList filters = QStringList() << ".jpg"
+                                        << ".jpeg"
+                                        << ".png";
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -326,7 +343,9 @@ void ImageGallery::dropEvent(QDropEvent *event)
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
-        QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+        QStringList filters = QStringList() << ".jpg"
+                                            << ".jpeg"
+                                            << ".png";
         foreach (const QString &filter, filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(url);

@@ -20,18 +20,18 @@ class MusicFilesWidget : public QWidget
 
 public:
     explicit MusicFilesWidget(QWidget *parent = nullptr);
-    ~MusicFilesWidget();
+    ~MusicFilesWidget() override;
     static MusicFilesWidget *instance();
-    QList<Artist*> selectedArtists();
-    QList<Album*> selectedAlbums();
+    QList<Artist *> selectedArtists();
+    QList<Album *> selectedAlbums();
 
 public slots:
-    void setFilter(QList<Filter*> filters, QString text);
+    void setFilter(QList<Filter *> filters, QString text);
     void multiScrape();
 
 signals:
-    void sigArtistSelected(Artist*);
-    void sigAlbumSelected(Album*);
+    void sigArtistSelected(Artist *);
+    void sigAlbumSelected(Album *);
     void sigNothingSelected();
 
 private slots:

@@ -11,7 +11,7 @@ class Extractor : public QObject
     Q_OBJECT
 public:
     explicit Extractor(QObject *parent = nullptr);
-    ~Extractor();
+    ~Extractor() override;
 
 public slots:
     void extract(QString baseName, QStringList files, QString password);
@@ -28,7 +28,7 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QList<QProcess*> m_processes;
+    QList<QProcess *> m_processes;
 };
 
 #endif // EXTRACTOR_H

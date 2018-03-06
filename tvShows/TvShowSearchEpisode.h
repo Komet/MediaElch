@@ -16,7 +16,7 @@ class TvShowSearchEpisode : public QWidget
 
 public:
     explicit TvShowSearchEpisode(QWidget *parent = nullptr);
-    ~TvShowSearchEpisode();
+    ~TvShowSearchEpisode() override;
     QString scraperId();
     QList<int> infosToLoad();
 
