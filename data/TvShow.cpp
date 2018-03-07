@@ -1494,6 +1494,7 @@ QDebug operator<<(QDebug dbg, const TvShow &show)
     out.append(QString("  Certification: ").append(show.certification()).append(nl));
     out.append(QString("  Network:       ").append(show.network()).append(nl));
     out.append(QString("  Overview:      ").append(show.overview())).append(nl);
+    out.append(QString("  Status:        ").append(show.status())).append(nl);
     foreach (const QString &genre, show.genres())
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     foreach (const Actor &actor, show.actors()) {
