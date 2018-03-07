@@ -1525,7 +1525,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     setTextValue(doc, "tvdbid", show->tvdbId());
     setTextValue(doc, "id", show->id());
     setTextValue(doc, "imdbid", show->imdbId());
-    if (show->status().isEmpty())
+    if (!show->status().isEmpty())
         setTextValue(doc, "status", show->status());
     else
         removeChildNodes(doc, "status");
