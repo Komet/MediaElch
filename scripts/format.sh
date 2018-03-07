@@ -8,4 +8,4 @@ if [ ! -f MediaElch.pro ]; then
 fi
 
 # Format all files using clang-format
-find . ! -path "*/quazip/*" -regex '.*\.\(cpp\|hpp\|h\|cc\|cxx\)' -exec clang-format -i -style=file {} \;
+find . ! -path "*/quazip/*" -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i -style=file {} \;
