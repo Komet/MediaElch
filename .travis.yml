@@ -1,0 +1,43 @@
+language: generic
+matrix:
+  include:
+  - env: QT=qtMac CXX=clang
+    os: osx
+  - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++
+    os: linux
+    dist: trusty
+    sudo: required
+  - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=clang++
+    os: linux
+    dist: trusty
+    sudo: required
+  - env: QT=qt56  QT_PPA=qt563 CXX=g++
+    os: linux
+    dist: trusty
+    sudo: required
+
+branches:
+  only:
+  - master
+  - release
+
+before_install:
+- "${TRAVIS_BUILD_DIR}/travisCI/install_dependencies.sh"
+install:
+- ${CXX} -v
+
+# Set some environment variables, then run qmake
+before_script:
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+    QTDIR="/opt/${QT}";
+    PATH="${QTDIR}/bin:$PATH";
+    source ${QTDIR}/bin/${QT}-env.sh;
+    qmake MediaElch.pro CONFIG+=debug CONFIG+=qml_debug;
+  fi
+- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+    PATH="/usr/local/opt/qt/bin:$PATH";
+    qmake MediaElch.pro CONFIG+=debug CONFIG+=qml_debug;
+  fi
+
+script:
+- make -j 2
