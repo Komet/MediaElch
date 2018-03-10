@@ -135,21 +135,29 @@ void OFDb::searchFinished()
         reply->deleteLater();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("searchString", searchStr);
+        reply->setProperty("notFoundCounter", notFoundCounter);
         connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
         return;
     }
 
     // try to get another mirror when 404 occurs
-    if (reply->error() == QNetworkReply::ContentNotFoundError && notFoundCounter < 3) {
+    if (reply->error() == QNetworkReply::ContentNotFoundError) {
         qWarning() << "Got 404";
-        notFoundCounter++;
-        reply->deleteLater();
-        QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(searchStr));
-        reply = qnam()->get(QNetworkRequest(url));
-        reply->setProperty("searchString", searchStr);
-        reply->setProperty("notFoundCounter", notFoundCounter);
-        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
-        return;
+
+        if (notFoundCounter < 3) {
+            ++notFoundCounter;
+            reply->deleteLater();
+            // New request.
+            QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(searchStr));
+            reply = qnam()->get(QNetworkRequest(url));
+            reply->setProperty("searchString", searchStr);
+            reply->setProperty("notFoundCounter", notFoundCounter);
+            connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+            return;
+
+        } else {
+            qWarning() << "To many 404 errors. Quit search.";
+        }
     }
 
     QList<ScraperSearchResult> results;
