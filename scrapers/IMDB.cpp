@@ -205,25 +205,25 @@ void IMDB::onLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
-        QString posterUrl = parsePosters(msg);
-        if (infos.contains(MovieScraperInfos::Poster) && !posterUrl.isEmpty()) {
-            QNetworkReply *reply = qnam()->get(QNetworkRequest(posterUrl));
+        QUrl posterViewerUrl = parsePosters(msg);
+        if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
+            qDebug() << "Loading movie poster detail view";
+            QNetworkReply *reply = qnam()->get(QNetworkRequest(posterViewerUrl));
             new NetworkReplyWatcher(this, reply);
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(onPosterLoadFinished()));
-        } else {
-            movie->controller()->scraperLoadDone(this);
+            connect(reply, &QNetworkReply::finished, this, &IMDB::onPosterLoadFinished);
         }
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
-        movie->controller()->scraperLoadDone(this);
     }
+    movie->controller()->scraperLoadDone(this);
 }
 
 void IMDB::onPosterLoadFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto posterId = reply->url().fileName();
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
@@ -232,7 +232,7 @@ void IMDB::onPosterLoadFinished()
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignPoster(msg, movie, infos);
+        parseAndAssignPoster(msg, posterId, movie, infos);
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
@@ -511,25 +511,27 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     }
 }
 
-QString IMDB::parsePosters(QString html)
+QUrl IMDB::parsePosters(QString html)
 {
     QRegExp rx("<div class=\"poster\">(.*)</div>");
     rx.setMinimal(true);
     if (rx.indexIn(html) == -1)
-        return QString();
+        return QUrl();
 
     QString content = rx.cap(1);
     rx.setPattern("<a href=\"([^\"]*)\"[^>]*>");
     if (rx.indexIn(content) == -1)
-        return QString();
+        return QUrl();
 
     return QString("https://www.imdb.com%1").arg(rx.cap(1));
 }
 
-void IMDB::parseAndAssignPoster(QString html, Movie *movie, QList<int> infos)
+void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos)
 {
-    QRegExp rx("<img onmousedown=\"return false;\" onmousemove=\"return false;\" oncontextmenu=\"return false;\" "
-               "id=\"primary-img\" title=\"[^\"]*\" alt=\"[^\"]*\" src=\"([^\"]*)\" />");
+    // IMDB's media viewer contains all links to the gallery's image files.
+    // We only want the poster, which has the id "viewerID".
+    QString regex = QStringLiteral(R"url(window[.]IMDbReactInitialState[.]push\(.*"id":"%1",.*"src":"([^"]*)")url");
+    QRegExp rx(regex.arg(posterId));
     rx.setMinimal(true);
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
