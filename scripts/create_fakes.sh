@@ -61,3 +61,20 @@ do
 	create_fake_show $show
 done
 printf "[Done]\n"
+
+###########################################################
+# Concerts
+###########################################################
+
+concertInput="${root}/fake_data/concerts.txt"
+concertOutDir="${outDir}/concerts"
+
+printf "Creating fake concerts...     "
+while IFS= read -r line
+do
+	if [ "$line" != "" ]; then
+		mkdir -p "${concertOutDir}/${line}";
+		ln -s "${root}/fake_data/Demo.mov" "${concertOutDir}/${line}/concert.mov"
+	fi
+done < "$concertInput"
+printf "[Done]\n"
