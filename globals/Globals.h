@@ -173,14 +173,14 @@ enum MusicType
     TypeAlbum
 };
 
-enum ItemType
+enum class ItemType
 {
-    ItemMovie,
-    ItemTvShow,
-    ItemTvShowEpisode,
-    ItemConcert,
-    ItemArtist,
-    ItemAlbum
+    Movie,
+    TvShow,
+    TvShowEpisode,
+    Concert,
+    Artist,
+    Album
 };
 
 enum class DiscType
