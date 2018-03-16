@@ -115,8 +115,8 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show, int season)
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetTvShows);
-    emit sigSetActionSearchEnabled(season == -1, WidgetTvShows);
+    emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(season == -1, MainWidgets::TvShows);
 }
 
 /**
@@ -132,8 +132,8 @@ void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetTvShows);
-    emit sigSetActionSearchEnabled(true, WidgetTvShows);
+    emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
 }
 
 /**
@@ -145,8 +145,8 @@ void TvShowWidget::onSetDisabledTrue()
     ui->episodeWidget->onSetEnabled(false);
     ui->tvShowWidget->onSetEnabled(false);
     ui->seasonWidget->onSetEnabled(false);
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
 }
 
 /**

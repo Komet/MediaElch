@@ -93,7 +93,7 @@ void GenreWidget::clear()
  */
 void GenreWidget::loadGenres()
 {
-    emit setActionSaveEnabled(false, WidgetGenres);
+    emit setActionSaveEnabled(false, MainWidgets::Genres);
     ui->genres->blockSignals(true);
     clear();
     QStringList genres;
@@ -120,7 +120,7 @@ void GenreWidget::loadGenres()
     }
 
     ui->genres->blockSignals(false);
-    emit setActionSaveEnabled(true, WidgetGenres);
+    emit setActionSaveEnabled(true, MainWidgets::Genres);
 }
 
 /**

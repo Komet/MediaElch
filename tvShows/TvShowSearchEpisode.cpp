@@ -60,7 +60,7 @@ void TvShowSearchEpisode::onChkToggled()
 
     ui->chkUnCheckAll->setChecked(allToggled);
 
-    Settings::instance()->setScraperInfos(WidgetTvShows, QString::number(4), m_infosToLoad);
+    Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(4), m_infosToLoad);
 }
 
 void TvShowSearchEpisode::onChkAllToggled()

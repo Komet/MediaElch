@@ -244,7 +244,7 @@ void ImportDialog::onMovieChosen()
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

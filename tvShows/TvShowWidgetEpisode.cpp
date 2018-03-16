@@ -57,8 +57,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 #endif
     ui->actorResolution->setFont(font);
 
-    ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateType::Directors));
-    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateType::Writers));
+    ui->directors->setItemDelegate(
+        new ComboDelegate(ui->directors, MainWidgets::TvShows, ComboDelegateType::Directors));
+    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, MainWidgets::TvShows, ComboDelegateType::Writers));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 
@@ -298,8 +299,8 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
     ui->missingLabel->setVisible(episode->isDummy());
     updateEpisodeInfo();
 
-    emit sigSetActionSearchEnabled(!episode->isDummy(), WidgetTvShows);
-    emit sigSetActionSaveEnabled(!episode->isDummy(), WidgetTvShows);
+    emit sigSetActionSearchEnabled(!episode->isDummy(), MainWidgets::TvShows);
+    emit sigSetActionSaveEnabled(!episode->isDummy(), MainWidgets::TvShows);
 }
 
 /**
@@ -589,8 +590,8 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     if (m_episode->isDummy())
         return;
 
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     TvShowSearch::instance()->setSearchType(TypeEpisode);
     TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
@@ -600,8 +601,8 @@ void TvShowWidgetEpisode::onStartScraperSearch()
             Manager::instance()->tvScrapers().at(0),
             TvShowSearch::instance()->infosToLoad());
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
@@ -629,8 +630,8 @@ void TvShowWidgetEpisode::onLoadDone()
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -661,7 +662,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
     ImageDialog::instance()->exec(ImageType::TvShowEpisodeThumb);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = ImageDialog::instance()->imageUrl();
@@ -679,7 +680,7 @@ void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
 
     if (!m_episode)
         return;
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowEpisodeThumb;
     d.url = imageUrl;
@@ -705,8 +706,8 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
     }
 }
 

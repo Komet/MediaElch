@@ -62,8 +62,8 @@ void MusicWidget::onSetEnabledTrue(Artist *artist)
 
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetMusic);
-    emit sigSetActionSearchEnabled(true, WidgetMusic);
+    emit sigSetActionSaveEnabled(true, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
 void MusicWidget::onSetEnabledTrue(Album *album)
@@ -72,8 +72,8 @@ void MusicWidget::onSetEnabledTrue(Album *album)
 
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetMusic);
-    emit sigSetActionSearchEnabled(true, WidgetMusic);
+    emit sigSetActionSaveEnabled(true, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
 void MusicWidget::onClear()
@@ -86,8 +86,8 @@ void MusicWidget::onSetDisabledTrue()
 {
     ui->artist->onSetEnabled(false);
     ui->album->onSetEnabled(false);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
-    emit sigSetActionSearchEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(false, MainWidgets::Music);
 }
 
 void MusicWidget::onStartScraperSearch()

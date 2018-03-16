@@ -90,16 +90,16 @@ enum MainActions
     ActionExport
 };
 
-enum MainWidgets
+enum class MainWidgets
 {
-    WidgetMovies,
-    WidgetMovieSets,
-    WidgetTvShows,
-    WidgetConcerts,
-    WidgetMusic,
-    WidgetGenres,
-    WidgetCertifications,
-    WidgetDownloads
+    Movies,
+    MovieSets,
+    TvShows,
+    Concerts,
+    Music,
+    Genres,
+    Certifications,
+    Downloads
 };
 
 /**

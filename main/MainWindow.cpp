@@ -54,16 +54,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
-    for (int i = WidgetMovies; i != WidgetDownloads; i++) {
-        QMap<MainActions, bool> actions;
-        for (int n = ActionSearch; n != ActionExport; n++) {
-            actions.insert(static_cast<MainActions>(n), false);
-        }
-        if (static_cast<MainWidgets>(i) == WidgetMovies || static_cast<MainWidgets>(i) == WidgetTvShows
-            || static_cast<MainWidgets>(i) == WidgetConcerts || static_cast<MainWidgets>(i) == WidgetMusic)
-            actions[ActionFilterWidget] = true;
-        m_actions.insert(static_cast<MainWidgets>(i), actions);
-    }
+    QMap<MainActions, bool> allActions;
+    allActions.insert(ActionSearch, false);
+    allActions.insert(ActionSave, false);
+    allActions.insert(ActionSaveAll, false);
+    allActions.insert(ActionFilterWidget, false);
+    allActions.insert(ActionRename, false);
+    allActions.insert(ActionExport, false);
+
+    // initialize all widgets with all actions set to false
+    m_actions.insert(MainWidgets::Movies, allActions);
+    m_actions.insert(MainWidgets::MovieSets, allActions);
+    m_actions.insert(MainWidgets::TvShows, allActions);
+    m_actions.insert(MainWidgets::Concerts, allActions);
+    m_actions.insert(MainWidgets::Music, allActions);
+    m_actions.insert(MainWidgets::Genres, allActions);
+    m_actions.insert(MainWidgets::Certifications, allActions);
+    m_actions.insert(MainWidgets::Downloads, allActions);
+
+    // enable filtering for some widgets
+    m_actions[MainWidgets::Movies][ActionFilterWidget] = true;
+    m_actions[MainWidgets::TvShows][ActionFilterWidget] = true;
+    m_actions[MainWidgets::Concerts][ActionFilterWidget] = true;
+    m_actions[MainWidgets::Music][ActionFilterWidget] = true;
 
     m_aboutDialog = new AboutDialog(this);
     m_supportDialog = new SupportDialog(this);
@@ -520,24 +533,24 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 
     m_actions[widget][ActionSave] = enabled;
 
-    if (widget != WidgetMovieSets && widget != WidgetCertifications) {
+    if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
         m_actions[widget][ActionSaveAll] = enabled;
-        if (widget != WidgetMusic)
+        if (widget != MainWidgets::Music)
             m_actions[widget][ActionRename] = enabled;
     }
 
-    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7)
-        || (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
+    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
+        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
+        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7)
+        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != WidgetConcerts && widget != WidgetMusic)
+        if (widget != MainWidgets::Concerts && widget != MainWidgets::Music)
             ui->navbar->setActionRenameEnabled(enabled);
     }
-    if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2)
-        || (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5)
-        || (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4))
+    if ((widget == MainWidgets::MovieSets && ui->stackedWidget->currentIndex() == 2)
+        || (widget == MainWidgets::Certifications && ui->stackedWidget->currentIndex() == 5)
+        || (widget == MainWidgets::Genres && ui->stackedWidget->currentIndex() == 4))
         ui->navbar->setActionSaveEnabled(enabled);
 }
 
@@ -551,10 +564,10 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     qDebug() << "Entered, enabled=" << enabled;
     m_actions[widget][ActionSearch] = enabled;
 
-    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)
-        || (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7))
+    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
+        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
+        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)
+        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7))
         ui->navbar->setActionSearchEnabled(enabled);
 }
 
@@ -784,18 +797,18 @@ void MainWindow::onMenu(QToolButton *button)
             ui->navbar->setReloadToolTip(
                 tr("Reload all Movies (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetMovies;
+            widget = MainWidgets::Movies;
             break;
         case 1:
             // Tv Shows
             ui->navbar->setReloadToolTip(
                 tr("Reload all TV Shows (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetTvShows;
+            widget = MainWidgets::TvShows;
             break;
         case 2:
             // Movie Sets
-            widget = WidgetMovieSets;
+            widget = MainWidgets::MovieSets;
             ui->setsWidget->loadSets();
             break;
         case 3:
@@ -803,21 +816,21 @@ void MainWindow::onMenu(QToolButton *button)
             ui->navbar->setReloadToolTip(
                 tr("Reload all Concerts (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetConcerts;
+            widget = MainWidgets::Concerts;
             break;
         case 4:
             // Genres
-            widget = WidgetGenres;
+            widget = MainWidgets::Genres;
             ui->genreWidget->loadGenres();
             break;
         case 5:
             // Certification
-            widget = WidgetCertifications;
+            widget = MainWidgets::Certifications;
             ui->certificationWidget->loadCertifications();
             break;
         case 6:
             // Import
-            widget = WidgetDownloads;
+            widget = MainWidgets::Downloads;
             ui->navbar->setReloadToolTip(
                 tr("Reload all Downloads (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
@@ -826,7 +839,7 @@ void MainWindow::onMenu(QToolButton *button)
             // Music
             ui->navbar->setReloadToolTip(
                 tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetMusic;
+            widget = MainWidgets::Music;
             break;
         }
         ui->navbar->setActionSearchEnabled(m_actions[widget][ActionSearch]);

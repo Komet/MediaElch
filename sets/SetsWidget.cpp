@@ -121,7 +121,7 @@ void SetsWidget::showSetsContextMenu(QPoint point)
 void SetsWidget::loadSets()
 {
     qDebug() << "Entered";
-    emit setActionSaveEnabled(false, WidgetMovieSets);
+    emit setActionSaveEnabled(false, MainWidgets::MovieSets);
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
@@ -166,7 +166,7 @@ void SetsWidget::loadSets()
     }
     if (ui->sets->rowCount() > 0 && currentRow < ui->sets->rowCount())
         ui->sets->setCurrentItem(ui->sets->item(currentRow, 0));
-    emit setActionSaveEnabled(true, WidgetMovieSets);
+    emit setActionSaveEnabled(true, MainWidgets::MovieSets);
 }
 
 /**
