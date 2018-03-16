@@ -208,11 +208,11 @@ struct SettingsDir
 
 enum SettingsDirType
 {
-    DirTypeMovies,
-    DirTypeTvShows,
-    DirTypeConcerts,
-    DirTypeDownloads,
-    DirTypeMusic
+    Movies,
+    TvShows,
+    Concerts,
+    Downloads,
+    Music
 };
 
 enum ComboDelegateType
