@@ -183,11 +183,11 @@ enum ItemType
     ItemAlbum
 };
 
-enum DiscType
+enum class DiscType
 {
-    DiscSingle,
-    DiscBluRay,
-    DiscDvd
+    Single,
+    BluRay,
+    Dvd
 };
 
 enum MovieSetArtworkType

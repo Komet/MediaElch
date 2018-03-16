@@ -35,7 +35,7 @@ Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
     m_numPrimaryLangPosters = 0;
     m_streamDetailsLoaded = false;
     m_databaseId = -1;
-    m_discType = DiscSingle;
+    m_discType = DiscType::Single;
     m_label = Labels::NO_LABEL;
     m_hasDuplicates = false;
     if (!files.isEmpty())

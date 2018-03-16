@@ -435,8 +435,8 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
                     m_movie->streamDetails()->videoDetails().value("height").toInt(),
                     m_movie->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscDvd);
+            Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscType::BluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", m_movie->set());
@@ -521,8 +521,8 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
                     m_concert->streamDetails()->videoDetails().value("height").toInt(),
                     m_concert->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscDvd);
+            Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscType::BluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFolderName);

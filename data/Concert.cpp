@@ -903,12 +903,12 @@ void Concert::clearExtraFanartData()
 DiscType Concert::discType()
 {
     if (files().isEmpty())
-        return DiscSingle;
+        return DiscType::Single;
     if (Helper::instance()->isDvd(files().first()))
-        return DiscDvd;
+        return DiscType::Dvd;
     if (Helper::instance()->isBluRay(files().first()))
-        return DiscBluRay;
-    return DiscSingle;
+        return DiscType::BluRay;
+    return DiscType::Single;
 }
 
 QList<int> Concert::imagesToRemove() const
