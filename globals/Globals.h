@@ -80,14 +80,14 @@ namespace MediaCenterFeatures {
 }
 // clang-format on
 
-enum MainActions
+enum class MainActions
 {
-    ActionSearch,
-    ActionSave,
-    ActionSaveAll,
-    ActionFilterWidget,
-    ActionRename,
-    ActionExport
+    Search,
+    Save,
+    SaveAll,
+    FilterWidget,
+    Rename,
+    Export
 };
 
 enum class MainWidgets

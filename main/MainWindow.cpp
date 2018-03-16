@@ -55,12 +55,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
     QMap<MainActions, bool> allActions;
-    allActions.insert(ActionSearch, false);
-    allActions.insert(ActionSave, false);
-    allActions.insert(ActionSaveAll, false);
-    allActions.insert(ActionFilterWidget, false);
-    allActions.insert(ActionRename, false);
-    allActions.insert(ActionExport, false);
+    allActions.insert(MainActions::Search, false);
+    allActions.insert(MainActions::Save, false);
+    allActions.insert(MainActions::SaveAll, false);
+    allActions.insert(MainActions::FilterWidget, false);
+    allActions.insert(MainActions::Rename, false);
+    allActions.insert(MainActions::Export, false);
 
     // initialize all widgets with all actions set to false
     m_actions.insert(MainWidgets::Movies, allActions);
@@ -73,10 +73,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_actions.insert(MainWidgets::Downloads, allActions);
 
     // enable filtering for some widgets
-    m_actions[MainWidgets::Movies][ActionFilterWidget] = true;
-    m_actions[MainWidgets::TvShows][ActionFilterWidget] = true;
-    m_actions[MainWidgets::Concerts][ActionFilterWidget] = true;
-    m_actions[MainWidgets::Music][ActionFilterWidget] = true;
+    m_actions[MainWidgets::Movies][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::TvShows][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::Concerts][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::Music][MainActions::FilterWidget] = true;
 
     m_aboutDialog = new AboutDialog(this);
     m_supportDialog = new SupportDialog(this);
@@ -531,12 +531,12 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
 
-    m_actions[widget][ActionSave] = enabled;
+    m_actions[widget][MainActions::Save] = enabled;
 
     if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
-        m_actions[widget][ActionSaveAll] = enabled;
+        m_actions[widget][MainActions::SaveAll] = enabled;
         if (widget != MainWidgets::Music)
-            m_actions[widget][ActionRename] = enabled;
+            m_actions[widget][MainActions::Rename] = enabled;
     }
 
     if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
@@ -562,7 +562,7 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
-    m_actions[widget][ActionSearch] = enabled;
+    m_actions[widget][MainActions::Search] = enabled;
 
     if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
         || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
@@ -842,11 +842,11 @@ void MainWindow::onMenu(QToolButton *button)
             widget = MainWidgets::Music;
             break;
         }
-        ui->navbar->setActionSearchEnabled(m_actions[widget][ActionSearch]);
-        ui->navbar->setActionSaveEnabled(m_actions[widget][ActionSave]);
-        ui->navbar->setActionSaveAllEnabled(m_actions[widget][ActionSaveAll]);
-        ui->navbar->setActionRenameEnabled(m_actions[widget][ActionRename]);
-        ui->navbar->setFilterWidgetEnabled(m_actions[widget][ActionFilterWidget]);
+        ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
+        ui->navbar->setActionSaveEnabled(m_actions[widget][MainActions::Save]);
+        ui->navbar->setActionSaveAllEnabled(m_actions[widget][MainActions::SaveAll]);
+        ui->navbar->setActionRenameEnabled(m_actions[widget][MainActions::Rename]);
+        ui->navbar->setFilterWidgetEnabled(m_actions[widget][MainActions::FilterWidget]);
         ui->navbar->setActiveWidget(widget);
     }
 }
