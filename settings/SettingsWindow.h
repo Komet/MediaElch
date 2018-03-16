@@ -40,8 +40,10 @@ protected:
 private slots:
     void onAction();
     void chooseDirToAdd();
-    void
-    addDir(QString dir, bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = SettingsDirType::Movies);
+    void addDir(QString dir,
+        bool separateFolders = false,
+        bool autoReload = false,
+        SettingsDirType dirType = SettingsDirType::Movies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
