@@ -57,8 +57,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 #endif
     ui->actorResolution->setFont(font);
 
-    ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
-    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
+    ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateType::Directors));
+    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateType::Writers));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 

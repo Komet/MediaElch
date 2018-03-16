@@ -217,11 +217,11 @@ enum SettingsDirType
 
 enum ComboDelegateType
 {
-    ComboDelegateGenres,
-    ComboDelegateStudios,
-    ComboDelegateCountries,
-    ComboDelegateWriters,
-    ComboDelegateDirectors
+    Genres,
+    Studios,
+    Countries,
+    Writers,
+    Directors
 };
 
 // clang-format off

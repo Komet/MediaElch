@@ -47,42 +47,42 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     QString value = index.model()->data(index, Qt::EditRole).toString();
     auto box = static_cast<QComboBox *>(editor);
     QStringList items;
-    if (m_widget == WidgetMovies && m_type == ComboDelegateGenres) {
+    if (m_widget == WidgetMovies && m_type == ComboDelegateType::Genres) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &genre, movie->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre))
                     items.append(genre);
             }
         }
-    } else if (m_widget == WidgetMovies && m_type == ComboDelegateCountries) {
+    } else if (m_widget == WidgetMovies && m_type == ComboDelegateType::Countries) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &country, movie->countries()) {
                 if (!country.isEmpty() && !items.contains(country))
                     items.append(country);
             }
         }
-    } else if (m_widget == WidgetMovies && m_type == ComboDelegateStudios) {
+    } else if (m_widget == WidgetMovies && m_type == ComboDelegateType::Studios) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &studio, movie->studios()) {
                 if (!studio.isEmpty() && !items.contains(studio))
                     items.append(studio);
             }
         }
-    } else if (m_widget == WidgetConcerts && m_type == ComboDelegateGenres) {
+    } else if (m_widget == WidgetConcerts && m_type == ComboDelegateType::Genres) {
         foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
             foreach (const QString &genre, concert->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre))
                     items.append(genre);
             }
         }
-    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateGenres) {
+    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateType::Genres) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (const QString &genre, show->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre))
                     items.append(genre);
             }
         }
-    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateDirectors) {
+    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateType::Directors) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (TvShowEpisode *episode, show->episodes()) {
                 foreach (const QString &director, episode->directors()) {
@@ -91,7 +91,7 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
                 }
             }
         }
-    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateWriters) {
+    } else if (m_widget == WidgetTvShows && m_type == ComboDelegateType::Writers) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (TvShowEpisode *episode, show->episodes()) {
                 foreach (const QString &writer, episode->writers()) {
