@@ -3,12 +3,13 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QGridLayout>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QLabel>
 #include <QMutexLocker>
 #include <QSettings>
-#include <QtScript/QScriptEngine>
-#include <QtScript/QScriptValue>
-#include <QtScript/QScriptValueIterator>
 
 #include "../data/Storage.h"
 #include "../globals/NetworkReplyWatcher.h"
@@ -286,11 +287,20 @@ void UniversalMusicScraper::onArtistLoadFinished()
 
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist *artist, QList<int> infos)
 {
-    if (elem.type == "tadb_data")
-        parseAndAssignTadbInfos(elem.contents, artist, infos);
-    else if (elem.type == "tadb_discography")
-        parseAndAssignTadbDiscography(elem.contents, artist, infos);
-    else if (elem.type == "am_data")
+    if (elem.type.startsWith("tadb_")) {
+        QJsonParseError parseError;
+        const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
+        if (parseError.error != QJsonParseError::NoError) {
+            qWarning() << "Error parsing music json: " << parseError.errorString();
+            return;
+        }
+
+        if (elem.type == "tadb_data") {
+            parseAndAssignTadbInfos(parsedJson, artist, infos);
+        } else if (elem.type == "tadb_discography") {
+            parseAndAssignTadbDiscography(parsedJson, artist, infos);
+        }
+    } else if (elem.type == "am_data")
         parseAndAssignAmInfos(elem.contents, artist, infos);
     else if (elem.type == "am_biography")
         parseAndAssignAmBiography(elem.contents, artist, infos);
@@ -564,85 +574,89 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album *album, QList<int> infos)
 {
-    if (elem.type == "tadb_data")
-        parseAndAssignTadbInfos(elem.contents, album, infos);
-    else if (elem.type == "am_data")
+    if (elem.type == "tadb_data") {
+        QJsonParseError parseError;
+        const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
+        if (parseError.error != QJsonParseError::NoError) {
+            qWarning() << "Error parsing music json: " << parseError.errorString();
+            return;
+        }
+
+        parseAndAssignTadbInfos(parsedJson, album, infos);
+    } else if (elem.type == "am_data") {
         parseAndAssignAmInfos(elem.contents, album, infos);
-    else if (elem.type == "discogs_data")
+    } else if (elem.type == "discogs_data") {
         parseAndAssignDiscogsInfos(elem.contents, album, infos);
+    }
 }
 
-void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Artist *artist, QList<int> infos)
+void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document, Artist *artist, QList<int> infos)
 {
-    QScriptValue sc;
-    QScriptValue scComplete;
-    QScriptEngine engine;
-    scComplete = engine.evaluate("(" + QString(json) + ")");
+    // The JSON document contains an array "artists". We take the first one.
+    const auto tadbArtist = document.value("artists").toArray().first().toObject();
 
-    QScriptValueIterator it(scComplete.property("artists"));
-    while (it.hasNext()) {
-        it.next();
-        sc = it.value();
-        break;
+    if (!tadbArtist.value("strMusicBrainzID").toString().isEmpty()) {
+        artist->setMbId(tadbArtist.value("strMusicBrainzID").toString());
     }
 
-    if (sc.property("strMusicBrainzID").isValid() && !sc.property("strMusicBrainzID").toString().isEmpty())
-        artist->setMbId(sc.property("strMusicBrainzID").toString());
+    if (shouldLoad(MusicScraperInfos::Name, infos, artist) && !tadbArtist.value("strArtist").toString().isEmpty()) {
+        artist->setName(tadbArtist.value("strArtist").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Name, infos, artist) && !sc.property("strArtist").isNull()
-        && !sc.property("strArtist").toString().isEmpty())
-        artist->setName(sc.property("strArtist").toString());
+    if (shouldLoad(MusicScraperInfos::Died, infos, artist)) {
+        artist->setDied(tadbArtist.value("intDiedYear").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Died, infos, artist) && !sc.property("intDiedYear").isNull())
-        artist->setDied(sc.property("intDiedYear").toString());
+    if (shouldLoad(MusicScraperInfos::Formed, infos, artist)) {
+        artist->setFormed(tadbArtist.value("intFormedYear").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Formed, infos, artist) && !sc.property("intFormedYear").isNull())
-        artist->setFormed(sc.property("intFormedYear").toString());
+    if (shouldLoad(MusicScraperInfos::Born, infos, artist)) {
+        artist->setBorn(tadbArtist.value("intBornYear").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Born, infos, artist) && !sc.property("intBornYear").isNull())
-        artist->setBorn(sc.property("intBornYear").toString());
+    if (shouldLoad(MusicScraperInfos::Disbanded, infos, artist)) {
+        artist->setDisbanded(tadbArtist.value("strDisbanded").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Disbanded, infos, artist) && !sc.property("strDisbanded").isNull())
-        artist->setDisbanded(sc.property("strDisbanded").toString());
+    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && tadbArtist.value("strGenre").toString() != "...") {
+        artist->addGenre(tadbArtist.value("strGenre").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && !sc.property("strGenre").isNull()
-        && sc.property("strGenre").toString() != "...")
-        artist->addGenre(sc.property("strGenre").toString());
+    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && tadbArtist.value("strStyle").toString() != "...") {
+        artist->addStyle(tadbArtist.value("strStyle").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && !sc.property("strStyle").isNull()
-        && sc.property("strStyle").toString() != "...")
-        artist->addStyle(sc.property("strStyle").toString());
-
-    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && !sc.property("strMood").isNull()
-        && sc.property("strMood").toString() != "...")
-        artist->addMood(sc.property("strMood").toString());
+    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && tadbArtist.value("strMood").toString() != "...") {
+        artist->addMood(tadbArtist.value("strMood").toString());
+    }
 
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {
-        if (!sc.property("strBiography" + m_language.toUpper()).isNull())
-            artist->setBiography(sc.property("strBiography" + m_language.toUpper()).toString());
-        else if (!sc.property("strBiographyEN").isNull())
-            artist->setBiography(sc.property("strBiographyEN").toString());
+        const auto biography = tadbArtist.value("strBiography" + m_language.toUpper()).toString();
+        const auto biographyEN = tadbArtist.value("strBiographyEN").toString();
+        if (!biography.isEmpty()) {
+            artist->setBiography(biography);
+        } else if (!biographyEN.isEmpty()) {
+            artist->setBiography(biographyEN);
+        }
     }
 }
 
-void UniversalMusicScraper::parseAndAssignTadbDiscography(QString json, Artist *artist, QList<int> infos)
+void UniversalMusicScraper::parseAndAssignTadbDiscography(QJsonObject document, Artist *artist, QList<int> infos)
 {
-    if (shouldLoad(MusicScraperInfos::Discography, infos, artist)) {
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString(json) + ")");
-        if (!sc.property("album").isArray())
-            return;
+    if (!shouldLoad(MusicScraperInfos::Discography, infos, artist)) {
+        return;
+    }
 
-        QScriptValueIterator itC(sc.property("album"));
-        while (itC.hasNext()) {
-            itC.next();
-            QScriptValue vC = itC.value();
-            DiscographyAlbum a;
-            a.title = vC.property("strAlbum").toString();
-            a.year = vC.property("intYearReleased").toString();
-            if (!a.title.isEmpty() || !a.year.isEmpty())
-                artist->addDiscographyAlbum(a);
+    const auto tadbAlbums = document.value("album").toArray();
+
+    for (const auto &albumValue : tadbAlbums) {
+        const auto album = albumValue.toObject();
+        DiscographyAlbum a;
+        a.title = album.value("strAlbum").toString();
+        a.year = album.value("intYearReleased").toString();
+        if (!a.title.isEmpty() || !a.year.isEmpty()) {
+            artist->addDiscographyAlbum(a);
         }
     }
 }
@@ -869,55 +883,49 @@ void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *a
     }
 }
 
-void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos)
+void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document, Album *album, QList<int> infos)
 {
-    QScriptValue sc;
-    QScriptValue scComplete;
-    QScriptEngine engine;
-    scComplete = engine.evaluate("(" + QString(json) + ")");
+    // The JSON document contains an array "album". We take the first one.
+    const auto tadbAlbum = document.value("album").toArray().first().toObject();
 
-    QScriptValueIterator it(scComplete.property("album"));
-    while (it.hasNext()) {
-        it.next();
-        sc = it.value();
-        break;
+    album->setMbReleaseGroupId(tadbAlbum.value("strMusicBrainzID").toString());
+
+    if (shouldLoad(MusicScraperInfos::Title, infos, album)) {
+        album->setTitle(tadbAlbum.value("strAlbum").toString());
     }
 
-    if (sc.property("strMusicBrainzID").isValid() && !sc.property("strMusicBrainzID").toString().isEmpty())
-        album->setMbReleaseGroupId(sc.property("strMusicBrainzID").toString());
+    if (shouldLoad(MusicScraperInfos::Artist, infos, album)) {
+        album->setArtist(tadbAlbum.value("strArtist").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Title, infos, album) && !sc.property("strAlbum").isNull()
-        && !sc.property("strAlbum").toString().isEmpty())
-        album->setTitle(sc.property("strAlbum").toString());
+    if (shouldLoad(MusicScraperInfos::Rating, infos, album)) {
+        album->setRating(tadbAlbum.value("intScore").toInt(0));
+    }
 
-    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !sc.property("strArtist").isNull()
-        && !sc.property("strArtist").toString().isEmpty())
-        album->setArtist(sc.property("strArtist").toString());
+    if (shouldLoad(MusicScraperInfos::Year, infos, album) && tadbAlbum.value("intYearReleased").toInt() > 0) {
+        album->setYear(tadbAlbum.value("intYearReleased").toString().toInt());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Rating, infos, album) && !sc.property("intScore").isNull())
-        album->setRating(sc.property("intScore").toString().toInt());
+    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && tadbAlbum.value("strGenre").toString() != "...") {
+        album->addGenre(tadbAlbum.value("strGenre").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Year, infos, album) && !sc.property("intYearReleased").isNull()
-        && sc.property("intYearReleased").toInt32() > 0)
-        album->setYear(sc.property("intYearReleased").toString().toInt());
+    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && tadbAlbum.value("strStyle").toString() != "...") {
+        album->addStyle(tadbAlbum.value("strStyle").toString());
+    }
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && !sc.property("strGenre").isNull()
-        && sc.property("strGenre").toString() != "...")
-        album->addGenre(sc.property("strGenre").toString());
-
-    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && !sc.property("strStyle").isNull()
-        && sc.property("strStyle").toString() != "...")
-        album->addStyle(sc.property("strStyle").toString());
-
-    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && !sc.property("strMood").isNull()
-        && sc.property("strMood").toString() != "...")
-        album->addMood(sc.property("strMood").toString());
+    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && tadbAlbum.value("strMood").toString() != "...") {
+        album->addMood(tadbAlbum.value("strMood").toString());
+    }
 
     if (shouldLoad(MusicScraperInfos::Review, infos, album)) {
-        if (!sc.property("strDescription" + m_language.toUpper()).isNull())
-            album->setReview(sc.property("strDescription" + m_language.toUpper()).toString());
-        else if (!sc.property("strDescriptionEN").isNull())
-            album->setReview(sc.property("strDescriptionEN").toString());
+        const auto review = tadbAlbum.value("strDescription" + m_language.toUpper()).toString();
+        const auto reviewEN = tadbAlbum.value("strDescriptionEN").toString();
+        if (!review.isEmpty()) {
+            album->setReview(review);
+        } else if (!reviewEN.isEmpty()) {
+            album->setReview(reviewEN);
+        }
     }
 }
 

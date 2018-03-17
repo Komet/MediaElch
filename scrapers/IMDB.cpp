@@ -1,7 +1,5 @@
 #include "IMDB.h"
 
-#include <QScriptEngine>
-#include <QScriptValueIterator>
 #include <QWidget>
 
 #include "data/Storage.h"
