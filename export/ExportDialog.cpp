@@ -236,7 +236,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     replaceSingleBlock(m, "TAGS", "TAG.NAME", movie->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", movie->genres());
     replaceSingleBlock(m, "COUNTRIES", "COUNTRY.NAME", movie->countries());
-    replaceSingleBlock(m, "STUDIOS", "STUDIO.NAME", movie->countries());
+    replaceSingleBlock(m, "STUDIOS", "STUDIO.NAME", movie->studios());
 
     QStringList actorNames;
     QStringList actorRoles;
