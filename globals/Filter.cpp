@@ -162,9 +162,9 @@ bool Filter::accepts(Movie *movie)
             return movie->streamDetails()->videoDetails().value("width").toInt() > 0
                    && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
         else if (m_shortText == "BluRay")
-            return movie->discType() == DiscBluRay;
+            return movie->discType() == DiscType::BluRay;
         else if (m_shortText == "DVD")
-            return movie->discType() == DiscDvd;
+            return movie->discType() == DiscType::Dvd;
     }
 
     if (m_info == MovieFilters::AudioChannels) {

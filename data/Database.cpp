@@ -326,7 +326,7 @@ void Database::add(Movie *movie, QString path)
     query.bindValue(":hasBanner", movie->hasImage(ImageType::MovieBanner) ? 1 : 0);
     query.bindValue(":hasThumb", movie->hasImage(ImageType::MovieThumb) ? 1 : 0);
     query.bindValue(":hasExtraFanarts", movie->hasExtraFanarts() ? 1 : 0);
-    query.bindValue(":discType", movie->discType());
+    query.bindValue(":discType", static_cast<int>(movie->discType()));
     query.bindValue(":path", path.toUtf8());
     query.exec();
     int insertId = query.lastInsertId().toInt();

@@ -9,7 +9,10 @@
  * @brief MovieProxyModel::MovieProxyModel
  * @param parent
  */
-MovieProxyModel::MovieProxyModel(QObject *parent) : QSortFilterProxyModel(parent), m_sortBy{SortByNew}
+MovieProxyModel::MovieProxyModel(QObject *parent) :
+    QSortFilterProxyModel(parent),
+    m_sortBy{SortByNew},
+    m_filterDuplicates{false}
 {
     sort(0, Qt::AscendingOrder);
 }

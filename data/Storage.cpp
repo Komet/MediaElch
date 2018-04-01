@@ -49,7 +49,7 @@ Storage::Storage(QObject *parent, PluginInterface *plugin) : QObject(parent), m_
 {
 }
 
-Storage::Storage(QObject *parent, PluginManager::Plugin plugin) : QObject(parent), m_plugin{plugin}
+Storage::Storage(QObject *parent, PluginManager::Plugin plugin) : QObject(parent), m_plugin(plugin)
 {
 }
 

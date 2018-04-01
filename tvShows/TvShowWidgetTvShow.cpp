@@ -290,12 +290,12 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
     updateTvShowInfo();
     if (show->downloadsInProgress()) {
         onSetEnabled(false);
-        emit sigSetActionSearchEnabled(false, WidgetTvShows);
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     } else {
         onSetEnabled(true);
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
@@ -447,8 +447,8 @@ void TvShowWidgetTvShow::onStartScraperSearch()
         qDebug() << "My show is invalid";
         return;
     }
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     TvShowSearch::instance()->setSearchType(TypeTvShow);
     TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
@@ -461,8 +461,8 @@ void TvShowWidgetTvShow::onStartScraperSearch()
             TvShowSearch::instance()->infosToLoad());
         connect(m_show, SIGNAL(sigLoaded(TvShow *)), this, SLOT(onInfoLoadDone(TvShow *)), Qt::UniqueConnection);
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
@@ -514,7 +514,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
 
     int downloadsSize = 0;
     if (!show->posters().empty() && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowPoster;
         d.url = show->posters().at(0).originalUrl;
@@ -526,7 +526,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
     }
 
     if (!show->backdrops().empty() && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBackdrop;
         d.url = show->backdrops().at(0).originalUrl;
@@ -538,7 +538,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
     }
 
     if (!show->banners().empty() && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBanner;
         d.url = show->banners().at(0).originalUrl;
@@ -625,7 +625,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
 
     foreach (int season, show->seasons()) {
         if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonPoster)) {
-            emit sigSetActionSaveEnabled(false, WidgetTvShows);
+            emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonPoster;
             d.url = show->seasonPosters(season).at(0).originalUrl;
@@ -636,7 +636,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
         }
         if (!show->seasonBackdrops(season).isEmpty()
             && show->infosToLoad().contains(TvShowScraperInfos::SeasonBackdrop)) {
-            emit sigSetActionSaveEnabled(false, WidgetTvShows);
+            emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonBackdrop;
             d.url = show->seasonBackdrops(season).at(0).originalUrl;
@@ -646,7 +646,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
             downloadsSize++;
         }
         if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonBanner)) {
-            emit sigSetActionSaveEnabled(false, WidgetTvShows);
+            emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowSeasonBanner;
             d.url = show->seasonBanners(season).at(0).originalUrl;
@@ -682,8 +682,8 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
             Qt::UniqueConnection);
     } else if (show == m_show) {
         onSetEnabled(true);
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -724,7 +724,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 
     if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0) {
         ui->fanarts->setLoading(false);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
@@ -738,8 +738,8 @@ void TvShowWidgetTvShow::onDownloadsFinished(TvShow *show)
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId + show->showId());
     if (show == m_show) {
         onSetEnabled(true);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
     }
     show->setDownloadsInProgress(false);
 }
@@ -1048,7 +1048,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowExtraFanart;
@@ -1064,7 +1064,7 @@ void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
 {
     if (!m_show)
         return;
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowExtraFanart;
     d.url = imageUrl;
@@ -1105,7 +1105,7 @@ void TvShowWidgetTvShow::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = image->imageType();
         d.url = ImageDialog::instance()->imageUrl();
@@ -1138,7 +1138,7 @@ void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
     if (!image)
         return;
 
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = imageType;
     d.url = imageUrl;

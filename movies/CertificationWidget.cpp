@@ -99,7 +99,7 @@ void CertificationWidget::clear()
  */
 void CertificationWidget::loadCertifications()
 {
-    emit setActionSaveEnabled(false, WidgetCertifications);
+    emit setActionSaveEnabled(false, MainWidgets::Certifications);
     ui->certifications->blockSignals(true);
     clear();
     QStringList certifications;
@@ -124,7 +124,7 @@ void CertificationWidget::loadCertifications()
     }
 
     ui->certifications->blockSignals(false);
-    emit setActionSaveEnabled(true, WidgetCertifications);
+    emit setActionSaveEnabled(true, MainWidgets::Certifications);
 }
 
 /**

@@ -80,26 +80,26 @@ namespace MediaCenterFeatures {
 }
 // clang-format on
 
-enum MainActions
+enum class MainActions
 {
-    ActionSearch,
-    ActionSave,
-    ActionSaveAll,
-    ActionFilterWidget,
-    ActionRename,
-    ActionExport
+    Search,
+    Save,
+    SaveAll,
+    FilterWidget,
+    Rename,
+    Export
 };
 
-enum MainWidgets
+enum class MainWidgets
 {
-    WidgetMovies,
-    WidgetMovieSets,
-    WidgetTvShows,
-    WidgetConcerts,
-    WidgetMusic,
-    WidgetGenres,
-    WidgetCertifications,
-    WidgetDownloads
+    Movies,
+    MovieSets,
+    TvShows,
+    Concerts,
+    Music,
+    Genres,
+    Certifications,
+    Downloads
 };
 
 /**
@@ -173,21 +173,21 @@ enum MusicType
     TypeAlbum
 };
 
-enum ItemType
+enum class ItemType
 {
-    ItemMovie,
-    ItemTvShow,
-    ItemTvShowEpisode,
-    ItemConcert,
-    ItemArtist,
-    ItemAlbum
+    Movie,
+    TvShow,
+    TvShowEpisode,
+    Concert,
+    Artist,
+    Album
 };
 
-enum DiscType
+enum class DiscType
 {
-    DiscSingle,
-    DiscBluRay,
-    DiscDvd
+    Single,
+    BluRay,
+    Dvd
 };
 
 enum MovieSetArtworkType
@@ -208,20 +208,20 @@ struct SettingsDir
 
 enum SettingsDirType
 {
-    DirTypeMovies,
-    DirTypeTvShows,
-    DirTypeConcerts,
-    DirTypeDownloads,
-    DirTypeMusic
+    Movies,
+    TvShows,
+    Concerts,
+    Downloads,
+    Music
 };
 
 enum ComboDelegateType
 {
-    ComboDelegateGenres,
-    ComboDelegateStudios,
-    ComboDelegateCountries,
-    ComboDelegateWriters,
-    ComboDelegateDirectors
+    Genres,
+    Studios,
+    Countries,
+    Writers,
+    Directors
 };
 
 // clang-format off

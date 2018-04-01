@@ -253,8 +253,8 @@ void ConcertWidget::setEnabledTrue(Concert *concert)
         return;
     }
     ui->groupBox_3->setEnabled(true);
-    emit setActionSaveEnabled(true, WidgetConcerts);
-    emit setActionSearchEnabled(true, WidgetConcerts);
+    emit setActionSaveEnabled(true, MainWidgets::Concerts);
+    emit setActionSearchEnabled(true, MainWidgets::Concerts);
 }
 
 /**
@@ -264,8 +264,8 @@ void ConcertWidget::setDisabledTrue()
 {
     qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
-    emit setActionSaveEnabled(false, WidgetConcerts);
-    emit setActionSearchEnabled(false, WidgetConcerts);
+    emit setActionSaveEnabled(false, MainWidgets::Concerts);
+    emit setActionSearchEnabled(false, MainWidgets::Concerts);
 }
 
 /**
@@ -312,8 +312,8 @@ void ConcertWidget::onStartScraperSearch()
         qDebug() << "My concert is invalid";
         return;
     }
-    emit setActionSearchEnabled(false, WidgetConcerts);
-    emit setActionSaveEnabled(false, WidgetConcerts);
+    emit setActionSearchEnabled(false, MainWidgets::Concerts);
+    emit setActionSaveEnabled(false, MainWidgets::Concerts);
     ConcertSearch::instance()->exec(m_concert->name());
     if (ConcertSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
@@ -321,8 +321,8 @@ void ConcertWidget::onStartScraperSearch()
             Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
             ConcertSearch::instance()->infosToLoad());
     } else {
-        emit setActionSearchEnabled(true, WidgetConcerts);
-        emit setActionSaveEnabled(true, WidgetConcerts);
+        emit setActionSearchEnabled(true, MainWidgets::Concerts);
+        emit setActionSaveEnabled(true, MainWidgets::Concerts);
     }
 }
 
@@ -338,7 +338,7 @@ void ConcertWidget::onInfoLoadDone(Concert *concert)
     if (m_concert == concert) {
         updateConcertInfo();
         ui->buttonRevert->setVisible(true);
-        emit setActionSaveEnabled(false, WidgetConcerts);
+        emit setActionSaveEnabled(false, MainWidgets::Concerts);
     }
 }
 
@@ -476,7 +476,7 @@ void ConcertWidget::updateConcertInfo()
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
 
-    emit setActionSaveEnabled(true, WidgetConcerts);
+    emit setActionSaveEnabled(true, MainWidgets::Concerts);
 
     ui->rating->setEnabled(
         Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertRating));
@@ -965,7 +965,7 @@ void ConcertWidget::onAddExtraFanart()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
-        emit setActionSaveEnabled(false, WidgetConcerts);
+        emit setActionSaveEnabled(false, MainWidgets::Concerts);
         m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
@@ -976,7 +976,7 @@ void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
     if (!m_concert)
         return;
     ui->fanarts->setLoading(true);
-    emit setActionSaveEnabled(false, WidgetConcerts);
+    emit setActionSaveEnabled(false, MainWidgets::Concerts);
     m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QList<QUrl>() << imageUrl);
     ui->buttonRevert->setVisible(true);
 }
@@ -1002,7 +1002,7 @@ void ConcertWidget::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit setActionSaveEnabled(false, WidgetConcerts);
+        emit setActionSaveEnabled(false, MainWidgets::Concerts);
         m_concert->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -1026,7 +1026,7 @@ void ConcertWidget::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_concert)
         return;
-    emit setActionSaveEnabled(false, WidgetConcerts);
+    emit setActionSaveEnabled(false, MainWidgets::Concerts);
     m_concert->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }

@@ -6,7 +6,6 @@
 #include <QMutex>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QScriptValue>
 #include <QTcpSocket>
 #include <QTimer>
 

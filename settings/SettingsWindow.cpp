@@ -328,28 +328,28 @@ void SettingsWindow::loadSettings()
         addDir(movieDirectories.at(i).path,
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
-            DirTypeMovies);
+            SettingsDirType::Movies);
     QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i)
         addDir(tvShowDirectories.at(i).path,
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
-            DirTypeTvShows);
+            SettingsDirType::TvShows);
     QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i)
         addDir(concertDirectories.at(i).path,
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
-            DirTypeConcerts);
+            SettingsDirType::Concerts);
     QList<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i)
-        addDir(downloadDirectories.at(i).path, false, false, DirTypeDownloads);
+        addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
     QList<SettingsDir> musicDirectories = m_settings->musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i)
         addDir(musicDirectories.at(i).path,
             musicDirectories.at(i).separateFolders,
             musicDirectories.at(i).autoReload,
-            DirTypeMusic);
+            SettingsDirType::Music);
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -577,15 +577,15 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
-            if (dirType == DirTypeMovies)
+            if (dirType == SettingsDirType::Movies)
                 box->setCurrentIndex(0);
-            else if (dirType == DirTypeTvShows)
+            else if (dirType == SettingsDirType::TvShows)
                 box->setCurrentIndex(1);
-            else if (dirType == DirTypeConcerts)
+            else if (dirType == SettingsDirType::Concerts)
                 box->setCurrentIndex(2);
-            else if (dirType == DirTypeDownloads)
+            else if (dirType == SettingsDirType::Downloads)
                 box->setCurrentIndex(3);
-            else if (dirType == DirTypeMusic)
+            else if (dirType == SettingsDirType::Music)
                 box->setCurrentIndex(4);
 
             ui->dirs->setCellWidget(row, 0, box);

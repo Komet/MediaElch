@@ -26,7 +26,6 @@
 #include "scrapers/UniversalMusicScraper.h"
 #include "scrapers/VideoBuster.h"
 #include "trailerProviders/HdTrailers.h"
-#include "trailerProviders/MovieMaze.h"
 
 /**
  * @brief Manager::Manager
@@ -64,7 +63,6 @@ Manager::Manager(QObject *parent) : QObject(parent)
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
 
-    m_trailerProviders.append(new MovieMaze(this));
     m_trailerProviders.append(new HdTrailers(this));
 
     m_tvTunes = new TvTunes(this);

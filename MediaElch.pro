@@ -4,6 +4,10 @@
 #
 #-------------------------------------------------
 
+# Check Qt versions
+lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
+lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
+
 include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
@@ -111,7 +115,6 @@ SOURCES += main.cpp\
     smallWidgets/MediaFlags.cpp \
     data/Database.cpp \
     smallWidgets/LoadingStreamDetails.cpp \
-    trailerProviders/MovieMaze.cpp \
     globals/TrailerDialog.cpp \
     smallWidgets/SlidingStackedWidget.cpp \
     scrapers/IMDB.cpp \
@@ -284,7 +287,6 @@ HEADERS  += main/MainWindow.h \
     data/Database.h \
     smallWidgets/LoadingStreamDetails.h \
     trailerProviders/TrailerProvider.h \
-    trailerProviders/MovieMaze.h \
     globals/TrailerDialog.h \
     smallWidgets/SlidingStackedWidget.h \
     scrapers/IMDB.h \

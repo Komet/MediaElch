@@ -190,10 +190,10 @@ bool XbmcXml::saveMovie(Movie *movie)
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
-                    && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
                     saveFileName = "poster.jpg";
                 if (imageType == ImageType::MovieBackdrop
-                    && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(movie);
                 saveFile(path + "/" + saveFileName, movie->image(imageType));
@@ -204,10 +204,10 @@ bool XbmcXml::saveMovie(Movie *movie)
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
-                    && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
                     saveFileName = "poster.jpg";
                 if (imageType == ImageType::MovieBackdrop
-                    && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(movie);
                 QFile(path + "/" + saveFileName).remove();
@@ -864,10 +864,10 @@ bool XbmcXml::saveConcert(Concert *concert)
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
                 if (imageType == ImageType::ConcertPoster
-                    && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
                     saveFileName = "poster.jpg";
                 if (imageType == ImageType::ConcertBackdrop
-                    && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(concert);
                 saveFile(path + "/" + saveFileName, concert->image(imageType));
@@ -877,10 +877,10 @@ bool XbmcXml::saveConcert(Concert *concert)
             foreach (DataFile dataFile, Settings::instance()->dataFiles(imageType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
                 if (imageType == ImageType::ConcertPoster
-                    && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
                     saveFileName = "poster.jpg";
                 if (imageType == ImageType::ConcertBackdrop
-                    && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(concert);
                 QFile(path + "/" + saveFileName).remove();
@@ -1525,7 +1525,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     setTextValue(doc, "tvdbid", show->tvdbId());
     setTextValue(doc, "id", show->id());
     setTextValue(doc, "imdbid", show->imdbId());
-    if (show->status().isEmpty())
+    if (!show->status().isEmpty())
         setTextValue(doc, "status", show->status());
     else
         removeChildNodes(doc, "status");
@@ -1799,12 +1799,12 @@ QString XbmcXml::getPath(Movie *movie)
     if (movie->files().isEmpty())
         return QString();
     QFileInfo fi(movie->files().first());
-    if (movie->discType() == DiscBluRay) {
+    if (movie->discType() == DiscType::BluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
             dir.cdUp();
         return dir.absolutePath();
-    } else if (movie->discType() == DiscDvd) {
+    } else if (movie->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
             dir.cdUp();
@@ -1818,12 +1818,12 @@ QString XbmcXml::getPath(Concert *concert)
     if (concert->files().isEmpty())
         return QString();
     QFileInfo fi(concert->files().first());
-    if (concert->discType() == DiscBluRay) {
+    if (concert->discType() == DiscType::BluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
             dir.cdUp();
         return dir.absolutePath();
-    } else if (concert->discType() == DiscDvd) {
+    } else if (concert->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
             dir.cdUp();
@@ -1845,7 +1845,7 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
                 QDir dir = fi.dir();
                 if (movie->inSeparateFolder())
                     dir.cdUp();
-                if (movie->discType() == DiscDvd || movie->discType() == DiscBluRay)
+                if (movie->discType() == DiscType::Dvd || movie->discType() == DiscType::BluRay)
                     dir.cdUp();
                 return dir.absolutePath() + "/" + dataFile->saveFileName(setName);
             }
@@ -1881,9 +1881,11 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
 
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        if (type == ImageType::MoviePoster && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+        if (type == ImageType::MoviePoster
+            && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
             file = "poster.jpg";
-        if (type == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+        if (type == ImageType::MovieBackdrop
+            && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd))
             file = "fanart.jpg";
         QString path = getPath(movie);
         QFileInfo pFi(path + "/" + file);
@@ -1920,9 +1922,11 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
 
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-        if (type == ImageType::ConcertPoster && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+        if (type == ImageType::ConcertPoster
+            && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
             file = "poster.jpg";
-        if (type == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+        if (type == ImageType::ConcertBackdrop
+            && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd))
             file = "fanart.jpg";
         QString path = getPath(concert);
         QFileInfo pFi(path + "/" + file);
