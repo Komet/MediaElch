@@ -48,7 +48,7 @@ class Concert : public QObject
 
 public:
     explicit Concert(QStringList files, QObject *parent = nullptr);
-    ~Concert();
+    ~Concert() = default;
 
     ConcertController *controller();
 
@@ -198,7 +198,6 @@ private:
     int m_databaseId;
     bool m_syncNeeded;
     QList<ScraperData> m_loadsLeft;
-    bool m_loadDoneFired;
     QMutex m_loadMutex;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;

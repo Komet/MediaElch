@@ -2,4 +2,4 @@
 doc/html
 Makefile
 scripts/generated_media
-scripts/fake_data/Demo.mov
+scripts/fake_data/Demo.*
