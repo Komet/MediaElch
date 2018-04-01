@@ -36,8 +36,8 @@ private slots:
 private:
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignPoster(QString html, Movie *movie, QList<int> infos);
-    QString parsePosters(QString html);
+    void parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos);
+    QUrl parsePosters(QString html);
 
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
