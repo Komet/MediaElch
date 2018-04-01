@@ -162,8 +162,8 @@ void MusicWidgetAlbum::onSetEnabled(bool enabled)
     }
     enabled = enabled && !m_album->controller()->downloadsInProgress();
     ui->groupBox_3->setEnabled(enabled);
-    emit sigSetActionSearchEnabled(enabled, WidgetMusic);
-    emit sigSetActionSaveEnabled(enabled, WidgetMusic);
+    emit sigSetActionSearchEnabled(enabled, MainWidgets::Music);
+    emit sigSetActionSaveEnabled(enabled, MainWidgets::Music);
 }
 
 void MusicWidgetAlbum::onClear()
@@ -232,8 +232,8 @@ void MusicWidgetAlbum::onStartScraperSearch()
     if (!m_album)
         return;
 
-    emit sigSetActionSearchEnabled(false, WidgetMusic);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSearchEnabled(false, MainWidgets::Music);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 
     MusicSearch::instance()->exec("album",
         m_album->title(),
@@ -246,8 +246,8 @@ void MusicWidgetAlbum::onStartScraperSearch()
             Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
             MusicSearch::instance()->infosToLoad());
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetMusic);
-        emit sigSetActionSaveEnabled(true, WidgetMusic);
+        emit sigSetActionSearchEnabled(true, MainWidgets::Music);
+        emit sigSetActionSaveEnabled(true, MainWidgets::Music);
     }
 }
 
@@ -431,7 +431,7 @@ void MusicWidgetAlbum::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        emit sigSetActionSaveEnabled(false, MainWidgets::Music);
         m_album->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -455,7 +455,7 @@ void MusicWidgetAlbum::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_album)
         return;
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
     m_album->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }
@@ -467,7 +467,7 @@ void MusicWidgetAlbum::onInfoLoadDone(Album *album)
 
     updateAlbumInfo();
     ui->buttonRevert->setVisible(true);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 }
 
 void MusicWidgetAlbum::onLoadDone(Album *album)
@@ -551,7 +551,7 @@ void MusicWidgetAlbum::onAddBooklet()
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         if (m_bookletWidget)
             m_bookletWidget->setLoading(true);
-        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        emit sigSetActionSaveEnabled(false, MainWidgets::Music);
         m_album->controller()->loadImages(ImageType::AlbumBooklet, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }

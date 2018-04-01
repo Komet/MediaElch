@@ -163,17 +163,17 @@ int ImageDialog::exec(int type)
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
-    if (m_itemType == ItemMovie)
+    if (m_itemType == ItemType::Movie)
         ui->searchTerm->setText(formatSearchText(m_movie->name()));
-    else if (m_itemType == ItemConcert)
+    else if (m_itemType == ItemType::Concert)
         ui->searchTerm->setText(formatSearchText(m_concert->name()));
-    else if (m_itemType == ItemTvShow)
+    else if (m_itemType == ItemType::TvShow)
         ui->searchTerm->setText(formatSearchText(m_tvShow->name()));
-    else if (m_itemType == ItemTvShowEpisode)
+    else if (m_itemType == ItemType::TvShowEpisode)
         ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->name()));
-    else if (m_itemType == ItemAlbum)
+    else if (m_itemType == ItemType::Album)
         ui->searchTerm->setText(formatSearchText(m_album->title()));
-    else if (m_itemType == ItemArtist)
+    else if (m_itemType == ItemType::Artist)
         ui->searchTerm->setText(formatSearchText(m_artist->name()));
     else
         ui->searchTerm->clear();
@@ -476,7 +476,7 @@ void ImageDialog::setImageType(int type)
 void ImageDialog::setMovie(Movie *movie)
 {
     m_movie = movie;
-    m_itemType = ItemMovie;
+    m_itemType = ItemType::Movie;
 }
 
 /**
@@ -486,7 +486,7 @@ void ImageDialog::setMovie(Movie *movie)
 void ImageDialog::setConcert(Concert *concert)
 {
     m_concert = concert;
-    m_itemType = ItemConcert;
+    m_itemType = ItemType::Concert;
 }
 
 /**
@@ -496,7 +496,7 @@ void ImageDialog::setConcert(Concert *concert)
 void ImageDialog::setTvShow(TvShow *show)
 {
     m_tvShow = show;
-    m_itemType = ItemTvShow;
+    m_itemType = ItemType::TvShow;
 }
 
 /**
@@ -515,19 +515,19 @@ void ImageDialog::setSeason(int season)
 void ImageDialog::setTvShowEpisode(TvShowEpisode *episode)
 {
     m_tvShowEpisode = episode;
-    m_itemType = ItemTvShowEpisode;
+    m_itemType = ItemType::TvShowEpisode;
 }
 
 void ImageDialog::setArtist(Artist *artist)
 {
     m_artist = artist;
-    m_itemType = ItemArtist;
+    m_itemType = ItemType::Artist;
 }
 
 void ImageDialog::setAlbum(Album *album)
 {
     m_album = album;
-    m_itemType = ItemAlbum;
+    m_itemType = ItemType::Album;
 }
 
 /**
@@ -731,23 +731,23 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     QString initialSearchTerm;
     QString id;
     QString mediaPassionId;
-    if (m_itemType == ItemMovie) {
+    if (m_itemType == ItemType::Movie) {
         initialSearchTerm = m_movie->name();
         id = m_movie->tmdbId();
         mediaPassionId = m_movie->mediaPassionId();
-    } else if (m_itemType == ItemConcert) {
+    } else if (m_itemType == ItemType::Concert) {
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId();
-    } else if (m_itemType == ItemTvShow) {
+    } else if (m_itemType == ItemType::TvShow) {
         initialSearchTerm = m_tvShow->name();
         id = m_tvShow->tvdbId();
-    } else if (m_itemType == ItemTvShowEpisode) {
+    } else if (m_itemType == ItemType::TvShowEpisode) {
         initialSearchTerm = m_tvShowEpisode->tvShow()->name();
         id = m_tvShowEpisode->tvShow()->tvdbId();
-    } else if (m_itemType == ItemAlbum) {
+    } else if (m_itemType == ItemType::Album) {
         initialSearchTerm = m_album->title();
         id = m_album->mbReleaseGroupId();
-    } else if (m_itemType == ItemArtist) {
+    } else if (m_itemType == ItemType::Artist) {
         initialSearchTerm = m_artist->name();
         id = m_artist->mbId();
     }
@@ -772,15 +772,15 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         ui->results->clearContents();
         ui->results->setRowCount(0);
         int limit = (onlyFirstResult) ? 1 : 0;
-        if (m_itemType == ItemMovie)
+        if (m_itemType == ItemType::Movie)
             m_currentProvider->searchMovie(searchTerm, limit);
-        else if (m_itemType == ItemConcert)
+        else if (m_itemType == ItemType::Concert)
             m_currentProvider->searchConcert(searchTerm, limit);
-        else if (m_itemType == ItemTvShow || m_itemType == ItemTvShowEpisode)
+        else if (m_itemType == ItemType::TvShow || m_itemType == ItemType::TvShowEpisode)
             m_currentProvider->searchTvShow(searchTerm, limit);
-        else if (m_itemType == ItemArtist)
+        else if (m_itemType == ItemType::Artist)
             m_currentProvider->searchArtist(searchTerm, limit);
-        else if (m_itemType == ItemAlbum)
+        else if (m_itemType == ItemType::Album)
             m_currentProvider->searchAlbum(m_album->artist(), searchTerm, limit);
     }
 }
@@ -821,7 +821,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
 {
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
-    if (m_itemType == ItemMovie) {
+    if (m_itemType == ItemType::Movie) {
         if (m_type == ImageType::MoviePoster)
             m_currentProvider->moviePosters(id);
         else if (m_type == ImageType::MovieBackdrop)
@@ -838,7 +838,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->movieClearArts(id);
         else if (m_type == ImageType::MovieCdArt)
             m_currentProvider->movieCdArts(id);
-    } else if (m_itemType == ItemConcert) {
+    } else if (m_itemType == ItemType::Concert) {
         if (m_type == ImageType::ConcertBackdrop)
             m_currentProvider->concertBackdrops(id);
         else if (m_type == ImageType::ConcertPoster)
@@ -849,7 +849,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->concertClearArts(id);
         else if (m_type == ImageType::ConcertCdArt)
             m_currentProvider->concertCdArts(id);
-    } else if (m_itemType == ItemTvShow) {
+    } else if (m_itemType == ItemType::TvShow) {
         if (m_type == ImageType::TvShowBackdrop)
             m_currentProvider->tvShowBackdrops(id);
         else if (m_type == ImageType::TvShowBanner)
@@ -872,17 +872,17 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->tvShowSeasonThumbs(id, m_season);
         else if (m_type == ImageType::TvShowSeasonBackdrop)
             m_currentProvider->tvShowSeasonBackdrops(id, m_season);
-    } else if (m_itemType == ItemTvShowEpisode) {
+    } else if (m_itemType == ItemType::TvShowEpisode) {
         if (m_type == ImageType::TvShowEpisodeThumb)
             m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
-    } else if (m_itemType == ItemArtist) {
+    } else if (m_itemType == ItemType::Artist) {
         if (m_type == ImageType::ArtistFanart)
             m_currentProvider->artistFanarts(id);
         else if (m_type == ImageType::ArtistLogo)
             m_currentProvider->artistLogos(id);
         else if (m_type == ImageType::ArtistThumb)
             m_currentProvider->artistThumbs(id);
-    } else if (m_itemType == ItemAlbum) {
+    } else if (m_itemType == ItemType::Album) {
         if (m_type == ImageType::AlbumCdArt)
             m_currentProvider->albumCdArts(id);
         else if (m_type == ImageType::AlbumThumb)

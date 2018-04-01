@@ -737,7 +737,7 @@ void XbmcSync::updateFolderLastModified(Movie *movie)
 
     QFileInfo fi(movie->files().first());
     QDir dir = fi.dir();
-    if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd) {
+    if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
         dir = fi.dir();
         dir.cdUp();
     }
@@ -756,7 +756,7 @@ void XbmcSync::updateFolderLastModified(Concert *concert)
 
     QFileInfo fi(concert->files().first());
     QDir dir = fi.dir();
-    if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd) {
+    if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
         dir = fi.dir();
         dir.cdUp();
     }

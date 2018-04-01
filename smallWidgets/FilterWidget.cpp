@@ -26,7 +26,7 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
     m_list->setAttribute(Qt::WA_ShowWithoutActivating, true);
     m_list->setAttribute(Qt::WA_MacShowFocusRect, false);
 
-    m_activeWidget = WidgetMovies;
+    m_activeWidget = MainWidgets::Movies;
 
     QPalette palette = m_list->palette();
     palette.setColor(QPalette::Highlight, palette.color(QPalette::Highlight));
@@ -243,13 +243,13 @@ void FilterWidget::removeLastFilter()
  */
 void FilterWidget::setupFilters()
 {
-    if (m_activeWidget == WidgetMovies)
+    if (m_activeWidget == MainWidgets::Movies)
         setupMovieFilters();
-    else if (m_activeWidget == WidgetTvShows)
+    else if (m_activeWidget == MainWidgets::TvShows)
         setupTvShowFilters();
-    else if (m_activeWidget == WidgetConcerts)
+    else if (m_activeWidget == MainWidgets::Concerts)
         setupConcertFilters();
-    else if (m_activeWidget == WidgetMusic)
+    else if (m_activeWidget == MainWidgets::Music)
         setupMusicFilters();
 }
 

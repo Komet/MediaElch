@@ -388,8 +388,8 @@ void MovieWidget::setEnabledTrue(Movie *movie)
         return;
     }
     ui->groupBox_3->setEnabled(true);
-    emit setActionSaveEnabled(true, WidgetMovies);
-    emit setActionSearchEnabled(true, WidgetMovies);
+    emit setActionSaveEnabled(true, MainWidgets::Movies);
+    emit setActionSearchEnabled(true, MainWidgets::Movies);
 }
 
 /**
@@ -399,8 +399,8 @@ void MovieWidget::setDisabledTrue()
 {
     qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
-    emit setActionSaveEnabled(false, WidgetMovies);
-    emit setActionSearchEnabled(false, WidgetMovies);
+    emit setActionSaveEnabled(false, MainWidgets::Movies);
+    emit setActionSearchEnabled(false, MainWidgets::Movies);
 }
 
 /**
@@ -466,8 +466,8 @@ void MovieWidget::startScraperSearch()
         qDebug() << "My movie is invalid";
         return;
     }
-    emit setActionSearchEnabled(false, WidgetMovies);
-    emit setActionSaveEnabled(false, WidgetMovies);
+    emit setActionSearchEnabled(false, MainWidgets::Movies);
+    emit setActionSaveEnabled(false, MainWidgets::Movies);
     MovieSearch::instance()->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
@@ -475,7 +475,7 @@ void MovieWidget::startScraperSearch()
         QList<int> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();
-            infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+            infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
         } else {
             ids.insert(0, MovieSearch::instance()->scraperMovieId());
             infosToLoad = MovieSearch::instance()->infosToLoad();
@@ -483,8 +483,8 @@ void MovieWidget::startScraperSearch()
         m_movie->controller()->loadData(
             ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()), infosToLoad);
     } else {
-        emit setActionSearchEnabled(true, WidgetMovies);
-        emit setActionSaveEnabled(true, WidgetMovies);
+        emit setActionSearchEnabled(true, MainWidgets::Movies);
+        emit setActionSaveEnabled(true, MainWidgets::Movies);
     }
 }
 
@@ -495,7 +495,7 @@ void MovieWidget::onInfoLoadDone(Movie *movie)
     if (m_movie == movie) {
         updateMovieInfo();
         ui->buttonRevert->setVisible(true);
-        emit setActionSaveEnabled(false, WidgetMovies);
+        emit setActionSaveEnabled(false, MainWidgets::Movies);
     }
 }
 
@@ -699,7 +699,7 @@ void MovieWidget::updateMovieInfo()
     ui->outline->blockSignals(false);
     ui->actors->blockSignals(false);
 
-    emit setActionSaveEnabled(true, WidgetMovies);
+    emit setActionSaveEnabled(true, MainWidgets::Movies);
 
     ui->buttonRevert->setVisible(m_movie->hasChanged());
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
@@ -1472,7 +1472,7 @@ void MovieWidget::onAddExtraFanart()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
-        emit setActionSaveEnabled(false, WidgetMovies);
+        emit setActionSaveEnabled(false, MainWidgets::Movies);
         m_movie->controller()->loadImages(ImageType::MovieExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
@@ -1483,7 +1483,7 @@ void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
     if (!m_movie)
         return;
     ui->fanarts->setLoading(true);
-    emit setActionSaveEnabled(false, WidgetMovies);
+    emit setActionSaveEnabled(false, MainWidgets::Movies);
     m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QList<QUrl>() << imageUrl);
     ui->buttonRevert->setVisible(true);
 }
@@ -1520,7 +1520,7 @@ void MovieWidget::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit setActionSaveEnabled(false, WidgetMovies);
+        emit setActionSaveEnabled(false, MainWidgets::Movies);
         m_movie->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -1530,7 +1530,7 @@ void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_movie)
         return;
-    emit setActionSaveEnabled(false, WidgetMovies);
+    emit setActionSaveEnabled(false, MainWidgets::Movies);
     m_movie->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }

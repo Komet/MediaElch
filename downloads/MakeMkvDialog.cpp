@@ -220,7 +220,7 @@ void MakeMkvDialog::onMovieChosen()
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();
@@ -304,10 +304,10 @@ void MakeMkvDialog::onDiscBackedUp()
     QStringList files;
     if (QFileInfo(m_importDir + "/BDMV/index.bdmv").exists()) {
         files << m_importDir + "/BDMV/index.bdmv";
-        m_movie->setDiscType(DiscBluRay);
+        m_movie->setDiscType(DiscType::BluRay);
     } else if (QFileInfo(m_importDir + "/VIDEO_TS/VIDEO_TS.IFO").exists()) {
         files << m_importDir + "/VIDEO_TS/VIDEO_TS.IFO";
-        m_movie->setDiscType(DiscDvd);
+        m_movie->setDiscType(DiscType::Dvd);
     }
     m_movie->setFiles(files);
     importFinished();
@@ -333,7 +333,7 @@ void MakeMkvDialog::onTrackImported(int trackId)
 
 void MakeMkvDialog::importFinished()
 {
-    if (m_movie->discType() != DiscBluRay && m_movie->discType() != DiscDvd) {
+    if (m_movie->discType() != DiscType::BluRay && m_movie->discType() != DiscType::Dvd) {
         QStringList files;
         int partNo = 0;
         foreach (QString file, m_movie->files()) {
