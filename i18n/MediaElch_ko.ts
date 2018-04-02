@@ -1043,152 +1043,152 @@
 <context>
     <name>FanartTv</name>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="28"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Bulgarian</source>
         <translation>불가리아어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="29"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Chinese</source>
         <translation>중국어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="30"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Croatian</source>
         <translation>크로아티아어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="31"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="32"/>
         <source>Czech</source>
         <translation>체코어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="32"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Danish</source>
         <translation>덴마크어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="33"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>Dutch</source>
         <translation>네덜란드어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="34"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="35"/>
         <source>English</source>
         <translation>영어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="35"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Finnish</source>
         <translation>핀란드어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="36"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>French</source>
         <translation>프랑스어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="37"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>German</source>
         <translation>독일어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="38"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Greek</source>
         <translation>그리스어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="39"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Hebrew</source>
         <translation>히브리어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="40"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Hungarian</source>
         <translation>헝가리어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="41"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Italian</source>
         <translation>이탈리아어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="42"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Japanese</source>
         <translation>일본어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="43"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Korean</source>
         <translation>한국어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="44"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Norwegian</source>
         <translation>노르웨이어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="45"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Polish</source>
         <translation>폴란드어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="46"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Portuguese</source>
         <translation>포르투칼어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="47"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Russian</source>
         <translation>러시아어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="48"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Slovene</source>
         <translation>슬로베니아어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="49"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="50"/>
         <source>Spanish</source>
         <translation>스페인어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="50"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>Swedish</source>
         <translation>스웨덴어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="51"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="52"/>
         <source>Turkish</source>
         <translation>터키어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="53"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="54"/>
         <source>3D</source>
         <translation>3D</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="54"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>BluRay</source>
         <translation>블루레이</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="56"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="59"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="61"/>
         <source>Preferred Disc Type</source>
         <translation>선호하는 디스크 종류</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="62"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="63"/>
         <source>Personal API key</source>
         <translation>사용자 API 키</translation>
     </message>
@@ -2573,32 +2573,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>관하여</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="777"/>
+        <location filename="../main/MainWindow.cpp" line="790"/>
         <source>Reload (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="785"/>
+        <location filename="../main/MainWindow.cpp" line="798"/>
         <source>Reload all Movies (%1)</source>
         <translation>영화 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="792"/>
+        <location filename="../main/MainWindow.cpp" line="805"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>TV 쇼 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="804"/>
+        <location filename="../main/MainWindow.cpp" line="817"/>
         <source>Reload all Concerts (%1)</source>
         <translation>콘서트 (%1) 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="822"/>
+        <location filename="../main/MainWindow.cpp" line="835"/>
         <source>Reload all Downloads (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="828"/>
+        <location filename="../main/MainWindow.cpp" line="841"/>
         <source>Reload Music (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3114,14 +3114,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieMaze</name>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="141"/>
         <source>German</source>
-        <translation>독일어</translation>
+        <translation type="vanished">독일어</translation>
     </message>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="143"/>
         <source>English</source>
-        <translation>영어</translation>
+        <translation type="vanished">영어</translation>
     </message>
 </context>
 <context>
@@ -4906,12 +4904,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="99"/>
+        <location filename="../main.cpp" line="97"/>
         <source>Logfile could not be openened</source>
         <translation>로그 파일을 열 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="98"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7475,8 +7473,8 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1101"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="478"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
         <source>Codec</source>
         <translation>코덱</translation>
     </message>
@@ -7532,62 +7530,62 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="471"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="505"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="472"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="506"/>
         <source>Track %1</source>
         <translation>트랙 %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="477"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="508"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="478"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="509"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="510"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
         <source>Channels</source>
         <translation>채널</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="497"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="498"/>
         <source>Subtitles</source>
         <translation>자막</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="565"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="566"/>
         <source>Episode Saved</source>
         <translation>에피소드 저장됨</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="720"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="721"/>
         <source>Unknown Director</source>
         <translation>알 수 없는 감독</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="769"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="770"/>
         <source>Unknown Writer</source>
         <translation>알 수 없는 작가</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="993"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="994"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="994"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="995"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1056"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1056"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -8003,102 +8001,102 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>UniversalMusicScraper</name>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="26"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="27"/>
         <source>Chinese</source>
         <translation>중국어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="27"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="28"/>
         <source>Dutch</source>
         <translation>네덜란드어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="28"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="29"/>
         <source>English</source>
         <translation>영어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="29"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="30"/>
         <source>French</source>
         <translation>프랑스어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="30"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="31"/>
         <source>German</source>
         <translation>독일어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="31"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="32"/>
         <source>Hebrew</source>
         <translation>히브리어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="32"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="33"/>
         <source>Hungarian</source>
         <translation>헝가리어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="33"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="34"/>
         <source>Italian</source>
         <translation>이탈리아어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="34"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="35"/>
         <source>Japanese</source>
         <translation>일본어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="35"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="36"/>
         <source>Norwegian</source>
         <translation>노르웨이어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="36"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="37"/>
         <source>Polish</source>
         <translation>폴란드어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="37"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="38"/>
         <source>Portuguese</source>
         <translation>포르투칼어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="38"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="39"/>
         <source>Russian</source>
         <translation>러시아어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="39"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="40"/>
         <source>Spanish</source>
         <translation>스페인어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="40"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>Swedish</source>
         <translation>스웨덴어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>The Audio DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="44"/>
         <source>AllMusic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="44"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
         <source>Discogs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="46"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../scrapers/UniversalMusicScraper.cpp" line="48"/>
+        <location filename="../scrapers/UniversalMusicScraper.cpp" line="49"/>
         <source>Prefer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8228,60 +8226,60 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="144"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="233"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="214"/>
         <source>Getting contents from Kodi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="248"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="276"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="304"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="332"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="229"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="257"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="285"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="313"/>
         <source>Network error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="420"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="401"/>
         <source>Removing movies from database</source>
         <translation>데이터베이스에서 영화 제거 중</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="439"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="416"/>
         <source>Removing concerts from database</source>
         <translation>데이터베이스에서 콘서트 제거 중</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="458"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="431"/>
         <source>Removing TV shows from database</source>
         <translation>데이터베이스에서 TV 쇼 제거 중</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="477"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="446"/>
         <source>Removing episodes from database</source>
         <translation>데이터베이스에서 에피소드 제거 중</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="519"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="484"/>
         <source>Trigger scan for new items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="539"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="500"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="563"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="520"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="610"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="567"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation type="unfinished"></translation>
     </message>
