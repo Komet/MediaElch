@@ -307,17 +307,11 @@ MainWindow *MainWindow::instance()
  */
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    if (event->size().width() >= 1500) {
-        ui->movieWidget->setBigWindow(true);
-        ui->tvShowWidget->setBigWindow(true);
-        ui->concertWidget->setBigWindow(true);
-        ui->musicWidget->setBigWindow(true);
-    } else if (event->size().width() < 1500) {
-        ui->movieWidget->setBigWindow(false);
-        ui->tvShowWidget->setBigWindow(false);
-        ui->concertWidget->setBigWindow(false);
-        ui->musicWidget->setBigWindow(false);
-    }
+    bool isBigWindow = event->size().width() >= 1500;
+    ui->movieWidget->setBigWindow(isBigWindow);
+    ui->tvShowWidget->setBigWindow(isBigWindow);
+    ui->concertWidget->setBigWindow(isBigWindow);
+    ui->musicWidget->setBigWindow(isBigWindow);
 
     NotificationBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);

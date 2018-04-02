@@ -10,8 +10,6 @@ Artist::Artist(QString path, QObject *parent) :
 {
 }
 
-Artist::~Artist() = default;
-
 QString Artist::path() const
 {
     return m_path;
