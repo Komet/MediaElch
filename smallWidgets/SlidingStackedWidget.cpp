@@ -133,7 +133,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animGroup->addAnimation(animNow);
     animGroup->addAnimation(animNext);
 
-    QObject::connect(animGroup, SIGNAL(finished()), this, SLOT(animationDoneSlot()));
+    QObject::connect(animGroup, &QAbstractAnimation::finished, this, &SlidingStackedWidget::animationDoneSlot);
     m_next = next;
     m_now = now;
     m_active = true;

@@ -27,21 +27,21 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TvTu
 
     m_qnam = new QNetworkAccessManager(this);
 
-    connect(ui->btnClose, SIGNAL(clicked()), this, SLOT(onClose()));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
-    connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
-    connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
+    connect(ui->btnClose, &QAbstractButton::clicked, this, &TvTunesDialog::onClose);
+    connect(ui->searchString, &QLineEdit::returnPressed, this, &TvTunesDialog::onSearch);
+    connect(ui->results, &QTableWidget::itemClicked, this, &TvTunesDialog::onResultClicked);
+    connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TvTunesDialog::startDownload);
+    connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TvTunesDialog::cancelDownload);
     connect(Manager::instance()->tvTunes(),
         SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
         this,
         SLOT(onShowResults(QList<ScraperSearchResult>)));
 
     m_mediaPlayer = new QMediaPlayer();
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onUpdateTime(qint64)));
-    connect(m_mediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(onStateChanged(QMediaPlayer::State)));
-    connect(ui->btnPlayPause, SIGNAL(clicked()), this, SLOT(onPlayPause()));
+    connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);
+    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TvTunesDialog::onUpdateTime);
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TvTunesDialog::onStateChanged);
+    connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TvTunesDialog::onPlayPause);
 }
 
 TvTunesDialog::~TvTunesDialog()
@@ -174,9 +174,9 @@ void TvTunesDialog::startDownload()
 
     m_downloadInProgress = true;
     m_downloadReply = m_qnam->get(QNetworkRequest(m_themeUrl));
-    connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    connect(m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-    connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
+    connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
+    connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);
+    connect(m_downloadReply, &QIODevice::readyRead, this, &TvTunesDialog::downloadReadyRead);
     m_downloadTime.start();
 }
 
@@ -223,10 +223,9 @@ void TvTunesDialog::downloadFinished()
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         m_downloadReply = m_qnam->get(
             QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(
-            m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-        connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
+        connect(m_downloadReply, &QNetworkReply::finished, this, &TvTunesDialog::downloadFinished);
+        connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TvTunesDialog::downloadProgress);
+        connect(m_downloadReply, &QIODevice::readyRead, this, &TvTunesDialog::downloadReadyRead);
         return;
     }
 

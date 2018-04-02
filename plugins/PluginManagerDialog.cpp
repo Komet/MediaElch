@@ -7,15 +7,13 @@ PluginManagerDialog::PluginManagerDialog(QWidget *parent) : QDialog(parent), ui(
 {
     ui->setupUi(this);
 
-    connect(ui->btnInstallPlugin, SIGNAL(clicked()), this, SLOT(onInstallPlugin()));
-    connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
-    connect(
-        PluginManager::instance(), SIGNAL(sigPluginInstalled(PluginManager::Plugin)), this, SLOT(onPluginInstalled()));
-    connect(PluginManager::instance(), SIGNAL(sigPluginUpdated(PluginManager::Plugin)), this, SLOT(onPluginUpdated()));
-    connect(PluginManager::instance(),
-        SIGNAL(sigPluginInstallFailure(PluginManager::Plugin)),
-        this,
-        SLOT(onPluginFailure()));
+    // clang-format off
+    connect(ui->btnInstallPlugin,      &QAbstractButton::clicked,               this, &PluginManagerDialog::onInstallPlugin);
+    connect(ui->btnUpdatePlugin,       &QAbstractButton::clicked,               this, &PluginManagerDialog::onUpdatePlugin);
+    connect(PluginManager::instance(), &PluginManager::sigPluginInstalled,      this, &PluginManagerDialog::onPluginInstalled);
+    connect(PluginManager::instance(), &PluginManager::sigPluginUpdated,        this, &PluginManagerDialog::onPluginUpdated);
+    connect(PluginManager::instance(), &PluginManager::sigPluginInstallFailure, this, &PluginManagerDialog::onPluginFailure);
+    // clang-format on
 }
 
 PluginManagerDialog::~PluginManagerDialog()

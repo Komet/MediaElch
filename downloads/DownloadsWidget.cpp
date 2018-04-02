@@ -44,10 +44,10 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::
     m_extractor = new Extractor(this);
     m_makeMkvDialog = new MakeMkvDialog(this);
 
-    connect(m_extractor, SIGNAL(sigError(QString, QString)), this, SLOT(onExtractorError(QString, QString)));
-    connect(m_extractor, SIGNAL(sigFinished(QString, bool)), this, SLOT(onExtractorFinished(QString, bool)));
-    connect(m_extractor, SIGNAL(sigProgress(QString, int)), this, SLOT(onExtractorProgress(QString, int)));
-    connect(ui->btnImportMakeMkv, SIGNAL(clicked()), this, SLOT(onImportWithMakeMkv()));
+    connect(m_extractor, &Extractor::sigError, this, &DownloadsWidget::onExtractorError);
+    connect(m_extractor, &Extractor::sigFinished, this, &DownloadsWidget::onExtractorFinished);
+    connect(m_extractor, &Extractor::sigProgress, this, &DownloadsWidget::onExtractorProgress);
+    connect(ui->btnImportMakeMkv, &QAbstractButton::clicked, this, &DownloadsWidget::onImportWithMakeMkv);
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
 
@@ -207,9 +207,9 @@ void DownloadsWidget::updatePackagesList(QMap<QString, Package> packages)
 
         auto buttons = new UnpackButtons(this);
         buttons->setBaseName(it.value().baseName);
-        connect(buttons, SIGNAL(sigUnpack(QString, QString)), this, SLOT(onUnpack(QString, QString)));
-        connect(buttons, SIGNAL(sigStop(QString)), m_extractor, SLOT(stopExtraction(QString)));
-        connect(buttons, SIGNAL(sigDelete(QString)), this, SLOT(onDelete(QString)));
+        connect(buttons, &UnpackButtons::sigUnpack, this, &DownloadsWidget::onUnpack);
+        connect(buttons, &UnpackButtons::sigStop, m_extractor, &Extractor::stopExtraction);
+        connect(buttons, &UnpackButtons::sigDelete, this, &DownloadsWidget::onDelete);
         ui->tablePackages->setCellWidget(row, 3, buttons);
     }
 }
@@ -359,7 +359,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         actions->setButtonEnabled(false);
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
-        connect(actions, SIGNAL(sigDelete(QString)), this, SLOT(onDeleteImport(QString)));
+        connect(actions, &ImportActions::sigDelete, this, &DownloadsWidget::onDeleteImport);
         connect(actions, SIGNAL(sigDialogClosed()), this, SLOT(scanDownloadFolders()));
 
         onChangeImportType(0, importType);

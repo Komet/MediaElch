@@ -12,7 +12,7 @@ SupportDialog::SupportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Supp
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-    connect(ui->btnAlreadyDonated, SIGNAL(clicked()), this, SLOT(onAlreadyDonated()));
+    connect(ui->btnAlreadyDonated, &QAbstractButton::clicked, this, &SupportDialog::onAlreadyDonated);
 }
 
 SupportDialog::~SupportDialog()

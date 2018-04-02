@@ -32,40 +32,27 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) : QDialog(parent), ui(new 
 
     Manager::instance()->setFileScannerDialog(this);
 
-    connect(
-        Manager::instance()->movieFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
-    connect(
-        Manager::instance()->concertFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
-    connect(
-        Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
-    connect(
-        Manager::instance()->musicFileSearcher(), SIGNAL(progress(int, int, int)), this, SLOT(onProgress(int, int)));
+    // clang-format off
+    connect(Manager::instance()->movieFileSearcher(),   &MovieFileSearcher::progress,   this, &FileScannerDialog::onProgress);
+    connect(Manager::instance()->concertFileSearcher(), &ConcertFileSearcher::progress, this, &FileScannerDialog::onProgress);
+    connect(Manager::instance()->tvShowFileSearcher(),  &TvShowFileSearcher::progress,  this, &FileScannerDialog::onProgress);
+    connect(Manager::instance()->musicFileSearcher(),   &MusicFileSearcher::progress,   this, &FileScannerDialog::onProgress);
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
-    connect(Manager::instance()->musicFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
-    connect(Manager::instance()->movieFileSearcher(),
-        SIGNAL(searchStarted(QString, int)),
-        ui->status,
-        SLOT(setText(QString)));
-    connect(Manager::instance()->tvShowFileSearcher(),
-        SIGNAL(searchStarted(QString, int)),
-        ui->status,
-        SLOT(setText(QString)));
-    connect(Manager::instance()->concertFileSearcher(),
-        SIGNAL(searchStarted(QString, int)),
-        ui->status,
-        SLOT(setText(QString)));
-    connect(Manager::instance()->musicFileSearcher(),
-        SIGNAL(searchStarted(QString, int)),
-        ui->status,
-        SLOT(setText(QString)));
+    connect(Manager::instance()->movieFileSearcher(),   &MovieFileSearcher::currentDir,   this, &FileScannerDialog::onCurrentDir);
+    connect(Manager::instance()->concertFileSearcher(), &ConcertFileSearcher::currentDir, this, &FileScannerDialog::onCurrentDir);
+    connect(Manager::instance()->tvShowFileSearcher(),  &TvShowFileSearcher::currentDir,  this, &FileScannerDialog::onCurrentDir);
+    connect(Manager::instance()->musicFileSearcher(),   &MusicFileSearcher::currentDir,   this, &FileScannerDialog::onCurrentDir);
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onLoadDone(int)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onLoadDone(int)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(concertsLoaded(int)), this, SLOT(onLoadDone(int)));
-    connect(Manager::instance()->musicFileSearcher(), SIGNAL(musicLoaded(int)), this, SLOT(onLoadDone(int)));
+    connect(Manager::instance()->movieFileSearcher(),   &MovieFileSearcher::searchStarted,   ui->status, &QLabel::setText);
+    connect(Manager::instance()->tvShowFileSearcher(),  &TvShowFileSearcher::searchStarted,  ui->status, &QLabel::setText);
+    connect(Manager::instance()->concertFileSearcher(), &ConcertFileSearcher::searchStarted, ui->status, &QLabel::setText);
+    connect(Manager::instance()->musicFileSearcher(),   &MusicFileSearcher::searchStarted,   ui->status, &QLabel::setText);
+
+    connect(Manager::instance()->movieFileSearcher(),   &MovieFileSearcher::moviesLoaded,     this, &FileScannerDialog::onLoadDone);
+    connect(Manager::instance()->tvShowFileSearcher(),  &TvShowFileSearcher::tvShowsLoaded,   this, &FileScannerDialog::onLoadDone);
+    connect(Manager::instance()->concertFileSearcher(), &ConcertFileSearcher::concertsLoaded, this, &FileScannerDialog::onLoadDone);
+    connect(Manager::instance()->musicFileSearcher(),   &MusicFileSearcher::musicLoaded,      this, &FileScannerDialog::onLoadDone);
+    // clang-format on
 }
 
 /**
@@ -153,9 +140,9 @@ void FileScannerDialog::onStartMovieScanner()
     ui->progressBar->setValue(0);
     Manager::instance()->movieModel()->clear();
     if (m_forceReload)
-        QTimer::singleShot(0, this, SLOT(onStartMovieScannerForce()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartMovieScannerForce);
     else
-        QTimer::singleShot(0, this, SLOT(onStartMovieScannerCache()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartMovieScannerCache);
 }
 
 void FileScannerDialog::onStartMovieScannerCache()
@@ -177,9 +164,9 @@ void FileScannerDialog::onStartTvShowScanner()
     Manager::instance()->tvShowModel()->clear();
     qApp->processEvents();
     if (m_forceReload)
-        QTimer::singleShot(0, this, SLOT(onStartTvShowScannerForce()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartTvShowScannerForce);
     else
-        QTimer::singleShot(0, this, SLOT(onStartTvShowScannerCache()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartTvShowScannerCache);
 }
 
 void FileScannerDialog::onStartTvShowScannerCache()
@@ -206,9 +193,9 @@ void FileScannerDialog::onStartConcertScanner()
     Manager::instance()->concertModel()->clear();
     qApp->processEvents();
     if (m_forceReload)
-        QTimer::singleShot(0, this, SLOT(onStartConcertScannerForce()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartConcertScannerForce);
     else
-        QTimer::singleShot(0, this, SLOT(onStartConcertScannerCache()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartConcertScannerCache);
 }
 
 void FileScannerDialog::onStartConcertScannerCache()
@@ -227,9 +214,9 @@ void FileScannerDialog::onStartMusicScanner()
     Manager::instance()->musicModel()->clear();
     qApp->processEvents();
     if (m_forceReload)
-        QTimer::singleShot(0, this, SLOT(onStartMusicScannerForce()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartMusicScannerForce);
     else
-        QTimer::singleShot(0, this, SLOT(onStartMusicScannerCache()));
+        QTimer::singleShot(0, this, &FileScannerDialog::onStartMusicScannerCache);
 }
 
 void FileScannerDialog::onStartMusicScannerCache()

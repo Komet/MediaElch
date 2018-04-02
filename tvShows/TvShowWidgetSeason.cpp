@@ -74,7 +74,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
     }
 
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetSeason::onRevertChanges);
     connect(m_downloadManager,
         SIGNAL(downloadFinished(DownloadManagerElement)),
         this,

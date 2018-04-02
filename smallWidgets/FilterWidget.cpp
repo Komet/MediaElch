@@ -44,14 +44,14 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
         m_list->setGraphicsEffect(effect);
     }
 
-    connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(onFilterTextChanged(QString)));
-    connect(ui->lineEdit, SIGNAL(keyDown()), this, SLOT(onKeyDown()));
-    connect(ui->lineEdit, SIGNAL(keyUp()), this, SLOT(onKeyUp()));
-    connect(ui->lineEdit, SIGNAL(focusOut()), m_list, SLOT(hide()));
-    connect(ui->lineEdit, SIGNAL(focusIn()), this, SLOT(setupFilters()));
-    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(addSelectedFilter()));
-    connect(ui->lineEdit, SIGNAL(backspaceInFront()), this, SLOT(removeLastFilter()));
-    connect(m_list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(addFilterFromItem(QListWidgetItem *)));
+    connect(ui->lineEdit, &QLineEdit::textEdited, this, &FilterWidget::onFilterTextChanged);
+    connect(ui->lineEdit, &MyLineEdit::keyDown, this, &FilterWidget::onKeyDown);
+    connect(ui->lineEdit, &MyLineEdit::keyUp, this, &FilterWidget::onKeyUp);
+    connect(ui->lineEdit, &MyLineEdit::focusOut, m_list, &QWidget::hide);
+    connect(ui->lineEdit, &MyLineEdit::focusIn, this, &FilterWidget::setupFilters);
+    connect(ui->lineEdit, &QLineEdit::returnPressed, this, &FilterWidget::addSelectedFilter);
+    connect(ui->lineEdit, &MyLineEdit::backspaceInFront, this, &FilterWidget::removeLastFilter);
+    connect(m_list, &QListWidget::itemClicked, this, &FilterWidget::addFilterFromItem);
 
     initFilters();
 }

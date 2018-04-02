@@ -78,29 +78,30 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) : QWidget(parent), ui(new 
     m_contextMenu->addAction(m_actionShowMissingEpisodes);
     m_contextMenu->addAction(m_actionHideSpecialsInMissingEpisodes);
 
-    connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
-    connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
-    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
-    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
-    connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
-    connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
-    connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
-    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
-    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfo()));
-    connect(m_actionShowMissingEpisodes, SIGNAL(triggered()), this, SLOT(showMissingEpisodes()));
-    connect(m_actionHideSpecialsInMissingEpisodes, SIGNAL(triggered()), this, SLOT(hideSpecialsInMissingEpisodes()));
-    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files->selectionModel(),
-        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
-        this,
-        SLOT(onItemSelected(QModelIndex)),
-        Qt::QueuedConnection);
-    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playEpisode(QModelIndex)));
+    // clang-format off
+    connect(actionMultiScrape,       &QAction::triggered, this, &TvShowFilesWidget::multiScrape);
+    connect(actionScanForEpisodes,   &QAction::triggered, this, &TvShowFilesWidget::scanForEpisodes);
+    connect(actionMarkAsWatched,     &QAction::triggered, this, &TvShowFilesWidget::markAsWatched);
+    connect(actionMarkAsUnwatched,   &QAction::triggered, this, &TvShowFilesWidget::markAsUnwatched);
+    connect(actionLoadStreamDetails, &QAction::triggered, this, &TvShowFilesWidget::loadStreamDetails);
+    connect(actionMarkForSync,       &QAction::triggered, this, &TvShowFilesWidget::markForSync);
+    connect(actionUnmarkForSync,     &QAction::triggered, this, &TvShowFilesWidget::unmarkForSync);
+    connect(actionOpenFolder,        &QAction::triggered, this, &TvShowFilesWidget::openFolder);
+    connect(actionOpenNfo,           &QAction::triggered, this, &TvShowFilesWidget::openNfo);
+
+    connect(m_actionShowMissingEpisodes,           &QAction::triggered, this, &TvShowFilesWidget::showMissingEpisodes);
+    connect(m_actionHideSpecialsInMissingEpisodes, &QAction::triggered, this, &TvShowFilesWidget::hideSpecialsInMissingEpisodes);
+
+    connect(ui->files,                   &QWidget::customContextMenuRequested, this, &TvShowFilesWidget::showContextMenu);
+    connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &TvShowFilesWidget::onItemSelected, Qt::QueuedConnection);
+    connect(ui->files,                   &QAbstractItemView::doubleClicked,    this, &TvShowFilesWidget::playEpisode);
+
     Manager::instance()->setTvShowFilesWidget(this);
 
-    connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
-    connect(m_tvShowProxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onViewUpdated()));
+    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsInserted, this, &TvShowFilesWidget::onViewUpdated);
+    connect(m_tvShowProxyModel, &QAbstractItemModel::rowsRemoved,  this, &TvShowFilesWidget::onViewUpdated);
+    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, this,  &TvShowFilesWidget::onViewUpdated);
+    // clang-format on
 }
 
 /**
@@ -459,18 +460,18 @@ void TvShowFilesWidget::renewModel(bool force)
     qDebug() << "Renewing model" << force;
     if (force) {
         disconnect(ui->files->selectionModel(),
-            SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+            &QItemSelectionModel::currentChanged,
             this,
-            SLOT(onItemSelected(QModelIndex)));
+            &TvShowFilesWidget::onItemSelected);
         m_tvShowProxyModel->setSourceModel(nullptr);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
         ui->files->setModel(nullptr);
         ui->files->setModel(m_tvShowProxyModel);
         ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
         connect(ui->files->selectionModel(),
-            SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+            &QItemSelectionModel::currentChanged,
             this,
-            SLOT(onItemSelected(QModelIndex)),
+            &TvShowFilesWidget::onItemSelected,
             Qt::QueuedConnection);
 
         for (int row = 0, n = ui->files->model()->rowCount(); row < n; ++row) {

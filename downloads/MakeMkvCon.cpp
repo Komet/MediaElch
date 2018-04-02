@@ -24,8 +24,8 @@ void MakeMkvCon::onGetDrives()
 
     auto process = new QProcess(this);
     m_processes.append(process);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
+    connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
     process->start(Settings::instance()->makeMkvCon(), parameters);
     process->setProperty("job", "scanDrives");
@@ -43,8 +43,8 @@ void MakeMkvCon::onScanDrive(int id)
 
     auto process = new QProcess(this);
     m_processes.append(process);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
+    connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
     process->start(Settings::instance()->makeMkvCon(), parameters);
     process->setProperty("job", "info");
@@ -60,8 +60,8 @@ void MakeMkvCon::onImportTrack(int trackId, int driveId, QString importFolder)
 
     auto process = new QProcess(this);
     m_processes.append(process);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
+    connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
     process->start(Settings::instance()->makeMkvCon(), parameters);
     process->setProperty("job", "importTrack");
@@ -78,8 +78,8 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
 
     auto process = new QProcess(this);
     m_processes.append(process);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
+    connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
     process->start(Settings::instance()->makeMkvCon(), parameters);
     process->setProperty("job", "backupDisc");

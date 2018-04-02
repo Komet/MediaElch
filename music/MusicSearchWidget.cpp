@@ -51,9 +51,9 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &MusicSearchWidget::chkToggled);
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
     m_signalMapper = new QSignalMapper(ui->results);
     connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(resultClicked(int)));

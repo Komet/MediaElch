@@ -29,7 +29,7 @@ void Update::checkForUpdate()
 {
     QUrl url("http://data.mediaelch.de/version.xml");
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
-    connect(reply, SIGNAL(finished()), this, SLOT(onCheckFinished()));
+    connect(reply, &QNetworkReply::finished, this, &Update::onCheckFinished);
 }
 
 void Update::onCheckFinished()

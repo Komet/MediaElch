@@ -55,7 +55,7 @@ void HotMovies::search(QString searchStr)
                  .arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &HotMovies::onSearchFinished);
 }
 
 void HotMovies::onSearchFinished()
@@ -101,7 +101,7 @@ void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QL
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &HotMovies::onLoadFinished);
 }
 
 void HotMovies::onLoadFinished()

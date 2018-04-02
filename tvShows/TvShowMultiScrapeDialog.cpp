@@ -54,20 +54,17 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget *parent) : QDialog(pare
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkToggled);
     }
 
-    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
-    connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
-    connect(ui->chkDvdOrder, SIGNAL(clicked()), this, SLOT(onChkDvdOrderToggled()));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkAllToggled);
+    connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onStartScraping);
+    connect(ui->chkDvdOrder, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkDvdOrderToggled);
 
     m_scraperInterface = Manager::instance()->tvScrapers().at(0);
 
     m_downloadManager = new DownloadManager(this);
-    connect(m_downloadManager,
-        SIGNAL(sigElemDownloaded(DownloadManagerElement)),
-        this,
-        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager, &DownloadManager::sigElemDownloaded, this, &TvShowMultiScrapeDialog::onDownloadFinished);
     connect(m_downloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(onDownloadsFinished()));
 }
 
@@ -275,13 +272,21 @@ void TvShowMultiScrapeDialog::scrapeNext()
     }
 
     if (m_currentShow) {
-        connect(m_currentShow, SIGNAL(sigLoaded(TvShow *)), this, SLOT(onInfoLoadDone(TvShow *)), Qt::UniqueConnection);
+        connect(m_currentShow.data(),
+            &TvShow::sigLoaded,
+            this,
+            &TvShowMultiScrapeDialog::onInfoLoadDone,
+            Qt::UniqueConnection);
         if (m_currentShow->tvdbId().isEmpty())
             m_scraperInterface->search(m_currentShow->name());
         else
             m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, UpdateShow, m_infosToLoad);
     } else if (m_currentEpisode) {
-        connect(m_currentEpisode, SIGNAL(sigLoaded()), this, SLOT(onEpisodeLoadDone()), Qt::UniqueConnection);
+        connect(m_currentEpisode.data(),
+            &TvShowEpisode::sigLoaded,
+            this,
+            &TvShowMultiScrapeDialog::onEpisodeLoadDone,
+            Qt::UniqueConnection);
         if (!m_currentEpisode->tvShow()->tvdbId().isEmpty())
             m_currentEpisode->loadData(m_currentEpisode->tvShow()->tvdbId(), m_scraperInterface, m_infosToLoad);
         else if (m_showIds.contains(m_currentEpisode->tvShow()->name()))

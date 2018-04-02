@@ -162,7 +162,7 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("ids", Storage::toVariant(reply, ids));
         reply->setProperty("tmdbId", tmdbId);
-        connect(reply, SIGNAL(finished()), this, SLOT(onLoadTmdbFinished()));
+        connect(reply, &QNetworkReply::finished, this, &CustomMovieScraper::onLoadTmdbFinished);
     } else {
         loadAllData(ids, movie, infos, tmdbId, imdbId);
     }

@@ -76,7 +76,7 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onSearchArtistFinished);
 }
 
 void FanartTvMusicArtists::onSearchArtistFinished()
@@ -116,7 +116,7 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::concertLogos(QString mbId)
@@ -128,7 +128,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ConcertLogo);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::onLoadConcertFinished()

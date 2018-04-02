@@ -32,7 +32,7 @@ void ConcertModel::addConcert(Concert *concert)
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_concerts.append(concert);
     endInsertRows();
-    connect(concert, SIGNAL(sigChanged(Concert *)), this, SLOT(onConcertChanged(Concert *)), Qt::UniqueConnection);
+    connect(concert, &Concert::sigChanged, this, &ConcertModel::onConcertChanged, Qt::UniqueConnection);
 }
 
 /**

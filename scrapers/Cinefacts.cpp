@@ -115,7 +115,7 @@ void Cinefacts::search(QString searchStr)
     QUrl url(QString("http://www.cinefacts.de/search/site/q/%1/").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &Cinefacts::searchFinished);
 }
 
 /**
@@ -137,7 +137,7 @@ void Cinefacts::searchFinished()
         QUrl url(redirect);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        connect(reply, &QNetworkReply::finished, this, &Cinefacts::searchFinished);
         return;
     }
 
@@ -198,7 +198,7 @@ void Cinefacts::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QL
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("cinefactsId", ids.values().first());
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &Cinefacts::loadFinished);
 }
 
 /**
@@ -223,7 +223,7 @@ void Cinefacts::loadFinished()
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("cinefactsId", cinefactsId);
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
+        connect(reply, &QNetworkReply::finished, this, &Cinefacts::actorsFinished);
     } else {
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
@@ -248,7 +248,7 @@ void Cinefacts::actorsFinished()
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("cinefactsId", cinefactsId);
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
+        connect(reply, &QNetworkReply::finished, this, &Cinefacts::imagesFinished);
     } else {
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
@@ -275,7 +275,7 @@ void Cinefacts::imagesFinished()
             reply->setProperty("posters", posters);
             reply->setProperty("backdrops", backdrops);
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
+            connect(reply, &QNetworkReply::finished, this, &Cinefacts::posterFinished);
             return;
         }
 
@@ -284,7 +284,7 @@ void Cinefacts::imagesFinished()
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            connect(reply, &QNetworkReply::finished, this, &Cinefacts::backdropFinished);
             return;
         }
     } else {
@@ -466,7 +466,7 @@ void Cinefacts::posterFinished()
             reply->setProperty("posters", posters);
             reply->setProperty("backdrops", backdrops);
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
+            connect(reply, &QNetworkReply::finished, this, &Cinefacts::posterFinished);
             return;
         }
 
@@ -476,7 +476,7 @@ void Cinefacts::posterFinished()
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            connect(reply, &QNetworkReply::finished, this, &Cinefacts::backdropFinished);
             return;
         }
     }
@@ -513,7 +513,7 @@ void Cinefacts::backdropFinished()
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            connect(reply, &QNetworkReply::finished, this, &Cinefacts::backdropFinished);
             return;
         }
     }

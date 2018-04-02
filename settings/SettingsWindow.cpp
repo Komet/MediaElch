@@ -117,30 +117,23 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 
     Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
 
-    connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
-    connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
-    connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
-    connect(ui->dirs, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(dirListRowChanged(int)));
-    connect(ui->comboMovieSetArtwork, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboMovieSetArtworkChanged()));
-    connect(ui->btnMovieSetArtworkDir, SIGNAL(clicked()), this, SLOT(onChooseMovieSetArtworkDir()));
-    connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
-    connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(onCancel()));
-    connect(ui->btnSave, SIGNAL(clicked()), this, SLOT(onSave()));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplatesLoaded(QList<ExportTemplate *>)),
-        this,
-        SLOT(onTemplatesLoaded(QList<ExportTemplate *>)));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplateInstalled(ExportTemplate *, bool)),
-        this,
-        SLOT(onTemplateInstalled(ExportTemplate *, bool)));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplateUninstalled(ExportTemplate *, bool)),
-        this,
-        SLOT(onTemplateUninstalled(ExportTemplate *, bool)));
-    connect(ui->btnChooseUnrar, SIGNAL(clicked()), this, SLOT(onChooseUnrar()));
-    connect(ui->btnChooseMakemkvcon, SIGNAL(clicked()), this, SLOT(onChooseMakeMkvCon()));
-    connect(ui->chkEnableAdultScrapers, SIGNAL(clicked()), this, SLOT(onShowAdultScrapers()));
+    // clang-format off
+    connect(ui->buttonAddDir,           &QAbstractButton::clicked, this, &SettingsWindow::chooseDirToAdd);
+    connect(ui->buttonRemoveDir,        &QAbstractButton::clicked, this, &SettingsWindow::removeDir);
+    connect(ui->buttonMovieFilesToDirs, &QAbstractButton::clicked, this, &SettingsWindow::organize);
+    connect(ui->dirs,                   &QTableWidget::currentCellChanged, this, &SettingsWindow::dirListRowChanged);
+    connect(ui->comboMovieSetArtwork,   SIGNAL(currentIndexChanged(int)),  this, SLOT(onComboMovieSetArtworkChanged()));
+    connect(ui->btnMovieSetArtworkDir,  &QAbstractButton::clicked, this, &SettingsWindow::onChooseMovieSetArtworkDir);
+    connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
+    connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
+    connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate *>)));
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,   this, &SettingsWindow::onTemplateInstalled);
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled, this, &SettingsWindow::onTemplateUninstalled);
+    connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &SettingsWindow::onChooseUnrar);
+    connect(ui->btnChooseMakemkvcon,    &QAbstractButton::clicked, this, &SettingsWindow::onChooseMakeMkvCon);
+    connect(ui->chkEnableAdultScrapers, &QAbstractButton::clicked, this, &SettingsWindow::onShowAdultScrapers);
+    // clang-format on
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -207,13 +200,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
         SIGNAL(sigPluginListUpdated(QList<PluginManager::Plugin>)),
         this,
         SLOT(onPluginListUpdated(QList<PluginManager::Plugin>)));
-    connect(ui->pluginList,
-        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-        this,
-        SLOT(onPluginActivated(QListWidgetItem *)));
-    connect(ui->btnInstallPlugin, SIGNAL(clicked()), this, SLOT(onInstallPlugin()));
-    connect(ui->btnUninstallPlugin, SIGNAL(clicked()), this, SLOT(onUninstallPlugin()));
-    connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
+    connect(ui->pluginList, &QListWidget::currentItemChanged, this, &SettingsWindow::onPluginActivated);
+    connect(ui->btnInstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onInstallPlugin);
+    connect(ui->btnUninstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUninstallPlugin);
+    connect(ui->btnUpdatePlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUpdatePlugin);
     ui->btnUninstallPlugin->setVisible(false);
     ui->btnUpdatePlugin->setVisible(false);
     Helper::instance()->setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);

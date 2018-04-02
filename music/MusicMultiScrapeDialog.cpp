@@ -47,10 +47,10 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkToggled);
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(onChkAllToggled(bool)));
-    connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkAllToggled);
+    connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onStartScraping);
 }
 
 MusicMultiScrapeDialog::~MusicMultiScrapeDialog()
@@ -240,8 +240,11 @@ void MusicMultiScrapeDialog::scrapeNext()
     ui->progressItem->setValue(0);
 
     if (m_currentAlbum) {
-        connect(
-            m_currentAlbum->controller(), SIGNAL(sigLoadDone(Album *)), this, SLOT(scrapeNext()), Qt::UniqueConnection);
+        connect(m_currentAlbum->controller(),
+            &AlbumController::sigLoadDone,
+            this,
+            &MusicMultiScrapeDialog::scrapeNext,
+            Qt::UniqueConnection);
         connect(m_currentAlbum->controller(),
             SIGNAL(sigDownloadProgress(Album *, int, int)),
             this,
@@ -260,9 +263,9 @@ void MusicMultiScrapeDialog::scrapeNext()
         }
     } else if (m_currentArtist) {
         connect(m_currentArtist->controller(),
-            SIGNAL(sigLoadDone(Artist *)),
+            &ArtistController::sigLoadDone,
             this,
-            SLOT(scrapeNext()),
+            &MusicMultiScrapeDialog::scrapeNext,
             Qt::UniqueConnection);
         connect(m_currentArtist->controller(),
             SIGNAL(sigDownloadProgress(Artist *, int, int)),

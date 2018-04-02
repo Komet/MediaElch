@@ -43,14 +43,14 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
-    connect(ui->trailers, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(trailerClicked(QTableWidgetItem *)));
-    connect(ui->buttonBackToResults, SIGNAL(clicked()), this, SLOT(backToResults()));
-    connect(ui->buttonBackToTrailers, SIGNAL(clicked()), this, SLOT(backToTrailers()));
-    connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
-    connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
-    connect(ui->stackedWidget, SIGNAL(animationFinished()), this, SLOT(onAnimationFinished()));
+    connect(ui->searchString, &QLineEdit::returnPressed, this, &TrailerDialog::search);
+    connect(ui->results, &QTableWidget::itemClicked, this, &TrailerDialog::resultClicked);
+    connect(ui->trailers, &QTableWidget::itemClicked, this, &TrailerDialog::trailerClicked);
+    connect(ui->buttonBackToResults, &QAbstractButton::clicked, this, &TrailerDialog::backToResults);
+    connect(ui->buttonBackToTrailers, &QAbstractButton::clicked, this, &TrailerDialog::backToTrailers);
+    connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TrailerDialog::startDownload);
+    connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TrailerDialog::cancelDownload);
+    connect(ui->stackedWidget, &SlidingStackedWidget::animationFinished, this, &TrailerDialog::onAnimationFinished);
 
     m_mediaPlayer = new QMediaPlayer();
     m_videoWidget = new QVideoWidget(this);
@@ -59,11 +59,11 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     layout->addWidget(m_videoWidget);
     ui->video->setLayout(layout);
 
-    connect(m_mediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(onStateChanged(QMediaPlayer::State)));
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onUpdateTime(qint64)));
-    connect(ui->btnPlayPause, SIGNAL(clicked()), this, SLOT(onPlayPause()));
-    connect(ui->seekSlider, SIGNAL(sliderReleased()), this, SLOT(onSliderPositionChanged()));
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TrailerDialog::onStateChanged);
+    connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TrailerDialog::onNewTotalTime);
+    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TrailerDialog::onUpdateTime);
+    connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TrailerDialog::onPlayPause);
+    connect(ui->seekSlider, &QAbstractSlider::sliderReleased, this, &TrailerDialog::onSliderPositionChanged);
 }
 
 TrailerDialog::~TrailerDialog()
@@ -255,9 +255,9 @@ void TrailerDialog::startDownload()
 
     m_downloadInProgress = true;
     m_downloadReply = m_qnam->get(request);
-    connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    connect(m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-    connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
+    connect(m_downloadReply, &QNetworkReply::finished, this, &TrailerDialog::downloadFinished);
+    connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TrailerDialog::downloadProgress);
+    connect(m_downloadReply, &QIODevice::readyRead, this, &TrailerDialog::downloadReadyRead);
     m_downloadTime.start();
 }
 
@@ -305,10 +305,9 @@ void TrailerDialog::downloadFinished()
         ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
         m_downloadReply = m_qnam->get(
             QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(
-            m_downloadReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-        connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
+        connect(m_downloadReply, &QNetworkReply::finished, this, &TrailerDialog::downloadFinished);
+        connect(m_downloadReply, &QNetworkReply::downloadProgress, this, &TrailerDialog::downloadProgress);
+        connect(m_downloadReply, &QIODevice::readyRead, this, &TrailerDialog::downloadReadyRead);
         return;
     }
 
