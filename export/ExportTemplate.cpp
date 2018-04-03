@@ -171,12 +171,12 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
         shortLocale = locale.split("_").at(0);
 
     QString templateFile;
-    if (QFileInfo(QString(getTemplateLocation() + "/%1_%2.html").arg(baseName).arg(locale)).exists())
-        templateFile = QString(getTemplateLocation() + "/%1_%2.html").arg(baseName).arg(locale);
-    else if (QFileInfo(QString(getTemplateLocation() + "/%1_%2.html").arg(baseName).arg(shortLocale)).exists())
-        templateFile = QString(getTemplateLocation() + "/%1_%2.html").arg(baseName).arg(shortLocale);
-    else if (QFileInfo(getTemplateLocation() + QString("/%1.html").arg(baseName)).exists())
-        templateFile = getTemplateLocation() + QString("/%1.html").arg(baseName);
+    if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists())
+        templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale);
+    else if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale)).exists())
+        templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale);
+    else if (QFileInfo(getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName)).exists())
+        templateFile = getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName);
 
     if (templateFile.isEmpty())
         return "";

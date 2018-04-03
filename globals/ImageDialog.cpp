@@ -417,10 +417,9 @@ void ImageDialog::renderTable()
  */
 int ImageDialog::calcColumnCount()
 {
-    int width = ui->table->size().width();
-    int colWidth = getColumnWidth() + 4;
-    int cols = qFloor((qreal)width / colWidth);
-    return cols;
+    auto tableWidth = static_cast<qreal>(ui->table->size().width());
+    auto columnWidth = static_cast<qreal>(getColumnWidth() + 4);
+    return qFloor(tableWidth / columnWidth);
 }
 
 /**

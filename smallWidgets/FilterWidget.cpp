@@ -22,7 +22,7 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
     ui->lineEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     m_list = new QListWidget();
-    m_list->setWindowFlags(Qt::WindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint));
+    m_list->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     m_list->setAttribute(Qt::WA_ShowWithoutActivating, true);
     m_list->setAttribute(Qt::WA_MacShowFocusRect, false);
 

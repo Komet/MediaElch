@@ -553,7 +553,7 @@ void SetsWidget::onRemoveMovieSet()
 
 void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
 {
-    QString newName = QString(item->text());
+    QString newName = item->text();
     QString origSetName = item->data(Qt::UserRole).toString();
     if (newName == origSetName)
         return;

@@ -250,16 +250,17 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         if (imageWidth == 0 || imageHeight == 0) {
             setFixedHeight((m_fixedHeight != 0) ? m_fixedHeight : 135);
         } else {
-            int calcHeight = qCeil((((qreal)width() - 9) / imageWidth) * imageHeight + 7 + zoomSpace);
+            int calcHeight = qCeil(((static_cast<qreal>(width()) - 9.0) / imageWidth) * imageHeight + 7.0 + zoomSpace);
             setFixedHeight((m_fixedHeight != 0 && calcHeight < m_fixedHeight) ? m_fixedHeight : calcHeight);
         }
     } else {
         // scale to height
         setFixedHeight(m_fixedSize);
-        if (imageWidth == 0 || imageHeight == 0)
+        if (imageWidth == 0 || imageHeight == 0) {
             setFixedWidth(180);
-        else
-            setFixedWidth(qCeil((((qreal)height() - 7 - zoomSpace) / imageHeight) * imageWidth + 9));
+        } else {
+            setFixedWidth(qCeil(((static_cast<qreal>(height()) - 7.0 - zoomSpace) / imageHeight) * imageWidth + 9.0));
+        }
     }
     update();
 }

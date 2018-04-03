@@ -592,10 +592,11 @@ void ImportDialog::onFileWatcherTimeout()
         destinationSize += destFi.size();
     }
 
-    if (sourceSize == 0)
+    if (sourceSize == 0) {
         return;
+    }
 
-    ui->progressBar->setValue(qRound((float)destinationSize * 100 / sourceSize));
+    ui->progressBar->setValue(qRound(static_cast<float>(destinationSize) * 100.0f / sourceSize));
 }
 
 void ImportDialog::onMovingFilesFinished()
