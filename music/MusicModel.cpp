@@ -53,7 +53,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
         return font;
     } else if (role == Qt::SizeHintRole) {
 #ifdef Q_OS_WIN
-        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 22 : 22);
+        return QSize(0, 22);
 #else
         return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 22);
 #endif

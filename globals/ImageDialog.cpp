@@ -828,8 +828,6 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->moviePosters(id);
         else if (m_type == ImageType::MovieBackdrop)
             m_currentProvider->movieBackdrops(id);
-        else if (m_type == ImageType::MoviePoster)
-            m_currentProvider->moviePosters(id);
         else if (m_type == ImageType::MovieLogo)
             m_currentProvider->movieLogos(id);
         else if (m_type == ImageType::MovieBanner)

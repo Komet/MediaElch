@@ -12,7 +12,7 @@ class MusicFileSearcher : public QObject
     Q_OBJECT
 public:
     explicit MusicFileSearcher(QObject *parent = nullptr);
-    ~MusicFileSearcher() override;
+    ~MusicFileSearcher() override = default;
 
     void setMusicDirectories(QList<SettingsDir> directories);
     static Artist *loadArtistData(Artist *artist);

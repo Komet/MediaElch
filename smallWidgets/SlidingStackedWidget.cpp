@@ -14,14 +14,12 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     m_active{false},
     m_expanded{false}
 {
-    if (parent != nullptr)
+    if (parent != nullptr) {
         m_mainWindow = parent;
-    else
+    } else {
         m_mainWindow = this;
+    }
 }
-
-
-SlidingStackedWidget::~SlidingStackedWidget() = default;
 
 void SlidingStackedWidget::setVerticalMode(bool vertical)
 {
