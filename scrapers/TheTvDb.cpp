@@ -68,7 +68,7 @@ TheTvDb::TheTvDb(QObject *parent) :
                  << MovieScraperInfos::Certification << MovieScraperInfos::Overview << MovieScraperInfos::Genres
                  << MovieScraperInfos::Actors;
 
-    connect(m_dummyMovie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onImdbFinished()));
+    connect(m_dummyMovie->controller(), &MovieController::sigLoadDone, this, &TheTvDb::onImdbFinished);
 }
 
 QWidget *TheTvDb::settingsWidget()
@@ -158,7 +158,7 @@ void TheTvDb::search(QString searchStr)
                        .arg(searchStr));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onSearchFinished);
 }
 
 /**
@@ -232,7 +232,7 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", updateType);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onLoadFinished);
 }
 
 /**
@@ -269,7 +269,7 @@ void TheTvDb::onLoadFinished()
     reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
     reply->setProperty("updateType", updateType);
 
-    connect(reply, SIGNAL(finished()), this, SLOT(onActorsFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onActorsFinished);
 }
 
 /**
@@ -304,7 +304,7 @@ void TheTvDb::onActorsFinished()
     reply->setProperty("updateType", updateType);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
-    connect(reply, SIGNAL(finished()), this, SLOT(onBannersFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onBannersFinished);
 }
 
 /**
@@ -341,7 +341,7 @@ void TheTvDb::onBannersFinished()
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("updateType", updateType);
         reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
-        connect(reply, SIGNAL(finished()), this, SLOT(onImdbFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbFinished);
     } else {
         show->scraperLoadDone();
     }
@@ -686,7 +686,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, episode));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
-    connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onEpisodeLoadFinished);
 }
 
 /**
@@ -743,7 +743,7 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<int>
                 new NetworkReplyWatcher(this, reply);
                 reply->setProperty("storage", Storage::toVariant(reply, episode));
                 reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-                connect(reply, SIGNAL(finished()), this, SLOT(onImdbEpisodeFinished()));
+                connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbEpisodeFinished);
                 return true;
             }
         }
@@ -755,7 +755,7 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<int>
         reply->setProperty("storage", Storage::toVariant(reply, episode));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("episodeNumber", airedEpisode);
-        connect(reply, SIGNAL(finished()), this, SLOT(onImdbSeasonFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbSeasonFinished);
         return true;
     }
     return false;
@@ -908,7 +908,7 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<
         reply->setProperty("show", Storage::toVariant(reply, show));
         reply->setProperty("episodes", Storage::toVariant(reply, episodes));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
-        connect(reply, SIGNAL(finished()), this, SLOT(onEpisodesImdbEpisodeFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TheTvDb::onEpisodesImdbEpisodeFinished);
         return;
     }
 
@@ -930,7 +930,7 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<
                 reply->setProperty("show", Storage::toVariant(reply, show));
                 reply->setProperty("episodes", Storage::toVariant(reply, episodes));
                 reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
-                connect(reply, SIGNAL(finished()), this, SLOT(onEpisodesImdbEpisodeFinished()));
+                connect(reply, &QNetworkReply::finished, this, &TheTvDb::onEpisodesImdbEpisodeFinished);
                 return;
             }
         }
@@ -944,7 +944,7 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<
     reply->setProperty("show", Storage::toVariant(reply, show));
     reply->setProperty("episodes", Storage::toVariant(reply, episodes));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
-    connect(reply, SIGNAL(finished()), this, SLOT(onEpisodesImdbSeasonFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TheTvDb::onEpisodesImdbSeasonFinished);
 }
 
 void TheTvDb::onEpisodesImdbSeasonFinished()
@@ -977,7 +977,7 @@ void TheTvDb::onEpisodesImdbSeasonFinished()
             reply->setProperty("show", Storage::toVariant(reply, show));
             reply->setProperty("episodes", Storage::toVariant(reply, episodes));
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(onEpisodesImdbEpisodeFinished()));
+            connect(reply, &QNetworkReply::finished, this, &TheTvDb::onEpisodesImdbEpisodeFinished);
             return;
         }
     } else {
@@ -1089,7 +1089,7 @@ void TheTvDb::onImdbSeasonFinished()
             new NetworkReplyWatcher(this, reply);
             reply->setProperty("storage", Storage::toVariant(reply, episode));
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, SIGNAL(finished()), this, SLOT(onImdbEpisodeFinished()));
+            connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbEpisodeFinished);
             return;
         }
     } else {

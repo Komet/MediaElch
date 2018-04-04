@@ -43,10 +43,8 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
     Helper::instance()->applyStyle(ui->movieDuplicatesWidget);
 
     connect(ui->btnDetect, &QPushButton::clicked, this, &MovieDuplicates::detectDuplicates);
-    connect(ui->movies->selectionModel(),
-        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
-        this,
-        SLOT(onItemActivated(QModelIndex, QModelIndex)));
+    connect(
+        ui->movies->selectionModel(), &QItemSelectionModel::currentChanged, this, &MovieDuplicates::onItemActivated);
 }
 
 MovieDuplicates::~MovieDuplicates()

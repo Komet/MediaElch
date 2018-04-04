@@ -32,7 +32,7 @@ void MovieModel::addMovie(Movie *movie)
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_movies.append(movie);
     endInsertRows();
-    connect(movie, SIGNAL(sigChanged(Movie *)), this, SLOT(onMovieChanged(Movie *)), Qt::UniqueConnection);
+    connect(movie, &Movie::sigChanged, this, &MovieModel::onMovieChanged, Qt::UniqueConnection);
 }
 
 /**

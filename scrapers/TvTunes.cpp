@@ -25,7 +25,7 @@ void TvTunes::search(QString searchStr)
     QNetworkReply *reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TvTunes::onSearchFinished);
 }
 
 void TvTunes::onSearchFinished()
@@ -77,7 +77,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     reply->setProperty("name", res.name);
-    connect(reply, SIGNAL(finished()), this, SLOT(onDownloadUrlFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TvTunes::onDownloadUrlFinished);
 }
 
 void TvTunes::onDownloadUrlFinished()

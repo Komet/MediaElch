@@ -52,13 +52,13 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
     }
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
 
-    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
-    connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkAllToggled);
+    connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onStartScraping);
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(setChkBoxesEnabled()));
 }
 
@@ -222,11 +222,15 @@ void MovieMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    connect(m_currentMovie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(scrapeNext()), Qt::UniqueConnection);
     connect(m_currentMovie->controller(),
-        SIGNAL(sigDownloadProgress(Movie *, int, int)),
+        &MovieController::sigLoadDone,
         this,
-        SLOT(onProgress(Movie *, int, int)),
+        &MovieMultiScrapeDialog::scrapeNext,
+        Qt::UniqueConnection);
+    connect(m_currentMovie->controller(),
+        &MovieController::sigDownloadProgress,
+        this,
+        &MovieMultiScrapeDialog::onProgress,
         Qt::UniqueConnection);
 
     m_currentIds.clear();

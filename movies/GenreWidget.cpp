@@ -35,13 +35,13 @@ GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWid
     QAction *actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionAddGenre);
     m_tableContextMenu->addAction(actionDeleteGenre);
-    connect(actionAddGenre, SIGNAL(triggered()), this, SLOT(addGenre()));
-    connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteGenre()));
-    connect(ui->genres, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showGenresContextMenu(QPoint)));
-    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this, SLOT(onJumpToMovie(QTableWidgetItem *)));
+    connect(actionAddGenre, &QAction::triggered, this, &GenreWidget::addGenre);
+    connect(actionDeleteGenre, &QAction::triggered, this, &GenreWidget::deleteGenre);
+    connect(ui->genres, &QWidget::customContextMenuRequested, this, &GenreWidget::showGenresContextMenu);
+    connect(ui->movies, &QTableWidget::itemDoubleClicked, this, &GenreWidget::onJumpToMovie);
 
-    connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
-    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onGenreNameChanged(QTableWidgetItem *)));
+    connect(ui->genres, &QTableWidget::itemSelectionChanged, this, &GenreWidget::onGenreSelected);
+    connect(ui->genres, &QTableWidget::itemChanged, this, &GenreWidget::onGenreNameChanged);
 
     Helper::instance()->applyStyle(ui->genres);
     Helper::instance()->applyStyle(ui->groupBox);

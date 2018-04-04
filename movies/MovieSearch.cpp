@@ -16,8 +16,8 @@ MovieSearch::MovieSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MovieSea
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->movieSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(accept()));
+    connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::reject);
+    connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 
 /**

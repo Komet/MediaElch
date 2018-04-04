@@ -223,11 +223,8 @@ TvShowModelItem *TvShowModel::appendChild(TvShow *show)
     beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
     TvShowModelItem *item = parentItem->appendChild(show);
     endInsertRows();
-    connect(item,
-        SIGNAL(sigChanged(TvShowModelItem *, TvShowModelItem *, TvShowModelItem *)),
-        this,
-        SLOT(onSigChanged(TvShowModelItem *, TvShowModelItem *, TvShowModelItem *)));
-    connect(show, SIGNAL(sigChanged(TvShow *)), this, SLOT(onShowChanged(TvShow *)));
+    connect(item, &TvShowModelItem::sigChanged, this, &TvShowModel::onSigChanged);
+    connect(show, &TvShow::sigChanged, this, &TvShowModel::onShowChanged);
     return item;
 }
 

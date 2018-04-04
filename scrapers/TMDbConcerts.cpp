@@ -169,7 +169,7 @@ void TMDbConcerts::setup()
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(setupFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::setupFinished);
 }
 
 /**
@@ -225,7 +225,7 @@ void TMDbConcerts::search(QString searchStr)
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
-    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::searchFinished);
 }
 
 /**
@@ -265,7 +265,7 @@ void TMDbConcerts::searchFinished()
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
-        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::searchFinished);
     }
 }
 
@@ -347,7 +347,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, concert));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadFinished);
 
     // Trailers
     if (infos.contains(ConcertScraperInfos::Trailer)) {
@@ -358,7 +358,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadTrailersFinished);
     }
 
     // Images
@@ -370,7 +370,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadImagesFinished);
     }
 
     // Releases
@@ -382,7 +382,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadReleasesFinished);
     }
     concert->controller()->setLoadsLeft(loadsLeft);
 }

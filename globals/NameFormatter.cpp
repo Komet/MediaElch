@@ -9,7 +9,7 @@ NameFormatter *NameFormatter::m_instance = nullptr;
 NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
 {
     onUpdateExcludeWords();
-    connect(Settings::instance(), SIGNAL(sigSettingsSaved()), this, SLOT(onUpdateExcludeWords()));
+    connect(Settings::instance(), &Settings::sigSettingsSaved, this, &NameFormatter::onUpdateExcludeWords);
 }
 
 /**

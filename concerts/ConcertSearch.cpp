@@ -20,8 +20,8 @@ ConcertSearch::ConcertSearch(QWidget *parent) : QDialog(parent), ui(new Ui::Conc
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->concertSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(accept()));
+    connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::reject);
+    connect(ui->concertSearchWidget, &ConcertSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 
 /**

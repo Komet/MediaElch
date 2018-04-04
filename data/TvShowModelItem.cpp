@@ -177,11 +177,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
     item->setTvShowEpisode(episode);
     episode->setModelItem(item);
     m_childItems.append(item);
-    connect(episode,
-        SIGNAL(sigChanged(TvShowEpisode *)),
-        this,
-        SLOT(onTvShowEpisodeChanged(TvShowEpisode *)),
-        Qt::UniqueConnection);
+    connect(episode, &TvShowEpisode::sigChanged, this, &TvShowModelItem::onTvShowEpisodeChanged, Qt::UniqueConnection);
     return item;
 }
 
@@ -198,11 +194,7 @@ TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, 
     item->setSeasonNumber(seasonNumber);
     item->setTvShow(show);
     m_childItems.append(item);
-    connect(item,
-        SIGNAL(sigIntChanged(TvShowModelItem *, TvShowModelItem *)),
-        this,
-        SLOT(onSeasonChanged(TvShowModelItem *, TvShowModelItem *)),
-        Qt::UniqueConnection);
+    connect(item, &TvShowModelItem::sigIntChanged, this, &TvShowModelItem::onSeasonChanged, Qt::UniqueConnection);
     return item;
 }
 

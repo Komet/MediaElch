@@ -92,8 +92,9 @@ MusicModelItem *MusicModelItem::appendChild(Album *album)
     item->setAlbum(album);
     album->setModelItem(item);
     m_childItems.append(item);
-    connect(album, SIGNAL(sigChanged(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
-    connect(album->controller(), SIGNAL(sigSaved(Album *)), this, SLOT(onAlbumChanged(Album *)), Qt::UniqueConnection);
+    connect(album, &Album::sigChanged, this, &MusicModelItem::onAlbumChanged, Qt::UniqueConnection);
+    connect(
+        album->controller(), &AlbumController::sigSaved, this, &MusicModelItem::onAlbumChanged, Qt::UniqueConnection);
     return item;
 }
 

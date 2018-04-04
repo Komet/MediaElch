@@ -39,18 +39,20 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
 
     resize(Settings::instance()->settings()->value("ImageDialog/Size").toSize());
 
-    connect(ui->table, SIGNAL(cellClicked(int, int)), this, SLOT(imageClicked(int, int)));
-    connect(ui->table, SIGNAL(sigDroppedImage(QUrl)), this, SLOT(onImageDropped(QUrl)));
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->buttonChoose, SIGNAL(clicked()), this, SLOT(chooseLocalImage()));
-    connect(ui->previewSizeSlider, SIGNAL(valueChanged(int)), this, SLOT(onPreviewSizeChange(int)));
-    connect(ui->buttonZoomIn, SIGNAL(clicked()), this, SLOT(onZoomIn()));
-    connect(ui->buttonZoomOut, SIGNAL(clicked()), this, SLOT(onZoomOut()));
-    connect(ui->searchTerm, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->imageProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
-    connect(ui->gallery, SIGNAL(sigRemoveImage(QString)), this, SLOT(onImageClosed(QString)));
-    connect(ui->btnAcceptImages, SIGNAL(clicked()), this, SLOT(accept()));
+    // clang-format off
+    connect(ui->table,             &QTableWidget::cellClicked,       this, &ImageDialog::imageClicked);
+    connect(ui->table,             &MyTableWidget::sigDroppedImage,  this, &ImageDialog::onImageDropped);
+    connect(ui->buttonClose,       SIGNAL(clicked()),                this, SLOT(reject()));
+    connect(ui->buttonChoose,      &QAbstractButton::clicked,        this, &ImageDialog::chooseLocalImage);
+    connect(ui->previewSizeSlider, &QAbstractSlider::valueChanged,   this, &ImageDialog::onPreviewSizeChange);
+    connect(ui->buttonZoomIn,      &QAbstractButton::clicked,        this, &ImageDialog::onZoomIn);
+    connect(ui->buttonZoomOut,     &QAbstractButton::clicked,        this, &ImageDialog::onZoomOut);
+    connect(ui->searchTerm,        SIGNAL(returnPressed()),          this, SLOT(onSearch()));
+    connect(ui->imageProvider,     SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
+    connect(ui->results,           &QTableWidget::itemClicked,       this, &ImageDialog::onResultClicked);
+    connect(ui->gallery,           SIGNAL(sigRemoveImage(QString)),  this, SLOT(onImageClosed(QString)));
+    connect(ui->btnAcceptImages,   SIGNAL(clicked()),                this, SLOT(accept()));
+    // clang-format on
 
     ui->btnAcceptImages->hide();
 
@@ -333,7 +335,7 @@ void ImageDialog::startNextDownload()
 
     m_currentDownloadIndex = nextIndex;
     m_currentDownloadReply = qnam()->get(QNetworkRequest(m_elements[nextIndex].thumbUrl));
-    connect(m_currentDownloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+    connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
 }
 
 /**
@@ -349,7 +351,7 @@ void ImageDialog::downloadFinished()
         m_currentDownloadReply->deleteLater();
         m_currentDownloadReply = qnam()->get(
             QNetworkRequest(m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_currentDownloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+        connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
         return;
     }
 

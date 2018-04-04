@@ -53,8 +53,8 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 
     auto process = new QProcess(this);
     m_processes.append(process);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadyRead()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(onReadyReadError()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &Extractor::onReadyRead);
+    connect(process, &QProcess::readyReadStandardError, this, &Extractor::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
     process->setProperty("baseName", baseName);
     process->setProperty("hasError", false);

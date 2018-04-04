@@ -78,7 +78,7 @@ int NotificationBox::showMessage(QString message, NotificationBox::NotificationT
     ui->layoutMessages->addWidget(msg);
     adjustSize();
     show();
-    connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
+    connect(msg, &Message::sigHideMessage, this, &NotificationBox::removeMessage);
     // qApp->processEvents(QEventLoop::WaitForMoreEvents);
     return m_msgCounter;
 }
@@ -125,7 +125,7 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
     adjustSize();
     ui->layoutMessages->addWidget(msg);
     show();
-    connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
+    connect(msg, &Message::sigHideMessage, this, &NotificationBox::removeMessage);
 }
 
 int NotificationBox::addProgressBar(QString message)

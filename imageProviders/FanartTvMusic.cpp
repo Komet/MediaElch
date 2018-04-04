@@ -59,7 +59,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
     request.setRawHeader("User-Agent",
         QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchAlbumFinished);
 }
 
 void FanartTvMusic::searchArtist(QString searchStr, int limit)
@@ -71,7 +71,7 @@ void FanartTvMusic::searchArtist(QString searchStr, int limit)
     request.setRawHeader("User-Agent",
         QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
     QNetworkReply *reply = qnam()->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
 }
 
 void FanartTvMusic::artistFanarts(QString mbId)
@@ -83,7 +83,7 @@ void FanartTvMusic::artistFanarts(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistFanart);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
 
 void FanartTvMusic::artistLogos(QString mbId)
@@ -95,7 +95,7 @@ void FanartTvMusic::artistLogos(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistLogo);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
 
 void FanartTvMusic::artistThumbs(QString mbId)
@@ -107,7 +107,7 @@ void FanartTvMusic::artistThumbs(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::ArtistThumb);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
 
 void FanartTvMusic::albumCdArts(QString mbId)
@@ -119,7 +119,7 @@ void FanartTvMusic::albumCdArts(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", ImageType::AlbumCdArt);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAlbumFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
 
 void FanartTvMusic::albumThumbs(QString mbId)
@@ -131,7 +131,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::AlbumThumb);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAlbumFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
 
 void FanartTvMusic::onSearchArtistFinished()
@@ -147,7 +147,7 @@ void FanartTvMusic::onSearchArtistFinished()
         request.setRawHeader("User-Agent",
             QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
         reply = qnam()->get(request);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+        connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
         return;
     }
 
@@ -187,7 +187,7 @@ void FanartTvMusic::onSearchAlbumFinished()
         request.setRawHeader("User-Agent",
             QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
         reply = qnam()->get(request);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+        connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchAlbumFinished);
         return;
     }
 
@@ -521,7 +521,7 @@ void FanartTvMusic::artistImages(Artist *artist, QString mbId, QList<int> types)
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllArtistDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllArtistDataFinished);
 }
 
 void FanartTvMusic::albumImages(Album *album, QString mbId, QList<int> types)
@@ -534,7 +534,7 @@ void FanartTvMusic::albumImages(Album *album, QString mbId, QList<int> types)
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllAlbumDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllAlbumDataFinished);
 }
 
 void FanartTvMusic::onLoadAllAlbumDataFinished()

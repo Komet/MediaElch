@@ -69,7 +69,7 @@ void PluginManager::loadPlugins()
 void PluginManager::downloadPluginList()
 {
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(QUrl("http://community.kvibes.de/api/plugins")));
-    connect(reply, SIGNAL(finished()), this, SLOT(onPluginListDownloaded()));
+    connect(reply, &QNetworkReply::finished, this, &PluginManager::onPluginListDownloaded);
 }
 
 void PluginManager::onPluginListDownloaded()
@@ -239,7 +239,7 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin)
             request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
             QNetworkReply *reply = m_qnam.get(request);
             reply->setProperty("storage", Storage::toVariant(reply, plugin));
-            connect(reply, SIGNAL(finished()), this, SLOT(onPluginDownloaded()));
+            connect(reply, &QNetworkReply::finished, this, &PluginManager::onPluginDownloaded);
             return;
         }
     }

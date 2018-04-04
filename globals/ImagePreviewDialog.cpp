@@ -14,7 +14,7 @@
 ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
 {
     ui->setupUi(this);
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::accept);
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #ImagePreviewDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");

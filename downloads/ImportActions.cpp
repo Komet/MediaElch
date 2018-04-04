@@ -12,8 +12,8 @@ ImportActions::ImportActions(QWidget *parent) : QWidget(parent), ui(new Ui::Impo
     ui->setupUi(this);
     Helper::instance()->setButtonStyle(ui->btnImport, Helper::ButtonSuccess);
     Helper::instance()->setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
-    connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
-    connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
+    connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
+    connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
     m_tvShow = nullptr;
     m_importDialog = new ImportDialog(parent);
 }

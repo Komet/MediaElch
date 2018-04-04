@@ -14,8 +14,8 @@ TagCloud::TagCloud(QWidget *parent) :
     m_horizontalSpace{4}
 {
     ui->setupUi(this);
-    connect(ui->scrollAreaWidgetContents, SIGNAL(resized()), this, SLOT(repositionTags()));
-    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(addTag()));
+    connect(ui->scrollAreaWidgetContents, &MyWidget::resized, this, &TagCloud::repositionTags);
+    connect(ui->lineEdit, &QLineEdit::returnPressed, this, &TagCloud::addTag);
 }
 
 TagCloud::~TagCloud()

@@ -77,13 +77,13 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
-    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddGenre(QString)));
-    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveGenre(QString)));
+    connect(ui->genreCloud, &TagCloud::activated, this, &TvShowWidgetTvShow::onAddGenre);
+    connect(ui->genreCloud, &TagCloud::deactivated, this, &TvShowWidgetTvShow::onRemoveGenre);
 
     ui->tagCloud->setText(tr("Tags"));
     ui->tagCloud->setPlaceholder(tr("Add Tag"));
-    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(onAddTag(QString)));
-    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveTag(QString)));
+    connect(ui->tagCloud, &TagCloud::activated, this, &TvShowWidgetTvShow::onAddTag);
+    connect(ui->tagCloud, &TagCloud::deactivated, this, &TvShowWidgetTvShow::onRemoveTag);
 
     ui->comboStatus->setItemData(0, "");
     ui->comboStatus->setItemData(1, "Continuing");
@@ -114,9 +114,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
-    connect(ui->name, SIGNAL(textChanged(QString)), ui->showTitle, SLOT(setText(QString)));
-    connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
-    connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
+    connect(ui->name, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
+    connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddActor);
+    connect(ui->buttonRemoveActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRemoveActor);
     connect(m_posterDownloadManager,
         SIGNAL(downloadFinished(DownloadManagerElement)),
         this,
@@ -125,40 +125,42 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
         SIGNAL(downloadsLeft(int, DownloadManagerElement)),
         this,
         SLOT(onDownloadsLeft(int, DownloadManagerElement)));
-    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
-    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->btnDownloadTune, SIGNAL(clicked()), this, SLOT(onDownloadTune()));
+    connect(ui->actors, &QTableWidget::itemSelectionChanged, this, &TvShowWidgetTvShow::onActorChanged);
+    connect(ui->actor, &MyLabel::clicked, this, &TvShowWidgetTvShow::onChangeActorImage);
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRevertChanges);
+    connect(ui->btnDownloadTune, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onDownloadTune);
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddExtraFanart);
     connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &TvShowWidgetTvShow::onExtraFanartDropped);
 
     onClear();
 
     // Connect GUI change events to movie object
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
-    connect(ui->imdbId, SIGNAL(textEdited(QString)), this, SLOT(onImdbIdChange(QString)));
-    connect(ui->tvdbId, SIGNAL(textEdited(QString)), this, SLOT(onTvdbIdChange(QString)));
-    connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
-    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
-    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
-    connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
-    connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
-    connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
-    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
-    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onActorEdited(QTableWidgetItem *)));
-    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
-    connect(ui->comboStatus, SIGNAL(currentIndexChanged(int)), this, SLOT(onStatusChange(int)));
+    // clang-format off
+    connect(ui->name,          &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onNameChange);
+    connect(ui->imdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onImdbIdChange);
+    connect(ui->tvdbId,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvdbIdChange);
+    connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
+    connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
+    connect(ui->rating,        SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
+    connect(ui->votes,         SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
+    connect(ui->top250,        SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
+    connect(ui->firstAired,    &QDateTimeEdit::dateChanged,      this, &TvShowWidgetTvShow::onFirstAiredChange);
+    connect(ui->studio,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onStudioChange);
+    connect(ui->overview,      &QTextEdit::textChanged,          this, &TvShowWidgetTvShow::onOverviewChange);
+    connect(ui->actors,        &QTableWidget::itemChanged,       this, &TvShowWidgetTvShow::onActorEdited);
+    connect(ui->runtime,       SIGNAL(valueChanged(int)),        this, SLOT(onRuntimeChange(int)));
+    connect(ui->comboStatus,   SIGNAL(currentIndexChanged(int)), this, SLOT(onStatusChange(int)));
+    // clang-format on
 
     onSetEnabled(false);
 
     connect(static_cast<TheTvDb *>(Manager::instance()->tvScrapers().at(0)),
-        SIGNAL(sigLoadProgress(TvShow *, int, int)),
+        &TheTvDb::sigLoadProgress,
         this,
-        SLOT(onShowScraperProgress(TvShow *, int, int)));
+        &TvShowWidgetTvShow::onShowScraperProgress);
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -459,7 +461,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
             Manager::instance()->tvScrapers().at(0),
             TvShowSearch::instance()->updateType(),
             TvShowSearch::instance()->infosToLoad());
-        connect(m_show, SIGNAL(sigLoaded(TvShow *)), this, SLOT(onInfoLoadDone(TvShow *)), Qt::UniqueConnection);
+        connect(m_show.data(), &TvShow::sigLoaded, this, &TvShowWidgetTvShow::onInfoLoadDone, Qt::UniqueConnection);
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
