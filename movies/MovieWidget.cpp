@@ -747,7 +747,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     StreamDetails *streamDetails = m_movie->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
     ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
+    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);

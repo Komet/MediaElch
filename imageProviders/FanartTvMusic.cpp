@@ -81,7 +81,7 @@ void FanartTvMusic::artistFanarts(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ArtistFanart);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -93,7 +93,7 @@ void FanartTvMusic::artistLogos(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ArtistLogo);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -105,7 +105,7 @@ void FanartTvMusic::artistThumbs(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ArtistThumb);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -117,7 +117,7 @@ void FanartTvMusic::albumCdArts(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::AlbumCdArt);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }

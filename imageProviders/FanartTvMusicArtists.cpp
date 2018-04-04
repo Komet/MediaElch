@@ -114,7 +114,7 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
@@ -126,7 +126,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ConcertLogo);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }

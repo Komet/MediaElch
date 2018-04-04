@@ -109,7 +109,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     onClear();
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    ui->title->setText(QString(m_show->name()) + " - " + tr("Season %1").arg(m_season));
+    ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season));
 
     updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop
                               << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);

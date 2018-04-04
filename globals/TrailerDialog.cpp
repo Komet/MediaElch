@@ -371,8 +371,9 @@ void TrailerDialog::onUpdateTime(qint64 currentTime)
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
 
     int position = 0;
-    if (m_totalTime > 0)
-        position = qRound(((float)currentTime / m_totalTime) * 100);
+    if (m_totalTime > 0) {
+        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0);
+    }
     ui->seekSlider->setValue(position);
 }
 
@@ -402,7 +403,8 @@ void TrailerDialog::onAnimationFinished()
 
 void TrailerDialog::onSliderPositionChanged()
 {
-    if (m_totalTime == 0)
+    if (m_totalTime == 0) {
         return;
-    m_mediaPlayer->setPosition(qRound((float)m_totalTime * ui->seekSlider->value() / 100));
+    }
+    m_mediaPlayer->setPosition(qRound(static_cast<float>(m_totalTime) * ui->seekSlider->value() / 100));
 }
