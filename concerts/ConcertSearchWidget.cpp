@@ -22,7 +22,7 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
+    connect(ui->results, &QTableWidget::itemClicked, this, &ConcertSearchWidget::resultClicked);
 
     ui->chkBackdrop->setMyData(ConcertScraperInfos::Backdrop);
     ui->chkCertification->setMyData(ConcertScraperInfos::Certification);
@@ -39,9 +39,9 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkToggled);
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkAllToggled);
 }
 
 ConcertSearchWidget::~ConcertSearchWidget()

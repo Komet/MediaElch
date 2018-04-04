@@ -15,10 +15,10 @@ UnpackButtons::UnpackButtons(QWidget *parent) : QWidget(parent), ui(new Ui::Unpa
     Helper::instance()->setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
     ui->progressBar->setVisible(false);
     ui->btnStop->setVisible(false);
-    connect(ui->btnUnpack, SIGNAL(clicked()), this, SLOT(onUnpack()));
-    connect(ui->btnUnpackWithPassword, SIGNAL(clicked()), this, SLOT(onUnpackWithPassword()));
-    connect(ui->btnStop, SIGNAL(clicked()), this, SLOT(onStop()));
-    connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
+    connect(ui->btnUnpack, &QAbstractButton::clicked, this, &UnpackButtons::onUnpack);
+    connect(ui->btnUnpackWithPassword, &QAbstractButton::clicked, this, &UnpackButtons::onUnpackWithPassword);
+    connect(ui->btnStop, &QAbstractButton::clicked, this, &UnpackButtons::onStop);
+    connect(ui->btnDelete, &QAbstractButton::clicked, this, &UnpackButtons::onDelete);
 
     ui->progressBar->setFormat("   " + ui->progressBar->format());
 }

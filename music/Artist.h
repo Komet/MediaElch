@@ -16,7 +16,7 @@ class Artist : public QObject
     Q_PROPERTY(MusicModelItem *modelItem READ modelItem NOTIFY modelItemChanged)
 public:
     explicit Artist(QString path, QObject *parent = nullptr);
-    ~Artist() override;
+    ~Artist() override = default;
 
     QString path() const;
     void setPath(const QString &path);

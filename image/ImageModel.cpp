@@ -202,12 +202,11 @@ void ImageModel::cutImage(int row)
 
     Image *image1 = m_images.at(row);
 
-    int cut = Settings::instance()->advanced()->bookletCut();
-
+    auto cut = static_cast<qreal>(Settings::instance()->advanced()->bookletCut());
     QImage img = QImage::fromData(data(row, "rawData").toByteArray());
 
-    int width1 = qFloor((qreal)img.width() / 2 * (1 - ((qreal)cut / 100)));
-    int width2 = qCeil((qreal)img.width() / 2 * (1 - ((qreal)cut / 100)));
+    int width1 = qFloor(static_cast<qreal>(img.width()) / 2.0 * (1.0 - (cut / 100.0)));
+    int width2 = qCeil(static_cast<qreal>(img.width()) / 2.0 * (1.0 - (cut / 100.0)));
 
     QImage img1 = img.copy(0, 0, width1, img.height());
     QImage img2 = img.copy(img.width() - width2, 0, width2, img.height());

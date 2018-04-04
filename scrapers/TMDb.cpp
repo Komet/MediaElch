@@ -218,7 +218,7 @@ void TMDb::setup()
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(setupFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDb::setupFinished);
 }
 
 /**
@@ -236,7 +236,7 @@ void TMDb::setupFinished()
     reply->deleteLater();
     QScriptValue sc;
     QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(msg) + ")");
+    sc = engine.evaluate("(" + msg + ")");
 
     m_baseUrl = sc.property("images").property("base_url").toString();
 }
@@ -304,7 +304,7 @@ void TMDb::search(QString searchStr)
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
     reply->setProperty("page", 1);
-    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDb::searchFinished);
 }
 
 /**
@@ -356,7 +356,7 @@ void TMDb::searchFinished()
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
         reply->setProperty("page", nextPage);
-        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::searchFinished);
     }
 }
 
@@ -372,7 +372,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
     QList<ScraperSearchResult> results;
     QScriptValue sc;
     QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
+    sc = engine.evaluate("(" + json + ")");
 
     // only get the first 3 pages
     if (page < sc.property("total_pages").toInteger() && page < 3)
@@ -436,11 +436,11 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
                    .arg(TMDb::apiKey())
                    .arg(m_language));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &TMDb::loadFinished);
 
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)
@@ -450,11 +450,11 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
                        .arg(ids.values().first())
                        .arg(TMDb::apiKey()));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadCastsFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::loadCastsFinished);
     }
 
     // Trailers
@@ -465,11 +465,11 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
                        .arg(TMDb::apiKey())
                        .arg(m_language));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::loadTrailersFinished);
     }
 
     // Images
@@ -479,11 +479,11 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
                        .arg(ids.values().first())
                        .arg(TMDb::apiKey()));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::loadImagesFinished);
     }
 
     // Releases
@@ -493,11 +493,11 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
                        .arg(ids.values().first())
                        .arg(TMDb::apiKey()));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::loadReleasesFinished);
     }
     movie->controller()->setLoadsLeft(loadsLeft);
 }
@@ -624,7 +624,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     qDebug() << "Entered";
     QScriptValue sc;
     QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
+    sc = engine.evaluate("(" + json + ")");
 
     // Infos
     if (sc.property("imdb_id").isValid() && !sc.property("imdb_id").toString().isEmpty())

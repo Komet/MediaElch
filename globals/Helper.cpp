@@ -305,14 +305,15 @@ QString Helper::mapCountry(const QString &text)
 
 QString Helper::formatFileSize(const qint64 &size)
 {
-    if (size > 1024 * 1024 * 1024)
-        return QString("%1 GB").arg(QString::number((float)size / 1024 / 1024 / 1024, 'f', 2));
-    else if (size > 1024 * 1024)
-        return QString("%1 MB").arg(QString::number((float)size / 1024 / 1024, 'f', 2));
-    else if (size > 1024)
-        return QString("%1 kB").arg(QString::number((float)size / 1024, 'f', 2));
-    else
-        return QString("%1 B").arg(QString::number((float)size, 'f', 2));
+    if (size > 1024 * 1024 * 1024) {
+        return QString("%1 GB").arg(QString::number(static_cast<float>(size) / 1024 / 1024 / 1024, 'f', 2));
+    } else if (size > 1024 * 1024) {
+        return QString("%1 MB").arg(QString::number(static_cast<float>(size) / 1024 / 1024, 'f', 2));
+    } else if (size > 1024) {
+        return QString("%1 kB").arg(QString::number(static_cast<float>(size) / 1024, 'f', 2));
+    } else {
+        return QString("%1 B").arg(QString::number(static_cast<float>(size), 'f', 2));
+    }
 }
 
 void Helper::removeFocusRect(QWidget *widget)
@@ -802,12 +803,12 @@ QImage Helper::getImage(QString path)
 QString Helper::secondsToTimeCode(quint32 duration)
 {
     QString res;
-    auto seconds = (int)(duration % 60);
+    auto seconds = static_cast<int>(duration % 60);
     duration /= 60;
-    auto minutes = (int)(duration % 60);
+    auto minutes = static_cast<int>(duration % 60);
     duration /= 60;
-    auto hours = (int)(duration % 24);
-    auto days = (int)(duration / 24);
+    auto hours = static_cast<int>(duration % 24);
+    auto days = static_cast<int>(duration / 24);
     if (hours == 0 && days == 0)
         return res.sprintf("%02d:%02d", minutes, seconds);
     if (days == 0)

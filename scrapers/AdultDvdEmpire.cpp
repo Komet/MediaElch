@@ -62,7 +62,7 @@ void AdultDvdEmpire::search(QString searchStr)
     QUrl url(QString("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
 }
 
 void AdultDvdEmpire::onSearchFinished()
@@ -108,7 +108,7 @@ void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movi
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("id", ids.values().first());
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onLoadFinished);
 }
 
 void AdultDvdEmpire::onLoadFinished()

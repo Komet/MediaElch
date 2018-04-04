@@ -24,7 +24,7 @@ class Album : public QObject
 
 public:
     explicit Album(QString path, QObject *parent = nullptr);
-    ~Album() override;
+    ~Album() override = default;
 
     QString path() const;
     void setPath(const QString &path);

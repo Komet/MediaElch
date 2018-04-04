@@ -86,13 +86,13 @@ void IMDB::search(QString searchStr)
         QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchIdFinished()));
+        connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
     } else {
         QUrl url = QUrl::fromEncoded(
             QString("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+        connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
 }
 
@@ -188,7 +188,7 @@ void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &IMDB::onLoadFinished);
 }
 
 void IMDB::onLoadFinished()

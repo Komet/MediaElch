@@ -15,7 +15,7 @@ TMDbImages::TMDbImages(QObject *parent)
     m_searchResultLimit = 0;
     m_tmdb = new TMDb(this);
     m_dummyMovie = new Movie(QStringList(), this);
-    connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie *)), this, SLOT(onLoadImagesFinished()));
+    connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
     connect(m_tmdb,
         SIGNAL(searchDone(QList<ScraperSearchResult>)),
         this,

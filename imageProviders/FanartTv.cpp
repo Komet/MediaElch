@@ -295,9 +295,9 @@ void FanartTv::loadMovieData(QString tmdbId, int type)
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", type);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadMovieDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
 
 /**
@@ -313,10 +313,10 @@ void FanartTv::loadMovieData(QString tmdbId, QList<int> types, Movie *movie)
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllMovieDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
 }
 
 /**
@@ -330,10 +330,10 @@ void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concer
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllConcertDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllConcertDataFinished);
 }
 
 /**
@@ -503,10 +503,10 @@ void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", type);
     reply->setProperty("season", season);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
 /**
@@ -521,10 +521,10 @@ void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, show));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllTvShowDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllTvShowDataFinished);
 }
 
 /**

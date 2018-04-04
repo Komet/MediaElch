@@ -66,19 +66,19 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
         connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);
     }
 
-    connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(concertNameChanged(QString)));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
+    connect(ui->name, &QLineEdit::textChanged, this, &ConcertWidget::concertNameChanged);
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &ConcertWidget::onRevertChanges);
+    connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &ConcertWidget::onReloadStreamDetails);
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
-    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
-    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
+    connect(ui->genreCloud, &TagCloud::activated, this, &ConcertWidget::addGenre);
+    connect(ui->genreCloud, &TagCloud::deactivated, this, &ConcertWidget::removeGenre);
 
     ui->tagCloud->setText(tr("Tags"));
     ui->tagCloud->setPlaceholder(tr("Add Tag"));
-    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(addTag(QString)));
-    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(removeTag(QString)));
+    connect(ui->tagCloud, &TagCloud::activated, this, &ConcertWidget::addTag);
+    connect(ui->tagCloud, &TagCloud::deactivated, this, &ConcertWidget::removeTag);
 
     ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
@@ -98,30 +98,32 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &ConcertWidget::onAddExtraFanart);
     connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &ConcertWidget::onExtraFanartDropped);
 
     // Connect GUI change events to concert object
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
-    connect(ui->artist, SIGNAL(textEdited(QString)), this, SLOT(onArtistChange(QString)));
-    connect(ui->album, SIGNAL(textEdited(QString)), this, SLOT(onAlbumChange(QString)));
-    connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
-    connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
-    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
-    connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
-    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
-    connect(ui->badgeWatched, SIGNAL(clicked()), this, SLOT(onWatchedClicked()));
-    connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
-    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
-    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    // clang-format off
+    connect(ui->name,             &QLineEdit::textEdited, this, &ConcertWidget::onNameChange);
+    connect(ui->artist,           &QLineEdit::textEdited, this, &ConcertWidget::onArtistChange);
+    connect(ui->album,            &QLineEdit::textEdited, this, &ConcertWidget::onAlbumChange);
+    connect(ui->tagline,          &QLineEdit::textEdited, this, &ConcertWidget::onTaglineChange);
+    connect(ui->rating,           SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->trailer,          &QLineEdit::textEdited, this, &ConcertWidget::onTrailerChange);
+    connect(ui->runtime,          SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
+    connect(ui->playcount,        SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
+    connect(ui->certification,    &QComboBox::editTextChanged, this, &ConcertWidget::onCertificationChange);
+    connect(ui->badgeWatched,     &Badge::clicked, this, &ConcertWidget::onWatchedClicked);
+    connect(ui->released,         &QDateTimeEdit::dateChanged, this, &ConcertWidget::onReleasedChange);
+    connect(ui->lastPlayed,       &QDateTimeEdit::dateTimeChanged, this, &ConcertWidget::onLastWatchedChange);
+    connect(ui->overview,         &QTextEdit::textChanged, this, &ConcertWidget::onOverviewChange);
     connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoDuration, SIGNAL(timeChanged(QTime)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec,       &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
+    connect(ui->videoDuration,    &QDateTimeEdit::timeChanged, this, &ConcertWidget::onStreamDetailsEdited);
+    connect(ui->videoHeight,      SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoWidth,       SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoScantype,    &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
+    connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    // clang-format on
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -288,12 +290,12 @@ void ConcertWidget::setConcert(Concert *concert)
     updateConcertInfo();
 
     // clang-format off
-    connect(m_concert->controller(), SIGNAL(sigInfoLoadDone(Concert*)), this, SLOT(onInfoLoadDone(Concert*)), Qt::UniqueConnection);
-    connect(m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
-    connect(m_concert->controller(), SIGNAL(sigDownloadProgress(Concert*,int, int)), this, SLOT(onDownloadProgress(Concert*,int,int)), Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigInfoLoadDone, this, &ConcertWidget::onInfoLoadDone, Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigLoadDone, this, &ConcertWidget::onLoadDone, Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigDownloadProgress, this, &ConcertWidget::onDownloadProgress, Qt::UniqueConnection);
     connect(m_concert->controller(), SIGNAL(sigLoadingImages(Concert*,QList<int>)), this, SLOT(onLoadingImages(Concert*,QList<int>)), Qt::UniqueConnection);
-    connect(m_concert->controller(), SIGNAL(sigLoadImagesStarted(Concert*)), this, SLOT(onLoadImagesStarted(Concert*)), Qt::UniqueConnection);
-    connect(m_concert->controller(), SIGNAL(sigImage(Concert*,int,QByteArray)), this, SLOT(onSetImage(Concert*,int,QByteArray)), Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigLoadImagesStarted, this, &ConcertWidget::onLoadImagesStarted, Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigImage, this, &ConcertWidget::onSetImage, Qt::UniqueConnection);
     // clang-format on
 
     if (concert->controller()->downloadsInProgress())
@@ -533,7 +535,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     StreamDetails *streamDetails = m_concert->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
     ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
+    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
@@ -575,9 +577,9 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
-        connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit1, &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
+        connect(edit2, &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
+        connect(edit3, &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
@@ -600,7 +602,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
             m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
-            connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+            connect(edit1, &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
         }
     }
 

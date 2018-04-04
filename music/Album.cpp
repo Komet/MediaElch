@@ -16,8 +16,6 @@ Album::Album(QString path, QObject *parent) :
     m_bookletProxyModel->setSourceModel(m_bookletModel);
 }
 
-Album::~Album() = default;
-
 QString Album::path() const
 {
     return m_path;

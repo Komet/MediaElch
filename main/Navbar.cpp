@@ -27,23 +27,25 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
     ui->btnReload->setToolTip(
         tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
-    connect(ui->btnSearch, SIGNAL(clicked()), this, SIGNAL(sigSearch()));
-    connect(ui->btnSave, SIGNAL(clicked()), this, SIGNAL(sigSave()));
-    connect(ui->btnSaveAll, SIGNAL(clicked()), this, SIGNAL(sigSaveAll()));
-    connect(ui->btnReload, SIGNAL(clicked()), this, SIGNAL(sigReload()));
-    connect(ui->btnRename, SIGNAL(clicked()), this, SIGNAL(sigRename()));
-    connect(ui->btnSettings, SIGNAL(clicked()), this, SIGNAL(sigSettings()));
-    connect(ui->btnSync, SIGNAL(clicked()), this, SIGNAL(sigSync()));
-    connect(ui->btnExport, SIGNAL(clicked()), this, SIGNAL(sigExport()));
-    connect(ui->btnAbout, SIGNAL(clicked()), this, SIGNAL(sigAbout()));
-    connect(ui->btnDonate, SIGNAL(clicked()), this, SIGNAL(sigLike()));
+    // clang-format off
+    connect(ui->btnSearch,   &QAbstractButton::clicked, this, &Navbar::sigSearch);
+    connect(ui->btnSave,     &QAbstractButton::clicked, this, &Navbar::sigSave);
+    connect(ui->btnSaveAll,  &QAbstractButton::clicked, this, &Navbar::sigSaveAll);
+    connect(ui->btnReload,   &QAbstractButton::clicked, this, &Navbar::sigReload);
+    connect(ui->btnRename,   &QAbstractButton::clicked, this, &Navbar::sigRename);
+    connect(ui->btnSettings, &QAbstractButton::clicked, this, &Navbar::sigSettings);
+    connect(ui->btnSync,     &QAbstractButton::clicked, this, &Navbar::sigSync);
+    connect(ui->btnExport,   &QAbstractButton::clicked, this, &Navbar::sigExport);
+    connect(ui->btnAbout,    &QAbstractButton::clicked, this, &Navbar::sigAbout);
+    connect(ui->btnDonate,   &QAbstractButton::clicked, this, &Navbar::sigLike);
+    // clang-format on
 
     connect(ui->filterWidget,
         SIGNAL(sigFilterChanged(QList<Filter *>, QString)),
         this,
         SIGNAL(sigFilterChanged(QList<Filter *>, QString)));
 
-    connect(Settings::instance(), SIGNAL(sigDonated(bool)), this, SLOT(onDonated(bool)));
+    connect(Settings::instance(), &Settings::sigDonated, this, &Navbar::onDonated);
 
     QList<QColor> navbarColors;
     navbarColors << QColor(241, 96, 106, 255);

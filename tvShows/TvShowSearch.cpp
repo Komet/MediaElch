@@ -21,15 +21,17 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
+    // clang-format off
     connect(Manager::instance()->tvScrapers().at(0),
         SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
         this,
         SLOT(onShowResults(QList<ScraperSearchResult>)));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->comboUpdate, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
-    connect(ui->chkDvdOrder, SIGNAL(clicked()), this, SLOT(onChkDvdOrderToggled()));
+    connect(ui->searchString, &QLineEdit::returnPressed,        this, &TvShowSearch::onSearch);
+    connect(ui->results,      &QTableWidget::itemClicked,       this, &TvShowSearch::onResultClicked);
+    connect(ui->buttonClose,  &QAbstractButton::clicked,        this, &QDialog::reject);
+    connect(ui->comboUpdate,  SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
+    connect(ui->chkDvdOrder,  &QAbstractButton::clicked,        this, &TvShowSearch::onChkDvdOrderToggled);
+    // clang-format on
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -54,10 +56,10 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &TvShowSearch::onChkToggled);
     }
 
-    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowSearch::onChkAllToggled);
 }
 
 /**

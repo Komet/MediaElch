@@ -67,7 +67,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
         action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(i)));
-        connect(action, SIGNAL(triggered()), this, SLOT(onActionMediaStatusColumn()));
+        connect(action, &QAction::triggered, this, &FilesWidget::onActionMediaStatusColumn);
         mediaStatusColumnsMenu->addAction(action);
     }
 
@@ -78,7 +78,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
         auto action = new QAction(it.value(), this);
         action->setIcon(Helper::instance()->iconForLabel(it.key()));
         action->setProperty("color", it.key());
-        connect(action, SIGNAL(triggered()), this, SLOT(onLabel()));
+        connect(action, &QAction::triggered, this, &FilesWidget::onLabel);
         labelsMenu->addAction(action);
     }
 
@@ -107,34 +107,33 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     m_contextMenu->addMenu(labelsMenu);
     m_contextMenu->addMenu(mediaStatusColumnsMenu);
 
-    connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
-    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
-    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
-    connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
-    connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
-    connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
-    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
-    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfoFile()));
+    // clang-format off
+    connect(actionMultiScrape,       &QAction::triggered, this, &FilesWidget::multiScrape);
+    connect(actionMarkAsWatched,     &QAction::triggered, this, &FilesWidget::markAsWatched);
+    connect(actionMarkAsUnwatched,   &QAction::triggered, this, &FilesWidget::markAsUnwatched);
+    connect(actionLoadStreamDetails, &QAction::triggered, this, &FilesWidget::loadStreamDetails);
+    connect(actionMarkForSync,       &QAction::triggered, this, &FilesWidget::markForSync);
+    connect(actionUnmarkForSync,     &QAction::triggered, this, &FilesWidget::unmarkForSync);
+    connect(actionOpenFolder,        &QAction::triggered, this, &FilesWidget::openFolder);
+    connect(actionOpenNfo,           &QAction::triggered, this, &FilesWidget::openNfoFile);
 
-    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files->selectionModel(),
-        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
-        this,
-        SLOT(itemActivated(QModelIndex, QModelIndex)));
-    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(setAlphaListData()));
-    connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
-    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playMovie(QModelIndex)));
+    connect(ui->files,                   &QWidget::customContextMenuRequested, this, &FilesWidget::showContextMenu);
+    connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &FilesWidget::itemActivated);
+    connect(ui->files->model(),          &QAbstractItemModel::dataChanged,     this, &FilesWidget::setAlphaListData);
+    connect(ui->files,                   &MyTableView::sigLeftEdge,            this, &FilesWidget::onLeftEdge);
+    connect(ui->files,                   &QAbstractItemView::doubleClicked,    this, &FilesWidget::playMovie);
 
-    connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
+    connect(m_alphaList, &AlphabeticalList::sigAlphaClicked, this, &FilesWidget::scrollToAlpha);
 
-    connect(ui->sortByNew, SIGNAL(clicked()), this, SLOT(onSortByNew()));
-    connect(ui->sortByName, SIGNAL(clicked()), this, SLOT(onSortByName()));
-    connect(ui->sortByLastAdded, SIGNAL(clicked()), this, SLOT(onSortByAdded()));
-    connect(ui->sortBySeen, SIGNAL(clicked()), this, SLOT(onSortBySeen()));
-    connect(ui->sortByYear, SIGNAL(clicked()), this, SLOT(onSortByYear()));
+    connect(ui->sortByNew,       &MyLabel::clicked, this, &FilesWidget::onSortByNew);
+    connect(ui->sortByName,      &MyLabel::clicked, this, &FilesWidget::onSortByName);
+    connect(ui->sortByLastAdded, &MyLabel::clicked, this, &FilesWidget::onSortByAdded);
+    connect(ui->sortBySeen,      &MyLabel::clicked, this, &FilesWidget::onSortBySeen);
+    connect(ui->sortByYear,      &MyLabel::clicked, this, &FilesWidget::onSortByYear);
 
-    connect(m_movieProxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
-    connect(m_movieProxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &FilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved, this, &FilesWidget::onViewUpdated);
+    // clang-format on
 }
 
 /**
@@ -317,7 +316,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     m_lastModelIndex = previous;
     int row = index.model()->data(index, Qt::UserRole).toInt();
     m_lastMovie = Manager::instance()->movieModel()->movie(row);
-    QTimer::singleShot(0, this, SLOT(movieSelectedEmitter()));
+    QTimer::singleShot(0, this, &FilesWidget::movieSelectedEmitter);
 }
 
 /**

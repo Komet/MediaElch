@@ -9,11 +9,10 @@
 
 MusicFileSearcher::MusicFileSearcher(QObject *parent) :
     QObject(parent),
-    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}
+    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId},
+    m_aborted{false}
 {
 }
-
-MusicFileSearcher::~MusicFileSearcher() = default;
 
 void MusicFileSearcher::setMusicDirectories(QList<SettingsDir> directories)
 {

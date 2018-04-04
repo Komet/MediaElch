@@ -25,7 +25,7 @@ MyLineEdit::MyLineEdit(QWidget *parent) :
     m_moreLabel->setStyleSheet("font-size: 10px; color: #a0a0a0;");
     m_moreLabel->hide();
     m_loadingLabel->hide();
-    connect(this, SIGNAL(textChanged(QString)), this, SLOT(myTextChanged(QString)));
+    connect(this, &QLineEdit::textChanged, this, &MyLineEdit::myTextChanged);
 }
 
 /**
@@ -140,7 +140,7 @@ void MyLineEdit::setType(LineEditType type)
         setMinimumSize(qMax(minimumSize.width(), m_clearButton->sizeHint().width() + frameWidth * 2 + 2),
             (12 + frameWidth * 2 + 2));
         m_clearButton->setVisible(!text().isEmpty());
-        connect(m_clearButton, SIGNAL(clicked()), this, SLOT(myClear()), Qt::UniqueConnection);
+        connect(m_clearButton, &QAbstractButton::clicked, this, &MyLineEdit::myClear, Qt::UniqueConnection);
     }
 }
 

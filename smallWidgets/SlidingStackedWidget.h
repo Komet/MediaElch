@@ -28,8 +28,8 @@ public:
         AUTOMATIC
     };
 
-    SlidingStackedWidget(QWidget *parent);
-    ~SlidingStackedWidget() override;
+    explicit SlidingStackedWidget(QWidget *parent);
+    ~SlidingStackedWidget() override = default;
     bool isExpanded() const;
 
 public slots:

@@ -85,24 +85,24 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
-    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
-    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
+    connect(ui->genreCloud, &TagCloud::activated, this, &MovieWidget::addGenre);
+    connect(ui->genreCloud, &TagCloud::deactivated, this, &MovieWidget::removeGenre);
 
     ui->tagCloud->setText(tr("Tags"));
     ui->tagCloud->setPlaceholder(tr("Add Tag"));
-    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(addTag(QString)));
-    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(removeTag(QString)));
+    connect(ui->tagCloud, &TagCloud::activated, this, &MovieWidget::addTag);
+    connect(ui->tagCloud, &TagCloud::deactivated, this, &MovieWidget::removeTag);
 
     ui->countryCloud->setText(tr("Countries"));
     ui->countryCloud->setPlaceholder(tr("Add Country"));
-    connect(ui->countryCloud, SIGNAL(activated(QString)), this, SLOT(addCountry(QString)));
-    connect(ui->countryCloud, SIGNAL(deactivated(QString)), this, SLOT(removeCountry(QString)));
+    connect(ui->countryCloud, &TagCloud::activated, this, &MovieWidget::addCountry);
+    connect(ui->countryCloud, &TagCloud::deactivated, this, &MovieWidget::removeCountry);
 
     ui->studioCloud->setText(tr("Studios"));
     ui->studioCloud->setPlaceholder(tr("Add Studio"));
     ui->studioCloud->setBadgeType(TagCloud::TypeSimpleLabel);
-    connect(ui->studioCloud, SIGNAL(activated(QString)), this, SLOT(addStudio(QString)));
-    connect(ui->studioCloud, SIGNAL(deactivated(QString)), this, SLOT(removeStudio(QString)));
+    connect(ui->studioCloud, &TagCloud::activated, this, &MovieWidget::addStudio);
+    connect(ui->studioCloud, &TagCloud::deactivated, this, &MovieWidget::removeStudio);
 
     ui->labelSepFoldersWarning->setErrorMessage(ui->labelSepFoldersWarning->text());
 
@@ -119,24 +119,27 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
         connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
     }
 
-    connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
-    connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(addActor()));
-    connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(removeActor()));
-    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onActorEdited(QTableWidgetItem *)));
-    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
-    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
-    connect(ui->subtitles, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onSubtitleEdited(QTableWidgetItem *)));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
+    // clang-format off
+    connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
+    connect(ui->buttonAddActor,    &QAbstractButton::clicked,           this, &MovieWidget::addActor);
+    connect(ui->buttonRemoveActor, &QAbstractButton::clicked,           this, &MovieWidget::removeActor);
+    connect(ui->actors,            &QTableWidget::itemChanged,          this, &MovieWidget::onActorEdited);
+    connect(ui->actors,            &QTableWidget::itemSelectionChanged, this, &MovieWidget::onActorChanged);
+    connect(ui->actor,             &MyLabel::clicked,                   this, &MovieWidget::onChangeActorImage);
+    connect(ui->subtitles,         &QTableWidget::itemChanged,          this, &MovieWidget::onSubtitleEdited);
+    connect(ui->buttonRevert,      &QAbstractButton::clicked,           this, &MovieWidget::onRevertChanges);
 
-    connect(ui->buttonDownloadTrailer, &QToolButton::clicked, this, &MovieWidget::onDownloadTrailer);
-    connect(ui->buttonYoutubeDummy, &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
+    connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &MovieWidget::onReloadStreamDetails);
+
+    connect(ui->buttonDownloadTrailer,  &QToolButton::clicked, this, &MovieWidget::onDownloadTrailer);
+    connect(ui->buttonYoutubeDummy,     &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
     connect(ui->buttonPlayLocalTrailer, &QToolButton::clicked, this, &MovieWidget::onPlayLocalTrailer);
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
-    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)),    this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,      this, &MovieWidget::onAddExtraFanart);
+    connect(ui->fanarts,           &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
+    // clang-format on
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -149,33 +152,35 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
     m_savingWidget->hide();
 
     // Connect GUI change events to movie object
-    connect(ui->imdbId, SIGNAL(textEdited(QString)), this, SLOT(onImdbIdChange(QString)));
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
-    connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(onOriginalNameChange(QString)));
-    connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
-    connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
-    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
-    connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
-    connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
-    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
-    connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
-    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
-    connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(onSetChange(QString)));
-    connect(ui->badgeWatched, SIGNAL(clicked()), this, SLOT(onWatchedClicked()));
-    connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
-    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
-    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
-    connect(ui->outline, SIGNAL(textChanged()), this, SLOT(onOutlineChange()));
-    connect(ui->director, SIGNAL(textEdited(QString)), this, SLOT(onDirectorChange(QString)));
-    connect(ui->writer, SIGNAL(textEdited(QString)), this, SLOT(onWriterChange(QString)));
-    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoDuration, SIGNAL(timeChanged(QTime)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    // clang-format off
+    connect(ui->imdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onImdbIdChange);
+    connect(ui->name,             &QLineEdit::textEdited,           this, &MovieWidget::onNameChange);
+    connect(ui->originalName,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
+    connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
+    connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
+    connect(ui->rating,           SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
+    connect(ui->votes,            SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
+    connect(ui->top250,           SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
+    connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
+    connect(ui->runtime,          SIGNAL(valueChanged(int)),        this, SLOT(onRuntimeChange(int)));
+    connect(ui->playcount,        SIGNAL(valueChanged(int)),        this, SLOT(onPlayCountChange(int)));
+    connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
+    connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
+    connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
+    connect(ui->released,         &QDateTimeEdit::dateChanged,      this, &MovieWidget::onReleasedChange);
+    connect(ui->lastPlayed,       &QDateTimeEdit::dateTimeChanged,  this, &MovieWidget::onLastWatchedChange);
+    connect(ui->overview,         &QTextEdit::textChanged,          this, &MovieWidget::onOverviewChange);
+    connect(ui->outline,          &QTextEdit::textChanged,          this, &MovieWidget::onOutlineChange);
+    connect(ui->director,         &QLineEdit::textEdited,           this, &MovieWidget::onDirectorChange);
+    connect(ui->writer,           &QLineEdit::textEdited,           this, &MovieWidget::onWriterChange);
+    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)),     this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec,       &QLineEdit::textEdited,           this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->videoDuration,    &QDateTimeEdit::timeChanged,      this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->videoHeight,      SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoWidth,       SIGNAL(valueChanged(int)),        this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoScantype,    &QLineEdit::textEdited,           this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    // clang-format on
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -421,15 +426,15 @@ void MovieWidget::setMovie(Movie *movie)
     updateMovieInfo();
 
     connect(m_movie->controller(),
-        SIGNAL(sigInfoLoadDone(Movie *)),
+        &MovieController::sigInfoLoadDone,
         this,
-        SLOT(onInfoLoadDone(Movie *)),
+        &MovieWidget::onInfoLoadDone,
         Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
+    connect(m_movie->controller(), &MovieController::sigLoadDone, this, &MovieWidget::onLoadDone, Qt::UniqueConnection);
     connect(m_movie->controller(),
-        SIGNAL(sigDownloadProgress(Movie *, int, int)),
+        &MovieController::sigDownloadProgress,
         this,
-        SLOT(onDownloadProgress(Movie *, int, int)),
+        &MovieWidget::onDownloadProgress,
         Qt::UniqueConnection);
     connect(m_movie->controller(),
         SIGNAL(sigLoadingImages(Movie *, QList<int>)),
@@ -437,15 +442,11 @@ void MovieWidget::setMovie(Movie *movie)
         SLOT(onLoadingImages(Movie *, QList<int>)),
         Qt::UniqueConnection);
     connect(m_movie->controller(),
-        SIGNAL(sigLoadImagesStarted(Movie *)),
+        &MovieController::sigLoadImagesStarted,
         this,
-        SLOT(onLoadImagesStarted(Movie *)),
+        &MovieWidget::onLoadImagesStarted,
         Qt::UniqueConnection);
-    connect(m_movie->controller(),
-        SIGNAL(sigImage(Movie *, int, QByteArray)),
-        this,
-        SLOT(onSetImage(Movie *, int, QByteArray)),
-        Qt::UniqueConnection);
+    connect(m_movie->controller(), &MovieController::sigImage, this, &MovieWidget::onSetImage, Qt::UniqueConnection);
 
     ui->btnAddExtraFanart->setEnabled(movie->inSeparateFolder());
     ui->labelSepFoldersWarning->setVisible(!movie->inSeparateFolder());
@@ -746,7 +747,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     StreamDetails *streamDetails = m_movie->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
     ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
+    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
@@ -789,9 +790,9 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
-        connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
+        connect(edit2, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
+        connect(edit3, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
@@ -816,7 +817,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
             m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
-            connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+            connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
         }
     }
 

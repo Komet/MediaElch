@@ -33,7 +33,7 @@ QNetworkAccessManager *ExportTemplateLoader::qnam()
 void ExportTemplateLoader::getRemoteTemplates()
 {
     QNetworkReply *reply = qnam()->get(QNetworkRequest(QUrl("http://data.mediaelch.de/export_themes.xml")));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadRemoteTemplatesFinished()));
+    connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
 
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
@@ -143,7 +143,7 @@ void ExportTemplateLoader::installTemplate(ExportTemplate *exportTemplate)
 {
     QNetworkReply *reply = qnam()->get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
-    connect(reply, SIGNAL(finished()), this, SLOT(onDownloadTemplateFinished()));
+    connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }
 
 void ExportTemplateLoader::onDownloadTemplateFinished()

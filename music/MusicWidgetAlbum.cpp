@@ -40,18 +40,18 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
-    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->genreCloud, &TagCloud::activated, this, &MusicWidgetAlbum::onAddCloudItem);
+    connect(ui->genreCloud, &TagCloud::deactivated, this, &MusicWidgetAlbum::onRemoveCloudItem);
 
     ui->moodCloud->setText(tr("Moods"));
     ui->moodCloud->setPlaceholder(tr("Add Mood"));
-    connect(ui->moodCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->moodCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->moodCloud, &TagCloud::activated, this, &MusicWidgetAlbum::onAddCloudItem);
+    connect(ui->moodCloud, &TagCloud::deactivated, this, &MusicWidgetAlbum::onRemoveCloudItem);
 
     ui->styleCloud->setText(tr("Styles"));
     ui->styleCloud->setPlaceholder(tr("Add Style"));
-    connect(ui->styleCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->styleCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->styleCloud, &TagCloud::activated, this, &MusicWidgetAlbum::onAddCloudItem);
+    connect(ui->styleCloud, &TagCloud::deactivated, this, &MusicWidgetAlbum::onRemoveCloudItem);
 
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
@@ -76,24 +76,26 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui
     m_bookletWidget = new ImageWidget(this);
     ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
     connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &MusicWidgetAlbum::onAddBooklet);
 #endif
 
-    connect(ui->title, SIGNAL(textChanged(QString)), ui->albumName, SLOT(setText(QString)));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->title, &QLineEdit::textChanged, ui->albumName, &QLabel::setText);
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &MusicWidgetAlbum::onRevertChanges);
 
     onSetEnabled(false);
     onClear();
 
-    connect(ui->title, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->artist, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->label, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->releaseDate, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->year, SIGNAL(valueChanged(int)), this, SLOT(onYearChanged(int)));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChanged(double)));
-    connect(ui->review, SIGNAL(textChanged()), this, SLOT(onReviewChanged()));
-    connect(ui->musicBrainzAlbumId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->musicBrainzReleaseGroupId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
+    // clang-format off
+    connect(ui->title,                     &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->artist,                    &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->label,                     &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->releaseDate,               &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->year,                      SIGNAL(valueChanged(int)),    this, SLOT(onYearChanged(int)));
+    connect(ui->rating,                    SIGNAL(valueChanged(double)), this, SLOT(onRatingChanged(double)));
+    connect(ui->review,                    &QTextEdit::textChanged,      this, &MusicWidgetAlbum::onReviewChanged);
+    connect(ui->musicBrainzAlbumId,        &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    connect(ui->musicBrainzReleaseGroupId, &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
+    // clang-format on
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -119,37 +121,15 @@ void MusicWidgetAlbum::setAlbum(Album *album)
     m_album = album;
     updateAlbumInfo();
 
-    connect(m_album->controller(),
-        SIGNAL(sigInfoLoadDone(Album *)),
-        this,
-        SLOT(onInfoLoadDone(Album *)),
-        Qt::UniqueConnection);
-    connect(m_album->controller(), SIGNAL(sigLoadDone(Album *)), this, SLOT(onLoadDone(Album *)), Qt::UniqueConnection);
-    connect(m_album->controller(),
-        SIGNAL(sigDownloadProgress(Album *, int, int)),
-        this,
-        SLOT(onDownloadProgress(Album *, int, int)),
-        Qt::UniqueConnection);
-    connect(m_album->controller(),
-        SIGNAL(sigLoadingImages(Album *, QList<int>)),
-        this,
-        SLOT(onLoadingImages(Album *, QList<int>)),
-        Qt::UniqueConnection);
-    connect(m_album->controller(),
-        SIGNAL(sigLoadImagesStarted(Album *)),
-        this,
-        SLOT(onLoadImagesStarted(Album *)),
-        Qt::UniqueConnection);
-    connect(m_album->controller(),
-        SIGNAL(sigImage(Album *, int, QByteArray)),
-        this,
-        SLOT(onSetImage(Album *, int, QByteArray)),
-        Qt::UniqueConnection);
-    connect(m_album->bookletModel(),
-        SIGNAL(hasChangedChanged()),
-        this,
-        SLOT(onBookletModelChanged()),
-        Qt::UniqueConnection);
+    // clang-format off
+    connect(m_album->controller(),   &AlbumController::sigInfoLoadDone,             this, &MusicWidgetAlbum::onInfoLoadDone,          Qt::UniqueConnection);
+    connect(m_album->controller(),   &AlbumController::sigLoadDone,                 this, &MusicWidgetAlbum::onLoadDone,              Qt::UniqueConnection);
+    connect(m_album->controller(),   &AlbumController::sigDownloadProgress,         this, &MusicWidgetAlbum::onDownloadProgress,      Qt::UniqueConnection);
+    connect(m_album->controller(),   SIGNAL(sigLoadingImages(Album *, QList<int>)), this, SLOT(onLoadingImages(Album *, QList<int>)), Qt::UniqueConnection);
+    connect(m_album->controller(),   &AlbumController::sigLoadImagesStarted,        this, &MusicWidgetAlbum::onLoadImagesStarted,     Qt::UniqueConnection);
+    connect(m_album->controller(),   &AlbumController::sigImage,                    this, &MusicWidgetAlbum::onSetImage,              Qt::UniqueConnection);
+    connect(m_album->bookletModel(), &ImageModel::hasChangedChanged,                this, &MusicWidgetAlbum::onBookletModelChanged,   Qt::UniqueConnection);
+    // clang-format on
 
     onSetEnabled(!album->controller()->downloadsInProgress());
 }

@@ -52,7 +52,7 @@ void HdTrailers::searchMovie(QString searchStr)
         QUrl url(QString("https://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
         QNetworkRequest request(url);
         m_searchReply = m_qnam->get(request);
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+        connect(m_searchReply, &QNetworkReply::finished, this, &HdTrailers::onSearchFinished);
     } else {
         QList<ScraperSearchResult> results;
         QMapIterator<QString, QUrl> it(m_urls);
@@ -90,7 +90,7 @@ void HdTrailers::onSearchFinished()
 void HdTrailers::loadMovieTrailers(QString id)
 {
     m_loadReply = m_qnam->get(QNetworkRequest(QUrl("https://www.hd-trailers.net" + id)));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(m_loadReply, &QNetworkReply::finished, this, &HdTrailers::onLoadFinished);
 }
 
 void HdTrailers::onLoadFinished()

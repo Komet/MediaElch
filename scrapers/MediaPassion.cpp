@@ -177,7 +177,7 @@ void MediaPassion::search(QString searchStr)
                  .arg(searchStr));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &MediaPassion::onSearchFinished);
 }
 
 void MediaPassion::onSearchFinished()
@@ -232,7 +232,7 @@ void MediaPassion::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie,
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("movie", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &MediaPassion::onLoadFinished);
 }
 
 void MediaPassion::onLoadFinished()

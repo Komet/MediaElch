@@ -76,7 +76,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
     request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchArtistFinished);
 }
 
 void UniversalMusicScraper::onSearchArtistFinished()
@@ -89,7 +89,7 @@ void UniversalMusicScraper::onSearchArtistFinished()
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchArtistFinished);
         return;
     }
     if (reply->error() == QNetworkReply::NoError) {
@@ -128,7 +128,7 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> in
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onArtistRelsFinished()));
+    connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistRelsFinished);
 }
 
 void UniversalMusicScraper::onArtistRelsFinished()
@@ -146,7 +146,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("storage", Storage::toVariant(reply, artist));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(onArtistRelsFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistRelsFinished);
         return;
     }
 
@@ -205,7 +205,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, artist));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(onArtistLoadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
     }
 }
 
@@ -232,7 +232,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, artist));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(onArtistLoadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
         return;
     }
 
@@ -340,7 +340,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     request.setRawHeader("User-Agent", "MediaElch");
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+    connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchAlbumFinished);
 }
 
 void UniversalMusicScraper::onSearchAlbumFinished()
@@ -354,7 +354,7 @@ void UniversalMusicScraper::onSearchAlbumFinished()
         qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onSearchAlbumFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchAlbumFinished);
         return;
     }
 
@@ -426,7 +426,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onAlbumRelsFinished()));
+    connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumRelsFinished);
 }
 
 void UniversalMusicScraper::onAlbumRelsFinished()
@@ -445,7 +445,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         reply->setProperty("storage", Storage::toVariant(reply, album));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onAlbumRelsFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumRelsFinished);
         return;
     }
 
@@ -495,7 +495,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, album));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(onAlbumLoadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
     }
 }
 
@@ -523,7 +523,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         reply->setProperty("storage", Storage::toVariant(reply, album));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         new NetworkReplyWatcher(this, reply);
-        connect(reply, SIGNAL(finished()), this, SLOT(onAlbumLoadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
         return;
     }
 

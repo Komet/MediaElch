@@ -74,8 +74,8 @@ private:
     QList<int> m_infosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
     QMap<ScraperInterface *, QString> m_ids;
-    QTableWidgetItem *m_tableWidgetItem;
-    PluginInterface *m_pluginInterface;
+    QTableWidgetItem *m_tableWidgetItem = nullptr;
+    PluginInterface *m_pluginInterface = nullptr;
     PluginManager::Plugin m_plugin;
     QList<TvShowEpisode *> m_episodes;
 };
