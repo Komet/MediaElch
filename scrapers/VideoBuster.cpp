@@ -79,7 +79,7 @@ void VideoBuster::search(QString searchStr)
                  .toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &VideoBuster::searchFinished);
 }
 
 /**
@@ -142,7 +142,7 @@ void VideoBuster::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, 
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &VideoBuster::loadFinished);
 }
 
 /**

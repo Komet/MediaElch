@@ -26,21 +26,21 @@ MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Make
 
     m_makeMkvCon = new MakeMkvCon(this);
 
-    connect(m_makeMkvCon, SIGNAL(sigMessage(QString)), ui->messages, SLOT(appendPlainText(QString)));
+    // clang-format off
+    connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);
     connect(m_makeMkvCon, SIGNAL(sigGotDrives(QMap<int, QString>)), this, SLOT(onGotDrives(QMap<int, QString>)));
-    connect(m_makeMkvCon,
-        SIGNAL(sigScannedDrive(QString, QMap<int, MakeMkvCon::Track>)),
-        this,
-        SLOT(onScanFinished(QString, QMap<int, MakeMkvCon::Track>)));
-    connect(m_makeMkvCon, SIGNAL(sigDiscBackedUp()), this, SLOT(onDiscBackedUp()));
-    connect(m_makeMkvCon, SIGNAL(sigTrackImported(int)), this, SLOT(onTrackImported(int)));
-    connect(m_makeMkvCon, SIGNAL(sigProgress(int, int)), this, SLOT(onImportProgress(int, int)));
-    connect(ui->btnScanDrive, SIGNAL(clicked()), this, SLOT(onScanDrive()));
-    connect(ui->btnClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->btnImportTracks, SIGNAL(clicked()), this, SLOT(onImportTracks()));
-    connect(ui->btnImportComplete, SIGNAL(clicked()), this, SLOT(onImportComplete()));
-    connect(ui->movieSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(onMovieChosen()));
-    connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
+    connect(m_makeMkvCon, SIGNAL(sigScannedDrive(QString, QMap<int, MakeMkvCon::Track>)), this, SLOT(onScanFinished(QString, QMap<int, MakeMkvCon::Track>)));
+    connect(m_makeMkvCon, &MakeMkvCon::sigDiscBackedUp,  this, &MakeMkvDialog::onDiscBackedUp);
+    connect(m_makeMkvCon, &MakeMkvCon::sigTrackImported, this, &MakeMkvDialog::onTrackImported);
+    connect(m_makeMkvCon, &MakeMkvCon::sigProgress,      this, &MakeMkvDialog::onImportProgress);
+
+    connect(ui->btnScanDrive,      &QAbstractButton::clicked,            this, &MakeMkvDialog::onScanDrive);
+    connect(ui->btnClose,          SIGNAL(clicked()),                    this, SLOT(reject()));
+    connect(ui->btnImportTracks,   &QAbstractButton::clicked,            this, &MakeMkvDialog::onImportTracks);
+    connect(ui->btnImportComplete, &QAbstractButton::clicked,            this, &MakeMkvDialog::onImportComplete);
+    connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &MakeMkvDialog::onMovieChosen);
+    connect(ui->btnImport,         &QAbstractButton::clicked,            this, &MakeMkvDialog::onImport);
+    // clang-format on
 }
 
 MakeMkvDialog::~MakeMkvDialog()
@@ -220,7 +220,7 @@ void MakeMkvDialog::onMovieChosen()
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();
@@ -248,7 +248,8 @@ void MakeMkvDialog::onMovieChosen()
 
     m_movie = new Movie(QStringList());
     m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
+    connect(
+        m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }
 
 void MakeMkvDialog::onLoadDone(Movie *movie)
@@ -304,10 +305,10 @@ void MakeMkvDialog::onDiscBackedUp()
     QStringList files;
     if (QFileInfo(m_importDir + "/BDMV/index.bdmv").exists()) {
         files << m_importDir + "/BDMV/index.bdmv";
-        m_movie->setDiscType(DiscBluRay);
+        m_movie->setDiscType(DiscType::BluRay);
     } else if (QFileInfo(m_importDir + "/VIDEO_TS/VIDEO_TS.IFO").exists()) {
         files << m_importDir + "/VIDEO_TS/VIDEO_TS.IFO";
-        m_movie->setDiscType(DiscDvd);
+        m_movie->setDiscType(DiscType::Dvd);
     }
     m_movie->setFiles(files);
     importFinished();
@@ -333,7 +334,7 @@ void MakeMkvDialog::onTrackImported(int trackId)
 
 void MakeMkvDialog::importFinished()
 {
-    if (m_movie->discType() != DiscBluRay && m_movie->discType() != DiscDvd) {
+    if (m_movie->discType() != DiscType::BluRay && m_movie->discType() != DiscType::Dvd) {
         QStringList files;
         int partNo = 0;
         foreach (QString file, m_movie->files()) {

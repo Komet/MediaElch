@@ -64,27 +64,28 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(ne
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
-    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
-    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
-    connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
-    connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
-    connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
-    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
-    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfo()));
-    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
-    connect(ui->files->selectionModel(),
-        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
-        this,
-        SLOT(itemActivated(QModelIndex, QModelIndex)));
-    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(setAlphaListData()));
-    connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
-    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playConcert(QModelIndex)));
+    // clang-format off
+    connect(actionMarkAsWatched,     &QAction::triggered, this, &ConcertFilesWidget::markAsWatched);
+    connect(actionMarkAsUnwatched,   &QAction::triggered, this, &ConcertFilesWidget::markAsUnwatched);
+    connect(actionLoadStreamDetails, &QAction::triggered, this, &ConcertFilesWidget::loadStreamDetails);
+    connect(actionMarkForSync,       &QAction::triggered, this, &ConcertFilesWidget::markForSync);
+    connect(actionUnmarkForSync,     &QAction::triggered, this, &ConcertFilesWidget::unmarkForSync);
+    connect(actionOpenFolder,        &QAction::triggered, this, &ConcertFilesWidget::openFolder);
+    connect(actionOpenNfo,           &QAction::triggered, this, &ConcertFilesWidget::openNfo);
 
-    connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
+    connect(ui->files, &QWidget::customContextMenuRequested, this, &ConcertFilesWidget::showContextMenu);
 
-    connect(m_concertProxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
-    connect(m_concertProxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(onViewUpdated()));
+    connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &ConcertFilesWidget::itemActivated);
+    connect(ui->files->model(),          &QAbstractItemModel::dataChanged,     this, &ConcertFilesWidget::setAlphaListData);
+    connect(ui->files,                   &MyTableView::sigLeftEdge,            this, &ConcertFilesWidget::onLeftEdge);
+    connect(ui->files,                   &QAbstractItemView::doubleClicked,    this, &ConcertFilesWidget::playConcert);
+
+    connect(m_alphaList, &AlphabeticalList::sigAlphaClicked, this, &ConcertFilesWidget::scrollToAlpha);
+
+    connect(m_concertProxyModel, &QAbstractItemModel::rowsInserted, this, &ConcertFilesWidget::onViewUpdated);
+    connect(m_concertProxyModel, &QAbstractItemModel::rowsRemoved,  this, &ConcertFilesWidget::onViewUpdated);
+    // clang-format off
 }
 
 /**
@@ -225,7 +226,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     m_lastModelIndex = previous;
     int row = index.model()->data(index, Qt::UserRole).toInt();
     m_lastConcert = Manager::instance()->concertModel()->concert(row);
-    QTimer::singleShot(0, this, SLOT(concertSelectedEmitter()));
+    QTimer::singleShot(0, this, &ConcertFilesWidget::concertSelectedEmitter);
 }
 
 /**

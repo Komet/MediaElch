@@ -44,18 +44,18 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new 
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
-    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->genreCloud, &TagCloud::activated, this, &MusicWidgetArtist::onAddCloudItem);
+    connect(ui->genreCloud, &TagCloud::deactivated, this, &MusicWidgetArtist::onRemoveCloudItem);
 
     ui->moodCloud->setText(tr("Moods"));
     ui->moodCloud->setPlaceholder(tr("Add Mood"));
-    connect(ui->moodCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->moodCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->moodCloud, &TagCloud::activated, this, &MusicWidgetArtist::onAddCloudItem);
+    connect(ui->moodCloud, &TagCloud::deactivated, this, &MusicWidgetArtist::onRemoveCloudItem);
 
     ui->styleCloud->setText(tr("Styles"));
     ui->styleCloud->setPlaceholder(tr("Add Style"));
-    connect(ui->styleCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
-    connect(ui->styleCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveCloudItem(QString)));
+    connect(ui->styleCloud, &TagCloud::activated, this, &MusicWidgetArtist::onAddCloudItem);
+    connect(ui->styleCloud, &TagCloud::deactivated, this, &MusicWidgetArtist::onRemoveCloudItem);
 
     ui->logo->setImageType(ImageType::ArtistLogo);
     ui->fanart->setImageType(ImageType::ArtistFanart);
@@ -66,29 +66,31 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new 
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetArtist::onImageDropped);
     }
 
-    connect(ui->name, SIGNAL(textChanged(QString)), ui->artistName, SLOT(setText(QString)));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->name, &QLineEdit::textChanged, ui->artistName, &QLabel::setText);
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &MusicWidgetArtist::onRevertChanges);
 
     onSetEnabled(false);
     onClear();
 
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->born, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->formed, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->yearsActive, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->disbanded, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->died, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
-    connect(ui->biography, SIGNAL(textChanged()), this, SLOT(onBiographyChanged()));
-    connect(ui->musicBrainzId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
+    // clang-format off
+    connect(ui->name,          &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->born,          &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->formed,        &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->yearsActive,   &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->disbanded,     &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->died,          &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+    connect(ui->biography,     &QTextEdit::textChanged, this, &MusicWidgetArtist::onBiographyChanged);
+    connect(ui->musicBrainzId, &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
 
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
-    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &MusicWidgetArtist::onExtraFanartDropped);
+    connect(ui->fanarts,           SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
+    connect(ui->fanarts,           SIGNAL(sigRemoveImage(QString)),    this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,          this, &MusicWidgetArtist::onAddExtraFanart);
+    connect(ui->fanarts,           &ImageGallery::sigImageDropped,     this, &MusicWidgetArtist::onExtraFanartDropped);
 
-    connect(ui->btnAddAlbum, SIGNAL(clicked()), this, SLOT(onAddAlbum()));
-    connect(ui->btnRemoveAlbum, SIGNAL(clicked()), this, SLOT(onRemoveAlbum()));
-    connect(ui->discography, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onAlbumEdited(QTableWidgetItem *)));
+    connect(ui->btnAddAlbum,    &QAbstractButton::clicked,  this, &MusicWidgetArtist::onAddAlbum);
+    connect(ui->btnRemoveAlbum, &QAbstractButton::clicked,  this, &MusicWidgetArtist::onRemoveAlbum);
+    connect(ui->discography,    &QTableWidget::itemChanged, this, &MusicWidgetArtist::onAlbumEdited);
+    // clang-format on
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -114,33 +116,14 @@ void MusicWidgetArtist::setArtist(Artist *artist)
     m_artist = artist;
     updateArtistInfo();
 
-    connect(m_artist->controller(),
-        SIGNAL(sigInfoLoadDone(Artist *)),
-        this,
-        SLOT(onInfoLoadDone(Artist *)),
-        Qt::UniqueConnection);
-    connect(
-        m_artist->controller(), SIGNAL(sigLoadDone(Artist *)), this, SLOT(onLoadDone(Artist *)), Qt::UniqueConnection);
-    connect(m_artist->controller(),
-        SIGNAL(sigDownloadProgress(Artist *, int, int)),
-        this,
-        SLOT(onDownloadProgress(Artist *, int, int)),
-        Qt::UniqueConnection);
-    connect(m_artist->controller(),
-        SIGNAL(sigLoadingImages(Artist *, QList<int>)),
-        this,
-        SLOT(onLoadingImages(Artist *, QList<int>)),
-        Qt::UniqueConnection);
-    connect(m_artist->controller(),
-        SIGNAL(sigLoadImagesStarted(Artist *)),
-        this,
-        SLOT(onLoadImagesStarted(Artist *)),
-        Qt::UniqueConnection);
-    connect(m_artist->controller(),
-        SIGNAL(sigImage(Artist *, int, QByteArray)),
-        this,
-        SLOT(onSetImage(Artist *, int, QByteArray)),
-        Qt::UniqueConnection);
+    // clang-format off
+    connect(m_artist->controller(), &ArtistController::sigInfoLoadDone,             this, &MusicWidgetArtist::onInfoLoadDone,          Qt::UniqueConnection);
+    connect(m_artist->controller(), &ArtistController::sigLoadDone,                 this, &MusicWidgetArtist::onLoadDone,              Qt::UniqueConnection);
+    connect(m_artist->controller(), &ArtistController::sigDownloadProgress,         this, &MusicWidgetArtist::onDownloadProgress,      Qt::UniqueConnection);
+    connect(m_artist->controller(), SIGNAL(sigLoadingImages(Artist *, QList<int>)), this, SLOT(onLoadingImages(Artist *, QList<int>)), Qt::UniqueConnection);
+    connect(m_artist->controller(), &ArtistController::sigLoadImagesStarted,        this, &MusicWidgetArtist::onLoadImagesStarted,     Qt::UniqueConnection);
+    connect(m_artist->controller(), &ArtistController::sigImage,                    this, &MusicWidgetArtist::onSetImage,              Qt::UniqueConnection);
+    // clang-format on
 
     onSetEnabled(!artist->controller()->downloadsInProgress());
 }
@@ -153,8 +136,8 @@ void MusicWidgetArtist::onSetEnabled(bool enabled)
     }
     enabled = enabled && !m_artist->controller()->downloadsInProgress();
     ui->groupBox_3->setEnabled(enabled);
-    emit sigSetActionSearchEnabled(enabled, WidgetMusic);
-    emit sigSetActionSaveEnabled(enabled, WidgetMusic);
+    emit sigSetActionSearchEnabled(enabled, MainWidgets::Music);
+    emit sigSetActionSaveEnabled(enabled, MainWidgets::Music);
 }
 
 void MusicWidgetArtist::onClear()
@@ -222,8 +205,8 @@ void MusicWidgetArtist::onStartScraperSearch()
     if (!m_artist)
         return;
 
-    emit sigSetActionSearchEnabled(false, WidgetMusic);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSearchEnabled(false, MainWidgets::Music);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 
     MusicSearch::instance()->exec("artist", m_artist->name());
 
@@ -233,8 +216,8 @@ void MusicWidgetArtist::onStartScraperSearch()
             Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
             MusicSearch::instance()->infosToLoad());
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetMusic);
-        emit sigSetActionSaveEnabled(true, WidgetMusic);
+        emit sigSetActionSearchEnabled(true, MainWidgets::Music);
+        emit sigSetActionSaveEnabled(true, MainWidgets::Music);
     }
 }
 
@@ -399,7 +382,7 @@ void MusicWidgetArtist::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        emit sigSetActionSaveEnabled(false, MainWidgets::Music);
         m_artist->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -423,7 +406,7 @@ void MusicWidgetArtist::onImageDropped(int imageType, QUrl imageUrl)
 {
     if (!m_artist)
         return;
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
     m_artist->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }
@@ -435,7 +418,7 @@ void MusicWidgetArtist::onInfoLoadDone(Artist *artist)
 
     updateArtistInfo();
     ui->buttonRevert->setVisible(true);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 }
 
 void MusicWidgetArtist::onLoadDone(Artist *artist)
@@ -527,7 +510,7 @@ void MusicWidgetArtist::onAddExtraFanart()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
-        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        emit sigSetActionSaveEnabled(false, MainWidgets::Music);
         m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
@@ -538,7 +521,7 @@ void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
     if (!m_artist)
         return;
     ui->fanarts->setLoading(true);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
     m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QList<QUrl>() << imageUrl);
     ui->buttonRevert->setVisible(true);
 }

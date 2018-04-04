@@ -16,8 +16,8 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
         SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
         this,
         SLOT(onShowResults(QList<ScraperSearchResult>)));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onResultClicked(QTableWidgetItem *)));
+    connect(ui->searchString, &QLineEdit::returnPressed, this, &TvShowSearchEpisode::onSearch);
+    connect(ui->results, &QTableWidget::itemClicked, this, &TvShowSearchEpisode::onResultClicked);
 
     ui->chkCertification->setMyData(TvShowScraperInfos::Certification);
     ui->chkDirector->setMyData(TvShowScraperInfos::Director);
@@ -31,10 +31,10 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkToggled);
     }
 
-    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkAllToggled);
 }
 
 TvShowSearchEpisode::~TvShowSearchEpisode()
@@ -60,7 +60,7 @@ void TvShowSearchEpisode::onChkToggled()
 
     ui->chkUnCheckAll->setChecked(allToggled);
 
-    Settings::instance()->setScraperInfos(WidgetTvShows, QString::number(4), m_infosToLoad);
+    Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(4), m_infosToLoad);
 }
 
 void TvShowSearchEpisode::onChkAllToggled()

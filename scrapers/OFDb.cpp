@@ -115,7 +115,7 @@ void OFDb::search(QString searchStr)
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
-    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
 }
 
 /**
@@ -136,14 +136,13 @@ void OFDb::searchFinished()
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("searchString", searchStr);
         reply->setProperty("notFoundCounter", notFoundCounter);
-        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
         return;
     }
 
     // try to get another mirror when 404 occurs
     if (reply->error() == QNetworkReply::ContentNotFoundError) {
         qWarning() << "Got 404";
-
         if (notFoundCounter < 3) {
             ++notFoundCounter;
             reply->deleteLater();
@@ -152,7 +151,7 @@ void OFDb::searchFinished()
             reply = qnam()->get(QNetworkRequest(url));
             reply->setProperty("searchString", searchStr);
             reply->setProperty("notFoundCounter", notFoundCounter);
-            connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
+            connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
             return;
 
         } else {
@@ -228,7 +227,7 @@ void OFDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     reply->setProperty("ofdbId", ids.values().first());
     reply->setProperty("notFoundCounter", 0);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &OFDb::loadFinished);
 }
 
 /**
@@ -253,7 +252,7 @@ void OFDb::loadFinished()
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("ofdbId", ofdbId);
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &OFDb::loadFinished);
         return;
     }
 
@@ -267,7 +266,7 @@ void OFDb::loadFinished()
         reply->setProperty("ofdbId", ofdbId);
         reply->setProperty("notFoundCounter", notFoundCounter);
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
+        connect(reply, &QNetworkReply::finished, this, &OFDb::loadFinished);
         return;
     }
 

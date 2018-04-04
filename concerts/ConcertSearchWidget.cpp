@@ -22,7 +22,7 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(resultClicked(QTableWidgetItem *)));
+    connect(ui->results, &QTableWidget::itemClicked, this, &ConcertSearchWidget::resultClicked);
 
     ui->chkBackdrop->setMyData(ConcertScraperInfos::Backdrop);
     ui->chkCertification->setMyData(ConcertScraperInfos::Certification);
@@ -39,9 +39,9 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkToggled);
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkAllToggled);
 }
 
 ConcertSearchWidget::~ConcertSearchWidget()
@@ -115,7 +115,7 @@ void ConcertSearchWidget::chkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(WidgetConcerts, QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(MainWidgets::Concerts, QString::number(scraperNo), m_infosToLoad);
 }
 
 void ConcertSearchWidget::chkAllToggled(bool toggled)
@@ -147,7 +147,7 @@ QList<int> ConcertSearchWidget::infosToLoad()
 void ConcertSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetConcerts, QString::number(scraperNo));
+    QList<int> infos = Settings::instance()->scraperInfos(MainWidgets::Concerts, QString::number(scraperNo));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));

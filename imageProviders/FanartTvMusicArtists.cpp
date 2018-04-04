@@ -1,10 +1,11 @@
 #include "FanartTvMusicArtists.h"
 
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QSettings>
-#include <QtScript/QScriptEngine>
-#include <QtScript/QScriptValue>
-#include <QtScript/QScriptValueIterator>
 
 #include "data/Storage.h"
 #include "imageProviders/FanartTv.h"
@@ -75,7 +76,7 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onSearchArtistFinished);
 }
 
 void FanartTvMusicArtists::onSearchArtistFinished()
@@ -113,9 +114,9 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::concertLogos(QString mbId)
@@ -125,9 +126,9 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", ImageType::ConcertLogo);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::onLoadConcertFinished()
@@ -150,35 +151,50 @@ QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
     map.insert(ImageType::ConcertLogo,
         QStringList() << "hdmusiclogo"
                       << "musiclogo");
+
     QList<Poster> posters;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
+
+    QJsonParseError parseError;
+    // The JSON contains one object with all URLs to fanart images
+    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing fanart music json: " << parseError.errorString();
+        return posters;
+    }
 
     foreach (const QString &section, map.value(type)) {
-        if (sc.property(section).isArray()) {
-            QScriptValueIterator itB(sc.property(section));
-            while (itB.hasNext()) {
-                itB.next();
-                QScriptValue vB = itB.value();
-                if (vB.property("url").toString().isEmpty())
-                    continue;
-                Poster b;
-                b.thumbUrl = vB.property("url").toString().replace("/fanart/", "/preview/");
-                b.originalUrl = vB.property("url").toString();
-                if (section == "hdmusiclogo")
-                    b.hint = "HD";
-                else if (section == "musiclogo")
-                    b.hint = "SD";
-                else if (vB.property("disc_type").toString() == "bluray")
-                    b.hint = "BluRay";
-                else if (vB.property("disc_type").toString() == "dvd")
-                    b.hint = "DVD";
-                else if (vB.property("disc_type").toString() == "3d")
-                    b.hint = "3D";
-                b.language = vB.property("lang").toString();
-                FanartTv::insertPoster(posters, b, m_language, m_preferredDiscType);
+        const auto jsonPosters = parsedJson.value(section).toArray();
+
+        for (const auto &it : jsonPosters) {
+            const auto poster = it.toObject();
+            if (poster.value("url").toString().isEmpty()) {
+                continue;
             }
+
+            Poster b;
+            b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
+            b.originalUrl = poster.value("url").toString();
+
+            const auto discType = poster.value("disc_type").toString();
+            b.hint = [&section, &discType] {
+                if (section == "hdmusiclogo") {
+                    return QStringLiteral("HD");
+                } else if (section == "musiclogo") {
+                    return QStringLiteral("SD");
+                } else if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                } else if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                } else if (discType == "3d") {
+                    return QStringLiteral("3D");
+                } else {
+                    return QStringLiteral("");
+                }
+            }();
+
+            b.language = poster.value("lang").toString();
+            FanartTv::insertPoster(posters, b, m_language, m_preferredDiscType);
         }
     }
 

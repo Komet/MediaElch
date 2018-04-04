@@ -57,28 +57,30 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 #endif
     ui->actorResolution->setFont(font);
 
-    ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
-    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
+    ui->directors->setItemDelegate(
+        new ComboDelegate(ui->directors, MainWidgets::TvShows, ComboDelegateType::Directors));
+    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, MainWidgets::TvShows, ComboDelegateType::Writers));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 
     m_posterDownloadManager = new DownloadManager(this);
 
-    connect(ui->name, SIGNAL(textChanged(QString)), ui->episodeName, SLOT(setText(QString)));
-    connect(ui->buttonAddDirector, SIGNAL(clicked()), this, SLOT(onAddDirector()));
-    connect(ui->buttonRemoveDirector, SIGNAL(clicked()), this, SLOT(onRemoveDirector()));
-    connect(ui->buttonAddWriter, SIGNAL(clicked()), this, SLOT(onAddWriter()));
-    connect(ui->buttonRemoveWriter, SIGNAL(clicked()), this, SLOT(onRemoveWriter()));
+    connect(ui->name, &QLineEdit::textChanged, ui->episodeName, &QLabel::setText);
+    connect(ui->buttonAddDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddDirector);
+    connect(ui->buttonRemoveDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveDirector);
+    connect(ui->buttonAddWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddWriter);
+    connect(ui->buttonRemoveWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveWriter);
     connect(m_posterDownloadManager,
         SIGNAL(downloadFinished(DownloadManagerElement)),
         this,
         SLOT(onPosterDownloadFinished(DownloadManagerElement)));
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
-    connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
-    connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
-    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
-    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRevertChanges);
+    connect(
+        ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onReloadStreamDetails);
+    connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddActor);
+    connect(ui->buttonRemoveActor, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveActor);
+    connect(ui->actors, &QTableWidget::itemSelectionChanged, this, &TvShowWidgetEpisode::onActorChanged);
+    connect(ui->actor, &MyLabel::clicked, this, &TvShowWidgetEpisode::onChangeActorImage);
     connect(ui->thumbnail, &ClosableImage::clicked, this, &TvShowWidgetEpisode::onChooseThumbnail);
     connect(ui->thumbnail, &ClosableImage::sigClose, this, &TvShowWidgetEpisode::onDeleteThumbnail);
     connect(ui->thumbnail, &ClosableImage::sigImageDropped, this, &TvShowWidgetEpisode::onImageDropped);
@@ -87,8 +89,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     onClear();
 
     // Connect GUI change events to movie object
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
-    connect(ui->showTitle, SIGNAL(textEdited(QString)), this, SLOT(onShowTitleChange(QString)));
+    connect(ui->name, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onNameChange);
+    connect(ui->showTitle, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onShowTitleChange);
     connect(ui->season, SIGNAL(valueChanged(int)), this, SLOT(onSeasonChange(int)));
     connect(ui->episode, SIGNAL(valueChanged(int)), this, SLOT(onEpisodeChange(int)));
     connect(ui->displaySeason, SIGNAL(valueChanged(int)), this, SLOT(onDisplaySeasonChange(int)));
@@ -96,21 +98,21 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
     connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
-    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
-    connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
-    connect(ui->epBookmark, SIGNAL(timeChanged(QTime)), this, SLOT(onEpBookmarkChange(QTime)));
+    connect(ui->certification, &QComboBox::editTextChanged, this, &TvShowWidgetEpisode::onCertificationChange);
+    connect(ui->firstAired, &QDateTimeEdit::dateChanged, this, &TvShowWidgetEpisode::onFirstAiredChange);
+    connect(ui->epBookmark, &QDateTimeEdit::timeChanged, this, &TvShowWidgetEpisode::onEpBookmarkChange);
     connect(ui->playCount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
-    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastPlayedChange(QDateTime)));
-    connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
-    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->lastPlayed, &QDateTimeEdit::dateTimeChanged, this, &TvShowWidgetEpisode::onLastPlayedChange);
+    connect(ui->studio, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStudioChange);
+    connect(ui->overview, &QTextEdit::textChanged, this, &TvShowWidgetEpisode::onOverviewChange);
     connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoDuration, SIGNAL(timeChanged(QTime)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
+    connect(ui->videoDuration, &QDateTimeEdit::timeChanged, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoScantype, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
     connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem *)), this, SLOT(onActorEdited(QTableWidgetItem *)));
+    connect(ui->actors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onActorEdited);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -298,8 +300,8 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
     ui->missingLabel->setVisible(episode->isDummy());
     updateEpisodeInfo();
 
-    emit sigSetActionSearchEnabled(!episode->isDummy(), WidgetTvShows);
-    emit sigSetActionSaveEnabled(!episode->isDummy(), WidgetTvShows);
+    emit sigSetActionSearchEnabled(!episode->isDummy(), MainWidgets::TvShows);
+    emit sigSetActionSaveEnabled(!episode->isDummy(), MainWidgets::TvShows);
 }
 
 /**
@@ -448,7 +450,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     StreamDetails *streamDetails = m_episode->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
     ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
+    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
@@ -488,9 +490,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
-        connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-        connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit1, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
+        connect(edit2, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
+        connect(edit3, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
@@ -513,7 +515,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
             m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
-            connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+            connect(edit1, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
         }
     }
 
@@ -589,19 +591,20 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     if (m_episode->isDummy())
         return;
 
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     TvShowSearch::instance()->setSearchType(TypeEpisode);
     TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        connect(m_episode, SIGNAL(sigLoaded()), this, SLOT(onLoadDone()), Qt::UniqueConnection);
+        connect(
+            m_episode.data(), &TvShowEpisode::sigLoaded, this, &TvShowWidgetEpisode::onLoadDone, Qt::UniqueConnection);
         m_episode->loadData(TvShowSearch::instance()->scraperId(),
             Manager::instance()->tvScrapers().at(0),
             TvShowSearch::instance()->infosToLoad());
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
 }
 
@@ -629,8 +632,8 @@ void TvShowWidgetEpisode::onLoadDone()
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
     } else {
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -661,7 +664,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
     ImageDialog::instance()->exec(ImageType::TvShowEpisodeThumb);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = ImageDialog::instance()->imageUrl();
@@ -679,7 +682,7 @@ void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
 
     if (!m_episode)
         return;
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowEpisodeThumb;
     d.url = imageUrl;
@@ -705,8 +708,8 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
-        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
     }
 }
 

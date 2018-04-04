@@ -117,30 +117,23 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 
     Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
 
-    connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
-    connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
-    connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
-    connect(ui->dirs, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(dirListRowChanged(int)));
-    connect(ui->comboMovieSetArtwork, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboMovieSetArtworkChanged()));
-    connect(ui->btnMovieSetArtworkDir, SIGNAL(clicked()), this, SLOT(onChooseMovieSetArtworkDir()));
-    connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
-    connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(onCancel()));
-    connect(ui->btnSave, SIGNAL(clicked()), this, SLOT(onSave()));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplatesLoaded(QList<ExportTemplate *>)),
-        this,
-        SLOT(onTemplatesLoaded(QList<ExportTemplate *>)));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplateInstalled(ExportTemplate *, bool)),
-        this,
-        SLOT(onTemplateInstalled(ExportTemplate *, bool)));
-    connect(ExportTemplateLoader::instance(this),
-        SIGNAL(sigTemplateUninstalled(ExportTemplate *, bool)),
-        this,
-        SLOT(onTemplateUninstalled(ExportTemplate *, bool)));
-    connect(ui->btnChooseUnrar, SIGNAL(clicked()), this, SLOT(onChooseUnrar()));
-    connect(ui->btnChooseMakemkvcon, SIGNAL(clicked()), this, SLOT(onChooseMakeMkvCon()));
-    connect(ui->chkEnableAdultScrapers, SIGNAL(clicked()), this, SLOT(onShowAdultScrapers()));
+    // clang-format off
+    connect(ui->buttonAddDir,           &QAbstractButton::clicked, this, &SettingsWindow::chooseDirToAdd);
+    connect(ui->buttonRemoveDir,        &QAbstractButton::clicked, this, &SettingsWindow::removeDir);
+    connect(ui->buttonMovieFilesToDirs, &QAbstractButton::clicked, this, &SettingsWindow::organize);
+    connect(ui->dirs,                   &QTableWidget::currentCellChanged, this, &SettingsWindow::dirListRowChanged);
+    connect(ui->comboMovieSetArtwork,   SIGNAL(currentIndexChanged(int)),  this, SLOT(onComboMovieSetArtworkChanged()));
+    connect(ui->btnMovieSetArtworkDir,  &QAbstractButton::clicked, this, &SettingsWindow::onChooseMovieSetArtworkDir);
+    connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
+    connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
+    connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate *>)));
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,   this, &SettingsWindow::onTemplateInstalled);
+    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled, this, &SettingsWindow::onTemplateUninstalled);
+    connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &SettingsWindow::onChooseUnrar);
+    connect(ui->btnChooseMakemkvcon,    &QAbstractButton::clicked, this, &SettingsWindow::onChooseMakeMkvCon);
+    connect(ui->chkEnableAdultScrapers, &QAbstractButton::clicked, this, &SettingsWindow::onShowAdultScrapers);
+    // clang-format on
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -207,13 +200,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
         SIGNAL(sigPluginListUpdated(QList<PluginManager::Plugin>)),
         this,
         SLOT(onPluginListUpdated(QList<PluginManager::Plugin>)));
-    connect(ui->pluginList,
-        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-        this,
-        SLOT(onPluginActivated(QListWidgetItem *)));
-    connect(ui->btnInstallPlugin, SIGNAL(clicked()), this, SLOT(onInstallPlugin()));
-    connect(ui->btnUninstallPlugin, SIGNAL(clicked()), this, SLOT(onUninstallPlugin()));
-    connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
+    connect(ui->pluginList, &QListWidget::currentItemChanged, this, &SettingsWindow::onPluginActivated);
+    connect(ui->btnInstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onInstallPlugin);
+    connect(ui->btnUninstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUninstallPlugin);
+    connect(ui->btnUpdatePlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUpdatePlugin);
     ui->btnUninstallPlugin->setVisible(false);
     ui->btnUpdatePlugin->setVisible(false);
     Helper::instance()->setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);
@@ -328,28 +318,28 @@ void SettingsWindow::loadSettings()
         addDir(movieDirectories.at(i).path,
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
-            DirTypeMovies);
+            SettingsDirType::Movies);
     QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i)
         addDir(tvShowDirectories.at(i).path,
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
-            DirTypeTvShows);
+            SettingsDirType::TvShows);
     QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i)
         addDir(concertDirectories.at(i).path,
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
-            DirTypeConcerts);
+            SettingsDirType::Concerts);
     QList<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i)
-        addDir(downloadDirectories.at(i).path, false, false, DirTypeDownloads);
+        addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
     QList<SettingsDir> musicDirectories = m_settings->musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i)
         addDir(musicDirectories.at(i).path,
             musicDirectories.at(i).separateFolders,
             musicDirectories.at(i).autoReload,
-            DirTypeMusic);
+            SettingsDirType::Music);
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -577,15 +567,15 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
-            if (dirType == DirTypeMovies)
+            if (dirType == SettingsDirType::Movies)
                 box->setCurrentIndex(0);
-            else if (dirType == DirTypeTvShows)
+            else if (dirType == SettingsDirType::TvShows)
                 box->setCurrentIndex(1);
-            else if (dirType == DirTypeConcerts)
+            else if (dirType == SettingsDirType::Concerts)
                 box->setCurrentIndex(2);
-            else if (dirType == DirTypeDownloads)
+            else if (dirType == SettingsDirType::Downloads)
                 box->setCurrentIndex(3);
-            else if (dirType == DirTypeMusic)
+            else if (dirType == SettingsDirType::Music)
                 box->setCurrentIndex(4);
 
             ui->dirs->setCellWidget(row, 0, box);

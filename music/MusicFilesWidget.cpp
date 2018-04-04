@@ -32,17 +32,17 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui
     m_contextMenu = new QMenu(ui->music);
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
-    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(onOpenFolder()));
-    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(onOpenNfo()));
-    connect(ui->music, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+    connect(actionOpenFolder, &QAction::triggered, this, &MusicFilesWidget::onOpenFolder);
+    connect(actionOpenNfo, &QAction::triggered, this, &MusicFilesWidget::onOpenNfo);
+    connect(ui->music, &QWidget::customContextMenuRequested, this, &MusicFilesWidget::showContextMenu);
 
     connect(ui->music->selectionModel(),
-        SIGNAL(currentChanged(QModelIndex, QModelIndex)),
+        &QItemSelectionModel::currentChanged,
         this,
-        SLOT(onItemSelected(QModelIndex)),
+        &MusicFilesWidget::onItemSelected,
         Qt::QueuedConnection);
-    connect(m_proxyModel, SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateStatusLabel()));
-    connect(m_proxyModel, SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateStatusLabel()));
+    connect(m_proxyModel, &QAbstractItemModel::rowsInserted, this, &MusicFilesWidget::updateStatusLabel);
+    connect(m_proxyModel, &QAbstractItemModel::rowsRemoved, this, &MusicFilesWidget::updateStatusLabel);
 }
 
 MusicFilesWidget::~MusicFilesWidget()

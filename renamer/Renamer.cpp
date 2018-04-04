@@ -20,11 +20,11 @@ Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
     ui->resultsTable->setFont(font);
 #endif
 
-    connect(ui->chkDirectoryNaming, SIGNAL(stateChanged(int)), this, SLOT(onChkRenameDirectories()));
-    connect(ui->chkFileNaming, SIGNAL(stateChanged(int)), this, SLOT(onChkRenameFiles()));
-    connect(ui->chkSeasonDirectories, SIGNAL(stateChanged(int)), this, SLOT(onChkUseSeasonDirectories()));
-    connect(ui->btnDryRun, SIGNAL(clicked()), this, SLOT(onDryRun()));
-    connect(ui->btnRename, SIGNAL(clicked()), this, SLOT(onRename()));
+    connect(ui->chkDirectoryNaming, &QCheckBox::stateChanged, this, &Renamer::onChkRenameDirectories);
+    connect(ui->chkFileNaming, &QCheckBox::stateChanged, this, &Renamer::onChkRenameFiles);
+    connect(ui->chkSeasonDirectories, &QCheckBox::stateChanged, this, &Renamer::onChkUseSeasonDirectories);
+    connect(ui->btnDryRun, &QAbstractButton::clicked, this, &Renamer::onDryRun);
+    connect(ui->btnRename, &QAbstractButton::clicked, this, &Renamer::onRename);
 
     onChkRenameDirectories();
     onChkRenameFiles();
@@ -108,7 +108,7 @@ void Renamer::reject()
 
     QDialog::reject();
     if (m_filesRenamed)
-        QTimer::singleShot(0, this, SLOT(onRenamed()));
+        QTimer::singleShot(0, this, &Renamer::onRenamed);
 }
 
 void Renamer::onRenamed()

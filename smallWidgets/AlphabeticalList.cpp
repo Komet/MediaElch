@@ -106,7 +106,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
         button->setText(alpha);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
         m_layout->addWidget(button);
-        connect(button, SIGNAL(clicked()), this, SLOT(onAlphaClicked()));
+        connect(button, &QAbstractButton::clicked, this, &AlphabeticalList::onAlphaClicked);
     }
 }
 

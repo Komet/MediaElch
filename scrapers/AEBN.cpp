@@ -99,7 +99,7 @@ void AEBN::search(QString searchStr)
                  .arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
-    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
 }
 
 void AEBN::onSearchFinished()
@@ -152,7 +152,7 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &AEBN::onLoadFinished);
 }
 
 void AEBN::onLoadFinished()
@@ -309,7 +309,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);
     reply->setProperty("actorId", id);
-    connect(reply, SIGNAL(finished()), this, SLOT(onActorLoadFinished()));
+    connect(reply, &QNetworkReply::finished, this, &AEBN::onActorLoadFinished);
 }
 
 void AEBN::onActorLoadFinished()

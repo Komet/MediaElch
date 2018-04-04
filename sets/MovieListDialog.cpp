@@ -18,9 +18,9 @@ MovieListDialog::MovieListDialog(QWidget *parent) : QDialog(parent), ui(new Ui::
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->buttonAddMovies, SIGNAL(clicked()), this, SLOT(onAddMovies()));
-    connect(ui->filter, SIGNAL(textEdited(QString)), this, SLOT(onFilterEdited(QString)));
+    connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::reject);
+    connect(ui->buttonAddMovies, &QAbstractButton::clicked, this, &MovieListDialog::onAddMovies);
+    connect(ui->filter, &QLineEdit::textEdited, this, &MovieListDialog::onFilterEdited);
 }
 
 /**

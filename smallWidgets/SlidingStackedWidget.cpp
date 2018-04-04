@@ -14,14 +14,12 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     m_active{false},
     m_expanded{false}
 {
-    if (parent != nullptr)
+    if (parent != nullptr) {
         m_mainWindow = parent;
-    else
+    } else {
         m_mainWindow = this;
+    }
 }
-
-
-SlidingStackedWidget::~SlidingStackedWidget() = default;
 
 void SlidingStackedWidget::setVerticalMode(bool vertical)
 {
@@ -133,7 +131,7 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     animGroup->addAnimation(animNow);
     animGroup->addAnimation(animNext);
 
-    QObject::connect(animGroup, SIGNAL(finished()), this, SLOT(animationDoneSlot()));
+    QObject::connect(animGroup, &QAbstractAnimation::finished, this, &SlidingStackedWidget::animationDoneSlot);
     m_next = next;
     m_now = now;
     m_active = true;

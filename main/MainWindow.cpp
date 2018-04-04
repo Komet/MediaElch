@@ -54,16 +54,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
-    for (int i = WidgetMovies; i != WidgetDownloads; i++) {
-        QMap<MainActions, bool> actions;
-        for (int n = ActionSearch; n != ActionExport; n++) {
-            actions.insert(static_cast<MainActions>(n), false);
-        }
-        if (static_cast<MainWidgets>(i) == WidgetMovies || static_cast<MainWidgets>(i) == WidgetTvShows
-            || static_cast<MainWidgets>(i) == WidgetConcerts || static_cast<MainWidgets>(i) == WidgetMusic)
-            actions[ActionFilterWidget] = true;
-        m_actions.insert(static_cast<MainWidgets>(i), actions);
-    }
+    QMap<MainActions, bool> allActions;
+    allActions.insert(MainActions::Search, false);
+    allActions.insert(MainActions::Save, false);
+    allActions.insert(MainActions::SaveAll, false);
+    allActions.insert(MainActions::FilterWidget, false);
+    allActions.insert(MainActions::Rename, false);
+    allActions.insert(MainActions::Export, false);
+
+    // initialize all widgets with all actions set to false
+    m_actions.insert(MainWidgets::Movies, allActions);
+    m_actions.insert(MainWidgets::MovieSets, allActions);
+    m_actions.insert(MainWidgets::TvShows, allActions);
+    m_actions.insert(MainWidgets::Concerts, allActions);
+    m_actions.insert(MainWidgets::Music, allActions);
+    m_actions.insert(MainWidgets::Genres, allActions);
+    m_actions.insert(MainWidgets::Certifications, allActions);
+    m_actions.insert(MainWidgets::Downloads, allActions);
+
+    // enable filtering for some widgets
+    m_actions[MainWidgets::Movies][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::TvShows][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::Concerts][MainActions::FilterWidget] = true;
+    m_actions[MainWidgets::Music][MainActions::FilterWidget] = true;
 
     m_aboutDialog = new AboutDialog(this);
     m_supportDialog = new SupportDialog(this);
@@ -116,94 +129,73 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
     }
 
-    connect(ui->filesWidget, SIGNAL(movieSelected(Movie *)), ui->movieWidget, SLOT(setMovie(Movie *)));
-    connect(ui->filesWidget, SIGNAL(movieSelected(Movie *)), ui->movieWidget, SLOT(setEnabledTrue(Movie *)));
-    connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
-    connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
-    connect(ui->filesWidget, SIGNAL(sigStartSearch()), this, SLOT(onActionSearch()));
+    // clang-format off
+    connect(ui->filesWidget, &FilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setMovie);
+    connect(ui->filesWidget, &FilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setEnabledTrue);
+    connect(ui->filesWidget, &FilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::clear);
+    connect(ui->filesWidget, &FilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::setDisabledTrue);
+    connect(ui->filesWidget, &FilesWidget::sigStartSearch,  this,            &MainWindow::onActionSearch);
 
-    connect(ui->concertFilesWidget, SIGNAL(concertSelected(Concert *)), ui->concertWidget, SLOT(setConcert(Concert *)));
-    connect(
-        ui->concertFilesWidget, SIGNAL(concertSelected(Concert *)), ui->concertWidget, SLOT(setEnabledTrue(Concert *)));
-    connect(ui->concertFilesWidget, SIGNAL(noConcertSelected()), ui->concertWidget, SLOT(clear()));
-    connect(ui->concertFilesWidget, SIGNAL(noConcertSelected()), ui->concertWidget, SLOT(setDisabledTrue()));
+    connect(ui->concertFilesWidget, &ConcertFilesWidget::concertSelected,   ui->concertWidget, &ConcertWidget::setConcert);
+    connect(ui->concertFilesWidget, &ConcertFilesWidget::concertSelected,   ui->concertWidget, &ConcertWidget::setEnabledTrue);
+    connect(ui->concertFilesWidget, &ConcertFilesWidget::noConcertSelected, ui->concertWidget, &ConcertWidget::clear);
+    connect(ui->concertFilesWidget, &ConcertFilesWidget::noConcertSelected, ui->concertWidget, &ConcertWidget::setDisabledTrue);
 
-    connect(
-        ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist *)), ui->musicWidget, SLOT(onArtistSelected(Artist *)));
-    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album *)), ui->musicWidget, SLOT(onAlbumSelected(Album *)));
-    connect(
-        ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist *)), ui->musicWidget, SLOT(onSetEnabledTrue(Artist *)));
-    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album *)), ui->musicWidget, SLOT(onSetEnabledTrue(Album *)));
-    connect(ui->musicFilesWidget, SIGNAL(sigNothingSelected()), ui->musicWidget, SLOT(onClear()));
-    connect(ui->musicFilesWidget, SIGNAL(sigNothingSelected()), ui->musicWidget, SLOT(onSetDisabledTrue()));
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigArtistSelected,  ui->musicWidget, &MusicWidget::onArtistSelected);
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigAlbumSelected,   ui->musicWidget, &MusicWidget::onAlbumSelected);
+    connect(ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist *)),   ui->musicWidget, SLOT(onSetEnabledTrue(Artist *)));
+    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album *)),     ui->musicWidget, SLOT(onSetEnabledTrue(Album *)));
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigNothingSelected, ui->musicWidget, &MusicWidget::onClear);
+    connect(ui->musicFilesWidget, &MusicFilesWidget::sigNothingSelected, ui->musicWidget, &MusicWidget::onSetDisabledTrue);
 
-    connect(
-        ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)), ui->tvShowWidget, SLOT(onTvShowSelected(TvShow *)));
-    connect(ui->tvShowFilesWidget,
-        SIGNAL(sigSeasonSelected(TvShow *, int)),
-        ui->tvShowWidget,
-        SLOT(onSeasonSelected(TvShow *, int)));
-    connect(ui->tvShowFilesWidget,
-        SIGNAL(sigEpisodeSelected(TvShowEpisode *)),
-        ui->tvShowWidget,
-        SLOT(onEpisodeSelected(TvShowEpisode *)));
-    connect(
-        ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *)));
-    connect(ui->tvShowFilesWidget,
-        SIGNAL(sigSeasonSelected(TvShow *, int)),
-        ui->tvShowWidget,
-        SLOT(onSetEnabledTrue(TvShow *, int)));
-    connect(ui->tvShowFilesWidget,
-        SIGNAL(sigEpisodeSelected(TvShowEpisode *)),
-        ui->tvShowWidget,
-        SLOT(onSetEnabledTrue(TvShowEpisode *)));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onClear()));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onSetDisabledTrue()));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigStartSearch()), this, SLOT(onActionSearch()));
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigTvShowSelected,       ui->tvShowWidget, &TvShowWidget::onTvShowSelected);
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigSeasonSelected,       ui->tvShowWidget, &TvShowWidget::onSeasonSelected);
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigEpisodeSelected,      ui->tvShowWidget, &TvShowWidget::onEpisodeSelected);
+    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)),         ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigSeasonSelected(TvShow *, int)),    ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *, int)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode *)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode *)));
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onClear);
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onSetDisabledTrue);
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigStartSearch,          this,             &MainWindow::onActionSearch);
 
-    connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int, int, int)), this, SLOT(progressProgress(int, int, int)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString, int)), this, SLOT(progressStarted(QString, int)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadFinished(int)), this, SLOT(progressFinished(int)));
+    connect(ui->movieWidget, &MovieWidget::actorDownloadProgress, this, &MainWindow::progressProgress);
+    connect(ui->movieWidget, &MovieWidget::actorDownloadStarted,  this, &MainWindow::progressStarted);
+    connect(ui->movieWidget, &MovieWidget::actorDownloadFinished, this, &MainWindow::progressFinished);
 
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString, int)), this, SLOT(progressStarted(QString, int)));
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int, int, int)), this, SLOT(progressProgress(int, int, int)));
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
+    connect(ui->tvShowWidget, &TvShowWidget::sigDownloadsStarted,  this, &MainWindow::progressStarted);
+    connect(ui->tvShowWidget, &TvShowWidget::sigDownloadsProgress, this, &MainWindow::progressProgress);
+    connect(ui->tvShowWidget, &TvShowWidget::sigDownloadsFinished, this, &MainWindow::progressFinished);
 
-    connect(ui->musicWidget, SIGNAL(sigDownloadsStarted(QString, int)), this, SLOT(progressStarted(QString, int)));
-    connect(ui->musicWidget, SIGNAL(sigDownloadsProgress(int, int, int)), this, SLOT(progressProgress(int, int, int)));
-    connect(ui->musicWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
+    connect(ui->musicWidget, &MusicWidget::sigDownloadsStarted,  this, &MainWindow::progressStarted);
+    connect(ui->musicWidget, &MusicWidget::sigDownloadsProgress, this, &MainWindow::progressProgress);
+    connect(ui->musicWidget, &MusicWidget::sigDownloadsFinished, this, &MainWindow::progressFinished);
 
-    connect(ui->navbar,
-        SIGNAL(sigFilterChanged(QList<Filter *>, QString)),
-        this,
-        SLOT(onFilterChanged(QList<Filter *>, QString)));
+    connect(ui->navbar, SIGNAL(sigFilterChanged(QList<Filter *>, QString)), this, SLOT(onFilterChanged(QList<Filter *>, QString)));
 
-    connect(ui->movieSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->setsWidget->splitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->genreWidget->splitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->certificationWidget->splitter(), SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->concertSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
-    connect(ui->musicSplitter, SIGNAL(splitterMoved(int, int)), this, SLOT(moveSplitter(int, int)));
+    connect(ui->movieSplitter,                   &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->tvShowSplitter,                  &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->setsWidget->splitter(),          &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->genreWidget->splitter(),         &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->certificationWidget->splitter(), &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->concertSplitter,                 &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
+    connect(ui->musicSplitter,                   &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
 
-    connect(Manager::instance()->tvShowFileSearcher(),
-        SIGNAL(tvShowsLoaded(int)),
-        ui->tvShowFilesWidget,
-        SLOT(renewModel()));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(updateTvShows()));
-    connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
-    connect(ui->downloadsWidget, SIGNAL(sigScanFinished(bool)), this, SLOT(setNewMarks()));
+    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, ui->tvShowFilesWidget, &TvShowFilesWidget::renewModel);
+    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, this, &MainWindow::updateTvShows);
+    connect(m_fileScannerDialog,                       &QDialog::accepted,                 this, &MainWindow::setNewMarks);
+    connect(ui->downloadsWidget,                       &DownloadsWidget::sigScanFinished,  this, &MainWindow::setNewMarks);
 
-    connect(m_xbmcSync, SIGNAL(sigTriggerReload()), this, SLOT(onTriggerReloadAll()));
-    connect(m_xbmcSync, SIGNAL(sigFinished()), this, SLOT(onXbmcSyncFinished()));
+    connect(m_xbmcSync, &XbmcSync::sigTriggerReload, this, &MainWindow::onTriggerReloadAll);
+    connect(m_xbmcSync, &XbmcSync::sigFinished,      this, &MainWindow::onXbmcSyncFinished);
 
-    connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
+    connect(m_renamer, &Renamer::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
 
-    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()), Qt::QueuedConnection);
+    connect(m_settingsWindow, &SettingsWindow::sigSaved, this, &MainWindow::onRenewModels, Qt::QueuedConnection);
 
-    connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie *)), this, SLOT(onJumpToMovie(Movie *)));
-    connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie *)), this, SLOT(onJumpToMovie(Movie *)));
-    connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie *)), this, SLOT(onJumpToMovie(Movie *)));
+    connect(ui->setsWidget,          &SetsWidget::sigJumpToMovie,          this, &MainWindow::onJumpToMovie);
+    connect(ui->certificationWidget, &CertificationWidget::sigJumpToMovie, this, &MainWindow::onJumpToMovie);
+    connect(ui->genreWidget,         &GenreWidget::sigJumpToMovie,         this, &MainWindow::onJumpToMovie);
+    // clang-format on
 
     MovieSearch::instance(this);
     MusicSearch::instance(this);
@@ -234,12 +226,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 #endif
 
     ui->labelPlugins->setVisible(false);
-    connect(
-        PluginManager::instance(), SIGNAL(sigAddPlugin(PluginInterface *)), this, SLOT(onAddPlugin(PluginInterface *)));
-    connect(PluginManager::instance(),
-        SIGNAL(sigRemovePlugin(PluginInterface *)),
-        this,
-        SLOT(onRemovePlugin(PluginInterface *)));
+    connect(PluginManager::instance(), &PluginManager::sigAddPlugin, this, &MainWindow::onAddPlugin);
+    connect(PluginManager::instance(), &PluginManager::sigRemovePlugin, this, &MainWindow::onRemovePlugin);
 #if defined(PLUGINS)
     PluginManager::instance()->loadPlugins();
 #endif
@@ -294,17 +282,11 @@ MainWindow *MainWindow::instance()
  */
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    if (event->size().width() >= 1500) {
-        ui->movieWidget->setBigWindow(true);
-        ui->tvShowWidget->setBigWindow(true);
-        ui->concertWidget->setBigWindow(true);
-        ui->musicWidget->setBigWindow(true);
-    } else if (event->size().width() < 1500) {
-        ui->movieWidget->setBigWindow(false);
-        ui->tvShowWidget->setBigWindow(false);
-        ui->concertWidget->setBigWindow(false);
-        ui->musicWidget->setBigWindow(false);
-    }
+    bool isBigWindow = event->size().width() >= 1500;
+    ui->movieWidget->setBigWindow(isBigWindow);
+    ui->tvShowWidget->setBigWindow(isBigWindow);
+    ui->concertWidget->setBigWindow(isBigWindow);
+    ui->musicWidget->setBigWindow(isBigWindow);
 
     NotificationBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);
@@ -317,15 +299,15 @@ void MainWindow::setupToolbar()
 {
     qDebug() << "Entered";
 
-    connect(ui->navbar, SIGNAL(sigSearch()), this, SLOT(onActionSearch()));
-    connect(ui->navbar, SIGNAL(sigSave()), this, SLOT(onActionSave()));
-    connect(ui->navbar, SIGNAL(sigSaveAll()), this, SLOT(onActionSaveAll()));
-    connect(ui->navbar, SIGNAL(sigReload()), this, SLOT(onActionReload()));
+    connect(ui->navbar, &Navbar::sigSearch, this, &MainWindow::onActionSearch);
+    connect(ui->navbar, &Navbar::sigSave, this, &MainWindow::onActionSave);
+    connect(ui->navbar, &Navbar::sigSaveAll, this, &MainWindow::onActionSaveAll);
+    connect(ui->navbar, &Navbar::sigReload, this, &MainWindow::onActionReload);
     connect(ui->navbar, SIGNAL(sigAbout()), m_aboutDialog, SLOT(exec()));
     connect(ui->navbar, SIGNAL(sigSettings()), m_settingsWindow, SLOT(show()));
-    connect(ui->navbar, SIGNAL(sigLike()), m_supportDialog, SLOT(exec()));
-    connect(ui->navbar, SIGNAL(sigSync()), this, SLOT(onActionXbmc()));
-    connect(ui->navbar, SIGNAL(sigRename()), this, SLOT(onActionRename()));
+    connect(ui->navbar, &Navbar::sigLike, m_supportDialog, &QDialog::exec);
+    connect(ui->navbar, &Navbar::sigSync, this, &MainWindow::onActionXbmc);
+    connect(ui->navbar, &Navbar::sigRename, this, &MainWindow::onActionRename);
     connect(ui->navbar, SIGNAL(sigExport()), m_exportDialog, SLOT(exec()));
 
     ui->navbar->setActionSearchEnabled(false);
@@ -377,19 +359,19 @@ void MainWindow::onActionSearch()
         if (ui->filesWidget->selectedMovies().count() > 1)
             ui->filesWidget->multiScrape();
         else
-            QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
+            QTimer::singleShot(0, ui->movieWidget, &MovieWidget::startScraperSearch);
     } else if (ui->stackedWidget->currentIndex() == 1) {
         if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count() > 1)
             ui->tvShowFilesWidget->multiScrape();
         else
-            QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
+            QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidget::onStartScraperSearch);
     } else if (ui->stackedWidget->currentIndex() == 3) {
-        QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
+        QTimer::singleShot(0, ui->concertWidget, &ConcertWidget::onStartScraperSearch);
     } else if (ui->stackedWidget->currentIndex() == 7) {
         if ((ui->musicFilesWidget->selectedArtists().count() + ui->musicFilesWidget->selectedAlbums().count()) > 1)
             ui->musicFilesWidget->multiScrape();
         else
-            QTimer::singleShot(0, ui->musicWidget, SLOT(onStartScraperSearch()));
+            QTimer::singleShot(0, ui->musicWidget, &MusicWidget::onStartScraperSearch);
     } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
         m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSearch);
     }
@@ -518,26 +500,26 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
 
-    m_actions[widget][ActionSave] = enabled;
+    m_actions[widget][MainActions::Save] = enabled;
 
-    if (widget != WidgetMovieSets && widget != WidgetCertifications) {
-        m_actions[widget][ActionSaveAll] = enabled;
-        if (widget != WidgetMusic)
-            m_actions[widget][ActionRename] = enabled;
+    if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
+        m_actions[widget][MainActions::SaveAll] = enabled;
+        if (widget != MainWidgets::Music)
+            m_actions[widget][MainActions::Rename] = enabled;
     }
 
-    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7)
-        || (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
+    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
+        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
+        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7)
+        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != WidgetConcerts && widget != WidgetMusic)
+        if (widget != MainWidgets::Concerts && widget != MainWidgets::Music)
             ui->navbar->setActionRenameEnabled(enabled);
     }
-    if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2)
-        || (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5)
-        || (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4))
+    if ((widget == MainWidgets::MovieSets && ui->stackedWidget->currentIndex() == 2)
+        || (widget == MainWidgets::Certifications && ui->stackedWidget->currentIndex() == 5)
+        || (widget == MainWidgets::Genres && ui->stackedWidget->currentIndex() == 4))
         ui->navbar->setActionSaveEnabled(enabled);
 }
 
@@ -549,12 +531,12 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
-    m_actions[widget][ActionSearch] = enabled;
+    m_actions[widget][MainActions::Search] = enabled;
 
-    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0)
-        || (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
-        || (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)
-        || (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7))
+    if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
+        || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
+        || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)
+        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7))
         ui->navbar->setActionSearchEnabled(enabled);
 }
 
@@ -784,18 +766,18 @@ void MainWindow::onMenu(QToolButton *button)
             ui->navbar->setReloadToolTip(
                 tr("Reload all Movies (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetMovies;
+            widget = MainWidgets::Movies;
             break;
         case 1:
             // Tv Shows
             ui->navbar->setReloadToolTip(
                 tr("Reload all TV Shows (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetTvShows;
+            widget = MainWidgets::TvShows;
             break;
         case 2:
             // Movie Sets
-            widget = WidgetMovieSets;
+            widget = MainWidgets::MovieSets;
             ui->setsWidget->loadSets();
             break;
         case 3:
@@ -803,21 +785,21 @@ void MainWindow::onMenu(QToolButton *button)
             ui->navbar->setReloadToolTip(
                 tr("Reload all Concerts (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetConcerts;
+            widget = MainWidgets::Concerts;
             break;
         case 4:
             // Genres
-            widget = WidgetGenres;
+            widget = MainWidgets::Genres;
             ui->genreWidget->loadGenres();
             break;
         case 5:
             // Certification
-            widget = WidgetCertifications;
+            widget = MainWidgets::Certifications;
             ui->certificationWidget->loadCertifications();
             break;
         case 6:
             // Import
-            widget = WidgetDownloads;
+            widget = MainWidgets::Downloads;
             ui->navbar->setReloadToolTip(
                 tr("Reload all Downloads (%1)")
                     .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
@@ -826,14 +808,14 @@ void MainWindow::onMenu(QToolButton *button)
             // Music
             ui->navbar->setReloadToolTip(
                 tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = WidgetMusic;
+            widget = MainWidgets::Music;
             break;
         }
-        ui->navbar->setActionSearchEnabled(m_actions[widget][ActionSearch]);
-        ui->navbar->setActionSaveEnabled(m_actions[widget][ActionSave]);
-        ui->navbar->setActionSaveAllEnabled(m_actions[widget][ActionSaveAll]);
-        ui->navbar->setActionRenameEnabled(m_actions[widget][ActionRename]);
-        ui->navbar->setFilterWidgetEnabled(m_actions[widget][ActionFilterWidget]);
+        ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
+        ui->navbar->setActionSaveEnabled(m_actions[widget][MainActions::Save]);
+        ui->navbar->setActionSaveAllEnabled(m_actions[widget][MainActions::SaveAll]);
+        ui->navbar->setActionRenameEnabled(m_actions[widget][MainActions::Rename]);
+        ui->navbar->setFilterWidgetEnabled(m_actions[widget][MainActions::FilterWidget]);
         ui->navbar->setActiveWidget(widget);
     }
 }

@@ -2,11 +2,12 @@
 
 #include <QDebug>
 #include <QGridLayout>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QLabel>
 #include <QSettings>
-#include <QtScript/QScriptEngine>
-#include <QtScript/QScriptValue>
-#include <QtScript/QScriptValueIterator>
 
 #include "data/Storage.h"
 #include "main/MainWindow.h"
@@ -294,9 +295,9 @@ void FanartTv::loadMovieData(QString tmdbId, int type)
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", type);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadMovieDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
 
 /**
@@ -312,10 +313,10 @@ void FanartTv::loadMovieData(QString tmdbId, QList<int> types, Movie *movie)
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllMovieDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
 }
 
 /**
@@ -329,10 +330,10 @@ void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concer
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllConcertDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllConcertDataFinished);
 }
 
 /**
@@ -396,54 +397,59 @@ void FanartTv::onLoadAllConcertDataFinished()
 QList<Poster> FanartTv::parseMovieData(QString json, int type)
 {
     QMap<int, QStringList> map;
-    map.insert(ImageType::MoviePoster, QStringList() << "movieposter");
-    map.insert(ImageType::MovieBackdrop, QStringList() << "moviebackground");
-    map.insert(ImageType::MovieLogo,
-        QStringList() << "hdmovielogo"
-                      << "movielogo");
-    map.insert(ImageType::MovieClearArt,
-        QStringList() << "hdmovieclearart"
-                      << "movieart");
-    map.insert(ImageType::MovieCdArt, QStringList() << "moviedisc");
-    map.insert(ImageType::MovieBanner, QStringList() << "moviebanner");
-    map.insert(ImageType::MovieThumb, QStringList() << "moviethumb");
+    // clang-format off
+    map.insert(ImageType::MoviePoster,     QStringList() << "movieposter");
+    map.insert(ImageType::MovieBackdrop,   QStringList() << "moviebackground");
+    map.insert(ImageType::MovieLogo,       QStringList() << "hdmovielogo" << "movielogo");
+    map.insert(ImageType::MovieClearArt,   QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::MovieCdArt,      QStringList() << "moviedisc");
+    map.insert(ImageType::MovieBanner,     QStringList() << "moviebanner");
+    map.insert(ImageType::MovieThumb,      QStringList() << "moviethumb");
     map.insert(ImageType::ConcertBackdrop, QStringList() << "moviebackground");
-    map.insert(ImageType::ConcertLogo,
-        QStringList() << "hdmovielogo"
-                      << "movielogo");
-    map.insert(ImageType::ConcertClearArt,
-        QStringList() << "hdmovieclearart"
-                      << "movieart");
-    map.insert(ImageType::ConcertCdArt, QStringList() << "moviedisc");
+    map.insert(ImageType::ConcertLogo,     QStringList() << "hdmovielogo" << "movielogo");
+    map.insert(ImageType::ConcertClearArt, QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::ConcertCdArt,    QStringList() << "moviedisc");
+    // clang-format on
+
     QList<Poster> posters;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
+
+    QJsonParseError parseError;
+    // The JSON contains one object with all URLs to fanart images
+    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing fanart movie json " << parseError.errorString();
+        return posters;
+    }
 
     foreach (const QString &section, map.value(type)) {
-        if (sc.property(section).isArray()) {
-            QScriptValueIterator itB(sc.property(section));
-            while (itB.hasNext()) {
-                itB.next();
-                QScriptValue vB = itB.value();
-                if (vB.property("url").toString().isEmpty())
-                    continue;
-                Poster b;
-                b.thumbUrl = vB.property("url").toString().replace("/fanart/", "/preview/");
-                b.originalUrl = vB.property("url").toString();
-                if (section == "hdmovielogo" || section == "hdmovieclearart")
-                    b.hint = "HD";
-                else if (section == "movielogo" || section == "movieart")
-                    b.hint = "SD";
-                else if (vB.property("disc_type").toString() == "bluray")
-                    b.hint = "BluRay";
-                else if (vB.property("disc_type").toString() == "dvd")
-                    b.hint = "DVD";
-                else if (vB.property("disc_type").toString() == "3d")
-                    b.hint = "3D";
-                b.language = vB.property("lang").toString();
-                insertPoster(posters, b, m_language, m_preferredDiscType);
-            }
+        const auto jsonPosters = parsedJson.value(section).toArray();
+
+        for (const auto &it : jsonPosters) {
+            const auto poster = it.toObject();
+            Poster b;
+            b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
+            b.originalUrl = poster.value("url").toString();
+
+            const auto discType = poster.value("disc_type").toString();
+            b.hint = [&section, &discType] {
+                if (section == "hdmovielogo" || section == "hdmovieclearart") {
+                    return QStringLiteral("HD");
+                } else if (section == "movielogo" || section == "movieart") {
+                    return QStringLiteral("SD");
+                } else if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                } else if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                } else if (discType == "3d") {
+                    return QStringLiteral("3D");
+                } else {
+                    return QStringLiteral("");
+                }
+            }();
+
+            b.language = poster.value("lang").toString();
+            insertPoster(posters, b, m_language, m_preferredDiscType);
         }
     }
 
@@ -497,10 +503,10 @@ void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", type);
     reply->setProperty("season", season);
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
 /**
@@ -515,10 +521,10 @@ void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, show));
-    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllTvShowDataFinished()));
+    connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllTvShowDataFinished);
 }
 
 /**
@@ -664,55 +670,70 @@ void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
 QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
 {
     QMap<int, QStringList> map;
-    map.insert(ImageType::TvShowBackdrop, QStringList() << "showbackground");
-    map.insert(ImageType::TvShowLogos,
-        QStringList() << "hdtvlogo"
-                      << "clearlogo");
-    map.insert(ImageType::TvShowClearArt,
-        QStringList() << "hdclearart"
-                      << "clearart");
-    map.insert(ImageType::TvShowBanner, QStringList() << "tvbanner");
+
+    // clang-format off
+    map.insert(ImageType::TvShowBackdrop,     QStringList() << "showbackground");
+    map.insert(ImageType::TvShowLogos,        QStringList() << "hdtvlogo" << "clearlogo");
+    map.insert(ImageType::TvShowClearArt,     QStringList() << "hdclearart" << "clearart");
+    map.insert(ImageType::TvShowBanner,       QStringList() << "tvbanner");
     map.insert(ImageType::TvShowCharacterArt, QStringList() << "characterart");
-    map.insert(ImageType::TvShowThumb, QStringList() << "tvthumb");
-    map.insert(ImageType::TvShowSeasonThumb, QStringList() << "seasonthumb");
+    map.insert(ImageType::TvShowThumb,        QStringList() << "tvthumb");
+    map.insert(ImageType::TvShowSeasonThumb,  QStringList() << "seasonthumb");
     map.insert(ImageType::TvShowSeasonPoster, QStringList() << "seasonposter");
-    map.insert(ImageType::TvShowPoster, QStringList() << "tvposter");
+    map.insert(ImageType::TvShowPoster,       QStringList() << "tvposter");
+    // clang-format on
+
     QList<Poster> posters;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
+
+    QJsonParseError parseError;
+    // The JSON contains one object with all URLs to fanart images
+    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing fanart tv show json " << parseError.errorString();
+        return posters;
+    }
 
     foreach (const QString &section, map.value(type)) {
-        if (sc.property(section).isArray()) {
-            QScriptValueIterator itB(sc.property(section));
-            while (itB.hasNext()) {
-                itB.next();
-                QScriptValue vB = itB.value();
-                if (vB.property("url").toString().isEmpty())
-                    continue;
+        const auto jsonPosters = parsedJson.value(section).toArray();
 
-                if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2
-                    && !vB.property("season").toString().isEmpty()
-                    && vB.property("season").toString().toInt() != season)
-                    continue;
+        for (const auto &it : jsonPosters) {
+            const auto poster = it.toObject();
 
-                Poster b;
-                b.thumbUrl = vB.property("url").toString().replace("/fanart/", "/preview/");
-                b.originalUrl = vB.property("url").toString();
-                b.season = vB.property("season").toString().toInt();
-                if (section == "hdtvlogo" || section == "hdclearart")
-                    b.hint = "HD";
-                else if (section == "clearlogo" || section == "clearart")
-                    b.hint = "SD";
-                else if (vB.property("disc_type").toString() == "bluray")
-                    b.hint = "BluRay";
-                else if (vB.property("disc_type").toString() == "dvd")
-                    b.hint = "DVD";
-                else if (vB.property("disc_type").toString() == "3d")
-                    b.hint = "3D";
-                b.language = vB.property("lang").toString();
-                insertPoster(posters, b, m_language, m_preferredDiscType);
+            if (poster.value("url").toString().isEmpty()) {
+                continue;
             }
+
+            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2
+                && !poster.value("season").toString().isEmpty()
+                && poster.value("season").toString().toInt() != season) {
+                continue;
+            }
+
+            Poster b;
+            b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
+            b.originalUrl = poster.value("url").toString();
+            b.season = poster.value("season").toString().toInt();
+
+            const auto discType = poster.value("disc_type").toString();
+
+            b.hint = [&section, &discType] {
+                if (section == "hdtvlogo" || section == "hdclearart") {
+                    return QStringLiteral("HD");
+                } else if (section == "clearlogo" || section == "clearart") {
+                    return QStringLiteral("SD");
+                } else if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                } else if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                } else if (discType == "3d") {
+                    return QStringLiteral("3D");
+                } else {
+                    return QStringLiteral("");
+                }
+            }();
+            b.language = poster.value("lang").toString();
+            insertPoster(posters, b, m_language, m_preferredDiscType);
         }
     }
 

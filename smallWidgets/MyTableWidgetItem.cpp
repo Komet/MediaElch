@@ -10,14 +10,14 @@ MyTableWidgetItem::MyTableWidgetItem(QString text) : QTableWidgetItem(text), m_i
 
 MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) : QTableWidgetItem(number), m_isSize{false}
 {
-    setData(1000, (qreal)number);
+    setData(1000, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setText(text);
 }
 
 MyTableWidgetItem::MyTableWidgetItem(qreal number, bool isSize) : QTableWidgetItem(number), m_isSize{isSize}
 {
-    setData(1000, (qreal)number);
+    setData(1000, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setText(QString::number(number));
 }

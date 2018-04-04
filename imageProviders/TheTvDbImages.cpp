@@ -20,8 +20,8 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
         SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
         this,
         SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
-    connect(m_dummyShow, SIGNAL(sigLoaded(TvShow *)), this, SLOT(onLoadTvShowDataFinished()));
-    connect(m_dummyEpisode, SIGNAL(sigLoaded()), this, SLOT(onLoadTvShowDataFinished()));
+    connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
+    connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
 }
 
 /**

@@ -7,7 +7,7 @@ MyTableView::MyTableView(QWidget *parent) :
     m_useSearchOverlay{false},
     m_searchOverlay{new SearchOverlay(this)}
 {
-    connect(&m_searchOverlayTimer, SIGNAL(timeout()), this, SLOT(onSearchOverlayTimeout()));
+    connect(&m_searchOverlayTimer, &QTimer::timeout, this, &MyTableView::onSearchOverlayTimeout);
 }
 
 void MyTableView::resizeEvent(QResizeEvent *event)

@@ -12,8 +12,8 @@ MusicSearch::MusicSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MusicSea
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-    connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->musicSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(accept()));
+    connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::reject);
+    connect(ui->musicSearchWidget, &MusicSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 
 MusicSearch::~MusicSearch()

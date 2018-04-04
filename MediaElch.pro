@@ -1,14 +1,16 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2012-02-16T11:13:07
-#
-#-------------------------------------------------
+# Check Qt versions
+lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
+lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
 
 include(quazip/quazip/quazip.pri)
 
-QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets opengl
+TEMPLATE = app
+TARGET = MediaElch
 
-CONFIG += c++14
+QT += core gui network script xml sql widgets multimedia multimediawidgets \
+      concurrent qml quick quickwidgets opengl
+
+CONFIG += warn_on c++14
 
 LIBS += -lz
 
@@ -25,8 +27,28 @@ win32 {
     DEFINES+=_UNICODE
 }
 
-TARGET = MediaElch
-TEMPLATE = app
+*-g++*|*-clang* {
+    # Include all Qt modules using isystem so that warnings reagarding Qt files are ignored
+    QMAKE_CXXFLAGS += -isystem "$$[QT_INSTALL_HEADERS]"
+    for (inc, QT) {
+        QMAKE_CXXFLAGS += -isystem \"$$[QT_INSTALL_HEADERS]/Qt$$system("echo $$inc | sed 's/.*/\u&/'")\"
+    }
+}
+
+# Enable (all/most) warnings but ignore them for quazip files.
+*-g++* {
+    WARNINGS += -Wall -Wextra
+    WARNINGS += -Wunknown-pragmas -Wundef -Wold-style-cast -Wuseless-cast
+    WARNINGS += -Wdisabled-optimization -Wstrict-overflow=4
+    WARNINGS += -Winit-self -Wpointer-arith
+    WARNINGS += -Wlogical-op -Wunsafe-loop-optimizations
+    WARNINGS += -Wno-error=unsafe-loop-optimizations
+}
+*-clang* {
+    WARNINGS += -Wextra
+}
+QUAZIP_FILES = qua% qioapi% zip% unzip%
+QMAKE_CXXFLAGS_WARN_ON += $(and $(filter-out moc_% qrc_% $$QUAZIP_FILES, $@),$${WARNINGS})
 
 target.path = /usr/bin
 INSTALLS += target
@@ -111,7 +133,6 @@ SOURCES += main.cpp\
     smallWidgets/MediaFlags.cpp \
     data/Database.cpp \
     smallWidgets/LoadingStreamDetails.cpp \
-    trailerProviders/MovieMaze.cpp \
     globals/TrailerDialog.cpp \
     smallWidgets/SlidingStackedWidget.cpp \
     scrapers/IMDB.cpp \
@@ -284,7 +305,6 @@ HEADERS  += main/MainWindow.h \
     data/Database.h \
     smallWidgets/LoadingStreamDetails.h \
     trailerProviders/TrailerProvider.h \
-    trailerProviders/MovieMaze.h \
     globals/TrailerDialog.h \
     smallWidgets/SlidingStackedWidget.h \
     scrapers/IMDB.h \

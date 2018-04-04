@@ -10,28 +10,18 @@ MusicWidget::MusicWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWid
 {
     ui->setupUi(this);
 
-    connect(ui->artist,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
-    connect(ui->artist,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
-    connect(ui->artist, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
-    connect(ui->artist, SIGNAL(sigDownloadsProgress(int, int, int)), this, SIGNAL(sigDownloadsProgress(int, int, int)));
-    connect(ui->artist, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
-    connect(ui->album,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
-    connect(ui->album,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
-    connect(ui->album, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
-    connect(ui->album, SIGNAL(sigDownloadsProgress(int, int, int)), this, SIGNAL(sigDownloadsProgress(int, int, int)));
-    connect(ui->album, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
+    // clang-format off
+    connect(ui->artist, &MusicWidgetArtist::sigSetActionSearchEnabled, this, &MusicWidget::sigSetActionSearchEnabled);
+    connect(ui->artist, &MusicWidgetArtist::sigSetActionSaveEnabled,   this, &MusicWidget::sigSetActionSaveEnabled);
+    connect(ui->artist, &MusicWidgetArtist::sigDownloadsStarted,       this, &MusicWidget::sigDownloadsStarted);
+    connect(ui->artist, &MusicWidgetArtist::sigDownloadsProgress,      this, &MusicWidget::sigDownloadsProgress);
+    connect(ui->artist, &MusicWidgetArtist::sigDownloadsFinished,      this, &MusicWidget::sigDownloadsFinished);
+    connect(ui->album,  &MusicWidgetAlbum::sigSetActionSaveEnabled,    this, &MusicWidget::sigSetActionSaveEnabled);
+    connect(ui->album,  &MusicWidgetAlbum::sigSetActionSearchEnabled,  this, &MusicWidget::sigSetActionSearchEnabled);
+    connect(ui->album,  &MusicWidgetAlbum::sigDownloadsStarted,        this, &MusicWidget::sigDownloadsStarted);
+    connect(ui->album,  &MusicWidgetAlbum::sigDownloadsProgress,       this, &MusicWidget::sigDownloadsProgress);
+    connect(ui->album,  &MusicWidgetAlbum::sigDownloadsFinished,       this, &MusicWidget::sigDownloadsFinished);
+    // clang-format on
 }
 
 MusicWidget::~MusicWidget()
@@ -62,8 +52,8 @@ void MusicWidget::onSetEnabledTrue(Artist *artist)
 
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetMusic);
-    emit sigSetActionSearchEnabled(true, WidgetMusic);
+    emit sigSetActionSaveEnabled(true, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
 void MusicWidget::onSetEnabledTrue(Album *album)
@@ -72,8 +62,8 @@ void MusicWidget::onSetEnabledTrue(Album *album)
 
     ui->artist->onSetEnabled(true);
     ui->album->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetMusic);
-    emit sigSetActionSearchEnabled(true, WidgetMusic);
+    emit sigSetActionSaveEnabled(true, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(true, MainWidgets::Music);
 }
 
 void MusicWidget::onClear()
@@ -86,16 +76,16 @@ void MusicWidget::onSetDisabledTrue()
 {
     ui->artist->onSetEnabled(false);
     ui->album->onSetEnabled(false);
-    emit sigSetActionSaveEnabled(false, WidgetMusic);
-    emit sigSetActionSearchEnabled(false, WidgetMusic);
+    emit sigSetActionSaveEnabled(false, MainWidgets::Music);
+    emit sigSetActionSearchEnabled(false, MainWidgets::Music);
 }
 
 void MusicWidget::onStartScraperSearch()
 {
     if (ui->stackedWidget->currentIndex() == 0)
-        QTimer::singleShot(0, ui->artist, SLOT(onStartScraperSearch()));
+        QTimer::singleShot(0, ui->artist, &MusicWidgetArtist::onStartScraperSearch);
     else if (ui->stackedWidget->currentIndex() == 1)
-        QTimer::singleShot(0, ui->album, SLOT(onStartScraperSearch()));
+        QTimer::singleShot(0, ui->album, &MusicWidgetAlbum::onStartScraperSearch);
 }
 
 void MusicWidget::onSaveInformation()

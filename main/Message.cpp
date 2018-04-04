@@ -19,7 +19,7 @@ Message::Message(QWidget *parent) : QWidget(parent), ui(new Ui::Message)
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(0);
     m_timer = new QTimer;
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    connect(m_timer, &QTimer::timeout, this, &Message::timeout);
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {
         auto effect = new QGraphicsDropShadowEffect(this);

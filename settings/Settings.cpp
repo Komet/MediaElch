@@ -997,13 +997,13 @@ void Settings::setXbmcPort(int port)
 QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
-    if (widget == WidgetMovies)
+    if (widget == MainWidgets::Movies)
         item = "Movies";
-    else if (widget == WidgetConcerts)
+    else if (widget == MainWidgets::Concerts)
         item = "Concerts";
-    else if (widget == WidgetTvShows)
+    else if (widget == MainWidgets::TvShows)
         item = "TvShows";
-    else if (widget == WidgetMusic)
+    else if (widget == MainWidgets::Music)
         item = "Music";
     QList<int> infos;
     foreach (const QString &info,
@@ -1019,13 +1019,13 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
-    if (widget == WidgetMovies)
+    if (widget == MainWidgets::Movies)
         item = "Movies";
-    else if (widget == WidgetConcerts)
+    else if (widget == MainWidgets::Concerts)
         item = "Concerts";
-    else if (widget == WidgetTvShows)
+    else if (widget == MainWidgets::TvShows)
         item = "TvShows";
-    else if (widget == WidgetMusic)
+    else if (widget == MainWidgets::Music)
         item = "Music";
     QStringList infos;
     foreach (int info, items)

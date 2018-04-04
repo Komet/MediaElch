@@ -156,13 +156,13 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
         request.setRawHeader("Accept", "application/json");
         QUrl url(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId).arg(TMDb::apiKey()));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("movie", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         reply->setProperty("ids", Storage::toVariant(reply, ids));
         reply->setProperty("tmdbId", tmdbId);
-        connect(reply, SIGNAL(finished()), this, SLOT(onLoadTmdbFinished()));
+        connect(reply, &QNetworkReply::finished, this, &CustomMovieScraper::onLoadTmdbFinished);
     } else {
         loadAllData(ids, movie, infos, tmdbId, imdbId);
     }

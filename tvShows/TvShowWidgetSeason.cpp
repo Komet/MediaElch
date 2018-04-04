@@ -74,7 +74,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
     }
 
-    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetSeason::onRevertChanges);
     connect(m_downloadManager,
         SIGNAL(downloadFinished(DownloadManagerElement)),
         this,
@@ -108,8 +108,8 @@ void TvShowWidgetSeason::updateSeasonInfo()
 {
     onClear();
 
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
-    ui->title->setText(QString(m_show->name()) + " - " + tr("Season %1").arg(m_season));
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
+    ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season));
 
     updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop
                               << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
@@ -117,12 +117,12 @@ void TvShowWidgetSeason::updateSeasonInfo()
     ui->missingLabel->setVisible(m_show->isDummySeason(m_season));
     if (m_show->isDummySeason(m_season)) {
         onSetEnabled(false);
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         return;
     }
 
     onSetEnabled(!m_show->downloadsInProgress());
-    emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), WidgetTvShows);
+    emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), MainWidgets::TvShows);
 }
 
 void TvShowWidgetSeason::updateImages(QList<int> images)
@@ -203,7 +203,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
     }
 
     if (m_downloadManager->downloadsLeftForShow(m_show) == 0)
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
 }
 
 void TvShowWidgetSeason::onChooseImage()
@@ -234,7 +234,7 @@ void TvShowWidgetSeason::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = image->imageType();
         d.url = ImageDialog::instance()->imageUrl();
@@ -266,7 +266,7 @@ void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
     if (!image)
         return;
 
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = imageType;
     d.url = imageUrl;

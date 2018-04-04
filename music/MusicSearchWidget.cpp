@@ -51,9 +51,9 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0)
-            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+            connect(box, &QAbstractButton::clicked, this, &MusicSearchWidget::chkToggled);
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
     m_signalMapper = new QSignalMapper(ui->results);
     connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(resultClicked(int)));
@@ -147,7 +147,7 @@ void MusicSearchWidget::chkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(WidgetMusic, m_type + "/" + QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(MainWidgets::Music, m_type + "/" + QString::number(scraperNo), m_infosToLoad);
 }
 
 void MusicSearchWidget::chkAllToggled(bool toggled)
@@ -182,7 +182,8 @@ QList<int> MusicSearchWidget::infosToLoad()
 void MusicSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetMusic, m_type + "/" + QString::number(scraperNo));
+    QList<int> infos =
+        Settings::instance()->scraperInfos(MainWidgets::Music, m_type + "/" + QString::number(scraperNo));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));

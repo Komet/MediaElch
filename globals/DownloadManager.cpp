@@ -12,7 +12,7 @@
  */
 DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloading{false}
 {
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(downloadTimeout()));
+    connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
 
 /**
@@ -34,7 +34,7 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     qDebug() << "Entered, url=" << elem.url;
     if (m_queue.isEmpty())
-        QTimer::singleShot(0, this, SLOT(startNextDownload()));
+        QTimer::singleShot(0, this, &DownloadManager::startNextDownload);
     m_mutex.lock();
     m_queue.enqueue(elem);
     m_mutex.unlock();

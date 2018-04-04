@@ -35,11 +35,11 @@ ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Import
         this,
         SLOT(onEpisodeDownloadFinished(DownloadManagerElement)));
 
-    connect(ui->movieSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(onMovieChosen()));
-    connect(ui->concertSearchWidget, SIGNAL(sigResultClicked()), this, SLOT(onConcertChosen()));
-    connect(ui->tvShowSearchEpisode, SIGNAL(sigResultClicked()), this, SLOT(onTvShowChosen()));
-    connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(onFileWatcherTimeout()));
+    connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &ImportDialog::onMovieChosen);
+    connect(ui->concertSearchWidget, &ConcertSearchWidget::sigResultClicked, this, &ImportDialog::onConcertChosen);
+    connect(ui->tvShowSearchEpisode, &TvShowSearchEpisode::sigResultClicked, this, &ImportDialog::onTvShowChosen);
+    connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportDialog::onImport);
+    connect(&m_timer, &QTimer::timeout, this, &ImportDialog::onFileWatcherTimeout);
 }
 
 ImportDialog::~ImportDialog()
@@ -244,7 +244,7 @@ void ImportDialog::onMovieChosen()
     QList<int> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();
@@ -305,7 +305,7 @@ void ImportDialog::onTvShowChosen()
     m_episode->loadData(ui->tvShowSearchEpisode->scraperId(),
         Manager::instance()->tvScrapers().at(0),
         ui->tvShowSearchEpisode->infosToLoad());
-    connect(m_episode, SIGNAL(sigLoaded()), this, SLOT(onEpisodeLoadDone()), Qt::UniqueConnection);
+    connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, &ImportDialog::onEpisodeLoadDone, Qt::UniqueConnection);
 }
 
 void ImportDialog::setFiles(QStringList files)
@@ -435,8 +435,8 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(m_movie->streamDetails()->videoDetails().value("width").toInt(),
                     m_movie->streamDetails()->videoDetails().value("height").toInt(),
                     m_movie->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscDvd);
+            Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscType::BluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", m_movie->set());
@@ -521,8 +521,8 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(m_concert->streamDetails()->videoDetails().value("width").toInt(),
                     m_concert->streamDetails()->videoDetails().value("height").toInt(),
                     m_concert->streamDetails()->videoDetails().value("scantype")));
-            Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscDvd);
+            Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscType::BluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFolderName);
@@ -563,14 +563,15 @@ void ImportDialog::onImport()
     m_worker = new FileWorker();
     m_worker->setFiles(m_filesToMove);
     m_workerThread = new QThread(this);
-    if (ui->chkKeepSourceFiles->isChecked())
-        connect(m_workerThread, SIGNAL(started()), m_worker, SLOT(copyFiles()));
-    else
-        connect(m_workerThread, SIGNAL(started()), m_worker, SLOT(moveFiles()));
-    connect(m_workerThread, SIGNAL(finished()), m_worker, SLOT(deleteLater()));
-    connect(m_workerThread, SIGNAL(finished()), m_workerThread, SLOT(deleteLater()));
-    connect(m_worker, SIGNAL(sigFinished()), m_workerThread, SLOT(quit()));
-    connect(m_worker, SIGNAL(sigFinished()), this, SLOT(onMovingFilesFinished()));
+    if (ui->chkKeepSourceFiles->isChecked()) {
+        connect(m_workerThread.data(), &QThread::started, m_worker.data(), &FileWorker::copyFiles);
+    } else {
+        connect(m_workerThread.data(), &QThread::started, m_worker.data(), &FileWorker::moveFiles);
+    }
+    connect(m_workerThread.data(), &QThread::finished, m_worker.data(), &QObject::deleteLater);
+    connect(m_workerThread.data(), &QThread::finished, m_workerThread.data(), &QObject::deleteLater);
+    connect(m_worker.data(), &FileWorker::sigFinished, m_workerThread.data(), &QThread::quit);
+    connect(m_worker.data(), &FileWorker::sigFinished, this, &ImportDialog::onMovingFilesFinished);
     m_worker->moveToThread(m_workerThread);
     m_workerThread->start();
     m_timer.start();
@@ -592,10 +593,11 @@ void ImportDialog::onFileWatcherTimeout()
         destinationSize += destFi.size();
     }
 
-    if (sourceSize == 0)
+    if (sourceSize == 0) {
         return;
+    }
 
-    ui->progressBar->setValue(qRound((float)destinationSize * 100 / sourceSize));
+    ui->progressBar->setValue(qRound(static_cast<float>(destinationSize) * 100.0f / sourceSize));
 }
 
 void ImportDialog::onMovingFilesFinished()

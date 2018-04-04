@@ -4,7 +4,7 @@
 
 NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) : QObject(parent), m_reply{nullptr}
 {
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(&m_timer, &QTimer::timeout, this, &NetworkReplyWatcher::onTimeout);
     setReply(reply);
 }
 
@@ -15,9 +15,9 @@ void NetworkReplyWatcher::setReply(QNetworkReply *reply)
     m_reply = reply;
     if (!m_reply)
         return;
-    connect(m_reply, SIGNAL(finished()), &m_timer, SLOT(stop()));
-    connect(m_reply, SIGNAL(destroyed(QObject *)), this, SLOT(deleteLater()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(onProgress()));
+    connect(m_reply, &QNetworkReply::finished, &m_timer, &QTimer::stop);
+    connect(m_reply, &QObject::destroyed, this, &QObject::deleteLater);
+    connect(m_reply, &QNetworkReply::downloadProgress, this, &NetworkReplyWatcher::onProgress);
     m_timer.start(3000);
 }
 

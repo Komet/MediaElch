@@ -38,17 +38,12 @@ ImageGallery::ImageGallery(QWidget *parent) :
     m_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_scrollArea->setStyleSheet("background-color: transparent;");
 
-    connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(onVerticalScrollBarMoved(int)));
-    connect(
-        m_scrollArea->horizontalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(onHorizontalScrollBarMoved(int)));
-    connect(m_scrollArea->verticalScrollBar(),
-        SIGNAL(rangeChanged(int, int)),
-        this,
-        SLOT(onVerticalScrollBarRangeChanged(int, int)));
-    connect(m_scrollArea->horizontalScrollBar(),
-        SIGNAL(rangeChanged(int, int)),
-        this,
-        SLOT(onHorizontalScrollBarRangeChanged(int, int)));
+    // clang-format off
+    connect(m_scrollArea->verticalScrollBar(),   &QAbstractSlider::valueChanged, this, &ImageGallery::onVerticalScrollBarMoved);
+    connect(m_scrollArea->horizontalScrollBar(), &QAbstractSlider::valueChanged, this, &ImageGallery::onHorizontalScrollBarMoved);
+    connect(m_scrollArea->verticalScrollBar(),   &QAbstractSlider::rangeChanged, this, &ImageGallery::onVerticalScrollBarRangeChanged);
+    connect(m_scrollArea->horizontalScrollBar(), &QAbstractSlider::rangeChanged, this, &ImageGallery::onHorizontalScrollBarRangeChanged);
+    // clang-format on
 
     m_buttonLeft = new QToolButton(this);
     m_buttonLeft->setIcon(QIcon(":/img/imgButtonLeft.png"));
@@ -77,10 +72,10 @@ ImageGallery::ImageGallery(QWidget *parent) :
     m_buttonBottom->raise();
     m_buttonBottom->setAutoRepeat(true);
 
-    connect(m_buttonLeft, SIGNAL(clicked()), this, SLOT(onButtonLeft()));
-    connect(m_buttonRight, SIGNAL(clicked()), this, SLOT(onButtonRight()));
-    connect(m_buttonTop, SIGNAL(clicked()), this, SLOT(onButtonTop()));
-    connect(m_buttonBottom, SIGNAL(clicked()), this, SLOT(onButtonBottom()));
+    connect(m_buttonLeft, &QAbstractButton::clicked, this, &ImageGallery::onButtonLeft);
+    connect(m_buttonRight, &QAbstractButton::clicked, this, &ImageGallery::onButtonRight);
+    connect(m_buttonTop, &QAbstractButton::clicked, this, &ImageGallery::onButtonTop);
+    connect(m_buttonBottom, &QAbstractButton::clicked, this, &ImageGallery::onButtonBottom);
 
     setAcceptDrops(true);
 }
@@ -133,7 +128,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
             label->setImage(fanart.image);
         else
             label->setImage(fanart.path);
-        connect(label, SIGNAL(sigClose()), this, SLOT(onCloseImage()));
+        connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
         m_imageLabels.append(label);
     }
     positionImages();
@@ -150,7 +145,7 @@ void ImageGallery::addImage(const QByteArray &img, const QString &url)
         label->setFixedSize(Qt::Vertical, m_imageHeight);
     label->setImage(img);
     label->setMyData(url);
-    connect(label, SIGNAL(sigClose()), this, SLOT(onCloseImage()));
+    connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
     m_imageLabels.append(label);
     positionImages();
     if (m_alignment == Qt::Vertical)

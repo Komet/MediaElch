@@ -158,7 +158,7 @@ void MovieFileSearcher::reload(bool force)
             itContents.next();
             QStringList files = itContents.value();
 
-            DiscType discType = DiscSingle;
+            DiscType discType = DiscType::Single;
 
             // BluRay handling
             foreach (const QString &path, bluRays) {
@@ -170,7 +170,7 @@ void MovieFileSearcher::reload(bool force)
                             f.append(file);
                     }
                     files = f;
-                    discType = DiscBluRay;
+                    discType = DiscType::BluRay;
                     qDebug() << "It's a BluRay structure";
                 }
             }
@@ -185,7 +185,7 @@ void MovieFileSearcher::reload(bool force)
                             f.append(file);
                     }
                     files = f;
-                    discType = DiscDvd;
+                    discType = DiscType::Dvd;
                     qDebug() << "It's a DVD structure";
                 }
             }
@@ -202,7 +202,7 @@ void MovieFileSearcher::reload(bool force)
                 movie->setDiscType(discType);
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
                 movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
-                if (discType == DiscSingle) {
+                if (discType == DiscType::Single) {
                     QFileInfo mFi(files.first());
                     foreach (QFileInfo subFi,
                         mFi.dir().entryInfoList(QStringList() << "*.sub"

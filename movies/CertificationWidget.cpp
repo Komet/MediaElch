@@ -35,19 +35,16 @@ CertificationWidget::CertificationWidget(QWidget *parent) : QWidget(parent), ui(
     QAction *actionDeleteCertification = new QAction(tr("Delete Certification"), this);
     m_tableContextMenu->addAction(actionAddCertification);
     m_tableContextMenu->addAction(actionDeleteCertification);
-    connect(actionAddCertification, SIGNAL(triggered()), this, SLOT(addCertification()));
-    connect(actionDeleteCertification, SIGNAL(triggered()), this, SLOT(deleteCertification()));
-    connect(ui->certifications,
-        SIGNAL(customContextMenuRequested(QPoint)),
-        this,
-        SLOT(showCertificationsContextMenu(QPoint)));
 
-    connect(ui->certifications, SIGNAL(itemSelectionChanged()), this, SLOT(onCertificationSelected()));
-    connect(ui->certifications,
-        SIGNAL(itemChanged(QTableWidgetItem *)),
-        this,
-        SLOT(onCertificationNameChanged(QTableWidgetItem *)));
-    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this, SLOT(onJumpToMovie(QTableWidgetItem *)));
+    // clang-format off
+    connect(actionAddCertification,    &QAction::triggered, this, &CertificationWidget::addCertification);
+    connect(actionDeleteCertification, &QAction::triggered, this, &CertificationWidget::deleteCertification);
+
+    connect(ui->certifications, &QWidget::customContextMenuRequested, this, &CertificationWidget::showCertificationsContextMenu);
+    connect(ui->certifications, &QTableWidget::itemSelectionChanged,  this, &CertificationWidget::onCertificationSelected);
+    connect(ui->certifications, &QTableWidget::itemChanged,           this, &CertificationWidget::onCertificationNameChanged);
+    connect(ui->movies,         &QTableWidget::itemDoubleClicked,     this, &CertificationWidget::onJumpToMovie);
+    // clang-format on
 
     Helper::instance()->applyStyle(ui->groupBox);
     Helper::instance()->applyStyle(ui->certifications);
@@ -99,7 +96,7 @@ void CertificationWidget::clear()
  */
 void CertificationWidget::loadCertifications()
 {
-    emit setActionSaveEnabled(false, WidgetCertifications);
+    emit setActionSaveEnabled(false, MainWidgets::Certifications);
     ui->certifications->blockSignals(true);
     clear();
     QStringList certifications;
@@ -124,7 +121,7 @@ void CertificationWidget::loadCertifications()
     }
 
     ui->certifications->blockSignals(false);
-    emit setActionSaveEnabled(true, WidgetCertifications);
+    emit setActionSaveEnabled(true, MainWidgets::Certifications);
 }
 
 /**

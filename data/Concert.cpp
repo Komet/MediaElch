@@ -14,28 +14,28 @@
  * @param files List of files for this concert
  * @param parent
  */
-Concert::Concert(QStringList files, QObject *parent) : QObject(parent)
+Concert::Concert(QStringList files, QObject *parent) :
+    QObject(parent),
+    m_controller{new ConcertController(this)},
+    m_rating{0},
+    m_runtime{0},
+    m_playcount{0},
+    m_watched{false},
+    m_hasChanged{false},
+    m_downloadsInProgress{false},
+    m_downloadsSize{0},
+    m_inSeparateFolder{false},
+    m_mediaCenterId{-1},
+    m_streamDetailsLoaded{false},
+    m_databaseId{-1},
+    m_syncNeeded{false},
+    m_hasExtraFanarts{false}
 {
     moveToThread(QApplication::instance()->thread());
-    m_controller = new ConcertController(this);
-    m_rating = 0;
-    m_runtime = 0;
-    m_playcount = 0;
-    m_watched = false;
-    m_hasChanged = false;
-    m_syncNeeded = false;
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
-    m_inSeparateFolder = false;
     static int m_idCounter = 0;
     m_concertId = ++m_idCounter;
-    m_mediaCenterId = -1;
-    m_streamDetailsLoaded = false;
-    m_databaseId = -1;
     setFiles(files);
 }
-
-Concert::~Concert() = default;
 
 void Concert::setFiles(QStringList files)
 {
@@ -46,10 +46,11 @@ void Concert::setFiles(QStringList files)
         if (!path.isEmpty())
             m_folderName = path.last();
     }
-    if (!files.isEmpty())
+    if (!files.isEmpty()) {
         m_streamDetails = new StreamDetails(this, files);
-    else
+    } else {
         m_streamDetails = new StreamDetails(this, QStringList());
+    }
 }
 
 /**
@@ -58,6 +59,7 @@ void Concert::setFiles(QStringList files)
 void Concert::clear()
 {
     QList<int> infos;
+    infos.reserve(14);
     infos << ConcertScraperInfos::Title         //
           << ConcertScraperInfos::Tagline       //
           << ConcertScraperInfos::Rating        //
@@ -638,8 +640,9 @@ void Concert::setPosters(QList<Poster> posters)
  */
 void Concert::setPoster(int index, Poster poster)
 {
-    if (m_posters.size() < index)
+    if (m_posters.size() < index) {
         return;
+    }
     m_posters[index] = poster;
     setChanged(true);
 }
@@ -663,8 +666,9 @@ void Concert::setBackdrops(QList<Poster> backdrops)
  */
 void Concert::setBackdrop(int index, Poster backdrop)
 {
-    if (m_backdrops.size() < index)
+    if (m_backdrops.size() < index) {
         return;
+    }
     m_backdrops[index] = backdrop;
     setChanged(true);
 }
@@ -786,8 +790,9 @@ void Concert::setDatabaseId(int id)
  */
 void Concert::addGenre(QString genre)
 {
-    if (genre.isEmpty())
+    if (genre.isEmpty()) {
         return;
+    }
     m_genres.append(genre);
     setChanged(true);
 }
@@ -865,10 +870,12 @@ void Concert::removeExtraFanart(QString file)
 
 QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty())
+    if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
-    foreach (const QString &file, m_extraFanartsToRemove)
+    }
+    foreach (const QString &file, m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
+    }
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
@@ -903,12 +910,12 @@ void Concert::clearExtraFanartData()
 DiscType Concert::discType()
 {
     if (files().isEmpty())
-        return DiscSingle;
+        return DiscType::Single;
     if (Helper::instance()->isDvd(files().first()))
-        return DiscDvd;
+        return DiscType::Dvd;
     if (Helper::instance()->isBluRay(files().first()))
-        return DiscBluRay;
-    return DiscSingle;
+        return DiscType::BluRay;
+    return DiscType::Single;
 }
 
 QList<int> Concert::imagesToRemove() const

@@ -15,39 +15,19 @@ TvShowWidget::TvShowWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TvShow
 {
     ui->setupUi(this);
 
-    connect(ui->tvShowWidget,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
-    connect(ui->tvShowWidget,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
-    connect(
-        ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString, int)), this, SIGNAL(sigDownloadsStarted(QString, int)));
-    connect(ui->tvShowWidget,
-        SIGNAL(sigDownloadsProgress(int, int, int)),
-        this,
-        SIGNAL(sigDownloadsProgress(int, int, int)));
-    connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
+    // clang-format off
+    connect(ui->tvShowWidget, &TvShowWidgetTvShow::sigSetActionSearchEnabled, this, &TvShowWidget::sigSetActionSearchEnabled);
+    connect(ui->tvShowWidget, &TvShowWidgetTvShow::sigSetActionSaveEnabled,   this, &TvShowWidget::sigSetActionSaveEnabled);
+    connect(ui->tvShowWidget, &TvShowWidgetTvShow::sigDownloadsStarted,       this, &TvShowWidget::sigDownloadsStarted);
+    connect(ui->tvShowWidget, &TvShowWidgetTvShow::sigDownloadsProgress,      this, &TvShowWidget::sigDownloadsProgress);
+    connect(ui->tvShowWidget, &TvShowWidgetTvShow::sigDownloadsFinished,      this, &TvShowWidget::sigDownloadsFinished);
 
-    connect(ui->episodeWidget,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
-    connect(ui->episodeWidget,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
+    connect(ui->episodeWidget, &TvShowWidgetEpisode::sigSetActionSaveEnabled,  this, &TvShowWidget::sigSetActionSaveEnabled);
+    connect(ui->episodeWidget,&TvShowWidgetEpisode::sigSetActionSearchEnabled, this, &TvShowWidget::sigSetActionSearchEnabled);
 
-    connect(ui->seasonWidget,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSaveEnabled(bool, MainWidgets)));
-    connect(ui->seasonWidget,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)),
-        this,
-        SIGNAL(sigSetActionSearchEnabled(bool, MainWidgets)));
+    connect(ui->seasonWidget, &TvShowWidgetSeason::sigSetActionSaveEnabled,   this, &TvShowWidget::sigSetActionSaveEnabled);
+    connect(ui->seasonWidget, &TvShowWidgetSeason::sigSetActionSearchEnabled, this, &TvShowWidget::sigSetActionSearchEnabled);
+    // clang-format on
 }
 
 /**
@@ -115,8 +95,8 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show, int season)
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetTvShows);
-    emit sigSetActionSearchEnabled(season == -1, WidgetTvShows);
+    emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(season == -1, MainWidgets::TvShows);
 }
 
 /**
@@ -132,8 +112,8 @@ void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
-    emit sigSetActionSaveEnabled(true, WidgetTvShows);
-    emit sigSetActionSearchEnabled(true, WidgetTvShows);
+    emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
 }
 
 /**
@@ -145,8 +125,8 @@ void TvShowWidget::onSetDisabledTrue()
     ui->episodeWidget->onSetEnabled(false);
     ui->tvShowWidget->onSetEnabled(false);
     ui->seasonWidget->onSetEnabled(false);
-    emit sigSetActionSaveEnabled(false, WidgetTvShows);
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
 }
 
 /**
@@ -261,9 +241,9 @@ void TvShowWidget::onStartScraperSearch()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
-        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
+        QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidgetTvShow::onStartScraperSearch);
     else if (ui->stackedWidget->currentIndex() == 1)
-        QTimer::singleShot(0, ui->episodeWidget, SLOT(onStartScraperSearch()));
+        QTimer::singleShot(0, ui->episodeWidget, &TvShowWidgetEpisode::onStartScraperSearch);
 }
 
 void TvShowWidget::updateInfo()

@@ -69,9 +69,9 @@ private:
     void appendDownloadElement(Artist *artist, QString source, QString type, QUrl url);
     void appendDownloadElement(Album *album, QString source, QString type, QUrl url);
     void parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<int> infos);
-    void parseAndAssignTadbInfos(QString json, Artist *artist, QList<int> infos);
-    void parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos);
-    void parseAndAssignTadbDiscography(QString json, Artist *artist, QList<int> infos);
+    void parseAndAssignTadbInfos(QJsonObject document, Artist *artist, QList<int> infos);
+    void parseAndAssignTadbInfos(QJsonObject document, Album *album, QList<int> infos);
+    void parseAndAssignTadbDiscography(QJsonObject document, Artist *artist, QList<int> infos);
     void parseAndAssignAmInfos(QString html, Artist *artist, QList<int> infos);
     void parseAndAssignAmInfos(QString html, Album *album, QList<int> infos);
     void parseAndAssignAmBiography(QString html, Artist *artist, QList<int> infos);
