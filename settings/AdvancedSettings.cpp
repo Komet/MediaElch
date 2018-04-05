@@ -42,6 +42,7 @@ void AdvancedSettings::reset()
     m_useFirstStudioOnly = false;
 
     m_movieFilters << "*.mkv"
+                   << "*.mk3d"
                    << "*.avi"
                    << "*.mpg"
                    << "*.mpeg"
@@ -67,6 +68,7 @@ void AdvancedSettings::reset()
                    << "*.wtv";
 
     m_tvShowFilters << "*.mkv"
+                    << "*.mk3d"
                     << "*.avi"
                     << "*.mpg"
                     << "*.mpeg"
