@@ -276,12 +276,12 @@
         <translation>Poista sisältöluokitus</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="187"/>
+        <location filename="../movies/CertificationWidget.cpp" line="184"/>
         <source>New Certification</source>
         <translation>Uusi sisältöluokitus</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="297"/>
+        <location filename="../movies/CertificationWidget.cpp" line="294"/>
         <source>All Movies Saved</source>
         <translation>Kaikki elokuvat tallennettu</translation>
     </message>
@@ -309,12 +309,12 @@
         <translation>Valitse toinen kuva</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="400"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="401"/>
         <source>Really delete image?</source>
         <translation>Haluatko varmasti poistaa kuvan?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="401"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="402"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Haluatko varmasti poistaa kuvan?</translation>
     </message>
@@ -336,7 +336,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="25"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="348"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n konsertti</numerusform>
@@ -379,7 +379,7 @@
         <translation>Avaa NFO-tiedosto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="349"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="350"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 / %n konsertista</numerusform>
@@ -643,8 +643,8 @@
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="485"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="565"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="568"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="567"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="570"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
@@ -738,42 +738,42 @@
         <translation>Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="592"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="560"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="594"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="564"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="567"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="596"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="566"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="569"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="597"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="598"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="566"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="569"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="568"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="571"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="584"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="586"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="648"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="650"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="658"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="660"/>
         <source>Concerts Saved</source>
         <translation>Konsertit tallennettu</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="685"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="687"/>
         <source>All Concerts Saved</source>
         <translation>Kaikki konsertit tallennettu</translation>
     </message>
@@ -1239,7 +1239,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="28"/>
-        <location filename="../movies/FilesWidget.cpp" line="537"/>
+        <location filename="../movies/FilesWidget.cpp" line="536"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n elokuva</numerusform>
@@ -1297,7 +1297,7 @@
         <translation>Avaa NFO-tiedosto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="539"/>
+        <location filename="../movies/FilesWidget.cpp" line="538"/>
         <source>%1 of %n movies</source>
         <translation>
             <numerusform>%1 / %n elokuvasta</numerusform>
@@ -2170,8 +2170,8 @@
         <translation>Uusi sarake</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="697"/>
-        <location filename="../globals/ImageDialog.cpp" line="704"/>
+        <location filename="../globals/ImageDialog.cpp" line="698"/>
+        <location filename="../globals/ImageDialog.cpp" line="705"/>
         <source>No images found</source>
         <translation>Kuvia ei löytynyt</translation>
     </message>
@@ -2211,27 +2211,27 @@
         <translation>Hyväksy kuvat</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="149"/>
+        <location filename="../globals/ImageDialog.cpp" line="151"/>
         <source>Default</source>
         <translation>Oletus</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="566"/>
+        <location filename="../globals/ImageDialog.cpp" line="567"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="566"/>
+        <location filename="../globals/ImageDialog.cpp" line="567"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Kuvat (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="701"/>
+        <location filename="../globals/ImageDialog.cpp" line="702"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Kuvat tarjoaa &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="705"/>
+        <location filename="../globals/ImageDialog.cpp" line="706"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Osallistu lataamalla kuvia palveluun &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -2425,12 +2425,12 @@
         <translation>Tuodaan konserttia...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="668"/>
+        <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import finished</source>
         <translation>Tuonti valmis</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/ImportDialog.cpp" line="668"/>
+        <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>%n tiedoston tuonti valmis</numerusform>
@@ -2438,7 +2438,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="671"/>
+        <location filename="../downloads/ImportDialog.cpp" line="673"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -2579,32 +2579,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Tietoa</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="790"/>
+        <location filename="../main/MainWindow.cpp" line="759"/>
         <source>Reload (%1)</source>
         <translation>Päivitä (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="798"/>
+        <location filename="../main/MainWindow.cpp" line="767"/>
         <source>Reload all Movies (%1)</source>
         <translation>Päivitä elokuvat (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="805"/>
+        <location filename="../main/MainWindow.cpp" line="774"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Päivitä TV-sarjat (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="817"/>
+        <location filename="../main/MainWindow.cpp" line="786"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Päivitä konsertit (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="835"/>
+        <location filename="../main/MainWindow.cpp" line="804"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Päivitä kaikki lataukset (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="841"/>
+        <location filename="../main/MainWindow.cpp" line="810"/>
         <source>Reload Music (%1)</source>
         <translation>Päivitä musiikki (%1)</translation>
     </message>
@@ -2737,32 +2737,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="260"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="261"/>
         <source>Movie information was loaded</source>
         <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="282"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="283"/>
         <source>Creating destination directory failed</source>
         <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="283"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="284"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="369"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV-tuonti valmis</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="369"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Tuonti käyttäen MakeMKV:tä on valmis</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="372"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="373"/>
         <source>Import has finished</source>
         <translation>Tuonti valmis</translation>
     </message>
@@ -3051,7 +3051,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Tarkista elokuvien kaksoiskappaleet</translation>
     </message>
     <message>
-        <location filename="../movies/MovieDuplicates.cpp" line="68"/>
+        <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
         <translation>Tarkistetaan elokuvien kaksoiskappaleita...</translation>
     </message>
@@ -3772,8 +3772,8 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1067"/>
-        <location filename="../movies/MovieWidget.cpp" line="779"/>
-        <location filename="../movies/MovieWidget.cpp" line="782"/>
+        <location filename="../movies/MovieWidget.cpp" line="780"/>
+        <location filename="../movies/MovieWidget.cpp" line="783"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
@@ -3920,79 +3920,79 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Lisää studio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="513"/>
+        <location filename="../movies/MovieWidget.cpp" line="514"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="771"/>
-        <location filename="../movies/MovieWidget.cpp" line="807"/>
+        <location filename="../movies/MovieWidget.cpp" line="772"/>
+        <location filename="../movies/MovieWidget.cpp" line="808"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1174"/>
-        <location filename="../movies/MovieWidget.cpp" line="778"/>
-        <location filename="../movies/MovieWidget.cpp" line="781"/>
-        <location filename="../movies/MovieWidget.cpp" line="811"/>
+        <location filename="../movies/MovieWidget.cpp" line="779"/>
+        <location filename="../movies/MovieWidget.cpp" line="782"/>
         <location filename="../movies/MovieWidget.cpp" line="812"/>
+        <location filename="../movies/MovieWidget.cpp" line="813"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="780"/>
-        <location filename="../movies/MovieWidget.cpp" line="783"/>
+        <location filename="../movies/MovieWidget.cpp" line="781"/>
+        <location filename="../movies/MovieWidget.cpp" line="784"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="798"/>
+        <location filename="../movies/MovieWidget.cpp" line="799"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="899"/>
+        <location filename="../movies/MovieWidget.cpp" line="900"/>
         <source>Saving movie...</source>
         <translation>Tallennetaan elokuvaa...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="904"/>
+        <location filename="../movies/MovieWidget.cpp" line="905"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="881"/>
-        <location filename="../movies/MovieWidget.cpp" line="927"/>
+        <location filename="../movies/MovieWidget.cpp" line="882"/>
+        <location filename="../movies/MovieWidget.cpp" line="928"/>
         <source>Saving movies...</source>
         <translation>Tallennetaan elokuvia...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="897"/>
+        <location filename="../movies/MovieWidget.cpp" line="898"/>
         <source>Movies Saved</source>
         <translation>Elokuvat tallennettu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="944"/>
+        <location filename="../movies/MovieWidget.cpp" line="945"/>
         <source>All Movies Saved</source>
         <translation>Kaikki elokuvat tallennettu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="966"/>
+        <location filename="../movies/MovieWidget.cpp" line="967"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="967"/>
+        <location filename="../movies/MovieWidget.cpp" line="968"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1124"/>
+        <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1124"/>
+        <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -4000,12 +4000,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="32"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="31"/>
         <source>Searching for Music...</source>
         <translation>Etsitään musiikkia...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
         <translation>Ladataan musiikkia...</translation>
     </message>
@@ -4404,14 +4404,14 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="129"/>
-        <location filename="../music/MusicWidget.cpp" line="167"/>
+        <location filename="../music/MusicWidget.cpp" line="119"/>
+        <location filename="../music/MusicWidget.cpp" line="157"/>
         <source>Saving changed Artists and Albums</source>
         <translation>Tallennetaan muuttuneet artistit ja albumit</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="147"/>
-        <location filename="../music/MusicWidget.cpp" line="190"/>
+        <location filename="../music/MusicWidget.cpp" line="137"/>
+        <location filename="../music/MusicWidget.cpp" line="180"/>
         <source>All Artists and Albums Saved</source>
         <translation>Kaikki artistit ja albumit tallennettu</translation>
     </message>
@@ -4552,17 +4552,17 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Lisää tyyli</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="220"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="200"/>
         <source>Saving Album...</source>
         <translation>Tallennetaan albumia...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="226"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="206"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="510"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="490"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
@@ -4730,22 +4730,22 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Lisää tyyli</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="210"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="193"/>
         <source>Saving Artist...</source>
         <translation>Tallennetaan artistia...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="216"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="199"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="479"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="462"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="552"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="535"/>
         <source>Unknown Album</source>
         <translation>Tuntematon albumi</translation>
     </message>
@@ -4867,27 +4867,27 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Asenna</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="51"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
         <translation>Lisäosaa asennetaan...</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="58"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
         <translation>Lisäosaa päivitetään...</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="66"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
         <translation>Lisäosa asennettu.</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="74"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
         <translation>Lisäosa päivitetty.</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="82"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
         <translation>Lisäosan asennuksessa tapahtui virhe.</translation>
     </message>
@@ -4929,7 +4929,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Lokitiedostoa %1 ei voitu avata kirjoittamista varten.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="403"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="404"/>
         <source>Do not ask again</source>
         <translation>Älä kysy uudelleen</translation>
     </message>
@@ -4939,47 +4939,47 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Älä tarkista päivityksiä</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="406"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="407"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Älä näytä tätä vihjettä uudelleen</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="530"/>
+        <location filename="../globals/Helper.cpp" line="531"/>
         <source>No Label</source>
         <translation>Ei merkintää</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="531"/>
+        <location filename="../globals/Helper.cpp" line="532"/>
         <source>Red</source>
         <translation>Punainen</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="532"/>
+        <location filename="../globals/Helper.cpp" line="533"/>
         <source>Orange</source>
         <translation>Oranssi</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="533"/>
+        <location filename="../globals/Helper.cpp" line="534"/>
         <source>Yellow</source>
         <translation>Keltainen</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="534"/>
+        <location filename="../globals/Helper.cpp" line="535"/>
         <source>Green</source>
         <translation>Vihreä</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="535"/>
+        <location filename="../globals/Helper.cpp" line="536"/>
         <source>Blue</source>
         <translation>Sininen</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="536"/>
+        <location filename="../globals/Helper.cpp" line="537"/>
         <source>Purple</source>
         <translation>Violetti</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="537"/>
+        <location filename="../globals/Helper.cpp" line="538"/>
         <source>Grey</source>
         <translation>Harmaa</translation>
     </message>
@@ -5359,22 +5359,22 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Taustakuva</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="71"/>
+        <location filename="../sets/SetsWidget.cpp" line="70"/>
         <source>Add Movie Set</source>
         <translation>Lisää elokuvasarja</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="72"/>
+        <location filename="../sets/SetsWidget.cpp" line="71"/>
         <source>Delete Movie Set</source>
         <translation>Poista elokuvasarja</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="471"/>
+        <location filename="../sets/SetsWidget.cpp" line="470"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="497"/>
+        <location filename="../sets/SetsWidget.cpp" line="496"/>
         <source>New Movie Set</source>
         <translation>Uusi elokuvasarja</translation>
     </message>
@@ -5550,7 +5550,7 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
         <location filename="../settings/SettingsWindow.ui" line="489"/>
         <location filename="../settings/SettingsWindow.ui" line="753"/>
         <location filename="../settings/SettingsWindow.ui" line="1022"/>
-        <location filename="../settings/SettingsWindow.cpp" line="798"/>
+        <location filename="../settings/SettingsWindow.cpp" line="788"/>
         <source>Poster</source>
         <translation>Juliste</translation>
     </message>
@@ -5565,7 +5565,7 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
         <location filename="../settings/SettingsWindow.ui" line="503"/>
         <location filename="../settings/SettingsWindow.ui" line="774"/>
         <location filename="../settings/SettingsWindow.ui" line="1036"/>
-        <location filename="../settings/SettingsWindow.cpp" line="808"/>
+        <location filename="../settings/SettingsWindow.cpp" line="798"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
@@ -5573,28 +5573,28 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
         <location filename="../settings/SettingsWindow.ui" line="510"/>
         <location filename="../settings/SettingsWindow.ui" line="781"/>
         <location filename="../settings/SettingsWindow.ui" line="1043"/>
-        <location filename="../settings/SettingsWindow.cpp" line="810"/>
+        <location filename="../settings/SettingsWindow.cpp" line="800"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="517"/>
         <location filename="../settings/SettingsWindow.ui" line="1050"/>
-        <location filename="../settings/SettingsWindow.cpp" line="809"/>
+        <location filename="../settings/SettingsWindow.cpp" line="799"/>
         <source>Disc Art</source>
         <translation>Levytaide</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="584"/>
         <location filename="../settings/SettingsWindow.ui" line="767"/>
-        <location filename="../settings/SettingsWindow.cpp" line="811"/>
+        <location filename="../settings/SettingsWindow.cpp" line="801"/>
         <source>Banner</source>
         <translation>Banneri</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="591"/>
         <location filename="../settings/SettingsWindow.ui" line="957"/>
-        <location filename="../settings/SettingsWindow.cpp" line="812"/>
+        <location filename="../settings/SettingsWindow.cpp" line="802"/>
         <source>Thumb</source>
         <translation>Esikatselukuva</translation>
     </message>
@@ -5809,7 +5809,7 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1828"/>
         <location filename="../settings/SettingsWindow.ui" line="1831"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Music</source>
         <translation>Musiikki</translation>
     </message>
@@ -5890,7 +5890,7 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1658"/>
-        <location filename="../settings/SettingsWindow.cpp" line="631"/>
+        <location filename="../settings/SettingsWindow.cpp" line="621"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
@@ -5906,19 +5906,19 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1715"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Movies</source>
         <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1726"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>TV Shows</source>
         <translation>TV-sarjat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1737"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Concerts</source>
         <translation>Konsertit</translation>
     </message>
@@ -5938,178 +5938,178 @@ Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille
         <translation>Vienti</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="544"/>
+        <location filename="../settings/SettingsWindow.cpp" line="534"/>
         <source>Settings saved</source>
         <translation>Asetukset tallennettu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Downloads</source>
         <translation>Lataukset</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="617"/>
+        <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Elokuvien järjesteleminen toimii vain elokuville, jotka eivät ole erillisissä kansioissa.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="625"/>
+        <location filename="../settings/SettingsWindow.cpp" line="615"/>
         <source>Are you sure?</source>
         <translation>Oletko varma?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="627"/>
+        <location filename="../settings/SettingsWindow.cpp" line="617"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Tämä toiminto lajittelee kaikki tässä hakemistossa sijaitsevat elokuvat alihakemistoihin tiedostonimen perusteella. Klikkaa &quot;Ok&quot;, jos haluat suorittaa toiminnon.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="630"/>
+        <location filename="../settings/SettingsWindow.cpp" line="620"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="675"/>
+        <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Valitse hakemisto, joka sisältää elokuvat, TV-sarjat tai konsertit</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="698"/>
+        <location filename="../settings/SettingsWindow.cpp" line="688"/>
         <source>Choose a directory where your movie set artwork is stored</source>
         <translation>Valitse hakemisto, johon elokuvasarjojen kuvamateriaalit tallennetaan</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="728"/>
+        <location filename="../settings/SettingsWindow.cpp" line="718"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
         <translation>Teema &quot;%1&quot; asennettiin onnistuneesti</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.cpp" line="721"/>
         <location filename="../settings/SettingsWindow.cpp" line="731"/>
-        <location filename="../settings/SettingsWindow.cpp" line="741"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
         <translation>Teeman &quot;%1&quot; asentamisessa tapahtui virhe</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="738"/>
+        <location filename="../settings/SettingsWindow.cpp" line="728"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
         <translation>Teema &quot;%1&quot; poistettiin onnistuneesti</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="751"/>
+        <location filename="../settings/SettingsWindow.cpp" line="741"/>
         <source>Don&apos;t use</source>
         <translation>Älä käytä</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="790"/>
-        <location filename="../settings/SettingsWindow.cpp" line="837"/>
+        <location filename="../settings/SettingsWindow.cpp" line="780"/>
+        <location filename="../settings/SettingsWindow.cpp" line="827"/>
         <source>Title</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="791"/>
+        <location filename="../settings/SettingsWindow.cpp" line="781"/>
         <source>Tagline</source>
         <translation>Tunnisteet</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="792"/>
-        <location filename="../settings/SettingsWindow.cpp" line="838"/>
+        <location filename="../settings/SettingsWindow.cpp" line="782"/>
+        <location filename="../settings/SettingsWindow.cpp" line="828"/>
         <source>Rating</source>
         <translation>Arvostelu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="793"/>
+        <location filename="../settings/SettingsWindow.cpp" line="783"/>
         <source>Released</source>
         <translation>Julkaistu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="794"/>
-        <location filename="../settings/SettingsWindow.cpp" line="840"/>
+        <location filename="../settings/SettingsWindow.cpp" line="784"/>
+        <location filename="../settings/SettingsWindow.cpp" line="830"/>
         <source>Runtime</source>
         <translation>Kesto</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="795"/>
-        <location filename="../settings/SettingsWindow.cpp" line="843"/>
+        <location filename="../settings/SettingsWindow.cpp" line="785"/>
+        <location filename="../settings/SettingsWindow.cpp" line="833"/>
         <source>Certification</source>
         <translation>Sisältöluokitus</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="796"/>
+        <location filename="../settings/SettingsWindow.cpp" line="786"/>
         <source>Trailer</source>
         <translation>Traileri</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="797"/>
-        <location filename="../settings/SettingsWindow.cpp" line="844"/>
+        <location filename="../settings/SettingsWindow.cpp" line="787"/>
+        <location filename="../settings/SettingsWindow.cpp" line="834"/>
         <source>Plot</source>
         <translation>Juoni</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="799"/>
+        <location filename="../settings/SettingsWindow.cpp" line="789"/>
         <source>Fanart</source>
         <translation>Fanitaide</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="800"/>
-        <location filename="../settings/SettingsWindow.cpp" line="846"/>
+        <location filename="../settings/SettingsWindow.cpp" line="790"/>
+        <location filename="../settings/SettingsWindow.cpp" line="836"/>
         <source>Actors</source>
         <translation>Näyttelijät</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="801"/>
-        <location filename="../settings/SettingsWindow.cpp" line="845"/>
+        <location filename="../settings/SettingsWindow.cpp" line="791"/>
+        <location filename="../settings/SettingsWindow.cpp" line="835"/>
         <source>Genres</source>
         <translation>Tyylilajit</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="802"/>
+        <location filename="../settings/SettingsWindow.cpp" line="792"/>
         <source>Studios</source>
         <translation>Studiot</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="803"/>
+        <location filename="../settings/SettingsWindow.cpp" line="793"/>
         <source>Countries</source>
         <translation>Maat</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="804"/>
-        <location filename="../settings/SettingsWindow.cpp" line="842"/>
+        <location filename="../settings/SettingsWindow.cpp" line="794"/>
+        <location filename="../settings/SettingsWindow.cpp" line="832"/>
         <source>Writer</source>
         <translation>Kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="805"/>
-        <location filename="../settings/SettingsWindow.cpp" line="841"/>
+        <location filename="../settings/SettingsWindow.cpp" line="795"/>
+        <location filename="../settings/SettingsWindow.cpp" line="831"/>
         <source>Director</source>
         <translation>Ohjaaja</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="806"/>
+        <location filename="../settings/SettingsWindow.cpp" line="796"/>
         <source>Tags</source>
         <translation>Tunnisteet</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="807"/>
+        <location filename="../settings/SettingsWindow.cpp" line="797"/>
         <source>Set</source>
         <translation>Sarja</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="813"/>
-        <location filename="../settings/SettingsWindow.cpp" line="847"/>
+        <location filename="../settings/SettingsWindow.cpp" line="803"/>
+        <location filename="../settings/SettingsWindow.cpp" line="837"/>
         <source>Unsupported</source>
         <translation>Ei tuettu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="839"/>
+        <location filename="../settings/SettingsWindow.cpp" line="829"/>
         <source>First Aired</source>
         <translation>Ensiesitys</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="853"/>
+        <location filename="../settings/SettingsWindow.cpp" line="843"/>
         <source>Choose unrar</source>
         <translation>Valitse unrar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="860"/>
+        <location filename="../settings/SettingsWindow.cpp" line="850"/>
         <source>Choose makemkvcon</source>
         <translation>Valitse makemkvcon</translation>
     </message>
@@ -6631,22 +6631,22 @@ p, li { white-space: pre-wrap; }
         <translation>Takaisin trailereihin</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="320"/>
+        <location filename="../globals/TrailerDialog.cpp" line="319"/>
         <source>Download Finished</source>
         <translation>Lataus valmistunut</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="330"/>
+        <location filename="../globals/TrailerDialog.cpp" line="329"/>
         <source>The file %1 already exists.</source>
         <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="331"/>
+        <location filename="../globals/TrailerDialog.cpp" line="330"/>
         <source>Do you want to overwrite it?</source>
         <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="343"/>
+        <location filename="../globals/TrailerDialog.cpp" line="342"/>
         <source>Download Canceled</source>
         <translation>Lataus peruutettu</translation>
     </message>
@@ -6683,7 +6683,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="590"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n tv-sarja</numerusform>
@@ -6692,7 +6692,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="590"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n jakso</numerusform>
@@ -6755,19 +6755,19 @@ p, li { white-space: pre-wrap; }
         <translation>Piilota erikoisjaksot puuttuvista jaksoista</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="401"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="402"/>
         <source>Show update needed</source>
         <translation>Näytä vaadittavat päivitykset</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="403"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="404"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Sarja täytyy päivittää kerran, jotta puuttuvat jaksot voidaan näyttää.
 Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen yhteydessä.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="592"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="593"/>
         <source>%1 of %n tv shows</source>
         <translation>
             <numerusform>%1 / %n tv-sarjasta</numerusform>
@@ -6989,7 +6989,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation>Aloita haku</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="331"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="336"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n:n tv-sarjan</numerusform>
@@ -6997,7 +6997,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="332"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="337"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n:n jakson</numerusform>
@@ -7005,13 +7005,13 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         </translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="334"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="339"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation>%1 ja %2 tietojen hakeminen on valmis.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="336"/>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="338"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="341"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="343"/>
         <source>Scraping of %1 has finished.</source>
         <translation>%1:n kohteen tietojen hakeminen valmistui.</translation>
     </message>
@@ -7274,18 +7274,18 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="185"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="233"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="165"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="213"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Tallennetaan muokattuja TV-sarjoja ja jaksoja</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="209"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="189"/>
         <source>TV Shows and Episodes Saved</source>
         <translation>TV-sarjat ja jaksot tallennettu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="254"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="234"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Kaikki sarjat ja jaksot tallennettu</translation>
     </message>
@@ -7505,8 +7505,8 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1101"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
         <source>Codec</source>
         <translation>Koodekki</translation>
     </message>
@@ -7562,62 +7562,62 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation>Jakso puuttuu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="472"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="506"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="473"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="507"/>
         <source>Track %1</source>
         <translation>Raita %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="478"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="509"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="510"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="511"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="484"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="498"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="499"/>
         <source>Subtitles</source>
         <translation>Tekstitys</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="566"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="567"/>
         <source>Episode Saved</source>
         <translation>Jakso tallennettu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="721"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="723"/>
         <source>Unknown Director</source>
         <translation>Tuntematon ohjaaja</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="770"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="772"/>
         <source>Unknown Writer</source>
         <translation>Tuntematon kirjoittaja</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="994"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="996"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="995"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="997"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
@@ -7937,37 +7937,37 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation type="vanished">Lisää tunniste</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="427"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="429"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="455"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="457"/>
         <source>Please wait while your tv show is scraped</source>
         <translation>Ole hyvä ja odota, kun TV-sarjojen tietoja haetaan</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="677"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="679"/>
         <source>Downloading images...</source>
         <translation>Ladataan kuvia...</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="820"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Unknown Actor</source>
         <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="821"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="823"/>
         <source>Unknown Role</source>
         <translation>Tuntematon rooli</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="904"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Choose Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="904"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
