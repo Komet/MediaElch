@@ -155,7 +155,7 @@ void MovieSearchWidget::search()
 
 void MovieSearchWidget::showResults(QList<ScraperSearchResult> results)
 {
-    qDebug() << "results.count(): " << results.count() << ", results:" << results;
+    qDebug() << "results.count(): " << results.count();
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
     ui->searchString->setLoading(false);

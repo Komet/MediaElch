@@ -42,8 +42,6 @@ Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
         setFiles(files);
 }
 
-Movie::~Movie() = default;
-
 void Movie::setFiles(QStringList files)
 {
     m_files = files;
@@ -59,7 +57,7 @@ void Movie::setFiles(QStringList files)
         m_streamDetails = new StreamDetails(this, QStringList());
 }
 
-MovieController *Movie::controller()
+MovieController *Movie::controller() const
 {
     return m_controller;
 }

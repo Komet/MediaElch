@@ -9,13 +9,13 @@
 #include "data/ScraperInterface.h"
 
 /**
- * @brief The Cinefacts class
+ * @brief The Kino.de class
  */
-class Cinefacts : public ScraperInterface
+class KinoDe : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit Cinefacts(QObject *parent = nullptr);
+    explicit KinoDe(QObject *parent = nullptr);
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
@@ -34,20 +34,17 @@ signals:
 private slots:
     void searchFinished();
     void loadFinished();
-    void actorsFinished();
-    void imagesFinished();
-    void posterFinished();
-    void backdropFinished();
 
 private:
+    QList<ScraperSearchResult> parseSearch(const QString &html);
+    void parseAndAssignInfos(const QString &html, Movie &movie, const QList<int> &infos);
+    void parseAndAssignActors(const QString &html, Movie &movie, const QList<int> &infos);
+    void parseAndAssignImages(const QString &html, Movie &movie, const QList<int> &infos);
+    void parsePoster(const QString &html, Movie &movie);
+    void parseBackdrops(const QString &html, Movie &movie);
+
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
-
-    QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString data, Movie *movie, QList<int> infos);
-    void parseAndAssignActors(QString data, Movie *movie, QList<int> infos);
-    void parseImages(QString data, QStringList &posters, QStringList &backgrounds);
 };
 
 #endif // CINEFACTS_H

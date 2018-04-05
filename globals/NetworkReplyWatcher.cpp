@@ -8,13 +8,12 @@ NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) 
     setReply(reply);
 }
 
-NetworkReplyWatcher::~NetworkReplyWatcher() = default;
-
 void NetworkReplyWatcher::setReply(QNetworkReply *reply)
 {
     m_reply = reply;
-    if (!m_reply)
+    if (!m_reply) {
         return;
+    }
     connect(m_reply, &QNetworkReply::finished, &m_timer, &QTimer::stop);
     connect(m_reply, &QObject::destroyed, this, &QObject::deleteLater);
     connect(m_reply, &QNetworkReply::downloadProgress, this, &NetworkReplyWatcher::onProgress);
@@ -23,8 +22,9 @@ void NetworkReplyWatcher::setReply(QNetworkReply *reply)
 
 void NetworkReplyWatcher::onTimeout()
 {
-    if (m_reply)
+    if (m_reply) {
         m_reply->abort();
+    }
 }
 
 void NetworkReplyWatcher::onProgress()

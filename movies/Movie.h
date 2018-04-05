@@ -30,9 +30,9 @@ class Movie : public QObject
 
 public:
     explicit Movie(QStringList files, QObject *parent = nullptr);
-    ~Movie() override;
+    ~Movie() override = default;
 
-    MovieController *controller();
+    MovieController *controller() const;
 
     void clear();
     void clear(QList<int> infos);
