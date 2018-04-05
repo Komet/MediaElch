@@ -355,27 +355,30 @@ void ImageDialog::downloadFinished()
         return;
     }
 
-    if (m_currentDownloadReply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << m_currentDownloadReply->errorString();
-        startNextDownload();
-        return;
+    if (m_currentDownloadReply->error() == QNetworkReply::NoError) {
+        m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
+        Helper::instance()->setDevicePixelRatio(
+            m_elements[m_currentDownloadIndex].pixmap, Helper::instance()->devicePixelRatio(this));
+
+        if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
+            m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(
+                (getColumnWidth() - 10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+            Helper::instance()->setDevicePixelRatio(
+                m_elements[m_currentDownloadIndex].scaledPixmap, Helper::instance()->devicePixelRatio(this));
+            m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
+            m_elements[m_currentDownloadIndex].cellWidget->setHint(
+                m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
+        }
+        ui->table->resizeRowsToContents();
+
+    } else {
+        qWarning() << "Network Error: " << m_currentDownloadReply->errorString() << " | "
+                   << m_currentDownloadReply->url();
     }
 
-    m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-    Helper::instance()->setDevicePixelRatio(
-        m_elements[m_currentDownloadIndex].pixmap, Helper::instance()->devicePixelRatio(this));
-    if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(
-            (getColumnWidth() - 10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(
-            m_elements[m_currentDownloadIndex].scaledPixmap, Helper::instance()->devicePixelRatio(this));
-        m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
-        m_elements[m_currentDownloadIndex].cellWidget->setHint(
-            m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
-    }
-    ui->table->resizeRowsToContents();
-    m_elements[m_currentDownloadIndex].downloaded = true;
     m_currentDownloadReply->deleteLater();
+    // Mark item as downloaded even if there was an error to avoid an infinite loop.
+    m_elements[m_currentDownloadIndex].downloaded = true;
     startNextDownload();
 }
 
