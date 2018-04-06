@@ -30,9 +30,9 @@ class Movie : public QObject
 
 public:
     explicit Movie(QStringList files, QObject *parent = nullptr);
-    ~Movie() override;
+    ~Movie() override = default;
 
-    MovieController *controller();
+    MovieController *controller() const;
 
     void clear();
     void clear(QList<int> infos);
@@ -160,18 +160,18 @@ public:
     void removeImage(int type);
 
     void setLabel(int label);
-    int label();
+    int label() const;
 
     // Images
     bool hasExtraFanarts() const;
     void setHasExtraFanarts(bool has);
-    QByteArray image(int imageType);
+    QByteArray image(int imageType) const;
     bool imageHasChanged(int imageType);
     void setHasImage(int imageType, bool has);
-    bool hasImage(int imageType);
+    bool hasImage(int imageType) const;
     void setImage(int imageType, QByteArray image);
 
-    DiscType discType();
+    DiscType discType() const;
     void setDiscType(DiscType type);
 
     static bool lessThan(Movie *a, Movie *b);

@@ -22,14 +22,14 @@ public:
     explicit TvShowModelItem(TvShowModelItem *parent = nullptr);
     ~TvShowModelItem();
 
-    TvShowModelItem *child(int number);
+    TvShowModelItem *child(int number) const;
     int childCount() const;
     int columnCount() const;
     QVariant data(int column) const;
     TvShowModelItem *appendChild(TvShow *show);
     TvShowModelItem *appendChild(TvShowEpisode *episode);
     TvShowModelItem *appendChild(int seasonNumber, QString season, TvShow *show);
-    TvShowModelItem *parent();
+    TvShowModelItem *parent() const;
     bool removeChildren(int position, int count);
     int childNumber() const;
     void setTvShow(TvShow *show);

@@ -16,7 +16,7 @@ class MovieFileSearcher : public QObject
     Q_OBJECT
 public:
     explicit MovieFileSearcher(QObject *parent = nullptr);
-    ~MovieFileSearcher() override;
+    ~MovieFileSearcher() override = default;
 
     void setMovieDirectories(QList<SettingsDir> directories);
     void scanDir(QString startPath,

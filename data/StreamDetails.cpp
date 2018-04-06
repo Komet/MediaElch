@@ -61,11 +61,14 @@ void StreamDetails::clear()
 void StreamDetails::loadStreamDetails()
 {
     clear();
-    if (m_files.isEmpty())
+    if (m_files.isEmpty()) {
         return;
+    }
 
-    if (m_files.first().endsWith(".iso", Qt::CaseInsensitive) || m_files.first().endsWith(".img", Qt::CaseInsensitive))
+    if (m_files.first().endsWith(".iso", Qt::CaseInsensitive)
+        || m_files.first().endsWith(".img", Qt::CaseInsensitive)) {
         return;
+    }
 
     // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
     if (m_files.first().endsWith("VIDEO_TS.IFO")) {
@@ -82,8 +85,9 @@ void StreamDetails::loadStreamDetails()
             rx.setMinimal(true);
             rx.setCaseSensitivity(Qt::CaseInsensitive);
             if (rx.indexIn(fiVob.fileName()) != -1) {
-                if (!sizes.contains(rx.cap(1)))
+                if (!sizes.contains(rx.cap(1))) {
                     sizes.insert(rx.cap(1), 0);
+                }
                 sizes[rx.cap(1)] += fiVob.size();
                 if (sizes[rx.cap(1)] > biggestSize) {
                     biggestSize = sizes[rx.cap(1)];
@@ -93,8 +97,9 @@ void StreamDetails::loadStreamDetails()
         }
         if (!biggest.isEmpty()) {
             QFileInfo fiNew(fi.absolutePath() + "/VTS_" + biggest + "_0.IFO");
-            if (fiNew.isFile() && fiNew.exists())
+            if (fiNew.isFile() && fiNew.exists()) {
                 m_files = QStringList() << fiNew.absoluteFilePath();
+            }
         }
     }
 
@@ -113,8 +118,9 @@ void StreamDetails::loadWithLibrary()
         QFileInfo fi(fileName);
         QDir dir(fi.absolutePath() + "/STREAM");
         QStringList files = dir.entryList(QStringList() << "*.m2ts", QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-        if (!files.isEmpty())
+        if (!files.isEmpty()) {
             fileName = dir.absolutePath() + "/" + files.first();
+        }
     }
 
     MI.Open(QString2MI(fileName));
@@ -172,22 +178,27 @@ void StreamDetails::loadWithLibrary()
 
     for (int i = 0; i < audioCount; ++i) {
         QString lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String3")));
-        if (lang.isEmpty())
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String2")));
-        if (lang.isEmpty())
+        }
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String1")));
-        if (lang.isEmpty())
+        }
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String")));
+        }
         QString audioCodec = audioFormat(MI2QString(MI.Get(Stream_Audio, i, QString2MI("Codec"))),
             MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
         QString channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)")));
-        if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty())
+        if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
             channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
+        }
         QRegExp rx("^(\\d*)\\D*");
-        if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
+        if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
             channels = rx.cap(1);
-        else
+        } else {
             channels = "";
+        }
         setAudioDetail(i, "language", lang);
         setAudioDetail(i, "codec", audioCodec);
         setAudioDetail(i, "channels", channels);
@@ -195,12 +206,15 @@ void StreamDetails::loadWithLibrary()
 
     for (int i = 0; i < textCount; ++i) {
         QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String3")));
-        if (lang.isEmpty())
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String2")));
-        if (lang.isEmpty())
+        }
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String1")));
-        if (lang.isEmpty())
+        }
+        if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String")));
+        }
         setSubtitleDetail(i, "language", lang);
     }
 
@@ -213,13 +227,15 @@ void StreamDetails::loadWithLibrary()
  * @param version Version, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::videoFormat(QString format, QString version)
+QString StreamDetails::videoFormat(QString format, QString version) const
 {
     format = format.toLower();
-    if (!format.isEmpty() && format == "mpeg video")
+    if (!format.isEmpty() && format == "mpeg video") {
         format = (version.toLower() == "version 2") ? "mpeg2" : "mpeg";
-    if (Settings::instance()->advanced()->videoCodecMappings().contains(format))
+    }
+    if (Settings::instance()->advanced()->videoCodecMappings().contains(format)) {
         return Settings::instance()->advanced()->videoCodecMappings().value(format);
+    }
     return format.toLower();
 }
 
@@ -228,35 +244,38 @@ QString StreamDetails::videoFormat(QString format, QString version)
  * @param format Original format, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
+QString StreamDetails::audioFormat(const QString &codec, const QString &profile) const
 {
     QString xbmcFormat;
-    if (codec == "DTS-HD" && profile == "MA / Core")
+    if (codec == "DTS-HD" && profile == "MA / Core") {
         xbmcFormat = "dtshd_ma";
-    else if (codec == "DTS-HD" && profile == "HRA / Core")
+    } else if (codec == "DTS-HD" && profile == "HRA / Core") {
         xbmcFormat = "dtshd_hra";
-    else if (codec == "AC3")
+    } else if (codec == "AC3") {
         xbmcFormat = "ac3";
-    else if (codec == "AC3+" || codec == "E-AC-3")
+    } else if (codec == "AC3+" || codec == "E-AC-3") {
         xbmcFormat = "eac3";
-    else if (codec == "TrueHD / AC3")
+    } else if (codec == "TrueHD / AC3") {
         xbmcFormat = "truehd";
-    else if (codec == "FLAC")
+    } else if (codec == "FLAC") {
         xbmcFormat = "flac";
-    else if (codec == "MPA1L3")
+    } else if (codec == "MPA1L3") {
         xbmcFormat = "mp3";
-    else
+    } else {
         xbmcFormat = codec;
+    }
 
-    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat))
+    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat)) {
         return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
+    }
     return xbmcFormat.toLower();
 }
 
-QString StreamDetails::stereoFormat(const QString &format)
+QString StreamDetails::stereoFormat(const QString &format) const
 {
-    if (Helper::instance()->stereoModes().values().contains(format.toLower()))
+    if (Helper::instance()->stereoModes().values().contains(format.toLower())) {
         return Helper::instance()->stereoModes().key(format.toLower());
+    }
     return "";
 }
 
@@ -278,21 +297,24 @@ void StreamDetails::setVideoDetail(QString key, QString value)
  */
 void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
 {
-    if (streamNumber >= m_audioDetails.count())
+    if (streamNumber >= m_audioDetails.count()) {
         m_audioDetails.insert(streamNumber, QMap<QString, QString>());
-    if (streamNumber >= m_audioDetails.count())
+    }
+    if (streamNumber >= m_audioDetails.count()) {
         return;
+    }
     m_audioDetails[streamNumber].insert(key, value);
 
-    if (key == "channels" && !m_availableChannels.contains(value.toInt()))
+    if (key == "channels" && !m_availableChannels.contains(value.toInt())) {
         m_availableChannels.append(value.toInt());
-
-    if (key == "codec" && m_hdAudioCodecs.contains(value) && !m_availableQualities.contains("hd"))
+    }
+    if (key == "codec" && m_hdAudioCodecs.contains(value) && !m_availableQualities.contains("hd")) {
         m_availableQualities.append("hd");
-    else if (key == "codec" && m_normalAudioCodecs.contains(value) && !m_availableQualities.contains("normal"))
+    } else if (key == "codec" && m_normalAudioCodecs.contains(value) && !m_availableQualities.contains("normal")) {
         m_availableQualities.append("normal");
-    else if (key == "codec" && m_sdAudioCodecs.contains(value) && !m_availableQualities.contains("sd"))
+    } else if (key == "codec" && m_sdAudioCodecs.contains(value) && !m_availableQualities.contains("sd")) {
         m_availableQualities.append("sd");
+    }
 }
 
 /**
@@ -303,10 +325,12 @@ void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
  */
 void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString value)
 {
-    if (streamNumber >= m_subtitles.count())
+    if (streamNumber >= m_subtitles.count()) {
         m_subtitles.insert(streamNumber, QMap<QString, QString>());
-    if (streamNumber >= m_subtitles.count())
+    }
+    if (streamNumber >= m_subtitles.count()) {
         return;
+    }
     m_subtitles[streamNumber].insert(key, value);
 }
 
@@ -314,7 +338,7 @@ void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString val
  * @brief Access video details
  * @return
  */
-QMap<QString, QString> StreamDetails::videoDetails()
+QMap<QString, QString> StreamDetails::videoDetails() const
 {
     return m_videoDetails;
 }
@@ -323,7 +347,7 @@ QMap<QString, QString> StreamDetails::videoDetails()
  * @brief Access audio details
  * @return
  */
-QList<QMap<QString, QString>> StreamDetails::audioDetails()
+QList<QMap<QString, QString>> StreamDetails::audioDetails() const
 {
     return m_audioDetails;
 }
@@ -332,56 +356,63 @@ QList<QMap<QString, QString>> StreamDetails::audioDetails()
  * @brief Access subtitles
  * @return
  */
-QList<QMap<QString, QString>> StreamDetails::subtitleDetails()
+QList<QMap<QString, QString>> StreamDetails::subtitleDetails() const
 {
     return m_subtitles;
 }
 
-bool StreamDetails::hasAudioChannels(int channels)
+bool StreamDetails::hasAudioChannels(int channels) const
 {
     return m_availableChannels.contains(channels);
 }
 
-bool StreamDetails::hasAudioQuality(QString quality)
+bool StreamDetails::hasAudioQuality(QString quality) const
 {
     return m_availableQualities.contains(quality);
 }
 
-int StreamDetails::audioChannels()
+int StreamDetails::audioChannels() const
 {
     int channels = 0;
     foreach (int c, m_availableChannels) {
-        if (c > channels)
+        if (c > channels) {
             channels = c;
+        }
     }
     return channels;
 }
 
-QString StreamDetails::audioCodec()
+QString StreamDetails::audioCodec() const
 {
     QString hdCodec;
     QString normalCodec;
     QString sdCodec;
     for (int i = 0, n = m_audioDetails.count(); i < n; ++i) {
         QString codec = m_audioDetails.at(i).value("codec");
-        if (m_hdAudioCodecs.contains(codec))
+        if (m_hdAudioCodecs.contains(codec)) {
             hdCodec = codec;
-        if (m_normalAudioCodecs.contains(codec))
+        }
+        if (m_normalAudioCodecs.contains(codec)) {
             normalCodec = codec;
-        if (m_sdAudioCodecs.contains(codec))
+        }
+        if (m_sdAudioCodecs.contains(codec)) {
             sdCodec = codec;
+        }
     }
 
-    if (!hdCodec.isEmpty())
+    if (!hdCodec.isEmpty()) {
         return hdCodec;
-    if (!normalCodec.isEmpty())
+    }
+    if (!normalCodec.isEmpty()) {
         return normalCodec;
-    if (!sdCodec.isEmpty())
+    }
+    if (!sdCodec.isEmpty()) {
         return sdCodec;
+    }
     return "";
 }
 
-QString StreamDetails::videoCodec()
+QString StreamDetails::videoCodec() const
 {
     return m_videoDetails.value("codec");
 }

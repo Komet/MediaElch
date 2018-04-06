@@ -23,8 +23,9 @@ QStringList Subtitle::files() const
 void Subtitle::setFiles(const QStringList &files, bool emitChanged)
 {
     m_files = files;
-    if (emitChanged)
+    if (emitChanged) {
         setChanged(true);
+    }
 }
 
 bool Subtitle::forced() const
@@ -46,6 +47,7 @@ bool Subtitle::changed() const
 void Subtitle::setChanged(bool changed)
 {
     m_changed = changed;
-    if (changed)
+    if (changed) {
         emit sigChanged();
+    }
 }
