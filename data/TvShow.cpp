@@ -218,7 +218,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
 
     m_hasImage.clear();
     m_hasImage.insert(ImageType::TvShowExtraFanart, !mediaCenterInterface->extraFanartNames(this).isEmpty());
-    for (const int &imageType : TvShow::imageTypes()) {
+    for (const auto imageType : TvShow::imageTypes()) {
         m_hasImage.insert(imageType, !mediaCenterInterface->imageFileName(this, imageType).isEmpty());
     }
 
@@ -288,8 +288,8 @@ void TvShow::clearImages()
  */
 bool TvShow::hasNewEpisodes() const
 {
-    return std::any_of(
-        m_episodes.cbegin(), m_episodes.cend(), [](TvShowEpisode *episode) { return !episode->infoLoaded(); });
+    const auto checkInfoLoaded = [](TvShowEpisode *episode) { return !episode->infoLoaded(); };
+    return std::any_of(m_episodes.cbegin(), m_episodes.cend(), checkInfoLoaded);
 }
 
 /**

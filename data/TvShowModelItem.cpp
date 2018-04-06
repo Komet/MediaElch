@@ -330,12 +330,13 @@ int TvShowModelItem::seasonNumber()
  */
 int TvShowModelItem::type()
 {
-    if (m_tvShow && m_season.isEmpty())
+    if (m_tvShow && m_season.isEmpty()) {
         return TypeTvShow;
-    else if (m_tvShowEpisode)
+    } else if (m_tvShowEpisode) {
         return TypeEpisode;
-    else if (!m_season.isEmpty())
+    } else if (!m_season.isEmpty()) {
         return TypeSeason;
+    }
 
     return -1;
 }
