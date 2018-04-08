@@ -1,9 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
-Version=2.4.2
 Type=Application
-Terminal=false
-Exec=/usr/bin/MediaElch
 Name=MediaElch
 Icon=MediaElch
-Categories=Video;
+Terminal=false
+Exec=/usr/bin/MediaElch
+Categories=AudioVideo;Video;
+GenericName=Media Manager
