@@ -332,7 +332,6 @@ void ImageDialog::startNextDownload()
         ui->labelSpinner->setVisible(false);
         return;
     }
-
     m_currentDownloadIndex = nextIndex;
     m_currentDownloadReply = qnam()->get(QNetworkRequest(m_elements[nextIndex].thumbUrl));
     connect(m_currentDownloadReply, &QNetworkReply::finished, this, &ImageDialog::downloadFinished);
@@ -376,9 +375,12 @@ void ImageDialog::downloadFinished()
                    << m_currentDownloadReply->url();
     }
 
+    // It is possible that m_elements has been cleared by aborting all downloads
+    if (m_currentDownloadIndex < m_elements.size()) {
+        // Mark item as downloaded even if there was an error to avoid an infinite loop.
+        m_elements[m_currentDownloadIndex].downloaded = true;
+    }
     m_currentDownloadReply->deleteLater();
-    // Mark item as downloaded even if there was an error to avoid an infinite loop.
-    m_elements[m_currentDownloadIndex].downloaded = true;
     startNextDownload();
 }
 
