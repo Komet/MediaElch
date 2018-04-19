@@ -46,6 +46,17 @@
     color: #787878;
 }
 
+#centralWidget QTableWidget,
+#centralWidget QTableView,
+#centralWidget QTreeView {
+    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+    alternate-background-color: #f9f9f9;
+    background-color: #ffffff;
+    selection-color: #ffffff;
+    color: #395265;
+    border: none;
+}
+
 /*********************************************************
  * Main Window
  *********************************************************/
@@ -101,13 +112,6 @@ ConcertFilesWidget #widget {
     color: #1b69a5;
     border-bottom: 1px solid #f89b35;
 }
-ConcertFilesWidget #files {
-    border: 0px;
-    color: #395265;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
-}
 
 /*********************************************************
  * ConcertWidget
@@ -142,15 +146,6 @@ ConcertWidget #artStackedWidgetButtons QPushButton::checked {
 }
 ConcertWidget #artStackedWidgetButtons QPushButton::hover {
     border: 1px solid rgba(0, 0, 0, 80);
-}
-
-/*********************************************************
- * ConcertSearchWidget
- *********************************************************/
-ConcertSearchWidget #results {
-    alternate-background-color: #f9f9f9;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    color: #395265;
 }
 
 /*********************************************************
@@ -217,13 +212,6 @@ Navbar #btnDonate {
 /*********************************************************
  * CertificationWidget
  *********************************************************/
-CertificationWidget #certifications {
-    border: 0px;
-    alternate-background-color: #f9f9f9;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    color: #395265;
-    selection-color: #ffffff;
-}
 CertificationWidget #certificationName {
     color: #224f7f;
 }
@@ -239,14 +227,6 @@ FilesWidget #widget_2 {
     background-color: #ffffff;
     color: #1b69a5;
     border-bottom: 1px solid #f89b35;
-}
-FilesWidget #files {
-    border: 0px;
-    color: #395265;
-    /*alternate-background-color: #f3f6fa;*/
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
 }
 FilesWidget #sortLabelWidget {
     border-top: 1px solid #f89b35;
@@ -309,12 +289,6 @@ ImageDialog #buttonZoomIn {
 /*********************************************************
  * TrailerDialog
  *********************************************************/
-TrailerDialog #results,
-TrailerDialog #trailers {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-}
 TrailerDialog #btnPlayPause {
     border: none;
 }
@@ -322,13 +296,6 @@ TrailerDialog #btnPlayPause {
 /*********************************************************
  * GenreWidget
  *********************************************************/
-GenreWidget #genres {
-    border: 0px;
-    color: #395265;
-    alternate-background-color: #f9f9f9;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    selection-color: #ffffff;
-}
 GenreWidget #genreName {
     color: #224f7f;
 }
@@ -342,14 +309,6 @@ GenreWidget #infoGroupBox {
  *********************************************************/
 MovieDuplicates #movieDuplicatesWidget {
     background-color: rgb(255, 255, 255);
-}
-MovieDuplicates #movies {
-    border: 0px;
-    color: #395265;
-    /*alternate-background-color: #f3f6fa;*/
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
 }
 MovieDuplicates #line {
     color: #cccccc;
@@ -406,15 +365,6 @@ MovieWidget #artStackedWidgetButtons QPushButton ::hover {
 }
 
 /*********************************************************
- * MovieSearchWidget
- *********************************************************/
-MovieSearchWidget #results {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-}
-
-/*********************************************************
  * ConcertWidget
  *********************************************************/
 ConcertWidget #buttonRevert {
@@ -447,20 +397,6 @@ MusicFilesWidget #widget_2 {
     background-color: #ffffff;
     color: #1b69a5;
     border-bottom: 1px solid #f89b35;
-}
-MusicFilesWidget #music {
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
-}
-
-/*********************************************************
- * MusicSearchWidget
- *********************************************************/
-MusicSearchWidget #results {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 }
 
 /*********************************************************
@@ -506,24 +442,8 @@ MusicWidgetArtist #groupBox_3 {
 }
 
 /*********************************************************
- * MovieListDialog
- *********************************************************/
-MovieListDialog #movies {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-}
-
-/*********************************************************
  * SetsWidget
  *********************************************************/
-SetsWidget #sets {
-    border: 0px;
-    alternate-background-color: #f9f9f9;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    color: #395265;
-    selection-color: #ffffff;
-}
 SetsWidget #setName {
     color: #224f7f;
 }
@@ -605,12 +525,6 @@ ItemWidgetShow #widget  {
 /*********************************************************
  * TvShowFilesWidget
  *********************************************************/
-TvShowTreeView {
-    border: 0px;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
-}
 TvShowFilesWidget #files {
     color: #395265;
 }
@@ -619,17 +533,6 @@ TvShowFilesWidget #widget {
     background-color: #ffffff;
     border-bottom: 1px solid #f0f0f0;
     border-bottom: 1px solid #f89b35;
-}
-
-/*********************************************************
- * TvShowSearch
- * TvShowSearchEpisode
- *********************************************************/
-TvShowSearch #results,
-TvShowSearchEpisode #results {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 }
 
 /*********************************************************
@@ -726,14 +629,6 @@ TvShowWidgetTvShow #artStackedWidgetButtons QPushButton::hover {
     border: 1px solid rgba(0, 0, 0, 80);
 }
 
-/*********************************************************
- * TvTunesDialog
- *********************************************************/
-TvTunesDialog #results  {
-    color: #395265;
-    alternate-background-color: #f3f6fa;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-}
 #btnPlayPause {
     border: none;
 }
