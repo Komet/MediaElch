@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#tabWidget {
-	border: 0;
-}
-
-#tab, #tab_2, #tab_3, #tab_4 {
-	background-color: #ffffff;
-}
-</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
@@ -62,9 +52,6 @@
        <property name="toolTip">
         <string>Concert has changed. Click to revert changes.</string>
        </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;</string>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -87,10 +74,6 @@
          <family>Helvetica Neue</family>
          <pointsize>22</pointsize>
         </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: #224f7f;
-</string>
        </property>
        <property name="text">
         <string>Concert Name</string>
@@ -120,13 +103,6 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox_3">
-     <property name="styleSheet">
-      <string notr="true">QGroupBox {
-	border-radius: 0;
-	background-color: transparent;
-}
-</string>
-     </property>
      <property name="title">
       <string/>
      </property>
@@ -722,9 +698,6 @@
       </item>
       <item>
        <widget class="Line" name="line">
-        <property name="styleSheet">
-         <string notr="true">color: #ebebeb;</string>
-        </property>
         <property name="frameShadow">
          <enum>QFrame::Plain</enum>
         </property>
@@ -783,25 +756,6 @@
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border: 1px solid rgba(0, 0, 0, 50);
-	border-radius: 4px;
-	padding: 0;
-	margin: 4px;
-	width: 8px;
-	height: 8px;
-	background-color: rgba(0, 0, 0, 50);
-}
-
-QPushButton::checked {
-	background-color: #428BCA;
-}
-
-QPushButton::hover {
-	border: 1px solid rgba(0, 0, 0, 80);
-}</string>
-             </property>
              <property name="text">
               <string/>
              </property>
@@ -817,25 +771,6 @@ QPushButton::hover {
             <widget class="QPushButton" name="buttonArtPageTwo">
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border: 1px solid rgba(0, 0, 0, 50);
-	border-radius: 4px;
-	padding: 0;
-	margin: 5px;
-	width: 8px;
-	height: 8px;
-	background-color: rgba(0, 0, 0, 50);
-}
-
-QPushButton::checked {
-	background-color: #428BCA;
-}
-
-QPushButton::hover {
-	border: 1px solid rgba(0, 0, 0, 70);
-}</string>
              </property>
              <property name="text">
               <string/>

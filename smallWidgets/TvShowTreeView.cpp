@@ -14,8 +14,6 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) : QTreeView(parent)
     m_missingIcon = QPixmap(":/img/missing.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
-TvShowTreeView::~TvShowTreeView() = default;
-
 void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
     if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeEpisode)
@@ -43,16 +41,18 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
     bool isSelected = selectionModel()->isSelected(index);
 
     QStyleOptionViewItem opt = option;
-    if (index.data(TvShowRoles::Type).toInt() == TypeSeason)
+    if (index.data(TvShowRoles::Type).toInt() == TypeSeason) {
         opt.rect.setX(opt.rect.x() + seasonIndent - 4);
-    else if (index.data(TvShowRoles::Type).toInt() == TypeEpisode)
+    } else if (index.data(TvShowRoles::Type).toInt() == TypeEpisode) {
         opt.rect.setX(opt.rect.x() + episodeIndent - 4);
+    }
 
     if (alternatingRowColors() && index.data(TvShowRoles::Type).toInt() != TypeTvShow) {
-        if (index.row() % 2 == 0)
+        if (index.row() % 2 == 0) {
             opt.features |= QStyleOptionViewItem::Alternate;
-        else
+        } else {
             opt.features &= ~QStyleOptionViewItem::Alternate;
+        }
     }
 
 #ifdef Q_OS_WIN

@@ -100,6 +100,14 @@ int main(int argc, char *argv[])
     }
     qInstallMessageHandler(messageOutput);
 
+    // Load and apply an application style
+    qDebug() << "Loading application style...";
+    QFile styleFile(":/ui/default.css");
+    styleFile.open(QFile::ReadOnly);
+    QString style(styleFile.readAll());
+    a.setStyleSheet(style);
+    styleFile.close();
+
     MainWindow w;
     w.show();
     int ret = a.exec();

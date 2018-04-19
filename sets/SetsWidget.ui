@@ -13,11 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#sets {
-	border: 0px;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="leftMargin">
     <number>0</number>
@@ -40,15 +35,6 @@
       <number>1</number>
      </property>
      <widget class="QTableWidget" name="sets">
-      <property name="styleSheet">
-       <string notr="true">#sets {
-	alternate-background-color: #f9f9f9;
-	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-	color: #395265;
-    selection-color: #ffffff;
-}
-</string>
-      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
@@ -101,10 +87,6 @@
            <pointsize>22</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: #224f7f;
-</string>
-         </property>
          <property name="text">
           <string>Set Name</string>
          </property>
@@ -115,13 +97,6 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_3">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-	border-radius: 0;
-	background-color: transparent;
-}
-</string>
-         </property>
          <property name="title">
           <string/>
          </property>
@@ -258,11 +233,6 @@
                 <property name="toolTip">
                  <string>Full preview</string>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true">QToolButton {
-	border: none;
-}</string>
-                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -340,11 +310,6 @@
                 </property>
                 <property name="toolTip">
                  <string>Full preview</string>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QToolButton {
-	border: none;
-}</string>
                 </property>
                 <property name="text">
                  <string/>
