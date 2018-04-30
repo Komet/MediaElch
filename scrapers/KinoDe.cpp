@@ -138,7 +138,7 @@ void KinoDe::searchFinished()
 QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
 {
     QList<ScraperSearchResult> results;
-    QRegExp rxTitle(R"rx(<a class="movie-link" href="https://www.kino.de/film/([^"]*)">([^<]*)</a>)rx");
+    QRegExp rxTitle(R"rx(<a class="[^"]*" href="https://www.kino.de/film/([^"/]*)/">([^<]*)</a>)rx");
     rxTitle.setMinimal(true);
 
     int pos = 0;
@@ -148,7 +148,8 @@ QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
         result.name = rxTitle.cap(2);
 
         // Get year from the URL
-        QRegExp rxYear(R"([-.a-z1-9]+([0-9]{4})/)");
+        QRegExp rxYear(R"([-.a-z1-9]+([0-9]{4}))");
+
         rxYear.setMinimal(true);
         if (rxYear.indexIn(result.id) != -1) {
             result.released = QDate::fromString(rxYear.cap(1), "yyyy");
@@ -171,7 +172,7 @@ QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
 void KinoDe::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
-    const QUrl url{QStringLiteral("https://www.kino.de/film/%1").arg(ids.values().first())};
+    const QUrl url{QStringLiteral("https://www.kino.de/film/%1/").arg(ids.values().first())};
     QNetworkReply *const reply = m_qnam.get(QNetworkRequest{url});
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -220,7 +221,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     QTextDocument doc;
 
     // Title
-    rx.setPattern("<h1 class=\"smb-article-title\">(.*)</h1>");
+    rx.setPattern(R"(<h1 class="smb-article-title"[^>]*>(.*)</h1>)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie.setName(doc.toPlainText());
