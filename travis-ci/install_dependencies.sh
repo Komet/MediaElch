@@ -1,17 +1,19 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ###########################################################
 #
 # Travis CI - Install MediaElch dependencies
 #
 # This script installs all dependencies for MediaElch on
-# linux (GCC or clang) and macOS (clang).
+# linux (GCC) and macOS (clang) and windows (MXE).
 #
 # Linux builds can use different Qt versions. Set $QT_PPA
-# to select a Qt version. For available versions see
-# https://launchpad.net/~beineri/
+# to select a Qt version. All available versions are
+# listed here: https://launchpad.net/~beineri/
 # macOS builds use the latest Qt version available with
 # Homebrew (https://brew.sh).
+# Windows builds use the latest Qt version available
+# with mxe.
 #
 ###########################################################
 
@@ -20,76 +22,118 @@ set -e
 
 if [ -z ${QT+x} ]; then print_error "\$QT is unset"; return 1; fi
 
-# Load utils (color output, folding, etc.)
-. "${TRAVIS_BUILD_DIR}/travisCI/utils.sh"
-cd "${TRAVIS_BUILD_DIR}"
+SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
-print_important "Getting dependencies for building for ${QT} on ${TRAVIS_OS_NAME}"
+# Load utils (paths, color output, folding, etc.)
+. "${SCRIPT_DIR}/utils.sh"
 
-if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+pushd "${PROJECT_DIR}" > /dev/null
 
-	if [ -z ${QT_PPA+x} ]; then
-		print_error "\$QT_PPA is unset";
-		print_error "For valid PPAs see https://launchpad.net/~beineri/"
-		return 1;
-	fi
+print_important "Getting dependencies for building for ${QT} on ${OS_NAME}"
 
-	#######################################################
-	# Repositories
+if [ $(lc "${OS_NAME}") = "linux" ]; then
 
-	print_info "Add repositories + update"
-	fold_start "update"
-	sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-	sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-trusty
-	if [ "${CXX}" = "clang++" ]; then
-		wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-		sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main"
-	fi
-	sudo apt-get -qq update
-	fold_end "update"
+	if [ $QT = "qtWin" ]; then
+		MXEDIR="/usr/lib/mxe"
+		MXETARGET="i686-w64-mingw32.shared"
 
-	#######################################################
-	# Compilers
+		# defs.sh is read by "configure.sh"
+		echo "#!/usr/bin/env bash"        >  ${SCRIPT_DIR}/defs.sh
+		echo "MXEDIR=\"${MXEDIR}\""       >> ${SCRIPT_DIR}/defs.sh
+		echo "MXETARGET=\"${MXETARGET}\"" >> ${SCRIPT_DIR}/defs.sh
 
-	print_info "Updating compiler \"${CXX}\"..."
-	fold_start "update_compiler"
-	if [ "${CXX}" = "g++" ]; then
-		sudo apt-get install -y g++-7 gcc-7
-		# Overwrite defaults
-		sudo ln -sf ${BIN_DIR}/g++-7 ${BIN_DIR}/g++
-		sudo ln -sf ${BIN_DIR}/gcc-7 ${BIN_DIR}/gcc
+		#######################################################
+		# Repositories
 
-	elif [ "${CXX}" = "clang++" ]; then
-		sudo apt-get install -y clang++-6.0 clang-6.0
-		# Overwrite defaults
-		sudo ln -s ${BIN_DIR}/clang++-6.0 ${BIN_DIR}/clang++
-		sudo ln -s ${BIN_DIR}/clang-6.0 ${BIN_DIR}/clang
+		fold_start "mxe_repo"
+		print_info "Adding pkg.mxe.cc apt repo"
+		echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mxeapt.list > /dev/null
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
+		fold_end
+
+		fold_start "update"
+		print_info "Updating apt cache"
+		sudo apt-get -qq update
+		fold_end
+
+		# Needed to extract MediaInfoDLL
+		sudo apt install -y p7zip
+
+		#######################################################
+		# MXE Dependencies
+
+		fold_start "mxe_install"
+		print_info "Installing mxe"
+		sudo apt-get install -y mxe-${MXETARGET}-gcc \
+			mxe-${MXETARGET}-qtbase \
+			mxe-${MXETARGET}-qttools \
+			mxe-${MXETARGET}-qtscript \
+			mxe-${MXETARGET}-qtmultimedia \
+			mxe-${MXETARGET}-qtimageformats \
+			mxe-${MXETARGET}-qtquickcontrols
+		fold_end
+
+		echo "Make MXE writable"
+		sudo chmod -R a+w "${MXEDIR}"
+
+		#######################################################
+		# MediaInfoDLL & ZenLib
+
+		fold_start "mediainfo"
+		print_info "Downloading MediaInfoDLL and ZenLib headers"
+		svn checkout https://github.com/MediaArea/MediaInfoLib/trunk/Source/MediaInfoDLL ./MediaInfoDLL
+		svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib ./ZenLib
+		fold_end
 
 	else
-		print_error "Unknown compiler."
-		exit 1;
+
+		if [ -z ${QT_PPA+x} ]; then
+			print_error "\$QT_PPA is unset";
+			print_error "For valid PPAs see https://launchpad.net/~beineri/"
+			return 1;
+		fi
+
+		#######################################################
+		# Repositories
+
+		fold_start "update"
+		print_info "Add repositories + update"
+		sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+		sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-trusty
+		sudo apt-get -qq update
+		fold_end
+
+		#######################################################
+		# Compiler
+
+		fold_start "update_compiler"
+		print_info "Updating GCC"
+		sudo apt-get install -y g++-7 gcc-7
+		sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
+		sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+		fold_end
+
+		#######################################################
+		# Dependencies
+
+		fold_start "install_qt"
+		print_info "Installing Qt packages"
+		sudo apt-get install -y ${QT}base ${QT}script ${QT}multimedia ${QT}declarative
+		fold_end
+
+		fold_start "install_other"
+		print_info "Installing other dependencies"
+		sudo apt-get install -y libcurl4-openssl-dev libmediainfo-dev libpulse-dev zlib1g-dev libzen-dev
+		fold_end
 	fi
-	fold_end "update_compiler"
 
-	#######################################################
-	# Dependencies
+elif [ "${OS_NAME}" = "Darwin" ]; then
 
-	print_info "Installing Qt packages"
-	fold_start "qt_install"
-	sudo apt-get install -y ${QT}base ${QT}script ${QT}multimedia ${QT}declarative
-	fold_end "qt_install"
-
-	print_info "Installing other dependencies"
-	fold_start "other_install"
-	sudo apt-get install -y libcurl4-openssl-dev libmediainfo-dev libpulse-dev zlib1g-dev libzen-dev
-	fold_end "other_install"
-
-elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-
-	print_info "Dowload MediaInfoLib sources"
+	fold_start "download_libraries"
+	print_info "Dowloading MediaInfoLib sources"
 	svn checkout https://github.com/MediaArea/MediaInfoLib/trunk/Source/MediaInfoDLL
 
-	print_info "Dowload ZenLib sources"
+	print_info "Dowloading ZenLib sources"
 	svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib
 
 	print_info "Updating homebrew"
@@ -100,11 +144,12 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	}
 	print_info "Brewing packages: qt5 media-info"
 	brew install qt5 media-info
+	fold_end
 
 else
-	print_error "Unknown operating system."
-	exit 1;
+	print_error "Unknown operating system: ${OS_NAME}"
+	exit 1
 fi
 
 print_important "Successfully installed dependencies"
-cd "${TRAVIS_BUILD_DIR}"
+popd > /dev/null
