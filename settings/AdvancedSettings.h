@@ -1,6 +1,7 @@
 #ifndef ADVANCEDSETTINGS_H
 #define ADVANCEDSETTINGS_H
 
+#include <QByteArray>
 #include <QHash>
 #include <QObject>
 #include <QStringList>
@@ -13,7 +14,7 @@ class AdvancedSettings : public QObject
     Q_OBJECT
 public:
     explicit AdvancedSettings(QObject *parent = nullptr);
-    ~AdvancedSettings() override;
+    ~AdvancedSettings() override = default;
 
     bool debugLog() const;
     QString logFile() const;
@@ -54,18 +55,14 @@ private:
     bool m_writeThumbUrlsToNfo;
     bool m_useFirstStudioOnly;
 
+    QByteArray getAdvancedSettingsXml() const;
     void loadSettings();
     void reset();
     void loadLog(QXmlStreamReader &xml);
     void loadGui(QXmlStreamReader &xml);
     void loadSortTokens(QXmlStreamReader &xml);
-    void loadGenreMappings(QXmlStreamReader &xml);
     void loadFilters(QXmlStreamReader &xml);
-    void loadAudioCodecMappings(QXmlStreamReader &xml);
-    void loadVideoCodecMappings(QXmlStreamReader &xml);
-    void loadCertificationMappings(QXmlStreamReader &xml);
-    void loadStudioMappings(QXmlStreamReader &xml);
-    void loadCountryMappings(QXmlStreamReader &xml);
+    void loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &map);
 };
 
 #endif // ADVANCEDSETTINGS_H
