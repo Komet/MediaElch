@@ -121,9 +121,12 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
             option.rect.y(),
             option.rect.width() - albumIndent - itemIndent,
             option.rect.height() - 1);
-        painter->setFont(index.data(Qt::FontRole).value<QFont>());
+        const QFont font = index.data(Qt::FontRole).value<QFont>();
+        painter->setFont(font);
         painter->setPen(index.data(isSelected ? MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-        painter->drawText(albumRect, index.data().toString(), QTextOption(Qt::AlignVCenter));
+        const QFontMetrics metrics(font);
+        const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, albumRect.width());
+        painter->drawText(albumRect, itemStr, QTextOption(Qt::AlignVCenter));
     }
 
     painter->restore();

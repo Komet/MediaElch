@@ -201,11 +201,12 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
 
         QRect itemRect(
             option.rect.x() + itemIndent, option.rect.y(), option.rect.width() - itemIndent, option.rect.height() - 1);
-        QFont font = index.data(Qt::FontRole).value<QFont>();
+        const QFont font = index.data(Qt::FontRole).value<QFont>();
         painter->setFont(font);
         painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-        painter->drawText(itemRect, index.data().toString(), QTextOption(Qt::AlignVCenter));
+        const QFontMetrics metrics(font);
+        const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, itemRect.width());
+        painter->drawText(itemRect, itemStr, QTextOption(Qt::AlignVCenter));
     }
-
     painter->restore();
 }

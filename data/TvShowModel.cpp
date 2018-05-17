@@ -62,8 +62,9 @@ TvShowModel::~TvShowModel()
 int TvShowModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    if (!parent.isValid())
+    if (!parent.isValid()) {
         return 9;
+    }
     return m_rootItem->columnCount();
 }
 
@@ -75,8 +76,9 @@ int TvShowModel::columnCount(const QModelIndex &parent) const
  */
 QVariant TvShowModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return QVariant();
+    }
 
     TvShowModelItem *item = getItem(index);
 
@@ -111,10 +113,12 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return Helper::instance()->appendArticle(item->data(0).toString());
     } else if (role == Qt::FontRole) {
         QFont font;
-        if (item->data(2).toBool())
+        if (item->data(2).toBool()) {
             font.setItalic(true);
-        if (item->type() == TypeTvShow || item->type() == TypeSeason)
+        }
+        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
             font.setBold(true);
+        }
 
         if (item->type() == TypeSeason || item->type() == TypeEpisode) {
 #ifdef Q_OS_MAC
@@ -129,12 +133,15 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {
         return item->data(1);
     } else if (role == Qt::ForegroundRole) {
-        if (item->data(2).toBool())
+        if (item->data(2).toBool()) {
             return QColor(255, 0, 0);
-        if (item->type() == TypeEpisode && item->tvShowEpisode()->isDummy())
+        }
+        if (item->type() == TypeEpisode && item->tvShowEpisode()->isDummy()) {
             return QColor(150, 150, 150);
-        if (item->type() == TypeSeason && item->tvShow()->isDummySeason(item->seasonNumber()))
+        }
+        if (item->type() == TypeSeason && item->tvShow()->isDummySeason(item->seasonNumber())) {
             return QColor(150, 150, 150);
+        }
         return QColor(17, 51, 80);
     } else if (role == TvShowRoles::HasChanged) {
         return item->data(2);
@@ -165,13 +172,16 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     } else if (role == TvShowRoles::SelectionForeground) {
         return QColor(255, 255, 255);
     } else if (role == TvShowRoles::FilePath) {
-        if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty())
+        if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty()) {
             return item->tvShowEpisode()->files().first();
-        if (item->type() == TypeTvShow)
+        }
+        if (item->type() == TypeTvShow) {
             return item->tvShow()->dir();
+        }
     } else if (role == TvShowRoles::HasDummyEpisodes) {
-        if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber()))
+        if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber())) {
             return true;
+        }
     }
     return QVariant();
 }
@@ -184,9 +194,10 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        auto item = static_cast<TvShowModelItem *>(index.internalPointer());
-        if (item)
+        const auto item = static_cast<TvShowModelItem *>(index.internalPointer());
+        if (item) {
             return item;
+        }
     }
     return m_rootItem;
 }
@@ -200,16 +211,18 @@ TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
  */
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if (parent.isValid() && parent.column() != 0)
+    if (parent.isValid() && parent.column() != 0) {
         return QModelIndex();
+    }
 
-    TvShowModelItem *parentItem = getItem(parent);
+    const TvShowModelItem *const parentItem = getItem(parent);
+    TvShowModelItem *const childItem = parentItem->child(row);
 
-    TvShowModelItem *childItem = parentItem->child(row);
-    if (childItem)
+    if (childItem) {
         return createIndex(row, column, childItem);
-    else
+    } else {
         return QModelIndex();
+    }
 }
 
 /**
@@ -235,14 +248,16 @@ TvShowModelItem *TvShowModel::appendChild(TvShow *show)
  */
 QModelIndex TvShowModel::parent(const QModelIndex &index) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return QModelIndex();
+    }
 
-    TvShowModelItem *childItem = getItem(index);
-    TvShowModelItem *parentItem = childItem->parent();
+    const TvShowModelItem *const childItem = getItem(index);
+    TvShowModelItem *const parentItem = childItem->parent();
 
-    if (parentItem == m_rootItem)
+    if (parentItem == m_rootItem) {
         return QModelIndex();
+    }
 
     return createIndex(parentItem->childNumber(), 0, parentItem);
 }
@@ -256,10 +271,10 @@ QModelIndex TvShowModel::parent(const QModelIndex &index) const
  */
 bool TvShowModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
-    TvShowModelItem *parentItem = getItem(parent);
+    TvShowModelItem *const parentItem = getItem(parent);
 
     beginRemoveRows(parent, position, position + rows - 1);
-    bool success = parentItem->removeChildren(position, rows);
+    const bool success = parentItem->removeChildren(position, rows);
     endRemoveRows();
 
     return success;
@@ -272,7 +287,7 @@ bool TvShowModel::removeRows(int position, int rows, const QModelIndex &parent)
  */
 int TvShowModel::rowCount(const QModelIndex &parent) const
 {
-    TvShowModelItem *parentItem = getItem(parent);
+    const TvShowModelItem *const parentItem = getItem(parent);
     return parentItem->childCount();
 }
 
@@ -294,9 +309,9 @@ void TvShowModel::clear()
  */
 void TvShowModel::onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
 {
-    QModelIndex showIndex = this->index(showItem->childNumber(), 0);
-    QModelIndex seasonIndex = this->index(seasonItem->childNumber(), 0, showIndex);
-    QModelIndex index = this->index(episodeItem->childNumber(), 0, seasonIndex);
+    const QModelIndex showIndex = this->index(showItem->childNumber(), 0);
+    const QModelIndex seasonIndex = this->index(seasonItem->childNumber(), 0, showIndex);
+    const QModelIndex index = this->index(episodeItem->childNumber(), 0, seasonIndex);
     emit dataChanged(index, index);
 }
 
@@ -331,11 +346,13 @@ int TvShowModel::hasNewShowOrEpisode()
 {
     int newShows = 0;
     foreach (TvShow *show, tvShows()) {
-        if (!show->infoLoaded())
-            newShows++;
+        if (!show->infoLoaded()) {
+            ++newShows;
+        }
         foreach (TvShowEpisode *episode, show->episodes()) {
-            if (!episode->infoLoaded())
-                newShows++;
+            if (!episode->infoLoaded()) {
+                ++newShows;
+            }
         }
     }
     return newShows;

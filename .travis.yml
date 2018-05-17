@@ -1,0 +1,42 @@
+language: generic
+matrix:
+  include:
+  - env: QT=qtMac CXX=clang++ CC=clang
+    os: osx
+  - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
+    os: linux
+  - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
+    os: linux
+  - env: QT=qtWin
+    os: linux
+
+dist: trusty
+sudo: required
+
+branches:
+  only:
+  - master
+
+install:
+- "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+
+before_script:
+- "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+
+script:
+- if [ $QT = qtWin ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
+- make -j 2
+
+after_success:
+- "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+deploy:
+  provider: bintray
+  skip_cleanup: true
+  on:
+    branch: master
+    condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+  user: komet
+  key:
+    secure: wvecI6fDgvq0bXenVBWzN/Xydgh2qJ9iD9EfHagVGr2EpjCtr7HulUMzeWUV/dxEzyvhMWJ5EhETLb4uAVFaLzrMIxWMvby2sOD6wsSCm+saizqmw/EUWj0GOcn99ULUi0WpjCipNqY24quf7bkhs46o9eVAOisLe7H+KiJct92aCj4Im5YAbxgUbh+bzK3a/fSVf4lTQmamx4dkx3oKe9v71SUdqO+cbuKffebBZnLO8H+jAocgsdK/SYGJtXayYTzIVJwClUOh8aTIRxsELxA8MJ/ByuDzxfCEg+33HzOe0+vgORInePkXexRSummYy5m0z1GXTwgb/Ue2Gw0iUkTRr9lBYXWc0ObEdz0traitWfuqnR2PwNeELlHL6EBTpA1Rdl4NBR1ZLEX/E0BpU0bALT8goqpFaSe2ocLd6e0iHaJ0Evs4s8uX4NsbpE9V+zJxmSFBFv5FZJXhDvah5w9FNs9GSMXwaKMZg1WRHRa94RzSmuYWfRi4DfXF3hgCxwiXW6Vp3myDdHsAumGJsCJNxF7gVVqvnpUQ9Ox4z0fKPgNELZyKlSc4lt/TjuKQ+dFr7QdgbvUl1IO+T/Uzi8jGP2wgzCgJ75qh4rtgdhiIWIhAOhJyS+prw2CAUhAnO0iwOQa9ZcYapVqsGZ+7FWzXtEdxVX3Tx0vc5DpgaM4=
+  file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json

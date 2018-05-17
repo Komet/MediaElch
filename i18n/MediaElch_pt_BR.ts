@@ -280,12 +280,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Deletar Classificação Indicativa</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="187"/>
+        <location filename="../movies/CertificationWidget.cpp" line="184"/>
         <source>New Certification</source>
         <translation>Nova Classificação Indicativa</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="297"/>
+        <location filename="../movies/CertificationWidget.cpp" line="294"/>
         <source>All Movies Saved</source>
         <translation>Todos os filmes foram salvos</translation>
     </message>
@@ -313,12 +313,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Selecionar Outra imagem</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="400"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="401"/>
         <source>Really delete image?</source>
         <translation>Realmente quer deletar a imagem?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="401"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="402"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Você tem certeza que quer deletar esta imagem?</translation>
     </message>
@@ -340,7 +340,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="25"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="347"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="348"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n concertos</numerusform>
@@ -383,7 +383,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Abrir Arquivo NFO</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="349"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="350"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 de %n concertos</numerusform>
@@ -647,8 +647,8 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="485"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="565"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="568"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="567"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="570"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -742,42 +742,42 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="592"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="560"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="594"/>
         <source>Track %1</source>
         <translation>Track %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="564"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="567"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="596"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="566"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="569"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="597"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="598"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="566"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="569"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="568"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="571"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="584"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="586"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="648"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="650"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="658"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="660"/>
         <source>Concerts Saved</source>
         <translation>Concertos Salvos</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="685"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="687"/>
         <source>All Concerts Saved</source>
         <translation>Todos os Concertos foram Salvos</translation>
     </message>
@@ -1244,7 +1244,7 @@ Veja em  Ajustes -&gt; Importar.</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="28"/>
-        <location filename="../movies/FilesWidget.cpp" line="537"/>
+        <location filename="../movies/FilesWidget.cpp" line="536"/>
         <source>%n movies</source>
         <translation>
             <numerusform>%n filmes</numerusform>
@@ -1302,7 +1302,7 @@ Veja em  Ajustes -&gt; Importar.</translation>
         <translation>Abrir Arquivo NFO</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="539"/>
+        <location filename="../movies/FilesWidget.cpp" line="538"/>
         <source>%1 of %n movies</source>
         <translation>
             <numerusform>%1 de %n filmes</numerusform>
@@ -2179,8 +2179,8 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Nova Coluna</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="697"/>
-        <location filename="../globals/ImageDialog.cpp" line="704"/>
+        <location filename="../globals/ImageDialog.cpp" line="698"/>
+        <location filename="../globals/ImageDialog.cpp" line="705"/>
         <source>No images found</source>
         <translation>Nenhuma imagem encontrada</translation>
     </message>
@@ -2220,27 +2220,27 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Aceitar Imagens</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="149"/>
+        <location filename="../globals/ImageDialog.cpp" line="151"/>
         <source>Default</source>
         <translation>Padrão</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="566"/>
+        <location filename="../globals/ImageDialog.cpp" line="567"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="566"/>
+        <location filename="../globals/ImageDialog.cpp" line="567"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Imagens (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="701"/>
+        <location filename="../globals/ImageDialog.cpp" line="702"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Imagens fornecidas por  &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="705"/>
+        <location filename="../globals/ImageDialog.cpp" line="706"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Contribua subindo novas imagens para &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -2434,12 +2434,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Importando concerto...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="668"/>
+        <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import finished</source>
         <translation>Importação finalizada</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/ImportDialog.cpp" line="668"/>
+        <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>um: importação de %n arquivo(s) foi finalizada</numerusform>
@@ -2447,7 +2447,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         </translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="671"/>
+        <location filename="../downloads/ImportDialog.cpp" line="673"/>
         <source>Import has finished</source>
         <translation>Importação finalizada</translation>
     </message>
@@ -2588,32 +2588,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="790"/>
+        <location filename="../main/MainWindow.cpp" line="759"/>
         <source>Reload (%1)</source>
         <translation>Recarregar (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="798"/>
+        <location filename="../main/MainWindow.cpp" line="767"/>
         <source>Reload all Movies (%1)</source>
         <translation>Recarregar Todos os Filmes (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="805"/>
+        <location filename="../main/MainWindow.cpp" line="774"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Recarregar Todos os Seriados (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="817"/>
+        <location filename="../main/MainWindow.cpp" line="786"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Recarregar Todos os Concertos (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="835"/>
+        <location filename="../main/MainWindow.cpp" line="804"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Recarregar Todos os Downloads (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="841"/>
+        <location filename="../main/MainWindow.cpp" line="810"/>
         <source>Reload Music (%1)</source>
         <translation>Recarregando Música (%1)</translation>
     </message>
@@ -2746,32 +2746,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Carregando informações do filme...</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="260"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="261"/>
         <source>Movie information was loaded</source>
         <translation>Informação do filme foi carregada</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="282"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="283"/>
         <source>Creating destination directory failed</source>
         <translation>Criação do diretório de destino falhou</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="283"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="284"/>
         <source>The destination directory %1 could not be created</source>
         <translation>O diretório destino %1 não pode ser criado</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="369"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>MakeMKV import finished</source>
         <translation>MakeMKV Importação finalizada</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="369"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>Import with MakeMKV has finished</source>
         <translation>Importar com MakeMKV finalizado</translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.cpp" line="372"/>
+        <location filename="../downloads/MakeMkvDialog.cpp" line="373"/>
         <source>Import has finished</source>
         <translation>Importação finalizada</translation>
     </message>
@@ -3060,7 +3060,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Procurar Filmes Duplicados</translation>
     </message>
     <message>
-        <location filename="../movies/MovieDuplicates.cpp" line="68"/>
+        <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
         <translation>Procurando Filmes Duplicados...</translation>
     </message>
@@ -3784,8 +3784,8 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1067"/>
-        <location filename="../movies/MovieWidget.cpp" line="779"/>
-        <location filename="../movies/MovieWidget.cpp" line="782"/>
+        <location filename="../movies/MovieWidget.cpp" line="780"/>
+        <location filename="../movies/MovieWidget.cpp" line="783"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -3932,79 +3932,79 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estúdio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="513"/>
+        <location filename="../movies/MovieWidget.cpp" line="514"/>
         <source>Downloading images...</source>
         <translation>Transferindo Imagens...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="771"/>
-        <location filename="../movies/MovieWidget.cpp" line="807"/>
+        <location filename="../movies/MovieWidget.cpp" line="772"/>
+        <location filename="../movies/MovieWidget.cpp" line="808"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1174"/>
-        <location filename="../movies/MovieWidget.cpp" line="778"/>
-        <location filename="../movies/MovieWidget.cpp" line="781"/>
-        <location filename="../movies/MovieWidget.cpp" line="811"/>
+        <location filename="../movies/MovieWidget.cpp" line="779"/>
+        <location filename="../movies/MovieWidget.cpp" line="782"/>
         <location filename="../movies/MovieWidget.cpp" line="812"/>
+        <location filename="../movies/MovieWidget.cpp" line="813"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="780"/>
-        <location filename="../movies/MovieWidget.cpp" line="783"/>
+        <location filename="../movies/MovieWidget.cpp" line="781"/>
+        <location filename="../movies/MovieWidget.cpp" line="784"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="798"/>
+        <location filename="../movies/MovieWidget.cpp" line="799"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="899"/>
+        <location filename="../movies/MovieWidget.cpp" line="900"/>
         <source>Saving movie...</source>
         <translation>Salvando filme...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="904"/>
+        <location filename="../movies/MovieWidget.cpp" line="905"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="881"/>
-        <location filename="../movies/MovieWidget.cpp" line="927"/>
+        <location filename="../movies/MovieWidget.cpp" line="882"/>
+        <location filename="../movies/MovieWidget.cpp" line="928"/>
         <source>Saving movies...</source>
         <translation>Salvando filmes...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="897"/>
+        <location filename="../movies/MovieWidget.cpp" line="898"/>
         <source>Movies Saved</source>
         <translation>Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="944"/>
+        <location filename="../movies/MovieWidget.cpp" line="945"/>
         <source>All Movies Saved</source>
         <translation>Todos os Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="966"/>
+        <location filename="../movies/MovieWidget.cpp" line="967"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="967"/>
+        <location filename="../movies/MovieWidget.cpp" line="968"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1124"/>
+        <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1124"/>
+        <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
@@ -4012,12 +4012,12 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="32"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="31"/>
         <source>Searching for Music...</source>
         <translation>Procurando por Músicas...</translation>
     </message>
     <message>
-        <location filename="../music/MusicFileSearcher.cpp" line="96"/>
+        <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
         <translation>Carregando Música...</translation>
     </message>
@@ -4416,14 +4416,14 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="129"/>
-        <location filename="../music/MusicWidget.cpp" line="167"/>
+        <location filename="../music/MusicWidget.cpp" line="119"/>
+        <location filename="../music/MusicWidget.cpp" line="157"/>
         <source>Saving changed Artists and Albums</source>
         <translation>Salvando alterações em Artistas e Álbuns</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidget.cpp" line="147"/>
-        <location filename="../music/MusicWidget.cpp" line="190"/>
+        <location filename="../music/MusicWidget.cpp" line="137"/>
+        <location filename="../music/MusicWidget.cpp" line="180"/>
         <source>All Artists and Albums Saved</source>
         <translation>Todos os Artistas e Álbuns Salvos</translation>
     </message>
@@ -4564,17 +4564,17 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estilo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="220"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="200"/>
         <source>Saving Album...</source>
         <translation>Salvando Álbum...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="226"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="206"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="510"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="490"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
@@ -4742,22 +4742,22 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estilo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="210"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="193"/>
         <source>Saving Artist...</source>
         <translation>Salvando Artista...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="216"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="199"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="479"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="462"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="552"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="535"/>
         <source>Unknown Album</source>
         <translation>Álbum Desconhecio</translation>
     </message>
@@ -4879,27 +4879,27 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Instalador</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="51"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
         <translation>Plugin está sendo instalado...</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="58"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
         <translation>Plugin está sendo atualizado...</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="66"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
         <translation>Plugin foi instalado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="74"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
         <translation>Plugin foi atualizado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../plugins/PluginManagerDialog.cpp" line="82"/>
+        <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
         <translation>Um erro ocorreu durante a instalação do plugin.</translation>
     </message>
@@ -4941,7 +4941,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>O arquivo de log %1 não pode ser aberto para escrita.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="403"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="404"/>
         <source>Do not ask again</source>
         <translation>Não perguntar novamente</translation>
     </message>
@@ -4951,47 +4951,47 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Não verificar por atualizações</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="406"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="407"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Não apresentar esta dica novamente</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="530"/>
+        <location filename="../globals/Helper.cpp" line="531"/>
         <source>No Label</source>
         <translation>Sem Rótulo</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="531"/>
+        <location filename="../globals/Helper.cpp" line="532"/>
         <source>Red</source>
         <translation>Vermelho</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="532"/>
+        <location filename="../globals/Helper.cpp" line="533"/>
         <source>Orange</source>
         <translation>Laranja</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="533"/>
+        <location filename="../globals/Helper.cpp" line="534"/>
         <source>Yellow</source>
         <translation>Amarelo</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="534"/>
+        <location filename="../globals/Helper.cpp" line="535"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="535"/>
+        <location filename="../globals/Helper.cpp" line="536"/>
         <source>Blue</source>
         <translation>Azul</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="536"/>
+        <location filename="../globals/Helper.cpp" line="537"/>
         <source>Purple</source>
         <translation>Roxo</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="537"/>
+        <location filename="../globals/Helper.cpp" line="538"/>
         <source>Grey</source>
         <translation>Cinza</translation>
     </message>
@@ -5371,22 +5371,22 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="71"/>
+        <location filename="../sets/SetsWidget.cpp" line="70"/>
         <source>Add Movie Set</source>
         <translation>Adicionar Coletânea</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="72"/>
+        <location filename="../sets/SetsWidget.cpp" line="71"/>
         <source>Delete Movie Set</source>
         <translation>Deletar Coletânea</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="471"/>
+        <location filename="../sets/SetsWidget.cpp" line="470"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="497"/>
+        <location filename="../sets/SetsWidget.cpp" line="496"/>
         <source>New Movie Set</source>
         <translation>Nova Coletânea</translation>
     </message>
@@ -5567,7 +5567,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <location filename="../settings/SettingsWindow.ui" line="489"/>
         <location filename="../settings/SettingsWindow.ui" line="753"/>
         <location filename="../settings/SettingsWindow.ui" line="1022"/>
-        <location filename="../settings/SettingsWindow.cpp" line="798"/>
+        <location filename="../settings/SettingsWindow.cpp" line="788"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
@@ -5582,7 +5582,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <location filename="../settings/SettingsWindow.ui" line="503"/>
         <location filename="../settings/SettingsWindow.ui" line="774"/>
         <location filename="../settings/SettingsWindow.ui" line="1036"/>
-        <location filename="../settings/SettingsWindow.cpp" line="808"/>
+        <location filename="../settings/SettingsWindow.cpp" line="798"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
@@ -5590,28 +5590,28 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <location filename="../settings/SettingsWindow.ui" line="510"/>
         <location filename="../settings/SettingsWindow.ui" line="781"/>
         <location filename="../settings/SettingsWindow.ui" line="1043"/>
-        <location filename="../settings/SettingsWindow.cpp" line="810"/>
+        <location filename="../settings/SettingsWindow.cpp" line="800"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="517"/>
         <location filename="../settings/SettingsWindow.ui" line="1050"/>
-        <location filename="../settings/SettingsWindow.cpp" line="809"/>
+        <location filename="../settings/SettingsWindow.cpp" line="799"/>
         <source>Disc Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="584"/>
         <location filename="../settings/SettingsWindow.ui" line="767"/>
-        <location filename="../settings/SettingsWindow.cpp" line="811"/>
+        <location filename="../settings/SettingsWindow.cpp" line="801"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="591"/>
         <location filename="../settings/SettingsWindow.ui" line="957"/>
-        <location filename="../settings/SettingsWindow.cpp" line="812"/>
+        <location filename="../settings/SettingsWindow.cpp" line="802"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
@@ -5835,7 +5835,7 @@ Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</trans
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1828"/>
         <location filename="../settings/SettingsWindow.ui" line="1831"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Music</source>
         <translation>Música</translation>
     </message>
@@ -5916,7 +5916,7 @@ Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</trans
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1658"/>
-        <location filename="../settings/SettingsWindow.cpp" line="631"/>
+        <location filename="../settings/SettingsWindow.cpp" line="621"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -5932,19 +5932,19 @@ Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</trans
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1715"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Movies</source>
         <translation>Filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1726"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>TV Shows</source>
         <translation>Seriados</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1737"/>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Concerts</source>
         <translation>Concertos</translation>
     </message>
@@ -5964,178 +5964,178 @@ Digite abaixo o Host (IP) e a Porta do webserver (usualmente 80 ou 8080).</trans
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="544"/>
+        <location filename="../settings/SettingsWindow.cpp" line="534"/>
         <source>Settings saved</source>
         <translation>Ajustes salvos</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="579"/>
+        <location filename="../settings/SettingsWindow.cpp" line="569"/>
         <source>Downloads</source>
         <translation>Importação</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="617"/>
+        <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Organizar filmes somente funciona para filmes que ainda não tenham sido organizados em Pastas Separadas.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="625"/>
+        <location filename="../settings/SettingsWindow.cpp" line="615"/>
         <source>Are you sure?</source>
         <translation>Você tem certeza?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="627"/>
+        <location filename="../settings/SettingsWindow.cpp" line="617"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Esta operação ordena todos os filmes deste diretório para sub-diretórios separando-os com base no nome do arquivo. Clique em &quot;Ok&quot;, se isso é o que você deseja fazer. </translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="630"/>
+        <location filename="../settings/SettingsWindow.cpp" line="620"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="675"/>
+        <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Escolha um diretório contendo seus filmes, seriados ou concertos</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="698"/>
+        <location filename="../settings/SettingsWindow.cpp" line="688"/>
         <source>Choose a directory where your movie set artwork is stored</source>
         <translation>Escolha um diretório onde suas artes dos filmes serão armazenadas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="728"/>
+        <location filename="../settings/SettingsWindow.cpp" line="718"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
         <translation>Tema &quot;%1&quot; foi instalado com sucesso</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.cpp" line="721"/>
         <location filename="../settings/SettingsWindow.cpp" line="731"/>
-        <location filename="../settings/SettingsWindow.cpp" line="741"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
         <translation>Ocorreu um erro enquanto processando o tema &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="738"/>
+        <location filename="../settings/SettingsWindow.cpp" line="728"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
         <translation>Tema &quot;%1&quot; foi desinstalado com sucesso</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="751"/>
+        <location filename="../settings/SettingsWindow.cpp" line="741"/>
         <source>Don&apos;t use</source>
         <translation>Não use</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="790"/>
-        <location filename="../settings/SettingsWindow.cpp" line="837"/>
+        <location filename="../settings/SettingsWindow.cpp" line="780"/>
+        <location filename="../settings/SettingsWindow.cpp" line="827"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="791"/>
+        <location filename="../settings/SettingsWindow.cpp" line="781"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="792"/>
-        <location filename="../settings/SettingsWindow.cpp" line="838"/>
+        <location filename="../settings/SettingsWindow.cpp" line="782"/>
+        <location filename="../settings/SettingsWindow.cpp" line="828"/>
         <source>Rating</source>
         <translation>Rating</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="793"/>
+        <location filename="../settings/SettingsWindow.cpp" line="783"/>
         <source>Released</source>
         <translation>Lançado</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="794"/>
-        <location filename="../settings/SettingsWindow.cpp" line="840"/>
+        <location filename="../settings/SettingsWindow.cpp" line="784"/>
+        <location filename="../settings/SettingsWindow.cpp" line="830"/>
         <source>Runtime</source>
         <translation>Duração</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="795"/>
-        <location filename="../settings/SettingsWindow.cpp" line="843"/>
+        <location filename="../settings/SettingsWindow.cpp" line="785"/>
+        <location filename="../settings/SettingsWindow.cpp" line="833"/>
         <source>Certification</source>
         <translation>Classificação</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="796"/>
+        <location filename="../settings/SettingsWindow.cpp" line="786"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="797"/>
-        <location filename="../settings/SettingsWindow.cpp" line="844"/>
+        <location filename="../settings/SettingsWindow.cpp" line="787"/>
+        <location filename="../settings/SettingsWindow.cpp" line="834"/>
         <source>Plot</source>
         <translation>Enredo (Plot)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="799"/>
+        <location filename="../settings/SettingsWindow.cpp" line="789"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="800"/>
-        <location filename="../settings/SettingsWindow.cpp" line="846"/>
+        <location filename="../settings/SettingsWindow.cpp" line="790"/>
+        <location filename="../settings/SettingsWindow.cpp" line="836"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="801"/>
-        <location filename="../settings/SettingsWindow.cpp" line="845"/>
+        <location filename="../settings/SettingsWindow.cpp" line="791"/>
+        <location filename="../settings/SettingsWindow.cpp" line="835"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="802"/>
+        <location filename="../settings/SettingsWindow.cpp" line="792"/>
         <source>Studios</source>
         <translation>Estúdios</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="803"/>
+        <location filename="../settings/SettingsWindow.cpp" line="793"/>
         <source>Countries</source>
         <translation>Países</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="804"/>
-        <location filename="../settings/SettingsWindow.cpp" line="842"/>
+        <location filename="../settings/SettingsWindow.cpp" line="794"/>
+        <location filename="../settings/SettingsWindow.cpp" line="832"/>
         <source>Writer</source>
         <translation>Roteirista</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="805"/>
-        <location filename="../settings/SettingsWindow.cpp" line="841"/>
+        <location filename="../settings/SettingsWindow.cpp" line="795"/>
+        <location filename="../settings/SettingsWindow.cpp" line="831"/>
         <source>Director</source>
         <translation>Diretor</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="806"/>
+        <location filename="../settings/SettingsWindow.cpp" line="796"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="807"/>
+        <location filename="../settings/SettingsWindow.cpp" line="797"/>
         <source>Set</source>
         <translation>Coletânea</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="813"/>
-        <location filename="../settings/SettingsWindow.cpp" line="847"/>
+        <location filename="../settings/SettingsWindow.cpp" line="803"/>
+        <location filename="../settings/SettingsWindow.cpp" line="837"/>
         <source>Unsupported</source>
         <translation>Não Suportado</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="839"/>
+        <location filename="../settings/SettingsWindow.cpp" line="829"/>
         <source>First Aired</source>
         <translation>Estreou</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="853"/>
+        <location filename="../settings/SettingsWindow.cpp" line="843"/>
         <source>Choose unrar</source>
         <translation>Escolha unrar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="860"/>
+        <location filename="../settings/SettingsWindow.cpp" line="850"/>
         <source>Choose makemkvcon</source>
         <translation>Escolha makemvkcon</translation>
     </message>
@@ -6656,22 +6656,22 @@ p, li { white-space: pre-wrap; }
         <translation>Voltar para Trailers</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="320"/>
+        <location filename="../globals/TrailerDialog.cpp" line="319"/>
         <source>Download Finished</source>
         <translation>Download Finalizado</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="330"/>
+        <location filename="../globals/TrailerDialog.cpp" line="329"/>
         <source>The file %1 already exists.</source>
         <translation>O arquivo %1 já existe.</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="331"/>
+        <location filename="../globals/TrailerDialog.cpp" line="330"/>
         <source>Do you want to overwrite it?</source>
         <translation>Você deseja sobrescrevê-lo?</translation>
     </message>
     <message>
-        <location filename="../globals/TrailerDialog.cpp" line="343"/>
+        <location filename="../globals/TrailerDialog.cpp" line="342"/>
         <source>Download Canceled</source>
         <translation>Download Cancelado</translation>
     </message>
@@ -6708,7 +6708,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="590"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n seriados</numerusform>
@@ -6717,7 +6717,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="590"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódios</numerusform>
@@ -6780,19 +6780,19 @@ p, li { white-space: pre-wrap; }
         <translation>Ocultar especiais em episódios ausentes</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="401"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="402"/>
         <source>Show update needed</source>
         <translation>Mostrar quando atualização for necessária</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="403"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="404"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Você precisa atualizar o seriado para mostrar episódios ausentes.
 Depois o MediaElch vai automaticamente procurar novos episódios na inicialização.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="592"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="593"/>
         <source>%1 of %n tv shows</source>
         <translation>
             <numerusform>%1 de %n seriados</numerusform>
@@ -7015,7 +7015,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation>Iniciar Scraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="331"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="336"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n seriados</numerusform>
@@ -7023,7 +7023,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="332"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="337"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódios</numerusform>
@@ -7031,13 +7031,13 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         </translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="334"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="339"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation>Escrapeando %1 e %2 foi finalizado.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="336"/>
-        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="338"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="341"/>
+        <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="343"/>
         <source>Scraping of %1 has finished.</source>
         <translation>Escrapeando %1 foi finalizado.</translation>
     </message>
@@ -7300,18 +7300,18 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation>Formulário</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="185"/>
-        <location filename="../tvShows/TvShowWidget.cpp" line="233"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="165"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="213"/>
         <source>Saving changed TV Shows and Episodes</source>
         <translation>Salvando alterações em Seriados e Episódios</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="209"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="189"/>
         <source>TV Shows and Episodes Saved</source>
         <translation>Seriados e Episódios Salvos</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidget.cpp" line="254"/>
+        <location filename="../tvShows/TvShowWidget.cpp" line="234"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Todos os Seriados e Episódios foram salvos</translation>
     </message>
@@ -7531,8 +7531,8 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1101"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -7588,62 +7588,62 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation>Episódio ausente</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="472"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="506"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="473"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="507"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="478"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="509"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="479"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="482"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="510"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="511"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="481"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="484"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="498"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="499"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="566"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="567"/>
         <source>Episode Saved</source>
         <translation>Episódios Salvos</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="721"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="723"/>
         <source>Unknown Director</source>
         <translation>Diretor Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="770"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="772"/>
         <source>Unknown Writer</source>
         <translation>Roteirista Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="994"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="996"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="995"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="997"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1057"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
@@ -7963,37 +7963,37 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation type="vanished">Adicionar Tag</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="427"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="429"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="455"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="457"/>
         <source>Please wait while your tv show is scraped</source>
         <translation>Por favor aguarde enquanto seu seriado é escrapeado</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="677"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="679"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="820"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="821"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="823"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="904"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="904"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagnes (*.jpg*.jpeg)</translation>
     </message>

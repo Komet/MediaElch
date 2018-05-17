@@ -56,7 +56,7 @@ create_fake_show() {
 }
 
 printf "Creating fake tv shows...       "
-for show in "${root}/fake_data/tvshows_en/*"
+for show in "${root}/fake_data/tvshows_en/"*
 do
 	create_fake_show $show
 done
@@ -79,6 +79,7 @@ do
 	fi
 done < "$concertInput"
 
+printf "  [Done]\n"
 
 ###########################################################
 # Music
@@ -108,7 +109,7 @@ create_fake_music() {
 }
 
 printf "Creating fake music albums...   "
-for artist in "${root}/fake_data/music/*"
+for artist in "${root}/fake_data/music/"*
 do
 	create_fake_music $artist
 done

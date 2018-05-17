@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This XML contains advanced settings for MediaElch (http://mediaelch.de/).
+    All tags contain MediaElch's default values unless stated otherwise.
+-->
+<advancedsettings>
+    <!--
+        When <portableMode> is set to true MediaElch will store its settings,
+        temporary files and caches in the application directory and not in
+        standard locations based on your OS.
+        This settings is only available on Windows.
+    -->
+    <portableMode>false</portableMode>
+
+    <!--
+        If you want to enable the debug mode, change false to true and set a
+        path to a log file. The path should either be absolute or relative
+        to the MediaElch application directory.
+    -->
+    <log>
+        <debug>false</debug>
+        <file>./MediaElch.log</file>
+    </log>
+
+    <!--
+        Interface related settings.
+    -->
+    <gui>
+        <forceCache>false</forceCache>
+    </gui>
+
+    <!--
+        When set to false no thumbnail or poster URLs will be
+        written to the nfo file.
+    -->
+    <writeThumbUrlsToNfo>true</writeThumbUrlsToNfo>
+
+    <!--
+        When cutting a music album booklet in two pieces this percentage
+        will be removed in the middle of the image.
+    -->
+    <bookletCut>2</bookletCut>
+
+    <!--
+        When »MediaElch -> Settings -> "Ignore articles when sorting"« is
+        checked these words are ignored and appended to the movie name
+        ("The Movie" -> "Movie, The").
+    -->
+    <sorttokens>
+        <token>Der</token>
+        <token>Die</token>
+        <token>Das</token>
+        <token>The</token>
+        <token>Le</token>
+        <token>La</token>
+        <token>Les</token>
+        <token>Un</token>
+        <token>Une</token>
+        <token>Des</token>
+    </sorttokens>
+
+    <!--
+        certifications defines a mapping which is applied when data is loaded
+        from a scraper. If uncommented, the example below will replace
+        the certification  "PG-13" with "FSK 12" and "R" with "FSK 18".
+    -->
+    <certifications>
+        <!-- <map from="PG-13" to="FSK 12" />
+        <map from="R" to="FSK 18" />-->
+    </certifications>
+
+    <!--
+        <genres> defines a mapping which is applied when data is loaded from
+        a scraper. If uncommented, the example below will replace the genre
+        "SciFi" with "Science Fiction".
+    -->
+    <genres>
+        <!--<map from="SciFi" to="Science Fiction" />-->
+    </genres>
+
+    <!--
+        <countries> defines a mapping which is applied when data is
+        loaded from a scraper. If uncommented, the example below will
+        replace the country "US" with "United states".
+    -->
+    <countries>
+        <!--<map from="US" to="United States" />-->
+    </countries>
+
+    <!--
+        <studios> defines a mapping which is applied when data is loaded
+        from a scraper. If uncommented, the example below will replace the
+        studio "Studio 1" with "Studio 2". If the attribute "useFirstStudioOnly"
+        is set to "true", MediaElch will only save the first studio found.
+    -->
+    <studios useFirstStudioOnly="false">
+        <!--<map from="Studio 1" to="Studio 2" />-->
+    </studios>
+
+    <!--
+        <audioCodecs> defines a mapping which is applied when
+        streamdetails are loaded. The example below will replace
+        the audio codec "MPA1L3" with "MP3".
+    -->
+    <audioCodecs>
+        <map from="MPA1L2" to="MP2" />
+        <map from="MPA1L3" to="MP3" />
+    </audioCodecs>
+
+    <!--
+        <videoCodecs> defines a mapping which is applied when
+        streamdetails are loaded. The example below will replace
+        the video codec "v_mpeg4/iso/avc" with "h264".
+    -->
+    <videoCodecs>
+        <map from="v_mpeg4/iso/avc" to="h264" />
+    </videoCodecs>
+
+    <!--
+        <fileFilters> defines the extensions of files MediaElch will
+        scan. Multiple extensions can be added comma separated.
+        A special case is <subtitle> these files will also be
+        renamed when renaming a movie.
+    -->
+    <fileFilters>
+        <movies>
+            *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
+            *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            index.bdmv,*.wtv"
+        </movies>
+        <tvShows>
+            *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
+            *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            index.bdmv,*.wtv"
+        </tvShows>
+        <concerts>
+            *.mkv,*.mk3d,*.avi,*.mpg,*.mpeg,*.mp4,*.m2ts,*.disc,
+            *.m4v,*.strm,*.dat,*.flv,*.vob,*.ts,*.iso,*.ogg,*.ogm,
+            *.rmvb,*.img,*.wmv,*.mov,*.divx,VIDEO_TS.IFO,
+            index.bdmv,*.wtv"
+        </concerts>
+        <subtitle>
+            *.idx,*.sub,*.srr,*.srt
+        </subtitle>
+    </fileFilters>
+</advancedsettings>

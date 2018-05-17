@@ -32,7 +32,7 @@ TvShowModelItem::~TvShowModelItem()
  * @param number Child number
  * @return Child
  */
-TvShowModelItem *TvShowModelItem::child(int number)
+TvShowModelItem *TvShowModelItem::child(int number) const
 {
     return m_childItems.value(number);
 }
@@ -76,77 +76,111 @@ QVariant TvShowModelItem::data(int column) const
 {
     switch (column) {
     case 101:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowBanner);
+        }
         break;
+
     case 102:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowPoster);
+        }
         break;
+
     case 103:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowExtraFanart);
+        }
         break;
+
     case 104:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowBackdrop);
+        }
         break;
+
     case 105:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowLogos);
+        }
         break;
+
     case 106:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowThumb);
+        }
         break;
+
     case 107:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowClearArt);
+        }
         break;
+
     case 108:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasImage(ImageType::TvShowCharacterArt);
+        }
         break;
+
     case 109:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasDummyEpisodes();
+        }
         break;
+
     case 110:
         if (m_tvShow
-            && !Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos).isEmpty())
+            && !Manager::instance()
+                    ->mediaCenterInterface()
+                    ->imageFileName(m_tvShow, ImageType::TvShowLogos)
+                    .isEmpty()) {
             return Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos);
+        }
         break;
+
     case 4:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->syncNeeded();
-        else if (m_tvShowEpisode)
+        } else if (m_tvShowEpisode) {
             return m_tvShowEpisode->syncNeeded();
+        }
         break;
+
     case 3:
-        if (!m_season.isEmpty() && m_tvShow)
-            return m_tvShow->hasNewEpisodesInSeason(m_season);
-        else if (m_tvShow)
+        if (!m_season.isEmpty() && m_tvShow) {
+            bool conversionOk = false;
+            int season = m_season.toInt(&conversionOk);
+            return conversionOk && m_tvShow->hasNewEpisodesInSeason(season);
+        } else if (m_tvShow) {
             return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
-        else if (m_tvShowEpisode)
+        } else if (m_tvShowEpisode) {
             return !m_tvShowEpisode->infoLoaded();
+        }
         break;
+
     case 2:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->hasChanged();
-        else if (m_tvShowEpisode)
+        } else if (m_tvShowEpisode) {
             return m_tvShowEpisode->hasChanged();
+        }
         break;
+
     case 1:
-        if (m_tvShow)
+        if (m_tvShow) {
             return m_tvShow->episodeCount();
+        }
         break;
+
     default:
-        if (m_tvShow && m_season.isEmpty())
+        if (m_tvShow && m_season.isEmpty()) {
             return m_tvShow->name();
-        else if (m_tvShowEpisode)
+        } else if (m_tvShowEpisode) {
             return m_tvShowEpisode->completeEpisodeName();
-        else if (!m_season.isEmpty())
+        } else if (!m_season.isEmpty()) {
             return tr("Season %1").arg(m_season);
+        }
         break;
     }
     return QVariant();
@@ -202,7 +236,7 @@ TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, 
  * @brief TvShowModelItem::parent
  * @return Parent item
  */
-TvShowModelItem *TvShowModelItem::parent()
+TvShowModelItem *TvShowModelItem::parent() const
 {
     return m_parentItem;
 }
@@ -215,11 +249,13 @@ TvShowModelItem *TvShowModelItem::parent()
  */
 bool TvShowModelItem::removeChildren(int position, int count)
 {
-    if (position < 0 || position + count > m_childItems.size())
+    if (position < 0 || position + count > m_childItems.size()) {
         return false;
+    }
 
-    for (int row = 0; row < count; ++row)
+    for (int row = 0; row < count; ++row) {
         delete m_childItems.takeAt(position);
+    }
 
     return true;
 }
@@ -294,12 +330,13 @@ int TvShowModelItem::seasonNumber()
  */
 int TvShowModelItem::type()
 {
-    if (m_tvShow && m_season.isEmpty())
+    if (m_tvShow && m_season.isEmpty()) {
         return TypeTvShow;
-    else if (m_tvShowEpisode)
+    } else if (m_tvShowEpisode) {
         return TypeEpisode;
-    else if (!m_season.isEmpty())
+    } else if (!m_season.isEmpty()) {
         return TypeSeason;
+    }
 
     return -1;
 }

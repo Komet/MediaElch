@@ -41,10 +41,11 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) : QObject(parent
 void TvShowEpisode::setFiles(QStringList files)
 {
     m_files = files;
-    if (!files.isEmpty())
+    if (!files.isEmpty()) {
         m_streamDetails = new StreamDetails(this, files);
-    else
+    } else {
         m_streamDetails = new StreamDetails(this, QStringList());
+    }
 }
 
 /**
@@ -78,30 +79,37 @@ void TvShowEpisode::clear()
 
 void TvShowEpisode::clear(QList<int> infos)
 {
-    if (infos.contains(TvShowScraperInfos::Certification))
+    if (infos.contains(TvShowScraperInfos::Certification)) {
         m_certification = "";
+    }
     if (infos.contains(TvShowScraperInfos::Rating)) {
         m_rating = 0;
         m_votes = 0;
         m_top250 = 0;
     }
-    if (infos.contains(TvShowScraperInfos::Director))
+    if (infos.contains(TvShowScraperInfos::Director)) {
         m_directors.clear();
-    if (infos.contains(TvShowScraperInfos::Writer))
+    }
+    if (infos.contains(TvShowScraperInfos::Writer)) {
         m_writers.clear();
-    if (infos.contains(TvShowScraperInfos::Overview))
+    }
+    if (infos.contains(TvShowScraperInfos::Overview)) {
         m_overview = "";
-    if (infos.contains(TvShowScraperInfos::Network))
+    }
+    if (infos.contains(TvShowScraperInfos::Network)) {
         m_network = "";
-    if (infos.contains(TvShowScraperInfos::FirstAired))
+    }
+    if (infos.contains(TvShowScraperInfos::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date;
+    }
     if (infos.contains(TvShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
         m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
-    if (infos.contains(TvShowScraperInfos::Actors))
+    if (infos.contains(TvShowScraperInfos::Actors)) {
         m_actors.clear();
+    }
 
     m_hasChanged = false;
 }
@@ -118,31 +126,28 @@ QList<int> TvShowEpisode::infosToLoad()
  */
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded)
+    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded) {
         return m_infoLoaded;
+    }
 
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
-    else
-        infoLoaded = mediaCenterInterface->loadTvShowEpisode(this, nfoContent());
+    const bool infoLoaded = [&]() {
+        return reloadFromNfo ? mediaCenterInterface->loadTvShowEpisode(this)
+                             : mediaCenterInterface->loadTvShowEpisode(this, nfoContent());
+    }();
 
-
-    if (!infoLoaded) {
-        if (files().count() > 0) {
-            QStringList filenameParts = files().at(0).split(QDir::separator());
-            QString filename = filenameParts.last();
-            if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-                if (filenameParts.count() > 1 && Helper::instance()->isDvd(files().at(0)))
-                    filename = filenameParts.at(filenameParts.count() - 3);
-                else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files().at(0), true))
-                    filename = filenameParts.at(filenameParts.count() - 2);
-            } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
-                if (filenameParts.count() > 2)
-                    filename = filenameParts.at(filenameParts.count() - 3);
+    if (!infoLoaded && !files().isEmpty()) {
+        QStringList filenameParts = files().at(0).split(QDir::separator());
+        QString filename = filenameParts.last();
+        if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
+            if (filenameParts.count() > 1 && Helper::instance()->isDvd(files().at(0))) {
+                filename = filenameParts.at(filenameParts.count() - 3);
+            } else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files().at(0), true)) {
+                filename = filenameParts.at(filenameParts.count() - 2);
             }
-            setName(filename.replace(".", " ").replace("_", " "));
+        } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && filenameParts.count() > 2) {
+            filename = filenameParts.at(filenameParts.count() - 3);
         }
+        setName(filename.replace(".", " ").replace("_", " "));
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -188,12 +193,14 @@ void TvShowEpisode::scraperLoadDone()
 bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
-    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
+    }
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
     qDebug() << "Saved" << saved;
-    if (!m_infoLoaded)
+    if (!m_infoLoaded) {
         m_infoLoaded = saved;
+    }
     setChanged(false);
     setSyncNeeded(true);
     clearImages();
@@ -273,10 +280,12 @@ QStringList TvShowEpisode::files() const
  */
 QString TvShowEpisode::showTitle() const
 {
-    if (!m_showTitle.isEmpty())
+    if (!m_showTitle.isEmpty()) {
         return m_showTitle;
-    if (m_parent)
+    }
+    if (m_parent) {
         return m_parent->name();
+    }
 
     return QString();
 }
@@ -321,8 +330,9 @@ int TvShowEpisode::displaySeason() const
  */
 QString TvShowEpisode::seasonString() const
 {
-    if (season() == -2)
-        return QString("xx");
+    if (season() == -2) {
+        return QStringLiteral("xx");
+    }
     return QString("%1").arg(season()).prepend((season() < 10) ? "0" : "");
 }
 
@@ -355,8 +365,9 @@ int TvShowEpisode::displayEpisode() const
  */
 QString TvShowEpisode::episodeString() const
 {
-    if (episode() == -2)
+    if (episode() == -2) {
         return QString("xx");
+    }
     return QString("%1").arg(episode()).prepend((episode() < 10) ? "0" : "");
 }
 
@@ -434,10 +445,12 @@ QDate TvShowEpisode::firstAired() const
  */
 QString TvShowEpisode::certification() const
 {
-    if (!m_certification.isEmpty())
+    if (!m_certification.isEmpty()) {
         return m_certification;
-    if (m_parent)
+    }
+    if (m_parent) {
         return m_parent->certification();
+    }
 
     return QString();
 }
@@ -450,10 +463,12 @@ QString TvShowEpisode::certification() const
  */
 QString TvShowEpisode::network() const
 {
-    if (!m_network.isEmpty())
+    if (!m_network.isEmpty()) {
         return m_network;
-    if (m_parent)
+    }
+    if (m_parent) {
         return m_parent->network();
+    }
 
     return QString();
 }
@@ -510,8 +525,9 @@ bool TvShowEpisode::hasChanged() const
 QList<QString *> TvShowEpisode::writersPointer()
 {
     QList<QString *> writers;
-    for (int i = 0, n = m_writers.size(); i < n; ++i)
+    for (int i = 0, n = m_writers.size(); i < n; ++i) {
         writers.append(&m_writers[i]);
+    }
     return writers;
 }
 
@@ -522,8 +538,9 @@ QList<QString *> TvShowEpisode::writersPointer()
 QList<QString *> TvShowEpisode::directorsPointer()
 {
     QList<QString *> directors;
-    for (int i = 0, n = m_directors.size(); i < n; ++i)
+    for (int i = 0, n = m_directors.size(); i < n; ++i) {
         directors.append(&m_directors[i]);
+    }
     return directors;
 }
 
@@ -902,16 +919,13 @@ QList<int> TvShowEpisode::imagesToRemove() const
 
 void TvShowEpisode::removeImage(int type)
 {
-    switch (type) {
-    case ImageType::TvShowEpisodeThumb:
+    if (type == ImageType::TvShowEpisodeThumb) {
         if (!m_thumbnailImage.isNull()) {
             m_thumbnailImage = QByteArray();
             m_thumbnailImageChanged = false;
         } else if (!m_imagesToRemove.contains(type)) {
             m_imagesToRemove.append(type);
         }
-        break;
-    default: break;
     }
     setChanged(true);
 }
@@ -934,8 +948,9 @@ QList<Actor> TvShowEpisode::actors() const
 QList<Actor *> TvShowEpisode::actorsPointer()
 {
     QList<Actor *> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++)
+    for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
+    }
     return actors;
 }
 
@@ -958,14 +973,18 @@ void TvShowEpisode::removeActor(Actor *actor)
 
 bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
 {
-    if (a->season() < b->season())
+    if (a->season() < b->season()) {
         return true;
-    if (a->season() > b->season())
+    }
+    if (a->season() > b->season()) {
         return false;
-    if (a->episode() < b->episode())
+    }
+    if (a->episode() < b->episode()) {
         return true;
-    if (a->episode() > b->episode())
+    }
+    if (a->episode() > b->episode()) {
         return false;
+    }
 
     return (QString::localeAwareCompare(
                 Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
@@ -1013,22 +1032,25 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     QString out;
     out.append("TvShowEpisode").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    foreach (const QString &file, episode.files())
+    foreach (const QString &file, episode.files()) {
         out.append(QString("    %1").arg(file).append(nl));
-    out.append(QString("  Name:          ").append(episode.name()).append(nl));
-    out.append(QString("  ShowTitle:     ").append(episode.showTitle()).append(nl));
-    out.append(QString("  Season:        %1").arg(episode.season()).append(nl));
-    out.append(QString("  Episode:       %1").arg(episode.episode()).append(nl));
-    out.append(QString("  Rating:        %1").arg(episode.rating()).append(nl));
-    out.append(QString("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
-    out.append(QString("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));
-    out.append(QString("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
-    out.append(QString("  Certification: ").append(episode.certification()).append(nl));
-    out.append(QString("  Overview:      ").append(episode.overview())).append(nl);
-    foreach (const QString &writer, episode.writers())
+    }
+    out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
+    out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));
+    out.append(QStringLiteral("  Season:        %1").arg(episode.season()).append(nl));
+    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode()).append(nl));
+    out.append(QStringLiteral("  Rating:        %1").arg(episode.rating()).append(nl));
+    out.append(QStringLiteral("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
+    out.append(QStringLiteral("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));
+    out.append(QStringLiteral("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
+    out.append(QStringLiteral("  Certification: ").append(episode.certification()).append(nl));
+    out.append(QStringLiteral("  Overview:      ").append(episode.overview())).append(nl);
+    foreach (const QString &writer, episode.writers()) {
         out.append(QString("  Writer:        ").append(writer)).append(nl);
-    foreach (const QString &director, episode.directors())
+    }
+    foreach (const QString &director, episode.directors()) {
         out.append(QString("  Director:      ").append(director)).append(nl);
+    }
     /*
     foreach (const QString &studio, movie.studios())
         out.append(QString("  Studio:         ").append(studio)).append(nl);

@@ -2,6 +2,7 @@
 #define TMDB_H
 
 #include <QComboBox>
+#include <QMap>
 #include <QObject>
 #include <QPointer>
 #include <QtNetwork/QNetworkAccessManager>
@@ -17,7 +18,7 @@ class TMDb : public ScraperInterface
     Q_OBJECT
 public:
     explicit TMDb(QObject *parent = nullptr);
-    ~TMDb() override;
+    ~TMDb() override = default;
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
@@ -55,8 +56,29 @@ private:
     QWidget *m_widget;
     QComboBox *m_box;
 
-    QNetworkAccessManager *qnam();
+    enum class ApiMovieDetails
+    {
+        INFOS,
+        IMAGES,
+        CASTS,
+        TRAILERS,
+        RELEASES
+    };
+    enum class ApiUrlParameter
+    {
+        LANGUAGE,
+        YEAR,
+        PAGE,
+        INCLUDE_ADULT
+    };
+    using UrlParameterMap = QMap<ApiUrlParameter, QString>;
+
     void setup();
+    QString apiUrlParameterString(ApiUrlParameter parameter) const;
+    QUrl getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const;
+    QUrl getMovieUrl(const QString &title,
+        ApiMovieDetails type,
+        const UrlParameterMap &parameters = UrlParameterMap{}) const;
     void parseAndAssignInfos(QString json, Movie *movie, QList<int> infos);
 };
 
