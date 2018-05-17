@@ -50,7 +50,7 @@ public:
     explicit Concert(QStringList files, QObject *parent = nullptr);
     ~Concert() = default;
 
-    ConcertController *controller();
+    ConcertController *controller() const;
 
     void clear();
     void clear(QList<int> infos);
@@ -82,7 +82,7 @@ public:
     virtual int mediaCenterId() const;
     virtual QString tmdbId() const;
     virtual QString id() const;
-    virtual StreamDetails *streamDetails();
+    virtual StreamDetails *streamDetails() const;
     virtual bool streamDetailsLoaded() const;
     virtual QString nfoContent() const;
     virtual int databaseId() const;

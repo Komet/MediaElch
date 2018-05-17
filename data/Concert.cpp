@@ -40,16 +40,11 @@ Concert::Concert(QStringList files, QObject *parent) :
 void Concert::setFiles(QStringList files)
 {
     m_files = files;
-    if (!files.empty()) {
+    m_streamDetails = new StreamDetails(this, files);
+    if (!files.isEmpty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
-        if (!path.isEmpty())
-            m_folderName = path.last();
-    }
-    if (!files.isEmpty()) {
-        m_streamDetails = new StreamDetails(this, files);
-    } else {
-        m_streamDetails = new StreamDetails(this, QStringList());
+        m_folderName = path.last();
     }
 }
 
@@ -90,30 +85,39 @@ void Concert::clear(QList<int> infos)
         m_hasImageChanged.insert(ImageType::ConcertBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
     }
-    if (infos.contains(ConcertScraperInfos::Genres))
+    if (infos.contains(ConcertScraperInfos::Genres)) {
         m_genres.clear();
+    }
     if (infos.contains(ConcertScraperInfos::Poster)) {
         m_posters.clear();
         m_images.insert(ImageType::ConcertPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertPoster, false);
         m_imagesToRemove.removeOne(ImageType::ConcertPoster);
     }
-    if (infos.contains(ConcertScraperInfos::Overview))
+    if (infos.contains(ConcertScraperInfos::Overview)) {
         m_overview = "";
-    if (infos.contains(ConcertScraperInfos::Rating))
+    }
+    if (infos.contains(ConcertScraperInfos::Rating)) {
         m_rating = 0;
-    if (infos.contains(ConcertScraperInfos::Released))
+    }
+    if (infos.contains(ConcertScraperInfos::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
-    if (infos.contains(ConcertScraperInfos::Tagline))
+    }
+    if (infos.contains(ConcertScraperInfos::Tagline)) {
         m_tagline = "";
-    if (infos.contains(ConcertScraperInfos::Runtime))
+    }
+    if (infos.contains(ConcertScraperInfos::Runtime)) {
         m_runtime = 0;
-    if (infos.contains(ConcertScraperInfos::Trailer))
+    }
+    if (infos.contains(ConcertScraperInfos::Trailer)) {
         m_trailer = "";
-    if (infos.contains(ConcertScraperInfos::Certification))
+    }
+    if (infos.contains(ConcertScraperInfos::Certification)) {
         m_certification = "";
-    if (infos.contains(ConcertScraperInfos::Tags))
+    }
+    if (infos.contains(ConcertScraperInfos::Tags)) {
         m_tags.clear();
+    }
     if (infos.contains(ConcertScraperInfos::ExtraArts)) {
         m_images.insert(ImageType::ConcertCdArt, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertCdArt, false);
@@ -132,7 +136,7 @@ void Concert::clear(QList<int> infos)
     }
 }
 
-ConcertController *Concert::controller()
+ConcertController *Concert::controller() const
 {
     return m_controller;
 }
@@ -454,7 +458,7 @@ QString Concert::id() const
  * @brief The stream details object of this concert
  * @return StreamDetails Object
  */
-StreamDetails *Concert::streamDetails()
+StreamDetails *Concert::streamDetails() const
 {
     return m_streamDetails;
 }

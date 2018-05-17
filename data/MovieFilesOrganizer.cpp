@@ -16,11 +16,6 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
 }
 
 /**
- * @brief MovieFilesOrganizer::~MovieFilesOrganizer
- */
-MovieFilesOrganizer::~MovieFilesOrganizer() = default;
-
-/**
  * @brief moves all movies in given path to seperate directories
  * @param path place to organize
  */
@@ -55,21 +50,24 @@ void MovieFilesOrganizer::moveToDirs(QString path)
         QDir *dir = new QDir();
 
         QString newFolder;
-        if (movie.length() == 1)
+        if (movie.length() == 1) {
             newFolder = path + QDir::separator() + nameFormat->formatName(fileName);
-        else if (movie.length() > 1)
+        } else if (movie.length() > 1) {
             newFolder = path + QDir::separator() + nameFormat->formatName(nameFormat->formatParts(fileName));
-        else
+        } else {
             continue;
+        }
 
-        if (!(dir->mkdir(newFolder)))
+        if (!(dir->mkdir(newFolder))) {
             continue;
+        }
 
         foreach (QString file, movie) {
             if (!dir->rename(file,
                     newFolder + QDir::separator()
-                        + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1)))
+                        + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {
                 qDebug() << "Moving " << file << "to " << newFolder << " failed.";
+            }
         }
     }
 }

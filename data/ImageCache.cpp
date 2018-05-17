@@ -14,15 +14,18 @@ ImageCache::ImageCache(QObject *parent) : QObject(parent)
 {
     QString location = Settings::instance()->imageCacheDir();
     QDir dir(location);
-    if (!dir.exists())
+    if (!dir.exists()) {
         dir.mkdir(location);
+    }
     location = location + "/images";
     dir.setPath(location);
     bool exists = dir.exists();
-    if (!exists)
+    if (!exists) {
         exists = dir.mkdir(location);
-    if (exists)
+    }
+    if (exists) {
         m_cacheDir = location;
+    }
     qDebug() << "Cache dir" << m_cacheDir;
 
     m_forceCache = Settings::instance()->advanced()->forceCache();
@@ -31,15 +34,17 @@ ImageCache::ImageCache(QObject *parent) : QObject(parent)
 ImageCache *ImageCache::instance(QObject *parent)
 {
     static ImageCache *m_instance = nullptr;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new ImageCache(parent);
+    }
     return m_instance;
 }
 
 QImage ImageCache::image(QString path, int width, int height, int &origWidth, int &origHeight)
 {
-    if (m_cacheDir.isEmpty())
+    if (m_cacheDir.isEmpty()) {
         return scaledImage(Helper::instance()->getImage(path), width, height);
+    }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_%2_%3_").arg(md5).arg(width).arg(height);
@@ -53,8 +58,9 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         if (parts.count() > 6) {
             origWidth = parts.at(3).toInt();
             origHeight = parts.at(4).toInt();
-            if (m_forceCache || parts.at(5).toInt() == getLastModified(path))
+            if (m_forceCache || parts.at(5).toInt() == getLastModified(path)) {
                 update = false;
+            }
         }
     }
 
@@ -81,20 +87,21 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
 {
-    if (width != 0 && height != 0)
+    if (width != 0 && height != 0) {
         return img.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    else if (width != 0)
+    } else if (width != 0) {
         return img.scaledToWidth(width, Qt::SmoothTransformation);
-    else if (height != 0)
+    } else if (height != 0) {
         return img.scaledToHeight(height, Qt::SmoothTransformation);
-    else
-        return img;
+    }
+    return img;
 }
 
 void ImageCache::invalidateImages(QString path)
 {
-    if (m_cacheDir.isEmpty())
+    if (m_cacheDir.isEmpty()) {
         return;
+    }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QDir dir(m_cacheDir);
@@ -106,19 +113,22 @@ void ImageCache::invalidateImages(QString path)
 
 QSize ImageCache::imageSize(QString path)
 {
-    if (m_cacheDir.isEmpty())
+    if (m_cacheDir.isEmpty()) {
         return Helper::instance()->getImage(path).size();
+    }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_").arg(md5);
     QDir dir(m_cacheDir);
     QStringList files = dir.entryList(QStringList() << baseName + "*");
-    if (files.isEmpty() || files.first().split("_").count() < 7)
+    if (files.isEmpty() || files.first().split("_").count() < 7) {
         return Helper::instance()->getImage(path).size();
+    }
 
     QStringList parts = files.first().split("_");
-    if (!m_forceCache && getLastModified(path) != parts.at(5).toInt())
+    if (!m_forceCache && getLastModified(path) != parts.at(5).toInt()) {
         return Helper::instance()->getImage(path).size();
+    }
 
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());
 }
@@ -135,8 +145,10 @@ int ImageCache::getLastModified(const QString &fileName)
 
 void ImageCache::clearCache()
 {
-    if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache())
+    if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache()) {
         return;
-    foreach (const QFileInfo &file, QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot))
+    }
+    foreach (const QFileInfo &file, QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
         QFile(file.absoluteFilePath()).remove();
+    }
 }
