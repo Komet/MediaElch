@@ -83,7 +83,6 @@ SOURCES += main.cpp\
     main/AboutDialog.cpp \
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
-    scrapers/Cinefacts.cpp \
     smallWidgets/MyTableWidget.cpp \
     notifications/NotificationBox.cpp \
     main/Message.cpp \
@@ -210,6 +209,7 @@ SOURCES += main.cpp\
     main/MyIconFont.cpp \
     music/MusicProxyModel.cpp \
     smallWidgets/MusicTreeView.cpp \
+    scrapers/KinoDe.cpp \
     scrapers/UniversalMusicScraper.cpp \
     music/MusicMultiScrapeDialog.cpp \
     renamer/RenamerPlaceholders.cpp \
@@ -250,7 +250,7 @@ HEADERS  += main/MainWindow.h \
     main/AboutDialog.h \
     scrapers/VideoBuster.h \
     scrapers/OFDb.h \
-    scrapers/Cinefacts.h \
+    scrapers/KinoDe.h \
     smallWidgets/FilterWidget.h \
     smallWidgets/MyTableWidget.h \
     notifications/NotificationBox.h \
