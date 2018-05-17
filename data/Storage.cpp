@@ -57,78 +57,86 @@ Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) : QObject(par
 {
 }
 
-Movie *Storage::movie()
+Movie *Storage::movie() const
 {
-    if (m_movie)
+    if (m_movie) {
         return m_movie;
+    }
     return nullptr;
 }
 
-Concert *Storage::concert()
+Concert *Storage::concert() const
 {
-    if (m_concert)
+    if (m_concert) {
         return m_concert;
+    }
     return nullptr;
 }
 
-TvShow *Storage::show()
+TvShow *Storage::show() const
 {
-    if (m_show)
+    if (m_show) {
         return m_show;
+    }
     return nullptr;
 }
 
-TvShowEpisode *Storage::episode()
+TvShowEpisode *Storage::episode() const
 {
-    if (m_episode)
+    if (m_episode) {
         return m_episode;
+    }
     return nullptr;
 }
 
-Artist *Storage::artist()
+Artist *Storage::artist() const
 {
-    if (m_artist)
+    if (m_artist) {
         return m_artist;
+    }
     return nullptr;
 }
 
-Album *Storage::album()
+Album *Storage::album() const
 {
-    if (m_album)
+    if (m_album) {
         return m_album;
+    }
     return nullptr;
 }
 
-ExportTemplate *Storage::exportTemplate()
+ExportTemplate *Storage::exportTemplate() const
 {
-    if (m_exportTemplate)
+    if (m_exportTemplate) {
         return m_exportTemplate;
+    }
     return nullptr;
 }
 
-QTableWidgetItem *Storage::tableWidgetItem()
+QTableWidgetItem *Storage::tableWidgetItem() const
 {
-    if (m_tableWidgetItem)
+    if (m_tableWidgetItem) {
         return m_tableWidgetItem;
+    }
     return nullptr;
 }
 
-QMap<ScraperInterface *, QString> Storage::ids()
+QMap<ScraperInterface *, QString> Storage::ids() const
 {
     return m_ids;
 }
 
-PluginInterface *Storage::pluginInterface()
+PluginInterface *Storage::pluginInterface() const
 {
     return m_pluginInterface;
 }
 
-PluginManager::Plugin Storage::plugin()
+PluginManager::Plugin Storage::plugin() const
 {
     return m_plugin;
 }
 
-QList<TvShowEpisode *> Storage::episodes()
+QList<TvShowEpisode *> Storage::episodes() const
 {
     return m_episodes;
 }
@@ -143,7 +151,7 @@ QVariant Storage::toVariant(QObject *parent, Movie *movie)
 
 QVariant Storage::toVariant(QObject *parent, Concert *concert)
 {
-    auto storage = new Storage(parent, concert);
+    const auto storage = new Storage(parent, concert);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -151,7 +159,7 @@ QVariant Storage::toVariant(QObject *parent, Concert *concert)
 
 QVariant Storage::toVariant(QObject *parent, TvShow *show)
 {
-    auto storage = new Storage(parent, show);
+    const auto storage = new Storage(parent, show);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -159,7 +167,7 @@ QVariant Storage::toVariant(QObject *parent, TvShow *show)
 
 QVariant Storage::toVariant(QObject *parent, TvShowEpisode *episode)
 {
-    auto storage = new Storage(parent, episode);
+    const auto storage = new Storage(parent, episode);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -167,7 +175,7 @@ QVariant Storage::toVariant(QObject *parent, TvShowEpisode *episode)
 
 QVariant Storage::toVariant(QObject *parent, Artist *artist)
 {
-    auto storage = new Storage(parent, artist);
+    const auto storage = new Storage(parent, artist);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -175,7 +183,7 @@ QVariant Storage::toVariant(QObject *parent, Artist *artist)
 
 QVariant Storage::toVariant(QObject *parent, Album *album)
 {
-    auto storage = new Storage(parent, album);
+    const auto storage = new Storage(parent, album);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -183,7 +191,7 @@ QVariant Storage::toVariant(QObject *parent, Album *album)
 
 QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
 {
-    Storage *storage = new Storage(parent, results);
+    Storage *const storage = new Storage(parent, results);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -191,7 +199,7 @@ QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
 
 QVariant Storage::toVariant(QObject *parent, QList<int> infosToLoad)
 {
-    Storage *storage = new Storage(parent, infosToLoad);
+    Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -199,7 +207,7 @@ QVariant Storage::toVariant(QObject *parent, QList<int> infosToLoad)
 
 QVariant Storage::toVariant(QObject *parent, ExportTemplate *exportTemplate)
 {
-    auto storage = new Storage(parent, exportTemplate);
+    const auto storage = new Storage(parent, exportTemplate);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -207,7 +215,7 @@ QVariant Storage::toVariant(QObject *parent, ExportTemplate *exportTemplate)
 
 QVariant Storage::toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids)
 {
-    Storage *storage = new Storage(parent, ids);
+    Storage *const storage = new Storage(parent, ids);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -215,7 +223,7 @@ QVariant Storage::toVariant(QObject *parent, QMap<ScraperInterface *, QString> i
 
 QVariant Storage::toVariant(QObject *parent, QTableWidgetItem *item)
 {
-    auto storage = new Storage(parent, item);
+    const auto storage = new Storage(parent, item);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -223,7 +231,7 @@ QVariant Storage::toVariant(QObject *parent, QTableWidgetItem *item)
 
 QVariant Storage::toVariant(QObject *parent, PluginInterface *plugin)
 {
-    auto storage = new Storage(parent, plugin);
+    const auto storage = new Storage(parent, plugin);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -231,7 +239,7 @@ QVariant Storage::toVariant(QObject *parent, PluginInterface *plugin)
 
 QVariant Storage::toVariant(QObject *parent, PluginManager::Plugin plugin)
 {
-    Storage *storage = new Storage(parent, plugin);
+    Storage *const storage = new Storage(parent, plugin);
     QVariant var;
     var.setValue(storage);
     return var;
@@ -239,18 +247,18 @@ QVariant Storage::toVariant(QObject *parent, PluginManager::Plugin plugin)
 
 QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode *> episodes)
 {
-    Storage *storage = new Storage(parent, episodes);
+    Storage *const storage = new Storage(parent, episodes);
     QVariant var;
     var.setValue(storage);
     return var;
 }
 
-QList<ScraperSearchResult> Storage::results()
+QList<ScraperSearchResult> Storage::results() const
 {
     return m_results;
 }
 
-QList<int> Storage::infosToLoad()
+QList<int> Storage::infosToLoad() const
 {
     return m_infosToLoad;
 }

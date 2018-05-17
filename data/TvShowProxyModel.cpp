@@ -71,16 +71,19 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
 
     // check if there are children
     int childCount = item.model()->rowCount(item);
-    if (childCount == 0)
+    if (childCount == 0) {
         return false;
+    }
 
     for (int i = 0; i < childCount; ++i) {
-        if (filterAcceptsRowItself(i, item))
+        if (filterAcceptsRowItself(i, item)) {
             return true;
+        }
         // recursive call -> NOTICE that this is depth-first searching, you're probably better off with breadth first
         // search...
-        if (hasAcceptedChildren(i, item))
+        if (hasAcceptedChildren(i, item)) {
             return true;
+        }
     }
 
     return false;
@@ -99,19 +102,23 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
     TvShowModelItem *leftItem = model->getItem(left);
     TvShowModelItem *rightItem = model->getItem(right);
 
-    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeSeason)
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeSeason) {
         return leftItem->seasonNumber() < rightItem->seasonNumber();
+    }
 
-    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeEpisode)
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeEpisode) {
         return leftItem->tvShowEpisode()->episode() < rightItem->tvShowEpisode()->episode();
+    }
 
     if (leftItem->type() == rightItem->type() && leftItem->type() == TypeTvShow) {
         bool leftNew = !leftItem->tvShow()->infoLoaded() || leftItem->tvShow()->hasNewEpisodes();
         bool rightNew = !rightItem->tvShow()->infoLoaded() || rightItem->tvShow()->hasNewEpisodes();
-        if (leftNew && !rightNew)
+        if (leftNew && !rightNew) {
             return true;
-        if (!leftNew && rightNew)
+        }
+        if (!leftNew && rightNew) {
             return false;
+        }
     }
 
     return (

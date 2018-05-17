@@ -571,9 +571,9 @@ void MainWindow::moveSplitter(int pos, int index)
  */
 void MainWindow::setNewMarks()
 {
-    int newMovies = Manager::instance()->movieModel()->hasNewMovies();
+    int newMovies = Manager::instance()->movieModel()->countNewMovies();
     int newShows = Manager::instance()->tvShowModel()->hasNewShowOrEpisode();
-    int newConcerts = Manager::instance()->concertModel()->hasNewConcerts();
+    int newConcerts = Manager::instance()->concertModel()->countNewConcerts();
     int newMusic = Manager::instance()->musicModel()->hasNewArtistsOrAlbums();
     int newDownloads = ui->downloadsWidget->hasNewItems();
 

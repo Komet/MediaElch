@@ -29,7 +29,7 @@ public:
     void clear();
     void clear(QList<int> infos);
     void addEpisode(TvShowEpisode *episode);
-    virtual int episodeCount();
+    virtual int episodeCount() const;
 
     virtual QString name() const;
     virtual QString showTitle() const;
@@ -69,7 +69,7 @@ public:
     virtual int showId() const;
     virtual bool downloadsInProgress() const;
     virtual bool hasNewEpisodes() const;
-    virtual bool hasNewEpisodesInSeason(QString season) const;
+    virtual bool hasNewEpisodesInSeason(int season) const;
     virtual QString nfoContent() const;
     virtual int databaseId() const;
     virtual bool syncNeeded() const;

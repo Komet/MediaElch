@@ -21,20 +21,20 @@ public:
     void setAudioDetail(int streamNumber, QString key, QString value);
     void setSubtitleDetail(int streamNumber, QString key, QString value);
     void clear();
-    bool hasAudioChannels(int channels);
-    bool hasAudioQuality(QString quality);
-    int audioChannels();
-    QString audioCodec();
-    QString videoCodec();
+    bool hasAudioChannels(int channels) const;
+    bool hasAudioQuality(QString quality) const;
+    int audioChannels() const;
+    QString audioCodec() const;
+    QString videoCodec() const;
 
-    virtual QMap<QString, QString> videoDetails();
-    virtual QList<QMap<QString, QString>> audioDetails();
-    virtual QList<QMap<QString, QString>> subtitleDetails();
+    virtual QMap<QString, QString> videoDetails() const;
+    virtual QList<QMap<QString, QString>> audioDetails() const;
+    virtual QList<QMap<QString, QString>> subtitleDetails() const;
 
 private:
-    QString videoFormat(QString format, QString version);
-    QString audioFormat(const QString &codec, const QString &profile);
-    QString stereoFormat(const QString &format);
+    QString videoFormat(QString format, QString version) const;
+    QString audioFormat(const QString &codec, const QString &profile) const;
+    QString stereoFormat(const QString &format) const;
     void loadWithLibrary();
 
     QStringList m_files;

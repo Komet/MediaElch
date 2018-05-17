@@ -1,6 +1,7 @@
 #include "MovieModel.h"
 
 #include <QPainter>
+#include <numeric>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -42,13 +43,13 @@ void MovieModel::addMovie(Movie *movie)
  */
 void MovieModel::onMovieChanged(Movie *movie)
 {
-    QModelIndex index = createIndex(m_movies.indexOf(movie), 0);
+    const QModelIndex index = createIndex(m_movies.indexOf(movie), 0);
     emit dataChanged(index, index);
 }
 
 void MovieModel::update()
 {
-    QModelIndex index = createIndex(0, 0);
+    const QModelIndex index = createIndex(0, 0);
     emit dataChanged(index, index);
 }
 
@@ -59,8 +60,9 @@ void MovieModel::update()
  */
 Movie *MovieModel::movie(int row)
 {
-    if (row < 0 || row >= m_movies.count())
+    if (row < 0 || row >= m_movies.count()) {
         return nullptr;
+    }
     return m_movies.at(row);
 }
 
@@ -95,13 +97,14 @@ int MovieModel::columnCount(const QModelIndex &parent) const
  */
 QVariant MovieModel::data(const QModelIndex &index, int role) const
 {
-    if (index.row() < 0 || index.row() > m_movies.count())
+    if (index.row() < 0 || index.row() > m_movies.count()) {
         return QVariant();
-
-    if (role == Qt::UserRole)
+    }
+    if (role == Qt::UserRole) {
         return index.row();
+    }
 
-    Movie *movie = m_movies[index.row()];
+    const Movie *const movie = m_movies[index.row()];
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
@@ -129,10 +132,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
                 return font;
             }
         } else if (role == Qt::DecorationRole) {
-            if (!movie->controller()->infoLoaded())
+            if (!movie->controller()->infoLoaded()) {
                 return m_newIcon;
-            else if (movie->syncNeeded())
+            } else if (movie->syncNeeded()) {
                 return m_syncIcon;
+            }
         } else if (role == Qt::BackgroundRole) {
             return Helper::instance()->colorForLabel(movie->label());
         }
@@ -156,14 +160,17 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->hasImage(ImageType::MovieBackdrop)) ? "fanart/green" : "fanart/red";
             break;
         case MediaStatusExtraArts:
-            if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt) && movie->hasImage(ImageType::MovieLogo) &&
-                    movie->hasImage(ImageType::MovieBanner) && movie->hasImage(ImageType::MovieThumb))
+            if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt)
+                    && movie->hasImage(ImageType::MovieLogo) && movie->hasImage(ImageType::MovieBanner)
+                    && movie->hasImage(ImageType::MovieThumb)) {
                 icon = "extraArts/green";
-            else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt) || movie->hasImage(ImageType::MovieLogo) ||
-                     movie->hasImage(ImageType::MovieBanner) || movie->hasImage(ImageType::MovieThumb))
+            } else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt)
+                       || movie->hasImage(ImageType::MovieLogo) || movie->hasImage(ImageType::MovieBanner)
+                       || movie->hasImage(ImageType::MovieThumb)) {
                 icon = "extraArts/yellow";
-            else
+            } else {
                 icon = "extraArts/red";
+            }
             break;
         case MediaStatusStreamDetails:
             icon = (movie->streamDetailsLoaded()) ? "streamDetails/green" : "streamDetails/red";
@@ -181,8 +188,9 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
 
         if (!icon.isEmpty()) {
             static QHash<QString, QIcon> icons;
-            if (!icons.contains(icon))
+            if (!icons.contains(icon)) {
                 icons.insert(icon, QIcon(":mediaStatus/" + icon));
+            }
             return icons.value(icon);
         }
 
@@ -223,11 +231,13 @@ QModelIndex MovieModel::index(int row, int column, const QModelIndex &parent) co
  */
 void MovieModel::clear()
 {
-    if (m_movies.empty())
+    if (m_movies.empty()) {
         return;
+    }
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
-    foreach (Movie *movie, m_movies)
+    foreach (Movie *movie, m_movies) {
         movie->deleteLater();
+    }
     m_movies.clear();
     endRemoveRows();
 }
@@ -245,15 +255,10 @@ QList<Movie *> MovieModel::movies()
  * @brief Checks if there are new movies (movies where infoLoaded is false)
  * @return True if there are new movies
  */
-int MovieModel::hasNewMovies()
+int MovieModel::countNewMovies()
 {
-    int newMovies = 0;
-    foreach (Movie *movie, m_movies) {
-        if (!movie->controller()->infoLoaded())
-            newMovies++;
-    }
-
-    return newMovies;
+    const auto checkInfoLoaded = [](const Movie *movie) { return !movie->controller()->infoLoaded(); };
+    return std::count_if(m_movies.cbegin(), m_movies.cend(), checkInfoLoaded);
 }
 
 int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
@@ -275,8 +280,9 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
 MediaStatusColumns MovieModel::columnToMediaStatus(int column)
 {
     for (int i = MediaStatusFirst, n = MediaStatusLast; i <= n; ++i) {
-        if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumns>(i)) == column)
+        if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumns>(i)) == column) {
             return static_cast<MediaStatusColumns>(i);
+        }
     }
     return MediaStatusUnknown;
 }

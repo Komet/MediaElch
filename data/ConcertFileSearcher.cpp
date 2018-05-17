@@ -27,11 +27,12 @@ void ConcertFileSearcher::setConcertDirectories(QList<SettingsDir> directories)
 {
     qDebug() << "Entered";
     m_directories.clear();
-    for (int i = 0, n = directories.count(); i < n; ++i) {
-        QFileInfo fi(directories.at(i).path);
+
+    for (const auto &directory : directories) {
+        QFileInfo fi(directory.path);
         if (fi.isDir()) {
-            qDebug() << "Adding concert directory" << directories.at(i).path;
-            m_directories.append(directories.at(i));
+            qDebug() << "Adding concert directory" << directory.path;
+            m_directories.append(directory);
         }
     }
 }
@@ -43,8 +44,9 @@ void ConcertFileSearcher::reload(bool force)
 {
     m_aborted = false;
 
-    if (force)
+    if (force) {
         Manager::instance()->database()->clearConcerts();
+    }
 
     Manager::instance()->concertModel()->clear();
     emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
@@ -53,8 +55,9 @@ void ConcertFileSearcher::reload(bool force)
     QList<Concert *> dbConcerts;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         QList<Concert *> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
@@ -73,8 +76,9 @@ void ConcertFileSearcher::reload(bool force)
     // Setup concerts
     Manager::instance()->database()->transaction();
     foreach (const QStringList &files, contents) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         bool inSeparateFolder = false;
         QString path;
@@ -83,10 +87,11 @@ void ConcertFileSearcher::reload(bool force)
             int index = -1;
             for (int i = 0, n = m_directories.count(); i < n; ++i) {
                 if (files.at(0).startsWith(m_directories[i].path)) {
-                    if (index == -1)
+                    if (index == -1) {
                         index = i;
-                    else if (m_directories[index].path.length() < m_directories[i].path.length())
+                    } else if (m_directories[index].path.length() < m_directories[i].path.length()) {
                         index = i;
+                    }
                 }
             }
             if (index != -1) {
@@ -94,7 +99,7 @@ void ConcertFileSearcher::reload(bool force)
                 path = m_directories[index].path;
             }
         }
-        Concert *concert = new Concert(files, this);
+        Concert *const concert = new Concert(files, this);
         concert->setInSeparateFolder(inSeparateFolder);
         concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert->name());
@@ -106,8 +111,9 @@ void ConcertFileSearcher::reload(bool force)
 
     // Setup concerts loaded from database
     foreach (Concert *concert, dbConcerts) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         concert->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(concert->name());
@@ -115,12 +121,14 @@ void ConcertFileSearcher::reload(bool force)
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
 
-    foreach (Concert *concert, concerts)
+    foreach (Concert *concert, concerts) {
         Manager::instance()->concertModel()->addConcert(concert);
+    }
 
     qDebug() << "Searching for concerts done";
-    if (!m_aborted)
+    if (!m_aborted) {
         emit concertsLoaded(m_progressMessageId);
+    }
 }
 
 /**
@@ -142,14 +150,16 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0
             || QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0
-            || QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
+            || QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0) {
             continue;
+        }
 
         // Handle DVD
         if (Helper::instance()->isDvd(path + QDir::separator() + cDir)) {
@@ -164,41 +174,48 @@ void ConcertFileSearcher::scanDir(QString startPath,
         }
 
         // Don't scan subfolders when separate folders is checked
-        if (!separateFolders || firstScan)
+        if (!separateFolders || firstScan) {
             scanDir(startPath, path + "/" + cDir, contents, separateFolders);
+        }
     }
 
     QStringList files;
     QStringList entries = getFiles(path);
     foreach (const QString &file, entries) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         // Skip Trailers and Sample files
-        if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
+        if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive)) {
             continue;
+        }
         files.append(file);
     }
     files.sort();
 
     if (separateFolders) {
         QStringList concertFiles;
-        foreach (const QString &file, files)
+        foreach (const QString &file, files) {
             concertFiles.append(QDir::toNativeSeparators(path + "/" + file));
-        if (concertFiles.count() > 0)
+        }
+        if (concertFiles.count() > 0) {
             contents.append(concertFiles);
+        }
         return;
     }
 
     QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
     for (int i = 0, n = files.size(); i < n; i++) {
-        if (m_aborted)
+        if (m_aborted) {
             return;
+        }
 
         QStringList concertFiles;
         QString file = files.at(i);
-        if (file.isEmpty())
+        if (file.isEmpty()) {
             continue;
+        }
 
         concertFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
 
@@ -228,8 +245,9 @@ void ConcertFileSearcher::scanDir(QString startPath,
  */
 QStringList ConcertFileSearcher::getFiles(QString path)
 {
-    if (Settings::instance()->advanced()->concertFilters().isEmpty())
+    if (Settings::instance()->advanced()->concertFilters().isEmpty()) {
         return QStringList();
+    }
 
     return QDir(path).entryList(Settings::instance()->advanced()->concertFilters(), QDir::Files | QDir::System);
 }

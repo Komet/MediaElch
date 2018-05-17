@@ -14,24 +14,13 @@ AdvancedSettings::AdvancedSettings(QObject *parent) : QObject(parent)
     loadSettings();
 }
 
-AdvancedSettings::~AdvancedSettings() = default;
-
 void AdvancedSettings::reset()
 {
     m_debugLog = false;
     m_forceCache = false;
     m_bookletCut = 2;
     m_logFile = "";
-    m_sortTokens = QStringList() << "Der"
-                                 << "Die"
-                                 << "Das"
-                                 << "The"
-                                 << "Le"
-                                 << "La"
-                                 << "Les"
-                                 << "Un"
-                                 << "Une"
-                                 << "Des";
+    m_sortTokens = QStringList{"Der", "Die", "Das", "The", "Le", "La", "Les", "Un", "Une", "Des"};
     m_genreMappings.clear();
     m_audioCodecMappings.clear();
     m_videoCodecMappings.clear();
@@ -41,139 +30,126 @@ void AdvancedSettings::reset()
     m_writeThumbUrlsToNfo = true;
     m_useFirstStudioOnly = false;
 
-    m_movieFilters << "*.mkv"
-                   << "*.avi"
-                   << "*.mpg"
-                   << "*.mpeg"
-                   << "*.mp4"
-                   << "*.m2ts"
-                   << "*.disc"
-                   << "*.m4v"
-                   << "*.strm"
-                   << "*.dat"
-                   << "*.flv"
-                   << "*.vob"
-                   << "*.ts"
-                   << "*.iso"
-                   << "*.ogg"
-                   << "*.ogm"
-                   << "*.rmvb"
-                   << "*.img"
-                   << "*.wmv"
-                   << "*.mov"
-                   << "*.divx"
-                   << "VIDEO_TS.IFO"
-                   << "index.bdmv"
-                   << "*.wtv";
-
-    m_tvShowFilters << "*.mkv"
-                    << "*.avi"
-                    << "*.mpg"
-                    << "*.mpeg"
-                    << "*.mp4"
-                    << "*.m2ts"
-                    << "*.disc"
-                    << "*.m4v"
-                    << "*.strm"
-                    << "*.dat"
-                    << "*.flv"
-                    << "*.vob"
-                    << "*.ts"
-                    << "*.iso"
-                    << "*.ogg"
-                    << "*.ogm"
-                    << "*.rmvb"
-                    << "*.img"
-                    << "*.wmv"
-                    << "*.mov"
-                    << "*.divx"
-                    << "VIDEO_TS.IFO"
-                    << "index.bdmv"
-                    << "*.wtv";
-
-    m_concertFilters << "*.mkv"
-                     << "*.avi"
-                     << "*.mpg"
-                     << "*.mpeg"
-                     << "*.mp4"
-                     << "*.m2ts"
-                     << "*.disc"
-                     << "*.m4v"
-                     << "*.strm"
-                     << "*.dat"
-                     << "*.flv"
-                     << "*.vob"
-                     << "*.ts"
-                     << "*.iso"
-                     << "*.ogg"
-                     << "*.ogm"
-                     << "*.rmvb"
-                     << "*.img"
-                     << "*.wmv"
-                     << "*.mov"
-                     << "*.divx"
-                     << "VIDEO_TS.IFO"
-                     << "index.bdmv"
-                     << "*.wtv";
-
-    m_subtitleFilters << "*.idx"
-                      << "*.sub"
-                      << "*.srr"
-                      << "*.srt";
-
+    m_audioCodecMappings.insert("MPA1L2", "MP2");
+    m_audioCodecMappings.insert("MPA1L3", "MP3");
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
+
+    const auto videoFiles = QStringList{"*.mkv",
+        "*.mk3d",
+        "*.avi",
+        "*.mpg",
+        "*.mpeg",
+        "*.mp4",
+        "*.m2ts",
+        "*.disc",
+        "*.m4v",
+        "*.strm",
+        "*.dat",
+        "*.flv",
+        "*.vob",
+        "*.ts",
+        "*.iso",
+        "*.ogg",
+        "*.ogm",
+        "*.rmvb",
+        "*.img",
+        "*.wmv",
+        "*.mov",
+        "*.divx",
+        "VIDEO_TS.IFO",
+        "index.bdmv",
+        "*.wtv"};
+
+    // Assign video filters.
+    m_movieFilters = videoFiles;
+    m_tvShowFilters = videoFiles;
+    m_concertFilters = videoFiles;
+
+    m_subtitleFilters = QStringList{"*.idx", "*.sub", "*.srr", "*.srt"};
+}
+
+QByteArray AdvancedSettings::getAdvancedSettingsXml() const
+{
+    QByteArray xmlStr;
+
+    QFile file(Settings::applicationDir() + "/advancedsettings.xml");
+    if (!file.exists()) {
+        file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
+    }
+
+    if (!file.exists()) {
+        return xmlStr;
+    }
+
+    if (file.open(QIODevice::ReadOnly)) {
+        xmlStr = file.readAll();
+        file.close();
+    } else {
+        qDebug() << "Cannot open advancedsettings.xml in ReadOnly mode.";
+    }
+
+    return xmlStr;
 }
 
 void AdvancedSettings::loadSettings()
 {
-    qDebug() << "Loading advanced settings";
+    qDebug() << "Loading advanced settings...";
     reset();
 
-    QXmlStreamReader xml;
-    QFile file(Settings::applicationDir() + "/advancedsettings.xml");
-    if (!file.exists())
-        file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
+    QXmlStreamReader xml{getAdvancedSettingsXml()};
 
-    if (!file.exists())
+    if (!xml.readNextStartElement() || xml.name().toString() != "advancedsettings") {
+        qDebug() << "No advanced settings found!";
         return;
-
-    if (!file.open(QIODevice::ReadOnly))
-        return;
-    xml.addData(file.readAll());
-    file.close();
-
-    if (!xml.readNextStartElement() || xml.name().toString() != "advancedsettings")
-        return;
+    }
 
     while (xml.readNextStartElement()) {
-        if (xml.name() == "log")
+        if (xml.name() == "log") {
             loadLog(xml);
-        else if (xml.name() == "gui")
-            loadGui(xml);
-        else if (xml.name() == "sorttokens")
-            loadSortTokens(xml);
-        else if (xml.name() == "genres")
-            loadGenreMappings(xml);
-        else if (xml.name() == "fileFilters")
-            loadFilters(xml);
-        else if (xml.name() == "audioCodecs")
-            loadAudioCodecMappings(xml);
-        else if (xml.name() == "videoCodecs")
-            loadVideoCodecMappings(xml);
-        else if (xml.name() == "certifications")
-            loadCertificationMappings(xml);
-        else if (xml.name() == "studios")
-            loadStudioMappings(xml);
-        else if (xml.name() == "countries")
-            loadCountryMappings(xml);
-        else if (xml.name() == "portableMode")
+
+        } else if (xml.name() == "portableMode") {
             m_portableMode = (xml.readElementText() == "true");
-        else if (xml.name() == "writeThumbUrlsToNfo")
+
+        } else if (xml.name() == "gui") {
+            loadGui(xml);
+
+        } else if (xml.name() == "writeThumbUrlsToNfo") {
             m_writeThumbUrlsToNfo = (xml.readElementText() == "true");
-        else if (xml.name() == "bookletCut")
+
+        } else if (xml.name() == "bookletCut") {
             m_bookletCut = xml.readElementText().toInt();
-        else
+
+        } else if (xml.name() == "sorttokens") {
+            loadSortTokens(xml);
+
+        } else if (xml.name() == "genres") {
+            loadMappings(xml, m_genreMappings);
+
+        } else if (xml.name() == "audioCodecs") {
+            loadMappings(xml, m_audioCodecMappings);
+
+        } else if (xml.name() == "videoCodecs") {
+            loadMappings(xml, m_videoCodecMappings);
+
+        } else if (xml.name() == "certifications") {
+            loadMappings(xml, m_certificationMappings);
+
+        } else if (xml.name() == "studios") {
+            if (xml.attributes().hasAttribute("useFirstStudioOnly")) {
+                const auto firstStudioOnly = xml.attributes().value("useFirstStudioOnly").trimmed();
+                m_useFirstStudioOnly = (firstStudioOnly == "true");
+            }
+            loadMappings(xml, m_studioMappings);
+
+        } else if (xml.name() == "countries") {
+            loadMappings(xml, m_countryMappings);
+
+        } else if (xml.name() == "fileFilters") {
+            loadFilters(xml);
+
+        } else {
             xml.skipCurrentElement();
+        }
     }
 
     qDebug() << "Advanced settings";
@@ -181,11 +157,11 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    logFile               " << m_logFile;
     qDebug() << "    forceCache            " << m_forceCache;
     qDebug() << "    sortTokens            " << m_sortTokens;
-    qDebug() << "    genreMappings         " << m_genreMappings;
     qDebug() << "    movieFilters          " << m_movieFilters;
     qDebug() << "    concertFilters        " << m_concertFilters;
     qDebug() << "    tvShowFilters         " << m_tvShowFilters;
     qDebug() << "    subtitleFilters       " << m_subtitleFilters;
+    qDebug() << "    genreMappings         " << m_genreMappings;
     qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
     qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
     qDebug() << "    certificationMappings " << m_certificationMappings;
@@ -199,22 +175,24 @@ void AdvancedSettings::loadSettings()
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
 {
     while (xml.readNextStartElement()) {
-        if (xml.name() == "debug")
-            m_debugLog = (xml.readElementText() == "true");
-        else if (xml.name() == "file")
-            m_logFile = xml.readElementText();
-        else
+        if (xml.name() == "debug") {
+            m_debugLog = (xml.readElementText().trimmed() == "true");
+        } else if (xml.name() == "file") {
+            m_logFile = xml.readElementText().trimmed();
+        } else {
             xml.skipCurrentElement();
+        }
     }
 }
 
 void AdvancedSettings::loadGui(QXmlStreamReader &xml)
 {
     while (xml.readNextStartElement()) {
-        if (xml.name() == "forceCache")
-            m_forceCache = (xml.readElementText() == "true");
-        else
+        if (xml.name() == "forceCache") {
+            m_forceCache = (xml.readElementText().trimmed() == "true");
+        } else {
             xml.skipCurrentElement();
+        }
     }
 }
 
@@ -222,21 +200,8 @@ void AdvancedSettings::loadSortTokens(QXmlStreamReader &xml)
 {
     m_sortTokens.clear();
     while (xml.readNextStartElement()) {
-        if (xml.name() == "token")
-            m_sortTokens << xml.readElementText();
-        else
-            xml.skipCurrentElement();
-    }
-}
-
-void AdvancedSettings::loadGenreMappings(QXmlStreamReader &xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_genreMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
-            xml.readElementText();
+        if (xml.name() == "token") {
+            m_sortTokens << xml.readElementText().trimmed();
         } else {
             xml.skipCurrentElement();
         }
@@ -246,94 +211,53 @@ void AdvancedSettings::loadGenreMappings(QXmlStreamReader &xml)
 void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
 {
     qDebug() << "loading filters";
+
+    /**
+     * The current XML element's text is split by "," and all items
+     * are appended to a cleared "list".
+     */
+    const auto appendNextFiltersToList = [&xml](QStringList &list) {
+        list.clear();
+        const auto filters = xml.readElementText().split(",", QString::SkipEmptyParts);
+        foreach (const QString &filter, filters) {
+            list << filter.trimmed();
+        }
+    };
+
     while (xml.readNextStartElement()) {
         if (xml.name() == "movies") {
-            m_movieFilters.clear();
-            foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
-                m_movieFilters << filter.trimmed();
+            appendNextFiltersToList(m_movieFilters);
+
         } else if (xml.name() == "concerts") {
-            m_concertFilters.clear();
-            foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
-                m_concertFilters << filter.trimmed();
+            appendNextFiltersToList(m_concertFilters);
+
         } else if (xml.name() == "tvShows") {
-            m_tvShowFilters.clear();
-            foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
-                m_tvShowFilters << filter.trimmed();
+            appendNextFiltersToList(m_tvShowFilters);
+
         } else if (xml.name() == "subtitle") {
-            m_subtitleFilters.clear();
-            foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
-                m_subtitleFilters << filter.trimmed();
+            appendNextFiltersToList(m_subtitleFilters);
+
         } else {
             xml.skipCurrentElement();
         }
     }
 }
 
-void AdvancedSettings::loadAudioCodecMappings(QXmlStreamReader &xml)
+/**
+ * @brief Load the next mappings inside <map> tags into "mappings".
+ * @param xml XML stream with its position right before <map> elements.
+ * @param mappings QHash table that will be cleared and to which the mappings will be appended.
+ */
+void AdvancedSettings::loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &mappings)
 {
+    mappings.clear();
     while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_audioCodecMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
-            xml.readElementText();
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadVideoCodecMappings(QXmlStreamReader &xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_videoCodecMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
-            xml.readElementText();
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadCertificationMappings(QXmlStreamReader &xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_certificationMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
-            xml.readElementText();
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadStudioMappings(QXmlStreamReader &xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_studioMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
-            xml.readElementText();
-        } else if (xml.name() == "useFirstStudioOnly") {
-            m_useFirstStudioOnly = (xml.readElementText() == "true");
-        } else {
-            xml.skipCurrentElement();
-        }
-    }
-}
-
-void AdvancedSettings::loadCountryMappings(QXmlStreamReader &xml)
-{
-    while (xml.readNextStartElement()) {
-        if (xml.name() == "map") {
-            if (!xml.attributes().value("from").isEmpty())
-                m_countryMappings.insert(
-                    xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+        if (xml.name() == "map" && xml.attributes().hasAttribute("from")) {
+            const auto from = xml.attributes().value("from").trimmed();
+            const auto to = xml.attributes().value("to").trimmed();
+            if (!from.isEmpty() && !to.isEmpty()) {
+                mappings.insert(from.toString(), to.toString());
+            }
             xml.readElementText();
         } else {
             xml.skipCurrentElement();
