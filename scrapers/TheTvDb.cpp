@@ -374,13 +374,13 @@ void TheTvDb::parseAndAssignInfos(QString xml,
             QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
             if (infosToLoad.contains(TvShowScraperInfos::Certification)
                 && !elem.elementsByTagName("ContentRating").isEmpty())
-                show->setCertification(Helper::instance()->mapCertification(
-                    elem.elementsByTagName("ContentRating").at(0).toElement().text()));
+                show->setCertification(
+                    Helper::mapCertification(elem.elementsByTagName("ContentRating").at(0).toElement().text()));
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
                 show->setFirstAired(
                     QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty())
-                show->setGenres(Helper::instance()->mapGenre(
+                show->setGenres(Helper::mapGenre(
                     elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
             if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty())
                 show->setNetwork(elem.elementsByTagName("Network").at(0).toElement().text());
@@ -1041,7 +1041,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShow *show, TvShowUpdateTyp
         if (shouldLoadFromImdb(TvShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
             show->clear(QList<int>() << TvShowScraperInfos::Genres);
             foreach (const QString &genre, m_dummyMovie->genres())
-                show->addGenre(Helper::instance()->mapGenre(genre));
+                show->addGenre(Helper::mapGenre(genre));
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {

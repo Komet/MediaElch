@@ -77,7 +77,7 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
     setTextValue(doc, "tmdbid", movie->tmdbId());
     setTextValue(doc, "set", movie->set());
     setTextValue(doc, "sorttitle", movie->sortTitle());
-    setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
+    setTextValue(doc, "trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
     setTextValue(doc, "watched", (movie->watched()) ? "true" : "false");
 
     QStringList writers;
@@ -785,7 +785,7 @@ QByteArray XbmcXml::getConcertXml(Concert *concert)
     setTextValue(doc, "mpaa", concert->certification());
     setTextValue(doc, "playcount", QString("%1").arg(concert->playcount()));
     setTextValue(doc, "lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(concert->trailer().toString()));
+    setTextValue(doc, "trailer", Helper::formatTrailerUrl(concert->trailer().toString()));
     setTextValue(doc, "watched", (concert->watched()) ? "true" : "false");
     setTextValue(doc, "genre", concert->genres().join(" / "));
     setListValue(doc, "tag", concert->tags());
@@ -1449,11 +1449,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
-        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1465,11 +1465,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)) {
-        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             QFile(dir.absolutePath() + "/thumb.jpg").remove();
-        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1989,14 +1989,14 @@ QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile>
     QString fileName;
     QFileInfo fi(episode->files().at(0));
 
-    if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
         QDir dir = fi.dir();
         dir.cdUp();
         fi.setFile(dir.absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
 
-    if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+    if (Helper::isDvd(episode->files().at(0), true)) {
         fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }

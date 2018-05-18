@@ -21,9 +21,8 @@ AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AboutDia
 #endif
 
     QPixmap p(":/img/MediaElch.png");
-    p = p.scaled(
-        ui->icon->size() * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
+    p = p.scaled(ui->icon->size() * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
 }
 

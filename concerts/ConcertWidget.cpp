@@ -134,10 +134,10 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->artStackedWidget);
-    Helper::instance()->applyStyle(ui->tabWidget);
-    Helper::instance()->applyEffect(ui->groupBox_3);
-    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
+    Helper::applyStyle(ui->artStackedWidget);
+    Helper::applyStyle(ui->tabWidget);
+    Helper::applyEffect(ui->groupBox_3);
+    Helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 /**

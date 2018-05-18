@@ -111,7 +111,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     }
 
     QPixmap pixmap(":/img/man.png");
-    Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+    Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
     connect(ui->name, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
@@ -171,9 +171,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->artStackedWidget);
-    Helper::instance()->applyStyle(ui->tabWidget);
-    Helper::instance()->applyEffect(ui->groupBox_3);
+    Helper::applyStyle(ui->artStackedWidget);
+    Helper::applyStyle(ui->tabWidget);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 /**
@@ -700,12 +700,12 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 
     if (TvShow::seasonImageTypes().contains(elem.imageType)) {
         if (elem.imageType == ImageType::TvShowSeasonBackdrop)
-            Helper::instance()->resizeBackdrop(elem.data);
+            Helper::resizeBackdrop(elem.data);
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
         elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
     } else if (elem.imageType == ImageType::TvShowExtraFanart) {
-        Helper::instance()->resizeBackdrop(elem.data);
+        Helper::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show)
             ui->fanarts->addImage(elem.data);
@@ -713,7 +713,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (image->imageType() == elem.imageType) {
                 if (elem.imageType == ImageType::TvShowBackdrop)
-                    Helper::instance()->resizeBackdrop(elem.data);
+                    Helper::resizeBackdrop(elem.data);
                 if (m_show == elem.show)
                     image->setImage(elem.data);
                 ImageCache::instance()->invalidateImages(
@@ -861,7 +861,7 @@ void TvShowWidgetTvShow::onActorChanged()
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
         || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         QPixmap pixmap(":/img/man.png");
-        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
         return;
@@ -871,22 +871,19 @@ void TvShowWidgetTvShow::onActorChanged()
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
-        QPixmap pixmap = QPixmap::fromImage(img).scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
-            Qt::KeepAspectRatio,
-            Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+        QPixmap pixmap = QPixmap::fromImage(img).scaled(
+            QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
-            Qt::KeepAspectRatio,
-            Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else {
         QPixmap pixmap(":/img/man.png");
-        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     }

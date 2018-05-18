@@ -46,10 +46,10 @@ CertificationWidget::CertificationWidget(QWidget *parent) : QWidget(parent), ui(
     connect(ui->movies,         &QTableWidget::itemDoubleClicked,     this, &CertificationWidget::onJumpToMovie);
     // clang-format on
 
-    Helper::instance()->applyStyle(ui->groupBox);
-    Helper::instance()->applyStyle(ui->certifications);
-    Helper::instance()->applyStyle(ui->label_2);
-    Helper::instance()->applyStyle(ui->label_3);
+    Helper::applyStyle(ui->groupBox);
+    Helper::applyStyle(ui->certifications);
+    Helper::applyStyle(ui->label_2);
+    Helper::applyStyle(ui->label_3);
 }
 
 /**

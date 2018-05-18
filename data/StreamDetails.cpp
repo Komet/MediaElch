@@ -273,8 +273,8 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
 
 QString StreamDetails::stereoFormat(const QString &format) const
 {
-    if (Helper::instance()->stereoModes().values().contains(format.toLower())) {
-        return Helper::instance()->stereoModes().key(format.toLower());
+    if (Helper::stereoModes().values().contains(format.toLower())) {
+        return Helper::stereoModes().key(format.toLower());
     }
     return "";
 }

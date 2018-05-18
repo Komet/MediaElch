@@ -115,7 +115,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
 
-    Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
+    Helper::removeFocusRect(ui->stackedWidget->widget(9));
 
     // clang-format off
     connect(ui->buttonAddDir,           &QAbstractButton::clicked, this, &SettingsWindow::chooseDirToAdd);
@@ -206,9 +206,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ui->btnUpdatePlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUpdatePlugin);
     ui->btnUninstallPlugin->setVisible(false);
     ui->btnUpdatePlugin->setVisible(false);
-    Helper::instance()->setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);
-    Helper::instance()->setButtonStyle(ui->btnUninstallPlugin, Helper::ButtonDanger);
-    Helper::instance()->setButtonStyle(ui->btnUpdatePlugin, Helper::ButtonInfo);
+    Helper::setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);
+    Helper::setButtonStyle(ui->btnUninstallPlugin, Helper::ButtonDanger);
+    Helper::setButtonStyle(ui->btnUpdatePlugin, Helper::ButtonInfo);
 
     m_pluginsInstallable = false;
 #if defined(Q_OS_MAC)

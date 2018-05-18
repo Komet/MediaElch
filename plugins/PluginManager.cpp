@@ -143,8 +143,7 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
         if (m_plugins[i].identifier == identifier) {
             m_plugins[i].version = version;
             m_plugins[i].files = files;
-            m_plugins[i].updateAvailable =
-                (Helper::instance()->compareVersionNumbers(m_plugins[i].installedVersion, version) == 1);
+            m_plugins[i].updateAvailable = (Helper::compareVersionNumbers(m_plugins[i].installedVersion, version) == 1);
             return;
         }
     }
@@ -172,8 +171,7 @@ bool PluginManager::loadPlugin(const QString &fileName)
         if (iPlugin) {
             qDebug() << "Loading plugin" << iPlugin->name();
 
-            if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion())
-                == 1) {
+            if (Helper::compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion()) == 1) {
                 NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2")
                                                              .arg(iPlugin->name())
                                                              .arg(iPlugin->minimumVersion()),
@@ -187,10 +185,9 @@ bool PluginManager::loadPlugin(const QString &fileName)
                 Manager::instance()->tvShowModel(),
                 Manager::instance()->concertModel(),
                 NotificationBox::instance(),
-                Notificator::instance(),
-                Helper::instance());
+                Notificator::instance());
             iPlugin->loadSettings(Settings::instance()->settings());
-            Helper::instance()->applyStyle(iPlugin->widget());
+            Helper::applyStyle(iPlugin->widget());
 
             bool pluginFound = false;
             for (int i = 0, n = m_plugins.count(); i < n; ++i) {

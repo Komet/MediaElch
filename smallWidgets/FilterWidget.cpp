@@ -36,7 +36,7 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    if (Helper::instance()->devicePixelRatio(m_list) == 1) {
+    if (Helper::devicePixelRatio(m_list) == 1) {
         auto effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);
@@ -302,7 +302,7 @@ void FilterWidget::setupMovieFilters()
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
 
     if (m_movieLabelFilters.isEmpty()) {
-        QMapIterator<int, QString> it(Helper::instance()->labels());
+        QMapIterator<int, QString> it(Helper::labels());
         while (it.hasNext()) {
             it.next();
             m_movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()),

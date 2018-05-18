@@ -30,12 +30,8 @@ public:
 
     virtual ~PluginInterface() {}
 
-    virtual void init(void *movieModel,
-        void *tvShowModel,
-        void *concertModel,
-        void *notificationBox,
-        void *notificator,
-        void *helper) = 0;
+    virtual void
+    init(void *movieModel, void *tvShowModel, void *concertModel, void *notificationBox, void *notificator) = 0;
 
     virtual PluginInterface::Section section() = 0;
     virtual QString name() const = 0;

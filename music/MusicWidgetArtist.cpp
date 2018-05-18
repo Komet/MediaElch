@@ -101,9 +101,9 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new 
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->tabWidget);
-    Helper::instance()->applyStyle(ui->artWidget);
-    Helper::instance()->applyEffect(ui->groupBox_3);
+    Helper::applyStyle(ui->tabWidget);
+    Helper::applyStyle(ui->artWidget);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 MusicWidgetArtist::~MusicWidgetArtist()

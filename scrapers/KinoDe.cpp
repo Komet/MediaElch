@@ -101,7 +101,7 @@ QList<int> KinoDe::scraperNativelySupports()
 void KinoDe::search(QString searchStr)
 {
     qDebug() << "Entered, movie searchStr = " << searchStr;
-    QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
+    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
     QUrl url{QStringLiteral("https://www.kino.de/se/%1/?sp_search_filter=movie").arg(encodedSearch)};
     QNetworkReply *const reply = m_qnam.get(QNetworkRequest{url});
     new NetworkReplyWatcher(this, reply);
@@ -252,13 +252,13 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     // Country
     rx.setPattern(R"(<dt>Produktionsland</dt><dd><a href="https://www.kino.de/filme/laender/[^"]+">(.*)</a>)");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
-        movie.addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
+        movie.addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
     }
 
     // MPAA
     rx.setPattern("<dt>FSK</dt><dd><a href=\"https://www.kino.de/filme/fsk/[^\"]+/\">ab ([0-9]+)</a></dd>");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie.setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+        movie.setCertification(Helper::mapCertification("FSK " + rx.cap(1)));
     }
 
     // Runtime

@@ -43,7 +43,7 @@ ImageCache *ImageCache::instance(QObject *parent)
 QImage ImageCache::image(QString path, int width, int height, int &origWidth, int &origHeight)
 {
     if (m_cacheDir.isEmpty()) {
-        return scaledImage(Helper::instance()->getImage(path), width, height);
+        return scaledImage(Helper::getImage(path), width, height);
     }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
@@ -65,7 +65,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
     }
 
     if (update) {
-        QImage origImg = Helper::instance()->getImage(path);
+        QImage origImg = Helper::getImage(path);
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
@@ -82,7 +82,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         return img;
     }
 
-    return Helper::instance()->getImage(m_cacheDir + "/" + files.first());
+    return Helper::getImage(m_cacheDir + "/" + files.first());
 }
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
@@ -114,7 +114,7 @@ void ImageCache::invalidateImages(QString path)
 QSize ImageCache::imageSize(QString path)
 {
     if (m_cacheDir.isEmpty()) {
-        return Helper::instance()->getImage(path).size();
+        return Helper::getImage(path).size();
     }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
@@ -122,12 +122,12 @@ QSize ImageCache::imageSize(QString path)
     QDir dir(m_cacheDir);
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (files.isEmpty() || files.first().split("_").count() < 7) {
-        return Helper::instance()->getImage(path).size();
+        return Helper::getImage(path).size();
     }
 
     QStringList parts = files.first().split("_");
     if (!m_forceCache && getLastModified(path) != parts.at(5).toInt()) {
-        return Helper::instance()->getImage(path).size();
+        return Helper::getImage(path).size();
     }
 
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());
