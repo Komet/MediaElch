@@ -322,12 +322,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="50"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="52"/>
         <source>Searching for Concerts...</source>
         <translation>Vyhledávání koncertů...</translation>
     </message>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="69"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="72"/>
         <source>Loading Concerts...</source>
         <translation>Načítání koncertů...</translation>
     </message>
@@ -2175,8 +2175,8 @@
         <translation>Nový sloupec</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="698"/>
-        <location filename="../globals/ImageDialog.cpp" line="705"/>
+        <location filename="../globals/ImageDialog.cpp" line="703"/>
+        <location filename="../globals/ImageDialog.cpp" line="710"/>
         <source>No images found</source>
         <translation>Nebyly nalezeny žádné obrázky</translation>
     </message>
@@ -2221,22 +2221,22 @@
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="567"/>
+        <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="567"/>
+        <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Obrázky (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="702"/>
+        <location filename="../globals/ImageDialog.cpp" line="707"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="706"/>
+        <location filename="../globals/ImageDialog.cpp" line="711"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3065,12 +3065,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="36"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="31"/>
         <source>Searching for Movies...</source>
         <translation>Vyhledávání filmů...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="146"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="155"/>
         <source>Loading Movies...</source>
         <translation>Načítání filmů...</translation>
     </message>
@@ -3078,17 +3078,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesOrganizer</name>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="32"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="27"/>
         <source>Source %1 is no directory</source>
         <translation>Zdroj %1 není adresář</translation>
     </message>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="86"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="84"/>
         <source>Operation not possible.</source>
         <translation>Operace není možná.</translation>
     </message>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="87"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="85"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -3137,47 +3137,47 @@ operace zrušena.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="287"/>
+        <location filename="../data/MovieModel.cpp" line="293"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="288"/>
+        <location filename="../data/MovieModel.cpp" line="294"/>
         <source>Extra Arts</source>
         <translation>Extra arty</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="289"/>
+        <location filename="../data/MovieModel.cpp" line="295"/>
         <source>Extra Fanarts</source>
         <translation>Extra fanarty</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="290"/>
+        <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="291"/>
+        <location filename="../data/MovieModel.cpp" line="297"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="292"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Stream Details</source>
         <translation>Podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="293"/>
+        <location filename="../data/MovieModel.cpp" line="299"/>
         <source>Trailer</source>
         <translation>Upoutávka</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="294"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Local Trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="295"/>
+        <location filename="../data/MovieModel.cpp" line="301"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -4932,12 +4932,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="56"/>
         <source>Logfile could not be openened</source>
         <translation>Log soubor nemohl být otevřen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="57"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Log soubor %1 nemohl být otevřen pro zápis.</translation>
     </message>
@@ -6188,132 +6188,132 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="29"/>
+        <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Bulgarian</source>
         <translation>Bulharština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="30"/>
+        <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Chinese</source>
         <translation>Čínština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="31"/>
+        <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Croatian</source>
         <translation>Chorvatština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="32"/>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
         <source>Czech</source>
         <translation>Čeština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="33"/>
+        <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>Danish</source>
         <translation>Dánština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Dutch</source>
         <translation>Holandština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="35"/>
+        <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>English</source>
         <translation>Angličtina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="36"/>
+        <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>English (US)</source>
         <translation>Angličtina (US)</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="37"/>
+        <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Finnish</source>
         <translation>Finština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="38"/>
+        <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>French</source>
         <translation>Francouzština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="39"/>
+        <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>German</source>
         <translation>Němčina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="40"/>
+        <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Greek</source>
         <translation>Řečtina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="41"/>
+        <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Hebrew</source>
         <translation>Hebrejština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="42"/>
+        <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Hungarian</source>
         <translation>Maďarština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="43"/>
+        <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Italian</source>
         <translation>Italština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="44"/>
+        <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Japanese</source>
         <translation>Japonština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="45"/>
+        <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Korean</source>
         <translation>Korejština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="46"/>
+        <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Norwegian</source>
         <translation>Norština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="47"/>
+        <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Polish</source>
         <translation>Polština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="48"/>
+        <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Portuguese</source>
         <translation>Portugalština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="49"/>
+        <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Russian</source>
         <translation>Ruština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="50"/>
+        <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Slovene</source>
         <translation>Slovinština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="51"/>
+        <location filename="../scrapers/TMDb.cpp" line="53"/>
         <source>Spanish</source>
         <translation>Španělština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="52"/>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Swedish</source>
         <translation>Švédština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="53"/>
+        <location filename="../scrapers/TMDb.cpp" line="55"/>
         <source>Turkish</source>
         <translation>Turečtina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="55"/>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
@@ -6791,42 +6791,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="97"/>
+        <location filename="../data/TvShowModel.cpp" line="99"/>
         <source>Poster</source>
         <translation>S plakátem</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="98"/>
+        <location filename="../data/TvShowModel.cpp" line="100"/>
         <source>Fanart</source>
         <translation>S fanartem</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="99"/>
+        <location filename="../data/TvShowModel.cpp" line="101"/>
         <source>Extra Fanarts</source>
         <translation>Extra fanarty</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="100"/>
+        <location filename="../data/TvShowModel.cpp" line="102"/>
         <source>Thumb</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="101"/>
+        <location filename="../data/TvShowModel.cpp" line="103"/>
         <source>Logo</source>
         <translation>S logem</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="102"/>
+        <location filename="../data/TvShowModel.cpp" line="104"/>
         <source>Clear Art</source>
         <translation>Clear art</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="103"/>
+        <location filename="../data/TvShowModel.cpp" line="105"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="104"/>
+        <location filename="../data/TvShowModel.cpp" line="106"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
@@ -6834,7 +6834,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="149"/>
+        <location filename="../data/TvShowModelItem.cpp" line="182"/>
         <source>Season %1</source>
         <translation>Řada %1</translation>
     </message>
