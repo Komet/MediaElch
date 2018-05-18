@@ -504,28 +504,6 @@ margin-top: 15px;</string>
         <layout class="QVBoxLayout" name="layoutImport"/>
        </item>
        <item>
-        <widget class="QLabel" name="labelPlugins">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
-         <property name="text">
-          <string>Plugins</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="layoutPlugins"/>
-       </item>
-       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

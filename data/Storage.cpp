@@ -45,14 +45,6 @@ Storage::Storage(QObject *parent, QTableWidgetItem *item) : QObject(parent), m_t
 {
 }
 
-Storage::Storage(QObject *parent, PluginInterface *plugin) : QObject(parent), m_pluginInterface{plugin}
-{
-}
-
-Storage::Storage(QObject *parent, PluginManager::Plugin plugin) : QObject(parent), m_plugin(plugin)
-{
-}
-
 Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) : QObject(parent), m_episodes{episodes}
 {
 }
@@ -124,16 +116,6 @@ QTableWidgetItem *Storage::tableWidgetItem() const
 QMap<ScraperInterface *, QString> Storage::ids() const
 {
     return m_ids;
-}
-
-PluginInterface *Storage::pluginInterface() const
-{
-    return m_pluginInterface;
-}
-
-PluginManager::Plugin Storage::plugin() const
-{
-    return m_plugin;
 }
 
 QList<TvShowEpisode *> Storage::episodes() const
@@ -224,22 +206,6 @@ QVariant Storage::toVariant(QObject *parent, QMap<ScraperInterface *, QString> i
 QVariant Storage::toVariant(QObject *parent, QTableWidgetItem *item)
 {
     const auto storage = new Storage(parent, item);
-    QVariant var;
-    var.setValue(storage);
-    return var;
-}
-
-QVariant Storage::toVariant(QObject *parent, PluginInterface *plugin)
-{
-    const auto storage = new Storage(parent, plugin);
-    QVariant var;
-    var.setValue(storage);
-    return var;
-}
-
-QVariant Storage::toVariant(QObject *parent, PluginManager::Plugin plugin)
-{
-    Storage *const storage = new Storage(parent, plugin);
     QVariant var;
     var.setValue(storage);
     return var;

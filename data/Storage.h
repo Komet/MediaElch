@@ -13,8 +13,6 @@
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "plugins/PluginInterface.h"
-#include "plugins/PluginManager.h"
 
 class Storage : public QObject
 {
@@ -31,8 +29,6 @@ public:
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
     explicit Storage(QObject *parent, QMap<ScraperInterface *, QString> ids);
     explicit Storage(QObject *parent, QTableWidgetItem *item);
-    explicit Storage(QObject *parent, PluginInterface *pluginInterface);
-    explicit Storage(QObject *parent, PluginManager::Plugin plugin);
     explicit Storage(QObject *parent, QList<TvShowEpisode *> episodes);
     Movie *movie() const;
     Concert *concert() const;
@@ -45,8 +41,6 @@ public:
     ExportTemplate *exportTemplate() const;
     QMap<ScraperInterface *, QString> ids() const;
     QTableWidgetItem *tableWidgetItem() const;
-    PluginInterface *pluginInterface() const;
-    PluginManager::Plugin plugin() const;
     QList<TvShowEpisode *> episodes() const;
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
@@ -59,8 +53,6 @@ public:
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
     static QVariant toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids);
     static QVariant toVariant(QObject *parent, QTableWidgetItem *item);
-    static QVariant toVariant(QObject *parent, PluginInterface *pluginInterface);
-    static QVariant toVariant(QObject *parent, PluginManager::Plugin plugin);
     static QVariant toVariant(QObject *parent, QList<TvShowEpisode *> episodes);
 
 private:
@@ -75,8 +67,6 @@ private:
     QPointer<ExportTemplate> m_exportTemplate;
     QMap<ScraperInterface *, QString> m_ids;
     QTableWidgetItem *m_tableWidgetItem = nullptr;
-    PluginInterface *m_pluginInterface = nullptr;
-    PluginManager::Plugin m_plugin;
     QList<TvShowEpisode *> m_episodes;
 };
 
