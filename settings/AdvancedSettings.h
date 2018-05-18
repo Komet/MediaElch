@@ -18,6 +18,7 @@ public:
 
     bool debugLog() const;
     QString logFile() const;
+    QLocale locale() const;
     QStringList sortTokens() const;
     QHash<QString, QString> genreMappings() const;
     QStringList movieFilters() const;
@@ -38,6 +39,7 @@ public:
 private:
     bool m_debugLog;
     QString m_logFile;
+    QLocale m_locale;
     QStringList m_sortTokens;
     QHash<QString, QString> m_genreMappings;
     QStringList m_movieFilters;
@@ -58,6 +60,7 @@ private:
     QByteArray getAdvancedSettingsXml() const;
     void loadSettings();
     void reset();
+    void setLocale(QString locale);
     void loadLog(QXmlStreamReader &xml);
     void loadGui(QXmlStreamReader &xml);
     void loadSortTokens(QXmlStreamReader &xml);
