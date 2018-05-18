@@ -17,7 +17,7 @@ class TMDbConcerts : public ConcertScraperInterface
     Q_OBJECT
 public:
     explicit TMDbConcerts(QObject *parent = nullptr);
-    ~TMDbConcerts() override;
+    ~TMDbConcerts() override = default;
     QString name() override;
     void search(QString searchStr) override;
     void loadData(QString id, Concert *concert, QList<int> infos) override;

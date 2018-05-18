@@ -18,24 +18,31 @@
  * @brief TMDbConcerts::TMDbConcerts
  * @param parent
  */
-TMDbConcerts::TMDbConcerts(QObject *parent)
+TMDbConcerts::TMDbConcerts(QObject *parent) :
+    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
+    m_language{"en"},
+    m_baseUrl{"http://cf2.imgobject.com/t/p/"}
 {
     setParent(parent);
-    m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
-    m_language = "en";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
+
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
+    m_box->addItem(tr("Arabic"), "ar");
     m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Chinese (T)"), "zh-TW");
+    m_box->addItem(tr("Chinese (S)"), "zh-CN");
     m_box->addItem(tr("Croatian"), "hr");
     m_box->addItem(tr("Czech"), "cs");
     m_box->addItem(tr("Danish"), "da");
     m_box->addItem(tr("Dutch"), "nl");
     m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en_US");
+    m_box->addItem(tr("English (US)"), "en-US");
     m_box->addItem(tr("Finnish"), "fi");
     m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("French (Canada)"), "fr-CA");
     m_box->addItem(tr("German"), "de");
     m_box->addItem(tr("Greek"), "el");
     m_box->addItem(tr("Hebrew"), "he");
@@ -45,12 +52,15 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     m_box->addItem(tr("Korean"), "ko");
     m_box->addItem(tr("Norwegian"), "no");
     m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Portuguese (Brazil)"), "pt-BR");
+    m_box->addItem(tr("Portuguese (Portugal)"), "pt-PT");
     m_box->addItem(tr("Russian"), "ru");
     m_box->addItem(tr("Slovene"), "sl");
     m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Spanish (Mexico)"), "es-MX");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
+
     auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
@@ -71,18 +81,16 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
                       << ConcertScraperInfos::Genres        //
                       << ConcertScraperInfos::ExtraArts;
 
-    m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
 }
 
-TMDbConcerts::~TMDbConcerts() = default;
 /**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
 QString TMDbConcerts::name()
 {
-    return QString("The Movie DB (Concerts)");
+    return QStringLiteral("The Movie DB (Concerts)");
 }
 
 /**
