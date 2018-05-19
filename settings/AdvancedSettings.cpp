@@ -17,6 +17,7 @@ AdvancedSettings::AdvancedSettings(QObject *parent) : QObject(parent)
 void AdvancedSettings::reset()
 {
     m_debugLog = false;
+    m_locale = QLocale::system();
     m_forceCache = false;
     m_bookletCut = 2;
     m_logFile = "";
@@ -107,6 +108,9 @@ void AdvancedSettings::loadSettings()
         if (xml.name() == "log") {
             loadLog(xml);
 
+        } else if (xml.name() == "locale") {
+            setLocale(xml.readElementText());
+
         } else if (xml.name() == "portableMode") {
             m_portableMode = (xml.readElementText() == "true");
 
@@ -153,6 +157,7 @@ void AdvancedSettings::loadSettings()
     }
 
     qDebug() << "Advanced settings";
+    qDebug() << "    locale                " << m_locale;
     qDebug() << "    debugLog              " << m_debugLog;
     qDebug() << "    logFile               " << m_logFile;
     qDebug() << "    forceCache            " << m_forceCache;
@@ -170,6 +175,23 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    writeThumbUrlsToNfo   " << m_writeThumbUrlsToNfo;
     qDebug() << "    bookletCut            " << m_bookletCut;
     qDebug() << "    useFirstStudioOnly    " << m_useFirstStudioOnly;
+}
+
+void AdvancedSettings::setLocale(QString locale)
+{
+    locale = locale.trimmed();
+    if (locale.toLower() == "system") {
+        m_locale = QLocale::system();
+
+    } else {
+        m_locale = QLocale(locale);
+        // If "locale" is not a valid locale, Qt uses the C locale.
+        // Because `.name()` also returns "C" instead of the systems locale,
+        // we have to check for it.
+        if (m_locale.name() == "C") {
+            m_locale = QLocale::system();
+        }
+    }
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -273,6 +295,11 @@ bool AdvancedSettings::debugLog() const
 QString AdvancedSettings::logFile() const
 {
     return m_logFile;
+}
+
+QLocale AdvancedSettings::locale() const
+{
+    return m_locale;
 }
 
 QStringList AdvancedSettings::sortTokens() const

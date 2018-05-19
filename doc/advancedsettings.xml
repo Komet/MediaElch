@@ -5,6 +5,15 @@
 -->
 <advancedsettings>
     <!--
+        Set the interface language. If it is set to "system", your system's
+        language will be used. Use the format "lang-COUNTRY" to specify your
+        language. Examples: "de-DE", "en-US", "pt-PT", "pt-BR"
+        If <locale> is not valid, your system's locale will be used.
+        If <locale> exists, but is not supported by MediaElch, English will be used.
+    -->
+    <locale>system</locale>
+
+    <!--
         When <portableMode> is set to true MediaElch will store its settings,
         temporary files and caches in the application directory and not in
         standard locations based on your OS.

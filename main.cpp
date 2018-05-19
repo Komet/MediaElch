@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     // Qt localization
     QTranslator qtTranslator;
-    qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
+    qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
     app.installTranslator(&qtTranslator);
 
     // MediaElch localization
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     if (fi.isFile()) {
         editTranslator.load(localFileName);
     } else {
-        editTranslator.load(QLocale::system(), "MediaElch", "_", ":/i18n/", ".qm");
+        editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
     }
     app.installTranslator(&editTranslator);
 
