@@ -2,6 +2,7 @@
 #define TMDB_H
 
 #include <QComboBox>
+#include <QLocale>
 #include <QMap>
 #include <QObject>
 #include <QPointer>
@@ -47,8 +48,7 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QString m_language;
-    QString m_language2;
+    QLocale m_locale;
     QString m_baseUrl;
     QMutex m_mutex;
     QList<int> m_scraperSupports;
@@ -66,7 +66,6 @@ private:
     };
     enum class ApiUrlParameter
     {
-        LANGUAGE,
         YEAR,
         PAGE,
         INCLUDE_ADULT
@@ -74,6 +73,9 @@ private:
     using UrlParameterMap = QMap<ApiUrlParameter, QString>;
 
     void setup();
+    QString localeForTMDb() const;
+    QString language() const;
+    QString country() const;
     QString apiUrlParameterString(ApiUrlParameter parameter) const;
     QUrl getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const;
     QUrl getMovieUrl(const QString &title,
