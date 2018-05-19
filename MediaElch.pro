@@ -230,7 +230,8 @@ macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
 }
 
-HEADERS  += main/MainWindow.h \
+HEADERS  += Version.h \
+    main/MainWindow.h \
     movies/Movie.h \
     globals/Globals.h \
     data/MediaCenterInterface.h \
