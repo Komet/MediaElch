@@ -58,7 +58,7 @@ gather_information() {
 	fi
 	echo "RELEASE_DATE = ${RELEASE_DATE}"
 
-	ME_VERSION=$(sed -ne 's/.*setApplicationVersion("\(.*\)");/\1/p' main.cpp)
+	ME_VERSION=$(sed -ne 's/.*AppVersionStr[^"]*"\(.*\)";/\1/p' Version.h)
 	echo "ME_VERSION = ${ME_VERSION}"
 
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
