@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "Version.h"
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 
@@ -65,9 +66,10 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("kvibes");
-    QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("2.4.3-dev");
+    QCoreApplication::setOrganizationName(MediaElch::Constants::OrganizationName);
+    QCoreApplication::setOrganizationDomain(MediaElch::Constants::OrganizationDomain);
+    QCoreApplication::setApplicationName(MediaElch::Constants::AppName);
+    QCoreApplication::setApplicationVersion(MediaElch::Constants::AppVersionStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     installLogger();

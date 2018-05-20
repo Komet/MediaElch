@@ -5,7 +5,7 @@
 
 namespace Ui {
 class AboutDialog;
-}
+} // namespace Ui
 
 /**
  * @brief The AboutDialog class
@@ -22,6 +22,7 @@ public slots:
     int exec() override;
 
 private:
+    void setDeveloperInformation();
     Ui::AboutDialog *ui;
 };
 
