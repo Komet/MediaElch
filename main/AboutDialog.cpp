@@ -1,6 +1,9 @@
 #include "AboutDialog.h"
 #include "ui_AboutDialog.h"
 
+#include <QStandardPaths>
+
+#include "Version.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -24,6 +27,8 @@ AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AboutDia
     p = p.scaled(ui->icon->size() * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
+
+    setDeveloperInformation();
 }
 
 /**
@@ -43,12 +48,14 @@ int AboutDialog::exec()
     adjustSize();
 
     int episodes = 0;
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
+    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
         episodes += show->episodes().count();
+    }
 
     int albums = 0;
-    foreach (Artist *artist, Manager::instance()->musicModel()->artists())
+    foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
         albums += artist->albums().count();
+    }
 
     ui->numMovies->setText(QString::number(Manager::instance()->movieModel()->movies().count()));
     ui->numConcerts->setText(QString::number(Manager::instance()->concertModel()->concerts().count()));
@@ -58,4 +65,23 @@ int AboutDialog::exec()
     ui->numAlbums->setText(QString::number(albums));
 
     return QDialog::exec();
+}
+
+void AboutDialog::setDeveloperInformation()
+{
+    QString infos;
+    QTextStream infoStream(&infos);
+    infoStream << MediaElch::Constants::AppName << " " << MediaElch::Constants::AppVersionStr << " - "
+               << MediaElch::Constants::VersionName << "<br><br>"
+               << QStringLiteral("Compiled with Qt version %1 (%2 %3, %4)<br>")
+                      .arg(QT_VERSION_STR,
+                          QString::number(QSysInfo::WordSize),
+                          MediaElch::Constants::CompilationType,
+                          MediaElch::Constants::CompilerString)
+               << QStringLiteral("Using Qt version %1<br>").arg(qVersion())
+               << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
+               << "Application dir: " << Settings::applicationDir() << "<br>"
+               << "Settings file: " << Settings::instance()->settings()->fileName() << "<br>"
+               << "Data dir: " << QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    ui->txtDetails->setHtml(infos);
 }

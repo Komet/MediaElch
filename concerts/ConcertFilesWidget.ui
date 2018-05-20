@@ -10,15 +10,6 @@
     <height>587</height>
    </rect>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QTableView {
-	border: 0px;
-}
-
-#files {
-	color: #395265;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -37,14 +28,6 @@
    </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
-     <property name="styleSheet">
-      <string notr="true">QWidget {
-	background-color: #ffffff;
-	color: rgb(27, 105, 165);
-	border-bottom: 1px solid #f0f0f0;
-	border-bottom: 1px solid rgb(248, 155, 53);
-}</string>
-     </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="leftMargin">
        <number>6</number>
@@ -65,9 +48,6 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border: none;</string>
         </property>
         <property name="text">
          <string notr="true">TextLabel</string>
@@ -90,11 +70,6 @@
      </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-alternate-background-color: #f9f9f9;
-selection-color: #ffffff;</string>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>

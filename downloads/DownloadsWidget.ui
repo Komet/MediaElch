@@ -13,15 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#widget {
-	background-color: #ffffff;
-}
-
-#tableImports, #tablePackages {
-	font-size: 11px;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -57,10 +48,6 @@
           <family>Helvetica Neue</family>
           <pointsize>22</pointsize>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #224f7f;
-</string>
         </property>
         <property name="text">
          <string>Archives</string>
@@ -154,10 +141,6 @@
             <family>Helvetica Neue</family>
             <pointsize>22</pointsize>
            </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #224f7f;
-</string>
           </property>
           <property name="text">
            <string>Importable items</string>

@@ -10,13 +10,6 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QLineEdit {
-	border: 0;
-	background-color: transparent;
-	border-bottom: 1px dotted #ffffff;
-}</string>
-  </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1">
    <item>
     <widget class="MyLineEdit" name="lineEdit">

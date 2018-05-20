@@ -36,13 +36,6 @@
        <pointsize>9</pointsize>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QWidget {
-	background-color: #ffffff;
-	color: rgb(27, 105, 165);
-	border-bottom: 1px solid rgb(248, 155, 53);
-}</string>
-     </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="leftMargin">
        <number>6</number>
@@ -64,9 +57,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="styleSheet">
-         <string notr="true">border: none;</string>
-        </property>
         <property name="text">
          <string notr="true">12 artists, 34 albums</string>
         </property>
@@ -82,13 +72,6 @@
     <widget class="MusicTreeView" name="music">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QTreeView {
-	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-    alternate-background-color: #f9f9f9;
-	selection-color: #ffffff;
-}</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>

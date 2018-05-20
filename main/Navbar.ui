@@ -31,28 +31,11 @@
    </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
-     <property name="styleSheet">
-      <string notr="true">QToolButton {
-	border: 0;
-	border-right: 1px solid #ebebeb;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-#widget {
-	background-color: #f7f7f7;
-	background-color: #fafafa;
-	border-bottom: 1px solid #ebebeb;
-}</string>
-     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,1,0,0">
       <item>
        <widget class="QToolButton" name="btnSearch">
         <property name="toolTip">
          <string>Scrape</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">padding-left: 2px;</string>
         </property>
         <property name="text">
          <string notr="true"/>
@@ -209,11 +192,6 @@
         <property name="toolTip">
          <string>About</string>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QToolButton {
-	border: 0;
-}</string>
-        </property>
         <property name="text">
          <string notr="true"/>
         </property>
@@ -255,21 +233,6 @@
        <widget class="QPushButton" name="btnDonate">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-	border-radius: 4px;
-	color: #ffffff;
-	font-family: Helvetica Neue;
-	padding: 2px;
-	padding-left: 4px;
-	padding-right: 4px;
-	background-color: #9c8ec3;
-	border: 1px solid #877ba8;
-
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #F0AD4E, stop:1 #EC971F);
-	border: 1px solid #EB9316;
-}</string>
         </property>
         <property name="text">
          <string>Donate</string>

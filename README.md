@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Komet/MediaElch.svg?branch=master)](https://travis-ci.org/Komet/MediaElch)
+
 MediaElch
 =========
 
@@ -12,8 +14,7 @@ The Movie DB and The TV DB are available in 23 languages.
 Music information is scraped from The Audio DB, All Music and Discogs.
 Tv themes and trailers can also be downloaded.
 
-Precompiled versions
---------------------
+Download
+--------
 
-Precompiled versions are available for Mac OS X, Windows and Linux.
-Have a look at http://www.mediaelch.de
+Binaries are available for macOS, Linux (AppImage) and Windows. They can be downloaded at https://bintray.com/komet/MediaElch

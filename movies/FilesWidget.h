@@ -82,11 +82,11 @@ private:
     Movie *m_lastMovie;
     QModelIndex m_lastModelIndex;
     static FilesWidget *m_instance;
-    QString m_baseLabelCss;
-    QString m_activeLabelCss;
     QMenu *m_contextMenu;
     AlphabeticalList *m_alphaList;
     bool m_mouseIsIn;
+
+    void updateSort(SortBy sortBy);
 };
 
 #endif // FILESWIDGET_H

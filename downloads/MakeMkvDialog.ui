@@ -88,28 +88,6 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	color: #ffffff; 
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255)); 
-	border: 1px solid #2D6CA2;
-	padding: 4px 4px; 
-	padding-bottom: 4px;
-    margin: 4px;
-    border-radius: 4px;
-	font-size: 11px;
-	margin-bottom: 2px;
-}
-
-QToolButton::pressed { 
-	background-color: rgb(48, 113, 169); 
-}
-
-QToolButton::disabled { 
-	background-color: rgb(66, 139, 202); 
-}
-</string>
-              </property>
               <property name="text">
                <string>Import Tracks</string>
               </property>
@@ -135,28 +113,6 @@ QToolButton::disabled {
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	color: #ffffff; 
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255)); 
-	border: 1px solid #2D6CA2;
-	padding: 4px 4px; 
-	padding-bottom: 4px;
-    margin: 4px;
-    border-radius: 4px;
-	font-size: 11px;
-	margin-bottom: 2px;
-}
-
-QToolButton::pressed { 
-	background-color: rgb(48, 113, 169); 
-}
-
-QToolButton::disabled { 
-	background-color: rgb(66, 139, 202); 
-}
-</string>
               </property>
               <property name="text">
                <string>Backup Disc</string>

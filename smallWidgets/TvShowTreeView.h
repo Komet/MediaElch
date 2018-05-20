@@ -10,7 +10,7 @@ class TvShowTreeView : public QTreeView
     Q_OBJECT
 public:
     explicit TvShowTreeView(QWidget *parent = nullptr);
-    ~TvShowTreeView() override;
+    ~TvShowTreeView() override = default;
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
