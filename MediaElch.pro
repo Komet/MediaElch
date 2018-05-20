@@ -14,10 +14,6 @@ CONFIG += warn_on c++14
 
 LIBS += -lz
 
-contains(DEFINES, PLUGINS){
-    LIBS += -lqca
-}
-
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
 unix:!macx {
@@ -189,9 +185,6 @@ SOURCES += main.cpp\
     smallWidgets/FilterWidget.cpp \
     downloads/MakeMkvDialog.cpp \
     downloads/MakeMkvCon.cpp \
-    plugins/PluginManager.cpp \
-    plugins/PluginsWidget.cpp \
-    plugins/PluginManagerDialog.cpp \
     music/Artist.cpp \
     music/Album.cpp \
     music/MusicModel.cpp \
@@ -364,10 +357,6 @@ HEADERS  += Version.h \
     main/Navbar.h \
     downloads/MakeMkvDialog.h \
     downloads/MakeMkvCon.h \
-    plugins/PluginInterface.h \
-    plugins/PluginManager.h \
-    plugins/PluginsWidget.h \
-    plugins/PluginManagerDialog.h \
     music/Artist.h \
     music/Album.h \
     music/MusicModel.h \
@@ -449,8 +438,6 @@ FORMS    += main/MainWindow.ui \
     tvShows/TvShowSearchEpisode.ui \
     main/Navbar.ui \
     downloads/MakeMkvDialog.ui \
-    plugins/PluginsWidget.ui \
-    plugins/PluginManagerDialog.ui \
     music/MusicWidget.ui \
     music/MusicFilesWidget.ui \
     music/MusicWidgetArtist.ui \

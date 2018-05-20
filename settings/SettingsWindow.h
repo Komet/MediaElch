@@ -11,9 +11,6 @@
 #include "data/TvScraperInterface.h"
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
-#include "plugins/PluginInterface.h"
-#include "plugins/PluginManager.h"
-#include "plugins/PluginManagerDialog.h"
 #include "settings/Settings.h"
 
 namespace Ui {
@@ -59,19 +56,11 @@ private slots:
     void onChooseMakeMkvCon();
     void onDirTypeChanged(QComboBox *comboBox = nullptr);
     void onShowAdultScrapers();
-    void onPluginListUpdated(QList<PluginManager::Plugin> plugins);
-    void onPluginActivated(QListWidgetItem *item);
-    void onInstallPlugin();
-    void onUninstallPlugin();
-    void onUpdatePlugin();
 
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
     QMap<ScraperInterface *, int> m_scraperRows;
-    QMap<int, PluginInterface *> m_plugins;
-    PluginManagerDialog *m_pluginDialog;
-    bool m_pluginsInstallable;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
 
@@ -82,7 +71,6 @@ private:
     QString titleForMovieScraperInfo(const int &info);
     QComboBox *comboForTvScraperInfo(const int &info);
     QString titleForTvScraperInfo(const int &info);
-    void setPluginActionsEnabled(const bool &enabled);
 };
 
 #endif // SETTINGSWINDOW_H

@@ -12,14 +12,12 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
-#include "plugins/PluginsWidget.h"
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SettingsWindow),
-    m_pluginDialog{new PluginManagerDialog(this)},
     m_buttonColor{QColor(128, 129, 132)},
     m_buttonActiveColor{QColor(70, 155, 198)}
 {
@@ -191,37 +189,6 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     }
     ui->actionGlobal->setIcon(
         Manager::instance()->iconFont()->icon(ui->actionGlobal->property("iconName").toString(), m_buttonActiveColor));
-
-#ifndef PLUGINS
-    ui->actionPlugins->setVisible(false);
-#endif
-
-    connect(PluginManager::instance(),
-        SIGNAL(sigPluginListUpdated(QList<PluginManager::Plugin>)),
-        this,
-        SLOT(onPluginListUpdated(QList<PluginManager::Plugin>)));
-    connect(ui->pluginList, &QListWidget::currentItemChanged, this, &SettingsWindow::onPluginActivated);
-    connect(ui->btnInstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onInstallPlugin);
-    connect(ui->btnUninstallPlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUninstallPlugin);
-    connect(ui->btnUpdatePlugin, &QAbstractButton::clicked, this, &SettingsWindow::onUpdatePlugin);
-    ui->btnUninstallPlugin->setVisible(false);
-    ui->btnUpdatePlugin->setVisible(false);
-    Helper::instance()->setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);
-    Helper::instance()->setButtonStyle(ui->btnUninstallPlugin, Helper::ButtonDanger);
-    Helper::instance()->setButtonStyle(ui->btnUpdatePlugin, Helper::ButtonInfo);
-
-    m_pluginsInstallable = false;
-#if defined(Q_OS_MAC)
-    m_pluginsInstallable = true;
-    ui->pluginsLinux->setVisible(false);
-#elif defined(Q_OS_WIN)
-    m_pluginsInstallable = true;
-    ui->pluginsLinux->setVisible(false);
-#endif
-
-#if !defined(PLUGINS)
-    ui->actionPlugins->setVisible(false);
-#endif
 
     loadSettings();
 }
@@ -894,91 +861,4 @@ void SettingsWindow::onShowAdultScrapers()
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);
         }
     }
-}
-
-void SettingsWindow::onPluginListUpdated(QList<PluginManager::Plugin> plugins)
-{
-    int currentRow = ui->pluginList->currentRow();
-    if (currentRow < 0)
-        currentRow = 0;
-
-    ui->pluginList->blockSignals(true);
-    ui->pluginList->clear();
-    ui->pluginList->blockSignals(false);
-    for (int i = 3, n = ui->pluginSettings->count(); i < n; ++i)
-        ui->pluginSettings->removeWidget(ui->pluginSettings->widget(i));
-    ui->btnUninstallPlugin->setVisible(false);
-    ui->btnUpdatePlugin->setVisible(false);
-
-    for (int i = 0, n = plugins.count(); i < n; ++i) {
-        int page = 1;
-        if (plugins[i].installed) {
-            if (plugins[i].plugin->hasSettings())
-                page = ui->pluginSettings->addWidget(plugins[i].plugin->settingsWidget());
-            else
-                page = 1;
-        } else {
-            page = 2;
-        }
-        auto widget = new PluginsWidget(ui->pluginList);
-        widget->setPlugin(plugins[i]);
-
-        auto item = new QListWidgetItem();
-        item->setSizeHint(widget->sizeHint());
-        item->setData(Qt::UserRole, page);
-        item->setData(Qt::UserRole + 1, i);
-        ui->pluginList->addItem(item);
-        ui->pluginList->setItemWidget(item, widget);
-
-        if (i == currentRow)
-            ui->pluginList->setCurrentItem(item);
-    }
-
-    setPluginActionsEnabled(true);
-}
-
-void SettingsWindow::onPluginActivated(QListWidgetItem *item)
-{
-    ui->pluginSettings->setCurrentIndex(item->data(Qt::UserRole).toInt());
-    int index = item->data(Qt::UserRole + 1).toInt();
-    if (index < 0 || index >= PluginManager::instance()->plugins().count())
-        return;
-
-    PluginManager::Plugin plugin = PluginManager::instance()->plugins().at(index);
-    ui->btnInstallPlugin->setVisible(m_pluginsInstallable && !plugin.installed);
-    ui->btnUninstallPlugin->setVisible(m_pluginsInstallable && plugin.installed);
-    ui->btnUpdatePlugin->setVisible(m_pluginsInstallable && plugin.updateAvailable);
-}
-
-void SettingsWindow::onInstallPlugin()
-{
-    int index = ui->pluginList->currentItem()->data(Qt::UserRole + 1).toInt();
-    if (index < 0 || index >= PluginManager::instance()->plugins().count())
-        return;
-    m_pluginDialog->installPlugin(PluginManager::instance()->plugins().at(index));
-}
-
-void SettingsWindow::onUninstallPlugin()
-{
-    int index = ui->pluginList->currentItem()->data(Qt::UserRole + 1).toInt();
-    if (index < 0 || index >= PluginManager::instance()->plugins().count())
-        return;
-    PluginManager::instance()->uninstallPlugin(PluginManager::instance()->plugins().at(index));
-}
-
-void SettingsWindow::onUpdatePlugin()
-{
-    int index = ui->pluginList->currentItem()->data(Qt::UserRole + 1).toInt();
-    if (index < 0 || index >= PluginManager::instance()->plugins().count())
-        return;
-    m_pluginDialog->updatePlugin(PluginManager::instance()->plugins().at(index));
-}
-
-void SettingsWindow::setPluginActionsEnabled(const bool &enabled)
-{
-    ui->pluginList->setEnabled(enabled);
-    ui->pluginSettings->setEnabled(enabled);
-    ui->btnInstallPlugin->setEnabled(enabled);
-    ui->btnUninstallPlugin->setEnabled(enabled);
-    ui->btnUpdatePlugin->setEnabled(enabled);
 }
