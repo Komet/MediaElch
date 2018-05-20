@@ -21,23 +21,28 @@
  * @brief TMDb::TMDb
  * @param parent
  */
-TMDb::TMDb(QObject *parent)
+TMDb::TMDb(QObject *parent) : m_locale{"en"}, m_baseUrl{"http://cf2.imgobject.com/t/p/"}
 {
     setParent(parent);
-    m_language = "en";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
+
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
+    m_box->addItem(tr("Arabic"), "ar");
     m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Chinese (T)"), "zh-TW");
+    m_box->addItem(tr("Chinese (S)"), "zh-CN");
     m_box->addItem(tr("Croatian"), "hr");
     m_box->addItem(tr("Czech"), "cs");
     m_box->addItem(tr("Danish"), "da");
     m_box->addItem(tr("Dutch"), "nl");
     m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en_US");
+    m_box->addItem(tr("English (US)"), "en-US");
     m_box->addItem(tr("Finnish"), "fi");
     m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("French (Canada)"), "fr-CA");
     m_box->addItem(tr("German"), "de");
     m_box->addItem(tr("Greek"), "el");
     m_box->addItem(tr("Hebrew"), "he");
@@ -47,12 +52,15 @@ TMDb::TMDb(QObject *parent)
     m_box->addItem(tr("Korean"), "ko");
     m_box->addItem(tr("Norwegian"), "no");
     m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Portuguese (Brazil)"), "pt-BR");
+    m_box->addItem(tr("Portuguese (Portugal)"), "pt-PT");
     m_box->addItem(tr("Russian"), "ru");
     m_box->addItem(tr("Slovene"), "sl");
     m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Spanish (Mexico)"), "es-MX");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
+
     auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
@@ -100,8 +108,6 @@ TMDb::TMDb(QObject *parent)
                               << MovieScraperInfos::Director      //
                               << MovieScraperInfos::Writer        //
                               << MovieScraperInfos::Set;
-
-    m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
 }
 
@@ -148,23 +154,18 @@ QWidget *TMDb::settingsWidget()
  */
 void TMDb::loadSettings(QSettings &settings)
 {
-    QString lang = settings.value("Scrapers/TMDb/Language", "en").toString();
-    m_language = lang;
-    m_language2 = "";
-    if (m_language.split("_").count() > 1) {
-        m_language = lang.split("_").at(0);
-        m_language2 = lang.split("_").at(1);
+    m_locale = QLocale(settings.value("Scrapers/TMDb/Language", "en").toString());
+    if (m_locale.name() == "C") {
+        m_locale = QLocale("en");
     }
 
-    bool found = false;
+    const QString locale = localeForTMDb();
+    const QString lang = language();
+
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
+        if (m_box->itemData(i).toString() == lang || m_box->itemData(i).toString() == locale) {
             m_box->setCurrentIndex(i);
-            found = true;
-        }
-        if (m_box->itemData(i).toString() == m_language && !found) {
-            m_box->setCurrentIndex(i);
-            found = true;
+            break;
         }
     }
 }
@@ -174,12 +175,7 @@ void TMDb::loadSettings(QSettings &settings)
  */
 void TMDb::saveSettings(QSettings &settings)
 {
-    QString language;
-    language = m_box->itemData(m_box->currentIndex()).toString();
-    if (language.split("_").count() > 1) {
-        m_language = language.split("_").at(0);
-        m_language2 = language.split("_").at(1);
-    }
+    const QString language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/TMDb/Language", language);
     loadSettings(settings);
 }
@@ -210,6 +206,27 @@ void TMDb::setup()
     QNetworkReply *const reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &TMDb::setupFinished);
+}
+
+QString TMDb::localeForTMDb() const
+{
+    return m_locale.name().replace('_', '-');
+}
+
+/**
+ * @return Two letter language code (lowercase)
+ */
+QString TMDb::language() const
+{
+    return m_locale.name().split('_').first();
+}
+
+/**
+ * @return Two or three letter country code (uppercase)
+ */
+QString TMDb::country() const
+{
+    return m_locale.name().split('_').last();
 }
 
 /**
@@ -254,15 +271,13 @@ void TMDb::search(QString searchStr)
     QRegExp rxTmdbId("^id\\d+$");
 
     if (rx.exactMatch(searchStr)) {
-        QUrl newUrl(getMovieUrl(searchStr,
-            ApiMovieDetails::INFOS,
-            UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}, {ApiUrlParameter::LANGUAGE, m_language}}));
+        QUrl newUrl(getMovieUrl(
+            searchStr, ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
 
     } else if (rxTmdbId.exactMatch(searchStr)) {
-        QUrl newUrl(getMovieUrl(searchStr.mid(2),
-            ApiMovieDetails::INFOS,
-            UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}, {ApiUrlParameter::LANGUAGE, m_language}}));
+        QUrl newUrl(getMovieUrl(
+            searchStr.mid(2), ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
 
     } else {
@@ -426,8 +441,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     // Infos
     loadsLeft.append(DataInfos);
 
-    request.setUrl(getMovieUrl(
-        ids.values().first(), ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::LANGUAGE, m_language}}));
+    request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::INFOS));
     QNetworkReply *const reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -449,8 +463,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer)) {
         loadsLeft.append(DataTrailers);
-        request.setUrl(getMovieUrl(
-            ids.values().first(), ApiMovieDetails::TRAILERS, UrlParameterMap{{ApiUrlParameter::LANGUAGE, m_language}}));
+        request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::TRAILERS));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -602,7 +615,6 @@ void TMDb::loadReleasesFinished()
 QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
 {
     switch (parameter) {
-    case ApiUrlParameter::LANGUAGE: return QStringLiteral("language");
     case ApiUrlParameter::YEAR: return QStringLiteral("year");
     case ApiUrlParameter::PAGE: return QStringLiteral("page");
     case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
@@ -621,7 +633,7 @@ QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &pa
 
     QUrlQuery queries;
     queries.addQueryItem("api_key", TMDb::apiKey());
-    queries.addQueryItem("language", m_language);
+    queries.addQueryItem("language", localeForTMDb());
     queries.addQueryItem("query", searchStr);
 
     for (const auto &key : parameters.keys()) {
@@ -652,6 +664,11 @@ QUrl TMDb::getMovieUrl(const QString &title, ApiMovieDetails type, const UrlPara
     auto url = QStringLiteral("https://api.themoviedb.org/3/movie/%1%2?").arg(QUrl::toPercentEncoding(title), typeStr);
     QUrlQuery queries;
     queries.addQueryItem("api_key", TMDb::apiKey());
+    queries.addQueryItem("language", localeForTMDb());
+
+    if (type == ApiMovieDetails::IMAGES) {
+        queries.addQueryItem("include_image_language", "en,null," + language());
+    }
 
     for (const auto &key : parameters.keys()) {
         queries.addQueryItem(apiUrlParameterString(key), parameters.value(key));
@@ -835,7 +852,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             b.originalSize.setWidth(poster.value("width").toInt());
             b.originalSize.setHeight(poster.value("height").toInt());
             b.language = poster.value("iso_639_1").toString();
-            bool primaryLang = (b.language == m_language);
+            bool primaryLang = (b.language == language());
             movie->addPoster(b, primaryLang);
         }
     }
@@ -847,29 +864,32 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         QString gb;
         const auto countries = parsedJson.value("countries").toArray();
         for (const auto &it : countries) {
-            const auto country = it.toObject();
-            const QString iso3166 = country.value("iso_3166_1").toString();
-            const QString certification = country.value("certification").toString();
-
+            const auto countryObj = it.toObject();
+            const QString iso3166 = countryObj.value("iso_3166_1").toString();
+            const QString certification = countryObj.value("certification").toString();
             if (iso3166 == "US") {
                 us = certification;
             }
             if (iso3166 == "GB") {
                 gb = certification;
             }
-            if (iso3166.toLower() == m_language) {
+            if (iso3166.toUpper() == country()) {
                 locale = certification;
             }
         }
 
-        if (m_language2 == "US" && !us.isEmpty()) {
+        if (m_locale.country() == QLocale::UnitedStates && !us.isEmpty()) {
             movie->setCertification(Helper::instance()->mapCertification(us));
-        } else if (m_language == "en" && m_language2 == "" && !gb.isEmpty()) {
+
+        } else if (m_locale.language() == QLocale::English && !gb.isEmpty()) {
             movie->setCertification(Helper::instance()->mapCertification(gb));
+
         } else if (!locale.isEmpty()) {
             movie->setCertification(Helper::instance()->mapCertification(locale));
+
         } else if (!us.isEmpty()) {
             movie->setCertification(Helper::instance()->mapCertification(us));
+
         } else if (!gb.isEmpty()) {
             movie->setCertification(Helper::instance()->mapCertification(gb));
         }

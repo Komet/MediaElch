@@ -2,6 +2,7 @@
 #define TMDBCONCERTS_H
 
 #include <QComboBox>
+#include <QLocale>
 #include <QObject>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
@@ -17,7 +18,7 @@ class TMDbConcerts : public ConcertScraperInterface
     Q_OBJECT
 public:
     explicit TMDbConcerts(QObject *parent = nullptr);
-    ~TMDbConcerts() override;
+    ~TMDbConcerts() override = default;
     QString name() override;
     void search(QString searchStr) override;
     void loadData(QString id, Concert *concert, QList<int> infos) override;
@@ -41,7 +42,7 @@ private slots:
 private:
     QString m_apiKey;
     QNetworkAccessManager m_qnam;
-    QString m_language;
+    QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
     QList<int> m_scraperSupports;
@@ -49,6 +50,9 @@ private:
     QComboBox *m_box;
 
     void setup();
+    QString localeForTMDb() const;
+    QString language() const;
+    QString country() const;
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
     void parseAndAssignInfos(QString json, Concert *concert, QList<int> infos);

@@ -18,24 +18,31 @@
  * @brief TMDbConcerts::TMDbConcerts
  * @param parent
  */
-TMDbConcerts::TMDbConcerts(QObject *parent)
+TMDbConcerts::TMDbConcerts(QObject *parent) :
+    m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
+    m_locale{"en"},
+    m_baseUrl{"http://cf2.imgobject.com/t/p/"}
 {
     setParent(parent);
-    m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
-    m_language = "en";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
+
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
+    m_box->addItem(tr("Arabic"), "ar");
     m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Chinese (T)"), "zh-TW");
+    m_box->addItem(tr("Chinese (S)"), "zh-CN");
     m_box->addItem(tr("Croatian"), "hr");
     m_box->addItem(tr("Czech"), "cs");
     m_box->addItem(tr("Danish"), "da");
     m_box->addItem(tr("Dutch"), "nl");
     m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en_US");
+    m_box->addItem(tr("English (US)"), "en-US");
     m_box->addItem(tr("Finnish"), "fi");
     m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("French (Canada)"), "fr-CA");
     m_box->addItem(tr("German"), "de");
     m_box->addItem(tr("Greek"), "el");
     m_box->addItem(tr("Hebrew"), "he");
@@ -45,12 +52,15 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     m_box->addItem(tr("Korean"), "ko");
     m_box->addItem(tr("Norwegian"), "no");
     m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Portuguese (Brazil)"), "pt-BR");
+    m_box->addItem(tr("Portuguese (Portugal)"), "pt-PT");
     m_box->addItem(tr("Russian"), "ru");
     m_box->addItem(tr("Slovene"), "sl");
     m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Spanish (Mexico)"), "es-MX");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
+
     auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
@@ -71,18 +81,16 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
                       << ConcertScraperInfos::Genres        //
                       << ConcertScraperInfos::ExtraArts;
 
-    m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
 }
 
-TMDbConcerts::~TMDbConcerts() = default;
 /**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
 QString TMDbConcerts::name()
 {
-    return QString("The Movie DB (Concerts)");
+    return QStringLiteral("The Movie DB (Concerts)");
 }
 
 /**
@@ -104,23 +112,18 @@ QWidget *TMDbConcerts::settingsWidget()
  */
 void TMDbConcerts::loadSettings(QSettings &settings)
 {
-    QString lang = settings.value("Scrapers/TMDbConcerts/Language", "en").toString();
-    m_language = lang;
-    m_language2 = "";
-    if (m_language.split("_").count() > 1) {
-        m_language = lang.split("_").at(0);
-        m_language2 = lang.split("_").at(1);
+    m_locale = QLocale(settings.value("Scrapers/TMDbConcerts/Language", "en").toString());
+    if (m_locale.name() == "C") {
+        m_locale = QLocale("en");
     }
 
-    bool found = false;
+    const QString locale = localeForTMDb();
+    const QString lang = language();
+
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
+        if (m_box->itemData(i).toString() == lang || m_box->itemData(i).toString() == locale) {
             m_box->setCurrentIndex(i);
-            found = true;
-        }
-        if (m_box->itemData(i).toString() == m_language && !found) {
-            m_box->setCurrentIndex(i);
-            found = true;
+            break;
         }
     }
 }
@@ -130,12 +133,7 @@ void TMDbConcerts::loadSettings(QSettings &settings)
  */
 void TMDbConcerts::saveSettings(QSettings &settings)
 {
-    QString language;
-    language = m_box->itemData(m_box->currentIndex()).toString();
-    if (language.split("_").count() > 1) {
-        m_language = language.split("_").at(0);
-        m_language2 = language.split("_").at(1);
-    }
+    const QString language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/TMDbConcerts/Language", language);
     loadSettings(settings);
 }
@@ -170,6 +168,27 @@ void TMDbConcerts::setup()
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::setupFinished);
+}
+
+QString TMDbConcerts::localeForTMDb() const
+{
+    return m_locale.name().replace('_', '-');
+}
+
+/**
+ * @return Two letter language code (lowercase)
+ */
+QString TMDbConcerts::language() const
+{
+    return m_locale.name().split('_').first();
+}
+
+/**
+ * @return Two or three letter country code (uppercase)
+ */
+QString TMDbConcerts::country() const
+{
+    return m_locale.name().split('_').last();
 }
 
 /**
@@ -208,16 +227,16 @@ void TMDbConcerts::search(QString searchStr)
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(searchStr)
                        .arg(m_apiKey)
-                       .arg(m_language));
+                       .arg(localeForTMDb()));
     else if (rxTmdbId.exactMatch(searchStr))
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(searchStr.mid(2))
                        .arg(m_apiKey)
-                       .arg(m_language));
+                       .arg(localeForTMDb()));
     else
         url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3")
                        .arg(m_apiKey)
-                       .arg(m_language)
+                       .arg(localeForTMDb())
                        .arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
@@ -256,7 +275,7 @@ void TMDbConcerts::searchFinished()
     } else {
         QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
                      .arg(m_apiKey)
-                     .arg(m_language)
+                     .arg(localeForTMDb())
                      .arg(nextPage)
                      .arg(searchString));
         QNetworkRequest request(url);
@@ -340,8 +359,10 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
 
     // Infos
     loadsLeft.append(DataInfos);
-    url.setUrl(
-        QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
+    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+                   .arg(id)
+                   .arg(m_apiKey)
+                   .arg(localeForTMDb()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
@@ -573,23 +594,33 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
         while (itB.hasNext()) {
             itB.next();
             QScriptValue vB = itB.value();
-            if (vB.property("iso_3166_1").toString() == "US")
-                us = vB.property("certification").toString();
-            if (vB.property("iso_3166_1").toString() == "GB")
-                gb = vB.property("certification").toString();
-            if (vB.property("iso_3166_1").toString().toLower() == m_language)
-                locale = vB.property("certification").toString();
+            const QString iso3166 = vB.property("iso_3166_1").toString();
+            const QString certification = vB.property("certification").toString();
+            if (iso3166 == "US") {
+                us = certification;
+            }
+            if (iso3166 == "GB") {
+                gb = certification;
+            }
+            if (iso3166.toUpper() == country()) {
+                locale = certification;
+            }
         }
 
-        if (m_language2 == "US" && !us.isEmpty())
+        if (m_locale.country() == QLocale::UnitedStates && !us.isEmpty()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
-        else if (m_language == "en" && m_language2 == "" && !gb.isEmpty())
+
+        } else if (m_locale.language() == QLocale::English && !gb.isEmpty()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
-        else if (!locale.isEmpty())
+
+        } else if (!locale.isEmpty()) {
             concert->setCertification(Helper::instance()->mapCertification(locale));
-        else if (!us.isEmpty())
+
+        } else if (!us.isEmpty()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
-        else if (!gb.isEmpty())
+
+        } else if (!gb.isEmpty()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
+        }
     }
 }
