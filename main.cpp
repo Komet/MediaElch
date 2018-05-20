@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "Version.h"
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 
@@ -61,20 +62,36 @@ void installLogger()
     qInstallMessageHandler(messageHandler);
 }
 
+void loadStylesheet(QApplication &app)
+{
+    QFile file(":/ui/default.css");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        app.setStyleSheet(file.readAll());
+        file.close();
+
+    } else {
+        qCritical() << "The default stylesheet could not be openend for reading.";
+        QMessageBox::critical(nullptr,
+            QObject::tr("Stylesheet could not be opened!"),
+            QObject::tr("The default stylesheet could not be openend for reading."));
+    }
+}
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("kvibes");
-    QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("2.4.3-dev");
+    QCoreApplication::setOrganizationName(MediaElch::Constants::OrganizationName);
+    QCoreApplication::setOrganizationDomain(MediaElch::Constants::OrganizationDomain);
+    QCoreApplication::setApplicationName(MediaElch::Constants::AppName);
+    QCoreApplication::setApplicationVersion(MediaElch::Constants::AppVersionStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     installLogger();
 
     // Qt localization
     QTranslator qtTranslator;
-    qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
+    qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
     app.installTranslator(&qtTranslator);
 
     // MediaElch localization
@@ -85,9 +102,11 @@ int main(int argc, char *argv[])
     if (fi.isFile()) {
         editTranslator.load(localFileName);
     } else {
-        editTranslator.load(QLocale::system(), "MediaElch", "_", ":/i18n/", ".qm");
+        editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
     }
     app.installTranslator(&editTranslator);
+
+    loadStylesheet(app);
 
     MainWindow window;
     window.show();

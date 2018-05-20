@@ -2,14 +2,14 @@ Source: mediaelch
 Section: misc
 Priority: extra
 Maintainer: Daniel Kabel <daniel.kabel@me.com>
-Build-Depends: debhelper (>= 8.0.0), qt5-default, qtmultimedia5-dev, qtscript5-dev, qt5-qmake, cdbs, libmediainfo0 | libmediainfo0v5, libmediainfo-dev, zlib1g-dev, libzen-dev, libcurl4-openssl-dev, libpulse-dev, libqt5quickwidgets5, libqt5qml5, qtdeclarative5-dev, libqt5quick5, libqt5opengl5-dev
+Build-Depends: debhelper (>= 8.0.0), qt5-default, qtmultimedia5-dev, qtscript5-dev, qt5-qmake, cdbs, libmediainfo0 | libmediainfo0v5, libmediainfo-dev, zlib1g-dev, libzen-dev, libcurl4-openssl-dev | libcurl4-gnutls-dev, libpulse-dev, libqt5quickwidgets5, libqt5qml5, qtdeclarative5-dev, libqt5quick5, libqt5opengl5-dev
 Standards-Version: 3.9.2
 Homepage: http://www.mediaelch.de
 Vcs-Git: git://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5, libqt5sql5-sqlite, libqt5script5, libqt5core5 | libqt5core5a, libqt5gui5, libqt5network5, libqt5concurrent5, libqt5graphicaleffects5 | libqt5qml-graphicaleffects | qml-module-qtgraphicaleffects, libqt5qml5, libqt5multimedia5, libqt5multimediawidgets5, libqt5opengl5, libqt5xml5, libmediainfo0 | libmediainfo0v5, zlib1g, libzen0 | libzen0v5, libcurl3, libpulse0, libqt5quickwidgets5, qtdeclarative5-dev, libqt5quick5
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5, libqt5sql5-sqlite, libqt5script5, libqt5core5 | libqt5core5a, libqt5gui5, libqt5network5, libqt5concurrent5, libqt5graphicaleffects5 | libqt5qml-graphicaleffects | qml-module-qtgraphicaleffects, libqt5qml5, libqt5multimedia5, libqt5multimediawidgets5, libqt5opengl5, libqt5xml5, libmediainfo0 | libmediainfo0v5, zlib1g, libzen0 | libzen0v5, libcurl3 | libcurl4, libpulse0, libqt5quickwidgets5, qtdeclarative5-dev, libqt5quick5
 Description: Kodi Media Manager
  MediaElch is your Media Manager for handling movies, tv shows, concerts and music in Kodi. 
  It is designed to gather information from various movie databases on the internet and store these information directly to Kodis database or in nfo files. 

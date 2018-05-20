@@ -31,14 +31,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#widget {
-	border: none;
-	border-left: 5px solid #D0E3F0;
-	background-color: rgba(240, 247, 253, 200);
-	color: #000000;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>5</number>
@@ -70,17 +62,6 @@
       </item>
       <item>
        <widget class="QProgressBar" name="progressBar">
-        <property name="styleSheet">
-         <string notr="true">QProgressBar:horizontal {
-	border: 1px solid rgba(0, 0, 0, 20);
-	border-radius: 4px;
-	background-color: #F5F5F5;
-}
-
-QProgressBar::chunk:horizontal {
-	background-color: #428BCA;
-}</string>
-        </property>
         <property name="value">
          <number>0</number>
         </property>

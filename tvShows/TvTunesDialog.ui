@@ -25,12 +25,6 @@
    </item>
    <item>
     <widget class="QTableWidget" name="results">
-     <property name="styleSheet">
-      <string notr="true">alternate-background-color: rgb(243, 246, 250);
-color: #395265;
-selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-</string>
-     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -68,11 +62,6 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
       <widget class="QToolButton" name="btnPlayPause">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QToolButton {
-	border: 0;
-}</string>
        </property>
        <property name="text">
         <string/>

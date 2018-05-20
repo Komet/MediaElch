@@ -13,11 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#widget {
-	border-bottom: 1px solid #cccccc;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -41,10 +36,6 @@
           <family>Helvetica Neue</family>
           <pointsize>16</pointsize>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #224f7f;
-</string>
         </property>
         <property name="text">
          <string notr="true">Title</string>

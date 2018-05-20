@@ -22,27 +22,6 @@
    </property>
    <item>
     <widget class="QProgressBar" name="progressBar">
-     <property name="styleSheet">
-      <string notr="true">QProgressBar {
-	color: #ffffff;
-	font-size: 10px;
-}
-
-QProgressBar:horizontal { 
-	border: 1px solid rgba(0,0,0, 30); 
-	background: transparent; 
-	border-radius: 4px;
-	margin: 2px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ebebeb, stop:1 #f5f5f5);
-}
-
-QProgressBar::chunk:horizontal { 
-	border-radius: 4px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
-}
-
-QPushButton { color: #ffffff;  }</string>
-     </property>
      <property name="minimum">
       <number>0</number>
      </property>

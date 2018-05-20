@@ -23,17 +23,6 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="styleSheet">
-    <string notr="true">#scrapersScrollContents {
-	background-color: transparent;
-}
-#scrapersScrollArea {
-	background-color: transparent;
-}
-#pluginSettings {
-	background-color: transparent;
-}</string>
-   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
@@ -282,9 +271,6 @@ The directories containg your music must contain subdirectories for each artist 
             </item>
             <item>
              <widget class="Line" name="line">
-              <property name="styleSheet">
-               <string notr="true">color: rgba(0, 0, 0, 50);</string>
-              </property>
               <property name="frameShadow">
                <enum>QFrame::Plain</enum>
               </property>
@@ -362,10 +348,6 @@ The directories containg your music must contain subdirectories for each artist 
             </item>
             <item>
              <widget class="QTableWidget" name="customScraperTable">
-              <property name="styleSheet">
-               <string notr="true">alternate-background-color: rgb(243, 246, 250);
-</string>
-              </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -412,10 +394,6 @@ The directories containg your music must contain subdirectories for each artist 
             </item>
             <item>
              <widget class="QTableWidget" name="tvScraperTable">
-              <property name="styleSheet">
-               <string notr="true">alternate-background-color: rgb(243, 246, 250);
-</string>
-              </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -1406,9 +1384,6 @@ The directories containg your music must contain subdirectories for each artist 
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <widget class="MessageLabel" name="themesErrorMessage">
-          <property name="styleSheet">
-           <string notr="true">color: #B94A48;</string>
-          </property>
           <property name="text">
            <string>Message</string>
           </property>
@@ -1416,11 +1391,6 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
         <item>
          <widget class="QTableWidget" name="exportTemplates">
-          <property name="styleSheet">
-           <string notr="true">background-color: transparent;
-alternate-background-color: transparent;
-border: none;</string>
-          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>

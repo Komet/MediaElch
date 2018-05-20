@@ -16,13 +16,6 @@
   <property name="windowTitle">
    <string>Choose an Image</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">/*
-#ImageDialog {
-	background-image: url(:/img/pattern_dark.png);
-}
-*/</string>
-  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -75,9 +68,6 @@
        </property>
        <item>
         <widget class="QTableWidget" name="results">
-         <property name="styleSheet">
-          <string notr="true">alternate-background-color: rgb(243, 246, 250);</string>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -135,11 +125,6 @@
          </property>
          <property name="acceptDrops">
           <bool>true</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QTableWidget {
-	selection-background-color: transparent;
-}</string>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -236,10 +221,6 @@
        <property name="toolTip">
         <string>Zoom out</string>
        </property>
-       <property name="styleSheet">
-        <string notr="true">border: 0px;
-background: transparent;</string>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -293,10 +274,6 @@ background: transparent;</string>
        </property>
        <property name="toolTip">
         <string>Zoom in</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 0px;
-background: transparent;</string>
        </property>
        <property name="text">
         <string/>

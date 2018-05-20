@@ -17,21 +17,6 @@
    <iconset resource="../MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#centralWidget {
-	background-color: #ebebeb;
-}
-
-#menuWidget {
-	background-color: rgb(51, 57, 61);
-	border-right: 1px solid rgb(34, 34, 34);
-}
-
-#scrollArea, #scrollAreaWidgetContents_2, #scrollAreaWidgetContents_3, #scrollAreaWidgetContents_4, #scrollArea_3, #scrollArea_2, #page_5, #page_6, #page_3, #scrollAreaWidgetContents_5 {
-	background-color: #ffffff;
-}
-</string>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <property name="spacing">
@@ -86,9 +71,6 @@
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);</string>
-         </property>
          <property name="text">
           <string>Movies</string>
          </property>
@@ -107,13 +89,6 @@
          </property>
          <property name="toolTip">
           <string>Movies</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -143,13 +118,6 @@
          <property name="toolTip">
           <string>Movie Sets</string>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
-         </property>
          <property name="text">
           <string notr="true"/>
          </property>
@@ -177,13 +145,6 @@
          </property>
          <property name="toolTip">
           <string>Genres</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -213,13 +174,6 @@
          <property name="toolTip">
           <string>Certifications</string>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
-         </property>
          <property name="text">
           <string notr="true"/>
          </property>
@@ -248,13 +202,6 @@
          <property name="toolTip">
           <string>Duplicates</string>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
-         </property>
          <property name="text">
           <string notr="true"/>
          </property>
@@ -282,10 +229,6 @@
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
          <property name="text">
           <string>Shows</string>
          </property>
@@ -304,13 +247,6 @@ margin-top: 15px;</string>
          </property>
          <property name="toolTip">
           <string>TV Shows</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -339,10 +275,6 @@ margin-top: 15px;</string>
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
          <property name="text">
           <string>Concerts</string>
          </property>
@@ -361,13 +293,6 @@ margin-top: 15px;</string>
          </property>
          <property name="toolTip">
           <string>Concerts</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -396,10 +321,6 @@ margin-top: 15px;</string>
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
          <property name="text">
           <string>Music</string>
          </property>
@@ -418,13 +339,6 @@ margin-top: 15px;</string>
          </property>
          <property name="toolTip">
           <string>Music</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -453,10 +367,6 @@ margin-top: 15px;</string>
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
          <property name="text">
           <string extracomment="Main menu entry">Import</string>
          </property>
@@ -475,13 +385,6 @@ margin-top: 15px;</string>
          </property>
          <property name="toolTip">
           <string extracomment="Main menu entry (tooltip)">Import</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton {
-	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}</string>
          </property>
          <property name="text">
           <string notr="true"/>
@@ -544,9 +447,6 @@ margin-top: 15px;</string>
           <height>56</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
        </widget>
       </item>
       <item>
@@ -585,9 +485,6 @@ margin-top: 15px;</string>
              </property>
             </widget>
             <widget class="QScrollArea" name="scrollArea">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>

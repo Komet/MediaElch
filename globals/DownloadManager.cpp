@@ -33,11 +33,15 @@ QNetworkAccessManager *DownloadManager::qnam()
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     qDebug() << "Entered, url=" << elem.url;
-    if (m_queue.isEmpty())
-        QTimer::singleShot(0, this, &DownloadManager::startNextDownload);
+
     m_mutex.lock();
+    const bool startDownloading = m_queue.isEmpty() && !m_downloading;
     m_queue.enqueue(elem);
     m_mutex.unlock();
+
+    if (startDownloading) {
+        startNextDownload();
+    }
 }
 
 /**
