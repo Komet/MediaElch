@@ -62,6 +62,21 @@ void installLogger()
     qInstallMessageHandler(messageHandler);
 }
 
+void loadStylesheet(QApplication &app)
+{
+    QFile file(":/ui/default.css");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        app.setStyleSheet(file.readAll());
+        file.close();
+
+    } else {
+        qCritical() << "The default stylesheet could not be openend for reading.";
+        QMessageBox::critical(nullptr,
+            QObject::tr("Stylesheet could not be opened!"),
+            QObject::tr("The default stylesheet could not be openend for reading."));
+    }
+}
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
@@ -90,6 +105,8 @@ int main(int argc, char *argv[])
         editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
     }
     app.installTranslator(&editTranslator);
+
+    loadStylesheet(app);
 
     MainWindow window;
     window.show();
