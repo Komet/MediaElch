@@ -69,13 +69,6 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
-     <property name="styleSheet">
-      <string notr="true">QGroupBox {
-    border-radius: 0px;
-    border-top: 5px solid #5BC0DE; 
-    background-color: #F4F8FA;
-}</string>
-     </property>
      <property name="title">
       <string/>
      </property>

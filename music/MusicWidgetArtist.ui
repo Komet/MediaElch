@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#tabWidget {
-	border: 0;
-}
-
-#tab, #tab_2, #tab_3, #tab_4 {
-	background-color: #ffffff;
-}
-</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
@@ -62,9 +52,6 @@
        <property name="toolTip">
         <string>Artist has changed. Click to revert changes.</string>
        </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;</string>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -87,10 +74,6 @@
          <family>Helvetica Neue</family>
          <pointsize>22</pointsize>
         </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: #224f7f;
-</string>
        </property>
        <property name="text">
         <string>Artist Name</string>
@@ -117,13 +100,6 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox_3">
-     <property name="styleSheet">
-      <string notr="true">QGroupBox {
-	border-radius: 0;
-	background-color: transparent;
-}
-</string>
-     </property>
      <property name="title">
       <string/>
      </property>
@@ -454,9 +430,6 @@
       </item>
       <item>
        <widget class="Line" name="line">
-        <property name="styleSheet">
-         <string notr="true">color: #ebebeb;</string>
-        </property>
         <property name="frameShadow">
          <enum>QFrame::Plain</enum>
         </property>
