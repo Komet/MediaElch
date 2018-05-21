@@ -22,7 +22,14 @@ Tv themes and trailers can also be downloaded.
 Download
 --------
 
-Binaries are available for macOS, Linux (AppImage) and Windows. They can be downloaded at https://bintray.com/komet/MediaElch
+Binaries are available for macOS, Linux ([AppImage](https://appimage.org/)) and Windows.
+They can be downloaded at https://bintray.com/komet/MediaElch (choose your system -> click on tab "Files" -> select version).
+
+| System           | Version           | Download           |
+|------------------|-------------------|:------------------:|
+| Windows          | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-win/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-win/_latestVersion) |
+| macOS            | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-macOS/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-macOS/_latestVersion) |
+| Linux (AppImage) | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-linux/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-linux/_latestVersion) |
 
 User Documentation
 ------------------
