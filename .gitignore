@@ -9,9 +9,10 @@ scripts/fake_data/Demo.*
 # Doxygen
 doc/html
 
-# Qt / Make
+# Build
 *.pro.user*
 Makefile
+build/
 
 # ---> C++
 # Prerequisites

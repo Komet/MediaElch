@@ -34,6 +34,8 @@ fi
 # Gather information for packaging MediaElch such as version, git
 # hash and date.
 gather_information() {
+	pushd "${PROJECT_DIR}" > /dev/null
+
 	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 	echo "GIT_DATE = ${GIT_DATE}"
 
@@ -69,86 +71,157 @@ gather_information() {
 
 	VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${TRAVIS_BRANCH}-${GIT_HASH}"
 	echo "VERSION_NAME = ${VERSION_NAME}"
+
+	popd > /dev/null
 }
 
 # Create an AppImage file.
 # For more about AppImage files, see: https://appimage.org/
 create_appimage() {
 	print_important "Create an AppImage release"
-	pushd ${PROJECT_DIR} > /dev/null
+
+	# Workaround for: https://github.com/probonopd/linuxdeployqt/issues/65
+	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
+	export PATH="/opt/${QT}/bin:$PATH"
+	# linuxdeployqt uses this for naming the file
+	export VERSION=$ME_VERSION
+
+	#######################################################
+	# Download linuxdeployqt
 
 	fold_start "download_linuxdeployqt"
 	print_info "Downloading linuxdeployqt"
-	wget --output-document linuxdeployqt.AppImage https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
-	chmod a+x ./linuxdeployqt.AppImage
+	wget --output-document linuxdeployqt https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+	chmod a+x ./linuxdeployqt
 	fold_end
 
-	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
-	export PATH="/opt/${QT}/bin:$PATH"
-	export VERSION=$ME_VERSION # linuxdeployqt uses this for naming the file
+	#######################################################
+	# Install MediaElch into subdirectory
 
-	fold_start "cleanup"
-	print_info "Cleanup temporary build files"
-	# Recommended by linuxdeployqt
-	find . \( -name "moc_*" -or -name "ui_*" -or -name "*.o" -or -name "qrc_*" -or -name "Makefile*" -or -name "*.a" \) -exec rm {} \;
+	fold_start "install_mediaelch"
+	print_info "Installing MediaElch in subdirectory to create basic AppDir structure"
+	make INSTALL_ROOT=appdir -j${JOBS} install
+	find appdir/
 	fold_end
 
-	fold_start "create_appimage"
+	#######################################################
+	# Install and copy ffmpeg
+
+	fold_start "ffmpeg"
+	print_info "Installing ffmpeg"
+	# Note: ffmpeg is not available for Ubuntu 14.04
+	# See: https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media
+	sudo add-apt-repository -y ppa:mc3man/trusty-media
+	sudo apt update
+	sudo apt install ffmpeg
+	print_info "Copying ffmpeg into AppDir"
+	cp $(which ffmpeg) appdir/usr/bin/
+	fold_end
+
+	#######################################################
+	# Create AppImage
+
+	fold_start "linuxdeployqt"
+	print_info "Running linuxdeployqt"
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}"
-	cp ${PROJECT_DIR}/desktop/MediaElch.png ${PROJECT_DIR}/
-	./linuxdeployqt.AppImage ./desktop/MediaElch.desktop -verbose=1 -appimage
+	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -bundle-non-qt-libs -qmldir=../ui
+	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -appimage
+	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 	fold_end
+
+	#######################################################
+	# Finalize AppImage (name, chmod)
 
 	fold_start "renaming"
 	print_info "Renaming .AppImage"
-	mv ${PROJECT_DIR}/MediaElch-${VERSION}*.AppImage ${PROJECT_DIR}/MediaElch_linux_${VERSION_NAME}.AppImage
-	chmod +x ${PROJECT_DIR}/*.AppImage
+	mv MediaElch-${VERSION}*.AppImage MediaElch_linux_${VERSION_NAME}.AppImage
+	chmod +x *.AppImage
 	fold_end
-
-	popd
 }
 
 create_macos_dmg() {
-	print_important "Running macdeployqt"
-	/usr/local/opt/qt/bin/macdeployqt MediaElch.app -dmg
+	print_important "Create macOS .dmg file"
 
-	print_info "Renaming .dmg"
-	mv "${PROJECT_DIR}/MediaElch.dmg" "${PROJECT_DIR}/MediaElch_macOS_${VERSION_NAME}.dmg"
+	# Check for required files.
+	if [ ! -f ../libmediainfo.0.dylib ]; then
+		print_error "libmediainfo.0.dylib not found! Should have been downloaded in install_dependencies.sh"
+		exit 1
+	fi
+
+	#######################################################
+	# Install create-dmg
+	git clone https://github.com/andreyvit/create-dmg.git
+
+	#######################################################
+	# Installing 7zip
+
+	print_info "Installing p7zip using brew"
+	brew install p7zip
+
+	#######################################################
+	# ffmpeg
+
+	fold_start "ffmpeg"
+	print_info "Downloading and copying ffmpeg into MediaElch.dmg"
+	wget --output-document ffmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-4.0.7z
+	7za e ffmpeg.7z
+	cp ffmpeg MediaElch.app/Contents/MacOS/
+	fold_end
+
+	#######################################################
+	# MediaInfoDLL
+
+	fold_start "mediainfo"
+	print_info "Copying mediainfo into MediaElch.dmg"
+	mkdir -p MediaElch.app/Contents/Frameworks/
+	cp ../libmediainfo.0.dylib MediaElch.app/Contents/Frameworks/
+	fold_end
+
+	#######################################################
+	# Creating a "beautiful" .dmg
+
+	fold_start "dmg"
+	print_important "Running macdeployqt"
+	/usr/local/opt/qt/bin/macdeployqt MediaElch.app -qmldir=../ui -verbose=2
+	print_info "Running create-dmg"
+	create-dmg/create-dmg \
+		--volname "MediaElch" \
+		--volicon "../MediaElch.icns" \
+		--background "${SCRIPT_DIR}/macOS/backgroundImage.tiff" \
+		--window-pos 200 120 \
+		--window-size 550 400 \
+		--icon-size 100 \
+		--icon MediaElch.app 150 190 \
+		--hide-extension MediaElch.app \
+		--app-drop-link 400 190 \
+		MediaElch_macOS_${VERSION_NAME}.dmg \
+		MediaElch.app
+	fold_end
 }
 
 package_zip() {
 	print_info "package build into zip for win"
 
+	# Check for required files.
+	if [ ! -f ../MediaInfo.dll ]; then
+		print_error "MediaInfo.dll not found! Should have been downloaded in install_dependencies.sh"
+		exit 1
+	fi
+
+	fold_start "unzip"
+	print_info "Installing unzip"
+	sudo apt-get install unzip
+	fold_end
+
+	fold_start "copy_dlls"
 	print_info "Assembling package - Copying DLLs"
 	mkdir -p pkg-zip/MediaElch
-	cp "${PROJECT_DIR}/release/MediaElch.exe" pkg-zip/MediaElch/
-
-	cat > "/tmp/dll_list.txt" <<EOF
-qt5/bin/*.dll
-bin/icudt56.dll
-bin/icuin56.dll
-bin/icuuc56.dll
-bin/libbz2.dll
-bin/libeay32.dll
-bin/libfreetype-6.dll
-bin/libgcc_s_sjlj-1.dll
-bin/libglib-2.0-0.dll
-bin/libharfbuzz-0.dll
-bin/libiconv-2.dll
-bin/libintl-8.dll
-bin/libjpeg-9.dll
-bin/libpcre16-0.dll
-bin/libpcre-1.dll
-bin/libpng16-16.dll
-bin/libsqlite3-0.dll
-bin/libstdc++-6.dll
-bin/zlib1.dll
-bin/ssleay32.dll
-EOF
+	cp release/MediaElch.exe pkg-zip/MediaElch/
 
 	local MXELIB=${MXEDIR}/usr/${MXETARGET}
+	local FFMPEG_VERSION="ffmpeg-4.0-win64-static"
 
-	for file in $(cat /tmp/dll_list.txt); do
+	for file in $(cat ${SCRIPT_DIR}/win/dll_list.txt); do
 		cp ${MXEDIR}/usr/${MXETARGET}/${file} pkg-zip/MediaElch/
 	done
 
@@ -167,19 +240,24 @@ EOF
 	cp -R ${MXELIB}/qt5/qml/QtQuick.2/        pkg-zip/MediaElch/
 	cp -R ${MXELIB}/qt5/plugins/imageformats/ pkg-zip/MediaElch/
 	cp -R ${MXELIB}/qt5/plugins/mediaservice/ pkg-zip/MediaElch/
+	fold_end
 
-	fold_start "media_dll"
-	print_info "Downloading MediaInfo.dll"
-	wget --output-document MediaInfoDLL.7z https://mediaarea.net/download/binary/libmediainfo0/18.03.1/MediaInfo_DLL_18.03.1_Windows_x64_WithoutInstaller.7z
-	7z x -oMediaInfo MediaInfoDLL.7z
-	cp ./MediaInfo/MediaInfo.dll pkg-zip/MediaElch/
+	print_info "Copying MediaInfo.dll"
+	cp ../MediaInfo.dll pkg-zip/MediaElch/
+
+	fold_start "ffmpeg_exe"
+	print_info "Downloading and copying ffmpeg.exe"
+	wget --output-document ffmpeg.zip https://ffmpeg.zeranoe.com/builds/win64/static/${FFMPEG_VERSION}.zip
+	unzip ffmpeg.zip ${FFMPEG_VERSION}/bin/ffmpeg.exe
+	mkdir pkg-zip/MediaElch/vendor
+	cp ${FFMPEG_VERSION}/bin/ffmpeg.exe pkg-zip/MediaElch/vendor/
 	fold_end
 
 	fold_start "zipping_exe"
-	print_info "zipping '${PROJECT_DIR}/MediaElch_win_${VERSION_NAME}.zip'"
+	print_info "Zipping 'MediaElch_win_${VERSION_NAME}.zip'"
 	pushd pkg-zip > /dev/null
-	zip -r "${PROJECT_DIR}/MediaElch_win_${VERSION_NAME}.zip" *
-	popd
+	zip -r "../MediaElch_win_${VERSION_NAME}.zip" *
+	popd > /dev/null
 	fold_end
 }
 
@@ -195,6 +273,7 @@ create_bintray_json() {
 		"subject": "komet",
 		"website_url": "https://www.kvibes.de/mediaelch/",
 		"vcs_url": "https://github.com/Komet/MediaElch.git",
+		"issue_tracker_url": "https://github.com/Komet/MediaElch/issues",
 		"licenses": ["LGPL-3.0"]
 	},
 	"version": {
@@ -205,7 +284,7 @@ create_bintray_json() {
 	"files":
 	[
 		{
-			"includePattern": "${PROJECT_DIR}/MediaElch_${TARGET_OS}_${VERSION_NAME}.${FILE_TYPE}",
+			"includePattern": "${PROJECT_DIR}/build/MediaElch_${TARGET_OS}_${VERSION_NAME}.${FILE_TYPE}",
 			"uploadPattern": "MediaElch_${TARGET_OS}_${VERSION_NAME}.${FILE_TYPE}"
 		}
 	],
@@ -215,7 +294,7 @@ EOF
 }
 
 print_important "Packaging ${QT} (${OS_NAME}) for deployment"
-pushd "${PROJECT_DIR}" > /dev/null
+pushd "${PROJECT_DIR}/build" > /dev/null
 
 gather_information
 

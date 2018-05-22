@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 
 ###########################################################
+# Globals
+export MEDIAINFO_VERSION="18.05"
+
+###########################################################
 # Important paths
 export BIN_DIR=$(dirname $(which g++))
 export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -8,9 +12,9 @@ export PROJECT_DIR="${SCRIPT_DIR}/.."
 
 ###########################################################
 # OS infos
-export OS_NAME=`uname -s`
-export OS_REV=`uname -r`
-export OS_MACH=`uname -m`
+export OS_NAME=$(uname -s)
+export OS_REV=$(uname -r)
+export OS_MACH=$(uname -m)
 
 if [ "${OS_NAME}" = "Linux" ]; then
 	export JOBS=$(grep '^processor' /proc/cpuinfo | wc -l)
