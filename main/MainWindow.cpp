@@ -6,7 +6,6 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QPainter>
-#include <QPluginLoader>
 #include <QTimer>
 #include <QToolBar>
 
@@ -28,8 +27,6 @@
 #include "music/MusicSearch.h"
 #include "notifications/NotificationBox.h"
 #include "notifications/Notificator.h"
-#include "plugins/PluginInterface.h"
-#include "plugins/PluginManager.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShowMultiScrapeDialog.h"
@@ -90,7 +87,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
-    PluginManager::instance(this);
 
     if (!m_settings->mainSplitterState().isNull()) {
         ui->movieSplitter->restoreState(m_settings->mainSplitterState());
@@ -222,13 +218,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->labelShows->setFont(font);
     ui->labelMusic->setFont(font);
     ui->labelDownloads->setFont(font);
-#endif
-
-    ui->labelPlugins->setVisible(false);
-    connect(PluginManager::instance(), &PluginManager::sigAddPlugin, this, &MainWindow::onAddPlugin);
-    connect(PluginManager::instance(), &PluginManager::sigRemovePlugin, this, &MainWindow::onRemovePlugin);
-#if defined(PLUGINS)
-    PluginManager::instance()->loadPlugins();
 #endif
 
 #ifdef Q_OS_WIN
@@ -371,8 +360,6 @@ void MainWindow::onActionSearch()
             ui->musicFilesWidget->multiScrape();
         else
             QTimer::singleShot(0, ui->musicWidget, &MusicWidget::onStartScraperSearch);
-    } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
-        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSearch);
     }
 }
 
@@ -397,8 +384,6 @@ void MainWindow::onActionSave()
         ui->certificationWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 7)
         ui->musicWidget->onSaveInformation();
-    else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
-        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSave);
     setNewMarks();
 }
 
@@ -417,8 +402,6 @@ void MainWindow::onActionSaveAll()
         ui->concertWidget->onSaveAll();
     else if (ui->stackedWidget->currentIndex() == 7)
         ui->musicWidget->onSaveAll();
-    else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
-        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSaveAll);
     setNewMarks();
 }
 
@@ -429,11 +412,6 @@ void MainWindow::onActionReload()
 {
     if (ui->stackedWidget->currentIndex() == 6) {
         ui->downloadsWidget->scanDownloadFolders();
-        return;
-    }
-
-    if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
-        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionReload);
         return;
     }
 
@@ -463,9 +441,6 @@ void MainWindow::onActionRename()
     } else if (ui->stackedWidget->currentIndex() == 3) {
         m_renamer->setRenameType(Renamer::TypeConcerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
-    } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
-        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionRename);
-        return;
     } else {
         return;
     }
@@ -671,60 +646,6 @@ void MainWindow::updateTvShows()
     }
 }
 
-void MainWindow::onAddPlugin(PluginInterface *plugin)
-{
-    int index = ui->stackedWidget->addWidget(plugin->widget());
-    auto button = new QToolButton(this);
-    button->setIconSize(QSize(28, 28));
-    button->setIcon(plugin->menuIcon());
-    button->setStyleSheet("QToolButton { border: 0; margin-left: 10px; margin-right: 10px;}");
-    button->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
-    button->setToolTip(plugin->name());
-    button->setProperty("storage", Storage::toVariant(button, plugin));
-    button->setProperty("page", index);
-    button->setProperty("isPlugin", true);
-    m_plugins.insert(index, plugin);
-
-    connect(button, SIGNAL(clicked()), this, SLOT(onMenu()));
-    switch (plugin->section()) {
-    case PluginInterface::SectionMovies: ui->layoutMovies->addWidget(button); break;
-    case PluginInterface::SectionTvShows: ui->layoutTvShows->addWidget(button); break;
-    case PluginInterface::SectionConcerts: ui->layoutConcerts->addWidget(button); break;
-    case PluginInterface::SectionImport: ui->layoutImport->addWidget(button); break;
-    default:
-        ui->labelPlugins->setVisible(true);
-        ui->layoutPlugins->addWidget(button);
-        break;
-    }
-}
-
-void MainWindow::onRemovePlugin(PluginInterface *plugin)
-{
-    int index = ui->stackedWidget->indexOf(plugin->widget());
-    if (ui->stackedWidget->currentIndex() >= index)
-        ui->stackedWidget->setCurrentIndex(0);
-
-    QMap<int, PluginInterface *> plugins;
-    QMapIterator<int, PluginInterface *> it(m_plugins);
-    while (it.hasNext()) {
-        it.next();
-        if (it.value() == plugin)
-            continue;
-        int pIndex = it.key();
-        if (pIndex > index)
-            pIndex--;
-        plugins.insert(pIndex, plugin);
-    }
-    m_plugins = plugins;
-
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton *>()) {
-        if (btn->property("isPlugin").toBool()
-            && btn->property("storage").value<Storage *>()->pluginInterface() == plugin)
-            btn->deleteLater();
-    }
-    ui->stackedWidget->removeWidget(plugin->widget());
-}
-
 void MainWindow::onMenu(QToolButton *button)
 {
     if (button == nullptr)
@@ -746,75 +667,63 @@ void MainWindow::onMenu(QToolButton *button)
     int page = button->property("page").toInt();
     ui->stackedWidget->setCurrentIndex(page);
 
-    if (button->property("isPlugin").toBool()) {
-        PluginInterface *plugin = button->property("storage").value<Storage *>()->pluginInterface();
-        ui->navbar->setActionSearchEnabled(plugin->enabledActions().contains(PluginInterface::ActionSearch));
-        ui->navbar->setActionSaveEnabled(plugin->enabledActions().contains(PluginInterface::ActionSave));
-        ui->navbar->setActionSaveAllEnabled(plugin->enabledActions().contains(PluginInterface::ActionSaveAll));
-        ui->navbar->setActionReloadEnabled(plugin->enabledActions().contains(PluginInterface::ActionReload));
-        ui->navbar->setActionRenameEnabled(plugin->enabledActions().contains(PluginInterface::ActionRename));
-        ui->navbar->setFilterWidgetEnabled(false);
+    ui->navbar->setActionReloadEnabled(page == 0 || page == 1 || page == 3 || page == 6 || page == 7);
+    MainWidgets widget;
+    switch (page) {
+    case 0:
+        // Movies
         ui->navbar->setReloadToolTip(
-            tr("Reload (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-    } else {
-        ui->navbar->setActionReloadEnabled(page == 0 || page == 1 || page == 3 || page == 6 || page == 7);
-        MainWidgets widget;
-        switch (page) {
-        case 0:
-            // Movies
-            ui->navbar->setReloadToolTip(
-                tr("Reload all Movies (%1)")
-                    .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = MainWidgets::Movies;
-            break;
-        case 1:
-            // Tv Shows
-            ui->navbar->setReloadToolTip(
-                tr("Reload all TV Shows (%1)")
-                    .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = MainWidgets::TvShows;
-            break;
-        case 2:
-            // Movie Sets
-            widget = MainWidgets::MovieSets;
-            ui->setsWidget->loadSets();
-            break;
-        case 3:
-            // Concerts
-            ui->navbar->setReloadToolTip(
-                tr("Reload all Concerts (%1)")
-                    .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = MainWidgets::Concerts;
-            break;
-        case 4:
-            // Genres
-            widget = MainWidgets::Genres;
-            ui->genreWidget->loadGenres();
-            break;
-        case 5:
-            // Certification
-            widget = MainWidgets::Certifications;
-            ui->certificationWidget->loadCertifications();
-            break;
-        case 6:
-            // Import
-            widget = MainWidgets::Downloads;
-            ui->navbar->setReloadToolTip(
-                tr("Reload all Downloads (%1)")
-                    .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            break;
-        case 7:
-            // Music
-            ui->navbar->setReloadToolTip(
-                tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-            widget = MainWidgets::Music;
-            break;
-        }
-        ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
-        ui->navbar->setActionSaveEnabled(m_actions[widget][MainActions::Save]);
-        ui->navbar->setActionSaveAllEnabled(m_actions[widget][MainActions::SaveAll]);
-        ui->navbar->setActionRenameEnabled(m_actions[widget][MainActions::Rename]);
-        ui->navbar->setFilterWidgetEnabled(m_actions[widget][MainActions::FilterWidget]);
-        ui->navbar->setActiveWidget(widget);
+            tr("Reload all Movies (%1)")
+                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        widget = MainWidgets::Movies;
+        break;
+    case 1:
+        // Tv Shows
+        ui->navbar->setReloadToolTip(
+            tr("Reload all TV Shows (%1)")
+                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        widget = MainWidgets::TvShows;
+        break;
+    case 2:
+        // Movie Sets
+        widget = MainWidgets::MovieSets;
+        ui->setsWidget->loadSets();
+        break;
+    case 3:
+        // Concerts
+        ui->navbar->setReloadToolTip(
+            tr("Reload all Concerts (%1)")
+                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        widget = MainWidgets::Concerts;
+        break;
+    case 4:
+        // Genres
+        widget = MainWidgets::Genres;
+        ui->genreWidget->loadGenres();
+        break;
+    case 5:
+        // Certification
+        widget = MainWidgets::Certifications;
+        ui->certificationWidget->loadCertifications();
+        break;
+    case 6:
+        // Import
+        widget = MainWidgets::Downloads;
+        ui->navbar->setReloadToolTip(
+            tr("Reload all Downloads (%1)")
+                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        break;
+    case 7:
+        // Music
+        ui->navbar->setReloadToolTip(
+            tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        widget = MainWidgets::Music;
+        break;
     }
+    ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
+    ui->navbar->setActionSaveEnabled(m_actions[widget][MainActions::Save]);
+    ui->navbar->setActionSaveAllEnabled(m_actions[widget][MainActions::SaveAll]);
+    ui->navbar->setActionRenameEnabled(m_actions[widget][MainActions::Rename]);
+    ui->navbar->setFilterWidgetEnabled(m_actions[widget][MainActions::FilterWidget]);
+    ui->navbar->setActiveWidget(widget);
 }

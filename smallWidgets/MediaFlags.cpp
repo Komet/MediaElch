@@ -10,7 +10,7 @@
  * @brief MediaFlags::MediaFlags
  * @param parent
  */
-MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags), m_height{14}
+MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags), m_height{16}
 {
     ui->setupUi(this);
 }

@@ -12,7 +12,6 @@
 #include "globals/Globals.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
-#include "plugins/PluginInterface.h"
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
@@ -63,8 +62,6 @@ private slots:
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
     void updateTvShows();
-    void onAddPlugin(PluginInterface *plugin);
-    void onRemovePlugin(PluginInterface *plugin);
 
 private:
     Ui::MainWindow *ui;
@@ -90,7 +87,6 @@ private:
     QMap<MainWidgets, QMap<MainActions, bool>> m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow *m_instance;
-    QMap<int, PluginInterface *> m_plugins;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
     void setupToolbar();

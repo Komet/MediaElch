@@ -1482,124 +1482,6 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_10">
-       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_16">
-          <item>
-           <widget class="QListWidget" name="pluginList">
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QPushButton" name="btnInstallPlugin">
-              <property name="text">
-               <string>Install</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnUpdatePlugin">
-              <property name="text">
-               <string>Update</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnUninstallPlugin">
-              <property name="text">
-               <string>Uninstall</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_14" stretch="0,0">
-          <item>
-           <widget class="QLabel" name="pluginsLinux">
-            <property name="text">
-             <string>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QStackedWidget" name="pluginSettings">
-            <property name="currentIndex">
-             <number>2</number>
-            </property>
-            <widget class="QWidget" name="page_noPlugins">
-             <layout class="QHBoxLayout" name="horizontalLayout_7"/>
-            </widget>
-            <widget class="QWidget" name="page_noSettings">
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <item>
-               <widget class="QLabel" name="label_61">
-                <property name="text">
-                 <string>This plugin has no settings.</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="page_notInstalled">
-             <layout class="QVBoxLayout" name="verticalLayout_15">
-              <item>
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_62">
-                <property name="text">
-                 <string>This plugin is not installed.</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
      </widget>
     </item>
     <item>
@@ -1673,7 +1555,6 @@ The directories containg your music must contain subdirectories for each artist 
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
    <addaction name="actionImport"/>
-   <addaction name="actionPlugins"/>
   </widget>
   <action name="actionMovies">
    <property name="text">
@@ -1775,17 +1656,6 @@ The directories containg your music must contain subdirectories for each artist 
    </property>
    <property name="iconName" stdset="0">
     <string notr="true">download</string>
-   </property>
-  </action>
-  <action name="actionPlugins">
-   <property name="text">
-    <string>Plugins</string>
-   </property>
-   <property name="page" stdset="0">
-    <number>10</number>
-   </property>
-   <property name="iconName" stdset="0">
-    <string notr="true">box2</string>
    </property>
   </action>
   <action name="actionMusic">
@@ -1942,22 +1812,6 @@ The directories containg your music must contain subdirectories for each artist 
   </connection>
   <connection>
    <sender>actionImport</sender>
-   <signal>triggered()</signal>
-   <receiver>SettingsWindow</receiver>
-   <slot>onAction()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>488</x>
-     <y>312</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionPlugins</sender>
    <signal>triggered()</signal>
    <receiver>SettingsWindow</receiver>
    <slot>onAction()</slot>

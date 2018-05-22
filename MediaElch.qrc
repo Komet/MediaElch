@@ -59,6 +59,8 @@
         <file alias="resolution/576p">mediaFlags/resolution/576.png</file>
         <file alias="resolution/720p">mediaFlags/resolution/720.png</file>
         <file alias="resolution/1080p">mediaFlags/resolution/1080.png</file>
+        <file alias="resolution/2160p">mediaFlags/resolution/2160.png</file>
+        <file alias="resolution/4320p">mediaFlags/resolution/4320.png</file>
         <file alias="channels/2">mediaFlags/audio/2ch.png</file>
         <file alias="channels/5">mediaFlags/audio/5ch.png</file>
         <file alias="channels/6">mediaFlags/audio/6ch.png</file>
