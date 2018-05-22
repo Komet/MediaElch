@@ -69,6 +69,9 @@ gather_information() {
 	DATE_HASH=$(date -u +"%Y-%m-%d_%H-%M")
 	echo "DATE_HASH = ${DATE_HASH}"
 
+	DATE_DESC=$(date -u +"%Y-%m-%d %H:%M")
+	echo "DATE_DESC = ${DATE_DESC}"
+
 	VERSION_NAME="${ME_VERSION}_${DATE_HASH}_git-${TRAVIS_BRANCH}-${GIT_HASH}"
 	echo "VERSION_NAME = ${VERSION_NAME}"
 
@@ -112,7 +115,7 @@ create_appimage() {
 	# Note: ffmpeg is not available for Ubuntu 14.04
 	# See: https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media
 	sudo add-apt-repository -y ppa:mc3man/trusty-media
-	sudo apt update
+	sudo apt update -qq
 	sudo apt install ffmpeg
 	print_info "Copying ffmpeg into AppDir"
 	cp $(which ffmpeg) appdir/usr/bin/
@@ -278,6 +281,7 @@ create_bintray_json() {
 	},
 	"version": {
 		"name": "${VERSION_NAME}",
+		"desc": "MediaElch version ${ME_VERSION} for ${TARGET_OS}\nDate: ${DATE_DESC}\nGit Branch: ${TRAVIS_BRANCH}\nGit Hash: ${GIT_HASH}",
 		"released": "${RELEASE_DATE}",
 		"gpgSign": false
 	},
