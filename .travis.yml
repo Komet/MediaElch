@@ -25,7 +25,7 @@ before_script:
 
 script:
 - if [ $QT = qtWin ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
-- make -j 2
+- cd build && make -j 2
 
 after_success:
 - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
