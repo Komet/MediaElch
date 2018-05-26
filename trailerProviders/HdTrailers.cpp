@@ -113,14 +113,30 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
                "class=\"bottomTableName\" rowspan=\"2\"><span class=\"standardTrailerName\" "
                "itemprop=\"name\">(.*)</span>.*</td>(.*)</tr>");
     rx.setMinimal(true);
+
     while ((pos = rx.indexIn(html, pos)) != -1) {
         QRegExp rx2("<td class=\"bottomTableResolution\"><a href=\"([^\"]*)\".*>([^<]*)</a></td>");
         rx2.setMinimal(true);
         int pos2 = 0;
         while ((pos2 = rx2.indexIn(rx.cap(2), pos2)) != -1) {
             pos2 += rx2.matchedLength();
+            const QString url = rx2.cap(1);
+
+            // Hard-coded list of URLs that have been down for a while now. See:
+            //  - https://web.archive.org/web/*/http://avideos.5min.com (offline since 2014)
+            if (url.contains("5min.com")) {
+                continue;
+            }
+
+            // HDTrailers requests a JSON from Yahoo and redirects to the URL with
+            // correct resolution using JavaScript.
+            // TODO: Download the JSON, parse it and show correct results.
+            if (url.contains("yahoo-redir.php")) {
+                continue;
+            }
+
             TrailerResult r;
-            r.trailerUrl = Helper::instance()->urlDecode(rx2.cap(1));
+            r.trailerUrl = Helper::instance()->urlDecode(url);
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
             results.append(r);
         }
