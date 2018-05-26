@@ -674,15 +674,13 @@ void MainWindow::onMenu(QToolButton *button)
     case 0:
         // Movies
         ui->navbar->setReloadToolTip(
-            tr("Reload all Movies (%1)")
-                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+            tr("Reload all Movies (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         widget = MainWidgets::Movies;
         break;
     case 1:
         // Tv Shows
         ui->navbar->setReloadToolTip(
-            tr("Reload all TV Shows (%1)")
-                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+            tr("Reload all TV Shows (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         widget = MainWidgets::TvShows;
         break;
     case 2:
@@ -693,8 +691,7 @@ void MainWindow::onMenu(QToolButton *button)
     case 3:
         // Concerts
         ui->navbar->setReloadToolTip(
-            tr("Reload all Concerts (%1)")
-                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+            tr("Reload all Concerts (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         widget = MainWidgets::Concerts;
         break;
     case 4:
@@ -710,9 +707,8 @@ void MainWindow::onMenu(QToolButton *button)
     case 6:
         // Import
         widget = MainWidgets::Downloads;
-        ui->navbar->setReloadToolTip(
-            tr("Reload all Downloads (%1)")
-                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        ui->navbar->setReloadToolTip(tr("Reload all Downloads (%1)")
+                                         .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         break;
     case 7:
         // Music

@@ -1,7 +1,8 @@
 #include "CustomMovieScraper.h"
 
-#include <QtScript/QScriptEngine>
-#include <QtScript/QScriptValue>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 
 #include "data/Storage.h"
 #include "globals/Manager.h"
@@ -175,24 +176,30 @@ void CustomMovieScraper::onLoadTmdbFinished()
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     QMap<ScraperInterface *, QString> ids = reply->property("ids").value<Storage *>()->ids();
     QString tmdbId = reply->property("tmdbId").toString();
-    reply->deleteLater();
 
     if (reply->error() == QNetworkReply::NoError) {
         QString imdbId;
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString::fromUtf8(reply->readAll()) + ")");
-        if (sc.property("imdb_id").isValid() && !sc.property("imdb_id").toString().isEmpty()) {
-            imdbId = sc.property("imdb_id").toString();
+        QJsonParseError parseError;
+        const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
+        reply->deleteLater();
+        if (parseError.error != QJsonParseError::NoError) {
+            qWarning() << "Error parsing TMDb json " << parseError.errorString();
+            return;
+        }
+        if (!parsedJson.value("imdb_id").toString().isEmpty()) {
+            imdbId = parsedJson.value("imdb_id").toString();
+
         } else {
             qWarning() << "No IMDB id available";
             movie->controller()->scraperLoadDone(this);
             return;
         }
         loadAllData(ids, movie, infos, tmdbId, imdbId);
+
     } else {
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone(this);
+        reply->deleteLater();
     }
 }
 

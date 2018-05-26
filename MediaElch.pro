@@ -7,7 +7,7 @@ include(quazip/quazip/quazip.pri)
 TEMPLATE = app
 TARGET = MediaElch
 
-QT += core gui network script xml sql widgets multimedia multimediawidgets \
+QT += core gui network xml sql widgets multimedia multimediawidgets \
       concurrent qml quick quickwidgets opengl
 
 CONFIG += warn_on c++14

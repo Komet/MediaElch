@@ -67,7 +67,6 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		sudo apt-get install -y mxe-${MXETARGET}-gcc \
 			mxe-${MXETARGET}-qtbase \
 			mxe-${MXETARGET}-qttools \
-			mxe-${MXETARGET}-qtscript \
 			mxe-${MXETARGET}-qtmultimedia \
 			mxe-${MXETARGET}-qtimageformats \
 			mxe-${MXETARGET}-qtquickcontrols
@@ -126,7 +125,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 		fold_start "install_qt"
 		print_info "Installing Qt packages"
-		sudo apt-get install -y ${QT}base ${QT}script ${QT}multimedia ${QT}declarative ${QT}quickcontrols 
+		sudo apt-get install -y ${QT}base ${QT}multimedia ${QT}declarative ${QT}quickcontrols
 		fold_end
 
 		fold_start "install_other"

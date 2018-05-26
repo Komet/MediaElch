@@ -32,7 +32,7 @@ sudo apt install libmediainfo-dev
 sudo apt install ffmpeg
 
 # Qt (alternative: download and install Qt from its official website)
-sudo apt install qt5-default qtmultimedia5-dev qtscript5-dev qtdeclarative5-dev
+sudo apt install qt5-default qtmultimedia5-dev qtdeclarative5-dev
 ```
 
 Following packages are only required for Ubuntu 16.04 but not for 18.04.
@@ -60,9 +60,7 @@ sudo make install
 
 #### Dependencies
 Follow the instructions on https://wiki.qt.io/Install_Qt_5_on_openSUSE  
-Select the latest stable Qt version (e.g. 5.10.1) with following components:
- - Desktop gcc 64-bit
- - Qt Script (Deprecated)
+Select the latest stable Qt version (e.g. 5.10.1) with "Desktop gcc 64-bit" enabled.
 
 ```sh
 # Install development tools
@@ -133,7 +131,6 @@ make -j4
 Download the [Qt online installer][qt]. Run it and select the latest Qt version for installation (e.g. `Qt 5.10.1`).
 Check that following components are selected:
  - macOS
- - Qt Script (Deprecated)
  - QtCreator
 
 Download the [MediaElch source code](https://github.com/Komet/MediaElch) by clicking "Download" or using git:  
@@ -158,7 +155,6 @@ Start QtCreator and open `/path/to/MediaElch/MediaElch.pro`. Configure it as "Re
 Download the [Qt online installer][qt]. Run it and select the latest Qt version for installation (e.g. `Qt 5.10.1`).
 Check that following components are selected:
  - MinGW 5.3.0 32 bit
- - Qt Script (Deprecated)
 
 Select "MinGW 5.3.0" in section `Tools`.
 

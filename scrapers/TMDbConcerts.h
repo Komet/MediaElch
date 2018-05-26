@@ -54,7 +54,7 @@ private:
     QString language() const;
     QString country() const;
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
+    QList<ScraperSearchResult> parseSearch(QString json, int &nextPage);
     void parseAndAssignInfos(QString json, Concert *concert, QList<int> infos);
 };
 
