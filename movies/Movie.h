@@ -67,7 +67,6 @@ public:
     virtual QDateTime lastPlayed() const;
     virtual QString id() const;
     virtual QString tmdbId() const;
-    virtual QString mediaPassionId() const;
     virtual QString set() const;
     virtual bool watched() const;
     virtual int movieId() const;
@@ -112,7 +111,6 @@ public:
     void setLastPlayed(QDateTime lastPlayed);
     void setId(QString id);
     void setTmdbId(QString id);
-    void setMediaPassionId(QString id);
     void setSet(QString set);
     void setWatched(bool watched);
     void setChanged(bool changed);
@@ -222,7 +220,6 @@ private:
     QDateTime m_lastPlayed;
     QString m_id;
     QString m_tmdbId;
-    QString m_mediaPassionId;
     QString m_set;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;

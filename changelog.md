@@ -6,9 +6,10 @@
  - Feature: Use HTTPS for scraping
  - Feature: Set UI language in `advancedsettings.xml`
  - Renamer: Create subdirectories
- - Scraper: Remove deprecated Coverlib
- - Scraper: Remove deprecated MovieMaze
  - Scraper: Remove deprecated Cinefacts
+ - Scraper: Remove deprecated Coverlib
+ - Scraper: Remove deprecated MediaPassion
+ - Scraper: Remove deprecated MovieMaze
  - Scraper: Add Kino.de
  - Bugfix: HD-Trailers scraper broken
  - Bugfix: Fanart.tv music scraper broken

@@ -8,7 +8,6 @@
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"
 #include "imageProviders/FanartTvMusicArtists.h"
-#include "imageProviders/MediaPassionImages.h"
 #include "imageProviders/TMDbImages.h"
 #include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcXml.h"
@@ -18,7 +17,6 @@
 #include "scrapers/HotMovies.h"
 #include "scrapers/IMDB.h"
 #include "scrapers/KinoDe.h"
-#include "scrapers/MediaPassion.h"
 #include "scrapers/OFDb.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
@@ -59,7 +57,6 @@ Manager::Manager(QObject *parent) : QObject(parent)
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new FanartTvMusic(this));
     m_imageProviders.append(new FanartTvMusicArtists(this));
-    m_imageProviders.append(new MediaPassionImages(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
 
@@ -333,7 +330,6 @@ QList<ScraperInterface *> Manager::constructNativeScrapers(QObject *parent)
     QList<ScraperInterface *> nativeScrapers;
     nativeScrapers.append(new TMDb(parent));
     nativeScrapers.append(new IMDB(parent));
-    nativeScrapers.append(new MediaPassion(parent));
     nativeScrapers.append(new KinoDe(parent));
     nativeScrapers.append(new OFDb(parent));
     nativeScrapers.append(new VideoBuster(parent));
