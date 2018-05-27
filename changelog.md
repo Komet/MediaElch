@@ -20,6 +20,7 @@
  - Bugfix: Escape HTML entities in export
  - Bugfix: Multi scraping episode thumbnails
  - UI: Fix line break in tree views
+ - UI: 4k and 8k resolution flag
 
 2.4.2 (2016-07-01)
 
