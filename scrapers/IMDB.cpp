@@ -395,18 +395,17 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setOutline(outline);
     }
 
-    rx.setPattern(R"(<div class="summary_text" itemprop="description">(.*)</div>)");
+    rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         QString outline = rx.cap(1).remove(QRegExp("<[^>]*>")).trimmed();
+        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
         movie->setOutline(outline);
     }
 
-    rx.setPattern(R"(<div class="inline canwrap" itemprop="description">(.*)</div>)");
+    rx.setPattern(R"(<span itemprop="description">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         QString overview = rx.cap(1).trimmed();
-        QRegExp rxWrittenBy("<em class=\"nobr\">.*</em>");
-        rxWrittenBy.setMinimal(true);
-        overview.remove(rxWrittenBy).remove(QRegExp("<[^>]*>"));
+        overview.remove(QRegExp("<[^>]*>"));
         movie->setOverview(overview.trimmed());
     }
 
