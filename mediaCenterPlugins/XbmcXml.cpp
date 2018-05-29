@@ -1648,8 +1648,9 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         xml.writeTextElement("credits", writer);
     foreach (const QString &director, episode->directors())
         xml.writeTextElement("director", director);
-    if (!episode->thumbnail().isEmpty())
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
         xml.writeTextElement("thumb", episode->thumbnail().toString());
+    }
 
     foreach (const Actor &actor, episode->actors()) {
         xml.writeStartElement("actor");
