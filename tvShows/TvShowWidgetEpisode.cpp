@@ -133,10 +133,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->tabWidget);
-    Helper::instance()->applyStyle(ui->labelThumbnail);
-    Helper::instance()->applyEffect(ui->groupBox_3);
-    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
+    Helper::applyStyle(ui->tabWidget);
+    Helper::applyStyle(ui->labelThumbnail);
+    Helper::applyEffect(ui->groupBox_3);
+    Helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 /**

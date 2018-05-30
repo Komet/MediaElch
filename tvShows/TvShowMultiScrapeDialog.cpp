@@ -509,13 +509,13 @@ void TvShowMultiScrapeDialog::onDownloadFinished(DownloadManagerElement elem)
 
         if (TvShow::seasonImageTypes().contains(elem.imageType)) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop)
-                Helper::instance()->resizeBackdrop(elem.data);
+                Helper::resizeBackdrop(elem.data);
             ImageCache::instance()->invalidateImages(
                 Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
             elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
         } else if (elem.imageType != ImageType::Actor) {
             if (elem.imageType == ImageType::TvShowBackdrop)
-                Helper::instance()->resizeBackdrop(elem.data);
+                Helper::resizeBackdrop(elem.data);
             ImageCache::instance()->invalidateImages(
                 Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType));
             elem.show->setImage(elem.imageType, elem.data);

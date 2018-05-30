@@ -307,7 +307,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(genres, pos)) != -1) {
-            movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
+            movie->addGenre(Helper::mapGenre(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }
@@ -378,7 +378,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 
     rx.setPattern("<meta itemprop=\"contentRating\" content=\"([^\"]*)\">");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
-        movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
+        movie->setCertification(Helper::mapCertification(rx.cap(1)));
 
     rx.setPattern(R"(<time itemprop="duration" datetime="PT([0-9]+)M" >)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
@@ -449,7 +449,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
                       "class=\"itemprop\" itemprop=\"name\">([^<]*)</span>.*</span>");
         int pos = 0;
         while ((pos = rx.indexIn(html, pos)) != -1) {
-            movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
+            movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }
@@ -460,7 +460,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         rx.setPattern(R"(<a href="[^"]*"[\n\s]*itemprop='url'>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
-            movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
+            movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }

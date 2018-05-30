@@ -277,8 +277,8 @@ void Renamer::renameMovies(QList<Movie *> movies,
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
 
-        bool isBluRay = Helper::instance()->isBluRay(chkDir.path());
-        bool isDvd = Helper::instance()->isDvd(chkDir.path());
+        bool isBluRay = Helper::isBluRay(chkDir.path());
+        bool isDvd = Helper::isDvd(chkDir.path());
 
         if (isBluRay || isDvd) {
             parentDirName = dir.dirName();
@@ -304,14 +304,14 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 Renamer::replace(newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                    Helper::matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                         movie->streamDetails()->videoDetails().value("height").toInt(),
                         movie->streamDetails()->videoDetails().value("scantype")));
                 Renamer::replaceCondition(newFileName, "imdbId", movie->id());
                 Renamer::replaceCondition(newFileName, "movieset", movie->set());
                 Renamer::replaceCondition(
                     newFileName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
-                Helper::instance()->sanitizeFileName(newFileName);
+                Helper::sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
                     if (!dryRun) {
@@ -406,7 +406,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::MovieNfo);
                 if (!nfoFiles.isEmpty()) {
                     QString newNfoFileName = nfoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newNfoFileName);
+                    Helper::sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
@@ -428,7 +428,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!posterFiles.isEmpty()) {
                     QString newPosterFileName =
                         posterFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newPosterFileName);
+                    Helper::sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
                         if (!dryRun) {
@@ -450,7 +450,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!fanartFiles.isEmpty()) {
                     QString newFanartFileName =
                         fanartFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newFanartFileName);
+                    Helper::sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
                         if (!dryRun) {
@@ -472,7 +472,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!bannerFiles.isEmpty()) {
                     QString newBannerFileName =
                         bannerFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newBannerFileName);
+                    Helper::sanitizeFileName(newBannerFileName);
                     if (newBannerFileName != bannerFileName) {
                         int row = addResult(bannerFileName, newBannerFileName, OperationRename);
                         if (!dryRun) {
@@ -494,7 +494,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!thumbFiles.isEmpty()) {
                     QString newThumbFileName =
                         thumbFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newThumbFileName);
+                    Helper::sanitizeFileName(newThumbFileName);
                     if (newThumbFileName != thumbFileName) {
                         int row = addResult(thumbFileName, newThumbFileName, OperationRename);
                         if (!dryRun) {
@@ -516,7 +516,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!logoFiles.isEmpty()) {
                     QString newLogoFileName =
                         logoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newLogoFileName);
+                    Helper::sanitizeFileName(newLogoFileName);
                     if (newLogoFileName != logoFileName) {
                         int row = addResult(logoFileName, newLogoFileName, OperationRename);
                         if (!dryRun) {
@@ -538,7 +538,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!clearArtFiles.isEmpty()) {
                     QString newClearArtFileName =
                         clearArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newClearArtFileName);
+                    Helper::sanitizeFileName(newClearArtFileName);
                     if (newClearArtFileName != clearArtFileName) {
                         int row = addResult(clearArtFileName, newClearArtFileName, OperationRename);
                         if (!dryRun) {
@@ -560,7 +560,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 if (!cdArtFiles.isEmpty()) {
                     QString newCdArtFileName =
                         cdArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newCdArtFileName);
+                    Helper::sanitizeFileName(newCdArtFileName);
                     if (newCdArtFileName != cdArtFileName) {
                         int row = addResult(cdArtFileName, newCdArtFileName, OperationRename);
                         if (!dryRun) {
@@ -591,7 +591,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                Helper::matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                     movie->streamDetails()->videoDetails().value("height").toInt(),
                     movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
@@ -600,7 +600,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
-            Helper::instance()->sanitizeFileName(newFolderName);
+            Helper::sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
         }
@@ -616,7 +616,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                Helper::matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                     movie->streamDetails()->videoDetails().value("height").toInt(),
                     movie->streamDetails()->videoDetails().value("scantype")));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
@@ -625,7 +625,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
-            Helper::instance()->sanitizeFileName(newFolderName);
+            Helper::sanitizeFileName(newFolderName);
 
             if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
                 int i = 0;
@@ -724,9 +724,9 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
             }
         }
 
-        bool isBluRay = Helper::instance()->isBluRay(episode->files().at(0));
-        bool isDvd = Helper::instance()->isDvd(episode->files().at(0));
-        bool isDvdWithoutSub = Helper::instance()->isDvd(episode->files().at(0), true);
+        bool isBluRay = Helper::isBluRay(episode->files().at(0));
+        bool isDvd = Helper::isDvd(episode->files().at(0));
+        bool isDvdWithoutSub = Helper::isDvd(episode->files().at(0), true);
         QFileInfo fi(episode->files().first());
         QString fiCanonicalPath = fi.canonicalPath();
         QStringList episodeFiles = episode->files();
@@ -765,7 +765,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 Renamer::replace(newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
+                    Helper::matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
                         episode->streamDetails()->videoDetails().value("height").toInt(),
                         episode->streamDetails()->videoDetails().value("scantype")));
                 Renamer::replaceCondition(
@@ -781,7 +781,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                     Renamer::replace(newFileName, "episode", episode->episodeString());
                 }
 
-                Helper::instance()->sanitizeFileName(newFileName);
+                Helper::sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
                     if (!dryRun) {
@@ -822,7 +822,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
                 if (!nfoFiles.isEmpty()) {
                     newNfoFileName = nfoFiles.first().saveFileName(newFileName);
-                    Helper::instance()->sanitizeFileName(newNfoFileName);
+                    Helper::sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
@@ -840,7 +840,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 if (!thumbnailFiles.isEmpty()) {
                     newThumbnailFileName =
                         thumbnailFiles.first().saveFileName(newFileName, -1, episode->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newThumbnailFileName);
+                    Helper::sanitizeFileName(newThumbnailFileName);
                     if (newThumbnailFileName != thumbnailFileName) {
                         int row = addResult(thumbnailFileName, newThumbnailFileName, OperationRename);
                         if (!dryRun) {
@@ -864,7 +864,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
             QDir showDir(episode->tvShow()->dir());
             QString seasonDirName = seasonPattern;
             Renamer::replace(seasonDirName, "season", episode->seasonString());
-            Helper::instance()->sanitizeFileName(seasonDirName);
+            Helper::sanitizeFileName(seasonDirName);
             QDir seasonDir(showDir.path() + "/" + seasonDirName);
             if (!seasonDir.exists()) {
                 int row = addResult(seasonDirName, "", OperationCreateDir);
@@ -956,7 +956,7 @@ void Renamer::renameShows(QList<TvShow *> shows,
         Renamer::replace(newFolderName, "title", show->name());
         Renamer::replace(newFolderName, "showTitle", show->name());
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
-        Helper::instance()->sanitizeFileName(newFolderName);
+        Helper::sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {
             int row = addResult(dir.dirName(), newFolderName, OperationRename);
             QDir parentDir(dir.path());
@@ -1026,8 +1026,8 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
 
-        bool isBluRay = Helper::instance()->isBluRay(chkDir.path());
-        bool isDvd = Helper::instance()->isDvd(chkDir.path());
+        bool isBluRay = Helper::isBluRay(chkDir.path());
+        bool isDvd = Helper::isDvd(chkDir.path());
 
         if (isBluRay || isDvd) {
             parentDirName = dir.dirName();
@@ -1054,12 +1054,12 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                 Renamer::replace(newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                    Helper::matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
                         concert->streamDetails()->videoDetails().value("height").toInt(),
                         concert->streamDetails()->videoDetails().value("scantype")));
                 Renamer::replaceCondition(
                     newFileName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
-                Helper::instance()->sanitizeFileName(newFileName);
+                Helper::sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
                     if (!dryRun) {
@@ -1099,7 +1099,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                 if (!nfoFiles.isEmpty()) {
                     QString newNfoFileName =
                         nfoFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newNfoFileName);
+                    Helper::sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
@@ -1117,7 +1117,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                 if (!posterFiles.isEmpty()) {
                     QString newPosterFileName =
                         posterFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newPosterFileName);
+                    Helper::sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
                         if (!dryRun) {
@@ -1135,7 +1135,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                 if (!fanartFiles.isEmpty()) {
                     QString newFanartFileName =
                         fanartFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
-                    Helper::instance()->sanitizeFileName(newFanartFileName);
+                    Helper::sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
                         if (!dryRun) {
@@ -1162,10 +1162,10 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
             Renamer::replace(newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                Helper::matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
                     concert->streamDetails()->videoDetails().value("height").toInt(),
                     concert->streamDetails()->videoDetails().value("scantype")));
-            Helper::instance()->sanitizeFileName(newFolderName);
+            Helper::sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
         }

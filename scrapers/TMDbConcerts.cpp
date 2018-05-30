@@ -534,7 +534,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             QScriptValue vC = itC.value();
             if (vC.property("id").toString().isEmpty())
                 continue;
-            concert->addGenre(Helper::instance()->mapGenre(vC.property("name").toString()));
+            concert->addGenre(Helper::mapGenre(vC.property("name").toString()));
         }
     }
 
@@ -546,7 +546,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(
+            concert->setTrailer(QUrl(Helper::formatTrailerUrl(
                 QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
@@ -608,19 +608,19 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
         }
 
         if (m_locale.country() == QLocale::UnitedStates && !us.isEmpty()) {
-            concert->setCertification(Helper::instance()->mapCertification(us));
+            concert->setCertification(Helper::mapCertification(us));
 
         } else if (m_locale.language() == QLocale::English && !gb.isEmpty()) {
-            concert->setCertification(Helper::instance()->mapCertification(gb));
+            concert->setCertification(Helper::mapCertification(gb));
 
         } else if (!locale.isEmpty()) {
-            concert->setCertification(Helper::instance()->mapCertification(locale));
+            concert->setCertification(Helper::mapCertification(locale));
 
         } else if (!us.isEmpty()) {
-            concert->setCertification(Helper::instance()->mapCertification(us));
+            concert->setCertification(Helper::mapCertification(us));
 
         } else if (!gb.isEmpty()) {
-            concert->setCertification(Helper::instance()->mapCertification(gb));
+            concert->setCertification(Helper::mapCertification(gb));
         }
     }
 }

@@ -29,7 +29,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
     MusicModelItem *item = getItem(index);
 
     if (role == Qt::DisplayRole) {
-        return Helper::instance()->appendArticle(item->data(0).toString());
+        return Helper::appendArticle(item->data(0).toString());
     } else if (role == MusicRoles::Type) {
         return item->type();
     } else if (role == MusicRoles::IsNew) {

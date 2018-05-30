@@ -39,7 +39,7 @@ bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QIma
         return false;
     }
     int t = qrand() % duration;
-    QString timeCode = Helper::instance()->secondsToTimeCode(t);
+    QString timeCode = Helper::secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;
     if (!tmpFile.open()) {

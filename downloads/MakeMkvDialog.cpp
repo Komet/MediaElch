@@ -170,7 +170,7 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
         QListWidgetItem *item = new QListWidgetItem(QString("%1 (%3, %2)")
                                                         .arg(it.value().name)
                                                         .arg(it.value().duration)
-                                                        .arg(Helper::instance()->formatFileSize(it.value().size)));
+                                                        .arg(Helper::formatFileSize(it.value().size)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(Qt::Unchecked);
         item->setData(Qt::UserRole, it.key());
@@ -277,7 +277,7 @@ void MakeMkvDialog::onImport()
         newFolderName.replace("<title>", m_movie->name());
         newFolderName.replace("<originalTitle>", m_movie->originalName());
         newFolderName.replace("<year>", m_movie->released().toString("yyyy"));
-        Helper::instance()->sanitizeFileName(newFolderName);
+        Helper::sanitizeFileName(newFolderName);
         if (!dir.mkdir(newFolderName)) {
             QMessageBox::warning(this,
                 tr("Creating destination directory failed"),
@@ -347,7 +347,7 @@ void MakeMkvDialog::importFinished()
             newFileName.replace("<year>", m_movie->released().toString("yyyy"));
             newFileName.replace("<extension>", fi.suffix());
             newFileName.replace("<partNo>", QString::number(++partNo));
-            Helper::instance()->sanitizeFileName(newFileName);
+            Helper::sanitizeFileName(newFileName);
             QFile f(file);
             f.rename(m_importDir + "/" + newFileName);
             files << m_importDir + "/" + newFileName;

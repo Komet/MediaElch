@@ -1398,9 +1398,7 @@ void Movie::setImage(int imageType, QByteArray image)
 
 bool Movie::lessThan(Movie *a, Movie *b)
 {
-    return (QString::localeAwareCompare(
-                Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
-            < 0);
+    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
 }
 
 QList<int> Movie::imageTypes()

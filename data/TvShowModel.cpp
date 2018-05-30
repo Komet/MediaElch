@@ -110,7 +110,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == Qt::DisplayRole) {
-        return Helper::instance()->appendArticle(item->data(0).toString());
+        return Helper::appendArticle(item->data(0).toString());
     } else if (role == Qt::FontRole) {
         QFont font;
         if (item->data(2).toBool()) {

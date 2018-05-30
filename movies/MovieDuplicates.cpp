@@ -40,7 +40,7 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
 
     ui->duplicates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    Helper::instance()->applyStyle(ui->movieDuplicatesWidget);
+    Helper::applyStyle(ui->movieDuplicatesWidget);
 
     connect(ui->btnDetect, &QPushButton::clicked, this, &MovieDuplicates::detectDuplicates);
     connect(
