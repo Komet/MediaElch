@@ -382,8 +382,10 @@ void TheTvDb::parseAndAssignInfos(QString xml,
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty())
                 show->setGenres(Helper::instance()->mapGenre(
                     elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
-            if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty())
-                show->setNetwork(elem.elementsByTagName("Network").at(0).toElement().text());
+            if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty()) {
+                show->setNetwork(
+                    Helper::instance()->mapGenre(elem.elementsByTagName("Network").at(0).toElement().text()));
+            }
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
                 show->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
             if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())

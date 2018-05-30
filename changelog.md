@@ -19,6 +19,7 @@
  - Bugfix: Fix TvShow status in `.nfo` file
  - Bugfix: Escape HTML entities in export
  - Bugfix: Multi scraping episode thumbnails
+   Bugfix: Studio Mapping for Tv show episodes
  - UI: Fix line break in tree views
  - UI: 4k and 8k resolution flag
 
