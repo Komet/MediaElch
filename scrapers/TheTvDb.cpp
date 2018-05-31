@@ -384,7 +384,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                     elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
             if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty()) {
                 show->setNetwork(
-                    Helper::instance()->mapGenre(elem.elementsByTagName("Network").at(0).toElement().text()));
+                    Helper::instance()->mapStudio(elem.elementsByTagName("Network").at(0).toElement().text()));
             }
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
                 show->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
