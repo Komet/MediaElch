@@ -176,8 +176,7 @@ create_macos_dmg() {
 
 	fold_start "mediainfo"
 	print_info "Copying mediainfo into MediaElch.dmg"
-	mkdir -p MediaElch.app/Contents/Frameworks/
-	cp ../libmediainfo.0.dylib MediaElch.app/Contents/Frameworks/
+	cp ../libmediainfo.0.dylib MediaElch.app/Contents/MacOS/
 	fold_end
 
 	#######################################################
