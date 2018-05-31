@@ -128,7 +128,17 @@ create_appimage() {
 	print_info "Running linuxdeployqt"
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}"
 	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -bundle-non-qt-libs -qmldir=../ui
-	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -appimage
+	./linuxdeployqt --appimage-extract
+	export PATH=$(readlink -f ./squashfs-root/usr/bin):$PATH
+	# Workaround to increase compatibility with older systems
+	# see https://github.com/darealshinji/AppImageKit-checkrt for details
+	mkdir -p appdir/usr/optional/libstdc++/
+	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/exec-x86_64.so -O ./appdir/usr/optional/exec.so
+	cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 ./appdir/usr/optional/libstdc++/
+	rm appdir/AppRun
+	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/AppRun-patched-x86_64 -O appdir/AppRun
+	chmod a+x appdir/AppRun
+	./squashfs-root/usr/bin/appimagetool -g ./appdir/ MediaElch-${VERSION}-x86_64.AppImage
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 	fold_end
 
