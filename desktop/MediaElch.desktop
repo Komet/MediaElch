@@ -3,6 +3,6 @@ Type=Application
 Name=MediaElch
 Icon=MediaElch
 Terminal=false
-Exec=/usr/bin/MediaElch
+Exec=MediaElch
 Categories=AudioVideo;Video;
 GenericName=Media Manager
