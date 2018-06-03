@@ -1057,7 +1057,7 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="37"/>
         <source>Unrar not found</source>
-        <translation type="unfinished"></translation>
+        <translation>未找到解压程序</translation>
     </message>
 </context>
 <context>
@@ -2630,12 +2630,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>导入音轨</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"></translation>
+        <translation>备份碟片</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="163"/>
@@ -2760,12 +2760,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"></translation>
+        <translation>MakeMKV 导入完成</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>使用MakeMKV导入完成</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="373"/>
@@ -4155,7 +4155,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="101"/>
         <source>%n albums</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n 专辑</numerusform>
         </translation>
     </message>
@@ -5316,7 +5316,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"></translation>
+        <translation>电影集海报文件名</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="662"/>
@@ -5447,12 +5447,14 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1649"/>
         <location filename="../settings/SettingsWindow.ui" line="1652"/>
+        <location filename="../settings/SettingsWindow.cpp" line="182"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1663"/>
         <location filename="../settings/SettingsWindow.ui" line="1666"/>
+        <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Music</source>
         <translation>音乐</translation>
@@ -5551,18 +5553,21 @@ The directories containg your music must contain subdirectories for each artist 
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1561"/>
+        <location filename="../settings/SettingsWindow.cpp" line="178"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Movies</source>
         <translation>电影</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1572"/>
+        <location filename="../settings/SettingsWindow.cpp" line="179"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>TV Shows</source>
         <translation>电视剧</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1583"/>
+        <location filename="../settings/SettingsWindow.cpp" line="180"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Concerts</source>
         <translation>音乐会</translation>
@@ -5814,6 +5819,322 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TMDb</name>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <source>Bulgarian</source>
+        <translation>保加利亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="33"/>
+        <source>Arabic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="35"/>
+        <source>Chinese (T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="36"/>
+        <source>Chinese (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="37"/>
+        <source>Croatian</source>
+        <translation>克罗地亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="38"/>
+        <source>Czech</source>
+        <translation>捷克</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="39"/>
+        <source>Danish</source>
+        <translation>丹麦</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="40"/>
+        <source>Dutch</source>
+        <translation>荷兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="41"/>
+        <source>English</source>
+        <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="42"/>
+        <source>English (US)</source>
+        <translation>英语(US)</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="43"/>
+        <source>Finnish</source>
+        <translation>芬兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="44"/>
+        <source>French</source>
+        <translation>法语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="45"/>
+        <source>French (Canada)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="46"/>
+        <source>German</source>
+        <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="47"/>
+        <source>Greek</source>
+        <translation>希腊</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="48"/>
+        <source>Hebrew</source>
+        <translation>希伯来语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="49"/>
+        <source>Hungarian</source>
+        <translation>匈牙利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="50"/>
+        <source>Italian</source>
+        <translation>意大利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="51"/>
+        <source>Japanese</source>
+        <translation>日本</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="52"/>
+        <source>Korean</source>
+        <translation>韩国</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="53"/>
+        <source>Norwegian</source>
+        <translation>挪威语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
+        <source>Polish</source>
+        <translation>波兰语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="55"/>
+        <source>Portuguese (Brazil)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="56"/>
+        <source>Portuguese (Portugal)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
+        <source>Russian</source>
+        <translation>俄罗斯</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="58"/>
+        <source>Slovene</source>
+        <translation>斯洛文尼亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="59"/>
+        <source>Spanish</source>
+        <translation>西班牙</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="60"/>
+        <source>Spanish (Mexico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="61"/>
+        <source>Swedish</source>
+        <translation>瑞典</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="62"/>
+        <source>Turkish</source>
+        <translation>土耳其</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="65"/>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+</context>
+<context>
+    <name>TMDbConcerts</name>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>保加利亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
+        <source>Arabic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
+        <source>Chinese (T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
+        <source>Chinese (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
+        <source>Croatian</source>
+        <translation>克罗地亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
+        <source>Czech</source>
+        <translation>捷克</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
+        <source>Danish</source>
+        <translation>丹麦</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
+        <source>Dutch</source>
+        <translation>荷兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
+        <source>English</source>
+        <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
+        <source>English (US)</source>
+        <translation>英语 (US)</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
+        <source>Finnish</source>
+        <translation>芬兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
+        <source>French</source>
+        <translation>法语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
+        <source>French (Canada)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
+        <source>German</source>
+        <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
+        <source>Greek</source>
+        <translation>希腊</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
+        <source>Hebrew</source>
+        <translation>希伯来语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
+        <source>Hungarian</source>
+        <translation>匈牙利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
+        <source>Italian</source>
+        <translation>意大利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
+        <source>Japanese</source>
+        <translation>日本</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="53"/>
+        <source>Korean</source>
+        <translation>韩国</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
+        <source>Norwegian</source>
+        <translation>挪威语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="55"/>
+        <source>Polish</source>
+        <translation>波兰语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
+        <source>Portuguese (Brazil)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
+        <source>Portuguese (Portugal)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
+        <source>Russian</source>
+        <translation>俄罗斯</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
+        <source>Slovene</source>
+        <translation>斯洛文尼亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
+        <source>Spanish</source>
+        <translation>西班牙</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
+        <source>Spanish (Mexico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
+        <source>Swedish</source>
+        <translation>瑞典</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="63"/>
+        <source>Turkish</source>
+        <translation>土耳其</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="66"/>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+</context>
+<context>
     <name>TagCloud</name>
     <message>
         <location filename="../smallWidgets/TagCloud.ui" line="14"/>
@@ -5824,6 +6145,134 @@ p, li { white-space: pre-wrap; }
         <location filename="../smallWidgets/TagCloud.ui" line="34"/>
         <source>Tag</source>
         <translation>标签</translation>
+    </message>
+</context>
+<context>
+    <name>TheTvDb</name>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="32"/>
+        <source>Bulgarian</source>
+        <translation>保加利亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="33"/>
+        <source>Chinese</source>
+        <translation>中国</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="34"/>
+        <source>Croatian</source>
+        <translation>克罗地亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="35"/>
+        <source>Czech</source>
+        <translation>捷克</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="36"/>
+        <source>Danish</source>
+        <translation>丹麦</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="37"/>
+        <source>Dutch</source>
+        <translation>荷兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="38"/>
+        <source>English</source>
+        <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
+        <source>Finnish</source>
+        <translation>芬兰</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
+        <source>French</source>
+        <translation>法语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
+        <source>German</source>
+        <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
+        <source>Greek</source>
+        <translation>希腊</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
+        <source>Hebrew</source>
+        <translation>希伯来语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
+        <source>Hungarian</source>
+        <translation>匈牙利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
+        <source>Italian</source>
+        <translation>意大利</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="46"/>
+        <source>Japanese</source>
+        <translation>日本</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="47"/>
+        <source>Korean</source>
+        <translation>韩国</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="48"/>
+        <source>Norwegian</source>
+        <translation>挪威语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="49"/>
+        <source>Polish</source>
+        <translation>波兰语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="50"/>
+        <source>Portuguese</source>
+        <translation>葡萄牙语</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="51"/>
+        <source>Russian</source>
+        <translation>俄罗斯</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="52"/>
+        <source>Slovene</source>
+        <translation>斯洛文尼亚</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="53"/>
+        <source>Spanish</source>
+        <translation>西班牙</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="54"/>
+        <source>Swedish</source>
+        <translation>瑞典</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="55"/>
+        <source>Turkish</source>
+        <translation>土耳其</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="57"/>
+        <source>Language</source>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -6278,7 +6727,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="341"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="343"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>提取 of %1 完成</translation>
     </message>
 </context>
 <context>
@@ -7183,6 +7632,26 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1113"/>
         <source>Character Art</source>
         <translation>演员图片</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="78"/>
+        <source>Genres</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
+        <source>Add Genre</source>
+        <translation>添加类型</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="83"/>
+        <source>Tags</source>
+        <translation>标签</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="84"/>
+        <source>Add Tag</source>
+        <translation>添加标签</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="429"/>

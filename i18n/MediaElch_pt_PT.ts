@@ -5454,12 +5454,14 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1649"/>
         <location filename="../settings/SettingsWindow.ui" line="1652"/>
+        <location filename="../settings/SettingsWindow.cpp" line="182"/>
         <source>Import</source>
         <translation>Importar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1663"/>
         <location filename="../settings/SettingsWindow.ui" line="1666"/>
+        <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Music</source>
         <translation>Música</translation>
@@ -5557,18 +5559,21 @@ The directories containg your music must contain subdirectories for each artist 
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1561"/>
+        <location filename="../settings/SettingsWindow.cpp" line="178"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Movies</source>
         <translation>Filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1572"/>
+        <location filename="../settings/SettingsWindow.cpp" line="179"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>TV Shows</source>
         <translation>Séries TV</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1583"/>
+        <location filename="../settings/SettingsWindow.cpp" line="180"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Concerts</source>
         <translation>Concertos</translation>
@@ -5826,6 +5831,322 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TMDb</name>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <source>Bulgarian</source>
+        <translation>Búlgaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="33"/>
+        <source>Arabic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="35"/>
+        <source>Chinese (T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="36"/>
+        <source>Chinese (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="37"/>
+        <source>Croatian</source>
+        <translation>Croata</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="38"/>
+        <source>Czech</source>
+        <translation>Checo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="39"/>
+        <source>Danish</source>
+        <translation>Dinamarquês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="40"/>
+        <source>Dutch</source>
+        <translation>Holandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="41"/>
+        <source>English</source>
+        <translation>Inglês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="42"/>
+        <source>English (US)</source>
+        <translation>Inglês (US)</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="43"/>
+        <source>Finnish</source>
+        <translation>Finlandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="44"/>
+        <source>French</source>
+        <translation>Francês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="45"/>
+        <source>French (Canada)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="46"/>
+        <source>German</source>
+        <translation>Alemão</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="47"/>
+        <source>Greek</source>
+        <translation>Grego</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="48"/>
+        <source>Hebrew</source>
+        <translation>Hebraico</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="49"/>
+        <source>Hungarian</source>
+        <translation>Húngaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="50"/>
+        <source>Italian</source>
+        <translation>Italiano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="51"/>
+        <source>Japanese</source>
+        <translation>Japonês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="52"/>
+        <source>Korean</source>
+        <translation>Coreano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="53"/>
+        <source>Norwegian</source>
+        <translation>Norueguês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
+        <source>Polish</source>
+        <translation>Polaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="55"/>
+        <source>Portuguese (Brazil)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="56"/>
+        <source>Portuguese (Portugal)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
+        <source>Russian</source>
+        <translation>Russo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="58"/>
+        <source>Slovene</source>
+        <translation>Eslovaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="59"/>
+        <source>Spanish</source>
+        <translation>Espanhol</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="60"/>
+        <source>Spanish (Mexico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="61"/>
+        <source>Swedish</source>
+        <translation>Sueco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="62"/>
+        <source>Turkish</source>
+        <translation>Turco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="65"/>
+        <source>Language</source>
+        <translation>Idioma</translation>
+    </message>
+</context>
+<context>
+    <name>TMDbConcerts</name>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>Búlgaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
+        <source>Arabic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
+        <source>Chinese (T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
+        <source>Chinese (S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
+        <source>Croatian</source>
+        <translation>Croata</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
+        <source>Czech</source>
+        <translation>Checo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
+        <source>Danish</source>
+        <translation>Dinamarquês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
+        <source>Dutch</source>
+        <translation>Holandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
+        <source>English</source>
+        <translation>Inglês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
+        <source>English (US)</source>
+        <translation>Inglês (US)</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
+        <source>Finnish</source>
+        <translation>Finlandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
+        <source>French</source>
+        <translation>Francês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
+        <source>French (Canada)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
+        <source>German</source>
+        <translation>Alemão</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
+        <source>Greek</source>
+        <translation>Grego</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
+        <source>Hebrew</source>
+        <translation>Hebraico</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
+        <source>Hungarian</source>
+        <translation>Húngaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
+        <source>Italian</source>
+        <translation>Italiano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
+        <source>Japanese</source>
+        <translation>Japonês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="53"/>
+        <source>Korean</source>
+        <translation>Coreano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
+        <source>Norwegian</source>
+        <translation>Norueguês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="55"/>
+        <source>Polish</source>
+        <translation>Polaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
+        <source>Portuguese (Brazil)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
+        <source>Portuguese (Portugal)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
+        <source>Russian</source>
+        <translation>Russo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
+        <source>Slovene</source>
+        <translation>Eslovaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
+        <source>Spanish</source>
+        <translation>Espanhol</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
+        <source>Spanish (Mexico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
+        <source>Swedish</source>
+        <translation>Sueco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="63"/>
+        <source>Turkish</source>
+        <translation>Turco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="66"/>
+        <source>Language</source>
+        <translation>Idioma</translation>
+    </message>
+</context>
+<context>
     <name>TagCloud</name>
     <message>
         <location filename="../smallWidgets/TagCloud.ui" line="14"/>
@@ -5836,6 +6157,134 @@ p, li { white-space: pre-wrap; }
         <location filename="../smallWidgets/TagCloud.ui" line="34"/>
         <source>Tag</source>
         <translation>Etiqueta</translation>
+    </message>
+</context>
+<context>
+    <name>TheTvDb</name>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="32"/>
+        <source>Bulgarian</source>
+        <translation>Búlgaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="33"/>
+        <source>Chinese</source>
+        <translation>Chinês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="34"/>
+        <source>Croatian</source>
+        <translation>Croata</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="35"/>
+        <source>Czech</source>
+        <translation>Checo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="36"/>
+        <source>Danish</source>
+        <translation>Dinamarquês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="37"/>
+        <source>Dutch</source>
+        <translation>Holandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="38"/>
+        <source>English</source>
+        <translation>Inglês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
+        <source>Finnish</source>
+        <translation>Finlandês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
+        <source>French</source>
+        <translation>Francês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
+        <source>German</source>
+        <translation>Alemão</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
+        <source>Greek</source>
+        <translation>Grego</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
+        <source>Hebrew</source>
+        <translation>Hebraico</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
+        <source>Hungarian</source>
+        <translation>Húngaro</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
+        <source>Italian</source>
+        <translation>Italiano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="46"/>
+        <source>Japanese</source>
+        <translation>Japonês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="47"/>
+        <source>Korean</source>
+        <translation>Coreano</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="48"/>
+        <source>Norwegian</source>
+        <translation>Norueguês</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="49"/>
+        <source>Polish</source>
+        <translation>Polaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="50"/>
+        <source>Portuguese</source>
+        <translation>Português</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="51"/>
+        <source>Russian</source>
+        <translation>Russo</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="52"/>
+        <source>Slovene</source>
+        <translation>Eslovaco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="53"/>
+        <source>Spanish</source>
+        <translation>Espanhol</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="54"/>
+        <source>Swedish</source>
+        <translation>Sueco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="55"/>
+        <source>Turkish</source>
+        <translation>Turco</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="57"/>
+        <source>Language</source>
+        <translation>Idioma</translation>
     </message>
 </context>
 <context>
@@ -7201,6 +7650,26 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1113"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="78"/>
+        <source>Genres</source>
+        <translation>Géneros</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
+        <source>Add Genre</source>
+        <translation>Adicionar Género</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="83"/>
+        <source>Tags</source>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="84"/>
+        <source>Add Tag</source>
+        <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="429"/>
