@@ -144,12 +144,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="113"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О программе</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="119"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch был собран используя &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt</translation>
+        <translation>MediaElch был собран на &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="132"/>
@@ -164,12 +164,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="152"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Определение информации о потоке используя &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
+        <translation>Определение информации о потоке &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="162"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; основан на  &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; на  &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="172"/>
@@ -204,7 +204,7 @@
         <location filename="../main/AboutDialog.ui" line="378"/>
         <location filename="../main/AboutDialog.ui" line="408"/>
         <source>0</source>
-        <translation type="unfinished">3D {0?}</translation>
+        <translation>3D {0?}</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="272"/>
@@ -224,7 +224,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="371"/>
         <source>Artists</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполнители</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="401"/>
@@ -247,12 +247,12 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="55"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="82"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="116"/>
@@ -278,27 +278,27 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="171"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите два раза для переименования возрастного ограничения, правый клик для удаления. Если хотите объединить два возрастных ограничения - дайте им одинаковое имя.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, помните, что изменения будут применены для всех фильмов.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="34"/>
         <source>Add Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить ограничение</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="35"/>
         <source>Delete Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить ограничение</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="184"/>
         <source>New Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое ограничение</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="294"/>
@@ -321,7 +321,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="116"/>
         <source>Capture random screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Сделать случайный снимок</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="122"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="402"/>
         <source>Are you sure you want to delete this image?</source>
-        <translation>Вы уверены что вы хотите удалить это изображение?</translation>
+        <translation>Вы уверены, что вы хотите удалить это изображение?</translation>
     </message>
 </context>
 <context>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="55"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть файл NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="350"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="89"/>
@@ -472,7 +472,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="169"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="176"/>
@@ -502,17 +502,17 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="211"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Логотип, обложка, обложка диска</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="214"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="228"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать/Убрать</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="53"/>
         <source>Concert has changed. Click to revert changes.</source>
-        <translation>Концерт был изменен. Нажмите чтобы отменить изменения.</translation>
+        <translation>Концерт был изменён. Нажмите чтобы отменить изменения.</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="79"/>
@@ -580,7 +580,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="249"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="266"/>
@@ -601,7 +601,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="311"/>
         <source>Last Played</source>
-        <translation>В последний раз просмотрен</translation>
+        <translation>Последний просмотр</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="356"/>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="239"/>
         <source> Minutes</source>
-        <translation>Минуты</translation>
+        <translation> Мин.</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="347"/>
@@ -626,12 +626,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="369"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="395"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные фоны</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="417"/>
@@ -651,12 +651,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="609"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Соотношение</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="545"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Развёрстка</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="629"/>
@@ -673,7 +673,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="577"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>х</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="535"/>
@@ -698,7 +698,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="639"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим стерео</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="656"/>
@@ -722,7 +722,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="882"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="958"/>
@@ -732,12 +732,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1005"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1052"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="73"/>
@@ -792,7 +792,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="660"/>
         <source>Concerts Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Концерты сохранены</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="687"/>
@@ -805,7 +805,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="38"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Личные настройки поиска фильмов</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation>Экспортировать всю вашу коллекцию</translation>
+        <translation>Экспортировать всю вашу коллекцию.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
@@ -961,12 +961,12 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="29"/>
         <source>You need to install at least one theme.</source>
-        <translation>Вам надо установить как минимум одну тему.</translation>
+        <translation>Вам надо установить, как минимум, одну тему.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="62"/>
         <source>You need to select at least one entry to export.</source>
-        <translation>Вам нужно выбрать как минимум один элемент для экспорта.</translation>
+        <translation>Вам нужно выбрать, как минимум, один элемент для экспорта.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
@@ -981,7 +981,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation>Экспорт завершен.</translation>
+        <translation>Экспорт завершён.</translation>
     </message>
 </context>
 <context>
@@ -1196,12 +1196,12 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>BluRay</source>
-        <translation type="unfinished"></translation>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="56"/>
         <source>DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="59"/>
@@ -1224,13 +1224,13 @@
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
         <source>File Scanner</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск файлов</translation>
     </message>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="30"/>
         <location filename="../main/FileScannerDialog.ui" line="56"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Надпись</translation>
     </message>
 </context>
 <context>
@@ -1273,12 +1273,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="62"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Колонки статуса</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="72"/>
         <source>Label</source>
-        <translation>Надпись</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="83"/>
@@ -1293,7 +1293,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Mark as unwatched</source>
-        <translation>Отметить как не просмотрено</translation>
+        <translation>Отметить как не просмотренное</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
@@ -1318,7 +1318,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="90"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть файл NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="535"/>
@@ -1356,12 +1356,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="308"/>
         <source>Label &quot;%1&quot;</source>
-        <translation>Надпись &quot;%1&quot;</translation>
+        <translation>Метка &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="310"/>
         <source>Label</source>
-        <translation>Надпись</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="380"/>
@@ -1409,13 +1409,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="459"/>
         <source>Certification &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="461"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="480"/>
@@ -1430,23 +1430,23 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="497"/>
         <source>Tag &quot;%1&quot;</source>
-        <translation>Тэг &quot;%1&quot;</translation>
+        <translation>Тег &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="497"/>
         <source>Tag</source>
-        <translation>Тэг</translation>
+        <translation>Тег</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
         <source>Director &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="726"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
@@ -1491,30 +1491,30 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
         <source>Movie has Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть дополнительные обои</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="569"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные обои</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет дополнительных обоев</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
         <source>No Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет дополнительных обоев</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="580"/>
         <source>Movie has Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть фон</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="581"/>
@@ -1527,23 +1527,23 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="582"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="586"/>
         <source>Movie has no Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет фона</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="587"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
         <source>No Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет фона</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="588"/>
         <source>No Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет обоев</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="593"/>
@@ -1570,90 +1570,90 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
         <source>Movie has Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть обложка</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Movie has no Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет обложки</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <source>No Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет обложки</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
         <source>Movie has Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть баннер</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Movie has no Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет баннера</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <source>No Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет баннера</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="620"/>
         <source>Movie has Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть кадр просмотра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="620"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Кадр просмотра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <source>Movie has no Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет кадра просмотра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="623"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <source>No Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет кадра просмотра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <source>Movie has CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть обложка CD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>Movie has no CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет обложки CD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>No CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет обложки CD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
@@ -1683,25 +1683,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <source>Movie has local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть локальный трейлер</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="654"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальный трейлер</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <source>Movie has no local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет локального трейлера</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="654"/>
         <source>No local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет локального трейлера</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
@@ -1735,23 +1735,23 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Unseen</source>
-        <translation type="unfinished"></translation>
+        <translation>Невиданный</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="670"/>
         <source>Movie has no Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет ограничений</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="671"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>No Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет ограничений</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Movie has no Genre</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет жанра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
@@ -1784,30 +1784,30 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="691"/>
         <source>Stream Details loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Загружена информация о потоке</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="692"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="693"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="699"/>
         <source>Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о потоке</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="697"/>
         <source>Stream Details not loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о потоке не загружена</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="698"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="699"/>
         <source>No Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет информации о потоке</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="704"/>
         <source>Movie has Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть актёры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="704"/>
@@ -1818,57 +1818,57 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="706"/>
         <source>Movie has no Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет актёров</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="707"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="708"/>
         <source>No Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет актёров</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="712"/>
         <source>Movie has no Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет студий</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="713"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="714"/>
         <source>No Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет студий</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="718"/>
         <source>Movie has no Country</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет страны</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="719"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="720"/>
         <source>No Country</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет страны</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="724"/>
         <source>Movie has no Director</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет режиссёра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="725"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="726"/>
         <source>No Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет режиссёра</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="730"/>
         <source>Movie has no Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет тегов</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="731"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="732"/>
         <source>No Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет тегов</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="732"/>
@@ -1878,28 +1878,28 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="736"/>
         <source>Movie has no IMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="737"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="738"/>
         <source>No IMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="738"/>
         <source>IMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="743"/>
         <source>Resolution 720p</source>
-        <translation type="unfinished"></translation>
+        <translation>Разрешение 720p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="743"/>
         <source>720p</source>
-        <translation type="unfinished">3D {720p?}</translation>
+        <translation>3D {720p?}</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="743"/>
@@ -1911,53 +1911,53 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="745"/>
         <source>Resolution 1080p</source>
-        <translation type="unfinished"></translation>
+        <translation>Разрешение 1080p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="745"/>
         <source>1080p</source>
-        <translation type="unfinished">3D {1080p?}</translation>
+        <translation>3D {1080p?}</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="747"/>
         <source>Resolution SD</source>
-        <translation type="unfinished"></translation>
+        <translation>Разрешение SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="747"/>
         <source>SD</source>
-        <translation type="unfinished"></translation>
+        <translation>SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="749"/>
         <source>Format DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>Формат DVD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="749"/>
         <source>DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="749"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="751"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Формат</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="751"/>
         <source>BluRay Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Формат BluRay</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="751"/>
         <source>BluRay</source>
-        <translation type="unfinished"></translation>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="753"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"></translation>
+        <translation>Каналы 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="755"/>
@@ -1979,47 +1979,47 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="758"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Каналы 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="763"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Каналы 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="769"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"></translation>
+        <translation>Качество звука HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="771"/>
         <source>HD Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Звук HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="776"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Качество звука Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="778"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Звук Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="783"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"></translation>
+        <translation>Качество звука SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="785"/>
         <source>SD Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Звук SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="790"/>
         <source>Movie has Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть субтитры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="790"/>
@@ -2027,42 +2027,42 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="799"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="804"/>
         <source>Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Субтитры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="791"/>
         <source>Movie has no Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет субтитров</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="792"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="793"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="804"/>
         <source>No Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет субтитров</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="797"/>
         <source>Movie has external Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма есть внешние субтитры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="798"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="799"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="804"/>
         <source>External Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Внешние субтитры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="802"/>
         <source>Movie has no external Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет внешних субтитров</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="803"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="804"/>
         <source>No External Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет внешних субтитров</translation>
     </message>
 </context>
 <context>
@@ -2080,7 +2080,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="82"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="116"/>
@@ -2106,12 +2106,12 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="171"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите два раза для переименования жанра, правый клик для удаления. Если хотите объединить два жанра - дайте им одинаковое имя.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="181"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста помните, что изменения будут применены для всех фильмов.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="34"/>
@@ -2121,12 +2121,12 @@
     <message>
         <location filename="../movies/GenreWidget.cpp" line="35"/>
         <source>Delete Genre</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить жанр</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="186"/>
         <source>New Genre</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый жанр</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="296"/>
@@ -2139,33 +2139,33 @@
     <message>
         <location filename="../image/ImageCapture.cpp" line="21"/>
         <source>Could not get duration of file</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получается узнать длительность</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="38"/>
         <source>Could not detect runtime of file</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получается узнать время запуска</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="47"/>
         <location filename="../image/ImageCapture.cpp" line="77"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получается открыть временный файл</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="62"/>
         <source>Could not start ffmpeg</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получается запустить ffmpeg</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="65"/>
         <source>Could not start ffmpeg. Please install it and make it available in your $PATH</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получается запустить ffmpeg. Пожалуйста, установите или укажите в $PATH</translation>
     </message>
     <message>
         <location filename="../image/ImageCapture.cpp" line="72"/>
         <source>ffmpeg did not finish</source>
-        <translation type="unfinished"></translation>
+        <translation>ffmpeg не смог закончить работу</translation>
     </message>
 </context>
 <context>
@@ -2173,12 +2173,12 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="17"/>
         <source>Choose an Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать изображение</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="31"/>
         <source>Enter a search term or URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите наименование или URL</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="97"/>
@@ -2192,38 +2192,38 @@
         <location filename="../globals/ImageDialog.ui" line="164"/>
         <location filename="../globals/ImageDialog.ui" line="169"/>
         <source>Neue Spalte</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый столбец</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="703"/>
         <location filename="../globals/ImageDialog.cpp" line="710"/>
         <source>No images found</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения не найдены</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="222"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличить</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="248"/>
         <source>Preview size</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер предпросмотра</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="276"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Уменьшить</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="297"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка...</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="320"/>
         <source>Choose Local Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать с диска</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="333"/>
@@ -2233,32 +2233,32 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="340"/>
         <source>Accept Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Принять</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="151"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>По-умолчанию</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Choose Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать изображения</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="707"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение предоставлено &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="711"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Если у Вас есть - загрузите на &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -2279,7 +2279,7 @@
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="82"/>
@@ -2305,22 +2305,22 @@
     <message>
         <location filename="../downloads/ImportActions.ui" line="26"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.ui" line="33"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="117"/>
         <source>Delete file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить этот файл?</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="118"/>
         <source>Do you really want to delete this file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить этот файл?</translation>
     </message>
 </context>
 <context>
@@ -2333,42 +2333,42 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="40"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="47"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="54"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка фильма...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Название папки</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Название файла</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="108"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать название папки сезона</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Название папки сезона</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить исходный файл после импорта</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="175"/>
@@ -2379,94 +2379,94 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="205"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="258"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации о фильме...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="274"/>
         <source>Loading concert information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации о концерте...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="296"/>
         <source>Loading episode information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации о серии...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="357"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о фильме загружена</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="370"/>
         <source>Concert information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о концерте загружена</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="388"/>
         <location filename="../downloads/ImportDialog.cpp" line="406"/>
         <source>Episode information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о серии загружена</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="418"/>
         <source>Renaming not possible</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно переименовать</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="418"/>
         <source>Please enter all naming patterns</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите шаблон имени</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="446"/>
         <location filename="../downloads/ImportDialog.cpp" line="531"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно создать папку</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="447"/>
         <location filename="../downloads/ImportDialog.cpp" line="532"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"></translation>
+        <translation>Папку %1 невозможно создать</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="474"/>
         <source>Importing movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт фильмов...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="509"/>
         <source>Importing episode...</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт серий...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="557"/>
         <source>Importing concert...</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт концертов...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт завершён</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="670"/>
         <source>Import of %n file(s) has finished</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Импорт %n файла закончен</numerusform>
+            <numerusform>Импорт %n файлов закончен</numerusform>
+            <numerusform>Импорт %n файлов закончен</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="673"/>
         <source>Import has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Изморт закончен</translation>
     </message>
 </context>
 <context>
@@ -2479,12 +2479,12 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="58"/>
         <source>Episode Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название серии</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="68"/>
         <source>Episode Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество серий</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="94"/>
@@ -2494,12 +2494,12 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="356"/>
         <source>new</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="378"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Необходима синхронизация</translation>
     </message>
 </context>
 <context>
@@ -2507,17 +2507,17 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл</translation>
     </message>
 </context>
 <context>
@@ -2536,7 +2536,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="119"/>
         <source>Movie Sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Коллекции</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="147"/>
@@ -2546,17 +2546,17 @@
     <message>
         <location filename="../main/MainWindow.ui" line="175"/>
         <source>Certifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Возрастные ограничения</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="203"/>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Дубликаты</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="233"/>
         <source>Shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Сериалы</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="249"/>
@@ -2573,7 +2573,7 @@
         <location filename="../main/MainWindow.ui" line="325"/>
         <location filename="../main/MainWindow.ui" line="341"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Музыка</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="371"/>
@@ -2582,47 +2582,47 @@
         <extracomment>Main menu entry
 ----------
 Main menu entry (tooltip)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Импорт</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="856"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="861"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Выход</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="866"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="677"/>
         <source>Reload all Movies (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка всех фильмов (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="683"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка всех сериалов (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="694"/>
         <source>Reload all Concerts (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка всех концертов (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="710"/>
         <source>Reload all Downloads (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачать все загрузки (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="716"/>
         <source>Reload Music (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка музыки (%1)</translation>
     </message>
 </context>
 <context>
@@ -2635,42 +2635,42 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Сканировать</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>Импортировать</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить диск</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="163"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="170"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="177"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка фильма...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрибуты</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
         <source>Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Оригинальное название</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="236"/>
@@ -2685,12 +2685,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="282"/>
         <source>File extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Расширение файла</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрибут</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="321"/>
@@ -2700,32 +2700,32 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="331"/>
         <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;partNo&gt;</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер части файла</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя папки</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя нескольких файлов</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка импорта</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
@@ -2735,52 +2735,52 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="452"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Импортировать</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="199"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет выбранных треков</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="200"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите как минимум один трек для импорта.</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="235"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка информации о фильме...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="261"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Загружена информация о фильме</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="283"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка создания папки</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="284"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"></translation>
+        <translation>Нельзя создать папку %1</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт MakeMKV закончен</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="370"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончен импорт из MakeMKV</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="373"/>
         <source>Import has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончен импорт</translation>
     </message>
 </context>
 <context>
@@ -2801,7 +2801,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/Message.ui" line="56"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>ТекстоваяМетка</translation>
     </message>
 </context>
 <context>
@@ -2814,12 +2814,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="117"/>
         <source>Movie title</source>
-        <translation type="unfinished"></translation>
+        <translation>Название фильма</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="146"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicateItem.ui" line="153"/>
@@ -2832,12 +2832,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieDuplicates.ui" line="67"/>
         <source>Detect duplicate movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти дубликаты фильмов</translation>
     </message>
     <message>
         <location filename="../movies/MovieDuplicates.cpp" line="66"/>
         <source>Detecting duplicate movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск дубликатов фильмов...</translation>
     </message>
 </context>
 <context>
@@ -2845,12 +2845,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="31"/>
         <source>Searching for Movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск фильмов...</translation>
     </message>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="155"/>
         <source>Loading Movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка фильмов...</translation>
     </message>
 </context>
 <context>
@@ -2858,18 +2858,19 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="27"/>
         <source>Source %1 is no directory</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не является папкой</translation>
     </message>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="84"/>
         <source>Operation not possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>Операция невозможна.</translation>
     </message>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="85"/>
         <source>%1
  Operation Canceled.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+ Операция отменена.</translation>
     </message>
 </context>
 <context>
@@ -2877,7 +2878,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="17"/>
         <source>Choose a movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать фильм</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="26"/>
@@ -2892,7 +2893,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="68"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить выбранный</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="88"/>
@@ -2910,17 +2911,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="294"/>
         <source>Extra Arts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные обложки</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="295"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные фоны</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="297"/>
@@ -2930,7 +2931,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация о потоке</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="299"/>
@@ -2940,7 +2941,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальный трейлер</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="301"/>
@@ -2953,17 +2954,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="23"/>
         <source>Movie Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск нескольких фильмов</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберете источник для поиска информации. MediaElch выберет наилучший результат для каждого фильма.</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="85"/>
@@ -2973,12 +2974,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="144"/>
         <source>Countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Страны</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="234"/>
         <source>Studios</source>
-        <translation type="unfinished"></translation>
+        <translation>Студии</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -2993,7 +2994,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="224"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="134"/>
@@ -3018,12 +3019,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="174"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="214"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="204"/>
@@ -3063,22 +3064,22 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="294"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="284"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="274"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="264"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="314"/>
@@ -3088,22 +3089,22 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="333"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="359"/>
         <source>Automatically save each movie after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически сохранять данные после получения</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлять только фильмы с IMDB Id/TheMovieDb Id</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="381"/>
         <source>1/20</source>
-        <translation type="unfinished">3D {1/20?}</translation>
+        <translation>3D {1/20?}</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -3113,7 +3114,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="413"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="436"/>
@@ -3123,15 +3124,15 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="449"/>
         <source>Start Scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="188"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Поиск %n фильма закончен.</numerusform>
+            <numerusform>Поиск %n фильмов закончен.</numerusform>
+            <numerusform>Поиск %n фильмов закончен.</numerusform>
         </translation>
     </message>
 </context>
@@ -3158,13 +3159,14 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="59"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Для поиска через IMDB, можете использовать IMDB id.
+Если хотите искать через TMDB или OFDb, пожалуйста, добавьте в начало &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="94"/>
@@ -3209,17 +3211,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="181"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="188"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="195"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="202"/>
@@ -3254,12 +3256,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="244"/>
         <source>Studios</source>
-        <translation type="unfinished"></translation>
+        <translation>Студии</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="251"/>
         <source>Countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Страны</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="258"/>
@@ -3274,27 +3276,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="272"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="279"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="286"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="293"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="307"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
 </context>
 <context>
@@ -3307,12 +3309,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="53"/>
         <source>Movie has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильм сохранён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="79"/>
         <source>Movie Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название фильма</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="122"/>
@@ -3333,12 +3335,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="166"/>
         <source>Original Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Оригинальное</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="176"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="186"/>
@@ -3363,17 +3365,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="236"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="246"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="256"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="276"/>
@@ -3388,7 +3390,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="318"/>
         <source>Last Played</source>
-        <translation>В последний раз просмотрен</translation>
+        <translation>Последний просмотр</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="348"/>
@@ -3404,42 +3406,42 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="363"/>
         <source>Plot</source>
-        <translation type="unfinished"></translation>
+        <translation>Сюжет</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="387"/>
         <source>Insert YouTube Dummy Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставить ссылку на YouTube</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="406"/>
         <source>Download Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачать трейлер</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="422"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Воспроизвести трейлер</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="432"/>
         <source>Local trailer is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Есть локальный трейлер</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="435"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Локальный трейлер</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="475"/>
         <source>Votes</source>
-        <translation type="unfinished"></translation>
+        <translation>Голосов</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="508"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ 250</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="532"/>
@@ -3449,17 +3451,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="555"/>
         <source>Runtime</source>
-        <translation>Продолжительность</translation>
+        <translation>Время</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="565"/>
         <source> Minutes</source>
-        <translation>Минуты</translation>
+        <translation> Мин.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="577"/>
         <source>Outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержание</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="597"/>
@@ -3469,7 +3471,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="607"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="639"/>
@@ -3499,7 +3501,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="745"/>
         <source>Click to change</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите для изменения</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="764"/>
@@ -3510,12 +3512,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные фоны</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="802"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержка дополнительных фонов доступна для фильмов в отдельных папках. Проверьте настройки.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="822"/>
@@ -3535,12 +3537,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="896"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Соотношение</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="886"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Развёрстка</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1028"/>
@@ -3552,7 +3554,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="996"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>х</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="938"/>
@@ -3577,7 +3579,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1038"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим стерео</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1059"/>
@@ -3587,12 +3589,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1110"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"></translation>
+        <translation>Внешние субтитры</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1140"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Форсированные</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1296"/>
@@ -3615,13 +3617,13 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1346"/>
         <location filename="../movies/MovieWidget.ui" line="1386"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1396"/>
         <location filename="../movies/MovieWidget.ui" line="1436"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1475"/>
@@ -3633,23 +3635,23 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1525"/>
         <location filename="../movies/MovieWidget.ui" line="1565"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1575"/>
         <source>Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка диска</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1615"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1625"/>
         <location filename="../movies/MovieWidget.ui" line="1665"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="86"/>
@@ -3674,27 +3676,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="96"/>
         <source>Countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Страны</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="97"/>
         <source>Add Country</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить страну</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="101"/>
         <source>Studios</source>
-        <translation type="unfinished"></translation>
+        <translation>Студии</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="102"/>
         <source>Add Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить студию</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="514"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка изображений...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="772"/>
@@ -3725,7 +3727,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="900"/>
         <source>Saving movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение фильма...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="905"/>
@@ -3736,12 +3738,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.cpp" line="882"/>
         <location filename="../movies/MovieWidget.cpp" line="928"/>
         <source>Saving movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение фильмов...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="898"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильм сохранён</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="945"/>
@@ -3751,22 +3753,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="967"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"></translation>
+        <translation>Актёр неизвестен</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="968"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Роль неизвестна</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Choose Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать изображение</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1125"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -3774,12 +3776,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="31"/>
         <source>Searching for Music...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск музыки...</translation>
     </message>
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка музыки...</translation>
     </message>
 </context>
 <context>
@@ -3787,56 +3789,56 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n исполнитель</numerusform>
+            <numerusform>%n исполнителя</numerusform>
+            <numerusform>%n исполнителей</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n album(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n альбом</numerusform>
+            <numerusform>%n альбома</numerusform>
+            <numerusform>%n альбомов</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="30"/>
         <source>Open Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть папку</translation>
     </message>
     <message>
         <location filename="../music/MusicFilesWidget.cpp" line="31"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть файл NFO</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="132"/>
         <source>%n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n исполнитель</numerusform>
+            <numerusform>%n исполнителя</numerusform>
+            <numerusform>%n исполнителей</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="132"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n альбом</numerusform>
+            <numerusform>%n альбома</numerusform>
+            <numerusform>%n альбомов</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="134"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 of %n исполнителя</numerusform>
+            <numerusform>%1 of %n исполнителей</numerusform>
+            <numerusform>%1 of %n исполнителей</numerusform>
         </translation>
     </message>
 </context>
@@ -3845,7 +3847,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="17"/>
         <source>Music Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Множественный поиск музыки</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="39"/>
@@ -3855,7 +3857,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="48"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата рождения</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="61"/>
@@ -3865,37 +3867,37 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="74"/>
         <source>Years Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Годы творчества</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="87"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата смерти</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="100"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата основания</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="113"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата роспуска</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="126"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="139"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="152"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="165"/>
@@ -3905,27 +3907,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="178"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Доп. фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="191"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="204"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="217"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="230"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="243"/>
@@ -3935,12 +3937,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="256"/>
         <source>Label</source>
-        <translation>Надпись</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="269"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата выпуска</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="282"/>
@@ -3955,7 +3957,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="308"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="321"/>
@@ -3970,27 +3972,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="347"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Дискография</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="369"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="395"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"></translation>
+        <translation>Искать все альбомы выбранных исполнителей</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически сохранять каждого исполнителя и альбом</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="449"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="472"/>
@@ -4000,15 +4002,15 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="485"/>
         <source>Start Scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать поиск</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="205"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Закончен поиск %n наименования.</numerusform>
+            <numerusform>Закончен поиск %n наименований.</numerusform>
+            <numerusform>Закончен поиск %n наименований.</numerusform>
         </translation>
     </message>
 </context>
@@ -4030,7 +4032,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="89"/>
@@ -4050,37 +4052,37 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="150"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата рождения</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата основания</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
         <source>Years Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Годы творчества</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="180"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата роспуска</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="190"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата смерти</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Дискография</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
@@ -4090,12 +4092,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
         <source>Label</source>
-        <translation>Надпись</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="240"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
@@ -4110,7 +4112,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="270"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата выпуска</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
@@ -4125,27 +4127,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="300"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="330"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="340"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Доп. фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="350"/>
@@ -4155,17 +4157,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="360"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка CD</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="387"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
 </context>
 <context>
@@ -4173,10 +4175,10 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="101"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n альбом</numerusform>
+            <numerusform>%n альбома</numerusform>
+            <numerusform>%n альбомов</numerusform>
         </translation>
     </message>
 </context>
@@ -4186,13 +4188,13 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidget.cpp" line="119"/>
         <location filename="../music/MusicWidget.cpp" line="157"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение изменений исполнителей и альбомов</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="137"/>
         <location filename="../music/MusicWidget.cpp" line="180"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранены все исполнители и альбомы</translation>
     </message>
 </context>
 <context>
@@ -4200,12 +4202,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="53"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Альбом сохранён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="79"/>
         <source>Album Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название альбома</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="114"/>
@@ -4215,7 +4217,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="134"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="155"/>
@@ -4230,7 +4232,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="183"/>
         <source>Label</source>
-        <translation>Надпись</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="190"/>
@@ -4245,32 +4247,32 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="204"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата выпуска</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="211"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="251"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz Album ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="265"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz Release Group ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="282"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="323"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Буклет</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="342"/>
@@ -4286,7 +4288,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetAlbum.ui" line="420"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="460"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="442"/>
@@ -4298,7 +4300,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetAlbum.ui" line="486"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="526"/>
         <source>Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка диска</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="41"/>
@@ -4313,27 +4315,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="46"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Add Mood</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="51"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Add Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="200"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение альбома...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="206"/>
@@ -4343,7 +4345,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="490"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка изображений...</translation>
     </message>
 </context>
 <context>
@@ -4351,12 +4353,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="53"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполнитель сохранён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="79"/>
         <source>Artist Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполнитель</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="114"/>
@@ -4366,7 +4368,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="134"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="155"/>
@@ -4376,47 +4378,47 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="183"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата рождения</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="190"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Начало творчества</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="197"/>
         <source>Years active</source>
-        <translation type="unfinished"></translation>
+        <translation>Годы творчества</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="204"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Окончание творчества</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="211"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата смерти</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="232"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="242"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="259"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="300"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Дискография</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="322"/>
@@ -4431,17 +4433,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="337"/>
         <source>Add Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить альбом</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Remove Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить альбом</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="373"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Доп. фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="395"/>
@@ -4458,7 +4460,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetArtist.ui" line="513"/>
         <location filename="../music/MusicWidgetArtist.ui" line="645"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="495"/>
@@ -4471,7 +4473,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetArtist.ui" line="539"/>
         <location filename="../music/MusicWidgetArtist.ui" line="579"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фан-арт</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="605"/>
@@ -4491,27 +4493,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="50"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
         <source>Add Mood</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить настроение</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="55"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Add Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить стиль</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="193"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение исполнителя...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="199"/>
@@ -4521,12 +4523,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="462"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка изображений...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="535"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестный альбом</translation>
     </message>
 </context>
 <context>
@@ -4534,7 +4536,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="38"/>
         <source>Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="57"/>
@@ -4549,32 +4551,32 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="98"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать выбранные файлы</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="117"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизировать с Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="136"/>
         <source>Export Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортировать базу</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="174"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="193"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="238"/>
@@ -4584,22 +4586,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="20"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение всех (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="28"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка всех файлов (%1)</translation>
     </message>
 </context>
 <context>
@@ -4615,12 +4617,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main.cpp" line="57"/>
         <source>Logfile could not be openened</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно открыть файл журнала</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="58"/>
         <source>The logfile %1 could not be openend for writing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нельзя записать в файл журнала %1.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="75"/>
@@ -4635,22 +4637,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="404"/>
         <source>Do not ask again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не спрашивать</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="50"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Не проверять новые версии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="407"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не показывать эту подсказку</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="531"/>
         <source>No Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет метки</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="532"/>
@@ -4660,7 +4662,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../globals/Helper.cpp" line="533"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation>Оранжевый</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="534"/>
@@ -4680,7 +4682,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../globals/Helper.cpp" line="537"/>
         <source>Purple</source>
-        <translation type="unfinished"></translation>
+        <translation>Пурпурный</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="538"/>
@@ -4693,7 +4695,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIP/UNZIP API ошибка %1</translation>
     </message>
 </context>
 <context>
@@ -4701,72 +4703,72 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="17"/>
         <source>Renamer</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименование</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="68"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Папки сезонов</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="78"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Несколько файлов</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="95"/>
         <source>Rename Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать папки</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="105"/>
         <source>Rename Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать файлы</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="125"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя папки</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="142"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="149"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя папки сезона</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Season &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Результат</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="272"/>
@@ -4776,90 +4778,90 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="295"/>
         <source>Dry Run</source>
-        <translation type="unfinished"></translation>
+        <translation>Проба</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="305"/>
         <location filename="../renamer/Renamer.cpp" line="1271"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="33"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста посмотрите %1 для примеров и помощи в переименовании.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="50"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n фильм будет переименован</numerusform>
+            <numerusform>%n фильма будут переименованы</numerusform>
+            <numerusform>%n фильмов будут переименованы</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="51"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n концерт будет переименован</numerusform>
+            <numerusform>%n концерта будут переименованы</numerusform>
+            <numerusform>%n концертов будут переименованы</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="53"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n сериал и %1</numerusform>
+            <numerusform>%n сериала и %1</numerusform>
+            <numerusform>%n сериалов и %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="54"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n серия будет переименована</numerusform>
+            <numerusform>%n серии будут переименованы</numerusform>
+            <numerusform>%n серий будут переименованы</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="196"/>
         <location filename="../renamer/Renamer.cpp" line="230"/>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончено</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="249"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Фильм&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1269"/>
         <source>Create dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать папку</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1270"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="715"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Серия&lt;/b&gt; &quot;%1&quot; была изменена, но не сохранена</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="950"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Сериал&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="1002"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Концерт&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
 </context>
 <context>
@@ -4872,12 +4874,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="32"/>
         <source>Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрибуты</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="515"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрибут</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="494"/>
@@ -4887,17 +4889,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="365"/>
         <source>File extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Расширение файла</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="350"/>
         <source>Original Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Оригинальное название</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="294"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер части файла</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="171"/>
@@ -4912,12 +4914,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="186"/>
         <source>Season Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер сезона</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="415"/>
         <source>Title of the show</source>
-        <translation type="unfinished"></translation>
+        <translation>Название сериала</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="398"/>
@@ -4932,57 +4934,57 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="447"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Название по сортировке</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="479"/>
         <source>Episode Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер серии</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Разрешение (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"></translation>
+        <translation>BluRay папка</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD папка</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл 3D фильма</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название коллекции</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB Id</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Видео кодек</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Аудио кодек</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество каналов звука</translation>
     </message>
 </context>
 <context>
@@ -5000,7 +5002,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../sets/SetsWidget.ui" line="91"/>
         <source>Set Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Название коллекции</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="122"/>
@@ -5010,12 +5012,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../sets/SetsWidget.ui" line="127"/>
         <source>Sorttitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="150"/>
         <source>Add movie to set</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить фильм в коллекцию</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="153"/>
@@ -5025,7 +5027,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../sets/SetsWidget.ui" line="163"/>
         <source>Remove selected movie from set</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать фильм</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="166"/>
@@ -5047,7 +5049,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../sets/SetsWidget.ui" line="234"/>
         <location filename="../sets/SetsWidget.ui" line="312"/>
         <source>Full preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="248"/>
@@ -5065,12 +5067,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../sets/SetsWidget.cpp" line="70"/>
         <source>Add Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить коллекцию</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="71"/>
         <source>Delete Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить коллекцию</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="470"/>
@@ -5080,7 +5082,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../sets/SetsWidget.cpp" line="496"/>
         <source>New Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая коллекция</translation>
     </message>
 </context>
 <context>
@@ -5088,165 +5090,168 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../settings/SettingsWindow.ui" line="20"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="71"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="76"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="81"/>
         <source>Sep. folders</source>
-        <translation type="unfinished"></translation>
+        <translation>В отдельной папке</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="84"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Расположено в отдельных папках</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="89"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверять</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="92"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически проверять изменения при запуске программы</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="102"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="109"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="116"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сортировать фильмы в отдельных папках&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="119"/>
         <source>Organize</source>
-        <translation type="unfinished"></translation>
+        <translation>Распределить</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="146"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранять ссылки на трейлеры в формате YouTube</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="160"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished"></translation>
+        <translation>Получать и сохранять информацию о потоке из файла</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="174"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>При сортировке игнорировать &quot;The&quot; в названии</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="188"/>
         <source>Download actor images</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачивать изображения актёров</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="216"/>
         <location filename="../settings/SettingsWindow.ui" line="235"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Исключить следующие слова из имён файлов (разделять запятой, без пробелов, любого регистра)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="202"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверять наличие обновлений</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1463"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="262"/>
         <location filename="../settings/SettingsWindow.ui" line="373"/>
         <location filename="../settings/SettingsWindow.ui" line="1627"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источники</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="37"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавьте одну или несколько папок с фильмами, сериалами, концертами, музыкой или файлы для импорта.
+Сезоны с сериями должны быть в папках с названием сериала.
+Каждый музыкальный исполнитель должен располагаться в отдельной папке с подпапками альбомов.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="242"/>
         <source>Startup section</source>
-        <translation type="unfinished"></translation>
+        <translation>Начальный раздел</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="268"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить поиск фильмов &quot;для взрослых&quot;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="336"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Личные настройки поиска фильмов</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="342"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"></translation>
+        <translation>Комбинируйте различные источники информации.&lt;br&gt;Для идентификации фильма лучше использовать IMDB, The Movie DB или Fanart.tv.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="368"/>
         <location filename="../settings/SettingsWindow.ui" line="414"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Наименования</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="382"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск сериалов</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="388"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберете сайт для каждого элемента описания сериала и серий.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="419"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Сайты</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="435"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о фильмах.
+Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="445"/>
         <location filename="../settings/SettingsWindow.ui" line="978"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"></translation>
+        <translation>Можете использовать атрибут &lt;baseFileName&gt; являющейся именем файла без расширения.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="460"/>
         <location filename="../settings/SettingsWindow.ui" line="993"/>
         <source>Nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл описания</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="467"/>
@@ -5261,7 +5266,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="738"/>
         <location filename="../settings/SettingsWindow.ui" line="1007"/>
         <source>Backdrop</source>
-        <translation>Обои</translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="481"/>
@@ -5277,202 +5282,206 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="1021"/>
         <location filename="../settings/SettingsWindow.cpp" line="767"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="495"/>
         <location filename="../settings/SettingsWindow.ui" line="1028"/>
         <location filename="../settings/SettingsWindow.cpp" line="766"/>
         <source>Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка диска</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="562"/>
         <location filename="../settings/SettingsWindow.ui" line="745"/>
         <location filename="../settings/SettingsWindow.cpp" line="768"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="569"/>
         <location filename="../settings/SettingsWindow.ui" line="935"/>
         <location filename="../settings/SettingsWindow.cpp" line="769"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Предварительный просмотр</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="603"/>
         <source>Movie outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержание фильма</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="610"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать &quot;сюжет&quot; если недоступно</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="617"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения коллекций</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="625"/>
         <source>Artwork next to movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Располагать рядом с фильмом</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="630"/>
         <source>Separate artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Располагать в отдельной папке</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="638"/>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Постер коллекции</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="645"/>
         <location filename="../settings/SettingsWindow.ui" line="648"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон коллекции</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="662"/>
         <location filename="../settings/SettingsWindow.ui" line="665"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="672"/>
         <source>Artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка изображений</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="684"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="699"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о сериалах.
+Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="709"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation type="unfinished"></translation>
+        <translation>Можете использовать атрибут &lt;baseFileName&gt; являющейся именем файла без расширения.
+Для постеров сезонов использовать &lt;seasonNumber&gt; являющийся номером сезона.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="724"/>
         <source>Show nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл описания сериала</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="766"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Концепт</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="773"/>
         <source>Season Poster</source>
-        <translation type="unfinished"></translation>
+        <translation>Постер сезона</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="780"/>
         <source>Season Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон сезона</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="787"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл описания серии</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="794"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка серии</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="801"/>
         <source>Season Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер сезона</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="928"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка сезона</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="968"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о концертах.
+Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1101"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ниже представлены имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
+Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1116"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка исполнителя</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1133"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фан-арт исполнителя</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1150"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Логотип исполнителя</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1167"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка альбома</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1184"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка диска альбома</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1201"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"></translation>
+        <translation>Загружать дополнительные фан-арты</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1221"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"></translation>
+        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер). Ввести адрес и порт сервера в настройках ниже.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1257"/>
         <source>8080</source>
-        <translation type="unfinished">3D {8080?}</translation>
+        <translation>3D {8080?}</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>Path to unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1605"/>
         <source>Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1649"/>
         <location filename="../settings/SettingsWindow.ui" line="1652"/>
         <location filename="../settings/SettingsWindow.cpp" line="182"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1663"/>
@@ -5480,40 +5489,40 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="181"/>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Музыка</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1428"/>
         <source>Automatically delete archives after extraction</source>
-        <translation>Удалить архивы автоматически после извлечения</translation>
+        <translation>Удалить архивы после извлечения</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1454"/>
         <location filename="../settings/SettingsWindow.ui" line="1475"/>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1236"/>
         <location filename="../settings/SettingsWindow.ui" line="1296"/>
         <source>Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1243"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">3D {127.0.0.1?}</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1250"/>
         <location filename="../settings/SettingsWindow.ui" line="1303"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1310"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя пользователя</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1271"/>
@@ -5524,28 +5533,28 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1264"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Пользователь</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1344"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить Прокси</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1351"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="unfinished"></translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1359"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1364"/>
         <source>SOCKS 5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS 5</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1388"/>
@@ -5561,17 +5570,17 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="1505"/>
         <location filename="../settings/SettingsWindow.cpp" line="588"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1512"/>
         <source>Save Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить настройки</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1522"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель инструментов</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1561"/>
@@ -5597,12 +5606,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1594"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Общие</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1616"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеть</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1638"/>
@@ -5612,63 +5621,63 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="501"/>
         <source>Settings saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки сохранены</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузки</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="574"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Распределение фильмов используется только для тех, что не расположены в отдельных папках.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="582"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены?</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="584"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished"></translation>
+        <translation>Эта операция распределит фильмы в подпапках. Нажмите &quot;Ok&quot; если хотите продолжить. </translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="587"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="632"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите папку с вашими фильмами, сериалами или концертами</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="655"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите папку для хранения изображений коллекции</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="685"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема &quot;%1&quot; была успешно установлена</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="688"/>
         <location filename="../settings/SettingsWindow.cpp" line="698"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Произошла ошибка при установке темы &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="695"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема &quot;%1&quot; была успешно удалена</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="708"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"></translation>
+        <translation>Не использовать</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="747"/>
@@ -5702,7 +5711,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="752"/>
         <location filename="../settings/SettingsWindow.cpp" line="800"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="753"/>
@@ -5713,12 +5722,12 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="754"/>
         <location filename="../settings/SettingsWindow.cpp" line="801"/>
         <source>Plot</source>
-        <translation type="unfinished"></translation>
+        <translation>Сюжет</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="756"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="757"/>
@@ -5735,24 +5744,24 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="759"/>
         <source>Studios</source>
-        <translation type="unfinished"></translation>
+        <translation>Студии</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="760"/>
         <source>Countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Страны</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="761"/>
         <location filename="../settings/SettingsWindow.cpp" line="799"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="762"/>
         <location filename="../settings/SettingsWindow.cpp" line="798"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="763"/>
@@ -5768,22 +5777,22 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="770"/>
         <location filename="../settings/SettingsWindow.cpp" line="804"/>
         <source>Unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation>Не поддерживается</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="796"/>
         <source>First Aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="810"/>
         <source>Choose unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="817"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -5791,12 +5800,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../support/SupportDialog.ui" line="17"/>
         <source>Support MediaElch</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержка MediaElch</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="30"/>
         <source>If you like MediaElch and wish to support it you have the chance to do so! You can donate as much as you like via PayPal.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нравится MediaElch? Желаете поддержать развитие проекта?&lt;br&gt;Вы можете пожертвовать любую сумму через PayPal.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="40"/>
@@ -5806,33 +5815,42 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>MediaElch использует бесплатные базы фильмов и сериалов.
+Эти проекты также нуждаются в помощи.
+Дополните информацию, загрузите недостающие картинки.
+Другие пользователи будет Вам благодарны.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
         <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
+</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="95"/>
         <source>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="127"/>
         <source>Thanks for your help and support!</source>
-        <translation type="unfinished"></translation>
+        <translation>Спасибо за поддержку!</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать кнопку пожертвований</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="172"/>
@@ -5843,14 +5861,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <source>Bulgarian</source>
+        <translation>Болгарский</translation>
+    </message>
+    <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../scrapers/TMDb.cpp" line="34"/>
-        <source>Bulgarian</source>
-        <translation type="unfinished">Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
@@ -5865,42 +5883,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>Croatian</source>
-        <translation type="unfinished">Хорватский</translation>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>Czech</source>
-        <translation type="unfinished">Чешский</translation>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Danish</source>
-        <translation type="unfinished">Датский</translation>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>Английский (США)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Finnish</source>
-        <translation type="unfinished">Финский</translation>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>French</source>
-        <translation type="unfinished">Французский</translation>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
@@ -5910,47 +5928,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Greek</source>
-        <translation type="unfinished">Греческий</translation>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Иврит</translation>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Венгерский</translation>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Italian</source>
-        <translation type="unfinished">Итальянский</translation>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Japanese</source>
-        <translation type="unfinished">Японский</translation>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Korean</source>
-        <translation type="unfinished">Корейский</translation>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="53"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Норвежский</translation>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Polish</source>
-        <translation type="unfinished">Польский</translation>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="55"/>
@@ -5965,17 +5983,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="57"/>
         <source>Russian</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="58"/>
         <source>Slovene</source>
-        <translation type="unfinished">Словенский</translation>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="59"/>
         <source>Spanish</source>
-        <translation type="unfinished">Испанский</translation>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="60"/>
@@ -5985,30 +6003,30 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="61"/>
         <source>Swedish</source>
-        <translation type="unfinished">Шведский</translation>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="62"/>
         <source>Turkish</source>
-        <translation type="unfinished">Турецкий</translation>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="65"/>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
 </context>
 <context>
     <name>TMDbConcerts</name>
     <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>Болгарский</translation>
+    </message>
+    <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
-        <source>Bulgarian</source>
-        <translation type="unfinished">Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
@@ -6023,42 +6041,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
         <source>Croatian</source>
-        <translation type="unfinished">Хорватский</translation>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Czech</source>
-        <translation type="unfinished">Чешский</translation>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Danish</source>
-        <translation type="unfinished">Датский</translation>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>Английский (США)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
         <source>Finnish</source>
-        <translation type="unfinished">Финский</translation>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>French</source>
-        <translation type="unfinished">Французский</translation>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
@@ -6068,47 +6086,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
         <source>Greek</source>
-        <translation type="unfinished">Греческий</translation>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Иврит</translation>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Венгерский</translation>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Italian</source>
-        <translation type="unfinished">Итальянский</translation>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Japanese</source>
-        <translation type="unfinished">Японский</translation>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="53"/>
         <source>Korean</source>
-        <translation type="unfinished">Корейский</translation>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Норвежский</translation>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="55"/>
         <source>Polish</source>
-        <translation type="unfinished">Польский</translation>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
@@ -6123,17 +6141,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
         <source>Russian</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
         <source>Slovene</source>
-        <translation type="unfinished">Словенский</translation>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
         <source>Spanish</source>
-        <translation type="unfinished">Испанский</translation>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
@@ -6143,17 +6161,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
         <source>Swedish</source>
-        <translation type="unfinished">Шведский</translation>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="63"/>
         <source>Turkish</source>
-        <translation type="unfinished">Турецкий</translation>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="66"/>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
 </context>
 <context>
@@ -6166,7 +6184,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/TagCloud.ui" line="34"/>
         <source>Tag</source>
-        <translation>Тэг</translation>
+        <translation>Тег</translation>
     </message>
 </context>
 <context>
@@ -6174,127 +6192,127 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Bulgarian</source>
-        <translation type="unfinished">Болгарский</translation>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Chinese</source>
-        <translation type="unfinished">Китайский</translation>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
         <source>Croatian</source>
-        <translation type="unfinished">Хорватский</translation>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Czech</source>
-        <translation type="unfinished">Чешский</translation>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>Danish</source>
-        <translation type="unfinished">Датский</translation>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Finnish</source>
-        <translation type="unfinished">Финский</translation>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>French</source>
-        <translation type="unfinished">Французский</translation>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Greek</source>
-        <translation type="unfinished">Греческий</translation>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Иврит</translation>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Венгерский</translation>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Italian</source>
-        <translation type="unfinished">Итальянский</translation>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Japanese</source>
-        <translation type="unfinished">Японский</translation>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Korean</source>
-        <translation type="unfinished">Корейский</translation>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Норвежский</translation>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Polish</source>
-        <translation type="unfinished">Польский</translation>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Portuguese</source>
-        <translation type="unfinished">Португальский</translation>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Russian</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="52"/>
         <source>Slovene</source>
-        <translation type="unfinished">Словенский</translation>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
         <source>Spanish</source>
-        <translation type="unfinished">Испанский</translation>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="54"/>
         <source>Swedish</source>
-        <translation type="unfinished">Шведский</translation>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="55"/>
         <source>Turkish</source>
-        <translation type="unfinished">Турецкий</translation>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="57"/>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
 </context>
 <context>
@@ -6307,7 +6325,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="87"/>
@@ -6324,7 +6342,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="166"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="171"/>
@@ -6339,7 +6357,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="186"/>
         <source>Back to Search Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Вернутся к результатам поиска</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="263"/>
@@ -6349,12 +6367,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="277"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="308"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="331"/>
@@ -6369,7 +6387,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="349"/>
         <source>Back to Trailers</source>
-        <translation type="unfinished"></translation>
+        <translation>Вернутся к трейлерам</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="319"/>
@@ -6384,7 +6402,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="330"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы хотите заменить?</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="342"/>
@@ -6397,22 +6415,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="54"/>
         <source>Searching for TV Shows...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск сериалов...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="73"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка сериалов...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="189"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск серий...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="227"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка серий...</translation>
     </message>
 </context>
 <context>
@@ -6426,20 +6444,20 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n сериал</numerusform>
+            <numerusform>%n сериала</numerusform>
+            <numerusform>%n сериалов</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="591"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n серия</numerusform>
+            <numerusform>%n серии</numerusform>
+            <numerusform>%n серий</numerusform>
         </translation>
     </message>
     <message>
@@ -6450,7 +6468,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск новых серий</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -6480,41 +6498,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
         <source>Open TV Show Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть папку сериала</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Open NFO File</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть файл NFO</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать недостающие серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="60"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрыть дополнительную информацию в пропущенных сериях</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="402"/>
         <source>Show update needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Необходимо обновить сериал</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="404"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Для показа пропущенных серий, Вам необходимо обновить информацию о сериале.
+MediaElch, при запуске, найдёт новые серии.</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="593"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 из %n сериала</numerusform>
+            <numerusform>%1 из %n сериалов</numerusform>
+            <numerusform>%1 из %n сериалов</numerusform>
         </translation>
     </message>
 </context>
@@ -6528,17 +6547,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModel.cpp" line="100"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="101"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные фоны</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="102"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="103"/>
@@ -6548,17 +6567,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModel.cpp" line="104"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="105"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Концепт</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="106"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
 </context>
 <context>
@@ -6566,7 +6585,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModelItem.cpp" line="182"/>
         <source>Season %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Сезон %1</translation>
     </message>
 </context>
 <context>
@@ -6574,12 +6593,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск нескольких сериалов</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберете информацию для загрузки. MediaElch использует наилучший результат для каждого сериала и серии.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="46"/>
@@ -6594,37 +6613,37 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="68"/>
         <source>Episode Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="81"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="94"/>
         <source>Season Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="107"/>
         <source>Season Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="120"/>
         <source>Season Poster</source>
-        <translation type="unfinished"></translation>
+        <translation>Постер сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="133"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="146"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="159"/>
@@ -6634,7 +6653,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="172"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="185"/>
@@ -6644,7 +6663,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="198"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеть вещания</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="211"/>
@@ -6659,17 +6678,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="237"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="250"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="263"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="276"/>
@@ -6679,7 +6698,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="289"/>
         <source>First aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="302"/>
@@ -6694,32 +6713,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="337"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="363"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать порядок серий на DVD</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="370"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически сохранять каждый сериал/серию</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="377"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлять только сериалы/серии с TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="392"/>
         <source>1/20</source>
-        <translation type="unfinished">3D {1/20?}</translation>
+        <translation>3D {1/20?}</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="424"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="447"/>
@@ -6729,36 +6748,36 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.ui" line="460"/>
         <source>Start Scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать поиск</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="336"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n сериал</numerusform>
+            <numerusform>%n сериала</numerusform>
+            <numerusform>%n сериалов</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="337"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n серия</numerusform>
+            <numerusform>%n серии</numerusform>
+            <numerusform>%n серий</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="339"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск %1 из %2 закончен.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="341"/>
         <location filename="../tvShows/TvShowMultiScrapeDialog.cpp" line="343"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск %1 закончен.</translation>
     </message>
 </context>
 <context>
@@ -6771,7 +6790,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
+        <translation>Если хотите искать с помощью TheTvDb id, пожалуйста, добавьте в начало &quot;id&quot; (пример: id123).</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="64"/>
@@ -6801,7 +6820,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="139"/>
         <source>First aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="149"/>
@@ -6811,17 +6830,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="159"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="169"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="179"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="189"/>
@@ -6836,7 +6855,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="209"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеть вещания</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="219"/>
@@ -6846,7 +6865,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="229"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="239"/>
@@ -6856,67 +6875,67 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="249"/>
         <source>Season Poster</source>
-        <translation type="unfinished"></translation>
+        <translation>Постер сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="259"/>
         <source>Season Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="269"/>
         <source>Season Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер сезона</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="279"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="289"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="299"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="316"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отменить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="349"/>
         <source>Update TV Show only</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить только сериал</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="354"/>
         <source>Update TV Show and new Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить сериал и новые серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="359"/>
         <source>Update TV Show and all Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить сериал и все серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="364"/>
         <source>Update new Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить новые серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="369"/>
         <source>Update all episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить все серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="377"/>
         <source>DVD Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Порядок как на DVD</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="397"/>
@@ -6954,22 +6973,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="127"/>
         <source>First aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="137"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="147"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарий</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="157"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="167"/>
@@ -6979,17 +6998,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="177"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Сеть вещания</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="187"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="204"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать всё/Отмена</translation>
     </message>
 </context>
 <context>
@@ -6997,10 +7016,10 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message numerus="yes">
         <location filename="../smallWidgets/TvShowTreeView.cpp" line="135"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n серия</numerusform>
+            <numerusform>%n серии</numerusform>
+            <numerusform>%n серий</numerusform>
         </translation>
     </message>
 </context>
@@ -7009,7 +7028,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="60"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновление сериала</translation>
     </message>
 </context>
 <context>
@@ -7023,17 +7042,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidget.cpp" line="165"/>
         <location filename="../tvShows/TvShowWidget.cpp" line="213"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранение информации о сериалах и сериях</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="189"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Сериалы и серии сохранены</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="234"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Все сериалы и серии сохранены</translation>
     </message>
 </context>
 <context>
@@ -7046,12 +7065,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Эпизод был изменён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="86"/>
         <source>Episode Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Название серии</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="138"/>
@@ -7071,22 +7090,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="179"/>
         <source>Show Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Сериал</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="189"/>
         <source>Season</source>
-        <translation type="unfinished"></translation>
+        <translation>Сезон</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="224"/>
         <source>Episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Серия</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="243"/>
         <source>Display Season</source>
-        <translation type="unfinished"></translation>
+        <translation>Показано сезонов</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="250"/>
@@ -7096,17 +7115,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="257"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="274"/>
         <source>First Aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="284"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="291"/>
@@ -7116,12 +7135,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="380"/>
         <source>Last Played</source>
-        <translation>В последний раз просмотрен</translation>
+        <translation>Последний просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="390"/>
         <source>dd.MM.yyyy HH:mm</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="298"/>
@@ -7136,67 +7155,67 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="349"/>
         <source>Display Episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Показано серий</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="399"/>
         <source>Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Закладка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="447"/>
         <source>Votes</source>
-        <translation type="unfinished"></translation>
+        <translation>Голосов</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="480"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ 250</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="502"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="539"/>
         <source>Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарист</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="613"/>
         <source>Directors</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="641"/>
         <source>Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="651"/>
         <source>Add Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="668"/>
         <source>Remove Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="511"/>
         <source>Writers</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценаристы</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="549"/>
         <source>Add Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="566"/>
         <source>Remove Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="715"/>
@@ -7226,7 +7245,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="840"/>
         <source>Click to change</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите для изменения</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="887"/>
@@ -7236,12 +7255,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="947"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Соотношение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="895"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Развёрстка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="859"/>
@@ -7259,7 +7278,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="969"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>х</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="937"/>
@@ -7285,7 +7304,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1073"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим стерео</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1094"/>
@@ -7295,7 +7314,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1164"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1186"/>
@@ -7305,7 +7324,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="116"/>
         <source>Episode missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Серия не найдена</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="473"/>
@@ -7335,37 +7354,37 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="567"/>
         <source>Episode Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Серия сохранена</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="723"/>
         <source>Unknown Director</source>
-        <translation type="unfinished"></translation>
+        <translation>Режиссёр неизвестен</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="772"/>
         <source>Unknown Writer</source>
-        <translation type="unfinished"></translation>
+        <translation>Сценарист неизвестен</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="996"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"></translation>
+        <translation>Актёр неизвестен</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="997"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Роль неизвестна</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Choose Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать изображение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1059"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -7378,7 +7397,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Эпизод был изменён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="86"/>
@@ -7388,7 +7407,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="149"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="213"/>
@@ -7405,27 +7424,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="260"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="307"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="329"/>
         <source>Click to change</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите чтобы изменить</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="119"/>
         <source>Season missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Сезон не найден</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="112"/>
         <source>Season %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Сезон %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="173"/>
@@ -7443,12 +7462,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="53"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сериал был изменён. Нажмите для отмены изменений.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="73"/>
         <source>Show Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать название</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="98"/>
@@ -7458,7 +7477,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="112"/>
         <source>Dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="126"/>
@@ -7473,27 +7492,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="178"/>
         <source>Votes</source>
-        <translation type="unfinished"></translation>
+        <translation>Голосов</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="211"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ 250</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="230"/>
         <source>Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="250"/>
         <source>First Aired</source>
-        <translation type="unfinished"></translation>
+        <translation>Премьера</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="260"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="287"/>
@@ -7508,7 +7527,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="297"/>
         <source>TV Tune</source>
-        <translation type="unfinished"></translation>
+        <translation>Музыкальная тема</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="306"/>
@@ -7523,27 +7542,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="329"/>
         <source>Download Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить тему</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="267"/>
         <source>Runtime</source>
-        <translation>Продолжительность</translation>
+        <translation>Время</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="277"/>
         <source> Minutes</source>
-        <translation>Минуты</translation>
+        <translation> Мин.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="136"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="453"/>
         <source>Extended</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительно</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="464"/>
@@ -7573,17 +7592,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="351"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="370"/>
         <source>Continuing</source>
-        <translation type="unfinished"></translation>
+        <translation>Продолжается</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="375"/>
         <source>Ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончен</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="383"/>
@@ -7599,7 +7618,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="589"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1182"/>
         <source>Click to change</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите для изменения</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="608"/>
@@ -7609,7 +7628,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="657"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные фоны</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="679"/>
@@ -7639,17 +7658,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="896"/>
         <source>Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="943"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1160"/>
         <source>Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Баннер</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1019"/>
@@ -7659,32 +7678,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1066"/>
         <source>Clear Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Обложка</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1113"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Концепт</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="78"/>
         <source>Genres</source>
-        <translation type="unfinished">Жанры</translation>
+        <translation>Жанры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
         <source>Add Genre</source>
-        <translation type="unfinished">Добавить жанр</translation>
+        <translation>Добавить жанр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="83"/>
         <source>Tags</source>
-        <translation type="unfinished">Теги</translation>
+        <translation>Теги</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="84"/>
         <source>Add Tag</source>
-        <translation type="unfinished">Добавить тег</translation>
+        <translation>Добавить тег</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="429"/>
@@ -7694,32 +7713,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="457"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, подождите</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="679"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка изображений...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"></translation>
+        <translation>Актёр неизвестен</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="823"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Роль неизвестна</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Choose Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать изображения</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="906"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -7727,7 +7746,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="17"/>
         <source>TV Tunes</source>
-        <translation type="unfinished"></translation>
+        <translation>Музыкальные темы</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="54"/>
@@ -7742,7 +7761,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="118"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="141"/>
@@ -7772,7 +7791,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="244"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы хотите заменить?</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="258"/>
@@ -7860,17 +7879,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"></translation>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="44"/>
         <source>AllMusic</source>
-        <translation type="unfinished"></translation>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
         <source>Discogs</source>
-        <translation type="unfinished"></translation>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
@@ -7880,7 +7899,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="49"/>
         <source>Prefer</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпочтение</translation>
     </message>
 </context>
 <context>
@@ -7898,22 +7917,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="68"/>
         <source>Extract without password</source>
-        <translation type="unfinished"></translation>
+        <translation>Извлечь без пароля</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="71"/>
         <source>Extract</source>
-        <translation type="unfinished"></translation>
+        <translation>Извлечь</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="78"/>
         <source>Extract with password</source>
-        <translation type="unfinished"></translation>
+        <translation>Извлечь с паролем</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="98"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить архив</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
@@ -7928,12 +7947,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы хотите удалить архив?</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить архив?</translation>
     </message>
 </context>
 <context>
@@ -7941,12 +7960,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна новая версия</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна версия %1.&lt;br&gt;Получить сейчас %2</translation>
     </message>
 </context>
 <context>
@@ -7954,42 +7973,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновление информации</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation type="unfinished"></translation>
+        <translation>Получить статус просмотра</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизация с Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, убедитесь, что указали источники в Kodi и включили веб-сервер (Kodi -&gt; Настройки -&gt; Сервисы -&gt; Веб-сервер).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Это операция удалит изменённые данные о фильмах, сериалах или концертах из Kodi. Данные вернутся после обработки.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить отсутствующие наименования</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отсутствующие наименования будут удалены из базы Kodi (Очистка базы).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"></translation>
+        <translation>Получить из Kodi информацию о дате и количестве просмотров.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -8005,17 +8024,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="156"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation>Начать</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, заполните адрес и порт Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="214"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Получение данных от Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
@@ -8023,47 +8042,47 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../xbmc/XbmcSync.cpp" line="285"/>
         <location filename="../xbmc/XbmcSync.cpp" line="313"/>
         <source>Network error</source>
-        <translation type="unfinished"></translation>
+        <translation>Сетевая ошибка</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="401"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление фильмов из Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="416"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление концертов из Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="431"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление сериалов из Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="446"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление серий из Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="484"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск новых наименований</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="500"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончено. Обновлённые наименования загружаются в Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="520"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончено. Идёт очистка базы Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="567"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Закончено. Обновлена информация о дате и колличестве просмотров..</translation>
     </message>
 </context>
 </TS>
