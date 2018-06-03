@@ -322,12 +322,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="50"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="52"/>
         <source>Searching for Concerts...</source>
         <translation>正在搜索音乐会资料...</translation>
     </message>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="69"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="72"/>
         <source>Loading Concerts...</source>
         <translation>加载音乐会资料...</translation>
     </message>
@@ -2167,8 +2167,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="698"/>
-        <location filename="../globals/ImageDialog.cpp" line="705"/>
+        <location filename="../globals/ImageDialog.cpp" line="703"/>
+        <location filename="../globals/ImageDialog.cpp" line="710"/>
         <source>No images found</source>
         <translation>未能找到有关图片</translation>
     </message>
@@ -2213,22 +2213,22 @@
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="567"/>
+        <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="567"/>
+        <location filename="../globals/ImageDialog.cpp" line="572"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>图像 (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="702"/>
+        <location filename="../globals/ImageDialog.cpp" line="707"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>所提供的图片 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="706"/>
+        <location filename="../globals/ImageDialog.cpp" line="711"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>通过上传图片进行贡献 &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -3055,12 +3055,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="36"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="31"/>
         <source>Searching for Movies...</source>
         <translation>正在搜索电影...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="146"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="155"/>
         <source>Loading Movies...</source>
         <translation>正在加载电影...</translation>
     </message>
@@ -3068,17 +3068,17 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFilesOrganizer</name>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="32"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="27"/>
         <source>Source %1 is no directory</source>
         <translation> %1 目录不存在</translation>
     </message>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="86"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="84"/>
         <source>Operation not possible.</source>
         <translation>操作不可用。</translation>
     </message>
     <message>
-        <location filename="../data/MovieFilesOrganizer.cpp" line="87"/>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="85"/>
         <source>%1
  Operation Canceled.</source>
         <translation>%1
@@ -3127,47 +3127,47 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="287"/>
+        <location filename="../data/MovieModel.cpp" line="293"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="288"/>
+        <location filename="../data/MovieModel.cpp" line="294"/>
         <source>Extra Arts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="289"/>
+        <location filename="../data/MovieModel.cpp" line="295"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="290"/>
+        <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="291"/>
+        <location filename="../data/MovieModel.cpp" line="297"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="292"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Stream Details</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="293"/>
+        <location filename="../data/MovieModel.cpp" line="299"/>
         <source>Trailer</source>
         <translation>预告片</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="294"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Local Trailer</source>
         <translation>本地预告片</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="295"/>
+        <location filename="../data/MovieModel.cpp" line="301"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -4914,12 +4914,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="56"/>
         <source>Logfile could not be openened</source>
         <translation>无法打开日志文件</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="57"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6164,132 +6164,132 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="29"/>
+        <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Bulgarian</source>
         <translation>保加利亚</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="30"/>
+        <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Chinese</source>
         <translation>中国</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="31"/>
+        <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Croatian</source>
         <translation>克罗地亚</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="32"/>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
         <source>Czech</source>
         <translation>捷克</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="33"/>
+        <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>Danish</source>
         <translation>丹麦</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Dutch</source>
         <translation>荷兰</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="35"/>
+        <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="36"/>
+        <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>English (US)</source>
         <translation>英语(US)</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="37"/>
+        <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Finnish</source>
         <translation>芬兰</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="38"/>
+        <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>French</source>
         <translation>法语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="39"/>
+        <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>German</source>
         <translation>德语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="40"/>
+        <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Greek</source>
         <translation>希腊</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="41"/>
+        <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Hebrew</source>
         <translation>希伯来语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="42"/>
+        <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Hungarian</source>
         <translation>匈牙利</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="43"/>
+        <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Italian</source>
         <translation>意大利</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="44"/>
+        <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Japanese</source>
         <translation>日本</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="45"/>
+        <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Korean</source>
         <translation>韩国</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="46"/>
+        <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Norwegian</source>
         <translation>挪威语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="47"/>
+        <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Polish</source>
         <translation>波兰语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="48"/>
+        <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Portuguese</source>
         <translation>葡萄牙语</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="49"/>
+        <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Russian</source>
         <translation>俄罗斯</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="50"/>
+        <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Slovene</source>
         <translation>斯洛文尼亚</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="51"/>
+        <location filename="../scrapers/TMDb.cpp" line="53"/>
         <source>Spanish</source>
         <translation>西班牙</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="52"/>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Swedish</source>
         <translation>瑞典</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="53"/>
+        <location filename="../scrapers/TMDb.cpp" line="55"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="55"/>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -6762,42 +6762,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="97"/>
+        <location filename="../data/TvShowModel.cpp" line="99"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="98"/>
+        <location filename="../data/TvShowModel.cpp" line="100"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="99"/>
+        <location filename="../data/TvShowModel.cpp" line="101"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="100"/>
+        <location filename="../data/TvShowModel.cpp" line="102"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="101"/>
+        <location filename="../data/TvShowModel.cpp" line="103"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="102"/>
+        <location filename="../data/TvShowModel.cpp" line="104"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="103"/>
+        <location filename="../data/TvShowModel.cpp" line="105"/>
         <source>Character Art</source>
         <translation>演员图片</translation>
     </message>
     <message>
-        <location filename="../data/TvShowModel.cpp" line="104"/>
+        <location filename="../data/TvShowModel.cpp" line="106"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
@@ -6805,7 +6805,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="149"/>
+        <location filename="../data/TvShowModelItem.cpp" line="182"/>
         <source>Season %1</source>
         <translation>第 %1 季</translation>
     </message>
