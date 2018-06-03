@@ -520,11 +520,6 @@ QString Movie::tmdbId() const
     return m_tmdbId;
 }
 
-QString Movie::mediaPassionId() const
-{
-    return m_mediaPassionId;
-}
-
 /**
  * @property Movie::set
  * @brief Holds the set of the movie
@@ -920,12 +915,6 @@ void Movie::setId(QString id)
 void Movie::setTmdbId(QString id)
 {
     m_tmdbId = id;
-    setChanged(true);
-}
-
-void Movie::setMediaPassionId(QString id)
-{
-    m_mediaPassionId = id;
     setChanged(true);
 }
 

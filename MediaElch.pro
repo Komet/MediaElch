@@ -159,8 +159,6 @@ SOURCES += main.cpp\
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
     scrapers/CustomMovieScraper.cpp \
-    scrapers/MediaPassion.cpp \
-    imageProviders/MediaPassionImages.cpp \
     downloads/DownloadsWidget.cpp \
     smallWidgets/MyTableWidgetItem.cpp \
     downloads/UnpackButtons.cpp \
@@ -331,8 +329,6 @@ HEADERS  += Version.h \
     smallWidgets/MessageLabel.h \
     smallWidgets/SearchOverlay.h \
     scrapers/CustomMovieScraper.h \
-    scrapers/MediaPassion.h \
-    imageProviders/MediaPassionImages.h \
     downloads/DownloadsWidget.h \
     smallWidgets/MyTableWidgetItem.h \
     downloads/UnpackButtons.h \
