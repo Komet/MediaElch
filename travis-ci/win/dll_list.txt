@@ -8,7 +8,6 @@ qt5/bin/Qt5OpenGL.dll
 qt5/bin/Qt5Qml.dll
 qt5/bin/Qt5Quick.dll
 qt5/bin/Qt5QuickWidgets.dll
-qt5/bin/Qt5Script.dll
 qt5/bin/Qt5Sql.dll
 qt5/bin/Qt5Widgets.dll
 qt5/bin/Qt5Xml.dll

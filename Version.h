@@ -25,8 +25,8 @@ const QString CompilerString = []() {
 #if defined(__apple_build_version__) // Apple clang has other version numbers
     isAppleString = QStringLiteral(" (Apple)");
 #endif
-    return QStringLiteral("Clang ") + QString::number(__clang_major__) + '.'
-           + QString::number(__clang_minor__) + isAppleString;
+    return QStringLiteral("Clang ") + QString::number(__clang_major__) + '.' + QString::number(__clang_minor__)
+           + isAppleString;
 
 #elif defined(Q_CC_GNU)
     return QStringLiteral("GCC ") + QStringLiteral(__VERSION__);

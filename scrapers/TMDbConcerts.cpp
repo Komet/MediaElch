@@ -2,11 +2,12 @@
 
 #include <QDebug>
 #include <QGridLayout>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QLabel>
 #include <QSettings>
-#include <QtScript/QScriptEngine>
-#include <QtScript/QScriptValue>
-#include <QtScript/QScriptValueIterator>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
@@ -202,13 +203,18 @@ void TMDbConcerts::setupFinished()
         reply->deleteLater();
         return;
     }
-    QString msg = QString::fromUtf8(reply->readAll());
-    reply->deleteLater();
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + msg + ")");
 
-    m_baseUrl = sc.property("images").property("base_url").toString();
+    QJsonParseError parseError;
+    const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
+    reply->deleteLater();
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing TMDb setup json " << parseError.errorString();
+        return;
+    }
+
+    const auto imagesObject = parsedJson.value("images").toObject();
+    m_baseUrl = imagesObject.value("base_url").toString();
+    qDebug() << "TMDb base url:" << m_baseUrl;
 }
 
 /**
@@ -223,21 +229,22 @@ void TMDbConcerts::search(QString searchStr)
     QUrl url;
     QRegExp rx("^tt\\d+$");
     QRegExp rxTmdbId("^id\\d+$");
-    if (rx.exactMatch(searchStr))
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+    if (rx.exactMatch(searchStr)) {
+        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(searchStr)
                        .arg(m_apiKey)
                        .arg(localeForTMDb()));
-    else if (rxTmdbId.exactMatch(searchStr))
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+    } else if (rxTmdbId.exactMatch(searchStr)) {
+        url.setUrl(QStringLiteral("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(searchStr.mid(2))
                        .arg(m_apiKey)
                        .arg(localeForTMDb()));
-    else
-        url.setUrl(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3")
+    } else {
+        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3")
                        .arg(m_apiKey)
                        .arg(localeForTMDb())
                        .arg(searchStr));
+    }
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -267,13 +274,13 @@ void TMDbConcerts::searchFinished()
     QString searchString = reply->property("searchString").toString();
     QString msg = QString::fromUtf8(reply->readAll());
     int nextPage = -1;
-    results.append(parseSearch(msg, &nextPage));
+    results.append(parseSearch(msg, nextPage));
     reply->deleteLater();
 
     if (nextPage == -1) {
         emit searchDone(results);
     } else {
-        QUrl url(QString("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
+        QUrl url(QStringLiteral("https://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4")
                      .arg(m_apiKey)
                      .arg(localeForTMDb())
                      .arg(nextPage)
@@ -294,40 +301,49 @@ void TMDbConcerts::searchFinished()
  * @param nextPage This will hold the next page to get, -1 if there are no more pages
  * @return List of search results
  */
-QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int *nextPage)
+QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPage)
 {
-    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + json + ")");
+
+    QJsonParseError parseError;
+    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing search json " << parseError.errorString();
+        return results;
+    }
 
     // only get the first 3 pages
-    if (sc.property("page").toInteger() < sc.property("total_pages").toInteger() && sc.property("page").toInteger() < 3)
-        *nextPage = sc.property("page").toInteger() + 1;
+    const int page = parsedJson.value("page").toInt();
+    if (page < parsedJson.value("total_pages").toInt() && page < 3) {
+        nextPage = page + 1;
+    }
 
-    if (sc.property("results").isArray()) {
-        QScriptValueIterator it(sc.property("results"));
-        while (it.hasNext()) {
-            it.next();
-            if (it.value().property("id").toString().isEmpty()) {
+    if (parsedJson.value("results").isArray()) {
+        const auto jsonResults = parsedJson.value("results").toArray();
+        for (const auto &it : jsonResults) {
+            const auto resultObj = it.toObject();
+            if (resultObj.value("id").toInt() == 0) {
                 continue;
             }
             ScraperSearchResult result;
-            result.name = it.value().property("title").toString();
-            if (result.name.isEmpty())
-                it.value().property("original_title").toString();
-            result.id = it.value().property("id").toString();
-            result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
+            result.name = resultObj.value("title").toString();
+            if (result.name.isEmpty()) {
+                result.name = resultObj.value("original_title").toString();
+            }
+            result.id = QString::number(resultObj.value("id").toInt());
+            result.released = QDate::fromString(resultObj.value("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
-    } else if (!sc.property("id").toString().isEmpty()) {
+
+    } else if (parsedJson.value("id").toInt() > 0) {
         ScraperSearchResult result;
-        result.name = sc.property("title").toString();
-        if (result.name.isEmpty())
-            sc.property("original_title").toString();
-        result.id = sc.property("id").toString();
-        result.released = QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd");
+        result.name = parsedJson.value("title").toString();
+        if (result.name.isEmpty()) {
+            result.name = parsedJson.value("original_title").toString();
+        }
+        result.id = QString::number(parsedJson.value("id").toInt());
+        result.released = QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd");
         results.append(result);
     }
 
@@ -359,7 +375,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
 
     // Infos
     loadsLeft.append(DataInfos);
-    url.setUrl(QString("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+    url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                    .arg(id)
                    .arg(m_apiKey)
                    .arg(localeForTMDb()));
@@ -506,96 +522,106 @@ void TMDbConcerts::loadReleasesFinished()
 void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int> infos)
 {
     qDebug() << "Entered";
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + json + ")");
+    QJsonParseError parseError;
+    const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Error parsing concert info json " << parseError.errorString();
+        return;
+    }
 
     // Infos
-    if (sc.property("imdb_id").isValid() && !sc.property("imdb_id").toString().isEmpty())
-        concert->setId(sc.property("imdb_id").toString());
-    if (infos.contains(ConcertScraperInfos::Title) && sc.property("title").isValid())
-        concert->setName(sc.property("title").toString());
-    if (infos.contains(ConcertScraperInfos::Overview) && sc.property("overview").isValid()
-        && !sc.property("overview").isNull())
-        concert->setOverview(sc.property("overview").toString());
-    if (infos.contains(ConcertScraperInfos::Rating) && sc.property("vote_average").isValid())
-        concert->setRating(sc.property("vote_average").toNumber());
-    if (infos.contains(ConcertScraperInfos::Tagline) && sc.property("tagline").isValid()
-        && !sc.property("tagline").isNull())
-        concert->setTagline(sc.property("tagline").toString());
-    if (infos.contains(ConcertScraperInfos::Released) && sc.property("release_date").isValid())
-        concert->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd"));
-    if (infos.contains(ConcertScraperInfos::Runtime) && sc.property("runtime").isValid())
-        concert->setRuntime(sc.property("runtime").toInteger());
-    if (infos.contains(ConcertScraperInfos::Genres) && sc.property("genres").isArray()) {
-        QScriptValueIterator itC(sc.property("genres"));
-        while (itC.hasNext()) {
-            itC.next();
-            QScriptValue vC = itC.value();
-            if (vC.property("id").toString().isEmpty())
+    if (!parsedJson.value("imdb_id").toString().isEmpty()) {
+        concert->setId(parsedJson.value("imdb_id").toString());
+    }
+    if (infos.contains(ConcertScraperInfos::Title) && !parsedJson.value("title").toString().isEmpty()) {
+        concert->setName(parsedJson.value("title").toString());
+    }
+    if (infos.contains(ConcertScraperInfos::Overview)) {
+        const auto overviewStr = parsedJson.value("overview").toString();
+        if (!overviewStr.isEmpty()) {
+            concert->setOverview(overviewStr);
+        }
+    }
+    if (infos.contains(ConcertScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
+        concert->setRating(parsedJson.value("vote_average").toDouble());
+    }
+    if (infos.contains(ConcertScraperInfos::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
+        concert->setTagline(parsedJson.value("tagline").toString());
+    }
+    if (infos.contains(ConcertScraperInfos::Released) && !parsedJson.value("release_date").toString().isEmpty()) {
+        concert->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
+    }
+    if (infos.contains(ConcertScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
+        concert->setRuntime(parsedJson.value("runtime").toInt());
+    }
+    if (infos.contains(ConcertScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
+        const auto genres = parsedJson.value("genres").toArray();
+        for (const auto &it : genres) {
+            const auto genre = it.toObject();
+            if (genre.value("id").toInt(-1) == -1) {
                 continue;
-            concert->addGenre(Helper::instance()->mapGenre(vC.property("name").toString()));
+            }
+            concert->addGenre(Helper::instance()->mapGenre(genre.value("name").toString()));
         }
     }
 
     // Trailers
-    if (infos.contains(ConcertScraperInfos::Trailer) && sc.property("youtube").isArray()) {
-        QScriptValueIterator itC(sc.property("youtube"));
-        while (itC.hasNext()) {
-            itC.next();
-            QScriptValue vC = itC.value();
-            if (vC.property("source").toString().isEmpty())
-                continue;
+    if (infos.contains(ConcertScraperInfos::Trailer) && parsedJson.value("youtube").isArray()) {
+        // The trailer listed first is most likely also the best.
+        const auto firstTrailer = parsedJson.value("youtube").toArray().first().toObject();
+        if (!firstTrailer.value("source").toString().isEmpty()) {
+            const QString youtubeSrc = firstTrailer.value("source").toString();
             concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(
-                QString("https://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
-            break;
+                QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
         }
     }
 
     // Images
-    if (infos.contains(ConcertScraperInfos::Backdrop) && sc.property("backdrops").isArray()) {
-        QScriptValueIterator itB(sc.property("backdrops"));
-        while (itB.hasNext()) {
-            itB.next();
-            QScriptValue vB = itB.value();
-            if (vB.property("file_path").toString().isEmpty())
+    if (infos.contains(ConcertScraperInfos::Backdrop) && parsedJson.value("backdrops").isArray()) {
+        const auto backdrops = parsedJson.value("backdrops").toArray();
+        for (const auto &it : backdrops) {
+            const auto backdrop = it.toObject();
+            const QString filePath = backdrop.value("file_path").toString();
+            if (filePath.isEmpty()) {
                 continue;
+            }
             Poster b;
-            b.thumbUrl = m_baseUrl + "w780" + vB.property("file_path").toString();
-            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
-            b.originalSize.setWidth(vB.property("width").toString().toInt());
-            b.originalSize.setHeight(vB.property("height").toString().toInt());
+            b.thumbUrl = m_baseUrl + "w780" + filePath;
+            b.originalUrl = m_baseUrl + "original" + filePath;
+            b.originalSize.setWidth(backdrop.value("width").toInt());
+            b.originalSize.setHeight(backdrop.value("height").toInt());
             concert->addBackdrop(b);
         }
     }
 
-    if (infos.contains(ConcertScraperInfos::Poster) && sc.property("posters").isArray()) {
-        QScriptValueIterator itB(sc.property("posters"));
-        while (itB.hasNext()) {
-            itB.next();
-            QScriptValue vB = itB.value();
-            if (vB.property("file_path").toString().isEmpty())
+    if (infos.contains(ConcertScraperInfos::Poster) && parsedJson.value("posters").isArray()) {
+        const auto posters = parsedJson.value("posters").toArray();
+        for (const auto &it : posters) {
+            const auto poster = it.toObject();
+            const QString filePath = poster.value("file_path").toString();
+            if (filePath.isEmpty()) {
                 continue;
+            }
             Poster b;
-            b.thumbUrl = m_baseUrl + "w342" + vB.property("file_path").toString();
-            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
-            b.originalSize.setWidth(vB.property("width").toString().toInt());
-            b.originalSize.setHeight(vB.property("height").toString().toInt());
+            b.thumbUrl = m_baseUrl + "w342" + filePath;
+            b.originalUrl = m_baseUrl + "original" + filePath;
+            b.originalSize.setWidth(poster.value("width").toInt());
+            b.originalSize.setHeight(poster.value("height").toInt());
+            b.language = poster.value("iso_639_1").toString();
             concert->addPoster(b);
         }
     }
 
     // Releases
-    if (infos.contains(ConcertScraperInfos::Certification) && sc.property("countries").isArray()) {
+    if (infos.contains(ConcertScraperInfos::Certification) && parsedJson.value("countries").isArray()) {
         QString locale;
         QString us;
         QString gb;
-        QScriptValueIterator itB(sc.property("countries"));
-        while (itB.hasNext()) {
-            itB.next();
-            QScriptValue vB = itB.value();
-            const QString iso3166 = vB.property("iso_3166_1").toString();
-            const QString certification = vB.property("certification").toString();
+        const auto countries = parsedJson.value("countries").toArray();
+        for (const auto &it : countries) {
+            const auto countryObj = it.toObject();
+            const QString iso3166 = countryObj.value("iso_3166_1").toString();
+            const QString certification = countryObj.value("certification").toString();
             if (iso3166 == "US") {
                 us = certification;
             }
