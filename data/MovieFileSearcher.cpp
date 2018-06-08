@@ -78,10 +78,14 @@ void MovieFileSearcher::reload(bool force)
 
                 QString dirName = it.fileInfo().dir().dirName();
                 QString fileName = it.fileName();
-                 if (fileName.contains("-trailer", Qt::CaseInsensitive) || fileName.contains("-sample", Qt::CaseInsensitive) ||
-					fileName.contains("-behindthescenes", Qt::CaseInsensitive) || fileName.contains("-deleted", Qt::CaseInsensitive) ||
-					fileName.contains("-featurette", Qt::CaseInsensitive) || fileName.contains("-interview", Qt::CaseInsensitive) ||
-					fileName.contains("-scene", Qt::CaseInsensitive) || fileName.contains("-short", Qt::CaseInsensitive)) {
+                if (fileName.contains("-trailer", Qt::CaseInsensitive)
+                    || fileName.contains("-sample", Qt::CaseInsensitive)
+                    || fileName.contains("-behindthescenes", Qt::CaseInsensitive)
+                    || fileName.contains("-deleted", Qt::CaseInsensitive)
+                    || fileName.contains("-featurette", Qt::CaseInsensitive)
+                    || fileName.contains("-interview", Qt::CaseInsensitive)
+                    || fileName.contains("-scene", Qt::CaseInsensitive)
+                    || fileName.contains("-short", Qt::CaseInsensitive)) {
                     continue;
                 }
 
@@ -399,10 +403,10 @@ void MovieFileSearcher::scanDir(QString startPath,
         }
 
         // Skips Extras files
-         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive) ||
-				file.contains("-behindthescenes", Qt::CaseInsensitive) || file.contains("-deleted", Qt::CaseInsensitive) ||
-				file.contains("-featurette", Qt::CaseInsensitive) || file.contains("-interview", Qt::CaseInsensitive) ||
-				file.contains("-scene", Qt::CaseInsensitive) || file.contains("-short", Qt::CaseInsensitive)) {
+        if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive)
+            || file.contains("-behindthescenes", Qt::CaseInsensitive) || file.contains("-deleted", Qt::CaseInsensitive)
+            || file.contains("-featurette", Qt::CaseInsensitive) || file.contains("-interview", Qt::CaseInsensitive)
+            || file.contains("-scene", Qt::CaseInsensitive) || file.contains("-short", Qt::CaseInsensitive)) {
             continue;
         }
         files.append(file);
