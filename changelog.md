@@ -16,6 +16,7 @@
  - Bugfix: Adult scrapers broken
  - Bugfix: OFDB movie scraper crashes
  - Bugfix: Fix poster IMDB scraping
+ - Bugfix: Fix IMDB top 250 scraping
  - Bugfix: Fix outline/plot IMDB scraping
  - Bugfix: Fix studio name export
  - Bugfix: Fix TvShow status in `.nfo` file
