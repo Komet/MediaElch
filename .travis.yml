@@ -3,7 +3,7 @@ matrix:
   include:
   - env: QT=qtMac CXX=clang++ CC=clang
     os: osx
-  - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
+  - env: QT=qt511 QT_PPA=qt-5.11.0 CXX=g++ CC=gcc
     os: linux
   - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
     os: linux
