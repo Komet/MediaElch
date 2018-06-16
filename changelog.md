@@ -11,6 +11,7 @@
  - Scraper: Remove deprecated MediaPassion
  - Scraper: Remove deprecated MovieMaze
  - Scraper: Add Kino.de
+ - Scraper: Load *all* tags from IMDb
  - Bugfix: HD-Trailers scraper broken
  - Bugfix: Fanart.tv music scraper broken
  - Bugfix: Adult scrapers broken
