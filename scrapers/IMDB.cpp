@@ -39,12 +39,12 @@ IMDB::IMDB(QObject *parent) : m_loadAllKeywords{false}
 
 QString IMDB::name()
 {
-    return QString("IMDB");
+    return QStringLiteral("IMDb");
 }
 
 QString IMDB::identifier()
 {
-    return QString("imdb");
+    return QStringLiteral("imdb");
 }
 
 bool IMDB::isAdult()
@@ -90,13 +90,14 @@ void IMDB::search(QString searchStr)
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
-        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
+        QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
+
     } else {
         QUrl url = QUrl::fromEncoded(
-            QString("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
+            QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
@@ -138,8 +139,9 @@ void IMDB::onSearchIdFinished()
             } else {
                 rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
                               "class=\"nobr\">\\(([0-9]*)\\)</span>");
-                if (rx.indexIn(msg) != -1)
+                if (rx.indexIn(msg) != -1) {
                     result.released = QDate::fromString(rx.cap(1), "yyyy");
+                }
             }
         } else {
             rx.setPattern("<h1 itemprop=\"name\" class=\"\">(.*)&nbsp;<span id=\"titleYear\">\\(<a "
@@ -151,11 +153,13 @@ void IMDB::onSearchIdFinished()
         }
 
         rx.setPattern(R"(<link rel="canonical" href="https://www.imdb.com/title/(.*)/" />)");
-        if (rx.indexIn(msg) != -1)
+        if (rx.indexIn(msg) != -1) {
             result.id = rx.cap(1);
+        }
 
-        if ((!result.id.isEmpty()) && (!result.name.isEmpty()))
+        if ((!result.id.isEmpty()) && (!result.name.isEmpty())) {
             results.append(result);
+        }
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -204,8 +208,9 @@ void IMDB::onLoadFinished()
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
-    if (!movie)
+    if (!movie) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -232,8 +237,9 @@ void IMDB::onPosterLoadFinished()
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
-    if (!movie)
+    if (!movie) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -250,12 +256,14 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     rx.setMinimal(true);
 
     rx.setPattern(R"(<h1 class="header">[^<]*<span class="itemprop" itemprop="name">([^<]*)</span>)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
+    }
 
     rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
+    }
 
     if (infos.contains(MovieScraperInfos::Director)) {
         rx.setPattern("<div class=\"txt-block\" itemprop=\"director\" itemscope "
@@ -265,8 +273,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
             directorsBlock = rx.cap(1);
         } else {
             rx.setPattern(R"(<div class="credit_summary_item">[^<]*<h4 class="inline">Director:</h4>(.*)</div>)");
-            if (rx.indexIn(html) != -1)
+            if (rx.indexIn(html) != -1) {
                 directorsBlock = rx.cap(1);
+            }
         }
 
         if (!directorsBlock.isEmpty()) {
@@ -290,8 +299,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
             writersBlock = rx.cap(1);
         } else {
             rx.setPattern(R"(<div class="credit_summary_item">[^<]*<h4 class="inline">Writers:</h4>(.*)</div>)");
-            if (rx.indexIn(html) != -1)
+            if (rx.indexIn(html) != -1) {
                 writersBlock = rx.cap(1);
+            }
         }
 
         if (!writersBlock.isEmpty()) {
@@ -344,6 +354,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
                       "content=\"([^\"]*)\" />");
         if (rx.indexIn(html) != -1) {
             movie->setReleased(QDate::fromString(rx.cap(2), "yyyy-MM-dd"));
+
         } else {
             rx.setPattern("<h4 class=\"inline\">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4})");
             if (rx.indexIn(html) != -1) {
@@ -351,49 +362,54 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
                 int month = -1;
                 QString monthName = rx.cap(2).trimmed();
                 int year = rx.cap(3).trimmed().toInt();
-                if (monthName.contains("January", Qt::CaseInsensitive))
+                if (monthName.contains("January", Qt::CaseInsensitive)) {
                     month = 1;
-                else if (monthName.contains("February", Qt::CaseInsensitive))
+                } else if (monthName.contains("February", Qt::CaseInsensitive)) {
                     month = 2;
-                else if (monthName.contains("March", Qt::CaseInsensitive))
+                } else if (monthName.contains("March", Qt::CaseInsensitive)) {
                     month = 3;
-                else if (monthName.contains("April", Qt::CaseInsensitive))
+                } else if (monthName.contains("April", Qt::CaseInsensitive)) {
                     month = 4;
-                else if (monthName.contains("May", Qt::CaseInsensitive))
+                } else if (monthName.contains("May", Qt::CaseInsensitive)) {
                     month = 5;
-                else if (monthName.contains("June", Qt::CaseInsensitive))
+                } else if (monthName.contains("June", Qt::CaseInsensitive)) {
                     month = 6;
-                else if (monthName.contains("July", Qt::CaseInsensitive))
+                } else if (monthName.contains("July", Qt::CaseInsensitive)) {
                     month = 7;
-                else if (monthName.contains("August", Qt::CaseInsensitive))
+                } else if (monthName.contains("August", Qt::CaseInsensitive)) {
                     month = 8;
-                else if (monthName.contains("September", Qt::CaseInsensitive))
+                } else if (monthName.contains("September", Qt::CaseInsensitive)) {
                     month = 9;
-                else if (monthName.contains("October", Qt::CaseInsensitive))
+                } else if (monthName.contains("October", Qt::CaseInsensitive)) {
                     month = 10;
-                else if (monthName.contains("November", Qt::CaseInsensitive))
+                } else if (monthName.contains("November", Qt::CaseInsensitive)) {
                     month = 11;
-                else if (monthName.contains("December", Qt::CaseInsensitive))
+                } else if (monthName.contains("December", Qt::CaseInsensitive)) {
                     month = 12;
+                }
 
-                if (day != 0 && month != -1 && year != 0)
+                if (day != 0 && month != -1 && year != 0) {
                     movie->setReleased(QDate(year, month, day));
+                }
             }
         }
     }
 
 
     rx.setPattern("<meta itemprop=\"contentRating\" content=\"([^\"]*)\">");
-    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
         movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
+    }
 
     rx.setPattern(R"(<time itemprop="duration" datetime="PT([0-9]+)M" >)");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(rx.cap(1).toInt());
+    }
 
     rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time itemprop="duration" datetime="PT([0-9]+)M">)");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(rx.cap(1).toInt());
+    }
 
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
@@ -422,12 +438,14 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         if (rx.indexIn(html) != -1) {
             QString content = rx.cap(1);
             rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
-            if (rx.indexIn(content) != -1)
+            if (rx.indexIn(content) != -1) {
                 movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+            }
 
             rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
-            if (rx.indexIn(content) != -1)
+            if (rx.indexIn(content) != -1) {
                 movie->setVotes(rx.cap(1).replace(",", "").replace(".", "").toInt());
+            }
         } else {
             rx.setPattern("<div class=\"imdbRating\" itemtype=\"http://schema.org/AggregateRating\" itemscope=\"\" "
                           "itemprop=\"aggregateRating\">(.*)</div>");
@@ -448,8 +466,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     }
 
     rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         movie->setTop250(rx.cap(1).toInt());
+    }
 
     if (infos.contains(MovieScraperInfos::Studios)) {
         rx.setPattern("<span itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Organization\">.*<span "
@@ -485,16 +504,18 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 
             QRegExp rxName(R"(<span class="itemprop" itemprop="name">(.*)</span>)");
             rxName.setMinimal(true);
-            if (rxName.indexIn(actor) != -1)
+            if (rxName.indexIn(actor) != -1) {
                 a.name = rxName.cap(1).trimmed();
+            }
 
             QRegExp rxRole(R"(<td class="character">[\s\n]*<div>[\s\n](.*)[\s\n]*</div>)");
             rxRole.setMinimal(true);
             if (rxRole.indexIn(actor) != -1) {
                 QString role = rxRole.cap(1);
                 rxRole.setPattern(R"(<a href="[^"]*" >(.*)</a>)");
-                if (rxRole.indexIn(role) != -1)
+                if (rxRole.indexIn(role) != -1) {
                     role = rxRole.cap(1);
+                }
                 a.role = role.trimmed().replace(QRegExp("[\\s\\n]+"), " ");
             }
 
@@ -504,10 +525,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
                 QString img = rxImg.cap(1);
                 QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
                 aRx1.setMinimal(true);
-                if (aRx1.indexIn(img) != -1)
+                if (aRx1.indexIn(img) != -1) {
                     a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
-                else
+                } else {
                     a.thumb = rxImg.cap(1);
+                }
             }
 
             movie->addActor(a);
@@ -519,13 +541,15 @@ QUrl IMDB::parsePosters(QString html)
 {
     QRegExp rx("<div class=\"poster\">(.*)</div>");
     rx.setMinimal(true);
-    if (rx.indexIn(html) == -1)
+    if (rx.indexIn(html) == -1) {
         return QUrl();
+    }
 
     QString content = rx.cap(1);
     rx.setPattern("<a href=\"([^\"]*)\"[^>]*>");
-    if (rx.indexIn(content) == -1)
+    if (rx.indexIn(content) == -1) {
         return QUrl();
+    }
 
     return QString("https://www.imdb.com%1").arg(rx.cap(1));
 }
