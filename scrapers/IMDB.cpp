@@ -25,11 +25,7 @@ IMDB::IMDB(QObject *parent)
                       << MovieScraperInfos::Countries     //
                       << MovieScraperInfos::Actors        //
                       << MovieScraperInfos::Poster;
-}
 
-QNetworkAccessManager *IMDB::qnam()
-{
-    return &m_qnam;
 }
 
 QString IMDB::name()
@@ -84,13 +80,13 @@ void IMDB::search(QString searchStr)
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
         QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+        QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
     } else {
         QUrl url = QUrl::fromEncoded(
             QString("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+        QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
@@ -184,7 +180,7 @@ void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<i
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(ids.values().first()).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
     request.setRawHeader("Accept-Language", "en");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply *reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -206,7 +202,7 @@ void IMDB::onLoadFinished()
         QUrl posterViewerUrl = parsePosters(msg);
         if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
             qDebug() << "Loading movie poster detail view";
-            QNetworkReply *reply = qnam()->get(QNetworkRequest(posterViewerUrl));
+            QNetworkReply *reply = m_qnam.get(QNetworkRequest(posterViewerUrl));
             new NetworkReplyWatcher(this, reply);
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));

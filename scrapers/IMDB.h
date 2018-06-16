@@ -34,13 +34,12 @@ private slots:
     void onPosterLoadFinished();
 
 private:
-    QNetworkAccessManager *qnam();
+    QNetworkAccessManager m_qnam;
+    QList<int> m_scraperSupports;
+
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos);
     QUrl parsePosters(QString html);
-
-    QNetworkAccessManager m_qnam;
-    QList<int> m_scraperSupports;
 };
 
 #endif // IMDB_H
