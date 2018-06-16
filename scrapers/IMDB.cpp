@@ -1,13 +1,16 @@
 #include "IMDB.h"
 
+#include <QCheckBox>
+#include <QGridLayout>
 #include <QWidget>
 
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
+#include "main/MainWindow.h"
 #include "settings/Settings.h"
 
-IMDB::IMDB(QObject *parent)
+IMDB::IMDB(QObject *parent) : m_loadAllKeywords{false}
 {
     setParent(parent);
     m_scraperSupports << MovieScraperInfos::Title         //
@@ -26,6 +29,12 @@ IMDB::IMDB(QObject *parent)
                       << MovieScraperInfos::Actors        //
                       << MovieScraperInfos::Poster;
 
+    m_settingsWidget = new QWidget(MainWindow::instance());
+    m_loadAllKeywordsWidget = new QCheckBox(tr("Load all keywords"), m_settingsWidget);
+    auto layout = new QGridLayout(m_settingsWidget);
+    layout->addWidget(m_loadAllKeywordsWidget, 0, 0);
+    layout->setContentsMargins(12, 0, 12, 12);
+    m_settingsWidget->setLayout(layout);
 }
 
 QString IMDB::name()
@@ -45,22 +54,24 @@ bool IMDB::isAdult()
 
 bool IMDB::hasSettings()
 {
-    return false;
+    return true;
 }
 
 QWidget *IMDB::settingsWidget()
 {
-    return nullptr;
+    return m_settingsWidget;
 }
 
 void IMDB::loadSettings(QSettings &settings)
 {
-    Q_UNUSED(settings);
+    m_loadAllKeywords = settings.value("Scrapers/IMDb/LoadAllKeywords", false).toBool();
+    m_loadAllKeywordsWidget->setChecked(m_loadAllKeywords);
 }
 
 void IMDB::saveSettings(QSettings &settings)
 {
-    Q_UNUSED(settings);
+    m_loadAllKeywords = m_loadAllKeywordsWidget->isChecked();
+    settings.setValue("Scrapers/IMDb/LoadAllKeywords", m_loadAllKeywords);
 }
 
 QList<int> IMDB::scraperSupports()

@@ -6,6 +6,8 @@
 
 #include "data/ScraperInterface.h"
 
+class QCheckBox;
+
 class IMDB : public ScraperInterface
 {
     Q_OBJECT
@@ -34,6 +36,10 @@ private slots:
     void onPosterLoadFinished();
 
 private:
+    QWidget *m_settingsWidget;
+    QCheckBox *m_loadAllKeywordsWidget;
+
+    bool m_loadAllKeywords;
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
 
