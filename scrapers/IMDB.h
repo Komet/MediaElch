@@ -5,6 +5,7 @@
 #include <QNetworkReply>
 
 #include "data/ScraperInterface.h"
+#include "movies/Movie.h"
 
 class QCheckBox;
 
@@ -34,18 +35,20 @@ private slots:
     void onSearchIdFinished();
     void onLoadFinished();
     void onPosterLoadFinished();
+    void onTagsFinished();
 
 private:
     QWidget *m_settingsWidget;
-    QCheckBox *m_loadAllKeywordsWidget;
+    QCheckBox *m_loadAllTagsWidget;
 
-    bool m_loadAllKeywords;
+    bool m_loadAllTags;
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
 
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos);
     QUrl parsePosters(QString html);
+    void parseAndAssignTags(const QString &html, Movie &movie);
 };
 
 #endif // IMDB_H

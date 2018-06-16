@@ -10,7 +10,7 @@
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 
-IMDB::IMDB(QObject *parent) : m_loadAllKeywords{false}
+IMDB::IMDB(QObject *parent) : m_loadAllTags{false}
 {
     setParent(parent);
     m_scraperSupports << MovieScraperInfos::Title         //
@@ -30,9 +30,9 @@ IMDB::IMDB(QObject *parent) : m_loadAllKeywords{false}
                       << MovieScraperInfos::Poster;
 
     m_settingsWidget = new QWidget(MainWindow::instance());
-    m_loadAllKeywordsWidget = new QCheckBox(tr("Load all keywords"), m_settingsWidget);
+    m_loadAllTagsWidget = new QCheckBox(tr("Load all tags"), m_settingsWidget);
     auto layout = new QGridLayout(m_settingsWidget);
-    layout->addWidget(m_loadAllKeywordsWidget, 0, 0);
+    layout->addWidget(m_loadAllTagsWidget, 0, 0);
     layout->setContentsMargins(12, 0, 12, 12);
     m_settingsWidget->setLayout(layout);
 }
@@ -64,14 +64,14 @@ QWidget *IMDB::settingsWidget()
 
 void IMDB::loadSettings(QSettings &settings)
 {
-    m_loadAllKeywords = settings.value("Scrapers/IMDb/LoadAllKeywords", false).toBool();
-    m_loadAllKeywordsWidget->setChecked(m_loadAllKeywords);
+    m_loadAllTags = settings.value("Scrapers/IMDb/LoadAllTags", false).toBool();
+    m_loadAllTagsWidget->setChecked(m_loadAllTags);
 }
 
 void IMDB::saveSettings(QSettings &settings)
 {
-    m_loadAllKeywords = m_loadAllKeywordsWidget->isChecked();
-    settings.setValue("Scrapers/IMDb/LoadAllKeywords", m_loadAllKeywords);
+    m_loadAllTags = m_loadAllTagsWidget->isChecked();
+    settings.setValue("Scrapers/IMDb/LoadAllTags", m_loadAllTags);
 }
 
 QList<int> IMDB::scraperSupports()
@@ -136,6 +136,7 @@ void IMDB::onSearchIdFinished()
                           "class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
             if (rx.indexIn(msg) != -1) {
                 result.released = QDate::fromString(rx.cap(1), "yyyy");
+
             } else {
                 rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span "
                               "class=\"nobr\">\\(([0-9]*)\\)</span>");
@@ -189,10 +190,11 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString html)
 
 void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
 {
+    QString imdbId = ids.values().first();
     movie->clear(infos);
-    movie->setId(ids.values().first());
+    movie->setId(imdbId);
 
-    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(ids.values().first()).toUtf8());
+    QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
     request.setRawHeader("Accept-Language", "en");
     QNetworkReply *reply = m_qnam.get(request);
@@ -213,7 +215,7 @@ void IMDB::onLoadFinished()
     }
 
     if (reply->error() == QNetworkReply::NoError) {
-        QString msg = QString::fromUtf8(reply->readAll());
+        const QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
         QUrl posterViewerUrl = parsePosters(msg);
         if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
@@ -227,6 +229,37 @@ void IMDB::onLoadFinished()
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
+
+    // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
+    if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
+        QUrl tagsUrl = QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->id()).toUtf8());
+        QNetworkReply *reply = m_qnam.get(QNetworkRequest(tagsUrl));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        new NetworkReplyWatcher(this, reply);
+        connect(reply, &QNetworkReply::finished, this, &IMDB::onTagsFinished);
+
+    } else {
+        movie->controller()->scraperLoadDone(this);
+    }
+}
+
+void IMDB::onTagsFinished()
+{
+    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    reply->deleteLater();
+    if (!movie) {
+        return;
+    }
+
+    if (reply->error() == QNetworkReply::NoError) {
+        const QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignTags(msg, *movie);
+
+    } else {
+        qWarning() << "Network Error (load tags)" << reply->errorString();
+    }
+
     movie->controller()->scraperLoadDone(this);
 }
 
@@ -339,11 +372,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     }
 
     rx.setPattern(R"(<div class="see-more inline canwrap" itemprop="keywords">(.*)</div>)");
-    if (infos.contains(MovieScraperInfos::Tags) && rx.indexIn(html) != -1) {
-        QString keywords = rx.cap(1);
+    if (!m_loadAllTags && infos.contains(MovieScraperInfos::Tags) && rx.indexIn(html) != -1) {
+        QString tags = rx.cap(1);
         rx.setPattern(R"(<span class="itemprop" itemprop="keywords">([^<]*)</span>)");
         int pos = 0;
-        while ((pos = rx.indexIn(keywords, pos)) != -1) {
+        while ((pos = rx.indexIn(tags, pos)) != -1) {
             movie->addTag(rx.cap(1).trimmed());
             pos += rx.matchedLength();
         }
@@ -552,6 +585,17 @@ QUrl IMDB::parsePosters(QString html)
     }
 
     return QString("https://www.imdb.com%1").arg(rx.cap(1));
+}
+
+void IMDB::parseAndAssignTags(const QString &html, Movie &movie)
+{
+    QRegExp rx(R"(<a href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
+    rx.setMinimal(true);
+    int pos = 0;
+    while ((pos = rx.indexIn(html, pos)) != -1) {
+        movie.addTag(rx.cap(1).trimmed());
+        pos += rx.matchedLength();
+    }
 }
 
 void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos)
