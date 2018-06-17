@@ -498,7 +498,13 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
+    // Rating for movies
     rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
+        movie->setTop250(rx.cap(1).toInt());
+    }
+    // Rating for TV shows (used by TheTvDb)
+    rx.setPattern("Top Rated TV #([0-9]+)\\n</a>");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         movie->setTop250(rx.cap(1).toInt());
     }
