@@ -204,6 +204,16 @@
            </widget>
           </item>
           <item>
+           <widget class="MyCheckBox" name="chkTags">
+            <property name="text">
+             <string>Tags</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="MyCheckBox" name="chkNetwork">
             <property name="text">
              <string>Network</string>

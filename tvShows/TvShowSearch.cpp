@@ -40,6 +40,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
     ui->chkFanart->setMyData(TvShowScraperInfos::Fanart);
     ui->chkFirstAired->setMyData(TvShowScraperInfos::FirstAired);
     ui->chkGenres->setMyData(TvShowScraperInfos::Genres);
+    ui->chkTags->setMyData(TvShowScraperInfos::Tags);
     ui->chkNetwork->setMyData(TvShowScraperInfos::Network);
     ui->chkOverview->setMyData(TvShowScraperInfos::Overview);
     ui->chkPoster->setMyData(TvShowScraperInfos::Poster);
