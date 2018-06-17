@@ -63,9 +63,16 @@ TheTvDb::TheTvDb(QObject *parent) :
     m_imdb = new IMDB(this);
     m_dummyMovie = new Movie(QStringList(), this);
 
-    m_movieInfos << MovieScraperInfos::Title << MovieScraperInfos::Rating << MovieScraperInfos::Released
-                 << MovieScraperInfos::Runtime << MovieScraperInfos::Director << MovieScraperInfos::Writer
-                 << MovieScraperInfos::Certification << MovieScraperInfos::Overview << MovieScraperInfos::Genres
+    m_movieInfos << MovieScraperInfos::Title         //
+                 << MovieScraperInfos::Rating        //
+                 << MovieScraperInfos::Released      //
+                 << MovieScraperInfos::Runtime       //
+                 << MovieScraperInfos::Director      //
+                 << MovieScraperInfos::Writer        //
+                 << MovieScraperInfos::Certification //
+                 << MovieScraperInfos::Overview      //
+                 << MovieScraperInfos::Genres        //
+                 << MovieScraperInfos::Tags          //
                  << MovieScraperInfos::Actors;
 
     connect(m_dummyMovie->controller(), &MovieController::sigLoadDone, this, &TheTvDb::onImdbFinished);
@@ -1118,6 +1125,12 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShow *show, TvShowUpdateTyp
                 show->addGenre(Helper::instance()->mapGenre(genre));
             }
         }
+
+        if (shouldLoadFromImdb(TvShowScraperInfos::Tags, infosToLoad) && !m_dummyMovie->tags().isEmpty()) {
+            show->clear(QList<int>() << TvShowScraperInfos::Tags);
+            foreach (const QString &tag, m_dummyMovie->tags()) {
+                show->addTag(tag);
+            }
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {

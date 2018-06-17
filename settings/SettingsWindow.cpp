@@ -366,11 +366,17 @@ void SettingsWindow::loadSettings()
     }
 
 
-    QList<int> tvInfos = QList<int>() << TvShowScraperInfos::Title << TvShowScraperInfos::Rating
-                                      << TvShowScraperInfos::FirstAired << TvShowScraperInfos::Runtime
-                                      << TvShowScraperInfos::Director << TvShowScraperInfos::Writer
-                                      << TvShowScraperInfos::Certification << TvShowScraperInfos::Overview
-                                      << TvShowScraperInfos::Genres << TvShowScraperInfos::Actors;
+    QList<int> tvInfos = QList<int>() << TvShowScraperInfos::Title         //
+                                      << TvShowScraperInfos::Rating        //
+                                      << TvShowScraperInfos::FirstAired    //
+                                      << TvShowScraperInfos::Runtime       //
+                                      << TvShowScraperInfos::Director      //
+                                      << TvShowScraperInfos::Writer        //
+                                      << TvShowScraperInfos::Certification //
+                                      << TvShowScraperInfos::Overview      //
+                                      << TvShowScraperInfos::Genres        //
+                                      << TvShowScraperInfos::Tags          //
+                                      << TvShowScraperInfos::Actors;
 
     ui->tvScraperTable->clearContents();
     ui->tvScraperTable->setRowCount(0);
@@ -800,6 +806,7 @@ QString SettingsWindow::titleForTvScraperInfo(const int &info)
     case TvShowScraperInfos::Certification: return tr("Certification");
     case TvShowScraperInfos::Overview: return tr("Plot");
     case TvShowScraperInfos::Genres: return tr("Genres");
+    case TvShowScraperInfos::Tags: return tr("Tags");
     case TvShowScraperInfos::Actors: return tr("Actors");
     default: return tr("Unsupported");
     }
