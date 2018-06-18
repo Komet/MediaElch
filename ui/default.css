@@ -475,10 +475,6 @@ SettingsWindow #pluginSettings {
 SettingsWindow #line {
     color: rgba(0, 0, 0, 50);
 }
-SettingsWindow #customScraperTable,
-SettingsWindow #tvScraperTable {
-    alternate-background-color: #f3f6fa;
-}
 SettingsWindow #themesErrorMessage {
     color: #b94a48;
 }
