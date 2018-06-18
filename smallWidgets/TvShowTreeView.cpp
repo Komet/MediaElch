@@ -16,8 +16,9 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) : QTreeView(parent)
 
 void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
-    if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeEpisode)
+    if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeEpisode) {
         return;
+    }
 
     painter->save();
 
@@ -119,11 +120,14 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
             option.rect.width() - branchIndent - itemIndent,
             textRowHeight);
 
+        font = index.data(Qt::FontRole).value<QFont>();
         painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-        painter->setFont(index.data(Qt::FontRole).value<QFont>());
-        painter->drawText(showRect, index.data(Qt::DisplayRole).toString(), QTextOption(Qt::AlignVCenter));
+        painter->setFont(font);
 
-        font = painter->font();
+        const QFontMetrics metrics(font);
+        const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, showRect.width());
+        painter->drawText(showRect, itemStr, QTextOption(Qt::AlignVCenter));
+
 #ifdef Q_OS_MAC
         font.setPointSize(font.pointSize() - 2);
 #else
