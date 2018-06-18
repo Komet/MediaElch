@@ -228,27 +228,24 @@ private:
     QList<Poster> m_logos;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    bool m_infoLoaded;
-    bool m_infoFromNfoLoaded;
-    bool m_imagesLoaded;
-    bool m_watched;
-    bool m_hasChanged;
     int m_movieId;
-    bool m_inSeparateFolder;
+    int m_databaseId;
     int m_mediaCenterId;
     int m_numPrimaryLangPosters;
+    bool m_watched;
+    bool m_hasChanged;
+    bool m_inSeparateFolder;
     bool m_hasExtraFanarts;
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
+    bool m_hasDuplicates;
     StreamDetails *m_streamDetails;
     QDateTime m_fileLastModified;
     QString m_nfoContent;
-    int m_databaseId;
     QDateTime m_dateAdded;
     DiscType m_discType;
     int m_label;
     QList<Subtitle *> m_subtitles;
-    bool m_hasDuplicates;
 
     // Images
     QMap<int, QByteArray> m_images;

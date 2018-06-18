@@ -15,31 +15,33 @@
  * @param files List of files for this movie
  * @param parent
  */
-Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
+Movie::Movie(QStringList files, QObject *parent) :
+    QObject(parent),
+    m_controller{new MovieController(this)},
+    m_files{files},
+    m_rating{0.0},
+    m_votes{0},
+    m_top250{0},
+    m_runtime{0},
+    m_playcount{0},
+    m_databaseId{-1},
+    m_mediaCenterId{-1},
+    m_numPrimaryLangPosters{0},
+    m_watched{false},
+    m_hasChanged{false},
+    m_inSeparateFolder{false},
+    m_hasExtraFanarts{false},
+    m_syncNeeded{false},
+    m_streamDetailsLoaded{false},
+    m_hasDuplicates{false},
+    m_discType{DiscType::Single},
+    m_label{Labels::NO_LABEL}
 {
-    m_controller = new MovieController(this);
-    m_files = files;
-    m_rating = 0;
-    m_votes = 0;
-    m_top250 = 0;
-    m_runtime = 0;
-    m_playcount = 0;
-    m_watched = false;
-    m_hasChanged = false;
-    m_hasExtraFanarts = false;
-    m_inSeparateFolder = false;
-    m_syncNeeded = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
-    m_mediaCenterId = -1;
-    m_numPrimaryLangPosters = 0;
-    m_streamDetailsLoaded = false;
-    m_databaseId = -1;
-    m_discType = DiscType::Single;
-    m_label = Labels::NO_LABEL;
-    m_hasDuplicates = false;
-    if (!files.isEmpty())
+    if (!files.isEmpty()) {
         setFiles(files);
+    }
 }
 
 void Movie::setFiles(QStringList files)
