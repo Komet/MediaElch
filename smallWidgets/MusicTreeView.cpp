@@ -9,16 +9,15 @@ MusicTreeView::MusicTreeView(QWidget *parent) : QTreeView(parent)
 {
 }
 
-MusicTreeView::~MusicTreeView() = default;
-
 void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
 #ifdef Q_OS_WIN
     QTreeView::drawBranches(painter, rect, index);
     return;
 #endif
-    if (index.model()->data(index, MusicRoles::Type).toInt() != TypeArtist)
+    if (index.model()->data(index, MusicRoles::Type).toInt() != TypeArtist) {
         return;
+    }
 
     painter->save();
 
@@ -48,14 +47,16 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
     if (index.data(MusicRoles::Type).toInt() == TypeAlbum)
         opt.rect.setX(opt.rect.x() + albumIndent - 4);
     if (alternatingRowColors() && index.data(MusicRoles::Type).toInt() == TypeAlbum) {
-        if (index.row() % 2 == 0)
+        if (index.row() % 2 == 0) {
             opt.features |= QStyleOptionViewItem::Alternate;
-        else
+        } else {
             opt.features &= ~QStyleOptionViewItem::Alternate;
+        }
     }
 
-    if (isSelected)
+    if (isSelected) {
         opt.state |= QStyle::State_Selected;
+    }
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
 
     if (index.data(MusicRoles::Type).toInt() == TypeArtist) {
@@ -85,11 +86,14 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
             option.rect.width() - branchIndent - itemIndent,
             textRowHeight);
 
+        font = index.data(Qt::FontRole).value<QFont>();
         painter->setPen(index.data(isSelected ? MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
-        painter->setFont(index.data(Qt::FontRole).value<QFont>());
-        painter->drawText(artistRect, index.data(Qt::DisplayRole).toString(), QTextOption(Qt::AlignVCenter));
+        painter->setFont(font);
 
-        font = painter->font();
+        const QFontMetrics metrics(font);
+        const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, artistRect.width());
+        painter->drawText(artistRect, itemStr, QTextOption(Qt::AlignVCenter));
+
 #ifdef Q_OS_MAC
         font.setPointSize(font.pointSize() - 2);
 #else
