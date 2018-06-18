@@ -5,6 +5,7 @@
  - Feature: Detect duplicate movies
  - Feature: Use HTTPS for scraping
  - Feature: Set UI language in `advancedsettings.xml`
+ - Feature: Scrape TV show tags when using IMDb
  - Renamer: Create subdirectories
  - Scraper: Remove deprecated Cinefacts
  - Scraper: Remove deprecated Coverlib
