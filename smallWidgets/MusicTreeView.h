@@ -10,7 +10,7 @@ class MusicTreeView : public QTreeView
     Q_OBJECT
 public:
     explicit MusicTreeView(QWidget *parent = nullptr);
-    ~MusicTreeView() override;
+    ~MusicTreeView() override = default;
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
