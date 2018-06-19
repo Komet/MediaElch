@@ -50,8 +50,9 @@ MakeMkvDialog::~MakeMkvDialog()
 
 void MakeMkvDialog::reject()
 {
-    if (!ui->btnClose->isEnabled())
+    if (!ui->btnClose->isEnabled()) {
         return;
+    }
 
     if (m_movie) {
         m_movie->controller()->abortDownloads();
@@ -143,15 +144,17 @@ void MakeMkvDialog::onGotDrives(QMap<int, QString> drives)
     }
     ui->btnScanDrive->setEnabled(!drives.isEmpty());
     ui->btnClose->setEnabled(true);
-    if (!drives.isEmpty())
+    if (!drives.isEmpty()) {
         onScanDrive();
+    }
 }
 
 void MakeMkvDialog::onScanDrive()
 {
     int index = ui->comboDrives->currentIndex();
-    if (index < 0 || index >= ui->comboDrives->count())
+    if (index < 0 || index >= ui->comboDrives->count()) {
         return;
+    }
 
     int id = ui->comboDrives->itemData(index, Qt::UserRole).toInt();
     ui->btnClose->setEnabled(false);
@@ -189,9 +192,10 @@ void MakeMkvDialog::onImportTracks()
     m_importComplete = false;
     m_tracks.clear();
     for (int i = 0, n = ui->tracks->count(); i < n; ++i) {
-        if (ui->tracks->item(i)->checkState() == Qt::Checked)
+        if (ui->tracks->item(i)->checkState() == Qt::Checked) {
             m_tracks.insert(ui->tracks->item(i)->data(Qt::UserRole).toInt(),
                 ui->tracks->item(i)->data(Qt::UserRole + 1).toString());
+        }
     }
 
     if (m_tracks.isEmpty()) {
@@ -226,8 +230,9 @@ void MakeMkvDialog::onMovieChosen()
         infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
-    if (m_movie)
+    if (m_movie) {
         m_movie->deleteLater();
+    }
 
     bool multiFile = (m_tracks.count() > 1);
 
@@ -254,8 +259,9 @@ void MakeMkvDialog::onMovieChosen()
 
 void MakeMkvDialog::onLoadDone(Movie *movie)
 {
-    if (movie != m_movie)
+    if (movie != m_movie) {
         return;
+    }
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Movie information was loaded"));
@@ -267,8 +273,9 @@ void MakeMkvDialog::onLoadDone(Movie *movie)
 
 void MakeMkvDialog::onImport()
 {
-    if (ui->comboImportDir->count() == 0)
+    if (ui->comboImportDir->count() == 0) {
         return;
+    }
 
     m_importDir = ui->comboImportDir->currentText();
     QDir dir(ui->comboImportDir->currentText());
@@ -340,8 +347,9 @@ void MakeMkvDialog::importFinished()
         foreach (QString file, m_movie->files()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
-            if (m_movie->files().count() > 1)
+            if (m_movie->files().count() > 1) {
                 newFileName = ui->multiFileNaming->text();
+            }
             newFileName.replace("<title>", m_movie->name());
             newFileName.replace("<originalTitle>", m_movie->originalName());
             newFileName.replace("<year>", m_movie->released().toString("yyyy"));
@@ -356,8 +364,9 @@ void MakeMkvDialog::importFinished()
     }
 
     m_movie->setInSeparateFolder(ui->comboImportDir->itemData(ui->comboImportDir->currentIndex()).toBool());
-    if (!m_movie->files().isEmpty())
+    if (!m_movie->files().isEmpty()) {
         m_movie->setFileLastModified(QFileInfo(m_movie->files().first()).lastModified());
+    }
     m_movie->controller()->loadStreamDetailsFromFile();
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());

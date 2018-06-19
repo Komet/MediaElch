@@ -16,8 +16,9 @@ QString Image::fileName() const
 
 void Image::setFileName(const QString &fileName)
 {
-    if (fileName == m_fileName)
+    if (fileName == m_fileName) {
         return;
+    }
     m_fileName = fileName;
     emit fileNameChanged();
 }
@@ -29,8 +30,9 @@ bool Image::deletion() const
 
 void Image::setDeletion(bool deletion)
 {
-    if (deletion == m_deletion)
+    if (deletion == m_deletion) {
         return;
+    }
     m_deletion = deletion;
     emit deletionChanged();
 }
@@ -42,8 +44,9 @@ QByteArray Image::rawData() const
 
 void Image::setRawData(const QByteArray &rawData)
 {
-    if (rawData == m_rawData)
+    if (rawData == m_rawData) {
         return;
+    }
     m_rawData = rawData;
     emit rawDataChanged();
 }
@@ -55,12 +58,14 @@ int Image::imageId()
 
 void Image::load()
 {
-    if (!m_rawData.isEmpty())
+    if (!m_rawData.isEmpty()) {
         return;
+    }
 
     QFile f(fileName());
-    if (!f.open(QIODevice::ReadOnly))
+    if (!f.open(QIODevice::ReadOnly)) {
         return;
+    }
     m_rawData = f.readAll();
     f.close();
 }

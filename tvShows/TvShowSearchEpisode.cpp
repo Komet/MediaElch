@@ -30,8 +30,9 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkToggled);
+        }
     }
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkAllToggled);
@@ -52,10 +53,12 @@ void TvShowSearchEpisode::onChkToggled()
     m_infosToLoad.clear();
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(box->myData().toInt());
-        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        }
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
+        }
     }
 
     ui->chkUnCheckAll->setChecked(allToggled);
@@ -67,8 +70,9 @@ void TvShowSearchEpisode::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0 && box->isEnabled())
+        if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
+        }
     }
     onChkToggled();
 }
@@ -86,10 +90,11 @@ void TvShowSearchEpisode::onResultClicked(QTableWidgetItem *item)
 
 void TvShowSearchEpisode::search(QString searchString, QString id)
 {
-    if (!id.isEmpty())
+    if (!id.isEmpty()) {
         ui->searchString->setText("id" + id);
-    else
+    } else {
         ui->searchString->setText(searchString);
+    }
     onChkToggled();
     onSearch();
 }

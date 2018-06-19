@@ -407,8 +407,9 @@ QIcon MyIconFont::icon(int character, const QVariantMap &options)
     optionMap.insert("text", QString(QChar(character)));
 
     MyIconFontIconPainter *painter = painterMap_.value(options.value("painter-name").toString());
-    if (!painter)
+    if (!painter) {
         painter = fontIconPainter_;
+    }
 
     return icon(painter, optionMap);
 }
@@ -452,8 +453,9 @@ QIcon MyIconFont::icon(const QString &name,
     options.insert("painter-name", painterName);
     options.insert("scale-factor", scaleFactor);
     options.insert("color-selected", selectionColor);
-    if (markerNum != 0)
+    if (markerNum != 0) {
         options.insert("marker-text", QString::number(markerNum));
+    }
     return icon(name, options);
 }
 

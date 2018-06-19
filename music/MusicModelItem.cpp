@@ -27,8 +27,9 @@ int MusicModelItem::childCount() const
 
 int MusicModelItem::childNumber() const
 {
-    if (m_parentItem)
+    if (m_parentItem) {
         return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem *>(this));
+    }
 
     return 0;
 }
@@ -43,35 +44,42 @@ QVariant MusicModelItem::data(int column) const
     switch (column) {
     case MusicRoles::Type: return type(); break;
     case MusicRoles::HasChanged:
-        if (m_album)
+        if (m_album) {
             return m_album->hasChanged();
-        if (m_artist)
+        }
+        if (m_artist) {
             return m_artist->hasChanged();
+        }
         break;
     case MusicRoles::NumOfAlbums:
-        if (m_artist)
+        if (m_artist) {
             return m_artist->albums().count();
+        }
         break;
     case MusicRoles::IsNew: {
-        if (m_album)
+        if (m_album) {
             return !m_album->controller()->infoLoaded();
+        }
 
-        if (m_artist && !m_artist->controller()->infoLoaded())
+        if (m_artist && !m_artist->controller()->infoLoaded()) {
             return true;
+        }
 
         if (m_artist) {
             foreach (Album *album, m_artist->albums()) {
-                if (!album->controller()->infoLoaded())
+                if (!album->controller()->infoLoaded()) {
                     return true;
+                }
             }
         }
         return false;
     }
     default:
-        if (m_artist)
+        if (m_artist) {
             return m_artist->name();
-        else if (m_album)
+        } else if (m_album) {
             return m_album->title();
+        }
     }
 
     return QVariant();
@@ -105,11 +113,13 @@ MusicModelItem *MusicModelItem::parent()
 
 bool MusicModelItem::removeChildren(int position, int count)
 {
-    if (position < 0 || position + count > m_childItems.size())
+    if (position < 0 || position + count > m_childItems.size()) {
         return false;
+    }
 
-    for (int row = 0; row < count; ++row)
+    for (int row = 0; row < count; ++row) {
         delete m_childItems.takeAt(position);
+    }
 
     return true;
 }
@@ -136,10 +146,11 @@ Album *MusicModelItem::album()
 
 int MusicModelItem::type() const
 {
-    if (m_artist)
+    if (m_artist) {
         return TypeArtist;
-    else if (m_album)
+    } else if (m_album) {
         return TypeAlbum;
+    }
 
     return -1;
 }

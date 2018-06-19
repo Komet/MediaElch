@@ -61,12 +61,14 @@ ClosableImage::ClosableImage(QWidget *parent) : QLabel(parent)
 
 void ClosableImage::mousePressEvent(QMouseEvent *ev)
 {
-    if (m_loading || ev->button() != Qt::LeftButton || !m_pixmap.isNull())
+    if (m_loading || ev->button() != Qt::LeftButton || !m_pixmap.isNull()) {
         return;
+    }
 
     if ((!m_image.isNull() || !m_imagePath.isEmpty()) && closeRect().contains(ev->pos())) {
-        if (!confirmDeleteImage())
+        if (!confirmDeleteImage()) {
             return;
+        }
         m_pixmap = QPixmap::grabWidget(this);
         Helper::instance()->setDevicePixelRatio(m_pixmap, Helper::instance()->devicePixelRatio(this));
         m_anim = new QPropertyAnimation(this);
@@ -159,8 +161,9 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         int x = (width() - (m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
         int y = (height() - (m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
         p.drawPixmap(x, y, m_defaultPixmap);
-        if (m_showCapture)
+        if (m_showCapture) {
             p.drawPixmap(captureRect(), m_capture);
+        }
         drawTitle(p);
         return;
     }
@@ -343,8 +346,9 @@ void ClosableImage::setLoading(const bool &loading)
 
 void ClosableImage::clear()
 {
-    if (m_anim)
+    if (m_anim) {
         m_anim->stop();
+    }
     m_imagePath.clear();
     m_image = QByteArray();
     m_pixmap = m_emptyPixmap;
@@ -393,8 +397,9 @@ void ClosableImage::setShowCapture(bool showCapture)
 
 bool ClosableImage::confirmDeleteImage()
 {
-    if (Settings::instance()->dontShowDeleteImageConfirm())
+    if (Settings::instance()->dontShowDeleteImageConfirm()) {
         return true;
+    }
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
@@ -405,8 +410,9 @@ bool ClosableImage::confirmDeleteImage()
     dontPrompt.blockSignals(true);
     msgBox.addButton(&dontPrompt, QMessageBox::ActionRole);
     int ret = msgBox.exec();
-    if (dontPrompt.checkState() == Qt::Checked && ret == QMessageBox::Yes)
+    if (dontPrompt.checkState() == Qt::Checked && ret == QMessageBox::Yes) {
         Settings::instance()->setDontShowDeleteImageConfirm(true);
+    }
     return (ret == QMessageBox::Yes);
 }
 

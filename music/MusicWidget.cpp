@@ -82,10 +82,11 @@ void MusicWidget::onSetDisabledTrue()
 
 void MusicWidget::onStartScraperSearch()
 {
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         QTimer::singleShot(0, ui->artist, &MusicWidgetArtist::onStartScraperSearch);
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         QTimer::singleShot(0, ui->album, &MusicWidgetAlbum::onStartScraperSearch);
+    }
 }
 
 void MusicWidget::onSaveInformation()
@@ -104,13 +105,15 @@ void MusicWidget::onSaveInformation()
     }
 
     foreach (Artist *artist, artists) {
-        if (artist->hasChanged())
+        if (artist->hasChanged()) {
             artistsToSave.append(artist);
+        }
     }
 
     foreach (Album *album, albums) {
-        if (album->hasChanged())
+        if (album->hasChanged()) {
             albumsToSave.append(album);
+        }
     }
 
     int itemsToSave = artistsToSave.count() + albumsToSave.count();
@@ -143,11 +146,13 @@ void MusicWidget::onSaveAll()
     QList<Artist *> artistsToSave;
 
     foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
-        if (artist->hasChanged())
+        if (artist->hasChanged()) {
             artistsToSave.append(artist);
+        }
         foreach (Album *album, artist->albums()) {
-            if (album->hasChanged())
+            if (album->hasChanged()) {
                 albumsToSave.append(album);
+            }
         }
     }
 
@@ -171,10 +176,12 @@ void MusicWidget::onSaveAll()
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
-    if (!artistsToSave.isEmpty())
+    if (!artistsToSave.isEmpty()) {
         ui->artist->updateArtistInfo();
-    if (!albumsToSave.isEmpty())
+    }
+    if (!albumsToSave.isEmpty()) {
         ui->album->updateAlbumInfo();
+    }
 
     NotificationBox::instance()->hideProgressBar(Constants::MusicWidgetSaveProgressMessageId);
     NotificationBox::instance()->showMessage(tr("All Artists and Albums Saved"));

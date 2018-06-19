@@ -183,8 +183,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 
     QPainter p;
     foreach (QAction *action, findChildren<QAction *>()) {
-        if (!action->property("page").isValid())
+        if (!action->property("page").isValid()) {
             continue;
+        }
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     }
     ui->actionGlobal->setIcon(
@@ -281,32 +282,37 @@ void SettingsWindow::loadSettings()
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
     QList<SettingsDir> movieDirectories = m_settings->movieDirectories();
-    for (int i = 0, n = movieDirectories.count(); i < n; ++i)
+    for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
         addDir(movieDirectories.at(i).path,
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
             SettingsDirType::Movies);
+    }
     QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
-    for (int i = 0, n = tvShowDirectories.count(); i < n; ++i)
+    for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
         addDir(tvShowDirectories.at(i).path,
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
             SettingsDirType::TvShows);
+    }
     QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
-    for (int i = 0, n = concertDirectories.count(); i < n; ++i)
+    for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
         addDir(concertDirectories.at(i).path,
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
             SettingsDirType::Concerts);
+    }
     QList<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
-    for (int i = 0, n = downloadDirectories.count(); i < n; ++i)
+    for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
         addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
+    }
     QList<SettingsDir> musicDirectories = m_settings->musicDirectories();
-    for (int i = 0, n = musicDirectories.count(); i < n; ++i)
+    for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
         addDir(musicDirectories.at(i).path,
             musicDirectories.at(i).separateFolders,
             musicDirectories.at(i).autoReload,
             SettingsDirType::Music);
+    }
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -317,10 +323,11 @@ void SettingsWindow::loadSettings()
 
     // XBMC
     ui->xbmcHost->setText(m_settings->xbmcHost());
-    if (m_settings->xbmcPort() != 0)
+    if (m_settings->xbmcPort() != 0) {
         ui->xbmcPort->setText(QString::number(m_settings->xbmcPort()));
-    else
+    } else {
         ui->xbmcPort->clear();
+    }
     ui->xbmcUser->setText(m_settings->xbmcUser());
     ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
@@ -335,8 +342,9 @@ void SettingsWindow::loadSettings()
     onComboMovieSetArtworkChanged();
 
     foreach (QLineEdit *lineEdit, findChildren<QLineEdit *>()) {
-        if (lineEdit->property("dataFileType").isNull())
+        if (lineEdit->property("dataFileType").isNull()) {
             continue;
+        }
         int dataFileType = lineEdit->property("dataFileType").toInt();
         QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
@@ -399,8 +407,9 @@ void SettingsWindow::saveSettings()
 {
     QList<DataFile> dataFiles;
     foreach (QLineEdit *lineEdit, findChildren<QLineEdit *>()) {
-        if (lineEdit->property("dataFileType").isNull())
+        if (lineEdit->property("dataFileType").isNull()) {
             continue;
+        }
         int pos = 0;
         int dataFileType = lineEdit->property("dataFileType").toInt();
         QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
@@ -446,16 +455,17 @@ void SettingsWindow::saveSettings()
         dir.path = ui->dirs->item(row, 1)->text();
         dir.separateFolders = ui->dirs->item(row, 2)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
-        if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0)
+        if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
             movieDirectories.append(dir);
-        else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1)
+        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1) {
             tvShowDirectories.append(dir);
-        else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 2)
+        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 2) {
             concertDirectories.append(dir);
-        else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3)
+        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3) {
             downloadDirectories.append(dir);
-        else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4)
+        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4) {
             musicDirectories.append(dir);
+        }
     }
     m_settings->setMovieDirectories(movieDirectories);
     m_settings->setTvShowDirectories(tvShowDirectories);
@@ -513,8 +523,9 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i = 0, n = ui->dirs->rowCount(); i < n; ++i) {
-            if (ui->dirs->item(i, 1)->text() == dir)
+            if (ui->dirs->item(i, 1)->text() == dir) {
                 exists = true;
+            }
         }
 
         if (!exists) {
@@ -524,32 +535,35 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
             auto itemCheck = new QTableWidgetItem();
-            if (separateFolders)
+            if (separateFolders) {
                 itemCheck->setCheckState(Qt::Checked);
-            else
+            } else {
                 itemCheck->setCheckState(Qt::Unchecked);
+            }
 
             auto itemCheckReload = new QTableWidgetItem();
-            if (autoReload)
+            if (autoReload) {
                 itemCheckReload->setCheckState(Qt::Checked);
-            else
+            } else {
                 itemCheckReload->setCheckState(Qt::Unchecked);
+            }
 
             auto box = new QComboBox();
             box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
             box->addItems(
                 QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
-            if (dirType == SettingsDirType::Movies)
+            if (dirType == SettingsDirType::Movies) {
                 box->setCurrentIndex(0);
-            else if (dirType == SettingsDirType::TvShows)
+            } else if (dirType == SettingsDirType::TvShows) {
                 box->setCurrentIndex(1);
-            else if (dirType == SettingsDirType::Concerts)
+            } else if (dirType == SettingsDirType::Concerts) {
                 box->setCurrentIndex(2);
-            else if (dirType == SettingsDirType::Downloads)
+            } else if (dirType == SettingsDirType::Downloads) {
                 box->setCurrentIndex(3);
-            else if (dirType == SettingsDirType::Music)
+            } else if (dirType == SettingsDirType::Music) {
                 box->setCurrentIndex(4);
+            }
 
             ui->dirs->setCellWidget(row, 0, box);
             ui->dirs->setItem(row, 1, item);
@@ -565,8 +579,9 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
 void SettingsWindow::removeDir()
 {
     int row = ui->dirs->currentRow();
-    if (row < 0)
+    if (row < 0) {
         return;
+    }
     ui->dirs->removeRow(row);
 }
 
@@ -636,8 +651,9 @@ void SettingsWindow::chooseDirToAdd()
 {
     QString dir = QFileDialog::getExistingDirectory(
         this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
-    if (!dir.isEmpty())
+    if (!dir.isEmpty()) {
         addDir(dir);
+    }
 }
 
 void SettingsWindow::onComboMovieSetArtworkChanged()
@@ -659,8 +675,9 @@ void SettingsWindow::onChooseMovieSetArtworkDir()
 {
     QString dir = QFileDialog::getExistingDirectory(
         this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
-    if (!dir.isEmpty())
+    if (!dir.isEmpty()) {
         ui->movieSetArtworkDir->setText(dir);
+    }
 }
 
 void SettingsWindow::loadRemoteTemplates()
@@ -686,22 +703,24 @@ void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate *> templates)
 
 void SettingsWindow::onTemplateInstalled(ExportTemplate *exportTemplate, bool success)
 {
-    if (success)
+    if (success) {
         ui->themesErrorMessage->setSuccessMessage(
             tr("Theme \"%1\" was successfully installed").arg(exportTemplate->name()));
-    else
+    } else {
         ui->themesErrorMessage->setErrorMessage(
             tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+    }
 }
 
 void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool success)
 {
-    if (success)
+    if (success) {
         ui->themesErrorMessage->setSuccessMessage(
             tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
-    else
+    } else {
         ui->themesErrorMessage->setErrorMessage(
             tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+    }
 }
 
 QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
@@ -716,13 +735,15 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
         index = 1;
     }
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->identifier() == "custom-movie")
+        if (scraper->identifier() == "custom-movie") {
             continue;
+        }
         if (scraper->scraperNativelySupports().contains(info)) {
             box->addItem(scraper->name(), scraper->identifier());
             box->setItemData(index, info, Qt::UserRole + 1);
-            if (scraper->identifier() == currentScraper || (currentScraper == "notset" && index == 1))
+            if (scraper->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
                 box->setCurrentIndex(index);
+            }
             index++;
         }
     }
@@ -736,8 +757,9 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
             if (img->identifier() == "images.fanarttv") {
                 box->addItem(img->name(), img->identifier());
                 box->setItemData(index, info, Qt::UserRole + 1);
-                if (img->identifier() == currentScraper || (currentScraper == "notset" && index == 1))
+                if (img->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
                     box->setCurrentIndex(index);
+                }
                 index++;
                 break;
             }
@@ -788,8 +810,9 @@ QComboBox *SettingsWindow::comboForTvScraperInfo(const int &info)
     box->addItem("IMDB", "imdb");
     box->setItemData(1, info, Qt::UserRole + 1);
 
-    if (currentScraper == "imdb")
+    if (currentScraper == "imdb") {
         box->setCurrentIndex(1);
+    }
 
     return box;
 }
@@ -815,24 +838,28 @@ QString SettingsWindow::titleForTvScraperInfo(const int &info)
 void SettingsWindow::onChooseUnrar()
 {
     QString unrar = QFileDialog::getOpenFileName(this, tr("Choose unrar"), QDir::homePath());
-    if (!unrar.isEmpty())
+    if (!unrar.isEmpty()) {
         ui->unrarPath->setText(unrar);
+    }
 }
 
 void SettingsWindow::onChooseMakeMkvCon()
 {
     QString makeMkvCon = QFileDialog::getOpenFileName(this, tr("Choose makemkvcon"), QDir::homePath());
-    if (!makeMkvCon.isEmpty())
+    if (!makeMkvCon.isEmpty()) {
         ui->makemkvconPath->setText(makeMkvCon);
+    }
 }
 
 void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
 {
     QComboBox *box = comboBox;
-    if (!box)
+    if (!box) {
         box = static_cast<QComboBox *>(QObject::sender());
-    if (!box)
+    }
+    if (!box) {
         return;
+    }
 
     QTableWidgetItem *itemCheck = box->property("itemCheck").value<Storage *>()->tableWidgetItem();
     QTableWidgetItem *itemCheckReload = box->property("itemCheckReload").value<Storage *>()->tableWidgetItem();

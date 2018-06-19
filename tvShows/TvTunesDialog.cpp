@@ -53,8 +53,9 @@ TvTunesDialog::~TvTunesDialog()
 TvTunesDialog *TvTunesDialog::instance(QWidget *parent)
 {
     static TvTunesDialog *m_instance = nullptr;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new TvTunesDialog(parent);
+    }
     return m_instance;
 }
 
@@ -157,8 +158,9 @@ void TvTunesDialog::onPlayPause()
 
 void TvTunesDialog::startDownload()
 {
-    if (m_show->dir().isEmpty())
+    if (m_show->dir().isEmpty()) {
         return;
+    }
 
     m_output.setFileName(m_show->dir() + "/theme.mp3.download");
 
@@ -276,10 +278,12 @@ void TvTunesDialog::downloadReadyRead()
 void TvTunesDialog::onClose()
 {
     m_mediaPlayer->stop();
-    if (m_downloadInProgress)
+    if (m_downloadInProgress) {
         cancelDownload();
-    if (m_fileDownloaded)
+    }
+    if (m_fileDownloaded) {
         QDialog::accept();
-    else
+    } else {
         QDialog::reject();
+    }
 }

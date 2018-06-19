@@ -390,8 +390,9 @@ QStringList Movie::genres() const
 QList<QString *> Movie::genresPointer()
 {
     QList<QString *> genres;
-    for (int i = 0, n = m_genres.size(); i < n; ++i)
+    for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
+    }
     return genres;
 }
 
@@ -416,8 +417,9 @@ QStringList Movie::countries() const
 QList<QString *> Movie::countriesPointer()
 {
     QList<QString *> countries;
-    for (int i = 0, n = m_countries.size(); i < n; ++i)
+    for (int i = 0, n = m_countries.size(); i < n; ++i) {
         countries.append(&m_countries[i]);
+    }
     return countries;
 }
 
@@ -442,8 +444,9 @@ QStringList Movie::studios() const
 QList<QString *> Movie::studiosPointer()
 {
     QList<QString *> studios;
-    for (int i = 0, n = m_studios.size(); i < n; ++i)
+    for (int i = 0, n = m_studios.size(); i < n; ++i) {
         studios.append(&m_studios[i]);
+    }
     return studios;
 }
 
@@ -479,8 +482,9 @@ QList<Actor> Movie::actors() const
 QList<Actor *> Movie::actorsPointer()
 {
     QList<Actor *> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++)
+    for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
+    }
     return actors;
 }
 
@@ -1058,8 +1062,9 @@ void Movie::addActor(Actor actor)
  */
 void Movie::addCountry(QString country)
 {
-    if (country.isEmpty())
+    if (country.isEmpty()) {
         return;
+    }
     m_countries.append(country);
     setChanged(true);
 }
@@ -1071,8 +1076,9 @@ void Movie::addCountry(QString country)
  */
 void Movie::addGenre(QString genre)
 {
-    if (genre.isEmpty())
+    if (genre.isEmpty()) {
         return;
+    }
     m_genres.append(genre);
     setChanged(true);
 }
@@ -1084,16 +1090,18 @@ void Movie::addGenre(QString genre)
  */
 void Movie::addStudio(QString studio)
 {
-    if (studio.isEmpty())
+    if (studio.isEmpty()) {
         return;
+    }
     m_studios.append(studio);
     setChanged(true);
 }
 
 void Movie::addTag(QString tag)
 {
-    if (m_tags.contains(tag))
+    if (m_tags.contains(tag)) {
         return;
+    }
     m_tags.append(tag);
     setChanged(true);
 }
@@ -1298,8 +1306,9 @@ void Movie::removeExtraFanart(QString file)
 
 QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty())
+    if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    }
     foreach (const QString &file, m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }

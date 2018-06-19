@@ -140,12 +140,14 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     }
 
     rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(rx.cap(1).toInt() * 60 + rx.cap(2).toInt());
+    }
 
     rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
+    }
 
     rx.setPattern("<li><small>Studio: </small><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Studio "
                   "- Details\">(.*)[\\s\\n]*</a>");
@@ -171,8 +173,9 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     rx.setPattern("<a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Director\"><img "
                   "src=\"[^\"]*\"[\\s\\n]*alt=\"[^\"]*\" title=\"[^\"]*\"[\\s\\n]*class=\"img-responsive headshot "
                   "director\"[\\s\\n]*style=\"[^\"]*\" />[\\s\\n]*(.*)<br /><small>Director</small></a>");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(1).trimmed());
+    }
 
     if (infos.contains(MovieScraperInfos::Genres)) {
         rx.setPattern("<li><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\" Label=\"Category\" "
@@ -188,8 +191,9 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
-        if (Settings::instance()->usePlotForOutline())
+        if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(doc.toPlainText());
+        }
     }
 
     rx.setPattern("href=\"([^\"]*)\"[\\s\\n]*id=\"front-cover\"");
@@ -205,13 +209,16 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();
-        if (set.endsWith("Series", Qt::CaseInsensitive))
+        if (set.endsWith("Series", Qt::CaseInsensitive)) {
             set.chop(6);
+        }
         set = set.trimmed();
-        if (set.startsWith("\""))
+        if (set.startsWith("\"")) {
             set.remove(0, 1);
-        if (set.endsWith("\""))
+        }
+        if (set.endsWith("\"")) {
             set.chop(1);
+        }
         movie->setSet(set.trimmed());
     }
 

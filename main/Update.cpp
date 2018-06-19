@@ -20,8 +20,9 @@ Update::Update(QObject *parent) : QObject(parent)
 Update *Update::instance(QObject *parent)
 {
     static Update *m_instance = nullptr;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new Update(parent);
+    }
     return m_instance;
 }
 
@@ -79,14 +80,17 @@ bool Update::checkIfNewVersion(QString msg, QString &version)
     QString codeName;
     QXmlStreamReader xml(msg);
     while (xml.readNextStartElement()) {
-        if (xml.name() == "latestVersion_" + os || (xmlVersion.isEmpty() && xml.name() == "latestVersion"))
+        if (xml.name() == "latestVersion_" + os || (xmlVersion.isEmpty() && xml.name() == "latestVersion")) {
             xmlVersion = xml.readElementText();
-        if (xml.name() == "codeName")
+        }
+        if (xml.name() == "codeName") {
             codeName = xml.readElementText();
+        }
     }
 
-    if (xmlVersion.isEmpty())
+    if (xmlVersion.isEmpty()) {
         return false;
+    }
 
     int result = Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
     version = QString("MediaElch %1 - %2").arg(xmlVersion).arg(codeName);

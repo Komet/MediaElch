@@ -101,13 +101,15 @@ void CertificationWidget::loadCertifications()
     clear();
     QStringList certifications;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (!movie->certification().isEmpty() && !certifications.contains(movie->certification()))
+        if (!movie->certification().isEmpty() && !certifications.contains(movie->certification())) {
             certifications.append(movie->certification());
+        }
     }
 
     foreach (const QString &certification, m_addedCertifications) {
-        if (!certification.isEmpty() && !certifications.contains(certification))
+        if (!certification.isEmpty() && !certifications.contains(certification)) {
             certifications.append(certification);
+        }
     }
 
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
@@ -161,19 +163,22 @@ void CertificationWidget::onCertificationNameChanged(QTableWidgetItem *item)
 {
     QString newName = item->text();
     QString origName = item->data(Qt::UserRole).toString();
-    if (newName == origName)
+    if (newName == origName) {
         return;
+    }
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->certification() == origName)
+        if (movie->certification() == origName) {
             movie->setCertification(newName);
+        }
     }
     ui->certificationName->setText(newName);
     item->setData(Qt::UserRole, newName);
     if (m_addedCertifications.contains(origName)) {
         m_addedCertifications.removeOne(origName);
-        if (!m_addedCertifications.contains(newName))
+        if (!m_addedCertifications.contains(newName)) {
             m_addedCertifications.append(newName);
+        }
     }
     loadCertifications();
 }
@@ -198,8 +203,9 @@ void CertificationWidget::addCertification()
         }
     } while (certificationExists);
 
-    if (adder > 0)
+    if (adder > 0) {
         certificationName.append(QString(" %1").arg(adder));
+    }
 
     m_addedCertifications << certificationName;
 
@@ -230,8 +236,9 @@ void CertificationWidget::deleteCertification()
     ui->certifications->removeRow(ui->certifications->currentRow());
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->certification() == certificationName)
+        if (movie->certification() == certificationName) {
             movie->setCertification("");
+        }
     }
     m_addedCertifications.removeOne(origCertificationName);
 }
@@ -270,8 +277,9 @@ void CertificationWidget::addMovie()
             ui->certifications->item(ui->certifications->currentRow(), 0)->text())
         == QDialog::Accepted) {
         QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
-        if (movies.isEmpty())
+        if (movies.isEmpty()) {
             return;
+        }
 
         QString certificationName = ui->certifications->item(ui->certifications->currentRow(), 0)->text();
         foreach (Movie *movie, movies)
@@ -286,8 +294,9 @@ void CertificationWidget::addMovie()
 void CertificationWidget::onSaveInformation()
 {
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->hasChanged())
+        if (movie->hasChanged()) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        }
     }
     m_addedCertifications.clear();
     loadCertifications();

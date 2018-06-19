@@ -52,8 +52,9 @@ int TvShowModelItem::childCount() const
  */
 int TvShowModelItem::childNumber() const
 {
-    if (m_parentItem)
+    if (m_parentItem) {
         return m_parentItem->m_childItems.indexOf(const_cast<TvShowModelItem *>(this));
+    }
 
     return 0;
 }

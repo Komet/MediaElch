@@ -50,44 +50,50 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &genre, movie->genres()) {
-                if (!genre.isEmpty() && !items.contains(genre))
+                if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
+                }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Countries) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &country, movie->countries()) {
-                if (!country.isEmpty() && !items.contains(country))
+                if (!country.isEmpty() && !items.contains(country)) {
                     items.append(country);
+                }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Studios) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             foreach (const QString &studio, movie->studios()) {
-                if (!studio.isEmpty() && !items.contains(studio))
+                if (!studio.isEmpty() && !items.contains(studio)) {
                     items.append(studio);
+                }
             }
         }
     } else if (m_widget == MainWidgets::Concerts && m_type == ComboDelegateType::Genres) {
         foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
             foreach (const QString &genre, concert->genres()) {
-                if (!genre.isEmpty() && !items.contains(genre))
+                if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
+                }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Genres) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (const QString &genre, show->genres()) {
-                if (!genre.isEmpty() && !items.contains(genre))
+                if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
+                }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Directors) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (TvShowEpisode *episode, show->episodes()) {
                 foreach (const QString &director, episode->directors()) {
-                    if (!director.isEmpty() && !items.contains(director))
+                    if (!director.isEmpty() && !items.contains(director)) {
                         items.append(director);
+                    }
                 }
             }
         }
@@ -95,8 +101,9 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             foreach (TvShowEpisode *episode, show->episodes()) {
                 foreach (const QString &writer, episode->writers()) {
-                    if (!writer.isEmpty() && !items.contains(writer))
+                    if (!writer.isEmpty() && !items.contains(writer)) {
                         items.append(writer);
+                    }
                 }
             }
         }

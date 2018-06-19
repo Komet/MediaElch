@@ -96,8 +96,9 @@ void MyLineEdit::focusInEvent(QFocusEvent *event)
  */
 void MyLineEdit::setLoading(bool loading)
 {
-    if (m_type != TypeLoading)
+    if (m_type != TypeLoading) {
         return;
+    }
     m_loadingLabel->setVisible(loading);
     QLineEdit::setDisabled(loading);
 }
@@ -159,8 +160,9 @@ MyLineEdit::LineEditType MyLineEdit::type()
  */
 void MyLineEdit::myTextChanged(QString text)
 {
-    if (m_type != TypeClear)
+    if (m_type != TypeClear) {
         return;
+    }
 
     m_clearButton->setVisible(!text.isEmpty());
 }
@@ -188,16 +190,18 @@ void MyLineEdit::addAdditionalStyleSheet(QString style)
  */
 void MyLineEdit::setShowMagnifier(bool show)
 {
-    if (m_showMagnifier && !show)
+    if (m_showMagnifier && !show) {
         m_paddingLeft -= 24;
-    else if (!m_showMagnifier && show)
+    } else if (!m_showMagnifier && show) {
         m_paddingLeft += 24;
+    }
 
     m_showMagnifier = show;
 
     if (show) {
-        if (m_magnifierLabel != nullptr)
+        if (m_magnifierLabel != nullptr) {
             delete m_magnifierLabel;
+        }
         QPixmap magn(":/img/magnifier.png");
         magn = magn.scaled(
             QSize(14, 14) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -224,15 +228,16 @@ void MyLineEdit::addFilter(Filter *filter)
     QLabel *label = new QLabel(this);
     if (filter->info() == MovieFilters::Title || filter->info() == MovieFilters::Path
         || filter->info() == ConcertFilters::Title || filter->info() == TvShowFilters::Title
-        || filter->info() == MusicFilters::Title)
+        || filter->info() == MusicFilters::Title) {
         label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
-    else if (filter->info() == MovieFilters::ImdbId)
+    } else if (filter->info() == MovieFilters::ImdbId) {
         label->setStyleSheet("background-color: #F0AD4E; border: 1px solid #F0AD4E; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
-    else
+    } else {
         label->setStyleSheet("background-color: #5BC0DE; border: 1px solid #5BC0DE; border-radius: 2px; font-size: "
                              "10px; color: #ffffff;");
+    }
     label->setText(filter->shortText());
     label->show();
     m_filterLabels.append(label);
@@ -245,8 +250,9 @@ void MyLineEdit::addFilter(Filter *filter)
  */
 void MyLineEdit::removeLastFilter()
 {
-    if (m_filterLabels.count() == 0)
+    if (m_filterLabels.count() == 0) {
         return;
+    }
     m_filterLabels.takeLast()->deleteLater();
     drawFilters();
 }
@@ -279,8 +285,9 @@ void MyLineEdit::drawFilters()
         m_filterLabels.at(hidden++)->hide();
         labelWidth = 0;
         foreach (QLabel *l, m_filterLabels) {
-            if (l->isVisible())
+            if (l->isVisible()) {
                 labelWidth += l->width() + 2;
+            }
         }
     }
 
@@ -310,11 +317,13 @@ void MyLineEdit::drawFilters()
 int MyLineEdit::paddingLeft()
 {
     int paddingLeft = m_paddingLeft;
-    if (m_moreLabel->isVisible())
+    if (m_moreLabel->isVisible()) {
         paddingLeft += m_moreLabel->width();
+    }
     foreach (QLabel *l, m_filterLabels) {
-        if (l->isVisible())
+        if (l->isVisible()) {
             paddingLeft += l->width() + 2;
+        }
     }
     return paddingLeft;
 }

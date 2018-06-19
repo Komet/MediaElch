@@ -32,16 +32,18 @@ ArtistController::~ArtistController() = default;
 bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_artist->hasChanged()) && !force
-        && (m_infoFromNfoLoaded || (m_artist->hasChanged() && !m_infoFromNfoLoaded)))
+        && (m_infoFromNfoLoaded || (m_artist->hasChanged() && !m_infoFromNfoLoaded))) {
         return m_infoLoaded;
+    }
 
     m_artist->blockSignals(true);
 
     bool infoLoaded;
-    if (reloadFromNfo)
+    if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadArtist(m_artist);
-    else
+    } else {
         infoLoaded = mediaCenterInterface->loadArtist(m_artist, m_artist->nfoContent());
+    }
 
     if (!infoLoaded) {
         QFileInfo fi(m_artist->path());
@@ -57,13 +59,15 @@ bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool
 bool ArtistController::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     bool saved = mediaCenterInterface->saveArtist(m_artist);
-    if (!m_infoLoaded)
+    if (!m_infoLoaded) {
         m_infoLoaded = saved;
+    }
     m_artist->setHasChanged(false);
     m_artist->clearImages();
     m_artist->clearExtraFanartData();
-    if (saved)
+    if (saved) {
         emit sigSaved(m_artist);
+    }
     return saved;
 }
 
@@ -132,8 +136,9 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
-        if (elem.imageType == ImageType::ArtistFanart)
+        if (elem.imageType == ImageType::ArtistFanart) {
             Helper::instance()->resizeBackdrop(elem.data);
+        }
         m_artist->setRawImage(elem.imageType, elem.data);
     }
 
@@ -202,16 +207,18 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
 
 void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>> posters)
 {
-    if (artist != m_artist)
+    if (artist != m_artist) {
         return;
+    }
 
     QList<DownloadManagerElement> downloads;
     QList<int> imageTypes;
     QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.value().isEmpty())
+        if (it.value().isEmpty()) {
             continue;
+        }
 
         if (it.key() == ImageType::ArtistExtraFanart) {
             for (int i = 0, n = it.value().length(); i < n && i < Settings::instance()->extraFanartsMusicArtists();
@@ -229,8 +236,9 @@ void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>>
             d.artist = m_artist;
             downloads.append(d);
         }
-        if (!imageTypes.contains(it.key()))
+        if (!imageTypes.contains(it.key())) {
             imageTypes.append(it.key());
+        }
     }
 
     if (downloads.isEmpty()) {

@@ -56,8 +56,9 @@ void MediaFlags::setupResolution(StreamDetails *streamDetails)
     QString scanType = streamDetails->videoDetails().value("scantype");
     QString heightFlag = Helper::instance()->matchResolution(width, height, scanType);
     ui->mediaFlagResolution->setVisible(heightFlag != "");
-    if (heightFlag != "")
+    if (heightFlag != "") {
         ui->mediaFlagResolution->setPixmap(colorIcon(":/media/resolution/" + heightFlag));
+    }
 }
 
 /**
@@ -75,8 +76,9 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
     double aspect = streamDetails->videoDetails().value("aspect").toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
-    if (availableAspects.contains(aspectFlag))
+    if (availableAspects.contains(aspectFlag)) {
         ui->mediaFlagAspect->setPixmap(colorIcon(":/media/aspect/" + aspectFlag));
+    }
 }
 
 /**
@@ -92,10 +94,12 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
                                                 << "h264"
                                                 << "xvid";
     QString codec = streamDetails->videoDetails().value("codec").toLower();
-    if (codec.startsWith("divx"))
+    if (codec.startsWith("divx")) {
         codec = "divx";
-    if (availableCodecs.contains(codec))
+    }
+    if (availableCodecs.contains(codec)) {
         ui->mediaFlagCodec->setPixmap(colorIcon(":/media/codec/" + codec));
+    }
     ui->mediaFlagCodec->setVisible(availableCodecs.contains(codec));
 }
 
@@ -117,13 +121,15 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
                                                 << "mp2";
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value("codec").toLower();
-        if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma")
+        if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma") {
             codec = "dtshdma";
-        if (codec == "dtshd-hra" || codec == "dtshd_hra")
+        }
+        if (codec == "dtshd-hra" || codec == "dtshd_hra") {
             codec = "dtshdhra";
-        if (codec == "ac3")
+        }
+        if (codec == "ac3") {
             codec = "dolbydigital";
-
+        }
         if (availableCodecs.contains(codec)) {
             ui->mediaFlagAudio->setPixmap(colorIcon(":/media/audio/" + codec));
             visible = true;
@@ -140,23 +146,27 @@ void MediaFlags::setupChannels(StreamDetails *streamDetails)
 {
     int channels = -1;
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
-        if (streamDetails->audioDetails().at(i).value("channels").toInt() > channels)
+        if (streamDetails->audioDetails().at(i).value("channels").toInt() > channels) {
             channels = streamDetails->audioDetails().at(i).value("channels").toInt();
+        }
     }
 
-    if (channels > 8 || channels < 2 || channels == 3 || channels == 4)
+    if (channels > 8 || channels < 2 || channels == 3 || channels == 4) {
         channels = -1;
+    }
 
-    if (channels != -1)
+    if (channels != -1) {
         ui->mediaFlagChannels->setPixmap(colorIcon(QString(":/media/channels/%1").arg(channels)));
+    }
     ui->mediaFlagChannels->setVisible(channels != -1);
 }
 
 QPixmap MediaFlags::colorIcon(QString icon)
 {
     static QMap<QString, QPixmap> pixmaps;
-    if (pixmaps.contains(icon))
+    if (pixmaps.contains(icon)) {
         return pixmaps.value(icon);
+    }
 
     QPixmap pixmap =
         QPixmap(icon).scaledToHeight(m_height * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);

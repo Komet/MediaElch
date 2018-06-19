@@ -49,8 +49,9 @@ ImportDialog::~ImportDialog()
 
 void ImportDialog::reject()
 {
-    if (!m_filesToMove.isEmpty())
+    if (!m_filesToMove.isEmpty()) {
         return;
+    }
 
     if (m_movie) {
         m_movie->controller()->abortDownloads();
@@ -62,8 +63,9 @@ void ImportDialog::reject()
         m_concert->deleteLater();
     }
 
-    if (m_episode)
+    if (m_episode) {
         m_episode->deleteLater();
+    }
 
     Settings::instance()->setImportDialogSize(size());
     Settings::instance()->setImportDialogPosition(pos());
@@ -141,15 +143,17 @@ int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
     int index = -1;
     for (int i = 0, n = Settings::instance()->tvShowDirectories().count(); i < n; ++i) {
         if (tvShow->dir().startsWith(Settings::instance()->tvShowDirectories().at(i).path)) {
-            if (index == -1)
+            if (index == -1) {
                 index = i;
-            else if (Settings::instance()->tvShowDirectories().at(index).path.length()
-                     < Settings::instance()->tvShowDirectories().at(i).path.length())
+            } else if (Settings::instance()->tvShowDirectories().at(index).path.length()
+                       < Settings::instance()->tvShowDirectories().at(i).path.length()) {
                 index = i;
+            }
         }
     }
-    if (index != -1)
+    if (index != -1) {
         path = Settings::instance()->tvShowDirectories().at(index).path;
+    }
     m_importDir = path;
 
     m_filesToMove.clear();
@@ -210,14 +214,15 @@ void ImportDialog::setDefaults(int renameType)
 void ImportDialog::storeDefaults()
 {
     int renameType;
-    if (m_type == "movie")
+    if (m_type == "movie") {
         renameType = Renamer::TypeMovies;
-    else if (m_type == "tvshow")
+    } else if (m_type == "tvshow") {
         renameType = Renamer::TypeTvShows;
-    else if (m_type == "concert")
+    } else if (m_type == "concert") {
         renameType = Renamer::TypeConcerts;
-    else
+    } else {
         return;
+    }
 
     QString fileName;
     QString fileNameMulti;
@@ -250,8 +255,9 @@ void ImportDialog::onMovieChosen()
         infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
-    if (m_movie)
+    if (m_movie) {
         m_movie->deleteLater();
+    }
 
     ui->stackedWidget->slideInIdx(1);
     ui->loading->setVisible(true);
@@ -266,8 +272,9 @@ void ImportDialog::onMovieChosen()
 
 void ImportDialog::onConcertChosen()
 {
-    if (m_concert)
+    if (m_concert) {
         m_concert->deleteLater();
+    }
 
     ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::RIGHT2LEFT);
     ui->loading->setVisible(true);
@@ -288,8 +295,9 @@ void ImportDialog::onConcertChosen()
 
 void ImportDialog::onTvShowChosen()
 {
-    if (m_episode)
+    if (m_episode) {
         m_episode->deleteLater();
+    }
 
     ui->stackedWidget->slideInIdx(1, SlidingStackedWidget::RIGHT2LEFT);
     ui->loading->setVisible(true);
@@ -300,8 +308,9 @@ void ImportDialog::onTvShowChosen()
     m_episode = new TvShowEpisode(files(), m_show);
     m_episode->setSeason(TvShowFileSearcher::getSeasonNumber(files()));
     QList<int> episodes = TvShowFileSearcher::getEpisodeNumbers(files());
-    if (!episodes.isEmpty())
+    if (!episodes.isEmpty()) {
         m_episode->setEpisode(episodes.first());
+    }
     m_episode->loadData(ui->tvShowSearchEpisode->scraperId(),
         Manager::instance()->tvScrapers().at(0),
         ui->tvShowSearchEpisode->infosToLoad());
@@ -350,8 +359,9 @@ QString ImportDialog::importDir()
 
 void ImportDialog::onLoadDone(Movie *movie)
 {
-    if (movie != m_movie)
+    if (movie != m_movie) {
         return;
+    }
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Movie information was loaded"));
@@ -363,8 +373,9 @@ void ImportDialog::onLoadDone(Movie *movie)
 
 void ImportDialog::onLoadDone(Concert *concert)
 {
-    if (concert != m_concert)
+    if (concert != m_concert) {
         return;
+    }
 
     ui->loading->setVisible(false);
     ui->badgeSuccess->setText(tr("Concert information was loaded"));
@@ -396,8 +407,9 @@ void ImportDialog::onEpisodeLoadDone()
 void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
 {
     qDebug() << "got image";
-    if (!m_episode)
+    if (!m_episode) {
         return;
+    }
 
     ImageCache::instance()->invalidateImages(
         Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
@@ -468,8 +480,9 @@ void ImportDialog::onImport()
                 newFileName, "3D", m_movie->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
-            if (files().contains(file))
+            if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
+            }
         }
         ui->labelLoading->setText(tr("Importing movie..."));
 
@@ -502,8 +515,9 @@ void ImportDialog::onImport()
                 newFileName, "3D", m_episode->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
-            if (files().contains(file))
+            if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
+            }
         }
 
         ui->labelLoading->setText(tr("Importing episode..."));
@@ -551,8 +565,9 @@ void ImportDialog::onImport()
                 newFileName, "3D", m_concert->streamDetails()->videoDetails().value("stereomode") != "");
             Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
-            if (files().contains(file))
+            if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
+            }
         }
         ui->labelLoading->setText(tr("Importing concert..."));
     }
@@ -588,8 +603,9 @@ void ImportDialog::onFileWatcherTimeout()
         sourceSize += sourceFi.size();
 
         QFileInfo destFi(it.value());
-        if (!destFi.exists())
+        if (!destFi.exists()) {
             continue;
+        }
         destinationSize += destFi.size();
     }
 
@@ -607,8 +623,9 @@ void ImportDialog::onMovingFilesFinished()
     if (m_type == "movie") {
         m_movie->setFiles(m_newFiles);
         m_movie->setInSeparateFolder(m_separateFolders);
-        if (!m_newFiles.isEmpty())
+        if (!m_newFiles.isEmpty()) {
             m_movie->setFileLastModified(QFileInfo(m_newFiles.first()).lastModified());
+        }
         m_movie->controller()->loadStreamDetailsFromFile();
         m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
@@ -617,8 +634,9 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->movieModel()->addMovie(m_movie);
         m_movie = nullptr;
     } else if (m_type == "tvshow") {
-        if (m_show->showMissingEpisodes())
+        if (m_show->showMissingEpisodes()) {
             m_show->clearMissingEpisodes();
+        }
 
         m_episode->setFiles(m_newFiles);
         m_episode->loadStreamDetailsFromFile();
@@ -648,10 +666,11 @@ void ImportDialog::onMovingFilesFinished()
             }
         }
 
-        if (m_show->showMissingEpisodes())
+        if (m_show->showMissingEpisodes()) {
             m_show->fillMissingEpisodes();
-        else if (newSeason)
+        } else if (newSeason) {
             TvShowFilesWidget::instance()->renewModel(true);
+        }
 
         m_episode = nullptr;
         m_show = nullptr;

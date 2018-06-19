@@ -227,16 +227,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->navbar->setFixedHeight(56);
 #endif
 
-    if (Settings::instance()->startupSection() == "tvshows")
+    if (Settings::instance()->startupSection() == "tvshows") {
         onMenu(ui->buttonTvshows);
-    else if (Settings::instance()->startupSection() == "concerts")
+    } else if (Settings::instance()->startupSection() == "concerts") {
         onMenu(ui->buttonConcerts);
-    else if (Settings::instance()->startupSection() == "music")
+    } else if (Settings::instance()->startupSection() == "music") {
         onMenu(ui->buttonMusic);
-    else if (Settings::instance()->startupSection() == "import")
+    } else if (Settings::instance()->startupSection() == "import") {
         onMenu(ui->buttonDownloads);
-    else
+    } else {
         onMenu(ui->buttonMovies);
+    }
 
     // hack. without only the fileScannerDialog pops up and blocks until it has finished
     show();
@@ -244,8 +245,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Start scanning for files
     QTimer::singleShot(0, m_fileScannerDialog, SLOT(exec()));
 
-    if (Settings::instance()->checkForUpdates())
+    if (Settings::instance()->checkForUpdates()) {
         Update::instance()->checkForUpdate();
+    }
 }
 
 /**
@@ -345,22 +347,26 @@ void MainWindow::onActionSearch()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0) {
-        if (ui->filesWidget->selectedMovies().count() > 1)
+        if (ui->filesWidget->selectedMovies().count() > 1) {
             ui->filesWidget->multiScrape();
-        else
+        } else {
             QTimer::singleShot(0, ui->movieWidget, &MovieWidget::startScraperSearch);
+        }
     } else if (ui->stackedWidget->currentIndex() == 1) {
-        if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count() > 1)
+        if (ui->tvShowFilesWidget->selectedEpisodes(false).count() + ui->tvShowFilesWidget->selectedShows().count()
+            > 1) {
             ui->tvShowFilesWidget->multiScrape();
-        else
+        } else {
             QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidget::onStartScraperSearch);
+        }
     } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, &ConcertWidget::onStartScraperSearch);
     } else if (ui->stackedWidget->currentIndex() == 7) {
-        if ((ui->musicFilesWidget->selectedArtists().count() + ui->musicFilesWidget->selectedAlbums().count()) > 1)
+        if ((ui->musicFilesWidget->selectedArtists().count() + ui->musicFilesWidget->selectedAlbums().count()) > 1) {
             ui->musicFilesWidget->multiScrape();
-        else
+        } else {
             QTimer::singleShot(0, ui->musicWidget, &MusicWidget::onStartScraperSearch);
+        }
     }
 }
 
@@ -371,20 +377,21 @@ void MainWindow::onActionSearch()
 void MainWindow::onActionSave()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         ui->movieWidget->saveInformation();
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->tvShowWidget->onSaveInformation();
-    else if (ui->stackedWidget->currentIndex() == 2)
+    } else if (ui->stackedWidget->currentIndex() == 2) {
         ui->setsWidget->saveSet();
-    else if (ui->stackedWidget->currentIndex() == 3)
+    } else if (ui->stackedWidget->currentIndex() == 3) {
         ui->concertWidget->onSaveInformation();
-    else if (ui->stackedWidget->currentIndex() == 4)
+    } else if (ui->stackedWidget->currentIndex() == 4) {
         ui->genreWidget->onSaveInformation();
-    else if (ui->stackedWidget->currentIndex() == 5)
+    } else if (ui->stackedWidget->currentIndex() == 5) {
         ui->certificationWidget->onSaveInformation();
-    else if (ui->stackedWidget->currentIndex() == 7)
+    } else if (ui->stackedWidget->currentIndex() == 7) {
         ui->musicWidget->onSaveInformation();
+    }
     setNewMarks();
 }
 
@@ -395,14 +402,15 @@ void MainWindow::onActionSave()
 void MainWindow::onActionSaveAll()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         ui->movieWidget->saveAll();
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->tvShowWidget->onSaveAll();
-    else if (ui->stackedWidget->currentIndex() == 3)
+    } else if (ui->stackedWidget->currentIndex() == 3) {
         ui->concertWidget->onSaveAll();
-    else if (ui->stackedWidget->currentIndex() == 7)
+    } else if (ui->stackedWidget->currentIndex() == 7) {
         ui->musicWidget->onSaveAll();
+    }
     setNewMarks();
 }
 
@@ -418,14 +426,15 @@ void MainWindow::onActionReload()
 
     m_fileScannerDialog->setForceReload(true);
 
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-    else if (ui->stackedWidget->currentIndex() == 3)
+    } else if (ui->stackedWidget->currentIndex() == 3) {
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-    else if (ui->stackedWidget->currentIndex() == 7)
+    } else if (ui->stackedWidget->currentIndex() == 7) {
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMusic);
+    }
 
     m_fileScannerDialog->exec();
 }
@@ -456,14 +465,15 @@ void MainWindow::onActionRename()
  */
 void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
 {
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         ui->filesWidget->setFilter(filters, text);
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->tvShowFilesWidget->setFilter(filters, text);
-    else if (ui->stackedWidget->currentIndex() == 3)
+    } else if (ui->stackedWidget->currentIndex() == 3) {
         ui->concertFilesWidget->setFilter(filters, text);
-    else if (ui->stackedWidget->currentIndex() == 7)
+    } else if (ui->stackedWidget->currentIndex() == 7) {
         ui->musicFilesWidget->setFilter(filters, text);
+    }
 }
 
 /**
@@ -479,8 +489,9 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 
     if (widget != MainWidgets::MovieSets && widget != MainWidgets::Certifications) {
         m_actions[widget][MainActions::SaveAll] = enabled;
-        if (widget != MainWidgets::Music)
+        if (widget != MainWidgets::Music) {
             m_actions[widget][MainActions::Rename] = enabled;
+        }
     }
 
     if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
@@ -489,13 +500,15 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != MainWidgets::Concerts && widget != MainWidgets::Music)
+        if (widget != MainWidgets::Concerts && widget != MainWidgets::Music) {
             ui->navbar->setActionRenameEnabled(enabled);
+        }
     }
     if ((widget == MainWidgets::MovieSets && ui->stackedWidget->currentIndex() == 2)
         || (widget == MainWidgets::Certifications && ui->stackedWidget->currentIndex() == 5)
-        || (widget == MainWidgets::Genres && ui->stackedWidget->currentIndex() == 4))
+        || (widget == MainWidgets::Genres && ui->stackedWidget->currentIndex() == 4)) {
         ui->navbar->setActionSaveEnabled(enabled);
+    }
 }
 
 /**
@@ -511,8 +524,9 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     if ((widget == MainWidgets::Movies && ui->stackedWidget->currentIndex() == 0)
         || (widget == MainWidgets::TvShows && ui->stackedWidget->currentIndex() == 1)
         || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)
-        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7))
+        || (widget == MainWidgets::Music && ui->stackedWidget->currentIndex() == 7)) {
         ui->navbar->setActionSearchEnabled(enabled);
+    }
 }
 
 /**
@@ -606,22 +620,24 @@ void MainWindow::onFilesRenamed(Renamer::RenameType type)
 {
     if (m_renamer->renameErrorOccured()) {
         m_fileScannerDialog->setForceReload(true);
-        if (type == Renamer::TypeMovies)
+        if (type == Renamer::TypeMovies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-        else if (type == Renamer::TypeConcerts)
+        } else if (type == Renamer::TypeConcerts) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-        else if (type == Renamer::TypeTvShows)
+        } else if (type == Renamer::TypeTvShows) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-        else if (type == Renamer::TypeAll)
+        } else if (type == Renamer::TypeAll) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+        }
         m_fileScannerDialog->exec();
     } else {
-        if (type == Renamer::TypeMovies)
+        if (type == Renamer::TypeMovies) {
             ui->movieWidget->updateMovieInfo();
-        else if (type == Renamer::TypeConcerts)
+        } else if (type == Renamer::TypeConcerts) {
             ui->concertWidget->updateConcertInfo();
-        else if (type == Renamer::TypeTvShows)
+        } else if (type == Renamer::TypeTvShows) {
             ui->tvShowWidget->updateInfo();
+        }
     }
 }
 
@@ -642,18 +658,21 @@ void MainWindow::onJumpToMovie(Movie *movie)
 void MainWindow::updateTvShows()
 {
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-        if (show->showMissingEpisodes())
+        if (show->showMissingEpisodes()) {
             TvShowUpdater::instance()->updateShow(show);
+        }
     }
 }
 
 void MainWindow::onMenu(QToolButton *button)
 {
-    if (button == nullptr)
+    if (button == nullptr) {
         button = static_cast<QToolButton *>(QObject::sender());
+    }
 
-    if (!button)
+    if (!button) {
         return;
+    }
 
 
     foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton *>()) {

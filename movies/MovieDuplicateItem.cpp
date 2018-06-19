@@ -34,18 +34,21 @@ void MovieDuplicateItem::setDuplicateProperties(MovieDuplicate md)
     QColor red(169, 68, 66);
     QColor green(60, 118, 61);
 
-    if (md.imdbId)
+    if (md.imdbId) {
         ui->iconImdbId->setPixmap(font->icon("check", green).pixmap(16, 16));
-    else
+    } else {
         ui->iconImdbId->setPixmap(font->icon("close", red).pixmap(20, 20));
+    }
 
-    if (md.tmdbId)
+    if (md.tmdbId) {
         ui->iconTmdbId->setPixmap(font->icon("check", green).pixmap(16, 16));
-    else
+    } else {
         ui->iconTmdbId->setPixmap(font->icon("close", red).pixmap(20, 20));
+    }
 
-    if (md.title)
+    if (md.title) {
         ui->iconTitle->setPixmap(font->icon("check", green).pixmap(16, 16));
-    else
+    } else {
         ui->iconTitle->setPixmap(font->icon("close", red).pixmap(20, 20));
+    }
 }

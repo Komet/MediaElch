@@ -44,16 +44,18 @@ void SlidingStackedWidget::setWrap(bool wrap)
 void SlidingStackedWidget::slideInNext()
 {
     int now = currentIndex();
-    if (m_wrap || (now < count() - 1))
+    if (m_wrap || (now < count() - 1)) {
         slideInIdx(now + 1);
+    }
 }
 
 
 void SlidingStackedWidget::slideInPrev()
 {
     int now = currentIndex();
-    if (m_wrap || (now > 0))
+    if (m_wrap || (now > 0)) {
         slideInIdx(now - 1);
+    }
 }
 
 void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction)
@@ -70,10 +72,11 @@ void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction)
 
 void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direction)
 {
-    if (m_active)
+    if (m_active) {
         return;
-    else
+    } else {
         m_active = true;
+    }
 
     enum t_direction directionHint;
     int now = currentIndex();
@@ -86,8 +89,9 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     } else {
         directionHint = m_vertical ? BOTTOM2TOP : LEFT2RIGHT;
     }
-    if (direction == AUTOMATIC)
+    if (direction == AUTOMATIC) {
         direction = directionHint;
+    }
 
     int offsetX = frameRect().width();
     int offsetY = frameRect().height();
@@ -149,16 +153,18 @@ void SlidingStackedWidget::animationDoneSlot()
 
 void SlidingStackedWidget::expandToOne()
 {
-    if (m_expanded)
+    if (m_expanded) {
         return;
+    }
 
     m_expanded = true;
 
     setFixedWidth(frameRect().width() * count() + ((count() - 1) * 24));
 
     m_widgets.clear();
-    for (int i = 0, n = count(); i < n; ++i)
+    for (int i = 0, n = count(); i < n; ++i) {
         m_widgets.append(widget(i));
+    }
 
     foreach (QWidget *widget, m_widgets)
         removeWidget(widget);
@@ -179,14 +185,16 @@ void SlidingStackedWidget::expandToOne()
 
 void SlidingStackedWidget::collapse()
 {
-    if (!m_expanded)
+    if (!m_expanded) {
         return;
+    }
 
     m_expanded = false;
 
     QList<QWidget *> widgetsToDelete;
-    for (int i = 0, n = count(); i < n; ++i)
+    for (int i = 0, n = count(); i < n; ++i) {
         widgetsToDelete.append(widget(i));
+    }
 
     setFixedWidth((frameRect().width() - ((m_widgets.count() - 1) * 24)) / m_widgets.count());
 

@@ -82,10 +82,11 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
 void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
 {
     qDebug() << "Entered";
-    if (m_searchResultLimit == 0)
+    if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
-    else
+    } else {
         emit sigSearchDone(results.mid(0, m_searchResultLimit));
+    }
 }
 
 /**
@@ -142,10 +143,11 @@ void TMDbImages::concertBackdrops(QString tmdbId)
 void TMDbImages::onLoadImagesFinished()
 {
     QList<Poster> posters;
-    if (m_imageType == ImageType::MovieBackdrop)
+    if (m_imageType == ImageType::MovieBackdrop) {
         posters = m_dummyMovie->backdrops();
-    else if (m_imageType == ImageType::MoviePoster)
+    } else if (m_imageType == ImageType::MoviePoster) {
         posters = m_dummyMovie->posters();
+    }
 
     emit sigImagesLoaded(posters);
 }

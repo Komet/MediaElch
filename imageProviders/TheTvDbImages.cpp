@@ -92,10 +92,11 @@ void TheTvDbImages::searchTvShow(QString searchStr, int limit)
  */
 void TheTvDbImages::onSearchTvShowFinished(QList<ScraperSearchResult> results)
 {
-    if (m_searchResultLimit == 0)
+    if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
-    else
+    } else {
         emit sigSearchDone(results.mid(0, m_searchResultLimit));
+    }
 }
 
 /**
@@ -117,10 +118,11 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
     infosToLoad.append(TvShowScraperInfos::SeasonBanner);
     infosToLoad.append(TvShowScraperInfos::SeasonBackdrop);
 
-    if (type == ImageType::TvShowEpisodeThumb)
+    if (type == ImageType::TvShowEpisodeThumb) {
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
-    else
+    } else {
         m_dummyShow->loadData(tvdbId, m_tvdb, UpdateShow, infosToLoad);
+    }
 }
 
 /**

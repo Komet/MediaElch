@@ -316,8 +316,9 @@ void KinoDe::parseAndAssignActors(const QString &html, Movie &movie, const QList
 
     if (infos.contains(MovieScraperInfos::Writer)) {
         rx.setPattern("<dt>\\s*<small>Drehbuch</small>(.*)</dt>");
-        if (rx.indexIn(html) != 1)
+        if (rx.indexIn(html) != 1) {
             movie.setWriter(rx.cap(1).trimmed());
+        }
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {

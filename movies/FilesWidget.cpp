@@ -154,8 +154,9 @@ FilesWidget *FilesWidget::instance()
 void FilesWidget::resizeEvent(QResizeEvent *event)
 {
     int scrollBarWidth = 0;
-    if (ui->files->verticalScrollBar()->isVisible())
+    if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();
+    }
     m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->setBottomSpace(ui->sortLabelWidget->height() + 10);
     m_alphaList->adjustSize();
@@ -171,8 +172,9 @@ void FilesWidget::multiScrape()
 {
     m_contextMenu->close();
     QList<Movie *> movies = selectedMovies();
-    if (movies.isEmpty())
+    if (movies.isEmpty()) {
         return;
+    }
 
     if (movies.count() == 1) {
         emit sigStartSearch();
@@ -181,8 +183,9 @@ void FilesWidget::multiScrape()
 
     MovieMultiScrapeDialog::instance()->setMovies(movies);
     int result = MovieMultiScrapeDialog::instance()->exec();
-    if (result == QDialog::Accepted)
+    if (result == QDialog::Accepted) {
         movieSelectedEmitter();
+    }
 }
 
 void FilesWidget::markAsWatched()
@@ -195,13 +198,16 @@ void FilesWidget::markAsWatched()
     foreach (int row, rows) {
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setWatched(true);
-        if (movie->playcount() < 1)
+        if (movie->playcount() < 1) {
             movie->setPlayCount(1);
-        if (!movie->lastPlayed().isValid())
+        }
+        if (!movie->lastPlayed().isValid()) {
             movie->setLastPlayed(QDateTime::currentDateTime());
+        }
     }
-    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0) {
         movieSelectedEmitter();
+    }
 }
 
 void FilesWidget::markAsUnwatched()
@@ -212,13 +218,16 @@ void FilesWidget::markAsUnwatched()
         rows << index.model()->data(index, Qt::UserRole).toInt();
     foreach (int row, rows) {
         Movie *movie = Manager::instance()->movieModel()->movie(row);
-        if (movie->watched())
+        if (movie->watched()) {
             movie->setWatched(false);
-        if (movie->playcount() != 0)
+        }
+        if (movie->playcount() != 0) {
             movie->setPlayCount(0);
+        }
     }
-    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0) {
         movieSelectedEmitter();
+    }
 }
 
 void FilesWidget::loadStreamDetails()
@@ -273,12 +282,14 @@ void FilesWidget::unmarkForSync()
 void FilesWidget::openFolder()
 {
     m_contextMenu->close();
-    if (!ui->files->currentIndex().isValid())
+    if (!ui->files->currentIndex().isValid()) {
         return;
+    }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie *movie = Manager::instance()->movieModel()->movie(row);
-    if (!movie || movie->files().isEmpty())
+    if (!movie || movie->files().isEmpty()) {
         return;
+    }
     QFileInfo fi(movie->files().at(0));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
@@ -286,12 +297,14 @@ void FilesWidget::openFolder()
 void FilesWidget::openNfoFile()
 {
     m_contextMenu->close();
-    if (!ui->files->currentIndex().isValid())
+    if (!ui->files->currentIndex().isValid()) {
         return;
+    }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie *movie = Manager::instance()->movieModel()->movie(row);
-    if (!movie || movie->files().isEmpty())
+    if (!movie || movie->files().isEmpty()) {
         return;
+    }
 
     QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(movie));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absoluteFilePath()));
@@ -323,8 +336,9 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 void FilesWidget::movieSelectedEmitter()
 {
     qDebug() << "Entered";
-    if (m_lastMovie)
+    if (m_lastMovie) {
         emit movieSelected(m_lastMovie);
+    }
 }
 
 /**
@@ -420,8 +434,9 @@ QList<Movie *> FilesWidget::selectedMovies()
         int row = index.model()->data(index, Qt::UserRole).toInt();
         movies.append(Manager::instance()->movieModel()->movie(row));
     }
-    if (movies.isEmpty())
+    if (movies.isEmpty()) {
         movies << m_lastMovie;
+    }
     return movies;
 }
 
@@ -444,13 +459,15 @@ void FilesWidget::setAlphaListData()
     for (int i = 0, n = ui->files->model()->rowCount(); i < n; ++i) {
         QString title = ui->files->model()->data(ui->files->model()->index(i, 0)).toString();
         QString first = title.left(1).toUpper();
-        if (!alphas.contains(first))
+        if (!alphas.contains(first)) {
             alphas.append(first);
+        }
     }
     qSort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
-    if (ui->files->verticalScrollBar()->isVisible())
+    if (ui->files->verticalScrollBar()->isVisible()) {
         scrollBarWidth = ui->files->verticalScrollBar()->width();
+    }
     m_alphaList->setRightSpace(scrollBarWidth + 5);
     m_alphaList->setAlphas(alphas);
 }
@@ -471,18 +488,20 @@ void FilesWidget::scrollToAlpha(QString alpha)
 void FilesWidget::renewModel()
 {
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
-    for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i)
+    for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
+    }
     foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 }
 
 void FilesWidget::onLeftEdge(bool isEdge)
 {
-    if (isEdge && m_mouseIsIn)
+    if (isEdge && m_mouseIsIn) {
         m_alphaList->show();
-    else
+    } else {
         m_alphaList->hide();
+    }
 }
 
 void FilesWidget::selectMovie(Movie *movie)
@@ -496,16 +515,18 @@ void FilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction *>(QObject::sender());
-    if (!action)
+    if (!action) {
         return;
+    }
     action->setChecked(action->isChecked());
 
     MediaStatusColumns col = static_cast<MediaStatusColumns>(action->property("mediaStatusColumn").toInt());
     QList<MediaStatusColumns> columns = Settings::instance()->mediaStatusColumns();
-    if (action->isChecked() && !columns.contains(col))
+    if (action->isChecked() && !columns.contains(col)) {
         columns.append(col);
-    else
+    } else {
         columns.removeAll(col);
+    }
     Settings::instance()->setMediaStatusColumns(columns);
     Settings::instance()->saveSettings();
     renewModel();
@@ -515,8 +536,9 @@ void FilesWidget::onLabel()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction *>(QObject::sender());
-    if (!action)
+    if (!action) {
         return;
+    }
 
     int color = action->property("color").toInt();
     foreach (Movie *movie, selectedMovies()) {
@@ -529,18 +551,21 @@ void FilesWidget::onViewUpdated()
 {
     int movieCount = Manager::instance()->movieModel()->rowCount();
     int visibleCount = m_movieProxyModel->rowCount();
-    if (movieCount == visibleCount)
+    if (movieCount == visibleCount) {
         ui->statusLabel->setText(tr("%n movies", "", movieCount));
-    else
+    } else {
         ui->statusLabel->setText(tr("%1 of %n movies", "", movieCount).arg(visibleCount));
+    }
 }
 
 void FilesWidget::playMovie(QModelIndex idx)
 {
-    if (!idx.isValid())
+    if (!idx.isValid()) {
         return;
+    }
     QString fileName = m_movieProxyModel->data(idx, Qt::UserRole + 7).toString();
-    if (fileName.isEmpty())
+    if (fileName.isEmpty()) {
         return;
+    }
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }

@@ -181,22 +181,26 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
     rx.setMinimal(true);
 
     rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
+    }
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(rx.cap(2).toInt());
+    }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"datePublished\" content=\"([0-9]{4})(.*)\">");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
+    }
 
     rx.setPattern("<span itemprop=\"about\">(.*)</span>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(rx.cap(1));
-        if (Settings::instance()->usePlotForOutline())
+        if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(rx.cap(1));
+        }
     }
 
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img "
@@ -210,17 +214,20 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
     }
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         movie->setSet(rx.cap(2));
+    }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"director\" itemscope "
                   "itemtype=\"http://schema.org/Person\">(.*)<a href=\"(.*)\" itemprop=\"name\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(3));
+    }
 
     rx.setPattern("<a href=\"(.*)\" itemprop=\"productionCompany\">(.*)</a>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
         movie->addStudio(rx.cap(2));
+    }
 
     if (infos.contains(MovieScraperInfos::Genres)) {
         int offset = 0;
@@ -260,14 +267,16 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
                     break;
                 }
             }
-            if (skip)
+            if (skip) {
                 continue;
+            }
             Actor a;
             a.name = rx.cap(5);
             a.id = rx.cap(2);
             movie->addActor(a);
-            if (Settings::instance()->downloadActorImages() && !actorIds.contains(rx.cap(2)))
+            if (Settings::instance()->downloadActorImages() && !actorIds.contains(rx.cap(2))) {
                 actorIds.append(rx.cap(2));
+            }
         }
 
         offset = 0;
@@ -282,8 +291,9 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
                     break;
                 }
             }
-            if (skip)
+            if (skip) {
                 continue;
+            }
 
             Actor a;
             a.name = rx.cap(2);
@@ -335,8 +345,9 @@ void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
         foreach (Actor *a, movie->actorsPointer()) {
-            if (a->id == id)
+            if (a->id == id) {
                 a->thumb = QString("https:") + rx.cap(1);
+            }
         }
     }
 }
@@ -350,8 +361,9 @@ void AEBN::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/AEBN/Language", "en").toString();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language)
+        if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
+        }
     }
 }
 

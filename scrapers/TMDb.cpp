@@ -574,8 +574,9 @@ void TMDb::loadImagesFinished()
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!movie)
+    if (!movie) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());

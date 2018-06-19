@@ -17,10 +17,11 @@ MyLabel::MyLabel(QWidget *parent) : QLabel(parent), m_season{-2}, m_imageSet{fal
 void MyLabel::mousePressEvent(QMouseEvent *ev)
 {
     if (ev->button() == Qt::LeftButton) {
-        if (m_season != -2)
+        if (m_season != -2) {
             emit seasonClicked(m_season);
-        else
+        } else {
             emit clicked();
+        }
     }
     QLabel::mousePressEvent(ev);
 }

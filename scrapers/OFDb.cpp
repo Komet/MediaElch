@@ -107,10 +107,11 @@ void OFDb::search(QString searchStr)
 
     QUrl url;
     QRegExp rxId("^id\\d+$");
-    if (rxId.exactMatch(searchStr))
+    if (rxId.exactMatch(searchStr)) {
         url.setUrl(QString("http://www.ofdbgw.org/movie/%1").arg(searchStr.mid(2)).toUtf8());
-    else
+    } else {
         url.setUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
+    }
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
@@ -186,23 +187,28 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
         QDomElement entry = domDoc.elementsByTagName("resultat").at(0).toElement();
         ScraperSearchResult result;
         result.id = searchStr.mid(2);
-        if (entry.elementsByTagName("titel").size() > 0)
+        if (entry.elementsByTagName("titel").size() > 0) {
             result.name = entry.elementsByTagName("titel").at(0).toElement().text();
-        if (entry.elementsByTagName("jahr").size() > 0)
+        }
+        if (entry.elementsByTagName("jahr").size() > 0) {
             result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
+        }
         results.append(result);
     } else {
         for (int i = 0, n = domDoc.elementsByTagName("eintrag").size(); i < n; i++) {
             QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
             if (entry.elementsByTagName("id").size() == 0
-                || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
+                || entry.elementsByTagName("id").at(0).toElement().text().isEmpty()) {
                 continue;
+            }
             ScraperSearchResult result;
             result.id = entry.elementsByTagName("id").at(0).toElement().text();
-            if (entry.elementsByTagName("titel").size() > 0)
+            if (entry.elementsByTagName("titel").size() > 0) {
                 result.name = entry.elementsByTagName("titel").at(0).toElement().text();
-            if (entry.elementsByTagName("jahr").size() > 0)
+            }
+            if (entry.elementsByTagName("jahr").size() > 0) {
                 result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
+            }
             results.append(result);
         }
     }
@@ -241,8 +247,9 @@ void OFDb::loadFinished()
     QString ofdbId = reply->property("ofdbId").toString();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
-    if (!movie)
+    if (!movie) {
         return;
+    }
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
@@ -294,10 +301,11 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 
     xml.readNextStartElement();
     while (xml.readNextStartElement()) {
-        if (xml.name() != "resultat")
+        if (xml.name() != "resultat") {
             xml.skipCurrentElement();
-        else
+        } else {
             break;
+        }
     }
 
     while (xml.readNextStartElement()) {
@@ -313,17 +321,19 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
             movie->addPoster(p);
         } else if (infos.contains(MovieScraperInfos::Rating) && xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "note")
+                if (xml.name() == "note") {
                     movie->setRating(xml.readElementText().toFloat());
-                else
+                } else {
                     xml.skipCurrentElement();
+                }
             }
         } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "titel")
+                if (xml.name() == "titel") {
                     movie->addGenre(Helper::instance()->mapGenre(xml.readElementText()));
-                else
+                } else {
                     xml.skipCurrentElement();
+                }
             }
         } else if (infos.contains(MovieScraperInfos::Actors) && xml.name() == "besetzung") {
             while (xml.readNextStartElement()) {
@@ -332,29 +342,32 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
                 } else {
                     Actor actor;
                     while (xml.readNextStartElement()) {
-                        if (xml.name() == "name")
+                        if (xml.name() == "name") {
                             actor.name = xml.readElementText();
-                        else if (xml.name() == "rolle")
+                        } else if (xml.name() == "rolle") {
                             actor.role = xml.readElementText();
-                        else
+                        } else {
                             xml.skipCurrentElement();
+                        }
                     }
                     movie->addActor(actor);
                 }
             }
         } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
-                if (xml.name() == "name")
+                if (xml.name() == "name") {
                     movie->addCountry(Helper::instance()->mapCountry(xml.readElementText()));
-                else
+                } else {
                     xml.skipCurrentElement();
+                }
             }
         } else if (infos.contains(MovieScraperInfos::Title) && xml.name() == "alternativ") {
             movie->setOriginalName(xml.readElementText());
         } else if (infos.contains(MovieScraperInfos::Overview) && xml.name() == "beschreibung") {
             movie->setOverview(xml.readElementText());
-            if (Settings::instance()->usePlotForOutline())
+            if (Settings::instance()->usePlotForOutline()) {
                 movie->setOutline(xml.readElementText());
+            }
         } else {
             xml.skipCurrentElement();
         }

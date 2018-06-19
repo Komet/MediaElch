@@ -107,8 +107,9 @@ void Renamer::reject()
         ui->chkSeasonDirectories->isChecked());
 
     QDialog::reject();
-    if (m_filesRenamed)
+    if (m_filesRenamed) {
         QTimer::singleShot(0, this, &Renamer::onRenamed);
+    }
 }
 
 void Renamer::onRenamed()
@@ -238,12 +239,14 @@ void Renamer::renameMovies(QList<Movie *> movies,
     const bool &renameDirectories,
     const bool &dryRun)
 {
-    if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty()))
+    if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty())) {
         return;
+    }
 
     foreach (Movie *movie, movies) {
-        if (movie->files().isEmpty() || (movie->files().count() > 1 && filePatternMulti.isEmpty()))
+        if (movie->files().isEmpty() || (movie->files().count() > 1 && filePatternMulti.isEmpty())) {
             continue;
+        }
 
         if (movie->hasChanged()) {
             ui->results->append(tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
@@ -338,14 +341,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                             int row = addResult(trailer.fileName(), newTrailerFileName, OperationRename);
                             if (!dryRun) {
                                 if (!rename(fi.canonicalPath() + "/" + trailerFile,
-                                        fi.canonicalPath() + "/" + newTrailerFileName))
+                                        fi.canonicalPath() + "/" + newTrailerFileName)) {
                                     setResultStatus(row, RenameFailed);
-                                else
+                                } else {
                                     FilmFiles.append(newTrailerFileName);
-                            } else
+                                }
+                            } else {
                                 FilmFiles.append(newTrailerFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(trailer.fileName());
+                        }
                     }
 
                     /*
@@ -368,10 +374,12 @@ void Renamer::renameMovies(QList<Movie *> movies,
 
                     foreach (Subtitle *subtitle, movie->subtitles()) {
                         QString subFileName = QFileInfo(newFileName).completeBaseName();
-                        if (!subtitle->language().isEmpty())
+                        if (!subtitle->language().isEmpty()) {
                             subFileName.append("." + subtitle->language());
-                        if (subtitle->forced())
+                        }
+                        if (subtitle->forced()) {
                             subFileName.append(".forced");
+                        }
 
                         QStringList newSubFiles;
                         foreach (const QString &subFile, subtitle->files()) {
@@ -391,8 +399,9 @@ void Renamer::renameMovies(QList<Movie *> movies,
                                 FilmFiles.append(newSubFileName);
                             }
                         }
-                        if (!dryRun)
+                        if (!dryRun) {
                             subtitle->setFiles(newSubFiles, false);
+                        }
                     }
                 } else {
                     FilmFiles.append(fi.fileName());
@@ -410,14 +419,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newNfoFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newNfoFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(nfoFileName);
+                    }
                 }
             }
 
@@ -432,14 +444,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName))
+                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newPosterFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newPosterFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(posterFileName);
+                    }
                 }
             }
 
@@ -454,14 +469,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
+                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newFanartFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newFanartFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(fanartFileName);
+                    }
                 }
             }
 
@@ -476,14 +494,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newBannerFileName != bannerFileName) {
                         int row = addResult(bannerFileName, newBannerFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(banner, fiCanonicalPath + "/" + newBannerFileName))
+                            if (!rename(banner, fiCanonicalPath + "/" + newBannerFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newBannerFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newBannerFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(bannerFileName);
+                    }
                 }
             }
 
@@ -498,14 +519,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newThumbFileName != thumbFileName) {
                         int row = addResult(thumbFileName, newThumbFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(thumb, fiCanonicalPath + "/" + newThumbFileName))
+                            if (!rename(thumb, fiCanonicalPath + "/" + newThumbFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newThumbFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newThumbFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(thumbFileName);
+                    }
                 }
             }
 
@@ -520,14 +544,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newLogoFileName != logoFileName) {
                         int row = addResult(logoFileName, newLogoFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(logo, fiCanonicalPath + "/" + newLogoFileName))
+                            if (!rename(logo, fiCanonicalPath + "/" + newLogoFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newLogoFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newLogoFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(logoFileName);
+                    }
                 }
             }
 
@@ -542,14 +569,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newClearArtFileName != clearArtFileName) {
                         int row = addResult(clearArtFileName, newClearArtFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(clearArt, fiCanonicalPath + "/" + newClearArtFileName))
+                            if (!rename(clearArt, fiCanonicalPath + "/" + newClearArtFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newClearArtFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newClearArtFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(clearArtFileName);
+                    }
                 }
             }
 
@@ -564,14 +594,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     if (newCdArtFileName != cdArtFileName) {
                         int row = addResult(cdArtFileName, newCdArtFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(cdArt, fiCanonicalPath + "/" + newCdArtFileName))
+                            if (!rename(cdArt, fiCanonicalPath + "/" + newCdArtFileName)) {
                                 setResultStatus(row, RenameFailed);
-                            else
+                            } else {
                                 FilmFiles.append(newCdArtFileName);
-                        } else
+                            }
+                        } else {
                             FilmFiles.append(newCdArtFileName);
-                    } else
+                        }
+                    } else {
                         FilmFiles.append(cdArtFileName);
+                    }
                 }
             }
         }
@@ -601,8 +634,9 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
-            if (dir.dirName() != newFolderName)
+            if (dir.dirName() != newFolderName) {
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
+            }
         }
         // create dir for new dir structure
         else if (renameDirectories) {
@@ -655,8 +689,9 @@ void Renamer::renameMovies(QList<Movie *> movies,
                                                 .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
                         if (!dryRun) {
                             if (!rename(dir.absolutePath() + "/" + fileName,
-                                    dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
+                                    dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName())) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -675,15 +710,17 @@ void Renamer::renameMovies(QList<Movie *> movies,
             }
         }
 
-        if (errorOccured)
+        if (errorOccured) {
             m_renameErrorOccured = true;
+        }
 
         if (!errorOccured && !dryRun) {
             QStringList files;
             foreach (const QString &file, newMovieFiles) {
                 QString f = newMovieFolder;
-                if (isBluRay || isDvd)
+                if (isBluRay || isDvd) {
                     f += "/" + parentDirName;
+                }
                 f += "/" + file;
                 files << f;
             }
@@ -701,15 +738,17 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
     const bool &useSeasonDirectories,
     const bool &dryRun)
 {
-    if (renameFiles && filePattern.isEmpty())
+    if (renameFiles && filePattern.isEmpty()) {
         return;
+    }
 
     QList<TvShowEpisode *> episodesRenamed;
 
     foreach (TvShowEpisode *episode, episodes) {
         if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty())
-            || episodesRenamed.contains(episode))
+            || episodesRenamed.contains(episode)) {
             continue;
+        }
 
         if (episode->hasChanged()) {
             ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->name()));
@@ -826,8 +865,9 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -844,8 +884,9 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                     if (newThumbnailFileName != thumbnailFileName) {
                         int row = addResult(thumbnailFileName, newThumbnailFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName))
+                            if (!rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -869,15 +910,17 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
             if (!seasonDir.exists()) {
                 int row = addResult(seasonDirName, "", OperationCreateDir);
                 if (!dryRun) {
-                    if (!showDir.mkdir(seasonDirName))
+                    if (!showDir.mkdir(seasonDirName)) {
                         setResultStatus(row, RenameFailed);
+                    }
                 }
             }
 
             if (isBluRay || isDvd || isDvdWithoutSub) {
                 QDir dir = fi.dir();
-                if (isDvd || isBluRay)
+                if (isDvd || isBluRay) {
                     dir.cdUp();
+                }
 
                 QDir parentDir = dir;
                 parentDir.cdUp();
@@ -920,16 +963,18 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
                     int row = addResult(newNfoFileName, seasonDirName, OperationMove);
                     if (!dryRun) {
-                        if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))
+                        if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName)) {
                             setResultStatus(row, RenameFailed);
+                        }
                     }
                 }
                 if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
                     int row = addResult(newThumbnailFileName, seasonDirName, OperationMove);
                     if (!dryRun) {
                         if (!rename(fiCanonicalPath + "/" + newThumbnailFileName,
-                                seasonDir.path() + "/" + newThumbnailFileName))
+                                seasonDir.path() + "/" + newThumbnailFileName)) {
                             setResultStatus(row, RenameFailed);
+                        }
                     }
                 }
             }
@@ -942,8 +987,9 @@ void Renamer::renameShows(QList<TvShow *> shows,
     const bool &renameDirectories,
     const bool &dryRun)
 {
-    if ((renameDirectories && directoryPattern.isEmpty()) || !renameDirectories)
+    if ((renameDirectories && directoryPattern.isEmpty()) || !renameDirectories) {
         return;
+    }
 
     foreach (TvShow *show, shows) {
         if (show->hasChanged()) {
@@ -991,12 +1037,14 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
     const bool &renameDirectories,
     const bool &dryRun)
 {
-    if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty()))
+    if ((renameFiles && filePattern.isEmpty()) || (renameDirectories && directoryPattern.isEmpty())) {
         return;
+    }
 
     foreach (Concert *concert, concerts) {
-        if (concert->files().isEmpty() || (concert->files().count() > 1 && filePatternMulti.isEmpty()))
+        if (concert->files().isEmpty() || (concert->files().count() > 1 && filePatternMulti.isEmpty())) {
             continue;
+        }
 
         if (concert->hasChanged()) {
             ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->name()));
@@ -1083,8 +1131,9 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                         int row = addResult(subFileName, newSubName, OperationRename);
                         if (!dryRun) {
                             if (!rename(currentDir.canonicalPath() + "/" + subFileName,
-                                    currentDir.canonicalPath() + "/" + newSubName))
+                                    currentDir.canonicalPath() + "/" + newSubName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 } else {
@@ -1103,8 +1152,9 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     if (newNfoFileName != nfoFileName) {
                         int row = addResult(nfoFileName, newNfoFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -1121,8 +1171,9 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     if (newPosterFileName != posterFileName) {
                         int row = addResult(posterFileName, newPosterFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName))
+                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -1139,8 +1190,9 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     if (newFanartFileName != fanartFileName) {
                         int row = addResult(fanartFileName, newFanartFileName, OperationRename);
                         if (!dryRun) {
-                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
+                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName)) {
                                 setResultStatus(row, RenameFailed);
+                            }
                         }
                     }
                 }
@@ -1166,8 +1218,9 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     concert->streamDetails()->videoDetails().value("height").toInt(),
                     concert->streamDetails()->videoDetails().value("scantype")));
             Helper::instance()->sanitizeFileName(newFolderName);
-            if (dir.dirName() != newFolderName)
+            if (dir.dirName() != newFolderName) {
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
+            }
         }
 
         QString newConcertFolder = dir.path();
@@ -1182,15 +1235,17 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
             }
         }
 
-        if (errorOccured)
+        if (errorOccured) {
             m_renameErrorOccured = true;
+        }
 
         if (!errorOccured && !dryRun) {
             QStringList files;
             foreach (const QString &file, newConcertFiles) {
                 QString f = newConcertFolder;
-                if (isBluRay || isDvd)
+                if (isBluRay || isDvd) {
                     f += "/" + parentDirName;
+                }
                 f += "/" + file;
                 files << f;
             }
@@ -1203,16 +1258,19 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
 bool Renamer::rename(const QString &file, const QString &newName)
 {
     QFile f(file);
-    if (!f.exists())
+    if (!f.exists()) {
         return false;
+    }
 
     QFile newFile(newName);
-    if (newFile.exists() && QString::compare(file, newName, Qt::CaseInsensitive) != 0)
+    if (newFile.exists() && QString::compare(file, newName, Qt::CaseInsensitive) != 0) {
         return false;
+    }
 
     if (newFile.exists()) {
-        if (!f.rename(newName + ".tmp"))
+        if (!f.rename(newName + ".tmp")) {
             return false;
+        }
         return f.rename(newName);
     } else {
         return f.rename(newName);
@@ -1223,8 +1281,9 @@ bool Renamer::rename(QDir &dir, QString newName)
 {
     if (QString::compare(dir.path(), newName, Qt::CaseInsensitive) == 0) {
         QDir tmpDir;
-        if (!tmpDir.rename(dir.path(), dir.path() + "tmp"))
+        if (!tmpDir.rename(dir.path(), dir.path() + "tmp")) {
             return false;
+        }
         return tmpDir.rename(dir.path() + "tmp", newName);
     } else {
         QDir tmpDir;
@@ -1242,8 +1301,9 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, const
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
-    if (rx.indexIn(text) == -1)
+    if (rx.indexIn(text) == -1) {
         return Renamer::replace(text, condition, replace);
+    }
 
     QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
     text.replace(search, !replace.isEmpty() ? rx.cap(1) : "");
@@ -1254,8 +1314,9 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, bool 
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
-    if (rx.indexIn(text) == -1)
+    if (rx.indexIn(text) == -1) {
         return text;
+    }
 
     QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
     text.replace(search, hasCondition ? rx.cap(1) : "");

@@ -202,8 +202,9 @@ void MusicWidgetArtist::onSaveInformation()
 
 void MusicWidgetArtist::onStartScraperSearch()
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     emit sigSetActionSearchEnabled(false, MainWidgets::Music);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
@@ -224,8 +225,9 @@ void MusicWidgetArtist::onStartScraperSearch()
 void MusicWidgetArtist::updateArtistInfo()
 {
     onClear();
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     ui->artistName->setText(m_artist->name());
     setContent(ui->path, m_artist->path());
@@ -278,51 +280,57 @@ void MusicWidgetArtist::updateImage(int imageType, ClosableImage *image)
         image->setImage(m_artist->rawImage(imageType));
     } else if (!m_artist->imagesToRemove().contains(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, imageType);
-        if (!imgFileName.isEmpty())
+        if (!imgFileName.isEmpty()) {
             image->setImage(imgFileName);
+        }
     }
 }
 
 void MusicWidgetArtist::onItemChanged(QString text)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     auto lineEdit = static_cast<QLineEdit *>(sender());
-    if (!lineEdit)
+    if (!lineEdit) {
         return;
+    }
 
     QString property = lineEdit->property("item").toString();
-    if (property == "name")
+    if (property == "name") {
         m_artist->setName(text);
-    else if (property == "born")
+    } else if (property == "born") {
         m_artist->setBorn(text);
-    else if (property == "formed")
+    } else if (property == "formed") {
         m_artist->setFormed(text);
-    else if (property == "yearsActive")
+    } else if (property == "yearsActive") {
         m_artist->setYearsActive(text);
-    else if (property == "disbanded")
+    } else if (property == "disbanded") {
         m_artist->setDisbanded(text);
-    else if (property == "died")
+    } else if (property == "died") {
         m_artist->setDied(text);
-    else if (property == "mbid")
+    } else if (property == "mbid") {
         m_artist->setMbId(text);
+    }
 
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onBiographyChanged()
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
     m_artist->setBiography(ui->biography->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onRevertChanges()
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     m_artist->clearImages();
     m_artist->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -331,53 +339,60 @@ void MusicWidgetArtist::onRevertChanges()
 
 void MusicWidgetArtist::onAddCloudItem(QString text)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     QString property = sender()->property("item").toString();
-    if (property == "genre")
+    if (property == "genre") {
         m_artist->addGenre(text);
-    else if (property == "style")
+    } else if (property == "style") {
         m_artist->addStyle(text);
-    else if (property == "mood")
+    } else if (property == "mood") {
         m_artist->addMood(text);
+    }
 
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onRemoveCloudItem(QString text)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     QString property = sender()->property("item").toString();
-    if (property == "genre")
+    if (property == "genre") {
         m_artist->removeGenre(text);
-    else if (property == "style")
+    } else if (property == "style") {
         m_artist->removeStyle(text);
-    else if (property == "mood")
+    } else if (property == "mood") {
         m_artist->removeMood(text);
+    }
 
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onChooseImage()
 {
-    if (m_artist == nullptr)
+    if (m_artist == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(image->imageType());
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setArtist(m_artist);
 
-    if (!m_artist->images(image->imageType()).isEmpty())
+    if (!m_artist->images(image->imageType()).isEmpty()) {
         ImageDialog::instance()->setDownloads(m_artist->images(image->imageType()));
-    else
+    } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
+    }
 
     ImageDialog::instance()->exec(image->imageType());
 
@@ -390,12 +405,14 @@ void MusicWidgetArtist::onChooseImage()
 
 void MusicWidgetArtist::onDeleteImage()
 {
-    if (m_artist == nullptr)
+    if (m_artist == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     m_artist->removeImage(image->imageType());
     updateImage(image->imageType(), image);
@@ -404,8 +421,9 @@ void MusicWidgetArtist::onDeleteImage()
 
 void MusicWidgetArtist::onImageDropped(int imageType, QUrl imageUrl)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
     m_artist->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
@@ -413,8 +431,9 @@ void MusicWidgetArtist::onImageDropped(int imageType, QUrl imageUrl)
 
 void MusicWidgetArtist::onInfoLoadDone(Artist *artist)
 {
-    if (m_artist != artist)
+    if (m_artist != artist) {
         return;
+    }
 
     updateArtistInfo();
     ui->buttonRevert->setVisible(true);
@@ -425,8 +444,9 @@ void MusicWidgetArtist::onLoadDone(Artist *artist)
 {
     emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId + artist->databaseId());
 
-    if (m_artist != artist)
+    if (m_artist != artist) {
         return;
+    }
 
     ui->fanarts->setLoading(false);
     onSetEnabled(true);
@@ -440,18 +460,21 @@ void MusicWidgetArtist::onDownloadProgress(Artist *artist, int current, int maxi
 
 void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
 {
-    if (m_artist != artist)
+    if (m_artist != artist) {
         return;
+    }
 
     foreach (const int &imageType, imageTypes) {
         foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
-            if (cImage->imageType() == imageType)
+            if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
+            }
         }
     }
 
-    if (imageTypes.contains(ImageType::ArtistExtraFanart))
+    if (imageTypes.contains(ImageType::ArtistExtraFanart)) {
         ui->fanarts->setLoading(true);
+    }
 
     ui->groupBox_3->update();
 }
@@ -464,8 +487,9 @@ void MusicWidgetArtist::onLoadImagesStarted(Artist *artist)
 
 void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
 {
-    if (artist != m_artist)
+    if (artist != m_artist) {
         return;
+    }
 
     if (type == ImageType::ArtistExtraFanart) {
         ui->fanarts->addImage(data);
@@ -482,24 +506,27 @@ void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
 
 void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray &image)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
     m_artist->removeExtraFanart(image);
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onRemoveExtraFanart(const QString &file)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
     m_artist->removeExtraFanart(file);
     ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onAddExtraFanart()
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(ImageType::ArtistExtraFanart);
     ImageDialog::instance()->clear();
@@ -518,8 +545,9 @@ void MusicWidgetArtist::onAddExtraFanart()
 
 void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
     ui->fanarts->setLoading(true);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
     m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QList<QUrl>() << imageUrl);
@@ -528,8 +556,9 @@ void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 
 void MusicWidgetArtist::onAddAlbum()
 {
-    if (!m_artist)
+    if (!m_artist) {
         return;
+    }
 
     DiscographyAlbum a;
     a.title = tr("Unknown Album");
@@ -552,12 +581,14 @@ void MusicWidgetArtist::onAddAlbum()
 void MusicWidgetArtist::onRemoveAlbum()
 {
     int row = ui->discography->currentRow();
-    if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected())
+    if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected()) {
         return;
+    }
 
     auto album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
-    if (!album)
+    if (!album) {
         return;
+    }
     m_artist->removeDiscographyAlbum(album);
     ui->discography->blockSignals(true);
     ui->discography->removeRow(row);
@@ -568,10 +599,11 @@ void MusicWidgetArtist::onRemoveAlbum()
 void MusicWidgetArtist::onAlbumEdited(QTableWidgetItem *item)
 {
     auto album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum *>();
-    if (item->column() == 0)
+    if (item->column() == 0) {
         album->title = item->text();
-    else if (item->column() == 1)
+    } else if (item->column() == 1) {
         album->year = item->text();
+    }
     m_artist->setHasChanged(true);
     ui->buttonRevert->setVisible(true);
 }

@@ -46,8 +46,9 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->chkDiscography->setMyData(MusicScraperInfos::Discography);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkToggled);
+        }
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkAllToggled);
     connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onStartScraping);
@@ -61,8 +62,9 @@ MusicMultiScrapeDialog::~MusicMultiScrapeDialog()
 MusicMultiScrapeDialog *MusicMultiScrapeDialog::instance(QWidget *parent)
 {
     static MusicMultiScrapeDialog *m_instance = nullptr;
-    if (m_instance == nullptr)
+    if (m_instance == nullptr) {
         m_instance = new MusicMultiScrapeDialog(parent);
+    }
     return m_instance;
 }
 
@@ -76,10 +78,12 @@ void MusicMultiScrapeDialog::onChkToggled()
             allToggled = false;
             continue;
         }
-        if (box->property("type").toString() == "artist" || box->property("type").toString() == "both")
+        if (box->property("type").toString() == "artist" || box->property("type").toString() == "both") {
             m_artistInfosToLoad.append(box->myData().toInt());
-        if (box->property("type").toString() == "album" || box->property("type").toString() == "both")
+        }
+        if (box->property("type").toString() == "album" || box->property("type").toString() == "both") {
             m_albumInfosToLoad.append(box->myData().toInt());
+        }
     }
     ui->chkUnCheckAll->setChecked(allToggled);
     ui->btnStartScraping->setEnabled(!m_albumInfosToLoad.isEmpty() || !m_artistInfosToLoad.isEmpty());
@@ -88,8 +92,9 @@ void MusicMultiScrapeDialog::onChkToggled()
 void MusicMultiScrapeDialog::onChkAllToggled(bool toggled)
 {
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             box->setChecked(toggled);
+        }
     }
     onChkToggled();
 }
@@ -133,10 +138,12 @@ void MusicMultiScrapeDialog::reject()
 {
     disconnectScrapers();
     m_executed = false;
-    if (m_currentAlbum)
+    if (m_currentAlbum) {
         m_currentAlbum->controller()->abortDownloads();
-    if (m_currentArtist)
+    }
+    if (m_currentArtist) {
         m_currentArtist->controller()->abortDownloads();
+    }
     m_queue.clear();
     QDialog::reject();
 }
@@ -212,14 +219,17 @@ void MusicMultiScrapeDialog::onScrapingFinished()
 
 void MusicMultiScrapeDialog::scrapeNext()
 {
-    if (!isExecuted())
+    if (!isExecuted()) {
         return;
+    }
 
-    if (m_currentAlbum && ui->chkAutoSave->isChecked())
+    if (m_currentAlbum && ui->chkAutoSave->isChecked()) {
         m_currentAlbum->controller()->saveData(Manager::instance()->mediaCenterInterface());
+    }
 
-    if (m_currentArtist && ui->chkAutoSave->isChecked())
+    if (m_currentArtist && ui->chkAutoSave->isChecked()) {
         m_currentArtist->controller()->saveData(Manager::instance()->mediaCenterInterface());
+    }
 
     if (m_queue.isEmpty()) {
         onScrapingFinished();
@@ -282,25 +292,28 @@ void MusicMultiScrapeDialog::scrapeNext()
 
 void MusicMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results)
 {
-    if (!isExecuted())
+    if (!isExecuted()) {
         return;
+    }
     if (results.isEmpty()) {
         scrapeNext();
         return;
     }
 
-    if (m_currentArtist)
+    if (m_currentArtist) {
         m_currentArtist->controller()->loadData(results.first().id, m_scraperInterface, m_artistInfosToLoad);
-    else if (m_currentAlbum)
+    } else if (m_currentAlbum) {
         m_currentAlbum->controller()->loadData(
             results.first().id, results.first().id2, m_scraperInterface, m_albumInfosToLoad);
+    }
 }
 
 void MusicMultiScrapeDialog::onProgress(Artist *artist, int current, int maximum)
 {
     Q_UNUSED(artist);
-    if (!isExecuted())
+    if (!isExecuted()) {
         return;
+    }
     ui->progressItem->setValue(maximum - current);
     ui->progressItem->setMaximum(maximum);
 }
@@ -308,8 +321,9 @@ void MusicMultiScrapeDialog::onProgress(Artist *artist, int current, int maximum
 void MusicMultiScrapeDialog::onProgress(Album *album, int current, int maximum)
 {
     Q_UNUSED(album);
-    if (!isExecuted())
+    if (!isExecuted()) {
         return;
+    }
     ui->progressItem->setValue(maximum - current);
     ui->progressItem->setMaximum(maximum);
 }

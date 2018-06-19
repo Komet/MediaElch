@@ -50,8 +50,9 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->chkDiscography->setMyData(MusicScraperInfos::Discography);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MusicSearchWidget::chkToggled);
+        }
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
@@ -79,17 +80,19 @@ void MusicSearchWidget::clear()
 void MusicSearchWidget::search()
 {
     int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->musicScrapers().size())
+    if (index < 0 || index >= Manager::instance()->musicScrapers().size()) {
         return;
+    }
     m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
     setChkBoxesEnabled(Manager::instance()->musicScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    if (m_type == "artist")
+    if (m_type == "artist") {
         Manager::instance()->musicScrapers().at(m_scraperNo)->searchArtist(ui->searchString->text());
-    else if (m_type == "album")
+    } else if (m_type == "album") {
         Manager::instance()->musicScrapers().at(m_scraperNo)->searchAlbum(m_artistName, ui->searchString->text());
+    }
 }
 
 void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
@@ -101,8 +104,9 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
     foreach (const ScraperSearchResult &result, results) {
         auto label = new MyLabel(ui->results);
         QString name = result.name;
-        if (result.released.isValid())
+        if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+        }
 
         label->setText(name + "<br /><span style=\"color: #999999;\">" + result.id + "</span>");
         label->setMargin(8);
@@ -129,8 +133,9 @@ void MusicSearchWidget::resultClicked(QTableWidgetItem *item)
 
 void MusicSearchWidget::resultClicked(int row)
 {
-    if (row < 0 || row >= ui->results->rowCount())
+    if (row < 0 || row >= ui->results->rowCount()) {
         return;
+    }
     resultClicked(ui->results->item(row, 0));
 }
 
@@ -139,10 +144,12 @@ void MusicSearchWidget::chkToggled()
     m_infosToLoad.clear();
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden())
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             m_infosToLoad.append(box->myData().toInt());
-        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden())
+        }
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             allToggled = false;
+        }
     }
     ui->chkUnCheckAll->setChecked(allToggled);
 
@@ -153,8 +160,9 @@ void MusicSearchWidget::chkToggled()
 void MusicSearchWidget::chkAllToggled(bool toggled)
 {
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden())
+        if (box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             box->setChecked(toggled);
+        }
     }
     chkToggled();
 }

@@ -43,15 +43,18 @@ void AlphabeticalList::paintEvent(QPaintEvent *event)
 
 void AlphabeticalList::show()
 {
-    if (m_outAnim)
+    if (m_outAnim) {
         m_outAnim->stop();
+    }
 
-    if (pos().x() == m_leftSpace)
+    if (pos().x() == m_leftSpace) {
         return;
+    }
 
     int duration = m_animDuration;
-    if (width() + m_leftSpace != 0)
+    if (width() + m_leftSpace != 0) {
         duration *= 1 - ((pos().x() + width()) / (width() + m_leftSpace));
+    }
 
     m_inAnim = new QPropertyAnimation(this, "pos");
     m_inAnim->setDuration(duration);
@@ -62,15 +65,18 @@ void AlphabeticalList::show()
 
 void AlphabeticalList::hide()
 {
-    if (m_inAnim)
+    if (m_inAnim) {
         m_inAnim->stop();
+    }
 
-    if (pos().x() == -width())
+    if (pos().x() == -width()) {
         return;
+    }
 
     int duration = m_animDuration;
-    if (width() + m_leftSpace != 0)
+    if (width() + m_leftSpace != 0) {
         duration *= (pos().x() + width()) / (width() + m_leftSpace);
+    }
 
     m_outAnim = new QPropertyAnimation(this, "pos");
     m_outAnim->setDuration(duration);
@@ -113,8 +119,9 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 void AlphabeticalList::onAlphaClicked()
 {
     auto button = static_cast<QToolButton *>(sender());
-    if (!button)
+    if (!button) {
         return;
+    }
     emit sigAlphaClicked(button->text());
 }
 

@@ -112,8 +112,9 @@ int TrailerDialog::exec()
 
 void TrailerDialog::reject()
 {
-    if (m_downloadInProgress)
+    if (m_downloadInProgress) {
         cancelDownload();
+    }
     m_mediaPlayer->stop();
     m_mediaPlayer->setMedia(QMediaContent());
     m_videoWidget->hide();
@@ -135,8 +136,9 @@ void TrailerDialog::search()
 
 void TrailerDialog::showResults(QList<ScraperSearchResult> results)
 {
-    if (results.count() != 1)
+    if (results.count() != 1) {
         ui->stackedWidget->slideInIdx(0);
+    }
 
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
@@ -185,8 +187,9 @@ void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
         ui->trailers->setCellWidget(row, 0, trailerPreview);
         ui->trailers->setItem(row, 1, new QTableWidgetItem(trailer.language));
         ui->trailers->setItem(row, 2, item);
-        if (!trailer.language.isEmpty())
+        if (!trailer.language.isEmpty()) {
             hasLanguage = true;
+        }
     }
     ui->trailers->setColumnHidden(0, !hasPreview);
     ui->trailers->setColumnHidden(1, !hasLanguage);
@@ -195,11 +198,13 @@ void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
 void TrailerDialog::trailerClicked(QTableWidgetItem *item)
 {
     int row = item->row();
-    if (row < 0 || row >= ui->trailers->rowCount())
+    if (row < 0 || row >= ui->trailers->rowCount()) {
         return;
+    }
     int trailerNo = ui->trailers->item(row, 2)->data(Qt::UserRole).toInt();
-    if (trailerNo < 0 || trailerNo >= m_currentTrailers.count())
+    if (trailerNo < 0 || trailerNo >= m_currentTrailers.count()) {
         return;
+    }
 
     TrailerResult result = m_currentTrailers.at(trailerNo);
     ui->url->setText(result.trailerUrl.toString());
@@ -228,8 +233,9 @@ void TrailerDialog::backToTrailers()
 
 void TrailerDialog::startDownload()
 {
-    if (m_currentMovie->files().isEmpty())
+    if (m_currentMovie->files().isEmpty()) {
         return;
+    }
 
     QFileInfo fi(m_currentMovie->files().at(0));
     m_trailerFileName =
@@ -250,8 +256,9 @@ void TrailerDialog::startDownload()
     request.setUrl(QUrl(ui->url->text()));
 
     if (ui->url->text().contains("http://trailers.apple.com")
-        || ui->url->text().contains("http://movietrailers.apple.com"))
+        || ui->url->text().contains("http://movietrailers.apple.com")) {
         request.setRawHeader("User-Agent", "QuickTime/7.7");
+    }
 
     m_downloadInProgress = true;
     m_downloadReply = m_qnam->get(request);
@@ -318,10 +325,11 @@ void TrailerDialog::downloadFinished()
     if (m_downloadReply->error() == QNetworkReply::NoError) {
         ui->progress->setText(tr("Download Finished"));
         QString extension = QUrl(ui->url->text()).path();
-        if (extension.lastIndexOf(".") != -1)
+        if (extension.lastIndexOf(".") != -1) {
             extension = extension.right(extension.length() - extension.lastIndexOf(".") - 1);
-        else
+        } else {
             extension = "mov";
+        }
         QString newFileName = QString("%1.%2").arg(m_trailerFileName).arg(extension);
         QFileInfo fi(newFileName);
         if (fi.exists()) {
@@ -397,8 +405,9 @@ void TrailerDialog::onPlayPause()
 
 void TrailerDialog::onAnimationFinished()
 {
-    if (ui->stackedWidget->currentIndex() == 2)
+    if (ui->stackedWidget->currentIndex() == 2) {
         m_videoWidget->show();
+    }
 }
 
 void TrailerDialog::onSliderPositionChanged()

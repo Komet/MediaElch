@@ -28,8 +28,9 @@ QString ExportTemplate::description() const
 {
     QString locale = QLocale::system().name();
     QString shortLocale = locale;
-    if (locale.split("_").count() > 1)
+    if (locale.split("_").count() > 1) {
         shortLocale = locale.split("_").at(0);
+    }
     QString description;
     QMapIterator<QString, QString> it(m_description);
     bool localeLoaded = false;
@@ -129,8 +130,9 @@ QString ExportTemplate::remoteVersion() const
 
 bool ExportTemplate::updateAvailable() const
 {
-    if (remoteVersion().isEmpty() || !isInstalled())
+    if (remoteVersion().isEmpty() || !isInstalled()) {
         return false;
+    }
 
     return remoteVersion().toFloat() > version().toFloat();
 }
@@ -148,43 +150,46 @@ bool ExportTemplate::lessThan(ExportTemplate *a, ExportTemplate *b)
 QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
 {
     QString baseName;
-    if (section == SectionMovies)
+    if (section == SectionMovies) {
         baseName = "movies";
-    else if (section == SectionMovie)
+    } else if (section == SectionMovie) {
         baseName = "movies/movie";
-    else if (section == SectionConcerts)
+    } else if (section == SectionConcerts) {
         baseName = "concerts";
-    else if (section == SectionConcert)
+    } else if (section == SectionConcert) {
         baseName = "concerts/concert";
-    else if (section == SectionTvShows)
+    } else if (section == SectionTvShows) {
         baseName = "tvshows";
-    else if (section == SectionTvShow)
+    } else if (section == SectionTvShow) {
         baseName = "tvshows/tvshow";
-    else if (section == SectionEpisode)
+    } else if (section == SectionEpisode) {
         baseName = "episodes/episode";
-    else
+    } else {
         return "";
-
+    }
     QString locale = QLocale::system().name();
     QString shortLocale = locale;
-    if (locale.split("_").count() > 1)
+    if (locale.split("_").count() > 1) {
         shortLocale = locale.split("_").at(0);
+    }
 
     QString templateFile;
-    if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists())
+    if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale)).exists()) {
         templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(locale);
-    else if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale)).exists())
+    } else if (QFileInfo(QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale)).exists()) {
         templateFile = QString{getTemplateLocation() + "/%1_%2.html"}.arg(baseName).arg(shortLocale);
-    else if (QFileInfo(getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName)).exists())
+    } else if (QFileInfo(getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName)).exists()) {
         templateFile = getTemplateLocation() + QStringLiteral("/%1.html").arg(baseName);
+    }
 
-    if (templateFile.isEmpty())
+    if (templateFile.isEmpty()) {
         return "";
-
+    }
     QString content;
     QFile file(templateFile);
-    if (!file.open(QFile::ReadOnly | QFile::Text))
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
         return "";
+    }
     content = QString::fromUtf8(file.readAll());
     file.close();
 
@@ -210,32 +215,37 @@ void ExportTemplate::copyTo(QString path)
 
     QDir templateDir(getTemplateLocation());
     foreach (const QFileInfo &fi, templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
-        if (excludes.contains(fi.fileName()))
+        if (excludes.contains(fi.fileName())) {
             continue;
+        }
 
-        if (fi.isDir())
+        if (fi.isDir()) {
             copyDir(fi.absoluteFilePath(), path + "/" + fi.fileName());
-        else
+        } else {
             QFile::copy(fi.absoluteFilePath(), path + "/" + fi.fileName());
+        }
     }
 }
 
 bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
 {
     QDir parentDstDir(QFileInfo(dstPath).path());
-    if (!parentDstDir.mkdir(QFileInfo(dstPath).fileName()))
+    if (!parentDstDir.mkdir(QFileInfo(dstPath).fileName())) {
         return false;
+    }
 
     QDir srcDir(srcPath);
     foreach (const QFileInfo &info, srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
         QString srcItemPath = srcPath + "/" + info.fileName();
         QString dstItemPath = dstPath + "/" + info.fileName();
         if (info.isDir()) {
-            if (!copyDir(srcItemPath, dstItemPath))
+            if (!copyDir(srcItemPath, dstItemPath)) {
                 return false;
+            }
         } else if (info.isFile()) {
-            if (!QFile::copy(srcItemPath, dstItemPath))
+            if (!QFile::copy(srcItemPath, dstItemPath)) {
                 return false;
+            }
         } else {
             qDebug() << "Unhandled item" << info.filePath() << "in cpDir";
         }

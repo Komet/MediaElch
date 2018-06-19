@@ -47,16 +47,20 @@ void ExportDialog::onBtnExport()
     ui->message->clear();
 
     int index = ui->comboTheme->currentIndex();
-    if (index < 0 || index >= ui->comboTheme->count())
+    if (index < 0 || index >= ui->comboTheme->count()) {
         return;
+    }
 
     QList<ExportTemplate::ExportSection> sections;
-    if (ui->chkConcerts->isEnabled() && ui->chkConcerts->isChecked())
+    if (ui->chkConcerts->isEnabled() && ui->chkConcerts->isChecked()) {
         sections << ExportTemplate::SectionConcerts;
-    if (ui->chkMovies->isEnabled() && ui->chkMovies->isChecked())
+    }
+    if (ui->chkMovies->isEnabled() && ui->chkMovies->isChecked()) {
         sections << ExportTemplate::SectionMovies;
-    if (ui->chkTvShows->isEnabled() && ui->chkTvShows->isChecked())
+    }
+    if (ui->chkTvShows->isEnabled() && ui->chkTvShows->isChecked()) {
         sections << ExportTemplate::SectionTvShows;
+    }
 
     if (sections.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to select at least one entry to export."));
@@ -65,13 +69,15 @@ void ExportDialog::onBtnExport()
 
     ExportTemplate *exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
-    if (!exportTemplate)
+    if (!exportTemplate) {
         return;
+    }
 
     ui->progressBar->setValue(0);
     QString location = QFileDialog::getExistingDirectory(this, tr("Export directory"), QDir::homePath());
-    if (location.isEmpty())
+    if (location.isEmpty()) {
         return;
+    }
 
 
     QDir dir(location);
@@ -85,10 +91,12 @@ void ExportDialog::onBtnExport()
     ui->btnExport->setEnabled(false);
 
     int itemsToExport = 0;
-    if (sections.contains(ExportTemplate::SectionConcerts))
+    if (sections.contains(ExportTemplate::SectionConcerts)) {
         itemsToExport += Manager::instance()->concertModel()->concerts().count();
-    if (sections.contains(ExportTemplate::SectionMovies))
+    }
+    if (sections.contains(ExportTemplate::SectionMovies)) {
         itemsToExport += Manager::instance()->movieModel()->movies().count();
+    }
     if (sections.contains(ExportTemplate::SectionTvShows)) {
         foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
             itemsToExport++;
@@ -103,22 +111,25 @@ void ExportDialog::onBtnExport()
 
     // Export movies
     if (sections.contains(ExportTemplate::SectionMovies)) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
         parseAndSaveMovies(dir.currentPath(), exportTemplate, Manager::instance()->movieModel()->movies());
     }
 
     // Export TV Shows
     if (sections.contains(ExportTemplate::SectionTvShows)) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
         parseAndSaveTvShows(dir.currentPath(), exportTemplate, Manager::instance()->tvShowModel()->tvShows());
     }
 
     // Export Concerts
     if (sections.contains(ExportTemplate::SectionConcerts)) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
         parseAndSaveConcerts(dir.currentPath(), exportTemplate, Manager::instance()->concertModel()->concerts());
     }
 
@@ -130,13 +141,15 @@ void ExportDialog::onBtnExport()
 void ExportDialog::onThemeChanged()
 {
     int index = ui->comboTheme->currentIndex();
-    if (index < 0 || index >= ui->comboTheme->count())
+    if (index < 0 || index >= ui->comboTheme->count()) {
         return;
+    }
 
     ExportTemplate *exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
-    if (!exportTemplate)
+    if (!exportTemplate) {
         return;
+    }
 
     ui->chkConcerts->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::SectionConcerts));
     ui->chkMovies->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::SectionMovies));
@@ -167,8 +180,9 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     dir.mkdir("movie_images");
 
     foreach (Movie *movie, movies) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
 
         QString movieTemplate = itemContent;
         replaceVars(movieTemplate, movie, dir, true);
@@ -278,8 +292,9 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     dir.mkdir("concert_images");
 
     foreach (Concert *concert, concerts) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
 
         QString concertTemplate = itemContent;
         replaceVars(concertTemplate, concert, dir, true);
@@ -358,8 +373,9 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     dir.mkdir("episode_images");
 
     foreach (TvShow *show, shows) {
-        if (m_canceled)
+        if (m_canceled) {
             return;
+        }
 
         QString showTemplate = itemContent;
         replaceVars(showTemplate, show, dir, true);
@@ -376,8 +392,9 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
         foreach (TvShowEpisode *episode, show->episodes()) {
-            if (episode->isDummy())
+            if (episode->isDummy()) {
                 continue;
+            }
             QString episodeTemplate = episodeContent;
             replaceVars(episodeTemplate, episode, dir, true);
             QFile file(dir.currentPath() + QString("/episodes/%1.html").arg(episode->episodeId()));
@@ -444,8 +461,9 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         listSeasonItem = rx.cap(1).trimmed();
     }
 
-    if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty())
+    if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty()) {
         return;
+    }
 
     QList<int> seasons = show->seasons(false);
     qSort(seasons);
@@ -628,28 +646,33 @@ bool ExportDialog::saveImageForType(const QString &type,
 
     if (type == "poster") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MoviePoster);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieBackdrop);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieLogo);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieClearArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "disc") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieCdArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else {
         return false;
@@ -670,30 +693,35 @@ bool ExportDialog::saveImageForType(const QString &type,
     if (type == "poster") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertLogo);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertClearArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "disc") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertCdArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else {
         return false;
@@ -713,36 +741,42 @@ bool ExportDialog::saveImageForType(const QString &type,
 
     if (type == "poster") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowPoster);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBackdrop);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "banner") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBanner);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
         QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowLogos);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowClearArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "characterart") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowCharacterArt);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else {
         return false;
@@ -763,8 +797,9 @@ bool ExportDialog::saveImageForType(const QString &type,
     if (type == "thumbnail") {
         QString filename =
             Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
-        if (filename.isEmpty())
+        if (filename.isEmpty()) {
             return false;
+        }
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else {
         return false;

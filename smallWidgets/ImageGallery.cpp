@@ -118,16 +118,18 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
         auto label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);
-        if (m_alignment == Qt::Vertical)
+        if (m_alignment == Qt::Vertical) {
             label->setFixedSize(Qt::Horizontal, m_imageWidth);
-        else
+        } else {
             label->setFixedSize(Qt::Vertical, m_imageHeight);
+        }
         label->setMyData(fanart.path);
 
-        if (!fanart.image.isNull())
+        if (!fanart.image.isNull()) {
             label->setImage(fanart.image);
-        else
+        } else {
             label->setImage(fanart.path);
+        }
         connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
         m_imageLabels.append(label);
     }
@@ -139,19 +141,21 @@ void ImageGallery::addImage(const QByteArray &img, const QString &url)
     auto label = new ClosableImage(m_imagesWidget);
     label->hide();
     label->setShowZoomAndResolution(m_showZoomAndResolution);
-    if (m_alignment == Qt::Vertical)
+    if (m_alignment == Qt::Vertical) {
         label->setFixedSize(Qt::Horizontal, m_imageWidth);
-    else
+    } else {
         label->setFixedSize(Qt::Vertical, m_imageHeight);
+    }
     label->setImage(img);
     label->setMyData(url);
     connect(label, &ClosableImage::sigClose, this, &ImageGallery::onCloseImage);
     m_imageLabels.append(label);
     positionImages();
-    if (m_alignment == Qt::Vertical)
+    if (m_alignment == Qt::Vertical) {
         m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
-    else
+    } else {
         m_scrollArea->horizontalScrollBar()->setValue(m_scrollArea->horizontalScrollBar()->maximum());
+    }
 }
 
 void ImageGallery::positionImages()
@@ -202,10 +206,11 @@ void ImageGallery::onCloseImage()
     label->deleteLater();
     m_imageLabels.removeOne(label);
     positionImages();
-    if (!label->myData().toString().isEmpty())
+    if (!label->myData().toString().isEmpty()) {
         emit sigRemoveImage(label->myData().toString());
-    else
+    } else {
         emit sigRemoveImage(label->image());
+    }
 }
 
 void ImageGallery::setLoading(const bool &loading)
@@ -235,8 +240,9 @@ void ImageGallery::setShowZoomAndResolution(const bool &show)
 
 void ImageGallery::onVerticalScrollBarMoved(const int &value)
 {
-    if (m_alignment == Qt::Horizontal)
+    if (m_alignment == Qt::Horizontal) {
         return;
+    }
 
     m_buttonTop->setEnabled(value != 0);
     m_buttonBottom->setEnabled(value != m_scrollArea->verticalScrollBar()->maximum());
@@ -244,8 +250,9 @@ void ImageGallery::onVerticalScrollBarMoved(const int &value)
 
 void ImageGallery::onHorizontalScrollBarMoved(const int &value)
 {
-    if (m_alignment == Qt::Vertical)
+    if (m_alignment == Qt::Vertical) {
         return;
+    }
 
     m_buttonLeft->setEnabled(value != 0);
     m_buttonRight->setEnabled(value != m_scrollArea->horizontalScrollBar()->maximum());

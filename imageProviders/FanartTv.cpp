@@ -154,10 +154,11 @@ void FanartTv::searchConcert(QString searchStr, int limit)
  */
 void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
 {
-    if (m_searchResultLimit == 0)
+    if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
-    else
+    } else {
         emit sigSearchDone(results.mid(0, m_searchResultLimit));
+    }
 }
 
 /**
@@ -474,10 +475,11 @@ void FanartTv::searchTvShow(QString searchStr, int limit)
  */
 void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
 {
-    if (m_searchResultLimit == 0)
+    if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
-    else
+    } else {
         emit sigSearchDone(results.mid(0, m_searchResultLimit));
+    }
 }
 
 /**
@@ -753,12 +755,14 @@ void FanartTv::loadSettings(QSettings &settings)
     m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
     m_personalApiKey = settings.value("Scrapers/FanartTv/PersonalApiKey").toString();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language)
+        if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
+        }
     }
     for (int i = 0, n = m_discBox->count(); i < n; ++i) {
-        if (m_discBox->itemData(i).toString() == m_preferredDiscType)
+        if (m_discBox->itemData(i).toString() == m_preferredDiscType) {
             m_discBox->setCurrentIndex(i);
+        }
     }
     m_personalApiKeyEdit->setText(m_personalApiKey);
 }
@@ -785,22 +789,26 @@ void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language, 
     int lastHd = -1;
 
     for (int i = 0, n = posters.count(); i < n; ++i) {
-        if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType))
+        if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)) {
             lastInPreferredLangAndHd = i;
-        if (posters[i].language == language)
+        }
+        if (posters[i].language == language) {
             lastInPreferredLang = i;
-        if (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)
+        }
+        if (posters[i].hint == "HD" || posters[i].hint == preferredDiscType) {
             lastHd = i;
+        }
     }
 
-    if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType))
+    if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType)) {
         posters.insert(lastInPreferredLangAndHd + 1, b);
-    else if (b.language == language)
+    } else if (b.language == language) {
         posters.insert(lastInPreferredLang + 1, b);
-    else if (b.hint == "HD" || b.hint == preferredDiscType)
+    } else if (b.hint == "HD" || b.hint == preferredDiscType) {
         posters.insert(lastHd + 1, b);
-    else
+    } else {
         posters.append(b);
+    }
 }
 
 QString FanartTv::keyParameter()

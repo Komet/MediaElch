@@ -46,12 +46,14 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
 
-    if (!m_movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+    if (!m_movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
+    }
     bool saved = mediaCenterInterface->saveMovie(m_movie);
     qDebug() << "Saved" << saved;
-    if (!m_infoLoaded)
+    if (!m_infoLoaded) {
         m_infoLoaded = saved;
+    }
     m_movie->setChanged(false);
     m_movie->clearImages();
     m_movie->clearExtraFanartData();
@@ -70,17 +72,19 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
 bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_movie->hasChanged()) && !force
-        && (m_infoFromNfoLoaded || (m_movie->hasChanged() && !m_infoFromNfoLoaded)))
+        && (m_infoFromNfoLoaded || (m_movie->hasChanged() && !m_infoFromNfoLoaded))) {
         return m_infoLoaded;
+    }
 
     m_movie->blockSignals(true);
     NameFormatter *nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
-    if (reloadFromNfo)
+    if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadMovie(m_movie);
-    else
+    } else {
         infoLoaded = mediaCenterInterface->loadMovie(m_movie, m_movie->nfoContent());
+    }
 
     if (!infoLoaded) {
         if (!m_movie->files().empty()) {
@@ -88,35 +92,42 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!pathElements.empty()
-                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
+                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
-                if (!pathElements.empty())
+                }
+                if (!pathElements.empty()) {
                     m_movie->setName(nameFormat->formatName(pathElements.last(), false));
+                }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.empty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
+                if (!pathElements.empty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
-                if (!pathElements.empty())
+                }
+                if (!pathElements.empty()) {
                     m_movie->setName(nameFormat->formatName(pathElements.last(), false));
+                }
             } else if (m_movie->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
                     m_movie->setName(nameFormat->formatName(splitted.last(), false));
                 } else {
-                    if (m_movie->files().size() > 1)
+                    if (m_movie->files().size() > 1) {
                         m_movie->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                    else
+                    } else {
                         m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
+                    }
                 }
             } else {
-                if (m_movie->files().size() > 1)
+                if (m_movie->files().size() > 1) {
                     m_movie->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                else
+                } else {
                     m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
+                }
             }
             QRegExp rx("(tt[0-9]+)");
-            if (rx.indexIn(fi.completeBaseName()) != -1)
+            if (rx.indexIn(fi.completeBaseName()) != -1) {
                 m_movie->setId(rx.cap(1));
+            }
         }
     }
     m_infoLoaded = infoLoaded;
@@ -137,11 +148,12 @@ void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
     QList<int> infos)
 {
     m_infosToLoad = infos;
-    if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt"))
+    if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(ids.values().first());
-    else if (scraperInterface->identifier() == "imdb"
-             || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt")))
+    } else if (scraperInterface->identifier() == "imdb"
+               || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))) {
         m_movie->setId(ids.values().first());
+    }
     scraperInterface->loadData(ids, m_movie, infos);
 }
 
@@ -241,10 +253,12 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
         images << ImageType::MovieLogo;
         m_movie->clear(QList<int>() << MovieScraperInfos::Logo);
     }
-    if (infosToLoad().contains(MovieScraperInfos::Banner))
+    if (infosToLoad().contains(MovieScraperInfos::Banner)) {
         images << ImageType::MovieBanner;
-    if (infosToLoad().contains(MovieScraperInfos::Thumb))
+    }
+    if (infosToLoad().contains(MovieScraperInfos::Thumb)) {
         images << ImageType::MovieThumb;
+    }
 
     if (!images.isEmpty() && (!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty())) {
         connect(Manager::instance()->fanartTv(),
@@ -261,8 +275,9 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
 
 void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> posters)
 {
-    if (movie != m_movie)
+    if (movie != m_movie) {
         return;
+    }
 
     m_forceFanartPoster = false;
     m_forceFanartBackdrop = false;
@@ -270,23 +285,29 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> po
     m_forceFanartCdArt = false;
     m_forceFanartClearArt = false;
 
-    if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty())
+    if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty()) {
         posters.insert(ImageType::MoviePoster, QList<Poster>() << m_movie->posters().at(0));
-    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->backdrops().isEmpty())
+    }
+    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->backdrops().isEmpty()) {
         posters.insert(ImageType::MovieBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
-    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->discArts().isEmpty())
+    }
+    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->discArts().isEmpty()) {
         posters.insert(ImageType::MovieCdArt, QList<Poster>() << m_movie->discArts().at(0));
-    if (infosToLoad().contains(MovieScraperInfos::ClearArt) && !m_movie->clearArts().isEmpty())
+    }
+    if (infosToLoad().contains(MovieScraperInfos::ClearArt) && !m_movie->clearArts().isEmpty()) {
         posters.insert(ImageType::MovieClearArt, QList<Poster>() << m_movie->clearArts().at(0));
-    if (infosToLoad().contains(MovieScraperInfos::Logo) && !m_movie->logos().isEmpty())
+    }
+    if (infosToLoad().contains(MovieScraperInfos::Logo) && !m_movie->logos().isEmpty()) {
         posters.insert(ImageType::MovieLogo, QList<Poster>() << m_movie->logos().at(0));
+    }
 
     QList<DownloadManagerElement> downloads;
     if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor *> actors = m_movie->actorsPointer();
         for (const auto &actor : actors) {
-            if (actor->thumb.isEmpty())
+            if (actor->thumb.isEmpty()) {
                 continue;
+            }
             DownloadManagerElement d;
             d.imageType = ImageType::Actor;
             d.url = QUrl(actor->thumb);
@@ -300,15 +321,17 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> po
     QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.value().isEmpty())
+        if (it.value().isEmpty()) {
             continue;
+        }
         DownloadManagerElement d;
         d.imageType = it.key();
         d.url = it.value().at(0).originalUrl;
         d.movie = m_movie;
         downloads.append(d);
-        if (!imageTypes.contains(it.key()))
+        if (!imageTypes.contains(it.key())) {
             imageTypes.append(it.key());
+        }
     }
 
     setProperty("isCustomScraper", false);
@@ -347,13 +370,15 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
-        if (elem.imageType == ImageType::MovieBackdrop)
+        if (elem.imageType == ImageType::MovieBackdrop) {
             Helper::instance()->resizeBackdrop(elem.data);
+        }
         m_movie->setImage(elem.imageType, elem.data);
     }
 
-    if (elem.imageType != ImageType::Actor)
+    if (elem.imageType != ImageType::Actor) {
         emit sigImage(m_movie, elem.imageType, elem.data);
+    }
 }
 
 void MovieController::loadImage(int type, QUrl url)

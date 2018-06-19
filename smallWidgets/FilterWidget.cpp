@@ -86,11 +86,13 @@ void FilterWidget::setActiveWidget(MainWidgets widget)
  */
 void FilterWidget::onKeyDown()
 {
-    if (m_list->isHidden())
+    if (m_list->isHidden()) {
         return;
+    }
     int row = m_list->currentRow() + 1;
-    if (row >= m_list->count() - 1 || row == 0)
+    if (row >= m_list->count() - 1 || row == 0) {
         row = 1;
+    }
     m_list->setCurrentRow(row);
 }
 
@@ -99,11 +101,13 @@ void FilterWidget::onKeyDown()
  */
 void FilterWidget::onKeyUp()
 {
-    if (m_list->isHidden())
+    if (m_list->isHidden()) {
         return;
+    }
     int row = m_list->currentRow() - 1;
-    if (row < 1)
+    if (row < 1) {
         row = m_list->count() - 2;
+    }
     m_list->setCurrentRow(row);
 }
 
@@ -122,8 +126,9 @@ void FilterWidget::onFilterTextChanged(QString text)
     int height = 0;
     m_list->clear();
     foreach (Filter *filter, m_filters) {
-        if (!filter->accepts(text))
+        if (!filter->accepts(text)) {
             continue;
+        }
 
         if ((filter->info() == MovieFilters::Title || filter->info() == ConcertFilters::Title
                 || filter->info() == TvShowFilters::Title)
@@ -183,8 +188,9 @@ void FilterWidget::addSelectedFilter()
     m_list->hide();
     Filter *filter = nullptr;
     if (m_list->currentRow() < 1 || m_list->currentRow() >= m_list->count() - 1) {
-        if (ui->lineEdit->text().isEmpty())
+        if (ui->lineEdit->text().isEmpty()) {
             return;
+        }
         // no entry selected, add the title filter
         foreach (Filter *f, m_filters) {
             if (f->info() == MovieFilters::Title || f->info() == ConcertFilters::Title
@@ -193,14 +199,16 @@ void FilterWidget::addSelectedFilter()
                 break;
             }
         }
-        if (filter == nullptr)
+        if (filter == nullptr) {
             return;
+        }
         filter->setText(tr("Title contains \"%1\"").arg(ui->lineEdit->text()));
         filter->setShortText(ui->lineEdit->text());
     } else {
         filter = m_list->currentItem()->data(Qt::UserRole).value<Filter *>();
-        if (m_activeFilters.contains(filter))
+        if (m_activeFilters.contains(filter)) {
             return;
+        }
     }
     m_activeFilters.append(filter);
     ui->lineEdit->addFilter(filter);
@@ -219,8 +227,9 @@ void FilterWidget::addFilterFromItem(QListWidgetItem *item)
     }
     m_list->hide();
     auto filter = item->data(Qt::UserRole).value<Filter *>();
-    if (m_activeFilters.contains(filter))
+    if (m_activeFilters.contains(filter)) {
         return;
+    }
     m_activeFilters.append(filter);
     ui->lineEdit->addFilter(filter);
     emit sigFilterChanged(m_activeFilters, ui->lineEdit->text());
@@ -231,8 +240,9 @@ void FilterWidget::addFilterFromItem(QListWidgetItem *item)
  */
 void FilterWidget::removeLastFilter()
 {
-    if (m_activeFilters.count() == 0)
+    if (m_activeFilters.count() == 0) {
         return;
+    }
     m_activeFilters.removeLast();
     ui->lineEdit->removeLastFilter();
     emit sigFilterChanged(m_activeFilters, ui->lineEdit->text());
@@ -243,14 +253,15 @@ void FilterWidget::removeLastFilter()
  */
 void FilterWidget::setupFilters()
 {
-    if (m_activeWidget == MainWidgets::Movies)
+    if (m_activeWidget == MainWidgets::Movies) {
         setupMovieFilters();
-    else if (m_activeWidget == MainWidgets::TvShows)
+    } else if (m_activeWidget == MainWidgets::TvShows) {
         setupTvShowFilters();
-    else if (m_activeWidget == MainWidgets::Concerts)
+    } else if (m_activeWidget == MainWidgets::Concerts) {
         setupConcertFilters();
-    else if (m_activeWidget == MainWidgets::Music)
+    } else if (m_activeWidget == MainWidgets::Music) {
         setupMusicFilters();
+    }
 }
 
 /**
@@ -268,29 +279,37 @@ void FilterWidget::setupMovieFilters()
     QStringList sets;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         foreach (const QString &genre, movie->genres()) {
-            if (!genre.isEmpty() && !genres.contains(genre))
+            if (!genre.isEmpty() && !genres.contains(genre)) {
                 genres.append(genre);
+            }
         }
         foreach (const QString &studio, movie->studios()) {
-            if (!studio.isEmpty() && !studios.contains(studio))
+            if (!studio.isEmpty() && !studios.contains(studio)) {
                 studios.append(studio);
+            }
         }
         foreach (const QString &country, movie->countries()) {
-            if (!country.isEmpty() && !countries.contains(country))
+            if (!country.isEmpty() && !countries.contains(country)) {
                 countries.append(country);
+            }
         }
         foreach (const QString &tag, movie->tags()) {
-            if (!tag.isEmpty() && !tags.contains(tag))
+            if (!tag.isEmpty() && !tags.contains(tag)) {
                 tags.append(tag);
+            }
         }
-        if (!directors.contains(movie->director()))
+        if (!directors.contains(movie->director())) {
             directors.append(movie->director());
-        if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year())))
+        }
+        if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year()))) {
             years.append(QString("%1").arg(movie->released().year()));
-        if (!movie->certification().isEmpty() && !certifications.contains(movie->certification()))
+        }
+        if (!movie->certification().isEmpty() && !certifications.contains(movie->certification())) {
             certifications.append(movie->certification());
-        if (!movie->set().isEmpty() && !sets.contains(movie->set()))
+        }
+        if (!movie->set().isEmpty() && !sets.contains(movie->set())) {
             sets.append(movie->set());
+        }
     }
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
     qSort(genres.begin(), genres.end(), LocaleStringCompare());
@@ -374,14 +393,15 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             genreFilters << f;
-        else
+        } else {
             genreFilters << new Filter(tr("Genre \"%1\"").arg(genre),
                 genre,
                 QStringList() << tr("Genre") << genre,
                 MovieFilters::Genres,
                 true);
+        }
     }
     m_movieGenreFilters = genreFilters;
 
@@ -395,14 +415,15 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             studioFilters << f;
-        else
+        } else {
             studioFilters << new Filter(tr("Studio \"%1\"").arg(studio),
                 studio,
                 QStringList() << tr("Studio") << studio,
                 MovieFilters::Studio,
                 true);
+        }
     }
     m_movieStudioFilters = studioFilters;
 
@@ -416,14 +437,15 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             countryFilters << f;
-        else
+        } else {
             countryFilters << new Filter(tr("Country \"%1\"").arg(country),
                 country,
                 QStringList() << tr("Country") << country,
                 MovieFilters::Country,
                 true);
+        }
     }
     m_movieCountryFilters = countryFilters;
 
@@ -436,11 +458,12 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             yearFilters << f;
-        else
+        } else {
             yearFilters << new Filter(
                 tr("Released %1").arg(year), year, QStringList() << tr("Year") << year, MovieFilters::Released, true);
+        }
     }
     m_movieYearFilters = yearFilters;
 
@@ -453,14 +476,15 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             certificationFilters << f;
-        else
+        } else {
             certificationFilters << new Filter(tr("Certification \"%1\"").arg(certification),
                 certification,
                 QStringList() << tr("Certification") << certification,
                 MovieFilters::Certification,
                 true);
+        }
     }
     m_movieCertificationFilters = certificationFilters;
 
@@ -473,11 +497,12 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             setsFilters << f;
-        else
+        } else {
             setsFilters << new Filter(
                 tr("Set \"%1\"").arg(set), set, QStringList() << tr("Set") << set, MovieFilters::Set, true);
+        }
     }
     m_movieSetsFilters = setsFilters;
 
@@ -490,11 +515,12 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             tagsFilters << f;
-        else
+        } else {
             tagsFilters << new Filter(
                 tr("Tag \"%1\"").arg(tag), tag, QStringList() << tr("Tag") << tag, MovieFilters::Tags, true);
+        }
     }
     m_movieTagsFilters = tagsFilters;
 
@@ -507,14 +533,15 @@ void FilterWidget::setupMovieFilters()
                 break;
             }
         }
-        if (f)
+        if (f) {
             directorFilters << f;
-        else
+        } else {
             directorFilters << new Filter(tr("Director \"%1\"").arg(director),
                 director,
                 QStringList() << tr("Director") << director,
                 MovieFilters::Director,
                 true);
+        }
     }
     m_movieDirectorFilters = directorFilters;
 
@@ -831,36 +858,49 @@ void FilterWidget::storeFilters(MainWidgets widget)
  */
 void FilterWidget::loadFilters(MainWidgets widget)
 {
-    if (!m_storedFilters.contains(widget))
+    if (!m_storedFilters.contains(widget)) {
         return;
+    }
     m_activeFilters = m_storedFilters[widget];
 
     // clean up not existent filters
     foreach (Filter *filter, m_activeFilters) {
-        if (m_movieFilters.contains(filter))
+        if (m_movieFilters.contains(filter)) {
             continue;
-        if (m_movieGenreFilters.contains(filter))
+        }
+        if (m_movieGenreFilters.contains(filter)) {
             continue;
-        if (m_movieCertificationFilters.contains(filter))
+        }
+        if (m_movieCertificationFilters.contains(filter)) {
             continue;
-        if (m_movieYearFilters.contains(filter))
+        }
+        if (m_movieYearFilters.contains(filter)) {
             continue;
-        if (m_movieSetsFilters.contains(filter))
+        }
+        if (m_movieSetsFilters.contains(filter)) {
             continue;
-        if (m_movieStudioFilters.contains(filter))
+        }
+        if (m_movieStudioFilters.contains(filter)) {
             continue;
-        if (m_movieCountryFilters.contains(filter))
+        }
+        if (m_movieCountryFilters.contains(filter)) {
             continue;
-        if (m_movieTagsFilters.contains(filter))
+        }
+        if (m_movieTagsFilters.contains(filter)) {
             continue;
-        if (m_movieDirectorFilters.contains(filter))
+        }
+        if (m_movieDirectorFilters.contains(filter)) {
             continue;
-        if (m_tvShowFilters.contains(filter))
+        }
+        if (m_tvShowFilters.contains(filter)) {
             continue;
-        if (m_concertFilters.contains(filter))
+        }
+        if (m_concertFilters.contains(filter)) {
             continue;
-        if (m_musicFilters.contains(filter))
+        }
+        if (m_musicFilters.contains(filter)) {
             continue;
+        }
         m_activeFilters.removeOne(filter);
     }
 

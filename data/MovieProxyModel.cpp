@@ -27,17 +27,20 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
 {
     Q_UNUSED(sourceParent);
     QList<Movie *> movies = Manager::instance()->movieModel()->movies();
-    if (sourceRow < 0 || sourceRow >= movies.count())
+    if (sourceRow < 0 || sourceRow >= movies.count()) {
         return true;
+    }
 
     Movie *movie = movies.at(sourceRow);
     foreach (Filter *filter, m_filters) {
-        if (!filter->accepts(movie))
+        if (!filter->accepts(movie)) {
             return false;
+        }
     }
 
-    if (m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates())
+    if (m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates()) {
         return false;
+    }
 
     return true;
 }
@@ -61,29 +64,34 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
     if (m_sortBy == SortBySeen) {
         // Qt::UserRole+4
         if (sourceModel()->data(left, Qt::UserRole + 4).toBool()
-            && !sourceModel()->data(right, Qt::UserRole + 4).toBool())
+            && !sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
             return false;
+        }
         if (!sourceModel()->data(left, Qt::UserRole + 4).toBool()
-            && sourceModel()->data(right, Qt::UserRole + 4).toBool())
+            && sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
             return true;
+        }
     }
 
     if (m_sortBy == SortByYear) {
         // Qt::UserRole+3
         if (sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
-            != sourceModel()->data(right, Qt::UserRole + 3).toDate().year())
+            != sourceModel()->data(right, Qt::UserRole + 3).toDate().year()) {
             return sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
                    >= sourceModel()->data(right, Qt::UserRole + 3).toDate().year();
+        }
     }
 
     if (m_sortBy == SortByNew) {
         // Qt::UserRole+1
         if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
-            && !sourceModel()->data(right, Qt::UserRole + 1).toBool())
+            && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
             return false;
+        }
         if (!sourceModel()->data(left, Qt::UserRole + 1).toBool()
-            && sourceModel()->data(right, Qt::UserRole + 1).toBool())
+            && sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
             return true;
+        }
     }
 
     return (cmp < 0);

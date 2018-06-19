@@ -23,13 +23,15 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourc
 {
     Q_UNUSED(sourceParent);
     QList<Concert *> concerts = Manager::instance()->concertModel()->concerts();
-    if (sourceRow < 0 || sourceRow >= concerts.count())
+    if (sourceRow < 0 || sourceRow >= concerts.count()) {
         return true;
+    }
 
     Concert *concert = concerts.at(sourceRow);
     foreach (Filter *filter, m_filters) {
-        if (!filter->accepts(concert))
+        if (!filter->accepts(concert)) {
             return false;
+        }
     }
 
     return true;
@@ -43,10 +45,14 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourc
  */
 bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    if (sourceModel()->data(left, Qt::UserRole + 1).toBool() && !sourceModel()->data(right, Qt::UserRole + 1).toBool())
+    if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
+        && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
         return true;
-    if (!sourceModel()->data(left, Qt::UserRole + 1).toBool() && sourceModel()->data(right, Qt::UserRole + 1).toBool())
+    }
+    if (!sourceModel()->data(left, Qt::UserRole + 1).toBool()
+        && sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
         return false;
+    }
     int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
     return !(cmp < 0);
 }

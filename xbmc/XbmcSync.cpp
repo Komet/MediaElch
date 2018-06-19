@@ -97,16 +97,19 @@ void XbmcSync::startSync()
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->syncNeeded()) {
             m_moviesToSync.append(movie);
-            if (m_syncType == SyncContents)
+            if (m_syncType == SyncContents) {
                 updateFolderLastModified(movie);
+            }
         }
     }
 
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
-        if (concert->syncNeeded())
+        if (concert->syncNeeded()) {
             m_concertsToSync.append(concert);
-        if (m_syncType == SyncContents)
+        }
+        if (m_syncType == SyncContents) {
             updateFolderLastModified(concert);
+        }
     }
 
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
@@ -121,8 +124,9 @@ void XbmcSync::startSync()
          * so removing the whole show is needed.
          */
         foreach (TvShowEpisode *episode, show->episodes()) {
-            if (episode->isDummy())
+            if (episode->isDummy()) {
                 continue;
+            }
 
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
@@ -225,8 +229,9 @@ void XbmcSync::onMovieListFinished()
     }
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError)
+    if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
+    }
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -235,8 +240,9 @@ void XbmcSync::onMovieListFinished()
         it.next();
         if (it.key() == "movies" && !it.value().toList().empty()) {
             foreach (QVariant var, it.value().toList()) {
-                if (var.toMap().value("movieid").toInt() == 0)
+                if (var.toMap().value("movieid").toInt() == 0) {
                     continue;
+                }
                 m_xbmcMovies.insert(var.toMap().value("movieid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
@@ -253,8 +259,9 @@ void XbmcSync::onConcertListFinished()
     }
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError)
+    if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
+    }
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -263,8 +270,9 @@ void XbmcSync::onConcertListFinished()
         it.next();
         if (it.key() == "musicvideos" && !it.value().toList().empty()) {
             foreach (QVariant var, it.value().toList()) {
-                if (var.toMap().value("musicvideoid").toInt() == 0)
+                if (var.toMap().value("musicvideoid").toInt() == 0) {
                     continue;
+                }
                 m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
@@ -281,8 +289,9 @@ void XbmcSync::onTvShowListFinished()
     }
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError)
+    if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
+    }
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -291,8 +300,9 @@ void XbmcSync::onTvShowListFinished()
         it.next();
         if (it.key() == "tvshows" && !it.value().toList().empty()) {
             foreach (QVariant var, it.value().toList()) {
-                if (var.toMap().value("tvshowid").toInt() == 0)
+                if (var.toMap().value("tvshowid").toInt() == 0) {
                     continue;
+                }
                 m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
@@ -309,8 +319,9 @@ void XbmcSync::onEpisodeListFinished()
     }
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError)
+    if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::warning(this, tr("Network error"), reply->errorString());
+    }
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -319,8 +330,9 @@ void XbmcSync::onEpisodeListFinished()
         it.next();
         if (it.key() == "episodes" && !it.value().toList().empty()) {
             foreach (QVariant var, it.value().toList()) {
-                if (var.toMap().value("episodeid").toInt() == 0)
+                if (var.toMap().value("episodeid").toInt() == 0) {
                     continue;
+                }
                 m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
@@ -333,8 +345,9 @@ void XbmcSync::checkIfListsReady(Elements element)
     QMutexLocker locker(&m_mutex);
 
     m_elements.removeOne(element);
-    if (m_allReady || !m_elements.isEmpty() || m_aborted)
+    if (m_allReady || !m_elements.isEmpty() || m_aborted) {
         return;
+    }
 
     m_allReady = true;
 
@@ -358,15 +371,17 @@ void XbmcSync::setupItemsToRemove()
     foreach (Movie *movie, m_moviesToSync) {
         movie->setSyncNeeded(false);
         int id = findId(movie->files(), m_xbmcMovies);
-        if (id > 0)
+        if (id > 0) {
             m_moviesToRemove.append(id);
+        }
     }
 
     foreach (Concert *concert, m_concertsToSync) {
         concert->setSyncNeeded(false);
         int id = findId(concert->files(), m_xbmcConcerts);
-        if (id > 0)
+        if (id > 0) {
             m_concertsToRemove.append(id);
+        }
     }
 
     foreach (TvShow *show, m_tvShowsToSync) {
@@ -374,20 +389,23 @@ void XbmcSync::setupItemsToRemove()
         foreach (TvShowEpisode *episode, show->episodes())
             episode->setSyncNeeded(false);
         QString showDir = show->dir();
-        if (showDir.contains("/") && !showDir.endsWith("/"))
+        if (showDir.contains("/") && !showDir.endsWith("/")) {
             showDir.append("/");
-        else if (!showDir.contains("/") && !showDir.endsWith("\\"))
+        } else if (!showDir.contains("/") && !showDir.endsWith("\\")) {
             showDir.append("\\");
+        }
         int id = findId(QStringList() << showDir, m_xbmcShows);
-        if (id > 0)
+        if (id > 0) {
             m_tvShowsToRemove.append(id);
+        }
     }
 
     foreach (TvShowEpisode *episode, m_episodesToSync) {
         episode->setSyncNeeded(false);
         int id = findId(episode->files(), m_xbmcEpisodes);
-        if (id > 0)
+        if (id > 0) {
             m_episodesToRemove.append(id);
+        }
     }
 }
 
@@ -464,8 +482,9 @@ void XbmcSync::removeItems()
 void XbmcSync::onRemoveFinished()
 {
     auto reply = static_cast<QNetworkReply *>(sender());
-    if (reply)
+    if (reply) {
         reply->deleteLater();
+    }
 
     ui->progressBar->setValue(ui->progressBar->maximum()
                               - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
@@ -473,10 +492,11 @@ void XbmcSync::onRemoveFinished()
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
-        || !m_episodesToRemove.isEmpty())
+        || !m_episodesToRemove.isEmpty()) {
         removeItems();
-    else
+    } else {
         QTimer::singleShot(m_reloadTimeOut, this, &XbmcSync::triggerReload);
+    }
 }
 
 void XbmcSync::triggerReload()
@@ -570,8 +590,9 @@ void XbmcSync::updateWatched()
 
 int XbmcSync::findId(const QStringList &files, const QMap<int, XbmcData> &items)
 {
-    if (files.isEmpty())
+    if (files.isEmpty()) {
         return -1;
+    }
 
     QList<int> matches;
     int level = 0;
@@ -583,22 +604,25 @@ int XbmcSync::findId(const QStringList &files, const QMap<int, XbmcData> &items)
             it.next();
             QString file = it.value().file;
             QStringList xbmcFiles;
-            if (file.startsWith("stack://"))
+            if (file.startsWith("stack://")) {
                 xbmcFiles << file.mid(8).split(" , ");
-            else
+            } else {
                 xbmcFiles << file;
+            }
 
-            if (compareFiles(files, xbmcFiles, level))
+            if (compareFiles(files, xbmcFiles, level)) {
                 matches.append(it.key());
+            }
         }
     } while (matches.count() > 1 && level++ < 4);
 
-    if (matches.count() == 1)
+    if (matches.count() == 1) {
         return matches.at(0);
-    else if (matches.count() == 0)
+    } else if (matches.count() == 0) {
         return 0;
-    else
+    } else {
         return -1;
+    }
 }
 
 bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFiles, const int &level)
@@ -607,10 +631,12 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
         QStringList file = splitFile(files.at(0));
         QStringList xbmcFile = splitFile(xbmcFiles.at(0));
         for (int i = 0; i <= level; ++i) {
-            if (file.isEmpty() || xbmcFile.isEmpty())
+            if (file.isEmpty() || xbmcFile.isEmpty()) {
                 return false;
-            if (QString::compare(file.takeLast(), xbmcFile.takeLast(), Qt::CaseInsensitive) != 0)
+            }
+            if (QString::compare(file.takeLast(), xbmcFile.takeLast(), Qt::CaseInsensitive) != 0) {
                 return false;
+            }
         }
         return true;
     } else if (files.count() == xbmcFiles.count()) {
@@ -619,21 +645,25 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
         QStringList xbmcStack;
         foreach (QString file, xbmcFiles) {
             QStringList parts = splitFile(file);
-            if (parts.count() < level)
+            if (parts.count() < level) {
                 return false;
+            }
             QStringList partsNew;
-            for (int i = 0; i <= level; ++i)
+            for (int i = 0; i <= level; ++i) {
                 partsNew << parts.takeLast();
+            }
             xbmcStack << partsNew.join("/");
         }
 
         foreach (QString file, files) {
             QStringList parts = splitFile(file);
-            if (parts.count() < level)
+            if (parts.count() < level) {
                 return false;
+            }
             QStringList partsNew;
-            for (int i = 0; i <= level; ++i)
+            for (int i = 0; i <= level; ++i) {
                 partsNew << parts.takeLast();
+            }
             stack << partsNew.join("/");
         }
 
@@ -648,10 +678,11 @@ bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFil
 QStringList XbmcSync::splitFile(const QString &file)
 {
     // Windows file names must not contain /
-    if (file.contains("/"))
+    if (file.contains("/")) {
         return file.split("/");
-    else
+    } else {
         return file.split("\\");
+    }
 }
 
 void XbmcSync::onRadioContents()
@@ -689,8 +720,9 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
 
 void XbmcSync::updateFolderLastModified(Movie *movie)
 {
-    if (movie->files().isEmpty())
+    if (movie->files().isEmpty()) {
         return;
+    }
 
     QFileInfo fi(movie->files().first());
     QDir dir = fi.dir();
@@ -708,8 +740,9 @@ void XbmcSync::updateFolderLastModified(Movie *movie)
 
 void XbmcSync::updateFolderLastModified(Concert *concert)
 {
-    if (concert->files().isEmpty())
+    if (concert->files().isEmpty()) {
         return;
+    }
 
     QFileInfo fi(concert->files().first());
     QDir dir = fi.dir();
@@ -738,8 +771,9 @@ void XbmcSync::updateFolderLastModified(TvShow *show)
 
 void XbmcSync::updateFolderLastModified(TvShowEpisode *episode)
 {
-    if (episode->files().isEmpty())
+    if (episode->files().isEmpty()) {
         return;
+    }
 
     QFileInfo fi(episode->files().first());
     QDir dir = fi.dir();
@@ -764,8 +798,9 @@ QString XbmcSync::xbmcUrl()
     QString url = "http://";
     if (!Settings::instance()->xbmcUser().isEmpty()) {
         url.append(Settings::instance()->xbmcUser());
-        if (!Settings::instance()->xbmcPassword().isEmpty())
+        if (!Settings::instance()->xbmcPassword().isEmpty()) {
             url.append(":" + Settings::instance()->xbmcPassword());
+        }
         url.append("@");
     }
     url.append(QString("%1:%2/jsonrpc").arg(Settings::instance()->xbmcHost()).arg(Settings::instance()->xbmcPort()));

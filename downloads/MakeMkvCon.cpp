@@ -93,18 +93,20 @@ void MakeMkvCon::onReadyRead()
     msg.prepend(m_lastOutput);
 
     QStringList lines = msg.split("\n");
-    if (!msg.endsWith("\n"))
+    if (!msg.endsWith("\n")) {
         m_lastOutput = lines.takeLast();
+    }
 
     QString job = process->property("job").toString();
     foreach (const QString &line, lines) {
         parseMsg(line);
-        if (job == "scanDrives")
+        if (job == "scanDrives") {
             parseScanDrive(line);
-        else if (job == "info")
+        } else if (job == "info") {
             parseInfo(line);
-        else if (job == "importTrack" || job == "backupDisc")
+        } else if (job == "importTrack" || job == "backupDisc") {
             parseProgress(line);
+        }
     }
 }
 
@@ -121,30 +123,33 @@ void MakeMkvCon::onFinished(int exitCode, QProcess::ExitStatus status)
     auto process = static_cast<QProcess *>(QObject::sender());
     QString job = process->property("job").toString();
 
-    if (job == "scanDrives")
+    if (job == "scanDrives") {
         emit sigGotDrives(m_drives);
-    else if (job == "info")
+    } else if (job == "info") {
         emit sigScannedDrive(m_title, m_tracks);
-    else if (job == "importTrack")
+    } else if (job == "importTrack") {
         emit sigTrackImported(process->property("trackId").toInt());
-    else if (job == "backupDisc")
+    } else if (job == "backupDisc") {
         emit sigDiscBackedUp();
+    }
 }
 
 void MakeMkvCon::parseMsg(QString line)
 {
     QRegExp rx("MSG:(\\d+),\\d+,\\d+,\"(.*)\",\".*\"");
     rx.setMinimal(true);
-    if (rx.indexIn(line) != -1 && rx.cap(1).toInt() != 5010)
+    if (rx.indexIn(line) != -1 && rx.cap(1).toInt() != 5010) {
         emit sigMessage(rx.cap(2).replace("\\\"", "\""));
+    }
 }
 
 void MakeMkvCon::parseScanDrive(QString line)
 {
     QRegExp rx(R"lit(DRV:(\d+),\d+,\d+,\d+,"(.*)","(.*)",".*")lit");
     rx.setMinimal(true);
-    if (rx.indexIn(line) != -1 && !rx.cap(2).isEmpty())
+    if (rx.indexIn(line) != -1 && !rx.cap(2).isEmpty()) {
         m_drives.insert(rx.cap(1).toInt(), QString("%1 (%2)").arg(rx.cap(2)).arg(rx.cap(3)));
+    }
 }
 
 void MakeMkvCon::parseInfo(QString line)
@@ -168,14 +173,16 @@ void MakeMkvCon::parseInfo(QString line)
     }
 
     rx.setPattern("CINFO:(\\d+),\\d+,\"(.*)\"");
-    if (rx.indexIn(line) != -1 && rx.cap(1).toInt() == 2)
+    if (rx.indexIn(line) != -1 && rx.cap(1).toInt() == 2) {
         m_title = rx.cap(2);
+    }
 }
 
 void MakeMkvCon::parseProgress(QString line)
 {
     QRegExp rx(R"(^PRGV:(\d+),(\d+),(\d+)$)");
     rx.setMinimal(true);
-    if (rx.indexIn(line) != -1)
+    if (rx.indexIn(line) != -1) {
         emit sigProgress(rx.cap(2).toInt(), rx.cap(3).toInt());
+    }
 }

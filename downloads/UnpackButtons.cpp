@@ -48,8 +48,9 @@ void UnpackButtons::onUnpackWithPassword()
     bool ok;
     QString password =
         QInputDialog::getText(this, tr("Extraction password"), tr("Password"), QLineEdit::Password, "", &ok);
-    if (!ok)
+    if (!ok) {
         return;
+    }
     emit sigUnpack(m_baseName, password);
 }
 
@@ -66,8 +67,9 @@ void UnpackButtons::onDelete()
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Yes);
     msgBox.setIcon(QMessageBox::Question);
-    if (msgBox.exec() == QMessageBox::Yes)
+    if (msgBox.exec() == QMessageBox::Yes) {
         emit sigDelete(m_baseName);
+    }
 }
 
 void UnpackButtons::setShowProgress(bool showProgress)

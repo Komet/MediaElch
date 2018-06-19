@@ -20,8 +20,9 @@ Database::Database(QObject *parent) : QObject(parent)
 {
     QString dataLocation = Settings::instance()->databaseDir();
     QDir dir(dataLocation);
-    if (!dir.exists())
+    if (!dir.exists()) {
         dir.mkpath(dataLocation);
+    }
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "mediaDb"));
     m_db->setDatabaseName(dataLocation + QDir::separator() + "MediaElch.sqlite");
     if (!m_db->open()) {
@@ -35,8 +36,9 @@ Database::Database(QObject *parent) : QObject(parent)
         if (query.next()) {
             query.prepare("SELECT value FROM settings WHERE idSettings=1");
             query.exec();
-            if (query.next())
+            if (query.next()) {
                 myDbVersion = query.value(0).toInt();
+            }
         }
 
         if (myDbVersion < 14) {
@@ -434,8 +436,9 @@ QList<Movie *> Database::movies(QString path)
     while (query.next()) {
         int movieId = query.value(query.record().indexOf("idMovie")).toInt();
         Movie *movie = movies.value(movieId, 0);
-        if (!movie)
+        if (!movie) {
             continue;
+        }
         auto subtitle = new Subtitle(movie);
         subtitle->setForced(query.value(query.record().indexOf("forced")).toInt() == 1);
         subtitle->setLanguage(query.value(query.record().indexOf("language")).toString());
@@ -523,8 +526,9 @@ QList<Concert *> Database::concerts(QString path)
         queryFiles.prepare("SELECT file FROM concertFiles WHERE idConcert=:idConcert");
         queryFiles.bindValue(":idConcert", query.value(query.record().indexOf("idConcert")).toInt());
         queryFiles.exec();
-        while (queryFiles.next())
+        while (queryFiles.next()) {
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+        }
 
         Concert *concert = new Concert(files, Manager::instance()->concertFileSearcher());
         concert->setDatabaseId(query.value(query.record().indexOf("idConcert")).toInt());
@@ -720,8 +724,9 @@ QList<TvShowEpisode *> Database::episodes(int idShow)
         queryFiles.prepare("SELECT file FROM episodeFiles WHERE idEpisode=:idEpisode");
         queryFiles.bindValue(":idEpisode", query.value(query.record().indexOf("idEpisode")).toInt());
         queryFiles.exec();
-        while (queryFiles.next())
+        while (queryFiles.next()) {
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+        }
 
         TvShowEpisode *episode = new TvShowEpisode(files);
         episode->setSeason(query.value(query.record().indexOf("seasonNumber")).toInt());
@@ -768,8 +773,9 @@ void Database::clearTvShow(QString showDir)
     query.prepare("SELECT idShow FROM shows WHERE dir=:dir");
     query.bindValue(":dir", showDir.toUtf8());
     query.exec();
-    if (!query.next())
+    if (!query.next()) {
         return;
+    }
     int idShow = query.value(0).toInt();
 
     query.prepare("DELETE FROM episodeFiles WHERE idEpisode IN (SELECT idEpisode FROM episodes WHERE idShow=:idShow)");
@@ -800,8 +806,9 @@ int Database::showsSettingsId(TvShow *show)
     query.prepare("SELECT idShow FROM showsSettings WHERE dir=:dir");
     query.bindValue(":dir", show->dir().toUtf8());
     query.exec();
-    if (query.next())
+    if (query.next()) {
         return query.value(0).toInt();
+    }
 
     query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir) VALUES(:show, "
                   ":hide, :dir)");
@@ -886,8 +893,9 @@ void Database::addImport(QString fileName, QString type, QString path)
     QSqlQuery query(db());
     query.prepare("SELECT MAX(id) FROM importCache");
     query.exec();
-    if (query.next())
+    if (query.next()) {
         id = query.value(0).toInt() + 1;
+    }
 
     query.prepare("INSERT INTO importCache(id, filename, type, path) VALUES(:id, :filename, :type, :path)");
     query.bindValue(":id", id);
@@ -922,8 +930,9 @@ void Database::setLabel(QStringList fileNames, int color)
     int id = 1;
     query.prepare("SELECT MAX(idLabel) FROM labels");
     query.exec();
-    if (query.next())
+    if (query.next()) {
         id = query.value(0).toInt() + 1;
+    }
 
     foreach (const QString &fileName, fileNames) {
         query.prepare("SELECT idLabel FROM labels WHERE fileName=:fileName");
@@ -947,15 +956,17 @@ void Database::setLabel(QStringList fileNames, int color)
 
 int Database::getLabel(QStringList fileNames)
 {
-    if (fileNames.isEmpty())
+    if (fileNames.isEmpty()) {
         return Labels::NO_LABEL;
+    }
 
     QSqlQuery query(db());
     query.prepare("SELECT color FROM labels WHERE fileName=:fileName");
     query.bindValue(":fileName", fileNames.first().toUtf8());
     query.exec();
-    if (query.next())
+    if (query.next()) {
         return query.value(query.record().indexOf("color")).toInt();
+    }
 
     return Labels::NO_LABEL;
 }

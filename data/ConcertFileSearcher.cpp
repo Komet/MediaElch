@@ -233,8 +233,9 @@ void ConcertFileSearcher::scanDir(QString startPath,
                 }
             }
         }
-        if (concertFiles.count() > 0)
+        if (concertFiles.count() > 0) {
             contents.append(concertFiles);
+        }
     }
 }
 

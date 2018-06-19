@@ -44,8 +44,9 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
     bool isSelected = selectionModel()->isSelected(index);
 
     QStyleOptionViewItem opt = option;
-    if (index.data(MusicRoles::Type).toInt() == TypeAlbum)
+    if (index.data(MusicRoles::Type).toInt() == TypeAlbum) {
         opt.rect.setX(opt.rect.x() + albumIndent - 4);
+    }
     if (alternatingRowColors() && index.data(MusicRoles::Type).toInt() == TypeAlbum) {
         if (index.row() % 2 == 0) {
             opt.features |= QStyleOptionViewItem::Alternate;

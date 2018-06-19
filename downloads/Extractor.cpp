@@ -20,8 +20,9 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 {
     QStringList rarFiles;
     foreach (const QString &file, files) {
-        if (file.endsWith(".rar"))
+        if (file.endsWith(".rar")) {
             rarFiles.append(file);
+        }
     }
     if (rarFiles.isEmpty()) {
         emit sigError(baseName, tr("No files to extract"));
@@ -46,8 +47,9 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     parameters << "x"
                << "-o+"
                << "-y";
-    if (!password.isEmpty())
+    if (!password.isEmpty()) {
         parameters << "-p" + password;
+    }
     parameters << file;
     // parameters << fi.path();
 
@@ -68,8 +70,9 @@ void Extractor::onReadyRead()
     auto process = static_cast<QProcess *>(QObject::sender());
     QString msg = process->readAllStandardOutput();
     QRegExp rx("([0-9]*)%");
-    if (rx.indexIn(msg) != -1)
+    if (rx.indexIn(msg) != -1) {
         emit sigProgress(process->property("baseName").toString(), rx.cap(1).toInt());
+    }
 }
 
 void Extractor::onReadyReadError()

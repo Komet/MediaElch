@@ -20,8 +20,9 @@ ExportTemplateLoader::ExportTemplateLoader(QObject *parent) : QObject(parent)
 ExportTemplateLoader *ExportTemplateLoader::instance(QObject *parent)
 {
     static ExportTemplateLoader *instance = nullptr;
-    if (!instance)
+    if (!instance) {
         instance = new ExportTemplateLoader(parent);
+    }
     return instance;
 }
 
@@ -40,8 +41,9 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
     QList<ExportTemplate *> templates;
     auto reply = static_cast<QNetworkReply *>(sender());
-    if (!reply)
+    if (!reply) {
         return;
+    }
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -78,8 +80,9 @@ void ExportTemplateLoader::loadLocalTemplates()
     m_localTemplates.clear();
     foreach (QFileInfo info, storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
         QList<QFileInfo> infos = QDir(info.absoluteFilePath()).entryInfoList(QStringList() << "metadata.xml");
-        if (infos.isEmpty() || infos.count() > 1)
+        if (infos.isEmpty() || infos.count() > 1) {
             continue;
+        }
 
         QFile file(infos.first().absoluteFilePath());
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -120,12 +123,13 @@ ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
             while (xml.readNextStartElement()) {
                 if (xml.name() == "section") {
                     QString section = xml.readElementText();
-                    if (section == "movies")
+                    if (section == "movies") {
                         sections << ExportTemplate::SectionMovies;
-                    else if (section == "tvshows")
+                    } else if (section == "tvshows") {
                         sections << ExportTemplate::SectionTvShows;
-                    else if (section == "concerts")
+                    } else if (section == "concerts") {
                         sections << ExportTemplate::SectionConcerts;
+                    }
                 } else {
                     xml.skipCurrentElement();
                 }
@@ -149,8 +153,9 @@ void ExportTemplateLoader::installTemplate(ExportTemplate *exportTemplate)
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
     auto reply = static_cast<QNetworkReply *>(sender());
-    if (!reply)
+    if (!reply) {
         return;
+    }
     ExportTemplate *exportTemplate = reply->property("storage").value<Storage *>()->exportTemplate();
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
@@ -248,13 +253,15 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
         foreach (QFileInfo info,
             dir.entryInfoList(
                 QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
-            if (info.isDir())
+            if (info.isDir()) {
                 result = removeDir(info.absoluteFilePath());
-            else
+            } else {
                 result = QFile::remove(info.absoluteFilePath());
+            }
 
-            if (!result)
+            if (!result) {
                 return result;
+            }
         }
         result = dir.rmdir(dirName);
     }
@@ -295,8 +302,9 @@ QList<ExportTemplate *> ExportTemplateLoader::installedTemplates()
 ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
 {
     foreach (ExportTemplate *exportTemplate, m_localTemplates) {
-        if (exportTemplate->identifier() == identifier)
+        if (exportTemplate->identifier() == identifier) {
             return exportTemplate;
+        }
     }
 
     return nullptr;
