@@ -52,20 +52,9 @@ void TvShowTreeView::drawTvShowRow(QPainter *painter,
     const QModelIndex &index) const
 {
     const bool isSelected = selectionModel()->isSelected(index);
-    QHeaderView *horizontalHeader = header();
 
     drawRowBackground(painter, option, index);
-
-    for (int col = 1, n = index.model()->columnCount(); col < n; ++col) {
-        QRect iconRect(option.rect.x() + columnViewportPosition(col),
-            option.rect.y(),
-            horizontalHeader->sectionSize(col),
-            option.rect.height());
-        QPixmap icon = model()->index(index.row(), col).data(Qt::DecorationRole).value<QIcon>().pixmap(iconSize());
-        painter->drawPixmap(iconRect.x() + (iconRect.width() - icon.width()) / 2,
-            iconRect.y() + (iconRect.height() - icon.height()) - 6,
-            icon);
-    }
+    drawTvShowIcons(painter, option, index);
 
     QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
     drawBranches(painter, branches, index);
@@ -98,14 +87,14 @@ void TvShowTreeView::drawTvShowRow(QPainter *painter,
         textRowHeight);
     QRect episodesRect(option.rect.x() + m_branchIndent + itemIndent,
         option.rect.y() + textRowHeight + rowPadding,
-        option.rect.width() - m_branchIndent - itemIndent,
+        header()->sectionSize(0) - m_branchIndent - itemIndent,
         textRowHeight);
 
     font = index.data(Qt::FontRole).value<QFont>();
     painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
     painter->setFont(font);
 
-    const QFontMetrics metrics(font);
+    QFontMetrics metrics(font);
     const QString itemStr = metrics.elidedText(index.data().toString(), Qt::ElideRight, showRect.width());
     painter->drawText(showRect, itemStr, QTextOption(Qt::AlignVCenter));
 
@@ -115,15 +104,37 @@ void TvShowTreeView::drawTvShowRow(QPainter *painter,
     font.setPointSize(font.pointSize() - 1);
 #endif
     font.setBold(false);
+
+    metrics = QFontMetrics(font);
+    const QString episodeStr = metrics.elidedText(
+        tr("%n episodes", "", index.data(TvShowRoles::EpisodeCount).toInt()), Qt::ElideRight, episodesRect.width());
     painter->setFont(font);
-    painter->drawText(episodesRect,
-        tr("%n episodes", "", index.data(TvShowRoles::EpisodeCount).toInt()),
-        QTextOption(Qt::AlignVCenter));
+    painter->drawText(episodesRect, episodeStr, QTextOption(Qt::AlignVCenter));
 
     QPoint lineStart(option.rect.x(), option.rect.y());
     QPoint lineEnd(option.rect.x() + option.rect.width() - 1, option.rect.y());
     painter->setPen(QColor(220, 220, 220));
     painter->drawLine(lineStart, lineEnd);
+}
+
+void TvShowTreeView::drawTvShowIcons(QPainter *painter,
+    const QStyleOptionViewItem &option,
+    const QModelIndex &index) const
+{
+    const QHeaderView *horizontalHeader = header();
+    const int columnCount = index.model()->columnCount();
+
+    for (int col = 1; col < columnCount; ++col) {
+        const QRect iconRect(option.rect.x() + columnViewportPosition(col),
+            option.rect.y(),
+            horizontalHeader->sectionSize(col),
+            option.rect.height());
+        const QPixmap icon =
+            model()->index(index.row(), col).data(Qt::DecorationRole).value<QIcon>().pixmap(iconSize());
+        painter->drawPixmap(iconRect.x() + (iconRect.width() - icon.width()) / 2,
+            iconRect.y() + (iconRect.height() - icon.height()) - 6,
+            icon);
+    }
 }
 
 void TvShowTreeView::drawEpisodeRow(QPainter *painter,
@@ -202,9 +213,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter *painter,
     painter->drawText(itemRect, itemStr, QTextOption(Qt::AlignVCenter));
 }
 
-void TvShowTreeView::drawRowBackground(QPainter *painter,
-    QStyleOptionViewItem option,
-    const QModelIndex &index) const
+void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const
 {
     const int type = getTvShowType(index);
 
