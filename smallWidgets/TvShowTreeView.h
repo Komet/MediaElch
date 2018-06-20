@@ -18,6 +18,7 @@ protected:
 
 private:
     void drawTvShowRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void drawTvShowIcons(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void drawEpisodeRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void drawRowBackground(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const;
     int getTvShowType(const QModelIndex &index) const;
