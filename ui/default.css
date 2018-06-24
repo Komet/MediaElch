@@ -274,9 +274,6 @@ MakeMkvDialog #btnImportComplete::disabled {
 /*********************************************************
  * ImageDialog
  *********************************************************/
-ImageDialog #results {
-    alternate-background-color: #f3f6fa;
-}
 ImageDialog #table {
     selection-background-color: transparent;
 }
