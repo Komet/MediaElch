@@ -11,12 +11,6 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
-    QFont font = ui->movies->font();
-    font.setPointSize(font.pointSize());
-    ui->movies->setFont(font);
-#endif
-
     if (!Settings::instance()->movieDuplicatesSplitterState().isNull())
         ui->splitter->restoreState(Settings::instance()->movieDuplicatesSplitterState());
     else
