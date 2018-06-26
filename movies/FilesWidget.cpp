@@ -26,11 +26,6 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     m_instance = this;
     ui->setupUi(this);
     ui->statusLabel->setText(tr("%n movies", "", 0));
-#ifdef Q_OS_MAC
-    QFont font = ui->files->font();
-    font.setPointSize(font.pointSize() - 2);
-    ui->files->setFont(font);
-#endif
 
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);

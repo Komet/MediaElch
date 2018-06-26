@@ -737,7 +737,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1052"/>
         <source>CD Art</source>
-        <translation>Обложка CD</translation>
+        <translation>Обложка диска</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="73"/>
@@ -1238,7 +1238,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="144"/>
         <source>New</source>
-        <translation>Новый</translation>
+        <translation>Новые</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="160"/>
@@ -1248,7 +1248,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="176"/>
         <source>Date Added</source>
-        <translation>Дата добавления</translation>
+        <translation>Последние</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="192"/>
@@ -1288,12 +1288,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="84"/>
         <source>Mark as watched</source>
-        <translation>Отметить как просмотрено</translation>
+        <translation>Отметить как «просмотрено»</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Mark as unwatched</source>
-        <translation>Отметить как не просмотренное</translation>
+        <translation>Отметить как «не просмотрено»</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
@@ -3325,7 +3325,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="142"/>
         <location filename="../movies/MovieWidget.ui" line="1130"/>
         <source>Files</source>
-        <translation>Файлы</translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="156"/>
@@ -5245,7 +5245,8 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="445"/>
         <location filename="../settings/SettingsWindow.ui" line="978"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>&lt;baseFileName&gt; - имя файла без расширения.</translation>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="460"/>
@@ -5372,7 +5373,8 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="709"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
         <translation>&lt;baseFileName&gt; - имя файла без расширения.
-Для постеров сезонов использовать &lt;seasonNumber&gt; - номер сезона.</translation>
+Для постеров сезонов использовать &lt;seasonNumber&gt; - номер сезона.
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="724"/>
@@ -5424,7 +5426,8 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.ui" line="1101"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
         <translation>Имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
-Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1116"/>
@@ -5459,7 +5462,9 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1221"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер). Ввести адрес и порт сервера в настройках ниже.</translation>
+        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер).
+Введите адрес и порт веб-сервера:
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1257"/>
