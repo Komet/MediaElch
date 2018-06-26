@@ -25,7 +25,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(ne
     ui->statusLabel->setText(tr("%n concerts", "", 0));
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
-    font.setPointSize(font.pointSize() - 2);
+    font.setPointSize(font.pointSize());
     ui->files->setFont(font);
 #endif
 #ifdef Q_OS_WIN32
