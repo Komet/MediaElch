@@ -13,7 +13,7 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
 
 #ifdef Q_OS_MAC
     QFont font = ui->movies->font();
-    font.setPointSize(font.pointSize() - 2);
+    font.setPointSize(font.pointSize());
     ui->movies->setFont(font);
 #endif
 

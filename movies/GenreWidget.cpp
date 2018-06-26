@@ -19,7 +19,7 @@ GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWid
 
 #ifdef Q_OS_MAC
     QFont genresFont = ui->genres->font();
-    genresFont.setPointSize(genresFont.pointSize() - 2);
+    genresFont.setPointSize(genresFont.pointSize());
     ui->genres->setFont(genresFont);
 #endif
 
