@@ -17,6 +17,12 @@ CertificationWidget::CertificationWidget(QWidget *parent) : QWidget(parent), ui(
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+#ifndef Q_OS_MAC
+    QFont nameFont = ui->certificationName->font();
+    nameFont.setPointSize(nameFont.pointSize() - 4);
+    ui->certificationName->setFont(nameFont);
+#endif
+
     ui->certifications->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(this);
     QAction *actionAddCertification = new QAction(tr("Add Certification"), this);

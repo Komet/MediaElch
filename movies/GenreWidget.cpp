@@ -17,6 +17,12 @@ GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWid
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+#ifndef Q_OS_MAC
+    QFont nameFont = ui->genreName->font();
+    nameFont.setPointSize(nameFont.pointSize() - 4);
+    ui->genreName->setFont(nameFont);
+#endif
+
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->genres);
     QAction *actionAddGenre = new QAction(tr("Add Genre"), this);
