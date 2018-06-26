@@ -29,7 +29,7 @@ SetsWidget::SetsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::SetsWidget
 
 #ifdef Q_OS_MAC
     QFont setsFont = ui->sets->font();
-    setsFont.setPointSize(setsFont.pointSize() - 2);
+    setsFont.setPointSize(setsFont.pointSize());
     ui->sets->setFont(setsFont);
 #endif
 
