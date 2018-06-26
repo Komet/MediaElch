@@ -23,6 +23,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(ne
     m_instance = this;
     ui->setupUi(this);
     ui->statusLabel->setText(tr("%n concerts", "", 0));
+
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
