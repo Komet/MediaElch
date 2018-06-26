@@ -19,13 +19,13 @@ CertificationWidget::CertificationWidget(QWidget *parent) : QWidget(parent), ui(
 
 #ifdef Q_OS_MAC
     QFont certificationsFont = ui->certifications->font();
-    certificationsFont.setPointSize(certificationsFont.pointSize() - 2);
+    certificationsFont.setPointSize(certificationsFont.pointSize());
     ui->certifications->setFont(certificationsFont);
 #endif
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->certificationName->font();
-    nameFont.setPointSize(nameFont.pointSize() - 4);
+    nameFont.setPointSize(nameFont.pointSize());
     ui->certificationName->setFont(nameFont);
 #endif
 
