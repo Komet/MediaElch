@@ -1293,7 +1293,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Mark as unwatched</source>
-        <translation>Отметить как «просмотрено»</translation>
+        <translation>Отметить как «не просмотрено»</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
