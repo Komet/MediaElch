@@ -144,7 +144,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="113"/>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="119"/>
@@ -174,17 +174,17 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="172"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler und Wünsche können können auf &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; gemeldet werden.</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="196"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwickler</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="202"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Informationen sind wichtig für Entwickler. Falls du Hilfe benötigst, gib folgendes an.</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="230"/>
@@ -4613,12 +4613,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../main.cpp" line="75"/>
         <source>Stylesheet could not be opened!</source>
-        <translation type="unfinished"></translation>
+        <translation>Stylesheet konnte nicht geöffnet werden!</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
         <source>The default stylesheet could not be openend for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Standard Stylesheet konnte nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="404"/>
@@ -5617,7 +5617,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="584"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
+        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist. </translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="587"/>
@@ -5807,7 +5807,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../support/SupportDialog.ui" line="84"/>
         <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
 </source>
-        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
+</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="95"/>
@@ -5840,17 +5841,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabisch</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinesisch (T)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinesisch (S)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
@@ -5895,7 +5896,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Französisch (Kanada)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
@@ -5945,12 +5946,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="55"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugiesisch (Brasilien)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="56"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugiesisch (Portugal)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="57"/>
@@ -5970,7 +5971,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="60"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanisch (Mexiko)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="61"/>
@@ -5998,17 +5999,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabisch</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinesisch (T)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinesisch (S)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
@@ -6053,7 +6054,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Französisch (Kanada)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
@@ -6103,12 +6104,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugiesisch (Brasilien)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugiesisch (Portugal)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
@@ -6128,7 +6129,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanisch (Mexiko)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
@@ -7931,7 +7932,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation>%1 ist jetzt verfügbar.&lt;br&gt;Lade es jetzt auf %2 herunter.</translation>
+        <translation>%1 ist jetzt verfügbar.&lt;br&gt;Lade es jetzt auf %2 herunter</translation>
     </message>
 </context>
 <context>
