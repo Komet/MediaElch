@@ -71,7 +71,9 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
                                                  << "1.78"
                                                  << "1.85"
                                                  << "2.35"
-                                                 << "2.39";
+                                                 << "2.39"
+                                                 << "2.40"
+                                                 << "2.55";
     double aspect = streamDetails->videoDetails().value("aspect").toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
@@ -90,6 +92,8 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
                                                 << "divx"
                                                 << "flv"
                                                 << "h264"
+                                                << "hevc"
+                                                << "mpeg2"
                                                 << "xvid";
     QString codec = streamDetails->videoDetails().value("codec").toLower();
     if (codec.startsWith("divx"))
