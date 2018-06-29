@@ -40,7 +40,11 @@ void messageHandler(QtMsgType type, const QMessageLogContext &context, const QSt
         }
     }();
 
+#ifdef QT_DEBUG
     out << "[" << srcFile << "] " << typeStr << msg.toLocal8Bit() << newLine;
+#else
+    out << "[MediaElch] " << typeStr << msg.toLocal8Bit() << newLine;
+#endif
 
     if (type == QtFatalMsg) {
         abort();

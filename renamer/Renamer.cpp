@@ -32,8 +32,9 @@ Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
     m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
                                .arg("<a "
-                                    "href=\"http://community.kvibes.de/topic/show/renamer\">http://community.kvibes.de/"
-                                    "topic/show/renamer</a>"));
+                                    "href=\"https://github.com/Komet/MediaElch/blob/master/doc/"
+                                    "RenamingFiles.md\">https://github.com/Komet/MediaElch/blob/master/doc/"
+                                    "RenamingFiles.md</a>"));
 }
 
 Renamer::~Renamer()

@@ -144,12 +144,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="113"/>
         <source>About</source>
-        <translation type="unfinished">О программе</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="119"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch был собран на &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt</translation>
+        <translation>MediaElch создан на &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="132"/>
@@ -174,17 +174,17 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="172"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожелания и найденные ошибки можно отправить на &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="196"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="202"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
-        <translation type="unfinished"></translation>
+        <translation>Если вам нужна помощь, пожалуйста, предоставьте нижеследующие данные.</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="230"/>
@@ -359,8 +359,8 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="348"/>
         <source>%n concerts</source>
         <translation>
-            <numerusform>%n концертов</numerusform>
-            <numerusform>%n концертов</numerusform>
+            <numerusform>%n концерт</numerusform>
+            <numerusform>%n концерта</numerusform>
             <numerusform>%n концертов</numerusform>
         </translation>
     </message>
@@ -403,7 +403,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="350"/>
         <source>%1 of %n concerts</source>
         <translation>
-            <numerusform>%1 из %n концертов</numerusform>
+            <numerusform>%1 из %n концерта</numerusform>
             <numerusform>%1 из %n концертов</numerusform>
             <numerusform>%1 из %n концертов</numerusform>
         </translation>
@@ -737,7 +737,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1052"/>
         <source>CD Art</source>
-        <translation>Обложка CD</translation>
+        <translation>Обложка диска</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="73"/>
@@ -1238,7 +1238,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="144"/>
         <source>New</source>
-        <translation>Новый</translation>
+        <translation>Новые</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="160"/>
@@ -1248,7 +1248,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="176"/>
         <source>Date Added</source>
-        <translation>Дата добавления</translation>
+        <translation>Последние</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="192"/>
@@ -1265,8 +1265,8 @@
         <location filename="../movies/FilesWidget.cpp" line="533"/>
         <source>%n movies</source>
         <translation>
-            <numerusform>%n фильмов</numerusform>
-            <numerusform>%n фильмов</numerusform>
+            <numerusform>%n фильм</numerusform>
+            <numerusform>%n фильма</numerusform>
             <numerusform>%n фильмов</numerusform>
         </translation>
     </message>
@@ -1288,12 +1288,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="84"/>
         <source>Mark as watched</source>
-        <translation>Отметить как просмотрено</translation>
+        <translation>Отметить как «просмотрено»</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Mark as unwatched</source>
-        <translation>Отметить как не просмотренное</translation>
+        <translation>Отметить как «не просмотрено»</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
@@ -1324,7 +1324,7 @@
         <location filename="../movies/FilesWidget.cpp" line="535"/>
         <source>%1 of %n movies</source>
         <translation>
-            <numerusform>%1 из %n фильмов</numerusform>
+            <numerusform>%1 из %n фильма</numerusform>
             <numerusform>%1 из %n фильмов</numerusform>
             <numerusform>%1 из %n фильмов</numerusform>
         </translation>
@@ -3325,7 +3325,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="142"/>
         <location filename="../movies/MovieWidget.ui" line="1130"/>
         <source>Files</source>
-        <translation>Файлы</translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="156"/>
@@ -4627,12 +4627,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main.cpp" line="75"/>
         <source>Stylesheet could not be opened!</source>
-        <translation type="unfinished"></translation>
+        <translation>Таблица стилей недоступна!</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
         <source>The default stylesheet could not be openend for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно прочитать таблицу стилей.</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="404"/>
@@ -5166,7 +5166,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../settings/SettingsWindow.ui" line="216"/>
         <location filename="../settings/SettingsWindow.ui" line="235"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation>Исключить следующие слова из имён файлов (разделять запятой, без пробелов, любого регистра)</translation>
+        <translation>Исключить эти слова из имён файлов (разделить запятой, без пробелов, любого регистра)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="202"/>
@@ -5190,9 +5190,9 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>Добавьте одну или несколько папок с фильмами, сериалами, концертами, музыкой или файлы для импорта.
-Сезоны с сериями должны быть в папках с названием сериала.
-Каждый музыкальный исполнитель должен располагаться в отдельной папке с подпапками альбомов.</translation>
+        <translation>Добавьте одну или несколько папок с фильмами, сериалами, концертами, музыкой или файлами для импорта.
+Серии должны быть сортированы по сезонам, в папках с названием этого сериала (Сериал/Сезон/серии).
+Каждый музыкальный исполнитель должен располагаться в отдельной папке с подпапками альбомов (Исполнитель/Альбом/треки).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="242"/>
@@ -5228,7 +5228,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="388"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Выберете сайт для каждого элемента описания сериала и серий.</translation>
+        <translation>Выберете источник для каждого элемента описания сериала и серий.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="419"/>
@@ -5238,14 +5238,15 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="435"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о фильмах.
-Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
+        <translation>Имена файлов для сохранения и загрузки информации о фильмах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="445"/>
         <location filename="../settings/SettingsWindow.ui" line="978"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>Можете использовать атрибут &lt;baseFileName&gt; являющейся именем файла без расширения.</translation>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="460"/>
@@ -5365,14 +5366,15 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="699"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о сериалах.
-Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
+        <translation>Имена файлов для сохранения и загрузки информации о сериалах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="709"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Можете использовать атрибут &lt;baseFileName&gt; являющейся именем файла без расширения.
-Для постеров сезонов использовать &lt;seasonNumber&gt; являющийся номером сезона.</translation>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+Для постеров сезонов использовать &lt;seasonNumber&gt; - номер сезона.
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="724"/>
@@ -5417,14 +5419,15 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="968"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Ниже представлены имена файлов для сохранения и загрузки информации о концертах.
-Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
+        <translation>Имена файлов для сохранения и загрузки информации о концертах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1101"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Ниже представлены имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
-Вы можете использовать любые имена или несколько имён (необходимо разделять запятой).</translation>
+        <translation>Имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1116"/>
@@ -5459,7 +5462,9 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1221"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер). Ввести адрес и порт сервера в настройках ниже.</translation>
+        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер).
+Введите адрес и порт веб-сервера:
+</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1257"/>
@@ -5616,7 +5621,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1638"/>
         <source>Export</source>
-        <translation>Экспортировать</translation>
+        <translation>Экспорт</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="501"/>
@@ -5868,17 +5873,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Арабский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Китайский (традиционный)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Китайский (упрощённый)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
@@ -5923,7 +5928,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Французский (Канада)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
@@ -5973,12 +5978,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="55"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Португальский (Бразилия)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="56"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Португальский (Португалия)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="57"/>
@@ -5998,7 +6003,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="60"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Испанский (Мексика)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="61"/>
@@ -6026,17 +6031,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Арабский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Китайский (традиционный)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Китайский (упрощённый)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
@@ -6081,7 +6086,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Французский (Канада)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
@@ -6131,12 +6136,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Португальский (Бразилия)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Португальский (Португалия)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
@@ -6156,7 +6161,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Испанский (Мексика)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
