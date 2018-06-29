@@ -54,6 +54,8 @@
         <file alias="aspect/1.85">mediaFlags/aspect/1.85.png</file>
         <file alias="aspect/2.35">mediaFlags/aspect/2.35.png</file>
         <file alias="aspect/2.39">mediaFlags/aspect/2.39.png</file>
+        <file alias="aspect/2.40">mediaFlags/aspect/2.40.png</file>
+        <file alias="aspect/2.55">mediaFlags/aspect/2.55.png</file>
         <file alias="resolution/480p">mediaFlags/resolution/480.png</file>
         <file alias="resolution/540p">mediaFlags/resolution/540.png</file>
         <file alias="resolution/576p">mediaFlags/resolution/576.png</file>
@@ -82,6 +84,8 @@
         <file alias="codec/flv">mediaFlags/codec/flv.png</file>
         <file alias="codec/h264">mediaFlags/codec/h264.png</file>
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
+        <file alias="codec/hevc">mediaFlags/codec/hevc.png</file>
+        <file alias="codec/mpeg2">mediaFlags/codec/mpeg2.png</file>
         <file alias="audio/dtshdhra">mediaFlags/audio/dtshdhra.png</file>
     </qresource>
     <qresource prefix="/mediaStatus">
