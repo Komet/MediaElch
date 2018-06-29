@@ -167,7 +167,9 @@ void StreamDetails::loadWithLibrary()
 
         if (codec == "V_MPEGH/ISO/HEVC") {
             scanType = "progressive";
-        } else scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
+        } else {
+            scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
+        }
 
         QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 
