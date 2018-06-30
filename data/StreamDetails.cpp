@@ -153,7 +153,6 @@ void StreamDetails::loadWithLibrary()
         double aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
         int width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
         int height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
-        scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
 
         QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID/Hint")));
         QString version;
@@ -165,6 +164,12 @@ void StreamDetails::loadWithLibrary()
             }
         }
         videoCodec = videoFormat(codec, version);
+
+        if (codec == "V_MPEGH/ISO/HEVC") {
+            scanType = "progressive";
+        } else {
+            scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
+        }
 
         QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 

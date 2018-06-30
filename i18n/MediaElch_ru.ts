@@ -1346,7 +1346,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="136"/>
         <source>Filename contains &quot;%1&quot;</source>
-        <translation>Имя файла содержит &quot;%1&quot;</translation>
+        <translation>Имя файла или путь содержат &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="141"/>
