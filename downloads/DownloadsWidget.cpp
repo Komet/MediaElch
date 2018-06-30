@@ -90,18 +90,20 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
             } else if (isImportable(it.fileInfo()) || isSubtitle(it.fileInfo())) {
                 QString base = it.fileInfo().completeBaseName();
                 if (imports.contains(base)) {
-                    if (isSubtitle(it.fileInfo()))
+                    if (isSubtitle(it.fileInfo())) {
                         imports[base].extraFiles.append(it.filePath());
-                    else
+                    } else {
                         imports[base].files.append(it.filePath());
+                    }
                     imports[base].size += it.fileInfo().size();
                 } else {
                     Import i;
                     i.baseName = base;
-                    if (isSubtitle(it.fileInfo()))
+                    if (isSubtitle(it.fileInfo())) {
                         i.extraFiles << it.filePath();
-                    else
+                    } else {
                         i.files << it.filePath();
+                    }
                     i.size = it.fileInfo().size();
                     imports.insert(base, i);
                 }
@@ -113,16 +115,19 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     QStringList onlyExtraFiles;
     while (it.hasNext()) {
         it.next();
-        if (it.value().files.isEmpty())
+        if (it.value().files.isEmpty()) {
             onlyExtraFiles.append(it.key());
+        }
     }
     foreach (const QString &base, onlyExtraFiles)
         imports.remove(base);
 
-    if (scanDownloads)
+    if (scanDownloads) {
         updatePackagesList(packages);
-    if (scanImports)
+    }
+    if (scanImports) {
         updateImportsList(imports);
+    }
 
     emit sigScanFinished(!packages.isEmpty() || !imports.isEmpty());
 }
@@ -131,24 +136,28 @@ QString DownloadsWidget::baseName(QFileInfo fileInfo) const
 {
     QString fileName = fileInfo.fileName();
     QRegExp rx("(.*)(part[0-9]*)\\.rar");
-    if (rx.exactMatch(fileName))
+    if (rx.exactMatch(fileName)) {
         return rx.cap(1).endsWith(".") ? rx.cap(1).mid(0, rx.cap(1).length() - 1) : rx.cap(1);
+    }
 
     rx.setPattern("(.*)\\.r(ar|[0-9]*)");
-    if (rx.exactMatch(fileName))
+    if (rx.exactMatch(fileName)) {
         return rx.cap(1);
+    }
 
     return fileName;
 }
 
 bool DownloadsWidget::isPackage(QFileInfo file) const
 {
-    if (file.suffix() == "rar")
+    if (file.suffix() == "rar") {
         return true;
+    }
 
     QRegExp rx("r[0-9]*");
-    if (rx.exactMatch(file.suffix()))
+    if (rx.exactMatch(file.suffix())) {
         return true;
+    }
 
     return false;
 }
@@ -164,8 +173,9 @@ bool DownloadsWidget::isImportable(QFileInfo file) const
     foreach (const QString &filter, filters) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
-        if (rx.exactMatch(file.fileName()))
+        if (rx.exactMatch(file.fileName())) {
             return true;
+        }
     }
     return false;
 }
@@ -175,8 +185,9 @@ bool DownloadsWidget::isSubtitle(QFileInfo file) const
     foreach (const QString &filter, Settings::instance()->advanced()->subtitleFilters()) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
-        if (rx.exactMatch(file.fileName()))
+        if (rx.exactMatch(file.fileName())) {
             return true;
+        }
     }
     return false;
 }
@@ -216,8 +227,9 @@ void DownloadsWidget::updatePackagesList(QMap<QString, Package> packages)
 
 void DownloadsWidget::onUnpack(QString baseName, QString password)
 {
-    if (!m_packages.contains(baseName))
+    if (!m_packages.contains(baseName)) {
         return;
+    }
 
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
@@ -231,8 +243,9 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
 
 void DownloadsWidget::onDelete(QString baseName)
 {
-    if (!m_packages.contains(baseName))
+    if (!m_packages.contains(baseName)) {
         return;
+    }
 
     foreach (const QString &fileName, m_packages[baseName].files)
         QFile::remove(fileName);
@@ -249,8 +262,9 @@ void DownloadsWidget::onDelete(QString baseName)
 
 void DownloadsWidget::onDeleteImport(QString baseName)
 {
-    if (!m_imports.contains(baseName))
+    if (!m_imports.contains(baseName)) {
         return;
+    }
 
     foreach (const QString &fileName, m_imports[baseName].files)
         QFile::remove(fileName);
@@ -285,20 +299,23 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
             auto label = new MessageLabel(this, Qt::AlignCenter | Qt::AlignVCenter);
-            if (success)
+            if (success) {
                 label->setSuccessMessage(tr("Extraction finished"));
-            else
+            } else {
                 label->setErrorMessage(tr("Extraction failed"));
+            }
             static_cast<UnpackButtons *>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(false);
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
-    if (success && Settings::instance()->deleteArchives())
+    if (success && Settings::instance()->deleteArchives()) {
         onDelete(baseName);
+    }
 
-    if (success)
+    if (success) {
         Notificator::instance()->notify(
             Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
+    }
 
     scanDownloadFolders(true, true);
 }
@@ -407,12 +424,14 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
 void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
 {
     QComboBox *box;
-    if (sender)
+    if (sender) {
         box = sender;
-    else
+    } else {
         box = static_cast<QComboBox *>(QObject::sender());
-    if (currentIndex < 0 || currentIndex >= box->count())
+    }
+    if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
+    }
 
     QString type = box->itemData(currentIndex, Qt::UserRole).toString();
     QString baseName = box->property("baseName").toString();
@@ -423,8 +442,9 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
             break;
         }
     }
-    if (row == -1)
+    if (row == -1) {
         return;
+    }
 
     auto detailBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 4));
     detailBox->clear();
@@ -453,16 +473,19 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
 void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
 {
     QComboBox *box;
-    if (sender)
+    if (sender) {
         box = sender;
-    else
+    } else {
         box = static_cast<QComboBox *>(QObject::sender());
-    if (currentIndex < 0 || currentIndex >= box->count())
+    }
+    if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
+    }
 
     QString baseName = box->property("baseName").toString();
-    if (!m_imports.contains(baseName))
+    if (!m_imports.contains(baseName)) {
         return;
+    }
 
     int row = -1;
     for (int i = 0, n = ui->tableImports->rowCount(); i < n; ++i) {
@@ -471,19 +494,21 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
             break;
         }
     }
-    if (row == -1)
+    if (row == -1) {
         return;
+    }
 
     auto typeBox = static_cast<QComboBox *>(ui->tableImports->cellWidget(row, 3));
     auto actions = static_cast<ImportActions *>(ui->tableImports->cellWidget(row, 5));
     QString type = typeBox->itemData(typeBox->currentIndex(), Qt::UserRole).toString();
     actions->setType(type);
-    if (type == "movie")
+    if (type == "movie") {
         actions->setImportDir(box->currentText());
-    else if (type == "tvshow")
+    } else if (type == "tvshow") {
         actions->setTvShow(box->itemData(currentIndex, Qt::UserRole).value<Storage *>()->show());
-    else if (type == "concert")
+    } else if (type == "concert") {
         actions->setImportDir(box->currentText());
+    }
 
     actions->setFiles(m_imports[baseName].files);
     actions->setExtraFiles(m_imports[baseName].extraFiles);

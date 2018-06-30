@@ -155,8 +155,9 @@ void VideoBuster::loadFinished()
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!movie)
+    if (!movie) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = reply->readAll();
@@ -185,18 +186,21 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
 
     // Title
     rx.setPattern("<h1 itemprop=\"name\">(.*)</h1>");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1).trimmed());
+    }
 
     // Original Title
     rx.setPattern("<label>Originaltitel</label><br><span itemprop=\"alternateName\">(.*)</span>");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setOriginalName(rx.cap(1).trimmed());
+    }
 
     // Year
     rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]*)</span>");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
+    }
 
     // Country
     pos = 0;
@@ -208,8 +212,9 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
 
     // MPAA
     rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
-    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
         movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+    }
 
     // Actors
     pos = 0;
@@ -254,22 +259,26 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Studio
     rx.setPattern("<label>Studio</label><br><span itemprop=\"publisher\" itemscope "
                   "itemtype=\"http://schema.org/Organization\">.*<span itemprop=\"name\">(.*)</span></a></span>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
         movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
+    }
 
     // Runtime
     rx.setPattern("ca. ([0-9]*) Minuten");
-    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie->setRuntime(rx.cap(1).trimmed().toInt());
+    }
 
     // Rating
     if (infos.contains(MovieScraperInfos::Rating)) {
         rx.setPattern("<span itemprop=\"ratingCount\">([0-9]*)</span>");
-        if (rx.indexIn(html) != -1)
+        if (rx.indexIn(html) != -1) {
             movie->setVotes(rx.cap(1).trimmed().toInt());
+        }
         rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
-        if (rx.indexIn(html) != -1)
+        if (rx.indexIn(html) != -1) {
             movie->setRating(rx.cap(1).trimmed().replace(".", "").replace(",", ".").toFloat());
+        }
     }
 
     // Genres
@@ -284,16 +293,18 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
 
     // Tagline
     rx.setPattern(R"(<p class="long_name" itemprop="alternativeHeadline">(.*)</p>)");
-    if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1) {
         movie->setTagline(rx.cap(1).trimmed());
+    }
 
     // Overview
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
-        if (Settings::instance()->usePlotForOutline())
+        if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(doc.toPlainText());
+        }
     }
 
     // Posters

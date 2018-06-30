@@ -164,8 +164,9 @@ QList<ScraperInterface *> Manager::scrapers()
 ScraperInterface *Manager::scraper(const QString &identifier)
 {
     foreach (ScraperInterface *scraper, m_scrapers) {
-        if (scraper->identifier() == identifier)
+        if (scraper->identifier() == identifier) {
             return scraper;
+        }
     }
 
     return nullptr;
@@ -244,8 +245,9 @@ QList<ImageProviderInterface *> Manager::imageProviders(int type)
 {
     QList<ImageProviderInterface *> providers;
     foreach (ImageProviderInterface *provider, m_imageProviders) {
-        if (provider->provides().contains(type))
+        if (provider->provides().contains(type)) {
             providers.append(provider);
+        }
     }
     return providers;
 }

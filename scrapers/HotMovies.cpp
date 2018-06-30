@@ -124,35 +124,41 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     rx.setMinimal(true);
 
     rx.setPattern("<span itemprop=\"name\">(.*)</span>");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
+    }
 
     rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         movie->setRating(rx.cap(1).toFloat());
+    }
 
     rx.setPattern(R"(<span class="rating_number " itemprop="ratingCount">(\d+) Rating)");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         movie->setVotes(rx.cap(1).toInt());
+    }
 
     rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]{4})</span>");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1) {
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
+    }
 
     rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]*">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         QStringList runtime = rx.cap(1).split(":");
-        if (runtime.count() == 3)
+        if (runtime.count() == 3) {
             movie->setRuntime(runtime.at(0).toInt() * 60 + runtime.at(1).toInt());
-        else if (runtime.count() == 2)
+        } else if (runtime.count() == 2) {
             movie->setRuntime(runtime.at(0).toInt());
+        }
     }
 
     rx.setPattern(R"(<div class="video_description" itemprop="description">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(rx.cap(1).trimmed());
-        if (Settings::instance()->usePlotForOutline())
+        if (Settings::instance()->usePlotForOutline()) {
             movie->setOutline(rx.cap(1).trimmed());
+        }
     }
 
     rx.setPattern(R"lit(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*src="([^"]*)")lit");
@@ -181,8 +187,9 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
             offset += rx.matchedLength();
             Actor a;
             a.name = rx.cap(2);
-            if (!rx.cap(1).endsWith("missing_f.gif") && !rx.cap(1).endsWith("missing_m.gif"))
+            if (!rx.cap(1).endsWith("missing_f.gif") && !rx.cap(1).endsWith("missing_m.gif")) {
                 a.thumb = rx.cap(1);
+            }
             movie->addActor(a);
         }
     }
@@ -198,17 +205,20 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
 
     rx.setPattern("<strong>Studio:</strong> <a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\"><span "
                   "itemprop=\"name\">(.*)</span></a>");
-    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
         movie->addStudio(rx.cap(1));
+    }
 
     rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"https://schema.org/Person\"><a itemprop=\"url\" "
                   "href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(1));
+    }
 
     rx.setPattern(R"(<a href="https://www.hotmovies.com/.*[/?]series/[^"]*" title="[^"]*" rel="tag">(.*)</a>)");
-    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         movie->setSet(rx.cap(1));
+    }
 }
 
 bool HotMovies::hasSettings()

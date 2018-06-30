@@ -434,8 +434,9 @@ void TMDbConcerts::loadFinished()
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!concert)
+    if (!concert) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -456,8 +457,9 @@ void TMDbConcerts::loadTrailersFinished()
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!concert)
+    if (!concert) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -478,8 +480,9 @@ void TMDbConcerts::loadImagesFinished()
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!concert)
+    if (!concert) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -500,8 +503,9 @@ void TMDbConcerts::loadReleasesFinished()
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
     reply->deleteLater();
-    if (!concert)
+    if (!concert) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());

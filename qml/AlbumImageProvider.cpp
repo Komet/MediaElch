@@ -17,13 +17,15 @@ QImage AlbumImageProvider::requestImage(const QString &id, QSize *size, const QS
         int albumNum = parts.at(2).toInt();
         int imageId = parts.at(3).toInt();
 
-        if (Manager::instance()->musicModel()->artists().count() <= artistNum)
+        if (Manager::instance()->musicModel()->artists().count() <= artistNum) {
             return QImage();
+        }
 
         Artist *artist = Manager::instance()->musicModel()->artists().at(artistNum);
 
-        if (artist->albums().count() <= albumNum)
+        if (artist->albums().count() <= albumNum) {
             return QImage();
+        }
 
         Album *album = artist->albums().at(albumNum);
 
@@ -31,11 +33,13 @@ QImage AlbumImageProvider::requestImage(const QString &id, QSize *size, const QS
         QImage img = QImage::fromData(
             album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole + 4).toByteArray());
 
-        if (size)
+        if (size) {
             *size = QSize(img.width(), img.height());
-        if (requestedSize.width() > 0 || requestedSize.height() > 0)
+        }
+        if (requestedSize.width() > 0 || requestedSize.height() > 0) {
             return img.scaled(
                 requestedSize.width(), requestedSize.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
         return img;
     }
 

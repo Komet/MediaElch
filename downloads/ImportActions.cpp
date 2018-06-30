@@ -97,15 +97,18 @@ void ImportActions::onImport()
 
     if (type() == "movie") {
         m_importDialog->setImportDir(importDir());
-        if (m_importDialog->execMovie(baseName()) == QDialog::Accepted)
+        if (m_importDialog->execMovie(baseName()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), importDir());
+        }
     } else if (type() == "tvshow") {
-        if (m_importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted)
+        if (m_importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), tvShow()->dir());
+        }
     } else if (type() == "concert") {
         m_importDialog->setImportDir(importDir());
-        if (m_importDialog->execConcert(baseName()) == QDialog::Accepted)
+        if (m_importDialog->execConcert(baseName()) == QDialog::Accepted) {
             Manager::instance()->database()->addImport(baseName(), type(), importDir());
+        }
     }
 
     emit sigDialogClosed();
@@ -119,6 +122,7 @@ void ImportActions::onDelete()
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Yes);
     msgBox.setIcon(QMessageBox::Question);
-    if (msgBox.exec() == QMessageBox::Yes)
+    if (msgBox.exec() == QMessageBox::Yes) {
         emit sigDelete(m_baseName);
+    }
 }

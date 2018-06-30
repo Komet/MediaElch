@@ -1498,8 +1498,9 @@ void TvShow::clearMissingEpisodes()
         bool isDummySeason = true;
         for (int x = 0; x < seasonItem->childCount(); ++x) {
             TvShowModelItem *item = seasonItem->child(x);
-            if (item->type() != TypeEpisode)
+            if (item->type() != TypeEpisode) {
                 continue;
+            }
             if (item->tvShowEpisode()->isDummy()) {
                 seasonItem->removeChildren(x, 1);
                 m_episodes.removeOne(item->tvShowEpisode());

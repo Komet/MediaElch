@@ -19,8 +19,9 @@ void MusicFileSearcher::setMusicDirectories(QList<SettingsDir> directories)
     m_directories.clear();
     foreach (SettingsDir dir, directories) {
         QFileInfo fi(dir.path);
-        if (fi.isDir())
+        if (fi.isDir()) {
             m_directories.append(dir);
+        }
     }
 }
 
@@ -36,23 +37,27 @@ void MusicFileSearcher::reload(bool force)
     QList<Album *> albums;
     QList<Album *> albumsFromDb;
 
-    if (force)
+    if (force) {
         Manager::instance()->database()->clearArtists();
+    }
 
     QMap<Artist *, QString> artistPaths;
     QMap<Album *, QString> albumPaths;
     foreach (SettingsDir dir, m_directories) {
-        if (m_aborted)
+        if (m_aborted) {
             break;
+        }
 
-        if (dir.autoReload)
+        if (dir.autoReload) {
             Manager::instance()->database()->clearArtists(dir.path);
+        }
 
         if (dir.autoReload || force) {
             QDirIterator it(dir.path, QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
             while (it.hasNext()) {
-                if (m_aborted)
+                if (m_aborted) {
                     break;
+                }
 
                 it.next();
 
@@ -66,10 +71,12 @@ void MusicFileSearcher::reload(bool force)
                 while (itAlbums.hasNext()) {
                     itAlbums.next();
 
-                    if (itAlbums.fileInfo().baseName() == "extrafanart")
+                    if (itAlbums.fileInfo().baseName() == "extrafanart") {
                         continue;
-                    if (itAlbums.fileInfo().baseName() == "extrathumbs")
+                    }
+                    if (itAlbums.fileInfo().baseName() == "extrathumbs") {
                         continue;
+                    }
 
                     Album *album = new Album(itAlbums.filePath(), this);
                     album->setTitle(itAlbums.fileInfo().baseName());
@@ -82,8 +89,9 @@ void MusicFileSearcher::reload(bool force)
         } else {
             QList<Artist *> artistsInPath = Manager::instance()->database()->artists(dir.path);
             foreach (Artist *artist, artistsInPath) {
-                if (artistsFromDb.count() % 20 == 0)
+                if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().mid(dir.path.length()));
+                }
                 QList<Album *> albumsOfArtist = Manager::instance()->database()->albums(artist);
                 artistsFromDb.append(artist);
                 albumsFromDb.append(albumsOfArtist);
@@ -104,8 +112,9 @@ void MusicFileSearcher::reload(bool force)
             return;
         }
         artist->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-        if (current % 20 == 0)
+        if (current % 20 == 0) {
             emit currentDir(artist->name());
+        }
         emit progress(++current, max, m_progressMessageId);
         Manager::instance()->database()->add(artist, artistPaths.value(artist));
     }
@@ -115,8 +124,9 @@ void MusicFileSearcher::reload(bool force)
             return;
         }
         album->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-        if (current % 20 == 0)
+        if (current % 20 == 0) {
             emit currentDir(album->artist() + "/" + album->title());
+        }
         emit progress(++current, max, m_progressMessageId);
         Manager::instance()->database()->add(album, albumPaths.value(album));
     }
@@ -142,8 +152,9 @@ void MusicFileSearcher::reload(bool force)
         artistItem->appendChild(album);
     }
 
-    if (!m_aborted)
+    if (!m_aborted) {
         emit musicLoaded(m_progressMessageId);
+    }
 }
 
 void MusicFileSearcher::abort()

@@ -91,10 +91,12 @@ void FanartTvMusicArtists::onSearchArtistFinished()
         for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
             QString name;
-            if (!elem.elementsByTagName("name").isEmpty())
+            if (!elem.elementsByTagName("name").isEmpty()) {
                 name = elem.elementsByTagName("name").at(0).toElement().text();
-            if (!elem.elementsByTagName("disambiguation").isEmpty())
+            }
+            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
                 name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
+            }
 
             if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
                 ScraperSearchResult result;

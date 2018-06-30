@@ -155,8 +155,9 @@ void TvShowWidget::onSaveInformation()
     }
 
     foreach (TvShow *show, seasons) {
-        if (!shows.contains(show))
+        if (!shows.contains(show)) {
             shows.append(show);
+        }
     }
 
     int itemsToSave = shows.count() + episodes.count();
@@ -200,11 +201,13 @@ void TvShowWidget::onSaveAll()
     int episodesToSave = 0;
     int episodesSaved = 0;
     for (int i = 0, n = shows.count(); i < n; ++i) {
-        if (shows[i]->hasChanged())
+        if (shows[i]->hasChanged()) {
             episodesToSave++;
+        }
         for (int x = 0, y = shows[i]->episodes().count(); x < y; ++x) {
-            if (shows[i]->episodes().at(x)->hasChanged())
+            if (shows[i]->episodes().at(x)->hasChanged()) {
                 episodesToSave++;
+            }
         }
     }
     qDebug() << "episodesToSave=" << episodesToSave;
@@ -240,18 +243,20 @@ void TvShowWidget::onSaveAll()
 void TvShowWidget::onStartScraperSearch()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         QTimer::singleShot(0, ui->tvShowWidget, &TvShowWidgetTvShow::onStartScraperSearch);
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         QTimer::singleShot(0, ui->episodeWidget, &TvShowWidgetEpisode::onStartScraperSearch);
+    }
 }
 
 void TvShowWidget::updateInfo()
 {
-    if (ui->stackedWidget->currentIndex() == 0)
+    if (ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->updateTvShowInfo();
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->episodeWidget->updateEpisodeInfo();
-    else if (ui->stackedWidget->currentIndex() == 2)
+    } else if (ui->stackedWidget->currentIndex() == 2) {
         ui->seasonWidget->updateSeasonInfo();
+    }
 }

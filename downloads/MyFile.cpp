@@ -12,8 +12,9 @@ bool MyFile::copy(const QString &newName)
         qWarning("QFile::copy: Empty or null file name");
         return false;
     }
-    if (QFile(newName).exists())
+    if (QFile(newName).exists()) {
         return false;
+    }
     unsetError();
     close();
     if (error() == QFile::NoError) {
@@ -22,8 +23,9 @@ bool MyFile::copy(const QString &newName)
             error = true;
         } else {
             QFile out(newName);
-            if (!out.open(QIODevice::ReadWrite))
+            if (!out.open(QIODevice::ReadWrite)) {
                 error = true;
+            }
             if (error) {
                 out.close();
                 close();
@@ -32,8 +34,9 @@ bool MyFile::copy(const QString &newName)
                 qint64 totalRead = 0;
                 while (!atEnd()) {
                     qint64 in = read(block, sizeof(block));
-                    if (in <= 0)
+                    if (in <= 0) {
                         break;
+                    }
                     totalRead += in;
                     if (in != out.write(block, in)) {
                         close();
@@ -47,8 +50,9 @@ bool MyFile::copy(const QString &newName)
                     // already set from read().
                     error = true;
                 }
-                if (error)
+                if (error) {
                     out.remove();
+                }
             }
         }
         if (!error) {

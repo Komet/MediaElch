@@ -295,8 +295,9 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     m_episode = episode;
-    if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy())
+    if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy()) {
         episode->loadStreamDetailsFromFile();
+    }
     ui->missingLabel->setVisible(episode->isDummy());
     updateEpisodeInfo();
 
@@ -397,14 +398,15 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->videoScantype->setEnabled(m_episode->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_episode->streamDetailsLoaded());
 
-    if (!m_episode->thumbnailImage().isNull())
+    if (!m_episode->thumbnailImage().isNull()) {
         ui->thumbnail->setImage(m_episode->thumbnailImage());
-    else if (!Manager::instance()
-                  ->mediaCenterInterface()
-                  ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
-                  .isEmpty())
+    } else if (!Manager::instance()
+                    ->mediaCenterInterface()
+                    ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
+                    .isEmpty()) {
         ui->thumbnail->setImage(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    }
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
@@ -435,8 +437,9 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
  */
 void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
 {
-    if (m_episode && m_episode->isDummy())
+    if (m_episode && m_episode->isDummy()) {
         return;
+    }
 
     ui->videoAspectRatio->blockSignals(true);
     ui->videoDuration->blockSignals(true);
@@ -444,8 +447,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
 
-    if (reloadFromFile)
+    if (reloadFromFile) {
         m_episode->loadStreamDetailsFromFile();
+    }
 
     StreamDetails *streamDetails = m_episode->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
@@ -455,8 +459,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
-        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode")) {
             ui->stereoMode->setCurrentIndex(i);
+        }
     }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
@@ -555,8 +560,9 @@ void TvShowWidgetEpisode::onSaveInformation()
         return;
     }
 
-    if (m_episode->isDummy())
+    if (m_episode->isDummy()) {
         return;
+    }
 
     onSetEnabled(false);
     m_savingWidget->show();
@@ -588,8 +594,9 @@ void TvShowWidgetEpisode::onStartScraperSearch()
         return;
     }
 
-    if (m_episode->isDummy())
+    if (m_episode->isDummy()) {
         return;
+    }
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
@@ -680,8 +687,9 @@ void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
 {
     Q_UNUSED(imageType);
 
-    if (!m_episode)
+    if (!m_episode) {
         return;
+    }
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowEpisodeThumb;
@@ -701,8 +709,9 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == ImageType::TvShowEpisodeThumb) {
         qDebug() << "Got a backdrop";
-        if (m_episode == elem.episode)
+        if (m_episode == elem.episode) {
             ui->thumbnail->setImage(elem.data);
+        }
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
         elem.episode->setThumbnailImage(elem.data);
@@ -740,8 +749,9 @@ void TvShowWidgetEpisode::onAddDirector()
 void TvShowWidgetEpisode::onRemoveDirector()
 {
     int row = ui->directors->currentRow();
-    if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected())
+    if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected()) {
         return;
+    }
 
     auto director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeDirector(director);
@@ -789,8 +799,9 @@ void TvShowWidgetEpisode::onAddWriter()
 void TvShowWidgetEpisode::onRemoveWriter()
 {
     int row = ui->writers->currentRow();
-    if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected())
+    if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected()) {
         return;
+    }
 
     auto writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString *>();
     m_episode->removeWriter(writer);
@@ -925,8 +936,9 @@ void TvShowWidgetEpisode::onStudioChange(QString text)
 
 void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
 {
-    if (!m_episode)
+    if (!m_episode) {
         return;
+    }
     m_episode->setEpBookmark(time);
     ui->buttonRevert->setVisible(true);
 }
@@ -947,9 +959,10 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
         && !Manager::instance()
                 ->mediaCenterInterface()
                 ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
-                .isEmpty())
+                .isEmpty()) {
         ui->thumbnail->setImage(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
+    }
     ui->buttonRevert->setVisible(true);
 }
 
@@ -972,8 +985,9 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+    }
 
     m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
@@ -982,10 +996,11 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
 void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem *item)
 {
     auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
-    if (item->column() == 0)
+    if (item->column() == 0) {
         actor->name = item->text();
-    else if (item->column() == 1)
+    } else if (item->column() == 1) {
         actor->role = item->text();
+    }
     m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
@@ -1013,8 +1028,9 @@ void TvShowWidgetEpisode::onAddActor()
 void TvShowWidgetEpisode::onRemoveActor()
 {
     int row = ui->actors->currentRow();
-    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
+    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected()) {
         return;
+    }
 
     auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_episode->removeActor(actor);
@@ -1075,27 +1091,31 @@ void TvShowWidgetEpisode::onChangeActorImage()
 
 void TvShowWidgetEpisode::onVotesChange(int value)
 {
-    if (!m_episode)
+    if (!m_episode) {
         return;
+    }
     m_episode->setVotes(value);
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onTop250Change(int value)
 {
-    if (!m_episode)
+    if (!m_episode) {
         return;
+    }
     m_episode->setTop250(value);
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onCaptureImage()
 {
-    if (!m_episode || m_episode->files().isEmpty())
+    if (!m_episode || m_episode->files().isEmpty()) {
         return;
+    }
     QImage img;
-    if (!ImageCapture::captureImage(m_episode->files().first(), m_episode->streamDetails(), img))
+    if (!ImageCapture::captureImage(m_episode->files().first(), m_episode->streamDetails(), img)) {
         return;
+    }
 
     QByteArray ba;
     QBuffer buffer(&ba);

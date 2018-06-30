@@ -77,8 +77,9 @@ Settings *Settings::instance(QObject *parent)
     static QMutex mutex;
     QMutexLocker locker(&mutex);
     static Settings *m_instance = nullptr;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new Settings(parent);
+    }
     return m_instance;
 }
 
@@ -201,7 +202,7 @@ void Settings::loadSettings()
     settings()->endArray();
 
     m_excludeWords = settings()->value("excludeWords").toString();
-    if (m_excludeWords.isEmpty())
+    if (m_excludeWords.isEmpty()) {
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
                          "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
                          "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
@@ -209,7 +210,8 @@ void Settings::loadSettings()
                          "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
                          "xvid,xvidvd,xxx,www,mkv";
 
-    // Scrapers
+        // Scrapers
+    }
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
         scraper->loadSettings(*settings());
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers())
@@ -255,14 +257,16 @@ void Settings::loadSettings()
                 break;
             }
         }
-        if (!found)
+        if (!found) {
             dataFiles << initialDataFile;
+        }
     }
 
-    if (dataFiles.isEmpty())
+    if (dataFiles.isEmpty()) {
         m_dataFiles = m_initialDataFilesFrodo;
-    else
+    } else {
         m_dataFiles = dataFiles;
+    }
 
     // Movie set artwork
     m_movieSetArtworkType = settings()->value("MovieSetArtwork/StoringType", 0).toInt();
@@ -394,24 +398,29 @@ void Settings::saveSettings()
     settings()->setValue("excludeWords", m_excludeWords);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->saveSettings(*settings());
+        }
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->saveSettings(*settings());
+        }
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->saveSettings(*settings());
+        }
     }
     foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->saveSettings(*settings());
+        }
     }
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->saveSettings(*settings());
+        }
     }
 
     settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
@@ -478,12 +487,13 @@ void Settings::saveSettings()
 void Settings::setupProxy()
 {
     QNetworkProxy proxy;
-    if (!m_useProxy)
+    if (!m_useProxy) {
         proxy.setType(QNetworkProxy::NoProxy);
-    else if (m_proxyType == 0)
+    } else if (m_proxyType == 0) {
         proxy.setType(QNetworkProxy::HttpProxy);
-    else
+    } else {
         proxy.setType(QNetworkProxy::Socks5Proxy);
+    }
     proxy.setHostName(m_proxyHost);
     proxy.setPort(m_proxyPort);
     proxy.setUser(m_proxyUsername);
@@ -705,8 +715,9 @@ QList<DataFile> Settings::dataFiles(int type)
 {
     QList<DataFile> files;
     foreach (const DataFile &file, m_dataFiles) {
-        if (file.type() == type)
+        if (file.type() == type) {
             files.append(file);
+        }
     }
     qSort(files.begin(), files.end(), DataFile::lessThan);
     return files;
@@ -714,13 +725,15 @@ QList<DataFile> Settings::dataFiles(int type)
 
 QList<DataFile> Settings::dataFilesFrodo(int type)
 {
-    if (type == -1)
+    if (type == -1) {
         return m_initialDataFilesFrodo;
+    }
 
     QList<DataFile> files;
     foreach (const DataFile &file, m_initialDataFilesFrodo) {
-        if (file.type() == type)
+        if (file.type() == type) {
             files.append(file);
+        }
     }
     qSort(files.begin(), files.end(), DataFile::lessThan);
     return files;
@@ -992,21 +1005,23 @@ void Settings::setXbmcPort(int port)
 QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Movies)
+    if (widget == MainWidgets::Movies) {
         item = "Movies";
-    else if (widget == MainWidgets::Concerts)
+    } else if (widget == MainWidgets::Concerts) {
         item = "Concerts";
-    else if (widget == MainWidgets::TvShows)
+    } else if (widget == MainWidgets::TvShows) {
         item = "TvShows";
-    else if (widget == MainWidgets::Music)
+    } else if (widget == MainWidgets::Music) {
         item = "Music";
+    }
     QList<int> infos;
     foreach (const QString &info,
         settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
         infos << info.toInt();
 
-    if (!infos.isEmpty() && infos.first() == 0)
+    if (!infos.isEmpty() && infos.first() == 0) {
         infos.clear();
+    }
 
     return infos;
 }
@@ -1014,14 +1029,15 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Movies)
+    if (widget == MainWidgets::Movies) {
         item = "Movies";
-    else if (widget == MainWidgets::Concerts)
+    } else if (widget == MainWidgets::Concerts) {
         item = "Concerts";
-    else if (widget == MainWidgets::TvShows)
+    } else if (widget == MainWidgets::TvShows) {
         item = "TvShows";
-    else if (widget == MainWidgets::Music)
+    } else if (widget == MainWidgets::Music) {
         item = "Music";
+    }
     QStringList infos;
     foreach (int info, items)
         infos << QString("%1").arg(info);
@@ -1285,26 +1301,29 @@ QString Settings::applicationDir()
 
 QString Settings::databaseDir()
 {
-    if (advanced()->portableMode())
+    if (advanced()->portableMode()) {
         return applicationDir();
-    else
+    } else {
         return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    }
 }
 
 QString Settings::imageCacheDir()
 {
-    if (advanced()->portableMode())
+    if (advanced()->portableMode()) {
         return applicationDir();
-    else
+    } else {
         return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    }
 }
 
 QString Settings::exportTemplatesDir()
 {
-    if (advanced()->portableMode())
+    if (advanced()->portableMode()) {
         return applicationDir() + QDir::separator() + "export_themes";
-    else
+    } else {
         return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
+    }
 }
 
 void Settings::setShowAdultScrapers(bool show)

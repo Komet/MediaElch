@@ -165,23 +165,25 @@ int ImageDialog::exec(int type)
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
-    if (m_itemType == ItemType::Movie)
+    if (m_itemType == ItemType::Movie) {
         ui->searchTerm->setText(formatSearchText(m_movie->name()));
-    else if (m_itemType == ItemType::Concert)
+    } else if (m_itemType == ItemType::Concert) {
         ui->searchTerm->setText(formatSearchText(m_concert->name()));
-    else if (m_itemType == ItemType::TvShow)
+    } else if (m_itemType == ItemType::TvShow) {
         ui->searchTerm->setText(formatSearchText(m_tvShow->name()));
-    else if (m_itemType == ItemType::TvShowEpisode)
+    } else if (m_itemType == ItemType::TvShowEpisode) {
         ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->name()));
-    else if (m_itemType == ItemType::Album)
+    } else if (m_itemType == ItemType::Album) {
         ui->searchTerm->setText(formatSearchText(m_album->title()));
-    else if (m_itemType == ItemType::Artist)
+    } else if (m_itemType == ItemType::Artist) {
         ui->searchTerm->setText(formatSearchText(m_artist->name()));
-    else
+    } else {
         ui->searchTerm->clear();
+    }
 
-    if (!haveDefault)
+    if (!haveDefault) {
         onSearch(true);
+    }
 
     QDialog::show();
     renderTable();
@@ -269,8 +271,9 @@ QUrl ImageDialog::imageUrl()
  */
 void ImageDialog::resizeEvent(QResizeEvent *event)
 {
-    if (calcColumnCount() != ui->table->columnCount())
+    if (calcColumnCount() != ui->table->columnCount()) {
         renderTable();
+    }
     QWidget::resizeEvent(event);
 }
 
@@ -283,8 +286,9 @@ void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
 {
     qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(1);
-    if (initial)
+    if (initial) {
         m_defaultElements = downloads;
+    }
     foreach (const Poster &poster, downloads) {
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
@@ -292,16 +296,18 @@ void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
         d.downloaded = false;
         d.resolution = poster.originalSize;
         d.hint = poster.hint;
-        if (!poster.language.isEmpty())
+        if (!poster.language.isEmpty()) {
             d.hint.append(" (" + poster.language + ")");
+        }
         m_elements.append(d);
     }
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     startNextDownload();
     renderTable();
-    if (downloads.count() == 0)
+    if (downloads.count() == 0) {
         ui->stackedWidget->setCurrentIndex(2);
+    }
 }
 
 /**
@@ -394,13 +400,15 @@ void ImageDialog::renderTable()
     ui->table->setRowCount(0);
     ui->table->clearContents();
 
-    for (int i = 0, n = ui->table->columnCount(); i < n; i++)
+    for (int i = 0, n = ui->table->columnCount(); i < n; i++) {
         ui->table->setColumnWidth(i, getColumnWidth());
+    }
 
     for (int i = 0, n = m_elements.size(); i < n; i++) {
         int row = (i - (i % cols)) / cols;
-        if (i % cols == 0)
+        if (i % cols == 0) {
             ui->table->insertRow(row);
+        }
         auto item = new QTableWidgetItem;
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
         auto label = new ImageLabel(ui->table);
@@ -552,8 +560,9 @@ void ImageDialog::cancelDownloads()
         }
     }
     m_elements.clear();
-    if (running)
+    if (running) {
         m_currentDownloadReply->abort();
+    }
 }
 
 /**
@@ -676,8 +685,9 @@ void ImageDialog::onZoomOut()
  */
 void ImageDialog::onProviderChanged(int index)
 {
-    if (index < 0 || index >= ui->imageProvider->count())
+    if (index < 0 || index >= ui->imageProvider->count()) {
         return;
+    }
 
     updateSourceLink();
     if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
@@ -695,8 +705,9 @@ void ImageDialog::onProviderChanged(int index)
 void ImageDialog::updateSourceLink()
 {
     int index = ui->imageProvider->currentIndex();
-    if (index < 0 || index >= ui->imageProvider->count())
+    if (index < 0 || index >= ui->imageProvider->count()) {
         return;
+    }
 
     if (ui->imageProvider->itemData(index, Qt::UserRole + 1).toBool()) {
         ui->imageSource->setVisible(false);
@@ -730,8 +741,9 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     }
 
     bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
-    if (haveDefault && ui->imageProvider->currentIndex() == 0)
+    if (haveDefault && ui->imageProvider->currentIndex() == 0) {
         return;
+    }
 
     ui->stackedWidget->setCurrentIndex(1);
     QString initialSearchTerm;
@@ -773,16 +785,17 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         ui->results->clearContents();
         ui->results->setRowCount(0);
         int limit = (onlyFirstResult) ? 1 : 0;
-        if (m_itemType == ItemType::Movie)
+        if (m_itemType == ItemType::Movie) {
             m_currentProvider->searchMovie(searchTerm, limit);
-        else if (m_itemType == ItemType::Concert)
+        } else if (m_itemType == ItemType::Concert) {
             m_currentProvider->searchConcert(searchTerm, limit);
-        else if (m_itemType == ItemType::TvShow || m_itemType == ItemType::TvShowEpisode)
+        } else if (m_itemType == ItemType::TvShow || m_itemType == ItemType::TvShowEpisode) {
             m_currentProvider->searchTvShow(searchTerm, limit);
-        else if (m_itemType == ItemType::Artist)
+        } else if (m_itemType == ItemType::Artist) {
             m_currentProvider->searchArtist(searchTerm, limit);
-        else if (m_itemType == ItemType::Album)
+        } else if (m_itemType == ItemType::Album) {
             m_currentProvider->searchAlbum(m_album->artist(), searchTerm, limit);
+        }
     }
 }
 
@@ -795,8 +808,9 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
     ui->searchTerm->setLoading(false);
     foreach (const ScraperSearchResult &result, results) {
         QString name = result.name;
-        if (!result.released.isNull())
+        if (!result.released.isNull()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+        }
 
         auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
@@ -806,12 +820,13 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
     }
 
     // if there is only one result, take it
-    if (ui->results->rowCount() == 1)
+    if (ui->results->rowCount() == 1) {
         onResultClicked(ui->results->item(0, 0));
-    else if (ui->results->rowCount() == 0)
+    } else if (ui->results->rowCount() == 0) {
         ui->stackedWidget->setCurrentIndex(2);
-    else
+    } else {
         ui->stackedWidget->setCurrentIndex(0);
+    }
 }
 
 /**
@@ -823,71 +838,77 @@ void ImageDialog::loadImagesFromProvider(QString id)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemType::Movie) {
-        if (m_type == ImageType::MoviePoster)
+        if (m_type == ImageType::MoviePoster) {
             m_currentProvider->moviePosters(id);
-        else if (m_type == ImageType::MovieBackdrop)
+        } else if (m_type == ImageType::MovieBackdrop) {
             m_currentProvider->movieBackdrops(id);
-        else if (m_type == ImageType::MovieLogo)
+        } else if (m_type == ImageType::MovieLogo) {
             m_currentProvider->movieLogos(id);
-        else if (m_type == ImageType::MovieBanner)
+        } else if (m_type == ImageType::MovieBanner) {
             m_currentProvider->movieBanners(id);
-        else if (m_type == ImageType::MovieThumb)
+        } else if (m_type == ImageType::MovieThumb) {
             m_currentProvider->movieThumbs(id);
-        else if (m_type == ImageType::MovieClearArt)
+        } else if (m_type == ImageType::MovieClearArt) {
             m_currentProvider->movieClearArts(id);
-        else if (m_type == ImageType::MovieCdArt)
+        } else if (m_type == ImageType::MovieCdArt) {
             m_currentProvider->movieCdArts(id);
+        }
     } else if (m_itemType == ItemType::Concert) {
-        if (m_type == ImageType::ConcertBackdrop)
+        if (m_type == ImageType::ConcertBackdrop) {
             m_currentProvider->concertBackdrops(id);
-        else if (m_type == ImageType::ConcertPoster)
+        } else if (m_type == ImageType::ConcertPoster) {
             m_currentProvider->concertPosters(id);
-        else if (m_type == ImageType::ConcertLogo)
+        } else if (m_type == ImageType::ConcertLogo) {
             m_currentProvider->concertLogos(id);
-        else if (m_type == ImageType::ConcertClearArt)
+        } else if (m_type == ImageType::ConcertClearArt) {
             m_currentProvider->concertClearArts(id);
-        else if (m_type == ImageType::ConcertCdArt)
+        } else if (m_type == ImageType::ConcertCdArt) {
             m_currentProvider->concertCdArts(id);
+        }
     } else if (m_itemType == ItemType::TvShow) {
-        if (m_type == ImageType::TvShowBackdrop)
+        if (m_type == ImageType::TvShowBackdrop) {
             m_currentProvider->tvShowBackdrops(id);
-        else if (m_type == ImageType::TvShowBanner)
+        } else if (m_type == ImageType::TvShowBanner) {
             m_currentProvider->tvShowBanners(id);
-        else if (m_type == ImageType::TvShowCharacterArt)
+        } else if (m_type == ImageType::TvShowCharacterArt) {
             m_currentProvider->tvShowCharacterArts(id);
-        else if (m_type == ImageType::TvShowClearArt)
+        } else if (m_type == ImageType::TvShowClearArt) {
             m_currentProvider->tvShowClearArts(id);
-        else if (m_type == ImageType::TvShowLogos)
+        } else if (m_type == ImageType::TvShowLogos) {
             m_currentProvider->tvShowLogos(id);
-        else if (m_type == ImageType::TvShowThumb)
+        } else if (m_type == ImageType::TvShowThumb) {
             m_currentProvider->tvShowThumbs(id);
-        else if (m_type == ImageType::TvShowPoster)
+        } else if (m_type == ImageType::TvShowPoster) {
             m_currentProvider->tvShowPosters(id);
-        else if (m_type == ImageType::TvShowSeasonPoster)
+        } else if (m_type == ImageType::TvShowSeasonPoster) {
             m_currentProvider->tvShowSeason(id, m_season);
-        else if (m_type == ImageType::TvShowSeasonBanner)
+        } else if (m_type == ImageType::TvShowSeasonBanner) {
             m_currentProvider->tvShowSeasonBanners(id, m_season);
-        else if (m_type == ImageType::TvShowSeasonThumb)
+        } else if (m_type == ImageType::TvShowSeasonThumb) {
             m_currentProvider->tvShowSeasonThumbs(id, m_season);
-        else if (m_type == ImageType::TvShowSeasonBackdrop)
+        } else if (m_type == ImageType::TvShowSeasonBackdrop) {
             m_currentProvider->tvShowSeasonBackdrops(id, m_season);
+        }
     } else if (m_itemType == ItemType::TvShowEpisode) {
-        if (m_type == ImageType::TvShowEpisodeThumb)
+        if (m_type == ImageType::TvShowEpisodeThumb) {
             m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+        }
     } else if (m_itemType == ItemType::Artist) {
-        if (m_type == ImageType::ArtistFanart)
+        if (m_type == ImageType::ArtistFanart) {
             m_currentProvider->artistFanarts(id);
-        else if (m_type == ImageType::ArtistLogo)
+        } else if (m_type == ImageType::ArtistLogo) {
             m_currentProvider->artistLogos(id);
-        else if (m_type == ImageType::ArtistThumb)
+        } else if (m_type == ImageType::ArtistThumb) {
             m_currentProvider->artistThumbs(id);
+        }
     } else if (m_itemType == ItemType::Album) {
-        if (m_type == ImageType::AlbumCdArt)
+        if (m_type == ImageType::AlbumCdArt) {
             m_currentProvider->albumCdArts(id);
-        else if (m_type == ImageType::AlbumThumb)
+        } else if (m_type == ImageType::AlbumThumb) {
             m_currentProvider->albumThumbs(id);
-        else if (m_type == ImageType::AlbumBooklet)
+        } else if (m_type == ImageType::AlbumBooklet) {
             m_currentProvider->albumBooklets(id);
+        }
     }
 }
 

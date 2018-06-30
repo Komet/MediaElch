@@ -131,23 +131,26 @@ void TvShowWidgetSeason::updateImages(QList<int> images)
         ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
-            if (cImage->imageType() == imageType)
+            if (cImage->imageType() == imageType) {
                 image = cImage;
+            }
         }
 
-        if (!image)
+        if (!image) {
             continue;
+        }
 
-        if (!m_show->seasonImage(m_season, imageType).isNull())
+        if (!m_show->seasonImage(m_season, imageType).isNull()) {
             image->setImage(m_show->seasonImage(m_season, imageType));
-        else if (!Manager::instance()
-                      ->mediaCenterInterfaceTvShow()
-                      ->imageFileName(m_show, imageType, m_season)
-                      .isEmpty()
-                 && (!m_show->imagesToRemove().contains(imageType)
-                        || !m_show->imagesToRemove().value(imageType).contains(m_season)))
+        } else if (!Manager::instance()
+                        ->mediaCenterInterfaceTvShow()
+                        ->imageFileName(m_show, imageType, m_season)
+                        .isEmpty()
+                   && (!m_show->imagesToRemove().contains(imageType)
+                          || !m_show->imagesToRemove().value(imageType).contains(m_season))) {
             image->setImage(
                 Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season));
+        }
     }
 }
 
@@ -163,8 +166,9 @@ void TvShowWidgetSeason::onClear()
 
 void TvShowWidgetSeason::onSaveInformation()
 {
-    if (!m_show || m_show->isDummySeason(m_season))
+    if (!m_show || m_show->isDummySeason(m_season)) {
         return;
+    }
     onSetEnabled(false);
     m_savingWidget->show();
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
@@ -191,10 +195,12 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == elem.imageType) {
-            if (elem.imageType == ImageType::TvShowSeasonBackdrop)
+            if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
                 Helper::instance()->resizeBackdrop(elem.data);
-            if (m_show == elem.show)
+            }
+            if (m_show == elem.show) {
                 image->setImage(elem.data);
+            }
             ImageCache::instance()->invalidateImages(
                 Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
             elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
@@ -202,18 +208,21 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
         }
     }
 
-    if (m_downloadManager->downloadsLeftForShow(m_show) == 0)
+    if (m_downloadManager->downloadsLeftForShow(m_show) == 0) {
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    }
 }
 
 void TvShowWidgetSeason::onChooseImage()
 {
-    if (m_show == nullptr)
+    if (m_show == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(image->imageType());
     ImageDialog::instance()->clear();
@@ -247,12 +256,14 @@ void TvShowWidgetSeason::onChooseImage()
 
 void TvShowWidgetSeason::onDeleteImage()
 {
-    if (m_show == nullptr)
+    if (m_show == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     m_show->removeImage(image->imageType(), m_season);
     updateImages(QList<int>() << image->imageType());
@@ -260,11 +271,13 @@ void TvShowWidgetSeason::onDeleteImage()
 
 void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
 {
-    if (!m_show)
+    if (!m_show) {
         return;
+    }
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;

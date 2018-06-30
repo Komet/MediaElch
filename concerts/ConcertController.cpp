@@ -33,11 +33,13 @@ ConcertController::ConcertController(Concert *parent) :
 
 bool ConcertController::saveData(MediaCenterInterface *mediaCenterInterface)
 {
-    if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+    if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
+    }
     bool saved = mediaCenterInterface->saveConcert(m_concert);
-    if (!m_infoLoaded)
+    if (!m_infoLoaded) {
         m_infoLoaded = saved;
+    }
     m_concert->setChanged(false);
     m_concert->clearImages();
     m_concert->clearExtraFanartData();
@@ -48,17 +50,19 @@ bool ConcertController::saveData(MediaCenterInterface *mediaCenterInterface)
 bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_concert->hasChanged()) && !force
-        && (m_infoFromNfoLoaded || (m_concert->hasChanged() && !m_infoFromNfoLoaded)))
+        && (m_infoFromNfoLoaded || (m_concert->hasChanged() && !m_infoFromNfoLoaded))) {
         return m_infoLoaded;
+    }
 
     m_concert->blockSignals(true);
     NameFormatter *nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
-    if (reloadFromNfo)
+    if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadConcert(m_concert);
-    else
+    } else {
         infoLoaded = mediaCenterInterface->loadConcert(m_concert, m_concert->nfoContent());
+    }
 
     if (!infoLoaded) {
         if (!m_concert->files().empty()) {
@@ -66,31 +70,37 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!pathElements.empty()
-                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
+                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
-                if (!pathElements.empty())
+                }
+                if (!pathElements.empty()) {
                     m_concert->setName(nameFormat->formatName(pathElements.last()));
+                }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.empty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
+                if (!pathElements.empty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
                     pathElements.removeLast();
-                if (!pathElements.empty())
+                }
+                if (!pathElements.empty()) {
                     m_concert->setName(nameFormat->formatName(pathElements.last()));
+                }
             } else if (m_concert->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
                     m_concert->setName(nameFormat->formatName(splitted.last()));
                 } else {
-                    if (m_concert->files().size() > 1)
+                    if (m_concert->files().size() > 1) {
                         m_concert->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                    else
+                    } else {
                         m_concert->setName(nameFormat->formatName(fi.completeBaseName()));
+                    }
                 }
             } else {
-                if (m_concert->files().size() > 1)
+                if (m_concert->files().size() > 1) {
                     m_concert->setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                else
+                } else {
                     m_concert->setName(nameFormat->formatName(fi.completeBaseName()));
+                }
             }
         }
     }
@@ -147,13 +157,16 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
 
 void ConcertController::onFanartLoadDone(Concert *concert, QMap<int, QList<Poster>> posters)
 {
-    if (concert != m_concert)
+    if (concert != m_concert) {
         return;
+    }
 
-    if (infosToLoad().contains(ConcertScraperInfos::Poster) && !m_concert->posters().isEmpty())
+    if (infosToLoad().contains(ConcertScraperInfos::Poster) && !m_concert->posters().isEmpty()) {
         posters.insert(ImageType::ConcertPoster, QList<Poster>() << m_concert->posters().at(0));
-    if (infosToLoad().contains(ConcertScraperInfos::Backdrop) && !m_concert->backdrops().isEmpty())
+    }
+    if (infosToLoad().contains(ConcertScraperInfos::Backdrop) && !m_concert->backdrops().isEmpty()) {
         posters.insert(ImageType::ConcertBackdrop, QList<Poster>() << m_concert->backdrops().at(0));
+    }
 
     QList<DownloadManagerElement> downloads;
 
@@ -161,15 +174,17 @@ void ConcertController::onFanartLoadDone(Concert *concert, QMap<int, QList<Poste
     QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.value().isEmpty())
+        if (it.value().isEmpty()) {
             continue;
+        }
         DownloadManagerElement d;
         d.imageType = it.key();
         d.url = it.value().at(0).originalUrl;
         d.concert = m_concert;
         downloads.append(d);
-        if (!imageTypes.contains(it.key()))
+        if (!imageTypes.contains(it.key())) {
             imageTypes.append(it.key());
+        }
     }
 
     if (downloads.isEmpty()) {
@@ -201,8 +216,9 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
     if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType));
-        if (elem.imageType == ImageType::ConcertBackdrop)
+        if (elem.imageType == ImageType::ConcertBackdrop) {
             Helper::instance()->resizeBackdrop(elem.data);
+        }
         m_concert->setImage(elem.imageType, elem.data);
     }
 

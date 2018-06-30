@@ -18,21 +18,25 @@ public:
         NameRole = Qt::UserRole + 1,
         FileNameRole
     };
+
     explicit MovieModel(QObject *parent = nullptr);
-    void addMovie(Movie *movie);
-    void clear();
-    virtual QList<Movie *> movies();
-    Movie *movie(int row);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QModelIndex index(int row, int column, const QModelIndex &parent) const override;
     QModelIndex parent(const QModelIndex &child) const override;
+
+    virtual QList<Movie *> movies();
+    Movie *movie(int row);
+    void addMovie(Movie *movie);
+    void update();
+    void clear();
     int countNewMovies();
+
     static int mediaStatusToColumn(MediaStatusColumns column);
     static QString mediaStatusToText(MediaStatusColumns column);
     static MediaStatusColumns columnToMediaStatus(int column);
-    void update();
 
 private slots:
     void onMovieChanged(Movie *movie);

@@ -66,13 +66,15 @@ void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
         return;
     }
 
-    if (keyEvent->key() == Qt::Key_Backspace && m_currentSearchText.isEmpty())
+    if (keyEvent->key() == Qt::Key_Backspace && m_currentSearchText.isEmpty()) {
         return;
+    }
 
-    if (keyEvent->key() == Qt::Key_Backspace)
+    if (keyEvent->key() == Qt::Key_Backspace) {
         m_currentSearchText.remove(m_currentSearchText.length() - 1, 1);
-    else if (!keyEvent->text().isEmpty())
+    } else if (!keyEvent->text().isEmpty()) {
         m_currentSearchText.append(keyEvent->text());
+    }
 
     m_searchOverlay->fadeIn();
     m_searchOverlay->setText(m_currentSearchText);
@@ -87,8 +89,9 @@ void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
             selectRow(i);
             return;
         }
-        if (title.contains(m_currentSearchText, Qt::CaseInsensitive))
+        if (title.contains(m_currentSearchText, Qt::CaseInsensitive)) {
             matchingRow = i;
+        }
     }
     if (matchingRow > -1) {
         scrollTo(model()->index(matchingRow, 0), QAbstractItemView::PositionAtCenter);

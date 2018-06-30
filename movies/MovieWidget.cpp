@@ -386,8 +386,9 @@ void MovieWidget::movieNameChanged(QString text)
 void MovieWidget::setEnabledTrue(Movie *movie)
 {
     qDebug() << "Entered";
-    if (movie)
+    if (movie) {
         qDebug() << movie->name();
+    }
     if (movie && movie->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
@@ -419,8 +420,9 @@ void MovieWidget::setMovie(Movie *movie)
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
         if (movie->streamDetailsLoaded()
-            && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
+            && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0) {
             movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
+        }
     }
     m_movie = movie;
     updateMovieInfo();
@@ -451,10 +453,11 @@ void MovieWidget::setMovie(Movie *movie)
     ui->btnAddExtraFanart->setEnabled(movie->inSeparateFolder());
     ui->labelSepFoldersWarning->setVisible(!movie->inSeparateFolder());
 
-    if (movie->controller()->downloadsInProgress())
+    if (movie->controller()->downloadsInProgress()) {
         setDisabledTrue();
-    else
+    } else {
         setEnabledTrue();
+    }
 }
 
 /**
@@ -491,8 +494,9 @@ void MovieWidget::startScraperSearch()
 
 void MovieWidget::onInfoLoadDone(Movie *movie)
 {
-    if (m_movie == nullptr)
+    if (m_movie == nullptr) {
         return;
+    }
     if (m_movie == movie) {
         updateMovieInfo();
         ui->buttonRevert->setVisible(true);
@@ -503,8 +507,9 @@ void MovieWidget::onInfoLoadDone(Movie *movie)
 void MovieWidget::onLoadDone(Movie *movie)
 {
     emit actorDownloadFinished(Constants::MovieProgressMessageId + movie->movieId());
-    if (m_movie == nullptr || m_movie != movie)
+    if (m_movie == nullptr || m_movie != movie) {
         return;
+    }
     setEnabledTrue();
     ui->fanarts->setLoading(false);
 }
@@ -516,25 +521,29 @@ void MovieWidget::onLoadImagesStarted(Movie *movie)
 
 void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
 {
-    if (movie != m_movie)
+    if (movie != m_movie) {
         return;
+    }
 
     foreach (const int &imageType, imageTypes) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
-            if (cImage->imageType() == imageType)
+            if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
+            }
         }
     }
 
-    if (imageTypes.contains(ImageType::MovieExtraFanart))
+    if (imageTypes.contains(ImageType::MovieExtraFanart)) {
         ui->fanarts->setLoading(true);
+    }
     ui->groupBox_3->update();
 }
 
 void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
 {
-    if (movie != m_movie)
+    if (movie != m_movie) {
         return;
+    }
 
     if (type == ImageType::MovieExtraFanart) {
         ui->fanarts->addImage(data);
@@ -559,8 +568,9 @@ void MovieWidget::onDownloadProgress(Movie *movie, int current, int maximum)
  */
 void MovieWidget::updateMovieInfo()
 {
-    if (m_movie == nullptr)
+    if (m_movie == nullptr) {
         return;
+    }
 
     ui->rating->blockSignals(true);
     ui->votes->blockSignals(true);
@@ -605,10 +615,12 @@ void MovieWidget::updateMovieInfo()
     sets.append("");
     certifications.append("");
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (!sets.contains(movie->set()) && !movie->set().isEmpty())
+        if (!sets.contains(movie->set()) && !movie->set().isEmpty()) {
             sets.append(movie->set());
-        if (!certifications.contains(movie->certification()) && !movie->certification().isEmpty())
+        }
+        if (!certifications.contains(movie->certification()) && !movie->certification().isEmpty()) {
             certifications.append(movie->certification());
+        }
     }
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
@@ -724,8 +736,9 @@ void MovieWidget::updateImage(const int &imageType, ClosableImage *image)
         image->setImage(m_movie->image(imageType));
     } else if (!m_movie->imagesToRemove().contains(imageType) && m_movie->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType);
-        if (!imgFileName.isEmpty())
+        if (!imgFileName.isEmpty()) {
             image->setImage(imgFileName);
+        }
     }
 }
 
@@ -741,8 +754,9 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
 
-    if (reloadFromFile)
+    if (reloadFromFile) {
         m_movie->controller()->loadStreamDetailsFromFile();
+    }
 
     StreamDetails *streamDetails = m_movie->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
@@ -752,14 +766,16 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
-        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode")) {
             ui->stereoMode->setCurrentIndex(i);
+        }
     }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
-    if (reloadFromFile)
+    if (reloadFromFile) {
         ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt() / 60));
+    }
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();
@@ -848,16 +864,18 @@ void MovieWidget::onReloadStreamDetails()
 
 void MovieWidget::onDownloadTrailer()
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     TrailerDialog::instance()->exec(m_movie);
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
 void MovieWidget::onPlayLocalTrailer()
 {
-    if (!m_movie && !m_movie->hasLocalTrailer())
+    if (!m_movie && !m_movie->hasLocalTrailer()) {
         return;
+    }
 
     QDesktopServices::openUrl(QUrl::fromLocalFile(m_movie->localTrailerFileName()));
 }
@@ -871,8 +889,9 @@ void MovieWidget::saveInformation()
     setDisabledTrue();
 
     QList<Movie *> movies = FilesWidget::instance()->selectedMovies();
-    if (movies.isEmpty())
+    if (movies.isEmpty()) {
         movies.append(m_movie);
+    }
 
     m_savingWidget->show();
     if (movies.count() > 0) {
@@ -890,8 +909,9 @@ void MovieWidget::saveInformation()
                 qApp->processEvents();
                 movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-                if (m_movie == movie)
+                if (m_movie == movie) {
                     updateMovieInfo();
+                }
             }
         }
         NotificationBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
@@ -921,8 +941,9 @@ void MovieWidget::saveAll()
     int counter = 0;
     int moviesToSave = 0;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->hasChanged())
+        if (movie->hasChanged()) {
             moviesToSave++;
+        }
     }
 
     NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
@@ -935,8 +956,9 @@ void MovieWidget::saveAll()
             qApp->processEvents();
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-            if (m_movie == movie)
+            if (m_movie == movie) {
                 updateMovieInfo();
+            }
         }
     }
     setEnabledTrue();
@@ -987,8 +1009,9 @@ void MovieWidget::addActor()
 void MovieWidget::removeActor()
 {
     int row = ui->actors->currentRow();
-    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
+    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected()) {
         return;
+    }
 
     auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
     m_movie->removeActor(actor);
@@ -1005,10 +1028,11 @@ void MovieWidget::removeActor()
 void MovieWidget::onActorEdited(QTableWidgetItem *item)
 {
     auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
-    if (item->column() == 0)
+    if (item->column() == 0) {
         actor->name = item->text();
-    else if (item->column() == 1)
+    } else if (item->column() == 1) {
         actor->role = item->text();
+    }
     m_movie->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
@@ -1016,12 +1040,14 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
 void MovieWidget::onSubtitleEdited(QTableWidgetItem *item)
 {
     auto subtitle = ui->subtitles->item(item->row(), 0)->data(Qt::UserRole).value<Subtitle *>();
-    if (!subtitle)
+    if (!subtitle) {
         return;
-    if (item->column() == 1)
+    }
+    if (item->column() == 1) {
         subtitle->setLanguage(item->text());
-    else if (item->column() == 2)
+    } else if (item->column() == 2) {
         subtitle->setForced(item->checkState() == Qt::Checked);
+    }
     m_movie->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
@@ -1031,8 +1057,9 @@ void MovieWidget::onSubtitleEdited(QTableWidgetItem *item)
  */
 void MovieWidget::addStudio(QString studio)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->addStudio(studio);
     ui->buttonRevert->setVisible(true);
 }
@@ -1042,8 +1069,9 @@ void MovieWidget::addStudio(QString studio)
  */
 void MovieWidget::removeStudio(QString studio)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeStudio(studio);
     ui->buttonRevert->setVisible(true);
 }
@@ -1053,8 +1081,9 @@ void MovieWidget::removeStudio(QString studio)
  */
 void MovieWidget::addCountry(QString country)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->addCountry(country);
     ui->buttonRevert->setVisible(true);
 }
@@ -1064,8 +1093,9 @@ void MovieWidget::addCountry(QString country)
  */
 void MovieWidget::removeCountry(QString country)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeCountry(country);
     ui->buttonRevert->setVisible(true);
 }
@@ -1163,32 +1193,36 @@ void MovieWidget::onArtPageTwo()
 
 void MovieWidget::addGenre(QString genre)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->addGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeGenre(QString genre)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::addTag(QString tag)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->addTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeTag(QString tag)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
@@ -1198,16 +1232,18 @@ void MovieWidget::removeTag(QString tag)
  */
 void MovieWidget::onNameChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setName(text);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onImdbIdChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setId(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1217,8 +1253,9 @@ void MovieWidget::onImdbIdChange(QString text)
  */
 void MovieWidget::onOriginalNameChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setOriginalName(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1228,8 +1265,9 @@ void MovieWidget::onOriginalNameChange(QString text)
  */
 void MovieWidget::onSortTitleChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setSortTitle(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1239,8 +1277,9 @@ void MovieWidget::onSortTitleChange(QString text)
  */
 void MovieWidget::onSetChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setSet(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1250,8 +1289,9 @@ void MovieWidget::onSetChange(QString text)
  */
 void MovieWidget::onTaglineChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setTagline(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1261,8 +1301,9 @@ void MovieWidget::onTaglineChange(QString text)
  */
 void MovieWidget::onRatingChange(double value)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setRating(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -1272,8 +1313,9 @@ void MovieWidget::onRatingChange(double value)
  */
 void MovieWidget::onVotesChange(int value)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setVotes(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -1283,8 +1325,9 @@ void MovieWidget::onVotesChange(int value)
  */
 void MovieWidget::onTop250Change(int value)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setTop250(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -1294,8 +1337,9 @@ void MovieWidget::onTop250Change(int value)
  */
 void MovieWidget::onReleasedChange(QDate date)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setReleased(date);
     ui->buttonRevert->setVisible(true);
 }
@@ -1305,8 +1349,9 @@ void MovieWidget::onReleasedChange(QDate date)
  */
 void MovieWidget::onRuntimeChange(int value)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setRuntime(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -1316,8 +1361,9 @@ void MovieWidget::onRuntimeChange(int value)
  */
 void MovieWidget::onCertificationChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setCertification(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1327,8 +1373,9 @@ void MovieWidget::onCertificationChange(QString text)
  */
 void MovieWidget::onWriterChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setWriter(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1338,8 +1385,9 @@ void MovieWidget::onWriterChange(QString text)
  */
 void MovieWidget::onDirectorChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setDirector(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -1349,25 +1397,29 @@ void MovieWidget::onDirectorChange(QString text)
  */
 void MovieWidget::onTrailerChange(QString text)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setTrailer(text);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onWatchedClicked()
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
 
     bool active = !ui->badgeWatched->isActive();
     ui->badgeWatched->setActive(active);
     m_movie->setWatched(active);
     if (active) {
-        if (m_movie->playcount() < 1)
+        if (m_movie->playcount() < 1) {
             ui->playcount->setValue(1);
-        if (!m_movie->lastPlayed().isValid())
+        }
+        if (!m_movie->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+        }
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -1377,8 +1429,9 @@ void MovieWidget::onWatchedClicked()
  */
 void MovieWidget::onPlayCountChange(int value)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setPlayCount(value);
     ui->badgeWatched->setActive(value > 0);
     ui->buttonRevert->setVisible(true);
@@ -1389,8 +1442,9 @@ void MovieWidget::onPlayCountChange(int value)
  */
 void MovieWidget::onLastWatchedChange(QDateTime dateTime)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setLastPlayed(dateTime);
     ui->buttonRevert->setVisible(true);
 }
@@ -1400,8 +1454,9 @@ void MovieWidget::onLastWatchedChange(QDateTime dateTime)
  */
 void MovieWidget::onOverviewChange()
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setOverview(ui->overview->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
@@ -1411,8 +1466,9 @@ void MovieWidget::onOverviewChange()
  */
 void MovieWidget::onOutlineChange()
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->setOutline(ui->outline->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
@@ -1436,8 +1492,9 @@ void MovieWidget::onStreamDetailsEdited()
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+    }
 
     m_movie->setChanged(true);
     ui->buttonRevert->setVisible(true);
@@ -1445,24 +1502,27 @@ void MovieWidget::onStreamDetailsEdited()
 
 void MovieWidget::onRemoveExtraFanart(const QByteArray &image)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeExtraFanart(image);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onRemoveExtraFanart(const QString &file)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     m_movie->removeExtraFanart(file);
     ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onAddExtraFanart()
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(ImageType::MovieExtraFanart);
     ImageDialog::instance()->clear();
@@ -1481,8 +1541,9 @@ void MovieWidget::onAddExtraFanart()
 
 void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QList<QUrl>() << imageUrl);
@@ -1491,33 +1552,37 @@ void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
 
 void MovieWidget::onInsertYoutubeLink()
 {
-    if (Settings::instance()->useYoutubePluginUrls())
+    if (Settings::instance()->useYoutubePluginUrls()) {
         ui->trailer->setText("plugin://plugin.video.youtube/?action=play_video&videoid=");
-    else
+    } else {
         ui->trailer->setText("https://www.youtube.com/watch?v=");
+    }
     ui->trailer->setFocus();
 }
 
 void MovieWidget::onChooseImage()
 {
-    if (m_movie == nullptr)
+    if (m_movie == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(image->imageType());
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(m_movie);
-    if (image->imageType() == ImageType::MoviePoster)
+    if (image->imageType() == ImageType::MoviePoster) {
         ImageDialog::instance()->setDownloads(m_movie->posters());
-    else if (image->imageType() == ImageType::MovieBackdrop)
+    } else if (image->imageType() == ImageType::MovieBackdrop) {
         ImageDialog::instance()->setDownloads(m_movie->backdrops());
-    else if (image->imageType() == ImageType::MovieCdArt && !m_movie->discArts().isEmpty())
+    } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->discArts().isEmpty()) {
         ImageDialog::instance()->setDownloads(m_movie->discArts());
-    else
+    } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
+    }
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -1529,8 +1594,9 @@ void MovieWidget::onChooseImage()
 
 void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
 {
-    if (!m_movie)
+    if (!m_movie) {
         return;
+    }
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     m_movie->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
@@ -1538,12 +1604,14 @@ void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
 
 void MovieWidget::onDeleteImage()
 {
-    if (m_movie == nullptr)
+    if (m_movie == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     m_movie->removeImage(image->imageType());
     updateImages(QList<int>() << image->imageType());

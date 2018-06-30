@@ -31,16 +31,18 @@ AlbumController::~AlbumController() = default;
 bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_album->hasChanged()) && !force
-        && (m_infoFromNfoLoaded || (m_album->hasChanged() && !m_infoFromNfoLoaded)))
+        && (m_infoFromNfoLoaded || (m_album->hasChanged() && !m_infoFromNfoLoaded))) {
         return m_infoLoaded;
+    }
 
     m_album->blockSignals(true);
 
     bool infoLoaded;
-    if (reloadFromNfo)
+    if (reloadFromNfo) {
         infoLoaded = mediaCenterInterface->loadAlbum(m_album);
-    else
+    } else {
         infoLoaded = mediaCenterInterface->loadAlbum(m_album, m_album->nfoContent());
+    }
 
     if (!infoLoaded) {
         QFileInfo fi(m_album->path());
@@ -56,13 +58,15 @@ bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
 bool AlbumController::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     bool saved = mediaCenterInterface->saveAlbum(m_album);
-    if (!m_infoLoaded)
+    if (!m_infoLoaded) {
         m_infoLoaded = saved;
+    }
     m_album->setHasChanged(false);
     m_album->clearImages();
     m_album->bookletModel()->clear();
-    if (saved)
+    if (saved) {
         emit sigSaved(m_album);
+    }
     return saved;
 }
 
@@ -193,23 +197,26 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
 
 void AlbumController::onFanartLoadDone(Album *album, QMap<int, QList<Poster>> posters)
 {
-    if (album != m_album)
+    if (album != m_album) {
         return;
+    }
 
     QList<DownloadManagerElement> downloads;
     QList<int> imageTypes;
     QMapIterator<int, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.value().isEmpty())
+        if (it.value().isEmpty()) {
             continue;
+        }
         DownloadManagerElement d;
         d.imageType = it.key();
         d.url = it.value().at(0).originalUrl;
         d.album = m_album;
         downloads.append(d);
-        if (!imageTypes.contains(it.key()))
+        if (!imageTypes.contains(it.key())) {
             imageTypes.append(it.key());
+        }
     }
 
     if (downloads.isEmpty()) {

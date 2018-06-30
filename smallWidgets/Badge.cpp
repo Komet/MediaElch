@@ -90,10 +90,11 @@ void Badge::setActive(const bool &active)
     case Badge::BadgeInverse: m_badgeType = active ? Badge::BadgeInfo : Badge::BadgeDefault; break;
     }
 
-    if (active && !property("activeText").toString().isEmpty())
+    if (active && !property("activeText").toString().isEmpty()) {
         setText(property("activeText").toString());
-    else if (!active && !property("inactiveText").toString().isEmpty())
+    } else if (!active && !property("inactiveText").toString().isEmpty()) {
         setText(property("inactiveText").toString());
+    }
 
     applyStyleSheet();
 }
@@ -160,12 +161,15 @@ void Badge::applyStyleSheet()
         break;
     }
 
-    if (m_fontBold)
+    if (m_fontBold) {
         style.append("font-weight: bold;");
-    if (m_active && m_showActiveMark)
+    }
+    if (m_active && m_showActiveMark) {
         style.append("padding-left: 20px;");
-    if (m_closable)
+    }
+    if (m_closable) {
         style.append("padding-right: 20px;");
+    }
 
     style.append("}");
     setStyleSheet(style);
@@ -174,7 +178,8 @@ void Badge::applyStyleSheet()
 
 void Badge::mousePressEvent(QMouseEvent *ev)
 {
-    if (ev->button() == Qt::LeftButton)
+    if (ev->button() == Qt::LeftButton) {
         emit clicked();
+    }
     QLabel::mousePressEvent(ev);
 }

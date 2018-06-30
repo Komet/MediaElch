@@ -56,8 +56,9 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
     ui->chkStatus->setMyData(TvShowScraperInfos::Status);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowSearch::onChkToggled);
+        }
     }
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &TvShowSearch::onChkAllToggled);
@@ -97,10 +98,11 @@ int TvShowSearch::exec(QString searchString, QString id)
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
-    if (!id.isEmpty())
+    if (!id.isEmpty()) {
         ui->searchString->setText("id" + id);
-    else
+    } else {
         ui->searchString->setText(searchString.replace(".", " "));
+    }
 
     ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
 
@@ -197,17 +199,20 @@ void TvShowSearch::onChkToggled()
     m_infosToLoad.clear();
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(box->myData().toInt());
-        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        }
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
+        }
     }
 
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode)
+    if (m_searchType == TypeEpisode) {
         scraperNo = 4;
+    }
     Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(scraperNo), m_infosToLoad);
 }
 
@@ -215,8 +220,9 @@ void TvShowSearch::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0 && box->isEnabled())
+        if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
+        }
     }
     onChkToggled();
 }
@@ -228,24 +234,29 @@ QList<int> TvShowSearch::infosToLoad()
 
 TvShowUpdateType TvShowSearch::updateType()
 {
-    if (ui->comboUpdate->currentIndex() == 0)
+    if (ui->comboUpdate->currentIndex() == 0) {
         return UpdateShow;
-    if (ui->comboUpdate->currentIndex() == 1)
+    }
+    if (ui->comboUpdate->currentIndex() == 1) {
         return UpdateShowAndNewEpisodes;
-    if (ui->comboUpdate->currentIndex() == 2)
+    }
+    if (ui->comboUpdate->currentIndex() == 2) {
         return UpdateShowAndAllEpisodes;
-    if (ui->comboUpdate->currentIndex() == 3)
+    }
+    if (ui->comboUpdate->currentIndex() == 3) {
         return UpdateNewEpisodes;
+    }
     return UpdateAllEpisodes;
 }
 
 void TvShowSearch::onComboIndexChanged()
 {
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode)
+    if (m_searchType == TypeEpisode) {
         scraperNo = 4;
-    else
+    } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
+    }
     QList<int> infos = Settings::instance()->scraperInfos(MainWidgets::TvShows, QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();

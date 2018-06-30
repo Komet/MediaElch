@@ -98,8 +98,9 @@ void NotificationBox::removeMessage(int id)
             adjustSize();
         }
     }
-    if (m_messages.empty())
+    if (m_messages.empty()) {
         hide();
+    }
 }
 
 /**
@@ -112,8 +113,9 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
     qDebug() << "Entered, message=" << message << "id=" << id;
     if (unique) {
         foreach (Message *msg, m_messages) {
-            if (msg->id() == id)
+            if (msg->id() == id) {
                 return;
+            }
         }
     }
     m_msgCounter++;
@@ -145,8 +147,9 @@ int NotificationBox::addProgressBar(QString message)
 void NotificationBox::progressBarProgress(int current, int max, int id)
 {
     foreach (Message *msg, m_messages) {
-        if (msg->id() == id)
+        if (msg->id() == id) {
             msg->setProgress(current, max);
+        }
     }
 }
 
@@ -163,8 +166,9 @@ void NotificationBox::hideProgressBar(int id)
 int NotificationBox::maxValue(int id)
 {
     foreach (Message *msg, m_messages) {
-        if (msg->id() == id)
+        if (msg->id() == id) {
             return msg->maxValue();
+        }
     }
 
     return 0;
@@ -173,8 +177,9 @@ int NotificationBox::maxValue(int id)
 int NotificationBox::value(int id)
 {
     foreach (Message *msg, m_messages) {
-        if (msg->id() == id)
+        if (msg->id() == id) {
             return msg->value();
+        }
     }
 
     return 0;

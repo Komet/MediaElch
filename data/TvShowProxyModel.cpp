@@ -37,14 +37,16 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
 
 bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-    if (filterAcceptsRowItself(source_row, source_parent))
+    if (filterAcceptsRowItself(source_row, source_parent)) {
         return true;
+    }
 
     // accept if any of the parents is accepted on it's own merits
     QModelIndex parent = source_parent;
     while (parent.isValid()) {
-        if (filterAcceptsRowItself(parent.row(), parent.parent()))
+        if (filterAcceptsRowItself(parent.row(), parent.parent())) {
             return true;
+        }
         parent = parent.parent();
     }
 

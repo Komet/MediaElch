@@ -17,10 +17,12 @@ bool MusicProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
     bool leftIsNew = sourceModel()->data(left, MusicRoles::IsNew).toBool();
     bool rightIsNew = sourceModel()->data(right, MusicRoles::IsNew).toBool();
 
-    if (leftIsNew && !rightIsNew)
+    if (leftIsNew && !rightIsNew) {
         return true;
-    if (rightIsNew && !leftIsNew)
+    }
+    if (rightIsNew && !leftIsNew) {
         return false;
+    }
 
     bool ret = (QString::localeAwareCompare(leftTitle, rightTitle) < 0);
     return ret;
@@ -28,13 +30,15 @@ bool MusicProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
 
 bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent))
+    if (QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent)) {
         return true;
+    }
 
     QModelIndex parent = sourceParent;
     while (parent.isValid()) {
-        if (QSortFilterProxyModel::filterAcceptsRow(parent.row(), parent.parent()))
+        if (QSortFilterProxyModel::filterAcceptsRow(parent.row(), parent.parent())) {
             return true;
+        }
         parent = parent.parent();
     }
 
@@ -50,15 +54,18 @@ void MusicProxyModel::setFilter(QList<Filter *> filters, QString text)
 bool MusicProxyModel::hasAcceptedChildren(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
-    if (!index.isValid())
+    if (!index.isValid()) {
         return false;
+    }
 
-    if (index.model()->rowCount(index) == 0)
+    if (index.model()->rowCount(index) == 0) {
         return false;
+    }
 
     for (int i = 0, n = index.model()->rowCount(index); i < n; ++i) {
-        if (QSortFilterProxyModel::filterAcceptsRow(i, index))
+        if (QSortFilterProxyModel::filterAcceptsRow(i, index)) {
             return true;
+        }
     }
 
     return false;

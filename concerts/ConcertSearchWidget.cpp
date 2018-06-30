@@ -38,8 +38,9 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
     ui->chkTrailer->setMyData(ConcertScraperInfos::Trailer);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkToggled);
+        }
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkAllToggled);
 }
@@ -85,8 +86,9 @@ void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)
     ui->searchString->setFocus();
     foreach (const ScraperSearchResult &result, results) {
         QString name = result.name;
-        if (result.released.isValid())
+        if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+        }
         auto item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
@@ -107,10 +109,12 @@ void ConcertSearchWidget::chkToggled()
     m_infosToLoad.clear();
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(box->myData().toInt());
-        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+        }
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
+        }
     }
     ui->chkUnCheckAll->setChecked(allToggled);
 
@@ -121,8 +125,9 @@ void ConcertSearchWidget::chkToggled()
 void ConcertSearchWidget::chkAllToggled(bool toggled)
 {
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        if (box->myData().toInt() > 0 && box->isEnabled())
+        if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(toggled);
+        }
     }
     chkToggled();
 }

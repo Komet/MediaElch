@@ -11,10 +11,11 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
 {
     ui->setupUi(this);
 
-    if (!Settings::instance()->movieDuplicatesSplitterState().isNull())
+    if (!Settings::instance()->movieDuplicatesSplitterState().isNull()) {
         ui->splitter->restoreState(Settings::instance()->movieDuplicatesSplitterState());
-    else
+    } else {
         ui->splitter->setSizes(QList<int>() << 200 << 600);
+    }
 
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
@@ -70,10 +71,12 @@ void MovieDuplicates::detectDuplicates()
         QList<Movie *> dups;
         dups << movie;
         foreach (Movie *subMovie, Manager::instance()->movieModel()->movies()) {
-            if (movie == subMovie)
+            if (movie == subMovie) {
                 continue;
-            if (subMovie->isDuplicate(movie))
+            }
+            if (subMovie->isDuplicate(movie)) {
                 dups.append(subMovie);
+            }
         }
         if (dups.count() > 1) {
             m_duplicateMovies.insert(movie, dups);
@@ -88,14 +91,16 @@ void MovieDuplicates::onItemActivated(QModelIndex index, QModelIndex previous)
 {
     Q_UNUSED(previous)
 
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
     int row = index.model()->data(index, Qt::UserRole).toInt();
     Movie *movie = Manager::instance()->movieModel()->movie(row);
 
-    if (!m_duplicateMovies.contains(movie))
+    if (!m_duplicateMovies.contains(movie)) {
         return;
+    }
 
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);

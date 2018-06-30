@@ -36,13 +36,15 @@ void ImageWidget::setAlbum(Album *album)
 
 void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
 {
-    if (Manager::instance()->musicModel()->artists().count() <= artistIndex)
+    if (Manager::instance()->musicModel()->artists().count() <= artistIndex) {
         return;
+    }
 
     Artist *artist = Manager::instance()->musicModel()->artists().at(artistIndex);
 
-    if (artist->albums().count() <= albumIndex)
+    if (artist->albums().count() <= albumIndex) {
         return;
+    }
 
     Album *album = artist->albums().at(albumIndex);
 
@@ -69,13 +71,15 @@ void ImageWidget::setLoading(bool loading)
 
 void ImageWidget::cutImage(int artistIndex, int albumIndex, int imageId)
 {
-    if (Manager::instance()->musicModel()->artists().count() <= artistIndex)
+    if (Manager::instance()->musicModel()->artists().count() <= artistIndex) {
         return;
+    }
 
     Artist *artist = Manager::instance()->musicModel()->artists().at(artistIndex);
 
-    if (artist->albums().count() <= albumIndex)
+    if (artist->albums().count() <= albumIndex) {
         return;
+    }
 
     Album *album = artist->albums().at(albumIndex);
 

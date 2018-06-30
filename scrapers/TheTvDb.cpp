@@ -132,8 +132,9 @@ void TheTvDb::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language)
+        if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
+        }
     }
 }
 
@@ -1169,8 +1170,9 @@ void TheTvDb::onImdbSeasonFinished()
         m_cache.insert(reply->url(), c);
         QString imdbId = getImdbIdForEpisode(msg, episodeNumber);
         if (!imdbId.isEmpty()) {
-            if (episode->imdbId().isEmpty())
+            if (episode->imdbId().isEmpty()) {
                 episode->setImdbId(imdbId);
+            }
             qDebug() << "Now loading IMDB entry for" << imdbId;
             QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
             QNetworkRequest request = QNetworkRequest(url);

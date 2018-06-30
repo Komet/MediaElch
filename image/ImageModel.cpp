@@ -19,8 +19,9 @@ ImageModel::~ImageModel()
 
 void ImageModel::clear()
 {
-    if (m_images.isEmpty())
+    if (m_images.isEmpty()) {
         return;
+    }
     QList<Image *> imgs;
     beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     imgs = m_images;
@@ -43,8 +44,9 @@ QVariant ImageModel::data(int row, const QString &roleName) const
 QVariant ImageModel::data(const QModelIndex &index, int role) const
 {
     Image *img = image(index);
-    if (!img)
+    if (!img) {
         return QVariant();
+    }
 
     switch (role) {
     case Qt::UserRole + 1: return img->fileName(); break;
@@ -78,8 +80,9 @@ void ImageModel::addImage(Image *image)
 void ImageModel::removeImage(Image *image)
 {
     int row = m_images.indexOf(image);
-    if (row == -1)
+    if (row == -1) {
         return;
+    }
 
     beginRemoveRows(QModelIndex(), row, row);
     m_images.removeAt(row);
@@ -90,10 +93,12 @@ void ImageModel::removeImage(Image *image)
 
 void ImageModel::ImageModel::move(int from, int to)
 {
-    if (from == to)
+    if (from == to) {
         return;
-    if (from < to)
+    }
+    if (from < to) {
         qSwap(from, to);
+    }
     beginMoveRows(QModelIndex(), from, from, QModelIndex(), to);
     m_images.move(from, to);
     endMoveRows();
@@ -107,8 +112,9 @@ QList<Image *> ImageModel::images()
 
 Image *ImageModel::image(int row) const
 {
-    if (row < 0 || row >= m_images.count())
+    if (row < 0 || row >= m_images.count()) {
         return nullptr;
+    }
     return m_images.at(row);
 }
 
@@ -141,27 +147,31 @@ bool ImageModel::setData(int row, const QVariant &value, const QString &roleName
 
 bool ImageModel::setData(int row, const QVariant &value, int role)
 {
-    if (row < 0 || row >= m_images.count())
+    if (row < 0 || row >= m_images.count()) {
         return false;
+    }
 
     Image *img = image(row);
 
     switch (role) {
     case Qt::UserRole + 1: {
-        if (value.toString() == img->fileName())
+        if (value.toString() == img->fileName()) {
             return false;
+        }
         img->setFileName(value.toString());
         break;
     }
     case Qt::UserRole + 2: {
-        if (value.toByteArray() == img->rawData())
+        if (value.toByteArray() == img->rawData()) {
             return false;
+        }
         img->setRawData(value.toByteArray());
         break;
     }
     case Qt::UserRole + 3: {
-        if (value.toBool() == img->deletion())
+        if (value.toBool() == img->deletion()) {
             return false;
+        }
         img->setDeletion(value.toBool());
         break;
     }
@@ -176,8 +186,9 @@ bool ImageModel::setData(int row, const QVariant &value, int role)
 int ImageModel::rowById(int id) const
 {
     for (int i = 0, n = m_images.count(); i < n; ++i) {
-        if (m_images.at(i)->imageId() == id)
+        if (m_images.at(i)->imageId() == id) {
             return i;
+        }
     }
     return -1;
 }
@@ -189,16 +200,18 @@ bool ImageModel::hasChanged() const
 
 void ImageModel::setHasChanged(bool hasChanged)
 {
-    if (hasChanged == m_hasChanged)
+    if (hasChanged == m_hasChanged) {
         return;
+    }
     m_hasChanged = hasChanged;
     emit hasChangedChanged();
 }
 
 void ImageModel::cutImage(int row)
 {
-    if (row < 0 || row >= m_images.count())
+    if (row < 0 || row >= m_images.count()) {
         return;
+    }
 
     Image *image1 = m_images.at(row);
 

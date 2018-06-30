@@ -73,8 +73,9 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
 #endif
 
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton *>()) {
-        if (!btn->property("iconName").isValid())
+        if (!btn->property("iconName").isValid()) {
             continue;
+        }
 #ifndef Q_OS_MAC
         btn->setIconSize(QSize(32, 32));
         btn->setIcon(QIcon(":/menu/" + menuIcons.takeFirst()));

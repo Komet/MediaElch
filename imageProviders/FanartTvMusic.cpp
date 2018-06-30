@@ -52,8 +52,9 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
     Q_UNUSED(limit);
 
     QString searchQuery = "release:" + QString(QUrl::toPercentEncoding(searchStr));
-    if (!artistName.isEmpty())
+    if (!artistName.isEmpty()) {
         searchQuery += "%20AND%20artist:" + QString(QUrl::toPercentEncoding(artistName));
+    }
     QUrl url(QString("https://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent",
@@ -158,10 +159,12 @@ void FanartTvMusic::onSearchArtistFinished()
         for (int i = 0, n = domDoc.elementsByTagName("artist").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("artist").at(i).toElement();
             QString name;
-            if (!elem.elementsByTagName("name").isEmpty())
+            if (!elem.elementsByTagName("name").isEmpty()) {
                 name = elem.elementsByTagName("name").at(0).toElement().text();
-            if (!elem.elementsByTagName("disambiguation").isEmpty())
+            }
+            if (!elem.elementsByTagName("disambiguation").isEmpty()) {
                 name.append(QString(" (%1)").arg(elem.elementsByTagName("disambiguation").at(0).toElement().text()));
+            }
 
             if (!name.isEmpty() && !elem.attribute("id").isEmpty()) {
                 ScraperSearchResult result;
@@ -199,13 +202,15 @@ void FanartTvMusic::onSearchAlbumFinished()
         for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
             QString name;
-            if (!elem.elementsByTagName("title").isEmpty())
+            if (!elem.elementsByTagName("title").isEmpty()) {
                 name = elem.elementsByTagName("title").at(0).toElement().text();
-            else
+            } else {
                 continue;
+            }
 
-            if (!elem.elementsByTagName("date").isEmpty())
+            if (!elem.elementsByTagName("date").isEmpty()) {
                 name += QString(" (%1)").arg(elem.elementsByTagName("date").at(0).toElement().text());
+            }
 
             for (int x = 0, y = elem.elementsByTagName("release-group").count(); x < y; ++x) {
                 QDomElement releaseGroupElem = elem.elementsByTagName("release-group").at(x).toElement();

@@ -85,8 +85,9 @@ int MovieListDialog::execWithoutGenre(QString genre)
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->genres().contains(genre))
+        if (movie->genres().contains(genre)) {
             continue;
+        }
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
@@ -113,8 +114,9 @@ int MovieListDialog::execWithoutCertification(QString certification)
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->certification() == certification)
+        if (movie->certification() == certification) {
             continue;
+        }
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())

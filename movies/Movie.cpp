@@ -15,46 +15,49 @@
  * @param files List of files for this movie
  * @param parent
  */
-Movie::Movie(QStringList files, QObject *parent) : QObject(parent)
+Movie::Movie(QStringList files, QObject *parent) :
+    QObject(parent),
+    m_controller{new MovieController(this)},
+    m_files{files},
+    m_rating{0.0},
+    m_votes{0},
+    m_top250{0},
+    m_runtime{0},
+    m_playcount{0},
+    m_databaseId{-1},
+    m_mediaCenterId{-1},
+    m_numPrimaryLangPosters{0},
+    m_watched{false},
+    m_hasChanged{false},
+    m_inSeparateFolder{false},
+    m_hasExtraFanarts{false},
+    m_syncNeeded{false},
+    m_streamDetailsLoaded{false},
+    m_hasDuplicates{false},
+    m_discType{DiscType::Single},
+    m_label{Labels::NO_LABEL}
 {
-    m_controller = new MovieController(this);
-    m_files = files;
-    m_rating = 0;
-    m_votes = 0;
-    m_top250 = 0;
-    m_runtime = 0;
-    m_playcount = 0;
-    m_watched = false;
-    m_hasChanged = false;
-    m_hasExtraFanarts = false;
-    m_inSeparateFolder = false;
-    m_syncNeeded = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
-    m_mediaCenterId = -1;
-    m_numPrimaryLangPosters = 0;
-    m_streamDetailsLoaded = false;
-    m_databaseId = -1;
-    m_discType = DiscType::Single;
-    m_label = Labels::NO_LABEL;
-    m_hasDuplicates = false;
-    if (!files.isEmpty())
+    if (!files.isEmpty()) {
         setFiles(files);
+    }
 }
 
 void Movie::setFiles(QStringList files)
 {
     m_files = files;
-    if (!files.empty()) {
+    if (!files.isEmpty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
-        if (!path.isEmpty())
+        if (!path.isEmpty()) {
             m_folderName = path.last();
-    }
-    if (!files.isEmpty())
+        }
         m_streamDetails = new StreamDetails(this, files);
-    else
+
+    } else {
         m_streamDetails = new StreamDetails(this, QStringList());
+    }
 }
 
 MovieController *Movie::controller() const
@@ -102,8 +105,9 @@ void Movie::clear()
  */
 void Movie::clear(QList<int> infos)
 {
-    if (infos.contains(MovieScraperInfos::Actors))
+    if (infos.contains(MovieScraperInfos::Actors)) {
         m_actors.clear();
+    }
     if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();
         m_images.insert(ImageType::MovieBackdrop, QByteArray());
@@ -128,10 +132,12 @@ void Movie::clear(QList<int> infos)
         m_hasImageChanged.insert(ImageType::MovieLogo, false);
         m_imagesToRemove.removeOne(ImageType::MovieLogo);
     }
-    if (infos.contains(MovieScraperInfos::Countries))
+    if (infos.contains(MovieScraperInfos::Countries)) {
         m_countries.clear();
-    if (infos.contains(MovieScraperInfos::Genres))
+    }
+    if (infos.contains(MovieScraperInfos::Genres)) {
         m_genres.clear();
+    }
     if (infos.contains(MovieScraperInfos::Poster)) {
         m_posters.clear();
         m_images.insert(ImageType::MoviePoster, QByteArray());
@@ -139,12 +145,15 @@ void Movie::clear(QList<int> infos)
         m_numPrimaryLangPosters = 0;
         m_imagesToRemove.removeOne(ImageType::MoviePoster);
     }
-    if (infos.contains(MovieScraperInfos::Studios))
+    if (infos.contains(MovieScraperInfos::Studios)) {
         m_studios.clear();
-    if (infos.contains(MovieScraperInfos::Title))
+    }
+    if (infos.contains(MovieScraperInfos::Title)) {
         m_originalName = "";
-    if (infos.contains(MovieScraperInfos::Set))
+    }
+    if (infos.contains(MovieScraperInfos::Set)) {
         m_set = "";
+    }
     if (infos.contains(MovieScraperInfos::Overview)) {
         m_overview = "";
         m_outline = "";
@@ -153,22 +162,30 @@ void Movie::clear(QList<int> infos)
         m_rating = 0;
         m_votes = 0;
     }
-    if (infos.contains(MovieScraperInfos::Released))
+    if (infos.contains(MovieScraperInfos::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
-    if (infos.contains(MovieScraperInfos::Tagline))
+    }
+    if (infos.contains(MovieScraperInfos::Tagline)) {
         m_tagline = "";
-    if (infos.contains(MovieScraperInfos::Runtime))
+    }
+    if (infos.contains(MovieScraperInfos::Runtime)) {
         m_runtime = 0;
-    if (infos.contains(MovieScraperInfos::Trailer))
+    }
+    if (infos.contains(MovieScraperInfos::Trailer)) {
         m_trailer = "";
-    if (infos.contains(MovieScraperInfos::Certification))
+    }
+    if (infos.contains(MovieScraperInfos::Certification)) {
         m_certification = "";
-    if (infos.contains(MovieScraperInfos::Writer))
+    }
+    if (infos.contains(MovieScraperInfos::Writer)) {
         m_writer = "";
-    if (infos.contains(MovieScraperInfos::Director))
+    }
+    if (infos.contains(MovieScraperInfos::Director)) {
         m_director = "";
-    if (infos.contains(MovieScraperInfos::Tags))
+    }
+    if (infos.contains(MovieScraperInfos::Tags)) {
         m_tags.clear();
+    }
 
     if (infos.contains(MovieScraperInfos::Banner)) {
         m_images.insert(ImageType::MovieBanner, QByteArray());
@@ -195,8 +212,9 @@ void Movie::clearImages()
     m_images.clear();
     m_hasImageChanged.clear();
     m_extraFanartImagesToAdd.clear();
-    foreach (Actor *actor, actorsPointer())
+    foreach (Actor *actor, actorsPointer()) {
         actor->image = QByteArray();
+    }
 }
 
 /*** GETTER ***/
@@ -372,8 +390,9 @@ QStringList Movie::genres() const
 QList<QString *> Movie::genresPointer()
 {
     QList<QString *> genres;
-    for (int i = 0, n = m_genres.size(); i < n; ++i)
+    for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
+    }
     return genres;
 }
 
@@ -398,8 +417,9 @@ QStringList Movie::countries() const
 QList<QString *> Movie::countriesPointer()
 {
     QList<QString *> countries;
-    for (int i = 0, n = m_countries.size(); i < n; ++i)
+    for (int i = 0, n = m_countries.size(); i < n; ++i) {
         countries.append(&m_countries[i]);
+    }
     return countries;
 }
 
@@ -424,8 +444,9 @@ QStringList Movie::studios() const
 QList<QString *> Movie::studiosPointer()
 {
     QList<QString *> studios;
-    for (int i = 0, n = m_studios.size(); i < n; ++i)
+    for (int i = 0, n = m_studios.size(); i < n; ++i) {
         studios.append(&m_studios[i]);
+    }
     return studios;
 }
 
@@ -461,8 +482,9 @@ QList<Actor> Movie::actors() const
 QList<Actor *> Movie::actorsPointer()
 {
     QList<Actor *> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++)
+    for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
+    }
     return actors;
 }
 
@@ -1040,8 +1062,9 @@ void Movie::addActor(Actor actor)
  */
 void Movie::addCountry(QString country)
 {
-    if (country.isEmpty())
+    if (country.isEmpty()) {
         return;
+    }
     m_countries.append(country);
     setChanged(true);
 }
@@ -1053,8 +1076,9 @@ void Movie::addCountry(QString country)
  */
 void Movie::addGenre(QString genre)
 {
-    if (genre.isEmpty())
+    if (genre.isEmpty()) {
         return;
+    }
     m_genres.append(genre);
     setChanged(true);
 }
@@ -1066,16 +1090,18 @@ void Movie::addGenre(QString genre)
  */
 void Movie::addStudio(QString studio)
 {
-    if (studio.isEmpty())
+    if (studio.isEmpty()) {
         return;
+    }
     m_studios.append(studio);
     setChanged(true);
 }
 
 void Movie::addTag(QString tag)
 {
-    if (m_tags.contains(tag))
+    if (m_tags.contains(tag)) {
         return;
+    }
     m_tags.append(tag);
     setChanged(true);
 }
@@ -1233,8 +1259,9 @@ void Movie::removeTag(QString tag)
 
 bool Movie::hasLocalTrailer() const
 {
-    if (files().count() == 0)
+    if (files().isEmpty()) {
         return false;
+    }
     QFileInfo fi(files().first());
     QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
@@ -1243,15 +1270,17 @@ bool Movie::hasLocalTrailer() const
 
 QString Movie::localTrailerFileName() const
 {
-    if (files().count() == 0)
+    if (files().isEmpty()) {
         return QString();
+    }
     QFileInfo fi(files().first());
     QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
 
     QStringList contents = dir.entryList(QStringList() << trailerFilter);
-    if (contents.isEmpty())
+    if (contents.isEmpty()) {
         return QString();
+    }
 
     return dir.absolutePath() + "/" + contents.first();
 }
@@ -1277,10 +1306,12 @@ void Movie::removeExtraFanart(QString file)
 
 QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty())
+    if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
-    foreach (const QString &file, m_extraFanartsToRemove)
+    }
+    foreach (const QString &file, m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
+    }
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
@@ -1394,8 +1425,12 @@ bool Movie::lessThan(Movie *a, Movie *b)
 
 QList<int> Movie::imageTypes()
 {
-    return QList<int>() << ImageType::MoviePoster << ImageType::MovieBanner << ImageType::MovieCdArt
-                        << ImageType::MovieClearArt << ImageType::MovieLogo << ImageType::MovieThumb
+    return QList<int>() << ImageType::MoviePoster   //
+                        << ImageType::MovieBanner   //
+                        << ImageType::MovieCdArt    //
+                        << ImageType::MovieClearArt //
+                        << ImageType::MovieLogo     //
+                        << ImageType::MovieThumb    //
                         << ImageType::MovieBackdrop;
 }
 
@@ -1413,8 +1448,9 @@ void Movie::addSubtitle(Subtitle *subtitle, bool fromLoad)
 {
     m_subtitles.append(subtitle);
     connect(subtitle, &Subtitle::sigChanged, this, &Movie::onSubtitleChanged);
-    if (!fromLoad)
+    if (!fromLoad) {
         setChanged(true);
+    }
 }
 
 void Movie::onSubtitleChanged()
@@ -1429,8 +1465,9 @@ bool Movie::hasDuplicates() const
 
 void Movie::setHasDuplicates(bool hasDuplicates)
 {
-    if (m_hasDuplicates == hasDuplicates)
+    if (m_hasDuplicates == hasDuplicates) {
         return;
+    }
     m_hasDuplicates = hasDuplicates;
     emit sigChanged(this);
 }
@@ -1469,8 +1506,9 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     QString out;
     out.append("Movie").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    foreach (const QString &file, movie.files())
+    foreach (const QString &file, movie.files()) {
         out.append(QString("    %1").arg(file).append(nl));
+    }
     out.append(QString("  Name:          ").append(movie.name()).append(nl));
     out.append(QString("  Original-Name: ").append(movie.originalName()).append(nl));
     out.append(QString("  Rating:        %1").arg(movie.rating()).append(nl));
@@ -1483,12 +1521,15 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  ID:            ").append(movie.id()).append(nl));
     out.append(QString("  Set:           ").append(movie.set()).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
-    foreach (const QString &studio, movie.studios())
+    foreach (const QString &studio, movie.studios()) {
         out.append(QString("  Studio:         ").append(studio)).append(nl);
-    foreach (const QString &genre, movie.genres())
+    }
+    foreach (const QString &genre, movie.genres()) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
-    foreach (const QString &country, movie.countries())
+    }
+    foreach (const QString &country, movie.countries()) {
         out.append(QString("  Country:       ").append(country)).append(nl);
+    }
     foreach (const Actor &actor, movie.actors()) {
         out.append(QString("  Actor:         ").append(nl));
         out.append(QString("    Name:  ").append(actor.name)).append(nl);

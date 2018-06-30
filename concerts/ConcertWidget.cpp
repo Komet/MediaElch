@@ -248,8 +248,9 @@ void ConcertWidget::concertNameChanged(QString text)
 void ConcertWidget::setEnabledTrue(Concert *concert)
 {
     qDebug() << "Entered";
-    if (concert)
+    if (concert) {
         qDebug() << concert->name();
+    }
     if (concert && concert->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
@@ -298,10 +299,11 @@ void ConcertWidget::setConcert(Concert *concert)
     connect(m_concert->controller(), &ConcertController::sigImage, this, &ConcertWidget::onSetImage, Qt::UniqueConnection);
     // clang-format on
 
-    if (concert->controller()->downloadsInProgress())
+    if (concert->controller()->downloadsInProgress()) {
         setDisabledTrue();
-    else
+    } else {
         setEnabledTrue();
+    }
 }
 
 /**
@@ -334,8 +336,9 @@ void ConcertWidget::onStartScraperSearch()
  */
 void ConcertWidget::onInfoLoadDone(Concert *concert)
 {
-    if (m_concert == nullptr)
+    if (m_concert == nullptr) {
         return;
+    }
 
     if (m_concert == concert) {
         updateConcertInfo();
@@ -346,8 +349,9 @@ void ConcertWidget::onInfoLoadDone(Concert *concert)
 
 void ConcertWidget::onLoadDone(Concert *concert)
 {
-    if (m_concert == nullptr || m_concert != concert)
+    if (m_concert == nullptr || m_concert != concert) {
         return;
+    }
     setEnabledTrue();
     ui->fanarts->setLoading(false);
 }
@@ -360,25 +364,29 @@ void ConcertWidget::onLoadImagesStarted(Concert *concert)
 
 void ConcertWidget::onLoadingImages(Concert *concert, QList<int> imageTypes)
 {
-    if (concert != m_concert)
+    if (concert != m_concert) {
         return;
+    }
 
     foreach (const int &imageType, imageTypes) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
-            if (cImage->imageType() == imageType)
+            if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
+            }
         }
     }
 
-    if (imageTypes.contains(ImageType::ConcertExtraFanart))
+    if (imageTypes.contains(ImageType::ConcertExtraFanart)) {
         ui->fanarts->setLoading(true);
+    }
     ui->groupBox_3->update();
 }
 
 void ConcertWidget::onSetImage(Concert *concert, int type, QByteArray data)
 {
-    if (concert != m_concert)
+    if (concert != m_concert) {
         return;
+    }
 
     if (type == ImageType::ConcertExtraFanart) {
         ui->fanarts->addImage(data);
@@ -444,8 +452,9 @@ void ConcertWidget::updateConcertInfo()
     QStringList tags;
     certifications.append("");
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
-        if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty())
+        if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty()) {
             certifications.append(concert->certification());
+        }
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
@@ -512,8 +521,9 @@ void ConcertWidget::updateImage(const int &imageType, ClosableImage *image)
         image->setImage(m_concert->image(imageType));
     } else if (!m_concert->imagesToRemove().contains(imageType) && m_concert->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType);
-        if (!imgFileName.isEmpty())
+        if (!imgFileName.isEmpty()) {
             image->setImage(imgFileName);
+        }
     }
 }
 
@@ -529,8 +539,9 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
 
-    if (reloadFromFile)
+    if (reloadFromFile) {
         m_concert->controller()->loadStreamDetailsFromFile();
+    }
 
     StreamDetails *streamDetails = m_concert->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
@@ -540,14 +551,16 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->stereoMode->setCurrentIndex(0);
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
-        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode")) {
             ui->stereoMode->setCurrentIndex(i);
+        }
     }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
-    if (reloadFromFile)
+    if (reloadFromFile) {
         ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt() / 60));
+    }
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();
@@ -637,8 +650,9 @@ void ConcertWidget::onReloadStreamDetails()
 void ConcertWidget::onSaveInformation()
 {
     QList<Concert *> concerts = ConcertFilesWidget::instance()->selectedConcerts();
-    if (concerts.count() == 0)
+    if (concerts.count() == 0) {
         concerts.append(m_concert);
+    }
 
     setDisabledTrue();
     m_savingWidget->show();
@@ -653,8 +667,9 @@ void ConcertWidget::onSaveInformation()
             if (concert->hasChanged()) {
                 concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
                 concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
-                if (m_concert == concert)
+                if (m_concert == concert) {
                     updateConcertInfo();
+                }
             }
         }
         NotificationBox::instance()->showMessage(tr("Concerts Saved"));
@@ -678,8 +693,9 @@ void ConcertWidget::onSaveAll()
         if (concert->hasChanged()) {
             concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
             concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
-            if (m_concert == concert)
+            if (m_concert == concert) {
                 updateConcertInfo();
+            }
         }
     }
     setEnabledTrue();
@@ -705,8 +721,9 @@ void ConcertWidget::onRevertChanges()
  */
 void ConcertWidget::addGenre(QString genre)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->addGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
@@ -716,24 +733,27 @@ void ConcertWidget::addGenre(QString genre)
  */
 void ConcertWidget::removeGenre(QString genre)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->removeGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
 
 void ConcertWidget::addTag(QString tag)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->addTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 
 void ConcertWidget::removeTag(QString tag)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
@@ -765,8 +785,9 @@ void ConcertWidget::onArtPageTwo()
  */
 void ConcertWidget::onNameChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setName(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -776,8 +797,9 @@ void ConcertWidget::onNameChange(QString text)
  */
 void ConcertWidget::onArtistChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setArtist(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -787,8 +809,9 @@ void ConcertWidget::onArtistChange(QString text)
  */
 void ConcertWidget::onAlbumChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setAlbum(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -798,8 +821,9 @@ void ConcertWidget::onAlbumChange(QString text)
  */
 void ConcertWidget::onTaglineChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setTagline(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -809,8 +833,9 @@ void ConcertWidget::onTaglineChange(QString text)
  */
 void ConcertWidget::onRatingChange(double value)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setRating(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -820,8 +845,9 @@ void ConcertWidget::onRatingChange(double value)
  */
 void ConcertWidget::onReleasedChange(QDate date)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setReleased(date);
     ui->buttonRevert->setVisible(true);
 }
@@ -831,8 +857,9 @@ void ConcertWidget::onReleasedChange(QDate date)
  */
 void ConcertWidget::onRuntimeChange(int value)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setRuntime(value);
     ui->buttonRevert->setVisible(true);
 }
@@ -842,8 +869,9 @@ void ConcertWidget::onRuntimeChange(int value)
  */
 void ConcertWidget::onCertificationChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setCertification(text);
     ui->buttonRevert->setVisible(true);
 }
@@ -853,26 +881,30 @@ void ConcertWidget::onCertificationChange(QString text)
  */
 void ConcertWidget::onTrailerChange(QString text)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setTrailer(text);
     ui->buttonRevert->setVisible(true);
 }
 
 void ConcertWidget::onWatchedClicked()
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
 
     bool active = !ui->badgeWatched->isActive();
     ui->badgeWatched->setActive(active);
     m_concert->setWatched(active);
 
     if (active) {
-        if (m_concert->playcount() < 1)
+        if (m_concert->playcount() < 1) {
             ui->playcount->setValue(1);
-        if (!m_concert->lastPlayed().isValid())
+        }
+        if (!m_concert->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+        }
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -882,8 +914,9 @@ void ConcertWidget::onWatchedClicked()
  */
 void ConcertWidget::onPlayCountChange(int value)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setPlayCount(value);
     ui->badgeWatched->setActive(value > 0);
     ui->buttonRevert->setVisible(true);
@@ -894,8 +927,9 @@ void ConcertWidget::onPlayCountChange(int value)
  */
 void ConcertWidget::onLastWatchedChange(QDateTime dateTime)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setLastPlayed(dateTime);
     ui->buttonRevert->setVisible(true);
 }
@@ -905,8 +939,9 @@ void ConcertWidget::onLastWatchedChange(QDateTime dateTime)
  */
 void ConcertWidget::onOverviewChange()
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->setOverview(ui->overview->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
@@ -930,8 +965,9 @@ void ConcertWidget::onStreamDetailsEdited()
         details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
         details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
     }
-    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i)
+    for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
         details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+    }
 
     m_concert->setChanged(true);
     ui->buttonRevert->setVisible(true);
@@ -939,24 +975,27 @@ void ConcertWidget::onStreamDetailsEdited()
 
 void ConcertWidget::onRemoveExtraFanart(const QByteArray &image)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->removeExtraFanart(image);
     ui->buttonRevert->setVisible(true);
 }
 
 void ConcertWidget::onRemoveExtraFanart(const QString &file)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     m_concert->removeExtraFanart(file);
     ui->buttonRevert->setVisible(true);
 }
 
 void ConcertWidget::onAddExtraFanart()
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(ImageType::ConcertExtraFanart);
     ImageDialog::instance()->clear();
@@ -975,8 +1014,9 @@ void ConcertWidget::onAddExtraFanart()
 
 void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
     m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QList<QUrl>() << imageUrl);
@@ -985,22 +1025,25 @@ void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
 
 void ConcertWidget::onChooseImage()
 {
-    if (m_concert == nullptr)
+    if (m_concert == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     ImageDialog::instance()->setImageType(image->imageType());
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setConcert(m_concert);
-    if (image->imageType() == ImageType::ConcertPoster)
+    if (image->imageType() == ImageType::ConcertPoster) {
         ImageDialog::instance()->setDownloads(m_concert->posters());
-    else if (image->imageType() == ImageType::ConcertBackdrop)
+    } else if (image->imageType() == ImageType::ConcertBackdrop) {
         ImageDialog::instance()->setDownloads(m_concert->posters());
-    else
+    } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
+    }
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -1012,12 +1055,14 @@ void ConcertWidget::onChooseImage()
 
 void ConcertWidget::onDeleteImage()
 {
-    if (m_concert == nullptr)
+    if (m_concert == nullptr) {
         return;
+    }
 
     auto image = static_cast<ClosableImage *>(QObject::sender());
-    if (!image)
+    if (!image) {
         return;
+    }
 
     m_concert->removeImage(image->imageType());
     updateImages(QList<int>() << image->imageType());
@@ -1026,8 +1071,9 @@ void ConcertWidget::onDeleteImage()
 
 void ConcertWidget::onImageDropped(int imageType, QUrl imageUrl)
 {
-    if (!m_concert)
+    if (!m_concert) {
         return;
+    }
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
     m_concert->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);

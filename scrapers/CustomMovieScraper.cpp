@@ -28,8 +28,9 @@ QNetworkAccessManager *CustomMovieScraper::qnam()
 CustomMovieScraper *CustomMovieScraper::instance(QObject *parent)
 {
     static CustomMovieScraper *m_instance = nullptr;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new CustomMovieScraper(parent);
+    }
     return m_instance;
 }
 
@@ -51,19 +52,22 @@ bool CustomMovieScraper::isAdult()
 void CustomMovieScraper::search(QString searchStr)
 {
     ScraperInterface *scraper = scraperForInfo(MovieScraperInfos::Title);
-    if (!scraper)
+    if (!scraper) {
         return;
+    }
     scraper->search(searchStr);
 }
 
 void CustomMovieScraper::onTitleSearchDone(QList<ScraperSearchResult> results)
 {
     auto scraper = static_cast<ScraperInterface *>(QObject::sender());
-    if (!scraper)
+    if (!scraper) {
         return;
+    }
 
-    if (scraper == scraperForInfo(MovieScraperInfos::Title))
+    if (scraper == scraperForInfo(MovieScraperInfos::Title)) {
         emit searchDone(results);
+    }
 }
 
 QList<ScraperInterface *> CustomMovieScraper::scrapersNeedSearch(QList<int> infos,
@@ -71,28 +75,35 @@ QList<ScraperInterface *> CustomMovieScraper::scrapersNeedSearch(QList<int> info
 {
     QList<ScraperInterface *> scrapers;
     ScraperInterface *titleScraper = scraperForInfo(MovieScraperInfos::Title);
-    if (!titleScraper)
+    if (!titleScraper) {
         return scrapers;
+    }
 
     bool imdbIdAvailable = false;
     QMapIterator<ScraperInterface *, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == "imdb" || it.key()->identifier() == "tmdb")
+        if (it.key()->identifier() == "imdb" || it.key()->identifier() == "tmdb") {
             imdbIdAvailable = true;
+        }
     }
 
     foreach (ScraperInterface *scraper, scrapersForInfos(infos)) {
-        if (scraper == titleScraper)
+        if (scraper == titleScraper) {
             continue;
-        if (scrapers.contains(scraper))
+        }
+        if (scrapers.contains(scraper)) {
             continue;
-        if (scraper->identifier() == "tmdb" && imdbIdAvailable)
+        }
+        if (scraper->identifier() == "tmdb" && imdbIdAvailable) {
             continue;
-        if (scraper->identifier() == "imdb" && imdbIdAvailable)
+        }
+        if (scraper->identifier() == "imdb" && imdbIdAvailable) {
             continue;
-        if (alreadyLoadedIds.contains(scraper))
+        }
+        if (alreadyLoadedIds.contains(scraper)) {
             continue;
+        }
         scrapers.append(scraper);
     }
 
@@ -103,8 +114,9 @@ QList<ScraperInterface *> CustomMovieScraper::scrapersNeedSearch(QList<int> info
                 // check if imdb id should be loaded
                 bool shouldLoad = false;
                 foreach (ScraperInterface *scraper, scrapers) {
-                    if (scraper->identifier() == "imdb" || scraper->identifier() == "tmdb")
+                    if (scraper->identifier() == "imdb" || scraper->identifier() == "tmdb") {
                         shouldLoad = true;
+                    }
                 }
                 if (!shouldLoad) {
                     // add tmdb
@@ -144,8 +156,9 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
     bool needImdbId = false;
     foreach (const int &info, infos) {
         ScraperInterface *scraper = scraperForInfo(info);
-        if (!scraper)
+        if (!scraper) {
             continue;
+        }
         if (scraper->identifier() == "imdb") {
             needImdbId = true;
             break;
@@ -212,17 +225,20 @@ void CustomMovieScraper::loadAllData(QMap<ScraperInterface *, QString> ids,
     QMap<ScraperInterface *, QString> scrapersWithIds;
     foreach (const int &info, infos) {
         ScraperInterface *scraper = scraperForInfo(info);
-        if (!scraper)
+        if (!scraper) {
             continue;
+        }
 
-        if (scrapersWithIds.contains(scraper))
+        if (scrapersWithIds.contains(scraper)) {
             continue;
-        if (scraper->identifier() == "tmdb")
+        }
+        if (scraper->identifier() == "tmdb") {
             scrapersWithIds.insert(scraper, tmdbId.isEmpty() ? imdbId : tmdbId);
-        else if (scraper->identifier() == "imdb")
+        } else if (scraper->identifier() == "imdb") {
             scrapersWithIds.insert(scraper, imdbId);
-        else
+        } else {
             scrapersWithIds.insert(scraper, ids.value(scraper));
+        }
     }
 
     int loads = scrapersWithIds.count();
@@ -230,27 +246,33 @@ void CustomMovieScraper::loadAllData(QMap<ScraperInterface *, QString> ids,
     movie->controller()->setProperty("isCustomScraper", true);
 
     if (infos.contains(MovieScraperInfos::Backdrop)
-        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Backdrop) == "images.fanarttv")
+        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Backdrop) == "images.fanarttv") {
         movie->controller()->setForceFanartBackdrop(true);
+    }
     if (infos.contains(MovieScraperInfos::Poster)
-        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Poster) == "images.fanarttv")
+        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Poster) == "images.fanarttv") {
         movie->controller()->setForceFanartPoster(true);
+    }
     if (infos.contains(MovieScraperInfos::ClearArt)
-        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::ClearArt) == "images.fanarttv")
+        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::ClearArt) == "images.fanarttv") {
         movie->controller()->setForceFanartClearArt(true);
+    }
     if (infos.contains(MovieScraperInfos::CdArt)
-        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::CdArt) == "images.fanarttv")
+        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::CdArt) == "images.fanarttv") {
         movie->controller()->setForceFanartCdArt(true);
+    }
     if (infos.contains(MovieScraperInfos::Logo)
-        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Logo) == "images.fanarttv")
+        && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Logo) == "images.fanarttv") {
         movie->controller()->setForceFanartLogo(true);
+    }
 
     QMapIterator<ScraperInterface *, QString> itS(scrapersWithIds);
     while (itS.hasNext()) {
         itS.next();
         QList<int> infosToLoad = infosForScraper(itS.key(), infos);
-        if (infosToLoad.isEmpty())
+        if (infosToLoad.isEmpty()) {
             continue;
+        }
         QMap<ScraperInterface *, QString> subIds;
         subIds.insert(0, itS.value());
         itS.key()->loadData(subIds, movie, infosToLoad);
@@ -260,12 +282,14 @@ void CustomMovieScraper::loadAllData(QMap<ScraperInterface *, QString> ids,
 ScraperInterface *CustomMovieScraper::scraperForInfo(int info)
 {
     QString identifier = Settings::instance()->customMovieScraper().value(info, "");
-    if (identifier.isEmpty())
+    if (identifier.isEmpty()) {
         return nullptr;
+    }
     foreach (ScraperInterface *scraper, m_scrapers) {
         if (scraper->identifier() == identifier) {
-            if (scraper->hasSettings())
+            if (scraper->hasSettings()) {
                 scraper->loadSettings(*Settings::instance()->settings());
+            }
             return scraper;
         }
     }
@@ -277,13 +301,15 @@ QList<ScraperInterface *> CustomMovieScraper::scrapersForInfos(QList<int> infos)
     QList<ScraperInterface *> scrapers;
     foreach (const int &info, infos) {
         ScraperInterface *scraper = scraperForInfo(info);
-        if (scraper && !scrapers.contains(scraper))
+        if (scraper && !scrapers.contains(scraper)) {
             scrapers.append(scraper);
+        }
     }
 
     foreach (ScraperInterface *scraper, scrapers) {
-        if (scraper->hasSettings())
+        if (scraper->hasSettings()) {
             scraper->loadSettings(*Settings::instance()->settings());
+        }
     }
 
     return scrapers;
@@ -293,8 +319,9 @@ QList<int> CustomMovieScraper::infosForScraper(ScraperInterface *scraper, QList<
 {
     QList<int> infosForScraper;
     foreach (const int &info, selectedInfos) {
-        if (scraper == scraperForInfo(info))
+        if (scraper == scraperForInfo(info)) {
             infosForScraper.append(info);
+        }
     }
     return infosForScraper;
 }
@@ -305,8 +332,9 @@ QList<int> CustomMovieScraper::scraperSupports()
     QMapIterator<int, QString> it(Settings::instance()->customMovieScraper());
     while (it.hasNext()) {
         it.next();
-        if (!it.value().isEmpty())
+        if (!it.value().isEmpty()) {
             supports << it.key();
+        }
     }
     return supports;
 }

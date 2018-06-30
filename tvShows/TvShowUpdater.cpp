@@ -26,15 +26,17 @@ TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{nullptr}
 TvShowUpdater *TvShowUpdater::instance(QObject *parent)
 {
     static TvShowUpdater *instance = nullptr;
-    if (!instance)
+    if (!instance) {
         instance = new TvShowUpdater(parent);
+    }
     return instance;
 }
 
 void TvShowUpdater::updateShow(TvShow *show, bool force)
 {
-    if (m_updatedShows.contains(show) && !force)
+    if (m_updatedShows.contains(show) && !force) {
         return;
+    }
 
     m_updatedShows.append(show);
 
@@ -68,14 +70,16 @@ void TvShowUpdater::onLoadFinished()
     int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
     int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
     NotificationBox::instance()->progressBarProgress(value + 1, maxValue, Constants::TvShowUpdaterProgressMessageId);
-    if (value + 1 == maxValue)
+    if (value + 1 == maxValue) {
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
+    }
 
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
-    if (!show)
+    if (!show) {
         return;
+    }
 
     if (reply->error() == QNetworkReply::NoError) {
         QByteArray data = reply->readAll();

@@ -47,14 +47,16 @@ QString NameFormatter::excludeWords(QString name)
                                            << ")"
                                            << "["
                                            << "]";
-        if (braces.contains(word))
+        if (braces.contains(word)) {
             name.replace(word, "");
+        }
     }
 
     // remove " - _" at the end of a name
     rx.setPattern("[\\-\\s_]");
-    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
         name.chop(1);
+    }
 
     return name;
 }
@@ -68,11 +70,13 @@ QString NameFormatter::excludeWords(QString name)
  */
 QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUnderscores)
 {
-    if (replaceDots)
+    if (replaceDots) {
         name = name.replace(".", " ");
+    }
 
-    if (replaceUnderscores)
+    if (replaceUnderscores) {
         name = name.replace("_", " ");
+    }
 
     // remove exclude words
     name = excludeWords(name);
@@ -87,8 +91,9 @@ QString NameFormatter::formatName(QString name, bool replaceDots, bool replaceUn
 
     // remove " - " at the end of a name
     rx.setPattern("[\\-\\s]");
-    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0)
+    while (rx.lastIndexIn(name) == name.length() - 1 && name.length() > 0) {
         name.chop(1);
+    }
     return name;
 }
 

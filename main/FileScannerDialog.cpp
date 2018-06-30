@@ -79,19 +79,21 @@ int FileScannerDialog::exec()
     QDialog::show();
     adjustSize();
 
-    if (m_forceReload)
+    if (m_forceReload) {
         ImageCache::instance()->clearCache();
+    }
 
-    if (m_reloadType == TypeMovies || m_reloadType == TypeAll)
+    if (m_reloadType == TypeMovies || m_reloadType == TypeAll) {
         onStartMovieScanner();
-    else if (m_reloadType == TypeTvShows)
+    } else if (m_reloadType == TypeTvShows) {
         onStartTvShowScanner();
-    else if (m_reloadType == TypeConcerts)
+    } else if (m_reloadType == TypeConcerts) {
         onStartConcertScanner();
-    else if (m_reloadType == TypeEpisodes)
+    } else if (m_reloadType == TypeEpisodes) {
         onStartEpisodeScanner();
-    else if (m_reloadType == TypeMusic)
+    } else if (m_reloadType == TypeMusic) {
         onStartMusicScanner();
+    }
 
     return 0;
 }
@@ -139,10 +141,11 @@ void FileScannerDialog::onStartMovieScanner()
 {
     ui->progressBar->setValue(0);
     Manager::instance()->movieModel()->clear();
-    if (m_forceReload)
+    if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMovieScannerForce);
-    else
+    } else {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMovieScannerCache);
+    }
 }
 
 void FileScannerDialog::onStartMovieScannerCache()
@@ -163,10 +166,11 @@ void FileScannerDialog::onStartTvShowScanner()
     ui->progressBar->setValue(0);
     Manager::instance()->tvShowModel()->clear();
     qApp->processEvents();
-    if (m_forceReload)
+    if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartTvShowScannerForce);
-    else
+    } else {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartTvShowScannerCache);
+    }
 }
 
 void FileScannerDialog::onStartTvShowScannerCache()
@@ -192,10 +196,11 @@ void FileScannerDialog::onStartConcertScanner()
     ui->progressBar->setValue(0);
     Manager::instance()->concertModel()->clear();
     qApp->processEvents();
-    if (m_forceReload)
+    if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartConcertScannerForce);
-    else
+    } else {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartConcertScannerCache);
+    }
 }
 
 void FileScannerDialog::onStartConcertScannerCache()
@@ -213,10 +218,11 @@ void FileScannerDialog::onStartMusicScanner()
     ui->progressBar->setValue(0);
     Manager::instance()->musicModel()->clear();
     qApp->processEvents();
-    if (m_forceReload)
+    if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMusicScannerForce);
-    else
+    } else {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMusicScannerCache);
+    }
 }
 
 void FileScannerDialog::onStartMusicScannerCache()

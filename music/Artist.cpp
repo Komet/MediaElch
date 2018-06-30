@@ -45,8 +45,9 @@ void Artist::setGenres(const QStringList &genres)
 
 void Artist::addGenre(const QString &genre)
 {
-    if (genre.isEmpty())
+    if (genre.isEmpty()) {
         return;
+    }
 
     m_genres.append(genre);
     setHasChanged(true);
@@ -71,8 +72,9 @@ void Artist::setStyles(const QStringList &styles)
 
 void Artist::addStyle(const QString &style)
 {
-    if (style.isEmpty())
+    if (style.isEmpty()) {
         return;
+    }
 
     m_styles.append(style);
     setHasChanged(true);
@@ -97,8 +99,9 @@ void Artist::setMoods(const QStringList &moods)
 
 void Artist::addMood(const QString &mood)
 {
-    if (mood.isEmpty())
+    if (mood.isEmpty()) {
         return;
+    }
 
     m_moods.append(mood);
     setHasChanged(true);
@@ -182,8 +185,9 @@ QList<Poster> Artist::images(int imageType) const
 
 void Artist::addImage(int imageType, Poster image)
 {
-    if (!m_images.contains(imageType))
+    if (!m_images.contains(imageType)) {
         m_images.insert(imageType, QList<Poster>());
+    }
     m_images[imageType].append(image);
     setHasChanged(true);
 }
@@ -201,10 +205,11 @@ void Artist::setRawImage(int imageType, QByteArray image)
 
 void Artist::removeImage(int imageType)
 {
-    if (!m_rawImages.value(imageType, QByteArray()).isNull())
+    if (!m_rawImages.value(imageType, QByteArray()).isNull()) {
         m_rawImages.remove(imageType);
-    else if (!m_imagesToRemove.contains(imageType))
+    } else if (!m_imagesToRemove.contains(imageType)) {
         m_imagesToRemove.append(imageType);
+    }
     setHasChanged(true);
 }
 
@@ -224,8 +229,9 @@ bool Artist::hasChanged() const
 void Artist::setHasChanged(bool hasChanged)
 {
     m_hasChanged = hasChanged;
-    if (hasChanged)
+    if (hasChanged) {
         emit sigChanged(this);
+    }
 }
 
 void Artist::clear()
@@ -252,40 +258,52 @@ void Artist::clear()
 
 void Artist::clear(QList<int> infos)
 {
-    if (infos.contains(MusicScraperInfos::Genres))
+    if (infos.contains(MusicScraperInfos::Genres)) {
         m_genres.clear();
-    if (infos.contains(MusicScraperInfos::Styles))
+    }
+    if (infos.contains(MusicScraperInfos::Styles)) {
         m_styles.clear();
-    if (infos.contains(MusicScraperInfos::Moods))
+    }
+    if (infos.contains(MusicScraperInfos::Moods)) {
         m_moods.clear();
-    if (infos.contains(MusicScraperInfos::YearsActive))
+    }
+    if (infos.contains(MusicScraperInfos::YearsActive)) {
         m_yearsActive.clear();
-    if (infos.contains(MusicScraperInfos::Formed))
+    }
+    if (infos.contains(MusicScraperInfos::Formed)) {
         m_formed.clear();
-    if (infos.contains(MusicScraperInfos::Born))
+    }
+    if (infos.contains(MusicScraperInfos::Born)) {
         m_born.clear();
-    if (infos.contains(MusicScraperInfos::Died))
+    }
+    if (infos.contains(MusicScraperInfos::Died)) {
         m_died.clear();
-    if (infos.contains(MusicScraperInfos::Disbanded))
+    }
+    if (infos.contains(MusicScraperInfos::Disbanded)) {
         m_disbanded.clear();
-    if (infos.contains(MusicScraperInfos::Biography))
+    }
+    if (infos.contains(MusicScraperInfos::Biography)) {
         m_biography.clear();
+    }
 
     if (infos.contains(MusicScraperInfos::Thumb)) {
-        if (!m_images.contains(ImageType::ArtistThumb))
+        if (!m_images.contains(ImageType::ArtistThumb)) {
             m_images.insert(ImageType::ArtistThumb, QList<Poster>());
+        }
         m_images[ImageType::ArtistThumb].clear();
         m_rawImages.insert(ImageType::ArtistThumb, QByteArray());
     }
     if (infos.contains(MusicScraperInfos::Fanart)) {
-        if (!m_images.contains(ImageType::ArtistFanart))
+        if (!m_images.contains(ImageType::ArtistFanart)) {
             m_images.insert(ImageType::ArtistFanart, QList<Poster>());
+        }
         m_images[ImageType::ArtistFanart].clear();
         m_rawImages.insert(ImageType::ArtistFanart, QByteArray());
     }
     if (infos.contains(MusicScraperInfos::Logo)) {
-        if (!m_images.contains(ImageType::ArtistLogo))
+        if (!m_images.contains(ImageType::ArtistLogo)) {
             m_images.insert(ImageType::ArtistLogo, QList<Poster>());
+        }
         m_images[ImageType::ArtistLogo].clear();
         m_rawImages.insert(ImageType::ArtistLogo, QByteArray());
     }
@@ -294,8 +312,9 @@ void Artist::clear(QList<int> infos)
         m_extraFanartImagesToAdd.clear();
         m_extraFanarts.clear();
     }
-    if (infos.contains(MusicScraperInfos::Discography))
+    if (infos.contains(MusicScraperInfos::Discography)) {
         m_discography.clear();
+    }
 }
 
 MusicModelItem *Artist::modelItem() const
@@ -410,8 +429,9 @@ void Artist::removeExtraFanart(QString file)
 
 QList<ExtraFanart> Artist::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty())
+    if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    }
     foreach (const QString &file, m_extraFanartsToRemove)
         m_extraFanarts.removeOne(file);
     QList<ExtraFanart> fanarts;
@@ -476,7 +496,8 @@ QList<DiscographyAlbum> Artist::discographyAlbums() const
 QList<DiscographyAlbum *> Artist::discographyAlbumsPointer()
 {
     QList<DiscographyAlbum *> albums;
-    for (int i = 0, n = m_discography.size(); i < n; i++)
+    for (int i = 0, n = m_discography.size(); i < n; i++) {
         albums.append(&(m_discography[i]));
+    }
     return albums;
 }

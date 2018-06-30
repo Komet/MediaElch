@@ -14,8 +14,9 @@ ImageCapture::ImageCapture(QObject *parent) : QObject(parent)
 
 bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QImage &img)
 {
-    if (streamDetails->videoDetails().value("durationinseconds", nullptr) == nullptr)
+    if (streamDetails->videoDetails().value("durationinseconds", nullptr) == nullptr) {
         streamDetails->loadStreamDetails();
+    }
     if (streamDetails->videoDetails().value("durationinseconds", nullptr) == nullptr) {
         NotificationBox::instance()->showMessage(
             tr("Could not get duration of file"), NotificationBox::NotificationError);

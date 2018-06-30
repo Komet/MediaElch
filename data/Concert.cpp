@@ -271,8 +271,9 @@ QStringList Concert::genres() const
 QList<QString *> Concert::genresPointer()
 {
     QList<QString *> genres;
-    for (int i = 0, n = m_genres.size(); i < n; ++i)
+    for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
+    }
     return genres;
 }
 
@@ -913,12 +914,15 @@ void Concert::clearExtraFanartData()
 
 DiscType Concert::discType()
 {
-    if (files().isEmpty())
+    if (files().isEmpty()) {
         return DiscType::Single;
-    if (Helper::instance()->isDvd(files().first()))
+    }
+    if (Helper::instance()->isDvd(files().first())) {
         return DiscType::Dvd;
-    if (Helper::instance()->isBluRay(files().first()))
+    }
+    if (Helper::instance()->isBluRay(files().first())) {
         return DiscType::BluRay;
+    }
     return DiscType::Single;
 }
 

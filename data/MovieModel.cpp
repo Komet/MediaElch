@@ -110,8 +110,9 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         if (role == Qt::DisplayRole) {
             return Helper::instance()->appendArticle(movie->name());
         } else if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
-            if (movie->files().empty())
+            if (movie->files().empty()) {
                 return QVariant();
+            }
             return movie->files().at(0);
         } else if (role == Qt::UserRole + 1) {
             return movie->controller()->infoLoaded();
