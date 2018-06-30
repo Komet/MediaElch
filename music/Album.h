@@ -77,7 +77,7 @@ public:
     void clearImages();
 
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<MusicScraperInfos> infos);
 
     MusicModelItem *modelItem() const;
     void setModelItem(MusicModelItem *item);

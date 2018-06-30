@@ -147,7 +147,10 @@ bool AlbumController::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
-void AlbumController::loadData(QString id, QString id2, MusicScraperInterface *scraperInterface, QList<int> infos)
+void AlbumController::loadData(QString id,
+    QString id2,
+    MusicScraperInterface *scraperInterface,
+    QList<MusicScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, id2, m_album, infos);

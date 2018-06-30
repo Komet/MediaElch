@@ -22,7 +22,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, MusicScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QString id, MusicScraperInterface *scraperInterface, QList<MusicScraperInfos> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -59,7 +59,7 @@ private:
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;
-    QList<int> m_infosToLoad;
+    QList<MusicScraperInfos> m_infosToLoad;
 };
 
 #endif // ARTISTCONTROLLER_H

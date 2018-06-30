@@ -51,8 +51,8 @@ private:
     bool m_executed;
     Artist *m_currentArtist;
     Album *m_currentAlbum;
-    QList<int> m_artistInfosToLoad;
-    QList<int> m_albumInfosToLoad;
+    QList<MusicScraperInfos> m_artistInfosToLoad;
+    QList<MusicScraperInfos> m_albumInfosToLoad;
     QList<Artist *> m_artists;
     QList<Album *> m_albums;
     MusicScraperInterface *m_scraperInterface;

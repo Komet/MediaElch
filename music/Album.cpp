@@ -238,7 +238,7 @@ void Album::clearImages()
 
 void Album::clear()
 {
-    QList<int> infos;
+    QList<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Title       //
           << MusicScraperInfos::Artist      //
           << MusicScraperInfos::Genres      //
@@ -255,7 +255,7 @@ void Album::clear()
     m_nfoContent.clear();
 }
 
-void Album::clear(QList<int> infos)
+void Album::clear(QList<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Artist)) {
         m_artist.clear();

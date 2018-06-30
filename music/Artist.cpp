@@ -236,7 +236,7 @@ void Artist::setHasChanged(bool hasChanged)
 
 void Artist::clear()
 {
-    QList<int> infos;
+    QList<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Name        //
           << MusicScraperInfos::Genres      //
           << MusicScraperInfos::Styles      //
@@ -256,7 +256,7 @@ void Artist::clear()
     m_nfoContent.clear();
 }
 
-void Artist::clear(QList<int> infos)
+void Artist::clear(QList<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Genres)) {
         m_genres.clear();

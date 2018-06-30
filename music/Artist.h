@@ -69,7 +69,7 @@ public:
     void setHasChanged(bool hasChanged);
 
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<MusicScraperInfos> infos);
 
     MusicModelItem *modelItem() const;
     void setModelItem(MusicModelItem *modelItem);

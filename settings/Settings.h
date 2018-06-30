@@ -93,8 +93,6 @@ public:
     bool donated() const;
     QString lastImagePath();
 
-    QList<int> scraperInfos(MainWidgets widget, QString scraperId);
-
     template<typename T>
     QList<T> scraperInfos(QString scraperId);
 
@@ -137,10 +135,10 @@ public:
     void setXbmcPort(int port);
     void setXbmcUser(QString user);
     void setXbmcPassword(QString password);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items);
     void setRenamePatterns(int renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,

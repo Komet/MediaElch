@@ -339,32 +339,32 @@ enum class ConcertScraperInfos : int {
     ExtraFanarts  = 14
 };
 
-namespace MusicScraperInfos {
-    const int Name         = 1;
-    const int Genres       = 2;
-    const int Styles       = 3;
-    const int Moods        = 4;
-    const int YearsActive  = 5;
-    const int Formed       = 6;
-    const int Born         = 7;
-    const int Died         = 8;
-    const int Disbanded    = 9;
-    const int Biography    = 10;
-    const int Thumb        = 11;
-    const int Fanart       = 12;
-    const int Logo         = 13;
-    const int Title        = 14;
-    const int Artist       = 15;
-    const int Review       = 16;
-    const int ReleaseDate  = 17;
-    const int Label        = 18;
-    const int Rating       = 19;
-    const int Year         = 20;
-    const int CdArt        = 21;
-    const int Cover        = 22;
-    const int ExtraFanarts = 23;
-    const int Discography  = 24;
-}
+enum class MusicScraperInfos : int {
+    Name         = 1,
+    Genres       = 2,
+    Styles       = 3,
+    Moods        = 4,
+    YearsActive  = 5,
+    Formed       = 6,
+    Born         = 7,
+    Died         = 8,
+    Disbanded    = 9,
+    Biography    = 10,
+    Thumb        = 11,
+    Fanart       = 12,
+    Logo         = 13,
+    Title        = 14,
+    Artist       = 15,
+    Review       = 16,
+    ReleaseDate  = 17,
+    Label        = 18,
+    Rating       = 19,
+    Year         = 20,
+    CdArt        = 21,
+    Cover        = 22,
+    ExtraFanarts = 23,
+    Discography  = 24
+};
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
 namespace MovieFilters {
