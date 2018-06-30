@@ -62,6 +62,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TrailerDialog::onStateChanged);
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TrailerDialog::onNewTotalTime);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TrailerDialog::onUpdateTime);
+    connect(m_mediaPlayer, SIGNAL(error(QMediaPlayer::Error)), this, SIGNAL(onTrailerError(QMediaPlayer::Error)));
     connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TrailerDialog::onPlayPause);
     connect(ui->seekSlider, &QAbstractSlider::sliderReleased, this, &TrailerDialog::onSliderPositionChanged);
 }
@@ -306,8 +307,9 @@ void TrailerDialog::downloadProgress(qint64 received, qint64 total)
 
 void TrailerDialog::downloadFinished()
 {
-    if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    const int statusCode = m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+    if (statusCode == 302 || statusCode == 301) {
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
         m_downloadReply = m_qnam->get(
@@ -346,8 +348,17 @@ void TrailerDialog::downloadFinished()
         } else {
             file.rename(newFileName);
         }
-    } else {
+
+    } else if (m_downloadReply->error() == QNetworkReply::OperationCanceledError) {
         ui->progress->setText(tr("Download Canceled"));
+        file.remove();
+
+    } else if (m_downloadReply->error() == QNetworkReply::ContentNotFoundError) {
+        ui->progress->setText(tr("Download Not Found (404)"));
+        file.remove();
+
+    } else {
+        ui->progress->setText(tr("Download Error (%1)").arg(QString::number(statusCode)));
         file.remove();
     }
 
@@ -383,6 +394,21 @@ void TrailerDialog::onUpdateTime(qint64 currentTime)
         position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0);
     }
     ui->seekSlider->setValue(position);
+}
+
+void TrailerDialog::onTrailerError(QMediaPlayer::Error error)
+{
+    const QString msg = [error]() {
+        switch (error) {
+        case QMediaPlayer::NetworkError: return tr("Network Error");
+        case QMediaPlayer::ResourceError: return tr("Resource could not be played");
+        case QMediaPlayer::FormatError: return tr("Video format error");
+        default: return QString{};
+        }
+    }();
+    if (!msg.isEmpty()) {
+        ui->progress->setText(msg);
+    }
 }
 
 void TrailerDialog::onStateChanged(QMediaPlayer::State newState)
