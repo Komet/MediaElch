@@ -142,20 +142,19 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
 
     emit sigInfoLoadDone(m_concert);
     if (!m_concert->tmdbId().isEmpty() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
-        QList<int> images;
-        images << ImageType::ConcertCdArt << ImageType::ConcertClearArt << ImageType::ConcertLogo;
+        QList<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Concert *, QMap<int, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(Concert *, QMap<ImageType, QList<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Concert *, QMap<int, QList<Poster>>)),
+            SLOT(onFanartLoadDone(Concert *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->concertImages(m_concert, m_concert->tmdbId(), images);
     } else {
-        onFanartLoadDone(m_concert, QMap<int, QList<Poster>>());
+        onFanartLoadDone(m_concert, QMap<ImageType, QList<Poster>>());
     }
 }
 
-void ConcertController::onFanartLoadDone(Concert *concert, QMap<int, QList<Poster>> posters)
+void ConcertController::onFanartLoadDone(Concert *concert, QMap<ImageType, QList<Poster>> posters)
 {
     if (concert != m_concert) {
         return;
@@ -170,8 +169,8 @@ void ConcertController::onFanartLoadDone(Concert *concert, QMap<int, QList<Poste
 
     QList<DownloadManagerElement> downloads;
 
-    QList<int> imageTypes;
-    QMapIterator<int, QList<Poster>> it(posters);
+    QList<ImageType> imageTypes;
+    QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty()) {
@@ -225,24 +224,24 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
     emit sigImage(m_concert, elem.imageType, elem.data);
 }
 
-void ConcertController::loadImage(int type, QUrl url)
+void ConcertController::loadImage(ImageType type, QUrl url)
 {
     DownloadManagerElement d;
     d.concert = m_concert;
     d.imageType = type;
     d.url = url;
-    emit sigLoadingImages(m_concert, QList<int>() << type);
+    emit sigLoadingImages(m_concert, {type});
     m_downloadManager->addDownload(d);
 }
 
-void ConcertController::loadImages(int type, QList<QUrl> urls)
+void ConcertController::loadImages(ImageType type, QList<QUrl> urls)
 {
-    foreach (const QUrl &url, urls) {
+    for (const QUrl &url : urls) {
         DownloadManagerElement d;
         d.concert = m_concert;
         d.imageType = type;
         d.url = url;
-        emit sigLoadingImages(m_concert, QList<int>() << type);
+        emit sigLoadingImages(m_concert, {type});
         m_downloadManager->addDownload(d);
     }
 }

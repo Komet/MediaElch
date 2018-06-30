@@ -27,7 +27,7 @@ public slots:
     static MovieSearch *instance(QWidget *parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
-    QList<int> infosToLoad();
+    QList<MovieScraperInfos> infosToLoad();
     QMap<ScraperInterface *, QString> customScraperIds();
 
 private:

@@ -39,7 +39,7 @@ signals:
 private slots:
     void onChooseImage();
     void onDeleteImage();
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
 
     void onRevertChanges();
     void onDownloadFinished(DownloadManagerElement elem);
@@ -51,7 +51,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_downloadManager;
-    void updateImages(QList<int> images);
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // TVSHOWWIDGETSEASON_H

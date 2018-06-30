@@ -17,7 +17,7 @@ class DownloadManagerElement
 {
 public:
     DownloadManagerElement();
-    int imageType{0};
+    ImageType imageType{ImageType::None};
     QUrl url;
     QByteArray data;
     qint64 bytesReceived{0};

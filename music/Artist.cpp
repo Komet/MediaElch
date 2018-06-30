@@ -178,12 +178,12 @@ void Artist::setBiography(const QString &biography)
     setHasChanged(true);
 }
 
-QList<Poster> Artist::images(int imageType) const
+QList<Poster> Artist::images(ImageType imageType) const
 {
     return m_images.value(imageType);
 }
 
-void Artist::addImage(int imageType, Poster image)
+void Artist::addImage(ImageType imageType, Poster image)
 {
     if (!m_images.contains(imageType)) {
         m_images.insert(imageType, QList<Poster>());
@@ -192,18 +192,18 @@ void Artist::addImage(int imageType, Poster image)
     setHasChanged(true);
 }
 
-QByteArray Artist::rawImage(int imageType)
+QByteArray Artist::rawImage(ImageType imageType)
 {
     return m_rawImages.value(imageType);
 }
 
-void Artist::setRawImage(int imageType, QByteArray image)
+void Artist::setRawImage(ImageType imageType, QByteArray image)
 {
     m_rawImages.insert(imageType, image);
     setHasChanged(true);
 }
 
-void Artist::removeImage(int imageType)
+void Artist::removeImage(ImageType imageType)
 {
     if (!m_rawImages.value(imageType, QByteArray()).isNull()) {
         m_rawImages.remove(imageType);
@@ -338,17 +338,17 @@ void Artist::setNfoContent(const QString &nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QList<int> Artist::imageTypes()
+QList<ImageType> Artist::imageTypes()
 {
-    return QList<int>() << ImageType::ArtistThumb << ImageType::ArtistLogo << ImageType::ArtistFanart;
+    return {ImageType::ArtistThumb, ImageType::ArtistLogo, ImageType::ArtistFanart};
 }
 
-QList<int> Artist::imagesToRemove() const
+QList<ImageType> Artist::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Artist::setImagesToRemove(const QList<int> &imagesToRemove)
+void Artist::setImagesToRemove(const QList<ImageType> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }

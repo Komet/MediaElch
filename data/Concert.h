@@ -137,14 +137,14 @@ public:
     void clearExtraFanartData();
 
     void clearImages();
-    void removeImage(int type);
-    QList<int> imagesToRemove() const;
+    void removeImage(ImageType type);
+    QList<ImageType> imagesToRemove() const;
 
-    QByteArray image(int imageType);
-    bool imageHasChanged(int imageType);
-    void setImage(int imageType, QByteArray image);
-    void setHasImage(int imageType, bool has);
-    bool hasImage(int imageType);
+    QByteArray image(ImageType imageType);
+    bool imageHasChanged(ImageType imageType);
+    void setImage(ImageType imageType, QByteArray image);
+    void setHasImage(ImageType imageType, bool has);
+    bool hasImage(ImageType imageType);
     bool hasExtraFanarts() const;
     void setHasExtraFanarts(bool has);
 
@@ -157,7 +157,7 @@ public:
     DiscType discType();
 
     static bool lessThan(Concert *a, Concert *b);
-    static QList<int> imageTypes();
+    static QList<ImageType> imageTypes();
 
 signals:
     void sigChanged(Concert *);
@@ -203,11 +203,11 @@ private:
     QStringList m_extraFanarts;
     bool m_hasExtraFanarts;
 
-    QMap<int, QByteArray> m_images;
-    QMap<int, bool> m_hasImageChanged;
+    QMap<ImageType, QByteArray> m_images;
+    QMap<ImageType, bool> m_hasImageChanged;
     QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<int> m_imagesToRemove;
-    QMap<int, bool> m_hasImage;
+    QList<ImageType> m_imagesToRemove;
+    QMap<ImageType, bool> m_hasImage;
 };
 
 #endif // CONCERT_H

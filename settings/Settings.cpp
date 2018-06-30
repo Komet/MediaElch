@@ -233,7 +233,7 @@ void Settings::loadSettings()
     int dataFileSize = settings()->beginReadArray("AllDataFiles");
     for (int i = 0; i < dataFileSize; ++i) {
         settings()->setArrayIndex(i);
-        int type = settings()->value("type").toInt();
+        DataFileType type = DataFileType(settings()->value("type").toInt());
         QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
             foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
@@ -282,7 +282,8 @@ void Settings::loadSettings()
     int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
     for (int i = 0; i < customMovieScraperSize; ++i) {
         settings()->setArrayIndex(i);
-        m_customMovieScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
+        m_customMovieScraper.insert(
+            MovieScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -290,7 +291,8 @@ void Settings::loadSettings()
     int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
     for (int i = 0; i < customTvScraperSize; ++i) {
         settings()->setArrayIndex(i);
-        m_customTvScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
+        m_customTvScraper.insert(
+            TvShowScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -428,7 +430,7 @@ void Settings::saveSettings()
     settings()->beginWriteArray("AllDataFiles");
     for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
-        settings()->setValue("type", m_dataFiles.at(i).type());
+        settings()->setValue("type", static_cast<int>(m_dataFiles.at(i).type()));
         settings()->setValue("fileName", m_dataFiles.at(i).fileName());
         settings()->setValue("pos", m_dataFiles.at(i).pos());
     }
@@ -444,22 +446,22 @@ void Settings::saveSettings()
 
     int i = 0;
     settings()->beginWriteArray("CustomMovieScraper");
-    QMapIterator<int, QString> it(m_customMovieScraper);
+    QMapIterator<MovieScraperInfos, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
         it.next();
         settings()->setArrayIndex(i++);
-        settings()->setValue("Info", it.key());
+        settings()->setValue("Info", static_cast<int>(it.key()));
         settings()->setValue("Scraper", it.value());
     }
     settings()->endArray();
 
     i = 0;
     settings()->beginWriteArray("CustomTvScraper");
-    QMapIterator<int, QString> itTv(m_customTvScraper);
+    QMapIterator<TvShowScraperInfos, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
         itTv.next();
         settings()->setArrayIndex(i++);
-        settings()->setValue("Info", itTv.key());
+        settings()->setValue("Info", static_cast<int>(itTv.key()));
         settings()->setValue("Scraper", itTv.value());
     }
     settings()->endArray();
@@ -711,11 +713,11 @@ bool Settings::autoLoadStreamDetails()
  * @param type
  * @return
  */
-QList<DataFile> Settings::dataFiles(int type)
+QList<DataFile> Settings::dataFiles(DataFileType dataType)
 {
     QList<DataFile> files;
-    foreach (const DataFile &file, m_dataFiles) {
-        if (file.type() == type) {
+    for (const DataFile &file : m_dataFiles) {
+        if (file.type() == dataType) {
             files.append(file);
         }
     }
@@ -723,14 +725,19 @@ QList<DataFile> Settings::dataFiles(int type)
     return files;
 }
 
-QList<DataFile> Settings::dataFilesFrodo(int type)
+QList<DataFile> Settings::dataFiles(ImageType dataType)
 {
-    if (type == -1) {
+    return dataFiles(DataFile::dataFileTypeForImageType(dataType));
+}
+
+QList<DataFile> Settings::dataFilesFrodo(DataFileType type)
+{
+    if (type == DataFileType::NoType) {
         return m_initialDataFilesFrodo;
     }
 
     QList<DataFile> files;
-    foreach (const DataFile &file, m_initialDataFilesFrodo) {
+    for (const DataFile &file : m_initialDataFilesFrodo) {
         if (file.type() == type) {
             files.append(file);
         }
@@ -1005,19 +1012,19 @@ void Settings::setXbmcPort(int port)
 QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Movies) {
-        item = "Movies";
-    } else if (widget == MainWidgets::Concerts) {
+    if (widget == MainWidgets::Concerts) {
         item = "Concerts";
-    } else if (widget == MainWidgets::TvShows) {
-        item = "TvShows";
     } else if (widget == MainWidgets::Music) {
         item = "Music";
     }
+    if (item == "unknown") {
+        qWarning() << "Unknown main widget";
+    }
     QList<int> infos;
     foreach (const QString &info,
-        settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
+        settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(",")) {
         infos << info.toInt();
+    }
 
     if (!infos.isEmpty() && infos.first() == 0) {
         infos.clear();
@@ -1026,23 +1033,71 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
     return infos;
 }
 
+template<>
+QList<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
+{
+    QList<MovieScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
+        infos << MovieScraperInfos(info.toInt());
+    }
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
+    return infos;
+}
+
+template<>
+QList<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
+{
+    QList<TvShowScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
+        infos << TvShowScraperInfos(info.toInt());
+    }
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
+    return infos;
+}
+
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Movies) {
-        item = "Movies";
-    } else if (widget == MainWidgets::Concerts) {
+    if (widget == MainWidgets::Concerts) {
         item = "Concerts";
-    } else if (widget == MainWidgets::TvShows) {
-        item = "TvShows";
     } else if (widget == MainWidgets::Music) {
         item = "Music";
+    }
+    if (item == "unknown") {
+        qWarning() << "Unknown widget type";
     }
     QStringList infos;
     foreach (int info, items)
         infos << QString("%1").arg(info);
     settings()->setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), infos.join(","));
 }
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
+}
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
+}
+
 
 bool Settings::downloadActorImages()
 {
@@ -1182,22 +1237,22 @@ bool Settings::dontShowDeleteImageConfirm() const
     return m_dontShowDeleteImageConfirm;
 }
 
-QMap<int, QString> Settings::customMovieScraper() const
+QMap<MovieScraperInfos, QString> Settings::customMovieScraper() const
 {
     return m_customMovieScraper;
 }
 
-void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
+void Settings::setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper)
 {
     m_customMovieScraper = customMovieScraper;
 }
 
-QMap<int, QString> Settings::customTvScraper() const
+QMap<TvShowScraperInfos, QString> Settings::customTvScraper() const
 {
     return m_customTvScraper;
 }
 
-void Settings::setCustomTvScraper(QMap<int, QString> customTvScraper)
+void Settings::setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper)
 {
     m_customTvScraper = customTvScraper;
 }

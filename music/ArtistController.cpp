@@ -91,17 +91,17 @@ void ArtistController::setInfoLoaded(bool infoLoaded)
     m_infoLoaded = infoLoaded;
 }
 
-void ArtistController::loadImage(int type, QUrl url)
+void ArtistController::loadImage(ImageType type, QUrl url)
 {
     DownloadManagerElement d;
     d.artist = m_artist;
     d.imageType = type;
     d.url = url;
-    emit sigLoadingImages(m_artist, QList<int>() << type);
+    emit sigLoadingImages(m_artist, {type});
     m_downloadManager->addDownload(d);
 }
 
-void ArtistController::loadImages(int type, QList<QUrl> urls)
+void ArtistController::loadImages(ImageType type, QList<QUrl> urls)
 {
     bool started = false;
     foreach (const QUrl &url, urls) {
@@ -110,7 +110,7 @@ void ArtistController::loadImages(int type, QList<QUrl> urls)
         d.imageType = type;
         d.url = url;
         if (!started) {
-            emit sigLoadingImages(m_artist, QList<int>() << type);
+            emit sigLoadingImages(m_artist, {type});
             started = true;
         }
         m_downloadManager->addDownload(d);
@@ -161,25 +161,25 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
     emit sigInfoLoadDone(m_artist);
 
     if (!scraper) {
-        onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
+        onFanartLoadDone(m_artist, QMap<ImageType, QList<Poster>>());
         return;
     }
 
-    QList<int> images;
+    QList<ImageType> images;
     if (m_infosToLoad.contains(MusicScraperInfos::Thumb)) {
         images << ImageType::ArtistThumb;
-        m_artist->clear(QList<int>() << MusicScraperInfos::Thumb);
+        m_artist->clear({MusicScraperInfos::Thumb});
     }
     if (m_infosToLoad.contains(MusicScraperInfos::Fanart)) {
         images << ImageType::ArtistFanart;
-        m_artist->clear(QList<int>() << MusicScraperInfos::Fanart);
+        m_artist->clear({MusicScraperInfos::Fanart});
     }
     if (m_infosToLoad.contains(MusicScraperInfos::ExtraFanarts)) {
         images << ImageType::ArtistExtraFanart;
     }
     if (m_infosToLoad.contains(MusicScraperInfos::Logo)) {
         images << ImageType::ArtistLogo;
-        m_artist->clear(QList<int>() << MusicScraperInfos::Logo);
+        m_artist->clear({MusicScraperInfos::Logo});
     }
 
     if (!images.isEmpty() && !m_artist->mbId().isEmpty()) {
@@ -191,29 +191,29 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
             }
         }
         if (!imageProvider) {
-            onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
+            onFanartLoadDone(m_artist, QMap<ImageType, QList<Poster>>());
             return;
         }
         connect(imageProvider,
-            SIGNAL(sigImagesLoaded(Artist *, QMap<int, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(Artist *, QMap<ImageType, QList<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Artist *, QMap<int, QList<Poster>>)),
+            SLOT(onFanartLoadDone(Artist *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
         imageProvider->artistImages(m_artist, m_artist->mbId(), images);
     } else {
-        onFanartLoadDone(m_artist, QMap<int, QList<Poster>>());
+        onFanartLoadDone(m_artist, QMap<ImageType, QList<Poster>>());
     }
 }
 
-void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>> posters)
+void ArtistController::onFanartLoadDone(Artist *artist, QMap<ImageType, QList<Poster>> posters)
 {
     if (artist != m_artist) {
         return;
     }
 
     QList<DownloadManagerElement> downloads;
-    QList<int> imageTypes;
-    QMapIterator<int, QList<Poster>> it(posters);
+    QList<ImageType> imageTypes;
+    QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty()) {

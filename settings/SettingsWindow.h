@@ -67,10 +67,10 @@ private:
     void loadSettings();
     void saveSettings();
     void loadRemoteTemplates();
-    QComboBox *comboForMovieScraperInfo(const int &info);
-    QString titleForMovieScraperInfo(const int &info);
-    QComboBox *comboForTvScraperInfo(const int &info);
-    QString titleForTvScraperInfo(const int &info);
+    QComboBox *comboForMovieScraperInfo(MovieScraperInfos info);
+    QString titleForMovieScraperInfo(MovieScraperInfos info);
+    QComboBox *comboForTvScraperInfo(TvShowScraperInfos info);
+    QString titleForTvScraperInfo(TvShowScraperInfos info);
 };
 
 #endif // SETTINGSWINDOW_H

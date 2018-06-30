@@ -63,7 +63,7 @@ void TvShowEpisode::setShow(TvShow *show)
  */
 void TvShowEpisode::clear()
 {
-    QList<int> infos;
+    QList<TvShowScraperInfos> infos;
     infos << TvShowScraperInfos::Certification //
           << TvShowScraperInfos::Rating        //
           << TvShowScraperInfos::Director      //
@@ -77,7 +77,7 @@ void TvShowEpisode::clear()
     m_nfoContent.clear();
 }
 
-void TvShowEpisode::clear(QList<int> infos)
+void TvShowEpisode::clear(QList<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification)) {
         m_certification = "";
@@ -114,7 +114,7 @@ void TvShowEpisode::clear(QList<int> infos)
     m_hasChanged = false;
 }
 
-QList<int> TvShowEpisode::infosToLoad()
+QList<TvShowScraperInfos> TvShowEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -160,7 +160,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface, QList<int> infosToLoad)
+void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;
@@ -912,12 +912,12 @@ void TvShowEpisode::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-QList<int> TvShowEpisode::imagesToRemove() const
+QList<ImageType> TvShowEpisode::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void TvShowEpisode::removeImage(int type)
+void TvShowEpisode::removeImage(ImageType type)
 {
     if (type == ImageType::TvShowEpisodeThumb) {
         if (!m_thumbnailImage.isNull()) {

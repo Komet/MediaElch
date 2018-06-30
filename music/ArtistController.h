@@ -33,15 +33,15 @@ public:
     bool downloadsInProgress() const;
     void abortDownloads();
 
-    void loadImage(int type, QUrl url);
-    void loadImages(int type, QList<QUrl> urls);
+    void loadImage(ImageType type, QUrl url);
+    void loadImages(ImageType type, QList<QUrl> urls);
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:
     void sigInfoLoadDone(Artist *);
-    void sigLoadingImages(Artist *, QList<int>);
+    void sigLoadingImages(Artist *, QList<ImageType>);
     void sigLoadDone(Artist *);
-    void sigImage(Artist *, int, QByteArray);
+    void sigImage(Artist *, ImageType, QByteArray);
     void sigLoadImagesStarted(Artist *);
     void sigDownloadProgress(Artist *, int, int);
     void sigSaved(Artist *);
@@ -49,7 +49,7 @@ signals:
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Artist *artist, QMap<int, QList<Poster>> posters);
+    void onFanartLoadDone(Artist *artist, QMap<ImageType, QList<Poster>> posters);
 
 private:
     Artist *m_artist;

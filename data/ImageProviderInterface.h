@@ -18,7 +18,7 @@ class ImageProviderInterface : public QObject
 public:
     virtual QString name() = 0;
     virtual QString identifier() = 0;
-    virtual void movieImages(Movie *movie, QString tmdbId, QList<int> types) = 0;
+    virtual void movieImages(Movie *movie, QString tmdbId, QList<ImageType> types) = 0;
     virtual void moviePosters(QString tmdbId) = 0;
     virtual void movieBackdrops(QString tmdbId) = 0;
     virtual void movieLogos(QString tmdbId) = 0;
@@ -26,13 +26,13 @@ public:
     virtual void movieThumbs(QString tmdbId) = 0;
     virtual void movieClearArts(QString tmdbId) = 0;
     virtual void movieCdArts(QString tmdbId) = 0;
-    virtual void concertImages(Concert *concert, QString tmdbId, QList<int> types) = 0;
+    virtual void concertImages(Concert *concert, QString tmdbId, QList<ImageType> types) = 0;
     virtual void concertPosters(QString tmdbId) = 0;
     virtual void concertBackdrops(QString tmdbId) = 0;
     virtual void concertLogos(QString tmdbId) = 0;
     virtual void concertClearArts(QString tmdbId) = 0;
     virtual void concertCdArts(QString tmdbId) = 0;
-    virtual void tvShowImages(TvShow *show, QString tvdbId, QList<int> types) = 0;
+    virtual void tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types) = 0;
     virtual void tvShowPosters(QString tvdbId) = 0;
     virtual void tvShowBackdrops(QString tvdbId) = 0;
     virtual void tvShowLogos(QString tvdbId) = 0;
@@ -51,9 +51,9 @@ public:
     virtual void albumCdArts(QString mbId) = 0;
     virtual void albumThumbs(QString mbId) = 0;
     virtual void albumBooklets(QString mbId) = 0;
-    virtual void artistImages(Artist *artist, QString mbId, QList<int> types) = 0;
-    virtual void albumImages(Album *album, QString mbId, QList<int> types) = 0;
-    virtual QList<int> provides() = 0;
+    virtual void artistImages(Artist *artist, QString mbId, QList<ImageType> types) = 0;
+    virtual void albumImages(Album *album, QString mbId, QList<ImageType> types) = 0;
+    virtual QList<ImageType> provides() = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;
@@ -69,11 +69,11 @@ public slots:
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
-    virtual void sigImagesLoaded(Movie *, QMap<int, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Artist *, QMap<int, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Album *, QMap<int, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Movie *, QMap<ImageType, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Concert *, QMap<ImageType, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Artist *, QMap<ImageType, QList<Poster>>) = 0;
+    virtual void sigImagesLoaded(Album *, QMap<ImageType, QList<Poster>>) = 0;
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface *)

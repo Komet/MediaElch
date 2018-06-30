@@ -683,7 +683,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
     }
 }
 
-void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
+void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     Q_UNUSED(imageType);
 

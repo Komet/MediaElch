@@ -44,13 +44,13 @@ private slots:
     void onRemoveCloudItem(QString text);
     void onChooseImage();
     void onDeleteImage();
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onInfoLoadDone(Artist *artist);
     void onLoadDone(Artist *artist);
     void onDownloadProgress(Artist *artist, int current, int maximum);
-    void onLoadingImages(Artist *artist, QList<int> imageTypes);
+    void onLoadingImages(Artist *artist, QList<ImageType> imageTypes);
     void onLoadImagesStarted(Artist *artist);
-    void onSetImage(Artist *artist, int type, QByteArray data);
+    void onSetImage(Artist *artist, ImageType type, QByteArray data);
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
@@ -65,7 +65,7 @@ private:
 
     void clearContents(QLineEdit *widget);
     void setContent(QLineEdit *widget, const QString &content);
-    void updateImage(int imageType, ClosableImage *image);
+    void updateImage(ImageType imageType, ClosableImage *image);
 };
 
 #endif // MUSICWIDGETARTIST_H

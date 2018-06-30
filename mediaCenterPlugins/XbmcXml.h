@@ -52,28 +52,28 @@ public:
     QString actorImageName(TvShowEpisode *episode, Actor actor) override;
 
     QString imageFileName(Movie *movie,
-        int type,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(Concert *concert,
-        int type,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(TvShowEpisode *episode,
-        int type,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(TvShow *show,
-        int type,
+        ImageType type,
         int season = -1,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(Artist *artist,
-        int type,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(Album *album,
-        int type,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
 

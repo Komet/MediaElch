@@ -26,6 +26,9 @@ public:
     explicit Storage(QObject *parent, Album *album);
     explicit Storage(QObject *parent, QList<ScraperSearchResult> results);
     explicit Storage(QObject *parent, QList<int> infosToLoad);
+    explicit Storage(QObject *parent, QList<MovieScraperInfos> infosToLoad);
+    explicit Storage(QObject *parent, QList<TvShowScraperInfos> infosToLoad);
+    explicit Storage(QObject *parent, QList<ImageType> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
     explicit Storage(QObject *parent, QMap<ScraperInterface *, QString> ids);
     explicit Storage(QObject *parent, QTableWidgetItem *item);
@@ -38,6 +41,9 @@ public:
     Album *album() const;
     QList<ScraperSearchResult> results() const;
     QList<int> infosToLoad() const;
+    QList<MovieScraperInfos> movieInfosToLoad() const;
+    QList<TvShowScraperInfos> showInfosToLoad() const;
+    QList<ImageType> imageInfosToLoad() const;
     ExportTemplate *exportTemplate() const;
     QMap<ScraperInterface *, QString> ids() const;
     QTableWidgetItem *tableWidgetItem() const;
@@ -50,6 +56,9 @@ public:
     static QVariant toVariant(QObject *parent, Album *album);
     static QVariant toVariant(QObject *parent, QList<ScraperSearchResult> results);
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
+    static QVariant toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoad);
+    static QVariant toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLoad);
+    static QVariant toVariant(QObject *parent, QList<ImageType> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
     static QVariant toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids);
     static QVariant toVariant(QObject *parent, QTableWidgetItem *item);
@@ -64,6 +73,9 @@ private:
     QPointer<Album> m_album;
     QList<ScraperSearchResult> m_results;
     QList<int> m_infosToLoad;
+    QList<MovieScraperInfos> m_movieInfosToLoad;
+    QList<TvShowScraperInfos> m_showInfosToLoad;
+    QList<ImageType> m_imageInfosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
     QMap<ScraperInterface *, QString> m_ids;
     QTableWidgetItem *m_tableWidgetItem = nullptr;

@@ -291,12 +291,12 @@ void ConcertWidget::setConcert(Concert *concert)
     updateConcertInfo();
 
     // clang-format off
-    connect(m_concert->controller(), &ConcertController::sigInfoLoadDone, this, &ConcertWidget::onInfoLoadDone, Qt::UniqueConnection);
-    connect(m_concert->controller(), &ConcertController::sigLoadDone, this, &ConcertWidget::onLoadDone, Qt::UniqueConnection);
-    connect(m_concert->controller(), &ConcertController::sigDownloadProgress, this, &ConcertWidget::onDownloadProgress, Qt::UniqueConnection);
-    connect(m_concert->controller(), SIGNAL(sigLoadingImages(Concert*,QList<int>)), this, SLOT(onLoadingImages(Concert*,QList<int>)), Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigInfoLoadDone,      this, &ConcertWidget::onInfoLoadDone,      Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigLoadDone,          this, &ConcertWidget::onLoadDone,          Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigDownloadProgress,  this, &ConcertWidget::onDownloadProgress,  Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigLoadingImages,     this, &ConcertWidget::onLoadingImages,     Qt::UniqueConnection);
     connect(m_concert->controller(), &ConcertController::sigLoadImagesStarted, this, &ConcertWidget::onLoadImagesStarted, Qt::UniqueConnection);
-    connect(m_concert->controller(), &ConcertController::sigImage, this, &ConcertWidget::onSetImage, Qt::UniqueConnection);
+    connect(m_concert->controller(), &ConcertController::sigImage,             this, &ConcertWidget::onSetImage,          Qt::UniqueConnection);
     // clang-format on
 
     if (concert->controller()->downloadsInProgress()) {
@@ -362,14 +362,14 @@ void ConcertWidget::onLoadImagesStarted(Concert *concert)
     // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
 }
 
-void ConcertWidget::onLoadingImages(Concert *concert, QList<int> imageTypes)
+void ConcertWidget::onLoadingImages(Concert *concert, QList<ImageType> imageTypes)
 {
     if (concert != m_concert) {
         return;
     }
 
-    foreach (const int &imageType, imageTypes) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (const auto imageType : imageTypes) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -382,7 +382,7 @@ void ConcertWidget::onLoadingImages(Concert *concert, QList<int> imageTypes)
     ui->groupBox_3->update();
 }
 
-void ConcertWidget::onSetImage(Concert *concert, int type, QByteArray data)
+void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray data)
 {
     if (concert != m_concert) {
         return;
@@ -393,7 +393,7 @@ void ConcertWidget::onSetImage(Concert *concert, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -475,8 +475,11 @@ void ConcertWidget::updateConcertInfo()
     ui->videoScantype->setEnabled(m_concert->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_concert->streamDetailsLoaded());
 
-    updateImages(QList<int>() << ImageType::ConcertPoster << ImageType::ConcertBackdrop << ImageType::ConcertLogo
-                              << ImageType::ConcertCdArt << ImageType::ConcertClearArt);
+    updateImages(QList<ImageType>{ImageType::ConcertPoster,
+        ImageType::ConcertBackdrop,
+        ImageType::ConcertLogo,
+        ImageType::ConcertCdArt,
+        ImageType::ConcertClearArt});
 
     ui->fanarts->setImages(m_concert->extraFanarts(Manager::instance()->mediaCenterInterfaceConcert()));
 
@@ -503,10 +506,10 @@ void ConcertWidget::updateConcertInfo()
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
 
-void ConcertWidget::updateImages(QList<int> images)
+void ConcertWidget::updateImages(QList<ImageType> images)
 {
-    foreach (const int &imageType, images) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (const auto imageType : images) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -515,10 +518,11 @@ void ConcertWidget::updateImages(QList<int> images)
     }
 }
 
-void ConcertWidget::updateImage(const int &imageType, ClosableImage *image)
+void ConcertWidget::updateImage(ImageType imageType, ClosableImage *image)
 {
     if (!m_concert->image(imageType).isNull()) {
         image->setImage(m_concert->image(imageType));
+
     } else if (!m_concert->imagesToRemove().contains(imageType) && m_concert->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType);
         if (!imgFileName.isEmpty()) {
@@ -1065,11 +1069,11 @@ void ConcertWidget::onDeleteImage()
     }
 
     m_concert->removeImage(image->imageType());
-    updateImages(QList<int>() << image->imageType());
+    updateImages({image->imageType()});
     ui->buttonRevert->setVisible(true);
 }
 
-void ConcertWidget::onImageDropped(int imageType, QUrl imageUrl)
+void ConcertWidget::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_concert) {
         return;

@@ -49,13 +49,13 @@ private slots:
     void onInfoLoadDone(Concert *concert);
     void onLoadDone(Concert *concert);
     void onLoadImagesStarted(Concert *concert);
-    void onLoadingImages(Concert *concert, QList<int> imageTypes);
+    void onLoadingImages(Concert *concert, QList<ImageType> imageTypes);
     void onDownloadProgress(Concert *concert, int current, int maximum);
-    void onSetImage(Concert *concert, int type, QByteArray data);
+    void onSetImage(Concert *concert, ImageType type, QByteArray data);
 
     void onChooseImage();
     void onDeleteImage();
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
 
     void concertNameChanged(QString text);
     void addGenre(QString genre);
@@ -89,7 +89,7 @@ private slots:
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 
-    void updateImage(const int &imageType, ClosableImage *image);
+    void updateImage(ImageType imageType, ClosableImage *image);
 
 private:
     Ui::ConcertWidget *ui;
@@ -99,7 +99,7 @@ private:
     QList<QWidget *> m_streamDetailsWidgets;
     QList<QList<QLineEdit *>> m_streamDetailsAudio;
     QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
-    void updateImages(QList<int> images);
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // CONCERTWIDGET_H

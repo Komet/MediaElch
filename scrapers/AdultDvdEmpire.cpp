@@ -41,12 +41,12 @@ bool AdultDvdEmpire::isAdult()
     return true;
 }
 
-QList<int> AdultDvdEmpire::scraperSupports()
+QList<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> AdultDvdEmpire::scraperNativelySupports()
+QList<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -99,7 +99,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QString("https://www.adultdvdempire.com%1").arg(ids.values().first()));
@@ -119,7 +119,7 @@ void AdultDvdEmpire::onLoadFinished()
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->infosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -127,7 +127,7 @@ void AdultDvdEmpire::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
+void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QTextDocument doc;
     QRegExp rx;

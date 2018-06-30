@@ -1,6 +1,8 @@
 #ifndef CLOSABLEIMAGE_H
 #define CLOSABLEIMAGE_H
 
+#include "globals/Globals.h"
+
 #include <QLabel>
 #include <QMouseEvent>
 #include <QMovie>
@@ -37,8 +39,8 @@ public:
     void setLoading(const bool &loading);
     void setTitle(const QString &text);
     QString title() const;
-    void setImageType(const int &type);
-    int imageType() const;
+    void setImageType(ImageType type);
+    ImageType imageType() const;
 
     bool showCapture() const;
     void setShowCapture(bool showCapture);
@@ -47,7 +49,7 @@ signals:
     void sigClose();
     void sigCapture();
     void clicked();
-    void sigImageDropped(int, QUrl);
+    void sigImageDropped(ImageType, QUrl);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -87,7 +89,7 @@ private:
     QRect captureRect();
     bool confirmDeleteImage();
     void drawTitle(QPainter &p);
-    int m_imageType;
+    ImageType m_imageType;
     QPixmap m_emptyPixmap;
 };
 

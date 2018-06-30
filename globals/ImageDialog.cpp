@@ -105,14 +105,15 @@ int ImageDialog::exec()
  * @param type Type of the images (ImageDialogType)
  * @return Result of QDialog::exec
  */
-int ImageDialog::exec(int type)
+int ImageDialog::exec(ImageType type)
 {
-    qDebug() << "Entered, type=" << type;
     m_type = type;
 
     // set slider value
-    ui->previewSizeSlider->setValue(
-        Settings::instance()->settings()->value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
+    ui->previewSizeSlider->setValue(Settings::instance()
+                                        ->settings()
+                                        ->value(QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
+                                        .toInt());
 
     QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
     QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
@@ -478,7 +479,7 @@ void ImageDialog::imageClicked(int row, int col)
  * @brief Sets the type of images
  * @param type Type of images
  */
-void ImageDialog::setImageType(int type)
+void ImageDialog::setImageType(ImageType type)
 {
     m_imageType = type;
 }
@@ -659,7 +660,8 @@ void ImageDialog::onPreviewSizeChange(int value)
 {
     ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
     ui->buttonZoomIn->setDisabled(value == ui->previewSizeSlider->maximum());
-    Settings::instance()->settings()->setValue(QString("ImageDialog/PreviewSize_%1").arg(m_type), value);
+    Settings::instance()->settings()->setValue(
+        QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), value);
     renderTable();
 }
 

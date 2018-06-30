@@ -28,8 +28,8 @@ public:
     QList<int> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;
-    void loadImage(int type, QUrl url);
-    void loadImages(int type, QList<QUrl> urls);
+    void loadImage(ImageType type, QUrl url);
+    void loadImages(ImageType type, QList<QUrl> urls);
     void abortDownloads();
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
@@ -40,11 +40,11 @@ signals:
     void sigLoadDone(Concert *);
     void sigLoadImagesStarted(Concert *);
     void sigDownloadProgress(Concert *, int, int);
-    void sigLoadingImages(Concert *, QList<int>);
-    void sigImage(Concert *, int, QByteArray);
+    void sigLoadingImages(Concert *, QList<ImageType>);
+    void sigImage(Concert *, ImageType, QByteArray);
 
 private slots:
-    void onFanartLoadDone(Concert *concert, QMap<int, QList<Poster>> posters);
+    void onFanartLoadDone(Concert *concert, QMap<ImageType, QList<Poster>> posters);
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
 

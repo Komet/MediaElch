@@ -46,7 +46,7 @@ private slots:
     void onRemoveWriter();
     void onChooseThumbnail();
     void onDeleteThumbnail();
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
     void onRevertChanges();

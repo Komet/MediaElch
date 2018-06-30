@@ -195,12 +195,12 @@ void Album::setYear(int year)
     setHasChanged(true);
 }
 
-QList<Poster> Album::images(int imageType) const
+QList<Poster> Album::images(ImageType imageType) const
 {
     return m_images.value(imageType);
 }
 
-void Album::addImage(int imageType, Poster image)
+void Album::addImage(ImageType imageType, Poster image)
 {
     if (!m_images.contains(imageType)) {
         m_images.insert(imageType, QList<Poster>());
@@ -209,18 +209,18 @@ void Album::addImage(int imageType, Poster image)
     setHasChanged(true);
 }
 
-QByteArray Album::rawImage(int imageType)
+QByteArray Album::rawImage(ImageType imageType)
 {
     return m_rawImages.value(imageType);
 }
 
-void Album::setRawImage(int imageType, QByteArray image)
+void Album::setRawImage(ImageType imageType, QByteArray image)
 {
     m_rawImages.insert(imageType, image);
     setHasChanged(true);
 }
 
-void Album::removeImage(int imageType)
+void Album::removeImage(ImageType imageType)
 {
     if (!m_rawImages.value(imageType, QByteArray()).isNull()) {
         m_rawImages.remove(imageType);
@@ -325,17 +325,17 @@ void Album::setNfoContent(const QString &nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QList<int> Album::imageTypes()
+QList<ImageType> Album::imageTypes()
 {
-    return QList<int>() << ImageType::AlbumThumb << ImageType::AlbumCdArt;
+    return {ImageType::AlbumThumb, ImageType::AlbumCdArt};
 }
 
-QList<int> Album::imagesToRemove() const
+QList<ImageType> Album::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Album::setImagesToRemove(const QList<int> &imagesToRemove)
+void Album::setImagesToRemove(const QList<ImageType> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }

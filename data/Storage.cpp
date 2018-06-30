@@ -33,6 +33,22 @@ Storage::Storage(QObject *parent, QList<int> infosToLoad) : QObject(parent), m_i
 {
 }
 
+Storage::Storage(QObject *parent, QList<MovieScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_movieInfosToLoad{infosToLoad}
+{
+}
+
+Storage::Storage(QObject *parent, QList<TvShowScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_showInfosToLoad{infosToLoad}
+{
+}
+
+Storage::Storage(QObject *parent, QList<ImageType> infosToLoad) : QObject(parent), m_imageInfosToLoad{infosToLoad}
+{
+}
+
 Storage::Storage(QObject *parent, ExportTemplate *exportTemplate) : QObject(parent), m_exportTemplate{exportTemplate}
 {
 }
@@ -187,6 +203,30 @@ QVariant Storage::toVariant(QObject *parent, QList<int> infosToLoad)
     return var;
 }
 
+QVariant Storage::toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<ImageType> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
 QVariant Storage::toVariant(QObject *parent, ExportTemplate *exportTemplate)
 {
     const auto storage = new Storage(parent, exportTemplate);
@@ -227,4 +267,19 @@ QList<ScraperSearchResult> Storage::results() const
 QList<int> Storage::infosToLoad() const
 {
     return m_infosToLoad;
+}
+
+QList<MovieScraperInfos> Storage::movieInfosToLoad() const
+{
+    return m_movieInfosToLoad;
+}
+
+QList<TvShowScraperInfos> Storage::showInfosToLoad() const
+{
+    return m_showInfosToLoad;
+}
+
+QList<ImageType> Storage::imageInfosToLoad() const
+{
+    return m_imageInfosToLoad;
 }

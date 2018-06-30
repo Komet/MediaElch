@@ -33,12 +33,12 @@ bool HotMovies::isAdult()
     return true;
 }
 
-QList<int> HotMovies::scraperSupports()
+QList<MovieScraperInfos> HotMovies::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> HotMovies::scraperNativelySupports()
+QList<MovieScraperInfos> HotMovies::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -92,7 +92,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -111,14 +111,14 @@ void HotMovies::onLoadFinished()
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->infosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
     movie->controller()->scraperLoadDone(this);
 }
 
-void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
+void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);

@@ -83,12 +83,12 @@ void KinoDe::saveSettings(QSettings &settings)
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QList<int> KinoDe::scraperSupports()
+QList<MovieScraperInfos> KinoDe::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> KinoDe::scraperNativelySupports()
+QList<MovieScraperInfos> KinoDe::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -169,7 +169,7 @@ QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
  * @param infos List of infos to load
  * @see KinoDe::loadFinished
  */
-void KinoDe::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void KinoDe::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     const QUrl url{QStringLiteral("https://www.kino.de/film/%1/").arg(ids.values().first())};
@@ -188,7 +188,7 @@ void KinoDe::loadFinished()
 {
     auto reply = static_cast<QNetworkReply *const>(QObject::sender());
     Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    const QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
 
     if (movie == nullptr) {
@@ -214,7 +214,7 @@ void KinoDe::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<int> &infos)
+void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -285,7 +285,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void KinoDe::parseAndAssignImages(const QString &html, Movie &movie, const QList<int> &infos)
+void KinoDe::parseAndAssignImages(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos)
 {
     if (infos.contains(MovieScraperInfos::Poster)) {
         parsePoster(html, movie);
@@ -301,7 +301,7 @@ void KinoDe::parseAndAssignImages(const QString &html, Movie &movie, const QList
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void KinoDe::parseAndAssignActors(const QString &html, Movie &movie, const QList<int> &infos)
+void KinoDe::parseAndAssignActors(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos)
 {
     QRegExp rx;
     rx.setMinimal(true);

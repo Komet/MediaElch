@@ -66,12 +66,27 @@ FanartTv::FanartTv(QObject *parent)
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
-               << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster << ImageType::TvShowClearArt
-               << ImageType::TvShowBackdrop << ImageType::TvShowBanner << ImageType::TvShowThumb
-               << ImageType::TvShowSeasonThumb << ImageType::TvShowSeasonPoster << ImageType::TvShowLogos
-               << ImageType::TvShowCharacterArt << ImageType::TvShowPoster << ImageType::ConcertBackdrop
-               << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
+    m_provides = {ImageType::MovieBackdrop,
+        ImageType::MovieLogo,
+        ImageType::MovieClearArt,
+        ImageType::MovieCdArt,
+        ImageType::MovieBanner,
+        ImageType::MovieThumb,
+        ImageType::MoviePoster,
+        ImageType::TvShowClearArt,
+        ImageType::TvShowBackdrop,
+        ImageType::TvShowBanner,
+        ImageType::TvShowThumb,
+        ImageType::TvShowSeasonThumb,
+        ImageType::TvShowSeasonPoster,
+        ImageType::TvShowLogos,
+        ImageType::TvShowCharacterArt,
+        ImageType::TvShowPoster,
+        ImageType::ConcertBackdrop,
+        ImageType::ConcertLogo,
+        ImageType::ConcertClearArt,
+        ImageType::ConcertCdArt};
+
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     m_tvdb = new TheTvDb(this);
@@ -109,7 +124,7 @@ QString FanartTv::identifier()
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<int> FanartTv::provides()
+QList<ImageType> FanartTv::provides()
 {
     return m_provides;
 }
@@ -167,7 +182,7 @@ void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
  * @param tmdbId
  * @param types
  */
-void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
 {
     loadMovieData(tmdbId, types, movie);
 }
@@ -233,7 +248,7 @@ void FanartTv::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
 {
     loadConcertData(tmdbId, types, concert);
 }
@@ -288,7 +303,7 @@ void FanartTv::concertCdArts(QString tmdbId)
  * @param tmdbId
  * @param type
  */
-void FanartTv::loadMovieData(QString tmdbId, int type)
+void FanartTv::loadMovieData(QString tmdbId, ImageType type)
 {
     QUrl url;
     QNetworkRequest request;
@@ -297,7 +312,7 @@ void FanartTv::loadMovieData(QString tmdbId, int type)
     qDebug() << url;
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
-    reply->setProperty("infoToLoad", type);
+    reply->setProperty("infoToLoad", static_cast<int>(type));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
 
@@ -306,7 +321,7 @@ void FanartTv::loadMovieData(QString tmdbId, int type)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadMovieData(QString tmdbId, QList<int> types, Movie *movie)
+void FanartTv::loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movie)
 {
     QUrl url;
     QNetworkRequest request;
@@ -325,7 +340,7 @@ void FanartTv::loadMovieData(QString tmdbId, QList<int> types, Movie *movie)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concert)
+void FanartTv::loadConcertData(QString tmdbId, QList<ImageType> types, Concert *concert)
 {
     QUrl url;
     QNetworkRequest request;
@@ -348,7 +363,7 @@ void FanartTv::onLoadMovieDataFinished()
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseMovieData(msg, reply->property("infoToLoad").toInt());
+        posters = parseMovieData(msg, ImageType(reply->property("infoToLoad").toInt()));
     }
     emit sigImagesLoaded(posters);
 }
@@ -362,11 +377,12 @@ void FanartTv::onLoadAllMovieDataFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     reply->deleteLater();
-    QMap<int, QList<Poster>> posters;
+    QMap<ImageType, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
+        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
             posters.insert(type, parseMovieData(msg, type));
+        }
     }
     emit sigImagesLoaded(movie, posters);
 }
@@ -380,11 +396,12 @@ void FanartTv::onLoadAllConcertDataFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
     reply->deleteLater();
-    QMap<int, QList<Poster>> posters;
+    QMap<ImageType, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
+        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
             posters.insert(type, parseMovieData(msg, type));
+        }
     }
     emit sigImagesLoaded(concert, posters);
 }
@@ -395,9 +412,9 @@ void FanartTv::onLoadAllConcertDataFinished()
  * @param type Type of image (ImageType)
  * @return List of posters
  */
-QList<Poster> FanartTv::parseMovieData(QString json, int type)
+QList<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 {
-    QMap<int, QStringList> map;
+    QMap<ImageType, QStringList> map;
     // clang-format off
     map.insert(ImageType::MoviePoster,     QStringList() << "movieposter");
     map.insert(ImageType::MovieBackdrop,   QStringList() << "moviebackground");
@@ -423,7 +440,7 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
         return posters;
     }
 
-    foreach (const QString &section, map.value(type)) {
+    for (const auto &section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto &it : jsonPosters) {
@@ -488,7 +505,7 @@ void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param types
  */
-void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
 {
     loadTvShowData(tvdbId, types, show);
 }
@@ -498,7 +515,7 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
  * @param tvdbId The Tv DB Id
  * @param type
  */
-void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
+void FanartTv::loadTvShowData(QString tvdbId, ImageType type, int season)
 {
     QUrl url;
     QNetworkRequest request;
@@ -506,7 +523,7 @@ void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
-    reply->setProperty("infoToLoad", type);
+    reply->setProperty("infoToLoad", static_cast<int>(type));
     reply->setProperty("season", season);
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
@@ -516,7 +533,7 @@ void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
  * @param tvdbId The Tv DB Id
  * @param types
  */
-void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
+void FanartTv::loadTvShowData(QString tvdbId, QList<ImageType> types, TvShow *show)
 {
     QUrl url;
     QNetworkRequest request;
@@ -540,7 +557,8 @@ void FanartTv::onLoadTvShowDataFinished()
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseTvShowData(msg, reply->property("infoToLoad").toInt(), reply->property("season").toInt());
+        posters =
+            parseTvShowData(msg, ImageType(reply->property("infoToLoad").toInt()), reply->property("season").toInt());
     }
     emit sigImagesLoaded(posters);
 }
@@ -554,11 +572,12 @@ void FanartTv::onLoadAllTvShowDataFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     reply->deleteLater();
-    QMap<int, QList<Poster>> posters;
+    QMap<ImageType, QList<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        foreach (int type, reply->property("infosToLoad").value<Storage *>()->infosToLoad())
+        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
             posters.insert(type, parseTvShowData(msg, type));
+        }
     }
     reply->deleteLater();
     emit sigImagesLoaded(show, posters);
@@ -669,9 +688,9 @@ void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
  * @param type Type of image (ImageType)
  * @return List of posters
  */
-QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
+QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season)
 {
-    QMap<int, QStringList> map;
+    QMap<ImageType, QStringList> map;
 
     // clang-format off
     map.insert(ImageType::TvShowBackdrop,     QStringList() << "showbackground");
@@ -855,14 +874,14 @@ void FanartTv::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTv::artistImages(Artist *artist, QString mbId, QList<int> types)
+void FanartTv::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTv::albumImages(Album *album, QString mbId, QList<int> types)
+void FanartTv::albumImages(Album *album, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

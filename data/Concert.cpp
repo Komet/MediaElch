@@ -926,12 +926,12 @@ DiscType Concert::discType()
     return DiscType::Single;
 }
 
-QList<int> Concert::imagesToRemove() const
+QList<ImageType> Concert::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Concert::removeImage(int type)
+void Concert::removeImage(ImageType type)
 {
     if (!m_images.value(type, QByteArray()).isNull()) {
         m_images.insert(type, QByteArray());
@@ -949,38 +949,38 @@ bool Concert::lessThan(Concert *a, Concert *b)
             < 0);
 }
 
-QList<int> Concert::imageTypes()
+QList<ImageType> Concert::imageTypes()
 {
-    return QList<int>() << ImageType::ConcertPoster   //
-                        << ImageType::ConcertCdArt    //
-                        << ImageType::ConcertClearArt //
-                        << ImageType::ConcertLogo     //
-                        << ImageType::ConcertBackdrop;
+    return {ImageType::ConcertPoster,
+        ImageType::ConcertCdArt,
+        ImageType::ConcertClearArt,
+        ImageType::ConcertLogo,
+        ImageType::ConcertBackdrop};
 }
 
-QByteArray Concert::image(int imageType)
+QByteArray Concert::image(ImageType imageType)
 {
     return m_images.value(imageType, QByteArray());
 }
 
-bool Concert::imageHasChanged(int imageType)
+bool Concert::imageHasChanged(ImageType imageType)
 {
     return m_hasImageChanged.value(imageType, false);
 }
 
-void Concert::setImage(int imageType, QByteArray image)
+void Concert::setImage(ImageType imageType, QByteArray image)
 {
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
     setChanged(true);
 }
 
-bool Concert::hasImage(int imageType)
+bool Concert::hasImage(ImageType imageType)
 {
     return m_hasImage.value(imageType, false);
 }
 
-void Concert::setHasImage(int imageType, bool has)
+void Concert::setHasImage(ImageType imageType, bool has)
 {
     m_hasImage.insert(imageType, has);
 }
