@@ -1,6 +1,6 @@
 #!/bin/bash
 
-root="$(pwd)/scripts"
+root="$(cd "$(dirname "$0")"; pwd -P)"
 outDir="${root}/generated_media"
 
 # Create example files.
