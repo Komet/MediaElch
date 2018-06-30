@@ -140,6 +140,7 @@ public:
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items);
     void setRenamePatterns(int renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,

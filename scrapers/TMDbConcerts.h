@@ -21,11 +21,11 @@ public:
     ~TMDbConcerts() override = default;
     QString name() override;
     void search(QString searchStr) override;
-    void loadData(QString id, Concert *concert, QList<int> infos) override;
+    void loadData(QString id, Concert *concert, QList<ConcertScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
-    QList<int> scraperSupports() override;
+    QList<ConcertScraperInfos> scraperSupports() override;
     QWidget *settingsWidget() override;
 
 signals:
@@ -45,7 +45,7 @@ private:
     QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
-    QList<int> m_scraperSupports;
+    QList<ConcertScraperInfos> m_scraperSupports;
     QWidget *m_widget;
     QComboBox *m_box;
 
@@ -55,7 +55,7 @@ private:
     QString country() const;
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString json, int &nextPage);
-    void parseAndAssignInfos(QString json, Concert *concert, QList<int> infos);
+    void parseAndAssignInfos(QString json, Concert *concert, QList<ConcertScraperInfos> infos);
 };
 
 #endif // TMDBCONCERTS_H

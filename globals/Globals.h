@@ -322,22 +322,22 @@ enum class TvShowScraperInfos : int {
     Status         = 25
 };
 
-namespace ConcertScraperInfos {
-    const int Title         = 1;
-    const int Tagline       = 2;
-    const int Rating        = 3;
-    const int Released      = 4;
-    const int Runtime       = 5;
-    const int Certification = 6;
-    const int Trailer       = 7;
-    const int Overview      = 8;
-    const int Poster        = 9;
-    const int Backdrop      = 10;
-    const int Genres        = 11;
-    const int ExtraArts     = 12;
-    const int Tags          = 13;
-    const int ExtraFanarts  = 14;
-}
+enum class ConcertScraperInfos : int {
+    Title         = 1,
+    Tagline       = 2,
+    Rating        = 3,
+    Released      = 4,
+    Runtime       = 5,
+    Certification = 6,
+    Trailer       = 7,
+    Overview      = 8,
+    Poster        = 9,
+    Backdrop      = 10,
+    Genres        = 11,
+    ExtraArts     = 12,
+    Tags          = 13,
+    ExtraFanarts  = 14
+};
 
 namespace MusicScraperInfos {
     const int Name         = 1;

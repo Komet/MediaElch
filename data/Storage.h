@@ -28,6 +28,7 @@ public:
     explicit Storage(QObject *parent, QList<int> infosToLoad);
     explicit Storage(QObject *parent, QList<MovieScraperInfos> infosToLoad);
     explicit Storage(QObject *parent, QList<TvShowScraperInfos> infosToLoad);
+    explicit Storage(QObject *parent, QList<ConcertScraperInfos> infosToLoad);
     explicit Storage(QObject *parent, QList<ImageType> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
     explicit Storage(QObject *parent, QMap<ScraperInterface *, QString> ids);
@@ -43,6 +44,7 @@ public:
     QList<int> infosToLoad() const;
     QList<MovieScraperInfos> movieInfosToLoad() const;
     QList<TvShowScraperInfos> showInfosToLoad() const;
+    QList<ConcertScraperInfos> concertInfosToLoad() const;
     QList<ImageType> imageInfosToLoad() const;
     ExportTemplate *exportTemplate() const;
     QMap<ScraperInterface *, QString> ids() const;
@@ -58,6 +60,7 @@ public:
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
     static QVariant toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoad);
     static QVariant toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLoad);
+    static QVariant toVariant(QObject *parent, QList<ConcertScraperInfos> infosToLoad);
     static QVariant toVariant(QObject *parent, QList<ImageType> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
     static QVariant toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids);
@@ -75,6 +78,7 @@ private:
     QList<int> m_infosToLoad;
     QList<MovieScraperInfos> m_movieInfosToLoad;
     QList<TvShowScraperInfos> m_showInfosToLoad;
+    QList<ConcertScraperInfos> m_concertInfosToLoad;
     QList<ImageType> m_imageInfosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
     QMap<ScraperInterface *, QString> m_ids;

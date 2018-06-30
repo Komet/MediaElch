@@ -53,7 +53,7 @@ public:
     ConcertController *controller() const;
 
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<ConcertScraperInfos> infos);
 
     virtual QString name() const;
     virtual QString artist() const;
@@ -149,7 +149,7 @@ public:
     void setHasExtraFanarts(bool has);
 
     void scraperLoadDone();
-    QList<int> infosToLoad();
+    QList<ConcertScraperInfos> infosToLoad();
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
 
@@ -191,7 +191,7 @@ private:
     int m_mediaCenterId;
     QString m_tmdbId;
     QString m_id;
-    QList<int> m_infosToLoad;
+    QList<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
     QString m_nfoContent;

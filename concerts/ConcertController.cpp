@@ -112,7 +112,9 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
     return infoLoaded;
 }
 
-void ConcertController::loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos)
+void ConcertController::loadData(QString id,
+    ConcertScraperInterface *scraperInterface,
+    QList<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_concert, infos);
@@ -126,12 +128,12 @@ void ConcertController::loadStreamDetailsFromFile()
     m_concert->setChanged(true);
 }
 
-QList<int> ConcertController::infosToLoad()
+QList<ConcertScraperInfos> ConcertController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertController::setInfosToLoad(QList<int> infos)
+void ConcertController::setInfosToLoad(QList<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
 }

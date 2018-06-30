@@ -22,10 +22,10 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos);
     void loadStreamDetailsFromFile();
     void scraperLoadDone(ConcertScraperInterface *scraper);
-    QList<int> infosToLoad();
+    QList<ConcertScraperInfos> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;
     void loadImage(ImageType type, QUrl url);
@@ -33,7 +33,7 @@ public:
     void abortDownloads();
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
-    void setInfosToLoad(QList<int> infos);
+    void setInfosToLoad(QList<ConcertScraperInfos> infos);
 
 signals:
     void sigInfoLoadDone(Concert *);
@@ -52,7 +52,7 @@ private:
     Concert *m_concert;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
-    QList<int> m_infosToLoad;
+    QList<ConcertScraperInfos> m_infosToLoad;
     DownloadManager *m_downloadManager;
     bool m_downloadsInProgress;
     int m_downloadsSize;

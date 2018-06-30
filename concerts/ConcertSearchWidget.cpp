@@ -24,18 +24,18 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
     connect(ui->results, &QTableWidget::itemClicked, this, &ConcertSearchWidget::resultClicked);
 
-    ui->chkBackdrop->setMyData(ConcertScraperInfos::Backdrop);
-    ui->chkCertification->setMyData(ConcertScraperInfos::Certification);
-    ui->chkExtraArts->setMyData(ConcertScraperInfos::ExtraArts);
-    ui->chkGenres->setMyData(ConcertScraperInfos::Genres);
-    ui->chkOverview->setMyData(ConcertScraperInfos::Overview);
-    ui->chkPoster->setMyData(ConcertScraperInfos::Poster);
-    ui->chkRating->setMyData(ConcertScraperInfos::Rating);
-    ui->chkReleased->setMyData(ConcertScraperInfos::Released);
-    ui->chkRuntime->setMyData(ConcertScraperInfos::Runtime);
-    ui->chkTagline->setMyData(ConcertScraperInfos::Tagline);
-    ui->chkTitle->setMyData(ConcertScraperInfos::Title);
-    ui->chkTrailer->setMyData(ConcertScraperInfos::Trailer);
+    ui->chkBackdrop->setMyData(static_cast<int>(ConcertScraperInfos::Backdrop));
+    ui->chkCertification->setMyData(static_cast<int>(ConcertScraperInfos::Certification));
+    ui->chkExtraArts->setMyData(static_cast<int>(ConcertScraperInfos::ExtraArts));
+    ui->chkGenres->setMyData(static_cast<int>(ConcertScraperInfos::Genres));
+    ui->chkOverview->setMyData(static_cast<int>(ConcertScraperInfos::Overview));
+    ui->chkPoster->setMyData(static_cast<int>(ConcertScraperInfos::Poster));
+    ui->chkRating->setMyData(static_cast<int>(ConcertScraperInfos::Rating));
+    ui->chkReleased->setMyData(static_cast<int>(ConcertScraperInfos::Released));
+    ui->chkRuntime->setMyData(static_cast<int>(ConcertScraperInfos::Runtime));
+    ui->chkTagline->setMyData(static_cast<int>(ConcertScraperInfos::Tagline));
+    ui->chkTitle->setMyData(static_cast<int>(ConcertScraperInfos::Title));
+    ui->chkTrailer->setMyData(static_cast<int>(ConcertScraperInfos::Trailer));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
@@ -110,7 +110,7 @@ void ConcertSearchWidget::chkToggled()
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.append(box->myData().toInt());
+            m_infosToLoad.append(ConcertScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -144,20 +144,21 @@ QString ConcertSearchWidget::scraperId()
     return m_scraperId;
 }
 
-QList<int> ConcertSearchWidget::infosToLoad()
+QList<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
+void ConcertSearchWidget::setChkBoxesEnabled(QList<ConcertScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<int> infos = Settings::instance()->scraperInfos(MainWidgets::Concerts, QString::number(scraperNo));
+    QList<ConcertScraperInfos> infos =
+        Settings::instance()->scraperInfos<ConcertScraperInfos>(QString::number(scraperNo));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
-        box->setEnabled(scraperSupports.contains(box->myData().toInt()));
-        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty())
-                        && scraperSupports.contains(box->myData().toInt()));
+    for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {
+        box->setEnabled(scraperSupports.contains(ConcertScraperInfos(box->myData().toInt())));
+        box->setChecked((infos.contains(ConcertScraperInfos(box->myData().toInt())) || infos.isEmpty())
+                        && scraperSupports.contains(ConcertScraperInfos(box->myData().toInt())));
     }
     chkToggled();
 }

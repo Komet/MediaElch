@@ -1012,9 +1012,7 @@ void Settings::setXbmcPort(int port)
 QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Concerts) {
-        item = "Concerts";
-    } else if (widget == MainWidgets::Music) {
+    if (widget == MainWidgets::Music) {
         item = "Music";
     }
     if (item == "unknown") {
@@ -1030,6 +1028,19 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
         infos.clear();
     }
 
+    return infos;
+}
+
+template<>
+QList<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
+{
+    QList<ConcertScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
+        infos << ConcertScraperInfos(info.toInt());
+    }
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
     return infos;
 }
 
@@ -1062,9 +1073,7 @@ QList<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
-    if (widget == MainWidgets::Concerts) {
-        item = "Concerts";
-    } else if (widget == MainWidgets::Music) {
+    if (widget == MainWidgets::Music) {
         item = "Music";
     }
     if (item == "unknown") {
@@ -1098,6 +1107,16 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvSh
     settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
 }
 
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
+}
 
 bool Settings::downloadActorImages()
 {

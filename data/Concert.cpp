@@ -53,7 +53,7 @@ void Concert::setFiles(QStringList files)
  */
 void Concert::clear()
 {
-    QList<int> infos;
+    QList<ConcertScraperInfos> infos;
     infos.reserve(14);
     infos << ConcertScraperInfos::Title         //
           << ConcertScraperInfos::Tagline       //
@@ -77,7 +77,7 @@ void Concert::clear()
  * @brief Clears contents of the concert based on a list
  * @param infos List of infos which should be cleared
  */
-void Concert::clear(QList<int> infos)
+void Concert::clear(QList<ConcertScraperInfos> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_backdrops.clear();
