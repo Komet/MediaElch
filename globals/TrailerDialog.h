@@ -48,6 +48,7 @@ private slots:
     void onPlayPause();
     void onAnimationFinished();
     void onUpdateTime(qint64 currentTime);
+    void onTrailerError(QMediaPlayer::Error error);
     void onSliderPositionChanged();
 
 private:
