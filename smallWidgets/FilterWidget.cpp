@@ -276,6 +276,7 @@ void FilterWidget::setupMovieFilters()
     QStringList countries;
     QStringList tags;
     QStringList directors;
+    QStringList videocodecs;
     QStringList sets;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         foreach (const QString &genre, movie->genres()) {
@@ -301,6 +302,9 @@ void FilterWidget::setupMovieFilters()
         if (!directors.contains(movie->director())) {
             directors.append(movie->director());
         }
+        if (!videocodecs.contains(movie->streamDetails()->videoDetails().value("codec"))) {
+            videocodecs.append(movie->streamDetails()->videoDetails().value("codec"));
+        }
         if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year()))) {
             years.append(QString("%1").arg(movie->released().year()));
         }
@@ -318,6 +322,7 @@ void FilterWidget::setupMovieFilters()
     qSort(countries.begin(), countries.end(), LocaleStringCompare());
     qSort(tags.begin(), tags.end(), LocaleStringCompare());
     qSort(directors.begin(), directors.end(), LocaleStringCompare());
+    qSort(videocodecs.begin(), videocodecs.end(), LocaleStringCompare());
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
 
     if (m_movieLabelFilters.isEmpty()) {
@@ -367,6 +372,12 @@ void FilterWidget::setupMovieFilters()
     foreach (Filter *filter, m_movieDirectorFilters) {
         if (!directors.contains(filter->shortText())) {
             m_movieDirectorFilters.removeOne(filter);
+            delete filter;
+        }
+    }
+    foreach (Filter *filter, m_movieVideoCodecFilters) {
+        if (!videocodecs.contains(filter->shortText())) {
+            m_movieVideoCodecFilters.removeOne(filter);
             delete filter;
         }
     }
@@ -545,11 +556,32 @@ void FilterWidget::setupMovieFilters()
     }
     m_movieDirectorFilters = directorFilters;
 
+    QList<Filter *> videocodecFilters;
+    foreach (const QString &codec, videocodecs) {
+        Filter *f = nullptr;
+        foreach (Filter *filter, m_movieVideoCodecFilters) {
+            if (filter->shortText() == codec) {
+                f = filter;
+                break;
+            }
+        }
+        if (f) {
+            videocodecFilters << f;
+        } else {
+            videocodecFilters << new Filter(tr("Video codec \"%1\"").arg(codec),
+                codec,
+                QStringList() << tr("Video codec") << codec,
+                MovieFilters::VideoCodec,
+                true);
+        }
+    }
+    m_movieVideoCodecFilters = videocodecFilters;
+
 
     QList<Filter *> filters;
     filters << m_movieFilters << m_movieGenreFilters << m_movieStudioFilters << m_movieCountryFilters
             << m_movieYearFilters << m_movieCertificationFilters << m_movieSetsFilters << m_movieTagsFilters
-            << m_movieDirectorFilters << m_movieLabelFilters;
+            << m_movieDirectorFilters << m_movieVideoCodecFilters << m_movieLabelFilters;
     m_filters = filters;
 }
 
@@ -754,6 +786,12 @@ void FilterWidget::initFilters()
         MovieFilters::Director,
         false);
 
+    m_movieFilters << new Filter(tr("No information about video codec"),
+        tr("No video codec"),
+        QStringList() << tr("Video codec") << tr("No video codec"),
+        MovieFilters::VideoCodec,
+        false);
+
     m_movieFilters << new Filter(tr("Movie has no Tags"),
         tr("No Tags"),
         QStringList() << tr("Tags") << tr("No Tags"),
@@ -770,6 +808,8 @@ void FilterWidget::initFilters()
         tr("Resolution 720p"), "720p", QStringList() << tr("Resolution") << tr("720p"), MovieFilters::Quality, true);
     m_movieFilters << new Filter(
         tr("Resolution 1080p"), "1080p", QStringList() << tr("Resolution") << tr("1080p"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(
+        tr("Resolution 2160p"), "2160p", QStringList() << tr("Resolution") << tr("2160p"), MovieFilters::Quality, true);
     m_movieFilters << new Filter(
         tr("Resolution SD"), "SD", QStringList() << tr("Resolution") << tr("SD"), MovieFilters::Quality, true);
     m_movieFilters << new Filter(
@@ -890,6 +930,9 @@ void FilterWidget::loadFilters(MainWidgets widget)
             continue;
         }
         if (m_movieDirectorFilters.contains(filter)) {
+            continue;
+        }
+        if (m_movieVideoCodecFilters.contains(filter)) {
             continue;
         }
         if (m_tvShowFilters.contains(filter)) {
