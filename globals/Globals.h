@@ -399,6 +399,7 @@ namespace MovieFilters {
     const int AudioQuality        = 31;
     const int HasSubtitle         = 33;
     const int HasExternalSubtitle = 34;
+    const int VideoCodec          = 35;
 }
 
 namespace TvShowFilters {
