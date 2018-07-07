@@ -31,16 +31,9 @@ void AdvancedSettings::reset()
     m_writeThumbUrlsToNfo = true;
     m_useFirstStudioOnly = false;
 
-    m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
-    m_videoCodecMappings.insert("v_mpegh/iso/hevc", "HEVC");
-    m_videoCodecMappings.insert("27", "h264");
-    m_videoCodecMappings.insert("v_mpeg2", "MPEG2");
-    m_videoCodecMappings.insert("2", "MPEG2");
-    m_videoCodecMappings.insert("234", "VC-1");
-    m_videoCodecMappings.insert("microsoft", "VC-1");
-
     m_audioCodecMappings.insert("MPA1L2", "MP2");
     m_audioCodecMappings.insert("MPA1L3", "MP3");
+    m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 
     const auto videoFiles = QStringList{"*.mkv",
         "*.mk3d",
@@ -279,7 +272,7 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
  */
 void AdvancedSettings::loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &mappings)
 {
-    // mappings.clear();
+    mappings.clear();
     while (xml.readNextStartElement()) {
         if (xml.name() == "map" && xml.attributes().hasAttribute("from")) {
             const auto from = xml.attributes().value("from").trimmed();
