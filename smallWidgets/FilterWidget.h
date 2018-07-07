@@ -46,6 +46,7 @@ private:
     QList<Filter *> m_movieYearFilters;
     QList<Filter *> m_movieCertificationFilters;
     QList<Filter *> m_movieDirectorFilters;
+    QList<Filter *> m_movieVideoCodecFilters;
     QList<Filter *> m_movieTagsFilters;
     QList<Filter *> m_movieSetsFilters;
     QList<Filter *> m_tvShowFilters;

@@ -167,6 +167,9 @@ bool Filter::accepts(Movie *movie)
     if (m_info == MovieFilters::Director) {
         return (m_hasInfo && movie->director() == m_shortText) || (!m_hasInfo && movie->director().isEmpty());
     }
+    if (m_info == MovieFilters::VideoCodec) {
+        return (m_hasInfo && movie->streamDetails()->videoDetails().value("codec") == m_shortText) || (!m_hasInfo && movie->streamDetails()->videoDetails().value("codec").isEmpty());
+    }
     if (m_info == MovieFilters::ImdbId) {
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
     }
@@ -182,7 +185,9 @@ bool Filter::accepts(Movie *movie)
     }
 
     if (m_info == MovieFilters::Quality) {
-        if (m_shortText == "1080p") {
+        if (m_shortText == "2160p") {
+            return movie->streamDetails()->videoDetails().value("width").toInt() == 3840;
+        } else if (m_shortText == "1080p") {
             return movie->streamDetails()->videoDetails().value("width").toInt() == 1920;
         } else if (m_shortText == "720p") {
             return movie->streamDetails()->videoDetails().value("width").toInt() == 1280;
