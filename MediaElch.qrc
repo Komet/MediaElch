@@ -95,6 +95,13 @@
         <file alias="resolution/1080p">mediaFlags/resolution/1080.png</file>
         <file alias="resolution/2160p">mediaFlags/resolution/2160.png</file>
         <file alias="resolution/4320p">mediaFlags/resolution/4320.png</file>
+        <file alias="resolution/480">mediaFlags/resolution/480.png</file>
+        <file alias="resolution/540">mediaFlags/resolution/540.png</file>
+        <file alias="resolution/576">mediaFlags/resolution/576.png</file>
+        <file alias="resolution/720">mediaFlags/resolution/720.png</file>
+        <file alias="resolution/1080">mediaFlags/resolution/1080.png</file>
+        <file alias="resolution/2160">mediaFlags/resolution/2160.png</file>
+        <file alias="resolution/4320">mediaFlags/resolution/4320.png</file>
         <file alias="resolution/480i">mediaFlags/resolution/480.png</file>
         <file alias="resolution/540i">mediaFlags/resolution/540.png</file>
         <file alias="resolution/576i">mediaFlags/resolution/576.png</file>
