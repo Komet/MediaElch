@@ -127,6 +127,7 @@
         <file alias="codec/divx">mediaFlags/codec/divx.png</file>
         <file alias="codec/flv">mediaFlags/codec/flv.png</file>
         <file alias="codec/h264">mediaFlags/codec/h264.png</file>
+        <file alias="codec/avc">mediaFlags/codec/h264.png</file>
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
         <file alias="codec/hevc">mediaFlags/codec/hevc.png</file>
         <file alias="codec/mpeg">mediaFlags/codec/mpeg2.png</file>
