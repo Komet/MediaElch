@@ -194,10 +194,10 @@ void StreamDetails::loadWithLibrary()
         } else {
             scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
             if (scanType == "MBAFF") {
-              scanType = "interlaced";
+                scanType = "interlaced";
             }
         }
-        
+
         QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 
         setVideoDetail(VideoDetails::Codec, videoCodec);

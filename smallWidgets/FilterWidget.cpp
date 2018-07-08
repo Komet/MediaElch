@@ -32,11 +32,13 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
     palette.setColor(QPalette::Highlight, palette.color(QPalette::Highlight));
     palette.setColor(QPalette::HighlightedText, palette.color(QPalette::HighlightedText));
     m_list->setPalette(palette);
-    m_list->setStyleSheet(QString("background-color: #ffffff; border: 1px solid #f0f0f0; border-radius: 5px;"));
+    m_list->setStyleSheet(QStringLiteral("background-color: #ffffff; border: 1px solid #f0f0f0; border-radius: 5px;"));
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    if (Helper::instance()->devicePixelRatio(m_list) == 1) {
+    const qreal pixelRatio = Helper::instance()->devicePixelRatio(m_list);
+    if (pixelRatio >= 0.95 && pixelRatio <= 1.05) {
+        // Pixel ratio is 1
         auto effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);
@@ -579,9 +581,17 @@ void FilterWidget::setupMovieFilters()
 
 
     QList<Filter *> filters;
-    filters << m_movieFilters << m_movieGenreFilters << m_movieStudioFilters << m_movieCountryFilters
-            << m_movieYearFilters << m_movieCertificationFilters << m_movieSetsFilters << m_movieTagsFilters
-            << m_movieDirectorFilters << m_movieVideoCodecFilters << m_movieLabelFilters;
+    filters << m_movieFilters              //
+            << m_movieGenreFilters         //
+            << m_movieStudioFilters        //
+            << m_movieCountryFilters       //
+            << m_movieYearFilters          //
+            << m_movieCertificationFilters //
+            << m_movieSetsFilters          //
+            << m_movieTagsFilters          //
+            << m_movieDirectorFilters      //
+            << m_movieVideoCodecFilters    //
+            << m_movieLabelFilters;
     m_filters = filters;
 }
 

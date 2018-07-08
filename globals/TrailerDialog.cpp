@@ -286,8 +286,8 @@ void TrailerDialog::cancelDownload()
     m_downloadInProgress = false;
 
 #ifdef Q_OS_MAC
-    TrailerDialog::resize(width() + 1,height() + 1);
-    TrailerDialog::resize(width() - 1,height() - 1);
+    TrailerDialog::resize(width() + 1, height() + 1);
+    TrailerDialog::resize(width() - 1, height() - 1);
 #endif
 }
 
@@ -376,8 +376,8 @@ void TrailerDialog::downloadFinished()
     m_downloadReply->deleteLater();
 
 #ifdef Q_OS_MAC
-    TrailerDialog::resize(width() + 1,height() + 1);
-    TrailerDialog::resize(width() - 1,height() - 1);
+    TrailerDialog::resize(width() + 1, height() + 1);
+    TrailerDialog::resize(width() - 1, height() - 1);
 #endif
 }
 
@@ -432,27 +432,27 @@ void TrailerDialog::onStateChanged(QMediaPlayer::State newState)
 
 void TrailerDialog::onPlayPause()
 {
-    #ifdef Q_OS_MAC
-        TrailerDialog::resize(width() + 1,height() + 1);
-        TrailerDialog::resize(width() - 1,height() - 1);
-    #endif
+#ifdef Q_OS_MAC
+    TrailerDialog::resize(width() + 1, height() + 1);
+    TrailerDialog::resize(width() - 1, height() - 1);
+#endif
 
     switch (m_mediaPlayer->state()) {
     case QMediaPlayer::PlayingState: m_mediaPlayer->pause(); break;
     case QMediaPlayer::StoppedState:
-    
-    #ifdef Q_OS_MAC
-        TrailerDialog::resize(width() + 1,height() + 1);
-        TrailerDialog::resize(width() - 1,height() - 1);
-    #endif
-    
+
+#ifdef Q_OS_MAC
+        TrailerDialog::resize(width() + 1, height() + 1);
+        TrailerDialog::resize(width() - 1, height() - 1);
+#endif
+
     case QMediaPlayer::PausedState: m_mediaPlayer->play(); break;
     }
-    
-    #ifdef Q_OS_MAC
-        TrailerDialog::resize(width() + 1,height() + 1);
-        TrailerDialog::resize(width() - 1,height() - 1);
-    #endif
+
+#ifdef Q_OS_MAC
+    TrailerDialog::resize(width() + 1, height() + 1);
+    TrailerDialog::resize(width() - 1, height() - 1);
+#endif
 }
 
 void TrailerDialog::onAnimationFinished()
