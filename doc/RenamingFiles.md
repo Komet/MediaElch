@@ -12,8 +12,8 @@ Lets do an example: Assume two movies
 
 Using the following rename pattern
 
- - Folder: {movieset}<movieset> - {/movieset}<title> (<year>)
- - File: <title>{3D}.3D{/3D}.<extension>
+ - Folder: `{movieset}<movieset> - {/movieset}<title> (<year>)`
+ - File: `<title>{3D}.3D{/3D}.<extension>`
 
 the movies will be renamed to:
 
