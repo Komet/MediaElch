@@ -597,52 +597,32 @@ QIcon Helper::iconForLabel(int label)
 
 qreal Helper::devicePixelRatio(QLabel *label)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return label->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 qreal Helper::devicePixelRatio(QPushButton *button)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return button->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 void Helper::setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     pixmap.setDevicePixelRatio(devicePixelRatio);
-#endif
 }
 
 void Helper::setDevicePixelRatio(QImage &image, qreal devicePixelRatio)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     image.setDevicePixelRatio(devicePixelRatio);
-#endif
 }
 
 qreal Helper::devicePixelRatio(QWidget *widget)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return widget->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 qreal Helper::devicePixelRatio(const QPixmap &pixmap)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-    return pixmap.devicePixelRatio();
-#else
     return 1.0;
-#endif
 }
 
 int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)
