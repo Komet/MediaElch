@@ -168,7 +168,10 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->director() == m_shortText) || (!m_hasInfo && movie->director().isEmpty());
     }
     if (m_info == MovieFilters::VideoCodec) {
-        return (m_hasInfo && movie->streamDetails()->videoDetails().value("codec") == m_shortText) || (!m_hasInfo && movie->streamDetails()->videoDetails().value("codec").isEmpty());
+        return (m_hasInfo
+                   && movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec) == m_shortText)
+               || (!m_hasInfo
+                      && movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec).isEmpty());
     }
     if (m_info == MovieFilters::ImdbId) {
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
@@ -185,15 +188,15 @@ bool Filter::accepts(Movie *movie)
     }
 
     if (m_info == MovieFilters::Quality) {
+        const int width = movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Width).toInt();
         if (m_shortText == "2160p") {
-            return movie->streamDetails()->videoDetails().value("width").toInt() == 3840;
+            return width == 3840;
         } else if (m_shortText == "1080p") {
-            return movie->streamDetails()->videoDetails().value("width").toInt() == 1920;
+            return width == 1920;
         } else if (m_shortText == "720p") {
-            return movie->streamDetails()->videoDetails().value("width").toInt() == 1280;
+            return width == 1280;
         } else if (m_shortText == "SD") {
-            return movie->streamDetails()->videoDetails().value("width").toInt() > 0
-                   && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
+            return width > 0 && width <= 720;
         } else if (m_shortText == "BluRay") {
             return movie->discType() == DiscType::BluRay;
         } else if (m_shortText == "DVD") {

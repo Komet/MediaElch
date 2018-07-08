@@ -51,7 +51,7 @@ void Image::setRawData(const QByteArray &rawData)
     emit rawDataChanged();
 }
 
-int Image::imageId()
+int Image::imageId() const
 {
     return m_imageId;
 }

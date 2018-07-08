@@ -292,6 +292,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
         if (!isBluRay && !isDvd && renameFiles) {
             newMovieFiles.clear();
             int partNo = 0;
+            const auto videoDetails = movie->streamDetails()->videoDetails();
             foreach (const QString &file, movie->files()) {
                 newFileName = (movie->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
@@ -308,13 +309,13 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 Renamer::replace(newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                        movie->streamDetails()->videoDetails().value("height").toInt(),
-                        movie->streamDetails()->videoDetails().value("scantype")));
+                    Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::ScanType)));
                 Renamer::replaceCondition(newFileName, "imdbId", movie->id());
                 Renamer::replaceCondition(newFileName, "movieset", movie->set());
                 Renamer::replaceCondition(
-                    newFileName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+                    newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
@@ -613,6 +614,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
         int renameRow = -1;
         QString newMovieFolder = dir.path();
         QString extension = (!movie->files().isEmpty()) ? QFileInfo(movie->files().first()).suffix() : "";
+        const auto videoDetails = movie->streamDetails()->videoDetails();
         // rename dir for already existe films dir
         if (renameDirectories && movie->inSeparateFolder()) {
             Renamer::replace(newFolderName, "title", movie->name());
@@ -625,13 +627,13 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                    movie->streamDetails()->videoDetails().value("height").toInt(),
-                    movie->streamDetails()->videoDetails().value("scantype")));
+                Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(
-                newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+                newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
@@ -651,13 +653,13 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
-                    movie->streamDetails()->videoDetails().value("height").toInt(),
-                    movie->streamDetails()->videoDetails().value("scantype")));
+                Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(
-                newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+                newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
@@ -789,6 +791,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
 
             newEpisodeFiles.clear();
             int partNo = 0;
+            const auto videoDetails = episode->streamDetails()->videoDetails();
             foreach (const QString &file, episode->files()) {
                 newFileName = (episode->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
@@ -805,11 +808,11 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 Renamer::replace(newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
-                        episode->streamDetails()->videoDetails().value("height").toInt(),
-                        episode->streamDetails()->videoDetails().value("scantype")));
+                    Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::ScanType)));
                 Renamer::replaceCondition(
-                    newFileName, "3D", episode->streamDetails()->videoDetails().value("stereomode") != "");
+                    newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
                 if (multiEpisodes.count() > 1) {
                     QStringList episodeStrings;
@@ -1086,6 +1089,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
         if (!isBluRay && !isDvd && renameFiles) {
             newConcertFiles.clear();
             int partNo = 0;
+            const auto videoDetails = concert->streamDetails()->videoDetails();
             foreach (const QString &file, concert->files()) {
                 newFileName = (concert->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
@@ -1103,11 +1107,11 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                 Renamer::replace(newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName,
                     "resolution",
-                    Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
-                        concert->streamDetails()->videoDetails().value("height").toInt(),
-                        concert->streamDetails()->videoDetails().value("scantype")));
+                    Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                        videoDetails.value(StreamDetails::VideoDetails::ScanType)));
                 Renamer::replaceCondition(
-                    newFileName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+                    newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     int row = addResult(fi.fileName(), newFileName, OperationRename);
@@ -1202,6 +1206,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
 
         int renameRow = -1;
         if (renameDirectories && concert->inSeparateFolder()) {
+            const auto videoDetails = concert->streamDetails()->videoDetails();
             Renamer::replace(newFolderName, "title", concert->name());
             Renamer::replace(newFolderName, "artist", concert->artist());
             Renamer::replace(newFolderName, "album", concert->album());
@@ -1209,15 +1214,15 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(
-                newFolderName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+                newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Renamer::replace(newFolderName, "videoCodec", concert->streamDetails()->videoCodec());
             Renamer::replace(newFolderName, "audioCodec", concert->streamDetails()->audioCodec());
             Renamer::replace(newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
-                    concert->streamDetails()->videoDetails().value("height").toInt(),
-                    concert->streamDetails()->videoDetails().value("scantype")));
+                Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName) {
                 renameRow = addResult(dir.dirName(), newFolderName, OperationRename);

@@ -164,7 +164,8 @@ void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
 void MovieController::loadStreamDetailsFromFile()
 {
     m_movie->streamDetails()->loadStreamDetails();
-    m_movie->setRuntime(qFloor(m_movie->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
+    m_movie->setRuntime(qFloor(
+        m_movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
 }
