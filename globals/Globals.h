@@ -366,54 +366,58 @@ enum class MusicScraperInfos : int {
     Discography  = 24
 };
 
-// The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
-namespace MovieFilters {
-    const int Released            = 1;
-    const int Certification       = 2;
-    const int Trailer             = 3;
-    const int Poster              = 4;
-    const int Backdrop            = 5;
-    const int Watched             = 6;
-    const int Genres              = 7;
-    const int Title               = 8;
-    const int Logo                = 9;
-    const int ClearArt            = 10;
-    const int CdArt               = 11;
-    const int StreamDetails       = 12;
-    const int ExtraFanarts        = 13;
-    const int Actors              = 14;
-    const int LocalTrailer        = 15;
-    const int Country             = 16;
-    const int Studio              = 17;
-    const int Path                = 18;
-    const int Director            = 19;
-    const int Tags                = 20;
-    const int Quality             = 21;
-    const int Banner              = 22;
-    const int Thumb               = 23;
-    const int ImdbId              = 24;
-    const int Set                 = 25;
-    const int Rating              = 28;
-    const int Label               = 29;
-    const int AudioChannels       = 30;
-    const int AudioQuality        = 31;
-    const int HasSubtitle         = 33;
-    const int HasExternalSubtitle = 34;
-    const int VideoCodec          = 35;
-}
-
-namespace TvShowFilters {
-    const int Title         = 26;
-}
-
-namespace ConcertFilters {
-    const int Title         = 27;
-}
-
-namespace MusicFilters {
-    const int Title         = 32;
-}
+// The filter numbers have to be unique for MovieFilters, TvShowFilters and ConcertFilters
+enum class MovieFilters : int
+{
+    Released            = 1,
+    Certification       = 2,
+    Trailer             = 3,
+    Poster              = 4,
+    Backdrop            = 5,
+    Watched             = 6,
+    Genres              = 7,
+    Title               = 8,
+    Logo                = 9,
+    ClearArt            = 10,
+    CdArt               = 11,
+    StreamDetails       = 12,
+    ExtraFanarts        = 13,
+    Actors              = 14,
+    LocalTrailer        = 15,
+    Country             = 16,
+    Studio              = 17,
+    Path                = 18,
+    Director            = 19,
+    Tags                = 20,
+    Quality             = 21,
+    Banner              = 22,
+    Thumb               = 23,
+    ImdbId              = 24,
+    Set                 = 25,
+    Rating              = 28,
+    Label               = 29,
+    AudioChannels       = 30,
+    AudioQuality        = 31,
+    HasSubtitle         = 33,
+    HasExternalSubtitle = 34,
+    VideoCodec          = 35
+};
 // clang-format on
+
+enum class TvShowFilters : int
+{
+    Title = 26
+};
+
+enum class ConcertFilters : int
+{
+    Title = 27
+};
+
+enum class MusicFilters : int
+{
+    Title = 32
+};
 
 enum SortBy
 {
