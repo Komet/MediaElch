@@ -622,7 +622,7 @@ qreal Helper::devicePixelRatio(QWidget *widget)
 
 qreal Helper::devicePixelRatio(const QPixmap &pixmap)
 {
-    return 1.0;
+    return pixmap.devicePixelRatio();
 }
 
 int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)
