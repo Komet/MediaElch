@@ -127,7 +127,7 @@ void FilterWidget::onFilterTextChanged(QString text)
 
     int height = 0;
     m_list->clear();
-    foreach (Filter *filter, m_filters) {
+    for (auto filter : m_filters) {
         if (!filter->accepts(text)) {
             continue;
         }
@@ -280,27 +280,21 @@ void FilterWidget::setupMovieFilters()
     QStringList directors;
     QStringList videocodecs;
     QStringList sets;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        foreach (const QString &genre, movie->genres()) {
-            if (!genre.isEmpty() && !genres.contains(genre)) {
-                genres.append(genre);
+
+    const auto copyNotEmptyUnique = [](const QStringList& from, QStringList& to) {
+        for (const QString &str : from) {
+            if (!str.isEmpty() && !to.contains(str)) {
+                to.append(str);
             }
         }
-        foreach (const QString &studio, movie->studios()) {
-            if (!studio.isEmpty() && !studios.contains(studio)) {
-                studios.append(studio);
-            }
-        }
-        foreach (const QString &country, movie->countries()) {
-            if (!country.isEmpty() && !countries.contains(country)) {
-                countries.append(country);
-            }
-        }
-        foreach (const QString &tag, movie->tags()) {
-            if (!tag.isEmpty() && !tags.contains(tag)) {
-                tags.append(tag);
-            }
-        }
+    };
+
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+        copyNotEmptyUnique(movie->genres(), genres);
+        copyNotEmptyUnique(movie->studios(), studios);
+        copyNotEmptyUnique(movie->countries(), countries);
+        copyNotEmptyUnique(movie->tags(), tags);
+
         if (!directors.contains(movie->director())) {
             directors.append(movie->director());
         }
@@ -340,61 +334,24 @@ void FilterWidget::setupMovieFilters()
         }
     }
 
-    // Clear out all filters which doesn't exist
-    foreach (Filter *filter, m_movieGenreFilters) {
-        if (!genres.contains(filter->shortText())) {
-            m_movieGenreFilters.removeOne(filter);
-            delete filter;
+    // Clear out all filters which don't exist
+    const auto removeFiltersNotInList = [](QList<Filter *> &filters, const QStringList &list) {
+        for (Filter *filter : filters) {
+            if (!list.contains(filter->shortText())) {
+                filters.removeOne(filter);
+                delete filter;
+            }
         }
-    }
-    foreach (Filter *filter, m_movieCertificationFilters) {
-        if (!certifications.contains(filter->shortText())) {
-            m_movieCertificationFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieYearFilters) {
-        if (!years.contains(filter->shortText())) {
-            m_movieYearFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieStudioFilters) {
-        if (!studios.contains(filter->shortText())) {
-            m_movieStudioFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieCountryFilters) {
-        if (!countries.contains(filter->shortText())) {
-            m_movieCountryFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieDirectorFilters) {
-        if (!directors.contains(filter->shortText())) {
-            m_movieDirectorFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieVideoCodecFilters) {
-        if (!videocodecs.contains(filter->shortText())) {
-            m_movieVideoCodecFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieTagsFilters) {
-        if (!tags.contains(filter->shortText())) {
-            m_movieTagsFilters.removeOne(filter);
-            delete filter;
-        }
-    }
-    foreach (Filter *filter, m_movieSetsFilters) {
-        if (!tags.contains(filter->shortText())) {
-            m_movieSetsFilters.removeOne(filter);
-            delete filter;
-        }
-    }
+    };
+    removeFiltersNotInList(m_movieGenreFilters, genres);
+    removeFiltersNotInList(m_movieCertificationFilters, certifications);
+    removeFiltersNotInList(m_movieYearFilters, years);
+    removeFiltersNotInList(m_movieStudioFilters, studios);
+    removeFiltersNotInList(m_movieCountryFilters, countries);
+    removeFiltersNotInList(m_movieDirectorFilters, directors);
+    removeFiltersNotInList(m_movieVideoCodecFilters, videocodecs);
+    removeFiltersNotInList(m_movieTagsFilters, tags);
+    removeFiltersNotInList(m_movieSetsFilters, sets);
 
     QList<Filter *> genreFilters;
     // Add new filters
@@ -883,9 +840,7 @@ void FilterWidget::initFilters()
         false);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
-
     m_concertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);
-
     m_musicFilters << new Filter(tr("Title"), "", QStringList(), MusicFilters::Title, true);
 }
 
