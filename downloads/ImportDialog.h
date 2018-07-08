@@ -14,6 +14,7 @@
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
 #include "movies/Movie.h"
+#include "renamer/Renamer.h"
 
 namespace Ui {
 class ImportDialog;
@@ -71,7 +72,7 @@ private:
     QStringList m_newFiles;
     DownloadManager *m_posterDownloadManager;
 
-    void setDefaults(int renameType);
+    void setDefaults(Renamer::RenameType renameType);
     void storeDefaults();
 };
 

@@ -48,9 +48,11 @@ int Renamer::exec()
     m_renameErrorOccured = false;
 
     switch (m_renameType) {
-    case TypeMovies: ui->infoLabel->setText(tr("%n Movie(s) will be renamed", "", m_movies.count())); break;
-    case TypeConcerts: ui->infoLabel->setText(tr("%n Concert(s) will be renamed", "", m_concerts.count())); break;
-    case TypeTvShows:
+    case RenameType::Movies: ui->infoLabel->setText(tr("%n Movie(s) will be renamed", "", m_movies.count())); break;
+    case RenameType::Concerts:
+        ui->infoLabel->setText(tr("%n Concert(s) will be renamed", "", m_concerts.count()));
+        break;
+    case RenameType::TvShows:
         ui->infoLabel->setText(tr("%n TV Show(s) and %1", "", m_shows.count())
                                    .arg(tr("%n Episode(s) will be renamed", "", m_episodes.count())));
         break;
@@ -74,9 +76,9 @@ int Renamer::exec()
     ui->chkDirectoryNaming->setChecked(renameFolders);
     ui->chkSeasonDirectories->setChecked(useSeasonDirectories);
 
-    ui->chkSeasonDirectories->setVisible(m_renameType == TypeTvShows);
-    ui->seasonNaming->setVisible(m_renameType == TypeTvShows);
-    ui->labelSeasonDirectory->setVisible(m_renameType == TypeTvShows);
+    ui->chkSeasonDirectories->setVisible(m_renameType == RenameType::TvShows);
+    ui->seasonNaming->setVisible(m_renameType == RenameType::TvShows);
+    ui->labelSeasonDirectory->setVisible(m_renameType == RenameType::TvShows);
 
     ui->placeholders->setType(m_renameType);
 
@@ -171,21 +173,21 @@ void Renamer::onRename()
     ui->resultsTable->setRowCount(0);
     ui->btnRename->setEnabled(false);
     ui->btnDryRun->setEnabled(false);
-    if (m_renameType == TypeMovies) {
+    if (m_renameType == RenameType::Movies) {
         renameMovies(m_movies,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
             ui->directoryNaming->text(),
             ui->chkFileNaming->isChecked(),
             ui->chkDirectoryNaming->isChecked());
-    } else if (m_renameType == TypeConcerts) {
+    } else if (m_renameType == RenameType::Concerts) {
         renameConcerts(m_concerts,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
             ui->directoryNaming->text(),
             ui->chkFileNaming->isChecked(),
             ui->chkDirectoryNaming->isChecked());
-    } else if (m_renameType == TypeTvShows) {
+    } else if (m_renameType == RenameType::TvShows) {
         renameEpisodes(m_episodes,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
@@ -203,7 +205,7 @@ void Renamer::onDryRun()
     ui->tabWidget->setCurrentIndex(1);
     ui->results->clear();
     ui->resultsTable->setRowCount(0);
-    if (m_renameType == TypeMovies) {
+    if (m_renameType == RenameType::Movies) {
         renameMovies(m_movies,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
@@ -211,7 +213,7 @@ void Renamer::onDryRun()
             ui->chkFileNaming->isChecked(),
             ui->chkDirectoryNaming->isChecked(),
             true);
-    } else if (m_renameType == TypeConcerts) {
+    } else if (m_renameType == RenameType::Concerts) {
         renameConcerts(m_concerts,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
@@ -219,7 +221,7 @@ void Renamer::onDryRun()
             ui->chkFileNaming->isChecked(),
             ui->chkDirectoryNaming->isChecked(),
             true);
-    } else if (m_renameType == TypeTvShows) {
+    } else if (m_renameType == RenameType::TvShows) {
         renameEpisodes(m_episodes,
             ui->fileNaming->text(),
             ui->fileNamingMulti->text(),
@@ -318,10 +320,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
-                    int row = addResult(fi.fileName(), newFileName, OperationRename);
+                    int row = addResult(fi.fileName(), newFileName, RenameOperation::Rename);
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                             errorOccured = true;
                             continue;
                         } else {
@@ -340,11 +342,11 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         newTrailerFileName = newTrailerFileName.left(newTrailerFileName.lastIndexOf(".")) + "-trailer."
                                              + trailer.suffix();
                         if (trailer.fileName() != newTrailerFileName) {
-                            int row = addResult(trailer.fileName(), newTrailerFileName, OperationRename);
+                            int row = addResult(trailer.fileName(), newTrailerFileName, RenameOperation::Rename);
                             if (!dryRun) {
                                 if (!rename(fi.canonicalPath() + "/" + trailerFile,
                                         fi.canonicalPath() + "/" + newTrailerFileName)) {
-                                    setResultStatus(row, RenameFailed);
+                                    setResultStatus(row, RenameResult::Failed);
                                 } else {
                                     FilmFiles.append(newTrailerFileName);
                                 }
@@ -387,12 +389,12 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         foreach (const QString &subFile, subtitle->files()) {
                             QFileInfo subFi(fi.canonicalPath() + "/" + subFile);
                             QString newSubFileName = subFileName + "." + subFi.suffix();
-                            int row = addResult(subFile, newSubFileName, OperationRename);
+                            int row = addResult(subFile, newSubFileName, RenameOperation::Rename);
                             if (!dryRun) {
                                 if (!rename(fi.canonicalPath() + "/" + subFile,
                                         fi.canonicalPath() + "/" + newSubFileName)) {
                                     newSubFiles << subFile;
-                                    setResultStatus(row, RenameFailed);
+                                    setResultStatus(row, RenameResult::Failed);
                                 } else {
                                     newSubFiles << newSubFileName;
                                     FilmFiles.append(newSubFileName);
@@ -419,10 +421,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     QString newNfoFileName = nfoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
-                        int row = addResult(nfoFileName, newNfoFileName, OperationRename);
+                        int row = addResult(nfoFileName, newNfoFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newNfoFileName);
                             }
@@ -444,10 +446,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         posterFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
-                        int row = addResult(posterFileName, newPosterFileName, OperationRename);
+                        int row = addResult(posterFileName, newPosterFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newPosterFileName);
                             }
@@ -469,10 +471,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         fanartFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
-                        int row = addResult(fanartFileName, newFanartFileName, OperationRename);
+                        int row = addResult(fanartFileName, newFanartFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newFanartFileName);
                             }
@@ -494,10 +496,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         bannerFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newBannerFileName);
                     if (newBannerFileName != bannerFileName) {
-                        int row = addResult(bannerFileName, newBannerFileName, OperationRename);
+                        int row = addResult(bannerFileName, newBannerFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(banner, fiCanonicalPath + "/" + newBannerFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newBannerFileName);
                             }
@@ -519,10 +521,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         thumbFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newThumbFileName);
                     if (newThumbFileName != thumbFileName) {
-                        int row = addResult(thumbFileName, newThumbFileName, OperationRename);
+                        int row = addResult(thumbFileName, newThumbFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(thumb, fiCanonicalPath + "/" + newThumbFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newThumbFileName);
                             }
@@ -544,10 +546,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         logoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newLogoFileName);
                     if (newLogoFileName != logoFileName) {
-                        int row = addResult(logoFileName, newLogoFileName, OperationRename);
+                        int row = addResult(logoFileName, newLogoFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(logo, fiCanonicalPath + "/" + newLogoFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newLogoFileName);
                             }
@@ -569,10 +571,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         clearArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newClearArtFileName);
                     if (newClearArtFileName != clearArtFileName) {
-                        int row = addResult(clearArtFileName, newClearArtFileName, OperationRename);
+                        int row = addResult(clearArtFileName, newClearArtFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(clearArt, fiCanonicalPath + "/" + newClearArtFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newClearArtFileName);
                             }
@@ -594,10 +596,10 @@ void Renamer::renameMovies(QList<Movie *> movies,
                         cdArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newCdArtFileName);
                     if (newCdArtFileName != cdArtFileName) {
-                        int row = addResult(cdArtFileName, newCdArtFileName, OperationRename);
+                        int row = addResult(cdArtFileName, newCdArtFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(cdArt, fiCanonicalPath + "/" + newCdArtFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newCdArtFileName);
                             }
@@ -638,7 +640,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName) {
-                renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
+                renameRow = addResult(dir.dirName(), newFolderName, RenameOperation::Rename);
             }
         }
         // create dir for new dir structure
@@ -670,11 +672,11 @@ void Renamer::renameMovies(QList<Movie *> movies,
                     newFolderName = newFolderName + " " + QString::number(++i);
                 }
 
-                int row = addResult(dir.dirName(), newFolderName, OperationCreateDir);
+                int row = addResult(dir.dirName(), newFolderName, RenameOperation::CreateDir);
 
                 if (!dryRun) {
                     if (!dir.mkdir(newFolderName)) {
-                        setResultStatus(row, RenameFailed);
+                        setResultStatus(row, RenameResult::Failed);
                         errorOccured = true;
                         continue;
                     } else {
@@ -685,15 +687,16 @@ void Renamer::renameMovies(QList<Movie *> movies,
                 foreach (const QString &fileName, FilmFiles) {
                     QFileInfo fi(fileName);
                     if (dir.dirName() != newFolderName) {
-                        int row = addResult(
-                            fi.fileName(), dir.dirName() + "/" + newFolderName + "/" + fi.fileName(), OperationMove);
+                        int row = addResult(fi.fileName(),
+                            dir.dirName() + "/" + newFolderName + "/" + fi.fileName(),
+                            RenameOperation::Move);
                         ui->results->append(tr(R"(<b>Move File</b> "%1" to "%2")")
                                                 .arg(fi.fileName())
                                                 .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
                         if (!dryRun) {
                             if (!rename(dir.absolutePath() + "/" + fileName,
                                     dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName())) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -706,7 +709,7 @@ void Renamer::renameMovies(QList<Movie *> movies,
             QDir parentDir(dir.path());
             parentDir.cdUp();
             if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
-                setResultStatus(renameRow, RenameFailed);
+                setResultStatus(renameRow, RenameResult::Failed);
                 errorOccured = true;
             } else {
                 newMovieFolder = parentDir.path() + "/" + newFolderName;
@@ -826,10 +829,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
 
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
-                    int row = addResult(fi.fileName(), newFileName, OperationRename);
+                    int row = addResult(fi.fileName(), newFileName, RenameOperation::Rename);
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                             m_renameErrorOccured = true;
                         } else {
                             newEpisodeFiles << newFileName;
@@ -844,11 +847,11 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                         QString subSuffix = subFileName.mid(baseName.length());
                         QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                         QString newSubName = newBaseName + subSuffix;
-                        int row = addResult(subFileName, newSubName, OperationRename);
+                        int row = addResult(subFileName, newSubName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(currentDir.canonicalPath() + "/" + subFileName,
                                     currentDir.canonicalPath() + "/" + newSubName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                                 m_renameErrorOccured = true;
                             }
                         }
@@ -867,10 +870,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                     newNfoFileName = nfoFiles.first().saveFileName(newFileName);
                     Helper::instance()->sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
-                        int row = addResult(nfoFileName, newNfoFileName, OperationRename);
+                        int row = addResult(nfoFileName, newNfoFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -886,10 +889,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                         thumbnailFiles.first().saveFileName(newFileName, -1, episode->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newThumbnailFileName);
                     if (newThumbnailFileName != thumbnailFileName) {
-                        int row = addResult(thumbnailFileName, newThumbnailFileName, OperationRename);
+                        int row = addResult(thumbnailFileName, newThumbnailFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -912,10 +915,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
             Helper::instance()->sanitizeFileName(seasonDirName);
             QDir seasonDir(showDir.path() + "/" + seasonDirName);
             if (!seasonDir.exists()) {
-                int row = addResult(seasonDirName, "", OperationCreateDir);
+                int row = addResult(seasonDirName, "", RenameOperation::CreateDir);
                 if (!dryRun) {
                     if (!showDir.mkdir(seasonDirName)) {
-                        setResultStatus(row, RenameFailed);
+                        setResultStatus(row, RenameResult::Failed);
                     }
                 }
             }
@@ -929,10 +932,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 QDir parentDir = dir;
                 parentDir.cdUp();
                 if (parentDir != seasonDir) {
-                    int row = addResult(dir.dirName(), seasonDirName, OperationMove);
+                    int row = addResult(dir.dirName(), seasonDirName, RenameOperation::Move);
                     if (!dryRun) {
                         if (!rename(dir, seasonDir.absolutePath() + "/" + dir.dirName())) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                             m_renameErrorOccured = true;
                         } else {
                             newEpisodeFiles.clear();
@@ -949,10 +952,10 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 newEpisodeFiles.clear();
                 foreach (const QString &fileName, episode->files()) {
                     QFileInfo fi(fileName);
-                    int row = addResult(fi.fileName(), seasonDirName, OperationMove);
+                    int row = addResult(fi.fileName(), seasonDirName, RenameOperation::Move);
                     if (!dryRun) {
                         if (!rename(fileName, seasonDir.path() + "/" + fi.fileName())) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                             m_renameErrorOccured = true;
                         } else {
                             newEpisodeFiles << seasonDir.path() + "/" + fi.fileName();
@@ -965,19 +968,19 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
                 }
 
                 if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
-                    int row = addResult(newNfoFileName, seasonDirName, OperationMove);
+                    int row = addResult(newNfoFileName, seasonDirName, RenameOperation::Move);
                     if (!dryRun) {
                         if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName)) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                         }
                     }
                 }
                 if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
-                    int row = addResult(newThumbnailFileName, seasonDirName, OperationMove);
+                    int row = addResult(newThumbnailFileName, seasonDirName, RenameOperation::Move);
                     if (!dryRun) {
                         if (!rename(fiCanonicalPath + "/" + newThumbnailFileName,
                                 seasonDir.path() + "/" + newThumbnailFileName)) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                         }
                     }
                 }
@@ -1008,12 +1011,12 @@ void Renamer::renameShows(QList<TvShow *> shows,
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         Helper::instance()->sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {
-            int row = addResult(dir.dirName(), newFolderName, OperationRename);
+            int row = addResult(dir.dirName(), newFolderName, RenameOperation::Rename);
             QDir parentDir(dir.path());
             parentDir.cdUp();
             if (!dryRun) {
                 if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
-                    setResultStatus(row, RenameFailed);
+                    setResultStatus(row, RenameResult::Failed);
                     m_renameErrorOccured = true;
                 } else {
                     QString newShowDir = parentDir.path() + "/" + newFolderName;
@@ -1114,10 +1117,10 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
-                    int row = addResult(fi.fileName(), newFileName, OperationRename);
+                    int row = addResult(fi.fileName(), newFileName, RenameOperation::Rename);
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
-                            setResultStatus(row, RenameFailed);
+                            setResultStatus(row, RenameResult::Failed);
                             errorOccured = true;
                             continue;
                         } else {
@@ -1133,11 +1136,11 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                         QString subSuffix = subFileName.mid(baseName.length());
                         QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                         QString newSubName = newBaseName + subSuffix;
-                        int row = addResult(subFileName, newSubName, OperationRename);
+                        int row = addResult(subFileName, newSubName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(currentDir.canonicalPath() + "/" + subFileName,
                                     currentDir.canonicalPath() + "/" + newSubName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -1155,10 +1158,10 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                         nfoFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
-                        int row = addResult(nfoFileName, newNfoFileName, OperationRename);
+                        int row = addResult(nfoFileName, newNfoFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -1174,10 +1177,10 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                         posterFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newPosterFileName);
                     if (newPosterFileName != posterFileName) {
-                        int row = addResult(posterFileName, newPosterFileName, OperationRename);
+                        int row = addResult(posterFileName, newPosterFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -1193,10 +1196,10 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                         fanartFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::instance()->sanitizeFileName(newFanartFileName);
                     if (newFanartFileName != fanartFileName) {
-                        int row = addResult(fanartFileName, newFanartFileName, OperationRename);
+                        int row = addResult(fanartFileName, newFanartFileName, RenameOperation::Rename);
                         if (!dryRun) {
                             if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName)) {
-                                setResultStatus(row, RenameFailed);
+                                setResultStatus(row, RenameResult::Failed);
                             }
                         }
                     }
@@ -1225,7 +1228,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName) {
-                renameRow = addResult(dir.dirName(), newFolderName, OperationRename);
+                renameRow = addResult(dir.dirName(), newFolderName, RenameOperation::Rename);
             }
         }
 
@@ -1234,7 +1237,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts,
             QDir parentDir(dir.path());
             parentDir.cdUp();
             if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
-                setResultStatus(renameRow, RenameFailed);
+                setResultStatus(renameRow, RenameResult::Failed);
                 errorOccured = true;
             } else {
                 newConcertFolder = parentDir.path() + "/" + newFolderName;
@@ -1329,13 +1332,25 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, bool 
     return text;
 }
 
+QString Renamer::typeToString(Renamer::RenameType type)
+{
+    switch (type) {
+    case Renamer::RenameType::All: return "All";
+    case Renamer::RenameType::Movies: return "Movies";
+    case Renamer::RenameType::Concerts: return "Concerts";
+    case Renamer::RenameType::TvShows: return "TvShows";
+    }
+    qWarning() << "Unknown RenamerType";
+    return "unknown";
+}
+
 int Renamer::addResult(const QString &oldFileName, const QString &newFileName, RenameOperation operation)
 {
     QString opString;
     switch (operation) {
-    case OperationCreateDir: opString = tr("Create dir"); break;
-    case OperationMove: opString = tr("Move"); break;
-    case OperationRename: opString = tr("Rename"); break;
+    case RenameOperation::CreateDir: opString = tr("Create dir"); break;
+    case RenameOperation::Move: opString = tr("Move"); break;
+    case RenameOperation::Rename: opString = tr("Rename"); break;
     }
 
     QFont font = ui->resultsTable->font();
@@ -1354,7 +1369,7 @@ int Renamer::addResult(const QString &oldFileName, const QString &newFileName, R
 void Renamer::setResultStatus(int row, RenameResult result)
 {
     for (int col = 0, n = ui->resultsTable->columnCount(); col < n; ++col) {
-        if (result == RenameFailed) {
+        if (result == RenameResult::Failed) {
             ui->resultsTable->item(row, col)->setBackgroundColor(QColor(242, 222, 222));
             ui->resultsTable->item(row, col)->setTextColor(QColor(0, 0, 0));
         }
