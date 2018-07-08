@@ -591,44 +591,47 @@ void XbmcXml::loadStreamDetails(StreamDetails *streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QStringList details = (QStringList() << "codec"
-                                             << "aspect"
-                                             << "width"
-                                             << "height"
-                                             << "durationinseconds"
-                                             << "scantype"
-                                             << "stereomode");
-        foreach (const QString &detail, details) {
-            if (!videoElem.elementsByTagName(detail).isEmpty()) {
-                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
+        QList<StreamDetails::VideoDetails> details = {StreamDetails::VideoDetails::Codec,
+            StreamDetails::VideoDetails::Aspect,
+            StreamDetails::VideoDetails::Width,
+            StreamDetails::VideoDetails::Height,
+            StreamDetails::VideoDetails::DurationInSeconds,
+            StreamDetails::VideoDetails::ScanType,
+            StreamDetails::VideoDetails::StereoMode};
+        for (const auto &detail : details) {
+            const auto detailStr = StreamDetails::detailToString(detail);
+            if (!videoElem.elementsByTagName(detailStr).isEmpty()) {
+                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detailStr).at(0).toElement().text());
             }
         }
     }
     if (!elem.elementsByTagName("audio").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("audio").count(); i < n; ++i) {
-            QStringList details = QStringList() << "codec"
-                                                << "language"
-                                                << "channels";
+            QList<StreamDetails::AudioDetails> details = {StreamDetails::AudioDetails::Codec,
+                StreamDetails::AudioDetails::Language,
+                StreamDetails::AudioDetails::Channels};
             QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
-            foreach (const QString &detail, details) {
-                if (!audioElem.elementsByTagName(detail).isEmpty()) {
+            for (const auto &detail : details) {
+                const auto detailStr = StreamDetails::detailToString(detail);
+                if (!audioElem.elementsByTagName(detailStr).isEmpty()) {
                     streamDetails->setAudioDetail(
-                        i, detail, audioElem.elementsByTagName(detail).at(0).toElement().text());
+                        i, detail, audioElem.elementsByTagName(detailStr).at(0).toElement().text());
                 }
             }
         }
     }
     if (!elem.elementsByTagName("subtitle").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("subtitle").count(); i < n; ++i) {
-            QStringList details = QStringList() << "language";
+            QList<StreamDetails::SubtitleDetails> details = {StreamDetails::SubtitleDetails::Language};
             QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
             if (!subtitleElem.elementsByTagName("file").isEmpty()) {
                 continue;
             }
-            foreach (const QString &detail, details) {
-                if (!subtitleElem.elementsByTagName(detail).isEmpty()) {
+            for (const auto &detail : details) {
+                const auto detailStr = StreamDetails::detailToString(detail);
+                if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
                     streamDetails->setSubtitleDetail(
-                        i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
+                        i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
                 }
             }
         }
@@ -651,54 +654,54 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeStartElement("streamdetails");
 
     xml.writeStartElement("video");
-    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    QMapIterator<StreamDetails::VideoDetails, QString> itVideo(streamDetails->videoDetails());
     while (itVideo.hasNext()) {
         itVideo.next();
-        if (itVideo.key() == "width" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Width && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "height" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Height && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::DurationInSeconds && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.value() == "") {
+        if (itVideo.value().isEmpty()) {
             continue;
         }
 
         QString value = itVideo.value();
 
-        if (itVideo.key() == "aspect") {
+        if (itVideo.key() == StreamDetails::VideoDetails::Aspect) {
             value = value.replace(",", ".");
         }
 
-        xml.writeTextElement(itVideo.key(), value);
+        xml.writeTextElement(StreamDetails::detailToString(itVideo.key()), value);
     }
     xml.writeEndElement();
 
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         xml.writeStartElement("audio");
-        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
         while (itAudio.hasNext()) {
             itAudio.next();
             if (itAudio.value() == "") {
                 continue;
             }
-            xml.writeTextElement(itAudio.key(), itAudio.value());
+            xml.writeTextElement(StreamDetails::detailToString(itAudio.key()), itAudio.value());
         }
         xml.writeEndElement();
     }
 
     for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
         xml.writeStartElement("subtitle");
-        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
         while (itSubtitle.hasNext()) {
             itSubtitle.next();
             if (itSubtitle.value() == "") {
                 continue;
             }
-            xml.writeTextElement(itSubtitle.key(), itSubtitle.value());
+            xml.writeTextElement(StreamDetails::detailToString(itSubtitle.key()), itSubtitle.value());
         }
         xml.writeEndElement();
     }
@@ -719,29 +722,29 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
     QDomElement elemSd = doc.createElement("streamdetails");
 
     QDomElement elemVideo = doc.createElement("video");
-    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    QMapIterator<StreamDetails::VideoDetails, QString> itVideo(streamDetails->videoDetails());
     while (itVideo.hasNext()) {
         itVideo.next();
-        if (itVideo.key() == "width" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Width && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "height" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Height && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::DurationInSeconds && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.value() == "") {
+        if (itVideo.value().isEmpty()) {
             continue;
         }
 
         QString value = itVideo.value();
 
-        if (itVideo.key() == "aspect") {
+        if (itVideo.key() == StreamDetails::VideoDetails::Aspect) {
             value = value.replace(",", ".");
         }
 
-        QDomElement elem = doc.createElement(itVideo.key());
+        QDomElement elem = doc.createElement(StreamDetails::detailToString(itVideo.key()));
         elem.appendChild(doc.createTextNode(value));
         elemVideo.appendChild(elem);
     }
@@ -749,14 +752,14 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
 
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         QDomElement elemAudio = doc.createElement("audio");
-        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
         while (itAudio.hasNext()) {
             itAudio.next();
-            if (itAudio.value() == "") {
+            if (itAudio.value().isEmpty()) {
                 continue;
             }
 
-            QDomElement elem = doc.createElement(itAudio.key());
+            QDomElement elem = doc.createElement(StreamDetails::detailToString(itAudio.key()));
             elem.appendChild(doc.createTextNode(itAudio.value()));
             elemAudio.appendChild(elem);
         }
@@ -765,14 +768,14 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
 
     for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
         QDomElement elemSubtitle = doc.createElement("subtitle");
-        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
         while (itSubtitle.hasNext()) {
             itSubtitle.next();
-            if (itSubtitle.value() == "") {
+            if (itSubtitle.value().isEmpty()) {
                 continue;
             }
 
-            QDomElement elem = doc.createElement(itSubtitle.key());
+            QDomElement elem = doc.createElement(StreamDetails::detailToString(itSubtitle.key()));
             elem.appendChild(doc.createTextNode(itSubtitle.value()));
             elemSubtitle.appendChild(elem);
         }

@@ -525,19 +525,22 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
 
 void ExportDialog::replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails)
 {
-    m.replace("{{ FILEINFO.WIDTH }}", streamDetails->videoDetails().value("width", "0"));
-    m.replace("{{ FILEINFO.HEIGHT }}", streamDetails->videoDetails().value("height", "0"));
-    m.replace("{{ FILEINFO.ASPECT }}", streamDetails->videoDetails().value("aspect", "0"));
-    m.replace("{{ FILEINFO.CODEC }}", streamDetails->videoDetails().value("codec", ""));
-    m.replace("{{ FILEINFO.DURATION }}", streamDetails->videoDetails().value("durationinseconds", "0"));
+    const auto videoDetails = streamDetails->videoDetails();
+    const auto audioDetails = streamDetails->audioDetails();
+
+    m.replace("{{ FILEINFO.WIDTH }}", videoDetails.value(StreamDetails::VideoDetails::Width, "0"));
+    m.replace("{{ FILEINFO.HEIGHT }}", videoDetails.value(StreamDetails::VideoDetails::Height, "0"));
+    m.replace("{{ FILEINFO.ASPECT }}", videoDetails.value(StreamDetails::VideoDetails::Aspect, "0"));
+    m.replace("{{ FILEINFO.CODEC }}", videoDetails.value(StreamDetails::VideoDetails::Codec, ""));
+    m.replace("{{ FILEINFO.DURATION }}", videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds, "0"));
 
     QStringList audioCodecs;
     QStringList audioChannels;
     QStringList audioLanguages;
-    for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
-        audioCodecs << streamDetails->audioDetails().at(i).value("codec");
-        audioChannels << streamDetails->audioDetails().at(i).value("channels");
-        audioLanguages << streamDetails->audioDetails().at(i).value("language");
+    for (int i = 0, n = audioDetails.count(); i < n; ++i) {
+        audioCodecs << audioDetails.at(i).value(StreamDetails::AudioDetails::Codec);
+        audioChannels << audioDetails.at(i).value(StreamDetails::AudioDetails::Channels);
+        audioLanguages << audioDetails.at(i).value(StreamDetails::AudioDetails::Language);
     }
     m.replace("{{ FILEINFO.AUDIO.CODEC }}", audioCodecs.join("|"));
     m.replace("{{ FILEINFO.AUDIO.CHANNELS }}", audioChannels.join("|"));

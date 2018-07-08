@@ -302,8 +302,8 @@ void FilterWidget::setupMovieFilters()
         if (!directors.contains(movie->director())) {
             directors.append(movie->director());
         }
-        if (!videocodecs.contains(movie->streamDetails()->videoDetails().value("codec"))) {
-            videocodecs.append(movie->streamDetails()->videoDetails().value("codec"));
+        if (!videocodecs.contains(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec))) {
+            videocodecs.append(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec));
         }
         if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year()))) {
             years.append(QString("%1").arg(movie->released().year()));

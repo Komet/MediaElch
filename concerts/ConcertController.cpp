@@ -123,7 +123,8 @@ void ConcertController::loadData(QString id,
 void ConcertController::loadStreamDetailsFromFile()
 {
     m_concert->streamDetails()->loadStreamDetails();
-    m_concert->setRuntime(qFloor(m_concert->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
+    m_concert->setRuntime(qFloor(
+        m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
     m_concert->setStreamDetailsLoaded(true);
     m_concert->setChanged(true);
 }

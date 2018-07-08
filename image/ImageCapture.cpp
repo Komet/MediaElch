@@ -14,10 +14,10 @@ ImageCapture::ImageCapture(QObject *parent) : QObject(parent)
 
 bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QImage &img)
 {
-    if (streamDetails->videoDetails().value("durationinseconds", nullptr) == nullptr) {
+    if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
         streamDetails->loadStreamDetails();
     }
-    if (streamDetails->videoDetails().value("durationinseconds", nullptr) == nullptr) {
+    if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
         NotificationBox::instance()->showMessage(
             tr("Could not get duration of file"), NotificationBox::NotificationError);
         return false;
@@ -33,7 +33,7 @@ bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QIma
 
     QProcess ffmpeg;
     qsrand(QTime::currentTime().msec());
-    int duration = streamDetails->videoDetails().value("durationinseconds", nullptr).toInt();
+    int duration = streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr).toInt();
     if (duration == 0) {
         NotificationBox::instance()->showMessage(
             tr("Could not detect runtime of file"), NotificationBox::NotificationError);

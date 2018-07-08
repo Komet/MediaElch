@@ -35,7 +35,9 @@ private:
     QString m_currentSearch;
     QList<TrailerResult> parseTrailers(QString html);
     QMap<QString, QUrl> m_urls;
-    QQueue<QString> m_libraryPages;
+    QQueue<char> m_libraryPages;
+
+    QUrl getLibraryUrl(char library);
 };
 
 #endif // HDTRAILERS_H

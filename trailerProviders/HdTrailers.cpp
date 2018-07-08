@@ -1,5 +1,6 @@
 #include "HdTrailers.h"
 
+#include <QQueue>
 #include <QRegExp>
 
 #include "globals/Helper.h"
@@ -10,38 +11,38 @@ HdTrailers::HdTrailers(QObject *parent) :
     m_loadReply{nullptr}
 {
     setParent(parent);
-    m_libraryPages.enqueue("0");
-    m_libraryPages.enqueue("a");
-    m_libraryPages.enqueue("b");
-    m_libraryPages.enqueue("c");
-    m_libraryPages.enqueue("d");
-    m_libraryPages.enqueue("e");
-    m_libraryPages.enqueue("f");
-    m_libraryPages.enqueue("g");
-    m_libraryPages.enqueue("h");
-    m_libraryPages.enqueue("i");
-    m_libraryPages.enqueue("j");
-    m_libraryPages.enqueue("k");
-    m_libraryPages.enqueue("l");
-    m_libraryPages.enqueue("m");
-    m_libraryPages.enqueue("n");
-    m_libraryPages.enqueue("o");
-    m_libraryPages.enqueue("p");
-    m_libraryPages.enqueue("q");
-    m_libraryPages.enqueue("r");
-    m_libraryPages.enqueue("s");
-    m_libraryPages.enqueue("t");
-    m_libraryPages.enqueue("u");
-    m_libraryPages.enqueue("v");
-    m_libraryPages.enqueue("w");
-    m_libraryPages.enqueue("x");
-    m_libraryPages.enqueue("y");
-    m_libraryPages.enqueue("z");
+    m_libraryPages.enqueue('0');
+    m_libraryPages.enqueue('a');
+    m_libraryPages.enqueue('b');
+    m_libraryPages.enqueue('c');
+    m_libraryPages.enqueue('d');
+    m_libraryPages.enqueue('e');
+    m_libraryPages.enqueue('f');
+    m_libraryPages.enqueue('g');
+    m_libraryPages.enqueue('h');
+    m_libraryPages.enqueue('i');
+    m_libraryPages.enqueue('j');
+    m_libraryPages.enqueue('k');
+    m_libraryPages.enqueue('l');
+    m_libraryPages.enqueue('m');
+    m_libraryPages.enqueue('n');
+    m_libraryPages.enqueue('o');
+    m_libraryPages.enqueue('p');
+    m_libraryPages.enqueue('q');
+    m_libraryPages.enqueue('r');
+    m_libraryPages.enqueue('s');
+    m_libraryPages.enqueue('t');
+    m_libraryPages.enqueue('u');
+    m_libraryPages.enqueue('v');
+    m_libraryPages.enqueue('w');
+    m_libraryPages.enqueue('x');
+    m_libraryPages.enqueue('y');
+    m_libraryPages.enqueue('z');
 }
 
 QString HdTrailers::name()
 {
-    return QString("HD-Trailers.net");
+    return QStringLiteral("HD-Trailers.net");
 }
 
 void HdTrailers::searchMovie(QString searchStr)
@@ -49,10 +50,10 @@ void HdTrailers::searchMovie(QString searchStr)
     m_currentSearch = searchStr;
 
     if (!m_libraryPages.isEmpty()) {
-        QUrl url(QString("https://www.hd-trailers.net/library/%1/").arg(m_libraryPages.dequeue()));
-        QNetworkRequest request(url);
+        QNetworkRequest request(getLibraryUrl(m_libraryPages.dequeue()));
         m_searchReply = m_qnam->get(request);
         connect(m_searchReply, &QNetworkReply::finished, this, &HdTrailers::onSearchFinished);
+
     } else {
         QList<ScraperSearchResult> results;
         QMapIterator<QString, QUrl> it(m_urls);
@@ -143,4 +144,9 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
         pos += rx.matchedLength();
     }
     return results;
+}
+
+QUrl HdTrailers::getLibraryUrl(char library)
+{
+    return QUrl(QStringLiteral("https://www.hd-trailers.net/library/%1/").arg(library));
 }

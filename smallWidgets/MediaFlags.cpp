@@ -51,9 +51,10 @@ void MediaFlags::setStreamDetails(StreamDetails *streamDetails)
  */
 void MediaFlags::setupResolution(StreamDetails *streamDetails)
 {
-    int height = streamDetails->videoDetails().value("height").toInt();
-    int width = streamDetails->videoDetails().value("width").toInt();
-    QString scanType = streamDetails->videoDetails().value("scantype");
+    const auto videoDetails = streamDetails->videoDetails();
+    const int height = videoDetails.value(StreamDetails::VideoDetails::Height).toInt();
+    const int width = videoDetails.value(StreamDetails::VideoDetails::Width).toInt();
+    QString scanType = videoDetails.value(StreamDetails::VideoDetails::ScanType);
     QString heightFlag = Helper::instance()->matchResolution(width, height, scanType);
     ui->mediaFlagResolution->setVisible(heightFlag != "");
     if (heightFlag != "") {
@@ -107,7 +108,7 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
                                                  << "2.55"
                                                  << "2.73"
                                                  << "2.76";
-    double aspect = streamDetails->videoDetails().value("aspect").toDouble();
+    double aspect = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Aspect).toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
     if (availableAspects.contains(aspectFlag)) {
@@ -133,7 +134,7 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
                                                 << "vc-1"
                                                 << "wmv3"
                                                 << "xvid";
-    QString codec = streamDetails->videoDetails().value("codec").toLower();
+    QString codec = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Codec).toLower();
     if (codec.startsWith("divx")) {
         codec = "divx";
     }
@@ -160,7 +161,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
                                                 << "mp3"
                                                 << "mp2";
     if (streamDetails->audioDetails().count() > 0) {
-        QString codec = streamDetails->audioDetails().at(0).value("codec").toLower();
+        QString codec = streamDetails->audioDetails().at(0).value(StreamDetails::AudioDetails::Codec).toLower();
         if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma") {
             codec = "dtshdma";
         }
@@ -186,8 +187,8 @@ void MediaFlags::setupChannels(StreamDetails *streamDetails)
 {
     int channels = -1;
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
-        if (streamDetails->audioDetails().at(i).value("channels").toInt() > channels) {
-            channels = streamDetails->audioDetails().at(i).value("channels").toInt();
+        if (streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt() > channels) {
+            channels = streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt();
         }
     }
 
@@ -196,7 +197,7 @@ void MediaFlags::setupChannels(StreamDetails *streamDetails)
     }
 
     if (channels != -1) {
-        ui->mediaFlagChannels->setPixmap(colorIcon(QString(":/media/channels/%1").arg(channels)));
+        ui->mediaFlagChannels->setPixmap(colorIcon(QStringLiteral(":/media/channels/%1").arg(channels)));
     }
     ui->mediaFlagChannels->setVisible(channels != -1);
 }
