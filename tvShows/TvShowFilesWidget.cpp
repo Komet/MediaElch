@@ -621,7 +621,7 @@ void TvShowFilesWidget::onViewUpdated()
     if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty()
         || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
         int episodeCount = 0;
-        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
+        for (const auto show : Manager::instance()->tvShowModel()->tvShows())
             episodeCount += show->episodeCount();
         ui->statusLabel->setText(
             tr("%n tv shows", "", m_tvShowProxyModel->rowCount()) + ", " + tr("%n episodes", "", episodeCount));
@@ -629,7 +629,8 @@ void TvShowFilesWidget::onViewUpdated()
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count())
                                      .arg(m_tvShowProxyModel->rowCount()));
     }
-    m_tvShowProxyModel->invalidate();
+    // @todo(bugwelle) Check why this was needed.
+    // m_tvShowProxyModel->invalidate();
 }
 
 void TvShowFilesWidget::updateProxy()
