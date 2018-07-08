@@ -166,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->musicWidget, &MusicWidget::sigDownloadsProgress, this, &MainWindow::progressProgress);
     connect(ui->musicWidget, &MusicWidget::sigDownloadsFinished, this, &MainWindow::progressFinished);
 
-    connect(ui->navbar, SIGNAL(sigFilterChanged(QList<Filter *>, QString)), this, SLOT(onFilterChanged(QList<Filter *>, QString)));
+    connect(ui->navbar, &Navbar::sigFilterChanged, this, &MainWindow::onFilterChanged);
 
     connect(ui->movieSplitter,                   &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
     connect(ui->tvShowSplitter,                  &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);

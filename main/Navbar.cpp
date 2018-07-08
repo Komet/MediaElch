@@ -40,10 +40,7 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
     connect(ui->btnDonate,   &QAbstractButton::clicked, this, &Navbar::sigLike);
     // clang-format on
 
-    connect(ui->filterWidget,
-        SIGNAL(sigFilterChanged(QList<Filter *>, QString)),
-        this,
-        SIGNAL(sigFilterChanged(QList<Filter *>, QString)));
+    connect(ui->filterWidget, &FilterWidget::sigFilterChanged, this, &Navbar::sigFilterChanged);
 
     connect(Settings::instance(), &Settings::sigDonated, this, &Navbar::onDonated);
 
