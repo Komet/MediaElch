@@ -566,15 +566,15 @@ QMap<int, QString> Helper::labels()
 QColor Helper::colorForLabel(int label)
 {
     switch (label) {
-    case Labels::RED: return QColor(252, 124, 126); break;
-    case Labels::ORANGE: return QColor(253, 189, 65); break;
-    case Labels::YELLOW: return QColor(245, 228, 68); break;
-    case Labels::GREEN: return QColor(182, 223, 55); break;
-    case Labels::BLUE: return QColor(132, 201, 253); break;
-    case Labels::PURPLE: return QColor(226, 167, 253); break;
-    case Labels::GREY: return QColor(200, 200, 200); break;
+    case Labels::RED: return QColor(252, 124, 126);
+    case Labels::ORANGE: return QColor(253, 189, 65);
+    case Labels::YELLOW: return QColor(245, 228, 68);
+    case Labels::GREEN: return QColor(182, 223, 55);
+    case Labels::BLUE: return QColor(132, 201, 253);
+    case Labels::PURPLE: return QColor(226, 167, 253);
+    case Labels::GREY: return QColor(200, 200, 200);
     case Labels::NO_LABEL:
-    default: return QColor(0, 0, 0, 0); break;
+    default: return QColor(0, 0, 0, 0);
     }
 }
 
