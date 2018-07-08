@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "renamer/Renamer.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
@@ -64,12 +65,12 @@ public:
     bool usePlotForOutline();
     template<typename T>
     QList<T> scraperInfos(MainWidgets widget, QString scraperId);
-    void renamePatterns(int renameType,
+    void renamePatterns(Renamer::RenameType renameType,
         QString &fileNamePattern,
         QString &fileNamePatternMulti,
         QString &directoryPattern,
         QString &seasonPattern);
-    void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
+    void renamings(Renamer::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
@@ -139,12 +140,12 @@ public:
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items);
-    void setRenamePatterns(int renameType,
+    void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,
         QString directoryPattern,
         QString seasonPattern);
-    void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
+    void setRenamings(Renamer::RenameType renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);

@@ -58,7 +58,7 @@ private slots:
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onXbmcSyncFinished();
-    void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
+    void onFilesRenamed(Renamer::RenameType type = Renamer::RenameType::All);
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
     void updateTvShows();

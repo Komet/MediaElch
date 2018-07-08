@@ -118,7 +118,7 @@ int ImportDialog::execMovie(QString searchString)
     ui->stackedWidget->setCurrentIndex(0);
     ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString), id, "");
 
-    ui->placeholders->setType(Renamer::TypeMovies);
+    ui->placeholders->setType(Renamer::RenameType::Movies);
     ui->chkSeasonDirectories->setVisible(false);
     ui->labelUseSeasonDirectories->setVisible(false);
     ui->seasonNaming->setVisible(false);
@@ -126,7 +126,7 @@ int ImportDialog::execMovie(QString searchString)
     ui->labelDirectoryNaming->setVisible(m_separateFolders);
     ui->directoryNaming->setVisible(m_separateFolders);
 
-    setDefaults(Renamer::TypeMovies);
+    setDefaults(Renamer::RenameType::Movies);
 
     return exec();
 }
@@ -158,7 +158,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
 
     m_filesToMove.clear();
 
-    ui->placeholders->setType(Renamer::TypeTvShows);
+    ui->placeholders->setType(Renamer::RenameType::TvShows);
     ui->chkSeasonDirectories->setVisible(true);
     ui->labelUseSeasonDirectories->setVisible(true);
     ui->seasonNaming->setVisible(true);
@@ -168,7 +168,7 @@ int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
     ui->stackedWidget->setCurrentIndex(3);
     ui->tvShowSearchEpisode->search(tvShow->name(), tvShow->tvdbId());
 
-    setDefaults(Renamer::TypeTvShows);
+    setDefaults(Renamer::RenameType::TvShows);
 
     return exec();
 }
@@ -180,7 +180,7 @@ int ImportDialog::execConcert(QString searchString)
     ui->stackedWidget->setCurrentIndex(2);
     ui->concertSearchWidget->search(NameFormatter::instance()->formatName(searchString));
 
-    ui->placeholders->setType(Renamer::TypeConcerts);
+    ui->placeholders->setType(Renamer::RenameType::Concerts);
     ui->chkSeasonDirectories->setVisible(false);
     ui->labelUseSeasonDirectories->setVisible(false);
     ui->seasonNaming->setVisible(false);
@@ -188,12 +188,12 @@ int ImportDialog::execConcert(QString searchString)
     ui->labelDirectoryNaming->setVisible(m_separateFolders);
     ui->directoryNaming->setVisible(m_separateFolders);
 
-    setDefaults(Renamer::TypeConcerts);
+    setDefaults(Renamer::RenameType::Concerts);
 
     return exec();
 }
 
-void ImportDialog::setDefaults(int renameType)
+void ImportDialog::setDefaults(Renamer::RenameType renameType)
 {
     QString fileName;
     QString fileNameMulti;
@@ -213,13 +213,13 @@ void ImportDialog::setDefaults(int renameType)
 
 void ImportDialog::storeDefaults()
 {
-    int renameType;
+    Renamer::RenameType renameType;
     if (m_type == "movie") {
-        renameType = Renamer::TypeMovies;
+        renameType = Renamer::RenameType::Movies;
     } else if (m_type == "tvshow") {
-        renameType = Renamer::TypeTvShows;
+        renameType = Renamer::RenameType::TvShows;
     } else if (m_type == "concert") {
-        renameType = Renamer::TypeConcerts;
+        renameType = Renamer::RenameType::Concerts;
     } else {
         return;
     }

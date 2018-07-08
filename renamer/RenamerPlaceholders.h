@@ -1,6 +1,8 @@
 #ifndef RENAMERPLACEHOLDERS_H
 #define RENAMERPLACEHOLDERS_H
 
+#include "renamer/Renamer.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -14,7 +16,7 @@ class RenamerPlaceholders : public QWidget
 public:
     explicit RenamerPlaceholders(QWidget *parent = nullptr);
     ~RenamerPlaceholders() override;
-    void setType(int renameType);
+    void setType(Renamer::RenameType renameType);
 
 private:
     Ui::RenamerPlaceholders *ui;

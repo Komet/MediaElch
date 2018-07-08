@@ -19,23 +19,23 @@ class Renamer : public QDialog
     Q_OBJECT
 
 public:
-    enum RenameType
+    enum class RenameType
     {
-        TypeMovies,
-        TypeTvShows,
-        TypeConcerts,
-        TypeAll
+        Movies,
+        TvShows,
+        Concerts,
+        All
     };
-    enum RenameResult
+    enum class RenameResult
     {
-        RenameFailed,
-        RenameSuccess
+        Failed,
+        Success
     };
-    enum RenameOperation
+    enum class RenameOperation
     {
-        OperationCreateDir,
-        OperationMove,
-        OperationRename
+        CreateDir,
+        Move,
+        Rename
     };
 
     explicit Renamer(QWidget *parent = nullptr);
@@ -49,6 +49,8 @@ public:
     static QString replace(QString &text, const QString &search, const QString &replace);
     static QString replaceCondition(QString &text, const QString &condition, const QString &replace);
     static QString replaceCondition(QString &text, const QString &condition, bool hasCondition);
+
+    static QString typeToString(RenameType type);
 
     bool renameErrorOccured() const;
 

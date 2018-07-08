@@ -13,16 +13,17 @@ RenamerPlaceholders::~RenamerPlaceholders()
     delete ui;
 }
 
-void RenamerPlaceholders::setType(int renameType)
+void RenamerPlaceholders::setType(Renamer::RenameType renameType)
 {
-    foreach (QLabel *label, ui->groupBox->findChildren<QLabel *>()) {
-        if (label->property("itemTypes").toStringList().isEmpty()) {
+    using Type = Renamer::RenameType;
+
+    for (const auto label : ui->groupBox->findChildren<QLabel *>()) {
+        const auto itemTypes = label->property("itemTypes").toStringList();
+        if (itemTypes.isEmpty()) {
             continue;
         }
-        label->setVisible(
-            (renameType == Renamer::TypeMovies && label->property("itemTypes").toStringList().contains("movie"))
-            || (renameType == Renamer::TypeTvShows && label->property("itemTypes").toStringList().contains("tvshow"))
-            || (renameType == Renamer::TypeConcerts
-                   && label->property("itemTypes").toStringList().contains("concert")));
+        label->setVisible((renameType == Type::Movies && itemTypes.contains("movie"))
+                          || (renameType == Type::TvShows && itemTypes.contains("tvshow"))
+                          || (renameType == Type::Concerts && itemTypes.contains("concert")));
     }
 }
