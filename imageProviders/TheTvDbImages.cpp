@@ -9,9 +9,13 @@
 TheTvDbImages::TheTvDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::TvShowPoster << ImageType::TvShowBackdrop << ImageType::TvShowBanner
-               << ImageType::TvShowSeasonPoster << ImageType::TvShowEpisodeThumb << ImageType::TvShowSeasonBanner
-               << ImageType::TvShowSeasonBackdrop;
+    m_provides = {ImageType::TvShowPoster,
+        ImageType::TvShowBackdrop,
+        ImageType::TvShowBanner,
+        ImageType::TvShowSeasonPoster,
+        ImageType::TvShowEpisodeThumb,
+        ImageType::TvShowSeasonBanner,
+        ImageType::TvShowSeasonBackdrop};
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_tvdb = new TheTvDb(this);
@@ -47,7 +51,7 @@ QString TheTvDbImages::identifier()
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<int> TheTvDbImages::provides()
+QList<ImageType> TheTvDbImages::provides()
 {
     return m_provides;
 }
@@ -104,12 +108,12 @@ void TheTvDbImages::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param type
  */
-void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
+void TheTvDbImages::loadTvShowData(QString tvdbId, ImageType type)
 {
     m_currentType = type;
     m_dummyShow->clear();
 
-    QList<int> infosToLoad;
+    QList<TvShowScraperInfos> infosToLoad;
     infosToLoad.append(TvShowScraperInfos::Thumbnail);
     infosToLoad.append(TvShowScraperInfos::Banner);
     infosToLoad.append(TvShowScraperInfos::Fanart);
@@ -161,7 +165,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
  * @param tvdbId
  * @param types
  */
-void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -234,7 +238,7 @@ void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -308,7 +312,7 @@ void TheTvDbImages::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+void TheTvDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -456,14 +460,14 @@ void TheTvDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistImages(Artist *artist, QString mbId, QList<int> types)
+void TheTvDbImages::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::albumImages(Album *album, QString mbId, QList<int> types)
+void TheTvDbImages::albumImages(Album *album, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

@@ -22,7 +22,7 @@ public slots:
     void search(QString searchString);
     int scraperNo();
     QString scraperId();
-    QList<int> infosToLoad();
+    QList<ConcertScraperInfos> infosToLoad();
 
 signals:
     void sigResultClicked();
@@ -38,10 +38,10 @@ private:
     Ui::ConcertSearchWidget *ui;
     int m_scraperNo;
     QString m_scraperId;
-    QList<int> m_infosToLoad;
+    QList<ConcertScraperInfos> m_infosToLoad;
 
     void clear();
-    void setChkBoxesEnabled(QList<int> scraperSupports);
+    void setChkBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
 };
 
 #endif // CONCERTSEARCHWIDGET_H

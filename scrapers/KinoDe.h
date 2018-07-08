@@ -19,12 +19,12 @@ public:
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
-    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos) override;
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
-    QList<int> scraperSupports() override;
-    QList<int> scraperNativelySupports() override;
+    QList<MovieScraperInfos> scraperSupports() override;
+    QList<MovieScraperInfos> scraperNativelySupports() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 
@@ -37,14 +37,14 @@ private slots:
 
 private:
     QList<ScraperSearchResult> parseSearch(const QString &html);
-    void parseAndAssignInfos(const QString &html, Movie &movie, const QList<int> &infos);
-    void parseAndAssignActors(const QString &html, Movie &movie, const QList<int> &infos);
-    void parseAndAssignImages(const QString &html, Movie &movie, const QList<int> &infos);
+    void parseAndAssignInfos(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos);
+    void parseAndAssignActors(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos);
+    void parseAndAssignImages(const QString &html, Movie &movie, const QList<MovieScraperInfos> &infos);
     void parsePoster(const QString &html, Movie &movie);
     void parseBackdrops(const QString &html, Movie &movie);
 
     QNetworkAccessManager m_qnam;
-    QList<int> m_scraperSupports;
+    QList<MovieScraperInfos> m_scraperSupports;
 };
 
 #endif // CINEFACTS_H

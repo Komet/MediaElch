@@ -439,9 +439,9 @@ void MovieWidget::setMovie(Movie *movie)
         &MovieWidget::onDownloadProgress,
         Qt::UniqueConnection);
     connect(m_movie->controller(),
-        SIGNAL(sigLoadingImages(Movie *, QList<int>)),
+        &MovieController::sigLoadingImages,
         this,
-        SLOT(onLoadingImages(Movie *, QList<int>)),
+        &MovieWidget::onLoadingImages,
         Qt::UniqueConnection);
     connect(m_movie->controller(),
         &MovieController::sigLoadImagesStarted,
@@ -476,10 +476,10 @@ void MovieWidget::startScraperSearch()
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<ScraperInterface *, QString> ids;
-        QList<int> infosToLoad;
+        QList<MovieScraperInfos> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();
-            infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
+            infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
         } else {
             ids.insert(0, MovieSearch::instance()->scraperMovieId());
             infosToLoad = MovieSearch::instance()->infosToLoad();
@@ -519,13 +519,13 @@ void MovieWidget::onLoadImagesStarted(Movie *movie)
     emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId + movie->movieId());
 }
 
-void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
+void MovieWidget::onLoadingImages(Movie *movie, QList<ImageType> imageTypes)
 {
     if (movie != m_movie) {
         return;
     }
 
-    foreach (const int &imageType, imageTypes) {
+    for (const auto imageType : imageTypes) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
@@ -539,7 +539,7 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
     ui->groupBox_3->update();
 }
 
-void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
+void MovieWidget::onSetImage(Movie *movie, ImageType type, QByteArray data)
 {
     if (movie != m_movie) {
         return;
@@ -550,7 +550,7 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -695,9 +695,13 @@ void MovieWidget::updateMovieInfo()
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
 
-    updateImages(QList<int>() << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo
-                              << ImageType::MovieCdArt << ImageType::MovieClearArt << ImageType::MovieBanner
-                              << ImageType::MovieThumb);
+    updateImages({ImageType::MoviePoster,
+        ImageType::MovieBackdrop,
+        ImageType::MovieLogo,
+        ImageType::MovieCdArt,
+        ImageType::MovieClearArt,
+        ImageType::MovieBanner,
+        ImageType::MovieThumb});
 
     ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
@@ -718,10 +722,10 @@ void MovieWidget::updateMovieInfo()
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
-void MovieWidget::updateImages(QList<int> images)
+void MovieWidget::updateImages(QList<ImageType> images)
 {
-    foreach (const int &imageType, images) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (const auto imageType : images) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -730,7 +734,7 @@ void MovieWidget::updateImages(QList<int> images)
     }
 }
 
-void MovieWidget::updateImage(const int &imageType, ClosableImage *image)
+void MovieWidget::updateImage(ImageType imageType, ClosableImage *image)
 {
     if (!m_movie->image(imageType).isNull()) {
         image->setImage(m_movie->image(imageType));
@@ -1592,7 +1596,7 @@ void MovieWidget::onChooseImage()
     }
 }
 
-void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
+void MovieWidget::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_movie) {
         return;
@@ -1614,6 +1618,6 @@ void MovieWidget::onDeleteImage()
     }
 
     m_movie->removeImage(image->imageType());
-    updateImages(QList<int>() << image->imageType());
+    updateImages({image->imageType()});
     ui->buttonRevert->setVisible(true);
 }

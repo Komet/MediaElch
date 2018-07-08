@@ -52,11 +52,11 @@ private slots:
     void onAddActor();
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
+    void onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>> posters);
 
     void onChooseImage();
     void onDeleteImage();
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
 
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
@@ -96,7 +96,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    void updateImages(QList<int> images);
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // TVSHOWWIDGETTVSHOW_H

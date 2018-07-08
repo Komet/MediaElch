@@ -10,8 +10,10 @@
 TMDbImages::TMDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::ConcertBackdrop
-               << ImageType::ConcertPoster;
+    m_provides = {ImageType::MovieBackdrop, //
+        ImageType::MoviePoster,             //
+        ImageType::ConcertBackdrop,         //
+        ImageType::ConcertPoster};
     m_searchResultLimit = 0;
     m_tmdb = new TMDb(this);
     m_dummyMovie = new Movie(QStringList(), this);
@@ -45,7 +47,7 @@ QString TMDbImages::identifier()
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<int> TMDbImages::provides()
+QList<ImageType> TMDbImages::provides()
 {
     return m_provides;
 }
@@ -97,7 +99,7 @@ void TMDbImages::moviePosters(QString tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
-    QList<int> infos;
+    QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
     QMap<ScraperInterface *, QString> ids;
     ids.insert(0, tmdbId);
@@ -112,7 +114,7 @@ void TMDbImages::movieBackdrops(QString tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
-    QList<int> infos;
+    QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
     QMap<ScraperInterface *, QString> ids;
     ids.insert(0, tmdbId);
@@ -158,7 +160,7 @@ void TMDbImages::onLoadImagesFinished()
  * @param tmdbId
  * @param types
  */
-void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -208,7 +210,7 @@ void TMDbImages::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void TMDbImages::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+void TMDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -259,7 +261,7 @@ void TMDbImages::searchTvShow(QString searchStr, int limit)
  * @param tvdbId
  * @param types
  */
-void TMDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+void TMDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -425,14 +427,14 @@ void TMDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistImages(Artist *artist, QString mbId, QList<int> types)
+void TMDbImages::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TMDbImages::albumImages(Album *album, QString mbId, QList<int> types)
+void TMDbImages::albumImages(Album *album, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

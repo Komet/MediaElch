@@ -152,7 +152,7 @@ QNetworkAccessManager *TMDbConcerts::qnam()
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QList<int> TMDbConcerts::scraperSupports()
+QList<ConcertScraperInfos> TMDbConcerts::scraperSupports()
 {
     return m_scraperSupports;
 }
@@ -361,7 +361,7 @@ QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPage
  * @see TMDbConcerts::loadImagesFinished
  * @see TMDbConcerts::loadReleasesFinished
  */
-void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
+void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
@@ -432,7 +432,7 @@ void TMDbConcerts::loadFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -455,7 +455,7 @@ void TMDbConcerts::loadTrailersFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -478,7 +478,7 @@ void TMDbConcerts::loadImagesFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -501,7 +501,7 @@ void TMDbConcerts::loadReleasesFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -523,7 +523,7 @@ void TMDbConcerts::loadReleasesFinished()
  * @param concert Concert object
  * @param infos List of infos to load
  */
-void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int> infos)
+void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered";
     QJsonParseError parseError;

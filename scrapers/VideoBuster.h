@@ -19,12 +19,12 @@ public:
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
-    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos) override;
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
-    QList<int> scraperSupports() override;
-    QList<int> scraperNativelySupports() override;
+    QList<MovieScraperInfos> scraperSupports() override;
+    QList<MovieScraperInfos> scraperNativelySupports() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 
@@ -37,11 +37,11 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QList<int> m_scraperSupports;
+    QList<MovieScraperInfos> m_scraperSupports;
 
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
+    void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
     QString replaceEntities(const QString msg);
 };
 

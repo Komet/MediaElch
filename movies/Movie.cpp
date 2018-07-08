@@ -70,7 +70,7 @@ MovieController *Movie::controller() const
  */
 void Movie::clear()
 {
-    QList<int> infos;
+    QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Title         //
           << MovieScraperInfos::Set           //
           << MovieScraperInfos::Tagline       //
@@ -103,7 +103,7 @@ void Movie::clear()
  * @brief Clears contents of the movie based on a list
  * @param infos List of infos which should be cleared
  */
-void Movie::clear(QList<int> infos)
+void Movie::clear(QList<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
         m_actors.clear();
@@ -1373,12 +1373,12 @@ bool Movie::hasExtraFanarts() const
     return m_hasExtraFanarts;
 }
 
-QList<int> Movie::imagesToRemove() const
+QList<ImageType> Movie::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Movie::removeImage(int type)
+void Movie::removeImage(ImageType type)
 {
     if (!m_images.value(type, QByteArray()).isNull()) {
         m_images.remove(type);
@@ -1389,27 +1389,27 @@ void Movie::removeImage(int type)
     setChanged(true);
 }
 
-QByteArray Movie::image(int imageType) const
+QByteArray Movie::image(ImageType imageType) const
 {
     return m_images.value(imageType, QByteArray());
 }
 
-bool Movie::imageHasChanged(int imageType)
+bool Movie::imageHasChanged(ImageType imageType)
 {
     return m_hasImageChanged.value(imageType, false);
 }
 
-bool Movie::hasImage(int imageType) const
+bool Movie::hasImage(ImageType imageType) const
 {
     return m_hasImage.value(imageType, false);
 }
 
-void Movie::setHasImage(int imageType, bool has)
+void Movie::setHasImage(ImageType imageType, bool has)
 {
     m_hasImage.insert(imageType, has);
 }
 
-void Movie::setImage(int imageType, QByteArray image)
+void Movie::setImage(ImageType imageType, QByteArray image)
 {
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
@@ -1423,15 +1423,15 @@ bool Movie::lessThan(Movie *a, Movie *b)
             < 0);
 }
 
-QList<int> Movie::imageTypes()
+QList<ImageType> Movie::imageTypes()
 {
-    return QList<int>() << ImageType::MoviePoster   //
-                        << ImageType::MovieBanner   //
-                        << ImageType::MovieCdArt    //
-                        << ImageType::MovieClearArt //
-                        << ImageType::MovieLogo     //
-                        << ImageType::MovieThumb    //
-                        << ImageType::MovieBackdrop;
+    return {ImageType::MoviePoster,
+        ImageType::MovieBanner,
+        ImageType::MovieCdArt,
+        ImageType::MovieClearArt,
+        ImageType::MovieLogo,
+        ImageType::MovieThumb,
+        ImageType::MovieBackdrop};
 }
 
 QList<Subtitle *> Movie::subtitles() const

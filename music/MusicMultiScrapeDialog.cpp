@@ -20,30 +20,30 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
     m_currentArtist = nullptr;
     m_currentAlbum = nullptr;
 
-    ui->chkName->setMyData(MusicScraperInfos::Name);
-    ui->chkBorn->setMyData(MusicScraperInfos::Born);
-    ui->chkFormed->setMyData(MusicScraperInfos::Formed);
-    ui->chkYearsActive->setMyData(MusicScraperInfos::YearsActive);
-    ui->chkDisbanded->setMyData(MusicScraperInfos::Disbanded);
-    ui->chkDied->setMyData(MusicScraperInfos::Died);
-    ui->chkBiography->setMyData(MusicScraperInfos::Biography);
-    ui->chkArtist->setMyData(MusicScraperInfos::Artist);
-    ui->chkLabel->setMyData(MusicScraperInfos::Label);
-    ui->chkReview->setMyData(MusicScraperInfos::Review);
-    ui->chkYear->setMyData(MusicScraperInfos::Year);
-    ui->chkRating->setMyData(MusicScraperInfos::Rating);
-    ui->chkReleaseDate->setMyData(MusicScraperInfos::ReleaseDate);
-    ui->chkTitle->setMyData(MusicScraperInfos::Title);
-    ui->chkGenres->setMyData(MusicScraperInfos::Genres);
-    ui->chkStyles->setMyData(MusicScraperInfos::Styles);
-    ui->chkMoods->setMyData(MusicScraperInfos::Moods);
-    ui->chkThumbnail->setMyData(MusicScraperInfos::Thumb);
-    ui->chkFanart->setMyData(MusicScraperInfos::Fanart);
-    ui->chkExtraFanarts->setMyData(MusicScraperInfos::ExtraFanarts);
-    ui->chkLogo->setMyData(MusicScraperInfos::Logo);
-    ui->chkCover->setMyData(MusicScraperInfos::Cover);
-    ui->chkCdArt->setMyData(MusicScraperInfos::CdArt);
-    ui->chkDiscography->setMyData(MusicScraperInfos::Discography);
+    ui->chkName->setMyData(static_cast<int>(MusicScraperInfos::Name));
+    ui->chkBorn->setMyData(static_cast<int>(MusicScraperInfos::Born));
+    ui->chkFormed->setMyData(static_cast<int>(MusicScraperInfos::Formed));
+    ui->chkYearsActive->setMyData(static_cast<int>(MusicScraperInfos::YearsActive));
+    ui->chkDisbanded->setMyData(static_cast<int>(MusicScraperInfos::Disbanded));
+    ui->chkDied->setMyData(static_cast<int>(MusicScraperInfos::Died));
+    ui->chkBiography->setMyData(static_cast<int>(MusicScraperInfos::Biography));
+    ui->chkArtist->setMyData(static_cast<int>(MusicScraperInfos::Artist));
+    ui->chkLabel->setMyData(static_cast<int>(MusicScraperInfos::Label));
+    ui->chkReview->setMyData(static_cast<int>(MusicScraperInfos::Review));
+    ui->chkYear->setMyData(static_cast<int>(MusicScraperInfos::Year));
+    ui->chkRating->setMyData(static_cast<int>(MusicScraperInfos::Rating));
+    ui->chkReleaseDate->setMyData(static_cast<int>(MusicScraperInfos::ReleaseDate));
+    ui->chkTitle->setMyData(static_cast<int>(MusicScraperInfos::Title));
+    ui->chkGenres->setMyData(static_cast<int>(MusicScraperInfos::Genres));
+    ui->chkStyles->setMyData(static_cast<int>(MusicScraperInfos::Styles));
+    ui->chkMoods->setMyData(static_cast<int>(MusicScraperInfos::Moods));
+    ui->chkThumbnail->setMyData(static_cast<int>(MusicScraperInfos::Thumb));
+    ui->chkFanart->setMyData(static_cast<int>(MusicScraperInfos::Fanart));
+    ui->chkExtraFanarts->setMyData(static_cast<int>(MusicScraperInfos::ExtraFanarts));
+    ui->chkLogo->setMyData(static_cast<int>(MusicScraperInfos::Logo));
+    ui->chkCover->setMyData(static_cast<int>(MusicScraperInfos::Cover));
+    ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfos::CdArt));
+    ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfos::Discography));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
@@ -79,10 +79,10 @@ void MusicMultiScrapeDialog::onChkToggled()
             continue;
         }
         if (box->property("type").toString() == "artist" || box->property("type").toString() == "both") {
-            m_artistInfosToLoad.append(box->myData().toInt());
+            m_artistInfosToLoad.append(MusicScraperInfos(box->myData().toInt()));
         }
         if (box->property("type").toString() == "album" || box->property("type").toString() == "both") {
-            m_albumInfosToLoad.append(box->myData().toInt());
+            m_albumInfosToLoad.append(MusicScraperInfos(box->myData().toInt()));
         }
     }
     ui->chkUnCheckAll->setChecked(allToggled);

@@ -47,7 +47,7 @@ public:
     QList<ConcertScraperInterface *> concertScrapers();
     QList<MusicScraperInterface *> musicScrapers();
     QList<ImageProviderInterface *> imageProviders();
-    QList<ImageProviderInterface *> imageProviders(int type);
+    QList<ImageProviderInterface *> imageProviders(ImageType type);
     QList<TrailerProvider *> trailerProviders();
     MediaCenterInterface *mediaCenterInterface();
     MediaCenterInterface *mediaCenterInterfaceTvShow();

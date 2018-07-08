@@ -44,7 +44,7 @@ private slots:
     void scrapeNext();
     void onInfoLoadDone(TvShow *show);
     void onEpisodeLoadDone();
-    void onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters);
+    void onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished();
     void onChkDvdOrderToggled();
@@ -54,7 +54,7 @@ private:
     QList<TvShow *> m_shows;
     QList<TvShowEpisode *> m_episodes;
     bool m_executed;
-    QList<int> m_infosToLoad;
+    QList<TvShowScraperInfos> m_infosToLoad;
     QQueue<TvShow *> m_showQueue;
     QQueue<TvShowEpisode *> m_episodeQueue;
     QPointer<TvShow> m_currentShow;
@@ -64,9 +64,9 @@ private:
     QMap<QString, QString> m_showIds;
 
     void setChkBoxesEnabled();
-    void addDownload(int imageType, QUrl url, TvShow *show, int season = -1);
-    void addDownload(int imageType, QUrl url, TvShow *show, Actor *actor);
-    void addDownload(int imageType, QUrl url, TvShowEpisode *episode);
+    void addDownload(ImageType imageType, QUrl url, TvShow *show, int season = -1);
+    void addDownload(ImageType imageType, QUrl url, TvShow *show, Actor *actor);
+    void addDownload(ImageType imageType, QUrl url, TvShowEpisode *episode);
 };
 
 #endif // TVSHOWMULTISCRAPEDIALOG_H

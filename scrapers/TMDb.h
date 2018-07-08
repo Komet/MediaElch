@@ -23,12 +23,12 @@ public:
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
-    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos) override;
+    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
-    QList<int> scraperSupports() override;
-    QList<int> scraperNativelySupports() override;
+    QList<MovieScraperInfos> scraperSupports() override;
+    QList<MovieScraperInfos> scraperNativelySupports() override;
     QWidget *settingsWidget() override;
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();
@@ -51,8 +51,8 @@ private:
     QLocale m_locale;
     QString m_baseUrl;
     QMutex m_mutex;
-    QList<int> m_scraperSupports;
-    QList<int> m_scraperNativelySupports;
+    QList<MovieScraperInfos> m_scraperSupports;
+    QList<MovieScraperInfos> m_scraperNativelySupports;
     QWidget *m_widget;
     QComboBox *m_box;
 
@@ -81,7 +81,7 @@ private:
     QUrl getMovieUrl(const QString &title,
         ApiMovieDetails type,
         const UrlParameterMap &parameters = UrlParameterMap{}) const;
-    void parseAndAssignInfos(QString json, Movie *movie, QList<int> infos);
+    void parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInfos> infos);
 };
 
 #endif // TMDB_H

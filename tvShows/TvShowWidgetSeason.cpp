@@ -111,8 +111,10 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season));
 
-    updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop
-                              << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
+    updateImages(QList<ImageType>{ImageType::TvShowSeasonPoster,
+        ImageType::TvShowSeasonBackdrop,
+        ImageType::TvShowSeasonBanner,
+        ImageType::TvShowSeasonThumb});
 
     ui->missingLabel->setVisible(m_show->isDummySeason(m_season));
     if (m_show->isDummySeason(m_season)) {
@@ -125,9 +127,9 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), MainWidgets::TvShows);
 }
 
-void TvShowWidgetSeason::updateImages(QList<int> images)
+void TvShowWidgetSeason::updateImages(QList<ImageType> images)
 {
-    foreach (const int &imageType, images) {
+    for (const auto imageType : images) {
         ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
@@ -266,10 +268,10 @@ void TvShowWidgetSeason::onDeleteImage()
     }
 
     m_show->removeImage(image->imageType(), m_season);
-    updateImages(QList<int>() << image->imageType());
+    updateImages({image->imageType()});
 }
 
-void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
+void TvShowWidgetSeason::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_show) {
         return;

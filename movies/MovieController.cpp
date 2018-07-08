@@ -145,11 +145,12 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
  */
 void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
     ScraperInterface *scraperInterface,
-    QList<int> infos)
+    QList<MovieScraperInfos> infos)
 {
     m_infosToLoad = infos;
     if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(ids.values().first());
+
     } else if (scraperInterface->identifier() == "imdb"
                || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))) {
         m_movie->setId(ids.values().first());
@@ -172,12 +173,12 @@ void MovieController::loadStreamDetailsFromFile()
  * @brief Movie::infosToLoad
  * @return
  */
-QList<int> MovieController::infosToLoad()
+QList<MovieScraperInfos> MovieController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieController::setInfosToLoad(QList<int> infos)
+void MovieController::setInfosToLoad(QList<MovieScraperInfos> infos)
 {
     m_infosToLoad = infos;
 }
@@ -202,11 +203,11 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     emit sigInfoLoadDone(m_movie);
 
     if (!scraper) {
-        onFanartLoadDone(m_movie, QMap<int, QList<Poster>>());
+        onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
         return;
     }
 
-    QList<int> images;
+    QList<ImageType> images;
     ScraperInterface *sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
@@ -215,7 +216,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if (infosToLoad().contains(MovieScraperInfos::Backdrop)
         && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Backdrop))) {
         images << ImageType::MovieBackdrop;
-        m_movie->clear(QList<int>() << MovieScraperInfos::Backdrop);
+        m_movie->clear({MovieScraperInfos::Backdrop});
     }
 
     scraper = (property("isCustomScraper").toBool())
@@ -224,7 +225,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if (infosToLoad().contains(MovieScraperInfos::Poster)
         && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Poster))) {
         images << ImageType::MoviePoster;
-        m_movie->clear(QList<int>() << MovieScraperInfos::Poster);
+        m_movie->clear({MovieScraperInfos::Poster});
     }
 
     scraper = (property("isCustomScraper").toBool())
@@ -233,7 +234,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if (infosToLoad().contains(MovieScraperInfos::ClearArt)
         && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::ClearArt))) {
         images << ImageType::MovieClearArt;
-        m_movie->clear(QList<int>() << MovieScraperInfos::ClearArt);
+        m_movie->clear({MovieScraperInfos::ClearArt});
     }
 
     scraper = (property("isCustomScraper").toBool())
@@ -242,7 +243,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if (infosToLoad().contains(MovieScraperInfos::CdArt)
         && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::CdArt))) {
         images << ImageType::MovieCdArt;
-        m_movie->clear(QList<int>() << MovieScraperInfos::CdArt);
+        m_movie->clear({MovieScraperInfos::CdArt});
     }
 
     scraper = (property("isCustomScraper").toBool())
@@ -251,7 +252,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if (infosToLoad().contains(MovieScraperInfos::Logo)
         && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Logo))) {
         images << ImageType::MovieLogo;
-        m_movie->clear(QList<int>() << MovieScraperInfos::Logo);
+        m_movie->clear({MovieScraperInfos::Logo});
     }
     if (infosToLoad().contains(MovieScraperInfos::Banner)) {
         images << ImageType::MovieBanner;
@@ -262,18 +263,18 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
 
     if (!images.isEmpty() && (!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty())) {
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Movie *, QMap<int, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(Movie *, QMap<ImageType, QList<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Movie *, QMap<int, QList<Poster>>)),
+            SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(
             m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), images);
     } else {
-        onFanartLoadDone(m_movie, QMap<int, QList<Poster>>());
+        onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
     }
 }
 
-void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> posters)
+void MovieController::onFanartLoadDone(Movie *movie, QMap<ImageType, QList<Poster>> posters)
 {
     if (movie != m_movie) {
         return;
@@ -317,8 +318,8 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster>> po
         }
     }
 
-    QList<int> imageTypes;
-    QMapIterator<int, QList<Poster>> it(posters);
+    QList<ImageType> imageTypes;
+    QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty()) {
@@ -381,24 +382,24 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     }
 }
 
-void MovieController::loadImage(int type, QUrl url)
+void MovieController::loadImage(ImageType type, QUrl url)
 {
     DownloadManagerElement d;
     d.movie = m_movie;
     d.imageType = type;
     d.url = url;
-    emit sigLoadingImages(m_movie, QList<int>() << type);
+    emit sigLoadingImages(m_movie, {type});
     m_downloadManager->addDownload(d);
 }
 
-void MovieController::loadImages(int type, QList<QUrl> urls)
+void MovieController::loadImages(ImageType type, QList<QUrl> urls)
 {
-    foreach (const QUrl &url, urls) {
+    for (const auto &url : urls) {
         DownloadManagerElement d;
         d.movie = m_movie;
         d.imageType = type;
         d.url = url;
-        emit sigLoadingImages(m_movie, QList<int>() << type);
+        emit sigLoadingImages(m_movie, {type});
         m_downloadManager->addDownload(d);
     }
 }

@@ -133,41 +133,41 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ui->chkEnableAdultScrapers, &QAbstractButton::clicked, this, &SettingsWindow::onShowAdultScrapers);
     // clang-format on
 
-    ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
-    ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
-    ui->movieBackdrop->setProperty("dataFileType", DataFileType::MovieBackdrop);
-    ui->movieCdArt->setProperty("dataFileType", DataFileType::MovieCdArt);
-    ui->movieClearArt->setProperty("dataFileType", DataFileType::MovieClearArt);
-    ui->movieLogo->setProperty("dataFileType", DataFileType::MovieLogo);
-    ui->movieBanner->setProperty("dataFileType", DataFileType::MovieBanner);
-    ui->movieThumb->setProperty("dataFileType", DataFileType::MovieThumb);
-    ui->movieSetPosterFileName->setProperty("dataFileType", DataFileType::MovieSetPoster);
-    ui->movieSetFanartFileName->setProperty("dataFileType", DataFileType::MovieSetBackdrop);
-    ui->showBackdrop->setProperty("dataFileType", DataFileType::TvShowBackdrop);
-    ui->showBanner->setProperty("dataFileType", DataFileType::TvShowBanner);
-    ui->showCharacterArt->setProperty("dataFileType", DataFileType::TvShowCharacterArt);
-    ui->showClearArt->setProperty("dataFileType", DataFileType::TvShowClearArt);
-    ui->showEpisodeNfo->setProperty("dataFileType", DataFileType::TvShowEpisodeNfo);
-    ui->showEpisodeThumbnail->setProperty("dataFileType", DataFileType::TvShowEpisodeThumb);
-    ui->showLogo->setProperty("dataFileType", DataFileType::TvShowLogo);
-    ui->showThumb->setProperty("dataFileType", DataFileType::TvShowThumb);
-    ui->showNfo->setProperty("dataFileType", DataFileType::TvShowNfo);
-    ui->showPoster->setProperty("dataFileType", DataFileType::TvShowPoster);
-    ui->showSeasonBackdrop->setProperty("dataFileType", DataFileType::TvShowSeasonBackdrop);
-    ui->showSeasonBanner->setProperty("dataFileType", DataFileType::TvShowSeasonBanner);
-    ui->showSeasonPoster->setProperty("dataFileType", DataFileType::TvShowSeasonPoster);
-    ui->showSeasonThumb->setProperty("dataFileType", DataFileType::TvShowSeasonThumb);
-    ui->concertNfo->setProperty("dataFileType", DataFileType::ConcertNfo);
-    ui->concertPoster->setProperty("dataFileType", DataFileType::ConcertPoster);
-    ui->concertBackdrop->setProperty("dataFileType", DataFileType::ConcertBackdrop);
-    ui->concertLogo->setProperty("dataFileType", DataFileType::ConcertLogo);
-    ui->concertClearArt->setProperty("dataFileType", DataFileType::ConcertClearArt);
-    ui->concertDiscArt->setProperty("dataFileType", DataFileType::ConcertCdArt);
-    ui->artistFanart->setProperty("dataFileType", DataFileType::ArtistFanart);
-    ui->artistLogo->setProperty("dataFileType", DataFileType::ArtistLogo);
-    ui->artistThumb->setProperty("dataFileType", DataFileType::ArtistThumb);
-    ui->albumThumb->setProperty("dataFileType", DataFileType::AlbumThumb);
-    ui->albumDiscArt->setProperty("dataFileType", DataFileType::AlbumCdArt);
+    ui->movieNfo->setProperty("dataFileType", static_cast<int>(DataFileType::MovieNfo));
+    ui->moviePoster->setProperty("dataFileType", static_cast<int>(DataFileType::MoviePoster));
+    ui->movieBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::MovieBackdrop));
+    ui->movieCdArt->setProperty("dataFileType", static_cast<int>(DataFileType::MovieCdArt));
+    ui->movieClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::MovieClearArt));
+    ui->movieLogo->setProperty("dataFileType", static_cast<int>(DataFileType::MovieLogo));
+    ui->movieBanner->setProperty("dataFileType", static_cast<int>(DataFileType::MovieBanner));
+    ui->movieThumb->setProperty("dataFileType", static_cast<int>(DataFileType::MovieThumb));
+    ui->movieSetPosterFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetPoster));
+    ui->movieSetFanartFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetBackdrop));
+    ui->showBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowBackdrop));
+    ui->showBanner->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowBanner));
+    ui->showCharacterArt->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowCharacterArt));
+    ui->showClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowClearArt));
+    ui->showEpisodeNfo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowEpisodeNfo));
+    ui->showEpisodeThumbnail->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowEpisodeThumb));
+    ui->showLogo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowLogo));
+    ui->showThumb->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowThumb));
+    ui->showNfo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowNfo));
+    ui->showPoster->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowPoster));
+    ui->showSeasonBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonBackdrop));
+    ui->showSeasonBanner->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonBanner));
+    ui->showSeasonPoster->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonPoster));
+    ui->showSeasonThumb->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonThumb));
+    ui->concertNfo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertNfo));
+    ui->concertPoster->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertPoster));
+    ui->concertBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertBackdrop));
+    ui->concertLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertLogo));
+    ui->concertClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertClearArt));
+    ui->concertDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertCdArt));
+    ui->artistFanart->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistFanart));
+    ui->artistLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistLogo));
+    ui->artistThumb->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistThumb));
+    ui->albumThumb->setProperty("dataFileType", static_cast<int>(DataFileType::AlbumThumb));
+    ui->albumDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::AlbumCdArt));
 
 #ifdef Q_OS_MAC
     ui->btnCancel->setVisible(false);
@@ -341,11 +341,11 @@ void SettingsWindow::loadSettings()
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
     onComboMovieSetArtworkChanged();
 
-    foreach (QLineEdit *lineEdit, findChildren<QLineEdit *>()) {
+    for (auto lineEdit : findChildren<QLineEdit *>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
-        int dataFileType = lineEdit->property("dataFileType").toInt();
+        DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
         foreach (DataFile dataFile, dataFiles)
@@ -353,20 +353,33 @@ void SettingsWindow::loadSettings()
         lineEdit->setText(filenames.join(","));
     }
 
-    QList<int> infos =
-        QList<int>() << MovieScraperInfos::Title << MovieScraperInfos::Set << MovieScraperInfos::Tagline
-                     << MovieScraperInfos::Rating << MovieScraperInfos::Released << MovieScraperInfos::Runtime
-                     << MovieScraperInfos::Director << MovieScraperInfos::Writer << MovieScraperInfos::Certification
-                     << MovieScraperInfos::Trailer << MovieScraperInfos::Overview << MovieScraperInfos::Poster
-                     << MovieScraperInfos::Backdrop << MovieScraperInfos::Actors << MovieScraperInfos::Genres
-                     << MovieScraperInfos::Studios << MovieScraperInfos::Countries << MovieScraperInfos::Logo
-                     << MovieScraperInfos::ClearArt << MovieScraperInfos::CdArt << MovieScraperInfos::Banner
-                     << MovieScraperInfos::Thumb;
+    QList<MovieScraperInfos> infos = {MovieScraperInfos::Title,
+        MovieScraperInfos::Set,
+        MovieScraperInfos::Tagline,
+        MovieScraperInfos::Rating,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Director,
+        MovieScraperInfos::Writer,
+        MovieScraperInfos::Certification,
+        MovieScraperInfos::Trailer,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Countries,
+        MovieScraperInfos::Logo,
+        MovieScraperInfos::ClearArt,
+        MovieScraperInfos::CdArt,
+        MovieScraperInfos::Banner,
+        MovieScraperInfos::Thumb};
 
     ui->customScraperTable->clearContents();
     ui->customScraperTable->setRowCount(0);
 
-    foreach (const int &info, infos) {
+    for (const auto info : infos) {
         int row = ui->customScraperTable->rowCount();
         ui->customScraperTable->insertRow(row);
         ui->customScraperTable->setItem(row, 0, new QTableWidgetItem(titleForMovieScraperInfo(info)));
@@ -374,22 +387,22 @@ void SettingsWindow::loadSettings()
     }
 
 
-    QList<int> tvInfos = QList<int>() << TvShowScraperInfos::Title         //
-                                      << TvShowScraperInfos::Rating        //
-                                      << TvShowScraperInfos::FirstAired    //
-                                      << TvShowScraperInfos::Runtime       //
-                                      << TvShowScraperInfos::Director      //
-                                      << TvShowScraperInfos::Writer        //
-                                      << TvShowScraperInfos::Certification //
-                                      << TvShowScraperInfos::Overview      //
-                                      << TvShowScraperInfos::Genres        //
-                                      << TvShowScraperInfos::Tags          //
-                                      << TvShowScraperInfos::Actors;
+    QList<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
+        TvShowScraperInfos::Rating,
+        TvShowScraperInfos::FirstAired,
+        TvShowScraperInfos::Runtime,
+        TvShowScraperInfos::Director,
+        TvShowScraperInfos::Writer,
+        TvShowScraperInfos::Certification,
+        TvShowScraperInfos::Overview,
+        TvShowScraperInfos::Genres,
+        TvShowScraperInfos::Tags,
+        TvShowScraperInfos::Actors};
 
     ui->tvScraperTable->clearContents();
     ui->tvScraperTable->setRowCount(0);
 
-    foreach (const int &info, tvInfos) {
+    for (const auto info : tvInfos) {
         int row = ui->tvScraperTable->rowCount();
         ui->tvScraperTable->insertRow(row);
         ui->tvScraperTable->setItem(row, 0, new QTableWidgetItem(titleForTvScraperInfo(info)));
@@ -411,7 +424,7 @@ void SettingsWindow::saveSettings()
             continue;
         }
         int pos = 0;
-        int dataFileType = lineEdit->property("dataFileType").toInt();
+        DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
         foreach (const QString &filename, filenames) {
             DataFile df(dataFileType, filename.trimmed(), pos++);
@@ -482,20 +495,20 @@ void SettingsWindow::saveSettings()
     m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
 
     // Custom movie scraper
-    QMap<int, QString> customMovieScraper;
+    QMap<MovieScraperInfos, QString> customMovieScraper;
     for (int row = 0, n = ui->customScraperTable->rowCount(); row < n; ++row) {
         auto box = static_cast<QComboBox *>(ui->customScraperTable->cellWidget(row, 1));
-        int info = box->itemData(0, Qt::UserRole + 1).toInt();
+        MovieScraperInfos info = MovieScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         customMovieScraper.insert(info, scraper);
     }
     m_settings->setCustomMovieScraper(customMovieScraper);
 
     // tv scraper
-    QMap<int, QString> tvScraper;
+    QMap<TvShowScraperInfos, QString> tvScraper;
     for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
         auto box = static_cast<QComboBox *>(ui->tvScraperTable->cellWidget(row, 1));
-        int info = box->itemData(0, Qt::UserRole + 1).toInt();
+        TvShowScraperInfos info = TvShowScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         tvScraper.insert(info, scraper);
     }
@@ -723,7 +736,7 @@ void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool 
     }
 }
 
-QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
+QComboBox *SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info)
 {
     QString currentScraper = m_settings->customMovieScraper().value(info, "notset");
 
@@ -731,7 +744,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
     int index = 0;
     if (info != MovieScraperInfos::Title) {
         box->addItem(tr("Don't use"), "");
-        box->setItemData(0, info, Qt::UserRole + 1);
+        box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
         index = 1;
     }
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -740,7 +753,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
         }
         if (scraper->scraperNativelySupports().contains(info)) {
             box->addItem(scraper->name(), scraper->identifier());
-            box->setItemData(index, info, Qt::UserRole + 1);
+            box->setItemData(index, static_cast<int>(info), Qt::UserRole + 1);
             if (scraper->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
                 box->setCurrentIndex(index);
             }
@@ -748,15 +761,19 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
         }
     }
 
-    QList<int> images;
-    images << MovieScraperInfos::Backdrop << MovieScraperInfos::Logo << MovieScraperInfos::ClearArt
-           << MovieScraperInfos::CdArt << MovieScraperInfos::Banner << MovieScraperInfos::Thumb
-           << MovieScraperInfos::Poster;
+    QList<MovieScraperInfos> images{MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Logo,
+        MovieScraperInfos::ClearArt,
+        MovieScraperInfos::CdArt,
+        MovieScraperInfos::Banner,
+        MovieScraperInfos::Thumb,
+        MovieScraperInfos::Poster};
+
     if (images.contains(info)) {
-        foreach (ImageProviderInterface *img, Manager::instance()->imageProviders()) {
+        for (const auto img : Manager::instance()->imageProviders()) {
             if (img->identifier() == "images.fanarttv") {
                 box->addItem(img->name(), img->identifier());
-                box->setItemData(index, info, Qt::UserRole + 1);
+                box->setItemData(index, static_cast<int>(info), Qt::UserRole + 1);
                 if (img->identifier() == currentScraper || (currentScraper == "notset" && index == 1)) {
                     box->setCurrentIndex(index);
                 }
@@ -769,7 +786,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
     return box;
 }
 
-QString SettingsWindow::titleForMovieScraperInfo(const int &info)
+QString SettingsWindow::titleForMovieScraperInfo(MovieScraperInfos info)
 {
     switch (info) {
     case MovieScraperInfos::Title: return tr("Title");
@@ -799,16 +816,16 @@ QString SettingsWindow::titleForMovieScraperInfo(const int &info)
     }
 }
 
-QComboBox *SettingsWindow::comboForTvScraperInfo(const int &info)
+QComboBox *SettingsWindow::comboForTvScraperInfo(const TvShowScraperInfos info)
 {
     QString currentScraper = m_settings->customTvScraper().value(info, "notset");
 
     auto box = new QComboBox();
     box->addItem("The TV DB", "tvdb");
-    box->setItemData(0, info, Qt::UserRole + 1);
+    box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
 
     box->addItem("IMDB", "imdb");
-    box->setItemData(1, info, Qt::UserRole + 1);
+    box->setItemData(1, static_cast<int>(info), Qt::UserRole + 1);
 
     if (currentScraper == "imdb") {
         box->setCurrentIndex(1);
@@ -817,7 +834,7 @@ QComboBox *SettingsWindow::comboForTvScraperInfo(const int &info)
     return box;
 }
 
-QString SettingsWindow::titleForTvScraperInfo(const int &info)
+QString SettingsWindow::titleForTvScraperInfo(const TvShowScraperInfos info)
 {
     switch (info) {
     case TvShowScraperInfos::Title: return tr("Title");

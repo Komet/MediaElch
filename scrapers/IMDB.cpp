@@ -74,12 +74,12 @@ void IMDB::saveSettings(QSettings &settings)
     settings.setValue("Scrapers/IMDb/LoadAllTags", m_loadAllTags);
 }
 
-QList<int> IMDB::scraperSupports()
+QList<MovieScraperInfos> IMDB::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> IMDB::scraperNativelySupports()
+QList<MovieScraperInfos> IMDB::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -188,7 +188,7 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString html)
     return results;
 }
 
-void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QString imdbId = ids.values().first();
     movie->clear(infos);
@@ -209,7 +209,7 @@ void IMDB::onLoadFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     if (!movie) {
         return;
     }
@@ -269,7 +269,7 @@ void IMDB::onPosterLoadFinished()
     auto posterId = reply->url().fileName();
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage *>()->infosToLoad();
+    QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     if (!movie) {
         return;
     }
@@ -283,7 +283,7 @@ void IMDB::onPosterLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
+void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -604,7 +604,7 @@ void IMDB::parseAndAssignTags(const QString &html, Movie &movie)
     }
 }
 
-void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<int> infos)
+void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<MovieScraperInfos> infos)
 {
     // IMDB's media viewer contains all links to the gallery's image files.
     // We only want the poster, which has the id "viewerID".

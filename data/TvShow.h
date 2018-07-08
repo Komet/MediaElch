@@ -27,7 +27,7 @@ class TvShow : public QObject
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = nullptr);
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<TvShowScraperInfos> infos);
     void addEpisode(TvShowEpisode *episode);
     virtual int episodeCount() const;
 
@@ -73,7 +73,7 @@ public:
     virtual QString nfoContent() const;
     virtual int databaseId() const;
     virtual bool syncNeeded() const;
-    virtual QList<int> infosToLoad() const;
+    virtual QList<TvShowScraperInfos> infosToLoad() const;
     virtual bool hasTune() const;
     virtual int runtime() const;
     virtual QString sortTitle() const;
@@ -131,22 +131,25 @@ public:
     void removeTag(QString tag);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad);
+    void loadData(QString id,
+        TvScraperInterface *tvScraperInterface,
+        TvShowUpdateType type,
+        QList<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
     void fillMissingEpisodes();
     void clearMissingEpisodes();
 
     // Images
-    void removeImage(int type, int season = -2);
-    QMap<int, QList<int>> imagesToRemove() const;
-    QByteArray image(int imageType);
-    QByteArray seasonImage(int season, int imageType);
-    void setImage(int imageType, QByteArray image);
-    void setSeasonImage(int season, int imageType, QByteArray image);
-    bool imageHasChanged(int imageType) const;
-    bool seasonImageHasChanged(int season, int imageType) const;
-    bool hasImage(int type);
+    void removeImage(ImageType type, int season = -2);
+    QMap<ImageType, QList<int>> imagesToRemove() const;
+    QByteArray image(ImageType imageType);
+    QByteArray seasonImage(int season, ImageType imageType);
+    void setImage(ImageType imageType, QByteArray image);
+    void setSeasonImage(int season, ImageType imageType, QByteArray image);
+    bool imageHasChanged(ImageType imageType) const;
+    bool seasonImageHasChanged(int season, ImageType imageType) const;
+    bool hasImage(ImageType type);
 
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -160,8 +163,8 @@ public:
     void scraperLoadDone();
 
     static bool lessThan(TvShow *a, TvShow *b);
-    static QList<int> imageTypes();
-    static QList<int> seasonImageTypes();
+    static QList<ImageType> imageTypes();
+    static QList<ImageType> seasonImageTypes();
 
     void setDir(const QString &dir);
 
@@ -211,22 +214,22 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
-    QList<int> m_infosToLoad;
+    QList<TvShowScraperInfos> m_infosToLoad;
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QMap<int, QList<int>> m_imagesToRemove;
-    QMap<int, bool> m_hasImage;
+    QMap<ImageType, QList<int>> m_imagesToRemove;
+    QMap<ImageType, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;
     QString m_status;
 
-    QMap<int, QByteArray> m_images;
-    QMap<int, QMap<int, QByteArray>> m_seasonImages;
-    QMap<int, bool> m_hasImageChanged;
-    QMap<int, QMap<int, bool>> m_hasSeasonImageChanged;
+    QMap<ImageType, QByteArray> m_images;
+    QMap<int, QMap<ImageType, QByteArray>> m_seasonImages;
+    QMap<ImageType, bool> m_hasImageChanged;
+    QMap<int, QMap<ImageType, bool>> m_hasSeasonImageChanged;
 
-    void clearSeasonImageType(int imageType);
+    void clearSeasonImageType(ImageType imageType);
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

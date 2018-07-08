@@ -19,12 +19,12 @@ public:
     QString identifier() override;
     void searchAlbum(QString artistName, QString searchStr) override;
     void searchArtist(QString searchStr) override;
-    void loadData(QString mbId, Artist *artist, QList<int> infos) override;
-    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album *album, QList<int> infos) override;
+    void loadData(QString mbId, Artist *artist, QList<MusicScraperInfos> infos) override;
+    void loadData(QString mbAlbumId, QString mbReleaseGroupId, Album *album, QList<MusicScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
-    QList<int> scraperSupports() override;
+    QList<MusicScraperInfos> scraperSupports() override;
     QWidget *settingsWidget() override;
 
 signals:
@@ -62,24 +62,24 @@ private:
 
     QNetworkAccessManager *qnam();
     QString trim(QString text);
-    bool shouldLoad(int info, QList<int> infos, Artist *artist);
-    bool shouldLoad(int info, QList<int> infos, Album *album);
-    bool infosLeft(QList<int> infos, Artist *artist);
-    bool infosLeft(QList<int> infos, Album *album);
+    bool shouldLoad(MusicScraperInfos info, QList<MusicScraperInfos> infos, Artist *artist);
+    bool shouldLoad(MusicScraperInfos info, QList<MusicScraperInfos> infos, Album *album);
+    bool infosLeft(QList<MusicScraperInfos> infos, Artist *artist);
+    bool infosLeft(QList<MusicScraperInfos> infos, Album *album);
     void appendDownloadElement(Artist *artist, QString source, QString type, QUrl url);
     void appendDownloadElement(Album *album, QString source, QString type, QUrl url);
-    void parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<int> infos);
-    void parseAndAssignTadbInfos(QJsonObject document, Artist *artist, QList<int> infos);
-    void parseAndAssignTadbInfos(QJsonObject document, Album *album, QList<int> infos);
-    void parseAndAssignTadbDiscography(QJsonObject document, Artist *artist, QList<int> infos);
-    void parseAndAssignAmInfos(QString html, Artist *artist, QList<int> infos);
-    void parseAndAssignAmInfos(QString html, Album *album, QList<int> infos);
-    void parseAndAssignAmBiography(QString html, Artist *artist, QList<int> infos);
-    void parseAndAssignAmDiscography(QString html, Artist *artist, QList<int> infos);
-    void parseAndAssignDiscogsInfos(QString html, Artist *artist, QList<int> infos);
-    void parseAndAssignDiscogsInfos(QString html, Album *album, QList<int> infos);
-    void processDownloadElement(DownloadElement elem, Artist *artist, QList<int> infos);
-    void processDownloadElement(DownloadElement elem, Album *album, QList<int> infos);
+    void parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<MusicScraperInfos> infos);
+    void parseAndAssignTadbInfos(QJsonObject document, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignTadbInfos(QJsonObject document, Album *album, QList<MusicScraperInfos> infos);
+    void parseAndAssignTadbDiscography(QJsonObject document, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignAmInfos(QString html, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignAmInfos(QString html, Album *album, QList<MusicScraperInfos> infos);
+    void parseAndAssignAmBiography(QString html, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignAmDiscography(QString html, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignDiscogsInfos(QString html, Artist *artist, QList<MusicScraperInfos> infos);
+    void parseAndAssignDiscogsInfos(QString html, Album *album, QList<MusicScraperInfos> infos);
+    void processDownloadElement(DownloadElement elem, Artist *artist, QList<MusicScraperInfos> infos);
+    void processDownloadElement(DownloadElement elem, Album *album, QList<MusicScraperInfos> infos);
 };
 
 #endif // UNIVERSALMUSICSCRAPER_H

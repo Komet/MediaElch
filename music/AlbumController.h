@@ -20,7 +20,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, QString id2, MusicScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QString id, QString id2, MusicScraperInterface *scraperInterface, QList<MusicScraperInfos> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -31,15 +31,15 @@ public:
     bool downloadsInProgress() const;
     void abortDownloads();
 
-    void loadImage(int type, QUrl url);
-    void loadImages(int type, QList<QUrl> urls);
+    void loadImage(ImageType type, QUrl url);
+    void loadImages(ImageType type, QList<QUrl> urls);
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:
     void sigInfoLoadDone(Album *);
-    void sigLoadingImages(Album *, QList<int>);
+    void sigLoadingImages(Album *, QList<ImageType>);
     void sigLoadDone(Album *);
-    void sigImage(Album *, int, QByteArray);
+    void sigImage(Album *, ImageType, QByteArray);
     void sigLoadImagesStarted(Album *);
     void sigDownloadProgress(Album *, int, int);
     void sigSaved(Album *);
@@ -47,7 +47,7 @@ signals:
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Album *album, QMap<int, QList<Poster>> posters);
+    void onFanartLoadDone(Album *album, QMap<ImageType, QList<Poster>> posters);
 
 private:
     Album *m_album;
@@ -57,7 +57,7 @@ private:
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;
-    QList<int> m_infosToLoad;
+    QList<MusicScraperInfos> m_infosToLoad;
 };
 
 #endif // ALBUMCONTROLLER_H

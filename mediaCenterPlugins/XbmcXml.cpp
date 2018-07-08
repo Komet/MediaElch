@@ -168,7 +168,7 @@ bool XbmcXml::saveMovie(Movie *movie)
 
     bool saved = false;
     QFileInfo fi(movie->files().at(0));
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
+    for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
@@ -189,8 +189,8 @@ bool XbmcXml::saveMovie(Movie *movie)
         return false;
     }
 
-    foreach (const int &imageType, Movie::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Movie::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (movie->imageHasChanged(imageType) && !movie->image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
@@ -561,8 +561,9 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        foreach (const int &imageType, Movie::imageTypes())
+        for (const auto imageType : Movie::imageTypes()) {
             movie->setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
+        }
         movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 
@@ -920,8 +921,8 @@ bool XbmcXml::saveConcert(Concert *concert)
         return false;
     }
 
-    foreach (const int &imageType, Concert::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Concert::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (concert->imageHasChanged(imageType) && !concert->image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
@@ -1078,8 +1079,9 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        foreach (const int &imageType, Concert::imageTypes())
+        for (const auto &imageType : Concert::imageTypes()) {
             concert->setHasImage(imageType, !imageFileName(concert, imageType).isEmpty());
+        }
         concert->setHasExtraFanarts(!extraFanartNames(concert).isEmpty());
     }
 
@@ -1469,25 +1471,25 @@ bool XbmcXml::saveTvShow(TvShow *show)
         file.close();
     }
 
-    foreach (const int &imageType, TvShow::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : TvShow::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
                 saveFile(show->dir() + "/" + saveFileName, show->image(imageType));
             }
         }
         if (show->imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
                 QFile(show->dir() + "/" + saveFileName).remove();
             }
         }
     }
 
-    foreach (const int &imageType, TvShow::seasonImageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
-        foreach (int season, show->seasons()) {
+    for (const auto imageType : TvShow::seasonImageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        for (const auto season : show->seasons()) {
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
@@ -2023,9 +2025,9 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
     return QString();
 }
 
-QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::MoviePoster: fileType = DataFileType::MoviePoster; break;
     case ImageType::MovieBackdrop: fileType = DataFileType::MovieBackdrop; break;
@@ -2069,9 +2071,9 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::ConcertPoster: fileType = DataFileType::ConcertPoster; break;
     case ImageType::ConcertBackdrop: fileType = DataFileType::ConcertBackdrop; break;
@@ -2113,9 +2115,9 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShow *show, int type, int season, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::TvShowPoster: fileType = DataFileType::TvShowPoster; break;
     case ImageType::TvShowBackdrop: fileType = DataFileType::TvShowBackdrop; break;
@@ -2151,9 +2153,9 @@ QString XbmcXml::imageFileName(TvShow *show, int type, int season, QList<DataFil
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::TvShowEpisodeThumb: fileType = DataFileType::TvShowEpisodeThumb; break;
     default: return "";
@@ -2387,9 +2389,9 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     return true;
 }
 
-QString XbmcXml::imageFileName(Artist *artist, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(Artist *artist, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::ArtistThumb: fileType = DataFileType::ArtistThumb; break;
     case ImageType::ArtistFanart: fileType = DataFileType::ArtistFanart; break;
@@ -2418,9 +2420,9 @@ QString XbmcXml::imageFileName(Artist *artist, int type, QList<DataFile> dataFil
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Album *album, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::AlbumThumb: fileType = DataFileType::AlbumThumb; break;
     case ImageType::AlbumCdArt: fileType = DataFileType::AlbumCdArt; break;
@@ -2494,8 +2496,8 @@ bool XbmcXml::saveArtist(Artist *artist)
     file.write(xmlContent);
     file.close();
 
-    foreach (const int &imageType, Artist::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Artist::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (artist->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
@@ -2559,8 +2561,8 @@ bool XbmcXml::saveAlbum(Album *album)
     file.write(xmlContent);
     file.close();
 
-    foreach (const int &imageType, Album::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Album::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (album->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {

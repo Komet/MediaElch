@@ -225,146 +225,146 @@ enum ComboDelegateType
 };
 
 // clang-format off
-namespace ImageType {
-    const int MoviePoster          = 1;
-    const int MovieBackdrop        = 2;
-    const int TvShowPoster         = 3;
-    const int TvShowBackdrop       = 4;
-    const int TvShowEpisodeThumb   = 5;
-    const int TvShowBanner         = 7;
-    const int ConcertPoster        = 8;
-    const int ConcertBackdrop      = 9;
-    const int MovieLogo            = 10;
-    const int MovieClearArt        = 11;
-    const int MovieCdArt           = 12;
-    const int ConcertLogo          = 13;
-    const int ConcertClearArt      = 14;
-    const int ConcertCdArt         = 15;
-    const int TvShowClearArt       = 16;
-    const int TvShowLogos          = 17;
-    const int TvShowCharacterArt   = 18;
-    const int TvShowSeasonBackdrop = 19;
-    const int TvShowSeasonBanner   = 20;
-    const int MovieBanner          = 21;
-    const int MovieThumb           = 22;
-    const int TvShowThumb          = 23;
-    const int TvShowSeasonThumb    = 24;
-    const int TvShowSeasonPoster   = 25;
-    const int Actor                = 26;
-    const int MovieExtraFanart     = 27;
-    const int MovieSetPoster       = 28;
-    const int MovieSetBackdrop     = 29;
-    const int ConcertExtraFanart   = 30;
-    const int TvShowExtraFanart    = 31;
-    const int ArtistThumb          = 32;
-    const int ArtistFanart         = 33;
-    const int ArtistLogo           = 34;
-    const int AlbumThumb           = 35;
-    const int AlbumCdArt           = 36;
-    const int ArtistExtraFanart    = 37;
-    const int AlbumBooklet         = 38;
-}
+enum class ImageType : int {
+    None                 = -1,
+    MoviePoster          = 1,
+    MovieBackdrop        = 2,
+    TvShowPoster         = 3,
+    TvShowBackdrop       = 4,
+    TvShowEpisodeThumb   = 5,
+    TvShowBanner         = 7,
+    ConcertPoster        = 8,
+    ConcertBackdrop      = 9,
+    MovieLogo            = 10,
+    MovieClearArt        = 11,
+    MovieCdArt           = 12,
+    ConcertLogo          = 13,
+    ConcertClearArt      = 14,
+    ConcertCdArt         = 15,
+    TvShowClearArt       = 16,
+    TvShowLogos          = 17,
+    TvShowCharacterArt   = 18,
+    TvShowSeasonBackdrop = 19,
+    TvShowSeasonBanner   = 20,
+    MovieBanner          = 21,
+    MovieThumb           = 22,
+    TvShowThumb          = 23,
+    TvShowSeasonThumb    = 24,
+    TvShowSeasonPoster   = 25,
+    Actor                = 26,
+    MovieExtraFanart     = 27,
+    MovieSetPoster       = 28,
+    MovieSetBackdrop     = 29,
+    ConcertExtraFanart   = 30,
+    TvShowExtraFanart    = 31,
+    ArtistThumb          = 32,
+    ArtistFanart         = 33,
+    ArtistLogo           = 34,
+    AlbumThumb           = 35,
+    AlbumCdArt           = 36,
+    ArtistExtraFanart    = 37,
+    AlbumBooklet         = 38
+};
 
-namespace MovieScraperInfos {
-    const int Title         = 1;
-    const int Tagline       = 2;
-    const int Rating        = 3;
-    const int Released      = 4;
-    const int Runtime       = 5;
-    const int Certification = 6;
-    const int Trailer       = 7;
-    const int Overview      = 8;
-    const int Poster        = 9;
-    const int Backdrop      = 10;
-    const int Actors        = 11;
-    const int Genres        = 12;
-    const int Studios       = 13;
-    const int Countries     = 14;
-    const int Writer        = 15;
-    const int Director      = 16;
-    const int Tags          = 18;
-    const int ExtraFanarts  = 19;
-    const int Set           = 20;
-    const int Logo          = 21;
-    const int CdArt         = 22;
-    const int ClearArt      = 23;
-    const int Banner        = 24;
-    const int Thumb         = 25;
+enum class MovieScraperInfos : int {
+    Title         = 1,
+    Tagline       = 2,
+    Rating        = 3,
+    Released      = 4,
+    Runtime       = 5,
+    Certification = 6,
+    Trailer       = 7,
+    Overview      = 8,
+    Poster        = 9,
+    Backdrop      = 10,
+    Actors        = 11,
+    Genres        = 12,
+    Studios       = 13,
+    Countries     = 14,
+    Writer        = 15,
+    Director      = 16,
+    Tags          = 18,
+    ExtraFanarts  = 19,
+    Set           = 20,
+    Logo          = 21,
+    CdArt         = 22,
+    ClearArt      = 23,
+    Banner        = 24,
+    Thumb         = 25,
+    First         = 1,
+    Last          = 25
+};
 
-    const int First         = 1;
-    const int Last          = 25;
-}
+enum class TvShowScraperInfos : int {
+    Actors         = 1,
+    Banner         = 2,
+    Certification  = 3,
+    Director       = 4,
+    Fanart         = 5,
+    FirstAired     = 6,
+    Genres         = 7,
+    Network        = 8,
+    Overview       = 9,
+    Poster         = 10,
+    Rating         = 11,
+    SeasonPoster   = 13,
+    Thumbnail      = 14,
+    Title          = 15,
+    Writer         = 16,
+    Tags           = 17,
+    ExtraArts      = 18,
+    SeasonBackdrop = 19,
+    SeasonBanner   = 20,
+    ExtraFanarts   = 21,
+    Thumb          = 22,
+    SeasonThumb    = 23,
+    Runtime        = 24,
+    Status         = 25
+};
 
-namespace TvShowScraperInfos {
-    const int Actors         = 1;
-    const int Banner         = 2;
-    const int Certification  = 3;
-    const int Director       = 4;
-    const int Fanart         = 5;
-    const int FirstAired     = 6;
-    const int Genres         = 7;
-    const int Network        = 8;
-    const int Overview       = 9;
-    const int Poster         = 10;
-    const int Rating         = 11;
-    const int SeasonPoster   = 13;
-    const int Thumbnail      = 14;
-    const int Title          = 15;
-    const int Writer         = 16;
-    const int Tags           = 17;
-    const int ExtraArts      = 18;
-    const int SeasonBackdrop = 19;
-    const int SeasonBanner   = 20;
-    const int ExtraFanarts   = 21;
-    const int Thumb          = 22;
-    const int SeasonThumb    = 23;
-    const int Runtime        = 24;
-    const int Status         = 25;
-}
+enum class ConcertScraperInfos : int {
+    Title         = 1,
+    Tagline       = 2,
+    Rating        = 3,
+    Released      = 4,
+    Runtime       = 5,
+    Certification = 6,
+    Trailer       = 7,
+    Overview      = 8,
+    Poster        = 9,
+    Backdrop      = 10,
+    Genres        = 11,
+    ExtraArts     = 12,
+    Tags          = 13,
+    ExtraFanarts  = 14
+};
 
-namespace ConcertScraperInfos {
-    const int Title         = 1;
-    const int Tagline       = 2;
-    const int Rating        = 3;
-    const int Released      = 4;
-    const int Runtime       = 5;
-    const int Certification = 6;
-    const int Trailer       = 7;
-    const int Overview      = 8;
-    const int Poster        = 9;
-    const int Backdrop      = 10;
-    const int Genres        = 11;
-    const int ExtraArts     = 12;
-    const int Tags          = 13;
-    const int ExtraFanarts  = 14;
-}
-
-namespace MusicScraperInfos {
-    const int Name         = 1;
-    const int Genres       = 2;
-    const int Styles       = 3;
-    const int Moods        = 4;
-    const int YearsActive  = 5;
-    const int Formed       = 6;
-    const int Born         = 7;
-    const int Died         = 8;
-    const int Disbanded    = 9;
-    const int Biography    = 10;
-    const int Thumb        = 11;
-    const int Fanart       = 12;
-    const int Logo         = 13;
-    const int Title        = 14;
-    const int Artist       = 15;
-    const int Review       = 16;
-    const int ReleaseDate  = 17;
-    const int Label        = 18;
-    const int Rating       = 19;
-    const int Year         = 20;
-    const int CdArt        = 21;
-    const int Cover        = 22;
-    const int ExtraFanarts = 23;
-    const int Discography  = 24;
-}
+enum class MusicScraperInfos : int {
+    Name         = 1,
+    Genres       = 2,
+    Styles       = 3,
+    Moods        = 4,
+    YearsActive  = 5,
+    Formed       = 6,
+    Born         = 7,
+    Died         = 8,
+    Disbanded    = 9,
+    Biography    = 10,
+    Thumb        = 11,
+    Fanart       = 12,
+    Logo         = 13,
+    Title        = 14,
+    Artist       = 15,
+    Review       = 16,
+    ReleaseDate  = 17,
+    Label        = 18,
+    Rating       = 19,
+    Year         = 20,
+    CdArt        = 21,
+    Cover        = 22,
+    ExtraFanarts = 23,
+    Discography  = 24
+};
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
 namespace MovieFilters {
@@ -425,45 +425,46 @@ enum SortBy
 };
 
 // clang-format off
-namespace DataFileType {
-    const int MovieNfo             = 1;
-    const int MoviePoster          = 2;
-    const int MovieBackdrop        = 3;
-    const int MovieLogo            = 4;
-    const int MovieClearArt        = 5;
-    const int MovieCdArt           = 6;
-    const int ConcertNfo           = 7;
-    const int ConcertPoster        = 8;
-    const int ConcertBackdrop      = 9;
-    const int ConcertLogo          = 10;
-    const int ConcertClearArt      = 11;
-    const int ConcertCdArt         = 12;
-    const int TvShowNfo            = 13;
-    const int TvShowPoster         = 14;
-    const int TvShowBackdrop       = 15;
-    const int TvShowBanner         = 16;
-    const int TvShowSeasonPoster   = 17;
-    const int TvShowLogo           = 18;
-    const int TvShowClearArt       = 19;
-    const int TvShowCharacterArt   = 20;
-    const int TvShowEpisodeNfo     = 21;
-    const int TvShowEpisodeThumb   = 22;
-    const int TvShowSeasonBackdrop = 23;
-    const int TvShowSeasonBanner   = 24;
-    const int MovieBanner          = 25;
-    const int MovieThumb           = 26;
-    const int TvShowSeasonThumb    = 27;
-    const int TvShowThumb          = 28;
-    const int MovieSetPoster       = 29;
-    const int MovieSetBackdrop     = 30;
-    const int ArtistNfo            = 31;
-    const int AlbumNfo             = 32;
-    const int ArtistThumb          = 33;
-    const int ArtistFanart         = 34;
-    const int ArtistLogo           = 35;
-    const int AlbumThumb           = 36;
-    const int AlbumCdArt           = 37;
-}
+enum class DataFileType : int {
+    NoType               = -1,
+    MovieNfo             = 1,
+    MoviePoster          = 2,
+    MovieBackdrop        = 3,
+    MovieLogo            = 4,
+    MovieClearArt        = 5,
+    MovieCdArt           = 6,
+    ConcertNfo           = 7,
+    ConcertPoster        = 8,
+    ConcertBackdrop      = 9,
+    ConcertLogo          = 10,
+    ConcertClearArt      = 11,
+    ConcertCdArt         = 12,
+    TvShowNfo            = 13,
+    TvShowPoster         = 14,
+    TvShowBackdrop       = 15,
+    TvShowBanner         = 16,
+    TvShowSeasonPoster   = 17,
+    TvShowLogo           = 18,
+    TvShowClearArt       = 19,
+    TvShowCharacterArt   = 20,
+    TvShowEpisodeNfo     = 21,
+    TvShowEpisodeThumb   = 22,
+    TvShowSeasonBackdrop = 23,
+    TvShowSeasonBanner   = 24,
+    MovieBanner          = 25,
+    MovieThumb           = 26,
+    TvShowSeasonThumb    = 27,
+    TvShowThumb          = 28,
+    MovieSetPoster       = 29,
+    MovieSetBackdrop     = 30,
+    ArtistNfo            = 31,
+    AlbumNfo             = 32,
+    ArtistThumb          = 33,
+    ArtistFanart         = 34,
+    ArtistLogo           = 35,
+    AlbumThumb           = 36,
+    AlbumCdArt           = 37
+};
 // clang-format on
 
 enum TvShowUpdateType
