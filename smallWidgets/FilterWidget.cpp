@@ -372,7 +372,7 @@ void FilterWidget::setupMovieFilters()
             if (f) {
                 newFilters << f;
             } else {
-                newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterName),
+                newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
                     filterName,
                     QStringList() << filterTypeName << filterName,
                     infoType,
