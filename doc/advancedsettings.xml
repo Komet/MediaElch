@@ -112,8 +112,9 @@
         the audio codec "MPA1L3" with "MP3".
     -->
     <audioCodecs>
-        <map from="MPA1L2" to="MP2" />
-        <map from="MPA1L3" to="MP3" />
+        <map from="mpa1l2" to="mp2" />
+        <map from="mpa1l3" to="mp3" />
+        <map from="aac lc" to="aac" />
     </audioCodecs>
 
     <!--

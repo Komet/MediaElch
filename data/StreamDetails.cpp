@@ -294,13 +294,13 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
     } else if (codec == "MPA1L3") {
         xbmcFormat = "mp3";
     } else {
-        xbmcFormat = codec;
+        xbmcFormat = codec.toLower();
     }
 
     if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat)) {
         return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
     }
-    return xbmcFormat.toLower();
+    return xbmcFormat;
 }
 
 QString StreamDetails::stereoFormat(const QString &format) const

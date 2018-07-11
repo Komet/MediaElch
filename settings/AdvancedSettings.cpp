@@ -31,8 +31,9 @@ void AdvancedSettings::reset()
     m_writeThumbUrlsToNfo = true;
     m_useFirstStudioOnly = false;
 
-    m_audioCodecMappings.insert("MPA1L2", "MP2");
-    m_audioCodecMappings.insert("MPA1L3", "MP3");
+    m_audioCodecMappings.insert("mpa1l2", "mp2");
+    m_audioCodecMappings.insert("mpa1l3", "mp3");
+    m_audioCodecMappings.insert("aac lc", "aac");
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 
     const auto videoFiles = QStringList{"*.mkv",
