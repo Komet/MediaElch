@@ -125,7 +125,7 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, ImageType type)
     if (type == ImageType::TvShowEpisodeThumb) {
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
     } else {
-        m_dummyShow->loadData(tvdbId, m_tvdb, UpdateShow, infosToLoad);
+        m_dummyShow->loadData(tvdbId, m_tvdb, TvShowUpdateType::Show, infosToLoad);
     }
 }
 

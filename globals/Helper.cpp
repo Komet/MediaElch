@@ -549,36 +549,36 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
     return 1 - (dist / qMax(len1, len2));
 }
 
-QMap<int, QString> Helper::labels()
+QMap<ColorLabel, QString> Helper::labels()
 {
-    QMap<int, QString> labels;
-    labels.insert(Labels::NO_LABEL, QObject::tr("No Label"));
-    labels.insert(Labels::RED, QObject::tr("Red"));
-    labels.insert(Labels::ORANGE, QObject::tr("Orange"));
-    labels.insert(Labels::YELLOW, QObject::tr("Yellow"));
-    labels.insert(Labels::GREEN, QObject::tr("Green"));
-    labels.insert(Labels::BLUE, QObject::tr("Blue"));
-    labels.insert(Labels::PURPLE, QObject::tr("Purple"));
-    labels.insert(Labels::GREY, QObject::tr("Grey"));
+    QMap<ColorLabel, QString> labels;
+    labels.insert(ColorLabel::NoLabel, QObject::tr("No Label"));
+    labels.insert(ColorLabel::Red, QObject::tr("Red"));
+    labels.insert(ColorLabel::Orange, QObject::tr("Orange"));
+    labels.insert(ColorLabel::Yellow, QObject::tr("Yellow"));
+    labels.insert(ColorLabel::Green, QObject::tr("Green"));
+    labels.insert(ColorLabel::Blue, QObject::tr("Blue"));
+    labels.insert(ColorLabel::Purple, QObject::tr("Purple"));
+    labels.insert(ColorLabel::Grey, QObject::tr("Grey"));
     return labels;
 }
 
-QColor Helper::colorForLabel(int label)
+QColor Helper::colorForLabel(ColorLabel label)
 {
     switch (label) {
-    case Labels::RED: return QColor(252, 124, 126);
-    case Labels::ORANGE: return QColor(253, 189, 65);
-    case Labels::YELLOW: return QColor(245, 228, 68);
-    case Labels::GREEN: return QColor(182, 223, 55);
-    case Labels::BLUE: return QColor(132, 201, 253);
-    case Labels::PURPLE: return QColor(226, 167, 253);
-    case Labels::GREY: return QColor(200, 200, 200);
-    case Labels::NO_LABEL:
-    default: return QColor(0, 0, 0, 0);
+    case ColorLabel::Red: return QColor(252, 124, 126);
+    case ColorLabel::Orange: return QColor(253, 189, 65);
+    case ColorLabel::Yellow: return QColor(245, 228, 68);
+    case ColorLabel::Green: return QColor(182, 223, 55);
+    case ColorLabel::Blue: return QColor(132, 201, 253);
+    case ColorLabel::Purple: return QColor(226, 167, 253);
+    case ColorLabel::Grey: return QColor(200, 200, 200);
+    case ColorLabel::NoLabel: return QColor(0, 0, 0, 0);
     }
+    return QColor(0, 0, 0, 0);
 }
 
-QIcon Helper::iconForLabel(int label)
+QIcon Helper::iconForLabel(ColorLabel label)
 {
     QColor color = Helper::instance()->colorForLabel(label);
     QPainter p;

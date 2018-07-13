@@ -247,7 +247,7 @@ void TheTvDb::loadTvShowData(QString id,
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, show));
-    reply->setProperty("updateType", updateType);
+    reply->setProperty("updateType", static_cast<int>(updateType));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
     connect(reply, &QNetworkReply::finished, this, &TheTvDb::onLoadFinished);
 }
@@ -286,7 +286,7 @@ void TheTvDb::onLoadFinished()
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
-    reply->setProperty("updateType", updateType);
+    reply->setProperty("updateType", static_cast<int>(updateType));
 
     connect(reply, &QNetworkReply::finished, this, &TheTvDb::onActorsFinished);
 }
@@ -312,8 +312,8 @@ void TheTvDb::onActorsFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         if (show->infosToLoad().contains(TvShowScraperInfos::Actors)
-            && (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes
-                   || updateType == UpdateShowAndNewEpisodes)) {
+            && (updateType == TvShowUpdateType::Show || updateType == TvShowUpdateType::ShowAndAllEpisodes
+                   || updateType == TvShowUpdateType::ShowAndNewEpisodes)) {
             parseAndAssignActors(msg, show);
         }
     } else {
@@ -322,7 +322,7 @@ void TheTvDb::onActorsFinished()
     QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(m_mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
-    reply->setProperty("updateType", updateType);
+    reply->setProperty("updateType", static_cast<int>(updateType));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
     connect(reply, &QNetworkReply::finished, this, &TheTvDb::onBannersFinished);
@@ -361,7 +361,7 @@ void TheTvDb::onBannersFinished()
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, show));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        reply->setProperty("updateType", updateType);
+        reply->setProperty("updateType", static_cast<int>(updateType));
         reply->setProperty("updatedEpisodes", Storage::toVariant(reply, updatedEpisodes));
         connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbFinished);
     } else {
@@ -373,7 +373,7 @@ void TheTvDb::onBannersFinished()
  * @brief Parses info XML data and assigns it to the given tv show object
  * @param xml XML data
  * @param show Tv Show object
- * @param updateAllEpisodes Update all child episodes (regardless if they already have infos or not)
+ * @param TvShowUpdateType::AllEpisodes Update all child episodes (regardless if they already have infos or not)
  */
 void TheTvDb::parseAndAssignInfos(QString xml,
     TvShow *show,
@@ -391,7 +391,8 @@ void TheTvDb::parseAndAssignInfos(QString xml,
         }
     }
 
-    if (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes) {
+    if (updateType == TvShowUpdateType::Show || updateType == TvShowUpdateType::ShowAndAllEpisodes
+        || updateType == TvShowUpdateType::ShowAndNewEpisodes) {
         show->clear(infosToLoad);
         if (!domDoc.elementsByTagName("Series").isEmpty()) {
             QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
@@ -434,8 +435,8 @@ void TheTvDb::parseAndAssignInfos(QString xml,
         }
     }
 
-    if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes || updateType == UpdateShowAndAllEpisodes
-        || updateType == UpdateShowAndNewEpisodes) {
+    if (updateType == TvShowUpdateType::AllEpisodes || updateType == TvShowUpdateType::NewEpisodes
+        || updateType == TvShowUpdateType::ShowAndAllEpisodes || updateType == TvShowUpdateType::ShowAndNewEpisodes) {
         for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
 
@@ -467,8 +468,8 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                 continue;
             }
 
-            if (updateType == UpdateAllEpisodes || updateType == UpdateShowAndAllEpisodes
-                || ((updateType == UpdateNewEpisodes || updateType == UpdateShowAndNewEpisodes)
+            if (updateType == TvShowUpdateType::AllEpisodes || updateType == TvShowUpdateType::ShowAndAllEpisodes
+                || ((updateType == TvShowUpdateType::NewEpisodes || updateType == TvShowUpdateType::ShowAndNewEpisodes)
                        && !episode->infoLoaded())) {
                 episode->clear(infosToLoad);
                 parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
@@ -562,7 +563,7 @@ void TheTvDb::parseAndAssignBanners(QString xml,
             continue;
         }
 
-        if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes) {
+        if (updateType == TvShowUpdateType::AllEpisodes || updateType == TvShowUpdateType::NewEpisodes) {
             continue;
         }
 
@@ -1097,7 +1098,8 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(xml, m_dummyMovie, m_movieInfos);
 
-    if (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes) {
+    if (updateType == TvShowUpdateType::Show || updateType == TvShowUpdateType::ShowAndAllEpisodes
+        || updateType == TvShowUpdateType::ShowAndNewEpisodes) {
         if (shouldLoadFromImdb(TvShowScraperInfos::Title, infosToLoad) && !m_dummyMovie->name().isEmpty()) {
             show->setName(m_dummyMovie->name());
         }

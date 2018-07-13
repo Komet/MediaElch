@@ -86,7 +86,7 @@ int MovieModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     // return roleNames().size();
-    return 2 + MediaStatusLast - MediaStatusFirst;
+    return 2 + static_cast<int>(MediaStatusColumn::Last) - static_cast<int>(MediaStatusColumn::First);
 }
 
 /**
@@ -145,22 +145,22 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         QString icon;
         // clang-format off
         switch (MovieModel::columnToMediaStatus(index.column())) {
-        case MediaStatusActors:
+        case MediaStatusColumn::Actors:
             icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
             break;
-        case MediaStatusTrailer:
+        case MediaStatusColumn::Trailer:
             icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green";
             break;
-        case MediaStatusLocalTrailer:
+        case MediaStatusColumn::LocalTrailer:
             icon = (movie->hasLocalTrailer()) ? "trailer/green" : "trailer/red";
             break;
-        case MediaStatusPoster:
+        case MediaStatusColumn::Poster:
             icon = (movie->hasImage(ImageType::MoviePoster)) ? "poster/green" : "poster/red";
             break;
-        case MediaStatusFanart:
+        case MediaStatusColumn::Fanart:
             icon = (movie->hasImage(ImageType::MovieBackdrop)) ? "fanart/green" : "fanart/red";
             break;
-        case MediaStatusExtraArts:
+        case MediaStatusColumn::ExtraArts:
             if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt)
                     && movie->hasImage(ImageType::MovieLogo) && movie->hasImage(ImageType::MovieBanner)
                     && movie->hasImage(ImageType::MovieThumb)) {
@@ -173,13 +173,13 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
                 icon = "extraArts/red";
             }
             break;
-        case MediaStatusStreamDetails:
+        case MediaStatusColumn::StreamDetails:
             icon = (movie->streamDetailsLoaded()) ? "streamDetails/green" : "streamDetails/red";
             break;
-        case MediaStatusExtraFanarts:
+        case MediaStatusColumn::ExtraFanarts:
             icon = (movie->hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
             break;
-        case MediaStatusId:
+        case MediaStatusColumn::Id:
             icon = (movie->id().isEmpty()) ? "id/red" : "id/green";
             break;
         default:
@@ -262,44 +262,45 @@ int MovieModel::countNewMovies()
     return std::count_if(m_movies.cbegin(), m_movies.cend(), checkInfoLoaded);
 }
 
-int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
+int MovieModel::mediaStatusToColumn(MediaStatusColumn column)
 {
     switch (column) {
-    case MediaStatusActors: return 9; break;
-    case MediaStatusExtraArts: return 5; break;
-    case MediaStatusExtraFanarts: return 4; break;
-    case MediaStatusFanart: return 3; break;
-    case MediaStatusPoster: return 2; break;
-    case MediaStatusStreamDetails: return 8; break;
-    case MediaStatusTrailer: return 6; break;
-    case MediaStatusLocalTrailer: return 7; break;
-    case MediaStatusId: return 1; break;
-    default: return -1; break;
+    case MediaStatusColumn::Actors: return 9;
+    case MediaStatusColumn::ExtraArts: return 5;
+    case MediaStatusColumn::ExtraFanarts: return 4;
+    case MediaStatusColumn::Fanart: return 3;
+    case MediaStatusColumn::Poster: return 2;
+    case MediaStatusColumn::StreamDetails: return 8;
+    case MediaStatusColumn::Trailer: return 6;
+    case MediaStatusColumn::LocalTrailer: return 7;
+    case MediaStatusColumn::Id: return 1;
+    default: return -1;
     }
 }
 
-MediaStatusColumns MovieModel::columnToMediaStatus(int column)
+MediaStatusColumn MovieModel::columnToMediaStatus(int column)
 {
-    for (int i = MediaStatusFirst, n = MediaStatusLast; i <= n; ++i) {
-        if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumns>(i)) == column) {
-            return static_cast<MediaStatusColumns>(i);
+    for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
+         ++i) {
+        if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumn>(i)) == column) {
+            return static_cast<MediaStatusColumn>(i);
         }
     }
-    return MediaStatusUnknown;
+    return MediaStatusColumn::Unknown;
 }
 
-QString MovieModel::mediaStatusToText(MediaStatusColumns column)
+QString MovieModel::mediaStatusToText(MediaStatusColumn column)
 {
     switch (column) {
-    case MediaStatusActors: return tr("Actors");
-    case MediaStatusExtraArts: return tr("Extra Arts");
-    case MediaStatusExtraFanarts: return tr("Extra Fanarts");
-    case MediaStatusFanart: return tr("Fanart");
-    case MediaStatusPoster: return tr("Poster");
-    case MediaStatusStreamDetails: return tr("Stream Details");
-    case MediaStatusTrailer: return tr("Trailer");
-    case MediaStatusLocalTrailer: return tr("Local Trailer");
-    case MediaStatusId: return tr("IMDB ID");
+    case MediaStatusColumn::Actors: return tr("Actors");
+    case MediaStatusColumn::ExtraArts: return tr("Extra Arts");
+    case MediaStatusColumn::ExtraFanarts: return tr("Extra Fanarts");
+    case MediaStatusColumn::Fanart: return tr("Fanart");
+    case MediaStatusColumn::Poster: return tr("Poster");
+    case MediaStatusColumn::StreamDetails: return tr("Stream Details");
+    case MediaStatusColumn::Trailer: return tr("Trailer");
+    case MediaStatusColumn::LocalTrailer: return tr("Local Trailer");
+    case MediaStatusColumn::Id: return tr("IMDB ID");
     default: return QString();
     }
 }

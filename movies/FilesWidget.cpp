@@ -49,28 +49,30 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+    for (const MediaStatusColumn &column : Settings::instance()->mediaStatusColumns()) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
+    }
 
     m_alphaList = new AlphabeticalList(this, ui->files);
 
     QMenu *mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
-    for (int i = MediaStatusFirst, n = MediaStatusLast; i <= n; ++i) {
-        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)), this);
+    for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
+         ++i) {
+        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
-        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(i)));
+        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumn>(i)));
         connect(action, &QAction::triggered, this, &FilesWidget::onActionMediaStatusColumn);
         mediaStatusColumnsMenu->addAction(action);
     }
 
     QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<int, QString> it(Helper::instance()->labels());
+    QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
         auto action = new QAction(it.value(), this);
         action->setIcon(Helper::instance()->iconForLabel(it.key()));
-        action->setProperty("color", it.key());
+        action->setProperty("color", static_cast<int>(it.key()));
         connect(action, &QAction::triggered, this, &FilesWidget::onLabel);
         labelsMenu->addAction(action);
     }
@@ -83,6 +85,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     QAction *actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
     QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);
     m_contextMenu->addSeparator();
@@ -125,7 +128,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     connect(ui->sortByYear,      &MyLabel::clicked, this, &FilesWidget::onSortByYear);
 
     connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &FilesWidget::onViewUpdated);
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved, this, &FilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &FilesWidget::onViewUpdated);
     // clang-format on
 }
 
@@ -361,11 +364,11 @@ void FilesWidget::restoreLastSelection()
 
 void FilesWidget::updateSort(SortBy sortBy)
 {
-    ui->sortByNew->setProperty("active", sortBy == SortByNew);
-    ui->sortByLastAdded->setProperty("active", sortBy == SortByAdded);
-    ui->sortByName->setProperty("active", sortBy == SortByName);
-    ui->sortByYear->setProperty("active", sortBy == SortByYear);
-    ui->sortBySeen->setProperty("active", sortBy == SortBySeen);
+    ui->sortByNew->setProperty("active", sortBy == SortBy::New);
+    ui->sortByLastAdded->setProperty("active", sortBy == SortBy::Added);
+    ui->sortByName->setProperty("active", sortBy == SortBy::Name);
+    ui->sortByYear->setProperty("active", sortBy == SortBy::Year);
+    ui->sortBySeen->setProperty("active", sortBy == SortBy::Seen);
 
     // We have to rerender the labels because of the dynamic property "active".
     style()->unpolish(ui->sortByNew);
@@ -387,7 +390,7 @@ void FilesWidget::updateSort(SortBy sortBy)
  */
 void FilesWidget::onSortByAdded()
 {
-    updateSort(SortByAdded);
+    updateSort(SortBy::Added);
 }
 
 /**
@@ -395,7 +398,7 @@ void FilesWidget::onSortByAdded()
  */
 void FilesWidget::onSortByName()
 {
-    updateSort(SortByName);
+    updateSort(SortBy::Name);
 }
 
 /**
@@ -403,7 +406,7 @@ void FilesWidget::onSortByName()
  */
 void FilesWidget::onSortByNew()
 {
-    updateSort(SortByNew);
+    updateSort(SortBy::New);
 }
 
 /**
@@ -411,7 +414,7 @@ void FilesWidget::onSortByNew()
  */
 void FilesWidget::onSortBySeen()
 {
-    updateSort(SortBySeen);
+    updateSort(SortBy::Seen);
 }
 
 /**
@@ -419,7 +422,7 @@ void FilesWidget::onSortBySeen()
  */
 void FilesWidget::onSortByYear()
 {
-    updateSort(SortByYear);
+    updateSort(SortBy::Year);
 }
 
 QList<Movie *> FilesWidget::selectedMovies()
@@ -486,7 +489,7 @@ void FilesWidget::renewModel()
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
     }
-    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+    foreach (const MediaStatusColumn &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 }
 
@@ -515,14 +518,14 @@ void FilesWidget::onActionMediaStatusColumn()
     }
     action->setChecked(action->isChecked());
 
-    MediaStatusColumns col = static_cast<MediaStatusColumns>(action->property("mediaStatusColumn").toInt());
-    QList<MediaStatusColumns> columns = Settings::instance()->mediaStatusColumns();
+    MediaStatusColumn col = static_cast<MediaStatusColumn>(action->property("mediaStatusColumn").toInt());
+    QList<MediaStatusColumn> columns = Settings::instance()->mediaStatusColumns();
     if (action->isChecked() && !columns.contains(col)) {
         columns.append(col);
     } else {
         columns.removeAll(col);
     }
-    Settings::instance()->setMediaStatusColumns(columns);
+    Settings::instance()->setMediaStatusColumn(columns);
     Settings::instance()->saveSettings();
     renewModel();
 }
@@ -535,8 +538,8 @@ void FilesWidget::onLabel()
         return;
     }
 
-    int color = action->property("color").toInt();
-    foreach (Movie *movie, selectedMovies()) {
+    ColorLabel color = static_cast<ColorLabel>(action->property("color").toInt());
+    for (Movie *movie : selectedMovies()) {
         movie->setLabel(color);
         Manager::instance()->database()->setLabel(movie->files(), color);
     }

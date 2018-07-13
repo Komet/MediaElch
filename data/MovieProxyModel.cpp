@@ -11,7 +11,7 @@
  */
 MovieProxyModel::MovieProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent),
-    m_sortBy{SortByNew},
+    m_sortBy{SortBy::New},
     m_filterDuplicates{false}
 {
     sort(0, Qt::AscendingOrder);
@@ -55,13 +55,13 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
 {
     int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
 
-    if (m_sortBy == SortByAdded) {
+    if (m_sortBy == SortBy::Added) {
         // Qt::UserRole+5
         return sourceModel()->data(left, Qt::UserRole + 5).toDateTime()
                >= sourceModel()->data(right, Qt::UserRole + 5).toDateTime();
     }
 
-    if (m_sortBy == SortBySeen) {
+    if (m_sortBy == SortBy::Seen) {
         // Qt::UserRole+4
         if (sourceModel()->data(left, Qt::UserRole + 4).toBool()
             && !sourceModel()->data(right, Qt::UserRole + 4).toBool()) {
@@ -73,7 +73,7 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
         }
     }
 
-    if (m_sortBy == SortByYear) {
+    if (m_sortBy == SortBy::Year) {
         // Qt::UserRole+3
         if (sourceModel()->data(left, Qt::UserRole + 3).toDate().year()
             != sourceModel()->data(right, Qt::UserRole + 3).toDate().year()) {
@@ -82,7 +82,7 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
         }
     }
 
-    if (m_sortBy == SortByNew) {
+    if (m_sortBy == SortBy::New) {
         // Qt::UserRole+1
         if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
             && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {

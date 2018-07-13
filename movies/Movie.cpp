@@ -35,7 +35,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_streamDetailsLoaded{false},
     m_hasDuplicates{false},
     m_discType{DiscType::Single},
-    m_label{Labels::NO_LABEL}
+    m_label{ColorLabel::NoLabel}
 {
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
@@ -1472,12 +1472,12 @@ void Movie::setHasDuplicates(bool hasDuplicates)
     emit sigChanged(this);
 }
 
-void Movie::setLabel(int label)
+void Movie::setLabel(ColorLabel label)
 {
     m_label = label;
 }
 
-int Movie::label() const
+ColorLabel Movie::label() const
 {
     return m_label;
 }

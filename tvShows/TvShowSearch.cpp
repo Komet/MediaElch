@@ -172,11 +172,11 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 void TvShowSearch::setSearchType(TvShowType type)
 {
     m_searchType = type;
-    if (type == TypeTvShow) {
+    if (type == TvShowType::TvShow) {
         ui->comboUpdate->setVisible(true);
         ui->comboUpdate->setCurrentIndex(Settings::instance()->tvShowUpdateOption());
         onComboIndexChanged();
-    } else if (type == TypeEpisode) {
+    } else if (type == TvShowType::Episode) {
         ui->comboUpdate->setVisible(false);
         ui->comboUpdate->setCurrentIndex(4);
         onComboIndexChanged();
@@ -211,7 +211,7 @@ void TvShowSearch::onChkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     }
     Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(scraperNo), m_infosToLoad);
@@ -236,24 +236,24 @@ QList<TvShowScraperInfos> TvShowSearch::infosToLoad()
 TvShowUpdateType TvShowSearch::updateType()
 {
     if (ui->comboUpdate->currentIndex() == 0) {
-        return UpdateShow;
+        return TvShowUpdateType::Show;
     }
     if (ui->comboUpdate->currentIndex() == 1) {
-        return UpdateShowAndNewEpisodes;
+        return TvShowUpdateType::ShowAndNewEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 2) {
-        return UpdateShowAndAllEpisodes;
+        return TvShowUpdateType::ShowAndAllEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 3) {
-        return UpdateNewEpisodes;
+        return TvShowUpdateType::NewEpisodes;
     }
-    return UpdateAllEpisodes;
+    return TvShowUpdateType::AllEpisodes;
 }
 
 void TvShowSearch::onComboIndexChanged()
 {
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
@@ -262,7 +262,7 @@ void TvShowSearch::onComboIndexChanged()
         Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();
-    if (type == UpdateShow) {
+    if (type == TvShowUpdateType::Show) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -277,7 +277,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(false);
         ui->chkRuntime->setEnabled(true);
         ui->chkStatus->setEnabled(true);
-    } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
+    } else if (type == TvShowUpdateType::ShowAndAllEpisodes || type == TvShowUpdateType::ShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);

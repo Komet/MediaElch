@@ -136,7 +136,7 @@ void Navbar::setFilterWidgetEnabled(bool enabled)
 
 void Navbar::setActiveWidget(MainWidgets widget)
 {
-    ui->filterWidget->setActiveWidget(widget);
+    ui->filterWidget->setActiveMainWidget(widget);
 }
 
 void Navbar::onDonated(bool donated)

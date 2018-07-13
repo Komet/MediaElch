@@ -439,7 +439,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     QList<ScraperData> loadsLeft;
 
     // Infos
-    loadsLeft.append(DataInfos);
+    loadsLeft.append(ScraperData::Infos);
 
     request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::INFOS));
     QNetworkReply *const reply = m_qnam.get(request);
@@ -451,7 +451,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)
         || infos.contains(MovieScraperInfos::Writer)) {
-        loadsLeft.append(DataCasts);
+        loadsLeft.append(ScraperData::Casts);
         request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::CASTS));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
@@ -462,7 +462,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer)) {
-        loadsLeft.append(DataTrailers);
+        loadsLeft.append(ScraperData::Trailers);
         request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::TRAILERS));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
@@ -473,7 +473,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 
     // Images
     if (infos.contains(MovieScraperInfos::Poster) || infos.contains(MovieScraperInfos::Backdrop)) {
-        loadsLeft.append(DataImages);
+        loadsLeft.append(ScraperData::Images);
         request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::IMAGES));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
@@ -484,7 +484,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 
     // Releases
     if (infos.contains(MovieScraperInfos::Certification)) {
-        loadsLeft.append(DataReleases);
+        loadsLeft.append(ScraperData::Releases);
         request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::RELEASES));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
@@ -515,7 +515,7 @@ void TMDb::loadFinished()
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
-    movie->controller()->removeFromLoadsLeft(DataInfos);
+    movie->controller()->removeFromLoadsLeft(ScraperData::Infos);
 }
 
 /**
@@ -538,7 +538,7 @@ void TMDb::loadCastsFinished()
     } else {
         qWarning() << "Network Error (casts)" << reply->errorString();
     }
-    movie->controller()->removeFromLoadsLeft(DataCasts);
+    movie->controller()->removeFromLoadsLeft(ScraperData::Casts);
 }
 
 /**
@@ -561,7 +561,7 @@ void TMDb::loadTrailersFinished()
     } else {
         qDebug() << "Network Error (trailers)" << reply->errorString();
     }
-    movie->controller()->removeFromLoadsLeft(DataTrailers);
+    movie->controller()->removeFromLoadsLeft(ScraperData::Trailers);
 }
 
 /**
@@ -584,7 +584,7 @@ void TMDb::loadImagesFinished()
     } else {
         qWarning() << "Network Error (images)" << reply->errorString();
     }
-    movie->controller()->removeFromLoadsLeft(DataImages);
+    movie->controller()->removeFromLoadsLeft(ScraperData::Images);
 }
 
 /**
@@ -607,7 +607,7 @@ void TMDb::loadReleasesFinished()
     } else {
         qWarning() << "Network Error (releases)" << reply->errorString();
     }
-    movie->controller()->removeFromLoadsLeft(DataReleases);
+    movie->controller()->removeFromLoadsLeft(ScraperData::Releases);
 }
 
 /**

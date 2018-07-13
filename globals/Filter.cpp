@@ -8,35 +8,55 @@
  * @param info Filter type
  * @param hasInfo Info should be there or not
  */
-Filter::Filter(QString text, QString shortText, QStringList filterText, MovieFilters info, bool hasInfo, int data) :
+Filter::Filter(QString text,
+    QString shortText,
+    QStringList filterText,
+    MovieFilters info,
+    bool hasInfo,
+    ColorLabel data) :
     Filter(text, shortText, filterText, hasInfo, data)
 {
     m_movieInfo = info;
     m_type = FilterType::Movie;
 }
 
-Filter::Filter(QString text, QString shortText, QStringList filterText, MusicFilters info, bool hasInfo, int data) :
+Filter::Filter(QString text,
+    QString shortText,
+    QStringList filterText,
+    MusicFilters info,
+    bool hasInfo,
+    ColorLabel data) :
     Filter(text, shortText, filterText, hasInfo, data)
 {
     m_musicInfo = info;
     m_type = FilterType::Music;
 }
 
-Filter::Filter(QString text, QString shortText, QStringList filterText, ConcertFilters info, bool hasInfo, int data) :
+Filter::Filter(QString text,
+    QString shortText,
+    QStringList filterText,
+    ConcertFilters info,
+    bool hasInfo,
+    ColorLabel data) :
     Filter(text, shortText, filterText, hasInfo, data)
 {
     m_concertInfo = info;
     m_type = FilterType::Concert;
 }
 
-Filter::Filter(QString text, QString shortText, QStringList filterText, TvShowFilters info, bool hasInfo, int data) :
+Filter::Filter(QString text,
+    QString shortText,
+    QStringList filterText,
+    TvShowFilters info,
+    bool hasInfo,
+    ColorLabel data) :
     Filter(text, shortText, filterText, hasInfo, data)
 {
     m_type = FilterType::TvShow;
     m_showInfo = info;
 }
 
-Filter::Filter(QString text, QString shortText, QStringList filterText, bool hasInfo, int data) :
+Filter::Filter(QString text, QString shortText, QStringList filterText, bool hasInfo, ColorLabel data) :
     m_text{text},
     m_shortText{shortText},
     m_filterText{filterText},
@@ -215,7 +235,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
     }
     if (isInfo(MovieFilters::Rating)) {
-        return (m_hasInfo && movie->rating() != 0) || (!m_hasInfo && movie->rating() == 0);
+        return (m_hasInfo && static_cast<int>(movie->rating()) != 0)
+               || (!m_hasInfo && static_cast<int>(movie->rating()) == 0);
     }
     if (isInfo(MovieFilters::HasExternalSubtitle)) {
         return (m_hasInfo && !movie->subtitles().isEmpty()) || (!m_hasInfo && movie->subtitles().isEmpty());

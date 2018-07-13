@@ -16,10 +16,30 @@
 class Filter
 {
 public:
-    Filter(QString text, QString shortText, QStringList filterText, MovieFilters info, bool hasInfo, int data = 0);
-    Filter(QString text, QString shortText, QStringList filterText, TvShowFilters info, bool hasInfo, int data = 0);
-    Filter(QString text, QString shortText, QStringList filterText, MusicFilters info, bool hasInfo, int data = 0);
-    Filter(QString text, QString shortText, QStringList filterText, ConcertFilters info, bool hasInfo, int data = 0);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        MovieFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        TvShowFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        MusicFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        ConcertFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
 
     // Rule of five
     Filter(const Filter &other) = default;
@@ -53,7 +73,11 @@ private:
         Concert
     };
 
-    Filter(QString text, QString shortText, QStringList filterText, bool hasInfo, int data = 0);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
 
     QString m_text;
     QString m_shortText;
@@ -62,7 +86,7 @@ private:
     TvShowFilters m_showInfo;
     MusicFilters m_musicInfo;
     ConcertFilters m_concertInfo;
-    int m_data;
+    ColorLabel m_data;
     FilterType m_type;
     bool m_hasInfo;
 };

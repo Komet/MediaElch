@@ -8,6 +8,7 @@
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
 
 class TvShow;
 class TvShowEpisode;
@@ -40,7 +41,7 @@ public:
     TvShowEpisode *tvShowEpisode();
     QString season();
     int seasonNumber();
-    int type();
+    TvShowType type();
 
 signals:
     void sigIntChanged(TvShowModelItem *, TvShowModelItem *);

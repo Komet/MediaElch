@@ -15,7 +15,7 @@ void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QMo
     QTreeView::drawBranches(painter, rect, index);
     return;
 #endif
-    if (index.model()->data(index, MusicRoles::Type).toInt() != TypeArtist) {
+    if (MusicType(index.model()->data(index, MusicRoles::Type).toInt()) != MusicType::Artist) {
         return;
     }
 
@@ -44,10 +44,10 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
     bool isSelected = selectionModel()->isSelected(index);
 
     QStyleOptionViewItem opt = option;
-    if (index.data(MusicRoles::Type).toInt() == TypeAlbum) {
+    if (MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Album) {
         opt.rect.setX(opt.rect.x() + albumIndent - 4);
     }
-    if (alternatingRowColors() && index.data(MusicRoles::Type).toInt() == TypeAlbum) {
+    if (alternatingRowColors() && MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Album) {
         if (index.row() % 2 == 0) {
             opt.features |= QStyleOptionViewItem::Alternate;
         } else {
@@ -60,7 +60,7 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
     }
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
 
-    if (index.data(MusicRoles::Type).toInt() == TypeArtist) {
+    if (MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Artist) {
         QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
         drawBranches(painter, branches, index);
 

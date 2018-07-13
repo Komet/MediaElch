@@ -1,6 +1,8 @@
 #ifndef TVSHOWTREEVIEW_H
 #define TVSHOWTREEVIEW_H
 
+#include "globals/Globals.h"
+
 #include <QPainter>
 #include <QTreeView>
 #include <QWidget>
@@ -21,7 +23,7 @@ private:
     void drawTvShowIcons(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void drawEpisodeRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void drawRowBackground(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const;
-    int getTvShowType(const QModelIndex &index) const;
+    TvShowType getTvShowType(const QModelIndex &index) const;
 
     const QPixmap m_newIcon;
     const QPixmap m_syncIcon;

@@ -157,8 +157,8 @@ public:
     void clearImages();
     void removeImage(ImageType type);
 
-    void setLabel(int label);
-    int label() const;
+    void setLabel(ColorLabel label);
+    ColorLabel label() const;
 
     // Images
     bool hasExtraFanarts() const;
@@ -244,7 +244,7 @@ private:
     QString m_nfoContent;
     QDateTime m_dateAdded;
     DiscType m_discType;
-    int m_label;
+    ColorLabel m_label;
     QList<Subtitle *> m_subtitles;
 
     // Images
