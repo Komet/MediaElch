@@ -26,6 +26,7 @@ SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Load utils (paths, color output, folding, etc.)
 . "${SCRIPT_DIR}/utils.sh"
+. "${SCRIPT_DIR}/../scripts/utils.sh"
 
 pushd "${PROJECT_DIR}" > /dev/null
 

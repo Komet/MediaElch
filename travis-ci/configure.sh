@@ -7,6 +7,7 @@ SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Load utils (paths, color output, folding, etc.)
 . "${SCRIPT_DIR}/utils.sh"
+. "${SCRIPT_DIR}/../scripts/utils.sh"
 if [ -f "${SCRIPT_DIR}/defs.sh" ]; then
 	. "${SCRIPT_DIR}/defs.sh"
 fi

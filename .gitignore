@@ -13,6 +13,7 @@ doc/html
 *.pro.user*
 Makefile
 build/
+*.AppImage
 
 # ---> C++
 # Prerequisites
