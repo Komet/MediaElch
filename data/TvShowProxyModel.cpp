@@ -104,15 +104,15 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
     TvShowModelItem *leftItem = model->getItem(left);
     TvShowModelItem *rightItem = model->getItem(right);
 
-    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeSeason) {
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TvShowType::Season) {
         return leftItem->seasonNumber() < rightItem->seasonNumber();
     }
 
-    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeEpisode) {
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TvShowType::Episode) {
         return leftItem->tvShowEpisode()->episode() < rightItem->tvShowEpisode()->episode();
     }
 
-    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeTvShow) {
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TvShowType::TvShow) {
         bool leftNew = !leftItem->tvShow()->infoLoaded() || leftItem->tvShow()->hasNewEpisodes();
         bool rightNew = !rightItem->tvShow()->infoLoaded() || rightItem->tvShow()->hasNewEpisodes();
         if (leftNew && !rightNew) {

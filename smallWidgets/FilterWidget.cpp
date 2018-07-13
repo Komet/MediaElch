@@ -46,40 +46,36 @@ FilterWidget::FilterWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Filter
         m_list->setGraphicsEffect(effect);
     }
 
-    connect(ui->lineEdit, &QLineEdit::textEdited, this, &FilterWidget::onFilterTextChanged);
-    connect(ui->lineEdit, &MyLineEdit::keyDown, this, &FilterWidget::onKeyDown);
-    connect(ui->lineEdit, &MyLineEdit::keyUp, this, &FilterWidget::onKeyUp);
-    connect(ui->lineEdit, &MyLineEdit::focusOut, m_list, &QWidget::hide);
-    connect(ui->lineEdit, &MyLineEdit::focusIn, this, &FilterWidget::setupFilters);
-    connect(ui->lineEdit, &QLineEdit::returnPressed, this, &FilterWidget::addSelectedFilter);
-    connect(ui->lineEdit, &MyLineEdit::backspaceInFront, this, &FilterWidget::removeLastFilter);
-    connect(m_list, &QListWidget::itemClicked, this, &FilterWidget::addFilterFromItem);
+    // clang-format off
+    connect(ui->lineEdit, &QLineEdit::textEdited,        this,   &FilterWidget::onFilterTextChanged);
+    connect(ui->lineEdit, &MyLineEdit::keyDown,          this,   &FilterWidget::onKeyDown);
+    connect(ui->lineEdit, &MyLineEdit::keyUp,            this,   &FilterWidget::onKeyUp);
+    connect(ui->lineEdit, &MyLineEdit::focusIn,          this,   &FilterWidget::setupFilters);
+    connect(ui->lineEdit, &MyLineEdit::focusOut,         m_list, &QWidget::hide);
+    connect(ui->lineEdit, &QLineEdit::returnPressed,     this,   &FilterWidget::addSelectedFilter);
+    connect(ui->lineEdit, &MyLineEdit::backspaceInFront, this,   &FilterWidget::removeLastFilter);
+    connect(m_list,       &QListWidget::itemClicked,     this,   &FilterWidget::addFilterFromItem);
+    // clang-format on
 
     initFilters();
 }
 
-/**
- * @brief FilterWidget::~FilterWidget
- */
 FilterWidget::~FilterWidget()
 {
     delete ui;
 }
 
-/**
- * @brief Sets the active main widget
- *        Based on this the filters are set up
- * @param widget
- */
-void FilterWidget::setActiveWidget(MainWidgets widget)
+void FilterWidget::setActiveMainWidget(MainWidgets widget)
 {
     storeFilters(m_activeWidget);
-    m_activeFilters.clear();
-    m_activeWidget = widget;
     ui->lineEdit->clearFilters();
     ui->lineEdit->clear();
+    m_activeWidget = widget;
+
+    m_activeFilters.clear();
     setupFilters();
     loadFilters(m_activeWidget);
+
     emit sigFilterChanged(m_activeFilters, ui->lineEdit->text());
 }
 

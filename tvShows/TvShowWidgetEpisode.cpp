@@ -604,7 +604,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TypeEpisode);
+    TvShowSearch::instance()->setSearchType(TvShowType::Episode);
     TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);

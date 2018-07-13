@@ -5,6 +5,7 @@
 
 #include "Album.h"
 #include "Artist.h"
+#include "globals/Globals.h"
 
 class Artist;
 class Album;
@@ -29,7 +30,7 @@ public:
     void setAlbum(Album *album);
     Artist *artist();
     Album *album();
-    int type() const;
+    MusicType type() const;
 
 signals:
     void sigIntChanged(MusicModelItem *, MusicModelItem *);

@@ -116,30 +116,30 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         if (item->data(2).toBool()) {
             font.setItalic(true);
         }
-        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
+        if (item->type() == TvShowType::TvShow || item->type() == TvShowType::Season) {
             font.setBold(true);
         }
 
-        if (item->type() == TypeSeason || item->type() == TypeEpisode) {
+        if (item->type() == TvShowType::Season || item->type() == TvShowType::Episode) {
 #ifdef Q_OS_MAC
             font.setPointSize(font.pointSize() - 2);
 #endif
         }
         return font;
     } else if (role == Qt::SizeHintRole) {
-        return QSize(0, (item->type() == TypeTvShow) ? 44 : (item->type() == TypeSeason) ? 26 : 22);
+        return QSize(0, (item->type() == TvShowType::TvShow) ? 44 : (item->type() == TvShowType::Season) ? 26 : 22);
     } else if (role == TvShowRoles::Type) {
-        return item->type();
-    } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {
+        return static_cast<int>(item->type());
+    } else if (role == TvShowRoles::EpisodeCount && item->type() == TvShowType::TvShow) {
         return item->data(1);
     } else if (role == Qt::ForegroundRole) {
         if (item->data(2).toBool()) {
             return QColor(255, 0, 0);
         }
-        if (item->type() == TypeEpisode && item->tvShowEpisode()->isDummy()) {
+        if (item->type() == TvShowType::Episode && item->tvShowEpisode()->isDummy()) {
             return QColor(150, 150, 150);
         }
-        if (item->type() == TypeSeason && item->tvShow()->isDummySeason(item->seasonNumber())) {
+        if (item->type() == TvShowType::Season && item->tvShow()->isDummySeason(item->seasonNumber())) {
             return QColor(150, 150, 150);
         }
         return QColor(17, 51, 80);
@@ -172,14 +172,14 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     } else if (role == TvShowRoles::SelectionForeground) {
         return QColor(255, 255, 255);
     } else if (role == TvShowRoles::FilePath) {
-        if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty()) {
+        if (item->type() == TvShowType::Episode && !item->tvShowEpisode()->files().isEmpty()) {
             return item->tvShowEpisode()->files().first();
         }
-        if (item->type() == TypeTvShow) {
+        if (item->type() == TvShowType::TvShow) {
             return item->tvShow()->dir();
         }
     } else if (role == TvShowRoles::HasDummyEpisodes) {
-        if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber())) {
+        if (item->type() == TvShowType::Season && item->tvShow()->hasDummyEpisodes(item->seasonNumber())) {
             return true;
         }
     }

@@ -459,7 +459,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TypeTvShow);
+    TvShowSearch::instance()->setSearchType(TvShowType::TvShow);
     TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your tv show is scraped"));

@@ -663,7 +663,7 @@ void ImportDialog::onMovingFilesFinished()
         } else {
             for (int i = 0, n = m_show->modelItem()->childCount(); i < n; ++i) {
                 TvShowModelItem *item = m_show->modelItem()->child(i);
-                if (item->type() == TypeSeason && item->season() == m_episode->seasonString()) {
+                if (item->type() == TvShowType::Season && item->season() == m_episode->seasonString()) {
                     item->appendChild(m_episode);
                     break;
                 }

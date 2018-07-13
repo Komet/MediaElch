@@ -215,7 +215,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
     }
     if (isInfo(MovieFilters::Rating)) {
-        return (m_hasInfo && movie->rating() != 0) || (!m_hasInfo && movie->rating() == 0);
+        return (m_hasInfo && static_cast<int>(movie->rating()) != 0)
+               || (!m_hasInfo && static_cast<int>(movie->rating()) == 0);
     }
     if (isInfo(MovieFilters::HasExternalSubtitle)) {
         return (m_hasInfo && !movie->subtitles().isEmpty()) || (!m_hasInfo && movie->subtitles().isEmpty());

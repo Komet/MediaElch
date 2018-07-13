@@ -23,7 +23,7 @@ class FilterWidget : public QWidget
 public:
     explicit FilterWidget(QWidget *parent = nullptr);
     ~FilterWidget() override;
-    void setActiveWidget(MainWidgets widget);
+    void setActiveMainWidget(MainWidgets widget);
 signals:
     void sigFilterTextChanged(QString);
     void sigFilterChanged(QList<Filter *>, QString);

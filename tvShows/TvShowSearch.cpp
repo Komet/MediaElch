@@ -172,11 +172,11 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 void TvShowSearch::setSearchType(TvShowType type)
 {
     m_searchType = type;
-    if (type == TypeTvShow) {
+    if (type == TvShowType::TvShow) {
         ui->comboUpdate->setVisible(true);
         ui->comboUpdate->setCurrentIndex(Settings::instance()->tvShowUpdateOption());
         onComboIndexChanged();
-    } else if (type == TypeEpisode) {
+    } else if (type == TvShowType::Episode) {
         ui->comboUpdate->setVisible(false);
         ui->comboUpdate->setCurrentIndex(4);
         onComboIndexChanged();
@@ -211,7 +211,7 @@ void TvShowSearch::onChkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     }
     Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(scraperNo), m_infosToLoad);
@@ -253,7 +253,7 @@ TvShowUpdateType TvShowSearch::updateType()
 void TvShowSearch::onComboIndexChanged()
 {
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());

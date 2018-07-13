@@ -1480,7 +1480,7 @@ void TvShow::fillMissingEpisodes()
         } else {
             for (int i = 0, n = modelItem()->childCount(); i < n; ++i) {
                 TvShowModelItem *item = modelItem()->child(i);
-                if (item->type() == TypeSeason && item->season() == episode->seasonString()) {
+                if (item->type() == TvShowType::Season && item->season() == episode->seasonString()) {
                     item->appendChild(episode);
                     break;
                 }
@@ -1495,13 +1495,13 @@ void TvShow::clearMissingEpisodes()
 {
     for (int i = 0; i < modelItem()->childCount(); ++i) {
         TvShowModelItem *seasonItem = modelItem()->child(i);
-        if (seasonItem->type() != TypeSeason) {
+        if (seasonItem->type() != TvShowType::Season) {
             continue;
         }
         bool isDummySeason = true;
         for (int x = 0; x < seasonItem->childCount(); ++x) {
             TvShowModelItem *item = seasonItem->child(x);
-            if (item->type() != TypeEpisode) {
+            if (item->type() != TvShowType::Episode) {
                 continue;
             }
             if (item->tvShowEpisode()->isDummy()) {

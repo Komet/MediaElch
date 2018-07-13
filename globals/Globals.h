@@ -160,17 +160,19 @@ struct Poster
     int season{0};
 };
 
-enum TvShowType
+enum class TvShowType : int
 {
-    TypeTvShow,
-    TypeEpisode,
-    TypeSeason
+    None,
+    TvShow,
+    Episode,
+    Season
 };
 
-enum MusicType
+enum class MusicType : int
 {
-    TypeArtist,
-    TypeAlbum
+    None,
+    Artist,
+    Album
 };
 
 enum class ItemType
