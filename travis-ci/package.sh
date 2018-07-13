@@ -21,6 +21,7 @@ if [ -z ${QT+x} ]; then print_error "\$QT is unset"; return 1; fi
 
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 . "${SCRIPT_DIR}/utils.sh"
+. "${SCRIPT_DIR}/../scripts/utils.sh"
 
 if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
 	print_warning "Not packaging pull-requests for deployment"
