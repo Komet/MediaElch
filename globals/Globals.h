@@ -111,8 +111,8 @@ struct Actor
     QString role;
     QString thumb;
     QByteArray image;
-    bool imageHasChanged{false};
     QString id;
+    bool imageHasChanged{false};
 };
 Q_DECLARE_METATYPE(Actor *)
 Q_DECLARE_METATYPE(QString *)
@@ -514,18 +514,17 @@ enum class MediaStatusColumn
     Last = Actors
 };
 
-// clang-format off
-namespace Labels {
-    const int NO_LABEL = 0;
-    const int RED    = 1;
-    const int ORANGE = 2;
-    const int YELLOW = 3;
-    const int GREEN  = 4;
-    const int BLUE   = 5;
-    const int PURPLE = 6;
-    const int GREY   = 7;
-}
-// clang-format on
+enum class ColorLabel : int
+{
+    NoLabel = 0,
+    Red = 1,
+    Orange = 2,
+    Yellow = 3,
+    Green = 4,
+    Blue = 5,
+    Purple = 6,
+    Grey = 7
+};
 
 struct MovieDuplicate
 {

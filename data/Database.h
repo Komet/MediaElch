@@ -61,8 +61,8 @@ public:
     void addImport(QString fileName, QString type, QString path);
     bool guessImport(QString fileName, QString &type, QString &path);
 
-    void setLabel(QStringList fileNames, int color);
-    int getLabel(QStringList fileNames);
+    void setLabel(QStringList fileNames, ColorLabel color);
+    ColorLabel getLabel(QStringList fileNames);
 
 private:
     QSqlDatabase *m_db;

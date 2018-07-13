@@ -67,12 +67,12 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     }
 
     QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<int, QString> it(Helper::instance()->labels());
+    QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
         auto action = new QAction(it.value(), this);
         action->setIcon(Helper::instance()->iconForLabel(it.key()));
-        action->setProperty("color", it.key());
+        action->setProperty("color", static_cast<int>(it.key()));
         connect(action, &QAction::triggered, this, &FilesWidget::onLabel);
         labelsMenu->addAction(action);
     }
@@ -538,8 +538,8 @@ void FilesWidget::onLabel()
         return;
     }
 
-    int color = action->property("color").toInt();
-    foreach (Movie *movie, selectedMovies()) {
+    ColorLabel color = static_cast<ColorLabel>(action->property("color").toInt());
+    for (Movie *movie : selectedMovies()) {
         movie->setLabel(color);
         Manager::instance()->database()->setLabel(movie->files(), color);
     }

@@ -1,6 +1,8 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include "globals/Globals.h"
+
 #include <QComboBox>
 #include <QImage>
 #include <QLabel>
@@ -46,9 +48,9 @@ public:
     virtual void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
     virtual void applyEffect(QWidget *parent);
     virtual qreal similarity(const QString &s1, const QString &s2);
-    virtual QMap<int, QString> labels();
-    virtual QColor colorForLabel(int label);
-    virtual QIcon iconForLabel(int label);
+    virtual QMap<ColorLabel, QString> labels();
+    virtual QColor colorForLabel(ColorLabel label);
+    virtual QIcon iconForLabel(ColorLabel label);
     virtual qreal devicePixelRatio(QLabel *label);
     virtual qreal devicePixelRatio(QPushButton *button);
     virtual qreal devicePixelRatio(QWidget *widget);

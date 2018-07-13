@@ -321,7 +321,7 @@ void FilterWidget::setupMovieFilters()
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
 
     if (m_movieLabelFilters.isEmpty()) {
-        QMapIterator<int, QString> it(Helper::instance()->labels());
+        QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
         while (it.hasNext()) {
             it.next();
             m_movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()),
