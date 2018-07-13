@@ -75,7 +75,7 @@ public:
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
     QString movieSetArtworkDirectory() const;
-    QList<MediaStatusColumns> mediaStatusColumns() const;
+    QList<MediaStatusColumn> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<MovieScraperInfos, QString> customMovieScraper() const;
@@ -150,7 +150,7 @@ public:
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(QString dir);
-    void setMediaStatusColumns(QList<MediaStatusColumns> columns);
+    void setMediaStatusColumn(QList<MediaStatusColumn> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
@@ -223,7 +223,7 @@ private:
     bool m_ignoreArticlesWhenSorting;
     MovieSetArtworkType m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
-    QList<MediaStatusColumns> m_mediaStatusColumns;
+    QList<MediaStatusColumn> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
     QMap<MovieScraperInfos, QString> m_customMovieScraper;

@@ -274,8 +274,8 @@ void Settings::loadSettings()
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
-    foreach (const QVariant &column, settings()->value("MediaStatusColumns").toList())
-        m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
+    foreach (const QVariant &column, settings()->value("MediaStatusColumn").toList())
+        m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
 
 
     m_customMovieScraper.clear();
@@ -440,9 +440,10 @@ void Settings::saveSettings()
     settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
 
     QList<QVariant> columns;
-    foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
-        columns.append(column);
-    settings()->setValue("MediaStatusColumns", columns);
+    for (const MediaStatusColumn &column : m_mediaStatusColumns) {
+        columns.append(static_cast<int>(column));
+    }
+    settings()->setValue("MediaStatusColumn", columns);
 
     int i = 0;
     settings()->beginWriteArray("CustomMovieScraper");
@@ -1218,12 +1219,12 @@ QString Settings::movieSetArtworkDirectory() const
     return m_movieSetArtworkDirectory;
 }
 
-void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)
+void Settings::setMediaStatusColumn(QList<MediaStatusColumn> columns)
 {
     m_mediaStatusColumns = columns;
 }
 
-QList<MediaStatusColumns> Settings::mediaStatusColumns() const
+QList<MediaStatusColumn> Settings::mediaStatusColumns() const
 {
     return m_mediaStatusColumns;
 }

@@ -497,21 +497,21 @@ struct ExtraFanart
     QString path;
 };
 
-enum MediaStatusColumns
+enum class MediaStatusColumn
 {
-    MediaStatusId,
-    MediaStatusStreamDetails,
-    MediaStatusTrailer,
-    MediaStatusLocalTrailer,
-    MediaStatusPoster,
-    MediaStatusFanart,
-    MediaStatusExtraArts,
-    MediaStatusExtraFanarts,
-    MediaStatusActors,
-    MediaStatusUnknown,
+    Id,
+    StreamDetails,
+    Trailer,
+    LocalTrailer,
+    Poster,
+    Fanart,
+    ExtraArts,
+    ExtraFanarts,
+    Actors,
+    Unknown,
 
-    MediaStatusFirst = MediaStatusId,
-    MediaStatusLast = MediaStatusActors
+    First = Id,
+    Last = Actors
 };
 
 // clang-format off

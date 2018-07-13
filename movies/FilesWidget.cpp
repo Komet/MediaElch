@@ -49,17 +49,19 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+    for (const MediaStatusColumn &column : Settings::instance()->mediaStatusColumns()) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
+    }
 
     m_alphaList = new AlphabeticalList(this, ui->files);
 
     QMenu *mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
-    for (int i = MediaStatusFirst, n = MediaStatusLast; i <= n; ++i) {
-        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)), this);
+    for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
+         ++i) {
+        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
-        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(i)));
+        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumn>(i)));
         connect(action, &QAction::triggered, this, &FilesWidget::onActionMediaStatusColumn);
         mediaStatusColumnsMenu->addAction(action);
     }
@@ -487,7 +489,7 @@ void FilesWidget::renewModel()
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
     }
-    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+    foreach (const MediaStatusColumn &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 }
 
@@ -516,14 +518,14 @@ void FilesWidget::onActionMediaStatusColumn()
     }
     action->setChecked(action->isChecked());
 
-    MediaStatusColumns col = static_cast<MediaStatusColumns>(action->property("mediaStatusColumn").toInt());
-    QList<MediaStatusColumns> columns = Settings::instance()->mediaStatusColumns();
+    MediaStatusColumn col = static_cast<MediaStatusColumn>(action->property("mediaStatusColumn").toInt());
+    QList<MediaStatusColumn> columns = Settings::instance()->mediaStatusColumns();
     if (action->isChecked() && !columns.contains(col)) {
         columns.append(col);
     } else {
         columns.removeAll(col);
     }
-    Settings::instance()->setMediaStatusColumns(columns);
+    Settings::instance()->setMediaStatusColumn(columns);
     Settings::instance()->saveSettings();
     renewModel();
 }

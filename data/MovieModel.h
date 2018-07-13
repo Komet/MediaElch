@@ -34,9 +34,9 @@ public:
     void clear();
     int countNewMovies();
 
-    static int mediaStatusToColumn(MediaStatusColumns column);
-    static QString mediaStatusToText(MediaStatusColumns column);
-    static MediaStatusColumns columnToMediaStatus(int column);
+    static int mediaStatusToColumn(MediaStatusColumn column);
+    static QString mediaStatusToText(MediaStatusColumn column);
+    static MediaStatusColumn columnToMediaStatus(int column);
 
 private slots:
     void onMovieChanged(Movie *movie);
