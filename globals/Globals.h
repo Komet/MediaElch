@@ -482,13 +482,13 @@ enum class TvShowUpdateType : int
     AllEpisodes
 };
 
-enum ScraperData
+enum class ScraperData : int
 {
-    DataInfos,
-    DataCasts,
-    DataTrailers,
-    DataImages,
-    DataReleases
+    Infos,
+    Casts,
+    Trailers,
+    Images,
+    Releases
 };
 
 struct ExtraFanart

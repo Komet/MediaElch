@@ -374,7 +374,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
     QList<ScraperData> loadsLeft;
 
     // Infos
-    loadsLeft.append(DataInfos);
+    loadsLeft.append(ScraperData::Infos);
     url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                    .arg(id)
                    .arg(m_apiKey)
@@ -388,7 +388,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
 
     // Trailers
     if (infos.contains(ConcertScraperInfos::Trailer)) {
-        loadsLeft.append(DataTrailers);
+        loadsLeft.append(ScraperData::Trailers);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
@@ -400,7 +400,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
 
     // Images
     if (infos.contains(ConcertScraperInfos::Poster) || infos.contains(ConcertScraperInfos::Backdrop)) {
-        loadsLeft.append(DataImages);
+        loadsLeft.append(ScraperData::Images);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
@@ -412,7 +412,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
 
     // Releases
     if (infos.contains(ConcertScraperInfos::Certification)) {
-        loadsLeft.append(DataReleases);
+        loadsLeft.append(ScraperData::Releases);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
@@ -444,7 +444,7 @@ void TMDbConcerts::loadFinished()
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
-    concert->controller()->removeFromLoadsLeft(DataInfos);
+    concert->controller()->removeFromLoadsLeft(ScraperData::Infos);
 }
 
 /**
@@ -467,7 +467,7 @@ void TMDbConcerts::loadTrailersFinished()
     } else {
         qDebug() << "Network Error (trailers)" << reply->errorString();
     }
-    concert->controller()->removeFromLoadsLeft(DataTrailers);
+    concert->controller()->removeFromLoadsLeft(ScraperData::Trailers);
 }
 
 /**
@@ -490,7 +490,7 @@ void TMDbConcerts::loadImagesFinished()
     } else {
         qWarning() << "Network Error (images)" << reply->errorString();
     }
-    concert->controller()->removeFromLoadsLeft(DataImages);
+    concert->controller()->removeFromLoadsLeft(ScraperData::Images);
 }
 
 /**
@@ -513,7 +513,7 @@ void TMDbConcerts::loadReleasesFinished()
     } else {
         qWarning() << "Network Error (releases)" << reply->errorString();
     }
-    concert->controller()->removeFromLoadsLeft(DataReleases);
+    concert->controller()->removeFromLoadsLeft(ScraperData::Releases);
 }
 
 /**
