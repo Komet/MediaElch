@@ -421,13 +421,13 @@ enum class MusicFilters : int
     Title = 32
 };
 
-enum SortBy
+enum class SortBy
 {
-    SortByName,
-    SortBySeen,
-    SortByAdded,
-    SortByYear,
-    SortByNew
+    Name,
+    Seen,
+    Added,
+    Year,
+    New
 };
 
 // clang-format off

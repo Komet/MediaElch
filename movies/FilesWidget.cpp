@@ -83,6 +83,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     QAction *actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
     QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);
     m_contextMenu->addSeparator();
@@ -125,7 +126,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     connect(ui->sortByYear,      &MyLabel::clicked, this, &FilesWidget::onSortByYear);
 
     connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &FilesWidget::onViewUpdated);
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved, this, &FilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &FilesWidget::onViewUpdated);
     // clang-format on
 }
 
@@ -361,11 +362,11 @@ void FilesWidget::restoreLastSelection()
 
 void FilesWidget::updateSort(SortBy sortBy)
 {
-    ui->sortByNew->setProperty("active", sortBy == SortByNew);
-    ui->sortByLastAdded->setProperty("active", sortBy == SortByAdded);
-    ui->sortByName->setProperty("active", sortBy == SortByName);
-    ui->sortByYear->setProperty("active", sortBy == SortByYear);
-    ui->sortBySeen->setProperty("active", sortBy == SortBySeen);
+    ui->sortByNew->setProperty("active", sortBy == SortBy::New);
+    ui->sortByLastAdded->setProperty("active", sortBy == SortBy::Added);
+    ui->sortByName->setProperty("active", sortBy == SortBy::Name);
+    ui->sortByYear->setProperty("active", sortBy == SortBy::Year);
+    ui->sortBySeen->setProperty("active", sortBy == SortBy::Seen);
 
     // We have to rerender the labels because of the dynamic property "active".
     style()->unpolish(ui->sortByNew);
@@ -387,7 +388,7 @@ void FilesWidget::updateSort(SortBy sortBy)
  */
 void FilesWidget::onSortByAdded()
 {
-    updateSort(SortByAdded);
+    updateSort(SortBy::Added);
 }
 
 /**
@@ -395,7 +396,7 @@ void FilesWidget::onSortByAdded()
  */
 void FilesWidget::onSortByName()
 {
-    updateSort(SortByName);
+    updateSort(SortBy::Name);
 }
 
 /**
@@ -403,7 +404,7 @@ void FilesWidget::onSortByName()
  */
 void FilesWidget::onSortByNew()
 {
-    updateSort(SortByNew);
+    updateSort(SortBy::New);
 }
 
 /**
@@ -411,7 +412,7 @@ void FilesWidget::onSortByNew()
  */
 void FilesWidget::onSortBySeen()
 {
-    updateSort(SortBySeen);
+    updateSort(SortBy::Seen);
 }
 
 /**
@@ -419,7 +420,7 @@ void FilesWidget::onSortBySeen()
  */
 void FilesWidget::onSortByYear()
 {
-    updateSort(SortByYear);
+    updateSort(SortBy::Year);
 }
 
 QList<Movie *> FilesWidget::selectedMovies()
