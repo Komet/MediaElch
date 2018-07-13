@@ -2005,11 +2005,11 @@ QString XbmcXml::getPath(Concert *concert)
 
 QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
 {
-    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleArtworkFolder) {
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleArtworkFolder) {
         QDir dir(Settings::instance()->movieSetArtworkDirectory());
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
-    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleSetFolder) {
+    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             if (movie->set() == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first());

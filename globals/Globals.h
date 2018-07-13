@@ -192,10 +192,10 @@ enum class DiscType
     Dvd
 };
 
-enum MovieSetArtworkType
+enum class MovieSetArtworkType : int
 {
-    MovieSetArtworkSingleSetFolder,
-    MovieSetArtworkSingleArtworkFolder
+    SingleSetFolder,
+    SingleArtworkFolder
 };
 
 /**

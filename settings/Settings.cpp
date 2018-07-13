@@ -269,7 +269,7 @@ void Settings::loadSettings()
     }
 
     // Movie set artwork
-    m_movieSetArtworkType = settings()->value("MovieSetArtwork/StoringType", 0).toInt();
+    m_movieSetArtworkType = MovieSetArtworkType(settings()->value("MovieSetArtwork/StoringType", 0).toInt());
     m_movieSetArtworkDirectory = settings()->value("MovieSetArtwork/Directory").toString();
 
     // Media Status Columns
@@ -436,7 +436,7 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    settings()->setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
+    settings()->setValue("MovieSetArtwork/StoringType", static_cast<int>(m_movieSetArtworkType));
     settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
 
     QList<QVariant> columns;
@@ -1205,7 +1205,7 @@ void Settings::setMovieSetArtworkType(MovieSetArtworkType type)
 
 MovieSetArtworkType Settings::movieSetArtworkType() const
 {
-    return static_cast<MovieSetArtworkType>(m_movieSetArtworkType);
+    return m_movieSetArtworkType;
 }
 
 void Settings::setMovieSetArtworkDirectory(QString dir)

@@ -221,7 +221,7 @@ private:
     QString m_xbmcUser;
     QString m_xbmcPassword;
     bool m_ignoreArticlesWhenSorting;
-    int m_movieSetArtworkType;
+    MovieSetArtworkType m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
     QList<MediaStatusColumns> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;

@@ -9,6 +9,7 @@
 #include "data/MovieFilesOrganizer.h"
 #include "data/Storage.h"
 #include "export/ExportTemplateLoader.h"
+#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
@@ -110,8 +111,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
         }
     }
 
-    ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
-    ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
+    ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
+    ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
     Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
 
@@ -333,7 +334,7 @@ void SettingsWindow::loadSettings()
 
     // Movie set artwork
     for (int i = 0, n = ui->comboMovieSetArtwork->count(); i < n; ++i) {
-        if (ui->comboMovieSetArtwork->itemData(i).toInt() == m_settings->movieSetArtworkType()) {
+        if (MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(i).toInt()) == m_settings->movieSetArtworkType()) {
             ui->comboMovieSetArtwork->setCurrentIndex(i);
             break;
         }
@@ -671,14 +672,15 @@ void SettingsWindow::chooseDirToAdd()
 
 void SettingsWindow::onComboMovieSetArtworkChanged()
 {
-    int value = ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt();
-    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkSingleArtworkFolder);
-    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkSingleArtworkFolder);
+    MovieSetArtworkType value =
+        MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt());
+    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
+    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
 
-    if (value == MovieSetArtworkSingleArtworkFolder) {
+    if (value == MovieSetArtworkType::SingleArtworkFolder) {
         ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
         ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
-    } else if (value == MovieSetArtworkSingleSetFolder) {
+    } else if (value == MovieSetArtworkType::SingleSetFolder) {
         ui->movieSetPosterFileName->setText("folder.jpg");
         ui->movieSetFanartFileName->setText("fanart.jpg");
     }
