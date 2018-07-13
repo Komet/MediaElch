@@ -290,7 +290,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
         if (m_currentShow->tvdbId().isEmpty()) {
             m_scraperInterface->search(m_currentShow->name());
         } else {
-            m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, UpdateShow, m_infosToLoad);
+            m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
         }
     } else if (m_currentEpisode) {
         connect(m_currentEpisode.data(),
@@ -321,7 +321,7 @@ void TvShowMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> result
 
     if (m_currentShow) {
         m_showIds.insert(m_currentShow->name(), results.first().id);
-        m_currentShow->loadData(results.first().id, m_scraperInterface, UpdateShow, m_infosToLoad);
+        m_currentShow->loadData(results.first().id, m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
     } else if (m_currentEpisode) {
         m_showIds.insert(m_currentEpisode->tvShow()->name(), results.first().id);
         m_currentEpisode->loadData(results.first().id, m_scraperInterface, m_infosToLoad);

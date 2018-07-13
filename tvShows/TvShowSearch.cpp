@@ -236,18 +236,18 @@ QList<TvShowScraperInfos> TvShowSearch::infosToLoad()
 TvShowUpdateType TvShowSearch::updateType()
 {
     if (ui->comboUpdate->currentIndex() == 0) {
-        return UpdateShow;
+        return TvShowUpdateType::Show;
     }
     if (ui->comboUpdate->currentIndex() == 1) {
-        return UpdateShowAndNewEpisodes;
+        return TvShowUpdateType::ShowAndNewEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 2) {
-        return UpdateShowAndAllEpisodes;
+        return TvShowUpdateType::ShowAndAllEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 3) {
-        return UpdateNewEpisodes;
+        return TvShowUpdateType::NewEpisodes;
     }
-    return UpdateAllEpisodes;
+    return TvShowUpdateType::AllEpisodes;
 }
 
 void TvShowSearch::onComboIndexChanged()
@@ -262,7 +262,7 @@ void TvShowSearch::onComboIndexChanged()
         Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();
-    if (type == UpdateShow) {
+    if (type == TvShowUpdateType::Show) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -277,7 +277,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(false);
         ui->chkRuntime->setEnabled(true);
         ui->chkStatus->setEnabled(true);
-    } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
+    } else if (type == TvShowUpdateType::ShowAndAllEpisodes || type == TvShowUpdateType::ShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);

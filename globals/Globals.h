@@ -208,7 +208,7 @@ struct SettingsDir
     bool autoReload;
 };
 
-enum SettingsDirType
+enum class SettingsDirType : int
 {
     Movies,
     TvShows,
@@ -217,7 +217,7 @@ enum SettingsDirType
     Music
 };
 
-enum ComboDelegateType
+enum class ComboDelegateType : int
 {
     Genres,
     Studios,
@@ -473,13 +473,13 @@ enum class DataFileType : int {
 };
 // clang-format on
 
-enum TvShowUpdateType
+enum class TvShowUpdateType : int
 {
-    UpdateShow,
-    UpdateShowAndAllEpisodes,
-    UpdateShowAndNewEpisodes,
-    UpdateNewEpisodes,
-    UpdateAllEpisodes
+    Show,
+    ShowAndAllEpisodes,
+    ShowAndNewEpisodes,
+    NewEpisodes,
+    AllEpisodes
 };
 
 enum ScraperData
