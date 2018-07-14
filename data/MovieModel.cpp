@@ -143,14 +143,10 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
-        // clang-format off
+
         switch (MovieModel::columnToMediaStatus(index.column())) {
-        case MediaStatusColumn::Actors:
-            icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
-            break;
-        case MediaStatusColumn::Trailer:
-            icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green";
-            break;
+        case MediaStatusColumn::Actors: icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green"; break;
+        case MediaStatusColumn::Trailer: icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green"; break;
         case MediaStatusColumn::LocalTrailer:
             icon = (movie->hasLocalTrailer()) ? "trailer/green" : "trailer/red";
             break;
@@ -162,8 +158,8 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             break;
         case MediaStatusColumn::ExtraArts:
             if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt)
-                    && movie->hasImage(ImageType::MovieLogo) && movie->hasImage(ImageType::MovieBanner)
-                    && movie->hasImage(ImageType::MovieThumb)) {
+                && movie->hasImage(ImageType::MovieLogo) && movie->hasImage(ImageType::MovieBanner)
+                && movie->hasImage(ImageType::MovieThumb)) {
                 icon = "extraArts/green";
             } else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt)
                        || movie->hasImage(ImageType::MovieLogo) || movie->hasImage(ImageType::MovieBanner)
@@ -179,13 +175,9 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         case MediaStatusColumn::ExtraFanarts:
             icon = (movie->hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
             break;
-        case MediaStatusColumn::Id:
-            icon = (movie->id().isEmpty()) ? "id/red" : "id/green";
-            break;
-        default:
-            break;
+        case MediaStatusColumn::Id: icon = movie->hasValidImdbId() ? "id/green" : "id/red"; break;
+        default: break;
         }
-        // clang-format on
 
         if (!icon.isEmpty()) {
             static QHash<QString, QIcon> icons;

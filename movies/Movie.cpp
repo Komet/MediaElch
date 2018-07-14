@@ -1353,6 +1353,12 @@ QDateTime Movie::dateAdded() const
     return m_dateAdded;
 }
 
+bool Movie::hasValidImdbId() const
+{
+    QRegExp regex("tt\\d{7}");
+    return !m_id.isEmpty() && regex.exactMatch(m_id);
+}
+
 void Movie::setDiscType(DiscType type)
 {
     m_discType = type;
