@@ -262,8 +262,9 @@ void MyLineEdit::removeLastFilter()
  */
 void MyLineEdit::clearFilters()
 {
-    foreach (QLabel *label, m_filterLabels)
+    for (QLabel *label : m_filterLabels) {
         label->deleteLater();
+    }
     m_filterLabels.clear();
     drawFilters();
 }

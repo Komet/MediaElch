@@ -38,32 +38,29 @@ private slots:
 
 private:
     Ui::FilterWidget *ui;
-    QList<Filter *> m_filters;
-    QList<Filter *> m_movieFilters;
-    QList<Filter *> m_movieGenreFilters;
-    QList<Filter *> m_movieStudioFilters;
-    QList<Filter *> m_movieCountryFilters;
-    QList<Filter *> m_movieYearFilters;
-    QList<Filter *> m_movieCertificationFilters;
-    QList<Filter *> m_movieDirectorFilters;
-    QList<Filter *> m_movieVideoCodecFilters;
-    QList<Filter *> m_movieTagsFilters;
-    QList<Filter *> m_movieSetsFilters;
-    QList<Filter *> m_tvShowFilters;
-    QList<Filter *> m_concertFilters;
-    QList<Filter *> m_musicFilters;
-    QList<Filter *> m_movieLabelFilters;
+    MainWidgets m_activeWidget;
+
+    // Available filters for current widget
+    QList<Filter *> m_availableFilters;
+
+    // Unique available filters
+    QList<Filter *> m_availableMovieFilters;
+    QList<Filter *> m_availableTvShowFilters;
+    QList<Filter *> m_availableConcertFilters;
+    QList<Filter *> m_availableMusicFilters;
+
     QListWidget *m_list;
     QList<Filter *> m_activeFilters;
-    MainWidgets m_activeWidget;
     QMap<MainWidgets, QList<Filter *>> m_storedFilters;
-    void initFilters();
-    void setupMovieFilters();
-    void setupTvShowFilters();
-    void setupConcertFilters();
-    void setupMusicFilters();
+
+    void initAvailableFilters();
+    QList<Filter *> setupMovieFilters();
+    QList<Filter *> setupTvShowFilters();
+    QList<Filter *> setupConcertFilters();
+    QList<Filter *> setupMusicFilters();
     void storeFilters(MainWidgets widget);
     void loadFilters(MainWidgets widget);
+    void setupFilterListUi();
 };
 
 #endif // FILTERWIDGET_H
