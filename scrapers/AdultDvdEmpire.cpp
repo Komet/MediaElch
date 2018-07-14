@@ -8,32 +8,30 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
-AdultDvdEmpire::AdultDvdEmpire(QObject *parent)
+AdultDvdEmpire::AdultDvdEmpire(QObject *parent) :
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Set,
+        MovieScraperInfos::Director}
 {
     setParent(parent);
-
-    m_scraperSupports << MovieScraperInfos::Title    //
-                      << MovieScraperInfos::Released //
-                      << MovieScraperInfos::Runtime  //
-                      << MovieScraperInfos::Overview //
-                      << MovieScraperInfos::Poster   //
-                      << MovieScraperInfos::Actors   //
-                      << MovieScraperInfos::Genres   //
-                      << MovieScraperInfos::Studios  //
-                      << MovieScraperInfos::Backdrop //
-                      << MovieScraperInfos::Set      //
-                      << MovieScraperInfos::Rating   //
-                      << MovieScraperInfos::Director;
 }
 
 QString AdultDvdEmpire::name()
 {
-    return QString("Adult DVD Empire");
+    return QStringLiteral("Adult DVD Empire");
 }
 
 QString AdultDvdEmpire::identifier()
 {
-    return QString("adult-dvd-empire");
+    return QStringLiteral("adult-dvd-empire");
 }
 
 bool AdultDvdEmpire::isAdult()
@@ -59,7 +57,7 @@ QNetworkAccessManager *AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
@@ -102,7 +100,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
-    QUrl url(QString("https://www.adultdvdempire.com%1").arg(ids.values().first()));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -205,7 +203,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
     }
 
     rx.setPattern(
-        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*(.*)<)");
+        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*([^<]*)<)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();
@@ -222,20 +220,14 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
         movie->setSet(set.trimmed());
     }
 
-    rx.setPattern("Average Rating (.*) <small>out of (\\d+)</small>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setRating(rx.cap(1).toFloat());
-        movie->setVotes(rx.cap(2).toInt());
-    }
-
     if (infos.contains(MovieScraperInfos::Backdrop)) {
-        rx.setPattern("<a rel=\"screenshots\"[\\s\\n]*href=\"([^\"]*)\"");
+        rx.setPattern(R"re(<a rel="(scene)?screenshots"[\s\n]*href="([^"]*)")re");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Poster p;
-            p.thumbUrl = rx.cap(1);
-            p.originalUrl = rx.cap(1);
+            p.thumbUrl = rx.cap(2);
+            p.originalUrl = rx.cap(2);
             movie->addBackdrop(p);
         }
     }
