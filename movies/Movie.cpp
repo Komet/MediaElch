@@ -18,7 +18,6 @@
 Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
-    m_files{files},
     m_rating{0.0},
     m_votes{0},
     m_top250{0},
@@ -34,6 +33,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_syncNeeded{false},
     m_streamDetailsLoaded{false},
     m_hasDuplicates{false},
+    m_streamDetails{nullptr},
     m_discType{DiscType::Single},
     m_label{ColorLabel::NoLabel}
 {
@@ -46,18 +46,18 @@ Movie::Movie(QStringList files, QObject *parent) :
 
 void Movie::setFiles(QStringList files)
 {
-    m_files = files;
     if (!files.isEmpty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty()) {
             m_folderName = path.last();
         }
-        m_streamDetails = new StreamDetails(this, files);
-
-    } else {
-        m_streamDetails = new StreamDetails(this, QStringList());
     }
+    m_files = files;
+    if (m_streamDetails != nullptr) {
+        m_streamDetails->deleteLater();
+    }
+    m_streamDetails = new StreamDetails(this, files);
 }
 
 MovieController *Movie::controller() const
@@ -1263,9 +1263,9 @@ bool Movie::hasLocalTrailer() const
         return false;
     }
     QFileInfo fi(files().first());
-    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
-    return !dir.entryList(QStringList() << trailerFilter).isEmpty();
+    return !dir.entryList({trailerFilter}).isEmpty();
 }
 
 QString Movie::localTrailerFileName() const
@@ -1274,10 +1274,10 @@ QString Movie::localTrailerFileName() const
         return QString();
     }
     QFileInfo fi(files().first());
-    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
 
-    QStringList contents = dir.entryList(QStringList() << trailerFilter);
+    QStringList contents = dir.entryList({trailerFilter});
     if (contents.isEmpty()) {
         return QString();
     }
