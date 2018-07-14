@@ -81,6 +81,7 @@ public:
     virtual bool syncNeeded() const;
     virtual bool hasLocalTrailer() const;
     virtual QDateTime dateAdded() const;
+    bool hasValidImdbId() const;
 
     bool hasChanged() const;
     QString localTrailerFileName() const;
