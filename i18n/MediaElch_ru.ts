@@ -631,7 +631,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="395"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные фоны</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="417"/>
@@ -1502,25 +1502,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>У фильма есть дополнительные обои</translation>
+        <translation>У фильма есть фан-арты</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные обои</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>У фильма нет дополнительных обоев</translation>
+        <translation>У фильма нет фан-артов</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
         <source>No Extra Fanarts</source>
-        <translation>Нет дополнительных обоев</translation>
+        <translation>Нет фан-артов</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
@@ -2957,7 +2957,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные фоны</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="297"/>
@@ -3553,7 +3553,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные фоны</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="802"/>
@@ -3948,7 +3948,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="178"/>
         <source>Extra Fanarts</source>
-        <translation>Доп. фан-арт</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="191"/>
@@ -4188,7 +4188,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="340"/>
         <source>Extra Fanarts</source>
-        <translation>Доп. фан-арт</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="350"/>
@@ -4484,7 +4484,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="373"/>
         <source>Extra Fanarts</source>
-        <translation>Доп. фан-арт</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="395"/>
@@ -5873,9 +5873,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
         <translation>MediaElch использует бесплатные базы фильмов и сериалов.
-Эти проекты также нуждаются в помощи.
+Эти проекты так же нуждаются в помощи.
 Дополните информацию, загрузите недостающие картинки.
-Другие пользователи будет Вам благодарны.</translation>
+Другие пользователи будут Вам благодарны.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -6624,7 +6624,7 @@ MediaElch, при запуске, найдёт новые серии.</translati
     <message>
         <location filename="../data/TvShowModel.cpp" line="101"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные фоны</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../data/TvShowModel.cpp" line="102"/>
@@ -7710,7 +7710,7 @@ MediaElch, при запуске, найдёт новые серии.</translati
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="657"/>
         <source>Extra Fanarts</source>
-        <translation>Дополнительные фоны</translation>
+        <translation>Фан-арты</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="679"/>
