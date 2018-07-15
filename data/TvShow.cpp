@@ -642,7 +642,7 @@ TvShowEpisode *TvShow::episode(int season, int episode)
  * @brief TvShow::seasons
  * @return
  */
-QList<int> TvShow::seasons(bool includeDummies)
+QList<int> TvShow::seasons(bool includeDummies) const
 {
     QList<int> seasons;
     foreach (TvShowEpisode *episode, m_episodes) {
@@ -660,15 +660,15 @@ QList<int> TvShow::seasons(bool includeDummies)
  * @brief TvShow::episodes
  * @return
  */
-QList<TvShowEpisode *> TvShow::episodes()
+QList<TvShowEpisode *> TvShow::episodes() const
 {
     return m_episodes;
 }
 
-QList<TvShowEpisode *> TvShow::episodes(int season)
+QList<TvShowEpisode *> TvShow::episodes(int season) const
 {
     QList<TvShowEpisode *> episodes;
-    foreach (TvShowEpisode *episode, m_episodes) {
+    for (TvShowEpisode *episode : m_episodes) {
         if (episode->season() == season) {
             episodes << episode;
         }

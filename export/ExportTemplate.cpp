@@ -150,19 +150,19 @@ bool ExportTemplate::lessThan(ExportTemplate *a, ExportTemplate *b)
 QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
 {
     QString baseName;
-    if (section == SectionMovies) {
+    if (section == ExportSection::Movies) {
         baseName = "movies";
-    } else if (section == SectionMovie) {
+    } else if (section == ExportSection::Movie) {
         baseName = "movies/movie";
-    } else if (section == SectionConcerts) {
+    } else if (section == ExportSection::Concerts) {
         baseName = "concerts";
-    } else if (section == SectionConcert) {
+    } else if (section == ExportSection::Concert) {
         baseName = "concerts/concert";
-    } else if (section == SectionTvShows) {
+    } else if (section == ExportSection::TvShows) {
         baseName = "tvshows";
-    } else if (section == SectionTvShow) {
+    } else if (section == ExportSection::TvShow) {
         baseName = "tvshows/tvshow";
-    } else if (section == SectionEpisode) {
+    } else if (section == ExportSection::Episode) {
         baseName = "episodes/episode";
     } else {
         return "";
@@ -203,18 +203,17 @@ QString ExportTemplate::getTemplateLocation()
 
 void ExportTemplate::copyTo(QString path)
 {
-    QStringList excludes;
-    excludes << "metadata.xml"
-             << "movies.html"
-             << "movies"
-             << "concerts.html"
-             << "concerts"
-             << "tvshows.html"
-             << "tvshows"
-             << "episode";
+    QStringList excludes{"metadata.xml", //
+        "movies.html",                   //
+        "movies",                        //
+        "concerts.html",                 //
+        "concerts",                      //
+        "tvshows.html",                  //
+        "tvshows",                       //
+        "episode"};
 
     QDir templateDir(getTemplateLocation());
-    foreach (const QFileInfo &fi, templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
+    for (const QFileInfo &fi : templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
         if (excludes.contains(fi.fileName())) {
             continue;
         }
@@ -235,7 +234,7 @@ bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
     }
 
     QDir srcDir(srcPath);
-    foreach (const QFileInfo &info, srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
+    for (const QFileInfo &info : srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
         QString srcItemPath = srcPath + "/" + info.fileName();
         QString dstItemPath = dstPath + "/" + info.fileName();
         if (info.isDir()) {

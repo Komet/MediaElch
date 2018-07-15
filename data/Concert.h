@@ -154,7 +154,7 @@ public:
     void removeFromLoadsLeft(ScraperData load);
 
     void setDiscType(DiscType type);
-    DiscType discType();
+    DiscType discType() const;
 
     static bool lessThan(Concert *a, Concert *b);
     static QList<ImageType> imageTypes();

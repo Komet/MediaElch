@@ -211,7 +211,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
  * @brief TvShowEpisode::tvShow
  * @return Parent show
  */
-TvShow *TvShowEpisode::tvShow()
+TvShow *TvShowEpisode::tvShow() const
 {
     return m_parent;
 }

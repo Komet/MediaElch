@@ -45,7 +45,7 @@ public:
     void clear(QList<TvShowScraperInfos> infos);
 
     void setFiles(QStringList files);
-    virtual TvShow *tvShow();
+    virtual TvShow *tvShow() const;
     virtual QStringList files() const;
     virtual QString showTitle() const;
     virtual QString name() const;
