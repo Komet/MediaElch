@@ -152,7 +152,9 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
     bool visible = false;
     QStringList availableCodecs = QStringList() << "dtshdma"
                                                 << "dtshdhra"
+                                                << "dtshdx"
                                                 << "dolbytruehd"
+                                                << "dolbyatmos"
                                                 << "dts"
                                                 << "dolbydigital"
                                                 << "flac"
@@ -167,8 +169,14 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
         if (codec == "dtshd-hra" || codec == "dtshd_hra") {
             codec = "dtshdhra";
         }
+        if (codec == "dtshd-x" || codec == "dtshd_x") {
+                    codec = "dtshdx";
+        }
         if (codec == "ac3") {
             codec = "dolbydigital";
+        }
+        if (codec == "atmos") {
+                    codec = "dolbyatmos";
         }
         if (availableCodecs.contains(codec)) {
             ui->mediaFlagAudio->setPixmap(colorIcon(":/media/audio/" + codec));
