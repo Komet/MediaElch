@@ -225,7 +225,7 @@ void StreamDetails::loadWithLibrary()
         if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
             channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
         }
-        QRegExp rx("^(\\d*)\\D*");
+        QRegExp rx("^\\D*(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
             channels = rx.cap(1);
         } else {
@@ -283,12 +283,16 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
         xbmcFormat = "dtshd_ma";
     } else if (codec == "DTS-HD" && profile == "HRA / Core") {
         xbmcFormat = "dtshd_hra";
+    } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
+            xbmcFormat = "dtshd_x";
     } else if (codec == "AC3") {
         xbmcFormat = "ac3";
     } else if (codec == "AC3+" || codec == "E-AC-3") {
         xbmcFormat = "eac3";
     } else if (codec == "TrueHD / AC3") {
         xbmcFormat = "truehd";
+    } else if (codec == "TrueHD" && profile == "TrueHD+Atmos / TrueHD") {
+            xbmcFormat = "atmos";
     } else if (codec == "FLAC") {
         xbmcFormat = "flac";
     } else if (codec == "MPA1L3") {

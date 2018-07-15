@@ -135,6 +135,8 @@
         <file alias="codec/vc-1">mediaFlags/codec/vc-1.png</file>
         <file alias="codec/wmv3">mediaFlags/codec/wmv3.png</file>
         <file alias="audio/dtshdhra">mediaFlags/audio/dtshdhra.png</file>
+        <file alias="audio/dtshdx">mediaFlags/audio/dtshdx.png</file>
+        <file alias="audio/dolbyatmos">mediaFlags/audio/dolbyatmos.png</file>
     </qresource>
     <qresource prefix="/mediaStatus">
         <file alias="actors/green">img/mediaStatus/actors_green.png</file>
