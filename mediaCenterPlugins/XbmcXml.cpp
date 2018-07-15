@@ -710,7 +710,7 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeEndElement();
 }
 
-void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle *> subtitles)
+void XbmcXml::writeStreamDetails(QDomDocument &doc, const StreamDetails *streamDetails, QList<Subtitle *> subtitles)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
         && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty()) {
@@ -1959,7 +1959,7 @@ bool XbmcXml::saveFile(QString filename, QByteArray data)
     return false;
 }
 
-QString XbmcXml::getPath(Movie *movie)
+QString XbmcXml::getPath(const Movie *movie)
 {
     if (movie->files().isEmpty()) {
         return QString();
@@ -1981,7 +1981,7 @@ QString XbmcXml::getPath(Movie *movie)
     return fi.absolutePath();
 }
 
-QString XbmcXml::getPath(Concert *concert)
+QString XbmcXml::getPath(const Concert *concert)
 {
     if (concert->files().isEmpty()) {
         return QString();
@@ -2028,7 +2028,7 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
     return QString();
 }
 
-QString XbmcXml::imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -2074,7 +2074,7 @@ QString XbmcXml::imageFileName(Movie *movie, ImageType type, QList<DataFile> dat
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -2118,7 +2118,8 @@ QString XbmcXml::imageFileName(Concert *concert, ImageType type, QList<DataFile>
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
+QString
+XbmcXml::imageFileName(const TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -2156,7 +2157,8 @@ QString XbmcXml::imageFileName(TvShow *show, ImageType type, int season, QList<D
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString
+XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -2392,7 +2394,7 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     return true;
 }
 
-QString XbmcXml::imageFileName(Artist *artist, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -2423,7 +2425,7 @@ QString XbmcXml::imageFileName(Artist *artist, ImageType type, QList<DataFile> d
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {

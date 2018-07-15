@@ -41,25 +41,31 @@ private:
     void replaceImages(QString &m,
         const QDir &dir,
         const bool &subDir,
-        Movie *movie = nullptr,
-        Concert *concert = nullptr,
-        TvShow *tvShow = nullptr,
-        TvShowEpisode *episode = nullptr);
-    bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Movie *movie);
-    bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, Concert *concert);
-    bool saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, TvShow *tvShow);
+        const Movie *movie = nullptr,
+        const Concert *concert = nullptr,
+        const TvShow *tvShow = nullptr,
+        const TvShowEpisode *episode = nullptr);
+    bool
+    saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, const Movie *movie);
     bool saveImageForType(const QString &type,
         const QSize &size,
         const QDir &dir,
         QString &destFile,
-        TvShowEpisode *episode);
+        const Concert *concert);
+    bool
+    saveImageForType(const QString &type, const QSize &size, const QDir &dir, QString &destFile, const TvShow *tvShow);
+    bool saveImageForType(const QString &type,
+        const QSize &size,
+        const QDir &dir,
+        QString &destFile,
+        const TvShowEpisode *episode);
     void replaceVars(QString &m, Movie *movie, QDir dir, bool subDir = false);
-    void replaceVars(QString &m, Concert *concert, QDir dir, bool subDir = false);
-    void replaceVars(QString &m, TvShow *show, QDir dir, bool subDir = false);
+    void replaceVars(QString &m, const Concert *concert, QDir dir, bool subDir = false);
+    void replaceVars(QString &m, const TvShow *show, QDir dir, bool subDir = false);
     void replaceVars(QString &m, TvShowEpisode *episode, QDir dir, bool subDir = false);
     void replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces);
     void replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QList<QStringList> replaces);
-    void replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails);
+    void replaceStreamDetailsVars(QString &m, const StreamDetails *streamDetails);
 };
 
 #endif // EXPORTDIALOG_H

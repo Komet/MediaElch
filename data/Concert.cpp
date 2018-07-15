@@ -912,7 +912,7 @@ void Concert::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
-DiscType Concert::discType()
+DiscType Concert::discType() const
 {
     if (files().isEmpty()) {
         return DiscType::Single;
