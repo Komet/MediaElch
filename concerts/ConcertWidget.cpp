@@ -1050,7 +1050,7 @@ void ConcertWidget::onChooseImage()
     if (image->imageType() == ImageType::ConcertPoster) {
         ImageDialog::instance()->setDownloads(m_concert->posters());
     } else if (image->imageType() == ImageType::ConcertBackdrop) {
-        ImageDialog::instance()->setDownloads(m_concert->posters());
+        ImageDialog::instance()->setDownloads(m_concert->backdrops());
     } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
     }
