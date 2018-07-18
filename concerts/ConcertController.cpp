@@ -218,6 +218,9 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
             Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType));
         if (elem.imageType == ImageType::ConcertBackdrop) {
             Helper::instance()->resizeBackdrop(elem.data);
+        } else if (!elem.data.isEmpty() && elem.imageType == ImageType::ConcertExtraFanart) {
+            Helper::instance()->resizeBackdrop(elem.data);
+            m_concert->addExtraFanart(elem.data);
         }
         m_concert->setImage(elem.imageType, elem.data);
     }
