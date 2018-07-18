@@ -214,15 +214,17 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_concert, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty()) {
-        ImageCache::instance()->invalidateImages(
-            Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType));
-        if (elem.imageType == ImageType::ConcertBackdrop) {
-            Helper::instance()->resizeBackdrop(elem.data);
-        } else if (!elem.data.isEmpty() && elem.imageType == ImageType::ConcertExtraFanart) {
+        if (elem.imageType == ImageType::ConcertExtraFanart) {
             Helper::instance()->resizeBackdrop(elem.data);
             m_concert->addExtraFanart(elem.data);
+        } else {
+            ImageCache::instance()->invalidateImages(
+                    Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType));
+            if (elem.imageType == ImageType::ConcertBackdrop) {
+                Helper::instance()->resizeBackdrop(elem.data);
+            }
+            m_concert->setImage(elem.imageType, elem.data);
         }
-        m_concert->setImage(elem.imageType, elem.data);
     }
 
     emit sigImage(m_concert, elem.imageType, elem.data);
