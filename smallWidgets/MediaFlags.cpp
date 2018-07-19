@@ -158,6 +158,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
                                                 << "dolbyatmos"
                                                 << "dts"
                                                 << "dolbydigital"
+                                                << "dolbydigitalplus"
                                                 << "flac"
                                                 << "vorbis"
                                                 << "mp3"
@@ -175,6 +176,9 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
         }
         if (codec == "ac3") {
             codec = "dolbydigital";
+        }
+        if (codec == "eac3") {
+            codec = "dolbydigitalplus";
         }
         if (codec == "atmos") {
                     codec = "dolbyatmos";
