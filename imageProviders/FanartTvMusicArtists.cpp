@@ -48,7 +48,7 @@ QString FanartTvMusicArtists::identifier()
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<int> FanartTvMusicArtists::provides()
+QList<ImageType> FanartTvMusicArtists::provides()
 {
     return m_provides;
 }
@@ -117,7 +117,7 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
-    reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
+    reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertBackdrop));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
@@ -129,14 +129,14 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
-    reply->setProperty("infoToLoad", ImageType::ConcertLogo);
+    reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::onLoadConcertFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    int info = reply->property("infoToLoad").toInt();
+    ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -146,13 +146,11 @@ void FanartTvMusicArtists::onLoadConcertFinished()
     emit sigImagesLoaded(posters);
 }
 
-QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
+QList<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
 {
-    QMap<int, QStringList> map;
+    QMap<ImageType, QStringList> map;
     map.insert(ImageType::ConcertBackdrop, QStringList() << "artistbackground");
-    map.insert(ImageType::ConcertLogo,
-        QStringList() << "hdmusiclogo"
-                      << "musiclogo");
+    map.insert(ImageType::ConcertLogo, {"hdmusiclogo", "musiclogo"});
 
     QList<Poster> posters;
 
@@ -165,7 +163,7 @@ QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
         return posters;
     }
 
-    foreach (const QString &section, map.value(type)) {
+    for (const auto &section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto &it : jsonPosters) {
@@ -209,7 +207,7 @@ void FanartTvMusicArtists::searchTvShow(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusicArtists::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+void FanartTvMusicArtists::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
@@ -282,7 +280,7 @@ void FanartTvMusicArtists::tvShowSeasonBackdrops(QString tvdbId, int season)
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+void FanartTvMusicArtists::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -324,7 +322,7 @@ void FanartTvMusicArtists::movieCdArts(QString tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+void FanartTvMusicArtists::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
@@ -418,14 +416,14 @@ void FanartTvMusicArtists::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTvMusicArtists::artistImages(Artist *artist, QString mbId, QList<int> types)
+void FanartTvMusicArtists::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::albumImages(Album *album, QString mbId, QList<int> types)
+void FanartTvMusicArtists::albumImages(Album *album, QString mbId, QList<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

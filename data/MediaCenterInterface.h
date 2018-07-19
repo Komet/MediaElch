@@ -59,12 +59,12 @@ public:
     virtual QString nfoFilePath(Album *album) = 0;
 
     // clang-format off
-    virtual QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(TvShow *show, int type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Movie *movie,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Concert *concert,       ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const TvShow *show,           ImageType type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Artist *artist,         ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Album *album,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     // clang-format on
 
     virtual void loadBooklets(Album *album) = 0;

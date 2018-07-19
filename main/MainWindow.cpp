@@ -166,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->musicWidget, &MusicWidget::sigDownloadsProgress, this, &MainWindow::progressProgress);
     connect(ui->musicWidget, &MusicWidget::sigDownloadsFinished, this, &MainWindow::progressFinished);
 
-    connect(ui->navbar, SIGNAL(sigFilterChanged(QList<Filter *>, QString)), this, SLOT(onFilterChanged(QList<Filter *>, QString)));
+    connect(ui->navbar, &Navbar::sigFilterChanged, this, &MainWindow::onFilterChanged);
 
     connect(ui->movieSplitter,                   &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
     connect(ui->tvShowSplitter,                  &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
@@ -442,14 +442,14 @@ void MainWindow::onActionReload()
 void MainWindow::onActionRename()
 {
     if (ui->stackedWidget->currentIndex() == 0) {
-        m_renamer->setRenameType(Renamer::TypeMovies);
+        m_renamer->setRenameType(Renamer::RenameType::Movies);
         m_renamer->setMovies(ui->filesWidget->selectedMovies());
     } else if (ui->stackedWidget->currentIndex() == 1) {
-        m_renamer->setRenameType(Renamer::TypeTvShows);
+        m_renamer->setRenameType(Renamer::RenameType::TvShows);
         m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
         m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
     } else if (ui->stackedWidget->currentIndex() == 3) {
-        m_renamer->setRenameType(Renamer::TypeConcerts);
+        m_renamer->setRenameType(Renamer::RenameType::Concerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
     } else {
         return;
@@ -620,22 +620,22 @@ void MainWindow::onFilesRenamed(Renamer::RenameType type)
 {
     if (m_renamer->renameErrorOccured()) {
         m_fileScannerDialog->setForceReload(true);
-        if (type == Renamer::TypeMovies) {
+        if (type == Renamer::RenameType::Movies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-        } else if (type == Renamer::TypeConcerts) {
+        } else if (type == Renamer::RenameType::Concerts) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-        } else if (type == Renamer::TypeTvShows) {
+        } else if (type == Renamer::RenameType::TvShows) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-        } else if (type == Renamer::TypeAll) {
+        } else if (type == Renamer::RenameType::All) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
         }
         m_fileScannerDialog->exec();
     } else {
-        if (type == Renamer::TypeMovies) {
+        if (type == Renamer::RenameType::Movies) {
             ui->movieWidget->updateMovieInfo();
-        } else if (type == Renamer::TypeConcerts) {
+        } else if (type == Renamer::RenameType::Concerts) {
             ui->concertWidget->updateConcertInfo();
-        } else if (type == Renamer::TypeTvShows) {
+        } else if (type == Renamer::RenameType::TvShows) {
             ui->tvShowWidget->updateInfo();
         }
     }

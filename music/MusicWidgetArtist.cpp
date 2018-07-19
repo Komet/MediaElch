@@ -120,7 +120,7 @@ void MusicWidgetArtist::setArtist(Artist *artist)
     connect(m_artist->controller(), &ArtistController::sigInfoLoadDone,             this, &MusicWidgetArtist::onInfoLoadDone,          Qt::UniqueConnection);
     connect(m_artist->controller(), &ArtistController::sigLoadDone,                 this, &MusicWidgetArtist::onLoadDone,              Qt::UniqueConnection);
     connect(m_artist->controller(), &ArtistController::sigDownloadProgress,         this, &MusicWidgetArtist::onDownloadProgress,      Qt::UniqueConnection);
-    connect(m_artist->controller(), SIGNAL(sigLoadingImages(Artist *, QList<int>)), this, SLOT(onLoadingImages(Artist *, QList<int>)), Qt::UniqueConnection);
+    connect(m_artist->controller(), &ArtistController::sigLoadingImages,            this, &MusicWidgetArtist::onLoadingImages,         Qt::UniqueConnection);
     connect(m_artist->controller(), &ArtistController::sigLoadImagesStarted,        this, &MusicWidgetArtist::onLoadImagesStarted,     Qt::UniqueConnection);
     connect(m_artist->controller(), &ArtistController::sigImage,                    this, &MusicWidgetArtist::onSetImage,              Qt::UniqueConnection);
     // clang-format on
@@ -274,10 +274,11 @@ void MusicWidgetArtist::updateArtistInfo()
     ui->moodCloud->setTags(moods, m_artist->moods());
 }
 
-void MusicWidgetArtist::updateImage(int imageType, ClosableImage *image)
+void MusicWidgetArtist::updateImage(ImageType imageType, ClosableImage *image)
 {
     if (!m_artist->rawImage(imageType).isNull()) {
         image->setImage(m_artist->rawImage(imageType));
+
     } else if (!m_artist->imagesToRemove().contains(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, imageType);
         if (!imgFileName.isEmpty()) {
@@ -419,7 +420,7 @@ void MusicWidgetArtist::onDeleteImage()
     ui->buttonRevert->setVisible(true);
 }
 
-void MusicWidgetArtist::onImageDropped(int imageType, QUrl imageUrl)
+void MusicWidgetArtist::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_artist) {
         return;
@@ -458,13 +459,13 @@ void MusicWidgetArtist::onDownloadProgress(Artist *artist, int current, int maxi
         maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
-void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
+void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<ImageType> imageTypes)
 {
     if (m_artist != artist) {
         return;
     }
 
-    foreach (const int &imageType, imageTypes) {
+    for (const auto imageType : imageTypes) {
         foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
@@ -485,7 +486,7 @@ void MusicWidgetArtist::onLoadImagesStarted(Artist *artist)
         tr("Downloading images..."), Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
-void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
+void MusicWidgetArtist::onSetImage(Artist *artist, ImageType type, QByteArray data)
 {
     if (artist != m_artist) {
         return;

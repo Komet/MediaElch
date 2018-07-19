@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "renamer/Renamer.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
@@ -58,25 +59,27 @@ public:
     QString debugLogPath();
     bool useYoutubePluginUrls();
     bool downloadActorImages();
-    QList<DataFile> dataFiles(int type);
-    QList<DataFile> dataFilesFrodo(int type = -1);
+    QList<DataFile> dataFiles(DataFileType dataType);
+    QList<DataFile> dataFiles(ImageType dataType);
+    QList<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
     bool usePlotForOutline();
-    QList<int> scraperInfos(MainWidgets widget, QString scraperId);
-    void renamePatterns(int renameType,
+    template<typename T>
+    QList<T> scraperInfos(MainWidgets widget, QString scraperId);
+    void renamePatterns(Renamer::RenameType renameType,
         QString &fileNamePattern,
         QString &fileNamePatternMulti,
         QString &directoryPattern,
         QString &seasonPattern);
-    void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
+    void renamings(Renamer::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
     QString movieSetArtworkDirectory() const;
-    QList<MediaStatusColumns> mediaStatusColumns() const;
+    QList<MediaStatusColumn> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
-    QMap<int, QString> customMovieScraper() const;
-    QMap<int, QString> customTvScraper() const;
+    QMap<MovieScraperInfos, QString> customMovieScraper() const;
+    QMap<TvShowScraperInfos, QString> customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
@@ -90,6 +93,9 @@ public:
     QString startupSection();
     bool donated() const;
     QString lastImagePath();
+
+    template<typename T>
+    QList<T> scraperInfos(QString scraperId);
 
     bool autoLoadStreamDetails();
 
@@ -130,22 +136,25 @@ public:
     void setXbmcPort(int port);
     void setXbmcUser(QString user);
     void setXbmcPassword(QString password);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
-    void setRenamePatterns(int renameType,
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items);
+    void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,
         QString directoryPattern,
         QString seasonPattern);
-    void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
+    void setRenamings(Renamer::RenameType renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(QString dir);
-    void setMediaStatusColumns(QList<MediaStatusColumns> columns);
+    void setMediaStatusColumn(QList<MediaStatusColumn> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
-    void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
-    void setCustomTvScraper(QMap<int, QString> customTvScraper);
+    void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
+    void setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
@@ -212,13 +221,13 @@ private:
     QString m_xbmcUser;
     QString m_xbmcPassword;
     bool m_ignoreArticlesWhenSorting;
-    int m_movieSetArtworkType;
+    MovieSetArtworkType m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
-    QList<MediaStatusColumns> m_mediaStatusColumns;
+    QList<MediaStatusColumn> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
-    QMap<int, QString> m_customMovieScraper;
-    QMap<int, QString> m_customTvScraper;
+    QMap<MovieScraperInfos, QString> m_customMovieScraper;
+    QMap<TvShowScraperInfos, QString> m_customTvScraper;
     int m_currentMovieScraper;
     bool m_keepDownloadSource;
     bool m_checkForUpdates;

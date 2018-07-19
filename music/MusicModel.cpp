@@ -32,7 +32,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(item->data(0).toString());
     } else if (role == MusicRoles::Type) {
-        return item->type();
+        return static_cast<int>(item->type());
     } else if (role == MusicRoles::IsNew) {
         return item->data(role);
     } else if (role == Qt::ForegroundRole) {
@@ -46,7 +46,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
         if (item->data(MusicRoles::HasChanged).toBool()) {
             font.setItalic(true);
         }
-        if (item->data(MusicRoles::Type).toInt() == TypeArtist) {
+        if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
             font.setBold(true);
         } else {
 #ifdef Q_OS_MAC
@@ -58,10 +58,10 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
 #ifdef Q_OS_WIN
         return QSize(0, 22);
 #else
-        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 22);
+        return QSize(0, (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) ? 44 : 22);
 #endif
     } else if (role == MusicRoles::NumOfAlbums) {
-        if (item->data(MusicRoles::Type) == TypeArtist) {
+        if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
             return item->data(MusicRoles::NumOfAlbums);
         }
     } else if (role == MusicRoles::SelectionForeground) {

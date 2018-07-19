@@ -22,7 +22,7 @@ public:
 public slots:
     QString scraperId();
     QString scraperMovieId();
-    QList<int> infosToLoad();
+    QList<MovieScraperInfos> infosToLoad();
     QMap<ScraperInterface *, QString> customScraperIds();
     void search(QString searchString, QString id, QString tmdbId);
 
@@ -42,7 +42,7 @@ private:
     Ui::MovieSearchWidget *ui;
     QString m_scraperId;
     QString m_scraperMovieId;
-    QList<int> m_infosToLoad;
+    QList<MovieScraperInfos> m_infosToLoad;
     QMap<ScraperInterface *, QString> m_customScraperIds;
     ScraperInterface *m_currentCustomScraper;
     QString m_id;
@@ -50,7 +50,7 @@ private:
     QString m_searchString;
 
     void clear();
-    void setChkBoxesEnabled(QList<int> scraperSupports);
+    void setChkBoxesEnabled(QList<MovieScraperInfos> scraperSupports);
     void setupScrapers();
 };
 

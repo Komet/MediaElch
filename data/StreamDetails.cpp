@@ -29,18 +29,45 @@ using namespace ZenLib;
  * @param parent
  * @param file
  */
-StreamDetails::StreamDetails(QObject *parent, QStringList files) : QObject(parent)
+StreamDetails::StreamDetails(QObject *parent, QStringList files) :
+    QObject(parent),
+    m_files(files),
+    m_hdAudioCodecs{"dtshd_ma", "dtshd_hra", "truehd"},
+    m_normalAudioCodecs{"DTS", "dts", "ac3", "eac3", "flac"},
+    m_sdAudioCodecs{"mp3"}
 {
-    m_files = files;
-    m_hdAudioCodecs << "dtshd_ma"
-                    << "dtshd_hra"
-                    << "truehd";
-    m_normalAudioCodecs << "DTS"
-                        << "dts"
-                        << "ac3"
-                        << "eac3"
-                        << "flac";
-    m_sdAudioCodecs << "mp3";
+}
+
+QString StreamDetails::detailToString(VideoDetails details)
+{
+    switch (details) {
+    case VideoDetails::Codec: return "codec";
+    case VideoDetails::Aspect: return "aspect";
+    case VideoDetails::Width: return "width";
+    case VideoDetails::Height: return "height";
+    case VideoDetails::DurationInSeconds: return "durationinseconds";
+    case VideoDetails::ScanType: return "scantype";
+    case VideoDetails::StereoMode: return "stereomode";
+    default: qWarning() << "Undefined video detail: no string representation"; return "undefined";
+    }
+}
+
+QString StreamDetails::detailToString(AudioDetails details)
+{
+    switch (details) {
+    case StreamDetails::AudioDetails::Codec: return "codec";
+    case StreamDetails::AudioDetails::Language: return "language";
+    case StreamDetails::AudioDetails::Channels: return "channels";
+    default: qWarning() << "Undefined audio detail: no string representation"; return "undefined";
+    }
+}
+
+QString StreamDetails::detailToString(SubtitleDetails details)
+{
+    switch (details) {
+    case StreamDetails::SubtitleDetails::Language: return "language";
+    default: qWarning() << "Undefined subtitle detail: no string representation"; return "undefined";
+    }
 }
 
 /**
@@ -77,10 +104,7 @@ void StreamDetails::loadStreamDetails()
         qint64 biggestSize = 0;
         QFileInfo fi(m_files.first());
         foreach (const QFileInfo &fiVob,
-            fi.dir().entryInfoList(QStringList() << "VTS_*.VOB"
-                                                 << "vts_*.vob",
-                QDir::Files,
-                QDir::Name)) {
+            fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
             rx.setMinimal(true);
             rx.setCaseSensitivity(Qt::CaseInsensitive);
@@ -134,7 +158,7 @@ void StreamDetails::loadWithLibrary()
     int textCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
 
     if (m_files.count() > 1) {
-        foreach (const QString &file, m_files) {
+        for (const QString &file : m_files) {
             MediaInfo MI_duration;
             MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
             MI_duration.Option(__T("Internet"), __T("no"));
@@ -147,7 +171,7 @@ void StreamDetails::loadWithLibrary()
         duration += qRound(MI2QString(MI.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
     }
 
-    setVideoDetail("durationinseconds", QString("%1").arg(duration));
+    setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds, QString::number(duration));
 
     if (videoCount > 0) {
         double aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
@@ -170,18 +194,18 @@ void StreamDetails::loadWithLibrary()
         } else {
             scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
             if (scanType == "MBAFF") {
-              scanType = "interlaced";
+                scanType = "interlaced";
             }
         }
-        
+
         QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 
-        setVideoDetail("codec", videoCodec);
-        setVideoDetail("aspect", QString("%1").arg(aspectRatio));
-        setVideoDetail("width", QString("%1").arg(width));
-        setVideoDetail("height", QString("%1").arg(height));
-        setVideoDetail("scantype", scanType.toLower());
-        setVideoDetail("stereomode", stereoFormat(multiView));
+        setVideoDetail(VideoDetails::Codec, videoCodec);
+        setVideoDetail(VideoDetails::Aspect, QString("%1").arg(aspectRatio));
+        setVideoDetail(VideoDetails::Width, QString("%1").arg(width));
+        setVideoDetail(VideoDetails::Height, QString("%1").arg(height));
+        setVideoDetail(VideoDetails::ScanType, scanType.toLower());
+        setVideoDetail(VideoDetails::StereoMode, stereoFormat(multiView));
     }
 
     for (int i = 0; i < audioCount; ++i) {
@@ -201,15 +225,15 @@ void StreamDetails::loadWithLibrary()
         if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
             channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
         }
-        QRegExp rx("^(\\d*)\\D*");
+        QRegExp rx("^\\D*(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
             channels = rx.cap(1);
         } else {
             channels = "";
         }
-        setAudioDetail(i, "language", lang);
-        setAudioDetail(i, "codec", audioCodec);
-        setAudioDetail(i, "channels", channels);
+        setAudioDetail(i, AudioDetails::Language, lang);
+        setAudioDetail(i, AudioDetails::Codec, audioCodec);
+        setAudioDetail(i, AudioDetails::Channels, channels);
     }
 
     for (int i = 0; i < textCount; ++i) {
@@ -223,7 +247,7 @@ void StreamDetails::loadWithLibrary()
         if (lang.isEmpty()) {
             lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String")));
         }
-        setSubtitleDetail(i, "language", lang);
+        setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, lang);
     }
 
     MI.Close();
@@ -259,24 +283,28 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
         xbmcFormat = "dtshd_ma";
     } else if (codec == "DTS-HD" && profile == "HRA / Core") {
         xbmcFormat = "dtshd_hra";
+    } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
+            xbmcFormat = "dtshd_x";
     } else if (codec == "AC3") {
         xbmcFormat = "ac3";
     } else if (codec == "AC3+" || codec == "E-AC-3") {
         xbmcFormat = "eac3";
     } else if (codec == "TrueHD / AC3") {
         xbmcFormat = "truehd";
+    } else if (codec == "TrueHD" && profile == "TrueHD+Atmos / TrueHD") {
+            xbmcFormat = "atmos";
     } else if (codec == "FLAC") {
         xbmcFormat = "flac";
     } else if (codec == "MPA1L3") {
         xbmcFormat = "mp3";
     } else {
-        xbmcFormat = codec;
+        xbmcFormat = codec.toLower();
     }
 
     if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat)) {
         return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
     }
-    return xbmcFormat.toLower();
+    return xbmcFormat;
 }
 
 QString StreamDetails::stereoFormat(const QString &format) const
@@ -292,7 +320,7 @@ QString StreamDetails::stereoFormat(const QString &format) const
  * @param key The key (aspect, width, height...)
  * @param value The value
  */
-void StreamDetails::setVideoDetail(QString key, QString value)
+void StreamDetails::setVideoDetail(VideoDetails key, QString value)
 {
     m_videoDetails.insert(key, value);
 }
@@ -303,25 +331,27 @@ void StreamDetails::setVideoDetail(QString key, QString value)
  * @param key Key (language, codec or channels)
  * @param value Value
  */
-void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
+void StreamDetails::setAudioDetail(int streamNumber, AudioDetails key, QString value)
 {
     if (streamNumber >= m_audioDetails.count()) {
-        m_audioDetails.insert(streamNumber, QMap<QString, QString>());
+        m_audioDetails.insert(streamNumber, QMap<AudioDetails, QString>());
     }
     if (streamNumber >= m_audioDetails.count()) {
         return;
     }
     m_audioDetails[streamNumber].insert(key, value);
 
-    if (key == "channels" && !m_availableChannels.contains(value.toInt())) {
+    if (key == AudioDetails::Channels && !m_availableChannels.contains(value.toInt())) {
         m_availableChannels.append(value.toInt());
     }
-    if (key == "codec" && m_hdAudioCodecs.contains(value) && !m_availableQualities.contains("hd")) {
-        m_availableQualities.append("hd");
-    } else if (key == "codec" && m_normalAudioCodecs.contains(value) && !m_availableQualities.contains("normal")) {
-        m_availableQualities.append("normal");
-    } else if (key == "codec" && m_sdAudioCodecs.contains(value) && !m_availableQualities.contains("sd")) {
-        m_availableQualities.append("sd");
+    if (key == AudioDetails::Codec) {
+        if (m_hdAudioCodecs.contains(value) && !m_availableQualities.contains("hd")) {
+            m_availableQualities.append("hd");
+        } else if (m_normalAudioCodecs.contains(value) && !m_availableQualities.contains("normal")) {
+            m_availableQualities.append("normal");
+        } else if (m_sdAudioCodecs.contains(value) && !m_availableQualities.contains("sd")) {
+            m_availableQualities.append("sd");
+        }
     }
 }
 
@@ -331,10 +361,10 @@ void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
  * @param key Key (language)
  * @param value Language
  */
-void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString value)
+void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QString value)
 {
     if (streamNumber >= m_subtitles.count()) {
-        m_subtitles.insert(streamNumber, QMap<QString, QString>());
+        m_subtitles.insert(streamNumber, QMap<SubtitleDetails, QString>());
     }
     if (streamNumber >= m_subtitles.count()) {
         return;
@@ -346,7 +376,7 @@ void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString val
  * @brief Access video details
  * @return
  */
-QMap<QString, QString> StreamDetails::videoDetails() const
+QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
 {
     return m_videoDetails;
 }
@@ -355,7 +385,7 @@ QMap<QString, QString> StreamDetails::videoDetails() const
  * @brief Access audio details
  * @return
  */
-QList<QMap<QString, QString>> StreamDetails::audioDetails() const
+QList<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() const
 {
     return m_audioDetails;
 }
@@ -364,7 +394,7 @@ QList<QMap<QString, QString>> StreamDetails::audioDetails() const
  * @brief Access subtitles
  * @return
  */
-QList<QMap<QString, QString>> StreamDetails::subtitleDetails() const
+QList<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDetails() const
 {
     return m_subtitles;
 }
@@ -396,7 +426,7 @@ QString StreamDetails::audioCodec() const
     QString normalCodec;
     QString sdCodec;
     for (int i = 0, n = m_audioDetails.count(); i < n; ++i) {
-        QString codec = m_audioDetails.at(i).value("codec");
+        QString codec = m_audioDetails.at(i).value(AudioDetails::Codec);
         if (m_hdAudioCodecs.contains(codec)) {
             hdCodec = codec;
         }
@@ -422,5 +452,5 @@ QString StreamDetails::audioCodec() const
 
 QString StreamDetails::videoCodec() const
 {
-    return m_videoDetails.value("codec");
+    return m_videoDetails.value(VideoDetails::Codec);
 }

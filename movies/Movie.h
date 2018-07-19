@@ -35,7 +35,7 @@ public:
     MovieController *controller() const;
 
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<MovieScraperInfos> infos);
 
     virtual QString name() const;
     virtual QString sortTitle() const;
@@ -81,6 +81,7 @@ public:
     virtual bool syncNeeded() const;
     virtual bool hasLocalTrailer() const;
     virtual QDateTime dateAdded() const;
+    bool hasValidImdbId() const;
 
     bool hasChanged() const;
     QString localTrailerFileName() const;
@@ -143,7 +144,7 @@ public:
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
-    QList<int> imagesToRemove() const;
+    QList<ImageType> imagesToRemove() const;
 
     void addPoster(Poster poster, bool primaryLang = false);
     void addBackdrop(Poster backdrop);
@@ -155,25 +156,25 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
-    void removeImage(int type);
+    void removeImage(ImageType type);
 
-    void setLabel(int label);
-    int label() const;
+    void setLabel(ColorLabel label);
+    ColorLabel label() const;
 
     // Images
     bool hasExtraFanarts() const;
     void setHasExtraFanarts(bool has);
-    QByteArray image(int imageType) const;
-    bool imageHasChanged(int imageType);
-    void setHasImage(int imageType, bool has);
-    bool hasImage(int imageType) const;
-    void setImage(int imageType, QByteArray image);
+    QByteArray image(ImageType imageType) const;
+    bool imageHasChanged(ImageType imageType);
+    void setHasImage(ImageType imageType, bool has);
+    bool hasImage(ImageType imageType) const;
+    void setImage(ImageType imageType, QByteArray image);
 
     DiscType discType() const;
     void setDiscType(DiscType type);
 
     static bool lessThan(Movie *a, Movie *b);
-    static QList<int> imageTypes();
+    static QList<ImageType> imageTypes();
 
     QList<Subtitle *> subtitles() const;
     void setSubtitles(const QList<Subtitle *> &subtitles);
@@ -244,15 +245,15 @@ private:
     QString m_nfoContent;
     QDateTime m_dateAdded;
     DiscType m_discType;
-    int m_label;
+    ColorLabel m_label;
     QList<Subtitle *> m_subtitles;
 
     // Images
-    QMap<int, QByteArray> m_images;
-    QMap<int, bool> m_hasImage;
-    QMap<int, bool> m_hasImageChanged;
+    QMap<ImageType, QByteArray> m_images;
+    QMap<ImageType, bool> m_hasImage;
+    QMap<ImageType, bool> m_hasImageChanged;
     QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<int> m_imagesToRemove;
+    QList<ImageType> m_imagesToRemove;
 };
 
 Q_DECLARE_METATYPE(Movie *)

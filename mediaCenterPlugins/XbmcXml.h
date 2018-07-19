@@ -51,29 +51,29 @@ public:
     QString actorImageName(TvShow *show, Actor actor) override;
     QString actorImageName(TvShowEpisode *episode, Actor actor) override;
 
-    QString imageFileName(Movie *movie,
-        int type,
+    QString imageFileName(const Movie *movie,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
-    QString imageFileName(Concert *concert,
-        int type,
+    QString imageFileName(const Concert *concert,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
-    QString imageFileName(TvShowEpisode *episode,
-        int type,
+    QString imageFileName(const TvShowEpisode *episode,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
-    QString imageFileName(TvShow *show,
-        int type,
+    QString imageFileName(const TvShow *show,
+        ImageType type,
         int season = -1,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
-    QString imageFileName(Artist *artist,
-        int type,
+    QString imageFileName(const Artist *artist,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
-    QString imageFileName(Album *album,
-        int type,
+    QString imageFileName(const Album *album,
+        ImageType type,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
 
@@ -98,8 +98,8 @@ private:
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
     void loadStreamDetails(StreamDetails *streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
-    QString getPath(Movie *movie);
-    QString getPath(Concert *concert);
+    QString getPath(const Movie *movie);
+    QString getPath(const Concert *concert);
     QString movieSetFileName(QString setName, DataFile *dataFile);
     QDomElement setTextValue(QDomDocument &doc, const QString &name, const QString &value);
     void setListValue(QDomDocument &doc, const QString &name, const QStringList &values);
@@ -107,7 +107,7 @@ private:
     void appendXmlNode(QDomDocument &doc, QDomNode &node);
     void removeChildNodes(QDomDocument &doc, const QString &name);
     void writeStreamDetails(QDomDocument &doc,
-        StreamDetails *streamDetails,
+        const StreamDetails *streamDetails,
         QList<Subtitle *> subtitles = QList<Subtitle *>());
 };
 

@@ -43,7 +43,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
  */
 void TvShow::clear()
 {
-    QList<int> infos;
+    QList<TvShowScraperInfos> infos;
     infos << TvShowScraperInfos::Actors        //
           << TvShowScraperInfos::Banner        //
           << TvShowScraperInfos::Certification //
@@ -66,7 +66,7 @@ void TvShow::clear()
     m_nfoContent.clear();
 }
 
-void TvShow::clear(QList<int> infos)
+void TvShow::clear(QList<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Actors)) {
         m_actors.clear();
@@ -160,14 +160,14 @@ void TvShow::clear(QList<int> infos)
     m_hasChanged = false;
 }
 
-void TvShow::clearSeasonImageType(int imageType)
+void TvShow::clearSeasonImageType(ImageType imageType)
 {
-    QMapIterator<int, QMap<int, QByteArray>> it(m_seasonImages);
+    QMapIterator<int, QMap<ImageType, QByteArray>> it(m_seasonImages);
     while (it.hasNext()) {
         it.next();
         m_seasonImages[it.key()].insert(imageType, QByteArray());
     }
-    QMapIterator<int, QMap<int, bool>> itC(m_hasSeasonImageChanged);
+    QMapIterator<int, QMap<ImageType, bool>> itC(m_hasSeasonImageChanged);
     while (itC.hasNext()) {
         itC.next();
         m_hasSeasonImageChanged[itC.key()].insert(imageType, false);
@@ -230,7 +230,10 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  * @param id ID of the show for the given scraper
  * @param tvScraperInterface Scraper to use
  */
-void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad)
+void TvShow::loadData(QString id,
+    TvScraperInterface *tvScraperInterface,
+    TvShowUpdateType type,
+    QList<TvShowScraperInfos> infosToLoad)
 {
     if (tvScraperInterface->identifier() == "tvdb") {
         setTvdbId(id);
@@ -306,7 +309,7 @@ bool TvShow::hasNewEpisodesInSeason(int season) const
 
 /*** GETTER ***/
 
-QList<int> TvShow::infosToLoad() const
+QList<TvShowScraperInfos> TvShow::infosToLoad() const
 {
     return m_infosToLoad;
 }
@@ -639,7 +642,7 @@ TvShowEpisode *TvShow::episode(int season, int episode)
  * @brief TvShow::seasons
  * @return
  */
-QList<int> TvShow::seasons(bool includeDummies)
+QList<int> TvShow::seasons(bool includeDummies) const
 {
     QList<int> seasons;
     foreach (TvShowEpisode *episode, m_episodes) {
@@ -657,15 +660,15 @@ QList<int> TvShow::seasons(bool includeDummies)
  * @brief TvShow::episodes
  * @return
  */
-QList<TvShowEpisode *> TvShow::episodes()
+QList<TvShowEpisode *> TvShow::episodes() const
 {
     return m_episodes;
 }
 
-QList<TvShowEpisode *> TvShow::episodes(int season)
+QList<TvShowEpisode *> TvShow::episodes(int season) const
 {
     QList<TvShowEpisode *> episodes;
-    foreach (TvShowEpisode *episode, m_episodes) {
+    for (TvShowEpisode *episode : m_episodes) {
         if (episode->season() == season) {
             episodes << episode;
         }
@@ -1210,18 +1213,18 @@ void TvShow::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
-QMap<int, QList<int>> TvShow::imagesToRemove() const
+QMap<ImageType, QList<int>> TvShow::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void TvShow::removeImage(int type, int season)
+void TvShow::removeImage(ImageType type, int season)
 {
     if (TvShow::seasonImageTypes().contains(type)) {
         if (m_seasonImages.contains(season) && !m_seasonImages.value(season).value(type, QByteArray()).isNull()) {
             m_seasonImages[season].insert(type, QByteArray());
             if (!m_hasSeasonImageChanged.contains(season)) {
-                m_hasSeasonImageChanged.insert(season, QMap<int, bool>());
+                m_hasSeasonImageChanged.insert(season, QMap<ImageType, bool>());
             }
             m_hasSeasonImageChanged[season].insert(type, false);
         } else if (!m_imagesToRemove.contains(type)) {
@@ -1258,12 +1261,12 @@ bool TvShow::lessThan(TvShow *a, TvShow *b)
             < 0);
 }
 
-QByteArray TvShow::image(int imageType)
+QByteArray TvShow::image(ImageType imageType)
 {
     return m_images.value(imageType);
 }
 
-QByteArray TvShow::seasonImage(int season, int imageType)
+QByteArray TvShow::seasonImage(int season, ImageType imageType)
 {
     if (m_seasonImages.contains(season)) {
         return m_seasonImages.value(season).value(imageType, QByteArray());
@@ -1271,33 +1274,33 @@ QByteArray TvShow::seasonImage(int season, int imageType)
     return QByteArray();
 }
 
-void TvShow::setImage(int imageType, QByteArray image)
+void TvShow::setImage(ImageType imageType, QByteArray image)
 {
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
     setChanged(true);
 }
 
-void TvShow::setSeasonImage(int season, int imageType, QByteArray image)
+void TvShow::setSeasonImage(int season, ImageType imageType, QByteArray image)
 {
     if (!m_seasonImages.contains(season)) {
-        m_seasonImages.insert(season, QMap<int, QByteArray>());
+        m_seasonImages.insert(season, QMap<ImageType, QByteArray>());
     }
     m_seasonImages[season].insert(imageType, image);
 
     if (!m_hasSeasonImageChanged.contains(season)) {
-        m_hasSeasonImageChanged.insert(season, QMap<int, bool>());
+        m_hasSeasonImageChanged.insert(season, QMap<ImageType, bool>());
     }
     m_hasSeasonImageChanged[season].insert(imageType, true);
     setChanged(true);
 }
 
-bool TvShow::imageHasChanged(int imageType) const
+bool TvShow::imageHasChanged(ImageType imageType) const
 {
     return m_hasImageChanged.value(imageType, false);
 }
 
-bool TvShow::seasonImageHasChanged(int season, int imageType) const
+bool TvShow::seasonImageHasChanged(int season, ImageType imageType) const
 {
     if (m_hasSeasonImageChanged.contains(season)) {
         return m_hasSeasonImageChanged.value(season).value(imageType, false);
@@ -1305,23 +1308,23 @@ bool TvShow::seasonImageHasChanged(int season, int imageType) const
     return false;
 }
 
-QList<int> TvShow::imageTypes()
+QList<ImageType> TvShow::imageTypes()
 {
-    return QList<int>() << ImageType::TvShowPoster       //
-                        << ImageType::TvShowCharacterArt //
-                        << ImageType::TvShowClearArt     //
-                        << ImageType::TvShowLogos        //
-                        << ImageType::TvShowBackdrop     //
-                        << ImageType::TvShowBanner       //
-                        << ImageType::TvShowThumb;
+    return {ImageType::TvShowPoster,
+        ImageType::TvShowCharacterArt,
+        ImageType::TvShowClearArt,
+        ImageType::TvShowLogos,
+        ImageType::TvShowBackdrop,
+        ImageType::TvShowBanner,
+        ImageType::TvShowThumb};
 }
 
-QList<int> TvShow::seasonImageTypes()
+QList<ImageType> TvShow::seasonImageTypes()
 {
-    return QList<int>() << ImageType::TvShowSeasonBackdrop //
-                        << ImageType::TvShowSeasonBanner   //
-                        << ImageType::TvShowSeasonPoster   //
-                        << ImageType::TvShowSeasonThumb;
+    return {ImageType::TvShowSeasonBackdrop,
+        ImageType::TvShowSeasonBanner,
+        ImageType::TvShowSeasonPoster,
+        ImageType::TvShowSeasonThumb};
 }
 
 void TvShow::setDir(const QString &dir)
@@ -1362,7 +1365,7 @@ void TvShow::setTop250(int top250)
     setChanged(true);
 }
 
-bool TvShow::hasImage(int type)
+bool TvShow::hasImage(ImageType type)
 {
     return m_hasImage.value(type, false);
 }
@@ -1477,7 +1480,7 @@ void TvShow::fillMissingEpisodes()
         } else {
             for (int i = 0, n = modelItem()->childCount(); i < n; ++i) {
                 TvShowModelItem *item = modelItem()->child(i);
-                if (item->type() == TypeSeason && item->season() == episode->seasonString()) {
+                if (item->type() == TvShowType::Season && item->season() == episode->seasonString()) {
                     item->appendChild(episode);
                     break;
                 }
@@ -1492,13 +1495,13 @@ void TvShow::clearMissingEpisodes()
 {
     for (int i = 0; i < modelItem()->childCount(); ++i) {
         TvShowModelItem *seasonItem = modelItem()->child(i);
-        if (seasonItem->type() != TypeSeason) {
+        if (seasonItem->type() != TvShowType::Season) {
             continue;
         }
         bool isDummySeason = true;
         for (int x = 0; x < seasonItem->childCount(); ++x) {
             TvShowModelItem *item = seasonItem->child(x);
-            if (item->type() != TypeEpisode) {
+            if (item->type() != TvShowType::Episode) {
                 continue;
             }
             if (item->tvShowEpisode()->isDummy()) {

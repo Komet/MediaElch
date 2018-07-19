@@ -124,11 +124,11 @@ ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
                 if (xml.name() == "section") {
                     QString section = xml.readElementText();
                     if (section == "movies") {
-                        sections << ExportTemplate::SectionMovies;
+                        sections << ExportTemplate::ExportSection::Movies;
                     } else if (section == "tvshows") {
-                        sections << ExportTemplate::SectionTvShows;
+                        sections << ExportTemplate::ExportSection::TvShows;
                     } else if (section == "concerts") {
-                        sections << ExportTemplate::SectionConcerts;
+                        sections << ExportTemplate::ExportSection::Concerts;
                     }
                 } else {
                     xml.skipCurrentElement();

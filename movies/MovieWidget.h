@@ -54,10 +54,10 @@ private slots:
     void onInfoLoadDone(Movie *movie);
     void onLoadDone(Movie *movie);
     void onLoadImagesStarted(Movie *movie);
-    void onLoadingImages(Movie *movie, QList<int> imageTypes);
+    void onLoadingImages(Movie *movie, QList<ImageType> imageTypes);
     void onDownloadProgress(Movie *movie, int current, int maximum);
-    void onSetImage(Movie *movie, int type, QByteArray data);
-    void onImageDropped(int imageType, QUrl imageUrl);
+    void onSetImage(Movie *movie, ImageType type, QByteArray data);
+    void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onExtraFanartDropped(QUrl imageUrl);
 
     void onChooseImage();
@@ -114,7 +114,7 @@ private slots:
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
-    void updateImage(const int &imageType, ClosableImage *image);
+    void updateImage(ImageType imageType, ClosableImage *image);
 
 private:
     Ui::MovieWidget *ui;
@@ -125,7 +125,7 @@ private:
     QList<QList<QLineEdit *>> m_streamDetailsAudio;
     QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
-    void updateImages(QList<int> images);
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // MOVIEWIDGET_H

@@ -241,10 +241,10 @@ TvShowProxyModel *Manager::tvShowProxyModel()
  * @param type Type of image
  * @return List of pointers of image providers
  */
-QList<ImageProviderInterface *> Manager::imageProviders(int type)
+QList<ImageProviderInterface *> Manager::imageProviders(ImageType type)
 {
     QList<ImageProviderInterface *> providers;
-    foreach (ImageProviderInterface *provider, m_imageProviders) {
+    for (auto provider : m_imageProviders) {
         if (provider->provides().contains(type)) {
             providers.append(provider);
         }

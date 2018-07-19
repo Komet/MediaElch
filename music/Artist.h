@@ -57,19 +57,19 @@ public:
     QString biography() const;
     void setBiography(const QString &biography);
 
-    QList<Poster> images(int imageType) const;
-    void addImage(int imageType, Poster image);
+    QList<Poster> images(ImageType imageType) const;
+    void addImage(ImageType imageType, Poster image);
 
-    QByteArray rawImage(int imageType);
-    void setRawImage(int imageType, QByteArray image);
-    void removeImage(int imageType);
+    QByteArray rawImage(ImageType imageType);
+    void setRawImage(ImageType imageType, QByteArray image);
+    void removeImage(ImageType imageType);
     void clearImages();
 
     bool hasChanged() const;
     void setHasChanged(bool hasChanged);
 
     void clear();
-    void clear(QList<int> infos);
+    void clear(QList<MusicScraperInfos> infos);
 
     MusicModelItem *modelItem() const;
     void setModelItem(MusicModelItem *modelItem);
@@ -77,10 +77,10 @@ public:
     QString nfoContent() const;
     void setNfoContent(const QString &nfoContent);
 
-    static QList<int> imageTypes();
+    static QList<ImageType> imageTypes();
 
-    QList<int> imagesToRemove() const;
-    void setImagesToRemove(const QList<int> &imagesToRemove);
+    QList<ImageType> imagesToRemove() const;
+    void setImagesToRemove(const QList<ImageType> &imagesToRemove);
 
     int databaseId() const;
     void setDatabaseId(int databaseId);
@@ -129,9 +129,9 @@ private:
     QString m_died;
     QString m_disbanded;
     bool m_hasChanged;
-    QMap<int, QList<Poster>> m_images;
-    QMap<int, QByteArray> m_rawImages;
-    QList<int> m_imagesToRemove;
+    QMap<ImageType, QList<Poster>> m_images;
+    QMap<ImageType, QByteArray> m_rawImages;
+    QList<ImageType> m_imagesToRemove;
     MusicModelItem *m_modelItem;
     QString m_nfoContent;
     int m_databaseId;

@@ -25,7 +25,7 @@ public slots:
     int scraperNo();
     QString scraperId();
     QString scraperId2();
-    QList<int> infosToLoad();
+    QList<MusicScraperInfos> infosToLoad();
     void setType(const QString &type);
     void setArtistName(const QString &artistName);
 
@@ -45,13 +45,13 @@ private:
     int m_scraperNo;
     QString m_scraperId;
     QString m_scraperId2;
-    QList<int> m_infosToLoad;
+    QList<MusicScraperInfos> m_infosToLoad;
     QString m_type;
     QString m_artistName;
     QSignalMapper *m_signalMapper;
 
     void clear();
-    void setChkBoxesEnabled(QList<int> scraperSupports);
+    void setChkBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
 };
 
 #endif // MUSICSEARCHWIDGET_H

@@ -74,12 +74,12 @@ bool AEBN::isAdult()
     return true;
 }
 
-QList<int> AEBN::scraperSupports()
+QList<MovieScraperInfos> AEBN::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> AEBN::scraperNativelySupports()
+QList<MovieScraperInfos> AEBN::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -140,7 +140,7 @@ QList<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -164,7 +164,8 @@ void AEBN::onLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QStringList actorIds;
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->infosToLoad(), actorIds);
+        parseAndAssignInfos(
+            msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad(), actorIds);
         if (!actorIds.isEmpty()) {
             downloadActors(movie, actorIds);
             return;
@@ -175,7 +176,7 @@ void AEBN::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QStringList &actorIds)
+void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos, QStringList &actorIds)
 {
     QRegExp rx;
     rx.setMinimal(true);

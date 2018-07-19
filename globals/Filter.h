@@ -16,7 +16,38 @@
 class Filter
 {
 public:
-    explicit Filter(QString text, QString shortText, QStringList filterText, int info, bool hasInfo, int data = 0);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        MovieFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        TvShowFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        MusicFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        ConcertFilters info,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+
+    // Rule of five
+    Filter(const Filter &other) = default;
+    Filter(Filter &&other) = default;
+    Filter &operator=(const Filter &) & = default;
+    Filter &operator=(Filter &&) & = default;
+    ~Filter() = default;
+
     bool accepts(QString text) const;
     bool accepts(Movie *movie);
     bool accepts(Concert *concert);
@@ -24,18 +55,40 @@ public:
     bool accepts(TvShowEpisode *episode);
     QString text() const;
     QString shortText() const;
-    int info() const;
     void setShortText(QString shortText);
     void setText(QString text);
     bool hasInfo() const;
 
+    bool isInfo(MovieFilters info) const;
+    bool isInfo(TvShowFilters info) const;
+    bool isInfo(MusicFilters info) const;
+    bool isInfo(ConcertFilters info) const;
+
 private:
+    enum class FilterType
+    {
+        Movie,
+        TvShow,
+        Music,
+        Concert
+    };
+
+    Filter(QString text,
+        QString shortText,
+        QStringList filterText,
+        bool hasInfo,
+        ColorLabel data = ColorLabel::NoLabel);
+
     QString m_text;
     QString m_shortText;
     QStringList m_filterText;
-    int m_info;
+    MovieFilters m_movieInfo;
+    TvShowFilters m_showInfo;
+    MusicFilters m_musicInfo;
+    ConcertFilters m_concertInfo;
+    ColorLabel m_data;
+    FilterType m_type;
     bool m_hasInfo;
-    int m_data;
 };
 
 Q_DECLARE_METATYPE(Filter *)

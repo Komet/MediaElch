@@ -13,6 +13,7 @@
  - Scraper: Remove deprecated MovieMaze
  - Scraper: Add Kino.de
  - Scraper: Load *all* tags from IMDb
+ - Scraper: Fix ADE backdrop loading
  - Bugfix: HD-Trailers scraper broken
  - Bugfix: Fanart.tv music scraper broken
  - Bugfix: Adult scrapers broken
@@ -24,7 +25,8 @@
  - Bugfix: Fix TvShow status in `.nfo` file
  - Bugfix: Escape HTML entities in export
  - Bugfix: Multi scraping episode thumbnails
-   Bugfix: Studio Mapping for Tv show episodes
+ - Bugfix: Studio Mapping for Tv show episodes
+ - Bugfix: Filter crashing
  - UI: Fix line break in tree views
  - UI: 4k and 8k resolution flag
 

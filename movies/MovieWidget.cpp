@@ -419,9 +419,10 @@ void MovieWidget::setMovie(Movie *movie)
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
-        if (movie->streamDetailsLoaded()
-            && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0) {
-            movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt() / 60));
+        const int durationInSeconds =
+            movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt();
+        if (movie->streamDetailsLoaded() && durationInSeconds > 0) {
+            movie->setRuntime(qFloor(durationInSeconds / 60));
         }
     }
     m_movie = movie;
@@ -439,9 +440,9 @@ void MovieWidget::setMovie(Movie *movie)
         &MovieWidget::onDownloadProgress,
         Qt::UniqueConnection);
     connect(m_movie->controller(),
-        SIGNAL(sigLoadingImages(Movie *, QList<int>)),
+        &MovieController::sigLoadingImages,
         this,
-        SLOT(onLoadingImages(Movie *, QList<int>)),
+        &MovieWidget::onLoadingImages,
         Qt::UniqueConnection);
     connect(m_movie->controller(),
         &MovieController::sigLoadImagesStarted,
@@ -476,10 +477,10 @@ void MovieWidget::startScraperSearch()
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<ScraperInterface *, QString> ids;
-        QList<int> infosToLoad;
+        QList<MovieScraperInfos> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();
-            infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
+            infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
         } else {
             ids.insert(0, MovieSearch::instance()->scraperMovieId());
             infosToLoad = MovieSearch::instance()->infosToLoad();
@@ -519,13 +520,13 @@ void MovieWidget::onLoadImagesStarted(Movie *movie)
     emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId + movie->movieId());
 }
 
-void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
+void MovieWidget::onLoadingImages(Movie *movie, QList<ImageType> imageTypes)
 {
     if (movie != m_movie) {
         return;
     }
 
-    foreach (const int &imageType, imageTypes) {
+    for (const auto imageType : imageTypes) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
@@ -539,7 +540,7 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
     ui->groupBox_3->update();
 }
 
-void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
+void MovieWidget::onSetImage(Movie *movie, ImageType type, QByteArray data)
 {
     if (movie != m_movie) {
         return;
@@ -550,7 +551,7 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
         return;
     }
 
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
@@ -695,9 +696,13 @@ void MovieWidget::updateMovieInfo()
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
 
-    updateImages(QList<int>() << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo
-                              << ImageType::MovieCdArt << ImageType::MovieClearArt << ImageType::MovieBanner
-                              << ImageType::MovieThumb);
+    updateImages({ImageType::MoviePoster,
+        ImageType::MovieBackdrop,
+        ImageType::MovieLogo,
+        ImageType::MovieCdArt,
+        ImageType::MovieClearArt,
+        ImageType::MovieBanner,
+        ImageType::MovieThumb});
 
     ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
@@ -718,10 +723,10 @@ void MovieWidget::updateMovieInfo()
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
-void MovieWidget::updateImages(QList<int> images)
+void MovieWidget::updateImages(QList<ImageType> images)
 {
-    foreach (const int &imageType, images) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (const auto imageType : images) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -730,7 +735,7 @@ void MovieWidget::updateImages(QList<int> images)
     }
 }
 
-void MovieWidget::updateImage(const int &imageType, ClosableImage *image)
+void MovieWidget::updateImage(ImageType imageType, ClosableImage *image)
 {
     if (!m_movie->image(imageType).isNull()) {
         image->setImage(m_movie->image(imageType));
@@ -759,22 +764,25 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     }
 
     StreamDetails *streamDetails = m_movie->streamDetails();
-    ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
-    ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
-    ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
-    ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    const auto videoDetails = streamDetails->videoDetails();
+    ui->videoWidth->setValue(videoDetails.value(StreamDetails::VideoDetails::Width).toInt());
+    ui->videoHeight->setValue(videoDetails.value(StreamDetails::VideoDetails::Height).toInt());
+    ui->videoAspectRatio->setValue(
+        QString{videoDetails.value(StreamDetails::VideoDetails::Aspect)}.replace(",", ".").toDouble());
+    ui->videoCodec->setText(videoDetails.value(StreamDetails::VideoDetails::Codec));
+    ui->videoScantype->setText(videoDetails.value(StreamDetails::VideoDetails::ScanType));
     ui->stereoMode->setCurrentIndex(0);
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
-        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode")) {
+        if (ui->stereoMode->itemData(i).toString() == videoDetails.value(StreamDetails::VideoDetails::StereoMode)) {
             ui->stereoMode->setCurrentIndex(i);
         }
     }
     QTime time(0, 0, 0, 0);
-    time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
+    time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile) {
-        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt() / 60));
+        ui->runtime->setValue(
+            qFloor(streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
     }
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
@@ -784,13 +792,14 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     int audioTracks = streamDetails->audioDetails().count();
+    const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
         QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
         label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
-        QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
-        QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
+        QLineEdit *edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        QLineEdit *edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        QLineEdit *edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -824,7 +833,8 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
             label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
             ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
-            QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
+            QLineEdit *edit1 =
+                new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             auto layout = new QHBoxLayout();
@@ -1479,21 +1489,22 @@ void MovieWidget::onOutlineChange()
 void MovieWidget::onStreamDetailsEdited()
 {
     StreamDetails *details = m_movie->streamDetails();
-    details->setVideoDetail("codec", ui->videoCodec->text());
-    details->setVideoDetail("aspect", ui->videoAspectRatio->text());
-    details->setVideoDetail("width", ui->videoWidth->text());
-    details->setVideoDetail("height", ui->videoHeight->text());
-    details->setVideoDetail("scantype", ui->videoScantype->text());
-    details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
-    details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
+    details->setVideoDetail(StreamDetails::VideoDetails::Codec, ui->videoCodec->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Aspect, ui->videoAspectRatio->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Width, ui->videoWidth->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Height, ui->videoHeight->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::ScanType, ui->videoScantype->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds,
+        QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
+    details->setVideoDetail(StreamDetails::VideoDetails::StereoMode, ui->stereoMode->currentData().toString());
 
     for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
-        details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
-        details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
-        details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Language, m_streamDetailsAudio[i][0]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Codec, m_streamDetailsAudio[i][1]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Channels, m_streamDetailsAudio[i][2]->text());
     }
     for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
-        details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+        details->setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, m_streamDetailsSubtitles[i][0]->text());
     }
 
     m_movie->setChanged(true);
@@ -1592,7 +1603,7 @@ void MovieWidget::onChooseImage()
     }
 }
 
-void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
+void MovieWidget::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_movie) {
         return;
@@ -1614,6 +1625,6 @@ void MovieWidget::onDeleteImage()
     }
 
     m_movie->removeImage(image->imageType());
-    updateImages(QList<int>() << image->imageType());
+    updateImages({image->imageType()});
     ui->buttonRevert->setVisible(true);
 }

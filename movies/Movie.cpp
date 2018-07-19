@@ -18,7 +18,6 @@
 Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
-    m_files{files},
     m_rating{0.0},
     m_votes{0},
     m_top250{0},
@@ -34,8 +33,9 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_syncNeeded{false},
     m_streamDetailsLoaded{false},
     m_hasDuplicates{false},
+    m_streamDetails{nullptr},
     m_discType{DiscType::Single},
-    m_label{Labels::NO_LABEL}
+    m_label{ColorLabel::NoLabel}
 {
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
@@ -46,18 +46,18 @@ Movie::Movie(QStringList files, QObject *parent) :
 
 void Movie::setFiles(QStringList files)
 {
-    m_files = files;
     if (!files.isEmpty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
         if (!path.isEmpty()) {
             m_folderName = path.last();
         }
-        m_streamDetails = new StreamDetails(this, files);
-
-    } else {
-        m_streamDetails = new StreamDetails(this, QStringList());
     }
+    m_files = files;
+    if (m_streamDetails != nullptr) {
+        m_streamDetails->deleteLater();
+    }
+    m_streamDetails = new StreamDetails(this, files);
 }
 
 MovieController *Movie::controller() const
@@ -70,7 +70,7 @@ MovieController *Movie::controller() const
  */
 void Movie::clear()
 {
-    QList<int> infos;
+    QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Title         //
           << MovieScraperInfos::Set           //
           << MovieScraperInfos::Tagline       //
@@ -103,7 +103,7 @@ void Movie::clear()
  * @brief Clears contents of the movie based on a list
  * @param infos List of infos which should be cleared
  */
-void Movie::clear(QList<int> infos)
+void Movie::clear(QList<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
         m_actors.clear();
@@ -1263,9 +1263,9 @@ bool Movie::hasLocalTrailer() const
         return false;
     }
     QFileInfo fi(files().first());
-    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
-    return !dir.entryList(QStringList() << trailerFilter).isEmpty();
+    return !dir.entryList({trailerFilter}).isEmpty();
 }
 
 QString Movie::localTrailerFileName() const
@@ -1274,10 +1274,10 @@ QString Movie::localTrailerFileName() const
         return QString();
     }
     QFileInfo fi(files().first());
-    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QString trailerFilter = QStringLiteral("%1*-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
 
-    QStringList contents = dir.entryList(QStringList() << trailerFilter);
+    QStringList contents = dir.entryList({trailerFilter});
     if (contents.isEmpty()) {
         return QString();
     }
@@ -1353,6 +1353,12 @@ QDateTime Movie::dateAdded() const
     return m_dateAdded;
 }
 
+bool Movie::hasValidImdbId() const
+{
+    QRegExp regex("tt\\d{7}");
+    return !m_id.isEmpty() && regex.exactMatch(m_id);
+}
+
 void Movie::setDiscType(DiscType type)
 {
     m_discType = type;
@@ -1373,12 +1379,12 @@ bool Movie::hasExtraFanarts() const
     return m_hasExtraFanarts;
 }
 
-QList<int> Movie::imagesToRemove() const
+QList<ImageType> Movie::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Movie::removeImage(int type)
+void Movie::removeImage(ImageType type)
 {
     if (!m_images.value(type, QByteArray()).isNull()) {
         m_images.remove(type);
@@ -1389,27 +1395,27 @@ void Movie::removeImage(int type)
     setChanged(true);
 }
 
-QByteArray Movie::image(int imageType) const
+QByteArray Movie::image(ImageType imageType) const
 {
     return m_images.value(imageType, QByteArray());
 }
 
-bool Movie::imageHasChanged(int imageType)
+bool Movie::imageHasChanged(ImageType imageType)
 {
     return m_hasImageChanged.value(imageType, false);
 }
 
-bool Movie::hasImage(int imageType) const
+bool Movie::hasImage(ImageType imageType) const
 {
     return m_hasImage.value(imageType, false);
 }
 
-void Movie::setHasImage(int imageType, bool has)
+void Movie::setHasImage(ImageType imageType, bool has)
 {
     m_hasImage.insert(imageType, has);
 }
 
-void Movie::setImage(int imageType, QByteArray image)
+void Movie::setImage(ImageType imageType, QByteArray image)
 {
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
@@ -1423,15 +1429,15 @@ bool Movie::lessThan(Movie *a, Movie *b)
             < 0);
 }
 
-QList<int> Movie::imageTypes()
+QList<ImageType> Movie::imageTypes()
 {
-    return QList<int>() << ImageType::MoviePoster   //
-                        << ImageType::MovieBanner   //
-                        << ImageType::MovieCdArt    //
-                        << ImageType::MovieClearArt //
-                        << ImageType::MovieLogo     //
-                        << ImageType::MovieThumb    //
-                        << ImageType::MovieBackdrop;
+    return {ImageType::MoviePoster,
+        ImageType::MovieBanner,
+        ImageType::MovieCdArt,
+        ImageType::MovieClearArt,
+        ImageType::MovieLogo,
+        ImageType::MovieThumb,
+        ImageType::MovieBackdrop};
 }
 
 QList<Subtitle *> Movie::subtitles() const
@@ -1472,12 +1478,12 @@ void Movie::setHasDuplicates(bool hasDuplicates)
     emit sigChanged(this);
 }
 
-void Movie::setLabel(int label)
+void Movie::setLabel(ColorLabel label)
 {
     m_label = label;
 }
 
-int Movie::label() const
+ColorLabel Movie::label() const
 {
     return m_label;
 }

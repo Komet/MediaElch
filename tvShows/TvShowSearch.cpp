@@ -2,6 +2,7 @@
 #include "ui_TvShowSearch.h"
 
 #include "globals/Manager.h"
+#include "settings/Settings.h"
 #include "smallWidgets/MyCheckBox.h"
 
 /**
@@ -33,27 +34,27 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
     connect(ui->chkDvdOrder,  &QAbstractButton::clicked,        this, &TvShowSearch::onChkDvdOrderToggled);
     // clang-format on
 
-    ui->chkActors->setMyData(TvShowScraperInfos::Actors);
-    ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
-    ui->chkCertification->setMyData(TvShowScraperInfos::Certification);
-    ui->chkDirector->setMyData(TvShowScraperInfos::Director);
-    ui->chkFanart->setMyData(TvShowScraperInfos::Fanart);
-    ui->chkFirstAired->setMyData(TvShowScraperInfos::FirstAired);
-    ui->chkGenres->setMyData(TvShowScraperInfos::Genres);
-    ui->chkTags->setMyData(TvShowScraperInfos::Tags);
-    ui->chkNetwork->setMyData(TvShowScraperInfos::Network);
-    ui->chkOverview->setMyData(TvShowScraperInfos::Overview);
-    ui->chkPoster->setMyData(TvShowScraperInfos::Poster);
-    ui->chkRating->setMyData(TvShowScraperInfos::Rating);
-    ui->chkSeasonPoster->setMyData(TvShowScraperInfos::SeasonPoster);
-    ui->chkSeasonBackdrop->setMyData(TvShowScraperInfos::SeasonBackdrop);
-    ui->chkSeasonBanner->setMyData(TvShowScraperInfos::SeasonBanner);
-    ui->chkThumbnail->setMyData(TvShowScraperInfos::Thumbnail);
-    ui->chkTitle->setMyData(TvShowScraperInfos::Title);
-    ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
-    ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
-    ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
-    ui->chkStatus->setMyData(TvShowScraperInfos::Status);
+    ui->chkActors->setMyData(static_cast<int>(TvShowScraperInfos::Actors));
+    ui->chkBanner->setMyData(static_cast<int>(TvShowScraperInfos::Banner));
+    ui->chkCertification->setMyData(static_cast<int>(TvShowScraperInfos::Certification));
+    ui->chkDirector->setMyData(static_cast<int>(TvShowScraperInfos::Director));
+    ui->chkFanart->setMyData(static_cast<int>(TvShowScraperInfos::Fanart));
+    ui->chkFirstAired->setMyData(static_cast<int>(TvShowScraperInfos::FirstAired));
+    ui->chkGenres->setMyData(static_cast<int>(TvShowScraperInfos::Genres));
+    ui->chkTags->setMyData(static_cast<int>(TvShowScraperInfos::Tags));
+    ui->chkNetwork->setMyData(static_cast<int>(TvShowScraperInfos::Network));
+    ui->chkOverview->setMyData(static_cast<int>(TvShowScraperInfos::Overview));
+    ui->chkPoster->setMyData(static_cast<int>(TvShowScraperInfos::Poster));
+    ui->chkRating->setMyData(static_cast<int>(TvShowScraperInfos::Rating));
+    ui->chkSeasonPoster->setMyData(static_cast<int>(TvShowScraperInfos::SeasonPoster));
+    ui->chkSeasonBackdrop->setMyData(static_cast<int>(TvShowScraperInfos::SeasonBackdrop));
+    ui->chkSeasonBanner->setMyData(static_cast<int>(TvShowScraperInfos::SeasonBanner));
+    ui->chkThumbnail->setMyData(static_cast<int>(TvShowScraperInfos::Thumbnail));
+    ui->chkTitle->setMyData(static_cast<int>(TvShowScraperInfos::Title));
+    ui->chkWriter->setMyData(static_cast<int>(TvShowScraperInfos::Writer));
+    ui->chkExtraArts->setMyData(static_cast<int>(TvShowScraperInfos::ExtraArts));
+    ui->chkRuntime->setMyData(static_cast<int>(TvShowScraperInfos::Runtime));
+    ui->chkStatus->setMyData(static_cast<int>(TvShowScraperInfos::Status));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
@@ -171,11 +172,11 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 void TvShowSearch::setSearchType(TvShowType type)
 {
     m_searchType = type;
-    if (type == TypeTvShow) {
+    if (type == TvShowType::TvShow) {
         ui->comboUpdate->setVisible(true);
         ui->comboUpdate->setCurrentIndex(Settings::instance()->tvShowUpdateOption());
         onComboIndexChanged();
-    } else if (type == TypeEpisode) {
+    } else if (type == TvShowType::Episode) {
         ui->comboUpdate->setVisible(false);
         ui->comboUpdate->setCurrentIndex(4);
         onComboIndexChanged();
@@ -200,7 +201,7 @@ void TvShowSearch::onChkToggled()
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
-            m_infosToLoad.append(box->myData().toInt());
+            m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
         }
         if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             allToggled = false;
@@ -210,7 +211,7 @@ void TvShowSearch::onChkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     }
     Settings::instance()->setScraperInfos(MainWidgets::TvShows, QString::number(scraperNo), m_infosToLoad);
@@ -227,7 +228,7 @@ void TvShowSearch::onChkAllToggled()
     onChkToggled();
 }
 
-QList<int> TvShowSearch::infosToLoad()
+QList<TvShowScraperInfos> TvShowSearch::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -235,32 +236,33 @@ QList<int> TvShowSearch::infosToLoad()
 TvShowUpdateType TvShowSearch::updateType()
 {
     if (ui->comboUpdate->currentIndex() == 0) {
-        return UpdateShow;
+        return TvShowUpdateType::Show;
     }
     if (ui->comboUpdate->currentIndex() == 1) {
-        return UpdateShowAndNewEpisodes;
+        return TvShowUpdateType::ShowAndNewEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 2) {
-        return UpdateShowAndAllEpisodes;
+        return TvShowUpdateType::ShowAndAllEpisodes;
     }
     if (ui->comboUpdate->currentIndex() == 3) {
-        return UpdateNewEpisodes;
+        return TvShowUpdateType::NewEpisodes;
     }
-    return UpdateAllEpisodes;
+    return TvShowUpdateType::AllEpisodes;
 }
 
 void TvShowSearch::onComboIndexChanged()
 {
     int scraperNo = ui->comboUpdate->currentIndex();
-    if (m_searchType == TypeEpisode) {
+    if (m_searchType == TvShowType::Episode) {
         scraperNo = 4;
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
     }
-    QList<int> infos = Settings::instance()->scraperInfos(MainWidgets::TvShows, QString::number(scraperNo));
+    QList<TvShowScraperInfos> infos =
+        Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();
-    if (type == UpdateShow) {
+    if (type == TvShowUpdateType::Show) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -275,7 +277,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkWriter->setEnabled(false);
         ui->chkRuntime->setEnabled(true);
         ui->chkStatus->setEnabled(true);
-    } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
+    } else if (type == TvShowUpdateType::ShowAndAllEpisodes || type == TvShowUpdateType::ShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -307,8 +309,10 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkStatus->setEnabled(false);
     }
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>())
-        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && box->isEnabled());
+    for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {
+        box->setChecked(
+            (infos.contains(TvShowScraperInfos(box->myData().toInt())) || infos.isEmpty()) && box->isEnabled());
+    }
     onChkToggled();
 }
 

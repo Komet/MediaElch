@@ -39,7 +39,7 @@ public:
     void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     QList<QUrl> imageUrls();
-    void setImageType(int type);
+    void setImageType(ImageType type);
     void setItemType(ItemType type);
     void setMultiSelection(const bool &enable);
     void setMovie(Movie *movie);
@@ -56,7 +56,7 @@ public slots:
     void accept() override;
     void reject() override;
     int exec() override;
-    int exec(int type);
+    int exec(ImageType type);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -99,11 +99,11 @@ private:
     QNetworkAccessManager m_qnam;
     int m_currentDownloadIndex;
     QNetworkReply *m_currentDownloadReply;
-    int m_imageType;
+    ImageType m_imageType;
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
     QList<QUrl> m_imageUrls;
-    int m_type;
+    ImageType m_type;
     QList<ImageProviderInterface *> m_providers;
     Concert *m_concert;
     Movie *m_movie;

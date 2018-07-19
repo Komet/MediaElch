@@ -25,7 +25,7 @@ public slots:
     static ConcertSearch *instance(QWidget *parent = nullptr);
     int scraperNo();
     QString scraperId();
-    QList<int> infosToLoad();
+    QList<ConcertScraperInfos> infosToLoad();
 
 private:
     Ui::ConcertSearch *ui;

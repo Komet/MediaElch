@@ -14,7 +14,7 @@
  * @param fileName Name of this file
  * @param pos Position
  */
-DataFile::DataFile(int type, QString fileName, int pos) : m_fileName{fileName}, m_pos{pos}, m_type{type}
+DataFile::DataFile(DataFileType type, QString fileName, int pos) : m_fileName{fileName}, m_pos{pos}, m_type{type}
 {
 }
 
@@ -83,7 +83,7 @@ QString DataFile::saveFileName(const QString &fileName, int season, bool stacked
  * @brief Returns the type of this file
  * @return Type
  */
-int DataFile::type() const
+DataFileType DataFile::type() const
 {
     return m_type;
 }
@@ -99,7 +99,7 @@ bool DataFile::lessThan(DataFile a, DataFile b)
     return a.pos() < b.pos();
 }
 
-int DataFile::dataFileTypeForImageType(int imageType)
+DataFileType DataFile::dataFileTypeForImageType(ImageType imageType)
 {
     switch (imageType) {
     case ImageType::MovieBackdrop: return DataFileType::MovieBackdrop;
@@ -136,6 +136,6 @@ int DataFile::dataFileTypeForImageType(int imageType)
     case ImageType::ArtistLogo: return DataFileType::ArtistLogo;
     case ImageType::ArtistThumb: return DataFileType::ArtistThumb;
 
-    default: return -1;
+    default: return DataFileType::NoType;
     }
 }

@@ -452,19 +452,21 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     }
 
     StreamDetails *streamDetails = m_episode->streamDetails();
-    ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
-    ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(QString{streamDetails->videoDetails().value("aspect")}.replace(",", ".").toDouble());
-    ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
-    ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    const auto videoDetails = streamDetails->videoDetails();
+    ui->videoWidth->setValue(videoDetails.value(StreamDetails::VideoDetails::Width).toInt());
+    ui->videoHeight->setValue(videoDetails.value(StreamDetails::VideoDetails::Height).toInt());
+    ui->videoAspectRatio->setValue(
+        QString{videoDetails.value(StreamDetails::VideoDetails::Aspect)}.replace(",", ".").toDouble());
+    ui->videoCodec->setText(videoDetails.value(StreamDetails::VideoDetails::Codec));
+    ui->videoScantype->setText(videoDetails.value(StreamDetails::VideoDetails::ScanType));
     ui->stereoMode->setCurrentIndex(0);
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
-        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode")) {
+        if (ui->stereoMode->itemData(i).toString() == videoDetails.value(StreamDetails::VideoDetails::StereoMode)) {
             ui->stereoMode->setCurrentIndex(i);
         }
     }
     QTime time(0, 0, 0, 0);
-    time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
+    time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
@@ -474,12 +476,13 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     m_streamDetailsSubtitles.clear();
 
     int audioTracks = streamDetails->audioDetails().count();
+    const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
         QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
-        QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
-        QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
+        QLineEdit *edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        QLineEdit *edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        QLineEdit *edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -511,7 +514,8 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
             QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
-            QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
+            QLineEdit *edit1 =
+                new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             auto layout = new QHBoxLayout();
@@ -600,7 +604,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TypeEpisode);
+    TvShowSearch::instance()->setSearchType(TvShowType::Episode);
     TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
@@ -683,7 +687,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
     }
 }
 
-void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
+void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     Q_UNUSED(imageType);
 
@@ -972,21 +976,22 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
 void TvShowWidgetEpisode::onStreamDetailsEdited()
 {
     StreamDetails *details = m_episode->streamDetails();
-    details->setVideoDetail("codec", ui->videoCodec->text());
-    details->setVideoDetail("aspect", ui->videoAspectRatio->text());
-    details->setVideoDetail("width", ui->videoWidth->text());
-    details->setVideoDetail("height", ui->videoHeight->text());
-    details->setVideoDetail("scantype", ui->videoScantype->text());
-    details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
-    details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
+    details->setVideoDetail(StreamDetails::VideoDetails::Codec, ui->videoCodec->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Aspect, ui->videoAspectRatio->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Width, ui->videoWidth->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::Height, ui->videoHeight->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::ScanType, ui->videoScantype->text());
+    details->setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds,
+        QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
+    details->setVideoDetail(StreamDetails::VideoDetails::StereoMode, ui->stereoMode->currentData().toString());
 
     for (int i = 0, n = m_streamDetailsAudio.count(); i < n; ++i) {
-        details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
-        details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
-        details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Language, m_streamDetailsAudio[i][0]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Codec, m_streamDetailsAudio[i][1]->text());
+        details->setAudioDetail(i, StreamDetails::AudioDetails::Channels, m_streamDetailsAudio[i][2]->text());
     }
     for (int i = 0, n = m_streamDetailsSubtitles.count(); i < n; ++i) {
-        details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+        details->setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, m_streamDetailsSubtitles[i][0]->text());
     }
 
     m_episode->setChanged(true);

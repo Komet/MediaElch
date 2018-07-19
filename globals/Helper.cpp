@@ -549,36 +549,36 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
     return 1 - (dist / qMax(len1, len2));
 }
 
-QMap<int, QString> Helper::labels()
+QMap<ColorLabel, QString> Helper::labels()
 {
-    QMap<int, QString> labels;
-    labels.insert(Labels::NO_LABEL, QObject::tr("No Label"));
-    labels.insert(Labels::RED, QObject::tr("Red"));
-    labels.insert(Labels::ORANGE, QObject::tr("Orange"));
-    labels.insert(Labels::YELLOW, QObject::tr("Yellow"));
-    labels.insert(Labels::GREEN, QObject::tr("Green"));
-    labels.insert(Labels::BLUE, QObject::tr("Blue"));
-    labels.insert(Labels::PURPLE, QObject::tr("Purple"));
-    labels.insert(Labels::GREY, QObject::tr("Grey"));
+    QMap<ColorLabel, QString> labels;
+    labels.insert(ColorLabel::NoLabel, QObject::tr("No Label"));
+    labels.insert(ColorLabel::Red, QObject::tr("Red"));
+    labels.insert(ColorLabel::Orange, QObject::tr("Orange"));
+    labels.insert(ColorLabel::Yellow, QObject::tr("Yellow"));
+    labels.insert(ColorLabel::Green, QObject::tr("Green"));
+    labels.insert(ColorLabel::Blue, QObject::tr("Blue"));
+    labels.insert(ColorLabel::Purple, QObject::tr("Purple"));
+    labels.insert(ColorLabel::Grey, QObject::tr("Grey"));
     return labels;
 }
 
-QColor Helper::colorForLabel(int label)
+QColor Helper::colorForLabel(ColorLabel label)
 {
     switch (label) {
-    case Labels::RED: return QColor(252, 124, 126); break;
-    case Labels::ORANGE: return QColor(253, 189, 65); break;
-    case Labels::YELLOW: return QColor(245, 228, 68); break;
-    case Labels::GREEN: return QColor(182, 223, 55); break;
-    case Labels::BLUE: return QColor(132, 201, 253); break;
-    case Labels::PURPLE: return QColor(226, 167, 253); break;
-    case Labels::GREY: return QColor(200, 200, 200); break;
-    case Labels::NO_LABEL:
-    default: return QColor(0, 0, 0, 0); break;
+    case ColorLabel::Red: return QColor(252, 124, 126);
+    case ColorLabel::Orange: return QColor(253, 189, 65);
+    case ColorLabel::Yellow: return QColor(245, 228, 68);
+    case ColorLabel::Green: return QColor(182, 223, 55);
+    case ColorLabel::Blue: return QColor(132, 201, 253);
+    case ColorLabel::Purple: return QColor(226, 167, 253);
+    case ColorLabel::Grey: return QColor(200, 200, 200);
+    case ColorLabel::NoLabel: return QColor(0, 0, 0, 0);
     }
+    return QColor(0, 0, 0, 0);
 }
 
-QIcon Helper::iconForLabel(int label)
+QIcon Helper::iconForLabel(ColorLabel label)
 {
     QColor color = Helper::instance()->colorForLabel(label);
     QPainter p;
@@ -597,52 +597,32 @@ QIcon Helper::iconForLabel(int label)
 
 qreal Helper::devicePixelRatio(QLabel *label)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return label->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 qreal Helper::devicePixelRatio(QPushButton *button)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return button->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 void Helper::setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     pixmap.setDevicePixelRatio(devicePixelRatio);
-#endif
 }
 
 void Helper::setDevicePixelRatio(QImage &image, qreal devicePixelRatio)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     image.setDevicePixelRatio(devicePixelRatio);
-#endif
 }
 
 qreal Helper::devicePixelRatio(QWidget *widget)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return widget->devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 qreal Helper::devicePixelRatio(const QPixmap &pixmap)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     return pixmap.devicePixelRatio();
-#else
-    return 1.0;
-#endif
 }
 
 int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)

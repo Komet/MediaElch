@@ -1,7 +1,5 @@
 #include "MusicModelItem.h"
 
-#include "../globals/Globals.h"
-
 MusicModelItem::MusicModelItem(MusicModelItem *parent) :
     QObject(nullptr),
     m_parentItem{parent},
@@ -42,7 +40,7 @@ int MusicModelItem::columnCount() const
 QVariant MusicModelItem::data(int column) const
 {
     switch (column) {
-    case MusicRoles::Type: return type(); break;
+    case MusicRoles::Type: return static_cast<int>(type());
     case MusicRoles::HasChanged:
         if (m_album) {
             return m_album->hasChanged();
@@ -144,15 +142,15 @@ Album *MusicModelItem::album()
     return m_album;
 }
 
-int MusicModelItem::type() const
+MusicType MusicModelItem::type() const
 {
     if (m_artist) {
-        return TypeArtist;
+        return MusicType::Artist;
     } else if (m_album) {
-        return TypeAlbum;
+        return MusicType::Album;
     }
 
-    return -1;
+    return MusicType::None;
 }
 
 void MusicModelItem::onAlbumChanged(Album *album)

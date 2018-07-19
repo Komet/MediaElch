@@ -67,9 +67,9 @@ void MusicFilesWidget::onOpenFolder()
         return;
     }
     QString dir;
-    if (item->type() == TypeArtist) {
+    if (item->type() == MusicType::Artist) {
         dir = item->artist()->path();
-    } else if (item->type() == TypeAlbum) {
+    } else if (item->type() == MusicType::Album) {
         dir = item->album()->path();
     }
 
@@ -92,9 +92,9 @@ void MusicFilesWidget::onOpenNfo()
         return;
     }
     QString file;
-    if (item->type() == TypeArtist) {
+    if (item->type() == MusicType::Artist) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->artist());
-    } else if (item->type() == TypeAlbum) {
+    } else if (item->type() == MusicType::Album) {
         file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->album());
     }
 
@@ -123,9 +123,9 @@ void MusicFilesWidget::setFilter(QList<Filter *> filters, QString text)
 void MusicFilesWidget::onItemSelected(QModelIndex index)
 {
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
-    if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == TypeArtist) {
+    if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == MusicType::Artist) {
         emit sigArtistSelected(Manager::instance()->musicModel()->getItem(sourceIndex)->artist());
-    } else if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == TypeAlbum) {
+    } else if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == MusicType::Album) {
         emit sigAlbumSelected(Manager::instance()->musicModel()->getItem(sourceIndex)->album());
     }
 }
@@ -149,7 +149,7 @@ QList<Artist *> MusicFilesWidget::selectedArtists()
     QList<Artist *> artists;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
-        if (item->type() == TypeArtist) {
+        if (item->type() == MusicType::Artist) {
             artists.append(item->artist());
         }
     }
@@ -161,7 +161,7 @@ QList<Album *> MusicFilesWidget::selectedAlbums()
     QList<Album *> albums;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
-        if (item->type() == TypeAlbum) {
+        if (item->type() == MusicType::Album) {
             albums.append(item->album());
         }
     }

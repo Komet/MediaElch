@@ -8,32 +8,30 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
-AdultDvdEmpire::AdultDvdEmpire(QObject *parent)
+AdultDvdEmpire::AdultDvdEmpire(QObject *parent) :
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Set,
+        MovieScraperInfos::Director}
 {
     setParent(parent);
-
-    m_scraperSupports << MovieScraperInfos::Title    //
-                      << MovieScraperInfos::Released //
-                      << MovieScraperInfos::Runtime  //
-                      << MovieScraperInfos::Overview //
-                      << MovieScraperInfos::Poster   //
-                      << MovieScraperInfos::Actors   //
-                      << MovieScraperInfos::Genres   //
-                      << MovieScraperInfos::Studios  //
-                      << MovieScraperInfos::Backdrop //
-                      << MovieScraperInfos::Set      //
-                      << MovieScraperInfos::Rating   //
-                      << MovieScraperInfos::Director;
 }
 
 QString AdultDvdEmpire::name()
 {
-    return QString("Adult DVD Empire");
+    return QStringLiteral("Adult DVD Empire");
 }
 
 QString AdultDvdEmpire::identifier()
 {
-    return QString("adult-dvd-empire");
+    return QStringLiteral("adult-dvd-empire");
 }
 
 bool AdultDvdEmpire::isAdult()
@@ -41,12 +39,12 @@ bool AdultDvdEmpire::isAdult()
     return true;
 }
 
-QList<int> AdultDvdEmpire::scraperSupports()
+QList<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<int> AdultDvdEmpire::scraperNativelySupports()
+QList<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -59,7 +57,7 @@ QNetworkAccessManager *AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
@@ -99,10 +97,10 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<int> infos)
+void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
-    QUrl url(QString("https://www.adultdvdempire.com%1").arg(ids.values().first()));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -119,7 +117,7 @@ void AdultDvdEmpire::onLoadFinished()
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->infosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -127,7 +125,7 @@ void AdultDvdEmpire::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
+void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QTextDocument doc;
     QRegExp rx;
@@ -205,7 +203,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
     }
 
     rx.setPattern(
-        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*(.*)<)");
+        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*([^<]*)<)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();
@@ -222,20 +220,14 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<int> 
         movie->setSet(set.trimmed());
     }
 
-    rx.setPattern("Average Rating (.*) <small>out of (\\d+)</small>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setRating(rx.cap(1).toFloat());
-        movie->setVotes(rx.cap(2).toInt());
-    }
-
     if (infos.contains(MovieScraperInfos::Backdrop)) {
-        rx.setPattern("<a rel=\"screenshots\"[\\s\\n]*href=\"([^\"]*)\"");
+        rx.setPattern(R"re(<a rel="(scene)?screenshots"[\s\n]*href="([^"]*)")re");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Poster p;
-            p.thumbUrl = rx.cap(1);
-            p.originalUrl = rx.cap(1);
+            p.thumbUrl = rx.cap(2);
+            p.originalUrl = rx.cap(2);
             movie->addBackdrop(p);
         }
     }

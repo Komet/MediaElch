@@ -29,7 +29,32 @@ Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) : QObject(
 {
 }
 
-Storage::Storage(QObject *parent, QList<int> infosToLoad) : QObject(parent), m_infosToLoad{infosToLoad}
+Storage::Storage(QObject *parent, QList<MovieScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_movieInfosToLoad{infosToLoad}
+{
+}
+
+Storage::Storage(QObject *parent, QList<TvShowScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_showInfosToLoad{infosToLoad}
+{
+}
+
+Storage::Storage(QObject *parent, QList<ConcertScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_concertInfosToLoad{infosToLoad}
+{
+}
+
+Storage::Storage(QObject *parent, QList<MusicScraperInfos> infosToLoad) :
+    QObject(parent),
+    m_musicInfosToLoad{infosToLoad}
+{
+}
+
+
+Storage::Storage(QObject *parent, QList<ImageType> infosToLoad) : QObject(parent), m_imageInfosToLoad{infosToLoad}
 {
 }
 
@@ -179,7 +204,39 @@ QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<int> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<ConcertScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<MusicScraperInfos> infosToLoad)
+{
+    Storage *const storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<ImageType> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -224,7 +281,27 @@ QList<ScraperSearchResult> Storage::results() const
     return m_results;
 }
 
-QList<int> Storage::infosToLoad() const
+QList<MovieScraperInfos> Storage::movieInfosToLoad() const
 {
-    return m_infosToLoad;
+    return m_movieInfosToLoad;
+}
+
+QList<TvShowScraperInfos> Storage::showInfosToLoad() const
+{
+    return m_showInfosToLoad;
+}
+
+QList<ConcertScraperInfos> Storage::concertInfosToLoad() const
+{
+    return m_concertInfosToLoad;
+}
+
+QList<MusicScraperInfos> Storage::musicInfosToLoad() const
+{
+    return m_musicInfosToLoad;
+}
+
+QList<ImageType> Storage::imageInfosToLoad() const
+{
+    return m_imageInfosToLoad;
 }

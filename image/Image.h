@@ -23,7 +23,7 @@ public:
     QByteArray rawData() const;
     void setRawData(const QByteArray &rawData);
 
-    int imageId();
+    int imageId() const;
 
     void load();
 

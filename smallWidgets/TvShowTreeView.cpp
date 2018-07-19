@@ -1,10 +1,10 @@
 #include "TvShowTreeView.h"
 
+#include "globals/Globals.h"
+#include "globals/Manager.h"
+
 #include <QDebug>
 #include <QHeaderView>
-
-#include "../globals/Globals.h"
-#include "../globals/Manager.h"
 
 TvShowTreeView::TvShowTreeView(QWidget *parent) :
     QTreeView(parent),
@@ -17,7 +17,7 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) :
 
 void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
-    if (getTvShowType(index) == TypeEpisode) {
+    if (getTvShowType(index) == TvShowType::Episode) {
         return;
     }
 
@@ -37,7 +37,7 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
 {
     painter->save();
 
-    if (getTvShowType(index) == TypeTvShow) {
+    if (getTvShowType(index) == TvShowType::TvShow) {
         drawTvShowRow(painter, option, index);
 
     } else {
@@ -142,11 +142,11 @@ void TvShowTreeView::drawEpisodeRow(QPainter *painter,
     const QModelIndex &index) const
 {
     const bool isSelected = selectionModel()->isSelected(index);
-    const int type = getTvShowType(index);
-    int itemIndent = (type == TypeSeason) ? m_seasonIndent : m_episodeIndent;
+    const TvShowType type = getTvShowType(index);
+    int itemIndent = (type == TvShowType::Season) ? m_seasonIndent : m_episodeIndent;
     drawRowBackground(painter, option, index);
 
-    if (type == TypeSeason) {
+    if (type == TvShowType::Season) {
         QRect branches(option.rect.x() + 25, option.rect.y() + 5, 20, option.rect.height() - 10);
         drawBranches(painter, branches, index);
         itemIndent += 20;
@@ -187,7 +187,8 @@ void TvShowTreeView::drawEpisodeRow(QPainter *painter,
         itemIndent += 20;
     }
 
-    if (index.data(TvShowRoles::Type).toInt() == TypeSeason && index.data(TvShowRoles::HasDummyEpisodes).toBool()) {
+    if (TvShowType(index.data(TvShowRoles::Type).toInt()) == TvShowType::Season
+        && index.data(TvShowRoles::HasDummyEpisodes).toBool()) {
 #ifdef Q_OS_WIN
         QRect iconRect(option.rect.x() + itemIndent, option.rect.y(), 18, option.rect.height());
         painter->drawPixmap(iconRect.x() + (iconRect.width() - m_missingIcon.width()) / 2,
@@ -215,10 +216,10 @@ void TvShowTreeView::drawEpisodeRow(QPainter *painter,
 
 void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const
 {
-    const int type = getTvShowType(index);
+    const TvShowType type = getTvShowType(index);
 
-    if (type != TypeTvShow) {
-        const int indent = (type == TypeSeason) ? m_seasonIndent : m_episodeIndent;
+    if (type != TvShowType::TvShow) {
+        const int indent = (type == TvShowType::Season) ? m_seasonIndent : m_episodeIndent;
         option.rect.setX(option.rect.x() + indent - 4);
 
         if (alternatingRowColors()) {
@@ -237,7 +238,7 @@ void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem o
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &option, painter, this);
 }
 
-int TvShowTreeView::getTvShowType(const QModelIndex &index) const
+TvShowType TvShowTreeView::getTvShowType(const QModelIndex &index) const
 {
-    return index.model()->data(index, TvShowRoles::Type).toInt();
+    return TvShowType(index.model()->data(index, TvShowRoles::Type).toInt());
 }

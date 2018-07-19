@@ -368,9 +368,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
-    updateImages(QList<int>() << ImageType::TvShowPoster << ImageType::TvShowBackdrop << ImageType::TvShowBanner
-                              << ImageType::TvShowCharacterArt << ImageType::TvShowClearArt << ImageType::TvShowLogos
-                              << ImageType::TvShowThumb);
+    updateImages(QList<ImageType>() << ImageType::TvShowPoster       //
+                                    << ImageType::TvShowBackdrop     //
+                                    << ImageType::TvShowBanner       //
+                                    << ImageType::TvShowCharacterArt //
+                                    << ImageType::TvShowClearArt     //
+                                    << ImageType::TvShowLogos        //
+                                    << ImageType::TvShowThumb);
     ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
 
     ui->badgeTuneExisting->setVisible(m_show->hasTune());
@@ -387,9 +391,9 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
-void TvShowWidgetTvShow::updateImages(QList<int> images)
+void TvShowWidgetTvShow::updateImages(QList<ImageType> images)
 {
-    foreach (const int &imageType, images) {
+    for (const auto imageType : images) {
         ClosableImage *image = nullptr;
 
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
@@ -455,7 +459,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    TvShowSearch::instance()->setSearchType(TypeTvShow);
+    TvShowSearch::instance()->setSearchType(TvShowType::TvShow);
     TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your tv show is scraped"));
@@ -482,9 +486,13 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
         show->clearMissingEpisodes();
         show->fillMissingEpisodes();
     }
-    QList<int> types;
-    types << ImageType::TvShowClearArt << ImageType::TvShowLogos << ImageType::TvShowCharacterArt
-          << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb;
+
+    QList<ImageType> types{ImageType::TvShowClearArt,
+        ImageType::TvShowLogos,
+        ImageType::TvShowCharacterArt,
+        ImageType::TvShowThumb,
+        ImageType::TvShowSeasonThumb};
+
     if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
@@ -493,7 +501,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
             SLOT(onLoadDone(TvShow *, QMap<int, QList<Poster>>)),
             Qt::UniqueConnection);
     } else {
-        QMap<int, QList<Poster>> map;
+        QMap<ImageType, QList<Poster>> map;
         onLoadDone(show, map);
     }
     NotificationBox::instance()->hideProgressBar(show->property("progressBarId").toInt());
@@ -505,7 +513,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
  * @param show Tv Show
  * @param posters
  */
-void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> posters)
+void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>> posters)
 {
     qDebug() << "Entered";
     if (m_show == nullptr) {
@@ -559,7 +567,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster>> poste
     }
 
     QList<int> thumbsForSeasons;
-    QMapIterator<int, QList<Poster>> it(posters);
+    QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.key() == ImageType::TvShowClearArt && !it.value().isEmpty()) {
@@ -1161,11 +1169,11 @@ void TvShowWidgetTvShow::onDeleteImage()
     }
 
     m_show->removeImage(image->imageType());
-    updateImages(QList<int>() << image->imageType());
+    updateImages({image->imageType()});
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
+void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     if (!m_show) {
         return;

@@ -233,7 +233,7 @@ void Settings::loadSettings()
     int dataFileSize = settings()->beginReadArray("AllDataFiles");
     for (int i = 0; i < dataFileSize; ++i) {
         settings()->setArrayIndex(i);
-        int type = settings()->value("type").toInt();
+        DataFileType type = DataFileType(settings()->value("type").toInt());
         QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
             foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
@@ -269,20 +269,21 @@ void Settings::loadSettings()
     }
 
     // Movie set artwork
-    m_movieSetArtworkType = settings()->value("MovieSetArtwork/StoringType", 0).toInt();
+    m_movieSetArtworkType = MovieSetArtworkType(settings()->value("MovieSetArtwork/StoringType", 0).toInt());
     m_movieSetArtworkDirectory = settings()->value("MovieSetArtwork/Directory").toString();
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
-    foreach (const QVariant &column, settings()->value("MediaStatusColumns").toList())
-        m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
+    foreach (const QVariant &column, settings()->value("MediaStatusColumn").toList())
+        m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
 
 
     m_customMovieScraper.clear();
     int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
     for (int i = 0; i < customMovieScraperSize; ++i) {
         settings()->setArrayIndex(i);
-        m_customMovieScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
+        m_customMovieScraper.insert(
+            MovieScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -290,7 +291,8 @@ void Settings::loadSettings()
     int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
     for (int i = 0; i < customTvScraperSize; ++i) {
         settings()->setArrayIndex(i);
-        m_customTvScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
+        m_customTvScraper.insert(
+            TvShowScraperInfos(settings()->value("Info").toInt()), settings()->value("Scraper").toString());
     }
     settings()->endArray();
 
@@ -428,38 +430,39 @@ void Settings::saveSettings()
     settings()->beginWriteArray("AllDataFiles");
     for (int i = 0, n = m_dataFiles.count(); i < n; ++i) {
         settings()->setArrayIndex(i);
-        settings()->setValue("type", m_dataFiles.at(i).type());
+        settings()->setValue("type", static_cast<int>(m_dataFiles.at(i).type()));
         settings()->setValue("fileName", m_dataFiles.at(i).fileName());
         settings()->setValue("pos", m_dataFiles.at(i).pos());
     }
     settings()->endArray();
 
-    settings()->setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
+    settings()->setValue("MovieSetArtwork/StoringType", static_cast<int>(m_movieSetArtworkType));
     settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
 
     QList<QVariant> columns;
-    foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
-        columns.append(column);
-    settings()->setValue("MediaStatusColumns", columns);
+    for (const MediaStatusColumn &column : m_mediaStatusColumns) {
+        columns.append(static_cast<int>(column));
+    }
+    settings()->setValue("MediaStatusColumn", columns);
 
     int i = 0;
     settings()->beginWriteArray("CustomMovieScraper");
-    QMapIterator<int, QString> it(m_customMovieScraper);
+    QMapIterator<MovieScraperInfos, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
         it.next();
         settings()->setArrayIndex(i++);
-        settings()->setValue("Info", it.key());
+        settings()->setValue("Info", static_cast<int>(it.key()));
         settings()->setValue("Scraper", it.value());
     }
     settings()->endArray();
 
     i = 0;
     settings()->beginWriteArray("CustomTvScraper");
-    QMapIterator<int, QString> itTv(m_customTvScraper);
+    QMapIterator<TvShowScraperInfos, QString> itTv(m_customTvScraper);
     while (itTv.hasNext()) {
         itTv.next();
         settings()->setArrayIndex(i++);
-        settings()->setValue("Info", itTv.key());
+        settings()->setValue("Info", static_cast<int>(itTv.key()));
         settings()->setValue("Scraper", itTv.value());
     }
     settings()->endArray();
@@ -711,11 +714,11 @@ bool Settings::autoLoadStreamDetails()
  * @param type
  * @return
  */
-QList<DataFile> Settings::dataFiles(int type)
+QList<DataFile> Settings::dataFiles(DataFileType dataType)
 {
     QList<DataFile> files;
-    foreach (const DataFile &file, m_dataFiles) {
-        if (file.type() == type) {
+    for (const DataFile &file : m_dataFiles) {
+        if (file.type() == dataType) {
             files.append(file);
         }
     }
@@ -723,14 +726,19 @@ QList<DataFile> Settings::dataFiles(int type)
     return files;
 }
 
-QList<DataFile> Settings::dataFilesFrodo(int type)
+QList<DataFile> Settings::dataFiles(ImageType dataType)
 {
-    if (type == -1) {
+    return dataFiles(DataFile::dataFileTypeForImageType(dataType));
+}
+
+QList<DataFile> Settings::dataFilesFrodo(DataFileType type)
+{
+    if (type == DataFileType::NoType) {
         return m_initialDataFilesFrodo;
     }
 
     QList<DataFile> files;
-    foreach (const DataFile &file, m_initialDataFilesFrodo) {
+    for (const DataFile &file : m_initialDataFilesFrodo) {
         if (file.type() == type) {
             files.append(file);
         }
@@ -1002,47 +1010,103 @@ void Settings::setXbmcPort(int port)
     m_xbmcPort = port;
 }
 
-QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
+template<>
+QList<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QString item = "unknown";
-    if (widget == MainWidgets::Movies) {
-        item = "Movies";
-    } else if (widget == MainWidgets::Concerts) {
-        item = "Concerts";
-    } else if (widget == MainWidgets::TvShows) {
-        item = "TvShows";
-    } else if (widget == MainWidgets::Music) {
-        item = "Music";
+    QList<ConcertScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
+        infos << ConcertScraperInfos(info.toInt());
     }
-    QList<int> infos;
-    foreach (const QString &info,
-        settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
-        infos << info.toInt();
-
-    if (!infos.isEmpty() && infos.first() == 0) {
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
         infos.clear();
     }
-
     return infos;
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
+template<>
+QList<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QString item = "unknown";
-    if (widget == MainWidgets::Movies) {
-        item = "Movies";
-    } else if (widget == MainWidgets::Concerts) {
-        item = "Concerts";
-    } else if (widget == MainWidgets::TvShows) {
-        item = "TvShows";
-    } else if (widget == MainWidgets::Music) {
-        item = "Music";
+    QList<MovieScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
+        infos << MovieScraperInfos(info.toInt());
     }
-    QStringList infos;
-    foreach (int info, items)
-        infos << QString("%1").arg(info);
-    settings()->setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), infos.join(","));
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
+    return infos;
 }
+
+template<>
+QList<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
+{
+    QList<TvShowScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
+        infos << TvShowScraperInfos(info.toInt());
+    }
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
+    return infos;
+}
+
+template<>
+QList<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
+{
+    QList<MusicScraperInfos> infos;
+    for (const auto &info : settings()->value(QString("Scrapers/Music/%1").arg(scraperId)).toString().split(",")) {
+        infos << MusicScraperInfos(info.toInt());
+    }
+    if (!infos.isEmpty() && static_cast<int>(infos.first()) == 0) {
+        infos.clear();
+    }
+    return infos;
+}
+
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
+}
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
+}
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
+}
+
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items)
+{
+    Q_UNUSED(widget);
+    QStringList infos;
+    infos.reserve(items.size());
+    for (const auto info : items) {
+        infos << QString::number(static_cast<int>(info));
+    }
+    settings()->setValue(QString("Scrapers/Music/%2").arg(scraperNo), infos.join(","));
+}
+
 
 bool Settings::downloadActorImages()
 {
@@ -1054,55 +1118,60 @@ void Settings::setDownloadActorImages(bool download)
     m_downloadActorImages = download;
 }
 
-void Settings::renamePatterns(int renameType,
+void Settings::renamePatterns(Renamer::RenameType renameType,
     QString &fileNamePattern,
     QString &fileNamePatternMulti,
     QString &directoryPattern,
     QString &seasonPattern)
 {
+    const QString renameTypeStr = Renamer::typeToString(renameType);
     QString fileNamePatternDefault = "<title>.<extension>";
     QString fileNamePatternMultiDefault = "<title>-part<partNo>.<extension>";
-    if (renameType == Renamer::TypeTvShows) {
+    if (renameType == Renamer::RenameType::TvShows) {
         fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
         fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
     }
     fileNamePattern =
-        settings()->value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
+        settings()->value(QString("RenamePattern/%1/FileName").arg(renameTypeStr), fileNamePatternDefault).toString();
     fileNamePatternMulti =
         settings()
-            ->value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault)
+            ->value(QString("RenamePattern/%1/FileNameMulti").arg(renameTypeStr), fileNamePatternMultiDefault)
             .toString();
-    directoryPattern =
-        settings()->value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
+    directoryPattern = settings()
+                           ->value(QString("RenamePattern/%1/DirectoryPattern").arg(renameTypeStr), "<title> (<year>)")
+                           .toString();
     seasonPattern =
-        settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
+        settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), "Season <season>").toString();
 }
 
-void Settings::setRenamePatterns(int renameType,
+void Settings::setRenamePatterns(Renamer::RenameType renameType,
     QString fileNamePattern,
     QString fileNamePatternMulti,
     QString directoryPattern,
     QString seasonPattern)
 {
-    settings()->setValue(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePattern);
-    settings()->setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMulti);
-    settings()->setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), directoryPattern);
-    settings()->setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameType), seasonPattern);
+    const QString renameTypeStr = Renamer::typeToString(renameType);
+    settings()->setValue(QString("RenamePattern/%1/FileName").arg(renameTypeStr), fileNamePattern);
+    settings()->setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameTypeStr), fileNamePatternMulti);
+    settings()->setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameTypeStr), directoryPattern);
+    settings()->setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), seasonPattern);
 }
 
-void Settings::setRenamings(int renameType, bool files, bool folders, bool seasonDirectories)
+void Settings::setRenamings(Renamer::RenameType renameType, bool files, bool folders, bool seasonDirectories)
 {
-    settings()->setValue(QString("RenamePattern/%1/RenameFiles").arg(renameType), files);
-    settings()->setValue(QString("RenamePattern/%1/RenameFolders").arg(renameType), folders);
-    settings()->setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), seasonDirectories);
+    const QString renameTypeStr = Renamer::typeToString(renameType);
+    settings()->setValue(QString("RenamePattern/%1/RenameFiles").arg(renameTypeStr), files);
+    settings()->setValue(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), folders);
+    settings()->setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameTypeStr), seasonDirectories);
 }
 
-void Settings::renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories)
+void Settings::renamings(Renamer::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories)
 {
-    files = settings()->value(QString("RenamePattern/%1/RenameFiles").arg(renameType), true).toBool();
-    folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
+    const QString renameTypeStr = Renamer::typeToString(renameType);
+    files = settings()->value(QString("RenamePattern/%1/RenameFiles").arg(renameTypeStr), true).toBool();
+    folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), true).toBool();
     seasonDirectories =
-        settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
+        settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameTypeStr), true).toBool();
 }
 
 int Settings::tvShowUpdateOption()
@@ -1137,7 +1206,7 @@ void Settings::setMovieSetArtworkType(MovieSetArtworkType type)
 
 MovieSetArtworkType Settings::movieSetArtworkType() const
 {
-    return static_cast<MovieSetArtworkType>(m_movieSetArtworkType);
+    return m_movieSetArtworkType;
 }
 
 void Settings::setMovieSetArtworkDirectory(QString dir)
@@ -1150,12 +1219,12 @@ QString Settings::movieSetArtworkDirectory() const
     return m_movieSetArtworkDirectory;
 }
 
-void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)
+void Settings::setMediaStatusColumn(QList<MediaStatusColumn> columns)
 {
     m_mediaStatusColumns = columns;
 }
 
-QList<MediaStatusColumns> Settings::mediaStatusColumns() const
+QList<MediaStatusColumn> Settings::mediaStatusColumns() const
 {
     return m_mediaStatusColumns;
 }
@@ -1182,22 +1251,22 @@ bool Settings::dontShowDeleteImageConfirm() const
     return m_dontShowDeleteImageConfirm;
 }
 
-QMap<int, QString> Settings::customMovieScraper() const
+QMap<MovieScraperInfos, QString> Settings::customMovieScraper() const
 {
     return m_customMovieScraper;
 }
 
-void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
+void Settings::setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper)
 {
     m_customMovieScraper = customMovieScraper;
 }
 
-QMap<int, QString> Settings::customTvScraper() const
+QMap<TvShowScraperInfos, QString> Settings::customTvScraper() const
 {
     return m_customTvScraper;
 }
 
-void Settings::setCustomTvScraper(QMap<int, QString> customTvScraper)
+void Settings::setCustomTvScraper(QMap<TvShowScraperInfos, QString> customTvScraper)
 {
     m_customTvScraper = customTvScraper;
 }

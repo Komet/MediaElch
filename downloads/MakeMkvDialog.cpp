@@ -114,13 +114,15 @@ void MakeMkvDialog::storeDefaults()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
-    Settings::instance()->renamePatterns(Renamer::TypeMovies, fileName, fileNameMulti, directoryName, seasonName);
+    Settings::instance()->renamePatterns(
+        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
 
     fileName = ui->fileNaming->text();
     fileNameMulti = ui->multiFileNaming->text();
     directoryName = ui->directoryNaming->text();
 
-    Settings::instance()->setRenamePatterns(Renamer::TypeMovies, fileName, fileNameMulti, directoryName, seasonName);
+    Settings::instance()->setRenamePatterns(
+        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
 }
 
 void MakeMkvDialog::setDefaults()
@@ -129,7 +131,8 @@ void MakeMkvDialog::setDefaults()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
-    Settings::instance()->renamePatterns(Renamer::TypeMovies, fileName, fileNameMulti, directoryName, seasonName);
+    Settings::instance()->renamePatterns(
+        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
     ui->fileNaming->setText(fileName);
     ui->multiFileNaming->setText(fileNameMulti);
     ui->directoryNaming->setText(directoryName);
@@ -221,10 +224,10 @@ void MakeMkvDialog::onImportComplete()
 void MakeMkvDialog::onMovieChosen()
 {
     QMap<ScraperInterface *, QString> ids;
-    QList<int> infosToLoad;
+    QList<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos(MainWidgets::Movies, "custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

@@ -405,7 +405,7 @@ QList<Movie *> Database::movies(QString path)
     QMap<int, Movie *> movies;
     while (query.next()) {
         if (!movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
-            int label = query.value(query.record().indexOf("color")).toInt();
+            ColorLabel label = static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());
             Movie *movie = new Movie(QStringList(), Manager::instance()->movieFileSearcher());
             movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
             movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
@@ -924,8 +924,9 @@ bool Database::guessImport(QString fileName, QString &type, QString &path)
     return (bestMatch != 0);
 }
 
-void Database::setLabel(QStringList fileNames, int color)
+void Database::setLabel(QStringList fileNames, ColorLabel colorLabel)
 {
+    int color = static_cast<int>(colorLabel);
     QSqlQuery query(db());
     int id = 1;
     query.prepare("SELECT MAX(idLabel) FROM labels");
@@ -954,10 +955,10 @@ void Database::setLabel(QStringList fileNames, int color)
     }
 }
 
-int Database::getLabel(QStringList fileNames)
+ColorLabel Database::getLabel(QStringList fileNames)
 {
     if (fileNames.isEmpty()) {
-        return Labels::NO_LABEL;
+        return ColorLabel::NoLabel;
     }
 
     QSqlQuery query(db());
@@ -965,10 +966,10 @@ int Database::getLabel(QStringList fileNames)
     query.bindValue(":fileName", fileNames.first().toUtf8());
     query.exec();
     if (query.next()) {
-        return query.value(query.record().indexOf("color")).toInt();
+        return static_cast<ColorLabel>(query.value(query.record().indexOf("color")).toInt());
     }
 
-    return Labels::NO_LABEL;
+    return ColorLabel::NoLabel;
 }
 
 void Database::clearArtists(QString path)

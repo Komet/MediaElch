@@ -168,7 +168,7 @@ bool XbmcXml::saveMovie(Movie *movie)
 
     bool saved = false;
     QFileInfo fi(movie->files().at(0));
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
+    for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
@@ -189,8 +189,8 @@ bool XbmcXml::saveMovie(Movie *movie)
         return false;
     }
 
-    foreach (const int &imageType, Movie::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Movie::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (movie->imageHasChanged(imageType) && !movie->image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
@@ -561,8 +561,9 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        foreach (const int &imageType, Movie::imageTypes())
+        for (const auto imageType : Movie::imageTypes()) {
             movie->setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
+        }
         movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 
@@ -590,44 +591,47 @@ void XbmcXml::loadStreamDetails(StreamDetails *streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QStringList details = (QStringList() << "codec"
-                                             << "aspect"
-                                             << "width"
-                                             << "height"
-                                             << "durationinseconds"
-                                             << "scantype"
-                                             << "stereomode");
-        foreach (const QString &detail, details) {
-            if (!videoElem.elementsByTagName(detail).isEmpty()) {
-                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
+        QList<StreamDetails::VideoDetails> details = {StreamDetails::VideoDetails::Codec,
+            StreamDetails::VideoDetails::Aspect,
+            StreamDetails::VideoDetails::Width,
+            StreamDetails::VideoDetails::Height,
+            StreamDetails::VideoDetails::DurationInSeconds,
+            StreamDetails::VideoDetails::ScanType,
+            StreamDetails::VideoDetails::StereoMode};
+        for (const auto &detail : details) {
+            const auto detailStr = StreamDetails::detailToString(detail);
+            if (!videoElem.elementsByTagName(detailStr).isEmpty()) {
+                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detailStr).at(0).toElement().text());
             }
         }
     }
     if (!elem.elementsByTagName("audio").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("audio").count(); i < n; ++i) {
-            QStringList details = QStringList() << "codec"
-                                                << "language"
-                                                << "channels";
+            QList<StreamDetails::AudioDetails> details = {StreamDetails::AudioDetails::Codec,
+                StreamDetails::AudioDetails::Language,
+                StreamDetails::AudioDetails::Channels};
             QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
-            foreach (const QString &detail, details) {
-                if (!audioElem.elementsByTagName(detail).isEmpty()) {
+            for (const auto &detail : details) {
+                const auto detailStr = StreamDetails::detailToString(detail);
+                if (!audioElem.elementsByTagName(detailStr).isEmpty()) {
                     streamDetails->setAudioDetail(
-                        i, detail, audioElem.elementsByTagName(detail).at(0).toElement().text());
+                        i, detail, audioElem.elementsByTagName(detailStr).at(0).toElement().text());
                 }
             }
         }
     }
     if (!elem.elementsByTagName("subtitle").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("subtitle").count(); i < n; ++i) {
-            QStringList details = QStringList() << "language";
+            QList<StreamDetails::SubtitleDetails> details = {StreamDetails::SubtitleDetails::Language};
             QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
             if (!subtitleElem.elementsByTagName("file").isEmpty()) {
                 continue;
             }
-            foreach (const QString &detail, details) {
-                if (!subtitleElem.elementsByTagName(detail).isEmpty()) {
+            for (const auto &detail : details) {
+                const auto detailStr = StreamDetails::detailToString(detail);
+                if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
                     streamDetails->setSubtitleDetail(
-                        i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
+                        i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
                 }
             }
         }
@@ -650,54 +654,54 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeStartElement("streamdetails");
 
     xml.writeStartElement("video");
-    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    QMapIterator<StreamDetails::VideoDetails, QString> itVideo(streamDetails->videoDetails());
     while (itVideo.hasNext()) {
         itVideo.next();
-        if (itVideo.key() == "width" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Width && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "height" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Height && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::DurationInSeconds && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.value() == "") {
+        if (itVideo.value().isEmpty()) {
             continue;
         }
 
         QString value = itVideo.value();
 
-        if (itVideo.key() == "aspect") {
+        if (itVideo.key() == StreamDetails::VideoDetails::Aspect) {
             value = value.replace(",", ".");
         }
 
-        xml.writeTextElement(itVideo.key(), value);
+        xml.writeTextElement(StreamDetails::detailToString(itVideo.key()), value);
     }
     xml.writeEndElement();
 
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         xml.writeStartElement("audio");
-        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
         while (itAudio.hasNext()) {
             itAudio.next();
             if (itAudio.value() == "") {
                 continue;
             }
-            xml.writeTextElement(itAudio.key(), itAudio.value());
+            xml.writeTextElement(StreamDetails::detailToString(itAudio.key()), itAudio.value());
         }
         xml.writeEndElement();
     }
 
     for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
         xml.writeStartElement("subtitle");
-        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
         while (itSubtitle.hasNext()) {
             itSubtitle.next();
             if (itSubtitle.value() == "") {
                 continue;
             }
-            xml.writeTextElement(itSubtitle.key(), itSubtitle.value());
+            xml.writeTextElement(StreamDetails::detailToString(itSubtitle.key()), itSubtitle.value());
         }
         xml.writeEndElement();
     }
@@ -706,7 +710,7 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeEndElement();
 }
 
-void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails, QList<Subtitle *> subtitles)
+void XbmcXml::writeStreamDetails(QDomDocument &doc, const StreamDetails *streamDetails, QList<Subtitle *> subtitles)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
         && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty()) {
@@ -718,29 +722,29 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
     QDomElement elemSd = doc.createElement("streamdetails");
 
     QDomElement elemVideo = doc.createElement("video");
-    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    QMapIterator<StreamDetails::VideoDetails, QString> itVideo(streamDetails->videoDetails());
     while (itVideo.hasNext()) {
         itVideo.next();
-        if (itVideo.key() == "width" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Width && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "height" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::Height && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0) {
+        if (itVideo.key() == StreamDetails::VideoDetails::DurationInSeconds && itVideo.value().toInt() == 0) {
             continue;
         }
-        if (itVideo.value() == "") {
+        if (itVideo.value().isEmpty()) {
             continue;
         }
 
         QString value = itVideo.value();
 
-        if (itVideo.key() == "aspect") {
+        if (itVideo.key() == StreamDetails::VideoDetails::Aspect) {
             value = value.replace(",", ".");
         }
 
-        QDomElement elem = doc.createElement(itVideo.key());
+        QDomElement elem = doc.createElement(StreamDetails::detailToString(itVideo.key()));
         elem.appendChild(doc.createTextNode(value));
         elemVideo.appendChild(elem);
     }
@@ -748,14 +752,14 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
 
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
         QDomElement elemAudio = doc.createElement("audio");
-        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        QMapIterator<StreamDetails::AudioDetails, QString> itAudio(streamDetails->audioDetails().at(i));
         while (itAudio.hasNext()) {
             itAudio.next();
-            if (itAudio.value() == "") {
+            if (itAudio.value().isEmpty()) {
                 continue;
             }
 
-            QDomElement elem = doc.createElement(itAudio.key());
+            QDomElement elem = doc.createElement(StreamDetails::detailToString(itAudio.key()));
             elem.appendChild(doc.createTextNode(itAudio.value()));
             elemAudio.appendChild(elem);
         }
@@ -764,14 +768,14 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails
 
     for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
         QDomElement elemSubtitle = doc.createElement("subtitle");
-        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        QMapIterator<StreamDetails::SubtitleDetails, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
         while (itSubtitle.hasNext()) {
             itSubtitle.next();
-            if (itSubtitle.value() == "") {
+            if (itSubtitle.value().isEmpty()) {
                 continue;
             }
 
-            QDomElement elem = doc.createElement(itSubtitle.key());
+            QDomElement elem = doc.createElement(StreamDetails::detailToString(itSubtitle.key()));
             elem.appendChild(doc.createTextNode(itSubtitle.value()));
             elemSubtitle.appendChild(elem);
         }
@@ -920,8 +924,8 @@ bool XbmcXml::saveConcert(Concert *concert)
         return false;
     }
 
-    foreach (const int &imageType, Concert::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Concert::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (concert->imageHasChanged(imageType) && !concert->image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
@@ -1078,8 +1082,9 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        foreach (const int &imageType, Concert::imageTypes())
+        for (const auto &imageType : Concert::imageTypes()) {
             concert->setHasImage(imageType, !imageFileName(concert, imageType).isEmpty());
+        }
         concert->setHasExtraFanarts(!extraFanartNames(concert).isEmpty());
     }
 
@@ -1469,25 +1474,25 @@ bool XbmcXml::saveTvShow(TvShow *show)
         file.close();
     }
 
-    foreach (const int &imageType, TvShow::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : TvShow::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
                 saveFile(show->dir() + "/" + saveFileName, show->image(imageType));
             }
         }
         if (show->imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (auto dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
                 QFile(show->dir() + "/" + saveFileName).remove();
             }
         }
     }
 
-    foreach (const int &imageType, TvShow::seasonImageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
-        foreach (int season, show->seasons()) {
+    for (const auto imageType : TvShow::seasonImageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        for (const auto season : show->seasons()) {
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
@@ -1954,7 +1959,7 @@ bool XbmcXml::saveFile(QString filename, QByteArray data)
     return false;
 }
 
-QString XbmcXml::getPath(Movie *movie)
+QString XbmcXml::getPath(const Movie *movie)
 {
     if (movie->files().isEmpty()) {
         return QString();
@@ -1976,7 +1981,7 @@ QString XbmcXml::getPath(Movie *movie)
     return fi.absolutePath();
 }
 
-QString XbmcXml::getPath(Concert *concert)
+QString XbmcXml::getPath(const Concert *concert)
 {
     if (concert->files().isEmpty()) {
         return QString();
@@ -2000,11 +2005,11 @@ QString XbmcXml::getPath(Concert *concert)
 
 QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
 {
-    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleArtworkFolder) {
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleArtworkFolder) {
         QDir dir(Settings::instance()->movieSetArtworkDirectory());
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
-    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleSetFolder) {
+    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
             if (movie->set() == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first());
@@ -2023,9 +2028,9 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
     return QString();
 }
 
-QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::MoviePoster: fileType = DataFileType::MoviePoster; break;
     case ImageType::MovieBackdrop: fileType = DataFileType::MovieBackdrop; break;
@@ -2069,9 +2074,9 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::ConcertPoster: fileType = DataFileType::ConcertPoster; break;
     case ImageType::ConcertBackdrop: fileType = DataFileType::ConcertBackdrop; break;
@@ -2113,9 +2118,10 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShow *show, int type, int season, QList<DataFile> dataFiles, bool constructName)
+QString
+XbmcXml::imageFileName(const TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::TvShowPoster: fileType = DataFileType::TvShowPoster; break;
     case ImageType::TvShowBackdrop: fileType = DataFileType::TvShowBackdrop; break;
@@ -2151,9 +2157,10 @@ QString XbmcXml::imageFileName(TvShow *show, int type, int season, QList<DataFil
     return fileName;
 }
 
-QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles, bool constructName)
+QString
+XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::TvShowEpisodeThumb: fileType = DataFileType::TvShowEpisodeThumb; break;
     default: return "";
@@ -2387,9 +2394,9 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     return true;
 }
 
-QString XbmcXml::imageFileName(Artist *artist, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::ArtistThumb: fileType = DataFileType::ArtistThumb; break;
     case ImageType::ArtistFanart: fileType = DataFileType::ArtistFanart; break;
@@ -2418,9 +2425,9 @@ QString XbmcXml::imageFileName(Artist *artist, int type, QList<DataFile> dataFil
     return fileName;
 }
 
-QString XbmcXml::imageFileName(Album *album, int type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    int fileType;
+    DataFileType fileType;
     switch (type) {
     case ImageType::AlbumThumb: fileType = DataFileType::AlbumThumb; break;
     case ImageType::AlbumCdArt: fileType = DataFileType::AlbumCdArt; break;
@@ -2494,8 +2501,8 @@ bool XbmcXml::saveArtist(Artist *artist)
     file.write(xmlContent);
     file.close();
 
-    foreach (const int &imageType, Artist::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Artist::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (artist->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
@@ -2559,8 +2566,8 @@ bool XbmcXml::saveAlbum(Album *album)
     file.write(xmlContent);
     file.close();
 
-    foreach (const int &imageType, Album::imageTypes()) {
-        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+    for (const auto imageType : Album::imageTypes()) {
+        DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (album->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {

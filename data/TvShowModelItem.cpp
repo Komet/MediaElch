@@ -329,17 +329,17 @@ int TvShowModelItem::seasonNumber()
  * @brief TvShowModelItem::type
  * @return Type of this item
  */
-int TvShowModelItem::type()
+TvShowType TvShowModelItem::type()
 {
     if (m_tvShow && m_season.isEmpty()) {
-        return TypeTvShow;
+        return TvShowType::TvShow;
     } else if (m_tvShowEpisode) {
-        return TypeEpisode;
+        return TvShowType::Episode;
     } else if (!m_season.isEmpty()) {
-        return TypeSeason;
+        return TvShowType::Season;
     }
 
-    return -1;
+    return TvShowType::None;
 }
 
 /**
