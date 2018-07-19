@@ -113,6 +113,7 @@
         <file alias="channels/7">mediaFlags/audio/7ch.png</file>
         <file alias="channels/8">mediaFlags/audio/8ch.png</file>
         <file alias="audio/dolbydigital">mediaFlags/audio/dolbydigital.png</file>
+        <file alias="audio/dolbydigitalplus">mediaFlags/audio/dolbydigitalplus.png</file>
         <file alias="audio/dolbytruehd">mediaFlags/audio/dolbytruehd.png</file>
         <file alias="audio/dts">mediaFlags/audio/dts.png</file>
         <file alias="audio/dtshdma">mediaFlags/audio/dtshdma.png</file>
