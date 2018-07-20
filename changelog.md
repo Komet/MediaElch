@@ -1,43 +1,53 @@
 # Changelog
 
-2.4.3 (*tbd*)
+## 2.4.3 (*tbd*)
 
- - Feature: Detect duplicate movies
- - Feature: Use HTTPS for scraping
- - Feature: Set UI language in `advancedsettings.xml`
- - Feature: Scrape TV show tags when using IMDb
- - Renamer: Create subdirectories
- - Scraper: Remove deprecated Cinefacts
- - Scraper: Remove deprecated Coverlib
- - Scraper: Remove deprecated MediaPassion
- - Scraper: Remove deprecated MovieMaze
- - Scraper: Add Kino.de
- - Scraper: Load *all* tags from IMDb
- - Scraper: Fix ADE backdrop loading
- - Scraper: Add more audio and video codecs (#524, #530)
- - Bugfix: HD-Trailers scraper broken
- - Bugfix: Fanart.tv music scraper broken
- - Bugfix: Adult scrapers broken
- - Bugfix: OFDB movie scraper crashes
- - Bugfix: Fix poster IMDB scraping
- - Bugfix: Fix IMDB top 250 scraping
- - Bugfix: Fix outline/plot IMDB scraping
- - Bugfix: Fix studio name export
- - Bugfix: Fix TvShow status in `.nfo` file
- - Bugfix: Escape HTML entities in export
- - Bugfix: Multi scraping episode thumbnails
- - Bugfix: Studio Mapping for Tv show episodes
- - Bugfix: Filter crashing
- - Bugfix: Concert extra fanart not saved (#529)
- - UI: Fix line break in tree views
- - UI: 4k and 8k resolution flag
- - UI: Show green ID flag only if IMDB is valid (#471)
+### Features
 
-2.4.2 (2016-07-01)
+ - Use HTTPS for scraping (#371)
+ - Set UI language in ``advancedsettings.xml`` (#411)
+ - Add Kino.de scraper (#370)
+ - Load *all* tags from IMDb (#469)
+ - Add more audio and video codecs (#524, #530)
+ - Remove deprecated Cinefacts (#370)
+ - Remove deprecated Coverlib (#369)
+ - Remove deprecated MediaPassion (#449)
+ - Remove deprecated MovieMaze (#386)
+ - Support KDE Breeze Dark theme (#407)
+ - Scrape TV show tags when using IMDb
+ - Detect duplicate movies
+ - Create subdirectories
+
+### Bugfixes
+
+ - HD-Trailers scraper broken (#445)
+ - OFDB movie scraper crashes MediaElch (#394)
+ - IMDB movie poster not loaded (#385)
+ - IMDB top 250 not scraped (#468)
+ - IMDB outline/plot scraping broken (#456)
+ - studio name not exported (#392)
+ - TvShow status not written to `.nfo` file (#380)
+ - HTML entities in export not escaped (#391)
+ - multi scraper does not load all episode thumbnails (#415)
+ - studio mapping for TvShow episodes (#459)
+ - using filters crashes MediaElch (#504)
+ - wrong filter tooltips (#506)
+ - concert extra fanart not saved (#529)
+ - backdrop not loaded using ADE (#519)
+ - adult scrapers broken (#367)
+ - *fanart.tv* music scraper broken
+
+### Improvements
+
+ - UI: line break in tree views (#406)
+ - UI: add 4k and 8k resolution flag (#446)
+ - UI: show green ID flag only if IMDB is valid (#471)
+
+## 2.4.2 (2016-07-01)
 
  - Bugfix: UniversalMusicScraper broken
 
-2.4.1 (2016-03-20)
+## 2.4.1 (2016-03-20)
 
  - Renamer: Show results in table view
  - Export: Add IMDB ID to template
