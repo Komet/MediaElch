@@ -14,6 +14,7 @@
  - Scraper: Add Kino.de
  - Scraper: Load *all* tags from IMDb
  - Scraper: Fix ADE backdrop loading
+ - Scraper: Add more audio and video codecs (#524, #530)
  - Bugfix: HD-Trailers scraper broken
  - Bugfix: Fanart.tv music scraper broken
  - Bugfix: Adult scrapers broken
@@ -27,8 +28,10 @@
  - Bugfix: Multi scraping episode thumbnails
  - Bugfix: Studio Mapping for Tv show episodes
  - Bugfix: Filter crashing
+ - Bugfix: Concert extra fanart not saved (#529)
  - UI: Fix line break in tree views
  - UI: 4k and 8k resolution flag
+ - UI: Show green ID flag only if IMDB is valid (#471)
 
 2.4.2 (2016-07-01)
 
