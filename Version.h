@@ -1,5 +1,5 @@
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef MEDIAELCH_VERSION_H
+#define MEDIAELCH_VERSION_H
 
 #include <QString>
 
@@ -18,35 +18,35 @@ constexpr char CompilationType[] = "Release";
 constexpr char CompilationType[] = "Debug";
 #endif
 
-const QString CompilerString = []() {
+const QString CompilerString = []() -> QString {
 // Taken from QtCreator (qt-creator/src/plugins/coreplugin/icore.cpp) - Modified
 #if defined(Q_CC_CLANG) // must be before GNU, because clang claims to be GNU too
     QString isAppleString;
 #if defined(__apple_build_version__) // Apple clang has other version numbers
-    isAppleString = QStringLiteral(" (Apple)");
+    isAppleString = QLatin1String(" (Apple)");
 #endif
-    return QStringLiteral("Clang ") + QString::number(__clang_major__) + '.' + QString::number(__clang_minor__)
+    return QLatin1String("Clang ") + QString::number(__clang_major__) + '.' + QString::number(__clang_minor__)
            + isAppleString;
 
 #elif defined(Q_CC_GNU)
-    return QStringLiteral("GCC ") + QStringLiteral(__VERSION__);
+    return QLatin1String("GCC ") + QLatin1String(__VERSION__);
 
 #elif defined(Q_CC_MSVC)
     if (_MSC_VER > 1999) {
-        return QStringLiteral("MSVC <unknown>");
+        return QLatin1String("MSVC <unknown>");
     }
     if (_MSC_VER >= 1910) {
-        return QStringLiteral("MSVC 2017");
+        return QLatin1String("MSVC 2017");
     }
     if (_MSC_VER >= 1900) {
-        return QStringLiteral("MSVC 2015");
+        return QLatin1String("MSVC 2015");
     }
 #endif
-    return QStringLiteral("<unknown compiler>");
 
+    return QLatin1String("<unknown compiler>");
 }();
 
 } // namespace Constants
 } // namespace MediaElch
 
-#endif // VERSION_H
+#endif // MEDIAELCH_VERSION_H
