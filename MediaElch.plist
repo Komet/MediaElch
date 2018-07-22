@@ -15,9 +15,9 @@
     <key>CFBundleExecutable</key>
     <string>MediaElch</string>
     <key>CFBundleHelpBookFolder</key>
-	<string>MediaElch.help</string>
-	<key>CFBundleHelpBookName</key>
-	<string>com.kvibes.MediaElch.help</string>
+    <string>MediaElch.help</string>
+    <key>CFBundleHelpBookName</key>
+    <string>com.kvibes.MediaElch.help</string>
     <key>CFBundleIdentifier</key>
     <string>com.kvibes.MediaElch</string>
     <key>NSHumanReadableCopyright</key>
