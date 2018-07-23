@@ -9,6 +9,10 @@
 #include <QTimer>
 #include <QToolBar>
 
+#ifdef Q_OS_MAC
+    #include <QMenuBar>
+#endif
+
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
@@ -43,6 +47,14 @@ MainWindow *MainWindow::m_instance = nullptr;
  */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+#ifdef Q_OS_MAC
+    QMenuBar * macMenuBar = new QMenuBar();
+    QMenu* menu = macMenuBar->addMenu("File");
+    QAction* mAbout = menu->addAction("About");
+    mAbout->setMenuRole(QAction::AboutRole);
+    connect(mAbout, SIGNAL(triggered()), new AboutDialog(this), SLOT(exec()));
+#endif
+
     ui->setupUi(this);
     setMinimumHeight(500);
 
