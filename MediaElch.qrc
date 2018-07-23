@@ -123,6 +123,8 @@
         <file alias="audio/vorbis">mediaFlags/audio/vorbis.png</file>
         <file alias="source/bluray">mediaFlags/source/bluray.png</file>
         <file alias="source/dvd">mediaFlags/source/dvd.png</file>
+        <file alias="codec/avc">mediaFlags/codec/h264.png</file>
+        <file alias="codec/av1">mediaFlags/codec/av1.png</file>
         <file alias="codec/avc1">mediaFlags/codec/avc1.png</file>
         <file alias="codec/avchd">mediaFlags/codec/avchd.png</file>
         <file alias="codec/divx">mediaFlags/codec/divx.png</file>

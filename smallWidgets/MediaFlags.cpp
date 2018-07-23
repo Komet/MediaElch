@@ -127,6 +127,8 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
                                                 << "divx"
                                                 << "flv"
                                                 << "h264"
+                                                << "avc"
+                                                << "av1"
                                                 << "hevc"
                                                 << "mpeg"
                                                 << "mpeg1"

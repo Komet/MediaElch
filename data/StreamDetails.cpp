@@ -178,18 +178,16 @@ void StreamDetails::loadWithLibrary()
         int width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
         int height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
 
-        QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID/Hint")));
-        QString version;
+        QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format")));
         if (codec.isEmpty()) {
             codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID")));
-            if (codec.isEmpty()) {
-                codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format")));
-                version = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format_Version")));
-            }
         }
+        
+        QString version = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format_Version")));
+
         videoCodec = videoFormat(codec, version);
 
-        if (codec == "V_MPEGH/ISO/HEVC") {
+        if (MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID"))) == "V_MPEGH/ISO/HEVC") {
             scanType = "progressive";
         } else {
             scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
