@@ -1,6 +1,13 @@
 #!/usr/bin/env sh
 
 ###########################################################
+# Important paths
+
+export BIN_DIR=$(dirname $(which g++))
+export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+export PROJECT_DIR="${SCRIPT_DIR}/.."
+
+###########################################################
 # Travis CI folding
 
 TRAVIS_LAST_FOLD=""
