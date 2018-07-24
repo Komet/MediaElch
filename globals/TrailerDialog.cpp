@@ -62,7 +62,10 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &TrailerDialog::onStateChanged);
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TrailerDialog::onNewTotalTime);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TrailerDialog::onUpdateTime);
-    connect(m_mediaPlayer, SIGNAL(error(QMediaPlayer::Error)), this, SIGNAL(onTrailerError(QMediaPlayer::Error)));
+    QObject::connect(m_mediaPlayer,
+        static_cast<void (QMediaPlayer::*)(QMediaPlayer::Error)>(&QMediaPlayer::error),
+        this,
+        &TrailerDialog::onTrailerError);
     connect(ui->btnPlayPause, &QAbstractButton::clicked, this, &TrailerDialog::onPlayPause);
     connect(ui->seekSlider, &QAbstractSlider::sliderReleased, this, &TrailerDialog::onSliderPositionChanged);
 }
