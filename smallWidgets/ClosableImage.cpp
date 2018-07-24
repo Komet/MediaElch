@@ -36,7 +36,7 @@ ClosableImage::ClosableImage(QWidget *parent) : QLabel(parent)
 #endif
     m_font.setFamily("Helvetica Neue");
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
     m_zoomIn = QPixmap(":/img/zoom_in.png");

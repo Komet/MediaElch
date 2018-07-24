@@ -141,7 +141,7 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->fanarts,           &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
     // clang-format on
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
     setDisabledTrue();

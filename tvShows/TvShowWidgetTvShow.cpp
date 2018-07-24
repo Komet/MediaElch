@@ -89,7 +89,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->comboStatus->setItemData(1, "Continuing");
     ui->comboStatus->setItemData(2, "Ended");
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);

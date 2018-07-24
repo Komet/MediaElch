@@ -18,7 +18,7 @@ Message::Message(QWidget *parent) : QWidget(parent), ui(new Ui::Message)
     ui->progressBar->hide();
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(0);
-    m_timer = new QTimer;
+    m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &Message::timeout);
 
     if (Helper::instance()->devicePixelRatio(this) == 1) {

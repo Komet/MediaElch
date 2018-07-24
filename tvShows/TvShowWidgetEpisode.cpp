@@ -114,7 +114,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->actors, &QTableWidget::itemChanged, this, &TvShowWidgetEpisode::onActorEdited);
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);

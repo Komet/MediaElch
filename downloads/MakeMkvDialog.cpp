@@ -20,7 +20,7 @@ MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Make
     ui->badgeSuccess->setBadgeType(Badge::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
-    QMovie *loadingMovie = new QMovie(":/img/spinner.gif");
+    QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
