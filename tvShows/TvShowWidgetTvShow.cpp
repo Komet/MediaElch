@@ -496,9 +496,9 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
     if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(TvShow *, QMap<int, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>)),
             this,
-            SLOT(onLoadDone(TvShow *, QMap<int, QList<Poster>>)),
+            SLOT(onLoadDone(TvShow *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
     } else {
         QMap<ImageType, QList<Poster>> map;
