@@ -86,7 +86,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
     ui->clearArt->setDefaultPixmap(QPixmap(":/img/placeholders/clear_art.png"));
     ui->cdArt->setDefaultPixmap(QPixmap(":/img/placeholders/cd_art.png"));
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
     setDisabledTrue();

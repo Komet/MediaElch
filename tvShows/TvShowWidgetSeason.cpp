@@ -45,7 +45,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
     m_downloadManager = new DownloadManager(this);
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
     m_savingWidget = new QLabel(this);

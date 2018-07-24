@@ -114,7 +114,7 @@ void MyLineEdit::setType(LineEditType type)
     if (type == TypeLoading) {
         m_loadingLabel->deleteLater();
         m_loadingLabel = new QLabel(this);
-        QMovie *movie = new QMovie(":/img/spinner.gif");
+        QMovie *movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
         movie->start();
         m_loadingLabel->setMovie(movie);
         QSize minimumSize = minimumSizeHint();

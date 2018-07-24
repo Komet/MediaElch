@@ -56,7 +56,7 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
 
     ui->btnAcceptImages->hide();
 
-    QMovie *movie = new QMovie(":/img/spinner.gif");
+    QMovie *movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     movie->start();
     ui->labelSpinner->setMovie(movie);
     clearSearch();

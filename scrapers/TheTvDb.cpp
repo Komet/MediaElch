@@ -500,20 +500,20 @@ void TheTvDb::fillDatabaseWithAllEpisodes(QString xml, TvShow *show)
     int showsSettingsId = Manager::instance()->database()->showsSettingsId(show);
     Manager::instance()->database()->clearEpisodeList(showsSettingsId);
 
-    TvShowEpisode *episode = new TvShowEpisode();
+    TvShowEpisode episode;
     QDomDocument domDoc;
     domDoc.setContent(xml);
     for (int i = 0, n = domDoc.elementsByTagName("Episode").count(); i < n; ++i) {
         QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
         if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
-            episode->clear();
+            episode.clear();
             int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
             int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
             QString id = elem.elementsByTagName("id").at(0).toElement().text();
-            episode->setSeason(seasonNumber);
-            episode->setEpisode(episodeNumber);
-            parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
-            Manager::instance()->database()->addEpisodeToShowList(episode, showsSettingsId, id);
+            episode.setSeason(seasonNumber);
+            episode.setEpisode(episodeNumber);
+            parseAndAssignSingleEpisodeInfos(elem, &episode, infosToLoad);
+            Manager::instance()->database()->addEpisodeToShowList(&episode, showsSettingsId, id);
         }
     }
     Manager::instance()->database()->cleanUpEpisodeList(showsSettingsId);

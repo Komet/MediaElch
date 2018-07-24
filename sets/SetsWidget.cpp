@@ -41,7 +41,7 @@ SetsWidget::SetsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::SetsWidget
     Helper::instance()->applyStyle(ui->groupBox_3);
     Helper::instance()->applyEffect(ui->groupBox_3);
 
-    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
     m_downloadManager = new DownloadManager(this);
 

@@ -20,7 +20,7 @@ ImageGallery::ImageGallery(QWidget *parent) :
     m_scrollValue{50},
     m_showZoomAndResolution{true}
 {
-    QMovie *loadingMovie = new QMovie(":/img/spinner.gif");
+    QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     m_loadingLabel = new QLabel(this);
     m_loadingLabel->hide();
