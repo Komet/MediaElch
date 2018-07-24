@@ -182,7 +182,7 @@ void StreamDetails::loadWithLibrary()
         if (codec.isEmpty()) {
             codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID")));
         }
-        
+
         QString version = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format_Version")));
 
         videoCodec = videoFormat(codec, version);
@@ -282,7 +282,7 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
     } else if (codec == "DTS-HD" && profile == "HRA / Core") {
         xbmcFormat = "dtshd_hra";
     } else if (codec == "DTS-HD" && profile == "X / MA / Core") {
-            xbmcFormat = "dtshd_x";
+        xbmcFormat = "dtshd_x";
     } else if (codec == "AC3") {
         xbmcFormat = "ac3";
     } else if (codec == "AC3+" || codec == "E-AC-3") {
@@ -290,7 +290,7 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
     } else if (codec == "TrueHD / AC3") {
         xbmcFormat = "truehd";
     } else if (codec == "TrueHD" && profile == "TrueHD+Atmos / TrueHD") {
-            xbmcFormat = "atmos";
+        xbmcFormat = "atmos";
     } else if (codec == "FLAC") {
         xbmcFormat = "flac";
     } else if (codec == "MPA1L3") {

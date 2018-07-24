@@ -13,6 +13,9 @@
 XbmcSync::XbmcSync(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::XbmcSync),
+    m_allReady{false},
+    m_aborted{false},
+    m_syncType{SyncClean},
     m_cancelRenameArtwork{false},
     m_renameArtworkInProgress{false},
     m_artworkWasRenamed{false},

@@ -44,16 +44,16 @@ FilterWidget::~FilterWidget()
 {
     // Delete original filters
     // todo: There are still memory leaks when using setupMovieFilters()
-    for (Filter* filter : m_availableMovieFilters) {
+    for (Filter *filter : m_availableMovieFilters) {
         delete filter;
     }
-    for (Filter* filter : m_availableTvShowFilters) {
+    for (Filter *filter : m_availableTvShowFilters) {
         delete filter;
     }
-    for (Filter* filter : m_availableConcertFilters) {
+    for (Filter *filter : m_availableConcertFilters) {
         delete filter;
     }
-    for (Filter* filter : m_availableMusicFilters) {
+    for (Filter *filter : m_availableMusicFilters) {
         delete filter;
     }
     delete ui;

@@ -174,7 +174,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
             codec = "dtshdhra";
         }
         if (codec == "dtshd-x" || codec == "dtshd_x") {
-                    codec = "dtshdx";
+            codec = "dtshdx";
         }
         if (codec == "ac3") {
             codec = "dolbydigital";
@@ -183,7 +183,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
             codec = "dolbydigitalplus";
         }
         if (codec == "atmos") {
-                    codec = "dolbyatmos";
+            codec = "dolbyatmos";
         }
         if (availableCodecs.contains(codec)) {
             ui->mediaFlagAudio->setPixmap(colorIcon(":/media/audio/" + codec));
