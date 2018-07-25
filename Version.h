@@ -10,7 +10,6 @@ constexpr char AppName[] = "MediaElch";
 constexpr char AppVersionStr[] = "2.4.3-dev";
 constexpr char VersionName[] = "Talax";
 constexpr char OrganizationName[] = "kvibes";
-constexpr char OrganizationDomain[] = "http://mediaelch.de";
 
 #ifdef QT_NO_DEBUG
 constexpr char CompilationType[] = "Release";

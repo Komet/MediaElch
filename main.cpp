@@ -86,7 +86,6 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName(MediaElch::Constants::OrganizationName);
-    QCoreApplication::setOrganizationDomain(MediaElch::Constants::OrganizationDomain);
     QCoreApplication::setApplicationName(MediaElch::Constants::AppName);
     QCoreApplication::setApplicationVersion(MediaElch::Constants::AppVersionStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
