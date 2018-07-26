@@ -8,6 +8,7 @@
 #include <QNetworkReply>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QUrl>
 
 #include "movies/Movie.h"
 
@@ -108,7 +109,7 @@ private:
     void updateFolderLastModified(Concert *concert);
     void updateFolderLastModified(TvShow *show);
     void updateFolderLastModified(TvShowEpisode *episode);
-    QString xbmcUrl();
+    QUrl xbmcUrl();
 };
 
 #endif // XBMCSYNC_H
