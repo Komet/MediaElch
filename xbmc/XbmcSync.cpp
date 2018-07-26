@@ -15,7 +15,7 @@ XbmcSync::XbmcSync(QWidget *parent) :
     ui(new Ui::XbmcSync),
     m_allReady{false},
     m_aborted{false},
-    m_syncType{SyncClean},
+    m_syncType{SyncType::Clean},
     m_cancelRenameArtwork{false},
     m_renameArtworkInProgress{false},
     m_artworkWasRenamed{false},
@@ -100,7 +100,7 @@ void XbmcSync::startSync()
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->syncNeeded()) {
             m_moviesToSync.append(movie);
-            if (m_syncType == SyncContents) {
+            if (m_syncType == SyncType::Contents) {
                 updateFolderLastModified(movie);
             }
         }
@@ -110,13 +110,13 @@ void XbmcSync::startSync()
         if (concert->syncNeeded()) {
             m_concertsToSync.append(concert);
         }
-        if (m_syncType == SyncContents) {
+        if (m_syncType == SyncType::Contents) {
             updateFolderLastModified(concert);
         }
     }
 
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-        if (show->syncNeeded() && m_syncType == SyncContents) {
+        if (show->syncNeeded() && m_syncType == SyncType::Contents) {
             m_tvShowsToSync.append(show);
             updateFolderLastModified(show);
             continue;
@@ -132,12 +132,12 @@ void XbmcSync::startSync()
             }
 
             if (episode->syncNeeded()) {
-                if (m_syncType == SyncContents) {
+                if (m_syncType == SyncType::Contents) {
                     // m_episodesToSync.append(episode);
                     // updateFolderLastModified(episode);
                     m_tvShowsToSync.append(show);
                     break;
-                } else if (m_syncType == SyncWatched) {
+                } else if (m_syncType == SyncType::Watched) {
                     m_episodesToSync.append(episode);
                 }
             }
@@ -354,7 +354,7 @@ void XbmcSync::checkIfListsReady(Element element)
 
     m_allReady = true;
 
-    if (m_syncType == SyncContents) {
+    if (m_syncType == SyncType::Contents) {
         setupItemsToRemove();
         if (!m_moviesToRemove.isEmpty() || !m_episodesToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
             || !m_concertsToRemove.isEmpty()) {
@@ -364,7 +364,7 @@ void XbmcSync::checkIfListsReady(Element element)
             ui->progressBar->setVisible(true);
         }
         removeItems();
-    } else if (m_syncType == SyncWatched) {
+    } else if (m_syncType == SyncType::Watched) {
         updateWatched();
     }
 }
@@ -693,7 +693,7 @@ void XbmcSync::onRadioContents()
     ui->labelContents->setVisible(true);
     ui->labelWatched->setVisible(false);
     ui->labelClean->setVisible(false);
-    m_syncType = SyncContents;
+    m_syncType = SyncType::Contents;
 }
 
 void XbmcSync::onRadioClean()
@@ -701,7 +701,7 @@ void XbmcSync::onRadioClean()
     ui->labelContents->setVisible(false);
     ui->labelWatched->setVisible(false);
     ui->labelClean->setVisible(true);
-    m_syncType = SyncClean;
+    m_syncType = SyncType::Clean;
 }
 
 void XbmcSync::onRadioWatched()
@@ -709,7 +709,7 @@ void XbmcSync::onRadioWatched()
     ui->labelContents->setVisible(false);
     ui->labelWatched->setVisible(true);
     ui->labelClean->setVisible(false);
-    m_syncType = SyncWatched;
+    m_syncType = SyncType::Watched;
 }
 
 XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)

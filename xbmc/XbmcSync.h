@@ -30,11 +30,11 @@ public:
         Episodes
     };
 
-    enum SyncType
+    enum class SyncType
     {
-        SyncContents,
-        SyncWatched,
-        SyncClean
+        Contents,
+        Watched,
+        Clean
     };
 
     struct XbmcData
