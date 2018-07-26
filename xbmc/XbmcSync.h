@@ -8,6 +8,7 @@
 #include <QNetworkReply>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QUrl>
 
 #include "movies/Movie.h"
 
@@ -22,19 +23,19 @@ class XbmcSync : public QDialog
 public:
     explicit XbmcSync(QWidget *parent = nullptr);
     ~XbmcSync() override;
-    enum Elements
+    enum class Element
     {
-        ElementMovies,
-        ElementConcerts,
-        ElementTvShows,
-        ElementEpisodes
+        Movies,
+        Concerts,
+        TvShows,
+        Episodes
     };
 
-    enum SyncType
+    enum class SyncType
     {
-        SyncContents,
-        SyncWatched,
-        SyncClean
+        Contents,
+        Watched,
+        Clean
     };
 
     struct XbmcData
@@ -77,7 +78,7 @@ private:
     QList<Concert *> m_concertsToSync;
     QList<TvShow *> m_tvShowsToSync;
     QList<TvShowEpisode *> m_episodesToSync;
-    QList<Elements> m_elements;
+    QList<Element> m_elements;
     QMap<int, XbmcData> m_xbmcMovies;
     QMap<int, XbmcData> m_xbmcConcerts;
     QMap<int, XbmcData> m_xbmcShows;
@@ -102,13 +103,13 @@ private:
     void setupItemsToRemove();
     void removeItems();
     void updateWatched();
-    void checkIfListsReady(Elements element);
+    void checkIfListsReady(Element element);
     XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
     void updateFolderLastModified(Movie *movie);
     void updateFolderLastModified(Concert *concert);
     void updateFolderLastModified(TvShow *show);
     void updateFolderLastModified(TvShowEpisode *episode);
-    QString xbmcUrl();
+    QUrl xbmcUrl();
 };
 
 #endif // XBMCSYNC_H
