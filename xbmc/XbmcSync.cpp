@@ -171,7 +171,7 @@ void XbmcSync::startSync()
     o.insert("params", params);
 
     if (!m_moviesToSync.isEmpty()) {
-        m_elements.append(ElementMovies);
+        m_elements.append(Element::Movies);
         o.insert("method", QString("VideoLibrary.GetMovies"));
         o.insert("id", ++m_requestId);
         QNetworkRequest request(xbmcUrl());
@@ -182,7 +182,7 @@ void XbmcSync::startSync()
     }
 
     if (!m_concertsToSync.isEmpty()) {
-        m_elements.append(ElementConcerts);
+        m_elements.append(Element::Concerts);
         o.insert("method", QString("VideoLibrary.GetMusicVideos"));
         o.insert("id", ++m_requestId);
         QNetworkRequest request(xbmcUrl());
@@ -193,7 +193,7 @@ void XbmcSync::startSync()
     }
 
     if (!m_tvShowsToSync.isEmpty()) {
-        m_elements.append(ElementTvShows);
+        m_elements.append(Element::TvShows);
         o.insert("method", QString("VideoLibrary.GetTvShows"));
         o.insert("id", ++m_requestId);
         QNetworkRequest request(xbmcUrl());
@@ -204,7 +204,7 @@ void XbmcSync::startSync()
     }
 
     if (!m_episodesToSync.isEmpty()) {
-        m_elements.append(ElementEpisodes);
+        m_elements.append(Element::Episodes);
         o.insert("method", QString("VideoLibrary.GetEpisodes"));
         o.insert("id", ++m_requestId);
         QNetworkRequest request(xbmcUrl());
@@ -250,7 +250,7 @@ void XbmcSync::onMovieListFinished()
             }
         }
     }
-    checkIfListsReady(ElementMovies);
+    checkIfListsReady(Element::Movies);
 }
 
 void XbmcSync::onConcertListFinished()
@@ -280,7 +280,7 @@ void XbmcSync::onConcertListFinished()
             }
         }
     }
-    checkIfListsReady(ElementConcerts);
+    checkIfListsReady(Element::Concerts);
 }
 
 void XbmcSync::onTvShowListFinished()
@@ -310,7 +310,7 @@ void XbmcSync::onTvShowListFinished()
             }
         }
     }
-    checkIfListsReady(ElementTvShows);
+    checkIfListsReady(Element::TvShows);
 }
 
 void XbmcSync::onEpisodeListFinished()
@@ -340,10 +340,10 @@ void XbmcSync::onEpisodeListFinished()
             }
         }
     }
-    checkIfListsReady(ElementEpisodes);
+    checkIfListsReady(Element::Episodes);
 }
 
-void XbmcSync::checkIfListsReady(Elements element)
+void XbmcSync::checkIfListsReady(Element element)
 {
     QMutexLocker locker(&m_mutex);
 
