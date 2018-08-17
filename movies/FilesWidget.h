@@ -11,7 +11,7 @@
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "globals/Filter.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "smallWidgets/AlphabeticalList.h"
 #include "smallWidgets/SearchOverlay.h"
 

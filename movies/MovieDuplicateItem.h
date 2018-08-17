@@ -2,7 +2,7 @@
 #define MOVIEDUPLICATEITEM_H
 
 #include "../globals/Globals.h"
-#include "Movie.h"
+#include "data/Movie.h"
 #include <QWidget>
 
 namespace Ui {

@@ -9,7 +9,7 @@
 #include "data/MediaCenterInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 

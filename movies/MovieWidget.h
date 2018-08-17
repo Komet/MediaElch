@@ -11,7 +11,7 @@
 #include <QWidget>
 
 #include "globals/DownloadManager.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "smallWidgets/ClosableImage.h"
 
 namespace Ui {

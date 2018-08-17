@@ -5,7 +5,7 @@
 #include <QThread>
 
 #include "globals/Globals.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 /**
  * @brief The MovieFilesOrganizer class

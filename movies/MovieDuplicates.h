@@ -2,7 +2,7 @@
 #define MOVIEDUPLICATES_H
 
 #include "../data/MovieProxyModel.h"
-#include "Movie.h"
+#include "data/Movie.h"
 #include <QWidget>
 
 namespace Ui {

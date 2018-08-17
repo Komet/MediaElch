@@ -5,7 +5,7 @@
 #include <QPointer>
 #include <QQueue>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class MovieMultiScrapeDialog;

@@ -7,7 +7,7 @@
 #include <QWidget>
 
 #include "globals/Globals.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class GenreWidget;

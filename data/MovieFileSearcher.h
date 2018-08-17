@@ -6,7 +6,7 @@
 #include <QObject>
 #include <QTime>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 /**
  * @brief The MovieFileSearcher class

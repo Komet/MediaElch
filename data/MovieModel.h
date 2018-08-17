@@ -4,7 +4,7 @@
 #include <QAbstractItemModel>
 #include <QIcon>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 /**
  * @brief The MovieModel class

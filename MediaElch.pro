@@ -63,7 +63,7 @@ QMAKE_INFO_PLIST = MediaElch.plist
 
 SOURCES += main.cpp\
         main/MainWindow.cpp \
-    movies/Movie.cpp \
+    data/Movie.cpp \
     data/MovieFileSearcher.cpp \
     mediaCenterPlugins/XbmcXml.cpp \
     scrapers/TMDb.cpp \
@@ -223,7 +223,7 @@ macx {
 
 HEADERS  += Version.h \
     main/MainWindow.h \
-    movies/Movie.h \
+    data/Movie.h \
     globals/Globals.h \
     data/MediaCenterInterface.h \
     data/MovieFileSearcher.h \

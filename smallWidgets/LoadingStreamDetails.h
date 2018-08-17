@@ -5,7 +5,7 @@
 
 #include "data/Concert.h"
 #include "data/TvShowEpisode.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class LoadingStreamDetails;

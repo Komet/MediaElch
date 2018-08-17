@@ -8,7 +8,7 @@
 #include "data/ScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 class DownloadManager;
 class DownloadManagerElement;

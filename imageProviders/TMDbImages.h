@@ -2,7 +2,7 @@
 #define TMDBIMAGES_H
 
 #include "data/ImageProviderInterface.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "scrapers/TMDb.h"
 
 /**
