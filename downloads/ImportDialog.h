@@ -13,7 +13,7 @@
 #include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "renamer/Renamer.h"
 
 namespace Ui {

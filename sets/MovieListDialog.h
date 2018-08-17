@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QTableWidgetItem>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class MovieListDialog;

@@ -5,7 +5,7 @@
 #include <QPointer>
 
 #include "downloads/MakeMkvCon.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class MakeMkvDialog;

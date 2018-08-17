@@ -8,7 +8,7 @@
 #include "data/Concert.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 /**
  * @brief The Filter class

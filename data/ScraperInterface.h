@@ -5,7 +5,7 @@
 
 #include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 class Movie;
 struct ScraperSearchResult;

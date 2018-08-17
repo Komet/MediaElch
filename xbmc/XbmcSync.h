@@ -10,7 +10,7 @@
 #include <QTimer>
 #include <QUrl>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class XbmcSync;

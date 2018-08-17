@@ -5,7 +5,7 @@
 #include <QNetworkReply>
 
 #include "data/ScraperInterface.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 class QCheckBox;
 

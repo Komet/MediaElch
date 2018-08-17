@@ -5,7 +5,7 @@
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
-#include "movies/Movie.h"
+#include "data/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "settings/DataFile.h"

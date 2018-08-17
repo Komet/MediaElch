@@ -6,7 +6,7 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "movies/Movie.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class SetsWidget;
