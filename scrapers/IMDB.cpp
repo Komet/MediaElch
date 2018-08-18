@@ -615,6 +615,6 @@ void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QL
         Poster p;
         p.originalUrl = rx.cap(1);
         p.thumbUrl = rx.cap(1);
-        movie->addPoster(p);
+        movie->images().addPoster(p);
     }
 }

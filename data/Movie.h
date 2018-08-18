@@ -9,6 +9,7 @@
 #include <QUrl>
 
 #include "data/MediaCenterInterface.h"
+#include "data/MovieImages.h"
 #include "data/ScraperInterface.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
@@ -36,10 +37,13 @@ public:
 
     void clear();
     void clear(QList<MovieScraperInfos> infos);
+    void clearImages();
 
     QString name() const;
     QString sortTitle() const;
     QString originalName() const;
+    MovieImages &images();
+    const MovieImages &constImages() const;
     QString overview() const;
     qreal rating() const;
     int votes() const;
@@ -72,7 +76,6 @@ public:
     int movieId() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
-    int numPrimaryLangPosters() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
     QDateTime fileLastModified() const;
@@ -82,6 +85,7 @@ public:
     bool hasLocalTrailer() const;
     QDateTime dateAdded() const;
     bool hasValidImdbId() const;
+    bool hasImage(ImageType imageType) const;
 
     bool hasChanged() const;
     QString localTrailerFileName() const;
@@ -119,7 +123,6 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
-    void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
     void setStreamDetailsLoaded(bool loaded);
     void setFileLastModified(QDateTime modified);
     void setNfoContent(QString content);
@@ -136,39 +139,8 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString label);
 
-    QList<Poster> posters() const;
-    QList<Poster> backdrops() const;
-    QList<Poster> discArts() const;
-    QList<Poster> clearArts() const;
-    QList<Poster> logos() const;
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
-    QStringList extraFanartsToRemove();
-    QList<QByteArray> extraFanartImagesToAdd();
-    QList<ImageType> imagesToRemove() const;
-
-    void addPoster(Poster poster, bool primaryLang = false);
-    void addBackdrop(Poster backdrop);
-    void addDiscArt(Poster poster);
-    void addClearArt(Poster poster);
-    void addLogo(Poster poster);
-    void addExtraFanart(QByteArray fanart);
-    void removeExtraFanart(QByteArray fanart);
-    void removeExtraFanart(QString file);
-    void clearExtraFanartData();
-    void clearImages();
-    void removeImage(ImageType type);
-
     void setLabel(ColorLabel label);
     ColorLabel label() const;
-
-    // Images
-    bool hasExtraFanarts() const;
-    void setHasExtraFanarts(bool has);
-    QByteArray image(ImageType imageType) const;
-    bool imageHasChanged(ImageType imageType);
-    void setHasImage(ImageType imageType, bool has);
-    bool hasImage(ImageType imageType) const;
-    void setImage(ImageType imageType, QByteArray image);
 
     DiscType discType() const;
     void setDiscType(DiscType type);
@@ -196,6 +168,7 @@ private slots:
 private:
     MovieController *m_controller;
     QStringList m_files;
+    MovieImages m_movieImages;
     QString m_folderName;
     QString m_name;
     QString m_sortTitle;
@@ -222,21 +195,12 @@ private:
     QString m_id;
     QString m_tmdbId;
     QString m_set;
-    QList<Poster> m_posters;
-    QList<Poster> m_backdrops;
-    QList<Poster> m_discArts;
-    QList<Poster> m_clearArts;
-    QList<Poster> m_logos;
-    QStringList m_extraFanartsToRemove;
-    QStringList m_extraFanarts;
     int m_movieId;
     int m_databaseId;
     int m_mediaCenterId;
-    int m_numPrimaryLangPosters;
     bool m_watched;
     bool m_hasChanged;
     bool m_inSeparateFolder;
-    bool m_hasExtraFanarts;
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
     bool m_hasDuplicates;
@@ -247,13 +211,6 @@ private:
     DiscType m_discType;
     ColorLabel m_label;
     QList<Subtitle *> m_subtitles;
-
-    // Images
-    QMap<ImageType, QByteArray> m_images;
-    QMap<ImageType, bool> m_hasImage;
-    QMap<ImageType, bool> m_hasImageChanged;
-    QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<ImageType> m_imagesToRemove;
 };
 
 Q_DECLARE_METATYPE(Movie *)

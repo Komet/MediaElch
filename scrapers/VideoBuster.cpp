@@ -319,7 +319,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
                 Poster p;
                 p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
                 p.originalUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
-                movie->addPoster(p);
+                movie->images().addPoster(p);
                 pos += rx.matchedLength();
             }
         }
@@ -337,7 +337,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
                 Poster p;
                 p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
                 p.originalUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
-                movie->addBackdrop(p);
+                movie->images().addBackdrop(p);
                 pos += rx.matchedLength();
             }
         }

@@ -56,10 +56,11 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
     }
     m_movie->setChanged(false);
     m_movie->clearImages();
-    m_movie->clearExtraFanartData();
+    m_movie->images().clearExtraFanartData();
     m_movie->setSyncNeeded(true);
-    foreach (Subtitle *subtitle, m_movie->subtitles())
+    for (Subtitle *subtitle : m_movie->subtitles()) {
         subtitle->setChanged(false);
+    }
     return saved;
 }
 
@@ -287,20 +288,20 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<ImageType, QList<Poste
     m_forceFanartCdArt = false;
     m_forceFanartClearArt = false;
 
-    if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty()) {
-        posters.insert(ImageType::MoviePoster, QList<Poster>() << m_movie->posters().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->images().posters().isEmpty()) {
+        posters.insert(ImageType::MoviePoster, QList<Poster>() << m_movie->images().posters().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->backdrops().isEmpty()) {
-        posters.insert(ImageType::MovieBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->images().backdrops().isEmpty()) {
+        posters.insert(ImageType::MovieBackdrop, QList<Poster>() << m_movie->images().backdrops().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->discArts().isEmpty()) {
-        posters.insert(ImageType::MovieCdArt, QList<Poster>() << m_movie->discArts().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->images().discArts().isEmpty()) {
+        posters.insert(ImageType::MovieCdArt, QList<Poster>() << m_movie->images().discArts().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::ClearArt) && !m_movie->clearArts().isEmpty()) {
-        posters.insert(ImageType::MovieClearArt, QList<Poster>() << m_movie->clearArts().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::ClearArt) && !m_movie->images().clearArts().isEmpty()) {
+        posters.insert(ImageType::MovieClearArt, QList<Poster>() << m_movie->images().clearArts().at(0));
     }
-    if (infosToLoad().contains(MovieScraperInfos::Logo) && !m_movie->logos().isEmpty()) {
-        posters.insert(ImageType::MovieLogo, QList<Poster>() << m_movie->logos().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::Logo) && !m_movie->images().logos().isEmpty()) {
+        posters.insert(ImageType::MovieLogo, QList<Poster>() << m_movie->images().logos().at(0));
     }
 
     QList<DownloadManagerElement> downloads;
@@ -368,14 +369,14 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
         elem.actor->image = elem.data;
     } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
         Helper::instance()->resizeBackdrop(elem.data);
-        m_movie->addExtraFanart(elem.data);
+        m_movie->images().addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
         if (elem.imageType == ImageType::MovieBackdrop) {
             Helper::instance()->resizeBackdrop(elem.data);
         }
-        m_movie->setImage(elem.imageType, elem.data);
+        m_movie->images().setImage(elem.imageType, elem.data);
     }
 
     if (elem.imageType != ImageType::Actor) {

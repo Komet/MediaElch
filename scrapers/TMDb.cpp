@@ -835,7 +835,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
             b.originalUrl = m_baseUrl + "original" + filePath;
             b.originalSize.setWidth(backdrop.value("width").toInt());
             b.originalSize.setHeight(backdrop.value("height").toInt());
-            movie->addBackdrop(b);
+            movie->images().addBackdrop(b);
         }
     }
 
@@ -854,7 +854,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
             b.originalSize.setHeight(poster.value("height").toInt());
             b.language = poster.value("iso_639_1").toString();
             bool primaryLang = (b.language == language());
-            movie->addPoster(b, primaryLang);
+            movie->images().addPoster(b, primaryLang);
         }
     }
 

@@ -4,8 +4,8 @@
 #include <QSettings>
 
 #include "data/MediaCenterInterface.h"
-#include "globals/Globals.h"
 #include "data/Movie.h"
+#include "globals/Globals.h"
 
 class Movie;
 struct ScraperSearchResult;

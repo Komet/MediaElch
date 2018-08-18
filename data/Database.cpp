@@ -327,7 +327,7 @@ void Database::add(Movie *movie, QString path)
     query.bindValue(":hasCdArt", movie->hasImage(ImageType::MovieCdArt) ? 1 : 0);
     query.bindValue(":hasBanner", movie->hasImage(ImageType::MovieBanner) ? 1 : 0);
     query.bindValue(":hasThumb", movie->hasImage(ImageType::MovieThumb) ? 1 : 0);
-    query.bindValue(":hasExtraFanarts", movie->hasExtraFanarts() ? 1 : 0);
+    query.bindValue(":hasExtraFanarts", movie->images().hasExtraFanarts() ? 1 : 0);
     query.bindValue(":discType", static_cast<int>(movie->discType()));
     query.bindValue(":path", path.toUtf8());
     query.exec();
@@ -411,16 +411,21 @@ QList<Movie *> Database::movies(QString path)
             movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
             movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
             movie->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
-            movie->setHasImage(ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
-            movie->setHasImage(
+            movie->images().setHasImage(
+                ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
+            movie->images().setHasImage(
                 ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
-            movie->setHasImage(
+            movie->images().setHasImage(
+                ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
+            movie->images().setHasImage(
                 ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
-            movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
-            movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
+            movie->images().setHasImage(
+                ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
+            movie->images().setHasImage(
+                ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
+            movie->images().setHasImage(
+                ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
+            movie->images().setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
             movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
             movie->setLabel(label);
             movies.insert(query.value(query.record().indexOf("idMovie")).toInt(), movie);

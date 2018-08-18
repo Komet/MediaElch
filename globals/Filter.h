@@ -6,9 +6,9 @@
 #include <QStringList>
 
 #include "data/Concert.h"
+#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
-#include "data/Movie.h"
 
 /**
  * @brief The Filter class

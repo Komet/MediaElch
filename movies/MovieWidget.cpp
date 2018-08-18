@@ -704,7 +704,7 @@ void MovieWidget::updateMovieInfo()
         ImageType::MovieBanner,
         ImageType::MovieThumb});
 
-    ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
+    ui->fanarts->setImages(m_movie->images().extraFanarts(Manager::instance()->mediaCenterInterface()));
 
     ui->rating->blockSignals(false);
     ui->votes->blockSignals(false);
@@ -737,9 +737,9 @@ void MovieWidget::updateImages(QList<ImageType> images)
 
 void MovieWidget::updateImage(ImageType imageType, ClosableImage *image)
 {
-    if (!m_movie->image(imageType).isNull()) {
-        image->setImage(m_movie->image(imageType));
-    } else if (!m_movie->imagesToRemove().contains(imageType) && m_movie->hasImage(imageType)) {
+    if (!m_movie->images().image(imageType).isNull()) {
+        image->setImage(m_movie->images().image(imageType));
+    } else if (!m_movie->images().imagesToRemove().contains(imageType) && m_movie->hasImage(imageType)) {
         QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType);
         if (!imgFileName.isEmpty()) {
             image->setImage(imgFileName);
@@ -1516,7 +1516,7 @@ void MovieWidget::onRemoveExtraFanart(const QByteArray &image)
     if (!m_movie) {
         return;
     }
-    m_movie->removeExtraFanart(image);
+    m_movie->images().removeExtraFanart(image);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1525,7 +1525,7 @@ void MovieWidget::onRemoveExtraFanart(const QString &file)
     if (!m_movie) {
         return;
     }
-    m_movie->removeExtraFanart(file);
+    m_movie->images().removeExtraFanart(file);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1539,7 +1539,7 @@ void MovieWidget::onAddExtraFanart()
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMultiSelection(true);
     ImageDialog::instance()->setMovie(m_movie);
-    ImageDialog::instance()->setDownloads(m_movie->backdrops());
+    ImageDialog::instance()->setDownloads(m_movie->images().backdrops());
     ImageDialog::instance()->exec(ImageType::MovieBackdrop);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
@@ -1586,11 +1586,11 @@ void MovieWidget::onChooseImage()
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {
-        ImageDialog::instance()->setDownloads(m_movie->posters());
+        ImageDialog::instance()->setDownloads(m_movie->images().posters());
     } else if (image->imageType() == ImageType::MovieBackdrop) {
-        ImageDialog::instance()->setDownloads(m_movie->backdrops());
-    } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->discArts().isEmpty()) {
-        ImageDialog::instance()->setDownloads(m_movie->discArts());
+        ImageDialog::instance()->setDownloads(m_movie->images().backdrops());
+    } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->images().discArts().isEmpty()) {
+        ImageDialog::instance()->setDownloads(m_movie->images().discArts());
     } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
     }
@@ -1624,7 +1624,7 @@ void MovieWidget::onDeleteImage()
         return;
     }
 
-    m_movie->removeImage(image->imageType());
+    m_movie->images().removeImage(image->imageType());
     updateImages({image->imageType()});
     ui->buttonRevert->setVisible(true);
 }

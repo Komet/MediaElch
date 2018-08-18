@@ -6,9 +6,9 @@
 #include <QFile>
 
 #include "data/Concert.h"
+#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "data/Movie.h"
 
 namespace Ui {
 class Renamer;

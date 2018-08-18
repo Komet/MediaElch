@@ -4,8 +4,8 @@
 #include <QDir>
 #include <QThread>
 
-#include "globals/Globals.h"
 #include "data/Movie.h"
+#include "globals/Globals.h"
 
 /**
  * @brief The MovieFilesOrganizer class

@@ -211,7 +211,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
         Poster p;
         p.thumbUrl = QString("https:") + rx.cap(3);
         p.originalUrl = QString("https:") + rx.cap(1);
-        movie->addPoster(p);
+        movie->images().addPoster(p);
     }
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
