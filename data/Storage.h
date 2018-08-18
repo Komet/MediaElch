@@ -6,11 +6,11 @@
 #include <QTableWidgetItem>
 
 #include "data/Concert.h"
+#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
-#include "data/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 

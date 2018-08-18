@@ -5,10 +5,10 @@
 #include <QObject>
 
 #include "data/MediaCenterInterface.h"
+#include "data/Movie.h"
 #include "data/ScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
-#include "data/Movie.h"
 
 class DownloadManager;
 class DownloadManagerElement;

@@ -106,16 +106,16 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
         removeChildNodes(doc, "thumb");
         removeChildNodes(doc, "fanart");
 
-        foreach (const Poster &poster, movie->posters()) {
+        foreach (const Poster &poster, movie->images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             appendXmlNode(doc, elem);
         }
 
-        if (!movie->backdrops().isEmpty()) {
+        if (!movie->images().backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, movie->backdrops()) {
+            foreach (const Poster &poster, movie->images().backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -191,7 +191,7 @@ bool XbmcXml::saveMovie(Movie *movie)
 
     for (const auto imageType : Movie::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
-        if (movie->imageHasChanged(imageType) && !movie->image(imageType).isNull()) {
+        if (movie->images().imageHasChanged(imageType) && !movie->images().image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
@@ -203,11 +203,11 @@ bool XbmcXml::saveMovie(Movie *movie)
                     saveFileName = "fanart.jpg";
                 }
                 QString path = getPath(movie);
-                saveFile(path + "/" + saveFileName, movie->image(imageType));
+                saveFile(path + "/" + saveFileName, movie->images().image(imageType));
             }
         }
 
-        if (movie->imagesToRemove().contains(imageType)) {
+        if (movie->images().imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
@@ -225,13 +225,13 @@ bool XbmcXml::saveMovie(Movie *movie)
     }
 
     if (movie->inSeparateFolder() && !movie->files().isEmpty()) {
-        foreach (const QString &file, movie->extraFanartsToRemove())
+        foreach (const QString &file, movie->images().extraFanartsToRemove())
             QFile::remove(file);
         QDir dir(QFileInfo(movie->files().first()).absolutePath() + "/extrafanart");
-        if (!dir.exists() && !movie->extraFanartImagesToAdd().isEmpty()) {
+        if (!dir.exists() && !movie->images().extraFanartToAdd().isEmpty()) {
             QDir(QFileInfo(movie->files().first()).absolutePath()).mkdir("extrafanart");
         }
-        foreach (QByteArray img, movie->extraFanartImagesToAdd()) {
+        foreach (QByteArray img, movie->images().extraFanartToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -548,12 +548,12 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
             Poster p;
             p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
             p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            movie->addPoster(p);
+            movie->images().addPoster(p);
         } else if (parentTag == "fanart") {
             Poster p;
             p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
             p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            movie->addBackdrop(p);
+            movie->images().addBackdrop(p);
         }
     }
 
@@ -562,9 +562,9 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
     // Existence of images
     if (initialNfoContent.isEmpty()) {
         for (const auto imageType : Movie::imageTypes()) {
-            movie->setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
+            movie->images().setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
         }
-        movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
+        movie->images().setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 
     return true;

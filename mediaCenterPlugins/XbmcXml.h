@@ -7,9 +7,9 @@
 
 #include "data/Concert.h"
 #include "data/MediaCenterInterface.h"
+#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "data/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 

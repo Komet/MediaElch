@@ -215,7 +215,8 @@ SOURCES += main.cpp\
     data/Subtitle.cpp \
     image/ImageCapture.cpp \
     movies/MovieDuplicates.cpp \
-    movies/MovieDuplicateItem.cpp
+    movies/MovieDuplicateItem.cpp \
+    data/MovieImages.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -385,7 +386,8 @@ HEADERS  += Version.h \
     data/Subtitle.h \
     image/ImageCapture.h \
     movies/MovieDuplicates.h \
-    movies/MovieDuplicateItem.h
+    movies/MovieDuplicateItem.h \
+    data/MovieImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

@@ -1,0 +1,272 @@
+#include "MovieImages.h"
+
+#include "data/MediaCenterInterface.h"
+#include "data/Movie.h"
+#include "globals/Globals.h"
+
+#include <QList>
+
+MovieImages::MovieImages(Movie &movie) : m_movie{movie}
+{
+}
+
+void MovieImages::clear(QList<MovieScraperInfos> infos)
+{
+    if (infos.contains(MovieScraperInfos::Backdrop)) {
+        m_backdrops.clear();
+        m_images.insert(ImageType::MovieBackdrop, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieBackdrop, false);
+        m_imagesToRemove.removeOne(ImageType::MovieBackdrop);
+    }
+    if (infos.contains(MovieScraperInfos::CdArt)) {
+        m_discArts.clear();
+        m_images.insert(ImageType::MovieCdArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieCdArt, false);
+        m_imagesToRemove.removeOne(ImageType::MovieCdArt);
+    }
+    if (infos.contains(MovieScraperInfos::ClearArt)) {
+        m_clearArts.clear();
+        m_images.insert(ImageType::MovieClearArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieClearArt, false);
+        m_imagesToRemove.removeOne(ImageType::MovieClearArt);
+    }
+    if (infos.contains(MovieScraperInfos::Logo)) {
+        m_logos.clear();
+        m_images.insert(ImageType::MovieLogo, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieLogo, false);
+        m_imagesToRemove.removeOne(ImageType::MovieLogo);
+    }
+    if (infos.contains(MovieScraperInfos::Poster)) {
+        m_posters.clear();
+        m_images.insert(ImageType::MoviePoster, QByteArray());
+        m_hasImageChanged.insert(ImageType::MoviePoster, false);
+        m_numPrimaryLangPosters = 0;
+        m_imagesToRemove.removeOne(ImageType::MoviePoster);
+    }
+
+    if (infos.contains(MovieScraperInfos::Banner)) {
+        m_images.insert(ImageType::MovieBanner, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieBanner, false);
+        m_imagesToRemove.removeOne(ImageType::MovieBanner);
+    }
+    if (infos.contains(MovieScraperInfos::Thumb)) {
+        m_images.insert(ImageType::MovieThumb, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieThumb, false);
+        m_imagesToRemove.removeOne(ImageType::MovieThumb);
+    }
+    if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
+        m_extraFanartsToRemove.clear();
+        m_extraFanartToAdd.clear();
+        m_extraFanarts.clear();
+    }
+}
+
+/**
+ * @property MovieImages::posters
+ * @brief Holds a list of posters of the movie
+ * @return List of posters
+ */
+QList<Poster> MovieImages::posters() const
+{
+    return m_posters;
+}
+
+/**
+ * @property MovieImages::backdrops
+ * @brief Holds a list of backdrops of the movie
+ * @return List of backdrops
+ */
+QList<Poster> MovieImages::backdrops() const
+{
+    return m_backdrops;
+}
+
+QList<Poster> MovieImages::discArts() const
+{
+    return m_discArts;
+}
+
+QList<Poster> MovieImages::clearArts() const
+{
+    return m_clearArts;
+}
+
+QList<Poster> MovieImages::logos() const
+{
+    return m_logos;
+}
+
+QStringList MovieImages::extraFanartsToRemove()
+{
+    return m_extraFanartsToRemove;
+}
+
+QList<QByteArray> MovieImages::extraFanartToAdd()
+{
+    return m_extraFanartToAdd;
+}
+
+QList<ImageType> MovieImages::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+/**
+ * @brief Returns how many of the posters were scraped in the primary language
+ * @return Number of primary language posters
+ */
+int MovieImages::numPrimaryLangPosters() const
+{
+    return m_numPrimaryLangPosters;
+}
+
+/**
+ * @brief Sets the number of primary language posters
+ * @param numberPrimaryLangPosters Number of primary language posters
+ */
+void MovieImages::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
+{
+    m_numPrimaryLangPosters = numberPrimaryLangPosters;
+}
+
+void MovieImages::addPoster(Poster poster, bool primaryLang)
+{
+    if (primaryLang) {
+        m_posters.insert(m_numPrimaryLangPosters, poster);
+        m_numPrimaryLangPosters++;
+    } else {
+        m_posters.append(poster);
+    }
+    m_movie.setChanged(true);
+}
+
+void MovieImages::addBackdrop(Poster backdrop)
+{
+    m_backdrops.append(backdrop);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::addDiscArt(Poster discArt)
+{
+    m_discArts.append(discArt);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::addClearArt(Poster clearArt)
+{
+    m_clearArts.append(clearArt);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::addLogo(Poster logo)
+{
+    m_logos.append(logo);
+    m_movie.setChanged(true);
+}
+
+
+void MovieImages::addExtraFanart(QByteArray fanart)
+{
+    m_extraFanartToAdd.append(fanart);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::removeExtraFanart(QByteArray fanart)
+{
+    m_extraFanartToAdd.removeOne(fanart);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::removeExtraFanart(QString file)
+{
+    m_extraFanarts.removeOne(file);
+    m_extraFanartsToRemove.append(file);
+    m_movie.setChanged(true);
+}
+
+QList<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+{
+    if (m_extraFanarts.isEmpty()) {
+        //    m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    }
+    for (const QString &file : m_extraFanartsToRemove) {
+        m_extraFanarts.removeOne(file);
+    }
+    QList<ExtraFanart> fanarts;
+    for (const QString &file : m_extraFanarts) {
+        ExtraFanart f;
+        f.path = file;
+        fanarts.append(f);
+    }
+    for (const QByteArray &img : m_extraFanartToAdd) {
+        ExtraFanart f;
+        f.image = img;
+        fanarts.append(f);
+    }
+    return fanarts;
+}
+
+void MovieImages::clearExtraFanartData()
+{
+    m_extraFanartToAdd.clear();
+    m_extraFanartsToRemove.clear();
+    m_extraFanarts.clear();
+}
+
+void MovieImages::removeImage(ImageType type)
+{
+    if (!m_images.value(type, QByteArray()).isNull()) {
+        m_images.remove(type);
+        m_hasImageChanged.insert(type, false);
+    } else if (!m_imagesToRemove.contains(type)) {
+        m_imagesToRemove.append(type);
+    }
+    m_movie.setChanged(true);
+}
+
+QByteArray MovieImages::image(ImageType imageType) const
+{
+    return m_images.value(imageType, QByteArray());
+}
+
+bool MovieImages::imageHasChanged(ImageType imageType)
+{
+    return m_hasImageChanged.value(imageType, false);
+}
+
+bool MovieImages::hasImage(ImageType imageType) const
+{
+    return m_hasImage.value(imageType, false);
+}
+
+void MovieImages::setHasImage(ImageType imageType, bool has)
+{
+    m_hasImage.insert(imageType, has);
+}
+
+void MovieImages::setImage(ImageType imageType, QByteArray image)
+{
+    m_images.insert(imageType, image);
+    m_hasImageChanged.insert(imageType, true);
+    m_movie.setChanged(true);
+}
+
+void MovieImages::setHasExtraFanarts(bool has)
+{
+    m_hasExtraFanarts = has;
+}
+
+bool MovieImages::hasExtraFanarts() const
+{
+    return m_hasExtraFanarts;
+}
+
+/**
+ * @brief Clears the movie images to save memory
+ */
+void MovieImages::clearImages()
+{
+    m_images.clear();
+    m_hasImageChanged.clear();
+    m_extraFanartToAdd.clear();
+}

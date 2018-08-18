@@ -166,7 +166,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
         Poster p;
         p.thumbUrl = rx.cap(1);
         p.originalUrl = rx.cap(1);
-        movie->addPoster(p);
+        movie->images().addPoster(p);
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {

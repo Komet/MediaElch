@@ -199,7 +199,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
         Poster p;
         p.thumbUrl = rx.cap(1);
         p.originalUrl = rx.cap(1);
-        movie->addPoster(p);
+        movie->images().addPoster(p);
     }
 
     rx.setPattern(
@@ -228,7 +228,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
             Poster p;
             p.thumbUrl = rx.cap(2);
             p.originalUrl = rx.cap(2);
-            movie->addBackdrop(p);
+            movie->images().addBackdrop(p);
         }
     }
 }

@@ -318,7 +318,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<MovieScraperInf
             Poster p;
             p.originalUrl = QUrl(url);
             p.thumbUrl = QUrl(url);
-            movie->addPoster(p);
+            movie->images().addPoster(p);
         } else if (infos.contains(MovieScraperInfos::Rating) && xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "note") {

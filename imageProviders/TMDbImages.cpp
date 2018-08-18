@@ -146,9 +146,9 @@ void TMDbImages::onLoadImagesFinished()
 {
     QList<Poster> posters;
     if (m_imageType == ImageType::MovieBackdrop) {
-        posters = m_dummyMovie->backdrops();
+        posters = m_dummyMovie->images().backdrops();
     } else if (m_imageType == ImageType::MoviePoster) {
-        posters = m_dummyMovie->posters();
+        posters = m_dummyMovie->images().posters();
     }
 
     emit sigImagesLoaded(posters);

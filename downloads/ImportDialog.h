@@ -8,12 +8,12 @@
 #include <QTimer>
 
 #include "data/Concert.h"
+#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
-#include "data/Movie.h"
 #include "renamer/Renamer.h"
 
 namespace Ui {

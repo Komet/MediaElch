@@ -354,7 +354,7 @@ void KinoDe::parsePoster(const QString &html, Movie &movie)
         Poster p;
         p.thumbUrl = rx.cap(1);
         p.originalUrl = rx.cap(1);
-        movie.addPoster(p);
+        movie.images().addPoster(p);
     }
 }
 
@@ -402,7 +402,7 @@ void KinoDe::parseBackdrops(const QString &html, Movie &movie)
             p.originalUrl = normalizeUrl(originalRx.cap(1));
         }
         if (!p.originalUrl.isEmpty() || !p.thumbUrl.isEmpty()) {
-            movie.addBackdrop(p);
+            movie.images().addBackdrop(p);
         }
 
         pos += rx.matchedLength();

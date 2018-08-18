@@ -4,8 +4,8 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-#include "data/ScraperInterface.h"
 #include "data/Movie.h"
+#include "data/ScraperInterface.h"
 
 class QCheckBox;
 

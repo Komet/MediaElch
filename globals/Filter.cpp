@@ -161,7 +161,7 @@ bool Filter::accepts(Movie *movie)
                || (!m_hasInfo && !movie->hasImage(ImageType::MovieBackdrop));
     }
     if (isInfo(MovieFilters::ExtraFanarts)) {
-        return (m_hasInfo && movie->hasExtraFanarts()) || (!m_hasInfo && !movie->hasExtraFanarts());
+        return (m_hasInfo && movie->images().hasExtraFanarts()) || (!m_hasInfo && !movie->images().hasExtraFanarts());
     }
     if (isInfo(MovieFilters::Actors)) {
         return (m_hasInfo && !movie->actors().isEmpty()) || (!m_hasInfo && movie->actors().isEmpty());

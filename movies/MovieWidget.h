@@ -10,8 +10,8 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "globals/DownloadManager.h"
 #include "data/Movie.h"
+#include "globals/DownloadManager.h"
 #include "smallWidgets/ClosableImage.h"
 
 namespace Ui {

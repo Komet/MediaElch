@@ -173,7 +173,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->streamDetailsLoaded()) ? "streamDetails/green" : "streamDetails/red";
             break;
         case MediaStatusColumn::ExtraFanarts:
-            icon = (movie->hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
+            icon = (movie->constImages().hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
             break;
         case MediaStatusColumn::Id: icon = movie->hasValidImdbId() ? "id/green" : "id/red"; break;
         default: break;

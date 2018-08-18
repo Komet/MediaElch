@@ -225,9 +225,9 @@ void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem o
         if (alternatingRowColors()) {
             if (index.row() % 2 == 0) {
                 option.features |= QStyleOptionViewItem::Alternate;
-            #ifdef Q_OS_WIN
+#ifdef Q_OS_WIN
                 option.features &= ~QStyleOptionViewItem::Alternate;
-            #endif
+#endif
             } else {
                 option.features &= ~QStyleOptionViewItem::Alternate;
             }
@@ -236,13 +236,13 @@ void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem o
 
     if (selectionModel()->isSelected(index)) {
         option.state |= QStyle::State_Selected;
-    #ifdef Q_OS_WIN
+#ifdef Q_OS_WIN
         QPen pen(QColor(27, 106, 165));
         pen.setWidth(0);
         painter->setPen(pen);
         painter->setBrush(QBrush(QColor(27, 106, 165)));
         painter->drawRect(option.rect);
-    #endif
+#endif
     }
 
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &option, painter, this);
