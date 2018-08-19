@@ -11,6 +11,8 @@ MediaElch is a MediaManager for Kodi. Information about Movies, TV Shows, Concer
 Fanarts are downloaded automatically from fanart.tv.
 Using the `nfo` generator, MediaElch can be used with other MediaCenters as well.
 
+Documentation can be found at https://mediaelch.github.io/mediaelch-doc/index.html
+
 Supported scrapers
 ------------------
 
@@ -30,16 +32,6 @@ They can be downloaded at https://bintray.com/komet/MediaElch (choose your syste
 | Windows          | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-win/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-win/_latestVersion) |
 | macOS            | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-macOS/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-macOS/_latestVersion) |
 | Linux (AppImage) | latest (unstable) | [![Download](https://api.bintray.com/packages/komet/MediaElch/MediaElch-linux/images/download.svg) ](https://bintray.com/komet/MediaElch/MediaElch-linux/_latestVersion) |
-
-User Documentation
-------------------
-
- - [FAQ](doc/FAQ.md)
- - [Advanced Settings](doc/AdvancedSettings.md)
- - [Export Theme](doc/ExportTheme.md)
- - [Renaming Files](doc/RenamingFiles.md)
- - [Synchronization with Kodi](doc/KodiSynchronization.md)
- - [Windows Portable Mode](doc/PortableMode.md)
 
 Developer Documentation
 ------------------
