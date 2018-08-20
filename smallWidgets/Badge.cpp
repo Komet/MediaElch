@@ -2,23 +2,13 @@
 
 #include <QPainter>
 
-Badge::Badge(QWidget *parent) :
-    QLabel(parent),
-    m_active{false},
-    m_closable{false},
-    m_fontBold{true},
-    m_showActiveMark{true}
+Badge::Badge(QWidget *parent) : QLabel(parent)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Type::LabelDefault);
 }
 
-Badge::Badge(const QString &text, QWidget *parent) :
-    QLabel(text, parent),
-    m_active{false},
-    m_closable{false},
-    m_fontBold{true},
-    m_showActiveMark{true}
+Badge::Badge(const QString &text, QWidget *parent) : QLabel(text, parent)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Type::LabelDefault);

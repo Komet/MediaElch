@@ -44,10 +44,10 @@ signals:
 
 private:
     Type m_badgeType;
-    bool m_active;
-    bool m_closable;
-    bool m_fontBold;
-    bool m_showActiveMark;
+    bool m_active = false;
+    bool m_closable = false;
+    bool m_fontBold = true;
+    bool m_showActiveMark = true;
     void applyStyleSheet();
 };
 
