@@ -20,7 +20,7 @@ ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Import
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
     ui->stackedWidget->setSpeed(200);
     ui->badgeSuccess->setActive(true);
-    ui->badgeSuccess->setBadgeType(Badge::LabelSuccess);
+    ui->badgeSuccess->setBadgeType(Badge::Type::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
     QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);

@@ -41,9 +41,9 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->subtitles->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
-    ui->localTrailer->setBadgeType(Badge::LabelSuccess);
+    ui->localTrailer->setBadgeType(Badge::Type::LabelSuccess);
     ui->localTrailer->setVisible(false);
-    ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
+    ui->badgeWatched->setBadgeType(Badge::Type::BadgeInfo);
 
 #ifndef Q_OS_MAC
     QFont nameFont = ui->movieName->font();

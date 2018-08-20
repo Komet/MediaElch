@@ -77,10 +77,10 @@ void TagCloud::drawTags()
     foreach (const QString &word, tags) {
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
-            badge->setBadgeType(Badge::LabelWarning);
+            badge->setBadgeType(Badge::Type::LabelWarning);
             badge->setShowActiveMark(false);
         } else {
-            badge->setBadgeType(Badge::BadgeDefault);
+            badge->setBadgeType(Badge::Type::BadgeDefault);
             badge->setShowActiveMark(false);
         }
         if (m_activeTags.contains(word)) {
@@ -171,10 +171,10 @@ void TagCloud::addTag()
         m_activeTags.append(word);
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
-            badge->setBadgeType(Badge::LabelWarning);
+            badge->setBadgeType(Badge::Type::LabelWarning);
             badge->setShowActiveMark(false);
         } else {
-            badge->setBadgeType(Badge::BadgeDefault);
+            badge->setBadgeType(Badge::Type::BadgeDefault);
             badge->setShowActiveMark(false);
         }
         badge->show();

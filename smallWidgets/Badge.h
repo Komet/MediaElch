@@ -9,7 +9,7 @@ class Badge : public QLabel
 {
     Q_OBJECT
 public:
-    enum BadgeType
+    enum class Type
     {
         LabelSuccess,
         LabelDefault,
@@ -27,7 +27,7 @@ public:
 
     explicit Badge(QWidget *parent = nullptr);
     explicit Badge(const QString &text, QWidget *parent = nullptr);
-    void setBadgeType(Badge::BadgeType type);
+    void setBadgeType(Badge::Type type);
     void setClosable(const bool &closable);
     void setActive(const bool &active);
     void setFontBold(const bool &bold);
@@ -43,7 +43,7 @@ signals:
     void clicked();
 
 private:
-    Badge::BadgeType m_badgeType;
+    Type m_badgeType;
     bool m_active;
     bool m_closable;
     bool m_fontBold;

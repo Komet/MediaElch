@@ -10,7 +10,7 @@ Badge::Badge(QWidget *parent) :
     m_showActiveMark{true}
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-    setBadgeType(Badge::LabelDefault);
+    setBadgeType(Type::LabelDefault);
 }
 
 Badge::Badge(const QString &text, QWidget *parent) :
@@ -21,7 +21,7 @@ Badge::Badge(const QString &text, QWidget *parent) :
     m_showActiveMark{true}
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-    setBadgeType(Badge::LabelDefault);
+    setBadgeType(Type::LabelDefault);
 }
 
 void Badge::paintEvent(QPaintEvent *event)
@@ -66,7 +66,7 @@ void Badge::setFontBold(const bool &bold)
     applyStyleSheet();
 }
 
-void Badge::setBadgeType(Badge::BadgeType type)
+void Badge::setBadgeType(Badge::Type type)
 {
     m_badgeType = type;
     applyStyleSheet();
@@ -76,18 +76,22 @@ void Badge::setActive(const bool &active)
 {
     m_active = active;
     switch (m_badgeType) {
-    case Badge::LabelDefault:
-    case Badge::LabelSuccess:
-    case Badge::LabelWarning:
-    case Badge::LabelImportant:
-    case Badge::LabelInfo:
-    case Badge::LabelInverse: m_badgeType = active ? Badge::LabelWarning : Badge::LabelDefault; break;
-    case Badge::BadgeDefault:
-    case Badge::BadgeSuccess:
-    case Badge::BadgeWarning:
-    case Badge::BadgeImportant:
-    case Badge::BadgeInfo:
-    case Badge::BadgeInverse: m_badgeType = active ? Badge::BadgeInfo : Badge::BadgeDefault; break;
+    case Type::LabelDefault:
+    case Type::LabelSuccess:
+    case Type::LabelWarning:
+    case Type::LabelImportant:
+    case Type::LabelInfo:
+    case Type::LabelInverse:
+        m_badgeType = active ? Type::LabelWarning : Type::LabelDefault;
+        break;
+    case Type::BadgeDefault:
+    case Type::BadgeSuccess:
+    case Type::BadgeWarning:
+    case Type::BadgeImportant:
+    case Type::BadgeInfo:
+    case Type::BadgeInverse:
+        m_badgeType = active ? Type::BadgeInfo : Type::BadgeDefault;
+        break;
     }
 
     if (active && !property("activeText").toString().isEmpty()) {
@@ -126,36 +130,36 @@ void Badge::applyStyleSheet()
     QString style = "QLabel { color: #ffffff; font-size: 10px; ";
 
     switch (m_badgeType) {
-    case Badge::LabelDefault:
-    case Badge::BadgeDefault: style.append("background-color: #999999;"); break;
-    case Badge::LabelSuccess:
-    case Badge::BadgeSuccess: style.append("background-color: #468847;"); break;
-    case Badge::LabelWarning:
-    case Badge::BadgeWarning: style.append("background-color: #F89406;"); break;
-    case Badge::LabelImportant:
-    case Badge::BadgeImportant: style.append("background-color: #B94A48;"); break;
-    case Badge::LabelInfo:
-    case Badge::BadgeInfo: style.append("background-color: #3A87AD;"); break;
-    case Badge::LabelInverse:
-    case Badge::BadgeInverse: style.append("background-color: #333333;"); break;
+    case Type::LabelDefault:
+    case Type::BadgeDefault: style.append("background-color: #999999;"); break;
+    case Type::LabelSuccess:
+    case Type::BadgeSuccess: style.append("background-color: #468847;"); break;
+    case Type::LabelWarning:
+    case Type::BadgeWarning: style.append("background-color: #F89406;"); break;
+    case Type::LabelImportant:
+    case Type::BadgeImportant: style.append("background-color: #B94A48;"); break;
+    case Type::LabelInfo:
+    case Type::BadgeInfo: style.append("background-color: #3A87AD;"); break;
+    case Type::LabelInverse:
+    case Type::BadgeInverse: style.append("background-color: #333333;"); break;
     }
 
     switch (m_badgeType) {
-    case Badge::LabelDefault:
-    case Badge::LabelSuccess:
-    case Badge::LabelWarning:
-    case Badge::LabelImportant:
-    case Badge::LabelInfo:
-    case Badge::LabelInverse:
+    case Type::LabelDefault:
+    case Type::LabelSuccess:
+    case Type::LabelWarning:
+    case Type::LabelImportant:
+    case Type::LabelInfo:
+    case Type::LabelInverse:
         style.append("border-radius: 3px;");
         style.append("padding: 4px 0;");
         break;
-    case Badge::BadgeDefault:
-    case Badge::BadgeSuccess:
-    case Badge::BadgeWarning:
-    case Badge::BadgeImportant:
-    case Badge::BadgeInfo:
-    case Badge::BadgeInverse:
+    case Type::BadgeDefault:
+    case Type::BadgeSuccess:
+    case Type::BadgeWarning:
+    case Type::BadgeImportant:
+    case Type::BadgeInfo:
+    case Type::BadgeInverse:
         style.append("border-radius: 8px;");
         style.append("padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;");
         break;

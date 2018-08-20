@@ -51,7 +51,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
     ui->labelLogo->setFont(font);
     ui->labelPoster->setFont(font);
 
-    ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
+    ui->badgeWatched->setBadgeType(Badge::Type::BadgeInfo);
 
     m_concert = nullptr;
 
