@@ -70,8 +70,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 #endif
     ui->actorResolution->setFont(font);
 
-    ui->badgeTuneExisting->setBadgeType(Badge::LabelSuccess);
-    ui->badgeTuneMissing->setBadgeType(Badge::LabelWarning);
+    ui->badgeTuneExisting->setBadgeType(Badge::Type::LabelSuccess);
+    ui->badgeTuneMissing->setBadgeType(Badge::Type::LabelWarning);
 
     ui->btnDownloadTune->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
 
