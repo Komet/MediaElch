@@ -104,7 +104,7 @@ void ImageGallery::resizeEvent(QResizeEvent *event)
 
 void ImageGallery::clear()
 {
-    foreach (ClosableImage *label, m_imageLabels) {
+    for (ClosableImage *label : m_imageLabels) {
         label->hide();
         label->deleteLater();
     }
@@ -114,7 +114,7 @@ void ImageGallery::clear()
 void ImageGallery::setImages(QList<ExtraFanart> images)
 {
     clear();
-    foreach (ExtraFanart fanart, images) {
+    for (ExtraFanart fanart : images) {
         auto label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);
@@ -164,7 +164,7 @@ void ImageGallery::positionImages()
     int x = (m_alignment == Qt::Horizontal) ? m_buttonLeft->width() - 20 : 0;
     int y = (m_alignment == Qt::Vertical) ? m_buttonTop->height() - 20 : 0;
 
-    foreach (ClosableImage *label, m_imageLabels) {
+    for (ClosableImage *label : m_imageLabels) {
         if (m_alignment == Qt::Vertical) {
             if (x > 0 && x + m_imageWidth + m_horizontalSpace > width()) {
                 x = 0;
@@ -181,6 +181,7 @@ void ImageGallery::positionImages()
             x += m_horizontalSpace + label->width();
         }
     }
+
     if (m_alignment == Qt::Vertical) {
         m_imagesWidget->setFixedHeight(y + maxHeightInRow + m_buttonBottom->height() - 10);
         m_buttonTop->setEnabled(m_scrollArea->verticalScrollBar()->value() != 0);
@@ -188,6 +189,7 @@ void ImageGallery::positionImages()
             m_scrollArea->verticalScrollBar()->value() != m_scrollArea->verticalScrollBar()->maximum());
         onVerticalScrollBarRangeChanged(
             m_scrollArea->verticalScrollBar()->minimum(), m_scrollArea->verticalScrollBar()->maximum());
+
     } else {
         m_imagesWidget->setFixedWidth(x + m_buttonRight->width() - 30);
         setFixedHeight(m_imageHeight);
@@ -233,8 +235,9 @@ void ImageGallery::setAlignment(const int &alignment)
 void ImageGallery::setShowZoomAndResolution(const bool &show)
 {
     m_showZoomAndResolution = show;
-    foreach (ClosableImage *label, m_imageLabels)
+    for (ClosableImage *label : m_imageLabels) {
         label->setShowZoomAndResolution(show);
+    }
     positionImages();
 }
 
@@ -314,9 +317,7 @@ void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg"
-                                        << ".jpeg"
-                                        << ".png";
+    QStringList filters{".jpg", ".jpeg", ".png"};
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -329,9 +330,7 @@ void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
 {
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg"
-                                        << ".jpeg"
-                                        << ".png";
+    QStringList filters{".jpg", ".jpeg", ".png"};
     foreach (const QString &filter, filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -345,9 +344,7 @@ void ImageGallery::dropEvent(QDropEvent *event)
     const QMimeData *mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
-        QStringList filters = QStringList() << ".jpg"
-                                            << ".jpeg"
-                                            << ".png";
+        QStringList filters{".jpg", ".jpeg", ".png"};
         foreach (const QString &filter, filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(url);
