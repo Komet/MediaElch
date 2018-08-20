@@ -38,14 +38,16 @@ private slots:
     void onAlphaClicked();
 
 private:
+    void stopAnimation();
+
     QPointer<QPropertyAnimation> m_inAnim;
     QPointer<QPropertyAnimation> m_outAnim;
     QVBoxLayout *m_layout;
-    int m_bottomSpace;
-    int m_topSpace;
-    int m_rightSpace;
-    int m_leftSpace;
-    int m_animDuration;
+    int m_bottomSpace{10};
+    int m_topSpace{10};
+    int m_rightSpace{10};
+    int m_leftSpace{10};
+    int m_animDuration{100};
     MyTableView *m_tableView;
 };
 
