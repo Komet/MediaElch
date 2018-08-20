@@ -33,20 +33,20 @@ MyLineEdit::MyLineEdit(QWidget *parent) :
  */
 void MyLineEdit::resizeEvent(QResizeEvent *)
 {
+    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+    const QSize size = m_loadingLabel->sizeHint();
+
     if (m_type == TypeLoading) {
-        QSize size = m_loadingLabel->sizeHint();
-        int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
         m_loadingLabel->move(rect().right() - frameWidth - size.width(), (rect().bottom() + 1 - size.height()) / 2);
+
     } else if (m_type == TypeClear) {
-        QSize size = m_clearButton->sizeHint();
-        int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
         m_clearButton->move(
             rect().right() - frameWidth - size.width() + 2, (rect().bottom() + 1 - size.height() + 6) / 2);
     }
 
     if (m_showMagnifier) {
-        QSize size = m_magnifierLabel->sizeHint();
-        m_magnifierLabel->move(6, (rect().bottom() + 1 - size.height()) / 2);
+        const QSize magnifierSize = m_magnifierLabel->sizeHint();
+        m_magnifierLabel->move(6, (rect().bottom() + 1 - magnifierSize.height()) / 2);
     }
 }
 
