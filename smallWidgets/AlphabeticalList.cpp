@@ -8,11 +8,6 @@
 AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView) :
     QWidget(parent),
     m_layout{new QVBoxLayout(this)},
-    m_bottomSpace{10},
-    m_topSpace{10},
-    m_rightSpace{10},
-    m_leftSpace{10},
-    m_animDuration{100},
     m_tableView{parentTableView}
 {
     m_layout->setMargin(0);
@@ -27,14 +22,13 @@ AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView
 
 void AlphabeticalList::adjustSize()
 {
-    int parentHeight = static_cast<QWidget *>(parent())->size().height();
+    const int parentHeight = static_cast<QWidget *>(parent())->size().height();
     move(-width(), m_topSpace);
     setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
 }
 
-void AlphabeticalList::paintEvent(QPaintEvent *event)
+void AlphabeticalList::paintEvent(QPaintEvent * /*event*/)
 {
-    Q_UNUSED(event);
     QStyleOption opt;
     opt.init(this);
     QPainter p(this);
@@ -43,9 +37,7 @@ void AlphabeticalList::paintEvent(QPaintEvent *event)
 
 void AlphabeticalList::show()
 {
-    if (m_outAnim) {
-        m_outAnim->stop();
-    }
+    stopAnimation();
 
     if (pos().x() == m_leftSpace) {
         return;
@@ -65,9 +57,7 @@ void AlphabeticalList::show()
 
 void AlphabeticalList::hide()
 {
-    if (m_inAnim) {
-        m_inAnim->stop();
-    }
+    stopAnimation();
 
     if (pos().x() == -width()) {
         return;
@@ -102,12 +92,12 @@ void AlphabeticalList::setRightSpace(const int space)
 
 void AlphabeticalList::setAlphas(QStringList alphas)
 {
-    foreach (QToolButton *button, findChildren<QToolButton *>()) {
+    for (QToolButton *button : findChildren<QToolButton *>()) {
         m_layout->removeWidget(button);
         button->deleteLater();
     }
 
-    foreach (const QString &alpha, alphas) {
+    for (const QString &alpha : alphas) {
         auto button = new QToolButton(this);
         button->setText(alpha);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
@@ -118,11 +108,18 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 
 void AlphabeticalList::onAlphaClicked()
 {
-    auto button = static_cast<QToolButton *>(sender());
+    auto button = dynamic_cast<QToolButton *>(sender());
     if (!button) {
         return;
     }
     emit sigAlphaClicked(button->text());
+}
+
+void AlphabeticalList::stopAnimation()
+{
+    if (m_outAnim) {
+        m_outAnim->stop();
+    }
 }
 
 int AlphabeticalList::leftSpace() const
