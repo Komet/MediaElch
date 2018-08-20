@@ -10,7 +10,7 @@
  * @brief MediaFlags::MediaFlags
  * @param parent
  */
-MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags), m_height{16}
+MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags)
 {
     ui->setupUi(this);
 }
@@ -68,47 +68,47 @@ void MediaFlags::setupResolution(StreamDetails *streamDetails)
  */
 void MediaFlags::setupAspect(StreamDetails *streamDetails)
 {
-    QStringList availableAspects = QStringList() << "1.31"
-                                                 << "1.32"
-                                                 << "1.33"
-                                                 << "1.34"
-                                                 << "1.35"
-                                                 << "1.36"
-                                                 << "1.37"
-                                                 << "1.38"
-                                                 << "1.66"
-                                                 << "1.67"
-                                                 << "1.68"
-                                                 << "1.77"
-                                                 << "1.78"
-                                                 << "1.79"
-                                                 << "1.82"
-                                                 << "1.83"
-                                                 << "1.84"
-                                                 << "1.85"
-                                                 << "1.86"
-                                                 << "2.00"
-                                                 << "2.14"
-                                                 << "2.22"
-                                                 << "2.24"
-                                                 << "2.33"
-                                                 << "2.34"
-                                                 << "2.35"
-                                                 << "2.36"
-                                                 << "2.37"
-                                                 << "2.38"
-                                                 << "2.39"
-                                                 << "2.40"
-                                                 << "2.41"
-                                                 << "2.42"
-                                                 << "2.43"
-                                                 << "2.48"
-                                                 << "2.50"
-                                                 << "2.52"
-                                                 << "2.55"
-                                                 << "2.73"
-                                                 << "2.76";
-    double aspect = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Aspect).toDouble();
+    QStringList availableAspects = {"1.31",
+        "1.32",
+        "1.33",
+        "1.34",
+        "1.35",
+        "1.36",
+        "1.37",
+        "1.38",
+        "1.66",
+        "1.67",
+        "1.68",
+        "1.77",
+        "1.78",
+        "1.79",
+        "1.82",
+        "1.83",
+        "1.84",
+        "1.85",
+        "1.86",
+        "2.00",
+        "2.14",
+        "2.22",
+        "2.24",
+        "2.33",
+        "2.34",
+        "2.35",
+        "2.36",
+        "2.37",
+        "2.38",
+        "2.39",
+        "2.40",
+        "2.41",
+        "2.42",
+        "2.43",
+        "2.48",
+        "2.50",
+        "2.52",
+        "2.55",
+        "2.73",
+        "2.76"};
+    const double aspect = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Aspect).toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
     if (availableAspects.contains(aspectFlag)) {
@@ -122,20 +122,8 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
  */
 void MediaFlags::setupCodec(StreamDetails *streamDetails)
 {
-    QStringList availableCodecs = QStringList() << "avc1"
-                                                << "avchd"
-                                                << "divx"
-                                                << "flv"
-                                                << "h264"
-                                                << "avc"
-                                                << "av1"
-                                                << "hevc"
-                                                << "mpeg"
-                                                << "mpeg1"
-                                                << "mpeg2"
-                                                << "vc-1"
-                                                << "wmv3"
-                                                << "xvid";
+    QStringList availableCodecs = {
+        "avc1", "avchd", "divx", "flv", "h264", "avc", "av1", "hevc", "mpeg", "mpeg1", "mpeg2", "vc-1", "wmv3", "xvid"};
     QString codec = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Codec).toLower();
     if (codec.startsWith("divx")) {
         codec = "divx";
@@ -153,18 +141,18 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
 void MediaFlags::setupAudio(StreamDetails *streamDetails)
 {
     bool visible = false;
-    QStringList availableCodecs = QStringList() << "dtshdma"
-                                                << "dtshdhra"
-                                                << "dtshdx"
-                                                << "dolbytruehd"
-                                                << "dolbyatmos"
-                                                << "dts"
-                                                << "dolbydigital"
-                                                << "dolbydigitalplus"
-                                                << "flac"
-                                                << "vorbis"
-                                                << "mp3"
-                                                << "mp2";
+    QStringList availableCodecs = {"dtshdma",
+        "dtshdhra",
+        "dtshdx",
+        "dolbytruehd",
+        "dolbyatmos",
+        "dts",
+        "dolbydigital",
+        "dolbydigitalplus",
+        "flac",
+        "vorbis",
+        "mp3",
+        "mp2"};
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value(StreamDetails::AudioDetails::Codec).toLower();
         if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma") {

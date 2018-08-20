@@ -25,7 +25,8 @@ public:
 
 private:
     Ui::MediaFlags *ui;
-    int m_height;
+    int m_height{16};
+
     void setupResolution(StreamDetails *streamDetails);
     void setupAspect(StreamDetails *streamDetails);
     void setupCodec(StreamDetails *streamDetails);
