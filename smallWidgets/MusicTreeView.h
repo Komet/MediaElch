@@ -1,6 +1,8 @@
 #ifndef MUSICTREEVIEW_H
 #define MUSICTREEVIEW_H
 
+#include "../globals/Globals.h"
+
 #include <QPainter>
 #include <QTreeView>
 #include <QWidget>
@@ -22,7 +24,21 @@ private:
 
     void drawArtistRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void drawAlbumRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    int drawNewIcon(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, int branchIndent) const;
+
+    int drawNewIcon(QPainter *painter,
+        const QStyleOptionViewItem &option,
+        const QModelIndex &index,
+        int branchIndent) const;
+    void setAlternateRowColors(QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    inline bool isAlbumRow(const QModelIndex &index) const
+    {
+        return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Album;
+    }
+    inline bool isArtistRow(const QModelIndex &index) const
+    {
+        return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Artist;
+    }
 };
 
 #endif // MUSICTREEVIEW_H
