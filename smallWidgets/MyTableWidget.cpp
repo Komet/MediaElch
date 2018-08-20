@@ -41,15 +41,8 @@ void MyTableWidget::dropEvent(QDropEvent *event)
     if (mimeData->hasUrls()) {
         if (!mimeData->urls().empty()) {
             QUrl url = mimeData->urls().at(0);
-            QStringList filters;
-            filters << ".jpg"
-                    << ".JPG"
-                    << ".jpeg"
-                    << ".JPeg"
-                    << ".Jpg"
-                    << ".png"
-                    << ".PNG";
-            foreach (const QString &filter, filters) {
+            QStringList filters{".jpg", ".JPG", ".jpeg", ".JPeg", ".Jpg", ".png", ".PNG"};
+            for (const QString &filter : filters) {
                 if (url.toString().endsWith(filter)) {
                     emit sigDroppedImage(url);
                     return;
