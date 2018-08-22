@@ -9,7 +9,7 @@
 TagCloud::TagCloud(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TagCloud),
-    m_badgeType{TagCloud::TypeBadge},
+    m_badgeType{TagCloud::BadgeType::Badge},
     m_verticalSpace{4},
     m_horizontalSpace{4}
 {
@@ -76,7 +76,7 @@ void TagCloud::drawTags()
 
     foreach (const QString &word, tags) {
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
-        if (m_badgeType == TagCloud::TypeSimpleLabel) {
+        if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
             badge->setShowActiveMark(false);
         } else {
@@ -159,7 +159,7 @@ void TagCloud::addTag()
 
     if (m_tags.contains(word)) {
         m_activeTags.append(word);
-        foreach (Badge *badge, m_badges) {
+        for (Badge *badge : m_badges) {
             if (badge->text() == word) {
                 badge->setActive(true);
                 repositionTags();
@@ -170,7 +170,7 @@ void TagCloud::addTag()
         m_tags.append(word);
         m_activeTags.append(word);
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
-        if (m_badgeType == TagCloud::TypeSimpleLabel) {
+        if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
             badge->setShowActiveMark(false);
         } else {
@@ -200,7 +200,7 @@ void TagCloud::setPlaceholder(const QString &placeholder)
     ui->lineEdit->setPlaceholderText(placeholder);
 }
 
-void TagCloud::setBadgeType(TagCloud::CloudBadgeType type)
+void TagCloud::setBadgeType(TagCloud::BadgeType type)
 {
     m_badgeType = type;
 }

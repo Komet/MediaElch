@@ -17,10 +17,10 @@ class TagCloud : public QWidget
     Q_OBJECT
 
 public:
-    enum CloudBadgeType
+    enum class BadgeType
     {
-        TypeSimpleLabel,
-        TypeBadge
+        SimpleLabel,
+        Badge
     };
 
     explicit TagCloud(QWidget *parent = nullptr);
@@ -29,7 +29,7 @@ public:
     QStringList activeTags() const;
     void setText(const QString &text);
     void setPlaceholder(const QString &placeholder);
-    void setBadgeType(TagCloud::CloudBadgeType type);
+    void setBadgeType(BadgeType type);
     void clear();
     void setCompleter(QCompleter *completer);
 
@@ -46,7 +46,7 @@ private slots:
 
 private:
     Ui::TagCloud *ui;
-    CloudBadgeType m_badgeType;
+    BadgeType m_badgeType;
     int m_verticalSpace;
     int m_horizontalSpace;
     QStringList m_tags;

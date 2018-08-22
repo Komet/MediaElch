@@ -100,7 +100,7 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
 
     ui->studioCloud->setText(tr("Studios"));
     ui->studioCloud->setPlaceholder(tr("Add Studio"));
-    ui->studioCloud->setBadgeType(TagCloud::TypeSimpleLabel);
+    ui->studioCloud->setBadgeType(TagCloud::BadgeType::SimpleLabel);
     connect(ui->studioCloud, &TagCloud::activated, this, &MovieWidget::addStudio);
     connect(ui->studioCloud, &TagCloud::deactivated, this, &MovieWidget::removeStudio);
 
