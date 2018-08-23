@@ -47,7 +47,6 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
  */
 void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 {
-    qDebug() << "Entered";
     if (m_downloading) {
         m_currentReply->abort();
     }
@@ -57,11 +56,25 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
     m_queue.clear();
     m_mutex.unlock();
 
-    foreach (const DownloadManagerElement &elem, elements)
+    for (const DownloadManagerElement &elem : elements) {
         addDownload(elem);
+    }
 
     if (m_queue.isEmpty()) {
         QTimer::singleShot(0, this, SIGNAL(allDownloadsFinished()));
+    }
+}
+
+template<class T>
+void DownloadManager::startNextDownloadType() {
+    int numDownloadsLeft = 0;
+    for (int i = 0, n = m_queue.size(); i < n; ++i) {
+        if (m_queue[i].getElement<T>() == m_currentDownloadElement.getElement<T>()) {
+            numDownloadsLeft++;
+        }
+    }
+    if (numDownloadsLeft == 0) {
+        emit allDownloadsFinished(m_currentDownloadElement.getElement<T>());
     }
 }
 
@@ -72,63 +85,19 @@ void DownloadManager::startNextDownload()
 {
     m_timer.stop();
     if (m_currentDownloadElement.movie) {
-        int numDownloadsLeft = 0;
-        for (int i = 0, n = m_queue.size(); i < n; ++i) {
-            if (m_queue[i].movie == m_currentDownloadElement.movie) {
-                numDownloadsLeft++;
-            }
-        }
-        if (numDownloadsLeft == 0) {
-            emit allDownloadsFinished(m_currentDownloadElement.movie);
-        }
+        startNextDownloadType<Movie>();
     }
-
     if (m_currentDownloadElement.show) {
-        int numDownloadsLeft = 0;
-        for (int i = 0, n = m_queue.size(); i < n; ++i) {
-            if (m_queue[i].show == m_currentDownloadElement.show) {
-                numDownloadsLeft++;
-            }
-        }
-        if (numDownloadsLeft == 0) {
-            emit allDownloadsFinished(m_currentDownloadElement.show);
-        }
+        startNextDownloadType<TvShow>();
     }
-
     if (m_currentDownloadElement.concert) {
-        int numDownloadsLeft = 0;
-        for (int i = 0, n = m_queue.size(); i < n; ++i) {
-            if (m_queue[i].concert == m_currentDownloadElement.concert) {
-                numDownloadsLeft++;
-            }
-        }
-        if (numDownloadsLeft == 0) {
-            emit allDownloadsFinished(m_currentDownloadElement.concert);
-        }
+        startNextDownloadType<Concert>();
     }
-
     if (m_currentDownloadElement.artist) {
-        int numDownloadsLeft = 0;
-        for (int i = 0, n = m_queue.size(); i < n; ++i) {
-            if (m_queue[i].artist == m_currentDownloadElement.artist) {
-                numDownloadsLeft++;
-            }
-        }
-        if (numDownloadsLeft == 0) {
-            emit allDownloadsFinished(m_currentDownloadElement.artist);
-        }
+        startNextDownloadType<Artist>();
     }
-
     if (m_currentDownloadElement.album) {
-        int numDownloadsLeft = 0;
-        for (int i = 0, n = m_queue.size(); i < n; ++i) {
-            if (m_queue[i].album == m_currentDownloadElement.album) {
-                numDownloadsLeft++;
-            }
-        }
-        if (numDownloadsLeft == 0) {
-            emit allDownloadsFinished(m_currentDownloadElement.album);
-        }
+        startNextDownloadType<Album>();
     }
 
     if (m_queue.isEmpty()) {
@@ -223,6 +192,7 @@ void DownloadManager::downloadTimeout()
     if (m_retries <= 2) {
         qDebug() << "Restarting the download";
         m_queue.prepend(m_currentDownloadElement);
+
     } else {
         qDebug() << "Giving up on this file, tried 3 times";
         m_retries = 0;

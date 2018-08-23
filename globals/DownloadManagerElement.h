@@ -16,7 +16,8 @@ class TvShowEpisode;
 class DownloadManagerElement
 {
 public:
-    DownloadManagerElement();
+    DownloadManagerElement() = default;
+
     ImageType imageType{ImageType::None};
     QUrl url;
     QByteArray data;
@@ -31,6 +32,9 @@ public:
     Artist *artist{nullptr};
     int season{0};
     bool directDownload{false};
+
+    template<class T>
+    T* getElement();
 };
 
 #endif // DOWNLOADMANAGERELEMENT_H
