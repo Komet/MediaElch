@@ -50,6 +50,9 @@ private slots:
     void downloadTimeout();
 
 private:
+    template<class T>
+    void startNextDownloadType();
+
     QNetworkReply *m_currentReply;
     DownloadManagerElement m_currentDownloadElement;
     QQueue<DownloadManagerElement> m_queue;
