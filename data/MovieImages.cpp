@@ -187,7 +187,7 @@ void MovieImages::removeExtraFanart(QString file)
 QList<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
-        //    m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+        m_extraFanarts = mediaCenterInterface->extraFanartNames(&m_movie);
     }
     for (const QString &file : m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
