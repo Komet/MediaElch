@@ -429,14 +429,18 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
     }
 
 
-    rx.setPattern("<meta itemprop=\"contentRating\" content=\"([^\"]*)\">");
+    rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
         movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
     }
 
-    rx.setPattern(R"(<time itemprop="duration" datetime="PT([0-9]+)M" >)");
+    rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M",)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(1).toInt());
+        if (rx.captureCount() > 1) {
+            movie->setRuntime(rx.cap(1).toInt() * 60 + rx.cap(2).toInt());
+        } else {
+            movie->setRuntime(rx.cap(1).toInt());
+        }
     }
 
     rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time itemprop="duration" datetime="PT([0-9]+)M">)");
@@ -453,12 +457,12 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
 
     rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        QString outline = rx.cap(1).remove(QRegExp("<[^>]*>")).trimmed();
+        QString outline = rx.cap(1).remove(QRegExp("<[^>]*>"));
         outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
         movie->setOutline(outline);
     }
 
-    rx.setPattern(R"(<span itemprop="description">(.*)</span>)");
+    rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         QString overview = rx.cap(1).trimmed();
         overview.remove(QRegExp("<[^>]*>"));
