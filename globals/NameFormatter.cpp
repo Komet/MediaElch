@@ -4,8 +4,6 @@
 #include <QRegExp>
 #include <QStringList>
 
-NameFormatter *NameFormatter::m_instance = nullptr;
-
 NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
 {
     onUpdateExcludeWords();
@@ -19,10 +17,8 @@ NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
  */
 NameFormatter *NameFormatter::instance(QObject *parent)
 {
-    if (m_instance == nullptr) {
-        m_instance = new NameFormatter(parent);
-    }
-    return m_instance;
+    static NameFormatter* formatterInstance = new NameFormatter(parent);
+    return formatterInstance;
 }
 
 /**
