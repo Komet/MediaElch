@@ -6,10 +6,6 @@
 
 #include "globals/DownloadManagerElement.h"
 
-/**
- * @brief DownloadManager::DownloadManager
- * @param parent
- */
 DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloading{false}
 {
     connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
@@ -26,7 +22,7 @@ QNetworkAccessManager *DownloadManager::qnam()
 }
 
 /**
- * @brief Adds a download and starts downloading
+ * @brief Add given download and start downloading it
  * @param elem Element to download
  * @see DownloadManagerElement
  */

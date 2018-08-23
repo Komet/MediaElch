@@ -7,12 +7,6 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 
-/**
- * @brief ComboDelegate::ComboDelegate
- * @param parent
- * @param widget
- * @param type
- */
 ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateType type) :
     QItemDelegate(parent),
     m_widget{widget},
@@ -22,10 +16,6 @@ ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateT
 
 /**
  * @brief Sets up a combo box with available genres
- * @param parent
- * @param option
- * @param index
- * @return
  */
 QWidget *
 ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -37,11 +27,6 @@ ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
     return box;
 }
 
-/**
- * @brief ComboDelegate::setEditorData
- * @param editor
- * @param index
- */
 void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QString value = index.model()->data(index, Qt::EditRole).toString();
@@ -113,12 +98,6 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     box->lineEdit()->setText(value);
 }
 
-/**
- * @brief ComboDelegate::setModelData
- * @param editor
- * @param model
- * @param index
- */
 void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     auto box = static_cast<QComboBox *>(editor);
@@ -126,12 +105,6 @@ void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, con
     model->setData(index, value, Qt::EditRole);
 }
 
-/**
- * @brief ComboDelegate::updateEditorGeometry
- * @param editor
- * @param option
- * @param index
- */
 void ComboDelegate::updateEditorGeometry(QWidget *editor,
     const QStyleOptionViewItem &option,
     const QModelIndex &index) const
@@ -140,12 +113,6 @@ void ComboDelegate::updateEditorGeometry(QWidget *editor,
     editor->setGeometry(option.rect);
 }
 
-/**
- * @brief ComboDelegate::sizeHint
- * @param option
- * @param index
- * @return
- */
 QSize ComboDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     int width = QItemDelegate::sizeHint(option, index).width();
