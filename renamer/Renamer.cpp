@@ -750,7 +750,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
 
     QList<TvShowEpisode *> episodesRenamed;
 
-    foreach (TvShowEpisode *episode, episodes) {
+    for (TvShowEpisode *episode : episodes) {
         if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty())
             || episodesRenamed.contains(episode)) {
             continue;
@@ -912,6 +912,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes,
             QDir showDir(episode->tvShow()->dir());
             QString seasonDirName = seasonPattern;
             Renamer::replace(seasonDirName, "season", episode->seasonString());
+            Renamer::replace(seasonDirName, "showTitle", episode->showTitle());
             Helper::instance()->sanitizeFileName(seasonDirName);
             QDir seasonDir(showDir.path() + "/" + seasonDirName);
             if (!seasonDir.exists()) {
