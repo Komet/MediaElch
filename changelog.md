@@ -3,7 +3,8 @@
 ## 2.4.3 (*tbd*)
 
 ### Features
-
+ 
+ - Add user documentation (#531)
  - Use HTTPS for scraping (#371)
  - Set UI language in ``advancedsettings.xml`` (#411)
  - Add Kino.de scraper (#370)
@@ -36,6 +37,7 @@
  - backdrop not loaded using ADE (#519)
  - adult scrapers broken (#367)
  - *fanart.tv* music scraper broken
+ - Placeholder `<showTitle>` does not work for renaming season folders (#553)
 
 ### Improvements
 
