@@ -19,9 +19,6 @@ Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
     m_movieImages(*this),
-    m_rating{0.0},
-    m_votes{0},
-    m_top250{0},
     m_runtime{0},
     m_playcount{0},
     m_databaseId{-1},
@@ -128,8 +125,7 @@ void Movie::clear(QList<MovieScraperInfos> infos)
         m_outline = "";
     }
     if (infos.contains(MovieScraperInfos::Rating)) {
-        m_rating = 0;
-        m_votes = 0;
+        m_rating = Rating();
     }
     if (infos.contains(MovieScraperInfos::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
@@ -229,9 +225,9 @@ QString Movie::overview() const
  * @return Rating of the movie
  * @see Movie::setRating
  */
-qreal Movie::rating() const
+double Movie::rating() const
 {
-    return m_rating;
+    return m_rating.rating;
 }
 
 /**
@@ -241,7 +237,7 @@ qreal Movie::rating() const
  */
 int Movie::votes() const
 {
-    return m_votes;
+    return m_rating.voteCount;
 }
 
 /**
@@ -251,7 +247,7 @@ int Movie::votes() const
  */
 int Movie::top250() const
 {
-    return m_top250;
+    return m_rating.imdbTop250;
 }
 
 /**
@@ -680,9 +676,9 @@ void Movie::setOverview(QString overview)
  * @param rating Rating of the movie
  * @see Movie::rating
  */
-void Movie::setRating(qreal rating)
+void Movie::setRating(double rating)
 {
-    m_rating = rating;
+    m_rating.rating = rating;
     setChanged(true);
 }
 
@@ -693,7 +689,7 @@ void Movie::setRating(qreal rating)
  */
 void Movie::setVotes(int votes)
 {
-    m_votes = votes;
+    m_rating.voteCount = votes;
     setChanged(true);
 }
 
@@ -704,7 +700,7 @@ void Movie::setVotes(int votes)
  */
 void Movie::setTop250(int top250)
 {
-    m_top250 = top250;
+    m_rating.imdbTop250 = top250;
     setChanged(true);
 }
 
