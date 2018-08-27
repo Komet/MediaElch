@@ -6,6 +6,7 @@
 #include <QStringList>
 
 #include "data/MediaCenterInterface.h"
+#include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
@@ -25,7 +26,6 @@ class TvShowEpisode : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(qreal ratin READ rating WRITE setRating)
     Q_PROPERTY(int season READ season WRITE setSeason)
     Q_PROPERTY(int episode READ episode WRITE setEpisode)
     Q_PROPERTY(int displaySeason READ displaySeason WRITE setDisplaySeason)
@@ -50,7 +50,7 @@ public:
     virtual QString showTitle() const;
     virtual QString name() const;
     virtual QString completeEpisodeName() const;
-    virtual qreal rating() const;
+    virtual double rating() const;
     virtual int votes() const;
     virtual int top250() const;
     virtual int season() const;
@@ -88,7 +88,7 @@ public:
     void setShow(TvShow *show);
     void setName(QString name);
     void setShowTitle(QString showTitle);
-    void setRating(qreal rating);
+    void setRating(double rating);
     void setVotes(int votes);
     void setTop250(int top250);
     void setSeason(int season);
@@ -151,10 +151,8 @@ private:
     TvShow *m_parent;
     QString m_name;
     QString m_showTitle;
-    qreal m_rating;
+    Rating m_rating;
     QString m_imdbId;
-    int m_votes;
-    int m_top250;
     int m_season;
     int m_episode;
     int m_displaySeason;

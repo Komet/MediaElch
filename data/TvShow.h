@@ -6,6 +6,7 @@
 #include <QStringList>
 
 #include "data/MediaCenterInterface.h"
+#include "data/Rating.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
@@ -34,7 +35,7 @@ public:
     virtual QString name() const;
     virtual QString showTitle() const;
     virtual QString dir() const;
-    virtual qreal rating() const;
+    virtual double rating() const;
     virtual int votes() const;
     virtual int top250() const;
     virtual QDate firstAired() const;
@@ -85,7 +86,7 @@ public:
 
     void setName(QString name);
     void setShowTitle(QString title);
-    void setRating(qreal rating);
+    void setRating(double rating);
     void setVotes(int votes);
     void setTop250(int top250);
     void setFirstAired(QDate aired);
@@ -181,9 +182,7 @@ private:
     QString m_name;
     QString m_showTitle;
     QString m_sortTitle;
-    qreal m_rating;
-    int m_votes;
-    int m_top250;
+    Rating m_rating;
     QDate m_firstAired;
     int m_runtime;
     QStringList m_genres;

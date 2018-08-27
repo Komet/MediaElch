@@ -19,8 +19,6 @@
 TvShow::TvShow(QString dir, QObject *parent) :
     QObject(parent),
     m_dir{dir},
-    m_votes{0},
-    m_top250{0},
     m_runtime{0},
     m_hasTune{false},
     m_downloadsInProgress{false},
@@ -99,9 +97,7 @@ void TvShow::clear(QList<TvShowScraperInfos> infos)
         m_hasImageChanged.insert(ImageType::TvShowPoster, false);
     }
     if (infos.contains(TvShowScraperInfos::Rating)) {
-        m_rating = 0;
-        m_votes = 0;
-        m_top250 = 0;
+        m_rating = Rating();
     }
     if (infos.contains(TvShowScraperInfos::SeasonPoster)) {
         clearSeasonImageType(ImageType::TvShowSeasonPoster);
@@ -360,9 +356,9 @@ QString TvShow::showTitle() const
  * @return The rating
  * @see TvShow::setRating
  */
-qreal TvShow::rating() const
+double TvShow::rating() const
 {
-    return m_rating;
+    return m_rating.rating;
 }
 
 /**
@@ -779,9 +775,9 @@ void TvShow::setShowTitle(QString title)
  * @param rating
  * @see TvShow::rating
  */
-void TvShow::setRating(qreal rating)
+void TvShow::setRating(double rating)
 {
-    m_rating = rating;
+    m_rating.rating = rating;
     setChanged(true);
 }
 
@@ -1345,23 +1341,23 @@ void TvShow::setStatus(const QString &status)
 
 int TvShow::votes() const
 {
-    return m_votes;
+    return m_rating.voteCount;
 }
 
 void TvShow::setVotes(int votes)
 {
-    m_votes = votes;
+    m_rating.voteCount = votes;
     setChanged(true);
 }
 
 int TvShow::top250() const
 {
-    return m_top250;
+    return m_rating.imdbTop250;
 }
 
 void TvShow::setTop250(int top250)
 {
-    m_top250 = top250;
+    m_rating.imdbTop250 = top250;
     setChanged(true);
 }
 

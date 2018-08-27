@@ -10,6 +10,7 @@
 
 #include "data/MediaCenterInterface.h"
 #include "data/MovieImages.h"
+#include "data/Rating.h"
 #include "data/ScraperInterface.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
@@ -45,7 +46,7 @@ public:
     MovieImages &images();
     const MovieImages &constImages() const;
     QString overview() const;
-    qreal rating() const;
+    double rating() const;
     int votes() const;
     int top250() const;
     QDate released() const;
@@ -95,7 +96,7 @@ public:
     void setSortTitle(QString sortTitle);
     void setOriginalName(QString originalName);
     void setOverview(QString overview);
-    void setRating(qreal rating);
+    void setRating(double rating);
     void setVotes(int votes);
     void setTop250(int top250);
     void setReleased(QDate released);
@@ -174,9 +175,7 @@ private:
     QString m_sortTitle;
     QString m_originalName;
     QString m_overview;
-    qreal m_rating;
-    int m_votes;
-    int m_top250;
+    Rating m_rating;
     QDate m_released;
     QString m_tagline;
     QString m_outline;
