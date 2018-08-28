@@ -26,6 +26,7 @@
  - IMDB movie poster not loaded (#385)
  - IMDB top 250 not scraped (#468)
  - IMDB outline/plot scraping broken (#456)
+ - IMDB genres/studios/... scraping broken (#556)
  - studio name not exported (#392)
  - TvShow status not written to `.nfo` file (#380)
  - HTML entities in export not escaped (#391)
