@@ -61,8 +61,8 @@ ICON = MediaElch.icns
 RC_FILE = MediaElch.rc
 QMAKE_INFO_PLIST = MediaElch.plist
 
-SOURCES += main.cpp\
-        main/MainWindow.cpp \
+SOURCES += main.cpp \
+    main/MainWindow.cpp \
     data/Movie.cpp \
     data/MovieFileSearcher.cpp \
     mediaCenterPlugins/XbmcXml.cpp \
@@ -474,3 +474,25 @@ TRANSLATIONS += \
     i18n/MediaElch_ru.ts \
     i18n/MediaElch_ja.ts \
     i18n/MediaElch_da.ts
+
+test {
+    message(Test build)
+
+    QT += testlib
+    TARGET = mediaelch-test
+
+    HEADERS += test/qtCatchHelper.h
+
+    SOURCES -= main.cpp
+    SOURCES += test/main.cpp \
+        test/scrapers/testAdultDvdEmpire.cpp \
+        test/scrapers/testAEBN.cpp \
+        test/scrapers/testHotMovies.cpp \
+        test/scrapers/testIMDb.cpp \
+        test/scrapers/testKinoDe.cpp \
+        test/scrapers/testTMDb.cpp \
+        test/scrapers/testVideoBuster.cpp
+
+} else {
+    message(Normal build)
+}
