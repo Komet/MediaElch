@@ -91,14 +91,18 @@ void IMDB::search(QString searchStr)
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr)) {
         QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
-        QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+        QNetworkRequest request(url);
+        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
+        QNetworkReply *reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
     } else {
         QUrl url = QUrl::fromEncoded(
             QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
-        QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+        QNetworkRequest request(url);
+        request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
+        QNetworkReply *reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
