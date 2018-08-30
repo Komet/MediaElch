@@ -83,7 +83,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     QTextDocument doc;
     QList<ScraperSearchResult> results;
     int offset = 0;
-    QRegExp rx(R"lit(<a href="([^"]*)"[\s\n]*title="([^"]*)" Category "List Page" Label="Title">)lit");
+    QRegExp rx(R"re(<a href="([^"]*)"\n *title="([^"]*)" Category="List Page" Label="Title">)re");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         doc.setHtml(rx.cap(2).trimmed());

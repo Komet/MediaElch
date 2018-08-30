@@ -35,6 +35,7 @@
  - using filters crashes MediaElch (#504)
  - wrong filter tooltips (#506)
  - concert extra fanart not saved (#529)
+ - ADE search does not return results (#565)
  - backdrop not loaded using ADE (#519)
  - adult scrapers broken (#367)
  - *fanart.tv* music scraper broken
