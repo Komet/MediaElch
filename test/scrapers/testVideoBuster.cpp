@@ -1,9 +1,8 @@
-#include "test/qtCatchHelper.h"
-#include "thirdParty/catch2/catch.hpp"
+#include "test/test_helpers.h"
 
 #include "scrapers/VideoBuster.h"
 
-TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][search][requiresInternet]")
+TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][search][requires_internet]")
 {
     VideoBuster VideoBuster;
 
@@ -11,6 +10,6 @@ TEST_CASE("VideoBuster returns valid search results", "[scraper][VideoBuster][se
     {
         const auto scraperResults = searchScraperSync(VideoBuster, "Findet Dorie");
         REQUIRE(scraperResults.length() >= 1);
-        REQUIRE(scraperResults[0].name == "Findet Dorie");
+        CHECK(scraperResults[0].name == "Findet Dorie");
     }
 }

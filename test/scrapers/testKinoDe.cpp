@@ -1,9 +1,8 @@
-#include "test/qtCatchHelper.h"
-#include "thirdParty/catch2/catch.hpp"
+#include "test/test_helpers.h"
 
 #include "scrapers/KinoDe.h"
 
-TEST_CASE("KinoDe returns valid search results", "[scraper][KinoDe][search][requiresInternet]")
+TEST_CASE("KinoDe returns valid search results", "[scraper][KinoDe][search][requires_internet]")
 {
     KinoDe KinoDe;
 
@@ -11,6 +10,6 @@ TEST_CASE("KinoDe returns valid search results", "[scraper][KinoDe][search][requ
     {
         const auto scraperResults = searchScraperSync(KinoDe, "Findet Dorie");
         REQUIRE(scraperResults.length() >= 1);
-        REQUIRE(scraperResults[0].name == "Findet Dorie");
+        CHECK(scraperResults[0].name == "Findet Dorie");
     }
 }

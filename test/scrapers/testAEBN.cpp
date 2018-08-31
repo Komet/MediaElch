@@ -1,9 +1,8 @@
-#include "test/qtCatchHelper.h"
-#include "thirdParty/catch2/catch.hpp"
+#include "test/test_helpers.h"
 
 #include "scrapers/AEBN.h"
 
-TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search][requiresInternet]")
+TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search][requires_internet]")
 {
     AEBN AEBN;
 
@@ -11,6 +10,6 @@ TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search][requires
     {
         const auto scraperResults = searchScraperSync(AEBN, "Magic Mike XXXL");
         REQUIRE(scraperResults.length() >= 1);
-        REQUIRE(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
     }
 }
