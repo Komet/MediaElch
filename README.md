@@ -42,3 +42,19 @@ Developer Documentation
 cd doc
 doxygen ./Doxyfile
 ```
+
+Testing
+-------
+
+Tests are written using [Catch2](https://github.com/catchorg/Catch2).
+
+```sh
+mkdir build && cd $_
+qmake CONFIG+=test ..
+make -j4
+./mediaelch-test -h            # List Catch2 help
+./mediaelch-test -t            # List all tags
+./mediaelch-test -d yes        # Run *all* tests and print duration
+./mediaelch-test "[load_data]" # Run scraping tests (online test)
+./mediaelch-test "[search]"    # Run scraping search tests (online test)
+```

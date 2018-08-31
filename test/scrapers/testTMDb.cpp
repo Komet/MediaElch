@@ -1,9 +1,8 @@
-#include "test/qtCatchHelper.h"
-#include "thirdParty/catch2/catch.hpp"
+#include "test/test_helpers.h"
 
 #include "scrapers/TMDb.h"
 
-TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requiresInternet]")
+TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires_internet]")
 {
     TMDb TMDb;
 
@@ -11,7 +10,7 @@ TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires
     {
         const auto scraperResults = searchScraperSync(TMDb, "Finding Dory");
         REQUIRE(scraperResults.length() >= 2);
-        REQUIRE(scraperResults[0].name == "Finding Dory");
-        REQUIRE(scraperResults[1].name == "Marine Life Interviews");
+        CHECK(scraperResults[0].name == "Finding Dory");
+        CHECK(scraperResults[1].name == "Marine Life Interviews");
     }
 }

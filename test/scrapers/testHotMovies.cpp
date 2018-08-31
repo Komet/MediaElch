@@ -1,9 +1,8 @@
-#include "test/qtCatchHelper.h"
-#include "thirdParty/catch2/catch.hpp"
+#include "test/test_helpers.h"
 
 #include "scrapers/HotMovies.h"
 
-TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search][requiresInternet]")
+TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search][requires_internet]")
 {
     HotMovies HotMovies;
 
@@ -11,6 +10,6 @@ TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search
     {
         const auto scraperResults = searchScraperSync(HotMovies, "Magic Mike XXXL");
         REQUIRE(scraperResults.length() >= 1);
-        REQUIRE(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
+        CHECK(scraperResults[0].name == "Magic Mike XXXL: A Hardcore Parody");
     }
 }

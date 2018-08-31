@@ -481,10 +481,13 @@ test {
     QT += testlib
     TARGET = mediaelch-test
 
-    HEADERS += test/qtCatchHelper.h
+    HEADERS += test/test_helpers.h \
+        test/helpers/matchers.h \
+        test/helpers/debug_output.h
 
     SOURCES -= main.cpp
     SOURCES += test/main.cpp \
+        test/helpers/matchers.cpp \
         test/scrapers/testAdultDvdEmpire.cpp \
         test/scrapers/testAEBN.cpp \
         test/scrapers/testHotMovies.cpp \
