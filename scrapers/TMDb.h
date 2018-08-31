@@ -78,9 +78,8 @@ private:
     QString country() const;
     QString apiUrlParameterString(ApiUrlParameter parameter) const;
     QUrl getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const;
-    QUrl getMovieUrl(const QString &title,
-        ApiMovieDetails type,
-        const UrlParameterMap &parameters = UrlParameterMap{}) const;
+    QUrl
+    getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters = UrlParameterMap{}) const;
     void parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInfos> infos);
 };
 

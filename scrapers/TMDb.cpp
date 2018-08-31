@@ -267,15 +267,16 @@ void TMDb::search(QString searchStr)
     QString searchYear;
     QUrl url;
     QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
-    QRegExp rx("^tt\\d+$");
-    QRegExp rxTmdbId("^id\\d+$");
 
-    if (rx.exactMatch(searchStr)) {
+    const bool isSearchByImdbId = QRegExp("^tt\\d+$").exactMatch(searchStr);
+    const bool isSearchByTmdbId = QRegExp("^id\\d+$").exactMatch(searchStr);
+
+    if (isSearchByImdbId) {
         QUrl newUrl(getMovieUrl(
             searchStr, ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
 
-    } else if (rxTmdbId.exactMatch(searchStr)) {
+    } else if (isSearchByTmdbId) {
         QUrl newUrl(getMovieUrl(
             searchStr.mid(2), ApiMovieDetails::INFOS, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
@@ -285,7 +286,7 @@ void TMDb::search(QString searchStr)
         url.swap(newUrl);
         QList<QRegExp> rxYears;
         rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
-        foreach (QRegExp rxYear, rxYears) {
+        for (QRegExp rxYear : rxYears) {
             rxYear.setMinimal(true);
             if (rxYear.exactMatch(searchStr)) {
                 searchTitle = rxYear.cap(1);
@@ -428,9 +429,15 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
  */
 void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
-    if (!ids.values().first().startsWith("tt")) {
-        movie->setTmdbId(ids.values().first());
+    const QString id = ids.values().first();
+    const bool isImdbId = id.startsWith("tt");
+
+    if (isImdbId) {
+        movie->setId(id);
+    } else {
+        movie->setTmdbId(id);
     }
+
     movie->clear(infos);
 
     QNetworkRequest request;
@@ -441,7 +448,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     // Infos
     loadsLeft.append(ScraperData::Infos);
 
-    request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::INFOS));
+    request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
     QNetworkReply *const reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -452,7 +459,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)
         || infos.contains(MovieScraperInfos::Writer)) {
         loadsLeft.append(ScraperData::Casts);
-        request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::CASTS));
+        request.setUrl(getMovieUrl(id, ApiMovieDetails::CASTS));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -463,7 +470,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
-        request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::TRAILERS));
+        request.setUrl(getMovieUrl(id, ApiMovieDetails::TRAILERS));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -474,7 +481,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     // Images
     if (infos.contains(MovieScraperInfos::Poster) || infos.contains(MovieScraperInfos::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
-        request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::IMAGES));
+        request.setUrl(getMovieUrl(id, ApiMovieDetails::IMAGES));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -485,7 +492,7 @@ void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     // Releases
     if (infos.contains(MovieScraperInfos::Certification)) {
         loadsLeft.append(ScraperData::Releases);
-        request.setUrl(getMovieUrl(ids.values().first(), ApiMovieDetails::RELEASES));
+        request.setUrl(getMovieUrl(id, ApiMovieDetails::RELEASES));
         QNetworkReply *const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -649,8 +656,12 @@ QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &pa
  * @param search Search string. Will be percent encoded.
  * @param arguments A QMap of URL parameters. The values will be percent encoded.
  */
-QUrl TMDb::getMovieUrl(const QString &title, ApiMovieDetails type, const UrlParameterMap &parameters) const
+QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters) const
 {
+    // TMDb ids start with "id".
+    if (movieId.startsWith("id")) {
+        movieId = movieId.mid(2);
+    }
     const auto typeStr = [type]() {
         switch (type) {
         case ApiMovieDetails::INFOS: return QString{};
@@ -658,11 +669,12 @@ QUrl TMDb::getMovieUrl(const QString &title, ApiMovieDetails type, const UrlPara
         case ApiMovieDetails::CASTS: return QStringLiteral("/casts");
         case ApiMovieDetails::TRAILERS: return QStringLiteral("/trailers");
         case ApiMovieDetails::RELEASES: return QStringLiteral("/releases");
-        default: return QString{};
         }
+        return QString{};
     }();
 
-    auto url = QStringLiteral("https://api.themoviedb.org/3/movie/%1%2?").arg(QUrl::toPercentEncoding(title), typeStr);
+    auto url =
+        QStringLiteral("https://api.themoviedb.org/3/movie/%1%2?").arg(QUrl::toPercentEncoding(movieId), typeStr);
     QUrlQuery queries;
     queries.addQueryItem("api_key", TMDb::apiKey());
     queries.addQueryItem("language", localeForTMDb());
@@ -696,6 +708,10 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
     }
 
     // Infos
+    int tmdbId = parsedJson.value("id").toInt(-1);
+    if (tmdbId > -1) {
+        movie->setTmdbId(QString("id%1").arg(tmdbId));
+    }
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
         movie->setId(parsedJson.value("imdb_id").toString());
     }
