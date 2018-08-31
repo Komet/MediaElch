@@ -55,16 +55,23 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
 
         REQUIRE(m.id() == "tt2277860");
+        CHECK(m.tmdbId() == "");
         CHECK(m.name() == "Finding Dory");
         CHECK(m.certification() == "PG");
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17");
-        CHECK(m.rating() == Approx(7).margin(1)); // Finding Dory is rated 7.3 (date: 2018-08-31)
-        CHECK(m.top250() == 0);                   // Movie is not in top 250
-        CHECK_FALSE(m.tagline().isEmpty());       // Tagline may be different on each run
+        // Finding Dory is rated 7.3 (date: 2018-08-31)
+        CHECK(m.rating() == Approx(7).margin(0.5));
+        CHECK(m.votes() > 6300);
+        // Movie is not in top 250
+        CHECK(m.top250() == 0);
+        // Tagline may be different on each run, so we only
+        // check if it is existent.
+        CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
+        CHECK(m.runtime() == 100);
 
-        CHECK_THAT(m.outline(), StartsWith("The friendly but forgetful blue tang fish"));
         CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
+        CHECK_THAT(m.outline(), StartsWith("The friendly but forgetful blue tang fish"));
         CHECK_THAT(m.director(), Contains("Andrew Stanton"));
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
 
@@ -106,12 +113,14 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(m.released().toString("yyyy-MM-dd") == "1994-10-14");
         // "The Shawshank Redemption" is the highest rated IMDb movie
         CHECK(m.rating() == Approx(9.3).margin(0.5));
+        CHECK(m.votes() > 6300);
         CHECK(m.top250() == 1);
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
+        CHECK(m.runtime() == 100);
 
-        CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
         CHECK_THAT(m.overview(), Contains("jailhouse of Shawshank"));
+        CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
         CHECK_THAT(m.director(), Contains("Frank Darabont"));
         CHECK_THAT(m.director(), Contains("Stephen King"));
         CHECK_THAT(m.writer(), Contains("Stephen King"));

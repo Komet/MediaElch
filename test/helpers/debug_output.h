@@ -2,6 +2,7 @@
 #define TEST_DEBUG_OUTPUT
 
 #include <QString>
+#include <QUrl>
 #include <ostream>
 
 inline std::ostream &operator<<(std::ostream &os, const QByteArray &value)
@@ -17,6 +18,11 @@ inline std::ostream &operator<<(std::ostream &os, const QLatin1String &value)
 inline std::ostream &operator<<(std::ostream &os, const QString &value)
 {
     return os << value.toLocal8Bit();
+}
+
+inline std::ostream &operator<<(std::ostream &os, const QUrl &value)
+{
+    return os << value.toDisplayString();
 }
 
 #endif // TEST_DEBUG_OUTPUT
