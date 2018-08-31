@@ -20,14 +20,18 @@ KinoDe::KinoDe(QObject *parent)
                       << MovieScraperInfos::Genres        //
                       << MovieScraperInfos::Released      //
                       << MovieScraperInfos::Countries     //
-                      << MovieScraperInfos::Actors        //
                       << MovieScraperInfos::Certification //
                       << MovieScraperInfos::Runtime       //
                       << MovieScraperInfos::Overview      //
                       << MovieScraperInfos::Backdrop      //
-                      << MovieScraperInfos::Poster        //
-                      << MovieScraperInfos::Director      //
-                      << MovieScraperInfos::Writer;
+                      << MovieScraperInfos::Poster;
+    // Actor, director and writer parsing does not work at the moment.
+    // KinoDe does not provide enough information that we can parse.
+    // We either have cases where the director is recognized as an
+    // actor and vice versa.
+    // << MovieScraperInfos::Actors     //
+    // << MovieScraperInfos::Director      //
+    // << MovieScraperInfos::Writer;
 }
 
 /**
@@ -172,7 +176,8 @@ QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
 void KinoDe::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
-    const QUrl url{QStringLiteral("https://www.kino.de/film/%1/").arg(ids.values().first())};
+    const QString &movieSlug = ids.values().first();
+    const QUrl url{QStringLiteral("https://www.kino.de/film/%1/").arg(movieSlug)};
     QNetworkReply *const reply = m_qnam.get(QNetworkRequest{url});
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -198,7 +203,7 @@ void KinoDe::loadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString html = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(html, *movie, infos);
-        parseAndAssignActors(html, *movie, infos);
+        // parseAndAssignActors(html, *movie, infos);
         parseAndAssignImages(html, *movie, infos);
 
     } else {
@@ -267,14 +272,23 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
         movie.setRuntime(rx.cap(1).trimmed().toInt());
     }
 
-    // Overview
-    // Note: kino.de's HTML is broken. This might change in the future.
-    rx.setPattern(R"(<div class="post-body-teaser"></div>[\s]*<p><p>(.*)</section>)");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        doc.setHtml(rx.cap(1).trimmed());
-        movie.setOverview(doc.toPlainText());
-        if (Settings::instance()->usePlotForOutline()) {
+    if (infos.contains(MovieScraperInfos::Overview)) {
+        // Overview
+        // Note: kino.de's HTML is broken. This might change in the future.
+        rx.setPattern(R"(<p class="movie-plot-synopsis">(.+)</p>)");
+        if (rx.indexIn(html) != -1) {
+            doc.setHtml(rx.cap(1).trimmed());
             movie.setOutline(doc.toPlainText());
+        }
+
+        rx.setPattern(R"(<h2>Handlung von[^<]+</h2>\n *<p>(.*)</p>)");
+        if (rx.indexIn(html) != -1) {
+            doc.setHtml(rx.cap(1).trimmed());
+            movie.setOverview(doc.toPlainText());
+        }
+
+        if (movie.outline().isEmpty() && Settings::instance()->usePlotForOutline()) {
+            movie.setOutline(movie.overview());
         }
     }
 }
@@ -322,10 +336,14 @@ void KinoDe::parseAndAssignActors(const QString &html, Movie &movie, const QList
     }
 
     if (infos.contains(MovieScraperInfos::Actors)) {
-        rx.setPattern(
-            R"re(<img [^"]*src="([^"]+)"[^>]*>\s*<figcaption>\s*<dl>\s*<dt>\s*<small>Darsteller</small>([^<]*)</dt>\s*<dd>([^<]*).*</dd>)re");
+        // Really ugly regex. We may want to switch to DOM parsing...
+        // "src" attribute may either be "src" or "data-pagespeed-lazy-src"
+        rx.setPattern(R"re(<a href="https://www.kino.de/star/[^"]+">\n +<figure>\n +<div class="[_A-z -]*">\n +<img
+    class="product-slide-no-image" [A-z-]*src="([^"]+)"[^>]+/>\n.*</div>\n\n *\n.*\n +<div
+    class="product-slide-headline">\n +([^<]+)</div>)re");
 
         int pos = 0;
+        qWarning() << rx.indexIn(html, pos);
         while ((pos = rx.indexIn(html, pos)) != -1) {
             Actor a;
             a.thumb = !rx.cap(1).contains("platzhalter") ? rx.cap(1) : "";
@@ -347,7 +365,7 @@ void KinoDe::parseAndAssignActors(const QString &html, Movie &movie, const QList
  */
 void KinoDe::parsePoster(const QString &html, Movie &movie)
 {
-    QRegExp rx(R"re(<div class="product-meta product-meta-movie" [^>]*>\s*<figure>\s*<img [^"]*src="([^"]*)")re");
+    QRegExp rx(R"re(<div class="product-meta product-meta-movie[^"]*" [^>]*>\s*<figure>\s*<img [^"]*src="([^"]*)")re");
     rx.setMinimal(true);
 
     if (rx.indexIn(html) != -1 && !rx.cap(1).contains("platzhalter")) {
