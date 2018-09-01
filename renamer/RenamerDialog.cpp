@@ -1,4 +1,4 @@
-#include "Renamer.h"
+#include "renamer/RenamerDialog.h"
 #include "ui_Renamer.h"
 
 #include <QDir>

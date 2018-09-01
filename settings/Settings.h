@@ -7,7 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 

@@ -12,7 +12,7 @@
 #include "globals/Globals.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
