@@ -12,14 +12,24 @@
  * @brief VideoBuster::VideoBuster
  * @param parent
  */
-VideoBuster::VideoBuster(QObject *parent)
+VideoBuster::VideoBuster(QObject *parent) :
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Countries,
+        MovieScraperInfos::Certification,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Rating,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Tagline,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Tags,
+        MovieScraperInfos::Director}
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title << MovieScraperInfos::Released << MovieScraperInfos::Countries
-                      << MovieScraperInfos::Certification << MovieScraperInfos::Actors << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Runtime << MovieScraperInfos::Rating << MovieScraperInfos::Genres
-                      << MovieScraperInfos::Tagline << MovieScraperInfos::Overview << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Backdrop << MovieScraperInfos::Tags << MovieScraperInfos::Director;
 }
 
 /**
@@ -137,7 +147,6 @@ void VideoBuster::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, 
     movie->clear(infos);
 
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
-    qDebug() << url;
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -211,9 +220,15 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
     }
 
     // MPAA
-    rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
-    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+    if (infos.contains(MovieScraperInfos::Certification)) {
+        rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
+        if (rx.indexIn(html) != -1) {
+            movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+        }
+        rx.setPattern("Freigegeben ohne Altersbeschränkung");
+        if (movie->certification().isEmpty() && rx.indexIn(html) != -1) {
+            movie->setCertification(Helper::instance()->mapCertification("FSK 0"));
+        }
     }
 
     // Actors

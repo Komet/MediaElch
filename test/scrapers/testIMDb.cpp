@@ -68,7 +68,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         // check if it is existent.
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 100);
+        CHECK(m.runtime() == 97);
 
         CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
         CHECK_THAT(m.outline(), StartsWith("The friendly but forgetful blue tang fish"));
@@ -117,7 +117,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(m.top250() == 1);
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 100);
+        CHECK(m.runtime() == 142);
 
         CHECK_THAT(m.overview(), Contains("jailhouse of Shawshank"));
         CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
