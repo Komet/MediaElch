@@ -1,7 +1,7 @@
 #ifndef RENAMERPLACEHOLDERS_H
 #define RENAMERPLACEHOLDERS_H
 
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 
 #include <QWidget>
 

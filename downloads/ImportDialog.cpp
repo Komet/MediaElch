@@ -10,7 +10,7 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "notifications/Notificator.h"
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 
 ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImportDialog)

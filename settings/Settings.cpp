@@ -8,7 +8,7 @@
 
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 
 /**
  * @brief Settings::Settings

@@ -14,7 +14,7 @@
 #include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
-#include "renamer/Renamer.h"
+#include "renamer/RenamerDialog.h"
 
 namespace Ui {
 class ImportDialog;

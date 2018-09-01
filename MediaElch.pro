@@ -143,7 +143,7 @@ SOURCES += main.cpp \
     tvShows/TvShowWidgetSeason.cpp \
     smallWidgets/ImageGallery.cpp \
     smallWidgets/ClosableImage.cpp \
-    renamer/Renamer.cpp \
+    renamer/RenamerDialog.cpp \
     smallWidgets/MySpinBox.cpp \
     settings/AdvancedSettings.cpp \
     smallWidgets/AlphabeticalList.cpp \
@@ -314,7 +314,7 @@ HEADERS  += Version.h \
     tvShows/TvShowWidgetSeason.h \
     smallWidgets/ImageGallery.h \
     smallWidgets/ClosableImage.h \
-    renamer/Renamer.h \
+    renamer/RenamerDialog.h \
     smallWidgets/MySpinBox.h \
     settings/AdvancedSettings.h \
     smallWidgets/AlphabeticalList.h \
@@ -423,7 +423,7 @@ FORMS    += main/MainWindow.ui \
     movies/MovieMultiScrapeDialog.ui \
     smallWidgets/TagCloud.ui \
     tvShows/TvShowWidgetSeason.ui \
-    renamer/Renamer.ui \
+    renamer/RenamerDialog.ui \
     tvShows/TvTunesDialog.ui \
     settings/SettingsWindow.ui \
     settings/ExportTemplateWidget.ui \
