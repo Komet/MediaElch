@@ -38,6 +38,7 @@
  - ADE search does not return results (#565)
  - backdrop not loaded using ADE (#519)
  - adult scrapers broken (#367)
+ - VideoBuster does not load certification in special cases (#571)
  - *fanart.tv* music scraper broken
  - Placeholder `<showTitle>` does not work for renaming season folders (#553)
 
