@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
     m_xbmcSync = new XbmcSync(this);
-    m_renamer = new Renamer(this);
+    m_renamer = new RenamerDialog(this);
     m_settings = Settings::instance(this);
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
@@ -196,7 +196,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(m_xbmcSync, &XbmcSync::sigTriggerReload, this, &MainWindow::onTriggerReloadAll);
     connect(m_xbmcSync, &XbmcSync::sigFinished,      this, &MainWindow::onXbmcSyncFinished);
 
-    connect(m_renamer, &Renamer::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
+    connect(m_renamer, &RenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
 
     connect(m_settingsWindow, &SettingsWindow::sigSaved, this, &MainWindow::onRenewModels, Qt::QueuedConnection);
 
@@ -454,14 +454,14 @@ void MainWindow::onActionReload()
 void MainWindow::onActionRename()
 {
     if (ui->stackedWidget->currentIndex() == 0) {
-        m_renamer->setRenameType(Renamer::RenameType::Movies);
+        m_renamer->setRenameType(RenamerDialog::RenameType::Movies);
         m_renamer->setMovies(ui->filesWidget->selectedMovies());
     } else if (ui->stackedWidget->currentIndex() == 1) {
-        m_renamer->setRenameType(Renamer::RenameType::TvShows);
+        m_renamer->setRenameType(RenamerDialog::RenameType::TvShows);
         m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
         m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
     } else if (ui->stackedWidget->currentIndex() == 3) {
-        m_renamer->setRenameType(Renamer::RenameType::Concerts);
+        m_renamer->setRenameType(RenamerDialog::RenameType::Concerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
     } else {
         return;
@@ -628,26 +628,26 @@ void MainWindow::onXbmcSyncFinished()
     ui->concertFilesWidget->concertSelectedEmitter();
 }
 
-void MainWindow::onFilesRenamed(Renamer::RenameType type)
+void MainWindow::onFilesRenamed(RenamerDialog::RenameType type)
 {
     if (m_renamer->renameErrorOccured()) {
         m_fileScannerDialog->setForceReload(true);
-        if (type == Renamer::RenameType::Movies) {
+        if (type == RenamerDialog::RenameType::Movies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-        } else if (type == Renamer::RenameType::Concerts) {
+        } else if (type == RenamerDialog::RenameType::Concerts) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-        } else if (type == Renamer::RenameType::TvShows) {
+        } else if (type == RenamerDialog::RenameType::TvShows) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-        } else if (type == Renamer::RenameType::All) {
+        } else if (type == RenamerDialog::RenameType::All) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
         }
         m_fileScannerDialog->exec();
     } else {
-        if (type == Renamer::RenameType::Movies) {
+        if (type == RenamerDialog::RenameType::Movies) {
             ui->movieWidget->updateMovieInfo();
-        } else if (type == Renamer::RenameType::Concerts) {
+        } else if (type == RenamerDialog::RenameType::Concerts) {
             ui->concertWidget->updateConcertInfo();
-        } else if (type == Renamer::RenameType::TvShows) {
+        } else if (type == RenamerDialog::RenameType::TvShows) {
             ui->tvShowWidget->updateInfo();
         }
     }

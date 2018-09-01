@@ -1118,16 +1118,16 @@ void Settings::setDownloadActorImages(bool download)
     m_downloadActorImages = download;
 }
 
-void Settings::renamePatterns(Renamer::RenameType renameType,
+void Settings::renamePatterns(RenamerDialog::RenameType renameType,
     QString &fileNamePattern,
     QString &fileNamePatternMulti,
     QString &directoryPattern,
     QString &seasonPattern)
 {
-    const QString renameTypeStr = Renamer::typeToString(renameType);
+    const QString renameTypeStr = RenamerDialog::typeToString(renameType);
     QString fileNamePatternDefault = "<title>.<extension>";
     QString fileNamePatternMultiDefault = "<title>-part<partNo>.<extension>";
-    if (renameType == Renamer::RenameType::TvShows) {
+    if (renameType == RenamerDialog::RenameType::TvShows) {
         fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
         fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
     }
@@ -1144,30 +1144,30 @@ void Settings::renamePatterns(Renamer::RenameType renameType,
         settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), "Season <season>").toString();
 }
 
-void Settings::setRenamePatterns(Renamer::RenameType renameType,
+void Settings::setRenamePatterns(RenamerDialog::RenameType renameType,
     QString fileNamePattern,
     QString fileNamePatternMulti,
     QString directoryPattern,
     QString seasonPattern)
 {
-    const QString renameTypeStr = Renamer::typeToString(renameType);
+    const QString renameTypeStr = RenamerDialog::typeToString(renameType);
     settings()->setValue(QString("RenamePattern/%1/FileName").arg(renameTypeStr), fileNamePattern);
     settings()->setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameTypeStr), fileNamePatternMulti);
     settings()->setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameTypeStr), directoryPattern);
     settings()->setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), seasonPattern);
 }
 
-void Settings::setRenamings(Renamer::RenameType renameType, bool files, bool folders, bool seasonDirectories)
+void Settings::setRenamings(RenamerDialog::RenameType renameType, bool files, bool folders, bool seasonDirectories)
 {
-    const QString renameTypeStr = Renamer::typeToString(renameType);
+    const QString renameTypeStr = RenamerDialog::typeToString(renameType);
     settings()->setValue(QString("RenamePattern/%1/RenameFiles").arg(renameTypeStr), files);
     settings()->setValue(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), folders);
     settings()->setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameTypeStr), seasonDirectories);
 }
 
-void Settings::renamings(Renamer::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories)
+void Settings::renamings(RenamerDialog::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories)
 {
-    const QString renameTypeStr = Renamer::typeToString(renameType);
+    const QString renameTypeStr = RenamerDialog::typeToString(renameType);
     files = settings()->value(QString("RenamePattern/%1/RenameFiles").arg(renameTypeStr), true).toBool();
     folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), true).toBool();
     seasonDirectories =

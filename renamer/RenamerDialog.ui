@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Renamer</class>
- <widget class="QDialog" name="Renamer">
+ <class>RenamerDialog</class>
+ <widget class="QDialog" name="RenamerDialog">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -340,7 +340,7 @@ p, li { white-space: pre-wrap; }
   <connection>
    <sender>btnClose</sender>
    <signal>clicked()</signal>
-   <receiver>Renamer</receiver>
+   <receiver>RenamerDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

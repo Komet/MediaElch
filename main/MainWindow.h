@@ -58,7 +58,7 @@ private slots:
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onXbmcSyncFinished();
-    void onFilesRenamed(Renamer::RenameType type = Renamer::RenameType::All);
+    void onFilesRenamed(RenamerDialog::RenameType type = RenamerDialog::RenameType::All);
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
     void updateTvShows();
@@ -72,7 +72,7 @@ private:
     FileScannerDialog *m_fileScannerDialog;
     ExportDialog *m_exportDialog;
     XbmcSync *m_xbmcSync;
-    Renamer *m_renamer;
+    RenamerDialog *m_renamer;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionXbmc;
