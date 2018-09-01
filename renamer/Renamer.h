@@ -14,6 +14,16 @@ namespace Ui {
 class Renamer;
 }
 
+struct RenamerConfig
+{
+    QString filePattern;
+    QString filePatternMulti;
+    QString directoryPattern;
+    bool renameFiles = false;
+    bool renameDirectories = false;
+    bool dryRun = false;
+};
+
 class Renamer : public QDialog
 {
     Q_OBJECT
@@ -81,27 +91,9 @@ private:
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
 
-    void renameMovies(QList<Movie *> movies,
-        const QString &filePattern,
-        const QString &filePatternMulti,
-        const QString &directoryPattern,
-        const bool &renameFiles,
-        const bool &renameDirectories,
-        const bool &dryRun = false);
-    void renameConcerts(QList<Concert *> concerts,
-        const QString &filePattern,
-        const QString &filePatternMulti,
-        const QString &directoryPattern,
-        const bool &renameFiles,
-        const bool &renameDirectories,
-        const bool &dryRun = false);
-    void renameEpisodes(QList<TvShowEpisode *> episodes,
-        const QString &filePattern,
-        const QString &filePatternMulti,
-        const QString &seasonPattern,
-        const bool &renameFiles,
-        const bool &useSeasonDirectories,
-        const bool &dryRun = false);
+    void renameMovies(QList<Movie *> movies, const RenamerConfig &config);
+    void renameConcerts(QList<Concert *> concerts, const RenamerConfig &config);
+    void renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config);
     void renameShows(QList<TvShow *> shows,
         const QString &directoryPattern,
         const bool &renameDirectories,
