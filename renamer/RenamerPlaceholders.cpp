@@ -13,9 +13,9 @@ RenamerPlaceholders::~RenamerPlaceholders()
     delete ui;
 }
 
-void RenamerPlaceholders::setType(Renamer::RenameType renameType)
+void RenamerPlaceholders::setType(RenamerDialog::RenameType renameType)
 {
-    using Type = Renamer::RenameType;
+    using Type = RenamerDialog::RenameType;
 
     for (const auto label : ui->groupBox->findChildren<QLabel *>()) {
         const auto itemTypes = label->property("itemTypes").toStringList();

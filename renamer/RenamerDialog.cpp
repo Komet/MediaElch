@@ -1,5 +1,5 @@
 #include "renamer/RenamerDialog.h"
-#include "ui_Renamer.h"
+#include "ui_RenamerDialog.h"
 
 #include <QDir>
 #include <QFile>
@@ -8,7 +8,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
+RenamerDialog::RenamerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::RenamerDialog)
 {
     ui->setupUi(this);
 
@@ -20,11 +20,11 @@ Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
     ui->resultsTable->setFont(font);
 #endif
 
-    connect(ui->chkDirectoryNaming, &QCheckBox::stateChanged, this, &Renamer::onChkRenameDirectories);
-    connect(ui->chkFileNaming, &QCheckBox::stateChanged, this, &Renamer::onChkRenameFiles);
-    connect(ui->chkSeasonDirectories, &QCheckBox::stateChanged, this, &Renamer::onChkUseSeasonDirectories);
-    connect(ui->btnDryRun, &QAbstractButton::clicked, this, &Renamer::onDryRun);
-    connect(ui->btnRename, &QAbstractButton::clicked, this, &Renamer::onRename);
+    connect(ui->chkDirectoryNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameDirectories);
+    connect(ui->chkFileNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameFiles);
+    connect(ui->chkSeasonDirectories, &QCheckBox::stateChanged, this, &RenamerDialog::onChkUseSeasonDirectories);
+    connect(ui->btnDryRun, &QAbstractButton::clicked, this, &RenamerDialog::onDryRun);
+    connect(ui->btnRename, &QAbstractButton::clicked, this, &RenamerDialog::onRename);
 
     onChkRenameDirectories();
     onChkRenameFiles();
@@ -37,12 +37,12 @@ Renamer::Renamer(QWidget *parent) : QDialog(parent), ui(new Ui::Renamer)
                                     "RenamingFiles.md</a>"));
 }
 
-Renamer::~Renamer()
+RenamerDialog::~RenamerDialog()
 {
     delete ui;
 }
 
-int Renamer::exec()
+int RenamerDialog::exec()
 {
     m_filesRenamed = false;
     m_renameErrorOccured = false;
@@ -92,7 +92,7 @@ int Renamer::exec()
     return QDialog::exec();
 }
 
-void Renamer::reject()
+void RenamerDialog::reject()
 {
     m_movies.clear();
     m_concerts.clear();
@@ -111,62 +111,62 @@ void Renamer::reject()
 
     QDialog::reject();
     if (m_filesRenamed) {
-        QTimer::singleShot(0, this, &Renamer::onRenamed);
+        QTimer::singleShot(0, this, &RenamerDialog::onRenamed);
     }
 }
 
-void Renamer::onRenamed()
+void RenamerDialog::onRenamed()
 {
     emit sigFilesRenamed(m_renameType);
 }
 
-bool Renamer::renameErrorOccured() const
+bool RenamerDialog::renameErrorOccured() const
 {
     return m_renameErrorOccured;
 }
 
-void Renamer::setMovies(QList<Movie *> movies)
+void RenamerDialog::setMovies(QList<Movie *> movies)
 {
     m_movies = movies;
 }
 
-void Renamer::setConcerts(QList<Concert *> concerts)
+void RenamerDialog::setConcerts(QList<Concert *> concerts)
 {
     m_concerts = concerts;
 }
 
-void Renamer::setShows(QList<TvShow *> shows)
+void RenamerDialog::setShows(QList<TvShow *> shows)
 {
     m_shows = shows;
 }
 
-void Renamer::setEpisodes(QList<TvShowEpisode *> episodes)
+void RenamerDialog::setEpisodes(QList<TvShowEpisode *> episodes)
 {
     m_episodes = episodes;
 }
 
-void Renamer::setRenameType(RenameType type)
+void RenamerDialog::setRenameType(RenameType type)
 {
     m_renameType = type;
 }
 
-void Renamer::onChkRenameDirectories()
+void RenamerDialog::onChkRenameDirectories()
 {
     ui->directoryNaming->setEnabled(ui->chkDirectoryNaming->isChecked());
 }
 
-void Renamer::onChkRenameFiles()
+void RenamerDialog::onChkRenameFiles()
 {
     ui->fileNaming->setEnabled(ui->chkFileNaming->isChecked());
     ui->fileNamingMulti->setEnabled(ui->chkFileNaming->isChecked());
 }
 
-void Renamer::onChkUseSeasonDirectories()
+void RenamerDialog::onChkUseSeasonDirectories()
 {
     ui->seasonNaming->setEnabled(ui->chkSeasonDirectories->isChecked());
 }
 
-void Renamer::onRename()
+void RenamerDialog::onRename()
 {
     ui->tabWidget->setCurrentIndex(1);
     ui->results->clear();
@@ -200,7 +200,7 @@ void Renamer::onRename()
     ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
 }
 
-void Renamer::onDryRun()
+void RenamerDialog::onDryRun()
 {
     ui->tabWidget->setCurrentIndex(1);
     ui->results->clear();
@@ -231,7 +231,7 @@ void Renamer::onDryRun()
     ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
 }
 
-void Renamer::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
+void RenamerDialog::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
 {
     if ((config.renameFiles && config.filePattern.isEmpty())
         || (config.renameDirectories && config.directoryPattern.isEmpty())) {
@@ -284,23 +284,24 @@ void Renamer::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
                 QFileInfo fi(file);
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
-                Renamer::replace(newFileName, "title", movie->name());
-                Renamer::replace(newFileName, "originalTitle", movie->originalName());
-                Renamer::replace(newFileName, "sortTitle", movie->sortTitle());
-                Renamer::replace(newFileName, "year", movie->released().toString("yyyy"));
-                Renamer::replace(newFileName, "extension", fi.suffix());
-                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
-                Renamer::replace(newFileName, "videoCodec", movie->streamDetails()->videoCodec());
-                Renamer::replace(newFileName, "audioCodec", movie->streamDetails()->audioCodec());
-                Renamer::replace(newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName,
+                RenamerDialog::replace(newFileName, "title", movie->name());
+                RenamerDialog::replace(newFileName, "originalTitle", movie->originalName());
+                RenamerDialog::replace(newFileName, "sortTitle", movie->sortTitle());
+                RenamerDialog::replace(newFileName, "year", movie->released().toString("yyyy"));
+                RenamerDialog::replace(newFileName, "extension", fi.suffix());
+                RenamerDialog::replace(newFileName, "partNo", QString::number(++partNo));
+                RenamerDialog::replace(newFileName, "videoCodec", movie->streamDetails()->videoCodec());
+                RenamerDialog::replace(newFileName, "audioCodec", movie->streamDetails()->audioCodec());
+                RenamerDialog::replace(
+                    newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
+                RenamerDialog::replace(newFileName,
                     "resolution",
                     Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-                Renamer::replaceCondition(newFileName, "imdbId", movie->id());
-                Renamer::replaceCondition(newFileName, "movieset", movie->set());
-                Renamer::replaceCondition(
+                RenamerDialog::replaceCondition(newFileName, "imdbId", movie->id());
+                RenamerDialog::replaceCondition(newFileName, "movieset", movie->set());
+                RenamerDialog::replaceCondition(
                     newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
@@ -455,25 +456,25 @@ void Renamer::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
         const auto videoDetails = movie->streamDetails()->videoDetails();
         // rename dir for already existe films dir
         if (config.renameDirectories && movie->inSeparateFolder()) {
-            Renamer::replace(newFolderName, "title", movie->name());
-            Renamer::replace(newFolderName, "extension", extension);
-            Renamer::replace(newFolderName, "originalTitle", movie->originalName());
-            Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
-            Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
-            Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
-            Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
-            Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName,
+            RenamerDialog::replace(newFolderName, "title", movie->name());
+            RenamerDialog::replace(newFolderName, "extension", extension);
+            RenamerDialog::replace(newFolderName, "originalTitle", movie->originalName());
+            RenamerDialog::replace(newFolderName, "sortTitle", movie->sortTitle());
+            RenamerDialog::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            RenamerDialog::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
+            RenamerDialog::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
+            RenamerDialog::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
+            RenamerDialog::replace(newFolderName,
                 "resolution",
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(
+            RenamerDialog::replaceCondition(newFolderName, "bluray", isBluRay);
+            RenamerDialog::replaceCondition(newFolderName, "dvd", isDvd);
+            RenamerDialog::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Renamer::replaceCondition(newFolderName, "movieset", movie->set());
-            Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
+            RenamerDialog::replaceCondition(newFolderName, "movieset", movie->set());
+            RenamerDialog::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName) {
                 renameRow = addResult(dir.dirName(), newFolderName, RenameOperation::Rename);
@@ -481,25 +482,25 @@ void Renamer::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
         }
         // create dir for new dir structure
         else if (config.renameDirectories) {
-            Renamer::replace(newFolderName, "title", movie->name());
-            Renamer::replace(newFolderName, "extension", extension);
-            Renamer::replace(newFolderName, "originalTitle", movie->originalName());
-            Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
-            Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
-            Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
-            Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
-            Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName,
+            RenamerDialog::replace(newFolderName, "title", movie->name());
+            RenamerDialog::replace(newFolderName, "extension", extension);
+            RenamerDialog::replace(newFolderName, "originalTitle", movie->originalName());
+            RenamerDialog::replace(newFolderName, "sortTitle", movie->sortTitle());
+            RenamerDialog::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            RenamerDialog::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
+            RenamerDialog::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
+            RenamerDialog::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
+            RenamerDialog::replace(newFolderName,
                 "resolution",
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(
+            RenamerDialog::replaceCondition(newFolderName, "bluray", isBluRay);
+            RenamerDialog::replaceCondition(newFolderName, "dvd", isDvd);
+            RenamerDialog::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Renamer::replaceCondition(newFolderName, "movieset", movie->set());
-            Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
+            RenamerDialog::replaceCondition(newFolderName, "movieset", movie->set());
+            RenamerDialog::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
 
             if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
@@ -572,7 +573,7 @@ void Renamer::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
     }
 }
 
-void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config)
+void RenamerDialog::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config)
 {
     if (config.renameFiles && config.filePattern.isEmpty()) {
         return;
@@ -636,21 +637,22 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfi
                 QFileInfo fi(file);
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
-                Renamer::replace(newFileName, "title", episode->name());
-                Renamer::replace(newFileName, "showTitle", episode->showTitle());
-                Renamer::replace(newFileName, "year", episode->firstAired().toString("yyyy"));
-                Renamer::replace(newFileName, "extension", fi.suffix());
-                Renamer::replace(newFileName, "season", episode->seasonString());
-                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
-                Renamer::replace(newFileName, "videoCodec", episode->streamDetails()->videoCodec());
-                Renamer::replace(newFileName, "audioCodec", episode->streamDetails()->audioCodec());
-                Renamer::replace(newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName,
+                RenamerDialog::replace(newFileName, "title", episode->name());
+                RenamerDialog::replace(newFileName, "showTitle", episode->showTitle());
+                RenamerDialog::replace(newFileName, "year", episode->firstAired().toString("yyyy"));
+                RenamerDialog::replace(newFileName, "extension", fi.suffix());
+                RenamerDialog::replace(newFileName, "season", episode->seasonString());
+                RenamerDialog::replace(newFileName, "partNo", QString::number(++partNo));
+                RenamerDialog::replace(newFileName, "videoCodec", episode->streamDetails()->videoCodec());
+                RenamerDialog::replace(newFileName, "audioCodec", episode->streamDetails()->audioCodec());
+                RenamerDialog::replace(
+                    newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
+                RenamerDialog::replace(newFileName,
                     "resolution",
                     Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-                Renamer::replaceCondition(
+                RenamerDialog::replaceCondition(
                     newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
                 if (multiEpisodes.count() > 1) {
@@ -658,9 +660,9 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfi
                     foreach (TvShowEpisode *subEpisode, multiEpisodes)
                         episodeStrings.append(subEpisode->episodeString());
                     qSort(episodeStrings);
-                    Renamer::replace(newFileName, "episode", episodeStrings.join("-"));
+                    RenamerDialog::replace(newFileName, "episode", episodeStrings.join("-"));
                 } else {
-                    Renamer::replace(newFileName, "episode", episode->episodeString());
+                    RenamerDialog::replace(newFileName, "episode", episode->episodeString());
                 }
 
                 Helper::instance()->sanitizeFileName(newFileName);
@@ -748,8 +750,8 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfi
         if (useSeasonDirectories) {
             QDir showDir(episode->tvShow()->dir());
             QString seasonDirName = seasonPattern;
-            Renamer::replace(seasonDirName, "season", episode->seasonString());
-            Renamer::replace(seasonDirName, "showTitle", episode->showTitle());
+            RenamerDialog::replace(seasonDirName, "season", episode->seasonString());
+            RenamerDialog::replace(seasonDirName, "showTitle", episode->showTitle());
             Helper::instance()->sanitizeFileName(seasonDirName);
             QDir seasonDir(showDir.path() + "/" + seasonDirName);
             if (!seasonDir.exists()) {
@@ -827,7 +829,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfi
     }
 }
 
-void Renamer::renameShows(QList<TvShow *> shows,
+void RenamerDialog::renameShows(QList<TvShow *> shows,
     const QString &directoryPattern,
     const bool &renameDirectories,
     const bool &dryRun)
@@ -844,9 +846,9 @@ void Renamer::renameShows(QList<TvShow *> shows,
 
         QDir dir(show->dir());
         QString newFolderName = directoryPattern;
-        Renamer::replace(newFolderName, "title", show->name());
-        Renamer::replace(newFolderName, "showTitle", show->name());
-        Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
+        RenamerDialog::replace(newFolderName, "title", show->name());
+        RenamerDialog::replace(newFolderName, "showTitle", show->name());
+        RenamerDialog::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         Helper::instance()->sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {
             int row = addResult(dir.dirName(), newFolderName, RenameOperation::Rename);
@@ -874,7 +876,7 @@ void Renamer::renameShows(QList<TvShow *> shows,
     }
 }
 
-void Renamer::renameConcerts(QList<Concert *> concerts, const RenamerConfig &config)
+void RenamerDialog::renameConcerts(QList<Concert *> concerts, const RenamerConfig &config)
 {
     if ((config.renameFiles && config.filePattern.isEmpty())
         || (config.renameDirectories && config.directoryPattern.isEmpty())) {
@@ -928,21 +930,22 @@ void Renamer::renameConcerts(QList<Concert *> concerts, const RenamerConfig &con
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
 
-                Renamer::replace(newFileName, "title", concert->name());
-                Renamer::replace(newFileName, "artist", concert->artist());
-                Renamer::replace(newFileName, "album", concert->album());
-                Renamer::replace(newFileName, "year", concert->released().toString("yyyy"));
-                Renamer::replace(newFileName, "extension", fi.suffix());
-                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
-                Renamer::replace(newFileName, "videoCodec", concert->streamDetails()->videoCodec());
-                Renamer::replace(newFileName, "audioCodec", concert->streamDetails()->audioCodec());
-                Renamer::replace(newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
-                Renamer::replace(newFileName,
+                RenamerDialog::replace(newFileName, "title", concert->name());
+                RenamerDialog::replace(newFileName, "artist", concert->artist());
+                RenamerDialog::replace(newFileName, "album", concert->album());
+                RenamerDialog::replace(newFileName, "year", concert->released().toString("yyyy"));
+                RenamerDialog::replace(newFileName, "extension", fi.suffix());
+                RenamerDialog::replace(newFileName, "partNo", QString::number(++partNo));
+                RenamerDialog::replace(newFileName, "videoCodec", concert->streamDetails()->videoCodec());
+                RenamerDialog::replace(newFileName, "audioCodec", concert->streamDetails()->audioCodec());
+                RenamerDialog::replace(
+                    newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
+                RenamerDialog::replace(newFileName,
                     "resolution",
                     Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                         videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-                Renamer::replaceCondition(
+                RenamerDialog::replaceCondition(
                     newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
@@ -1022,18 +1025,19 @@ void Renamer::renameConcerts(QList<Concert *> concerts, const RenamerConfig &con
         int renameRow = -1;
         if (config.renameDirectories && concert->inSeparateFolder()) {
             const auto videoDetails = concert->streamDetails()->videoDetails();
-            Renamer::replace(newFolderName, "title", concert->name());
-            Renamer::replace(newFolderName, "artist", concert->artist());
-            Renamer::replace(newFolderName, "album", concert->album());
-            Renamer::replace(newFolderName, "year", concert->released().toString("yyyy"));
-            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-            Renamer::replaceCondition(
+            RenamerDialog::replace(newFolderName, "title", concert->name());
+            RenamerDialog::replace(newFolderName, "artist", concert->artist());
+            RenamerDialog::replace(newFolderName, "album", concert->album());
+            RenamerDialog::replace(newFolderName, "year", concert->released().toString("yyyy"));
+            RenamerDialog::replaceCondition(newFolderName, "bluray", isBluRay);
+            RenamerDialog::replaceCondition(newFolderName, "dvd", isDvd);
+            RenamerDialog::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Renamer::replace(newFolderName, "videoCodec", concert->streamDetails()->videoCodec());
-            Renamer::replace(newFolderName, "audioCodec", concert->streamDetails()->audioCodec());
-            Renamer::replace(newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
-            Renamer::replace(newFolderName,
+            RenamerDialog::replace(newFolderName, "videoCodec", concert->streamDetails()->videoCodec());
+            RenamerDialog::replace(newFolderName, "audioCodec", concert->streamDetails()->audioCodec());
+            RenamerDialog::replace(
+                newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
+            RenamerDialog::replace(newFolderName,
                 "resolution",
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
@@ -1077,7 +1081,7 @@ void Renamer::renameConcerts(QList<Concert *> concerts, const RenamerConfig &con
     }
 }
 
-bool Renamer::rename(const QString &file, const QString &newName)
+bool RenamerDialog::rename(const QString &file, const QString &newName)
 {
     QFile f(file);
     if (!f.exists()) {
@@ -1099,7 +1103,7 @@ bool Renamer::rename(const QString &file, const QString &newName)
     }
 }
 
-bool Renamer::rename(QDir &dir, QString newName)
+bool RenamerDialog::rename(QDir &dir, QString newName)
 {
     if (QString::compare(dir.path(), newName, Qt::CaseInsensitive) == 0) {
         QDir tmpDir;
@@ -1113,26 +1117,26 @@ bool Renamer::rename(QDir &dir, QString newName)
     }
 }
 
-QString Renamer::replace(QString &text, const QString &search, const QString &replace)
+QString RenamerDialog::replace(QString &text, const QString &search, const QString &replace)
 {
     text.replace("<" + search + ">", replace);
     return text;
 }
 
-QString Renamer::replaceCondition(QString &text, const QString &condition, const QString &replace)
+QString RenamerDialog::replaceCondition(QString &text, const QString &condition, const QString &replace)
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
     if (rx.indexIn(text) == -1) {
-        return Renamer::replace(text, condition, replace);
+        return RenamerDialog::replace(text, condition, replace);
     }
 
     QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
     text.replace(search, !replace.isEmpty() ? rx.cap(1) : "");
-    return Renamer::replace(text, condition, replace);
+    return RenamerDialog::replace(text, condition, replace);
 }
 
-QString Renamer::replaceCondition(QString &text, const QString &condition, bool hasCondition)
+QString RenamerDialog::replaceCondition(QString &text, const QString &condition, bool hasCondition)
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
@@ -1145,19 +1149,19 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, bool 
     return text;
 }
 
-QString Renamer::typeToString(Renamer::RenameType type)
+QString RenamerDialog::typeToString(RenamerDialog::RenameType type)
 {
     switch (type) {
-    case Renamer::RenameType::All: return "All";
-    case Renamer::RenameType::Movies: return "Movies";
-    case Renamer::RenameType::Concerts: return "Concerts";
-    case Renamer::RenameType::TvShows: return "TvShows";
+    case RenamerDialog::RenameType::All: return "All";
+    case RenamerDialog::RenameType::Movies: return "Movies";
+    case RenamerDialog::RenameType::Concerts: return "Concerts";
+    case RenamerDialog::RenameType::TvShows: return "TvShows";
     }
     qWarning() << "Unknown RenamerType";
     return "unknown";
 }
 
-int Renamer::addResult(const QString &oldFileName, const QString &newFileName, RenameOperation operation)
+int RenamerDialog::addResult(const QString &oldFileName, const QString &newFileName, RenameOperation operation)
 {
     QString opString;
     switch (operation) {
@@ -1179,7 +1183,7 @@ int Renamer::addResult(const QString &oldFileName, const QString &newFileName, R
     return row;
 }
 
-void Renamer::setResultStatus(int row, RenameResult result)
+void RenamerDialog::setResultStatus(int row, RenameResult result)
 {
     for (int col = 0, n = ui->resultsTable->columnCount(); col < n; ++col) {
         if (result == RenameResult::Failed) {

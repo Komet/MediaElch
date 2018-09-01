@@ -1,5 +1,5 @@
-#ifndef RENAMER_H
-#define RENAMER_H
+#ifndef RENAMER_DIALOG_H
+#define RENAMER_DIALOG_H
 
 #include <QDialog>
 #include <QDir>
@@ -11,7 +11,7 @@
 #include "data/TvShowEpisode.h"
 
 namespace Ui {
-class Renamer;
+class RenamerDialog;
 }
 
 struct RenamerConfig
@@ -24,7 +24,7 @@ struct RenamerConfig
     bool dryRun = false;
 };
 
-class Renamer : public QDialog
+class RenamerDialog : public QDialog
 {
     Q_OBJECT
 
@@ -48,8 +48,8 @@ public:
         Rename
     };
 
-    explicit Renamer(QWidget *parent = nullptr);
-    ~Renamer() override;
+    explicit RenamerDialog(QWidget *parent = nullptr);
+    ~RenamerDialog() override;
     void setMovies(QList<Movie *> movies);
     void setConcerts(QList<Concert *> concerts);
     void setShows(QList<TvShow *> shows);
@@ -69,7 +69,7 @@ public slots:
     void reject() override;
 
 signals:
-    void sigFilesRenamed(Renamer::RenameType);
+    void sigFilesRenamed(RenamerDialog::RenameType);
 
 private slots:
     void onRename();
@@ -80,7 +80,7 @@ private slots:
     void onRenamed();
 
 private:
-    Ui::Renamer *ui;
+    Ui::RenamerDialog *ui;
 
     QList<Movie *> m_movies;
     QList<Concert *> m_concerts;
@@ -105,4 +105,4 @@ private:
     void setResultStatus(int row, RenameResult result);
 };
 
-#endif // RENAMER_H
+#endif // RENAMER_DIALOG_H

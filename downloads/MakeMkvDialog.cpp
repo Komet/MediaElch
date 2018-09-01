@@ -115,14 +115,14 @@ void MakeMkvDialog::storeDefaults()
     QString directoryName;
     QString seasonName;
     Settings::instance()->renamePatterns(
-        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
+        RenamerDialog::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
 
     fileName = ui->fileNaming->text();
     fileNameMulti = ui->multiFileNaming->text();
     directoryName = ui->directoryNaming->text();
 
     Settings::instance()->setRenamePatterns(
-        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
+        RenamerDialog::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
 }
 
 void MakeMkvDialog::setDefaults()
@@ -132,7 +132,7 @@ void MakeMkvDialog::setDefaults()
     QString directoryName;
     QString seasonName;
     Settings::instance()->renamePatterns(
-        Renamer::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
+        RenamerDialog::RenameType::Movies, fileName, fileNameMulti, directoryName, seasonName);
     ui->fileNaming->setText(fileName);
     ui->multiFileNaming->setText(fileNameMulti);
     ui->directoryNaming->setText(directoryName);

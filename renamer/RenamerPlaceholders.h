@@ -16,7 +16,7 @@ class RenamerPlaceholders : public QWidget
 public:
     explicit RenamerPlaceholders(QWidget *parent = nullptr);
     ~RenamerPlaceholders() override;
-    void setType(Renamer::RenameType renameType);
+    void setType(RenamerDialog::RenameType renameType);
 
 private:
     Ui::RenamerPlaceholders *ui;
