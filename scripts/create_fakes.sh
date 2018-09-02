@@ -22,7 +22,7 @@ while IFS= read -r line
 do
 	if [ "$line" != "" ]; then
 		mkdir -p "${movieOutDir}/${line}";
-		ln -s "${root}/fake_data/Demo.mov" "${movieOutDir}/${line}/movie.mov"
+		cp "${root}/fake_data/Demo.mov" "${movieOutDir}/${line}/movie.mov"
 	fi
 done < "$movieInput"
 printf "[Done]\n"
@@ -49,7 +49,7 @@ create_fake_show() {
 		while IFS= read -r episode
 		do
 			if [ "$episode" != "" ]; then
-				ln -s "${root}/fake_data/Demo.mov" "${seasonDir}/${episode}.mov"
+				cp "${root}/fake_data/Demo.mov" "${seasonDir}/${episode}.mov"
 			fi
 		done < "$season"
 	done
@@ -75,7 +75,7 @@ while IFS= read -r line
 do
 	if [ "$line" != "" ]; then
 		mkdir -p "${concertOutDir}/${line}";
-		ln -s "${root}/fake_data/Demo.mov" "${concertOutDir}/${line}/concert.mov"
+		cp "${root}/fake_data/Demo.mov" "${concertOutDir}/${line}/concert.mov"
 	fi
 done < "$concertInput"
 
@@ -102,7 +102,7 @@ create_fake_music() {
 		while IFS= read -r song
 		do
 			if [ "$song" != "" ]; then
-				ln -s "${root}/fake_data/Demo.mp3" "${albumDir}/${song}.mp3"
+				cp "${root}/fake_data/Demo.mp3" "${albumDir}/${song}.mp3"
 			fi
 		done < "$album"
 	done

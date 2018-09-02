@@ -72,7 +72,7 @@ private:
     QStringList m_newFiles;
     DownloadManager *m_posterDownloadManager;
 
-    void setDefaults(RenamerDialog::RenameType renameType);
+    void setDefaults(Renamer::RenameType renameType);
     void storeDefaults();
 };
 
