@@ -71,17 +71,13 @@ void Badge::setActive(const bool &active)
     case Type::LabelWarning:
     case Type::LabelImportant:
     case Type::LabelInfo:
-    case Type::LabelInverse:
-        m_badgeType = active ? Type::LabelWarning : Type::LabelDefault;
-        break;
+    case Type::LabelInverse: m_badgeType = active ? Type::LabelWarning : Type::LabelDefault; break;
     case Type::BadgeDefault:
     case Type::BadgeSuccess:
     case Type::BadgeWarning:
     case Type::BadgeImportant:
     case Type::BadgeInfo:
-    case Type::BadgeInverse:
-        m_badgeType = active ? Type::BadgeInfo : Type::BadgeDefault;
-        break;
+    case Type::BadgeInverse: m_badgeType = active ? Type::BadgeInfo : Type::BadgeDefault; break;
     }
 
     if (active && !property("activeText").toString().isEmpty()) {

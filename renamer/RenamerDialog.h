@@ -9,67 +9,37 @@
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "renamer/Renamer.h"
 
 namespace Ui {
 class RenamerDialog;
 }
-
-struct RenamerConfig
-{
-    QString filePattern;
-    QString filePatternMulti;
-    QString directoryPattern;
-    bool renameFiles = false;
-    bool renameDirectories = false;
-    bool dryRun = false;
-};
 
 class RenamerDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    enum class RenameType
-    {
-        Movies,
-        TvShows,
-        Concerts,
-        All
-    };
-    enum class RenameResult
-    {
-        Failed,
-        Success
-    };
-    enum class RenameOperation
-    {
-        CreateDir,
-        Move,
-        Rename
-    };
-
     explicit RenamerDialog(QWidget *parent = nullptr);
     ~RenamerDialog() override;
     void setMovies(QList<Movie *> movies);
     void setConcerts(QList<Concert *> concerts);
     void setShows(QList<TvShow *> shows);
     void setEpisodes(QList<TvShowEpisode *> episodes);
-    void setRenameType(RenameType type);
-
-    static QString replace(QString &text, const QString &search, const QString &replace);
-    static QString replaceCondition(QString &text, const QString &condition, const QString &replace);
-    static QString replaceCondition(QString &text, const QString &condition, bool hasCondition);
-
-    static QString typeToString(RenameType type);
+    void setRenameType(Renamer::RenameType type);
 
     bool renameErrorOccured() const;
+
+    int addResultToTable(const QString &oldFileName, const QString &newFileName, Renamer::RenameOperation operation);
+    void setResultStatus(int row, Renamer::RenameResult result);
+    void appendResultText(QString str);
 
 public slots:
     int exec() override;
     void reject() override;
 
 signals:
-    void sigFilesRenamed(RenamerDialog::RenameType);
+    void sigFilesRenamed(Renamer::RenameType);
 
 private slots:
     void onRename();
@@ -86,7 +56,7 @@ private:
     QList<Concert *> m_concerts;
     QList<TvShow *> m_shows;
     QList<TvShowEpisode *> m_episodes;
-    RenameType m_renameType;
+    Renamer::RenameType m_renameType;
     bool m_filesRenamed;
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
@@ -98,11 +68,6 @@ private:
         const QString &directoryPattern,
         const bool &renameDirectories,
         const bool &dryRun = false);
-
-    bool rename(const QString &file, const QString &newName);
-    bool rename(QDir &dir, QString newName);
-    int addResult(const QString &oldFileName, const QString &newFileName, RenameOperation operation);
-    void setResultStatus(int row, RenameResult result);
 };
 
 #endif // RENAMER_DIALOG_H

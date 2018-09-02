@@ -144,6 +144,10 @@ SOURCES += main.cpp \
     smallWidgets/ImageGallery.cpp \
     smallWidgets/ClosableImage.cpp \
     renamer/RenamerDialog.cpp \
+    renamer/Renamer.cpp \
+    renamer/MovieRenamer.cpp \
+    renamer/EpisodeRenamer.cpp \
+    renamer/ConcertRenamer.cpp \
     smallWidgets/MySpinBox.cpp \
     settings/AdvancedSettings.cpp \
     smallWidgets/AlphabeticalList.cpp \
@@ -315,6 +319,10 @@ HEADERS  += Version.h \
     smallWidgets/ImageGallery.h \
     smallWidgets/ClosableImage.h \
     renamer/RenamerDialog.h \
+    renamer/Renamer.h \
+    renamer/MovieRenamer.h \
+    renamer/EpisodeRenamer.h \
+    renamer/ConcertRenamer.h \
     smallWidgets/MySpinBox.h \
     settings/AdvancedSettings.h \
     smallWidgets/AlphabeticalList.h \
