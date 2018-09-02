@@ -68,7 +68,7 @@ void installLogger()
 
 void loadStylesheet(QApplication &app)
 {
-    QFile file(":/ui/default.css");
+    QFile file(":/src/ui/default.css");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         app.setStyleSheet(file.readAll());
         file.close();
