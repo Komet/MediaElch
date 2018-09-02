@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 root="$(cd "$(dirname "$0")"; pwd -P)"
 outDir="${root}/generated_media"

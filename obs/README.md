@@ -1,0 +1,68 @@
+# MediaElch on openSUSE Build Service
+
+This directory contains files needed to set up a project on
+https://build.opensuse.org
+
+*Note:* This is used to publish the release version of MediaElch.
+Please use official MediaElch repositories instead of building
+your own version.
+
+*Note:* You need to replace `bugwelle` with your own username.
+
+## Prerequisites
+
+Please read https://openbuildservice.org/help/manuals/obs-beginners-guide/
+and follow the examples. You need to have an account on
+https://build.opensuse.org and must have the obs tool installed (e.g.
+`sudo apt install osc obs-build` on Ubuntu).
+
+## Steps to init a new repository on OBS
+
+```sh
+osc checkout home:bugwelle
+cd home:bugwelle
+osc mkpac MediaElch
+cd MediaElch
+
+# Copy MediaElch.changes and MediaElch.spec into this new directory
+cp /path/to/MediaElch/obs/MediaElch.* .
+
+# Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
+# See "Compress MediaElch" for an example.
+
+osc add *.spec *.changes *.tar.gz
+osc commit
+```
+
+## Steps to update a repository on OBS
+
+```sh
+osc checkout home:bugwelle MediaElch
+cd home:bugwelle/MediaElch
+
+# Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
+# See "Compress MediaElch" for an example.
+# # Update MediaElch.spec if neccessary
+
+# Update MediaElch.changes => copy changelog.md
+osc vc
+
+osc addremove *.spec *.changes *.tar.gz
+osc commit
+```
+
+## Compress MediaElch (`.tar.gz`)
+
+```sh
+export ME_VERSION=2.4.3
+# Clone latest version.
+git clone https://github.com/Komet/MediaElch.git MediaElch
+# Exclude .git, documentation and build folder.
+# Reduces the tar.gz size from 27MB to 3MB
+tar -czf MediaElch-${ME_VERSION}.tar.gz MediaElch \
+	--exclude=MediaElch/.git \
+	--exclude=MediaElch/scripts/generated_media \
+	--exclude=MediaElch/documentation \
+	--exclude=MediaElch/build
+rm -rf MediaElch
+```

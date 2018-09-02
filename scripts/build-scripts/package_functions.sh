@@ -7,6 +7,7 @@
 
 set -e
 
+# Creates an .AppImage file that can be distributed.
 package_appimage() {
 	check_dependencies_linux_appimage
 
@@ -71,29 +72,71 @@ package_appimage() {
 	popd > /dev/null
 }
 
+# Creates an unsigned deb.
 package_deb() {
-	echo "TODO"
+	echo ""
 
-	# echo ""
-	# print_important "Create a Debian package"
+	if [ -z "$DEBFULLNAME" ]; then
+		print_critical "\$DEBFULLNAME is empty or not set!"
+	fi
+	if [ -z "$DEBEMAIL" ]; then
+		print_critical "\$DEBEMAIL is empty or not set!"
+	fi
 
-	# check_dependencies_linux_deb
+	check_dependencies_linux_deb
 
-	# local FOLDER_NAME=${PROJECT_DIR##*/}
-	# pushd "${PROJECT_DIR}/.." > /dev/null
+	local FOLDER_NAME=${PROJECT_DIR##*/}
+	pushd "${PROJECT_DIR}/.." > /dev/null
 
-	# cp -R ./${FOLDER_NAME} ./mediaelch_${ME_VERSION}
+	cp -R ./${FOLDER_NAME} ./mediaelch-${ME_VERSION}
 
-	# tar --exclude="mediaelch_${ME_VERSION}.orig/scripts" --exclude="mediaelch_${ME_VERSION}/build" \
-	# 		--exclude=".git" --exclude="*.AppImage" \
-	# 		-cf "mediaelch_${ME_VERSION}.orig.tar" "${FOLDER_NAME}"
-	# gzip "mediaelch_${ME_VERSION}.orig.tar"
+	tar --exclude="mediaelch-${ME_VERSION}.orig/scripts" --exclude="mediaelch-${ME_VERSION}/build" \
+			--exclude=".git" --exclude="*.AppImage" \
+			-cf "mediaelch_${ME_VERSION}.orig.tar" "${FOLDER_NAME}"
+	gzip "mediaelch_${ME_VERSION}.orig.tar"
 
-	# pushd "${PROJECT_DIR}" > /dev/null
-	# echo $PWD;
-	# debuild -S -sa
-	# popd > /dev/null
+	pushd "mediaelch-${ME_VERSION}" > /dev/null
+	echo $PWD;
+	debuild -uc -us
+	popd > /dev/null
+	popd > /dev/null
+}
 
-	# #dput ppa:kvibes/mediaelch mediaelch_${ME_VERSION}-1_source.changes
-	# popd > /dev/null
+# Uploads a new MediaElch release to launchpad.net
+package_and_upload_to_launchpad() {
+	echo ""
+	print_important "Upload a new MediaElch Version to https://launchpad.net"
+
+	if [ -z "$DEBFULLNAME" ]; then
+		print_critical "\$DEBFULLNAME is empty or not set!"
+	fi
+	if [ -z "$DEBEMAIL" ]; then
+		print_critical "\$DEBEMAIL is empty or not set!"
+	fi
+
+	check_dependencies_linux_deb
+
+	# TODO: Better put in README or doc
+	pushd "${PROJECT_DIR}" > /dev/null
+	print_important "Update changelog using dch"
+	dch --newversion "${ME_VERSION}-1" --distribution vivid
+	popd > /dev/null
+
+	local FOLDER_NAME=${PROJECT_DIR##*/}
+	pushd "${PROJECT_DIR}/.." > /dev/null
+
+	cp -R ./${FOLDER_NAME} ./mediaelch-${ME_VERSION}
+
+	tar --exclude="mediaelch-${ME_VERSION}.orig/scripts" --exclude="mediaelch-${ME_VERSION}/build" \
+			--exclude=".git" --exclude="*.AppImage" \
+			-cf "mediaelch_${ME_VERSION}.orig.tar" "${FOLDER_NAME}"
+	gzip "mediaelch_${ME_VERSION}.orig.tar"
+
+	pushd "mediaelch-${ME_VERSION}" > /dev/null
+	echo $PWD;
+	debuild -S -sa
+	popd > /dev/null
+
+	dput ppa:mediaelch/mediaelch mediaelch_${ME_VERSION}-1_source.changes
+	popd > /dev/null
 }

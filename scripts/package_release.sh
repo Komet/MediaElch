@@ -22,11 +22,15 @@ print_help() {
 	echo "Usage: ./package_release.sh (linux|win) package-type [options]"
 	echo ""
 	echo "This script builds and packages MediaElch in a distributable form."
+	echo "It is used by MediaElch authors to release official MediaElch releases."
+	echo "Use build_release.sh if you want to build MediaElch."
 	echo ""
 	echo "Package Types:"
 	echo "  linux"
 	echo "    AppImage  Create a linux app image. See https://appimage.org/"
-	echo "    deb       Create a debian package. You need a clean repository for that (no build files)."
+	echo "    deb       Build an unsigned deb package."
+	echo "    launchpad Upload a new MediaElch version to launchpad.net. You need a "
+	echo "              clean repository for that (no build files)."
 	echo "  win"
 	echo "    zip       Create a ZIP file containing MediaElch and its dependencies."
 	echo ""
@@ -65,10 +69,6 @@ confirm_build() {
 	echo ""
 }
 
-#if [ ! -f "${BUILD_DIR}/Makefile" ] || [ ! -f "${BUILD_DIR}/MediaElch" ]; then
-#	print_critical "Please run \"./build_release.sh\" before packaging."
-#fi
-
 pkg_type="$(lc ${PACKAGE_TYPE})"
 no_confirm=${3}
 
@@ -85,6 +85,8 @@ if [ "${BUILD_OS}" == "linux" ] ; then
 
 	if [ $pkg_type == "appimage" ]; then
 		package_appimage ${no_confirm}
+	elif [ $pkg_type == "launchpad" ]; then
+		package_and_upload_to_launchpad
 	elif [ $pkg_type == "deb" ]; then
 		package_deb
 	fi

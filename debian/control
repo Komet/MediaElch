@@ -11,6 +11,8 @@ Package: mediaelch
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5, libqt5sql5-sqlite, libqt5core5 | libqt5core5a, libqt5gui5, libqt5network5, libqt5concurrent5, libqt5graphicaleffects5 | libqt5qml-graphicaleffects | qml-module-qtgraphicaleffects, libqt5qml5, libqt5multimedia5, libqt5multimediawidgets5, libqt5opengl5, libqt5xml5, libmediainfo0 | libmediainfo0v5, zlib1g, libzen0 | libzen0v5, libcurl3 | libcurl4, libpulse0, libqt5quickwidgets5, qtdeclarative5-dev, libqt5quick5
 Description: Kodi Media Manager
- MediaElch is your Media Manager for handling movies, tv shows, concerts and music in Kodi. 
- It is designed to gather information from various movie databases on the internet and store these information directly to Kodis database or in nfo files. 
- MediaElch is also downloading movie posters, backdrops, fan arts and pictures of the actors.
+ MediaElch is your Media Manager for handling movies, tv shows, concerts and
+ music in Kodi. It is designed to gather information from various movie
+ databases on the internet and store these information directly to Kodis
+ database or in nfo files. MediaElch is also downloading movie posters,
+ backdrops, fan arts and pictures of the actors.

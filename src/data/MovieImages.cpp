@@ -6,7 +6,7 @@
 
 #include <QList>
 
-MovieImages::MovieImages(Movie &movie) : m_movie{movie}
+MovieImages::MovieImages(Movie &movie) : m_movie(movie)
 {
 }
 
