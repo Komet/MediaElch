@@ -42,8 +42,9 @@ cd home:bugwelle/MediaElch
 
 # Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
 # See "Compress MediaElch" for an example.
+# # Update MediaElch.spec if neccessary
 
-# Update MediaElch.changes
+# Update MediaElch.changes => copy changelog.md
 osc vc
 
 osc addremove *.spec *.changes *.tar.gz
@@ -56,7 +57,12 @@ osc commit
 export ME_VERSION=2.4.3
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
-# Exclude .git folder. Reduces the tar.gz size from 27MB to 3MB
-tar -czf MediaElch-${ME_VERSION}.tar.gz MediaElch --exclude=MediaElch/.git
+# Exclude .git, documentation and build folder.
+# Reduces the tar.gz size from 27MB to 3MB
+tar -czf MediaElch-${ME_VERSION}.tar.gz MediaElch \
+	--exclude=MediaElch/.git \
+	--exclude=MediaElch/scripts/generated_media \
+	--exclude=MediaElch/documentation \
+	--exclude=MediaElch/build
 rm -rf MediaElch
 ```
