@@ -18,6 +18,10 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
     QString fiCanonicalPath = fi.canonicalPath();
     QDir dir(fi.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
+
+    MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
+    QString nfo = mediaCenter->nfoFilePath(&movie);
+
     QString newFileName;
     QStringList FilmFiles;
     QStringList newMovieFiles;
@@ -202,13 +206,12 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
             }
         };
 
-        MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
         const auto renameImageType = [&](ImageType imageType) {
             DataFileType fileType = DataFile::dataFileTypeForImageType(imageType);
             renameFileType(mediaCenter->imageFileName(&movie, imageType), fileType);
         };
 
-        renameFileType(mediaCenter->nfoFilePath(&movie), DataFileType::MovieNfo);
+        renameFileType(nfo, DataFileType::MovieNfo);
 
         renameImageType(ImageType::MoviePoster);
         renameImageType(ImageType::MovieBackdrop);

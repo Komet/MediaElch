@@ -22,6 +22,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
     QStringList newConcertFiles;
     QString parentDirName;
 
+    MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
+    QString nfo = mediaCenter->nfoFilePath(&concert);
+
     bool errorOccured = false;
 
     for (const QString &file : concert.files()) {
@@ -129,13 +132,12 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
             }
         };
 
-        MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
         const auto renameImageType = [&](ImageType imageType) {
             DataFileType fileType = DataFile::dataFileTypeForImageType(imageType);
             renameFileType(mediaCenter->imageFileName(&concert, imageType), fileType);
         };
 
-        renameFileType(mediaCenter->nfoFilePath(&concert), DataFileType::ConcertNfo);
+        renameFileType(nfo, DataFileType::ConcertNfo);
 
         renameImageType(ImageType::ConcertPoster);
         renameImageType(ImageType::ConcertBackdrop);
