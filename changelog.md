@@ -18,6 +18,7 @@
  - Scrape TV show tags when using IMDb
  - Detect duplicate movies
  - Create subdirectories
+ - Concert Renamer
 
 ### Bugfixes
 

@@ -110,13 +110,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->certificationWidget->splitter()->restoreState(m_settings->mainSplitterState());
         ui->musicSplitter->restoreState(m_settings->mainSplitterState());
     } else {
-        ui->movieSplitter->setSizes(QList<int>() << 200 << 600);
-        ui->tvShowSplitter->setSizes(QList<int>() << 200 << 600);
-        ui->setsWidget->splitter()->setSizes(QList<int>() << 200 << 600);
-        ui->concertSplitter->setSizes(QList<int>() << 200 << 600);
-        ui->genreWidget->splitter()->setSizes(QList<int>() << 200 << 600);
-        ui->certificationWidget->splitter()->setSizes(QList<int>() << 200 << 600);
-        ui->musicSplitter->setSizes(QList<int>() << 200 << 600);
+        QList<int> size{200, 600};
+        ui->movieSplitter->setSizes(size);
+        ui->tvShowSplitter->setSizes(size);
+        ui->setsWidget->splitter()->setSizes(size);
+        ui->concertSplitter->setSizes(size);
+        ui->genreWidget->splitter()->setSizes(size);
+        ui->certificationWidget->splitter()->setSizes(size);
+        ui->musicSplitter->setSizes(size);
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
@@ -515,7 +516,7 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         || (widget == MainWidgets::Concerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != MainWidgets::Concerts && widget != MainWidgets::Music) {
+        if (widget != MainWidgets::Music) {
             ui->navbar->setActionRenameEnabled(enabled);
         }
     }
