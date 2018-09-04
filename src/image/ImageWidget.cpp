@@ -21,7 +21,7 @@ ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ImageWid
     ui->quickWidget->rootContext()->setContextProperty("isOsx", false);
 #endif
     ui->quickWidget->engine()->addImageProvider(QLatin1String("album"), new AlbumImageProvider);
-    ui->quickWidget->setSource(QUrl("qrc:/ui/ImageView.qml"));
+    ui->quickWidget->setSource(QUrl("qrc:/src/ui/ImageView.qml"));
 }
 
 ImageWidget::~ImageWidget()
