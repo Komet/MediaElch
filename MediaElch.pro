@@ -496,7 +496,7 @@ test {
         test/helpers/matchers.h \
         test/helpers/debug_output.h
 
-    SOURCES -= main.cpp
+    SOURCES -= src/main.cpp
     SOURCES += test/main.cpp \
         test/helpers/matchers.cpp \
         test/scrapers/testAdultDvdEmpire.cpp \
