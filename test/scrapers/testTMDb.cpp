@@ -25,7 +25,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
 
         REQUIRE(m.id() == "tt2277860");
-        CHECK(m.tmdbId() == "id127380");
+        CHECK(m.tmdbId() == "127380");
 
         CHECK(m.name() == "Finding Dory");
         CHECK(m.originalName() == "Finding Dory");
@@ -75,9 +75,9 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
     SECTION("'Normal' movie loaded by using TMDb id")
     {
         Movie m(QStringList{}); // Movie without files
-        loadDataSync(tmdb, {{nullptr, "id127380"}}, m, tmdb.scraperNativelySupports());
+        loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());
 
-        REQUIRE(m.tmdbId() == "id127380");
+        REQUIRE(m.tmdbId() == "127380");
         CHECK(m.id() == "tt2277860");
         CHECK(m.name() == "Finding Dory");
 

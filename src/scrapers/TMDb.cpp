@@ -658,10 +658,6 @@ QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &pa
  */
 QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters) const
 {
-    // TMDb ids start with "id".
-    if (movieId.startsWith("id")) {
-        movieId = movieId.mid(2);
-    }
     const auto typeStr = [type]() {
         switch (type) {
         case ApiMovieDetails::INFOS: return QString{};
@@ -710,7 +706,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
     // Infos
     int tmdbId = parsedJson.value("id").toInt(-1);
     if (tmdbId > -1) {
-        movie->setTmdbId(QString("id%1").arg(tmdbId));
+        movie->setTmdbId(QString::number(tmdbId));
     }
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
         movie->setId(parsedJson.value("imdb_id").toString());
