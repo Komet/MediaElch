@@ -238,7 +238,7 @@
          <string>Donate</string>
         </property>
         <property name="icon">
-         <iconset resource="../MediaElch.qrc">
+         <iconset resource="../../MediaElch.qrc">
           <normaloff>:/img/money_64.png</normaloff>:/img/money_64.png</iconset>
         </property>
         <property name="iconSize">
@@ -279,7 +279,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../MediaElch.qrc"/>
+  <include location="../../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>
