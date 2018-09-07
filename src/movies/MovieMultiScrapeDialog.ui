@@ -23,7 +23,7 @@
    <string>Movie Multi Scrape</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../MediaElch.qrc">
+   <iconset resource="../../MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
@@ -465,7 +465,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../MediaElch.qrc"/>
+  <include location="../../MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

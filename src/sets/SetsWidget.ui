@@ -213,7 +213,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
+               <pixmap resource="../../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -237,7 +237,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="../MediaElch.qrc">
+                 <iconset resource="../../MediaElch.qrc">
                   <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
                 </property>
                </widget>
@@ -288,7 +288,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
+               <pixmap resource="../../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
               </property>
               <property name="scaledContents">
                <bool>false</bool>
@@ -315,7 +315,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="../MediaElch.qrc">
+                 <iconset resource="../../MediaElch.qrc">
                   <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
                 </property>
                </widget>
@@ -373,7 +373,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../MediaElch.qrc"/>
+  <include location="../../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

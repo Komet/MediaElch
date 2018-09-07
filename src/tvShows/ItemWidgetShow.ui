@@ -97,13 +97,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/poster/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/poster/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/poster/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/poster/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/poster/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/poster/red</pixmap>
           </property>
          </widget>
         </item>
@@ -125,13 +125,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/fanart/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/fanart/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/fanart/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/fanart/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/fanart/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/fanart/red</pixmap>
           </property>
          </widget>
         </item>
@@ -153,13 +153,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/extraFanarts/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/extraFanarts/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/extraFanarts/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/extraFanarts/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/extraFanarts/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/extraFanarts/red</pixmap>
           </property>
          </widget>
         </item>
@@ -181,13 +181,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/thumb/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/thumb/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/thumb/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/thumb/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/thumb/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/thumb/red</pixmap>
           </property>
          </widget>
         </item>
@@ -209,13 +209,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/logo/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/logo/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/logo/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/logo/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/logo/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/logo/red</pixmap>
           </property>
          </widget>
         </item>
@@ -237,13 +237,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/clearart/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/clearart/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/clearart/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/clearart/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/clearart/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/clearart/red</pixmap>
           </property>
          </widget>
         </item>
@@ -265,13 +265,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/actors/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/actors/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/actors/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/actors/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/actors/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/actors/red</pixmap>
           </property>
          </widget>
         </item>
@@ -293,13 +293,13 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/banner/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/banner/green</pixmap>
           </property>
           <property name="iconGreen" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/banner/green</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/banner/green</pixmap>
           </property>
           <property name="iconRed" stdset="0">
-           <pixmap resource="../MediaElch.qrc">:/mediaStatus/banner/red</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/mediaStatus/banner/red</pixmap>
           </property>
          </widget>
         </item>
@@ -334,7 +334,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/missing.png</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/img/missing.png</pixmap>
           </property>
          </widget>
         </item>
@@ -356,7 +356,7 @@
            <string>new</string>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/star_blue.png</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/img/star_blue.png</pixmap>
           </property>
          </widget>
         </item>
@@ -381,7 +381,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/reload_orange.png</pixmap>
+           <pixmap resource="../../MediaElch.qrc">:/img/reload_orange.png</pixmap>
           </property>
          </widget>
         </item>
@@ -393,7 +393,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../MediaElch.qrc"/>
+  <include location="../../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

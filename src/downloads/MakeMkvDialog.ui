@@ -92,7 +92,7 @@
                <string>Import Tracks</string>
               </property>
               <property name="icon">
-               <iconset resource="../MediaElch.qrc">
+               <iconset resource="../../MediaElch.qrc">
                 <normaloff>:/img/inbox_64.png</normaloff>:/img/inbox_64.png</iconset>
               </property>
               <property name="iconSize">
@@ -118,7 +118,7 @@
                <string>Backup Disc</string>
               </property>
               <property name="icon">
-               <iconset resource="../MediaElch.qrc">
+               <iconset resource="../../MediaElch.qrc">
                 <normaloff>:/img/disc_64.png</normaloff>:/img/disc_64.png</iconset>
               </property>
               <property name="iconSize">
@@ -477,7 +477,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../MediaElch.qrc"/>
+  <include location="../../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>
