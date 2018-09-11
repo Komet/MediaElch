@@ -49,7 +49,7 @@ package_appimage() {
 
 	echo ""
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
-	$DEPLOYQT appdir/usr/share/applications/MediaElch.desktop -verbose=1 -bundle-non-qt-libs -qmldir=../ui
+	$DEPLOYQT appdir/usr/share/applications/MediaElch.desktop -verbose=1 -bundle-non-qt-libs -qmldir=../src/ui
 	$DEPLOYQT --appimage-extract
 	export PATH=$(readlink -f ./squashfs-root/usr/bin):$PATH
 	# Workaround to increase compatibility with older systems
