@@ -44,10 +44,6 @@ package_appimage() {
 	make INSTALL_ROOT=appdir -j $(nproc) install
 
 	echo ""
-	print_info "Copying ffmpeg into AppDir"
-	cp $(which ffmpeg) appdir/usr/bin/
-
-	echo ""
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
 	$DEPLOYQT appdir/usr/share/applications/MediaElch.desktop -verbose=1 -bundle-non-qt-libs -qmldir=../src/ui
 	$DEPLOYQT --appimage-extract

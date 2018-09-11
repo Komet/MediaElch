@@ -109,20 +109,6 @@ create_appimage() {
 	fold_end
 
 	#######################################################
-	# Install and copy ffmpeg
-
-	fold_start "ffmpeg"
-	print_info "Installing ffmpeg"
-	# Note: ffmpeg is not available for Ubuntu 14.04
-	# See: https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media
-	sudo add-apt-repository -y ppa:mc3man/trusty-media
-	sudo apt update -qq
-	sudo apt install ffmpeg
-	print_info "Copying ffmpeg into AppDir"
-	cp $(which ffmpeg) appdir/usr/bin/
-	fold_end
-
-	#######################################################
 	# Create AppImage
 
 	fold_start "linuxdeployqt"
