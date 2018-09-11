@@ -79,6 +79,20 @@ QByteArray XbmcXml::getMovieXml(Movie *movie)
     setTextValue(doc, "id", movie->id());
     setTextValue(doc, "tmdbid", movie->tmdbId());
     setTextValue(doc, "set", movie->set());
+
+    // <set>
+    //   <name>...</name>
+    //   <overview></overview>
+    // </set>
+    removeChildNodes(doc, "set");
+    QDomElement setElement = doc.createElement("set");
+    QDomElement setNameElement = doc.createElement("name");
+    setNameElement.appendChild(doc.createTextNode(movie->set()));
+    QDomElement setOverviewElement = doc.createElement("overview");
+    setElement.appendChild(setNameElement);
+    setElement.appendChild(setOverviewElement);
+    appendXmlNode(doc, setElement);
+
     setTextValue(doc, "sorttitle", movie->sortTitle());
     setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
     setTextValue(doc, "watched", (movie->watched()) ? "true" : "false");
@@ -473,8 +487,27 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
         movie->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     }
-    if (!domDoc.elementsByTagName("set").isEmpty()) {
-        movie->setSet(domDoc.elementsByTagName("set").at(0).toElement().text());
+    const auto movieSetElements = domDoc.elementsByTagName("set");
+    if (!movieSetElements.isEmpty()) {
+        const QDomElement movieSetElement = movieSetElements.at(0).toElement();
+        const QDomNodeList setNameElements = movieSetElement.elementsByTagName("name");
+
+        // We need to support both the old and new XML syntax.
+        //
+        // New Kodi XML Syntax:
+        // <set>
+        //   <name>Movie Set Name</name>
+        //   <overview></overview>
+        // </set>
+        //
+        // Old Syntax:
+        // <set>Movie Set Name</set>
+        //
+        if (!setNameElements.isEmpty()) {
+            movie->setSet(setNameElements.at(0).toElement().text());
+        } else {
+            movie->setSet(movieSetElement.text());
+        }
     }
     if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
         movie->setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
@@ -2846,8 +2879,9 @@ void XbmcXml::removeChildNodes(QDomDocument &doc, const QString &name)
             nodesToRemove.append(childNodes.at(i));
         }
     }
-    foreach (QDomNode node, nodesToRemove)
+    foreach (QDomNode node, nodesToRemove) {
         rootNode.removeChild(node);
+    }
 }
 
 void XbmcXml::loadBooklets(Album *album)
