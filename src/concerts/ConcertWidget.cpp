@@ -452,7 +452,7 @@ void ConcertWidget::updateConcertInfo()
     QStringList genres;
     QStringList tags;
     certifications.append("");
-    foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
+    for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
         if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty()) {
             certifications.append(concert->certification());
         }
@@ -463,6 +463,11 @@ void ConcertWidget::updateConcertInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
     ui->certification->blockSignals(false);
+
+    // `setTags` requires distinct lists
+    genres.removeDuplicates();
+    tags.removeDuplicates();
+
     ui->genreCloud->setTags(genres, m_concert->genres());
     ui->tagCloud->setTags(tags, m_concert->tags());
 

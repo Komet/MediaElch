@@ -31,35 +31,26 @@ void TagCloud::clear()
     drawTags();
 }
 
+/**
+ * @brief Adds tags to the tagcloud. All `activeTags` must also be included in `tags`.
+ * @param tags        Non-active and active tags. Each tag must be distinct.
+ * @param activeTags  Active tags. Each tag must be distinct.
+ */
 void TagCloud::setTags(const QStringList &tags, const QStringList &activeTags)
 {
-    m_tags.clear();
-    m_activeTags.clear();
-
-    foreach (const QString &tag, tags) {
-        if (!m_tags.contains(tag)) {
-            m_tags.append(tag);
-        }
-    }
-
-    foreach (const QString &tag, activeTags) {
-        if (!m_tags.contains(tag)) {
-            m_tags.append(tag);
-        }
-        if (!m_activeTags.contains(tag)) {
-            m_activeTags.append(tag);
-        }
-    }
+    m_tags = tags;
+    m_activeTags = activeTags;
 
     qSort(m_tags.begin(), m_tags.end(), LocaleStringCompare());
     qSort(m_activeTags.begin(), m_activeTags.end(), LocaleStringCompare());
     drawTags();
 }
 
-void TagCloud::drawTags()
+void TagCloud::drawTags(bool printAll)
 {
-    foreach (Badge *badge, m_badges)
+    for (Badge *badge : m_badges) {
         delete badge;
+    }
     m_badges.clear();
 
     int x = 0;
@@ -68,21 +59,33 @@ void TagCloud::drawTags()
     int heightToAdd = 0;
 
     QStringList tags = m_activeTags;
-    foreach (const QString &tag, m_tags) {
+    tags.reserve(m_tags.size());
+
+    // @todo(bugwelle) Refactor. This is currently an ugly solution.
+    // This ensures that at least 150 tags.
+    const int maxNonActiveTagCount = (m_activeTags.size() > 150) ? 3 : 150;
+    int nonActiveTagCount = 0;
+
+    for (const QString &tag : m_tags) {
         if (!tags.contains(tag)) {
             tags.append(tag);
+            ++nonActiveTagCount;
+        }
+        // We only want to print 3 non-active tags if there are too many.
+        if (!printAll && nonActiveTagCount > maxNonActiveTagCount) {
+            break;
         }
     }
 
-    foreach (const QString &word, tags) {
+    for (const QString &word : tags) {
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
-            badge->setShowActiveMark(false);
         } else {
             badge->setBadgeType(Badge::Type::BadgeDefault);
-            badge->setShowActiveMark(false);
         }
+        badge->setShowActiveMark(false);
+
         if (m_activeTags.contains(word)) {
             badge->setActive(true);
         }
@@ -98,6 +101,25 @@ void TagCloud::drawTags()
         m_badges.append(badge);
         x += badge->width() + m_horizontalSpace;
     }
+
+
+    if (!printAll && nonActiveTagCount > maxNonActiveTagCount) {
+        auto badge = new Badge("[...] Click to see all", ui->scrollAreaWidgetContents);
+        badge->setBadgeType(Badge::Type::BadgeDefault);
+        badge->setShowActiveMark(false);
+        badge->show();
+        if (x + badge->width() + m_horizontalSpace > width) {
+            x = 0;
+            y += badge->height() + m_verticalSpace;
+        }
+        if (badge->height() > heightToAdd) {
+            heightToAdd = badge->height();
+        }
+        badge->move(x, y);
+        m_badges.append(badge);
+        x += badge->width() + m_horizontalSpace;
+    }
+
     ui->scrollAreaWidgetContents->setFixedHeight(y + heightToAdd);
     setMaximumHeight(qMax(80, y + heightToAdd + qMax(30, ui->lineEdit->height()) + 25));
 }
@@ -128,6 +150,13 @@ void TagCloud::mousePressEvent(QMouseEvent *event)
 {
     Badge *child = static_cast<Badge *>(childAt(event->pos()));
     if (!child || !child->inherits("Badge")) {
+        return;
+    }
+
+    // todo(bugwelle): Ugly. We just check if "..." is a tag.
+    //                 It is added if too many tags are shown.
+    if (child->text() == "[...] Click to see all") {
+        drawTags(true);
         return;
     }
 

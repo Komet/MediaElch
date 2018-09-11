@@ -356,10 +356,15 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     QStringList genres;
     QStringList tags;
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+    for (const TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
         genres.append(show->genres());
         tags.append(show->tags());
     }
+
+    // `setTags` requires distinct lists
+    genres.removeDuplicates();
+    tags.removeDuplicates();
+
     ui->genreCloud->setTags(genres, m_show->genres());
     ui->tagCloud->setTags(tags, m_show->tags());
 
