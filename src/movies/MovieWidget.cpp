@@ -671,13 +671,19 @@ void MovieWidget::updateMovieInfo()
     QStringList tags;
     QStringList countries;
     QStringList studios;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (const Movie *movie : Manager::instance()->movieModel()->movies()) {
         genres << movie->genres();
         tags << movie->tags();
         countries << movie->countries();
         studios << movie->studios();
     }
+
+    // `setTags` requires distinct lists
+    genres.removeDuplicates();
+    tags.removeDuplicates();
+    countries.removeDuplicates();
     studios.removeDuplicates();
+
     ui->genreCloud->setTags(genres, m_movie->genres());
     ui->tagCloud->setTags(tags, m_movie->tags());
     ui->countryCloud->setTags(countries, m_movie->countries());

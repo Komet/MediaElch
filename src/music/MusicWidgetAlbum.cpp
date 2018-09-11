@@ -265,7 +265,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
     QStringList genres;
     QStringList styles;
     QStringList moods;
-    foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
+    for (const Artist *artist : Manager::instance()->musicModel()->artists()) {
         genres << artist->genres();
         styles << artist->styles();
         moods << artist->moods();
@@ -277,9 +277,12 @@ void MusicWidgetAlbum::updateAlbumInfo()
             }
         }
     }
+
+    // `setTags` requires distinct lists
     genres.removeDuplicates();
     styles.removeDuplicates();
     moods.removeDuplicates();
+
     ui->genreCloud->setTags(genres, m_album->genres());
     ui->styleCloud->setTags(styles, m_album->styles());
     ui->moodCloud->setTags(moods, m_album->moods());
