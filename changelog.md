@@ -15,6 +15,7 @@
  - Remove deprecated MediaPassion (#449)
  - Remove deprecated MovieMaze (#386)
  - Support KDE Breeze Dark theme (#407)
+ - Use new Kodi XML syntax for movie set names (#554)
  - Scrape TV show tags when using IMDb
  - Detect duplicate movies
  - Create subdirectories
