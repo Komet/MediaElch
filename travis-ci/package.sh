@@ -128,7 +128,7 @@ create_appimage() {
 	fold_start "linuxdeployqt"
 	print_info "Running linuxdeployqt"
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}"
-	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -bundle-non-qt-libs -qmldir=../ui
+	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -bundle-non-qt-libs -qmldir=../src/ui
 	./linuxdeployqt --appimage-extract
 	export PATH=$(readlink -f ./squashfs-root/usr/bin):$PATH
 	# Workaround to increase compatibility with older systems
@@ -195,7 +195,7 @@ create_macos_dmg() {
 
 	fold_start "dmg"
 	print_important "Running macdeployqt"
-	/usr/local/opt/qt/bin/macdeployqt MediaElch.app -qmldir=../ui -verbose=2
+	/usr/local/opt/qt/bin/macdeployqt MediaElch.app -qmldir=../src/ui -verbose=2
 	print_info "Running create-dmg"
 	create-dmg/create-dmg \
 		--volname "MediaElch" \
