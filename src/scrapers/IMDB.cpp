@@ -553,11 +553,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
                 a.name = rxName.cap(1).trimmed();
             }
 
-            QRegExp rxRole(R"(<td class="character">\n *<a href="/[^"]+" >(.*)</a>)");
+            QRegExp rxRole(R"(<td class="character">\n *(.*)</td>)");
             rxRole.setMinimal(true);
             if (rxRole.indexIn(actor) != -1) {
                 QString role = rxRole.cap(1);
-                rxRole.setPattern(R"(<a href="[^"]*" >(.*)</a>)");
+                rxRole.setPattern(R"(<a href="[^"]*" >([^<]*)</a>)");
                 if (rxRole.indexIn(role) != -1) {
                     role = rxRole.cap(1);
                 }

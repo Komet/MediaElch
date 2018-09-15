@@ -115,6 +115,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(m.rating() == Approx(9.3).margin(0.5));
         CHECK(m.votes() > 6300);
         CHECK(m.top250() == 1);
+        // Tagline may be different on each run, so we only
+        // check if it is existent.
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
         CHECK(m.runtime() == 142);
@@ -149,5 +151,50 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(actors[0].role == "Andy Dufresne");
         CHECK(actors[1].name == "Morgan Freeman");
         CHECK(actors[1].role == "Ellis Boyd 'Red' Redding");
+    }
+
+    SECTION("Lesser known indian movie has correct details")
+    {
+        Movie m(QStringList{}); // Movie without files
+        loadImdbSync(imdb, {{nullptr, "tt3159708"}}, m);
+
+        REQUIRE(m.id() == "tt3159708");
+        CHECK(m.name() == "Welcome Back");
+        CHECK(m.certification() == "Not Rated");
+        CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-04");
+        CHECK(m.rating() == Approx(4.2).margin(0.5));
+        CHECK(m.votes() > 4800);
+        CHECK_FALSE(m.images().posters().isEmpty());
+        CHECK(m.runtime() == 152);
+
+        CHECK_THAT(m.overview(), Contains("have left the underworld"));
+        CHECK_THAT(m.outline(), StartsWith("A pair of reformed gangsters try to find"));
+        CHECK_THAT(m.director(), Contains("Anees Bazmee"));
+        CHECK_THAT(m.writer(), Contains("Rajeev Kaul"));
+
+        const auto genres = m.genres();
+        REQUIRE(genres.size() >= 1);
+        CHECK(genres[0] == "Action");
+
+        const auto studios = m.studios();
+        REQUIRE(studios.size() == 1);
+        CHECK(studios[0] == "Base Industries Group");
+
+        const auto countries = m.countries();
+        REQUIRE(countries.size() >= 1);
+        CHECK(countries[0] == "India");
+
+        const auto actors = m.actors();
+        REQUIRE(actors.size() >= 5);
+        CHECK(actors[0].name == "Anil Kapoor");
+        CHECK(actors[0].role == "Sagar 'Majnu' Pandey");
+        CHECK(actors[1].name == "Nana Patekar");
+        CHECK(actors[1].role == "Uday Shankar Shetty");
+        CHECK(actors[2].name == "Dimple Kapadia");
+        CHECK(actors[2].role == "Poonam / Maharani of nabazgadh");
+        CHECK(actors[3].name == "John Abraham");
+        CHECK(actors[3].role == "Ajju Bhai / Ajay");
+        CHECK(actors[4].name == "Shruti Haasan");
+        CHECK(actors[4].role == "Ranjana Shetty (as Shruti K. Haasan)");
     }
 }
