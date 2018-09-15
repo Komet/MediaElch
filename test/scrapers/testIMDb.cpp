@@ -82,8 +82,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         const auto tags = m.tags();
         REQUIRE(tags.size() >= 2);
-        CHECK(tags[0] == "fish");
-        CHECK(tags[1] == "ocean");
+        CHECK(tags[0] == "father son relationship");
+        CHECK(tags[1] == "no opening credits");
 
         const auto studios = m.studios();
         REQUIRE(studios.size() >= 2);
