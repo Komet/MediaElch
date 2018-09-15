@@ -1,6 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/TMDb.h"
+#include "settings/Settings.h"
 
 TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires_internet]")
 {
@@ -18,6 +19,7 @@ TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires
 TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requires_internet]")
 {
     TMDb tmdb;
+    Settings::instance()->setUsePlotForOutline(true);
 
     SECTION("'Normal' movie loaded by using IMDb id")
     {
