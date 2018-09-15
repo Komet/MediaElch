@@ -234,7 +234,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
 
     // Genre
     if (infos.contains(MovieScraperInfos::Genres)) {
-        rx.setPattern(R"(<dt>Genre</dt><dd>((<a href="[^"]+/">[^<]+</a>(<span>, </span>)?)+)</dd>)");
+        rx.setPattern(R"(<dt>Genre</dt>\n? *<dd>((<a href="[^"]+/">[^<]+</a>(<span>, </span>)?)+)</dd>)");
 
         if (rx.indexIn(html) != -1) {
             const auto genres = rx.cap(1).split("<span>, </span>");
@@ -255,19 +255,19 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     }
 
     // Country
-    rx.setPattern(R"(<dt>Produktionsland</dt><dd><a href="https://www.kino.de/filme/laender/[^"]+">(.*)</a>)");
+    rx.setPattern(R"(<dt>Produktionsland</dt>\n? *<dd><a href="https://www.kino.de/filme/laender/[^"]+">(.*)</a>)");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
         movie.addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
     }
 
     // MPAA
-    rx.setPattern("<dt>FSK</dt><dd><a href=\"https://www.kino.de/filme/fsk/[^\"]+/\">ab ([0-9]+)</a></dd>");
+    rx.setPattern("<dt>FSK</dt>\n? *<dd><a href=\"https://www.kino.de/filme/fsk/[^\"]+/\">ab ([0-9]+)</a></dd>");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
         movie.setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
     }
 
     // Runtime
-    rx.setPattern(R"(<dt class="length">Dauer</dt><dd class="length">([0-9]+) Min</dd>)");
+    rx.setPattern(R"(<dt class="length">Dauer</dt>\n? *<dd class="length">([0-9]+) Min</dd>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         movie.setRuntime(rx.cap(1).trimmed().toInt());
     }
