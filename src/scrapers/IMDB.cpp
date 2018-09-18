@@ -478,7 +478,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
             QString content = rx.cap(1);
             rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
             if (rx.indexIn(content) != -1) {
-                movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+                movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
             }
 
             rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
@@ -491,12 +491,12 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
                 QString content = rx.cap(1);
                 rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
                 if (rx.indexIn(content) != -1) {
-                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
                     movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
                 }
                 rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
                 if (rx.indexIn(content) != -1) {
-                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toFloat());
+                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
                     movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
                 }
             }
