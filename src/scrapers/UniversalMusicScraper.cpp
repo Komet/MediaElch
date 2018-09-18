@@ -1034,7 +1034,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
         rx.setPattern("<div class=\"allmusic-rating rating-allmusic-\\d\" "
                       "itemprop=\"ratingValue\">[\\n\\s]*(\\d)[\\n\\s]*</div>");
         if (rx.indexIn(html) != -1) {
-            album->setRating(rx.cap(1).toFloat());
+            album->setRating(rx.cap(1).toDouble());
         }
     }
 

@@ -130,7 +130,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
 
     rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setRating(rx.cap(1).toFloat());
+        movie->setRating(rx.cap(1).toDouble());
     }
 
     rx.setPattern(R"(<span class="rating_number " itemprop="ratingCount">(\d+) Rating)");

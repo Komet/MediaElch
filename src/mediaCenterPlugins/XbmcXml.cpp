@@ -438,7 +438,7 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+        movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
     if (!domDoc.elementsByTagName("votes").isEmpty()) {
         movie->setVotes(
@@ -1057,7 +1057,7 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
         concert->setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
     if (!domDoc.elementsByTagName("year").isEmpty()) {
         concert->setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
@@ -1219,7 +1219,7 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
     if (!domDoc.elementsByTagName("votes").isEmpty()) {
         show->setVotes(
@@ -1404,7 +1404,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
     }
     if (!episodeDetails.elementsByTagName("rating").isEmpty()) {
         episode->setRating(
-            episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+            episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
     if (!domDoc.elementsByTagName("votes").isEmpty()) {
         episode->setVotes(
@@ -2409,7 +2409,7 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
         album->setYear(domDoc.elementsByTagName("year").at(0).toElement().text().toInt());
     }
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        album->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+        album->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
     for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
         Poster p;
@@ -2892,12 +2892,8 @@ void XbmcXml::loadBooklets(Album *album)
     }
 
     QDir dir(album->path() + "/booklet");
-    QStringList filters = QStringList() << "*.jpg"
-                                        << "*.jpeg"
-                                        << "*.JPEG"
-                                        << "*.Jpeg"
-                                        << "*.JPeg";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
+    QStringList filters{"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
+    for (const QString &file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         auto img = new Image;
         img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
         album->bookletModel()->addImage(img);

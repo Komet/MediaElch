@@ -292,7 +292,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
         }
         rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
         if (rx.indexIn(html) != -1) {
-            movie->setRating(rx.cap(1).trimmed().replace(".", "").replace(",", ".").toFloat());
+            movie->setRating(rx.cap(1).trimmed().replace(".", "").replace(",", ".").toDouble());
         }
     }
 
