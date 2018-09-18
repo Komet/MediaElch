@@ -1832,15 +1832,18 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     if (!episode->epBookmark().isNull() && QTime(0, 0, 0).secsTo(episode->epBookmark()) > 0) {
         xml.writeTextElement("epbookmark", QString("%1").arg(QTime(0, 0, 0).secsTo(episode->epBookmark())));
     }
-    foreach (const QString &writer, episode->writers())
+    for (const QString &writer : episode->writers()) {
         xml.writeTextElement("credits", writer);
-    foreach (const QString &director, episode->directors())
+    }
+
+    for (const QString &director : episode->directors()) {
         xml.writeTextElement("director", director);
+    }
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
-    foreach (const Actor &actor, episode->actors()) {
+    for (const Actor &actor : episode->actors()) {
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
@@ -1862,14 +1865,11 @@ QStringList XbmcXml::extraFanartNames(Movie *movie)
     }
     QFileInfo fi(movie->files().first());
     QDir dir(fi.absolutePath() + "/extrafanart");
+    QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
-    QStringList filters = QStringList() << "*.jpg"
-                                        << "*.jpeg"
-                                        << "*.JPEG"
-                                        << "*.Jpeg"
-                                        << "*.JPeg";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+    for (const QString &file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    }
     return files;
 }
 
@@ -1880,12 +1880,8 @@ QStringList XbmcXml::extraFanartNames(Concert *concert)
     }
     QFileInfo fi(concert->files().first());
     QDir dir(fi.absolutePath() + "/extrafanart");
+    QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
-    QStringList filters = QStringList() << "*.jpg"
-                                        << "*.jpeg"
-                                        << "*.JPEG"
-                                        << "*.Jpeg"
-                                        << "*.JPeg";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
         files << QDir::toNativeSeparators(dir.path() + "/" + file);
     return files;
@@ -1897,34 +1893,28 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
         return QStringList();
     }
     QDir dir(show->dir() + "/extrafanart");
+    QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
-    QStringList filters = QStringList() << "*.jpg"
-                                        << "*.jpeg"
-                                        << "*.JPEG"
-                                        << "*.Jpeg"
-                                        << "*.JPeg";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+    for (const QString &file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    }
     return files;
 }
 
 QStringList XbmcXml::extraFanartNames(Artist *artist)
 {
     QDir dir(artist->path() + "/extrafanart");
+    QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
-    QStringList filters = QStringList() << "*.jpg"
-                                        << "*.jpeg"
-                                        << "*.JPEG"
-                                        << "*.Jpeg"
-                                        << "*.JPeg";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+    for (const QString &file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    }
     return files;
 }
 
 QImage XbmcXml::movieSetPoster(QString setName)
 {
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         QFileInfo fi(fileName);
         if (fi.exists()) {
@@ -2063,38 +2053,42 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
 
 QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
 {
-    DataFileType fileType;
-    switch (type) {
-    case ImageType::MoviePoster: fileType = DataFileType::MoviePoster; break;
-    case ImageType::MovieBackdrop: fileType = DataFileType::MovieBackdrop; break;
-    case ImageType::MovieLogo: fileType = DataFileType::MovieLogo; break;
-    case ImageType::MovieBanner: fileType = DataFileType::MovieBanner; break;
-    case ImageType::MovieThumb: fileType = DataFileType::MovieThumb; break;
-    case ImageType::MovieClearArt: fileType = DataFileType::MovieClearArt; break;
-    case ImageType::MovieCdArt: fileType = DataFileType::MovieCdArt; break;
-    default: return "";
+    DataFileType fileType = [type]() {
+        switch (type) {
+        case ImageType::MoviePoster: return DataFileType::MoviePoster;
+        case ImageType::MovieBackdrop: return DataFileType::MovieBackdrop;
+        case ImageType::MovieLogo: return DataFileType::MovieLogo;
+        case ImageType::MovieBanner: return DataFileType::MovieBanner;
+        case ImageType::MovieThumb: return DataFileType::MovieThumb;
+        case ImageType::MovieClearArt: return DataFileType::MovieClearArt;
+        case ImageType::MovieCdArt: return DataFileType::MovieCdArt;
+        default: return DataFileType::NoType;
+        }
+    }();
+
+    if (fileType == DataFileType::NoType) {
+        return "";
     }
 
-    QString fileName;
     if (movie->files().empty()) {
         qWarning() << "Movie has no files";
-        return fileName;
+        return "";
     }
-    QFileInfo fi(movie->files().at(0));
 
     if (!constructName) {
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    foreach (DataFile dataFile, dataFiles) {
+    QString fileName;
+    QFileInfo fi(movie->files().at(0));
+    for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        if (type == ImageType::MoviePoster
-            && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
-            file = "poster.jpg";
-        }
-        if (type == ImageType::MovieBackdrop
-            && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
-            file = "fanart.jpg";
+        if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
+            if (type == ImageType::MoviePoster) {
+                file = "poster.jpg";
+            } else if (type == ImageType::MovieBackdrop) {
+                file = "fanart.jpg";
+            }
         }
         QString path = getPath(movie);
         QFileInfo pFi(path + "/" + file);
@@ -2119,26 +2113,26 @@ QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<Dat
     default: return "";
     }
 
-    QString fileName;
     if (concert->files().empty()) {
         qWarning() << "Concert has no files";
-        return fileName;
+        return "";
     }
-    QFileInfo fi(concert->files().at(0));
 
     if (!constructName) {
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    foreach (DataFile dataFile, dataFiles) {
+    QString fileName;
+    QFileInfo fi(concert->files().at(0));
+    for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-        if (type == ImageType::ConcertPoster
-            && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
-            file = "poster.jpg";
-        }
-        if (type == ImageType::ConcertBackdrop
-            && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
-            file = "fanart.jpg";
+        if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
+            if (type == ImageType::ConcertPoster) {
+                file = "poster.jpg";
+            }
+            if (type == ImageType::ConcertBackdrop) {
+                file = "fanart.jpg";
+            }
         }
         QString path = getPath(concert);
         QFileInfo pFi(path + "/" + file);
@@ -2179,7 +2173,7 @@ XbmcXml::imageFileName(const TvShow *show, ImageType type, int season, QList<Dat
     }
 
     QString fileName;
-    foreach (DataFile dataFile, dataFiles) {
+    for (DataFile dataFile : dataFiles) {
         QString loadFileName = dataFile.saveFileName("", season);
         QFileInfo fi(show->dir() + "/" + loadFileName);
         if (fi.isFile() || constructName) {
@@ -2188,6 +2182,18 @@ XbmcXml::imageFileName(const TvShow *show, ImageType type, int season, QList<Dat
         }
     }
     return fileName;
+}
+
+QString saveDataFiles(QString basePath, QString fileName, const QList<DataFile> &dataFiles, bool constructName)
+{
+    for (DataFile dataFile : dataFiles) {
+        QString file = dataFile.saveFileName(fileName);
+        QFileInfo pFi(basePath + "/" + file);
+        if (pFi.isFile() || constructName) {
+            return basePath + "/" + file;
+        }
+    }
+    return QStringLiteral();
 }
 
 QString
@@ -2202,7 +2208,6 @@ XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataF
     if (episode->files().isEmpty()) {
         return "";
     }
-    QString fileName;
     QFileInfo fi(episode->files().at(0));
 
     if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
@@ -2221,16 +2226,7 @@ XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataF
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QFileInfo pFi(fi.absolutePath() + "/" + file);
-        if (pFi.isFile() || constructName) {
-            fileName = fi.absolutePath() + "/" + file;
-            break;
-        }
-    }
-
-    return fileName;
+    return saveDataFiles(fi.absolutePath(), fi.fileName(), dataFiles, constructName);
 }
 
 bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
@@ -2437,7 +2433,6 @@ QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataF
     default: return "";
     }
 
-    QString fileName;
     if (artist->path().isEmpty()) {
         return QString();
     }
@@ -2446,16 +2441,7 @@ QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataF
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(QString());
-        QFileInfo pFi(artist->path() + "/" + file);
-        if (pFi.isFile() || constructName) {
-            fileName = artist->path() + "/" + file;
-            break;
-        }
-    }
-
-    return fileName;
+    return saveDataFiles(artist->path(), "", dataFiles, constructName);
 }
 
 QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
@@ -2467,7 +2453,6 @@ QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFil
     default: return "";
     }
 
-    QString fileName;
     if (album->path().isEmpty()) {
         return QString();
     }
@@ -2476,16 +2461,7 @@ QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFil
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(QString());
-        QFileInfo pFi(album->path() + "/" + file);
-        if (pFi.isFile() || constructName) {
-            fileName = album->path() + "/" + file;
-            break;
-        }
-    }
-
-    return fileName;
+    return saveDataFiles(album->path(), "", dataFiles, constructName);
 }
 
 QString XbmcXml::nfoFilePath(Artist *artist)
