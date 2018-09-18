@@ -523,37 +523,38 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     QStringList writers;
     for (int i = 0, n = domDoc.elementsByTagName("credits").size(); i < n; i++) {
-        foreach (const QString &writer,
-            domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+        for (const QString &writer :
+            domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
             writers.append(writer.trimmed());
+        }
     }
     movie->setWriter(writers.join(", "));
 
     QStringList directors;
     for (int i = 0, n = domDoc.elementsByTagName("director").size(); i < n; i++) {
-        foreach (const QString &director,
-            domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+        for (const QString &director :
+            domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
             directors.append(director.trimmed());
+        }
     }
     movie->setDirector(directors.join(", "));
 
-    for (int i = 0, n = domDoc.elementsByTagName("studio").size(); i < n; i++) {
-        foreach (const QString &studio,
-            domDoc.elementsByTagName("studio").at(i).toElement().text().split("/", QString::SkipEmptyParts))
-            movie->addStudio(studio.trimmed());
-    }
+    /**
+     * For each element "tag", split the text by "/" and call the callbackFct with each item.
+     */
+    const auto forEachElement = [&domDoc](QString tag, auto callbackFct) {
+        const QDomNodeList tags = domDoc.elementsByTagName(tag);
+        const int tagCount = tags.size();
+        for (int i = 0; i < tagCount; ++i) {
+            for (const QString &item : tags.at(i).toElement().text().split("/", QString::SkipEmptyParts)) {
+                callbackFct(item.trimmed());
+            }
+        }
+    };
 
-    for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        foreach (const QString &genre,
-            domDoc.elementsByTagName("genre").at(i).toElement().text().split("/", QString::SkipEmptyParts))
-            movie->addGenre(genre.trimmed());
-    }
-
-    for (int i = 0, n = domDoc.elementsByTagName("country").size(); i < n; i++) {
-        foreach (const QString &country,
-            domDoc.elementsByTagName("country").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addCountry(country.trimmed());
-    }
+    forEachElement("studio", [&](QString studio) { movie->addStudio(studio); });
+    forEachElement("genre", [&](QString genre) { movie->addGenre(genre); });
+    forEachElement("country", [&](QString country) { movie->addCountry(country); });
 
     for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
         movie->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
@@ -561,17 +562,15 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
     for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
         Actor a;
         a.imageHasChanged = false;
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty()) {
-            a.name =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
+        const auto actorElement = domDoc.elementsByTagName("actor").at(i).toElement();
+        if (!actorElement.elementsByTagName("name").isEmpty()) {
+            a.name = actorElement.elementsByTagName("name").at(0).toElement().text();
         }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty()) {
-            a.role =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
+        if (!actorElement.elementsByTagName("role").isEmpty()) {
+            a.role = actorElement.elementsByTagName("role").at(0).toElement().text();
         }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty()) {
-            a.thumb =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
+        if (!actorElement.elementsByTagName("thumb").isEmpty()) {
+            a.thumb = actorElement.elementsByTagName("thumb").at(0).toElement().text();
         }
         movie->addActor(a);
     }
@@ -1089,9 +1088,10 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
     }
 
     for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        foreach (const QString &genre,
-            domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+        for (const QString &genre :
+            domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts)) {
             concert->addGenre(genre);
+        }
     }
     for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
         concert->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
