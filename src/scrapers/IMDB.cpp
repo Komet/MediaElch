@@ -486,7 +486,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
                 movie->setVotes(rx.cap(1).replace(",", "").replace(".", "").toInt());
             }
         } else {
-            rx.setPattern(R"(<div class="imdbRating">\n +<div class="ratingValue">(.*)</div>)");
+            rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
             if (rx.indexIn(html) != -1) {
                 QString content = rx.cap(1);
                 rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
