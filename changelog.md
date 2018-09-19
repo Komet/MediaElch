@@ -16,6 +16,7 @@
  - Remove deprecated MovieMaze (#386)
  - Support KDE Breeze Dark theme (#407)
  - Use new Kodi XML syntax for movie set names (#554)
+ - Add context menu in movie duplicate view (#591)
  - Scrape TV show tags when using IMDb
  - Detect duplicate movies
  - Create subdirectories

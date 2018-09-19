@@ -1,11 +1,16 @@
 #include "MovieDuplicates.h"
 #include "ui_MovieDuplicates.h"
 
-#include "../globals/Helper.h"
-#include "../globals/Manager.h"
-#include "../notifications/NotificationBox.h"
-#include "MovieDuplicateItem.h"
+#include "data/Movie.h"
+#include "data/MovieProxyModel.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "movies/MovieDuplicateItem.h"
+#include "notifications/NotificationBox.h"
+
 #include <QDebug>
+#include <QDesktopServices>
+#include <QMenu>
 
 MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::MovieDuplicates)
 {
@@ -21,7 +26,11 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setFilterDuplicates(true);
+
+    // The movie model that is assigned to ui->movies contains all movies,
+    // but only duplicates are shown.
     ui->movies->setModel(m_movieProxyModel);
+
     for (int i = 1, n = ui->movies->model()->columnCount(); i < n; ++i) {
         ui->movies->setColumnWidth(i, 24);
         ui->movies->setColumnHidden(i, true);
@@ -37,9 +46,13 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
 
     Helper::instance()->applyStyle(ui->movieDuplicatesWidget);
 
-    connect(ui->btnDetect, &QPushButton::clicked, this, &MovieDuplicates::detectDuplicates);
-    connect(
-        ui->movies->selectionModel(), &QItemSelectionModel::currentChanged, this, &MovieDuplicates::onItemActivated);
+    createContextMenu();
+
+    // clang-format off
+    connect(ui->movies,                   &MyTableView::doubleClicked,          this, &MovieDuplicates::onJumpToMovie);
+    connect(ui->btnDetect,                &QPushButton::clicked,                this, &MovieDuplicates::detectDuplicates);
+    connect(ui->movies->selectionModel(), &QItemSelectionModel::currentChanged, this, &MovieDuplicates::onItemActivated);
+    // clang-format on
 }
 
 MovieDuplicates::~MovieDuplicates()
@@ -51,6 +64,7 @@ MovieDuplicates::~MovieDuplicates()
 void MovieDuplicates::detectDuplicates()
 {
     qDebug() << "Detecting duplicates";
+
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);
     m_duplicateMovies.clear();
@@ -60,21 +74,18 @@ void MovieDuplicates::detectDuplicates()
     NotificationBox::instance()->showProgressBar(
         tr("Detecting duplicate movies..."), Constants::MovieDuplicatesProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, movieCount, Constants::MovieDuplicatesProgressMessageId);
-    qApp->processEvents();
 
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        counter++;
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+        ++counter;
+        qApp->processEvents();
+
         NotificationBox::instance()->progressBarProgress(
             counter, movieCount, Constants::MovieDuplicatesProgressMessageId);
         movie->setHasDuplicates(false);
 
-        QList<Movie *> dups;
-        dups << movie;
-        foreach (Movie *subMovie, Manager::instance()->movieModel()->movies()) {
-            if (movie == subMovie) {
-                continue;
-            }
-            if (subMovie->isDuplicate(movie)) {
+        QList<Movie *> dups{movie};
+        for (Movie *subMovie : Manager::instance()->movieModel()->movies()) {
+            if (movie != subMovie && subMovie->isDuplicate(movie)) {
                 dups.append(subMovie);
             }
         }
@@ -87,16 +98,12 @@ void MovieDuplicates::detectDuplicates()
     NotificationBox::instance()->hideProgressBar(Constants::MovieDuplicatesProgressMessageId);
 }
 
-void MovieDuplicates::onItemActivated(QModelIndex index, QModelIndex previous)
+void MovieDuplicates::onItemActivated(QModelIndex /*index*/, QModelIndex /*previous*/)
 {
-    Q_UNUSED(previous)
-
-    if (!index.isValid()) {
+    Movie *movie = activeMovie();
+    if (movie == nullptr) {
         return;
     }
-
-    int row = index.model()->data(index, Qt::UserRole).toInt();
-    Movie *movie = Manager::instance()->movieModel()->movie(row);
 
     if (!m_duplicateMovies.contains(movie)) {
         return;
@@ -105,13 +112,96 @@ void MovieDuplicates::onItemActivated(QModelIndex index, QModelIndex previous)
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);
 
-    foreach (Movie *dup, m_duplicateMovies[movie]) {
-        auto item = new MovieDuplicateItem(ui->duplicates);
+    for (Movie *dup : m_duplicateMovies[movie]) {
+        auto *item = new MovieDuplicateItem(ui->duplicates);
         item->setMovie(dup, dup == movie);
         item->setDuplicateProperties(movie->duplicateProperties(dup));
 
-        int row = ui->duplicates->rowCount();
+        const int row = ui->duplicates->rowCount();
         ui->duplicates->insertRow(row);
         ui->duplicates->setCellWidget(row, 0, item);
     }
+}
+
+void MovieDuplicates::createContextMenu()
+{
+    // clang-format off
+    QAction *actionOpenDetailPage = new QAction(tr("Open Detail Page"),  this);
+    QAction *actionOpenFolder     = new QAction(tr("Open Movie Folder"), this);
+    QAction *actionOpenNfo        = new QAction(tr("Open NFO File"),     this);
+    // clang-format on
+
+    m_contextMenu = new QMenu(ui->movies);
+    m_contextMenu->addAction(actionOpenDetailPage);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addAction(actionOpenNfo);
+
+    // clang-format off
+    connect(actionOpenDetailPage, &QAction::triggered, this, &MovieDuplicates::onOpenDetailPage);
+    connect(actionOpenFolder,     &QAction::triggered, this, &MovieDuplicates::onOpenFolder);
+    connect(actionOpenNfo,        &QAction::triggered, this, &MovieDuplicates::onOpenNfo);
+    // clang-format on
+
+    connect(ui->movies, &QWidget::customContextMenuRequested, this, &MovieDuplicates::showContextMenu);
+}
+
+
+void MovieDuplicates::showContextMenu(QPoint point)
+{
+    // Only show context menu if an item is selected.
+    if (ui->movies->currentIndex().isValid()) {
+        m_contextMenu->exec(ui->movies->mapToGlobal(point));
+    }
+}
+
+
+void MovieDuplicates::onOpenDetailPage()
+{
+    Movie *movie = activeMovie();
+    if (movie != nullptr) {
+        emit sigJumpToMovie(movie);
+    }
+}
+
+void MovieDuplicates::onOpenFolder()
+{
+    Movie *movie = activeMovie();
+    if (movie != nullptr) {
+        QFileInfo fi(movie->files().at(0));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+    }
+}
+
+void MovieDuplicates::onOpenNfo()
+{
+    Movie *movie = activeMovie();
+    if (movie != nullptr) {
+        QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(movie));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absoluteFilePath()));
+    }
+}
+
+void MovieDuplicates::onJumpToMovie(const QModelIndex & /*index*/)
+{
+    Movie *movie = activeMovie();
+    if (movie != nullptr) {
+        emit sigJumpToMovie(movie);
+    }
+}
+
+Movie *MovieDuplicates::activeMovie()
+{
+    const QModelIndex currentIndex = ui->movies->currentIndex();
+    if (!currentIndex.isValid()) {
+        return nullptr;
+    }
+
+    const int row = currentIndex.data(Qt::UserRole).toInt();
+    Movie *movie = Manager::instance()->movieModel()->movie(row);
+    if (movie != nullptr && !movie->files().isEmpty()) {
+        return movie;
+    }
+
+    return nullptr;
 }
