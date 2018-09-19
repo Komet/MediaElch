@@ -37,10 +37,11 @@ private:
     QNetworkAccessManager m_qnam;
     QList<MovieScraperInfos> m_scraperSupports;
     QString m_language;
+    QString m_genreId;
     QWidget *m_widget;
     QComboBox *m_box;
+    QComboBox *m_genreBox;
 
-    QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos, QStringList &actorIds);
     void downloadActors(Movie *movie, QStringList actorIds);

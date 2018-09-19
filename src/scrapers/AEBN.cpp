@@ -8,13 +8,26 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
-AEBN::AEBN(QObject *parent)
+AEBN::AEBN(QObject *parent) :
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Director,
+        MovieScraperInfos::Set,
+        MovieScraperInfos::Tags},
+    m_language{"en"},
+    m_genreId{"101"}, // 101 => Straight
+    m_widget{new QWidget(MainWindow::instance())},
+    m_box{new QComboBox(m_widget)},
+    m_genreBox{new QComboBox(m_widget)}
 {
     setParent(parent);
-    m_language = "en";
 
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
     m_box->addItem(tr("Bulgarian"), "bg");
     m_box->addItem(tr("Chinese"), "zh");
     m_box->addItem(tr("Croatian"), "hr");
@@ -39,34 +52,29 @@ AEBN::AEBN(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
+
+    // Genre IDs overrides URL (http://[straight|gay]...)
+    m_genreBox->addItem(tr("Straight"), "101");
+    m_genreBox->addItem(tr("Gay"), "102");
+
     auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
+    layout->addWidget(new QLabel(tr("Genre")), 1, 0);
+    layout->addWidget(m_genreBox, 1, 1);
     layout->setColumnStretch(2, 1);
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
-
-    m_scraperSupports << MovieScraperInfos::Title    //
-                      << MovieScraperInfos::Released //
-                      << MovieScraperInfos::Runtime  //
-                      << MovieScraperInfos::Overview //
-                      << MovieScraperInfos::Poster   //
-                      << MovieScraperInfos::Actors   //
-                      << MovieScraperInfos::Genres   //
-                      << MovieScraperInfos::Studios  //
-                      << MovieScraperInfos::Director //
-                      << MovieScraperInfos::Set      //
-                      << MovieScraperInfos::Tags;
 }
 
 QString AEBN::name()
 {
-    return QString("AEBN");
+    return QStringLiteral("AEBN");
 }
 
 QString AEBN::identifier()
 {
-    return QString("aebn");
+    return QStringLiteral("aebn");
 }
 
 bool AEBN::isAdult()
@@ -84,20 +92,15 @@ QList<MovieScraperInfos> AEBN::scraperNativelySupports()
     return m_scraperSupports;
 }
 
-QNetworkAccessManager *AEBN::qnam()
-{
-    return &m_qnam;
-}
-
 void AEBN::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("https://straight.theater.aebn.net/dispatcher/"
-                     "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
-                     "Large&theaterId=822&genreId=101")
-                 .arg(m_language)
-                 .arg(encodedSearch));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(QStringLiteral(
+        "https://gay.theater.aebn.net/dispatcher/"
+        "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
+        "Large&theaterId=822&genreId=%3")
+                 .arg(m_language, encodedSearch, m_genreId));
+    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
 }
@@ -144,11 +147,10 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 {
     movie->clear(infos);
 
-    QUrl url(QString(
-        "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=101")
-                 .arg(ids.values().first())
-                 .arg(m_language));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(
+        QString("https://gay.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
+            .arg(ids.values().first(), m_language, m_genreId));
+    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -261,16 +263,16 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
                       "itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
-            bool skip = false;
-            foreach (Actor a, movie->actors()) {
-                if (a.name == rx.cap(5)) {
-                    skip = true;
-                    break;
-                }
-            }
-            if (skip) {
+
+            const bool actorAlreadyAdded =
+                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](Actor a) { //
+                    return a.name == rx.cap(5);                                                //
+                });
+
+            if (actorAlreadyAdded) {
                 continue;
             }
+
             Actor a;
             a.name = rx.cap(5);
             a.id = rx.cap(2);
@@ -285,20 +287,16 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
                       "itemprop=\"name\">(.*)</span></a>");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
-            bool skip = false;
-            foreach (Actor a, movie->actors()) {
-                if (a.name == rx.cap(2)) {
-                    skip = true;
-                    break;
-                }
-            }
-            if (skip) {
-                continue;
-            }
+            const bool actorAlreadyAdded =
+                std::any_of(movie->actors().cbegin(), movie->actors().cend(), [&rx](Actor a) { //
+                    return a.name == rx.cap(2);                                                //
+                });
 
-            Actor a;
-            a.name = rx.cap(2);
-            movie->addActor(a);
+            if (!actorAlreadyAdded) {
+                Actor a;
+                a.name = rx.cap(2);
+                movie->addActor(a);
+            }
         }
     }
 }
@@ -311,11 +309,9 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(
-        QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=101")
-            .arg(id)
-            .arg(m_language));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QUrl url(QString("https://gay.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
+                 .arg(id, m_language, m_genreId));
+    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);
@@ -345,9 +341,9 @@ void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
     QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
-        foreach (Actor *a, movie->actorsPointer()) {
+        for (Actor *a : movie->actorsPointer()) {
             if (a->id == id) {
-                a->thumb = QString("https:") + rx.cap(1);
+                a->thumb = QStringLiteral("https:") + rx.cap(1);
             }
         }
     }
@@ -366,12 +362,21 @@ void AEBN::loadSettings(QSettings &settings)
             m_box->setCurrentIndex(i);
         }
     }
+    m_genreId = settings.value("Scrapers/AEBN/Genre", "101").toString();
+    for (int i = 0, n = m_genreBox->count(); i < n; ++i) {
+        if (m_genreBox->itemData(i).toString() == m_genreId) {
+            m_genreBox->setCurrentIndex(i);
+        }
+    }
 }
 
 void AEBN::saveSettings(QSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/AEBN/Language", m_language);
+
+    m_genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
+    settings.setValue("Scrapers/AEBN/Genre", m_genreId);
 }
 
 QWidget *AEBN::settingsWidget()
