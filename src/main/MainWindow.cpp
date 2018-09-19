@@ -201,9 +201,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(m_settingsWindow, &SettingsWindow::sigSaved, this, &MainWindow::onRenewModels, Qt::QueuedConnection);
 
-    connect(ui->setsWidget,          &SetsWidget::sigJumpToMovie,          this, &MainWindow::onJumpToMovie);
-    connect(ui->certificationWidget, &CertificationWidget::sigJumpToMovie, this, &MainWindow::onJumpToMovie);
-    connect(ui->genreWidget,         &GenreWidget::sigJumpToMovie,         this, &MainWindow::onJumpToMovie);
+    connect(ui->setsWidget,            &SetsWidget::sigJumpToMovie,          this, &MainWindow::onJumpToMovie);
+    connect(ui->certificationWidget,   &CertificationWidget::sigJumpToMovie, this, &MainWindow::onJumpToMovie);
+    connect(ui->genreWidget,           &GenreWidget::sigJumpToMovie,         this, &MainWindow::onJumpToMovie);
+    connect(ui->movieDuplicatesWidget, &MovieDuplicates::sigJumpToMovie,     this, &MainWindow::onJumpToMovie);
     // clang-format on
 
     MovieSearch::instance(this);
