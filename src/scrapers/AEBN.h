@@ -4,6 +4,7 @@
 #include "data/ScraperInterface.h"
 
 #include <QComboBox>
+#include <QMap>
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>

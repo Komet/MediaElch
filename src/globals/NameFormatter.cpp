@@ -17,7 +17,7 @@ NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
  */
 NameFormatter *NameFormatter::instance(QObject *parent)
 {
-    static NameFormatter* formatterInstance = new NameFormatter(parent);
+    static NameFormatter *formatterInstance = new NameFormatter(parent);
     return formatterInstance;
 }
 

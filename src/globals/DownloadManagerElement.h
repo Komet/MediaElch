@@ -34,7 +34,7 @@ public:
     bool directDownload{false};
 
     template<class T>
-    T* getElement();
+    T *getElement();
 };
 
 #endif // DOWNLOADMANAGERELEMENT_H

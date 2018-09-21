@@ -359,6 +359,8 @@ int RenamerDialog::addResultToTable(const QString &oldFileName,
         case Renamer::RenameOperation::Move: return QObject::tr("Move");
         case Renamer::RenameOperation::Rename: return QObject::tr("Rename");
         }
+        qCritical() << "[RenamerDialog] RenameOperation: Missing case.";
+        return QString("");
     }();
 
     QFont font = ui->resultsTable->font();
