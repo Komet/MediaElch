@@ -50,27 +50,25 @@ int RenamerDialog::exec()
     m_filesRenamed = false;
     m_renameErrorOccured = false;
 
-    switch (m_renameType) {
-    case Renamer::RenameType::Movies:
-        ui->infoLabel->setText(tr("%n Movie(s) will be renamed", "", m_movies.count()));
-        break;
-    case Renamer::RenameType::Concerts:
-        ui->infoLabel->setText(tr("%n Concert(s) will be renamed", "", m_concerts.count()));
-        break;
-    case Renamer::RenameType::TvShows:
-        ui->infoLabel->setText(tr("%n TV Show(s) and %1", "", m_shows.count())
-                                   .arg(tr("%n Episode(s) will be renamed", "", m_episodes.count())));
-        break;
-    default: break;
-    }
+    const QString infoLabel = [&]() {
+        switch (m_renameType) {
+        case Renamer::RenameType::All: qWarning() << "Unknown Rename Type All"; return QString("");
+        case Renamer::RenameType::Concerts: return tr("%n Concert(s) will be renamed", "", m_concerts.count());
+        case Renamer::RenameType::Movies: return tr("%n Movie(s) will be renamed", "", m_movies.count());
+        case Renamer::RenameType::TvShows:
+            return tr("%n TV Show(s) and %1", "", m_shows.count())
+                .arg(tr("%n Episode(s) will be renamed", "", m_episodes.count()));
+        }
+    }();
+    ui->infoLabel->setText(infoLabel);
 
     QString fileName;
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
-    bool renameFiles;
-    bool renameFolders;
-    bool useSeasonDirectories;
+    bool renameFiles = false;
+    bool renameFolders = false;
+    bool useSeasonDirectories = false;
     Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName);
     Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories);
     ui->fileNaming->setText(fileName);
@@ -173,46 +171,25 @@ void RenamerDialog::onChkUseSeasonDirectories()
 
 void RenamerDialog::onRename()
 {
-    ui->tabWidget->setCurrentIndex(1);
-    ui->results->clear();
-    ui->resultsTable->setRowCount(0);
     ui->btnRename->setEnabled(false);
     ui->btnDryRun->setEnabled(false);
 
-    RenamerConfig config;
-    config.dryRun = false;
-    config.filePattern = ui->fileNaming->text();
-    config.filePatternMulti = ui->fileNamingMulti->text();
-    config.renameFiles = ui->chkFileNaming->isChecked();
-
-    if (m_renameType == Renamer::RenameType::Movies) {
-        config.directoryPattern = ui->directoryNaming->text();
-        config.renameDirectories = ui->chkDirectoryNaming->isChecked();
-        renameMovies(m_movies, config);
-
-    } else if (m_renameType == Renamer::RenameType::Concerts) {
-        config.directoryPattern = ui->directoryNaming->text();
-        config.renameDirectories = ui->chkDirectoryNaming->isChecked();
-        renameConcerts(m_concerts, config);
-
-    } else if (m_renameType == Renamer::RenameType::TvShows) {
-        config.directoryPattern = ui->seasonNaming->text();
-        config.renameDirectories = ui->chkSeasonDirectories->isChecked();
-        renameEpisodes(m_episodes, config);
-        renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked());
-    }
-    m_filesRenamed = true;
-    ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
+    renameType(false);
 }
 
 void RenamerDialog::onDryRun()
+{
+    renameType(true);
+}
+
+void RenamerDialog::renameType(const bool isDryRun)
 {
     ui->tabWidget->setCurrentIndex(1);
     ui->results->clear();
     ui->resultsTable->setRowCount(0);
 
     RenamerConfig config;
-    config.dryRun = true;
+    config.dryRun = isDryRun;
     config.filePattern = ui->fileNaming->text();
     config.filePatternMulti = ui->fileNamingMulti->text();
     config.renameFiles = ui->chkFileNaming->isChecked();
@@ -231,25 +208,26 @@ void RenamerDialog::onDryRun()
         config.directoryPattern = ui->seasonNaming->text();
         config.renameDirectories = ui->chkSeasonDirectories->isChecked();
         renameEpisodes(m_episodes, config);
-        renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked(), true);
+        renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked(), isDryRun);
+    }
+    if (isDryRun) {
+        m_filesRenamed = true;
     }
     ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
 }
 
 void RenamerDialog::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
 {
-    MovieRenamer renamer(config, this);
-
     if ((config.renameFiles && config.filePattern.isEmpty())
         || (config.renameDirectories && config.directoryPattern.isEmpty())) {
         return;
     }
 
+    MovieRenamer renamer(config, this);
     for (Movie *movie : movies) {
         if (movie->files().isEmpty() || (movie->files().count() > 1 && config.filePatternMulti.isEmpty())) {
             continue;
         }
-
         if (movie->hasChanged()) {
             ui->results->append(QObject::tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
             continue;
@@ -257,8 +235,8 @@ void RenamerDialog::renameMovies(QList<Movie *> movies, const RenamerConfig &con
 
         qApp->processEvents();
 
-        MovieRenamer::RenameError err = renamer.renameMovie(*movie);
-        if (err != MovieRenamer::RenameError::None) {
+        Renamer::RenameError err = renamer.renameMovie(*movie);
+        if (err != Renamer::RenameError::None) {
             m_renameErrorOccured = true;
         }
     }
@@ -271,7 +249,6 @@ void RenamerDialog::renameEpisodes(QList<TvShowEpisode *> episodes, const Rename
     }
 
     EpisodeRenamer renamer(config, this);
-
     QList<TvShowEpisode *> episodesRenamed;
 
     for (TvShowEpisode *episode : episodes) {
@@ -279,7 +256,6 @@ void RenamerDialog::renameEpisodes(QList<TvShowEpisode *> episodes, const Rename
             || episodesRenamed.contains(episode)) {
             continue;
         }
-
         if (episode->hasChanged()) {
             ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->name()));
             continue;
@@ -316,26 +292,28 @@ void RenamerDialog::renameShows(QList<TvShow *> shows,
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         Helper::instance()->sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {
-            int row = addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
+            const int row = addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
             QDir parentDir(dir.path());
             parentDir.cdUp();
-            if (!dryRun) {
-                if (!Renamer::rename(dir, parentDir.path() + "/" + newFolderName)) {
-                    setResultStatus(row, Renamer::RenameResult::Failed);
-                    m_renameErrorOccured = true;
-                } else {
-                    QString newShowDir = parentDir.path() + "/" + newFolderName;
-                    QString oldShowDir = show->dir();
-                    show->setDir(newShowDir);
-                    Manager::instance()->database()->update(show);
-                    for (TvShowEpisode *episode : show->episodes()) {
-                        QStringList files;
-                        foreach (const QString &file, episode->files())
-                            files << newShowDir + file.mid(oldShowDir.length());
-                        episode->setFiles(files);
-                        Manager::instance()->database()->update(episode);
-                    }
+            if (dryRun) {
+                continue;
+            }
+            if (!Renamer::rename(dir, parentDir.path() + "/" + newFolderName)) {
+                setResultStatus(row, Renamer::RenameResult::Failed);
+                m_renameErrorOccured = true;
+                continue;
+            }
+            const QString newShowDir = parentDir.path() + "/" + newFolderName;
+            const QString oldShowDir = show->dir();
+            show->setDir(newShowDir);
+            Manager::instance()->database()->update(show);
+            for (TvShowEpisode *episode : show->episodes()) {
+                QStringList files;
+                for (const QString &file : episode->files()) {
+                    files << newShowDir + file.mid(oldShowDir.length());
                 }
+                episode->setFiles(files);
+                Manager::instance()->database()->update(episode);
             }
         }
     }
@@ -354,7 +332,6 @@ void RenamerDialog::renameConcerts(QList<Concert *> concerts, const RenamerConfi
         if (concert->files().isEmpty() || (concert->files().count() > 1 && config.filePatternMulti.isEmpty())) {
             continue;
         }
-
         if (concert->hasChanged()) {
             ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->name()));
             continue;
@@ -362,8 +339,8 @@ void RenamerDialog::renameConcerts(QList<Concert *> concerts, const RenamerConfi
 
         qApp->processEvents();
 
-        ConcertRenamer::RenameError err = renamer.renameConcert(*concert);
-        if (err != ConcertRenamer::RenameError::None) {
+        Renamer::RenameError err = renamer.renameConcert(*concert);
+        if (err != Renamer::RenameError::None) {
             m_renameErrorOccured = true;
         }
     }
@@ -373,12 +350,13 @@ int RenamerDialog::addResultToTable(const QString &oldFileName,
     const QString &newFileName,
     Renamer::RenameOperation operation)
 {
-    QString opString;
-    switch (operation) {
-    case Renamer::RenameOperation::CreateDir: opString = tr("Create dir"); break;
-    case Renamer::RenameOperation::Move: opString = tr("Move"); break;
-    case Renamer::RenameOperation::Rename: opString = tr("Rename"); break;
-    }
+    const QString opString = [operation]() -> QString {
+        switch (operation) {
+        case Renamer::RenameOperation::CreateDir: return QObject::tr("Create dir");
+        case Renamer::RenameOperation::Move: return QObject::tr("Move");
+        case Renamer::RenameOperation::Rename: return QObject::tr("Rename");
+        }
+    }();
 
     QFont font = ui->resultsTable->font();
     font.setBold(true);

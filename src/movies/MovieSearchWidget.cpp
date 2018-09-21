@@ -19,11 +19,12 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (ScraperInterface *scraper : Manager::instance()->scrapers()) {
         connect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
             SLOT(showResults(QList<ScraperSearchResult>)));
+    }
     setupScrapers();
 
     connect(
@@ -57,7 +58,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfos::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfos::Tags));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieSearchWidget::chkToggled);
         }

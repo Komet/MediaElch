@@ -61,6 +61,7 @@ private:
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
 
+    void renameType(const bool isDryRun);
     void renameMovies(QList<Movie *> movies, const RenamerConfig &config);
     void renameConcerts(QList<Concert *> concerts, const RenamerConfig &config);
     void renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config);
