@@ -96,7 +96,7 @@ void AEBN::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QStringLiteral(
-        "https://gay.theater.aebn.net/dispatcher/"
+        "https://straight.theater.aebn.net/dispatcher/"
         "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
         "Large&theaterId=822&genreId=%3")
                  .arg(m_language, encodedSearch, m_genreId));
@@ -148,7 +148,7 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
     movie->clear(infos);
 
     QUrl url(
-        QString("https://gay.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
+        QString("https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
             .arg(ids.values().first(), m_language, m_genreId));
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
@@ -309,7 +309,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(QString("https://gay.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
+    QUrl url(QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
                  .arg(id, m_language, m_genreId));
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
