@@ -1,9 +1,9 @@
 #ifndef MOVIEPROXYMODEL_H
 #define MOVIEPROXYMODEL_H
 
-#include <QSortFilterProxyModel>
-
 #include "globals/Filter.h"
+
+#include <QSortFilterProxyModel>
 
 /**
  * @brief The MovieProxyModel class

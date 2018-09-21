@@ -1,12 +1,12 @@
 #ifndef CINEFACTS_H
 #define CINEFACTS_H
 
+#include "data/ScraperInterface.h"
+
 #include <QObject>
 #include <QQueue>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ScraperInterface.h"
 
 /**
  * @brief The Kino.de class

@@ -4,6 +4,11 @@
 #include <QFileDialog>
 #include <string>
 
+#include "data/Concert.h"
+#include "data/Movie.h"
+#include "data/StreamDetails.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 

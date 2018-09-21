@@ -1,14 +1,16 @@
 #ifndef TVSHOWWIDGET_H
 #define TVSHOWWIDGET_H
 
-#include <QWidget>
+#include "globals/Globals.h"
 
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
+#include <QWidget>
 
 namespace Ui {
 class TvShowWidget;
 }
+
+class TvShow;
+class TvShowEpisode;
 
 /**
  * @brief The TvShowWidget class

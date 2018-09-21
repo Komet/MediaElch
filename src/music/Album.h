@@ -1,14 +1,14 @@
 #ifndef ALBUM_H
 #define ALBUM_H
 
-#include <QObject>
-
-#include "AlbumController.h"
-#include "Artist.h"
-#include "MusicModelItem.h"
 #include "globals/Globals.h"
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
+#include "music/AlbumController.h"
+#include "music/Artist.h"
+#include "music/MusicModelItem.h"
+
+#include <QObject>
 
 class AlbumController;
 class Artist;

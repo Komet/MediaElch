@@ -1,12 +1,9 @@
 #ifndef ARTISTCONTROLLER_H
 #define ARTISTCONTROLLER_H
 
-#include <QObject>
+#include "globals/DownloadManagerElement.h"
 
-#include "data/MediaCenterInterface.h"
-#include "data/MusicScraperInterface.h"
-#include "globals/DownloadManager.h"
-#include "music/Artist.h"
+#include <QObject>
 
 class Artist;
 class DownloadManager;
@@ -18,7 +15,7 @@ class ArtistController : public QObject
     Q_OBJECT
 public:
     explicit ArtistController(Artist *parent = nullptr);
-    ~ArtistController() override;
+    ~ArtistController() override = default;
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

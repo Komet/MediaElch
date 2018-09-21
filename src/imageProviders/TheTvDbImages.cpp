@@ -1,5 +1,8 @@
 #include "TheTvDbImages.h"
 
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "scrapers/TheTvDb.h"
 #include "settings/Settings.h"
 
 /**

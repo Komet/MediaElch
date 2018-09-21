@@ -1,9 +1,9 @@
 #ifndef MEDIAFLAGS_H
 #define MEDIAFLAGS_H
 
-#include <QWidget>
-
 #include "data/StreamDetails.h"
+
+#include <QWidget>
 
 namespace Ui {
 class MediaFlags;

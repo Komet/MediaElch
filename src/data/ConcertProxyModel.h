@@ -3,7 +3,7 @@
 
 #include <QSortFilterProxyModel>
 
-#include "globals/Filter.h"
+class Filter;
 
 /**
  * @brief The ConcertProxyModel class

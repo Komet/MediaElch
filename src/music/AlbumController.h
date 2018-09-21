@@ -1,10 +1,9 @@
 #ifndef ALBUMCONTROLLER_H
 #define ALBUMCONTROLLER_H
 
-#include <QObject>
-
 #include "globals/DownloadManagerElement.h"
-#include "music/Album.h"
+
+#include <QObject>
 
 class Album;
 class DownloadManager;

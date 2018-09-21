@@ -1,6 +1,10 @@
 #include "LoadingStreamDetails.h"
 #include "ui_LoadingStreamDetails.h"
 
+#include "data/Concert.h"
+#include "data/Movie.h"
+#include "data/TvShowEpisode.h"
+
 LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingStreamDetails)
 {
     ui->setupUi(this);

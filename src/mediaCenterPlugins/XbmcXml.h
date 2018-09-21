@@ -1,17 +1,22 @@
 #ifndef XBMCXML_H
 #define XBMCXML_H
 
-#include <QDomDocument>
-#include <QObject>
-#include <QXmlStreamWriter>
-
 #include "data/Concert.h"
 #include "data/MediaCenterInterface.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+
+#include <QByteArray>
+#include <QDomDocument>
+#include <QList>
+#include <QObject>
+#include <QString>
+#include <QXmlStreamWriter>
+
+class Movie;
+class TvShow;
+class TvShowEpisode;
+class Subtitle;
 
 /**
  * @brief The XbmcXml class

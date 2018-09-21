@@ -1,11 +1,11 @@
 #ifndef ADULTDVDEMPIRE_H
 #define ADULTDVDEMPIRE_H
 
+#include "data/ScraperInterface.h"
+
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
 
 class AdultDvdEmpire : public ScraperInterface
 {

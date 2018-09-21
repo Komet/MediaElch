@@ -1,11 +1,12 @@
 #ifndef CONCERTFILESEARCHER_H
 #define CONCERTFILESEARCHER_H
 
-#include <QDir>
-#include <QObject>
-
-#include "data/Concert.h"
 #include "globals/Globals.h"
+
+#include <QDir>
+#include <QList>
+#include <QString>
+#include <QStringList>
 
 /**
  * @brief The ConcertFileSearcher class

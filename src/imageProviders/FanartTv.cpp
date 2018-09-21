@@ -12,6 +12,7 @@
 #include "data/Storage.h"
 #include "main/MainWindow.h"
 #include "scrapers/TMDb.h"
+#include "scrapers/TheTvDb.h"
 
 /**
  * @brief FanartTv::FanartTv

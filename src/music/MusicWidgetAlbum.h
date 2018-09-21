@@ -1,13 +1,13 @@
 #ifndef MUSICWIDGETALBUM_H
 #define MUSICWIDGETALBUM_H
 
+#include "image/ImageWidget.h"
+#include "music/Album.h"
+#include "smallWidgets/ClosableImage.h"
+
 #include <QLineEdit>
 #include <QPointer>
 #include <QWidget>
-
-#include "../image/ImageWidget.h"
-#include "../music/Album.h"
-#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetAlbum;

@@ -1,10 +1,12 @@
 #ifndef MUSICPROXYMODEL_H
 #define MUSICPROXYMODEL_H
 
+#include "globals/Filter.h"
+
+#include <QList>
 #include <QObject>
 #include <QSortFilterProxyModel>
-
-#include "../globals/Filter.h"
+#include <QString>
 
 class MusicProxyModel : public QSortFilterProxyModel
 {

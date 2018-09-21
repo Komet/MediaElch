@@ -1,14 +1,14 @@
 #ifndef TMDBCONCERTS_H
 #define TMDBCONCERTS_H
 
+#include "data/ConcertScraperInterface.h"
+
 #include <QComboBox>
 #include <QLocale>
 #include <QObject>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ConcertScraperInterface.h"
 
 /**
  * @brief The TMDbConcerts class

@@ -1,6 +1,7 @@
 #ifndef UNPACKBUTTONS_H
 #define UNPACKBUTTONS_H
 
+#include <QString>
 #include <QWidget>
 
 namespace Ui {

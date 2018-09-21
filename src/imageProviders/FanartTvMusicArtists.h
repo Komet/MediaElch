@@ -1,14 +1,12 @@
 #ifndef FANARTTVMUSICARTISTS_H
 #define FANARTTVMUSICARTISTS_H
 
+#include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-
-#include "data/ImageProviderInterface.h"
-#include "globals/Globals.h"
-#include "scrapers/TMDb.h"
-#include "scrapers/TheTvDb.h"
 
 /**
  * @brief The FanartTv Music Artists class

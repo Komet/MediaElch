@@ -1,11 +1,11 @@
 #ifndef MUSICMODEL_H
 #define MUSICMODEL_H
 
+#include "Artist.h"
+
 #include <QAbstractItemModel>
 #include <QIcon>
 #include <QObject>
-
-#include "Artist.h"
 
 class MusicModel : public QAbstractItemModel
 {

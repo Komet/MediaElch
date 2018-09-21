@@ -1,14 +1,14 @@
 #ifndef DOWNLOADSWIDGET_H
 #define DOWNLOADSWIDGET_H
 
+#include "downloads/Extractor.h"
+#include "downloads/MakeMkvDialog.h"
+
 #include <QComboBox>
 #include <QFileInfo>
 #include <QMap>
 #include <QMutex>
 #include <QWidget>
-
-#include "downloads/Extractor.h"
-#include "downloads/MakeMkvDialog.h"
 
 namespace Ui {
 class DownloadsWidget;

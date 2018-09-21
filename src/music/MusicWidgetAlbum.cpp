@@ -1,17 +1,17 @@
 #include "MusicWidgetAlbum.h"
 #include "ui_MusicWidgetAlbum.h"
 
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "globals/ImageDialog.h"
+#include "globals/Manager.h"
+#include "music/MusicSearch.h"
+#include "notifications/NotificationBox.h"
+
 #ifdef Q_OS_WIN
 #include <QGLFormat>
 #endif
 #include <QPainter>
-
-#include "../globals/Globals.h"
-#include "../globals/Helper.h"
-#include "../globals/ImageDialog.h"
-#include "../globals/Manager.h"
-#include "../notifications/NotificationBox.h"
-#include "MusicSearch.h"
 
 MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
 {

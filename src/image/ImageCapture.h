@@ -1,9 +1,9 @@
 #ifndef IMAGECAPTURE_H
 #define IMAGECAPTURE_H
 
-#include <QObject>
-
 #include "data/StreamDetails.h"
+
+#include <QObject>
 
 class ImageCapture : public QObject
 {

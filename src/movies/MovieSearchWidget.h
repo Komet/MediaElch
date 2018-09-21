@@ -1,15 +1,19 @@
 #ifndef MOVIESEARCHWIDGET_H
 #define MOVIESEARCHWIDGET_H
 
+#include "globals/Globals.h"
+
+#include <QList>
+#include <QMap>
+#include <QString>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class MovieSearchWidget;
 }
+
+class ScraperInterface;
 
 class MovieSearchWidget : public QWidget
 {

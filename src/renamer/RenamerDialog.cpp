@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QTimer>
 
 RenamerDialog::RenamerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::RenamerDialog)
 {
@@ -59,6 +60,8 @@ int RenamerDialog::exec()
             return tr("%n TV Show(s) and %1", "", m_shows.count())
                 .arg(tr("%n Episode(s) will be renamed", "", m_episodes.count()));
         }
+        qCritical() << "[RenamerDialog] RenamerType: Missing case.";
+        return QString("");
     }();
     ui->infoLabel->setText(infoLabel);
 

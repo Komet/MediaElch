@@ -1,12 +1,13 @@
 #ifndef MUSICSEARCHWIDGET_H
 #define MUSICSEARCHWIDGET_H
 
+#include "globals/Globals.h"
+
+#include <QList>
 #include <QSignalMapper>
+#include <QString>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class MusicSearchWidget;

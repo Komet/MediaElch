@@ -1,12 +1,12 @@
 #ifndef VIDEOBUSTER_H
 #define VIDEOBUSTER_H
 
+#include "data/ScraperInterface.h"
+
 #include <QObject>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ScraperInterface.h"
 
 /**
  * @brief The VideoBuster class

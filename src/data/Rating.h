@@ -1,7 +1,6 @@
 #ifndef DATA_RATING_H
 #define DATA_RATING_H
 
-
 class Rating
 {
 public:

@@ -1,11 +1,11 @@
 #ifndef MUSICTREEVIEW_H
 #define MUSICTREEVIEW_H
 
-#include "../globals/Globals.h"
-
 #include <QPainter>
 #include <QTreeView>
 #include <QWidget>
+
+#include "globals/Globals.h"
 
 class MusicTreeView : public QTreeView
 {

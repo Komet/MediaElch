@@ -4,8 +4,8 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 
-#include "data/TvShow.h"
-#include "scrapers/TheTvDb.h"
+class TvShow;
+class TheTvDb;
 
 class TvShowUpdater : public QObject
 {

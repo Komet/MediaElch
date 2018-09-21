@@ -1,13 +1,13 @@
 #ifndef TVSHOWWIDGETEPISODE_H
 #define TVSHOWWIDGETEPISODE_H
 
+#include "data/TvShowEpisode.h"
+#include "globals/DownloadManager.h"
+
 #include <QLabel>
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "data/TvShowEpisode.h"
-#include "globals/DownloadManager.h"
 
 namespace Ui {
 class TvShowWidgetEpisode;

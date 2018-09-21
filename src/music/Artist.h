@@ -1,11 +1,11 @@
 #ifndef ARTIST_H
 #define ARTIST_H
 
-#include <QObject>
-
 #include "ArtistController.h"
 #include "MusicModelItem.h"
 #include "globals/Globals.h"
+
+#include <QObject>
 
 class ArtistController;
 class MusicModelItem;

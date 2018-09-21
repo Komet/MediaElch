@@ -1,28 +1,29 @@
 #ifndef IMAGEDIALOG_H
 #define IMAGEDIALOG_H
 
+#include "globals/Globals.h"
+
 #include <QDialog>
 #include <QLabel>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QUrl>
 #include <QWidget>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-
-#include "data/Concert.h"
-#include "data/ImageProviderInterface.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
-#include "globals/Globals.h"
-#include "music/Album.h"
-#include "music/Artist.h"
-#include "smallWidgets/ImageLabel.h"
 
 namespace Ui {
 class ImageDialog;
 }
+
+class Album;
+class Artist;
+class Concert;
+class ImageLabel;
+class Movie;
+class TvShow;
+class TvShowEpisode;
+class ImageProviderInterface;
 
 /**
  * @brief The ImageDialog class

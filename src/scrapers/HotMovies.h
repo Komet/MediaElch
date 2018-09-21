@@ -1,12 +1,12 @@
 #ifndef HOTMOVIES_H
 #define HOTMOVIES_H
 
+#include "data/ScraperInterface.h"
+
 #include <QComboBox>
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
 
 class HotMovies : public ScraperInterface
 {

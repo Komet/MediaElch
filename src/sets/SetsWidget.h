@@ -1,12 +1,18 @@
 #ifndef SETSWIDGET_H
 #define SETSWIDGET_H
 
+#include <QImage>
+#include <QMap>
 #include <QMovie>
 #include <QSplitter>
+#include <QStringList>
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Movie.h"
+#include "globals/DownloadManagerElement.h"
+
+class DownloadManager;
+class Movie;
 
 namespace Ui {
 class SetsWidget;

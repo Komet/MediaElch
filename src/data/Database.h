@@ -1,15 +1,20 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QDateTime>
-#include <QObject>
-#include <QSqlDatabase>
+#include "globals/Globals.h"
 
-#include "data/Concert.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "music/Album.h"
-#include "music/Artist.h"
+#include <QDateTime>
+#include <QList>
+#include <QSqlDatabase>
+#include <QString>
+#include <QStringList>
+
+class Album;
+class Artist;
+class Concert;
+class Movie;
+class TvShow;
+class TvShowEpisode;
 
 class Database : public QObject
 {

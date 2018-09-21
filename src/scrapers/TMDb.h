@@ -4,6 +4,7 @@
 #include <QComboBox>
 #include <QLocale>
 #include <QMap>
+#include <QMutex>
 #include <QObject>
 #include <QPointer>
 #include <QtNetwork/QNetworkAccessManager>

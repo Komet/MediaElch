@@ -1,9 +1,12 @@
 #ifndef MUSICSCRAPERINTERFACE
 #define MUSICSCRAPERINTERFACE
 
-#include <QSettings>
+#include "globals/Globals.h"
 
-#include "../globals/Globals.h"
+#include <QList>
+#include <QSettings>
+#include <QString>
+#include <QWidget>
 
 class Album;
 class Artist;

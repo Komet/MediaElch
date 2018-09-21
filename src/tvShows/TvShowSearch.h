@@ -1,10 +1,10 @@
 #ifndef TVSHOWSEARCH_H
 #define TVSHOWSEARCH_H
 
+#include "globals/Globals.h"
+
 #include <QDialog>
 #include <QTableWidgetItem>
-
-#include "globals/Globals.h"
 
 namespace Ui {
 class TvShowSearch;

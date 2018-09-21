@@ -3,7 +3,9 @@
 
 #include <QHash>
 #include <QImage>
-#include <QObject>
+#include <QList>
+#include <QSize>
+#include <QString>
 
 class ImageCache : public QObject
 {

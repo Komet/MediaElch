@@ -1,13 +1,14 @@
 #ifndef MUSICWIDGETARTIST_H
 #define MUSICWIDGETARTIST_H
 
+#include "music/Artist.h"
+#include "smallWidgets/ClosableImage.h"
+
 #include <QLineEdit>
 #include <QPointer>
+#include <QString>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "../music/Artist.h"
-#include "../smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MusicWidgetArtist;

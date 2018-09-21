@@ -1,10 +1,11 @@
 #ifndef CUSTOMMOVIESCRAPER_H
 #define CUSTOMMOVIESCRAPER_H
 
-#include <QObject>
-
 #include "data/ImageProviderInterface.h"
 #include "data/ScraperInterface.h"
+
+#include <QNetworkAccessManager>
+#include <QObject>
 
 class CustomMovieScraper : public ScraperInterface
 {

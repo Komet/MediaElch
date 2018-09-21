@@ -1,6 +1,8 @@
 #ifndef CONCERTWIDGET_H
 #define CONCERTWIDGET_H
 
+#include "data/Concert.h"
+
 #include <QContextMenuEvent>
 #include <QLabel>
 #include <QMenu>
@@ -9,12 +11,11 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Concert.h"
-#include "smallWidgets/ClosableImage.h"
-
 namespace Ui {
 class ConcertWidget;
 }
+
+class ClosableImage;
 
 /**
  * @brief The ConcertWidget class

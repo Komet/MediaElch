@@ -1,17 +1,20 @@
 #include "XbmcXml.h"
 
+#include "data/Movie.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "image/Image.h"
+#include "settings/Settings.h"
+
 #include <QApplication>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QXmlStreamWriter>
-
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "globals/Manager.h"
-#include "image/Image.h"
-#include "settings/Settings.h"
 
 /**
  * @brief XbmcXml::XbmcXml

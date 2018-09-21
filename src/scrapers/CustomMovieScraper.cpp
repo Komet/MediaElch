@@ -7,6 +7,7 @@
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
+#include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 
 CustomMovieScraper::CustomMovieScraper(QObject *parent)

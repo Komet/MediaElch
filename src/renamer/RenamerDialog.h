@@ -1,15 +1,15 @@
 #ifndef RENAMER_DIALOG_H
 #define RENAMER_DIALOG_H
 
-#include <QDialog>
-#include <QDir>
-#include <QFile>
-
 #include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "renamer/Renamer.h"
+
+#include <QDialog>
+#include <QDir>
+#include <QFile>
 
 namespace Ui {
 class RenamerDialog;

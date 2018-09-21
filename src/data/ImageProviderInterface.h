@@ -1,14 +1,16 @@
 #ifndef IMAGEPROVIDERINTERFACE_H
 #define IMAGEPROVIDERINTERFACE_H
 
-#include <QObject>
+#include <QList>
+#include <QMap>
+#include <QSettings>
+#include <QString>
 
 #include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
 
-class TvShow;
 
 /**
  * @brief The ImageProviderInterface class

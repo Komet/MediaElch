@@ -1,11 +1,13 @@
 #ifndef NOTIFICATIONBOX_H
 #define NOTIFICATIONBOX_H
 
-#include <QTimer>
-#include <QWidget>
-
 #include "globals/Globals.h"
 #include "main/Message.h"
+
+#include <QSize>
+#include <QString>
+#include <QTimer>
+#include <QWidget>
 
 namespace Ui {
 class NotificationBox;

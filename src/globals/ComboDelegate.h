@@ -1,9 +1,11 @@
 #ifndef COMBODELEGATE_H
 #define COMBODELEGATE_H
 
-#include <QItemDelegate>
-
 #include "globals/Globals.h"
+
+#include <QItemDelegate>
+#include <QModelIndex>
+#include <QWidget>
 
 /**
  * @brief The ComboDelegate class

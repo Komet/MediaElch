@@ -1,6 +1,7 @@
 #include "MusicSearchWidget.h"
 #include "ui_MusicSearchWidget.h"
 
+#include "data/MusicScraperInterface.h"
 #include "globals/Manager.h"
 #include "smallWidgets/MyLabel.h"
 #include <QDebug>

@@ -1,15 +1,15 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <QObject>
-#include <QPoint>
-#include <QSettings>
-#include <QSize>
-
 #include "globals/Globals.h"
 #include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
+
+#include <QObject>
+#include <QPoint>
+#include <QSettings>
+#include <QSize>
 
 /**
  * @brief The Settings class

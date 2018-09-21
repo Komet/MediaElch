@@ -1,11 +1,11 @@
 #ifndef IMDB_H
 #define IMDB_H
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-
 #include "data/Movie.h"
 #include "data/ScraperInterface.h"
+
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 class QCheckBox;
 

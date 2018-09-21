@@ -1,10 +1,10 @@
 #ifndef MUSICSEARCH_H
 #define MUSICSEARCH_H
 
-#include <QDialog>
-
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
+
+#include <QDialog>
 
 namespace Ui {
 class MusicSearch;

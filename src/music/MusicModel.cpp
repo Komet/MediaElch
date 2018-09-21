@@ -2,6 +2,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "music/Album.h"
 
 MusicModel::MusicModel(QObject *parent) :
     QAbstractItemModel(parent),

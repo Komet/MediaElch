@@ -1,15 +1,19 @@
 #ifndef MOVIESEARCH_H
 #define MOVIESEARCH_H
 
-#include <QDialog>
-#include <QTableWidgetItem>
-
-#include "data/ScraperInterface.h"
 #include "globals/Globals.h"
+
+#include <QDialog>
+#include <QList>
+#include <QMap>
+#include <QString>
+#include <QTableWidgetItem>
 
 namespace Ui {
 class MovieSearch;
 }
+
+class ScraperInterface;
 
 /**
  * @brief The MovieSearch class

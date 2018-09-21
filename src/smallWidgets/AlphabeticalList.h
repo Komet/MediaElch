@@ -1,15 +1,15 @@
 #ifndef ALPHABETICALLIST_H
 #define ALPHABETICALLIST_H
 
+#include "globals/Globals.h"
+#include "smallWidgets/MyTableView.h"
+
 #include <QPaintEvent>
 #include <QPointer>
 #include <QPropertyAnimation>
 #include <QResizeEvent>
 #include <QVBoxLayout>
 #include <QWidget>
-
-#include "globals/Globals.h"
-#include "smallWidgets/MyTableView.h"
 
 class AlphabeticalList : public QWidget
 {

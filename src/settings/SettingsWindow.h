@@ -1,21 +1,20 @@
 #ifndef SETTINGSWINDOW_H
 #define SETTINGSWINDOW_H
 
+#include "globals/Globals.h"
+
 #include <QCloseEvent>
 #include <QComboBox>
 #include <QListWidgetItem>
 #include <QMainWindow>
 
-#include "data/ConcertScraperInterface.h"
-#include "data/ScraperInterface.h"
-#include "data/TvScraperInterface.h"
-#include "export/ExportTemplate.h"
-#include "globals/Globals.h"
-#include "settings/Settings.h"
-
 namespace Ui {
 class SettingsWindow;
 }
+
+class ExportTemplate;
+class ScraperInterface;
+class Settings;
 
 class SettingsWindow : public QMainWindow
 {

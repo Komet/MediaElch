@@ -1,11 +1,11 @@
 #ifndef OFDB_H
 #define OFDB_H
 
+#include "data/ScraperInterface.h"
+
 #include <QObject>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ScraperInterface.h"
 
 /**
  * @brief The OFDb class

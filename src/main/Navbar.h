@@ -1,10 +1,10 @@
 #ifndef NAVBAR_H
 #define NAVBAR_H
 
-#include <QWidget>
-
 #include "globals/Filter.h"
 #include "globals/Globals.h"
+
+#include <QWidget>
 
 namespace Ui {
 class Navbar;

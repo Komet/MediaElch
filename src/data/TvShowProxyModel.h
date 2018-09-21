@@ -1,9 +1,9 @@
 #ifndef TVSHOWPROXYMODEL_H
 #define TVSHOWPROXYMODEL_H
 
-#include <QSortFilterProxyModel>
-
 #include "globals/Filter.h"
+
+#include <QSortFilterProxyModel>
 
 /**
  * @brief The TvShowProxyModel class

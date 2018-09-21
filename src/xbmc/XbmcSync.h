@@ -1,6 +1,8 @@
 #ifndef XBMCSYNC_H
 #define XBMCSYNC_H
 
+#include "data/Movie.h"
+
 #include <QAuthenticator>
 #include <QDialog>
 #include <QMutex>
@@ -9,8 +11,6 @@
 #include <QTcpSocket>
 #include <QTimer>
 #include <QUrl>
-
-#include "data/Movie.h"
 
 namespace Ui {
 class XbmcSync;

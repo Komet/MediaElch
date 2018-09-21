@@ -4,8 +4,6 @@
 #include <QMap>
 #include <QObject>
 
-#include "data/MediaCenterInterface.h"
-
 /**
  * @brief The StreamDetails class
  *        This class makes use of libstreaminfo and handles

@@ -1,10 +1,10 @@
 #ifndef CONCERTSEARCHWIDGET_H
 #define CONCERTSEARCHWIDGET_H
 
+#include "globals/Globals.h"
+
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "globals/Globals.h"
 
 namespace Ui {
 class ConcertSearchWidget;

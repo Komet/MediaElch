@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QSpacerItem>
 
+#include "data/Movie.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -14,6 +15,7 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 #include "mediaCenterPlugins/XbmcXml.h"
+#include "scrapers/IMDB.h"
 #include "settings/Settings.h"
 
 /**

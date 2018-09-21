@@ -4,7 +4,7 @@
 #include <QAbstractItemModel>
 #include <QIcon>
 
-#include "data/Concert.h"
+class Concert;
 
 /**
  * @brief The ConcertModel class

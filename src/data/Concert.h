@@ -1,6 +1,10 @@
 #ifndef CONCERT_H
 #define CONCERT_H
 
+#include "concerts/ConcertController.h"
+#include "globals/Globals.h"
+
+#include <QByteArray>
 #include <QDate>
 #include <QDebug>
 #include <QMutex>
@@ -9,17 +13,8 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "concerts/ConcertController.h"
-#include "data/ConcertScraperInterface.h"
-#include "data/MediaCenterInterface.h"
-#include "data/StreamDetails.h"
-#include "globals/Globals.h"
-
-class ConcertController;
-class ConcertScraperInterface;
 class MediaCenterInterface;
 class StreamDetails;
-struct Poster;
 
 /**
  * @brief The Concert class
@@ -182,11 +177,11 @@ private:
     QDateTime m_lastPlayed;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
+    int m_concertId;
+    int m_downloadsSize;
     bool m_watched;
     bool m_hasChanged;
-    int m_concertId;
     bool m_downloadsInProgress;
-    int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     QString m_tmdbId;

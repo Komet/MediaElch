@@ -1,10 +1,12 @@
 #include "AlbumController.h"
 
-#include <QFileInfo>
+#include "data/ImageCache.h"
+#include "globals/DownloadManager.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "music/Album.h"
 
-#include "../data/ImageCache.h"
-#include "../globals/Helper.h"
-#include "../globals/Manager.h"
+#include <QFileInfo>
 
 AlbumController::AlbumController(Album *parent) :
     QObject(parent),

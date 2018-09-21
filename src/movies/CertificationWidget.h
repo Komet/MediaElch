@@ -1,17 +1,18 @@
 #ifndef CERTIFICATIONWIDGET_H
 #define CERTIFICATIONWIDGET_H
 
+#include "globals/Globals.h"
+
 #include <QMenu>
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Movie.h"
-#include "globals/Globals.h"
-
 namespace Ui {
 class CertificationWidget;
 }
+
+class Movie;
 
 /**
  * @brief The CertificationWidget class

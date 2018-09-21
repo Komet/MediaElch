@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QDomDocument>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>

@@ -1,19 +1,23 @@
 #include "FilesWidget.h"
 #include "ui_FilesWidget.h"
 
+#include "data/Movie.h"
+#include "data/MovieModel.h"
+#include "data/MovieProxyModel.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "globals/LocaleStringCompare.h"
+#include "globals/Manager.h"
+#include "movies/MovieMultiScrapeDialog.h"
+#include "smallWidgets/AlphabeticalList.h"
+#include "smallWidgets/LoadingStreamDetails.h"
+
 #include <QDesktopServices>
 #include <QLocale>
 #include <QPropertyAnimation>
 #include <QScrollBar>
 #include <QTableWidget>
 #include <QTimer>
-
-#include "globals/Globals.h"
-#include "globals/Helper.h"
-#include "globals/LocaleStringCompare.h"
-#include "globals/Manager.h"
-#include "movies/MovieMultiScrapeDialog.h"
-#include "smallWidgets/LoadingStreamDetails.h"
 
 FilesWidget *FilesWidget::m_instance;
 

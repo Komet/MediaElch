@@ -1,17 +1,14 @@
 #ifndef MOVIECONTROLLER_H
 #define MOVIECONTROLLER_H
 
+#include "globals/DownloadManagerElement.h"
+
+#include <QList>
+#include <QMap>
 #include <QMutex>
 #include <QObject>
 
-#include "data/MediaCenterInterface.h"
-#include "data/Movie.h"
-#include "data/ScraperInterface.h"
-#include "globals/DownloadManager.h"
-#include "globals/DownloadManagerElement.h"
-
 class DownloadManager;
-class DownloadManagerElement;
 class MediaCenterInterface;
 class Movie;
 class ScraperInterface;

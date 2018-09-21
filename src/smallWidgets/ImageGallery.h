@@ -1,13 +1,13 @@
 #ifndef IMAGEGALLERY_H
 #define IMAGEGALLERY_H
 
+#include "globals/Globals.h"
+#include "smallWidgets/ClosableImage.h"
+
 #include <QResizeEvent>
 #include <QScrollArea>
 #include <QToolButton>
 #include <QWidget>
-
-#include "globals/Globals.h"
-#include "smallWidgets/ClosableImage.h"
 
 class ImageGallery : public QWidget
 {

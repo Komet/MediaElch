@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QFileInfo>
 
+#include "data/MediaCenterInterface.h"
+#include "data/StreamDetails.h"
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"

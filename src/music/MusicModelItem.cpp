@@ -1,5 +1,8 @@
 #include "MusicModelItem.h"
 
+#include "music/Album.h"
+#include "music/Artist.h"
+
 MusicModelItem::MusicModelItem(MusicModelItem *parent) :
     QObject(nullptr),
     m_parentItem{parent},

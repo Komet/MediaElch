@@ -1,12 +1,6 @@
 #ifndef IMPORTDIALOG_H
 #define IMPORTDIALOG_H
 
-#include <QCloseEvent>
-#include <QDialog>
-#include <QPointer>
-#include <QThread>
-#include <QTimer>
-
 #include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
@@ -15,6 +9,12 @@
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
 #include "renamer/RenamerDialog.h"
+
+#include <QCloseEvent>
+#include <QDialog>
+#include <QPointer>
+#include <QThread>
+#include <QTimer>
 
 namespace Ui {
 class ImportDialog;

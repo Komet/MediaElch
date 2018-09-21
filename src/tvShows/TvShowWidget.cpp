@@ -3,6 +3,8 @@
 
 #include <QTimer>
 
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"

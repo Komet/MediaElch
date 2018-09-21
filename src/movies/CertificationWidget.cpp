@@ -1,6 +1,7 @@
 #include "CertificationWidget.h"
 #include "ui_CertificationWidget.h"
 
+#include "data/Movie.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"

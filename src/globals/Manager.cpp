@@ -4,6 +4,7 @@
 #include <QDesktopServices>
 #include <QSqlQuery>
 
+#include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"

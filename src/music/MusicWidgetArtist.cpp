@@ -1,14 +1,14 @@
 #include "MusicWidgetArtist.h"
 #include "ui_MusicWidgetArtist.h"
 
-#include <QPainter>
-
-#include "../globals/Globals.h"
-#include "../globals/Helper.h"
-#include "../globals/ImageDialog.h"
-#include "../globals/Manager.h"
-#include "../notifications/NotificationBox.h"
 #include "MusicSearch.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
+#include "globals/ImageDialog.h"
+#include "globals/Manager.h"
+#include "notifications/NotificationBox.h"
+
+#include <QPainter>
 
 MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidgetArtist)
 {

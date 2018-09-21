@@ -6,6 +6,8 @@
 #include <QDir>
 #include <algorithm>
 
+#include "data/MediaCenterInterface.h"
+#include "data/TvScraperInterface.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

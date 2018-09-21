@@ -1,15 +1,21 @@
 #ifndef FANARTTV_H
 #define FANARTTV_H
 
+#include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
+
+#include <QComboBox>
 #include <QLineEdit>
+#include <QList>
+#include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
+#include <QString>
+#include <QUrl>
 
-#include "data/ImageProviderInterface.h"
-#include "globals/Globals.h"
-#include "scrapers/TMDb.h"
-#include "scrapers/TheTvDb.h"
+class TMDb;
+class TheTvDb;
 
 /**
  * @brief The FanartTv class

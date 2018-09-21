@@ -1,10 +1,10 @@
 #ifndef IMPORTACTIONS_H
 #define IMPORTACTIONS_H
 
-#include <QWidget>
-
 #include "data/TvShow.h"
 #include "downloads/ImportDialog.h"
+
+#include <QWidget>
 
 namespace Ui {
 class ImportActions;

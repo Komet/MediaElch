@@ -1,10 +1,10 @@
 #ifndef FILEWORKER_H
 #define FILEWORKER_H
 
+#include "downloads/MyFile.h"
+
 #include <QMap>
 #include <QObject>
-
-#include "downloads/MyFile.h"
 
 class FileWorker : public QObject
 {

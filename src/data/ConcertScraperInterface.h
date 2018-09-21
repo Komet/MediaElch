@@ -1,11 +1,10 @@
 #ifndef CONCERTSCRAPERINTERFACE_H
 #define CONCERTSCRAPERINTERFACE_H
 
-#include <QSettings>
-
 #include "data/Concert.h"
-#include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
+
+#include <QSettings>
 
 class Concert;
 struct ScraperSearchResult;
