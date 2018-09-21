@@ -21,6 +21,7 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 

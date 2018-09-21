@@ -49,6 +49,11 @@ QList<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
     return m_scraperSupports;
 }
 
+std::vector<ScraperLanguage> AdultDvdEmpire::supportedLanguages()
+{
+    return {{tr("English"), "en"}};
+}
+
 QNetworkAccessManager *AdultDvdEmpire::qnam()
 {
     return &m_qnam;

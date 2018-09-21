@@ -22,6 +22,7 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
     QList<ScraperInterface *> scrapersNeedSearch(QList<MovieScraperInfos> infos,
         QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();

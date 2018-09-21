@@ -163,7 +163,7 @@ QList<ScraperInterface *> Manager::scrapers()
 
 ScraperInterface *Manager::scraper(const QString &identifier)
 {
-    foreach (ScraperInterface *scraper, m_scrapers) {
+    for (ScraperInterface *scraper : m_scrapers) {
         if (scraper->identifier() == identifier) {
             return scraper;
         }

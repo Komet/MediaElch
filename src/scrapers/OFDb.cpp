@@ -94,6 +94,11 @@ QList<MovieScraperInfos> OFDb::scraperNativelySupports()
     return m_scraperSupports;
 }
 
+std::vector<ScraperLanguage> OFDb::supportedLanguages()
+{
+    return {{tr("German"), "de"}};
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string

@@ -9,13 +9,20 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
-HotMovies::HotMovies(QObject *parent)
+HotMovies::HotMovies(QObject *parent) :
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Rating,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Director,
+        MovieScraperInfos::Set}
 {
     setParent(parent);
-    m_scraperSupports << MovieScraperInfos::Title << MovieScraperInfos::Rating << MovieScraperInfos::Released
-                      << MovieScraperInfos::Runtime << MovieScraperInfos::Overview << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Actors << MovieScraperInfos::Genres << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Director << MovieScraperInfos::Set;
 }
 
 QString HotMovies::name()
@@ -41,6 +48,11 @@ QList<MovieScraperInfos> HotMovies::scraperSupports()
 QList<MovieScraperInfos> HotMovies::scraperNativelySupports()
 {
     return m_scraperSupports;
+}
+
+std::vector<ScraperLanguage> HotMovies::supportedLanguages()
+{
+    return {{tr("English"), "en"}};
 }
 
 QNetworkAccessManager *HotMovies::qnam()

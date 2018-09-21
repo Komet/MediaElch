@@ -29,6 +29,7 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
     QWidget *settingsWidget() override;
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();

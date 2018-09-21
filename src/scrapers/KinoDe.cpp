@@ -97,6 +97,11 @@ QList<MovieScraperInfos> KinoDe::scraperNativelySupports()
     return m_scraperSupports;
 }
 
+std::vector<ScraperLanguage> KinoDe::supportedLanguages()
+{
+    return {{tr("German"), "de"}};
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string

@@ -1,14 +1,22 @@
 #ifndef SCRAPER_H
 #define SCRAPER_H
 
-#include <QSettings>
 
 #include "data/MediaCenterInterface.h"
 #include "data/Movie.h"
 #include "globals/Globals.h"
 
+#include <QSettings>
+#include <vector>
+
 class Movie;
 struct ScraperSearchResult;
+
+struct ScraperLanguage
+{
+    QString languageName;
+    QString languageKey;
+};
 
 /**
  * @brief The ScraperInterface class
@@ -26,6 +34,7 @@ public:
     virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<MovieScraperInfos> scraperSupports() = 0;
     virtual QList<MovieScraperInfos> scraperNativelySupports() = 0;
+    virtual std::vector<ScraperLanguage> supportedLanguages() = 0;
     virtual QWidget *settingsWidget() = 0;
     virtual bool isAdult() = 0;
 signals:

@@ -84,6 +84,11 @@ QList<MovieScraperInfos> IMDB::scraperNativelySupports()
     return m_scraperSupports;
 }
 
+std::vector<ScraperLanguage> IMDB::supportedLanguages()
+{
+    return {{tr("English"), "en"}};
+}
+
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
