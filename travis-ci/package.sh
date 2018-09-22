@@ -109,6 +109,19 @@ create_appimage() {
 	fold_end
 
 	#######################################################
+	# Copy libmediainfo
+	# 
+	# libmediainfo.so.0 is loaded at runtime that's why
+	# linuxdeployqt can't detect it and we have to include
+	# it here.
+	
+	fold_start "copy_libmediainfo"
+	print_info "Copying libmediainfo.so"
+	mkdir -p ./appdir/usr/lib
+	cp /usr/lib/x86_64-linux-gnu/libmediainfo.so.0 ./appdir/usr/lib/
+	fold_end
+
+	#######################################################
 	# Create AppImage
 
 	fold_start "linuxdeployqt"
