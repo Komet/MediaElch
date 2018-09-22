@@ -54,6 +54,16 @@ std::vector<ScraperLanguage> AdultDvdEmpire::supportedLanguages()
     return {{tr("English"), "en"}};
 }
 
+void AdultDvdEmpire::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: only one language is supported and hard-coded.
+}
+
+QString AdultDvdEmpire::defaultLanguageKey()
+{
+    return QStringLiteral("en");
+}
+
 QNetworkAccessManager *AdultDvdEmpire::qnam()
 {
     return &m_qnam;

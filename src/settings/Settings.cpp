@@ -212,16 +212,21 @@ void Settings::loadSettings()
 
         // Scrapers
     }
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (ScraperInterface *scraper : Manager::instance()->scrapers()) {
         scraper->loadSettings(*settings());
-    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers())
+    }
+    for (TvScraperInterface *scraper : Manager::instance()->tvScrapers()) {
         scraper->loadSettings(*settings());
-    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers())
+    }
+    for (ConcertScraperInterface *scraper : Manager::instance()->concertScrapers()) {
         scraper->loadSettings(*settings());
-    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers())
+    }
+    for (MusicScraperInterface *scraper : Manager::instance()->musicScrapers()) {
         scraper->loadSettings(*settings());
-    foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders())
+    }
+    for (ImageProviderInterface *scraper : Manager::instance()->imageProviders()) {
         scraper->loadSettings(*settings());
+    }
 
     m_currentMovieScraper = settings()->value("Scraper/CurrentMovieScraper", 0).toInt();
 

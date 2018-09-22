@@ -52,7 +52,7 @@ private:
     QSignalMapper *m_signalMapper;
 
     void clear();
-    void setChkBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
 };
 
 #endif // MUSICSEARCHWIDGET_H

@@ -358,6 +358,16 @@ std::vector<ScraperLanguage> CustomMovieScraper::supportedLanguages()
     return {{tr("Unknown"), "en"}};
 }
 
+void CustomMovieScraper::changeLanguage(QString /*languageKey*/)
+{
+    // no-op
+}
+
+QString CustomMovieScraper::defaultLanguageKey()
+{
+    return QStringLiteral("");
+}
+
 bool CustomMovieScraper::hasSettings()
 {
     return false;

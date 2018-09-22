@@ -41,7 +41,7 @@ private:
     QList<ConcertScraperInfos> m_infosToLoad;
 
     void clear();
-    void setChkBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
 };
 
 #endif // CONCERTSEARCHWIDGET_H

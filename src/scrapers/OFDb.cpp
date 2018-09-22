@@ -99,6 +99,16 @@ std::vector<ScraperLanguage> OFDb::supportedLanguages()
     return {{tr("German"), "de"}};
 }
 
+void OFDb::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: Only one language is supported and it is hard-coded.
+}
+
+QString OFDb::defaultLanguageKey()
+{
+    return QStringLiteral("de");
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string

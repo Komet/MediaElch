@@ -29,6 +29,9 @@ public:
     virtual QList<MovieScraperInfos> scraperSupports() = 0;
     virtual QList<MovieScraperInfos> scraperNativelySupports() = 0;
     virtual std::vector<ScraperLanguage> supportedLanguages() = 0;
+    virtual void changeLanguage(QString languageKey) = 0;
+    // Default language stored in settings.
+    virtual QString defaultLanguageKey() = 0;
     virtual QWidget *settingsWidget() = 0;
     virtual bool isAdult() = 0;
 

@@ -102,6 +102,16 @@ std::vector<ScraperLanguage> KinoDe::supportedLanguages()
     return {{tr("German"), "de"}};
 }
 
+void KinoDe::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: Only one language is supported and it is hard-coded.
+}
+
+QString KinoDe::defaultLanguageKey()
+{
+    return QStringLiteral("de");
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string

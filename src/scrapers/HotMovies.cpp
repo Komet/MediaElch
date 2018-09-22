@@ -55,6 +55,16 @@ std::vector<ScraperLanguage> HotMovies::supportedLanguages()
     return {{tr("English"), "en"}};
 }
 
+void HotMovies::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: Only one language is supported and it is hard-coded.
+}
+
+QString HotMovies::defaultLanguageKey()
+{
+    return QStringLiteral("en");
+}
+
 QNetworkAccessManager *HotMovies::qnam()
 {
     return &m_qnam;

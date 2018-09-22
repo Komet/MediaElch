@@ -34,28 +34,35 @@ signals:
     void sigResultClicked();
 
 private slots:
-    void search();
+    void startSearch();
     void showResults(QList<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem *item);
-    void chkToggled();
-    void chkAllToggled(bool toggled);
-    void onUpdateSearchString();
-    void onStoreSearchString(QString searchString);
+    void updateInfoToLoad();
+    void toggleAllInfo(bool checked);
+    void onScraperChanged();
+    void onLanguageChanged();
 
 private:
     Ui::MovieSearchWidget *ui;
-    QString m_scraperId;
+    // QString m_scraperId;
     QString m_scraperMovieId;
     QList<MovieScraperInfos> m_infosToLoad;
     QMap<ScraperInterface *, QString> m_customScraperIds;
     ScraperInterface *m_currentCustomScraper;
+    ScraperInterface *m_currentScraper;
+    QString m_currentLanguage;
     QString m_id;
     QString m_tmdbId;
     QString m_searchString;
 
-    void clear();
-    void setChkBoxesEnabled(QList<MovieScraperInfos> scraperSupports);
-    void setupScrapers();
+    void clearResults();
+    void setCheckBoxesEnabled(QList<MovieScraperInfos> scraperSupports);
+    void setupComboBoxes();
+    void setSearchText(ScraperInterface *scraper);
+    void setupScraperDropdown();
+    void setupLanguageDropdown();
+    void initializeCheckBoxes();
+    int currentScraperIndex();
 };
 
 #endif // MOVIESEARCHWIDGET_H

@@ -202,6 +202,21 @@ std::vector<ScraperLanguage> TMDb::supportedLanguages()
         {tr("Turkish"), "tr"}};
 }
 
+void TMDb::changeLanguage(QString languageKey)
+{
+    // Does not store the new language in settings.
+    m_locale = languageKey;
+}
+
+QString TMDb::defaultLanguageKey()
+{
+    QString lang = Settings::instance()->settings()->value("Scrapers/TMDb/Language", "en").toString();
+    if (lang.isEmpty()) {
+        return QStringLiteral("en");
+    }
+    return lang;
+}
+
 /**
  * @brief Loads the setup parameters from TMDb
  * @see TMDb::setupFinished
@@ -634,8 +649,9 @@ QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
     case ApiUrlParameter::YEAR: return QStringLiteral("year");
     case ApiUrlParameter::PAGE: return QStringLiteral("page");
     case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
-    default: return QStringLiteral("unknown");
     }
+    qCritical() << "[TMDb] ApiUrlParameter: Unhandled enum case.";
+    return QStringLiteral("unknown");
 }
 
 /**

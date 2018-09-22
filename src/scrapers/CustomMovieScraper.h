@@ -24,6 +24,8 @@ public:
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QList<ScraperInterface *> scrapersNeedSearch(QList<MovieScraperInfos> infos,
         QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();

@@ -77,6 +77,17 @@ std::vector<ScraperLanguage> AEBN::supportedLanguages()
         {tr("Turkish"), "tr"}};
 }
 
+void AEBN::changeLanguage(QString languageKey)
+{
+    // Does not store the new language in settings.
+    m_language = languageKey;
+}
+
+QString AEBN::defaultLanguageKey()
+{
+    return Settings::instance()->settings()->value("Scrapers/AEBN/Language", "en").toString();
+}
+
 QString AEBN::name()
 {
     return QStringLiteral("AEBN");

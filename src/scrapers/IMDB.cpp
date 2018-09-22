@@ -89,6 +89,16 @@ std::vector<ScraperLanguage> IMDB::supportedLanguages()
     return {{tr("English"), "en"}};
 }
 
+void IMDB::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: Only one language is supported and it is hard-coded.
+}
+
+QString IMDB::defaultLanguageKey()
+{
+    return QStringLiteral("en");
+}
+
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
