@@ -1,13 +1,14 @@
 #include "HotMovies.h"
 
-#include <QDebug>
-#include <QGridLayout>
-#include <QRegExp>
-
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
+
+#include <QDebug>
+#include <QGridLayout>
+#include <QRegExp>
+#include <QTextDocumentFragment>
 
 HotMovies::HotMovies(QObject *parent) :
     m_scraperSupports{MovieScraperInfos::Title,
@@ -91,7 +92,7 @@ void HotMovies::onSearchFinished()
         return;
     }
 
-    QString msg = QString::fromUtf8(reply->readAll());
+    const QString msg = QString::fromUtf8(reply->readAll());
     emit searchDone(parseSearch(msg));
 }
 
@@ -101,12 +102,12 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     int offset = 0;
 
     QRegExp rx(
-        R"lit(<tr>.*<td colspan="2" class="td_title">.*<h3 class="title">.*<a href="(.*)" title=".*">(.*)</a>)lit");
+        R"lit(<td colspan="2" class="td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
         result.id = rx.cap(1);
-        result.name = rx.cap(2).trimmed();
+        result.name = QTextDocumentFragment::fromHtml(rx.cap(2)).toPlainText().trimmed();
         results << result;
         offset += rx.matchedLength();
     }
