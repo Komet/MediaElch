@@ -34,6 +34,7 @@ They can be downloaded at https://bintray.com/komet/MediaElch (choose your syste
 
 
 ## Developer
+For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contributing/build.html
 
 ### Documentation
 
