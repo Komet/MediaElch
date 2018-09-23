@@ -4,134 +4,143 @@
 <context>
     <name>AEBN</name>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="41"/>
-        <source>Genre</source>
-        <translation type="unfinished">Жанр</translation>
+        <location filename="../src/scrapers/AEBN.cpp" line="39"/>
+        <source>Straight</source>
+        <translation>Straight</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="50"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="40"/>
+        <source>Gay</source>
+        <translation>Gay</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="45"/>
+        <source>Genre</source>
+        <translation>Жанр</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="54"/>
         <source>Bulgarian</source>
         <translation>Болгарский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="51"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="55"/>
         <source>Chinese</source>
         <translation>Китайский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="52"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="56"/>
         <source>Croatian</source>
         <translation>Хорватский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="53"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="57"/>
         <source>Czech</source>
         <translation>Чешский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="54"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="58"/>
         <source>Danish</source>
         <translation>Датский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="55"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="59"/>
         <source>Dutch</source>
         <translation>Нидерландский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="56"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="60"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="57"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="61"/>
         <source>Finnish</source>
         <translation>Финский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="58"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="62"/>
         <source>French</source>
         <translation>Французский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="59"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="63"/>
         <source>German</source>
         <translation>Немецкий</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="60"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="64"/>
         <source>Greek</source>
         <translation>Греческий</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="61"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="65"/>
         <source>Hebrew</source>
         <translation>Иврит</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="62"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="66"/>
         <source>Hungarian</source>
         <translation>Венгерский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="63"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="67"/>
         <source>Italian</source>
         <translation>Итальянский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="64"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="68"/>
         <source>Japanese</source>
         <translation>Японский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="65"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="69"/>
         <source>Korean</source>
         <translation>Корейский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="66"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="70"/>
         <source>Norwegian</source>
         <translation>Норвежский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="67"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="71"/>
         <source>Polish</source>
         <translation>Польский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="68"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="72"/>
         <source>Portuguese</source>
         <translation>Португальский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="69"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="73"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="70"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="74"/>
         <source>Slovene</source>
         <translation>Словенский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="71"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="75"/>
         <source>Spanish</source>
         <translation>Испанский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="72"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="76"/>
         <source>Swedish</source>
         <translation>Шведский</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="73"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="77"/>
         <source>Turkish</source>
         <translation>Турецкий</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="39"/>
         <source>Language</source>
-        <translation>Язык</translation>
+        <translation type="vanished">Язык</translation>
     </message>
 </context>
 <context>
@@ -247,7 +256,7 @@
     <message>
         <location filename="../src/scrapers/AdultDvdEmpire.cpp" line="54"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
 </context>
 <context>
@@ -823,7 +832,7 @@
     <message>
         <location filename="../src/scrapers/CustomMovieScraper.cpp" line="358"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестный</translation>
     </message>
 </context>
 <context>
@@ -2118,9 +2127,9 @@
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../src/scrapers/HotMovies.cpp" line="55"/>
+        <location filename="../src/scrapers/HotMovies.cpp" line="56"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
 </context>
 <context>
@@ -2133,7 +2142,7 @@
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="89"/>
         <source>English</source>
-        <translation type="unfinished">Английский</translation>
+        <translation>Английский</translation>
     </message>
 </context>
 <context>
@@ -2509,7 +2518,7 @@
     <message>
         <location filename="../src/scrapers/KinoDe.cpp" line="102"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
 </context>
 <context>
@@ -2852,17 +2861,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать информацию</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="130"/>
         <source>Open Movie Folder</source>
-        <translation type="unfinished">Открыть папку фильмов</translation>
+        <translation>Открыть папку фильма</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open NFO File</source>
-        <translation type="unfinished">Открыть файл NFO</translation>
+        <translation>Открыть файл NFO</translation>
     </message>
 </context>
 <context>
@@ -3187,139 +3196,144 @@ Main menu entry (tooltip)</extracomment>
         <translation>Источник</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="59"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="44"/>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="69"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
         <translation>Для поиска через IMDB, можете использовать IMDB id.
 Если хотите искать через TMDB или OFDb, пожалуйста, добавьте в начало &quot;id&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="94"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="104"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="116"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="126"/>
         <source>Infos to load</source>
         <translation>Информация к загрузке</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="139"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="149"/>
         <source>Title</source>
         <translation>Название</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="146"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="156"/>
         <source>Set</source>
         <translation>Коллекция</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="153"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="163"/>
         <source>Tagline</source>
         <translation>Слоган</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="160"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="170"/>
         <source>Rating</source>
         <translation>Рейтинг</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="167"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="177"/>
         <source>Released</source>
         <translation>Премьера</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="174"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="184"/>
         <source>Runtime</source>
         <translation>Продолжительность</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="181"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="191"/>
         <source>Director</source>
         <translation>Режиссёр</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="188"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="198"/>
         <source>Writer</source>
         <translation>Сценарий</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="195"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="205"/>
         <source>Certification</source>
         <translation>Ограничение</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="202"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="212"/>
         <source>Trailer</source>
         <translation>Трейлер</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="209"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="219"/>
         <source>Overview</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="216"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="226"/>
         <source>Poster</source>
         <translation>Постер</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="223"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="233"/>
         <source>Backdrop</source>
         <translation>Обои</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="230"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="240"/>
         <source>Actors</source>
         <translation>Актёры</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="237"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="247"/>
         <source>Genres</source>
         <translation>Жанры</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="244"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="254"/>
         <source>Studios</source>
         <translation>Студии</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="251"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="261"/>
         <source>Countries</source>
         <translation>Страны</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="258"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="268"/>
         <source>Tags</source>
         <translation>Теги</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="265"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="275"/>
         <source>Logo</source>
         <translation>Логотип</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="272"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="282"/>
         <source>Clear Art</source>
         <translation>Обложка</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="279"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="289"/>
         <source>CD Art</source>
         <translation>Обложка CD</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="286"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="296"/>
         <source>Banner</source>
         <translation>Баннер</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="293"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="303"/>
         <source>Thumb</source>
         <translation>Просмотр</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="307"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="317"/>
         <source>(Un)Check all</source>
         <translation>Выбрать всё/Отменить</translation>
     </message>
@@ -4642,7 +4656,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/scrapers/OFDb.cpp" line="99"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
 </context>
 <context>
@@ -4658,12 +4672,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Нельзя записать в файл журнала %1.</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="79"/>
+        <location filename="../src/main.cpp" line="78"/>
         <source>Stylesheet could not be opened!</source>
         <translation>Таблица стилей недоступна!</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="80"/>
+        <location filename="../src/main.cpp" line="79"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation>Невозможно прочитать таблицу стилей.</translation>
     </message>
@@ -4725,22 +4739,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="235"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Фильм&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
+        <translation>&lt;b&gt;Фильм&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="358"/>
         <source>Create dir</source>
-        <translation type="unfinished">Создать папку</translation>
+        <translation>Создать папку</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="359"/>
         <source>Move</source>
-        <translation type="unfinished">Переместить</translation>
+        <translation>Переместить</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Rename</source>
-        <translation type="unfinished">Переименовать</translation>
+        <translation>Переименовать</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="43"/>
+        <source>Language</source>
+        <translation>Язык</translation>
     </message>
 </context>
 <context>
@@ -4756,97 +4775,97 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
-        <translation type="unfinished">Переименование</translation>
+        <translation>Переименование</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished">Шаблон</translation>
+        <translation>Шаблон</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="68"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished">Использовать название папки сезона</translation>
+        <translation>Использовать название папки сезона</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="78"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished">Имя нескольких файлов</translation>
+        <translation>Имя нескольких файлов</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished">&lt;title&gt; (&lt;year&gt;)</translation>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="95"/>
         <source>Rename Directories</source>
-        <translation type="unfinished">Переименовать папки</translation>
+        <translation>Переименовать папки</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="105"/>
         <source>Rename Files</source>
-        <translation type="unfinished">Переименовать файлы</translation>
+        <translation>Переименовать файлы</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="125"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя папки</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="142"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="149"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished">Название папки сезона</translation>
+        <translation>Имя папки сезона</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished">Season &lt;season&gt;</translation>
+        <translation>Season &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished">Результат</translation>
+        <translation>Результат</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="272"/>
         <source>Close</source>
-        <translation type="unfinished">Закрыть</translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="295"/>
         <source>Dry Run</source>
-        <translation type="unfinished">Проба</translation>
+        <translation>Проба</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="305"/>
         <source>Rename</source>
-        <translation type="unfinished">Переименовать</translation>
+        <translation>Переименовать</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="37"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished">Пожалуйста посмотрите %1 для примеров и помощи в переименовании.</translation>
+        <translation>Пожалуйста посмотрите %1 для примеров и помощи в переименовании.</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n концерт будет переименован</numerusform>
             <numerusform>%n концерта будут переименованы</numerusform>
             <numerusform>%n концертов будут переименованы</numerusform>
@@ -4855,7 +4874,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n фильм будет переименован</numerusform>
             <numerusform>%n фильма будут переименованы</numerusform>
             <numerusform>%n фильмов будут переименованы</numerusform>
@@ -4864,7 +4883,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n сериал и %1</numerusform>
             <numerusform>%n сериала и %1</numerusform>
             <numerusform>%n сериалов и %1</numerusform>
@@ -4873,7 +4892,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n серия будет переименована</numerusform>
             <numerusform>%n серии будут переименованы</numerusform>
             <numerusform>%n серий будут переименованы</numerusform>
@@ -4882,22 +4901,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="219"/>
         <source>Finished</source>
-        <translation type="unfinished">Закончено</translation>
+        <translation>Закончено</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="263"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Серия&lt;/b&gt; &quot;%1&quot; была изменена, но не сохранена</translation>
+        <translation>&lt;b&gt;Серия&lt;/b&gt; &quot;%1&quot; была изменена, но не сохранена</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="287"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Сериал&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
+        <translation>&lt;b&gt;Сериал&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="339"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Концерт&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
+        <translation>&lt;b&gt;Концерт&lt;/b&gt; &quot;%1&quot; был изменён, но не сохранён</translation>
     </message>
 </context>
 <context>
@@ -8050,7 +8069,7 @@ MediaElch, при запуске, найдёт новые серии.</translati
     <message>
         <location filename="../src/scrapers/VideoBuster.cpp" line="79"/>
         <source>German</source>
-        <translation type="unfinished">Немецкий</translation>
+        <translation>Немецкий</translation>
     </message>
 </context>
 <context>
