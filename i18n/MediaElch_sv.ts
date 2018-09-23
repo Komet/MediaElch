@@ -4,134 +4,143 @@
 <context>
     <name>AEBN</name>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="41"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="39"/>
+        <source>Straight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="40"/>
+        <source>Gay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="45"/>
         <source>Genre</source>
         <translation type="unfinished">Genre</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="50"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="54"/>
         <source>Bulgarian</source>
         <translation>Bulgariska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="51"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="55"/>
         <source>Chinese</source>
         <translation>Kinesiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="52"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="56"/>
         <source>Croatian</source>
         <translation>Kroatiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="53"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="57"/>
         <source>Czech</source>
         <translation>Tjeckiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="54"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="58"/>
         <source>Danish</source>
         <translation>Danska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="55"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="59"/>
         <source>Dutch</source>
         <translation>Nederländska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="56"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="60"/>
         <source>English</source>
         <translation>Engelska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="57"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="61"/>
         <source>Finnish</source>
         <translation>Finska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="58"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="62"/>
         <source>French</source>
         <translation>Franska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="59"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="63"/>
         <source>German</source>
         <translation>Tyska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="60"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="64"/>
         <source>Greek</source>
         <translation>Grekiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="61"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="65"/>
         <source>Hebrew</source>
         <translation>Hebreeiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="62"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="66"/>
         <source>Hungarian</source>
         <translation>Ungerska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="63"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="67"/>
         <source>Italian</source>
         <translation>Italienska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="64"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="68"/>
         <source>Japanese</source>
         <translation>Japanska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="65"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="69"/>
         <source>Korean</source>
         <translation>Koreanska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="66"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="70"/>
         <source>Norwegian</source>
         <translation>Norska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="67"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="71"/>
         <source>Polish</source>
         <translation>Polska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="68"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="72"/>
         <source>Portuguese</source>
         <translation>Portugisiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="69"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="73"/>
         <source>Russian</source>
         <translation>Ryska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="70"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="74"/>
         <source>Slovene</source>
         <translation>Sloveniska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="71"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="75"/>
         <source>Spanish</source>
         <translation>Spanska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="72"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="76"/>
         <source>Swedish</source>
         <translation>Svenska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="73"/>
+        <location filename="../src/scrapers/AEBN.cpp" line="77"/>
         <source>Turkish</source>
         <translation>Turkiska</translation>
     </message>
     <message>
-        <location filename="../src/scrapers/AEBN.cpp" line="39"/>
         <source>Language</source>
-        <translation>Språk</translation>
+        <translation type="vanished">Språk</translation>
     </message>
 </context>
 <context>
@@ -2113,7 +2122,7 @@
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../src/scrapers/HotMovies.cpp" line="55"/>
+        <location filename="../src/scrapers/HotMovies.cpp" line="56"/>
         <source>English</source>
         <translation type="unfinished">Engelska</translation>
     </message>
@@ -3180,139 +3189,144 @@ Processen avbruten.</translation>
         <translation>Skrapa</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="59"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="44"/>
+        <source>Language</source>
+        <translation type="unfinished">Språk</translation>
+    </message>
+    <message>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="69"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
         <translation>När IMDB används så kan du också använda IMDB id som sökargument.
 Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="94"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="104"/>
         <source>Result</source>
         <translation>Resultat</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="116"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="126"/>
         <source>Infos to load</source>
         <translation>Information att ladda</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="139"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="149"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="146"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="156"/>
         <source>Set</source>
         <translation>Samling</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="153"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="163"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="160"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="170"/>
         <source>Rating</source>
         <translation>Betyg</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="167"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="177"/>
         <source>Released</source>
         <translation>Releasedatum</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="174"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="184"/>
         <source>Runtime</source>
         <translation>Speltid</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="181"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="191"/>
         <source>Director</source>
         <translation>Regissör</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="188"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="198"/>
         <source>Writer</source>
         <translation>Manus</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="195"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="205"/>
         <source>Certification</source>
         <translation>Åldersgräns</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="202"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="212"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="209"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="219"/>
         <source>Overview</source>
         <translation>Översikt</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="216"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="226"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="223"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="233"/>
         <source>Backdrop</source>
         <translation>Bakgrund</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="230"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="240"/>
         <source>Actors</source>
         <translation>Skådespelare</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="237"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="247"/>
         <source>Genres</source>
         <translation>Genrer</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="244"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="254"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="251"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="261"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="258"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="268"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="265"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="275"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="272"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="282"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="279"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="289"/>
         <source>CD Art</source>
         <translation>CD-omslag</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="286"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="296"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="293"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="303"/>
         <source>Thumb</source>
         <translation>Miniatyr</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieSearchWidget.ui" line="307"/>
+        <location filename="../src/movies/MovieSearchWidget.ui" line="317"/>
         <source>(Un)Check all</source>
         <translation>(Av)Markera alla</translation>
     </message>
@@ -4644,12 +4658,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <translation>Loggfilen %1 kunde inte öppnas för skrivning.</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="79"/>
+        <location filename="../src/main.cpp" line="78"/>
         <source>Stylesheet could not be opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="80"/>
+        <location filename="../src/main.cpp" line="79"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4727,6 +4741,11 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
         <location filename="../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Rename</source>
         <translation type="unfinished">Ändra namn</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/AEBN.cpp" line="43"/>
+        <source>Language</source>
+        <translation type="unfinished">Språk</translation>
     </message>
 </context>
 <context>
