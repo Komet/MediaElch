@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "data/Movie.h"
+#include "globals/DownloadManager.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"

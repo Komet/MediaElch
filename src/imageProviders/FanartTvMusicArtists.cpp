@@ -1,6 +1,7 @@
 #include "FanartTvMusicArtists.h"
 
 #include <QDebug>
+#include <QDomDocument>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>

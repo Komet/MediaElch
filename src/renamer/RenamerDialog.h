@@ -1,15 +1,15 @@
 #ifndef RENAMER_DIALOG_H
 #define RENAMER_DIALOG_H
 
-#include <QDialog>
-#include <QDir>
-#include <QFile>
-
 #include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "renamer/Renamer.h"
+
+#include <QDialog>
+#include <QDir>
+#include <QFile>
 
 namespace Ui {
 class RenamerDialog;
@@ -61,6 +61,7 @@ private:
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
 
+    void renameType(const bool isDryRun);
     void renameMovies(QList<Movie *> movies, const RenamerConfig &config);
     void renameConcerts(QList<Concert *> concerts, const RenamerConfig &config);
     void renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config);

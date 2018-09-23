@@ -1,14 +1,14 @@
 #ifndef TVSHOWWIDGETSEASON_H
 #define TVSHOWWIDGETSEASON_H
 
+#include "data/TvShow.h"
+#include "globals/DownloadManager.h"
+#include "globals/Globals.h"
+
 #include <QLabel>
 #include <QMovie>
 #include <QResizeEvent>
 #include <QWidget>
-
-#include "data/TvShow.h"
-#include "globals/DownloadManager.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class TvShowWidgetSeason;

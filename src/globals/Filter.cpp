@@ -1,5 +1,10 @@
 #include "Filter.h"
 
+#include "data/Concert.h"
+#include "data/Movie.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+
 /**
  * @brief Filter::Filter
  * @param text Text displayed in the list of filters

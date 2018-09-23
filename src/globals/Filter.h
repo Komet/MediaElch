@@ -1,14 +1,16 @@
 #ifndef FILTER_H
 #define FILTER_H
 
+#include "globals/Globals.h"
+
 #include <QObject>
 #include <QString>
 #include <QStringList>
 
-#include "data/Concert.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "globals/Globals.h"
+class Concert;
+class Movie;
+class TvShow;
+class TvShowEpisode;
 
 /**
  * @brief The Filter class

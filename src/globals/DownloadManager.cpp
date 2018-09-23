@@ -4,7 +4,10 @@
 #include <QFile>
 #include <QTimer>
 
+#include "data/TvShow.h"
 #include "globals/DownloadManagerElement.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
 DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloading{false}
 {
@@ -66,7 +69,8 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 }
 
 template<class T>
-void DownloadManager::startNextDownloadType() {
+void DownloadManager::startNextDownloadType()
+{
     int numDownloadsLeft = 0;
     for (int i = 0, n = m_queue.size(); i < n; ++i) {
         if (m_queue[i].getElement<T>() == m_currentDownloadElement.getElement<T>()) {

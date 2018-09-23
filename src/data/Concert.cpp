@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QFileInfo>
 
+#include "data/MediaCenterInterface.h"
+#include "data/StreamDetails.h"
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"
@@ -20,10 +22,10 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_rating{0},
     m_runtime{0},
     m_playcount{0},
+    m_downloadsSize{0},
     m_watched{false},
     m_hasChanged{false},
     m_downloadsInProgress{false},
-    m_downloadsSize{0},
     m_inSeparateFolder{false},
     m_mediaCenterId{-1},
     m_streamDetailsLoaded{false},

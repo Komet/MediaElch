@@ -1,12 +1,12 @@
 #ifndef CINEFACTS_H
 #define CINEFACTS_H
 
+#include "data/ScraperInterface.h"
+
 #include <QObject>
 #include <QQueue>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ScraperInterface.h"
 
 /**
  * @brief The Kino.de class
@@ -25,6 +25,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 

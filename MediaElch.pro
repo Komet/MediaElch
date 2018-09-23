@@ -508,5 +508,11 @@ test {
         test/scrapers/testVideoBuster.cpp
 
 } else {
-    message(Normal build)
+    sanitize {
+        message(Sanitizer build)
+        CONFIG += sanitizer sanitize_address
+
+    } else {
+        message(Normal build)
+    }
 }

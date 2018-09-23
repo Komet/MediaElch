@@ -1,12 +1,13 @@
 #ifndef MUSICSEARCHWIDGET_H
 #define MUSICSEARCHWIDGET_H
 
+#include "globals/Globals.h"
+
+#include <QList>
 #include <QSignalMapper>
+#include <QString>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class MusicSearchWidget;
@@ -51,7 +52,7 @@ private:
     QSignalMapper *m_signalMapper;
 
     void clear();
-    void setChkBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
 };
 
 #endif // MUSICSEARCHWIDGET_H

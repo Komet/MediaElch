@@ -1,12 +1,13 @@
 #ifndef AEBN_H
 #define AEBN_H
 
+#include "data/ScraperInterface.h"
+
 #include <QComboBox>
+#include <QMap>
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
 
 class AEBN : public ScraperInterface
 {
@@ -22,6 +23,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 

@@ -1,10 +1,13 @@
 #ifndef MUSICWIDGET_H
 #define MUSICWIDGET_H
 
+#include "globals/Globals.h"
+
+#include <QString>
 #include <QWidget>
 
-#include "Album.h"
-#include "Artist.h"
+class Album;
+class Artist;
 
 namespace Ui {
 class MusicWidget;

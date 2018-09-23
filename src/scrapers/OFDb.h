@@ -1,11 +1,11 @@
 #ifndef OFDB_H
 #define OFDB_H
 
+#include "data/ScraperInterface.h"
+
 #include <QObject>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-
-#include "data/ScraperInterface.h"
 
 /**
  * @brief The OFDb class
@@ -24,6 +24,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 

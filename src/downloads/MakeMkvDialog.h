@@ -1,11 +1,13 @@
 #ifndef MAKEMKVDIALOG_H
 #define MAKEMKVDIALOG_H
 
-#include <QDialog>
-#include <QPointer>
-
 #include "data/Movie.h"
 #include "downloads/MakeMkvCon.h"
+
+#include <QDialog>
+#include <QMap>
+#include <QPointer>
+#include <QString>
 
 namespace Ui {
 class MakeMkvDialog;

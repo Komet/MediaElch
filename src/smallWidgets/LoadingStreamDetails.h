@@ -2,10 +2,12 @@
 #define LOADINGSTREAMDETAILS_H
 
 #include <QDialog>
+#include <QList>
+#include <QWidget>
 
-#include "data/Concert.h"
-#include "data/Movie.h"
-#include "data/TvShowEpisode.h"
+class Concert;
+class Movie;
+class TvShowEpisode;
 
 namespace Ui {
 class LoadingStreamDetails;

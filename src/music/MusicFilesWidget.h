@@ -1,14 +1,14 @@
 #ifndef MUSICFILESWIDGET_H
 #define MUSICFILESWIDGET_H
 
-#include <QMenu>
-#include <QModelIndex>
-#include <QWidget>
-
 #include "Album.h"
 #include "Artist.h"
 #include "MusicProxyModel.h"
 #include "globals/Filter.h"
+
+#include <QMenu>
+#include <QModelIndex>
+#include <QWidget>
 
 namespace Ui {
 class MusicFilesWidget;

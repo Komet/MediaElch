@@ -1,14 +1,14 @@
 #ifndef TVTUNESDIALOG_H
 #define TVTUNESDIALOG_H
 
+#include "data/TvShow.h"
+
 #include <QDialog>
 #include <QFile>
 #include <QMediaPlayer>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTableWidgetItem>
-
-#include "data/TvShow.h"
 
 namespace Ui {
 class TvTunesDialog;

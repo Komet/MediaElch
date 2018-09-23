@@ -1,23 +1,23 @@
 #ifndef FILESWIDGET_H
 #define FILESWIDGET_H
 
+#include "globals/Filter.h"
+
 #include <QEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QModelIndex>
 #include <QMouseEvent>
 #include <QResizeEvent>
 #include <QWidget>
 
-#include "data/Movie.h"
-#include "data/MovieModel.h"
-#include "data/MovieProxyModel.h"
-#include "globals/Filter.h"
-#include "smallWidgets/AlphabeticalList.h"
-#include "smallWidgets/SearchOverlay.h"
-
 namespace Ui {
 class FilesWidget;
 }
+
+class AlphabeticalList;
+class Movie;
+class MovieProxyModel;
 
 /**
  * @brief The FilesWidget class

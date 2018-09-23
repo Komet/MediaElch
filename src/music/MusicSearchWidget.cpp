@@ -1,6 +1,7 @@
 #include "MusicSearchWidget.h"
 #include "ui_MusicSearchWidget.h"
 
+#include "data/MusicScraperInterface.h"
 #include "globals/Manager.h"
 #include "smallWidgets/MyLabel.h"
 #include <QDebug>
@@ -84,7 +85,7 @@ void MusicSearchWidget::search()
         return;
     }
     m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
-    setChkBoxesEnabled(Manager::instance()->musicScrapers().at(m_scraperNo)->scraperSupports());
+    setCheckBoxesEnabled(Manager::instance()->musicScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
@@ -187,7 +188,7 @@ QList<MusicScraperInfos> MusicSearchWidget::infosToLoad()
     return m_infosToLoad;
 }
 
-void MusicSearchWidget::setChkBoxesEnabled(QList<MusicScraperInfos> scraperSupports)
+void MusicSearchWidget::setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
     QList<MusicScraperInfos> infos =

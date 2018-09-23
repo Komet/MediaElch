@@ -1,11 +1,11 @@
 #ifndef MOVIEFILESORGANIZER_H
 #define MOVIEFILESORGANIZER_H
 
-#include <QDir>
-#include <QThread>
-
-#include "data/Movie.h"
 #include "globals/Globals.h"
+
+#include <QDir>
+#include <QString>
+#include <QThread>
 
 /**
  * @brief The MovieFilesOrganizer class

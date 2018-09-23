@@ -1,10 +1,6 @@
 #ifndef STORAGE_H
 #define STORAGE_H
 
-#include <QObject>
-#include <QPointer>
-#include <QTableWidgetItem>
-
 #include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
@@ -13,6 +9,10 @@
 #include "globals/Globals.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+
+#include <QObject>
+#include <QPointer>
+#include <QTableWidgetItem>
 
 class Storage : public QObject
 {

@@ -61,7 +61,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkAllToggled);
     connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onStartScraping);
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(setChkBoxesEnabled()));
+    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(setCheckBoxesEnabled()));
 }
 
 MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
@@ -95,7 +95,7 @@ int MovieMultiScrapeDialog::exec()
     ui->movie->clear();
     m_currentMovie = nullptr;
     m_executed = true;
-    setChkBoxesEnabled();
+    setCheckBoxesEnabled();
     adjustSize();
 
     ui->chkAutoSave->setChecked(Settings::instance()->multiScrapeSaveEach());
@@ -360,7 +360,7 @@ void MovieMultiScrapeDialog::onChkAllToggled()
     onChkToggled();
 }
 
-void MovieMultiScrapeDialog::setChkBoxesEnabled()
+void MovieMultiScrapeDialog::setCheckBoxesEnabled()
 {
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
     ScraperInterface *scraper = Manager::instance()->scraper(scraperId);

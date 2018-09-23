@@ -1,9 +1,9 @@
 #ifndef EXPORTTEMPLATEWIDGET_H
 #define EXPORTTEMPLATEWIDGET_H
 
-#include <QWidget>
-
 #include "export/ExportTemplate.h"
+
+#include <QWidget>
 
 namespace Ui {
 class ExportTemplateWidget;

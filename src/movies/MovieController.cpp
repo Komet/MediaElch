@@ -5,7 +5,10 @@
 #include <QtCore/qmath.h>
 
 #include "data/ImageCache.h"
-#include "globals/DownloadManagerElement.h"
+#include "data/MediaCenterInterface.h"
+#include "data/Movie.h"
+#include "data/ScraperInterface.h"
+#include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"

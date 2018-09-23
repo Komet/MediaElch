@@ -1,13 +1,16 @@
 #ifndef THETVDBIMAGES_H
 #define THETVDBIMAGES_H
 
+#include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
+
+#include <QList>
 #include <QObject>
 
-#include "data/ImageProviderInterface.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
-#include "globals/Globals.h"
-#include "scrapers/TheTvDb.h"
+
+class TvShow;
+class TvShowEpisode;
+class TheTvDb;
 
 /**
  * @brief The TheTvDbImages class

@@ -1,10 +1,10 @@
 #ifndef IMAGEMODEL_H
 #define IMAGEMODEL_H
 
+#include "Image.h"
+
 #include <QAbstractListModel>
 #include <QObject>
-
-#include "Image.h"
 
 class ImageModel : public QAbstractListModel
 {

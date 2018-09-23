@@ -1,14 +1,16 @@
 #ifndef THETVDB_H
 #define THETVDB_H
 
+#include "data/TvScraperInterface.h"
+
 #include <QComboBox>
 #include <QDomElement>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 
-#include "data/TvScraperInterface.h"
-#include "scrapers/IMDB.h"
+class IMDB;
+class Movie;
 
 /**
  * @brief The TheTvDb class

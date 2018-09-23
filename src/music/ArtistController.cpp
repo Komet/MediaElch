@@ -1,11 +1,15 @@
 #include "ArtistController.h"
 
+#include "data/ImageCache.h"
+#include "data/MediaCenterInterface.h"
+#include "data/MusicScraperInterface.h"
+#include "globals/DownloadManager.h"
+#include "globals/Helper.h"
+#include "globals/Manager.h"
+#include "music/Artist.h"
+
 #include <QDebug>
 #include <QFileInfo>
-
-#include "../data/ImageCache.h"
-#include "../globals/Helper.h"
-#include "../globals/Manager.h"
 
 ArtistController::ArtistController(Artist *parent) :
     QObject(parent),
@@ -26,8 +30,6 @@ ArtistController::ArtistController(Artist *parent) :
         SLOT(onAllDownloadsFinished()),
         Qt::UniqueConnection);
 }
-
-ArtistController::~ArtistController() = default;
 
 bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {

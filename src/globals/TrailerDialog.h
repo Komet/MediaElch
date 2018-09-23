@@ -1,6 +1,9 @@
 #ifndef TRAILERDIALOG_H
 #define TRAILERDIALOG_H
 
+#include "data/Movie.h"
+#include "globals/Globals.h"
+
 #include <QDialog>
 #include <QFile>
 #include <QMediaPlayer>
@@ -8,9 +11,6 @@
 #include <QNetworkReply>
 #include <QTableWidgetItem>
 #include <QVideoWidget>
-
-#include "data/Movie.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class TrailerDialog;

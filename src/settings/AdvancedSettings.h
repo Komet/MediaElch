@@ -1,13 +1,13 @@
 #ifndef ADVANCEDSETTINGS_H
 #define ADVANCEDSETTINGS_H
 
+#include "globals/Globals.h"
+
 #include <QByteArray>
 #include <QHash>
 #include <QObject>
 #include <QStringList>
 #include <QXmlStreamReader>
-
-#include "globals/Globals.h"
 
 class AdvancedSettings : public QObject
 {

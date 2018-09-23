@@ -1,6 +1,13 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+#include "data/MovieImages.h"
+#include "data/Rating.h"
+#include "data/StreamDetails.h"
+#include "data/Subtitle.h"
+#include "globals/Globals.h"
+#include "movies/MovieController.h"
+
 #include <QDate>
 #include <QDebug>
 #include <QObject>
@@ -8,19 +15,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "data/MediaCenterInterface.h"
-#include "data/MovieImages.h"
-#include "data/Rating.h"
-#include "data/ScraperInterface.h"
-#include "data/StreamDetails.h"
-#include "data/Subtitle.h"
-#include "globals/Globals.h"
-#include "movies/MovieController.h"
-
-class MovieController;
 class MediaCenterInterface;
-class ScraperInterface;
-class StreamDetails;
 
 /**
  * @brief The Movie class

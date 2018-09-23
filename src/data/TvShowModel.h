@@ -1,13 +1,13 @@
 #ifndef TVSHOWMODEL_H
 #define TVSHOWMODEL_H
 
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+
 #include <QAbstractItemModel>
 #include <QIcon>
 #include <QModelIndex>
 #include <QVariant>
-
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 
 class TvShowModelItem;
 

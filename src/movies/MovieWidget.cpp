@@ -1,15 +1,6 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
-#include <QDoubleValidator>
-#include <QFileDialog>
-#include <QIntValidator>
-#include <QMovie>
-#include <QPainter>
-#include <QPixmapCache>
-#include <QScrollBar>
-#include <QtCore/qmath.h>
-
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -23,6 +14,16 @@
 #include "movies/FilesWidget.h"
 #include "movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
+#include "smallWidgets/ClosableImage.h"
+
+#include <QDoubleValidator>
+#include <QFileDialog>
+#include <QIntValidator>
+#include <QMovie>
+#include <QPainter>
+#include <QPixmapCache>
+#include <QScrollBar>
+#include <QtCore/qmath.h>
 
 /**
  * @brief MovieWidget::MovieWidget

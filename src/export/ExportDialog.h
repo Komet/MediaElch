@@ -3,16 +3,21 @@
 
 #include <QDialog>
 #include <QDir>
+#include <QList>
+#include <QString>
+#include <QStringList>
 
-#include "data/Concert.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "export/ExportTemplate.h"
 
 namespace Ui {
 class ExportDialog;
 }
+
+class Concert;
+class Movie;
+class TvShow;
+class TvShowEpisode;
+class StreamDetails;
 
 class ExportDialog : public QDialog
 {

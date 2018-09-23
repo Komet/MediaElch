@@ -1,11 +1,11 @@
 #ifndef IMDB_H
 #define IMDB_H
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-
 #include "data/Movie.h"
 #include "data/ScraperInterface.h"
+
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 class QCheckBox;
 
@@ -23,6 +23,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
     void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);

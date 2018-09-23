@@ -1,10 +1,10 @@
 #ifndef MOVIELISTDIALOG_H
 #define MOVIELISTDIALOG_H
 
+#include "data/Movie.h"
+
 #include <QDialog>
 #include <QTableWidgetItem>
-
-#include "data/Movie.h"
 
 namespace Ui {
 class MovieListDialog;

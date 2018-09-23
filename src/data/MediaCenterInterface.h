@@ -1,14 +1,13 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
-#include "data/Concert.h"
-#include "data/Movie.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 #include "settings/DataFile.h"
+
+#include <QImage>
+#include <QList>
+#include <QString>
+#include <QStringList>
 
 class Album;
 class Artist;

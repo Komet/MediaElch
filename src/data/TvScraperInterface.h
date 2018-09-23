@@ -1,16 +1,14 @@
 #ifndef TVSCRAPERINTERFACE_H
 #define TVSCRAPERINTERFACE_H
 
-#include <QSettings>
-
-#include "data/MediaCenterInterface.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
+
+#include <QList>
+#include <QSettings>
+#include <QString>
 
 class TvShow;
 class TvShowEpisode;
-struct ScraperSearchResult;
 
 /**
  * @brief The TvScraperInterface class

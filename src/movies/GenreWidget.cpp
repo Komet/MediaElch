@@ -1,6 +1,7 @@
 #include "GenreWidget.h"
 #include "ui_GenreWidget.h"
 
+#include "data/Movie.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"

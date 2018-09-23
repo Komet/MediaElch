@@ -1,9 +1,9 @@
 #ifndef CONCERTSEARCH_H
 #define CONCERTSEARCH_H
 
-#include <QDialog>
-
 #include "globals/Globals.h"
+
+#include <QDialog>
 
 namespace Ui {
 class ConcertSearch;

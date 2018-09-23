@@ -4,6 +4,7 @@
 #include <QComboBox>
 #include <QLocale>
 #include <QMap>
+#include <QMutex>
 #include <QObject>
 #include <QPointer>
 #include <QtNetwork/QNetworkAccessManager>
@@ -29,6 +30,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();

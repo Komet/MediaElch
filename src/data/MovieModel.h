@@ -1,10 +1,12 @@
 #ifndef MOVIEMODEL_H
 #define MOVIEMODEL_H
 
+#include "data/Movie.h"
+
 #include <QAbstractItemModel>
 #include <QIcon>
-
-#include "data/Movie.h"
+#include <QList>
+#include <QModelIndex>
 
 /**
  * @brief The MovieModel class

@@ -71,7 +71,7 @@ void ConcertSearchWidget::search()
         return;
     }
     m_scraperNo = ui->comboScraper->itemData(index, Qt::UserRole).toInt();
-    setChkBoxesEnabled(Manager::instance()->concertScrapers().at(m_scraperNo)->scraperSupports());
+    setCheckBoxesEnabled(Manager::instance()->concertScrapers().at(m_scraperNo)->scraperSupports());
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
@@ -149,7 +149,7 @@ QList<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
     return m_infosToLoad;
 }
 
-void ConcertSearchWidget::setChkBoxesEnabled(QList<ConcertScraperInfos> scraperSupports)
+void ConcertSearchWidget::setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
     QList<ConcertScraperInfos> infos =

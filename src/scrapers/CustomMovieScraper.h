@@ -1,10 +1,11 @@
 #ifndef CUSTOMMOVIESCRAPER_H
 #define CUSTOMMOVIESCRAPER_H
 
-#include <QObject>
-
 #include "data/ImageProviderInterface.h"
 #include "data/ScraperInterface.h"
+
+#include <QNetworkAccessManager>
+#include <QObject>
 
 class CustomMovieScraper : public ScraperInterface
 {
@@ -22,6 +23,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QList<ScraperInterface *> scrapersNeedSearch(QList<MovieScraperInfos> infos,
         QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();

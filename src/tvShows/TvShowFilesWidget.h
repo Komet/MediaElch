@@ -1,16 +1,16 @@
 #ifndef TVSHOWFILESWIDGET_H
 #define TVSHOWFILESWIDGET_H
 
-#include <QAction>
-#include <QMenu>
-#include <QModelIndex>
-#include <QWidget>
-
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
 #include "globals/Filter.h"
 #include "globals/Globals.h"
+
+#include <QAction>
+#include <QMenu>
+#include <QModelIndex>
+#include <QWidget>
 
 namespace Ui {
 class TvShowFilesWidget;

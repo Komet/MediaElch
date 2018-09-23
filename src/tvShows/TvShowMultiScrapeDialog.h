@@ -1,14 +1,14 @@
 #ifndef TVSHOWMULTISCRAPEDIALOG_H
 #define TVSHOWMULTISCRAPEDIALOG_H
 
-#include <QDialog>
-#include <QPointer>
-#include <QQueue>
-
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "globals/DownloadManager.h"
+
+#include <QDialog>
+#include <QPointer>
+#include <QQueue>
 
 namespace Ui {
 class TvShowMultiScrapeDialog;
@@ -63,7 +63,7 @@ private:
     DownloadManager *m_downloadManager;
     QMap<QString, QString> m_showIds;
 
-    void setChkBoxesEnabled();
+    void setCheckBoxesEnabled();
     void addDownload(ImageType imageType, QUrl url, TvShow *show, int season = -1);
     void addDownload(ImageType imageType, QUrl url, TvShow *show, Actor *actor);
     void addDownload(ImageType imageType, QUrl url, TvShowEpisode *episode);

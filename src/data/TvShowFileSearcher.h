@@ -1,11 +1,11 @@
 #ifndef TVSHOWFILESEARCHER_H
 #define TVSHOWFILESEARCHER_H
 
-#include <QDir>
-#include <QObject>
-
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
+
+#include <QDir>
+#include <QObject>
 
 /**
  * @brief The TvShowFileSearcher class

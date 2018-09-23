@@ -63,7 +63,6 @@ void installLogger()
                     .arg(Settings::instance()->advanced()->logFile()));
         }
     }
-    qInstallMessageHandler(messageHandler);
 }
 
 void loadStylesheet(QApplication &app)
@@ -90,7 +89,12 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(MediaElch::Constants::AppVersionStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
-    installLogger();
+    // Install a message handler here to get "nice" output but instantiate the
+    // logger after the translator is installed to avoid calls to tr() prior
+    // to updating the application's language. "Settings::instance()" instantiates
+    // "Manager" which instantiates all scrapers which themself add their settings
+    // with translated values to the settings dialog.
+    qInstallMessageHandler(messageHandler);
 
     // Qt localization
     QTranslator qtTranslator;
@@ -109,6 +113,7 @@ int main(int argc, char *argv[])
     }
     app.installTranslator(&editTranslator);
 
+    installLogger();
     loadStylesheet(app);
 
     MainWindow window;

@@ -1,12 +1,12 @@
 #ifndef FILTERWIDGET_H
 #define FILTERWIDGET_H
 
+#include "globals/Filter.h"
+#include "globals/Globals.h"
+
 #include <QKeyEvent>
 #include <QListWidget>
 #include <QWidget>
-
-#include "globals/Filter.h"
-#include "globals/Globals.h"
 
 namespace Ui {
 class FilterWidget;

@@ -136,6 +136,15 @@ struct ScraperSearchResult
     QDate released;
 };
 
+/**
+ * @brief Language name/key pair for scrapers. Used for settings.
+ */
+struct ScraperLanguage
+{
+    QString languageName;
+    QString languageKey;
+};
+
 struct TrailerResult
 {
     QUrl preview;

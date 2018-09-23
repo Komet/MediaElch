@@ -28,43 +28,64 @@ AEBN::AEBN(QObject *parent) :
 {
     setParent(parent);
 
-    m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
-    m_box->addItem(tr("Croatian"), "hr");
-    m_box->addItem(tr("Czech"), "cs");
-    m_box->addItem(tr("Danish"), "da");
-    m_box->addItem(tr("Dutch"), "nl");
-    m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("Finnish"), "fi");
-    m_box->addItem(tr("French"), "fr");
-    m_box->addItem(tr("German"), "de");
-    m_box->addItem(tr("Greek"), "el");
-    m_box->addItem(tr("Hebrew"), "he");
-    m_box->addItem(tr("Hungarian"), "hu");
-    m_box->addItem(tr("Italian"), "it");
-    m_box->addItem(tr("Japanese"), "ja");
-    m_box->addItem(tr("Korean"), "ko");
-    m_box->addItem(tr("Norwegian"), "no");
-    m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
-    m_box->addItem(tr("Russian"), "ru");
-    m_box->addItem(tr("Slovene"), "sl");
-    m_box->addItem(tr("Spanish"), "es");
-    m_box->addItem(tr("Swedish"), "sv");
-    m_box->addItem(tr("Turkish"), "tr");
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+
+    for (const ScraperLanguage &lang : supportedLanguages()) {
+        m_box->addItem(lang.languageName, lang.languageKey);
+    }
 
     // Genre IDs overrides URL (http://[straight|gay]...)
     m_genreBox->addItem(tr("Straight"), "101");
     m_genreBox->addItem(tr("Gay"), "102");
 
     auto layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
+    layout->addWidget(new QLabel(QObject::tr("Language")), 0, 0);
     layout->addWidget(m_box, 0, 1);
     layout->addWidget(new QLabel(tr("Genre")), 1, 0);
     layout->addWidget(m_genreBox, 1, 1);
     layout->setColumnStretch(2, 1);
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
+}
+
+std::vector<ScraperLanguage> AEBN::supportedLanguages()
+{
+    return {{tr("Bulgarian"), "bg"},
+        {tr("Chinese"), "zh"},
+        {tr("Croatian"), "hr"},
+        {tr("Czech"), "cs"},
+        {tr("Danish"), "da"},
+        {tr("Dutch"), "nl"},
+        {tr("English"), "en"},
+        {tr("Finnish"), "fi"},
+        {tr("French"), "fr"},
+        {tr("German"), "de"},
+        {tr("Greek"), "el"},
+        {tr("Hebrew"), "he"},
+        {tr("Hungarian"), "hu"},
+        {tr("Italian"), "it"},
+        {tr("Japanese"), "ja"},
+        {tr("Korean"), "ko"},
+        {tr("Norwegian"), "no"},
+        {tr("Polish"), "pl"},
+        {tr("Portuguese"), "pt"},
+        {tr("Russian"), "ru"},
+        {tr("Slovene"), "sl"},
+        {tr("Spanish"), "es"},
+        {tr("Swedish"), "sv"},
+        {tr("Turkish"), "tr"}};
+}
+
+void AEBN::changeLanguage(QString languageKey)
+{
+    // Does not store the new language in settings.
+    m_language = languageKey;
+}
+
+QString AEBN::defaultLanguageKey()
+{
+    return Settings::instance()->settings()->value("Scrapers/AEBN/Language", "en").toString();
 }
 
 QString AEBN::name()
@@ -96,7 +117,7 @@ void AEBN::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QStringLiteral(
-        "https://gay.theater.aebn.net/dispatcher/"
+        "https://straight.theater.aebn.net/dispatcher/"
         "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
         "Large&theaterId=822&genreId=%3")
                  .arg(m_language, encodedSearch, m_genreId));
@@ -147,9 +168,9 @@ void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 {
     movie->clear(infos);
 
-    QUrl url(
-        QString("https://gay.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
-            .arg(ids.values().first(), m_language, m_genreId));
+    QUrl url(QString(
+        "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
+                 .arg(ids.values().first(), m_language, m_genreId));
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
@@ -309,8 +330,9 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     }
 
     QString id = actorIds.takeFirst();
-    QUrl url(QString("https://gay.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
-                 .arg(id, m_language, m_genreId));
+    QUrl url(
+        QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
+            .arg(id, m_language, m_genreId));
     QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));

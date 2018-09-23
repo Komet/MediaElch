@@ -2,6 +2,7 @@
 
 #include <QDebug>
 
+#include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 

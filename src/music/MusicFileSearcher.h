@@ -1,11 +1,11 @@
 #ifndef MUSICFILESEARCHER_H
 #define MUSICFILESEARCHER_H
 
-#include <QObject>
+#include "globals/Globals.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
-#include "../globals/Globals.h"
-#include "../music/Album.h"
-#include "../music/Artist.h"
+#include <QObject>
 
 class MusicFileSearcher : public QObject
 {

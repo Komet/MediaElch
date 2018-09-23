@@ -5,6 +5,9 @@
 #include <QFileInfo>
 #include <QTime>
 
+#include "data/MediaCenterInterface.h"
+#include "data/TvScraperInterface.h"
+#include "data/TvShow.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"

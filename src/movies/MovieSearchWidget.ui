@@ -39,6 +39,16 @@
       <widget class="QComboBox" name="comboScraper"/>
      </item>
      <item>
+      <widget class="QLabel" name="lblLanguage">
+       <property name="text">
+        <string>Language</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboLanguage"/>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

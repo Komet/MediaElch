@@ -1,14 +1,14 @@
 #ifndef FANARTTVMUSIC_H
 #define FANARTTVMUSIC_H
 
+#include "data/ImageProviderInterface.h"
+#include "globals/Globals.h"
+
+#include <QList>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-
-#include "data/ImageProviderInterface.h"
-#include "globals/Globals.h"
-#include "scrapers/TMDb.h"
-#include "scrapers/TheTvDb.h"
+#include <QString>
 
 class FanartTvMusic : public ImageProviderInterface
 {

@@ -124,7 +124,7 @@ int TvShowMultiScrapeDialog::exec()
     m_currentShow = nullptr;
     m_showIds.clear();
     m_executed = true;
-    setChkBoxesEnabled();
+    setCheckBoxesEnabled();
     adjustSize();
 
     ui->chkAutoSave->setChecked(Settings::instance()->multiScrapeSaveEach());
@@ -194,7 +194,7 @@ void TvShowMultiScrapeDialog::onChkAllToggled()
     onChkToggled();
 }
 
-void TvShowMultiScrapeDialog::setChkBoxesEnabled()
+void TvShowMultiScrapeDialog::setCheckBoxesEnabled()
 {
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {

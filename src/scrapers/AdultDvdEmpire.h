@@ -1,11 +1,11 @@
 #ifndef ADULTDVDEMPIRE_H
 #define ADULTDVDEMPIRE_H
 
+#include "data/ScraperInterface.h"
+
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
-#include "data/ScraperInterface.h"
 
 class AdultDvdEmpire : public ScraperInterface
 {
@@ -21,6 +21,9 @@ public:
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;
     QList<MovieScraperInfos> scraperNativelySupports() override;
+    std::vector<ScraperLanguage> supportedLanguages() override;
+    void changeLanguage(QString languageKey) override;
+    QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() override;
 

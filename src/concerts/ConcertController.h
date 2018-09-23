@@ -1,15 +1,12 @@
 #ifndef CONCERTCONTROLLER_H
 #define CONCERTCONTROLLER_H
 
+#include "globals/DownloadManagerElement.h"
+
 #include <QMutex>
 #include <QObject>
 
-#include "data/Concert.h"
-#include "data/ConcertScraperInterface.h"
-#include "data/MediaCenterInterface.h"
-#include "globals/DownloadManager.h"
-#include "globals/DownloadManagerElement.h"
-
+class Concert;
 class ConcertScraperInterface;
 class DownloadManager;
 class MediaCenterInterface;

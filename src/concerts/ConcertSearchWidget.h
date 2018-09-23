@@ -1,10 +1,10 @@
 #ifndef CONCERTSEARCHWIDGET_H
 #define CONCERTSEARCHWIDGET_H
 
+#include "globals/Globals.h"
+
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "globals/Globals.h"
 
 namespace Ui {
 class ConcertSearchWidget;
@@ -41,7 +41,7 @@ private:
     QList<ConcertScraperInfos> m_infosToLoad;
 
     void clear();
-    void setChkBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
 };
 
 #endif // CONCERTSEARCHWIDGET_H

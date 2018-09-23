@@ -1,6 +1,8 @@
 #ifndef MOVIEWIDGET_H
 #define MOVIEWIDGET_H
 
+#include "data/Movie.h"
+
 #include <QCompleter>
 #include <QLabel>
 #include <QMenu>
@@ -10,13 +12,11 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Movie.h"
-#include "globals/DownloadManager.h"
-#include "smallWidgets/ClosableImage.h"
-
 namespace Ui {
 class MovieWidget;
 }
+
+class ClosableImage;
 
 /**
  * @brief The MovieWidget class

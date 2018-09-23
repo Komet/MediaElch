@@ -1,10 +1,15 @@
 #ifndef MUSICMULTISCRAPEDIALOG_H
 #define MUSICMULTISCRAPEDIALOG_H
 
-#include <QDialog>
+#include "globals/Globals.h"
 
-#include "Album.h"
-#include "Artist.h"
+#include <QDialog>
+#include <QList>
+#include <QQueue>
+
+class Album;
+class Artist;
+class MusicScraperInterface;
 
 namespace Ui {
 class MusicMultiScrapeDialog;

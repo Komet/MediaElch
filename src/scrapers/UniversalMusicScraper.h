@@ -1,13 +1,13 @@
 #ifndef UNIVERSALMUSICSCRAPER_H
 #define UNIVERSALMUSICSCRAPER_H
 
+#include "data/MusicScraperInterface.h"
+
 #include <QComboBox>
 #include <QMutex>
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
-#include "../data/MusicScraperInterface.h"
 
 class UniversalMusicScraper : public MusicScraperInterface
 {

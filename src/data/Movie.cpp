@@ -7,6 +7,7 @@
 #include <QFileInfo>
 
 #include "data/ImageCache.h"
+#include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 

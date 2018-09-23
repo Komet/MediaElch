@@ -30,6 +30,9 @@ package_appimage() {
 		print_critical "qmlimportscanner could not find a Qt installation.\nInstall qtdeclarative5-dev-tools\"."
 	fi
 
+	#######################################################
+	# Download linuxdeployqt
+
 	echo ""
 	print_info "Downloading linuxdeployqt"
 	DEPLOYQT="${PROJECT_DIR}/linuxdeployqt.AppImage"
@@ -39,9 +42,39 @@ package_appimage() {
 	fi
 	chmod u+x $DEPLOYQT
 
+	#######################################################
+	# Install MediaElch into subdirectory
+
 	echo ""
 	print_info "Installing MediaElch in subdirectory to create basic AppDir structure"
 	make INSTALL_ROOT=appdir -j $(nproc) install
+	find appdir/
+
+	#######################################################
+	# Copy libmediainfo
+	# 
+	# libmediainfo.so.0 is loaded at runtime that's why
+	# linuxdeployqt can't detect it and we have to include
+	# it here.
+
+	echo ""
+	print_info "Copying libmediainfo.so"
+	mkdir -p ./appdir/usr/lib
+	cp /usr/lib/x86_64-linux-gnu/libmediainfo.so.0 ./appdir/usr/lib/
+
+	#######################################################
+	# Download and copy ffmpeg
+
+	echo ""
+	print_info "Downloading ffmpeg"
+	# Use static ffmpeg
+	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O ffmpeg.tar.xz
+	tar -xJvf ffmpeg.tar.xz
+	print_info "Copying ffmpeg into AppDir"
+	cp ffmpeg-*/ffmpeg appdir/usr/bin/
+
+	#######################################################
+	# Create AppImage
 
 	echo ""
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
@@ -57,6 +90,10 @@ package_appimage() {
 	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/AppRun-patched-x86_64 -O appdir/AppRun
 	chmod a+x appdir/AppRun
 	./squashfs-root/usr/bin/appimagetool -g ./appdir/ MediaElch-${VERSION}-x86_64.AppImage
+	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
+
+	#######################################################
+	# Finalize AppImage (name, chmod)
 
 	echo ""
 	print_info "Renaming .AppImage"

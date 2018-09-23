@@ -1,10 +1,12 @@
 #ifndef DATA_MOVIEIMAGES_H
 #define DATA_MOVIEIMAGES_H
 
-#include "globals/Globals.h"
-
+#include <QByteArray>
 #include <QList>
 #include <QObject>
+#include <QString>
+
+#include "globals/Globals.h"
 
 class MediaCenterInterface;
 class Movie;

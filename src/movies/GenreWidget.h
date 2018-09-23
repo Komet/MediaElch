@@ -1,17 +1,18 @@
 #ifndef GENREWIDGET_H
 #define GENREWIDGET_H
 
+#include "globals/Globals.h"
+
 #include <QMenu>
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Movie.h"
-#include "globals/Globals.h"
-
 namespace Ui {
 class GenreWidget;
 }
+
+class Movie;
 
 /**
  * @brief The GenreWidget class

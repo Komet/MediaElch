@@ -1,15 +1,16 @@
 #ifndef IMAGEWIDGET_H
 #define IMAGEWIDGET_H
 
+#include <QList>
+#include <QUrl>
+#include <QVariantList>
 #include <QWidget>
-
-#include "image/ImageModel.h"
-#include "image/ImageProxyModel.h"
-#include "music/Album.h"
 
 namespace Ui {
 class ImageWidget;
 }
+
+class Album;
 
 class ImageWidget : public QWidget
 {

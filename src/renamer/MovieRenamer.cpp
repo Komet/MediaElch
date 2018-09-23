@@ -228,25 +228,25 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
     const auto videoDetails = movie.streamDetails()->videoDetails();
     // rename dir for already existe films dir
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
-        MovieRenamer::replace(newFolderName, "title", movie.name());
-        MovieRenamer::replace(newFolderName, "extension", extension);
-        MovieRenamer::replace(newFolderName, "originalTitle", movie.originalName());
-        MovieRenamer::replace(newFolderName, "sortTitle", movie.sortTitle());
-        MovieRenamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
-        MovieRenamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
-        MovieRenamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
-        MovieRenamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
-        MovieRenamer::replace(newFolderName,
+        Renamer::replace(newFolderName, "title", movie.name());
+        Renamer::replace(newFolderName, "extension", extension);
+        Renamer::replace(newFolderName, "originalTitle", movie.originalName());
+        Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
+        Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
+        Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
+        Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
+        Renamer::replace(newFolderName,
             "resolution",
             Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        MovieRenamer::replaceCondition(newFolderName, "bluray", isBluRay);
-        MovieRenamer::replaceCondition(newFolderName, "dvd", isDvd);
-        MovieRenamer::replaceCondition(
+        Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
+        Renamer::replaceCondition(newFolderName, "dvd", isDvd);
+        Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        MovieRenamer::replaceCondition(newFolderName, "movieset", movie.set());
-        MovieRenamer::replaceCondition(newFolderName, "imdbId", movie.id());
+        Renamer::replaceCondition(newFolderName, "movieset", movie.set());
+        Renamer::replaceCondition(newFolderName, "imdbId", movie.id());
         Helper::instance()->sanitizeFileName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
@@ -254,25 +254,25 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
     }
     // create dir for new dir structure
     else if (m_config.renameDirectories) {
-        MovieRenamer::replace(newFolderName, "title", movie.name());
-        MovieRenamer::replace(newFolderName, "extension", extension);
-        MovieRenamer::replace(newFolderName, "originalTitle", movie.originalName());
-        MovieRenamer::replace(newFolderName, "sortTitle", movie.sortTitle());
-        MovieRenamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
-        MovieRenamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
-        MovieRenamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
-        MovieRenamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
-        MovieRenamer::replace(newFolderName,
+        Renamer::replace(newFolderName, "title", movie.name());
+        Renamer::replace(newFolderName, "extension", extension);
+        Renamer::replace(newFolderName, "originalTitle", movie.originalName());
+        Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
+        Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
+        Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
+        Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
+        Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
+        Renamer::replace(newFolderName,
             "resolution",
             Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        MovieRenamer::replaceCondition(newFolderName, "bluray", isBluRay);
-        MovieRenamer::replaceCondition(newFolderName, "dvd", isDvd);
-        MovieRenamer::replaceCondition(
+        Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
+        Renamer::replaceCondition(newFolderName, "dvd", isDvd);
+        Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        MovieRenamer::replaceCondition(newFolderName, "movieset", movie.set());
-        MovieRenamer::replaceCondition(newFolderName, "imdbId", movie.id());
+        Renamer::replaceCondition(newFolderName, "movieset", movie.set());
+        Renamer::replaceCondition(newFolderName, "imdbId", movie.id());
         Helper::instance()->sanitizeFileName(newFolderName);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder

@@ -74,6 +74,21 @@ QList<MovieScraperInfos> VideoBuster::scraperNativelySupports()
     return m_scraperSupports;
 }
 
+std::vector<ScraperLanguage> VideoBuster::supportedLanguages()
+{
+    return {{tr("German"), "de"}};
+}
+
+void VideoBuster::changeLanguage(QString /*languageKey*/)
+{
+    // no-op: Only one language is supported and it is hard-coded.
+}
+
+QString VideoBuster::defaultLanguageKey()
+{
+    return QStringLiteral("de");
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string

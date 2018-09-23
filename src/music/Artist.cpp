@@ -1,5 +1,7 @@
 #include "Artist.h"
 
+#include "data/MediaCenterInterface.h"
+
 Artist::Artist(QString path, QObject *parent) :
     QObject(parent),
     m_path{path},

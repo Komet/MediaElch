@@ -1,12 +1,12 @@
 #ifndef MOVIEFILESEARCHER_H
 #define MOVIEFILESEARCHER_H
 
+#include "data/Movie.h"
+
 #include <QDir>
 #include <QHash>
 #include <QObject>
 #include <QTime>
-
-#include "data/Movie.h"
 
 /**
  * @brief The MovieFileSearcher class

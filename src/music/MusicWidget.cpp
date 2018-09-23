@@ -1,10 +1,12 @@
 #include "MusicWidget.h"
 #include "ui_MusicWidget.h"
 
-#include <QDebug>
+#include "globals/Manager.h"
+#include "music/Album.h"
+#include "music/Artist.h"
+#include "notifications/NotificationBox.h"
 
-#include "../globals/Manager.h"
-#include "../notifications/NotificationBox.h"
+#include <QDebug>
 
 MusicWidget::MusicWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidget)
 {

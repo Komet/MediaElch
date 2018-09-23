@@ -1,19 +1,20 @@
 #ifndef DOWNLOADMANAGER_H
 #define DOWNLOADMANAGER_H
 
+#include "globals/DownloadManagerElement.h"
+#include "globals/Globals.h"
+
+#include <QList>
 #include <QMutex>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QObject>
 #include <QQueue>
 #include <QTimer>
 #include <QUrl>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
-#include "data/TvShowEpisode.h"
-#include "globals/DownloadManagerElement.h"
-#include "globals/Globals.h"
-#include "music/Album.h"
-#include "music/Artist.h"
+class Artist;
+class Album;
 
 /**
  * @brief The DownloadManager class

@@ -1,14 +1,14 @@
 #ifndef TVSHOWWIDGETTVSHOW_H
 #define TVSHOWWIDGETTVSHOW_H
 
+#include "data/TvShow.h"
+#include "globals/DownloadManager.h"
+
 #include <QLabel>
 #include <QMovie>
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
-
-#include "data/TvShow.h"
-#include "globals/DownloadManager.h"
 
 namespace Ui {
 class TvShowWidgetTvShow;

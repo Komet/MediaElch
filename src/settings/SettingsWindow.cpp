@@ -6,8 +6,12 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "data/ConcertScraperInterface.h"
 #include "data/MovieFilesOrganizer.h"
+#include "data/ScraperInterface.h"
 #include "data/Storage.h"
+#include "data/TvScraperInterface.h"
+#include "export/ExportTemplate.h"
 #include "export/ExportTemplateLoader.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -15,6 +19,7 @@
 #include "notifications/NotificationBox.h"
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
+#include "settings/Settings.h"
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
     QMainWindow(parent),

@@ -1,11 +1,9 @@
 #ifndef MUSICMODELITEM_H
 #define MUSICMODELITEM_H
 
-#include <QObject>
-
-#include "Album.h"
-#include "Artist.h"
 #include "globals/Globals.h"
+
+#include <QObject>
 
 class Artist;
 class Album;

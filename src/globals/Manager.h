@@ -1,8 +1,6 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
-#include <QObject>
-
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertScraperInterface.h"
@@ -27,6 +25,11 @@
 #include "settings/Settings.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
+
+#include <QList>
+#include <QString>
+
+class MediaCenterInterface;
 
 /**
  * @brief The Manager class

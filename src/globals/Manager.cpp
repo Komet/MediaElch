@@ -4,6 +4,7 @@
 #include <QDesktopServices>
 #include <QSqlQuery>
 
+#include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/FanartTvMusic.h"
@@ -163,7 +164,7 @@ QList<ScraperInterface *> Manager::scrapers()
 
 ScraperInterface *Manager::scraper(const QString &identifier)
 {
-    foreach (ScraperInterface *scraper, m_scrapers) {
+    for (ScraperInterface *scraper : m_scrapers) {
         if (scraper->identifier() == identifier) {
             return scraper;
         }

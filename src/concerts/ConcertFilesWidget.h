@@ -1,14 +1,15 @@
 #ifndef CONCERTFILESWIDGET_H
 #define CONCERTFILESWIDGET_H
 
-#include <QLabel>
-#include <QMenu>
-#include <QWidget>
-
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"
 #include "smallWidgets/AlphabeticalList.h"
+
+#include <QLabel>
+#include <QMenu>
+#include <QModelIndex>
+#include <QWidget>
 
 namespace Ui {
 class ConcertFilesWidget;

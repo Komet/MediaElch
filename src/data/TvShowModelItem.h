@@ -1,14 +1,12 @@
 #ifndef TVSHOWMODELITEM_H
 #define TVSHOWMODELITEM_H
 
+#include "globals/Globals.h"
+
 #include <QList>
 #include <QObject>
 #include <QVariant>
 #include <QVector>
-
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
-#include "globals/Globals.h"
 
 class TvShow;
 class TvShowEpisode;

@@ -1,20 +1,17 @@
 #ifndef TVSHOW_H
 #define TVSHOW_H
 
+#include "data/Rating.h"
+#include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
+
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
 
-#include "data/MediaCenterInterface.h"
-#include "data/Rating.h"
-#include "data/TvScraperInterface.h"
-#include "data/TvShowEpisode.h"
-#include "globals/Globals.h"
-
 struct Actor;
 struct Poster;
 class MediaCenterInterface;
-class TvShowEpisode;
 class TvShowModelItem;
 class TvScraperInterface;
 

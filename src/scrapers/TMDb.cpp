@@ -21,45 +21,57 @@
  * @brief TMDb::TMDb
  * @param parent
  */
-TMDb::TMDb(QObject *parent) : m_locale{"en"}, m_baseUrl{"http://cf2.imgobject.com/t/p/"}
+TMDb::TMDb(QObject *parent) :
+    m_locale{"en"},
+    m_baseUrl{"http://cf2.imgobject.com/t/p/"},
+    m_scraperSupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Tagline,
+        MovieScraperInfos::Rating,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Certification,
+        MovieScraperInfos::Trailer,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Countries,
+        MovieScraperInfos::Director,
+        MovieScraperInfos::Writer,
+        MovieScraperInfos::Logo,
+        MovieScraperInfos::Banner,
+        MovieScraperInfos::Thumb,
+        MovieScraperInfos::CdArt,
+        MovieScraperInfos::ClearArt,
+        MovieScraperInfos::Set},
+    m_scraperNativelySupports{MovieScraperInfos::Title,
+        MovieScraperInfos::Tagline,
+        MovieScraperInfos::Rating,
+        MovieScraperInfos::Released,
+        MovieScraperInfos::Runtime,
+        MovieScraperInfos::Certification,
+        MovieScraperInfos::Trailer,
+        MovieScraperInfos::Overview,
+        MovieScraperInfos::Poster,
+        MovieScraperInfos::Backdrop,
+        MovieScraperInfos::Actors,
+        MovieScraperInfos::Genres,
+        MovieScraperInfos::Studios,
+        MovieScraperInfos::Countries,
+        MovieScraperInfos::Director,
+        MovieScraperInfos::Writer,
+        MovieScraperInfos::Set}
 {
     setParent(parent);
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    // For officially supported languages, see:
-    // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    m_box->addItem(tr("Arabic"), "ar");
-    m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese (T)"), "zh-TW");
-    m_box->addItem(tr("Chinese (S)"), "zh-CN");
-    m_box->addItem(tr("Croatian"), "hr");
-    m_box->addItem(tr("Czech"), "cs");
-    m_box->addItem(tr("Danish"), "da");
-    m_box->addItem(tr("Dutch"), "nl");
-    m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en-US");
-    m_box->addItem(tr("Finnish"), "fi");
-    m_box->addItem(tr("French"), "fr");
-    m_box->addItem(tr("French (Canada)"), "fr-CA");
-    m_box->addItem(tr("German"), "de");
-    m_box->addItem(tr("Greek"), "el");
-    m_box->addItem(tr("Hebrew"), "he");
-    m_box->addItem(tr("Hungarian"), "hu");
-    m_box->addItem(tr("Italian"), "it");
-    m_box->addItem(tr("Japanese"), "ja");
-    m_box->addItem(tr("Korean"), "ko");
-    m_box->addItem(tr("Norwegian"), "no");
-    m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese (Brazil)"), "pt-BR");
-    m_box->addItem(tr("Portuguese (Portugal)"), "pt-PT");
-    m_box->addItem(tr("Russian"), "ru");
-    m_box->addItem(tr("Slovene"), "sl");
-    m_box->addItem(tr("Spanish"), "es");
-    m_box->addItem(tr("Spanish (Mexico)"), "es-MX");
-    m_box->addItem(tr("Swedish"), "sv");
-    m_box->addItem(tr("Turkish"), "tr");
+    for (const ScraperLanguage &lang : supportedLanguages()) {
+        m_box->addItem(lang.languageName, lang.languageKey);
+    }
 
     auto layout = new QGridLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
@@ -68,46 +80,6 @@ TMDb::TMDb(QObject *parent) : m_locale{"en"}, m_baseUrl{"http://cf2.imgobject.co
     layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
-    m_scraperSupports << MovieScraperInfos::Title         //
-                      << MovieScraperInfos::Tagline       //
-                      << MovieScraperInfos::Rating        //
-                      << MovieScraperInfos::Released      //
-                      << MovieScraperInfos::Runtime       //
-                      << MovieScraperInfos::Certification //
-                      << MovieScraperInfos::Trailer       //
-                      << MovieScraperInfos::Overview      //
-                      << MovieScraperInfos::Poster        //
-                      << MovieScraperInfos::Backdrop      //
-                      << MovieScraperInfos::Actors        //
-                      << MovieScraperInfos::Genres        //
-                      << MovieScraperInfos::Studios       //
-                      << MovieScraperInfos::Countries     //
-                      << MovieScraperInfos::Director      //
-                      << MovieScraperInfos::Writer        //
-                      << MovieScraperInfos::Logo          //
-                      << MovieScraperInfos::Banner        //
-                      << MovieScraperInfos::Thumb         //
-                      << MovieScraperInfos::CdArt         //
-                      << MovieScraperInfos::ClearArt      //
-                      << MovieScraperInfos::Set;
-
-    m_scraperNativelySupports << MovieScraperInfos::Title         //
-                              << MovieScraperInfos::Tagline       //
-                              << MovieScraperInfos::Rating        //
-                              << MovieScraperInfos::Released      //
-                              << MovieScraperInfos::Runtime       //
-                              << MovieScraperInfos::Certification //
-                              << MovieScraperInfos::Trailer       //
-                              << MovieScraperInfos::Overview      //
-                              << MovieScraperInfos::Poster        //
-                              << MovieScraperInfos::Backdrop      //
-                              << MovieScraperInfos::Actors        //
-                              << MovieScraperInfos::Genres        //
-                              << MovieScraperInfos::Studios       //
-                              << MovieScraperInfos::Countries     //
-                              << MovieScraperInfos::Director      //
-                              << MovieScraperInfos::Writer        //
-                              << MovieScraperInfos::Set;
     setup();
 }
 
@@ -192,6 +164,57 @@ QList<MovieScraperInfos> TMDb::scraperSupports()
 QList<MovieScraperInfos> TMDb::scraperNativelySupports()
 {
     return m_scraperNativelySupports;
+}
+
+std::vector<ScraperLanguage> TMDb::supportedLanguages()
+{
+    // For officially supported languages, see:
+    // https://developers.themoviedb.org/3/configuration/get-primary-translations
+    return {{tr("Arabic"), "ar"},
+        {tr("Bulgarian"), "bg"},
+        {tr("Chinese (T)"), "zh-TW"},
+        {tr("Chinese (S)"), "zh-CN"},
+        {tr("Croatian"), "hr"},
+        {tr("Czech"), "cs"},
+        {tr("Danish"), "da"},
+        {tr("Dutch"), "nl"},
+        {tr("English"), "en"},
+        {tr("English (US)"), "en-US"},
+        {tr("Finnish"), "fi"},
+        {tr("French"), "fr"},
+        {tr("French (Canada)"), "fr-CA"},
+        {tr("German"), "de"},
+        {tr("Greek"), "el"},
+        {tr("Hebrew"), "he"},
+        {tr("Hungarian"), "hu"},
+        {tr("Italian"), "it"},
+        {tr("Japanese"), "ja"},
+        {tr("Korean"), "ko"},
+        {tr("Norwegian"), "no"},
+        {tr("Polish"), "pl"},
+        {tr("Portuguese (Brazil)"), "pt-BR"},
+        {tr("Portuguese (Portugal)"), "pt-PT"},
+        {tr("Russian"), "ru"},
+        {tr("Slovene"), "sl"},
+        {tr("Spanish"), "es"},
+        {tr("Spanish (Mexico)"), "es-MX"},
+        {tr("Swedish"), "sv"},
+        {tr("Turkish"), "tr"}};
+}
+
+void TMDb::changeLanguage(QString languageKey)
+{
+    // Does not store the new language in settings.
+    m_locale = languageKey;
+}
+
+QString TMDb::defaultLanguageKey()
+{
+    QString lang = Settings::instance()->settings()->value("Scrapers/TMDb/Language", "en").toString();
+    if (lang.isEmpty()) {
+        return QStringLiteral("en");
+    }
+    return lang;
 }
 
 /**
@@ -626,8 +649,9 @@ QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
     case ApiUrlParameter::YEAR: return QStringLiteral("year");
     case ApiUrlParameter::PAGE: return QStringLiteral("page");
     case ApiUrlParameter::INCLUDE_ADULT: return QStringLiteral("include_adult");
-    default: return QStringLiteral("unknown");
     }
+    qCritical() << "[TMDb] ApiUrlParameter: Unhandled enum case.";
+    return QStringLiteral("unknown");
 }
 
 /**
