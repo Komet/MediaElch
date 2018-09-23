@@ -122,6 +122,18 @@ create_appimage() {
 	fold_end
 
 	#######################################################
+	# Download and copy ffmpeg
+
+	fold_start "ffmpeg"
+	print_info "Downloading ffmpeg"
+	# Use static ffmpeg
+	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O ffmpeg.tar.xz
+	tar -xJvf ffmpeg.tar.xz
+	print_info "Copying ffmpeg into AppDir"
+	cp ffmpeg-*/ffmpeg appdir/usr/bin/
+	fold_end
+
+	#######################################################
 	# Create AppImage
 
 	fold_start "linuxdeployqt"

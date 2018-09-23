@@ -63,6 +63,17 @@ package_appimage() {
 	cp /usr/lib/x86_64-linux-gnu/libmediainfo.so.0 ./appdir/usr/lib/
 
 	#######################################################
+	# Download and copy ffmpeg
+
+	echo ""
+	print_info "Downloading ffmpeg"
+	# Use static ffmpeg
+	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O ffmpeg.tar.xz
+	tar -xJvf ffmpeg.tar.xz
+	print_info "Copying ffmpeg into AppDir"
+	cp ffmpeg-*/ffmpeg appdir/usr/bin/
+
+	#######################################################
 	# Create AppImage
 
 	echo ""
