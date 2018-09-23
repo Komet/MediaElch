@@ -131,6 +131,8 @@ SOURCES += src/main.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
+    src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
     src/movies/FilesWidget.cpp \
     src/movies/GenreWidget.cpp \
@@ -305,6 +307,8 @@ HEADERS  += Version.h \
     src/main/Navbar.h \
     src/main/Update.h \
     src/mediaCenterPlugins/XbmcXml.h \
+    src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
+    src/mediaCenterPlugins/kodi/MovieXmlReader.h \
     src/movies/CertificationWidget.h \
     src/movies/FilesWidget.h \
     src/movies/GenreWidget.h \

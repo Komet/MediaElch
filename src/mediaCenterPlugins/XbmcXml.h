@@ -91,6 +91,14 @@ public:
 
     static void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
+    static void writeStreamDetails(QDomDocument &doc,
+        const StreamDetails *streamDetails,
+        QList<Subtitle *> subtitles = QList<Subtitle *>());
+    static void setListValue(QDomDocument &doc, const QString &name, const QStringList &values);
+    static QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
+    static void appendXmlNode(QDomDocument &doc, QDomNode &node);
+    static void removeChildNodes(QDomDocument &doc, const QString &name);
+    static QDomElement setTextValue(QDomDocument &doc, const QString &name, const QString &value);
 
     void loadBooklets(Album *album) override;
 
@@ -106,14 +114,6 @@ private:
     QString getPath(const Movie *movie);
     QString getPath(const Concert *concert);
     QString movieSetFileName(QString setName, DataFile *dataFile);
-    QDomElement setTextValue(QDomDocument &doc, const QString &name, const QString &value);
-    void setListValue(QDomDocument &doc, const QString &name, const QStringList &values);
-    QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
-    void appendXmlNode(QDomDocument &doc, QDomNode &node);
-    void removeChildNodes(QDomDocument &doc, const QString &name);
-    void writeStreamDetails(QDomDocument &doc,
-        const StreamDetails *streamDetails,
-        QList<Subtitle *> subtitles = QList<Subtitle *>());
 };
 
 #endif // XBMCXML_H
