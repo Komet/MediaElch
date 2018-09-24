@@ -5,11 +5,13 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <utility>
 
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
+
 
 /**
  * @brief Constructs a new movie object
@@ -484,9 +486,9 @@ QDateTime Movie::lastPlayed() const
  * @return Id of the movie
  * @see Movie::setId
  */
-QString Movie::id() const
+ImdbId Movie::imdbId() const
 {
-    return m_id;
+    return m_imdbId;
 }
 
 /**
@@ -495,7 +497,7 @@ QString Movie::id() const
  * @return Tmdb id of the movie
  * @see Movie::setTmdbId
  */
-QString Movie::tmdbId() const
+TmdbId Movie::tmdbId() const
 {
     return m_tmdbId;
 }
@@ -831,9 +833,9 @@ void Movie::setLastPlayed(QDateTime lastPlayed)
  * @param id Id of the movie
  * @see Movie::id
  */
-void Movie::setId(QString id)
+void Movie::setId(ImdbId id)
 {
-    m_id = id;
+    m_imdbId = std::move(id);
     setChanged(true);
 }
 
@@ -842,9 +844,9 @@ void Movie::setId(QString id)
  * @param id Tmdb id of the movie
  * @see Movie::tmdbId
  */
-void Movie::setTmdbId(QString id)
+void Movie::setTmdbId(TmdbId tmdbId)
 {
-    m_tmdbId = id;
+    m_tmdbId = std::move(tmdbId);
     setChanged(true);
 }
 
@@ -1150,8 +1152,7 @@ QDateTime Movie::dateAdded() const
 
 bool Movie::hasValidImdbId() const
 {
-    QRegExp regex("tt\\d{7}");
-    return !m_id.isEmpty() && regex.exactMatch(m_id);
+    return m_imdbId.isValid();
 }
 
 bool Movie::hasImage(ImageType imageType) const
@@ -1244,8 +1245,8 @@ bool Movie::isDuplicate(Movie *movie)
 MovieDuplicate Movie::duplicateProperties(Movie *movie)
 {
     MovieDuplicate md;
-    md.imdbId = !movie->id().isEmpty() && movie->id() == id();
-    md.tmdbId = !movie->tmdbId().isEmpty() && movie->tmdbId() == tmdbId();
+    md.imdbId = movie->imdbId().isValid() && movie->imdbId() == imdbId();
+    md.tmdbId = movie->tmdbId().isValid() && movie->tmdbId() == tmdbId();
     md.title = !movie->name().isEmpty() && movie->name() == name();
 
     return md;
@@ -1271,7 +1272,8 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  Certification: ").append(movie.certification()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
-    out.append(QString("  ID:            ").append(movie.id()).append(nl));
+    out.append(QString("  TMDb ID:       ").append(movie.imdbId().toString()).append(nl));
+    out.append(QString("  IMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
     out.append(QString("  Set:           ").append(movie.set()).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
     for (const QString &studio : movie.studios()) {

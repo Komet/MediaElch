@@ -131,6 +131,8 @@ SOURCES += src/main.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
+    src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
     src/movies/FilesWidget.cpp \
     src/movies/GenreWidget.cpp \
@@ -222,7 +224,9 @@ SOURCES += src/main.cpp \
     src/tvShows/TvShowWidgetSeason.cpp \
     src/tvShows/TvShowWidgetTvShow.cpp \
     src/tvShows/TvTunesDialog.cpp \
-    src/xbmc/XbmcSync.cpp
+    src/xbmc/XbmcSync.cpp \
+    src/data/ImdbId.cpp \
+    src/data/TmdbId.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
@@ -305,6 +309,8 @@ HEADERS  += Version.h \
     src/main/Navbar.h \
     src/main/Update.h \
     src/mediaCenterPlugins/XbmcXml.h \
+    src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
+    src/mediaCenterPlugins/kodi/MovieXmlReader.h \
     src/movies/CertificationWidget.h \
     src/movies/FilesWidget.h \
     src/movies/GenreWidget.h \
@@ -398,7 +404,9 @@ HEADERS  += Version.h \
     src/tvShows/TvShowWidgetSeason.h \
     src/tvShows/TvShowWidgetTvShow.h \
     src/tvShows/TvTunesDialog.h \
-    src/xbmc/XbmcSync.h
+    src/xbmc/XbmcSync.h \
+    src/data/ImdbId.h \
+    src/data/TmdbId.h
 
 FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \

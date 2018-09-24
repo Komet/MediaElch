@@ -1,6 +1,8 @@
 #ifndef MOVIESEARCHWIDGET_H
 #define MOVIESEARCHWIDGET_H
 
+#include "data/ImdbId.h"
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QList>
@@ -28,7 +30,7 @@ public slots:
     QString scraperMovieId();
     QList<MovieScraperInfos> infosToLoad();
     QMap<ScraperInterface *, QString> customScraperIds();
-    void search(QString searchString, QString id, QString tmdbId);
+    void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
     void sigResultClicked();
@@ -51,8 +53,8 @@ private:
     ScraperInterface *m_currentCustomScraper;
     ScraperInterface *m_currentScraper;
     QString m_currentLanguage;
-    QString m_id;
-    QString m_tmdbId;
+    ImdbId m_imdbId;
+    TmdbId m_tmdbId;
     QString m_searchString;
 
     void clearResults();

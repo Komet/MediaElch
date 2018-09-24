@@ -147,10 +147,10 @@ void CustomMovieScraper::loadData(QMap<ScraperInterface *, QString> ids, Movie *
     while (it.hasNext()) {
         it.next();
         if (it.key()->identifier() == "tmdb") {
-            movie->setTmdbId(it.value());
+            movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
         } else if (it.key()->identifier() == "imdb") {
-            movie->setId(it.value());
+            movie->setId(ImdbId(it.value()));
             imdbId = it.value();
         }
     }

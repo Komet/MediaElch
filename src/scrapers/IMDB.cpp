@@ -210,7 +210,7 @@ void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<M
 {
     QString imdbId = ids.values().first();
     movie->clear(infos);
-    movie->setId(imdbId);
+    movie->setId(ImdbId(imdbId));
 
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
@@ -250,7 +250,8 @@ void IMDB::onLoadFinished()
 
     // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
     if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
-        QUrl tagsUrl = QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->id()).toUtf8());
+        QUrl tagsUrl =
+            QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->imdbId().toString()).toUtf8());
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(tagsUrl));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         new NetworkReplyWatcher(this, reply);
