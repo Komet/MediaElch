@@ -65,7 +65,7 @@ public:
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
-    QString id() const;
+    QString imdbId() const;
     QString tmdbId() const;
     QString set() const;
     bool watched() const;
@@ -110,8 +110,8 @@ public:
     void addCountry(QString country);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
-    void setId(QString id);
-    void setTmdbId(QString id);
+    void setId(QString imdbId);
+    void setTmdbId(QString tmdbId);
     void setSet(QString set);
     void setWatched(bool watched);
     void setChanged(bool changed);
@@ -186,7 +186,7 @@ private:
     QList<Actor> m_actors;
     int m_playcount;
     QDateTime m_lastPlayed;
-    QString m_id;
+    QString m_imdbId;
     QString m_tmdbId;
     QString m_set;
     int m_movieId;

@@ -184,8 +184,8 @@ void MovieMultiScrapeDialog::onScrapingFinished()
     if (ui->chkOnlyImdb->isChecked()) {
         numberOfMovies = 0;
         foreach (Movie *movie, m_movies) {
-            if ((m_isImdb && !movie->id().isEmpty())
-                || (m_isTmdb && (!movie->id().isEmpty() || !movie->tmdbId().isEmpty()))) {
+            if ((m_isImdb && !movie->imdbId().isEmpty())
+                || (m_isTmdb && (!movie->imdbId().isEmpty() || !movie->tmdbId().isEmpty()))) {
                 numberOfMovies++;
             }
         }
@@ -221,9 +221,9 @@ void MovieMultiScrapeDialog::scrapeNext()
     ui->progressMovie->setValue(0);
 
     if (ui->chkOnlyImdb->isChecked()
-        && ((m_currentMovie->id().isEmpty() && m_isImdb)
-               || (m_currentMovie->tmdbId().isEmpty() && m_currentMovie->id().isEmpty() && m_isTmdb)
-               || (m_currentMovie->id().isEmpty() && m_currentMovie->tmdbId().isEmpty()
+        && ((m_currentMovie->imdbId().isEmpty() && m_isImdb)
+               || (m_currentMovie->tmdbId().isEmpty() && m_currentMovie->imdbId().isEmpty() && m_isTmdb)
+               || (m_currentMovie->imdbId().isEmpty() && m_currentMovie->tmdbId().isEmpty()
                       && m_scraperInterface->identifier() == "custom-movie"))) {
         scrapeNext();
         return;
@@ -242,17 +242,17 @@ void MovieMultiScrapeDialog::scrapeNext()
 
     m_currentIds.clear();
 
-    if (m_isImdb && !m_currentMovie->id().isEmpty()) {
-        loadMovieData(m_currentMovie, m_currentMovie->id());
+    if (m_isImdb && !m_currentMovie->imdbId().isEmpty()) {
+        loadMovieData(m_currentMovie, m_currentMovie->imdbId());
     } else if (m_isTmdb && !m_currentMovie->tmdbId().isEmpty()) {
         loadMovieData(m_currentMovie, m_currentMovie->tmdbId());
-    } else if (m_isTmdb && !m_currentMovie->id().isEmpty()) {
-        loadMovieData(m_currentMovie, m_currentMovie->id());
+    } else if (m_isTmdb && !m_currentMovie->imdbId().isEmpty()) {
+        loadMovieData(m_currentMovie, m_currentMovie->imdbId());
     } else if (m_scraperInterface->identifier() == "custom-movie") {
         if ((CustomMovieScraper::instance()->titleScraper()->identifier() == "imdb"
                 || CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb")
-            && !m_currentMovie->id().isEmpty()) {
-            m_scraperInterface->search(m_currentMovie->id());
+            && !m_currentMovie->imdbId().isEmpty()) {
+            m_scraperInterface->search(m_currentMovie->imdbId());
         } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb"
                    && !m_currentMovie->tmdbId().isEmpty()) {
             m_scraperInterface->search("id" + m_currentMovie->tmdbId());
@@ -293,8 +293,8 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
                 SLOT(onSearchFinished(QList<ScraperSearchResult>)),
                 Qt::UniqueConnection);
             if ((searchScrapers.first()->identifier() == "tmdb" || searchScrapers.first()->identifier() == "imdb")
-                && !m_currentMovie->id().isEmpty()) {
-                searchScrapers.first()->search(m_currentMovie->id());
+                && !m_currentMovie->imdbId().isEmpty()) {
+                searchScrapers.first()->search(m_currentMovie->imdbId());
             } else if (searchScrapers.first()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty()
                        && !m_currentMovie->tmdbId().startsWith("tt")) {
                 searchScrapers.first()->search("id" + m_currentMovie->tmdbId());

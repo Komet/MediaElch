@@ -484,9 +484,9 @@ QDateTime Movie::lastPlayed() const
  * @return Id of the movie
  * @see Movie::setId
  */
-QString Movie::id() const
+QString Movie::imdbId() const
 {
-    return m_id;
+    return m_imdbId;
 }
 
 /**
@@ -833,7 +833,7 @@ void Movie::setLastPlayed(QDateTime lastPlayed)
  */
 void Movie::setId(QString id)
 {
-    m_id = id;
+    m_imdbId = id;
     setChanged(true);
 }
 
@@ -842,9 +842,9 @@ void Movie::setId(QString id)
  * @param id Tmdb id of the movie
  * @see Movie::tmdbId
  */
-void Movie::setTmdbId(QString id)
+void Movie::setTmdbId(QString tmdbId)
 {
-    m_tmdbId = id;
+    m_tmdbId = tmdbId;
     setChanged(true);
 }
 
@@ -1151,7 +1151,7 @@ QDateTime Movie::dateAdded() const
 bool Movie::hasValidImdbId() const
 {
     QRegExp regex("tt\\d{7}");
-    return !m_id.isEmpty() && regex.exactMatch(m_id);
+    return !m_imdbId.isEmpty() && regex.exactMatch(m_imdbId);
 }
 
 bool Movie::hasImage(ImageType imageType) const
@@ -1244,7 +1244,7 @@ bool Movie::isDuplicate(Movie *movie)
 MovieDuplicate Movie::duplicateProperties(Movie *movie)
 {
     MovieDuplicate md;
-    md.imdbId = !movie->id().isEmpty() && movie->id() == id();
+    md.imdbId = !movie->imdbId().isEmpty() && movie->imdbId() == imdbId();
     md.tmdbId = !movie->tmdbId().isEmpty() && movie->tmdbId() == tmdbId();
     md.title = !movie->name().isEmpty() && movie->name() == name();
 
@@ -1271,7 +1271,7 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  Certification: ").append(movie.certification()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
-    out.append(QString("  ID:            ").append(movie.id()).append(nl));
+    out.append(QString("  ID:            ").append(movie.imdbId()).append(nl));
     out.append(QString("  Set:           ").append(movie.set()).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
     for (const QString &studio : movie.studios()) {

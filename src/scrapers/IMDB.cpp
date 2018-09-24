@@ -250,7 +250,7 @@ void IMDB::onLoadFinished()
 
     // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
     if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
-        QUrl tagsUrl = QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->id()).toUtf8());
+        QUrl tagsUrl = QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->imdbId()).toUtf8());
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(tagsUrl));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         new NetworkReplyWatcher(this, reply);

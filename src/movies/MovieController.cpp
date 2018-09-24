@@ -266,14 +266,14 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
         images << ImageType::MovieThumb;
     }
 
-    if (!images.isEmpty() && (!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty())) {
+    if (!images.isEmpty() && (!m_movie->tmdbId().isEmpty() || !m_movie->imdbId().isEmpty())) {
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(Movie *, QMap<ImageType, QList<Poster>>)),
             this,
             SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(
-            m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), images);
+            m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->imdbId(), images);
     } else {
         onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
     }

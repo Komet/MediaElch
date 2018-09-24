@@ -475,7 +475,7 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFileName, "imdbId", m_movie->id());
+            Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId());
             Renamer::replaceCondition(newFileName, "movieset", m_movie->set());
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");

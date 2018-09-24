@@ -474,7 +474,7 @@ void MovieWidget::startScraperSearch()
     }
     emit setActionSearchEnabled(false, MainWidgets::Movies);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
-    MovieSearch::instance()->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
+    MovieSearch::instance()->exec(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<ScraperInterface *, QString> ids;
@@ -592,7 +592,7 @@ void MovieWidget::updateMovieInfo()
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
-    ui->imdbId->setText(m_movie->id());
+    ui->imdbId->setText(m_movie->imdbId());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
