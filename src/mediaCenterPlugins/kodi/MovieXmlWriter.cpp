@@ -53,21 +53,21 @@ QByteArray MovieXmlWriter::getMovieXml()
     }
     XbmcXml::setTextValue(doc, "id", m_movie.imdbId().toString());
     XbmcXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
-    XbmcXml::setTextValue(doc, "set", m_movie.set());
 
     // <set>
     //   <name>...</name>
     //   <overview></overview>
     // </set>
     XbmcXml::removeChildNodes(doc, "set");
-    QDomElement setElement = doc.createElement("set");
-    QDomElement setNameElement = doc.createElement("name");
-    setNameElement.appendChild(doc.createTextNode(m_movie.set()));
-    QDomElement setOverviewElement = doc.createElement("overview");
-    setElement.appendChild(setNameElement);
-    setElement.appendChild(setOverviewElement);
-    XbmcXml::appendXmlNode(doc, setElement);
-
+    if (!m_movie.set().isEmpty()) {
+        QDomElement setElement = doc.createElement("set");
+        QDomElement setNameElement = doc.createElement("name");
+        setNameElement.appendChild(doc.createTextNode(m_movie.set()));
+        QDomElement setOverviewElement = doc.createElement("overview");
+        setElement.appendChild(setNameElement);
+        setElement.appendChild(setOverviewElement);
+        XbmcXml::appendXmlNode(doc, setElement);
+    }
     XbmcXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
     XbmcXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_movie.trailer().toString()));
     XbmcXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
