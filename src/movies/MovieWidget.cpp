@@ -592,7 +592,7 @@ void MovieWidget::updateMovieInfo()
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
-    ui->imdbId->setText(m_movie->imdbId());
+    ui->imdbId->setText(m_movie->imdbId().toString());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
@@ -1261,7 +1261,7 @@ void MovieWidget::onImdbIdChange(QString text)
     if (!m_movie) {
         return;
     }
-    m_movie->setId(text);
+    m_movie->setId(ImdbId(text));
     ui->buttonRevert->setVisible(true);
 }
 

@@ -50,7 +50,7 @@ MovieSearch *MovieSearch::instance(QWidget *parent)
  * @return Result of QDialog::exec
  * @see MovieSearch::search
  */
-int MovieSearch::exec(QString searchString, QString id, QString tmdbId)
+int MovieSearch::exec(QString searchString, ImdbId id, TmdbId tmdbId)
 {
     qDebug() << "Entered";
     QSize newSize;

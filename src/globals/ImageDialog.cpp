@@ -759,7 +759,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     QString id;
     if (m_itemType == ItemType::Movie) {
         initialSearchTerm = m_movie->name();
-        id = m_movie->tmdbId();
+        id = m_movie->tmdbId().toString();
     } else if (m_itemType == ItemType::Concert) {
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId();

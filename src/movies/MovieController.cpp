@@ -130,7 +130,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
             }
             QRegExp rx("(tt[0-9]+)");
             if (rx.indexIn(fi.completeBaseName()) != -1) {
-                m_movie->setId(rx.cap(1));
+                m_movie->setId(ImdbId(rx.cap(1)));
             }
         }
     }
@@ -153,11 +153,11 @@ void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
 {
     m_infosToLoad = infos;
     if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt")) {
-        m_movie->setTmdbId(ids.values().first());
+        m_movie->setTmdbId(TmdbId(ids.values().first()));
 
     } else if (scraperInterface->identifier() == "imdb"
                || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))) {
-        m_movie->setId(ids.values().first());
+        m_movie->setId(ImdbId(ids.values().first()));
     }
     scraperInterface->loadData(ids, m_movie, infos);
 }
@@ -266,14 +266,15 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
         images << ImageType::MovieThumb;
     }
 
-    if (!images.isEmpty() && (!m_movie->tmdbId().isEmpty() || !m_movie->imdbId().isEmpty())) {
+    if (!images.isEmpty() && (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid())) {
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(Movie *, QMap<ImageType, QList<Poster>>)),
             this,
             SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
-        Manager::instance()->fanartTv()->movieImages(
-            m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->imdbId(), images);
+        Manager::instance()->fanartTv()->movieImages(m_movie,
+            (m_movie->tmdbId().isValid()) ? m_movie->tmdbId().toString() : m_movie->imdbId().toString(),
+            images);
     } else {
         onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
     }

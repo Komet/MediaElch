@@ -68,10 +68,10 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
             domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     }
     if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_movie.setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+        m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
-        m_movie.setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
+        m_movie.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
     }
     const auto movieSetElements = domDoc.elementsByTagName("set");
     if (!movieSetElements.isEmpty()) {

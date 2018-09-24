@@ -72,7 +72,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId());
+            MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId().toString());
             MovieRenamer::replaceCondition(newFileName, "movieset", movie.set());
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
@@ -246,7 +246,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
         Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set());
-        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId());
+        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Helper::instance()->sanitizeFileName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
@@ -272,7 +272,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
         Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set());
-        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId());
+        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Helper::instance()->sanitizeFileName(newFolderName);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder

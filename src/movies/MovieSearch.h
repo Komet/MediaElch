@@ -1,6 +1,8 @@
 #ifndef MOVIESEARCH_H
 #define MOVIESEARCH_H
 
+#include "data/ImdbId.h"
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QDialog>
@@ -27,7 +29,7 @@ public:
 
 public slots:
     int exec() override;
-    int exec(QString searchString, QString id, QString tmdbId);
+    int exec(QString searchString, ImdbId id, TmdbId tmdbId);
     static MovieSearch *instance(QWidget *parent = nullptr);
     QString scraperId();
     QString scraperMovieId();

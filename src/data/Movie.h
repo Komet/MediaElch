@@ -1,10 +1,12 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+#include "data/ImdbId.h"
 #include "data/MovieImages.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "movies/MovieController.h"
 
@@ -65,8 +67,8 @@ public:
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
-    QString imdbId() const;
-    QString tmdbId() const;
+    ImdbId imdbId() const;
+    TmdbId tmdbId() const;
     QString set() const;
     bool watched() const;
     int movieId() const;
@@ -110,8 +112,8 @@ public:
     void addCountry(QString country);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
-    void setId(QString imdbId);
-    void setTmdbId(QString tmdbId);
+    void setId(ImdbId imdbId);
+    void setTmdbId(TmdbId tmdbId);
     void setSet(QString set);
     void setWatched(bool watched);
     void setChanged(bool changed);
@@ -186,8 +188,8 @@ private:
     QList<Actor> m_actors;
     int m_playcount;
     QDateTime m_lastPlayed;
-    QString m_imdbId;
-    QString m_tmdbId;
+    ImdbId m_imdbId;
+    TmdbId m_tmdbId;
     QString m_set;
     int m_movieId;
     int m_databaseId;

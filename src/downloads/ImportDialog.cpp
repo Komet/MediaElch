@@ -106,17 +106,17 @@ int ImportDialog::exec()
 
 int ImportDialog::execMovie(QString searchString)
 {
-    QString id;
+    ImdbId id;
     QRegExp rx("tt(\\d+)");
     if (rx.indexIn(searchString) != -1) {
-        id = rx.cap(0);
+        id = ImdbId(rx.cap(0));
         searchString = searchString.replace(rx.cap(0), "").trimmed();
     }
 
     m_type = "movie";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString), id, "");
+    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString), id, TmdbId::NoId);
 
     ui->placeholders->setType(Renamer::RenameType::Movies);
     ui->chkSeasonDirectories->setVisible(false);
@@ -475,7 +475,7 @@ void ImportDialog::onImport()
                 Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId());
+            Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId().toString());
             Renamer::replaceCondition(newFileName, "movieset", m_movie->set());
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");

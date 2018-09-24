@@ -47,7 +47,8 @@ private:
     bool m_isTmdb;
     bool m_executed;
     QList<MovieScraperInfos> m_infosToLoad;
-    void loadMovieData(Movie *movie, QString id);
+    void loadMovieData(Movie *movie, ImdbId id);
+    void loadMovieData(Movie *movie, TmdbId id);
     bool isExecuted();
 };
 

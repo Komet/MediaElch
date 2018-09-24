@@ -51,8 +51,8 @@ QByteArray MovieXmlWriter::getMovieXml()
     } else {
         XbmcXml::removeChildNodes(doc, "dateadded");
     }
-    XbmcXml::setTextValue(doc, "id", m_movie.imdbId());
-    XbmcXml::setTextValue(doc, "tmdbid", m_movie.tmdbId());
+    XbmcXml::setTextValue(doc, "id", m_movie.imdbId().toString());
+    XbmcXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
     XbmcXml::setTextValue(doc, "set", m_movie.set());
 
     // <set>

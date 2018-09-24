@@ -54,13 +54,13 @@ void MovieSearchWidget::clearResults()
 /**
  * @brief Initialize the MovieSearchWidget and start searching. Called by MovieSearch
  */
-void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
+void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
 {
     setupScraperDropdown();
     setupLanguageDropdown();
 
     m_searchString = searchString.replace(".", " ");
-    m_id = id;
+    m_imdbId = id;
     m_tmdbId = tmdbId;
 
     ui->comboScraper->setEnabled(true);
@@ -312,16 +312,14 @@ void MovieSearchWidget::setSearchText(ScraperInterface *scraper)
         return;
     }
     QString searchText = [&]() -> QString {
-        if (scraper->identifier() == "imdb" && !m_id.isEmpty()) {
-            return m_id;
+        if (scraper->identifier() == "imdb" && m_imdbId.isValid()) {
+            return m_imdbId.toString();
         }
         if (scraper->identifier() == "tmdb") {
-            if (!m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt")) {
-                return "id" + m_tmdbId;
-            } else if (!m_tmdbId.isEmpty()) {
-                return m_tmdbId;
-            } else if (!m_id.isEmpty()) {
-                return m_id;
+            if (m_tmdbId.isValid()) {
+                return m_tmdbId.withPrefix();
+            } else if (m_imdbId.isValid()) {
+                return m_imdbId.toString();
             }
         }
         return m_searchString;

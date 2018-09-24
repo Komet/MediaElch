@@ -209,7 +209,7 @@ void MakeMkvDialog::onImportTracks()
         return;
     }
 
-    ui->movieSearchWidget->search(m_title, "", "");
+    ui->movieSearchWidget->search(m_title, ImdbId::NoId, TmdbId::NoId);
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -217,7 +217,7 @@ void MakeMkvDialog::onImportComplete()
 {
     m_importComplete = true;
     m_tracks.clear();
-    ui->movieSearchWidget->search(m_title, "", "");
+    ui->movieSearchWidget->search(m_title, ImdbId::NoId, TmdbId::NoId);
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -229,7 +229,7 @@ void MakeMkvDialog::onMovieChosen()
         ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
     } else {
-        ids.insert(0, ui->movieSearchWidget->scraperMovieId());
+        ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
