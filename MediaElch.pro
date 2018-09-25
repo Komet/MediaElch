@@ -135,6 +135,8 @@ SOURCES += src/main.cpp \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/TvShowXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/TvShowXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
     src/movies/FilesWidget.cpp \
     src/movies/GenreWidget.cpp \
@@ -315,6 +317,8 @@ HEADERS  += Version.h \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
     src/mediaCenterPlugins/kodi/MovieXmlReader.h \
+    src/mediaCenterPlugins/kodi/TvShowXmlWriter.h \
+    src/mediaCenterPlugins/kodi/TvShowXmlReader.h \
     src/movies/CertificationWidget.h \
     src/movies/FilesWidget.h \
     src/movies/GenreWidget.h \

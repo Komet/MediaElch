@@ -11,6 +11,8 @@
 #include "mediaCenterPlugins/kodi/ConcertXmlWriter.h"
 #include "mediaCenterPlugins/kodi/MovieXmlReader.h"
 #include "mediaCenterPlugins/kodi/MovieXmlWriter.h"
+#include "mediaCenterPlugins/kodi/TvShowXmlReader.h"
+#include "mediaCenterPlugins/kodi/TvShowXmlWriter.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
@@ -791,7 +793,7 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         }
 
         QString nfoFile;
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
+        for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
             QString file = dataFile.saveFileName("");
             QFileInfo nfoFi(show->dir() + "/" + file);
             if (nfoFi.exists()) {
@@ -813,115 +815,9 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("id").isEmpty()) {
-        show->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("tvdbid").isEmpty()) {
-        show->setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("imdbid").isEmpty()) {
-        show->setImdbId(domDoc.elementsByTagName("imdbid").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("title").isEmpty()) {
-        show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
-        show->setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("showtitle").isEmpty()) {
-        show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
-    }
-    if (!domDoc.elementsByTagName("votes").isEmpty()) {
-        show->setVotes(
-            domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
-    }
-    if (!domDoc.elementsByTagName("top250").isEmpty()) {
-        show->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
-    }
-    if (!domDoc.elementsByTagName("plot").isEmpty()) {
-        show->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
-        show->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("premiered").isEmpty()) {
-        show->setFirstAired(
-            QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
-    }
-    if (!domDoc.elementsByTagName("studio").isEmpty()) {
-        show->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("episodeguide").isEmpty()
-        && !domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").isEmpty()) {
-        show->setEpisodeGuideUrl(domDoc.elementsByTagName("episodeguide")
-                                     .at(0)
-                                     .toElement()
-                                     .elementsByTagName("url")
-                                     .at(0)
-                                     .toElement()
-                                     .text());
-    }
-    if (!domDoc.elementsByTagName("runtime").isEmpty()) {
-        show->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
-    }
-    if (!domDoc.elementsByTagName("status").isEmpty()) {
-        show->setStatus(domDoc.elementsByTagName("status").at(0).toElement().text());
-    }
 
-    for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        foreach (const QString &genre,
-            domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            show->addGenre(genre);
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
-        show->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
-        Actor a;
-        a.imageHasChanged = false;
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty()) {
-            a.name =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
-        }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty()) {
-            a.role =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
-        }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty()) {
-            a.thumb =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
-        }
-        show->addActor(a);
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
-        if (parentTag == "tvshow") {
-            QDomElement elem = domDoc.elementsByTagName("thumb").at(i).toElement();
-            Poster p;
-            p.originalUrl = QUrl(elem.text());
-            p.thumbUrl = QUrl(elem.text());
-            if (elem.hasAttribute("type") && elem.attribute("type") == "season") {
-                int season = elem.attribute("season").toInt();
-                if (season >= 0) {
-                    show->addSeasonPoster(season, p);
-                }
-            } else {
-                show->addPoster(p);
-            }
-        } else if (parentTag == "fanart") {
-            QString url = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().attribute("url");
-            Poster p;
-            p.originalUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            show->addBackdrop(p);
-        }
-    }
-
-    QFileInfo fi(show->dir() + "/theme.mp3");
-    show->setHasTune(fi.isFile());
+    Kodi::TvShowXmlReader reader(*show);
+    reader.parseNfoDom(domDoc);
 
     return true;
 }
@@ -1291,125 +1187,8 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
 QByteArray XbmcXml::getTvShowXml(TvShow *show)
 {
-    QDomDocument doc;
-    doc.setContent(show->nfoContent());
-    if (show->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("tvshow"));
-    }
-
-    QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
-
-    setTextValue(doc, "title", show->name());
-    setTextValue(doc, "showtitle", show->showTitle());
-    if (!show->sortTitle().isEmpty()) {
-        QDomElement elem = setTextValue(doc, "sorttitle", show->sortTitle());
-        elem.setAttribute("clear", "true");
-    } else {
-        removeChildNodes(doc, "sorttitle");
-    }
-    setTextValue(doc, "rating", QString("%1").arg(show->rating()));
-    setTextValue(doc, "votes", QString::number(show->votes()));
-    setTextValue(doc, "top250", QString::number(show->top250()));
-    setTextValue(doc, "episode", QString("%1").arg(show->episodes().count()));
-    setTextValue(doc, "plot", show->overview());
-    setTextValue(doc, "outline", show->overview());
-    setTextValue(doc, "mpaa", QString("%1").arg(show->certification()));
-    setTextValue(doc, "premiered", show->firstAired().toString("yyyy-MM-dd"));
-    setTextValue(doc, "studio", show->network());
-    setTextValue(doc, "tvdbid", show->tvdbId());
-    setTextValue(doc, "id", show->id());
-    setTextValue(doc, "imdbid", show->imdbId());
-    if (!show->status().isEmpty()) {
-        setTextValue(doc, "status", show->status());
-    } else {
-        removeChildNodes(doc, "status");
-    }
-    if (show->runtime() > 0) {
-        setTextValue(doc, "runtime", QString("%1").arg(show->runtime()));
-    } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
-        showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
-    }
-
-    if (!show->episodeGuideUrl().isEmpty()) {
-        QDomNodeList childNodes = showElem.childNodes();
-        for (int i = 0, n = childNodes.count(); i < n; ++i) {
-            if (childNodes.at(i).nodeName() == "episodeguide") {
-                showElem.removeChild(childNodes.at(i));
-                break;
-            }
-        }
-        QDomElement elem = doc.createElement("episodeguide");
-        QDomElement elemUrl = doc.createElement("url");
-        elemUrl.appendChild(doc.createTextNode(show->episodeGuideUrl()));
-        elem.appendChild(elemUrl);
-        appendXmlNode(doc, elem);
-    } else {
-        removeChildNodes(doc, "episodeguide");
-    }
-
-    setTextValue(doc, "genre", show->genres().join(" / "));
-    setListValue(doc, "tag", show->tags());
-
-    removeChildNodes(doc, "actor");
-
-    foreach (const Actor &actor, show->actors()) {
-        QDomElement elem = doc.createElement("actor");
-        QDomElement elemName = doc.createElement("name");
-        QDomElement elemRole = doc.createElement("role");
-        elemName.appendChild(doc.createTextNode(actor.name));
-        elemRole.appendChild(doc.createTextNode(actor.role));
-        elem.appendChild(elemName);
-        elem.appendChild(elemRole);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-            QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor.thumb));
-            elem.appendChild(elemThumb);
-        }
-        appendXmlNode(doc, elem);
-    }
-
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        removeChildNodes(doc, "thumb");
-        removeChildNodes(doc, "fanart");
-
-        foreach (const Poster &poster, show->posters()) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            appendXmlNode(doc, elem);
-
-            QDomElement elemSeason = doc.createElement("thumb");
-            elemSeason.setAttribute("type", "season");
-            elemSeason.setAttribute("season", "-1");
-            elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            appendXmlNode(doc, elemSeason);
-        }
-
-        if (!show->backdrops().isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, show->backdrops()) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
-            }
-            appendXmlNode(doc, fanartElem);
-        }
-
-        foreach (int season, show->seasons()) {
-            foreach (const Poster &poster, show->seasonPosters(season)) {
-                QDomElement elemSeason = doc.createElement("thumb");
-                elemSeason.setAttribute("type", "season");
-                elemSeason.setAttribute("season", QString("%1").arg(season));
-                elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                appendXmlNode(doc, elemSeason);
-            }
-        }
-    }
-
-    return doc.toByteArray(4);
+    Kodi::TvShowXmlWriter writer(*show);
+    return writer.getTvShowXml();
 }
 
 /**
