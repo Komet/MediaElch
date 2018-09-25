@@ -19,7 +19,12 @@ TvShowFilesWidget *TvShowFilesWidget::m_instance;
  * @brief TvShowFilesWidget::TvShowFilesWidget
  * @param parent
  */
-TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowFilesWidget)
+TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::TvShowFilesWidget),
+    m_lastTvShow{nullptr},
+    m_lastEpisode{nullptr},
+    m_lastSeason{SeasonNumber::NoSeason}
 {
     m_instance = this;
     ui->setupUi(this);
@@ -30,9 +35,6 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
-    m_lastTvShow = nullptr;
-    m_lastEpisode = nullptr;
-    m_lastSeason = -1;
     m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
     m_tvShowProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -194,11 +196,11 @@ void TvShowFilesWidget::markAsWatched()
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow || item->type() == TvShowType::Season) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (item->type() == TvShowType::Season && episode->season() != item->season().toInt()) {
+                if (item->type() == TvShowType::Season && episode->season() != item->seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() < 1) {
@@ -237,7 +239,7 @@ void TvShowFilesWidget::markAsUnwatched()
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (item->type() == TvShowType::Season && episode->season() != item->season().toInt()) {
+                if (item->type() == TvShowType::Season && episode->season() != item->seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() != 0) {
@@ -272,7 +274,7 @@ void TvShowFilesWidget::loadStreamDetails()
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (item->type() == TvShowType::Season && episode->season() != item->season().toInt()) {
+                if (item->type() == TvShowType::Season && episode->season() != item->seasonNumber()) {
                     continue;
                 }
                 episodes.append(episode);
@@ -299,17 +301,17 @@ void TvShowFilesWidget::loadStreamDetails()
 void TvShowFilesWidget::markForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow) {
             item->tvShow()->setSyncNeeded(true);
         } else if (item->type() == TvShowType::Season) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != item->season().toInt()) {
+                if (episode->season() != item->seasonNumber()) {
                     continue;
                 }
                 episode->setSyncNeeded(true);
@@ -339,7 +341,7 @@ void TvShowFilesWidget::unmarkForSync()
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != item->season().toInt()) {
+                if (episode->season() != item->seasonNumber()) {
                     continue;
                 }
                 episode->setSyncNeeded(false);
@@ -534,7 +536,7 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
 
     m_lastEpisode = nullptr;
     m_lastTvShow = nullptr;
-    m_lastSeason = -1;
+    m_lastSeason = SeasonNumber::NoSeason;
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
     if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TvShowType::TvShow) {
         m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
@@ -544,14 +546,14 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
         emit sigEpisodeSelected(m_lastEpisode);
     } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TvShowType::Season) {
         m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
-        m_lastSeason = Manager::instance()->tvShowModel()->getItem(sourceIndex)->season().toInt();
+        m_lastSeason = Manager::instance()->tvShowModel()->getItem(sourceIndex)->seasonNumber();
         emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
     }
 }
 
 void TvShowFilesWidget::emitLastSelection()
 {
-    if (m_lastTvShow && m_lastSeason != -1) {
+    if (m_lastTvShow && m_lastSeason != SeasonNumber::NoSeason) {
         emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
     } else if (m_lastTvShow) {
         emit sigTvShowSelected(m_lastTvShow);
@@ -563,22 +565,22 @@ void TvShowFilesWidget::emitLastSelection()
 QList<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
 {
     QList<TvShowEpisode *> episodes;
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::Episode && !item->tvShowEpisode()->isDummy()) {
             episodes.append(item->tvShowEpisode());
         } else if (item->type() == TvShowType::Season && includeFromSeasonOrShow) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (!episodes.contains(episode) && episode->season() == item->season().toInt()) {
+                if (!episodes.contains(episode) && episode->season() == item->seasonNumber()) {
                     episodes.append(episode);
                 }
             }
         } else if (item->type() == TvShowType::TvShow && includeFromSeasonOrShow) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }

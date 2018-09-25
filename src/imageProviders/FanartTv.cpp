@@ -516,7 +516,7 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types
  * @param tvdbId The Tv DB Id
  * @param type
  */
-void FanartTv::loadTvShowData(QString tvdbId, ImageType type, int season)
+void FanartTv::loadTvShowData(QString tvdbId, ImageType type, SeasonNumber season)
 {
     QUrl url;
     QNetworkRequest request;
@@ -525,7 +525,7 @@ void FanartTv::loadTvShowData(QString tvdbId, ImageType type, int season)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
-    reply->setProperty("season", season);
+    reply->setProperty("season", season.toInt());
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
@@ -558,8 +558,8 @@ void FanartTv::onLoadTvShowDataFinished()
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        posters =
-            parseTvShowData(msg, ImageType(reply->property("infoToLoad").toInt()), reply->property("season").toInt());
+        posters = parseTvShowData(
+            msg, ImageType(reply->property("infoToLoad").toInt()), SeasonNumber(reply->property("season").toInt()));
     }
     emit sigImagesLoaded(posters);
 }
@@ -649,7 +649,7 @@ void FanartTv::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
+void FanartTv::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -661,24 +661,24 @@ void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber epis
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void FanartTv::tvShowSeason(QString tvdbId, int season)
+void FanartTv::tvShowSeason(QString tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster, season);
 }
 
-void FanartTv::tvShowSeasonBanners(QString tvdbId, int season)
+void FanartTv::tvShowSeasonBanners(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonBackdrops(QString tvdbId, int season)
+void FanartTv::tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
+void FanartTv::tvShowSeasonThumbs(QString tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonThumb, season);
 }
@@ -689,7 +689,7 @@ void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
  * @param type Type of image (ImageType)
  * @return List of posters
  */
-QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season)
+QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNumber season)
 {
     QMap<ImageType, QStringList> map;
 
@@ -716,7 +716,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season
         return posters;
     }
 
-    foreach (const QString &section, map.value(type)) {
+    for (const QString &section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto &it : jsonPosters) {
@@ -726,16 +726,16 @@ QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season
                 continue;
             }
 
-            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2
-                && !poster.value("season").toString().isEmpty()
-                && poster.value("season").toString().toInt() != season) {
+            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster)
+                && season != SeasonNumber::NoSeason && !poster.value("season").toString().isEmpty()
+                && poster.value("season").toString().toInt() != season.toInt()) {
                 continue;
             }
 
             Poster b;
             b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
             b.originalUrl = poster.value("url").toString();
-            b.season = poster.value("season").toString().toInt();
+            b.season = SeasonNumber(poster.value("season").toString().toInt());
 
             const auto discType = poster.value("disc_type").toString();
 

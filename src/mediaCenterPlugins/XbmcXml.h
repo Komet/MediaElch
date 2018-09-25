@@ -70,7 +70,7 @@ public:
         bool constructName = false) override;
     QString imageFileName(const TvShow *show,
         ImageType type,
-        int season = -1,
+        SeasonNumber season = SeasonNumber::NoSeason,
         QList<DataFile> dataFiles = QList<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const Artist *artist,

@@ -1,12 +1,6 @@
 #include "TvShowWidgetEpisode.h"
 #include "ui_TvShowWidgetEpisode.h"
 
-#include <QBuffer>
-#include <QFileDialog>
-#include <QHeaderView>
-#include <QMovie>
-#include <QPainter>
-
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -17,6 +11,12 @@
 #include "image/ImageCapture.h"
 #include "notifications/NotificationBox.h"
 #include "tvShows/TvShowSearch.h"
+
+#include <QBuffer>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QMovie>
+#include <QPainter>
 
 /**
  * @brief TvShowWidgetEpisode::TvShowWidgetEpisode
@@ -336,7 +336,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->files->setToolTip(m_episode->files().join("\n"));
     ui->name->setText(m_episode->name());
     ui->showTitle->setText(m_episode->showTitle());
-    ui->season->setValue(m_episode->season());
+    ui->season->setValue(m_episode->season().toInt());
     ui->episode->setValue(m_episode->episode().toInt());
     ui->displaySeason->setValue(m_episode->displaySeason());
     ui->displayEpisode->setValue(m_episode->displayEpisode());
@@ -853,7 +853,7 @@ void TvShowWidgetEpisode::onShowTitleChange(QString text)
  */
 void TvShowWidgetEpisode::onSeasonChange(int value)
 {
-    m_episode->setSeason(value);
+    m_episode->setSeason(SeasonNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 

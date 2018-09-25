@@ -572,7 +572,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
         }
     }
 
-    QList<int> thumbsForSeasons;
+    QList<SeasonNumber> thumbsForSeasons;
     QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -617,7 +617,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
             }
             downloadsSize++;
         } else if (it.key() == ImageType::TvShowSeasonThumb && !it.value().isEmpty()) {
-            foreach (Poster p, it.value()) {
+            for (Poster p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
                     continue;
                 }
@@ -653,7 +653,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
         }
     }
 
-    foreach (int season, show->seasons()) {
+    for (SeasonNumber season : show->seasons()) {
         if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonPoster)) {
             emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
@@ -688,7 +688,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
     }
 
     if (show->infosToLoad().contains(TvShowScraperInfos::Thumbnail)) {
-        foreach (TvShowEpisode *episode, show->episodes()) {
+        for (TvShowEpisode *episode : show->episodes()) {
             if (episode->thumbnail().isEmpty() || !episode->hasChanged()) {
                 continue;
             }

@@ -108,8 +108,8 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
             p.originalUrl = QUrl(elem.text());
             p.thumbUrl = QUrl(elem.text());
             if (elem.hasAttribute("type") && elem.attribute("type") == "season") {
-                int season = elem.attribute("season").toInt();
-                if (season >= 0) {
+                SeasonNumber season = SeasonNumber(elem.attribute("season").toInt());
+                if (season != SeasonNumber::NoSeason) {
                     m_show.addSeasonPoster(season, p);
                 }
             } else {

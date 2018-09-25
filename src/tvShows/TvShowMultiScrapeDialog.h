@@ -64,7 +64,7 @@ private:
     QMap<QString, QString> m_showIds;
 
     void setCheckBoxesEnabled();
-    void addDownload(ImageType imageType, QUrl url, TvShow *show, int season = -1);
+    void addDownload(ImageType imageType, QUrl url, TvShow *show, SeasonNumber season = SeasonNumber::NoSeason);
     void addDownload(ImageType imageType, QUrl url, TvShow *show, Actor *actor);
     void addDownload(ImageType imageType, QUrl url, TvShowEpisode *episode);
 };

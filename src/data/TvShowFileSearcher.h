@@ -16,7 +16,7 @@ class TvShowFileSearcher : public QObject
 public:
     explicit TvShowFileSearcher(QObject *parent = nullptr);
     void setMovieDirectories(QList<SettingsDir> directories);
-    static int getSeasonNumber(QStringList files);
+    static SeasonNumber getSeasonNumber(QStringList files);
     static QList<EpisodeNumber> getEpisodeNumbers(QStringList files);
     static TvShowEpisode *loadEpisodeData(TvShowEpisode *episode);
     static TvShowEpisode *reloadEpisodeData(TvShowEpisode *episode);

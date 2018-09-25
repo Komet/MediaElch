@@ -525,7 +525,7 @@ void ImageDialog::setTvShow(TvShow *show)
  * @brief Set season number
  * @param season
  */
-void ImageDialog::setSeason(int season)
+void ImageDialog::setSeason(SeasonNumber season)
 {
     m_season = season;
 }

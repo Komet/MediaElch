@@ -208,7 +208,7 @@ void TheTvDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
+void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);
@@ -221,15 +221,15 @@ void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void TheTvDbImages::tvShowSeason(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeason(QString tvdbId, SeasonNumber season)
 {
-    m_season = season;
+    m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster);
 }
 
-void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, SeasonNumber season)
 {
-    m_season = season;
+    m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner);
 }
 
@@ -248,7 +248,7 @@ void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> t
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -399,7 +399,7 @@ void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
     Q_UNUSED(tvdbId);
 }
 
-void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);

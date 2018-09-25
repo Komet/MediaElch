@@ -97,7 +97,7 @@ void TvShowWidgetSeason::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void TvShowWidgetSeason::setSeason(TvShow *show, int season)
+void TvShowWidgetSeason::setSeason(TvShow *show, SeasonNumber season)
 {
     m_show = show;
     m_season = season;
@@ -109,7 +109,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     onClear();
 
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
-    ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season));
+    ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season.toString()));
 
     updateImages(QList<ImageType>{ImageType::TvShowSeasonPoster,
         ImageType::TvShowSeasonBackdrop,
@@ -181,7 +181,8 @@ void TvShowWidgetSeason::onSaveInformation()
 
 void TvShowWidgetSeason::onSetEnabled(bool enabled)
 {
-    if (m_show && m_season && m_show->isDummySeason(m_season)) {
+    // todo: m_season != SeasonNumber::NoSeason/SpecialsSeason?
+    if (m_show && m_season.toInt() && m_show->isDummySeason(m_season)) {
         ui->groupBox_3->setEnabled(false);
         return;
     }

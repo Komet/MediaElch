@@ -77,6 +77,7 @@ int TvShowModelItem::columnCount() const
  */
 QVariant TvShowModelItem::data(int column) const
 {
+    // todo: magic numbers (columns)
     switch (column) {
     case 101:
         if (m_tvShow) {
@@ -153,7 +154,7 @@ QVariant TvShowModelItem::data(int column) const
     case 3:
         if (!m_season.isEmpty() && m_tvShow) {
             bool conversionOk = false;
-            int season = m_season.toInt(&conversionOk);
+            SeasonNumber season = SeasonNumber(m_season.toInt(&conversionOk));
             return conversionOk && m_tvShow->hasNewEpisodesInSeason(season);
         } else if (m_tvShow) {
             return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
@@ -224,7 +225,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
  * @param show Tv Show object
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, TvShow *show)
+TvShowModelItem *TvShowModelItem::appendChild(SeasonNumber seasonNumber, QString season, TvShow *show)
 {
     auto item = new TvShowModelItem(this);
     item->setSeason(season);
@@ -290,9 +291,9 @@ void TvShowModelItem::setSeason(QString season)
     m_season = season;
 }
 
-void TvShowModelItem::setSeasonNumber(int seasonNumber)
+void TvShowModelItem::setSeasonNumber(SeasonNumber seasonNumber)
 {
-    m_seasonNumber = seasonNumber;
+    m_seasonNumber = std::move(seasonNumber);
 }
 
 /**
@@ -322,7 +323,7 @@ QString TvShowModelItem::season()
     return m_season;
 }
 
-int TvShowModelItem::seasonNumber()
+SeasonNumber TvShowModelItem::seasonNumber()
 {
     return m_seasonNumber;
 }

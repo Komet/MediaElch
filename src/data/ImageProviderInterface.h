@@ -7,7 +7,9 @@
 #include <QString>
 
 #include "data/Concert.h"
+#include "data/EpisodeNumber.h"
 #include "data/Movie.h"
+#include "data/SeasonNumber.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
 
@@ -41,11 +43,11 @@ public:
     virtual void tvShowClearArts(QString tvdbId) = 0;
     virtual void tvShowCharacterArts(QString tvdbId) = 0;
     virtual void tvShowBanners(QString tvdbId) = 0;
-    virtual void tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode) = 0;
-    virtual void tvShowSeason(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonBanners(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonBackdrops(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonThumbs(QString tvdbId, int season) = 0;
+    virtual void tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode) = 0;
+    virtual void tvShowSeason(QString tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonBanners(QString tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonThumbs(QString tvdbId, SeasonNumber season) = 0;
     virtual void tvShowThumbs(QString tvdbId) = 0;
     virtual void artistFanarts(QString mbId) = 0;
     virtual void artistLogos(QString mbId) = 0;

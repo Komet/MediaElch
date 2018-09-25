@@ -1,6 +1,7 @@
 #ifndef TVSHOWWIDGET_H
 #define TVSHOWWIDGET_H
 
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
 #include <QWidget>
@@ -26,9 +27,9 @@ public:
 
 public slots:
     void onTvShowSelected(TvShow *show);
-    void onSeasonSelected(TvShow *show, int season);
+    void onSeasonSelected(TvShow *show, SeasonNumber season);
     void onEpisodeSelected(TvShowEpisode *episode);
-    void onSetEnabledTrue(TvShow *show = nullptr, int season = -1);
+    void onSetEnabledTrue(TvShow *show = nullptr, SeasonNumber season = SeasonNumber::NoSeason);
     void onSetEnabledTrue(TvShowEpisode *episode);
     void onSetDisabledTrue();
     void onClear();

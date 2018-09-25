@@ -98,7 +98,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        foreach (const Poster &poster, m_show.posters()) {
+        for (const Poster &poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -113,7 +113,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 
         if (!m_show.backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, m_show.backdrops()) {
+            for (const Poster &poster : m_show.backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -122,11 +122,11 @@ QByteArray TvShowXmlWriter::getTvShowXml()
             XbmcXml::appendXmlNode(doc, fanartElem);
         }
 
-        foreach (int season, m_show.seasons()) {
-            foreach (const Poster &poster, m_show.seasonPosters(season)) {
+        for (SeasonNumber season : m_show.seasons()) {
+            for (const Poster &poster : m_show.seasonPosters(season)) {
                 QDomElement elemSeason = doc.createElement("thumb");
                 elemSeason.setAttribute("type", "season");
-                elemSeason.setAttribute("season", QString("%1").arg(season));
+                elemSeason.setAttribute("season", season.toString());
                 elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 XbmcXml::appendXmlNode(doc, elemSeason);
             }

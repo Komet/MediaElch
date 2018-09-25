@@ -2,6 +2,7 @@
 #define THETVDB_H
 
 #include "data/EpisodeNumber.h"
+#include "data/SeasonNumber.h"
 #include "data/TvScraperInterface.h"
 
 #include <QComboBox>
@@ -94,7 +95,10 @@ private:
     void parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     bool shouldLoadImdb(QList<TvShowScraperInfos> infosToLoad);
     bool shouldLoadFromImdb(TvShowScraperInfos info, QList<TvShowScraperInfos> infosToLoad);
-    void getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int &seasonNumber, EpisodeNumber &episodeNumber);
+    void getAiredSeasonAndEpisode(QString xml,
+        TvShowEpisode *episode,
+        SeasonNumber &seasonNumber,
+        EpisodeNumber &episodeNumber);
     QString getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber);
     bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad);

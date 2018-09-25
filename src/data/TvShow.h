@@ -1,7 +1,9 @@
 #ifndef TVSHOW_H
 #define TVSHOW_H
 
+#include "data/EpisodeNumber.h"
 #include "data/Rating.h"
+#include "data/SeasonNumber.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 
@@ -52,14 +54,14 @@ public:
     virtual QList<Poster> posters() const;
     virtual QList<Poster> backdrops() const;
     virtual QList<Poster> banners() const;
-    virtual QList<Poster> seasonPosters(int season) const;
-    virtual QList<Poster> seasonBackdrops(int season) const;
-    virtual QList<Poster> seasonBanners(int season, bool returnAll = false) const;
-    virtual QList<Poster> seasonThumbs(int season, bool returnAll = false) const;
-    virtual TvShowEpisode *episode(int season, EpisodeNumber episode);
-    virtual QList<int> seasons(bool includeDummies = true) const;
+    virtual QList<Poster> seasonPosters(SeasonNumber season) const;
+    virtual QList<Poster> seasonBackdrops(SeasonNumber season) const;
+    virtual QList<Poster> seasonBanners(SeasonNumber season, bool returnAll = false) const;
+    virtual QList<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;
+    virtual TvShowEpisode *episode(SeasonNumber season, EpisodeNumber episode);
+    virtual QList<SeasonNumber> seasons(bool includeDummies = true) const;
     virtual QList<TvShowEpisode *> episodes() const;
-    virtual QList<TvShowEpisode *> episodes(int season) const;
+    virtual QList<TvShowEpisode *> episodes(SeasonNumber season) const;
     virtual TvShowModelItem *modelItem();
     virtual bool hasChanged() const;
     virtual bool infoLoaded() const;
@@ -67,7 +69,7 @@ public:
     virtual int showId() const;
     virtual bool downloadsInProgress() const;
     virtual bool hasNewEpisodes() const;
-    virtual bool hasNewEpisodesInSeason(int season) const;
+    virtual bool hasNewEpisodesInSeason(SeasonNumber season) const;
     virtual QString nfoContent() const;
     virtual int databaseId() const;
     virtual bool syncNeeded() const;
@@ -75,9 +77,9 @@ public:
     virtual bool hasTune() const;
     virtual int runtime() const;
     virtual QString sortTitle() const;
-    virtual bool isDummySeason(int season) const;
+    virtual bool isDummySeason(SeasonNumber season) const;
     virtual bool hasDummyEpisodes() const;
-    virtual bool hasDummyEpisodes(int season) const;
+    virtual bool hasDummyEpisodes(SeasonNumber season) const;
     virtual bool showMissingEpisodes() const;
     virtual bool hideSpecialsInMissingEpisodes() const;
 
@@ -107,10 +109,10 @@ public:
     void setBanners(QList<Poster> banners);
     void setBanner(int index, Poster poster);
     void addBanner(Poster banner);
-    void addSeasonPoster(int season, Poster poster);
-    void addSeasonBackdrop(int season, Poster poster);
-    void addSeasonBanner(int season, Poster poster);
-    void addSeasonThumb(int season, Poster poster);
+    void addSeasonPoster(SeasonNumber season, Poster poster);
+    void addSeasonBackdrop(SeasonNumber season, Poster poster);
+    void addSeasonBanner(SeasonNumber season, Poster poster);
+    void addSeasonThumb(SeasonNumber season, Poster poster);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
     void setMediaCenterPath(QString path);
@@ -139,14 +141,14 @@ public:
     void clearMissingEpisodes();
 
     // Images
-    void removeImage(ImageType type, int season = -2);
-    QMap<ImageType, QList<int>> imagesToRemove() const;
+    void removeImage(ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
+    QMap<ImageType, QList<SeasonNumber>> imagesToRemove() const;
     QByteArray image(ImageType imageType);
-    QByteArray seasonImage(int season, ImageType imageType);
+    QByteArray seasonImage(SeasonNumber season, ImageType imageType);
     void setImage(ImageType imageType, QByteArray image);
-    void setSeasonImage(int season, ImageType imageType, QByteArray image);
+    void setSeasonImage(SeasonNumber season, ImageType imageType, QByteArray image);
     bool imageHasChanged(ImageType imageType) const;
-    bool seasonImageHasChanged(int season, ImageType imageType) const;
+    bool seasonImageHasChanged(SeasonNumber season, ImageType imageType) const;
     bool hasImage(ImageType type);
 
     // Extra Fanarts
@@ -195,10 +197,10 @@ private:
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
     QList<Poster> m_banners;
-    QMap<int, QList<Poster>> m_seasonPosters;
-    QMap<int, QList<Poster>> m_seasonBackdrops;
-    QMap<int, QList<Poster>> m_seasonBanners;
-    QMap<int, QList<Poster>> m_seasonThumbs;
+    QMap<SeasonNumber, QList<Poster>> m_seasonPosters;
+    QMap<SeasonNumber, QList<Poster>> m_seasonBackdrops;
+    QMap<SeasonNumber, QList<Poster>> m_seasonBanners;
+    QMap<SeasonNumber, QList<Poster>> m_seasonThumbs;
     bool m_hasTune;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
@@ -214,16 +216,16 @@ private:
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QMap<ImageType, QList<int>> m_imagesToRemove;
+    QMap<ImageType, QList<SeasonNumber>> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;
     QString m_status;
 
     QMap<ImageType, QByteArray> m_images;
-    QMap<int, QMap<ImageType, QByteArray>> m_seasonImages;
+    QMap<SeasonNumber, QMap<ImageType, QByteArray>> m_seasonImages;
     QMap<ImageType, bool> m_hasImageChanged;
-    QMap<int, QMap<ImageType, bool>> m_hasSeasonImageChanged;
+    QMap<SeasonNumber, QMap<ImageType, bool>> m_hasSeasonImageChanged;
 
     void clearSeasonImageType(ImageType imageType);
 };

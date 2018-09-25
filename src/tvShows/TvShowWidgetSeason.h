@@ -21,7 +21,7 @@ class TvShowWidgetSeason : public QWidget
 public:
     explicit TvShowWidgetSeason(QWidget *parent = nullptr);
     ~TvShowWidgetSeason() override;
-    void setSeason(TvShow *show, int season);
+    void setSeason(TvShow *show, SeasonNumber season);
     void updateSeasonInfo();
 
 public slots:
@@ -47,7 +47,7 @@ private slots:
 private:
     Ui::TvShowWidgetSeason *ui;
     TvShow *m_show;
-    int m_season;
+    SeasonNumber m_season;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_downloadManager;

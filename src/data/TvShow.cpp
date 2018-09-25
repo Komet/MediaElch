@@ -160,12 +160,12 @@ void TvShow::clear(QList<TvShowScraperInfos> infos)
 
 void TvShow::clearSeasonImageType(ImageType imageType)
 {
-    QMapIterator<int, QMap<ImageType, QByteArray>> it(m_seasonImages);
+    QMapIterator<SeasonNumber, QMap<ImageType, QByteArray>> it(m_seasonImages);
     while (it.hasNext()) {
         it.next();
         m_seasonImages[it.key()].insert(imageType, QByteArray());
     }
-    QMapIterator<int, QMap<ImageType, bool>> itC(m_hasSeasonImageChanged);
+    QMapIterator<SeasonNumber, QMap<ImageType, bool>> itC(m_hasSeasonImageChanged);
     while (itC.hasNext()) {
         itC.next();
         m_hasSeasonImageChanged[itC.key()].insert(imageType, false);
@@ -298,7 +298,7 @@ bool TvShow::hasNewEpisodes() const
  * @param season Season number
  * @return
  */
-bool TvShow::hasNewEpisodesInSeason(int season) const
+bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 {
     return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode *const episode) {
         return episode->season() == season && !episode->infoLoaded();
@@ -554,7 +554,7 @@ QList<Poster> TvShow::backdrops() const
  * @param season
  * @return
  */
-QList<Poster> TvShow::seasonPosters(int season) const
+QList<Poster> TvShow::seasonPosters(SeasonNumber season) const
 {
     if (!m_seasonPosters.contains(season)) {
         return QList<Poster>();
@@ -562,7 +562,7 @@ QList<Poster> TvShow::seasonPosters(int season) const
     return m_seasonPosters[season];
 }
 
-QList<Poster> TvShow::seasonBackdrops(int season) const
+QList<Poster> TvShow::seasonBackdrops(SeasonNumber season) const
 {
     if (!m_seasonBackdrops.contains(season)) {
         return QList<Poster>();
@@ -570,7 +570,7 @@ QList<Poster> TvShow::seasonBackdrops(int season) const
     return m_seasonBackdrops[season];
 }
 
-QList<Poster> TvShow::seasonBanners(int season, bool returnAll) const
+QList<Poster> TvShow::seasonBanners(SeasonNumber season, bool returnAll) const
 {
     if (!m_seasonBanners.contains(season) && !returnAll) {
         return QList<Poster>();
@@ -584,7 +584,7 @@ QList<Poster> TvShow::seasonBanners(int season, bool returnAll) const
         banners = m_seasonBanners[season];
     }
 
-    QMapIterator<int, QList<Poster>> it(m_seasonBanners);
+    QMapIterator<SeasonNumber, QList<Poster>> it(m_seasonBanners);
     while (it.hasNext()) {
         it.next();
         if (it.key() == season) {
@@ -595,7 +595,7 @@ QList<Poster> TvShow::seasonBanners(int season, bool returnAll) const
     return banners;
 }
 
-QList<Poster> TvShow::seasonThumbs(int season, bool returnAll) const
+QList<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
 {
     if (!m_seasonThumbs.contains(season) && !returnAll) {
         return QList<Poster>();
@@ -609,7 +609,7 @@ QList<Poster> TvShow::seasonThumbs(int season, bool returnAll) const
         thumbs = m_seasonThumbs[season];
     }
 
-    QMapIterator<int, QList<Poster>> it(m_seasonThumbs);
+    QMapIterator<SeasonNumber, QList<Poster>> it(m_seasonThumbs);
     while (it.hasNext()) {
         it.next();
         if (it.key() == season) {
@@ -626,7 +626,7 @@ QList<Poster> TvShow::seasonThumbs(int season, bool returnAll) const
  * @param episode
  * @return Episode object
  */
-TvShowEpisode *TvShow::episode(int season, EpisodeNumber episode)
+TvShowEpisode *TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
         if (m_episodes[i]->season() == season && m_episodes[i]->episode() == episode) {
@@ -640,14 +640,14 @@ TvShowEpisode *TvShow::episode(int season, EpisodeNumber episode)
  * @brief TvShow::seasons
  * @return
  */
-QList<int> TvShow::seasons(bool includeDummies) const
+QList<SeasonNumber> TvShow::seasons(bool includeDummies) const
 {
-    QList<int> seasons;
-    foreach (TvShowEpisode *episode, m_episodes) {
+    QList<SeasonNumber> seasons;
+    for (TvShowEpisode *episode : m_episodes) {
         if (episode->isDummy() && !includeDummies) {
             continue;
         }
-        if (!seasons.contains(episode->season()) && episode->season() != -2) {
+        if (!seasons.contains(episode->season()) && episode->season() != SeasonNumber::NoSeason) {
             seasons.append(episode->season());
         }
     }
@@ -663,7 +663,7 @@ QList<TvShowEpisode *> TvShow::episodes() const
     return m_episodes;
 }
 
-QList<TvShowEpisode *> TvShow::episodes(int season) const
+QList<TvShowEpisode *> TvShow::episodes(SeasonNumber season) const
 {
     QList<TvShowEpisode *> episodes;
     for (TvShowEpisode *episode : m_episodes) {
@@ -1014,7 +1014,7 @@ void TvShow::addBackdrop(Poster backdrop)
  * @param season
  * @param poster
  */
-void TvShow::addSeasonPoster(int season, Poster poster)
+void TvShow::addSeasonPoster(SeasonNumber season, Poster poster)
 {
     if (!m_seasonPosters.contains(season)) {
         QList<Poster> posters;
@@ -1025,7 +1025,7 @@ void TvShow::addSeasonPoster(int season, Poster poster)
     setChanged(true);
 }
 
-void TvShow::addSeasonBackdrop(int season, Poster poster)
+void TvShow::addSeasonBackdrop(SeasonNumber season, Poster poster)
 {
     if (!m_seasonBackdrops.contains(season)) {
         QList<Poster> posters;
@@ -1036,7 +1036,7 @@ void TvShow::addSeasonBackdrop(int season, Poster poster)
     setChanged(true);
 }
 
-void TvShow::addSeasonBanner(int season, Poster poster)
+void TvShow::addSeasonBanner(SeasonNumber season, Poster poster)
 {
     if (!m_seasonBanners.contains(season)) {
         QList<Poster> posters;
@@ -1047,7 +1047,7 @@ void TvShow::addSeasonBanner(int season, Poster poster)
     setChanged(true);
 }
 
-void TvShow::addSeasonThumb(int season, Poster poster)
+void TvShow::addSeasonThumb(SeasonNumber season, Poster poster)
 {
     if (!m_seasonThumbs.contains(season)) {
         QList<Poster> posters;
@@ -1211,12 +1211,12 @@ void TvShow::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
-QMap<ImageType, QList<int>> TvShow::imagesToRemove() const
+QMap<ImageType, QList<SeasonNumber>> TvShow::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void TvShow::removeImage(ImageType type, int season)
+void TvShow::removeImage(ImageType type, SeasonNumber season)
 {
     if (TvShow::seasonImageTypes().contains(type)) {
         if (m_seasonImages.contains(season) && !m_seasonImages.value(season).value(type, QByteArray()).isNull()) {
@@ -1226,7 +1226,7 @@ void TvShow::removeImage(ImageType type, int season)
             }
             m_hasSeasonImageChanged[season].insert(type, false);
         } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.insert(type, QList<int>() << season);
+            m_imagesToRemove.insert(type, QList<SeasonNumber>{season});
         } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove.value(type).contains(season)) {
             m_imagesToRemove[type].append(season);
         }
@@ -1235,7 +1235,7 @@ void TvShow::removeImage(ImageType type, int season)
             m_images.insert(type, QByteArray());
             m_hasImageChanged.insert(type, false);
         } else {
-            m_imagesToRemove.insert(type, QList<int>() << -2);
+            m_imagesToRemove.insert(type, QList<SeasonNumber>{SeasonNumber::NoSeason});
         }
     }
 
@@ -1264,7 +1264,7 @@ QByteArray TvShow::image(ImageType imageType)
     return m_images.value(imageType);
 }
 
-QByteArray TvShow::seasonImage(int season, ImageType imageType)
+QByteArray TvShow::seasonImage(SeasonNumber season, ImageType imageType)
 {
     if (m_seasonImages.contains(season)) {
         return m_seasonImages.value(season).value(imageType, QByteArray());
@@ -1279,7 +1279,7 @@ void TvShow::setImage(ImageType imageType, QByteArray image)
     setChanged(true);
 }
 
-void TvShow::setSeasonImage(int season, ImageType imageType, QByteArray image)
+void TvShow::setSeasonImage(SeasonNumber season, ImageType imageType, QByteArray image)
 {
     if (!m_seasonImages.contains(season)) {
         m_seasonImages.insert(season, QMap<ImageType, QByteArray>());
@@ -1298,7 +1298,7 @@ bool TvShow::imageHasChanged(ImageType imageType) const
     return m_hasImageChanged.value(imageType, false);
 }
 
-bool TvShow::seasonImageHasChanged(int season, ImageType imageType) const
+bool TvShow::seasonImageHasChanged(SeasonNumber season, ImageType imageType) const
 {
     if (m_hasSeasonImageChanged.contains(season)) {
         return m_hasSeasonImageChanged.value(season).value(imageType, false);
@@ -1390,9 +1390,9 @@ void TvShow::setSortTitle(QString sortTitle)
     setChanged(true);
 }
 
-bool TvShow::isDummySeason(int season) const
+bool TvShow::isDummySeason(SeasonNumber season) const
 {
-    foreach (TvShowEpisode *episode, m_episodes) {
+    for (TvShowEpisode *episode : m_episodes) {
         if (episode->season() == season && !episode->isDummy()) {
             return false;
         }
@@ -1400,7 +1400,7 @@ bool TvShow::isDummySeason(int season) const
     return true;
 }
 
-bool TvShow::hasDummyEpisodes(int season) const
+bool TvShow::hasDummyEpisodes(SeasonNumber season) const
 {
     return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode *const episode) {
         return episode->season() == season && episode->isDummy();
@@ -1442,7 +1442,7 @@ bool TvShow::hideSpecialsInMissingEpisodes() const
 void TvShow::fillMissingEpisodes()
 {
     QList<TvShowEpisode *> episodes = Manager::instance()->database()->showsEpisodes(this);
-    foreach (TvShowEpisode *episode, episodes) {
+    for (TvShowEpisode *episode : episodes) {
         bool found = false;
         for (int i = 0, n = m_episodes.count(); i < n; ++i) {
             if (m_episodes[i]->season() == episode->season() && m_episodes[i]->episode() == episode->episode()) {
@@ -1455,7 +1455,7 @@ void TvShow::fillMissingEpisodes()
             continue;
         }
 
-        if (episode->season() == 0 && hideSpecialsInMissingEpisodes()) {
+        if (episode->season() == SeasonNumber::SpecialsSeason && hideSpecialsInMissingEpisodes()) {
             episode->deleteLater();
             continue;
         }

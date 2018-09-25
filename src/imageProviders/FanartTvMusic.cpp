@@ -387,32 +387,32 @@ void FanartTvMusic::tvShowBanners(QString tvdbId)
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusic::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
+void FanartTvMusic::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(episode);
 }
 
-void FanartTvMusic::tvShowSeason(QString tvdbId, int season)
+void FanartTvMusic::tvShowSeason(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusic::tvShowSeasonBanners(QString tvdbId, int season)
+void FanartTvMusic::tvShowSeasonBanners(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusic::tvShowSeasonThumbs(QString tvdbId, int season)
+void FanartTvMusic::tvShowSeasonThumbs(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusic::tvShowSeasonBackdrops(QString tvdbId, int season)
+void FanartTvMusic::tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);

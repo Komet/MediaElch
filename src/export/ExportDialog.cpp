@@ -468,13 +468,13 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
         return;
     }
 
-    QList<int> seasons = show->seasons(false);
+    QList<SeasonNumber> seasons = show->seasons(false);
     qSort(seasons);
-    foreach (const int &season, seasons) {
+    for (const SeasonNumber &season : seasons) {
         QList<TvShowEpisode *> episodes = show->episodes(season);
         qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
-        s.replace("{{ SEASON }}", QString::number(season));
+        s.replace("{{ SEASON }}", season.toString());
 
         QString listEpisodeItem;
         QString listEpisodeBlock;

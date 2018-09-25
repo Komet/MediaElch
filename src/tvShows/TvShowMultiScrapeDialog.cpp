@@ -423,7 +423,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<ImageType, QList<Pos
         downloadsSize++;
     }
 
-    QList<int> thumbsForSeasons;
+    QList<SeasonNumber> thumbsForSeasons;
     QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -445,7 +445,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<ImageType, QList<Pos
             downloadsSize++;
         } else if (m_infosToLoad.contains(TvShowScraperInfos::SeasonThumb) && it.key() == ImageType::TvShowSeasonThumb
                    && !it.value().isEmpty()) {
-            foreach (Poster p, it.value()) {
+            for (Poster p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
                     continue;
                 }
@@ -471,7 +471,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<ImageType, QList<Pos
         }
     }
 
-    foreach (int season, show->seasons()) {
+    for (SeasonNumber season : show->seasons()) {
         if (!show->seasonPosters(season).isEmpty() && m_infosToLoad.contains(TvShowScraperInfos::SeasonPoster)) {
             addDownload(ImageType::TvShowSeasonPoster, show->seasonPosters(season).at(0).originalUrl, show, season);
             downloadsSize++;
@@ -493,7 +493,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow *show, QMap<ImageType, QList<Pos
     }
 }
 
-void TvShowMultiScrapeDialog::addDownload(ImageType imageType, QUrl url, TvShow *show, int season)
+void TvShowMultiScrapeDialog::addDownload(ImageType imageType, QUrl url, TvShow *show, SeasonNumber season)
 {
     DownloadManagerElement d;
     d.imageType = imageType;

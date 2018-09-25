@@ -147,8 +147,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
             QString thumbnailFileName = QFileInfo(thumbnail).fileName();
             QList<DataFile> thumbnailFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
             if (!thumbnailFiles.isEmpty()) {
-                newThumbnailFileName =
-                    thumbnailFiles.first().saveFileName(newFileName, -1, episode.files().count() > 1);
+                newThumbnailFileName = thumbnailFiles.first().saveFileName(
+                    newFileName, SeasonNumber::NoSeason, episode.files().count() > 1);
                 Helper::instance()->sanitizeFileName(newThumbnailFileName);
                 if (newThumbnailFileName != thumbnailFileName) {
                     int row = m_dialog->addResultToTable(

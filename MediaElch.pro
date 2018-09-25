@@ -234,7 +234,8 @@ SOURCES += src/main.cpp \
     src/xbmc/XbmcSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
-    src/data/EpisodeNumber.cpp
+    src/data/EpisodeNumber.cpp \
+    src/data/SeasonNumber.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
@@ -422,7 +423,8 @@ HEADERS  += Version.h \
     src/xbmc/XbmcSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
-    src/data/EpisodeNumber.h
+    src/data/EpisodeNumber.h \
+    src/data/SeasonNumber.h
 
 FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \

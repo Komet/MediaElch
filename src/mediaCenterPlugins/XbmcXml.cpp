@@ -77,7 +77,7 @@ bool XbmcXml::saveMovie(Movie *movie)
     bool saved = false;
     QFileInfo fi(movie->files().at(0));
     for (auto dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
-        QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+        QString saveFileName = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
@@ -100,8 +100,9 @@ bool XbmcXml::saveMovie(Movie *movie)
     for (const auto imageType : Movie::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (movie->images().imageHasChanged(imageType) && !movie->images().image(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
                     && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
                     saveFileName = "poster.jpg";
@@ -116,8 +117,9 @@ bool XbmcXml::saveMovie(Movie *movie)
         }
 
         if (movie->images().imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
                 if (imageType == ImageType::MoviePoster
                     && (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd)) {
                     saveFileName = "poster.jpg";
@@ -133,13 +135,14 @@ bool XbmcXml::saveMovie(Movie *movie)
     }
 
     if (movie->inSeparateFolder() && !movie->files().isEmpty()) {
-        foreach (const QString &file, movie->images().extraFanartsToRemove())
+        for (const QString &file : movie->images().extraFanartsToRemove()) {
             QFile::remove(file);
+        }
         QDir dir(QFileInfo(movie->files().first()).absolutePath() + "/extrafanart");
         if (!dir.exists() && !movie->images().extraFanartToAdd().isEmpty()) {
             QDir(QFileInfo(movie->files().first()).absolutePath()).mkdir("extrafanart");
         }
-        foreach (QByteArray img, movie->images().extraFanartToAdd()) {
+        for (QByteArray img : movie->images().extraFanartToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -148,7 +151,7 @@ bool XbmcXml::saveMovie(Movie *movie)
         }
     }
 
-    foreach (const Actor &actor, movie->actors()) {
+    for (const Actor &actor : movie->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
             dir.mkdir(fi.absolutePath() + "/" + ".actors");
@@ -158,7 +161,7 @@ bool XbmcXml::saveMovie(Movie *movie)
         }
     }
 
-    foreach (Subtitle *subtitle, movie->subtitles()) {
+    for (Subtitle *subtitle : movie->subtitles()) {
         if (subtitle->changed()) {
             QString subFileName = fi.completeBaseName();
             if (!subtitle->language().isEmpty()) {
@@ -169,7 +172,7 @@ bool XbmcXml::saveMovie(Movie *movie)
             }
 
             QStringList newFiles;
-            foreach (const QString &subFile, subtitle->files()) {
+            for (const QString &subFile : subtitle->files()) {
                 QFileInfo subFi(fi.absolutePath() + "/" + subFile);
                 QString newFileName = subFileName + "." + subFi.suffix();
                 QFile f(fi.absolutePath() + "/" + subFile);
@@ -208,8 +211,8 @@ QString XbmcXml::nfoFilePath(Movie *movie)
         return nfoFile;
     }
 
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
             nfoFile = fi.absolutePath() + "/" + file;
@@ -233,8 +236,8 @@ QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
         return nfoFile;
     }
 
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
         QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
             nfoFile = fi.absolutePath() + "/" + file;
@@ -253,7 +256,7 @@ QString XbmcXml::nfoFilePath(TvShow *show)
         return nfoFile;
     }
 
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
         QFile file(show->dir() + "/" + dataFile.saveFileName(""));
         if (file.exists()) {
             nfoFile = file.fileName();
@@ -282,8 +285,8 @@ QString XbmcXml::nfoFilePath(Concert *concert)
         return nfoFile;
     }
 
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
         QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
             nfoFile = fi.absolutePath() + "/" + file;
@@ -620,8 +623,9 @@ bool XbmcXml::saveConcert(Concert *concert)
 
     bool saved = false;
     QFileInfo fi(concert->files().at(0));
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
-        QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
+        QString saveFileName =
+            dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
@@ -644,8 +648,9 @@ bool XbmcXml::saveConcert(Concert *concert)
     for (const auto imageType : Concert::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         if (concert->imageHasChanged(imageType) && !concert->image(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
                 if (imageType == ImageType::ConcertPoster
                     && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
                     saveFileName = "poster.jpg";
@@ -659,8 +664,9 @@ bool XbmcXml::saveConcert(Concert *concert)
             }
         }
         if (concert->imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(imageType)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            for (DataFile dataFile : Settings::instance()->dataFiles(imageType)) {
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
                 if (imageType == ImageType::ConcertPoster
                     && (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd)) {
                     saveFileName = "poster.jpg";
@@ -676,13 +682,14 @@ bool XbmcXml::saveConcert(Concert *concert)
     }
 
     if (concert->inSeparateFolder() && !concert->files().isEmpty()) {
-        foreach (const QString &file, concert->extraFanartsToRemove())
+        for (const QString &file : concert->extraFanartsToRemove()) {
             QFile::remove(file);
+        }
         QDir dir(QFileInfo(concert->files().first()).absolutePath() + "/extrafanart");
         if (!dir.exists() && !concert->extraFanartImagesToAdd().isEmpty()) {
             QDir(QFileInfo(concert->files().first()).absolutePath()).mkdir("extrafanart");
         }
-        foreach (QByteArray img, concert->extraFanartImagesToAdd()) {
+        for (QByteArray img : concert->extraFanartImagesToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -878,7 +885,8 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         for (int i = 0, n = episodeDetailsList.count(); i < n; ++i) {
             episodeDetails = episodeDetailsList.at(i).toElement();
             if (!episodeDetails.elementsByTagName("season").isEmpty()
-                && episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt() == episode->season()
+                && episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt()
+                       == episode->season().toInt()
                 && !episodeDetails.elementsByTagName("episode").isEmpty()
                 && episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt()
                        == episode->episode().toInt()) {
@@ -961,14 +969,14 @@ bool XbmcXml::saveTvShow(TvShow *show)
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
         for (const auto season : show->seasons()) {
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
-                foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
                     saveFile(show->dir() + "/" + saveFileName, show->seasonImage(season, imageType));
                 }
             }
             if (show->imagesToRemove().contains(imageType)
                 && show->imagesToRemove().value(imageType).contains(season)) {
-                foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
                     QFile(show->dir() + "/" + saveFileName).remove();
                 }
@@ -1030,7 +1038,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
     xml.writeStartDocument("1.0", true);
-    foreach (TvShowEpisode *subEpisode, episodes) {
+    for (TvShowEpisode *subEpisode : episodes) {
         writeTvShowEpisodeXml(xml, subEpisode);
         subEpisode->setChanged(false);
         subEpisode->setSyncNeeded(true);
@@ -1042,14 +1050,15 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         return false;
     }
 
-    foreach (TvShowEpisode *subEpisode, episodes) {
+    for (TvShowEpisode *subEpisode : episodes) {
         subEpisode->setNfoContent(xmlContent);
         Manager::instance()->database()->update(subEpisode);
     }
 
     QFileInfo fi(episode->files().at(0));
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-        QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
+        QString saveFileName =
+            dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
         QString saveFilePath = fi.absolutePath() + "/" + saveFileName;
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
@@ -1074,7 +1083,8 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
                 saveFile(fi.absolutePath() + "/" + saveFileName, episode->thumbnailImage());
             }
         }
@@ -1089,15 +1099,16 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
-                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+            for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
+                QString saveFileName =
+                    dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
                 QFile(fi.absolutePath() + "/" + saveFileName).remove();
             }
         }
     }
 
     fi.setFile(episode->files().at(0));
-    foreach (const Actor &actor, episode->actors()) {
+    for (const Actor &actor : episode->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
             dir.mkdir(fi.absolutePath() + "/" + ".actors");
@@ -1131,7 +1142,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
     xml.writeTextElement("votes", QString("%1").arg(episode->votes()));
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
-    xml.writeTextElement("season", QString("%1").arg(episode->season()));
+    xml.writeTextElement("season", episode->season().toString());
     xml.writeTextElement("episode", episode->episode().toString());
     if (episode->displaySeason() > -1) {
         xml.writeTextElement("displayseason", QString("%1").arg(episode->displaySeason()));
@@ -1400,7 +1411,7 @@ QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFil
     QString fileName;
     QFileInfo fi(movie->files().at(0));
     for (DataFile dataFile : dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
         if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
             if (type == ImageType::MoviePoster) {
                 file = "poster.jpg";
@@ -1443,7 +1454,7 @@ QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<Dat
     QString fileName;
     QFileInfo fi(concert->files().at(0));
     for (DataFile dataFile : dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
         if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
             if (type == ImageType::ConcertPoster) {
                 file = "poster.jpg";
@@ -1463,8 +1474,11 @@ QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<Dat
     return fileName;
 }
 
-QString
-XbmcXml::imageFileName(const TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const TvShow *show,
+    ImageType type,
+    SeasonNumber season,
+    QList<DataFile> dataFiles,
+    bool constructName)
 {
     DataFileType fileType;
     switch (type) {

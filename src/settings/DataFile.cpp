@@ -47,7 +47,7 @@ int DataFile::pos() const
  * @param season Season number
  * @return
  */
-QString DataFile::saveFileName(const QString &fileName, int season, bool stacked)
+QString DataFile::saveFileName(const QString &fileName, SeasonNumber season, bool stacked)
 {
     if (type() == DataFileType::MovieSetBackdrop || type() == DataFileType::MovieSetPoster) {
         QString newFileName = m_fileName;
@@ -64,15 +64,11 @@ QString DataFile::saveFileName(const QString &fileName, int season, bool stacked
     }
     newFileName.replace("<baseFileName>", baseName);
 
-    if (season != -1) {
-        if (season == 0) {
+    if (season != SeasonNumber::NoSeason) {
+        if (season == SeasonNumber::SpecialsSeason) {
             newFileName.replace("<seasonNumber>", "-specials");
         } else {
-            QString s = QString("%1").arg(season);
-            if (season < 10) {
-                s.prepend("0");
-            }
-            newFileName.replace("<seasonNumber>", s);
+            newFileName.replace("<seasonNumber>", season.toPaddedString());
         }
     }
 

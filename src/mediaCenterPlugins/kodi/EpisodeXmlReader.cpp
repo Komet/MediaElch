@@ -27,7 +27,7 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         m_episode.setShowTitle(episodeDetails.elementsByTagName("showtitle").at(0).toElement().text());
     }
     if (!episodeDetails.elementsByTagName("season").isEmpty()) {
-        m_episode.setSeason(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt());
+        m_episode.setSeason(SeasonNumber(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("episode").isEmpty()) {
         m_episode.setEpisode(

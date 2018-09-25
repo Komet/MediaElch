@@ -49,11 +49,11 @@ public:
     void tvShowClearArts(QString tvdbId) override;
     void tvShowCharacterArts(QString tvdbId) override;
     void tvShowBanners(QString tvdbId) override;
-    void tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode) override;
-    void tvShowSeason(QString tvdbId, int season) override;
-    void tvShowSeasonBanners(QString tvdbId, int season) override;
-    void tvShowSeasonBackdrops(QString tvdbId, int season) override;
-    void tvShowSeasonThumbs(QString tvdbId, int season) override;
+    void tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode) override;
+    void tvShowSeason(QString tvdbId, SeasonNumber season) override;
+    void tvShowSeasonBanners(QString tvdbId, SeasonNumber season) override;
+    void tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season) override;
+    void tvShowSeasonThumbs(QString tvdbId, SeasonNumber season) override;
     void tvShowThumbs(QString tvdbId) override;
     void artistFanarts(QString mbId) override;
     void artistLogos(QString mbId) override;
@@ -115,8 +115,8 @@ private:
     void loadMovieData(QString tmdbId, ImageType type);
     void loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movie);
     void loadConcertData(QString tmdbId, QList<ImageType> types, Concert *concert);
-    QList<Poster> parseTvShowData(QString json, ImageType type, int season = -2);
-    void loadTvShowData(QString tvdbId, ImageType type, int season = -2);
+    QList<Poster> parseTvShowData(QString json, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
+    void loadTvShowData(QString tvdbId, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
     void loadTvShowData(QString tvdbId, QList<ImageType> types, TvShow *show);
     QString keyParameter();
 };

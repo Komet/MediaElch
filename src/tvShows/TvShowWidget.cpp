@@ -66,9 +66,9 @@ void TvShowWidget::onTvShowSelected(TvShow *show)
     ui->tvShowWidget->setTvShow(show);
 }
 
-void TvShowWidget::onSeasonSelected(TvShow *show, int season)
+void TvShowWidget::onSeasonSelected(TvShow *show, SeasonNumber season)
 {
-    qDebug() << "Entered, show=" << show->name() << "season=" << season;
+    qDebug() << "Entered, show=" << show->name() << "season=" << season.toString();
     ui->stackedWidget->setCurrentIndex(2);
     ui->seasonWidget->setSeason(show, season);
 }
@@ -87,7 +87,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShow *show, int season)
+void TvShowWidget::onSetEnabledTrue(TvShow *show, SeasonNumber season)
 {
     if (show && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -98,7 +98,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show, int season)
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
-    emit sigSetActionSearchEnabled(season == -1, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(season == SeasonNumber::NoSeason, MainWidgets::TvShows);
 }
 
 /**

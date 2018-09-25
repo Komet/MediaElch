@@ -1,6 +1,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include "data/SeasonNumber.h"
+
 #include <QDate>
 #include <QDebug>
 #include <QImage>
@@ -166,7 +168,7 @@ struct Poster
     QSize originalSize;
     QString language;
     QString hint;
-    int season{0};
+    SeasonNumber season{SeasonNumber::SpecialsSeason};
 };
 
 enum class TvShowType : int

@@ -1,6 +1,8 @@
 #ifndef IMAGEDIALOG_H
 #define IMAGEDIALOG_H
 
+#include "data/EpisodeNumber.h"
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
 #include <QDialog>
@@ -46,7 +48,7 @@ public:
     void setMovie(Movie *movie);
     void setConcert(Concert *concert);
     void setTvShow(TvShow *show);
-    void setSeason(int season);
+    void setSeason(SeasonNumber season);
     void setTvShowEpisode(TvShowEpisode *episode);
     void setArtist(Artist *artist);
     void setAlbum(Album *album);
@@ -113,8 +115,8 @@ private:
     ItemType m_itemType;
     QList<Poster> m_defaultElements;
     ImageProviderInterface *m_currentProvider;
-    int m_season;
-    int m_episode;
+    SeasonNumber m_season;
+    EpisodeNumber m_episode;
     bool m_multiSelection;
     Artist *m_artist;
     Album *m_album;

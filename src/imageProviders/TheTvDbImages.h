@@ -44,12 +44,12 @@ public:
     void tvShowClearArts(QString tvdbId) override;
     void tvShowCharacterArts(QString tvdbId) override;
     void tvShowBanners(QString tvdbId) override;
-    void tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode) override;
-    void tvShowSeason(QString tvdbId, int season) override;
-    void tvShowSeasonBanners(QString tvdbId, int season) override;
-    void tvShowSeasonBackdrops(QString tvdbId, int season) override;
+    void tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode) override;
+    void tvShowSeason(QString tvdbId, SeasonNumber season) override;
+    void tvShowSeasonBanners(QString tvdbId, SeasonNumber season) override;
+    void tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season) override;
     void tvShowThumbs(QString tvdbId) override;
-    void tvShowSeasonThumbs(QString tvdbId, int season) override;
+    void tvShowSeasonThumbs(QString tvdbId, SeasonNumber season) override;
     void artistFanarts(QString mbId) override;
     void artistLogos(QString mbId) override;
     void artistThumbs(QString mbId) override;
@@ -91,7 +91,7 @@ private:
     TheTvDb *m_tvdb;
     TvShow *m_dummyShow;
     TvShowEpisode *m_dummyEpisode;
-    int m_season;
+    SeasonNumber m_season;
 
     void loadTvShowData(QString tvdbId, ImageType type);
 };
