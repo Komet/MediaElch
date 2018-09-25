@@ -7,6 +7,8 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "image/Image.h"
+#include "mediaCenterPlugins/kodi/ArtistXmlReader.h"
+#include "mediaCenterPlugins/kodi/ArtistXmlWriter.h"
 #include "mediaCenterPlugins/kodi/ConcertXmlReader.h"
 #include "mediaCenterPlugins/kodi/ConcertXmlWriter.h"
 #include "mediaCenterPlugins/kodi/EpisodeXmlReader.h"
@@ -1573,81 +1575,9 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("musicBrainzArtistID").isEmpty()) {
-        artist->setMbId(domDoc.elementsByTagName("musicBrainzArtistID").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("allmusicid").isEmpty()) {
-        artist->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("name").isEmpty()) {
-        artist->setName(domDoc.elementsByTagName("name").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("genre").isEmpty()) {
-        artist->setGenres(
-            domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("style").size(); i < n; i++) {
-        artist->addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("mood").size(); i < n; i++) {
-        artist->addMood(domDoc.elementsByTagName("mood").at(i).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("yearsactive").isEmpty()) {
-        artist->setYearsActive(domDoc.elementsByTagName("yearsactive").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("formed").isEmpty()) {
-        artist->setFormed(domDoc.elementsByTagName("formed").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("biography").isEmpty()) {
-        artist->setBiography(domDoc.elementsByTagName("biography").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("born").isEmpty()) {
-        artist->setBorn(domDoc.elementsByTagName("born").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("died").isEmpty()) {
-        artist->setDied(domDoc.elementsByTagName("died").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("disbanded").isEmpty()) {
-        artist->setDisbanded(domDoc.elementsByTagName("disbanded").at(0).toElement().text());
-    }
 
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
-        if (parentTag == "artist") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty()) {
-                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            } else {
-                p.thumbUrl = p.originalUrl;
-            }
-            artist->addImage(ImageType::ArtistThumb, p);
-        } else if (parentTag == "fanart") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty()) {
-                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            } else {
-                p.thumbUrl = p.originalUrl;
-            }
-            artist->addImage(ImageType::ArtistFanart, p);
-        }
-    }
-
-    for (int i = 0, n = domDoc.elementsByTagName("album").size(); i < n; i++) {
-        DiscographyAlbum a;
-        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").isEmpty()) {
-            a.title =
-                domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").at(0).toElement().text();
-        }
-        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").isEmpty()) {
-            a.year =
-                domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").at(0).toElement().text();
-        }
-        artist->addDiscographyAlbum(a);
-    }
-
-    artist->setHasChanged(false);
+    Kodi::ArtistXmlReader reader(*artist);
+    reader.parseNfoDom(domDoc);
 
     return true;
 }
@@ -1944,105 +1874,8 @@ bool XbmcXml::saveAlbum(Album *album)
 
 QByteArray XbmcXml::getArtistXml(Artist *artist)
 {
-    QDomDocument doc;
-    doc.setContent(artist->nfoContent());
-    if (artist->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("artist"));
-    }
-
-    QDomElement artistElem = doc.elementsByTagName("artist").at(0).toElement();
-
-    if (!artist->mbId().isEmpty()) {
-        setTextValue(doc, "musicBrainzArtistID", artist->mbId());
-    } else {
-        removeChildNodes(doc, "musicBrainzArtistID");
-    }
-    if (!artist->allMusicId().isEmpty()) {
-        setTextValue(doc, "allmusicid", artist->allMusicId());
-    } else {
-        removeChildNodes(doc, "allmusicid");
-    }
-    setTextValue(doc, "name", artist->name());
-    setTextValue(doc, "genre", artist->genres().join(" / "));
-    setListValue(doc, "style", artist->styles());
-    setListValue(doc, "mood", artist->moods());
-    setTextValue(doc, "yearsactive", artist->yearsActive());
-    setTextValue(doc, "formed", artist->formed());
-    setTextValue(doc, "biography", artist->biography());
-    setTextValue(doc, "born", artist->born());
-    setTextValue(doc, "died", artist->died());
-    setTextValue(doc, "disbanded", artist->disbanded());
-
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        removeChildNodes(doc, "thumb");
-        removeChildNodes(doc, "fanart");
-
-        foreach (const Poster &poster, artist->images(ImageType::ArtistThumb)) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            appendXmlNode(doc, elem);
-        }
-
-        if (!artist->images(ImageType::ArtistFanart).isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
-            }
-            appendXmlNode(doc, fanartElem);
-        }
-    }
-
-    QList<QDomNode> albumNodes;
-    QDomNodeList childNodes = artistElem.childNodes();
-    for (int i = 0, n = childNodes.count(); i < n; ++i) {
-        if (childNodes.at(i).nodeName() == "album") {
-            albumNodes.append(childNodes.at(i));
-        }
-    }
-
-    foreach (const DiscographyAlbum &album, artist->discographyAlbums()) {
-        bool nodeFound = false;
-        foreach (QDomNode node, albumNodes) {
-            if (!node.toElement().elementsByTagName("title").isEmpty()
-                && node.toElement().elementsByTagName("title").at(0).toElement().text() == album.title) {
-                albumNodes.removeOne(node);
-                if (!node.toElement().elementsByTagName("year").isEmpty()) {
-                    if (!node.toElement().elementsByTagName("year").at(0).firstChild().isText()) {
-                        QDomText t = doc.createTextNode(album.year);
-                        node.toElement().elementsByTagName("year").at(0).appendChild(t);
-                    } else {
-                        node.toElement().elementsByTagName("year").at(0).firstChild().setNodeValue(album.year);
-                    }
-                } else {
-                    QDomElement elem = doc.createElement("year");
-                    elem.appendChild(doc.createTextNode(album.year));
-                    node.appendChild(elem);
-                }
-                nodeFound = true;
-                break;
-            }
-        }
-        if (!nodeFound) {
-            QDomElement elem = doc.createElement("album");
-            QDomElement elemTitle = doc.createElement("title");
-            QDomElement elemYear = doc.createElement("year");
-            elemTitle.appendChild(doc.createTextNode(album.title));
-            elemYear.appendChild(doc.createTextNode(album.year));
-            elem.appendChild(elemTitle);
-            elem.appendChild(elemYear);
-            appendXmlNode(doc, elem);
-        }
-    }
-    foreach (QDomNode node, albumNodes)
-        artistElem.removeChild(node);
-
-    return doc.toByteArray(4);
+    Kodi::ArtistXmlWriter writer(*artist);
+    return writer.getArtistXml();
 }
 
 QByteArray XbmcXml::getAlbumXml(Album *album)

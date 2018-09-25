@@ -131,6 +131,8 @@ SOURCES += src/main.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
+    src/mediaCenterPlugins/kodi/ArtistXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/ArtistXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/ConcertXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
     src/mediaCenterPlugins/kodi/EpisodeXmlReader.cpp \
@@ -314,6 +316,8 @@ HEADERS  += Version.h \
     src/main/Navbar.h \
     src/main/Update.h \
     src/mediaCenterPlugins/XbmcXml.h \
+    src/mediaCenterPlugins/kodi/ArtistXmlReader.h \
+    src/mediaCenterPlugins/kodi/ArtistXmlWriter.h \
     src/mediaCenterPlugins/kodi/ConcertXmlWriter.h \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
     src/mediaCenterPlugins/kodi/EpisodeXmlReader.h \
