@@ -133,6 +133,7 @@ SOURCES += src/main.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
     src/mediaCenterPlugins/kodi/ConcertXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/EpisodeXmlReader.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
     src/mediaCenterPlugins/kodi/TvShowXmlWriter.cpp \
@@ -315,6 +316,7 @@ HEADERS  += Version.h \
     src/mediaCenterPlugins/XbmcXml.h \
     src/mediaCenterPlugins/kodi/ConcertXmlWriter.h \
     src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
+    src/mediaCenterPlugins/kodi/EpisodeXmlReader.h \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
     src/mediaCenterPlugins/kodi/MovieXmlReader.h \
     src/mediaCenterPlugins/kodi/TvShowXmlWriter.h \

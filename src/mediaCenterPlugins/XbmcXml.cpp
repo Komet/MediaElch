@@ -9,6 +9,7 @@
 #include "image/Image.h"
 #include "mediaCenterPlugins/kodi/ConcertXmlReader.h"
 #include "mediaCenterPlugins/kodi/ConcertXmlWriter.h"
+#include "mediaCenterPlugins/kodi/EpisodeXmlReader.h"
 #include "mediaCenterPlugins/kodi/MovieXmlReader.h"
 #include "mediaCenterPlugins/kodi/MovieXmlWriter.h"
 #include "mediaCenterPlugins/kodi/TvShowXmlReader.h"
@@ -853,7 +854,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
 
     QString def;
     QStringList baseNfoContent;
-    foreach (const QString &line, nfoContent.split("\n")) {
+    for (const QString &line : nfoContent.split("\n")) {
         if (!line.startsWith("<?xml")) {
             baseNfoContent << line;
         } else {
@@ -890,88 +891,9 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episodeDetails = episodeDetailsList.at(0).toElement();
     }
 
-    if (!episodeDetails.elementsByTagName("imdbid").isEmpty()) {
-        episode->setImdbId(episodeDetails.elementsByTagName("imdbid").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("title").isEmpty()) {
-        episode->setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("showtitle").isEmpty()) {
-        episode->setShowTitle(episodeDetails.elementsByTagName("showtitle").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("season").isEmpty()) {
-        episode->setSeason(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("episode").isEmpty()) {
-        episode->setEpisode(episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("displayseason").isEmpty()) {
-        episode->setDisplaySeason(episodeDetails.elementsByTagName("displayseason").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("displayepisode").isEmpty()) {
-        episode->setDisplayEpisode(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("rating").isEmpty()) {
-        episode->setRating(
-            episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
-    }
-    if (!domDoc.elementsByTagName("votes").isEmpty()) {
-        episode->setVotes(
-            domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
-    }
-    if (!domDoc.elementsByTagName("top250").isEmpty()) {
-        episode->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("plot").isEmpty()) {
-        episode->setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("mpaa").isEmpty()) {
-        episode->setCertification(episodeDetails.elementsByTagName("mpaa").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("aired").isEmpty()) {
-        episode->setFirstAired(
-            QDate::fromString(episodeDetails.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
-    }
-    if (!episodeDetails.elementsByTagName("playcount").isEmpty()) {
-        episode->setPlayCount(episodeDetails.elementsByTagName("playcount").at(0).toElement().text().toInt());
-    }
-    if (!episodeDetails.elementsByTagName("epbookmark").isEmpty()) {
-        episode->setEpBookmark(
-            QTime(0, 0, 0).addSecs(episodeDetails.elementsByTagName("epbookmark").at(0).toElement().text().toInt()));
-    }
-    if (!episodeDetails.elementsByTagName("lastplayed").isEmpty()) {
-        episode->setLastPlayed(QDateTime::fromString(
-            episodeDetails.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
-    }
-    if (!episodeDetails.elementsByTagName("studio").isEmpty()) {
-        episode->setNetwork(episodeDetails.elementsByTagName("studio").at(0).toElement().text());
-    }
-    if (!episodeDetails.elementsByTagName("thumb").isEmpty()) {
-        episode->setThumbnail(QUrl(episodeDetails.elementsByTagName("thumb").at(0).toElement().text()));
-    }
-    for (int i = 0, n = episodeDetails.elementsByTagName("credits").size(); i < n; i++) {
-        episode->addWriter(episodeDetails.elementsByTagName("credits").at(i).toElement().text());
-    }
-    for (int i = 0, n = episodeDetails.elementsByTagName("director").size(); i < n; i++) {
-        episode->addDirector(episodeDetails.elementsByTagName("director").at(i).toElement().text());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
-        Actor a;
-        a.imageHasChanged = false;
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty()) {
-            a.name =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
-        }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty()) {
-            a.role =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
-        }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty()) {
-            a.thumb =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
-        }
-        episode->addActor(a);
-    }
+    // todo: move above code into reader as well
+    Kodi::EpisodeXmlReader reader(*episode);
+    reader.parseNfoDom(domDoc, episodeDetails);
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
         loadStreamDetails(
