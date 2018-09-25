@@ -1,5 +1,5 @@
-#ifndef MOVIEXMLWRITER_H
-#define MOVIEXMLWRITER_H
+#ifndef KODI_MOVIEXMLWRITER_H
+#define KODI_MOVIEXMLWRITER_H
 
 #include <QByteArray>
 #include <QDomElement>
@@ -21,4 +21,4 @@ private:
 
 } // namespace Kodi
 
-#endif // MOVIEXMLWRITER_H
+#endif // KODI_MOVIEXMLWRITER_H

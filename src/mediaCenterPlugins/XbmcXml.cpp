@@ -7,6 +7,8 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "image/Image.h"
+#include "mediaCenterPlugins/kodi/ConcertXmlReader.h"
+#include "mediaCenterPlugins/kodi/ConcertXmlWriter.h"
 #include "mediaCenterPlugins/kodi/MovieXmlReader.h"
 #include "mediaCenterPlugins/kodi/MovieXmlWriter.h"
 #include "settings/Settings.h"
@@ -588,63 +590,8 @@ QString XbmcXml::actorImageName(Movie *movie, Actor actor)
 
 QByteArray XbmcXml::getConcertXml(Concert *concert)
 {
-    QDomDocument doc;
-    doc.setContent(concert->nfoContent());
-    if (concert->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("musicvideo"));
-    }
-
-    QDomElement concertElem = doc.elementsByTagName("musicvideo").at(0).toElement();
-
-    setTextValue(doc, "title", concert->name());
-    setTextValue(doc, "artist", concert->artist());
-    setTextValue(doc, "album", concert->album());
-    setTextValue(doc, "id", concert->id());
-    setTextValue(doc, "tmdbid", concert->tmdbId());
-    setTextValue(doc, "rating", QString("%1").arg(concert->rating()));
-    setTextValue(doc, "year", concert->released().toString("yyyy"));
-    setTextValue(doc, "plot", concert->overview());
-    setTextValue(doc, "outline", concert->overview());
-    setTextValue(doc, "tagline", concert->tagline());
-    if (concert->runtime() > 0) {
-        setTextValue(doc, "runtime", QString("%1").arg(concert->runtime()));
-    }
-    setTextValue(doc, "mpaa", concert->certification());
-    setTextValue(doc, "playcount", QString("%1").arg(concert->playcount()));
-    setTextValue(doc, "lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(concert->trailer().toString()));
-    setTextValue(doc, "watched", (concert->watched()) ? "true" : "false");
-    setTextValue(doc, "genre", concert->genres().join(" / "));
-    setListValue(doc, "tag", concert->tags());
-
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        removeChildNodes(doc, "thumb");
-        removeChildNodes(doc, "fanart");
-
-        foreach (const Poster &poster, concert->posters()) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            appendXmlNode(doc, elem);
-        }
-
-        if (!concert->backdrops().isEmpty()) {
-            QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, concert->backdrops()) {
-                QDomElement elem = doc.createElement("thumb");
-                elem.setAttribute("preview", poster.thumbUrl.toString());
-                elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                fanartElem.appendChild(elem);
-            }
-            appendXmlNode(doc, fanartElem);
-        }
-    }
-
-    writeStreamDetails(doc, concert->streamDetails());
-
-    return doc.toByteArray(4);
+    Kodi::ConcertXmlWriter writer(*concert);
+    return writer.getConcertXml();
 }
 
 /**
@@ -773,76 +720,9 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("id").isEmpty()) {
-        concert->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
-        concert->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("title").isEmpty()) {
-        concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("artist").isEmpty()) {
-        concert->setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("album").isEmpty()) {
-        concert->setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
-    }
-    if (!domDoc.elementsByTagName("year").isEmpty()) {
-        concert->setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
-    }
-    if (!domDoc.elementsByTagName("plot").isEmpty()) {
-        concert->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("tagline").isEmpty()) {
-        concert->setTagline(domDoc.elementsByTagName("tagline").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("runtime").isEmpty()) {
-        concert->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
-    }
-    if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
-        concert->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("playcount").isEmpty()) {
-        concert->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
-    }
-    if (!domDoc.elementsByTagName("lastplayed").isEmpty()) {
-        concert->setLastPlayed(QDateTime::fromString(
-            domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
-    }
-    if (!domDoc.elementsByTagName("trailer").isEmpty()) {
-        concert->setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
-    }
-    if (!domDoc.elementsByTagName("watched").isEmpty()) {
-        concert->setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
-    }
 
-    for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        for (const QString &genre :
-            domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts)) {
-            concert->addGenre(genre);
-        }
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
-        concert->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
-        if (parentTag == "musicvideo") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            concert->addPoster(p);
-        } else if (parentTag == "fanart") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            concert->addBackdrop(p);
-        }
-    }
+    Kodi::ConcertXmlReader reader(*concert);
+    reader.parseNfoDom(domDoc);
 
     concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
 
@@ -1615,8 +1495,9 @@ QStringList XbmcXml::extraFanartNames(Concert *concert)
     QDir dir(fi.absolutePath() + "/extrafanart");
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
     QStringList files;
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+    for (const QString &file : dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
         files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    }
     return files;
 }
 

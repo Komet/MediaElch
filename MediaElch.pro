@@ -131,6 +131,8 @@ SOURCES += src/main.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
+    src/mediaCenterPlugins/kodi/ConcertXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
@@ -309,6 +311,8 @@ HEADERS  += Version.h \
     src/main/Navbar.h \
     src/main/Update.h \
     src/mediaCenterPlugins/XbmcXml.h \
+    src/mediaCenterPlugins/kodi/ConcertXmlWriter.h \
+    src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
     src/mediaCenterPlugins/kodi/MovieXmlReader.h \
     src/movies/CertificationWidget.h \

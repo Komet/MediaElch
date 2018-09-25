@@ -1,5 +1,5 @@
-#ifndef MOVIEXMLREADER_H
-#define MOVIEXMLREADER_H
+#ifndef KODI_MOVIEXMLREADER_H
+#define KODI_MOVIEXMLREADER_H
 
 #include <QDomDocument>
 #include <QString>
@@ -20,4 +20,4 @@ private:
 
 } // namespace Kodi
 
-#endif // MOVIEXMLREADER_H
+#endif // KODI_MOVIEXMLREADER_H
