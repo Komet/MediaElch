@@ -449,20 +449,21 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                 && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int seasonNumber = -1;
-                int episodeNumber = -1;
+                EpisodeNumber episodeNumber = EpisodeNumber::NoEpisode;
                 QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
                 QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
                 if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1) {
                     seasonNumber = rx.cap(1).toInt();
                 }
                 if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1) {
-                    episodeNumber = rx.cap(1).toInt();
+                    episodeNumber = EpisodeNumber(rx.cap(1).toInt());
                 }
                 episode = show->episode(seasonNumber, episodeNumber);
             } else if (!elem.elementsByTagName("SeasonNumber").isEmpty()
                        && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                 int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
-                int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+                EpisodeNumber episodeNumber =
+                    EpisodeNumber(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
                 episode = show->episode(seasonNumber, episodeNumber);
             }
 
@@ -477,10 +478,10 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                 parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
                 updatedEpisodes << episode;
                 int airedSeason = episode->season();
-                int airedEpisode = episode->episode();
+                EpisodeNumber airedEpisode = episode->episode();
                 getAiredSeasonAndEpisode(xml, episode, airedSeason, airedEpisode);
                 episode->setProperty("airedSeason", airedSeason);
-                episode->setProperty("airedEpisode", airedEpisode);
+                episode->setProperty("airedEpisode", airedEpisode.toInt());
             }
         }
     }
@@ -510,7 +511,8 @@ void TheTvDb::fillDatabaseWithAllEpisodes(QString xml, TvShow *show)
         if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
             episode.clear();
             int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
-            int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+            EpisodeNumber episodeNumber =
+                EpisodeNumber(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
             QString id = elem.elementsByTagName("id").at(0).toElement().text();
             episode.setSeason(seasonNumber);
             episode.setEpisode(episodeNumber);
@@ -794,10 +796,10 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvSh
     parseEpisodeXml(msg, episode, infos);
     if (shouldLoadImdb(infos) && !episode->tvShow()->imdbId().isEmpty()) {
         int airedSeason = episode->season();
-        int airedEpisode = episode->episode();
+        EpisodeNumber airedEpisode = episode->episode();
         getAiredSeasonAndEpisode(msg, episode, airedSeason, airedEpisode);
         qDebug() << "Now loading IMDB entry for" << episode->tvShow()->imdbId() << "season" << airedSeason << "episode"
-                 << airedEpisode;
+                 << airedEpisode.toPaddedString();
         QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2")
                             .arg(episode->tvShow()->imdbId())
                             .arg(airedSeason));
@@ -828,7 +830,7 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvSh
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, episode));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        reply->setProperty("episodeNumber", airedEpisode);
+        reply->setProperty("episodeNumber", airedEpisode.toInt());
         connect(reply, &QNetworkReply::finished, this, &TheTvDb::onImdbSeasonFinished);
         return true;
     }
@@ -845,7 +847,8 @@ void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowS
         QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
         if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
             int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
-            int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+            EpisodeNumber episodeNumber =
+                EpisodeNumber(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
             if (episode->season() == seasonNumber && episode->episode() == episodeNumber) {
                 airedElem = elem;
             }
@@ -856,14 +859,14 @@ void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowS
             && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
             QRegExp rx("^(\\d*)\\D*");
             int seasonNumber = -1;
-            int episodeNumber = -1;
+            EpisodeNumber episodeNumber = EpisodeNumber::NoEpisode;
             QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
             QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
             if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1) {
                 seasonNumber = rx.cap(1).toInt();
             }
             if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1) {
-                episodeNumber = rx.cap(1).toInt();
+                episodeNumber = EpisodeNumber(rx.cap(1).toInt());
             }
             if (episode->season() == seasonNumber && episode->episode() == episodeNumber) {
                 dvdElem = elem;
@@ -885,7 +888,10 @@ void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowS
     }
 }
 
-void TheTvDb::getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int &seasonNumber, int &episodeNumber)
+void TheTvDb::getAiredSeasonAndEpisode(QString xml,
+    TvShowEpisode *episode,
+    int &seasonNumber,
+    EpisodeNumber &episodeNumber)
 {
     if (Settings::instance()->tvShowDvdOrder()) {
         QDomDocument domDoc;
@@ -898,20 +904,21 @@ void TheTvDb::getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int 
                 && !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int dvdSeasonNumber = -1;
-                int dvdEpisodeNumber = -1;
+                EpisodeNumber dvdEpisodeNumber = EpisodeNumber::NoEpisode;
                 QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
                 QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
                 if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1) {
                     dvdSeasonNumber = rx.cap(1).toInt();
                 }
                 if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1) {
-                    dvdEpisodeNumber = rx.cap(1).toInt();
+                    dvdEpisodeNumber = EpisodeNumber(rx.cap(1).toInt());
                 }
                 if (episode->season() == dvdSeasonNumber && episode->episode() == dvdEpisodeNumber) {
                     if (!elem.elementsByTagName("SeasonNumber").isEmpty()
                         && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                         seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
-                        episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+                        episodeNumber =
+                            EpisodeNumber(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
                         return;
                     }
                 }
@@ -1001,7 +1008,8 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<
                         .arg(episode->property("airedSeason").toInt()));
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
-            QString imdbId = getImdbIdForEpisode(m_cache.value(url).data, episode->property("airedEpisode").toInt());
+            QString imdbId =
+                getImdbIdForEpisode(m_cache.value(url).data, EpisodeNumber(episode->property("airedEpisode").toInt()));
             if (!imdbId.isEmpty()) {
                 qDebug() << "Now loading IMDB entry for" << imdbId;
                 QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
@@ -1049,7 +1057,7 @@ void TheTvDb::onEpisodesImdbSeasonFinished()
         c.data = msg;
         c.date = QDateTime::currentDateTime();
         m_cache.insert(reply->url(), c);
-        QString imdbId = getImdbIdForEpisode(msg, episode->property("airedEpisode").toInt());
+        QString imdbId = getImdbIdForEpisode(msg, EpisodeNumber(episode->property("airedEpisode").toInt()));
         if (!imdbId.isEmpty()) {
             qDebug() << "Now loading IMDB entry for" << imdbId;
             QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId));
@@ -1171,7 +1179,7 @@ void TheTvDb::onImdbSeasonFinished()
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
     QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
-    int episodeNumber = reply->property("episodeNumber").toInt();
+    EpisodeNumber episodeNumber = EpisodeNumber(reply->property("episodeNumber").toInt());
 
     if (!episode) {
         return;
@@ -1225,9 +1233,9 @@ void TheTvDb::onImdbEpisodeFinished()
     episode->scraperLoadDone();
 }
 
-QString TheTvDb::getImdbIdForEpisode(QString html, int episodeNumber)
+QString TheTvDb::getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber)
 {
-    QRegExp rx("<a href=\"/title/tt([0-9]*)/\\?ref_=ttep_ep" + QString("%1").arg(episodeNumber) + "\"");
+    QRegExp rx("<a href=\"/title/tt([0-9]*)/\\?ref_=ttep_ep" + episodeNumber.toString() + "\"");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
         return "tt" + rx.cap(1);

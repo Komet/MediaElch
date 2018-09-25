@@ -649,7 +649,7 @@ void FanartTv::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);

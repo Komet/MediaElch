@@ -626,7 +626,7 @@ QList<Poster> TvShow::seasonThumbs(int season, bool returnAll) const
  * @param episode
  * @return Episode object
  */
-TvShowEpisode *TvShow::episode(int season, int episode)
+TvShowEpisode *TvShow::episode(int season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
         if (m_episodes[i]->season() == season && m_episodes[i]->episode() == episode) {

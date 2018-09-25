@@ -44,7 +44,7 @@ public:
     void tvShowClearArts(QString tvdbId) override;
     void tvShowCharacterArts(QString tvdbId) override;
     void tvShowBanners(QString tvdbId) override;
-    void tvShowEpisodeThumb(QString tvdbId, int season, int episode) override;
+    void tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode) override;
     void tvShowSeason(QString tvdbId, int season) override;
     void tvShowSeasonBanners(QString tvdbId, int season) override;
     void tvShowSeasonBackdrops(QString tvdbId, int season) override;

@@ -250,7 +250,7 @@ void FanartTvMusicArtists::tvShowBanners(QString tvdbId)
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void FanartTvMusicArtists::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);

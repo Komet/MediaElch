@@ -41,7 +41,7 @@ public:
     virtual void tvShowClearArts(QString tvdbId) = 0;
     virtual void tvShowCharacterArts(QString tvdbId) = 0;
     virtual void tvShowBanners(QString tvdbId) = 0;
-    virtual void tvShowEpisodeThumb(QString tvdbId, int season, int episode) = 0;
+    virtual void tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode) = 0;
     virtual void tvShowSeason(QString tvdbId, int season) = 0;
     virtual void tvShowSeasonBanners(QString tvdbId, int season) = 0;
     virtual void tvShowSeasonBackdrops(QString tvdbId, int season) = 0;

@@ -1,6 +1,7 @@
 #ifndef TVSHOWEPISODE_H
 #define TVSHOWEPISODE_H
 
+#include "data/EpisodeNumber.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "data/TvShowModelItem.h"
@@ -24,7 +25,7 @@ class TvShowEpisode : public QObject
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(int season READ season WRITE setSeason)
-    Q_PROPERTY(int episode READ episode WRITE setEpisode)
+    Q_PROPERTY(EpisodeNumber episode READ episode WRITE setEpisode)
     Q_PROPERTY(int displaySeason READ displaySeason WRITE setDisplaySeason)
     Q_PROPERTY(int displayEpisode READ displayEpisode WRITE setDisplayEpisode)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
@@ -51,7 +52,7 @@ public:
     virtual int votes() const;
     virtual int top250() const;
     virtual int season() const;
-    virtual int episode() const;
+    virtual EpisodeNumber episode() const;
     virtual int displaySeason() const;
     virtual int displayEpisode() const;
     virtual QString overview() const;
@@ -89,7 +90,7 @@ public:
     void setVotes(int votes);
     void setTop250(int top250);
     void setSeason(int season);
-    void setEpisode(int episode);
+    void setEpisode(EpisodeNumber episode);
     void setDisplaySeason(int season);
     void setDisplayEpisode(int episode);
     void setOverview(QString overview);
@@ -151,7 +152,7 @@ private:
     Rating m_rating;
     QString m_imdbId;
     int m_season;
-    int m_episode;
+    EpisodeNumber m_episode;
     int m_displaySeason;
     int m_displayEpisode;
     QString m_overview;

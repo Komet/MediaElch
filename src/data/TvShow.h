@@ -56,7 +56,7 @@ public:
     virtual QList<Poster> seasonBackdrops(int season) const;
     virtual QList<Poster> seasonBanners(int season, bool returnAll = false) const;
     virtual QList<Poster> seasonThumbs(int season, bool returnAll = false) const;
-    virtual TvShowEpisode *episode(int season, int episode);
+    virtual TvShowEpisode *episode(int season, EpisodeNumber episode);
     virtual QList<int> seasons(bool includeDummies = true) const;
     virtual QList<TvShowEpisode *> episodes() const;
     virtual QList<TvShowEpisode *> episodes(int season) const;

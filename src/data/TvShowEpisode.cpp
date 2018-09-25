@@ -1,16 +1,17 @@
 #include "TvShowEpisode.h"
 
-#include <QApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <QTime>
-
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
+
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
+#include <QTime>
+#include <utility>
 
 /**
  * @brief TvShowEpisode::TvShowEpisode
@@ -21,7 +22,7 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) : QObject(parent
 {
     m_parent = parent;
     m_season = -2;
-    m_episode = -2;
+    m_episode = EpisodeNumber::NoEpisode;
     m_displaySeason = -1;
     m_displayEpisode = -1;
     m_playCount = 0;
@@ -340,7 +341,7 @@ QString TvShowEpisode::seasonString() const
  * @return Episode number
  * @see TvShowEpisode::setEpisode
  */
-int TvShowEpisode::episode() const
+EpisodeNumber TvShowEpisode::episode() const
 {
     return m_episode;
 }
@@ -363,10 +364,10 @@ int TvShowEpisode::displayEpisode() const
  */
 QString TvShowEpisode::episodeString() const
 {
-    if (episode() == -2) {
+    if (episode() == EpisodeNumber::NoEpisode) {
         return QString("xx");
     }
-    return QString("%1").arg(episode()).prepend((episode() < 10) ? "0" : "");
+    return episode().toPaddedString();
 }
 
 /**
@@ -649,9 +650,9 @@ void TvShowEpisode::setSeason(int season)
  * @param episode Episode number
  * @see TvShowEpisode::episode
  */
-void TvShowEpisode::setEpisode(int episode)
+void TvShowEpisode::setEpisode(EpisodeNumber episode)
 {
-    m_episode = episode;
+    m_episode = std::move(episode);
     setChanged(true);
 }
 
@@ -1036,7 +1037,7 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));
     out.append(QStringLiteral("  Season:        %1").arg(episode.season()).append(nl));
-    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode()).append(nl));
+    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode().toInt()).append(nl));
     out.append(QStringLiteral("  Rating:        %1").arg(episode.rating()).append(nl));
     out.append(QStringLiteral("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));

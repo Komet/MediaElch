@@ -117,10 +117,10 @@ void TvShowFileSearcher::reload(bool force)
         QList<TvShowEpisode *> episodes;
 
         // Setup episodes list
-        foreach (const QStringList &files, it.value()) {
+        for (const QStringList &files : it.value()) {
             int seasonNumber = getSeasonNumber(files);
-            QList<int> episodeNumbers = getEpisodeNumbers(files);
-            foreach (const int &episodeNumber, episodeNumbers) {
+            QList<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+            for (const EpisodeNumber &episodeNumber : episodeNumbers) {
                 TvShowEpisode *episode = new TvShowEpisode(files, show);
                 episode->setSeason(seasonNumber);
                 episode->setEpisode(episodeNumber);
@@ -245,13 +245,13 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     int episodeSum = contents.count();
     QMap<int, TvShowModelItem *> seasonItems;
     QList<TvShowEpisode *> episodes;
-    foreach (const QStringList &files, contents) {
+    for (const QStringList &files : contents) {
         if (m_aborted) {
             return;
         }
         int seasonNumber = getSeasonNumber(files);
-        QList<int> episodeNumbers = getEpisodeNumbers(files);
-        foreach (const int &episodeNumber, episodeNumbers) {
+        QList<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+        for (const EpisodeNumber &episodeNumber : episodeNumbers) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
             episode->setSeason(seasonNumber);
             episode->setEpisode(episodeNumber);
@@ -448,9 +448,9 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
     return 0;
 }
 
-QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
+QList<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 {
-    QList<int> episodes;
+    QList<EpisodeNumber> episodes;
     if (files.isEmpty()) {
         return episodes;
     }
@@ -478,7 +478,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
-    foreach (const QString &pattern, patterns) {
+    for (const QString &pattern : patterns) {
         rx.setPattern(pattern);
         int pos = 0;
         int lastPos = -1;
@@ -488,7 +488,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             if (lastPos != -1 && lastPos < pos + 5) {
                 break;
             }
-            episodes << rx.cap(2).toInt();
+            episodes << EpisodeNumber(rx.cap(2).toInt());
             pos += rx.matchedLength();
             lastPos = pos;
         }
@@ -499,7 +499,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             if (episodes.count() == 1) {
                 rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
                 while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
-                    episodes << rx.cap(1).toInt();
+                    episodes << EpisodeNumber(rx.cap(1).toInt());
                     pos += rx.matchedLength() - 1;
                 }
             }

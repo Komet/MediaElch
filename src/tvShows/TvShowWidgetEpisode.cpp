@@ -337,7 +337,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->name->setText(m_episode->name());
     ui->showTitle->setText(m_episode->showTitle());
     ui->season->setValue(m_episode->season());
-    ui->episode->setValue(m_episode->episode());
+    ui->episode->setValue(m_episode->episode().toInt());
     ui->displaySeason->setValue(m_episode->displaySeason());
     ui->displayEpisode->setValue(m_episode->displayEpisode());
     ui->rating->setValue(m_episode->rating());
@@ -862,7 +862,7 @@ void TvShowWidgetEpisode::onSeasonChange(int value)
  */
 void TvShowWidgetEpisode::onEpisodeChange(int value)
 {
-    m_episode->setEpisode(value);
+    m_episode->setEpisode(EpisodeNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 

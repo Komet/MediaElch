@@ -208,7 +208,7 @@ void TheTvDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, EpisodeNumber episode)
 {
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);

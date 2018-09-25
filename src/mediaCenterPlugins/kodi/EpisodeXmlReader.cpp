@@ -30,7 +30,8 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         m_episode.setSeason(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt());
     }
     if (!episodeDetails.elementsByTagName("episode").isEmpty()) {
-        m_episode.setEpisode(episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt());
+        m_episode.setEpisode(
+            EpisodeNumber(episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("displayseason").isEmpty()) {
         m_episode.setDisplaySeason(episodeDetails.elementsByTagName("displayseason").at(0).toElement().text().toInt());

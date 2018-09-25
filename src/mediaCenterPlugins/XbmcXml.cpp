@@ -880,7 +880,8 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
             if (!episodeDetails.elementsByTagName("season").isEmpty()
                 && episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt() == episode->season()
                 && !episodeDetails.elementsByTagName("episode").isEmpty()
-                && episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt() == episode->episode()) {
+                && episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt()
+                       == episode->episode().toInt()) {
                 found = true;
                 break;
             }
@@ -1131,7 +1132,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("votes", QString("%1").arg(episode->votes()));
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
     xml.writeTextElement("season", QString("%1").arg(episode->season()));
-    xml.writeTextElement("episode", QString("%1").arg(episode->episode()));
+    xml.writeTextElement("episode", episode->episode().toString());
     if (episode->displaySeason() > -1) {
         xml.writeTextElement("displayseason", QString("%1").arg(episode->displaySeason()));
     }
