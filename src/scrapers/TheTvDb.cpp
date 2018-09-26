@@ -720,14 +720,17 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem,
         && !elem.elementsByTagName("airsafter_season").at(0).toElement().text().isEmpty()
         && !elem.elementsByTagName("airsbefore_season").isEmpty()
         && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
-        episode->setDisplaySeason(elem.elementsByTagName("airsafter_season").at(0).toElement().text().toInt());
-        episode->setDisplayEpisode(4096);
+        episode->setDisplaySeason(
+            SeasonNumber(elem.elementsByTagName("airsafter_season").at(0).toElement().text().toInt()));
+        episode->setDisplayEpisode(EpisodeNumber(4096)); // todo: for sorting
     } else if (!elem.elementsByTagName("airsbefore_season").isEmpty()
                && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
-        episode->setDisplaySeason(elem.elementsByTagName("airsbefore_season").at(0).toElement().text().toInt());
+        episode->setDisplaySeason(
+            SeasonNumber(elem.elementsByTagName("airsbefore_season").at(0).toElement().text().toInt()));
         if (!elem.elementsByTagName("airsbefore_episode").isEmpty()
             && !elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().isEmpty()) {
-            episode->setDisplayEpisode(elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().toInt());
+            episode->setDisplayEpisode(
+                EpisodeNumber(elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().toInt()));
         }
     }
 

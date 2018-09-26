@@ -21,7 +21,7 @@ public:
     static const EpisodeNumber NoEpisode;
 
 private:
-    int m_episodeNumber;
+    int m_episodeNumber = -1; // No episode
 };
 
 #endif // DATA_EPISODE_NUMBER

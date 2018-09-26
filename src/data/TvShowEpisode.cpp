@@ -18,24 +18,25 @@
  * @param files Files of the episode
  * @param parent
  */
-TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) : QObject(parent)
+TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
+    QObject(parent),
+    m_parent{parent},
+    m_season{SeasonNumber::NoSeason},
+    m_episode{EpisodeNumber::NoEpisode},
+    m_displaySeason{SeasonNumber::NoSeason},
+    m_displayEpisode{EpisodeNumber::NoEpisode},
+    m_playCount{0},
+    m_thumbnailImageChanged{false},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_hasChanged{false},
+    m_streamDetailsLoaded{false},
+    m_databaseId{-1},
+    m_syncNeeded{false},
+    m_isDummy{false}
 {
-    m_parent = parent;
-    m_season = SeasonNumber::NoSeason;
-    m_episode = EpisodeNumber::NoEpisode;
-    m_displaySeason = -1;
-    m_displayEpisode = -1;
-    m_playCount = 0;
-    m_thumbnailImageChanged = false;
-    m_hasChanged = false;
     static int m_idCounter = 0;
     m_episodeId = ++m_idCounter;
-    m_streamDetailsLoaded = false;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_databaseId = -1;
-    m_syncNeeded = false;
-    m_isDummy = false;
     setFiles(files);
 }
 
@@ -317,7 +318,7 @@ SeasonNumber TvShowEpisode::season() const
  * @return Display Season number
  * @see TvShowEpisode::setDisplaySeasonNumber
  */
-int TvShowEpisode::displaySeason() const
+SeasonNumber TvShowEpisode::displaySeason() const
 {
     return m_displaySeason;
 }
@@ -349,7 +350,7 @@ EpisodeNumber TvShowEpisode::episode() const
  * @return Display Episode number
  * @see TvShowEpisode::setDisplayEpisode
  */
-int TvShowEpisode::displayEpisode() const
+EpisodeNumber TvShowEpisode::displayEpisode() const
 {
     return m_displayEpisode;
 }
@@ -655,9 +656,9 @@ void TvShowEpisode::setEpisode(EpisodeNumber episode)
  * @param season Display Season number
  * @see TvShowEpisode::displaySeason
  */
-void TvShowEpisode::setDisplaySeason(int season)
+void TvShowEpisode::setDisplaySeason(SeasonNumber season)
 {
-    m_displaySeason = season;
+    m_displaySeason = std::move(season);
     setChanged(true);
 }
 
@@ -666,9 +667,9 @@ void TvShowEpisode::setDisplaySeason(int season)
  * @param episode Display Episode number
  * @see TvShowEpisode::displayEpisode
  */
-void TvShowEpisode::setDisplayEpisode(int episode)
+void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
 {
-    m_displayEpisode = episode;
+    m_displayEpisode = std::move(episode);
     setChanged(true);
 }
 

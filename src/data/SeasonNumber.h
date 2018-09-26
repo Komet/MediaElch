@@ -22,7 +22,7 @@ public:
     static const SeasonNumber SpecialsSeason;
 
 private:
-    int m_seasonNumber;
+    int m_seasonNumber = -1; // No season
 };
 
 #endif // DATA_SEASON_NUMBER

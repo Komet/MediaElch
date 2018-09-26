@@ -1144,11 +1144,11 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
     xml.writeTextElement("season", episode->season().toString());
     xml.writeTextElement("episode", episode->episode().toString());
-    if (episode->displaySeason() > -1) {
-        xml.writeTextElement("displayseason", QString("%1").arg(episode->displaySeason()));
+    if (episode->displaySeason() != SeasonNumber::NoSeason) {
+        xml.writeTextElement("displayseason", episode->displaySeason().toString());
     }
-    if (episode->displayEpisode() > -1) {
-        xml.writeTextElement("displayepisode", QString("%1").arg(episode->displayEpisode()));
+    if (episode->displayEpisode() != EpisodeNumber::NoEpisode) {
+        xml.writeTextElement("displayepisode", episode->displayEpisode().toString());
     }
     xml.writeTextElement("plot", episode->overview());
     xml.writeTextElement("outline", episode->overview());

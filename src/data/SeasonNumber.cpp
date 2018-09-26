@@ -5,7 +5,7 @@
 
 SeasonNumber::SeasonNumber(int seasonNumber) :
     // Any number lower than 0 is regarded invalid => no episode number
-    m_seasonNumber(seasonNumber > -1 ? seasonNumber : SeasonNumber::NoSeason.toInt())
+    m_seasonNumber(seasonNumber > -1 ? seasonNumber : -1)
 {
 }
 

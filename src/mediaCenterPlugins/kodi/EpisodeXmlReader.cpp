@@ -34,11 +34,12 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
             EpisodeNumber(episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("displayseason").isEmpty()) {
-        m_episode.setDisplaySeason(episodeDetails.elementsByTagName("displayseason").at(0).toElement().text().toInt());
+        m_episode.setDisplaySeason(
+            SeasonNumber(episodeDetails.elementsByTagName("displayseason").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("displayepisode").isEmpty()) {
         m_episode.setDisplayEpisode(
-            episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
+            EpisodeNumber(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("rating").isEmpty()) {
         m_episode.setRating(

@@ -338,8 +338,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->showTitle->setText(m_episode->showTitle());
     ui->season->setValue(m_episode->season().toInt());
     ui->episode->setValue(m_episode->episode().toInt());
-    ui->displaySeason->setValue(m_episode->displaySeason());
-    ui->displayEpisode->setValue(m_episode->displayEpisode());
+    ui->displaySeason->setValue(m_episode->displaySeason().toInt());
+    ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
     ui->rating->setValue(m_episode->rating());
     ui->votes->setValue(m_episode->votes());
     ui->top250->setValue(m_episode->top250());
@@ -871,7 +871,7 @@ void TvShowWidgetEpisode::onEpisodeChange(int value)
  */
 void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
 {
-    m_episode->setDisplaySeason(value);
+    m_episode->setDisplaySeason(SeasonNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -880,7 +880,7 @@ void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
  */
 void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
 {
-    m_episode->setDisplayEpisode(value);
+    m_episode->setDisplayEpisode(EpisodeNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 

@@ -27,8 +27,8 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(SeasonNumber season READ season WRITE setSeason)
     Q_PROPERTY(EpisodeNumber episode READ episode WRITE setEpisode)
-    Q_PROPERTY(int displaySeason READ displaySeason WRITE setDisplaySeason)
-    Q_PROPERTY(int displayEpisode READ displayEpisode WRITE setDisplayEpisode)
+    Q_PROPERTY(SeasonNumber displaySeason READ displaySeason WRITE setDisplaySeason)
+    Q_PROPERTY(EpisodeNumber displayEpisode READ displayEpisode WRITE setDisplayEpisode)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QStringList writers READ writers WRITE setWriters)
     Q_PROPERTY(QStringList directors READ directors WRITE setDirectors)
@@ -54,8 +54,8 @@ public:
     virtual int top250() const;
     virtual SeasonNumber season() const;
     virtual EpisodeNumber episode() const;
-    virtual int displaySeason() const;
-    virtual int displayEpisode() const;
+    virtual SeasonNumber displaySeason() const;
+    virtual EpisodeNumber displayEpisode() const;
     virtual QString overview() const;
     virtual QStringList writers() const;
     virtual QStringList directors() const;
@@ -92,8 +92,8 @@ public:
     void setTop250(int top250);
     void setSeason(SeasonNumber season);
     void setEpisode(EpisodeNumber episode);
-    void setDisplaySeason(int season);
-    void setDisplayEpisode(int episode);
+    void setDisplaySeason(SeasonNumber season);
+    void setDisplayEpisode(EpisodeNumber episode);
     void setOverview(QString overview);
     void setWriters(QStringList writers);
     void addWriter(QString writer);
@@ -154,8 +154,8 @@ private:
     QString m_imdbId;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
-    int m_displaySeason;
-    int m_displayEpisode;
+    SeasonNumber m_displaySeason;
+    EpisodeNumber m_displayEpisode;
     QString m_overview;
     QStringList m_writers;
     QStringList m_directors;
