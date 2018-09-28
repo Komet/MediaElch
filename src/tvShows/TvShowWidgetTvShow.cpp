@@ -335,7 +335,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
-    ui->runtime->setValue(m_show->runtime());
+    ui->runtime->setValue(static_cast<int>(m_show->runtime().count()));
     if (m_show->status() == "Continuing") {
         ui->comboStatus->setCurrentIndex(1);
     } else if (m_show->status() == "Ended") {
@@ -345,7 +345,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     }
 
     ui->actors->blockSignals(true);
-    foreach (Actor *actor, m_show->actorsPointer()) {
+    for (Actor *actor : m_show->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -1028,7 +1028,7 @@ void TvShowWidgetTvShow::onRatingChange(double value)
 
 void TvShowWidgetTvShow::onRuntimeChange(int runtime)
 {
-    m_show->setRuntime(runtime);
+    m_show->setRuntime(std::chrono::minutes(runtime));
     ui->buttonRevert->setVisible(true);
 }
 

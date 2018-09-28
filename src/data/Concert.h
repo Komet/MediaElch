@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QUrl>
+#include <chrono>
 
 class MediaCenterInterface;
 class StreamDetails;
@@ -30,7 +31,7 @@ class Concert : public QObject
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
-    Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
+    Q_PROPERTY(std::chrono::minutes runtime READ runtime WRITE setRuntime)
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
@@ -57,7 +58,7 @@ public:
     virtual qreal rating() const;
     virtual QDate released() const;
     virtual QString tagline() const;
-    virtual int runtime() const;
+    virtual std::chrono::minutes runtime() const;
     virtual QString certification() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
@@ -93,7 +94,7 @@ public:
     void setRating(qreal rating);
     void setReleased(QDate released);
     void setTagline(QString tagline);
-    void setRuntime(int runtime);
+    void setRuntime(std::chrono::minutes runtime);
     void setCertification(QString certification);
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
@@ -168,7 +169,7 @@ private:
     qreal m_rating;
     QDate m_released;
     QString m_tagline;
-    int m_runtime;
+    std::chrono::minutes m_runtime;
     QString m_certification;
     QStringList m_genres;
     QStringList m_tags;

@@ -296,7 +296,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
     // Runtime
     rx.setPattern("ca. ([0-9]*) Minuten");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(1).trimmed().toInt());
+        movie->setRuntime(std::chrono::minutes(rx.cap(1).trimmed().toInt()));
     }
 
     // Rating

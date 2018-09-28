@@ -211,7 +211,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(2).toInt());
+        movie->setRuntime(std::chrono::minutes(rx.cap(2).toInt()));
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"datePublished\" content=\"([0-9]{4})(.*)\">");

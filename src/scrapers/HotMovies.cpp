@@ -168,11 +168,15 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
 
     rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]*">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        QStringList runtime = rx.cap(1).split(":");
-        if (runtime.count() == 3) {
-            movie->setRuntime(runtime.at(0).toInt() * 60 + runtime.at(1).toInt());
-        } else if (runtime.count() == 2) {
-            movie->setRuntime(runtime.at(0).toInt());
+        using namespace std::chrono;
+        QStringList runtimeStr = rx.cap(1).split(":");
+        if (runtimeStr.count() == 3) {
+            minutes runtime = hours(runtimeStr.at(0).toInt()) + minutes(runtimeStr.at(1).toInt());
+            movie->setRuntime(runtime);
+
+        } else if (runtimeStr.count() == 2) {
+            minutes runtime = minutes(runtimeStr.at(0).toInt());
+            movie->setRuntime(runtime);
         }
     }
 

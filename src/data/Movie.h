@@ -16,6 +16,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QUrl>
+#include <chrono>
 
 class MediaCenterInterface;
 
@@ -49,7 +50,7 @@ public:
     QDate released() const;
     QString tagline() const;
     QString outline() const;
-    int runtime() const;
+    std::chrono::minutes runtime() const;
     QString certification() const;
     QString writer() const;
     QString director() const;
@@ -99,7 +100,7 @@ public:
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setOutline(QString outline);
-    void setRuntime(int runtime);
+    void setRuntime(std::chrono::minutes runtime);
     void setCertification(QString certification);
     void setWriter(QString writer);
     void setDirector(QString director);
@@ -176,7 +177,7 @@ private:
     QDate m_released;
     QString m_tagline;
     QString m_outline;
-    int m_runtime;
+    std::chrono::minutes m_runtime;
     QString m_certification;
     QString m_writer;
     QString m_director;

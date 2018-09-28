@@ -304,6 +304,8 @@ void IMDB::onPosterLoadFinished()
 
 void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
 {
+    using namespace std::chrono;
+
     QRegExp rx;
     rx.setMinimal(true);
 
@@ -455,15 +457,17 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
     rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M",)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         if (rx.captureCount() > 1) {
-            movie->setRuntime(rx.cap(1).toInt() * 60 + rx.cap(2).toInt());
+            minutes runtime = hours(rx.cap(1).toInt()) + minutes(rx.cap(2).toInt());
+            movie->setRuntime(runtime);
         } else {
-            movie->setRuntime(rx.cap(1).toInt());
+            minutes runtime = minutes(rx.cap(1).toInt());
+            movie->setRuntime(runtime);
         }
     }
 
     rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time itemprop="duration" datetime="PT([0-9]+)M">)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(1).toInt());
+        movie->setRuntime(minutes(rx.cap(1).toInt()));
     }
 
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");

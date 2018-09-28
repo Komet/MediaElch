@@ -284,7 +284,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     // Runtime
     rx.setPattern(R"(<dt class="length">Dauer</dt>\n? *<dd class="length">([0-9]+) Min</dd>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie.setRuntime(rx.cap(1).trimmed().toInt());
+        movie.setRuntime(std::chrono::minutes(rx.cap(1).trimmed().toInt()));
     }
 
     if (infos.contains(MovieScraperInfos::Overview)) {

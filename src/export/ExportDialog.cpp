@@ -238,7 +238,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
     m.replace("{{ MOVIE.RATING }}", QString::number(movie->rating(), 'f', 1));
     m.replace("{{ MOVIE.VOTES }}", QString::number(movie->votes(), 'f', 0));
-    m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime(), 'f', 0));
+    m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime().count(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}",
         movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
@@ -333,7 +333,7 @@ void ExportDialog::replaceVars(QString &m, const Concert *concert, QDir dir, boo
     m.replace("{{ CONCERT.TAGLINE }}", concert->tagline().toHtmlEscaped());
     m.replace("{{ CONCERT.RATING }}", QString::number(concert->rating(), 'f', 1));
     m.replace("{{ CONCERT.YEAR }}", concert->released().isValid() ? concert->released().toString("yyyy") : "");
-    m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime(), 'f', 0));
+    m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime().count(), 'f', 0));
     m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toHtmlEscaped());
     m.replace("{{ CONCERT.TRAILER }}", concert->trailer().toString());
     m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));

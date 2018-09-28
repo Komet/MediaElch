@@ -768,7 +768,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
         movie->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
     if (infos.contains(MovieScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
-        movie->setRuntime(parsedJson.value("runtime").toInt());
+        movie->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
     if (infos.contains(MovieScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();

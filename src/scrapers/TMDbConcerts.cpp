@@ -556,7 +556,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
         concert->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
     if (infos.contains(ConcertScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
-        concert->setRuntime(parsedJson.value("runtime").toInt());
+        concert->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
     if (infos.contains(ConcertScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();

@@ -125,9 +125,11 @@ void ConcertController::loadData(QString id,
 
 void ConcertController::loadStreamDetailsFromFile()
 {
+    using namespace std::chrono;
     m_concert->streamDetails()->loadStreamDetails();
-    m_concert->setRuntime(qFloor(
-        m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+    seconds runtime(
+        m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
+    m_concert->setRuntime(duration_cast<minutes>(runtime));
     m_concert->setStreamDetailsLoaded(true);
     m_concert->setChanged(true);
 }

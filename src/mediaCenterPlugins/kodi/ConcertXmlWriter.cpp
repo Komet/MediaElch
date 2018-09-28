@@ -15,6 +15,8 @@ ConcertXmlWriter::ConcertXmlWriter(Concert &concert) : m_concert{concert}
 
 QByteArray ConcertXmlWriter::getConcertXml()
 {
+    using namespace std::chrono_literals;
+
     QDomDocument doc;
     doc.setContent(m_concert.nfoContent());
     if (m_concert.nfoContent().isEmpty()) {
@@ -35,8 +37,8 @@ QByteArray ConcertXmlWriter::getConcertXml()
     XbmcXml::setTextValue(doc, "plot", m_concert.overview());
     XbmcXml::setTextValue(doc, "outline", m_concert.overview());
     XbmcXml::setTextValue(doc, "tagline", m_concert.tagline());
-    if (m_concert.runtime() > 0) {
-        XbmcXml::setTextValue(doc, "runtime", QString("%1").arg(m_concert.runtime()));
+    if (m_concert.runtime() > 0min) {
+        XbmcXml::setTextValue(doc, "runtime", QString::number(m_concert.runtime().count()));
     }
     XbmcXml::setTextValue(doc, "mpaa", m_concert.certification());
     XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_concert.playcount()));

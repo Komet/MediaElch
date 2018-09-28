@@ -11,6 +11,7 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include <chrono>
 
 struct Actor;
 struct Poster;
@@ -76,7 +77,7 @@ public:
     virtual bool syncNeeded() const;
     virtual QList<TvShowScraperInfos> infosToLoad() const;
     virtual bool hasTune() const;
-    virtual int runtime() const;
+    virtual std::chrono::minutes runtime() const;
     virtual QString sortTitle() const;
     virtual bool isDummySeason(SeasonNumber season) const;
     virtual bool hasDummyEpisodes() const;
@@ -122,7 +123,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setHasTune(bool hasTune);
-    void setRuntime(int runtime);
+    void setRuntime(std::chrono::minutes runtime);
     void setSortTitle(QString sortTitle);
     void setShowMissingEpisodes(bool showMissing, bool updateDatabase = true);
     void setHideSpecialsInMissingEpisodes(bool hideSpecials, bool updateDatabase = true);
@@ -184,7 +185,7 @@ private:
     QString m_sortTitle;
     Rating m_rating;
     QDate m_firstAired;
-    int m_runtime;
+    std::chrono::minutes m_runtime;
     QStringList m_genres;
     QStringList m_tags;
     QString m_certification;

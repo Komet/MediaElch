@@ -15,6 +15,8 @@ TvShowXmlWriter::TvShowXmlWriter(TvShow &tvShow) : m_show{tvShow}
 
 QByteArray TvShowXmlWriter::getTvShowXml()
 {
+    using namespace std::chrono_literals;
+
     QDomDocument doc;
     doc.setContent(m_show.nfoContent());
     if (m_show.nfoContent().isEmpty()) {
@@ -50,8 +52,8 @@ QByteArray TvShowXmlWriter::getTvShowXml()
     } else {
         XbmcXml::removeChildNodes(doc, "status");
     }
-    if (m_show.runtime() > 0) {
-        XbmcXml::setTextValue(doc, "runtime", QString("%1").arg(m_show.runtime()));
+    if (m_show.runtime() > 0min) {
+        XbmcXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
     } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
         showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
     }

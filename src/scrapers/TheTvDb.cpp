@@ -429,7 +429,8 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                 show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text().trimmed());
             }
             if (infosToLoad.contains(TvShowScraperInfos::Runtime) && !elem.elementsByTagName("Runtime").isEmpty()) {
-                show->setRuntime(elem.elementsByTagName("Runtime").at(0).toElement().text().toInt());
+                show->setRuntime(
+                    std::chrono::minutes(elem.elementsByTagName("Runtime").at(0).toElement().text().toInt()));
             }
             if (infosToLoad.contains(TvShowScraperInfos::Status) && !elem.elementsByTagName("Status").isEmpty()) {
                 show->setStatus(elem.elementsByTagName("Status").at(0).toElement().text());
@@ -1114,6 +1115,8 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
     TvShowUpdateType updateType,
     QList<TvShowScraperInfos> infosToLoad)
 {
+    using namespace std::chrono_literals;
+
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(xml, m_dummyMovie, m_movieInfos);
 
@@ -1139,7 +1142,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
             show->setFirstAired(m_dummyMovie->released());
         }
 
-        if (shouldLoadFromImdb(TvShowScraperInfos::Runtime, infosToLoad) && m_dummyMovie->runtime() != 0) {
+        if (shouldLoadFromImdb(TvShowScraperInfos::Runtime, infosToLoad) && m_dummyMovie->runtime() > 0min) {
             show->setRuntime(m_dummyMovie->runtime());
         }
 
@@ -1154,7 +1157,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
             show->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Genres);
-            foreach (const QString &genre, m_dummyMovie->genres()) {
+            for (const QString &genre : m_dummyMovie->genres()) {
                 show->addGenre(Helper::instance()->mapGenre(genre));
             }
         }

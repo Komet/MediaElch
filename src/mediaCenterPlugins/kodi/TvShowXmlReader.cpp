@@ -68,7 +68,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
                                       .text());
     }
     if (!domDoc.elementsByTagName("runtime").isEmpty()) {
-        m_show.setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
+        m_show.setRuntime(std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));
     }
     if (!domDoc.elementsByTagName("status").isEmpty()) {
         m_show.setStatus(domDoc.elementsByTagName("status").at(0).toElement().text());

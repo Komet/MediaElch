@@ -286,8 +286,9 @@ void ConcertWidget::setConcert(Concert *concert)
         const auto videoDetails = concert->streamDetails()->videoDetails();
         if (concert->streamDetailsLoaded()
             && videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() != 0) {
-            concert->setRuntime(
-                qFloor(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+            using namespace std::chrono;
+            seconds runtime{videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt()};
+            concert->setRuntime(duration_cast<minutes>(runtime));
         }
     }
     updateConcertInfo();
@@ -442,7 +443,7 @@ void ConcertWidget::updateConcertInfo()
     ui->tagline->setText(m_concert->tagline());
     ui->rating->setValue(m_concert->rating());
     ui->released->setDate(m_concert->released());
-    ui->runtime->setValue(m_concert->runtime());
+    ui->runtime->setValue(static_cast<int>(m_concert->runtime().count()));
     ui->trailer->setText(m_concert->trailer().toString());
     ui->playcount->setValue(m_concert->playcount());
     ui->lastPlayed->setDateTime(m_concert->lastPlayed());
@@ -875,7 +876,7 @@ void ConcertWidget::onRuntimeChange(int value)
     if (!m_concert) {
         return;
     }
-    m_concert->setRuntime(value);
+    m_concert->setRuntime(std::chrono::minutes(value));
     ui->buttonRevert->setVisible(true);
 }
 

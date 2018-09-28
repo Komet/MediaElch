@@ -45,7 +45,8 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
         m_concert.setTagline(domDoc.elementsByTagName("tagline").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("runtime").isEmpty()) {
-        m_concert.setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
+        m_concert.setRuntime(
+            std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));
     }
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
         m_concert.setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());

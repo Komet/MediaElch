@@ -13,6 +13,8 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 
+using namespace std::chrono_literals;
+
 /**
  * @brief TvShow::TvShow
  * @param dir
@@ -21,7 +23,7 @@
 TvShow::TvShow(QString dir, QObject *parent) :
     QObject(parent),
     m_dir{dir},
-    m_runtime{0},
+    m_runtime{0min},
     m_hasTune{false},
     m_downloadsInProgress{false},
     m_infoLoaded{false},
@@ -153,7 +155,7 @@ void TvShow::clear(QList<TvShowScraperInfos> infos)
         m_extraFanarts.clear();
     }
     if (infos.contains(TvShowScraperInfos::Runtime)) {
-        m_runtime = 0;
+        m_runtime = 0min;
     }
     m_hasChanged = false;
 }
@@ -1368,12 +1370,12 @@ bool TvShow::hasImage(ImageType type)
     return m_hasImage.value(type, false);
 }
 
-int TvShow::runtime() const
+std::chrono::minutes TvShow::runtime() const
 {
     return m_runtime;
 }
 
-void TvShow::setRuntime(int runtime)
+void TvShow::setRuntime(std::chrono::minutes runtime)
 {
     m_runtime = runtime;
     setChanged(true);

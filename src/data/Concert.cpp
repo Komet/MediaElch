@@ -11,6 +11,8 @@
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"
 
+using namespace std::chrono_literals;
+
 /**
  * @brief Constructs a new concert object
  * @param files List of files for this concert
@@ -20,7 +22,7 @@ Concert::Concert(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
     m_rating{0},
-    m_runtime{0},
+    m_runtime{0min},
     m_playcount{0},
     m_downloadsSize{0},
     m_watched{false},
@@ -109,7 +111,7 @@ void Concert::clear(QList<ConcertScraperInfos> infos)
         m_tagline = "";
     }
     if (infos.contains(ConcertScraperInfos::Runtime)) {
-        m_runtime = 0;
+        m_runtime = 0min;
     }
     if (infos.contains(ConcertScraperInfos::Trailer)) {
         m_trailer = "";
@@ -236,7 +238,7 @@ QString Concert::tagline() const
  * @return Runtime of the concert
  * @see Concert::setRuntime
  */
-int Concert::runtime() const
+std::chrono::minutes Concert::runtime() const
 {
     return m_runtime;
 }
@@ -578,7 +580,7 @@ void Concert::setTagline(QString tagline)
  * @param runtime Runtime in minutes
  * @see Concert::runtime
  */
-void Concert::setRuntime(int runtime)
+void Concert::setRuntime(std::chrono::minutes runtime)
 {
     m_runtime = runtime;
     setChanged(true);
