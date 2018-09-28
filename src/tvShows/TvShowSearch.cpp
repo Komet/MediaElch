@@ -92,15 +92,15 @@ TvShowSearch *TvShowSearch::instance(QWidget *parent)
  * @param searchString String to search for
  * @return Result of QDialog::exec
  */
-int TvShowSearch::exec(QString searchString, QString id)
+int TvShowSearch::exec(QString searchString, TvDbId id)
 {
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height() - 200);
     newSize.setWidth(qMin(600, parentWidget()->size().width() - 400));
     resize(newSize);
 
-    if (!id.isEmpty()) {
-        ui->searchString->setText("id" + id);
+    if (id.isValid()) {
+        ui->searchString->setText(id.withPrefix());
     } else {
         ui->searchString->setText(searchString.replace(".", " "));
     }
@@ -164,8 +164,8 @@ void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
 void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 {
     qDebug() << "Entered";
-    m_scraperId = item->data(Qt::UserRole).toString();
-    qDebug() << "m_scraperId=" << m_scraperId;
+    m_scraperId = TvDbId(item->data(Qt::UserRole).toString());
+    qDebug() << "m_scraperId=" << m_scraperId.toString();
     this->accept();
 }
 
@@ -189,9 +189,9 @@ void TvShowSearch::setSearchType(TvShowType type)
  * @brief Returns the id of the current scraper
  * @return Id of the current scraper
  */
-QString TvShowSearch::scraperId()
+TvDbId TvShowSearch::scraperId()
 {
-    qDebug() << "Entered, m_scraperId" << m_scraperId;
+    qDebug() << "Entered, m_scraperId" << m_scraperId.toString();
     return m_scraperId;
 }
 

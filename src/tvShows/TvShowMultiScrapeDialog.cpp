@@ -275,8 +275,8 @@ void TvShowMultiScrapeDialog::scrapeNext()
     ui->progressItem->setValue(0);
 
     if (ui->chkOnlyId->isChecked()
-        && ((m_currentShow && m_currentShow->tvdbId() == "")
-               || (m_currentEpisode && m_currentEpisode->tvShow()->tvdbId() == ""))) {
+        && ((m_currentShow && !m_currentShow->tvdbId().isValid())
+               || (m_currentEpisode && !m_currentEpisode->tvShow()->tvdbId().isValid()))) {
         scrapeNext();
         return;
     }
@@ -287,7 +287,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             this,
             &TvShowMultiScrapeDialog::onInfoLoadDone,
             Qt::UniqueConnection);
-        if (m_currentShow->tvdbId().isEmpty()) {
+        if (!m_currentShow->tvdbId().isValid()) {
             m_scraperInterface->search(m_currentShow->name());
         } else {
             m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
@@ -298,7 +298,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             this,
             &TvShowMultiScrapeDialog::onEpisodeLoadDone,
             Qt::UniqueConnection);
-        if (!m_currentEpisode->tvShow()->tvdbId().isEmpty()) {
+        if (m_currentEpisode->tvShow()->tvdbId().isValid()) {
             m_currentEpisode->loadData(m_currentEpisode->tvShow()->tvdbId(), m_scraperInterface, m_infosToLoad);
         } else if (m_showIds.contains(m_currentEpisode->tvShow()->name())) {
             m_currentEpisode->loadData(
@@ -320,11 +320,11 @@ void TvShowMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> result
     }
 
     if (m_currentShow) {
-        m_showIds.insert(m_currentShow->name(), results.first().id);
-        m_currentShow->loadData(results.first().id, m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
+        m_showIds.insert(m_currentShow->name(), TvDbId(results.first().id));
+        m_currentShow->loadData(TvDbId(results.first().id), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
     } else if (m_currentEpisode) {
-        m_showIds.insert(m_currentEpisode->tvShow()->name(), results.first().id);
-        m_currentEpisode->loadData(results.first().id, m_scraperInterface, m_infosToLoad);
+        m_showIds.insert(m_currentEpisode->tvShow()->name(), TvDbId(results.first().id));
+        m_currentEpisode->loadData(TvDbId(results.first().id), m_scraperInterface, m_infosToLoad);
     }
 }
 
@@ -336,13 +336,13 @@ void TvShowMultiScrapeDialog::onScrapingFinished()
     if (ui->chkOnlyId->isChecked()) {
         numberOfShows = 0;
         numberOfEpisodes = 0;
-        foreach (TvShow *show, m_shows) {
-            if (!show->tvdbId().isEmpty()) {
+        for (TvShow *show : m_shows) {
+            if (show->tvdbId().isValid()) {
                 numberOfShows++;
             }
         }
-        foreach (TvShowEpisode *episode, m_episodes) {
-            if (!episode->tvShow()->tvdbId().isEmpty()) {
+        for (TvShowEpisode *episode : m_episodes) {
+            if (episode->tvShow()->tvdbId().isValid()) {
                 numberOfEpisodes++;
             }
         }
@@ -384,7 +384,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow *show)
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
-    if (!show->tvdbId().isEmpty() && m_infosToLoad.contains(TvShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && m_infosToLoad.contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>)),

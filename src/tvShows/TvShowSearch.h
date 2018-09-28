@@ -1,6 +1,7 @@
 #ifndef TVSHOWSEARCH_H
 #define TVSHOWSEARCH_H
 
+#include "data/TvDbId.h"
 #include "globals/Globals.h"
 
 #include <QDialog>
@@ -20,14 +21,14 @@ class TvShowSearch : public QDialog
 public:
     explicit TvShowSearch(QWidget *parent = nullptr);
     ~TvShowSearch() override;
-    QString scraperId();
+    TvDbId scraperId();
     QList<TvShowScraperInfos> infosToLoad();
     void setSearchType(TvShowType type);
     TvShowUpdateType updateType();
 
 public slots:
     int exec() override;
-    int exec(QString searchString, QString id);
+    int exec(QString searchString, TvDbId id);
     static TvShowSearch *instance(QWidget *parent = nullptr);
 
 private slots:
@@ -42,7 +43,7 @@ private slots:
 private:
     Ui::TvShowSearch *ui;
     void clear();
-    QString m_scraperId;
+    TvDbId m_scraperId;
     QList<TvShowScraperInfos> m_infosToLoad;
     TvShowType m_searchType;
 };

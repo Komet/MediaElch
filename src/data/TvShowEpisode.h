@@ -5,6 +5,7 @@
 #include "data/Rating.h"
 #include "data/SeasonNumber.h"
 #include "data/StreamDetails.h"
+#include "data/TvDbId.h"
 #include "data/TvShowModelItem.h"
 #include "globals/Globals.h"
 
@@ -125,7 +126,7 @@ public:
     void removeActor(Actor *actor);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad);
+    void loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();

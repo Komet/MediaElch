@@ -1,6 +1,7 @@
 #ifndef TVSHOWSEARCHEPISODE_H
 #define TVSHOWSEARCHEPISODE_H
 
+#include "data/TvDbId.h"
 #include "globals/Globals.h"
 
 #include <QTableWidgetItem>
@@ -17,11 +18,11 @@ class TvShowSearchEpisode : public QWidget
 public:
     explicit TvShowSearchEpisode(QWidget *parent = nullptr);
     ~TvShowSearchEpisode() override;
-    QString scraperId();
+    TvDbId scraperId();
     QList<TvShowScraperInfos> infosToLoad();
 
 public slots:
-    void search(QString searchString, QString id);
+    void search(QString searchString, TvDbId id);
 
 signals:
     void sigResultClicked();
@@ -36,7 +37,7 @@ private slots:
 private:
     Ui::TvShowSearchEpisode *ui;
     void clear();
-    QString m_scraperId;
+    TvDbId m_scraperId;
     QList<TvShowScraperInfos> m_infosToLoad;
 };
 

@@ -42,8 +42,8 @@ QByteArray TvShowXmlWriter::getTvShowXml()
     XbmcXml::setTextValue(doc, "mpaa", QString("%1").arg(m_show.certification()));
     XbmcXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
     XbmcXml::setTextValue(doc, "studio", m_show.network());
-    XbmcXml::setTextValue(doc, "tvdbid", m_show.tvdbId());
-    XbmcXml::setTextValue(doc, "id", m_show.id());
+    XbmcXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
+    XbmcXml::setTextValue(doc, "id", m_show.id().toString());
     XbmcXml::setTextValue(doc, "imdbid", m_show.imdbId());
     if (!m_show.status().isEmpty()) {
         XbmcXml::setTextValue(doc, "status", m_show.status());

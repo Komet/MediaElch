@@ -234,6 +234,7 @@ SOURCES += src/main.cpp \
     src/xbmc/XbmcSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
+    src/data/TvDbId.cpp \
     src/data/EpisodeNumber.cpp \
     src/data/SeasonNumber.cpp
 
@@ -423,6 +424,7 @@ HEADERS  += Version.h \
     src/xbmc/XbmcSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
+    src/data/TvDbId.h \
     src/data/EpisodeNumber.h \
     src/data/SeasonNumber.h
 

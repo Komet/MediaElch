@@ -506,7 +506,7 @@ void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param types
  */
-void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
+void FanartTv::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
 {
     loadTvShowData(tvdbId, types, show);
 }
@@ -516,12 +516,12 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types
  * @param tvdbId The Tv DB Id
  * @param type
  */
-void FanartTv::loadTvShowData(QString tvdbId, ImageType type, SeasonNumber season)
+void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
@@ -534,12 +534,12 @@ void FanartTv::loadTvShowData(QString tvdbId, ImageType type, SeasonNumber seaso
  * @param tvdbId The Tv DB Id
  * @param types
  */
-void FanartTv::loadTvShowData(QString tvdbId, QList<ImageType> types, TvShow *show)
+void FanartTv::loadTvShowData(TvDbId tvdbId, QList<ImageType> types, TvShow *show)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
@@ -588,7 +588,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
  * @brief Load tv show posters
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowPosters(QString tvdbId)
+void FanartTv::tvShowPosters(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
@@ -597,7 +597,7 @@ void FanartTv::tvShowPosters(QString tvdbId)
  * @brief Load tv show backdrops
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowBackdrops(QString tvdbId)
+void FanartTv::tvShowBackdrops(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
@@ -606,12 +606,12 @@ void FanartTv::tvShowBackdrops(QString tvdbId)
  * @brief Load tv show logos
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowLogos(QString tvdbId)
+void FanartTv::tvShowLogos(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowLogos);
 }
 
-void FanartTv::tvShowThumbs(QString tvdbId)
+void FanartTv::tvShowThumbs(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowThumb);
 }
@@ -620,7 +620,7 @@ void FanartTv::tvShowThumbs(QString tvdbId)
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowClearArts(QString tvdbId)
+void FanartTv::tvShowClearArts(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowClearArt);
 }
@@ -629,7 +629,7 @@ void FanartTv::tvShowClearArts(QString tvdbId)
  * @brief Load tv show character arts
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowCharacterArts(QString tvdbId)
+void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowCharacterArt);
 }
@@ -638,7 +638,7 @@ void FanartTv::tvShowCharacterArts(QString tvdbId)
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowBanners(QString tvdbId)
+void FanartTv::tvShowBanners(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
@@ -649,7 +649,7 @@ void FanartTv::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void FanartTv::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode)
+void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -661,24 +661,24 @@ void FanartTv::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNu
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void FanartTv::tvShowSeason(QString tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster, season);
 }
 
-void FanartTv::tvShowSeasonBanners(QString tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonThumbs(QString tvdbId, SeasonNumber season)
+void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonThumb, season);
 }

@@ -61,7 +61,7 @@ private:
     QPointer<TvShowEpisode> m_currentEpisode;
     TvScraperInterface *m_scraperInterface;
     DownloadManager *m_downloadManager;
-    QMap<QString, QString> m_showIds;
+    QMap<QString, TvDbId> m_showIds;
 
     void setCheckBoxesEnabled();
     void addDownload(ImageType imageType, QUrl url, TvShow *show, SeasonNumber season = SeasonNumber::NoSeason);

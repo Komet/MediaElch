@@ -1,6 +1,7 @@
 #ifndef TVSCRAPERINTERFACE_H
 #define TVSCRAPERINTERFACE_H
 
+#include "data/TvDbId.h"
 #include "globals/Globals.h"
 
 #include <QList>
@@ -20,8 +21,8 @@ public:
     virtual QString name() = 0;
     virtual void search(QString searchStr) = 0;
     virtual void
-    loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateType, QList<TvShowScraperInfos> infosToLoad) = 0;
-    virtual void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) = 0;
+    loadTvShowData(TvDbId id, TvShow *show, TvShowUpdateType updateType, QList<TvShowScraperInfos> infosToLoad) = 0;
+    virtual void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;

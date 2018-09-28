@@ -423,7 +423,7 @@ void TvShowFilesWidget::showMissingEpisodes()
             m_actionShowMissingEpisodes->setChecked(item->tvShow()->showMissingEpisodes());
             if (item->tvShow()->showMissingEpisodes()) {
                 item->tvShow()->fillMissingEpisodes();
-                if (item->tvShow()->id().isEmpty() && item->tvShow()->tvdbId().isEmpty()
+                if (!item->tvShow()->id().isValid() && !item->tvShow()->tvdbId().isValid()
                     && item->tvShow()->episodeGuideUrl().isEmpty()) {
                     if (Settings::instance()->showMissingEpisodesHint()) {
                         QMessageBox msgBox;

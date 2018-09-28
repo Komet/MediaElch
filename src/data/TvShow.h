@@ -4,6 +4,7 @@
 #include "data/EpisodeNumber.h"
 #include "data/Rating.h"
 #include "data/SeasonNumber.h"
+#include "data/TvDbId.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 
@@ -44,8 +45,8 @@ public:
     virtual QString certification() const;
     virtual QString network() const;
     virtual QString overview() const;
-    virtual QString tvdbId() const;
-    virtual QString id() const;
+    virtual TvDbId tvdbId() const;
+    virtual TvDbId id() const;
     virtual QString imdbId() const;
     virtual QString episodeGuideUrl() const;
     virtual QStringList certifications() const;
@@ -95,8 +96,8 @@ public:
     void setCertification(QString certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
-    void setTvdbId(QString id);
-    void setId(QString id);
+    void setTvdbId(TvDbId id);
+    void setId(TvDbId id);
     void setImdbId(QString id);
     void setEpisodeGuideUrl(QString url);
     void addActor(Actor actor);
@@ -131,7 +132,7 @@ public:
     void removeTag(QString tag);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id,
+    void loadData(TvDbId id,
         TvScraperInterface *tvScraperInterface,
         TvShowUpdateType type,
         QList<TvShowScraperInfos> infosToLoad);
@@ -189,8 +190,8 @@ private:
     QString m_certification;
     QString m_network;
     QString m_overview;
-    QString m_tvdbId;
-    QString m_id;
+    TvDbId m_tvdbId;
+    TvDbId m_id;
     QString m_imdbId;
     QString m_episodeGuideUrl;
     QList<Actor> m_actors;

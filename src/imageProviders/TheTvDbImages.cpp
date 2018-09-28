@@ -111,7 +111,7 @@ void TheTvDbImages::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param type
  */
-void TheTvDbImages::loadTvShowData(QString tvdbId, ImageType type)
+void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
 {
     m_currentType = type;
     m_dummyShow->clear();
@@ -168,7 +168,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
  * @param tvdbId
  * @param types
  */
-void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
+void TheTvDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -179,7 +179,7 @@ void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> 
  * @brief Load tv show posters
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowPosters(QString tvdbId)
+void TheTvDbImages::tvShowPosters(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
@@ -188,7 +188,7 @@ void TheTvDbImages::tvShowPosters(QString tvdbId)
  * @brief Load tv show backdrops
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowBackdrops(QString tvdbId)
+void TheTvDbImages::tvShowBackdrops(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
@@ -197,7 +197,7 @@ void TheTvDbImages::tvShowBackdrops(QString tvdbId)
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowBanners(QString tvdbId)
+void TheTvDbImages::tvShowBanners(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
@@ -208,7 +208,7 @@ void TheTvDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, EpisodeNumber episode)
+void TheTvDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);
@@ -221,13 +221,13 @@ void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, SeasonNumber season, Epis
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void TheTvDbImages::tvShowSeason(QString tvdbId, SeasonNumber season)
+void TheTvDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
     m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster);
 }
 
-void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, SeasonNumber season)
+void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
     m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner);
@@ -248,7 +248,7 @@ void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> t
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, SeasonNumber season)
+void TheTvDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -371,12 +371,12 @@ void TheTvDbImages::concertCdArts(QString tmdbId)
  * @brief Load tv show logos
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowLogos(QString tvdbId)
+void TheTvDbImages::tvShowLogos(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void TheTvDbImages::tvShowThumbs(QString tvdbId)
+void TheTvDbImages::tvShowThumbs(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
@@ -385,7 +385,7 @@ void TheTvDbImages::tvShowThumbs(QString tvdbId)
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowClearArts(QString tvdbId)
+void TheTvDbImages::tvShowClearArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
@@ -394,12 +394,12 @@ void TheTvDbImages::tvShowClearArts(QString tvdbId)
  * @brief Load tv show character arts
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
+void TheTvDbImages::tvShowCharacterArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, SeasonNumber season)
+void TheTvDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);

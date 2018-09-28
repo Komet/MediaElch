@@ -43,7 +43,7 @@ TvShowSearchEpisode::~TvShowSearchEpisode()
     delete ui;
 }
 
-QString TvShowSearchEpisode::scraperId()
+TvDbId TvShowSearchEpisode::scraperId()
 {
     return m_scraperId;
 }
@@ -84,14 +84,14 @@ QList<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
 
 void TvShowSearchEpisode::onResultClicked(QTableWidgetItem *item)
 {
-    m_scraperId = item->data(Qt::UserRole).toString();
+    m_scraperId = TvDbId(item->data(Qt::UserRole).toString());
     emit sigResultClicked();
 }
 
-void TvShowSearchEpisode::search(QString searchString, QString id)
+void TvShowSearchEpisode::search(QString searchString, TvDbId id)
 {
-    if (!id.isEmpty()) {
-        ui->searchString->setText("id" + id);
+    if (id.isValid()) {
+        ui->searchString->setText(id.withPrefix());
     } else {
         ui->searchString->setText(searchString);
     }

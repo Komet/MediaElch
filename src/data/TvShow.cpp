@@ -228,7 +228,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  * @param id ID of the show for the given scraper
  * @param tvScraperInterface Scraper to use
  */
-void TvShow::loadData(QString id,
+void TvShow::loadData(TvDbId id,
     TvScraperInterface *tvScraperInterface,
     TvShowUpdateType type,
     QList<TvShowScraperInfos> infosToLoad)
@@ -440,12 +440,12 @@ QString TvShow::overview() const
  * @return TheTvDb Id
  * @see TvShow::setTvdbId
  */
-QString TvShow::tvdbId() const
+TvDbId TvShow::tvdbId() const
 {
     return m_tvdbId;
 }
 
-QString TvShow::id() const
+TvDbId TvShow::id() const
 {
     return m_id;
 }
@@ -870,16 +870,16 @@ void TvShow::setOverview(QString overview)
  * @param id
  * @see TvShow::tvdbId
  */
-void TvShow::setTvdbId(QString id)
+void TvShow::setTvdbId(TvDbId id)
 {
-    if (m_id.isEmpty()) {
+    if (m_id.isValid()) {
         m_id = id;
     }
     m_tvdbId = id;
     setChanged(true);
 }
 
-void TvShow::setId(QString id)
+void TvShow::setId(TvDbId id)
 {
     m_id = id;
     setChanged(true);

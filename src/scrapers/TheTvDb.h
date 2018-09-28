@@ -25,11 +25,11 @@ public:
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
-    void loadTvShowData(QString id,
+    void loadTvShowData(TvDbId id,
         TvShow *show,
         TvShowUpdateType updateType,
         QList<TvShowScraperInfos> infosToLoad) override;
-    void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
+    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;

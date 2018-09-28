@@ -327,7 +327,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->dir->setText(m_show->dir());
     ui->name->setText(m_show->name());
     ui->imdbId->setText(m_show->imdbId());
-    ui->tvdbId->setText(m_show->tvdbId());
+    ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
     ui->rating->setValue(m_show->rating());
     ui->votes->setValue(m_show->votes());
@@ -499,7 +499,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
 
-    if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>)),
@@ -998,7 +998,7 @@ void TvShowWidgetTvShow::onImdbIdChange(QString text)
 
 void TvShowWidgetTvShow::onTvdbIdChange(QString text)
 {
-    m_show->setTvdbId(text);
+    m_show->setTvdbId(TvDbId(text));
     ui->buttonRevert->setVisible(true);
 }
 

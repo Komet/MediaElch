@@ -160,9 +160,9 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
+void TvShowEpisode::loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
 {
-    qDebug() << "Entered, id=" << id << "scraperInterface=" << tvScraperInterface->name();
+    qDebug() << "Entered, id=" << id.toString() << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;
     tvScraperInterface->loadTvShowEpisodeData(id, this, infosToLoad);
 }

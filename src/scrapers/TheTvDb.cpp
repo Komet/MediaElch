@@ -237,15 +237,15 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
  * @param show Tv show object
  * @see TheTvDb::onLoadFinished
  */
-void TheTvDb::loadTvShowData(QString id,
+void TheTvDb::loadTvShowData(TvDbId id,
     TvShow *show,
     TvShowUpdateType updateType,
     QList<TvShowScraperInfos> infosToLoad)
 {
     show->setTvdbId(id);
-    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
+    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror, m_apiKey, id.toString(), m_language));
     show->setEpisodeGuideUrl(
-        QString("%1/api/%2/series/%3/all/%4.zip").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
+        QString("%1/api/%2/series/%3/all/%4.zip").arg(m_mirror, m_apiKey, id.toString(), m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, show));
@@ -283,7 +283,7 @@ void TheTvDb::onLoadFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(m_mirror).arg(m_apiKey).arg(show->tvdbId()));
+    QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(m_mirror, m_apiKey, show->tvdbId().toString()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -321,7 +321,7 @@ void TheTvDb::onActorsFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(m_mirror).arg(m_apiKey).arg(show->tvdbId()));
+    QUrl url(QString("%1/api/%2/series/%3/banners.xml").arg(m_mirror, m_apiKey, show->tvdbId().toString()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", static_cast<int>(updateType));
@@ -743,11 +743,11 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem,
  * @param episode Episode object
  * @see TheTvDb::onEpisodeLoadFinished
  */
-void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad)
+void TheTvDb::loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad)
 {
-    qDebug() << "Entered, id=" << id << "episode=" << episode->name();
+    qDebug() << "Entered, id=" << id.toString() << "episode=" << episode->name();
     episode->clear(infosToLoad);
-    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror).arg(m_apiKey).arg(id).arg(m_language));
+    QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror, m_apiKey, id.toString(), m_language));
 
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
@@ -1297,7 +1297,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QList
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
         episode->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
-        foreach (Actor actor, m_dummyMovie->actors()) {
+        for (Actor actor : m_dummyMovie->actors()) {
             Actor a;
             a.id = actor.id;
             a.image = actor.image;

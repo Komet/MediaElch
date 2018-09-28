@@ -17,10 +17,10 @@ TvShowXmlReader::TvShowXmlReader(TvShow &tvShow) : m_show{tvShow}
 void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_show.setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+        m_show.setId(TvDbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("tvdbid").isEmpty()) {
-        m_show.setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
+        m_show.setTvdbId(TvDbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("imdbid").isEmpty()) {
         m_show.setImdbId(domDoc.elementsByTagName("imdbid").at(0).toElement().text());
