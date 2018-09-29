@@ -967,7 +967,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
 
     for (const auto imageType : TvShow::seasonImageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
-        for (const auto season : show->seasons()) {
+        for (const auto &season : show->seasons()) {
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
@@ -1136,7 +1136,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
 {
     qDebug() << "Entered, episode=" << episode->name();
     xml.writeStartElement("episodedetails");
-    xml.writeTextElement("imdbid", episode->imdbId());
+    xml.writeTextElement("imdbid", episode->imdbId().toString());
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());
     xml.writeTextElement("rating", QString("%1").arg(episode->rating()));

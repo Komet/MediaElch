@@ -18,7 +18,7 @@ EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode &episode) : m_episode{episode}
 void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails)
 {
     if (!episodeDetails.elementsByTagName("imdbid").isEmpty()) {
-        m_episode.setImdbId(episodeDetails.elementsByTagName("imdbid").at(0).toElement().text());
+        m_episode.setImdbId(ImdbId(episodeDetails.elementsByTagName("imdbid").at(0).toElement().text()));
     }
     if (!episodeDetails.elementsByTagName("title").isEmpty()) {
         m_episode.setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());

@@ -2,6 +2,7 @@
 #define THETVDB_H
 
 #include "data/EpisodeNumber.h"
+#include "data/ImdbId.h"
 #include "data/SeasonNumber.h"
 #include "data/TvScraperInterface.h"
 
@@ -99,7 +100,7 @@ private:
         TvShowEpisode *episode,
         SeasonNumber &seasonNumber,
         EpisodeNumber &episodeNumber);
-    QString getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber);
+    ImdbId getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber);
     bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad);
 };

@@ -2,6 +2,7 @@
 #define TVSHOWEPISODE_H
 
 #include "data/EpisodeNumber.h"
+#include "data/ImdbId.h"
 #include "data/Rating.h"
 #include "data/SeasonNumber.h"
 #include "data/StreamDetails.h"
@@ -139,8 +140,8 @@ public:
 
     static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
 
-    QString imdbId() const;
-    void setImdbId(const QString &imdbId);
+    ImdbId imdbId() const;
+    void setImdbId(const ImdbId &imdbId);
 
 signals:
     void sigLoaded();
@@ -152,7 +153,7 @@ private:
     QString m_name;
     QString m_showTitle;
     Rating m_rating;
-    QString m_imdbId;
+    ImdbId m_imdbId;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     SeasonNumber m_displaySeason;

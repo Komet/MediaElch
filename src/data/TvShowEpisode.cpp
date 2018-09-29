@@ -985,12 +985,12 @@ bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
             < 0);
 }
 
-QString TvShowEpisode::imdbId() const
+ImdbId TvShowEpisode::imdbId() const
 {
     return m_imdbId;
 }
 
-void TvShowEpisode::setImdbId(const QString &imdbId)
+void TvShowEpisode::setImdbId(const ImdbId &imdbId)
 {
     m_imdbId = imdbId;
     setChanged(true);
