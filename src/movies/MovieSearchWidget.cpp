@@ -221,17 +221,22 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
 void MovieSearchWidget::updateInfoToLoad()
 {
     m_infosToLoad.clear();
+    int enabledBoxCount = 0;
     const auto checkBoxes = ui->groupBox->findChildren<MyCheckBox *>();
 
     // Rebuild list of information to load
     for (const MyCheckBox *box : checkBoxes) {
+        if (!box->isEnabled()) {
+            continue;
+        }
+        ++enabledBoxCount;
         const int info = box->myData().toInt();
         if (info > 0 && box->isChecked()) {
             m_infosToLoad.append(MovieScraperInfos(info));
         }
     }
 
-    bool allToggled = (m_infosToLoad.size() == checkBoxes.size());
+    bool allToggled = (m_infosToLoad.size() == enabledBoxCount);
     ui->chkUnCheckAll->setChecked(allToggled);
 
     Settings::instance()->setScraperInfos(MainWidgets::Movies, m_currentScraper->identifier(), m_infosToLoad);
@@ -264,12 +269,14 @@ QList<MovieScraperInfos> MovieSearchWidget::infosToLoad()
 
 void MovieSearchWidget::setCheckBoxesEnabled(QList<MovieScraperInfos> scraperSupports)
 {
-    const auto infos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
+    const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {
-        box->setEnabled(scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));
-        box->setChecked((infos.contains(MovieScraperInfos(box->myData().toInt())) || infos.isEmpty())
-                        && scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));
+        const MovieScraperInfos info = MovieScraperInfos(box->myData().toInt());
+        const bool supportsInfo = scraperSupports.contains(info);
+        const bool infoActive = supportsInfo && (enabledInfos.contains(info) || enabledInfos.isEmpty());
+        box->setEnabled(supportsInfo);
+        box->setChecked(infoActive);
     }
     updateInfoToLoad();
 }
