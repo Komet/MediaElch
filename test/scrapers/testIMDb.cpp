@@ -157,6 +157,21 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(actors[1].role == "Ellis Boyd 'Red' Redding");
     }
 
+    // Why is this test commented out?
+    //
+    // IMDb's response is based on the IP address. We can't get any reproducable data regarding
+    // the original title. Somehow the tests above work even though I don't know why...
+    //
+    // SECTION("IMDb loads original title")
+    // {
+    //     Movie m(QStringList{}); // Movie without files
+    //     loadImdbSync(imdb, {{nullptr, "tt2987732"}}, m);
+    //
+    //     REQUIRE(m.imdbId() == ImdbId("tt2987732"));
+    //     CHECK(m.name() == "Suck Me Shakespeer");    // translated english version
+    //     CHECK(m.originalName() == "Fack ju Göhte"); // original german title
+    // }
+
     SECTION("Lesser known indian movie has correct details")
     {
         Movie m(QStringList{}); // Movie without files

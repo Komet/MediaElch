@@ -309,14 +309,19 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern(R"(<h1 class="[^"]*">([^<]*)&nbsp;)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
-        movie->setName(rx.cap(1));
-    }
-
-    rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
-    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
-        movie->setName(rx.cap(1));
+    if (infos.contains(MovieScraperInfos::Title)) {
+        rx.setPattern(R"(<h1 class="[^"]*">([^<]*)&nbsp;)");
+        if (rx.indexIn(html) != -1) {
+            movie->setName(rx.cap(1));
+        }
+        rx.setPattern(R"(<h1 itemprop="name" class="">(.*)&nbsp;<span id="titleYear">)");
+        if (rx.indexIn(html) != -1) {
+            movie->setName(rx.cap(1));
+        }
+        rx.setPattern(R"(<div class="originalTitle">([^<]*)<span)");
+        if (rx.indexIn(html) != -1) {
+            movie->setOriginalName(rx.cap(1));
+        }
     }
 
     if (infos.contains(MovieScraperInfos::Director)) {
