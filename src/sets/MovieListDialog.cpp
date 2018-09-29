@@ -84,15 +84,15 @@ int MovieListDialog::execWithoutGenre(QString genre)
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genre)) {
             continue;
         }
-        int row = ui->movies->rowCount();
+        const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid())
-                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
-                            : movie->name();
+        const QString title = (movie->released().isValid())
+                                  ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
+                                  : movie->name();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -106,18 +106,18 @@ int MovieListDialog::execWithoutGenre(QString genre)
  * @param certification Certification to exclude
  * @return Result of QDialog::exec
  */
-int MovieListDialog::execWithoutCertification(QString certification)
+int MovieListDialog::execWithoutCertification(Certification certification)
 {
     reposition();
     ui->filter->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->certification() == certification) {
             continue;
         }
-        int row = ui->movies->rowCount();
+        const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
                             ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))

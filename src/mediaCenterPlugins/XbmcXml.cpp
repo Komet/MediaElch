@@ -1152,7 +1152,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     }
     xml.writeTextElement("plot", episode->overview());
     xml.writeTextElement("outline", episode->overview());
-    xml.writeTextElement("mpaa", episode->certification());
+    xml.writeTextElement("mpaa", episode->certification().toString());
     xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
     xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("aired", episode->firstAired().toString("yyyy-MM-dd"));

@@ -143,7 +143,7 @@ void Movie::clear(QList<MovieScraperInfos> infos)
         m_trailer = "";
     }
     if (infos.contains(MovieScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(MovieScraperInfos::Writer)) {
         m_writer = "";
@@ -302,7 +302,7 @@ std::chrono::minutes Movie::runtime() const
  * @return Certification of the movie
  * @see Movie::setCertification
  */
-QString Movie::certification() const
+Certification Movie::certification() const
 {
     return m_certification;
 }
@@ -756,7 +756,7 @@ void Movie::setRuntime(std::chrono::minutes runtime)
  * @param certification Certification of the movie
  * @see Movie::certification
  */
-void Movie::setCertification(QString certification)
+void Movie::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
@@ -1269,7 +1269,7 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  Released:      ").append(movie.released().toString("yyyy-MM-dd")).append(nl));
     out.append(QString("  Tagline:       ").append(movie.tagline()).append(nl));
     out.append(QString("  Runtime:       %1").arg(movie.runtime().count()).append(nl));
-    out.append(QString("  Certification: ").append(movie.certification()).append(nl));
+    out.append(QString("  Certification: ").append(movie.certification().toString()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
     out.append(QString("  TMDb ID:       ").append(movie.imdbId().toString()).append(nl));

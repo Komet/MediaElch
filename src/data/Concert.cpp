@@ -117,7 +117,7 @@ void Concert::clear(QList<ConcertScraperInfos> infos)
         m_trailer = "";
     }
     if (infos.contains(ConcertScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(ConcertScraperInfos::Tags)) {
         m_tags.clear();
@@ -249,7 +249,7 @@ std::chrono::minutes Concert::runtime() const
  * @return Certification of the concert
  * @see Concert::setCertification
  */
-QString Concert::certification() const
+Certification Concert::certification() const
 {
     return m_certification;
 }
@@ -591,9 +591,9 @@ void Concert::setRuntime(std::chrono::minutes runtime)
  * @param certification Certification of the concert
  * @see Concert::certification
  */
-void Concert::setCertification(QString certification)
+void Concert::setCertification(Certification cert)
 {
-    m_certification = certification;
+    m_certification = cert;
     setChanged(true);
 }
 

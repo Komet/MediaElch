@@ -1,6 +1,7 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+#include "data/Certification.h"
 #include "data/ImdbId.h"
 #include "data/MovieImages.h"
 #include "data/Rating.h"
@@ -51,7 +52,7 @@ public:
     QString tagline() const;
     QString outline() const;
     std::chrono::minutes runtime() const;
-    QString certification() const;
+    Certification certification() const;
     QString writer() const;
     QString director() const;
     QStringList genres() const;
@@ -101,7 +102,7 @@ public:
     void setTagline(QString tagline);
     void setOutline(QString outline);
     void setRuntime(std::chrono::minutes runtime);
-    void setCertification(QString certification);
+    void setCertification(Certification certification);
     void setWriter(QString writer);
     void setDirector(QString director);
     void addStudio(QString studio);
@@ -178,7 +179,7 @@ private:
     QString m_tagline;
     QString m_outline;
     std::chrono::minutes m_runtime;
-    QString m_certification;
+    Certification m_certification;
     QString m_writer;
     QString m_director;
     QStringList m_genres;

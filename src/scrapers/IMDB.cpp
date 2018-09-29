@@ -456,7 +456,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
+        movie->setCertification(Helper::instance()->mapCertification(Certification(rx.cap(1))));
     }
 
     rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M",)");

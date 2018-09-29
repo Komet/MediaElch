@@ -456,15 +456,15 @@ void ConcertWidget::updateConcertInfo()
     QStringList tags;
     certifications.append("");
     for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
-        if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty()) {
-            certifications.append(concert->certification());
+        if (!certifications.contains(concert->certification().toString()) && concert->certification().isValid()) {
+            certifications.append(concert->certification().toString());
         }
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
-    ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
+    ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification().toString()));
     ui->certification->blockSignals(false);
 
     // `setTags` requires distinct lists
@@ -889,7 +889,7 @@ void ConcertWidget::onCertificationChange(QString text)
     if (!m_concert) {
         return;
     }
-    m_concert->setCertification(text);
+    m_concert->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

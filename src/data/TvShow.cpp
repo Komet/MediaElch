@@ -80,7 +80,7 @@ void TvShow::clear(QList<TvShowScraperInfos> infos)
         m_hasImageChanged.insert(ImageType::TvShowBanner, false);
     }
     if (infos.contains(TvShowScraperInfos::Certification)) {
-        m_certification.clear();
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(TvShowScraperInfos::FirstAired)) {
         m_firstAired = QDate(2000, 02, 30); // invalid date
@@ -409,7 +409,7 @@ QList<QString *> TvShow::genresPointer()
  * @return Certification
  * @see TvShow::setCertification
  */
-QString TvShow::certification() const
+Certification TvShow::certification() const
 {
     return m_certification;
 }
@@ -472,11 +472,11 @@ QString TvShow::episodeGuideUrl() const
  * @brief Constructs a list of all certifications used in child episodes
  * @return List of certifications
  */
-QStringList TvShow::certifications() const
+QVector<Certification> TvShow::certifications() const
 {
-    QStringList certifications;
-    foreach (TvShowEpisode *episode, m_episodes) {
-        if (!certifications.contains(episode->certification()) && !episode->certification().isEmpty()) {
+    QVector<Certification> certifications;
+    for (TvShowEpisode *episode : m_episodes) {
+        if (!certifications.contains(episode->certification()) && episode->certification().isValid()) {
             certifications.append(episode->certification());
         }
     }
@@ -839,7 +839,7 @@ void TvShow::addTag(QString tag)
  * @param certification
  * @see TvShow::certification
  */
-void TvShow::setCertification(QString certification)
+void TvShow::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
@@ -1535,7 +1535,7 @@ QDebug operator<<(QDebug dbg, const TvShow &show)
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
     out.append(QStringLiteral("  Rating:        %1").arg(show.rating()).append(nl));
     out.append(QStringLiteral("  FirstAired:    ").append(show.firstAired().toString("yyyy-MM-dd")).append(nl));
-    out.append(QStringLiteral("  Certification: ").append(show.certification()).append(nl));
+    out.append(QStringLiteral("  Certification: ").append(show.certification().toString()).append(nl));
     out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(show.overview())).append(nl);
     out.append(QStringLiteral("  Status:        ").append(show.status())).append(nl);

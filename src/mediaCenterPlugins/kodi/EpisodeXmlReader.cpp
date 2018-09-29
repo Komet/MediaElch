@@ -56,7 +56,7 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         m_episode.setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
     }
     if (!episodeDetails.elementsByTagName("mpaa").isEmpty()) {
-        m_episode.setCertification(episodeDetails.elementsByTagName("mpaa").at(0).toElement().text());
+        m_episode.setCertification(Certification(episodeDetails.elementsByTagName("mpaa").at(0).toElement().text()));
     }
     if (!episodeDetails.elementsByTagName("aired").isEmpty()) {
         m_episode.setFirstAired(

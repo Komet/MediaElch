@@ -49,7 +49,7 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
             std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));
     }
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
-        m_concert.setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+        m_concert.setCertification(Certification(domDoc.elementsByTagName("mpaa").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("playcount").isEmpty()) {
         m_concert.setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());

@@ -48,7 +48,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         m_show.setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
-        m_show.setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+        m_show.setCertification(Certification(domDoc.elementsByTagName("mpaa").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("premiered").isEmpty()) {
         m_show.setFirstAired(

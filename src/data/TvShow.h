@@ -11,6 +11,7 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include <QVector>
 #include <chrono>
 
 struct Actor;
@@ -43,14 +44,14 @@ public:
     virtual QStringList genres() const;
     virtual QStringList tags() const;
     virtual QList<QString *> genresPointer();
-    virtual QString certification() const;
+    virtual Certification certification() const;
     virtual QString network() const;
     virtual QString overview() const;
     virtual TvDbId tvdbId() const;
     virtual TvDbId id() const;
     virtual QString imdbId() const;
     virtual QString episodeGuideUrl() const;
-    virtual QStringList certifications() const;
+    virtual QVector<Certification> certifications() const;
     virtual QList<Actor> actors() const;
     virtual QList<Actor *> actorsPointer();
     virtual QList<Poster> posters() const;
@@ -94,7 +95,7 @@ public:
     void setGenres(QStringList genres);
     void addGenre(QString genre);
     void addTag(QString tag);
-    void setCertification(QString certification);
+    void setCertification(Certification certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
     void setTvdbId(TvDbId id);
@@ -188,7 +189,7 @@ private:
     std::chrono::minutes m_runtime;
     QStringList m_genres;
     QStringList m_tags;
-    QString m_certification;
+    Certification m_certification;
     QString m_network;
     QString m_overview;
     TvDbId m_tvdbId;

@@ -616,14 +616,14 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
 
     // Releases
     if (infos.contains(ConcertScraperInfos::Certification) && parsedJson.value("countries").isArray()) {
-        QString locale;
-        QString us;
-        QString gb;
+        Certification locale;
+        Certification us;
+        Certification gb;
         const auto countries = parsedJson.value("countries").toArray();
         for (const auto &it : countries) {
             const auto countryObj = it.toObject();
             const QString iso3166 = countryObj.value("iso_3166_1").toString();
-            const QString certification = countryObj.value("certification").toString();
+            const Certification certification = Certification(countryObj.value("certification").toString());
             if (iso3166 == "US") {
                 us = certification;
             }
@@ -635,19 +635,19 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
             }
         }
 
-        if (m_locale.country() == QLocale::UnitedStates && !us.isEmpty()) {
+        if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
 
-        } else if (m_locale.language() == QLocale::English && !gb.isEmpty()) {
+        } else if (m_locale.language() == QLocale::English && gb.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
 
-        } else if (!locale.isEmpty()) {
+        } else if (locale.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(locale));
 
-        } else if (!us.isEmpty()) {
+        } else if (us.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
 
-        } else if (!gb.isEmpty()) {
+        } else if (gb.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
         }
     }

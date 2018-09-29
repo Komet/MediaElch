@@ -49,7 +49,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setRuntime(std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));
     }
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
-        m_movie.setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+        m_movie.setCertification(Certification(domDoc.elementsByTagName("mpaa").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("playcount").isEmpty()) {
         m_movie.setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());

@@ -369,9 +369,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->genreCloud->setTags(genres, m_show->genres());
     ui->tagCloud->setTags(tags, m_show->tags());
 
-    QStringList certifications = m_show->certifications();
-    certifications.prepend("");
-    ui->certification->addItems(certifications);
+    auto certifications = m_show->certifications();
+    certifications.prepend(Certification::NoCertification);
+    for (const auto &cert : certifications) {
+        ui->certification->addItem(cert.toString());
+    }
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
     updateImages(QList<ImageType>() << ImageType::TvShowPoster       //
@@ -1013,7 +1015,7 @@ void TvShowWidgetTvShow::onSortTitleChange(QString text)
  */
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
-    m_show->setCertification(text);
+    m_show->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

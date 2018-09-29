@@ -369,7 +369,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    foreach (Actor *actor, m_episode->actorsPointer()) {
+    for (Actor *actor : m_episode->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -380,12 +380,14 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->actors->blockSignals(false);
 
     if (m_episode->tvShow()) {
-        QStringList certifications = m_episode->tvShow()->certifications();
-        certifications.prepend("");
-        ui->certification->addItems(certifications);
+        auto certifications = m_episode->tvShow()->certifications();
+        certifications.prepend(Certification::NoCertification);
+        for (const auto &cert : certifications) {
+            ui->certification->addItem(cert.toString());
+        }
         ui->certification->setCurrentIndex(certifications.indexOf(m_episode->certification()));
     } else {
-        ui->certification->addItem(m_episode->certification());
+        ui->certification->addItem(m_episode->certification().toString());
     }
 
     // Streamdetails
@@ -898,7 +900,7 @@ void TvShowWidgetEpisode::onRatingChange(double value)
  */
 void TvShowWidgetEpisode::onCertificationChange(QString text)
 {
-    m_episode->setCertification(text);
+    m_episode->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

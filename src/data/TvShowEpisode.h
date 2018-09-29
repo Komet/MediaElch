@@ -1,6 +1,7 @@
 #ifndef TVSHOWEPISODE_H
 #define TVSHOWEPISODE_H
 
+#include "data/Certification.h"
 #include "data/EpisodeNumber.h"
 #include "data/ImdbId.h"
 #include "data/Rating.h"
@@ -37,7 +38,7 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(int playCount READ playCount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
     Q_PROPERTY(QDate firstAired READ firstAired WRITE setFirstAired)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
     Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
@@ -65,7 +66,7 @@ public:
     virtual QDateTime lastPlayed() const;
     virtual QDate firstAired() const;
     virtual QTime epBookmark() const;
-    virtual QString certification() const;
+    virtual Certification certification() const;
     virtual QString network() const;
     virtual QString seasonString() const;
     virtual QString episodeString() const;
@@ -104,7 +105,7 @@ public:
     void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
     void setFirstAired(QDate firstAired);
-    void setCertification(QString certification);
+    void setCertification(Certification certification);
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QByteArray thumbnail);
@@ -165,7 +166,7 @@ private:
     QDateTime m_lastPlayed;
     QDate m_firstAired;
     QTime m_epBookmark;
-    QString m_certification;
+    Certification m_certification;
     QString m_network;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;

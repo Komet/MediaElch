@@ -82,7 +82,7 @@ void TvShowEpisode::clear()
 void TvShowEpisode::clear(QList<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(TvShowScraperInfos::Rating)) {
         m_rating = Rating();
@@ -437,16 +437,16 @@ QDate TvShowEpisode::firstAired() const
  * @return Certification
  * @see TvShowEpisode::setCertification
  */
-QString TvShowEpisode::certification() const
+Certification TvShowEpisode::certification() const
 {
-    if (!m_certification.isEmpty()) {
+    if (m_certification.isValid()) {
         return m_certification;
     }
     if (m_parent) {
         return m_parent->certification();
     }
 
-    return QString();
+    return Certification::NoCertification;
 }
 
 /**
@@ -772,7 +772,7 @@ void TvShowEpisode::setFirstAired(QDate firstAired)
  * @param certification Certification
  * @see TvShowEpisode::certification
  */
-void TvShowEpisode::setCertification(QString certification)
+void TvShowEpisode::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
@@ -1037,7 +1037,7 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     out.append(QStringLiteral("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
-    out.append(QStringLiteral("  Certification: ").append(episode.certification()).append(nl));
+    out.append(QStringLiteral("  Certification: ").append(episode.certification().toString()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(episode.overview())).append(nl);
     foreach (const QString &writer, episode.writers()) {
         out.append(QString("  Writer:        ").append(writer)).append(nl);

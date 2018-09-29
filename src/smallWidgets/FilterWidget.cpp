@@ -312,8 +312,9 @@ QList<Filter *> FilterWidget::setupMovieFilters()
         if (movie->released().isValid() && !years.contains(QString::number(movie->released().year()))) {
             years.append(QString::number(movie->released().year()));
         }
-        if (!movie->certification().isEmpty() && !certifications.contains(movie->certification())) {
-            certifications.append(movie->certification());
+        const auto certStr = movie->certification().toString();
+        if (movie->certification().isValid() && !certifications.contains(certStr)) {
+            certifications.append(certStr);
         }
         if (!movie->set().isEmpty() && !sets.contains(movie->set())) {
             sets.append(movie->set());

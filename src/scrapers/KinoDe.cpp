@@ -278,7 +278,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     // MPAA
     rx.setPattern("<dt>FSK</dt>\n? *<dd><a href=\"https://www.kino.de/filme/fsk/[^\"]+/\">ab ([0-9]+)</a></dd>");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie.setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+        movie.setCertification(Helper::instance()->mapCertification(Certification("FSK " + rx.cap(1))));
     }
 
     // Runtime

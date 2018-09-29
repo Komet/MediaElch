@@ -236,7 +236,8 @@ SOURCES += src/main.cpp \
     src/data/TmdbId.cpp \
     src/data/TvDbId.cpp \
     src/data/EpisodeNumber.cpp \
-    src/data/SeasonNumber.cpp
+    src/data/SeasonNumber.cpp \
+    src/data/Certification.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
@@ -426,7 +427,8 @@ HEADERS  += Version.h \
     src/data/TmdbId.h \
     src/data/TvDbId.h \
     src/data/EpisodeNumber.h \
-    src/data/SeasonNumber.h
+    src/data/SeasonNumber.h \
+    src/data/Certification.h
 
 FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \

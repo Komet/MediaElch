@@ -40,7 +40,7 @@ QByteArray ConcertXmlWriter::getConcertXml()
     if (m_concert.runtime() > 0min) {
         XbmcXml::setTextValue(doc, "runtime", QString::number(m_concert.runtime().count()));
     }
-    XbmcXml::setTextValue(doc, "mpaa", m_concert.certification());
+    XbmcXml::setTextValue(doc, "mpaa", m_concert.certification().toString());
     XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_concert.playcount()));
     XbmcXml::setTextValue(doc, "lastplayed", m_concert.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     XbmcXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_concert.trailer().toString()));

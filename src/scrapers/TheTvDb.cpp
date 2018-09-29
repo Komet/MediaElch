@@ -401,7 +401,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
             if (infosToLoad.contains(TvShowScraperInfos::Certification)
                 && !elem.elementsByTagName("ContentRating").isEmpty()) {
                 show->setCertification(Helper::instance()->mapCertification(
-                    elem.elementsByTagName("ContentRating").at(0).toElement().text()));
+                    Certification(elem.elementsByTagName("ContentRating").at(0).toElement().text())));
             }
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired)
                 && !elem.elementsByTagName("FirstAired").isEmpty()) {
@@ -1148,7 +1148,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad)
-            && !m_dummyMovie->certification().isEmpty()) {
+            && m_dummyMovie->certification().isValid()) {
             show->setCertification(m_dummyMovie->certification());
         }
 
@@ -1282,8 +1282,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QList
         episode->setFirstAired(m_dummyMovie->released());
     }
 
-    if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad)
-        && !m_dummyMovie->certification().isEmpty()) {
+    if (shouldLoadFromImdb(TvShowScraperInfos::Certification, infosToLoad) && m_dummyMovie->certification().isValid()) {
         episode->setCertification(m_dummyMovie->certification());
     }
 

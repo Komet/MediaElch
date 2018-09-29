@@ -2,6 +2,7 @@
 #define CONCERT_H
 
 #include "concerts/ConcertController.h"
+#include "data/Certification.h"
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
@@ -34,7 +35,7 @@ class Concert : public QObject
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
     Q_PROPERTY(std::chrono::minutes runtime READ runtime WRITE setRuntime)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
     Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
@@ -61,7 +62,7 @@ public:
     virtual QDate released() const;
     virtual QString tagline() const;
     virtual std::chrono::minutes runtime() const;
-    virtual QString certification() const;
+    virtual Certification certification() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
     virtual QList<QString *> genresPointer();
@@ -97,7 +98,7 @@ public:
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setRuntime(std::chrono::minutes runtime);
-    void setCertification(QString certification);
+    void setCertification(Certification cert);
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
     void addTag(QString tag);
@@ -172,7 +173,7 @@ private:
     QDate m_released;
     QString m_tagline;
     std::chrono::minutes m_runtime;
-    QString m_certification;
+    Certification m_certification;
     QStringList m_genres;
     QStringList m_tags;
     QUrl m_trailer;

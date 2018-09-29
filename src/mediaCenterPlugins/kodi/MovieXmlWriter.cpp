@@ -41,7 +41,7 @@ QByteArray MovieXmlWriter::getMovieXml()
     } else {
         XbmcXml::removeChildNodes(doc, "runtime");
     }
-    XbmcXml::setTextValue(doc, "mpaa", m_movie.certification());
+    XbmcXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
     XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
     if (!m_movie.lastPlayed().isNull()) {
         XbmcXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));

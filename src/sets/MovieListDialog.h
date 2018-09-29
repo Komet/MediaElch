@@ -27,7 +27,7 @@ public:
 public slots:
     int exec() override;
     int execWithoutGenre(QString genre);
-    int execWithoutCertification(QString certification);
+    int execWithoutCertification(Certification certification);
 
 private slots:
     void onAddMovies();
