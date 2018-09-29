@@ -454,9 +454,9 @@ TmdbId Concert::tmdbId() const
  * @return The concerts id
  * @see Concert::setId
  */
-ImdbId Concert::id() const
+ImdbId Concert::imdbId() const
 {
-    return m_id;
+    return m_imdbId;
 }
 
 /**
@@ -756,9 +756,9 @@ void Concert::setTmdbId(TmdbId id)
  * @param id Imdb id of the concert
  * @see Concert::id
  */
-void Concert::setId(ImdbId id)
+void Concert::setImdbId(ImdbId id)
 {
-    m_id = id;
+    m_imdbId = id;
     setChanged(true);
 }
 

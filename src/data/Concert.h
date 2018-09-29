@@ -79,7 +79,7 @@ public:
     virtual bool inSeparateFolder() const;
     virtual int mediaCenterId() const;
     virtual TmdbId tmdbId() const;
-    virtual ImdbId id() const;
+    virtual ImdbId imdbId() const;
     virtual StreamDetails *streamDetails() const;
     virtual bool streamDetailsLoaded() const;
     virtual QString nfoContent() const;
@@ -116,7 +116,7 @@ public:
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
     void setTmdbId(TmdbId id);
-    void setId(ImdbId id);
+    void setImdbId(ImdbId id);
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -188,7 +188,7 @@ private:
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     TmdbId m_tmdbId;
-    ImdbId m_id;
+    ImdbId m_imdbId;
     QList<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;

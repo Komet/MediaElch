@@ -533,7 +533,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
 
     // Infos
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
-        concert->setId(ImdbId(parsedJson.value("imdb_id").toString()));
+        concert->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
     if (infos.contains(ConcertScraperInfos::Title) && !parsedJson.value("title").toString().isEmpty()) {
         concert->setName(parsedJson.value("title").toString());
