@@ -1,7 +1,9 @@
 #ifndef IMDBID_H
 #define IMDBID_H
 
+#include <QDebug>
 #include <QString>
+#include <ostream>
 
 class ImdbId
 {
@@ -9,8 +11,8 @@ public:
     ImdbId() = default;
     explicit ImdbId(QString imdbId);
 
-    bool operator==(const ImdbId &other);
-    bool operator!=(const ImdbId &other);
+    bool operator==(const ImdbId &other) const;
+    bool operator!=(const ImdbId &other) const;
 
     QString toString() const;
     bool isValid() const;
@@ -23,5 +25,8 @@ private:
     QString m_imdbId;
     bool m_isValid = false;
 };
+
+std::ostream &operator<<(std::ostream &os, const ImdbId &value);
+QDebug operator<<(QDebug debug, const ImdbId &id);
 
 #endif // IMDBID_H

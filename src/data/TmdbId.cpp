@@ -13,13 +13,12 @@ TmdbId::TmdbId(int tmdbId) : TmdbId(QString::number(tmdbId))
 
 const TmdbId TmdbId::NoId = TmdbId();
 
-bool TmdbId::operator==(const TmdbId &other)
+bool TmdbId::operator==(const TmdbId &other) const
 {
-    // Only valid TMDb id's are comparable
-    return other.isValid() && m_tmdbId == other.m_tmdbId;
+    return m_tmdbId == other.m_tmdbId;
 }
 
-bool TmdbId::operator!=(const TmdbId &other)
+bool TmdbId::operator!=(const TmdbId &other) const
 {
     return !(*this == other);
 }
@@ -39,4 +38,16 @@ bool TmdbId::isValid() const
     // There are/were many places where it is checked whether the id was an
     // IMDb id. We'll continue to test for it (for now).
     return !m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt");
+}
+
+std::ostream &operator<<(std::ostream &os, const TmdbId &id)
+{
+    return os << id.toString().toStdString();
+}
+
+QDebug operator<<(QDebug debug, const TmdbId &id)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "TmdbId(" << id.toString() << ')';
+    return debug;
 }

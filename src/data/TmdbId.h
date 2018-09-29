@@ -1,7 +1,9 @@
 #ifndef TMDBID_H
 #define TMDBID_H
 
+#include <QDebug>
 #include <QString>
+#include <ostream>
 
 class TmdbId
 {
@@ -10,8 +12,8 @@ public:
     explicit TmdbId(QString tmdbId);
     explicit TmdbId(int tmdbId);
 
-    bool operator==(const TmdbId &other);
-    bool operator!=(const TmdbId &other);
+    bool operator==(const TmdbId &other) const;
+    bool operator!=(const TmdbId &other) const;
 
     QString toString() const;
     QString withPrefix() const;
@@ -22,5 +24,8 @@ public:
 private:
     QString m_tmdbId;
 };
+
+std::ostream &operator<<(std::ostream &os, const TmdbId &value);
+QDebug operator<<(QDebug debug, const TmdbId &id);
 
 #endif // TMDBID_H

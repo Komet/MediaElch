@@ -2,6 +2,10 @@
 
 #include "scrapers/IMDB.h"
 
+#include <chrono>
+
+using namespace std::chrono_literals;
+
 /**
  * @brief Loads movie data synchronously
  */
@@ -54,8 +58,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
         loadImdbSync(imdb, {{nullptr, "tt2277860"}}, m);
 
-        REQUIRE(m.id() == "tt2277860");
-        CHECK(m.tmdbId() == "");
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        CHECK(m.tmdbId() == TmdbId::NoId);
         CHECK(m.name() == "Finding Dory");
         CHECK(m.certification() == "PG");
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17");
@@ -68,7 +72,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         // check if it is existent.
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 97);
+        CHECK(m.runtime() == 97min);
 
         CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
         CHECK_THAT(m.outline(), StartsWith("The friendly but forgetful blue tang fish"));
@@ -107,7 +111,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
         loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
 
-        REQUIRE(m.id() == "tt0111161");
+        REQUIRE(m.imdbId() == ImdbId("tt0111161"));
         CHECK(m.name() == "The Shawshank Redemption");
         CHECK(m.certification() == "R");
         CHECK(m.released().toString("yyyy-MM-dd") == "1994-10-14");
@@ -119,7 +123,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         // check if it is existent.
         CHECK_FALSE(m.tagline().isEmpty());
         CHECK(m.images().posters().size() == 1);
-        CHECK(m.runtime() == 142);
+        CHECK(m.runtime() == 142min);
 
         CHECK_THAT(m.overview(), Contains("jailhouse of Shawshank"));
         CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
@@ -158,14 +162,14 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
         loadImdbSync(imdb, {{nullptr, "tt3159708"}}, m);
 
-        REQUIRE(m.id() == "tt3159708");
+        REQUIRE(m.imdbId() == ImdbId("tt3159708"));
         CHECK(m.name() == "Welcome Back");
         CHECK(m.certification() == "Not Rated");
         CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-04");
         CHECK(m.rating() == Approx(4.2).margin(0.5));
         CHECK(m.votes() > 4800);
         CHECK_FALSE(m.images().posters().isEmpty());
-        CHECK(m.runtime() == 152);
+        CHECK(m.runtime() == 152min);
 
         CHECK_THAT(m.overview(), Contains("have left the underworld"));
         CHECK_THAT(m.outline(), StartsWith("A pair of reformed gangsters try to find"));
