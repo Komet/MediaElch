@@ -274,9 +274,8 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
             this,
             SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
-        Manager::instance()->fanartTv()->movieImages(m_movie,
-            (m_movie->tmdbId().isValid()) ? m_movie->tmdbId().toString() : m_movie->imdbId().toString(),
-            images);
+        Manager::instance()->fanartTv()->movieImages(
+            m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
     } else {
         onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
     }

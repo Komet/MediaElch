@@ -95,14 +95,14 @@ void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
  * @brief Load movie posters
  * @param tmdbId
  */
-void TMDbImages::moviePosters(QString tmdbId)
+void TMDbImages::moviePosters(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
     QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
     QMap<ScraperInterface *, QString> ids;
-    ids.insert(0, tmdbId);
+    ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
@@ -110,14 +110,14 @@ void TMDbImages::moviePosters(QString tmdbId)
  * @brief Load movie backdrops
  * @param tmdbId
  */
-void TMDbImages::movieBackdrops(QString tmdbId)
+void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
     QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
     QMap<ScraperInterface *, QString> ids;
-    ids.insert(0, tmdbId);
+    ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
@@ -125,7 +125,7 @@ void TMDbImages::movieBackdrops(QString tmdbId)
  * @brief Load concert posters
  * @param tmdbId
  */
-void TMDbImages::concertPosters(QString tmdbId)
+void TMDbImages::concertPosters(TmdbId tmdbId)
 {
     moviePosters(tmdbId);
 }
@@ -134,7 +134,7 @@ void TMDbImages::concertPosters(QString tmdbId)
  * @brief Load concert backdrops
  * @param tmdbId
  */
-void TMDbImages::concertBackdrops(QString tmdbId)
+void TMDbImages::concertBackdrops(TmdbId tmdbId)
 {
     movieBackdrops(tmdbId);
 }
@@ -160,7 +160,7 @@ void TMDbImages::onLoadImagesFinished()
  * @param tmdbId
  * @param types
  */
-void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void TMDbImages::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -171,17 +171,17 @@ void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> type
  * @brief Load movie logos
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::movieLogos(QString tmdbId)
+void TMDbImages::movieLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TMDbImages::movieBanners(QString tmdbId)
+void TMDbImages::movieBanners(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TMDbImages::movieThumbs(QString tmdbId)
+void TMDbImages::movieThumbs(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -190,7 +190,7 @@ void TMDbImages::movieThumbs(QString tmdbId)
  * @brief Load movie clear arts
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::movieClearArts(QString tmdbId)
+void TMDbImages::movieClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -199,7 +199,7 @@ void TMDbImages::movieClearArts(QString tmdbId)
  * @brief Load movie cd arts
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::movieCdArts(QString tmdbId)
+void TMDbImages::movieCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -210,7 +210,7 @@ void TMDbImages::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void TMDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void TMDbImages::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -221,7 +221,7 @@ void TMDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageType
  * @brief Load concert logos
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::concertLogos(QString tmdbId)
+void TMDbImages::concertLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -230,7 +230,7 @@ void TMDbImages::concertLogos(QString tmdbId)
  * @brief Load concert clear arts
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::concertClearArts(QString tmdbId)
+void TMDbImages::concertClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -239,7 +239,7 @@ void TMDbImages::concertClearArts(QString tmdbId)
  * @brief Load concert cd arts
  * @param tmdbId The Movie DB id
  */
-void TMDbImages::concertCdArts(QString tmdbId)
+void TMDbImages::concertCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }

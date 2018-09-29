@@ -18,10 +18,10 @@ ConcertXmlReader::ConcertXmlReader(Concert &concert) : m_concert{concert}
 void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
 {
     if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_concert.setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+        m_concert.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
-        m_concert.setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
+        m_concert.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("title").isEmpty()) {
         m_concert.setName(domDoc.elementsByTagName("title").at(0).toElement().text());

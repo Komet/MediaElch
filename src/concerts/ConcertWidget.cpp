@@ -324,6 +324,7 @@ void ConcertWidget::onStartScraperSearch()
     ConcertSearch::instance()->exec(m_concert->name());
     if (ConcertSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
+        ConcertSearch::instance()->scraperId();
         m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(),
             Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
             ConcertSearch::instance()->infosToLoad());

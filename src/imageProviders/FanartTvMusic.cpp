@@ -329,14 +329,14 @@ QList<Poster> FanartTvMusic::parseData(QString json, ImageType type)
     return posters;
 }
 
-void FanartTvMusic::concertBackdrops(QString mbId)
+void FanartTvMusic::concertBackdrops(TmdbId tmdbId)
 {
-    Q_UNUSED(mbId);
+    Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::concertLogos(QString mbId)
+void FanartTvMusic::concertLogos(TmdbId tmdbId)
 {
-    Q_UNUSED(mbId);
+    Q_UNUSED(tmdbId);
 }
 
 void FanartTvMusic::searchTvShow(QString searchStr, int limit)
@@ -418,56 +418,56 @@ void FanartTvMusic::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
     Q_UNUSED(season);
 }
 
-void FanartTvMusic::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void FanartTvMusic::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
     Q_UNUSED(types);
 }
 
-void FanartTvMusic::moviePosters(QString tmdbId)
+void FanartTvMusic::moviePosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieBackdrops(QString tmdbId)
+void FanartTvMusic::movieBackdrops(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieLogos(QString tmdbId)
+void FanartTvMusic::movieLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieBanners(QString tmdbId)
+void FanartTvMusic::movieBanners(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieThumbs(QString tmdbId)
+void FanartTvMusic::movieThumbs(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieClearArts(QString tmdbId)
+void FanartTvMusic::movieClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::movieCdArts(QString tmdbId)
+void FanartTvMusic::movieCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void FanartTvMusic::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
     Q_UNUSED(types);
 }
 
-void FanartTvMusic::concertPosters(QString tmdbId)
+void FanartTvMusic::concertPosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -478,12 +478,12 @@ void FanartTvMusic::searchMovie(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusic::concertClearArts(QString tmdbId)
+void FanartTvMusic::concertClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::concertCdArts(QString tmdbId)
+void FanartTvMusic::concertCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }

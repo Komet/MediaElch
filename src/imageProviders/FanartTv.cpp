@@ -183,7 +183,7 @@ void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
  * @param tmdbId
  * @param types
  */
-void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void FanartTv::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     loadMovieData(tmdbId, types, movie);
 }
@@ -192,7 +192,7 @@ void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
  * @brief Load movie posters
  * @param tmdbId
  */
-void FanartTv::moviePosters(QString tmdbId)
+void FanartTv::moviePosters(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MoviePoster);
 }
@@ -201,7 +201,7 @@ void FanartTv::moviePosters(QString tmdbId)
  * @brief Load movie backdrops
  * @param tmdbId
  */
-void FanartTv::movieBackdrops(QString tmdbId)
+void FanartTv::movieBackdrops(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieBackdrop);
 }
@@ -210,17 +210,17 @@ void FanartTv::movieBackdrops(QString tmdbId)
  * @brief Load movie logos
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieLogos(QString tmdbId)
+void FanartTv::movieLogos(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieLogo);
 }
 
-void FanartTv::movieBanners(QString tmdbId)
+void FanartTv::movieBanners(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieBanner);
 }
 
-void FanartTv::movieThumbs(QString tmdbId)
+void FanartTv::movieThumbs(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieThumb);
 }
@@ -229,7 +229,7 @@ void FanartTv::movieThumbs(QString tmdbId)
  * @brief Load movie clear arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieClearArts(QString tmdbId)
+void FanartTv::movieClearArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieClearArt);
 }
@@ -238,7 +238,7 @@ void FanartTv::movieClearArts(QString tmdbId)
  * @brief Load movie cd arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieCdArts(QString tmdbId)
+void FanartTv::movieCdArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieCdArt);
 }
@@ -249,7 +249,7 @@ void FanartTv::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void FanartTv::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     loadConcertData(tmdbId, types, concert);
 }
@@ -258,7 +258,7 @@ void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<ImageType> 
  * @brief Would load concert posters (not supported by fanart.tv)
  * @param tmdbId
  */
-void FanartTv::concertPosters(QString tmdbId)
+void FanartTv::concertPosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -267,7 +267,7 @@ void FanartTv::concertPosters(QString tmdbId)
  * @brief Load concert backdrops
  * @param tmdbId
  */
-void FanartTv::concertBackdrops(QString tmdbId)
+void FanartTv::concertBackdrops(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertBackdrop);
 }
@@ -276,7 +276,7 @@ void FanartTv::concertBackdrops(QString tmdbId)
  * @brief Load concert logos
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertLogos(QString tmdbId)
+void FanartTv::concertLogos(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertLogo);
 }
@@ -285,7 +285,7 @@ void FanartTv::concertLogos(QString tmdbId)
  * @brief Load concert clear arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertClearArts(QString tmdbId)
+void FanartTv::concertClearArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertClearArt);
 }
@@ -294,7 +294,7 @@ void FanartTv::concertClearArts(QString tmdbId)
  * @brief Load concert cd arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertCdArts(QString tmdbId)
+void FanartTv::concertCdArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertCdArt);
 }
@@ -304,12 +304,12 @@ void FanartTv::concertCdArts(QString tmdbId)
  * @param tmdbId
  * @param type
  */
-void FanartTv::loadMovieData(QString tmdbId, ImageType type)
+void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
@@ -322,12 +322,12 @@ void FanartTv::loadMovieData(QString tmdbId, ImageType type)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movie)
+void FanartTv::loadMovieData(TmdbId tmdbId, QList<ImageType> types, Movie *movie)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
@@ -341,12 +341,12 @@ void FanartTv::loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movi
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadConcertData(QString tmdbId, QList<ImageType> types, Concert *concert)
+void FanartTv::loadConcertData(TmdbId tmdbId, QList<ImageType> types, Concert *concert)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));

@@ -762,7 +762,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         id = m_movie->tmdbId().toString();
     } else if (m_itemType == ItemType::Concert) {
         initialSearchTerm = m_concert->name();
-        id = m_concert->tmdbId();
+        id = m_concert->tmdbId().toString();
     } else if (m_itemType == ItemType::TvShow) {
         initialSearchTerm = m_tvShow->name();
         id = m_tvShow->tvdbId().toString();
@@ -847,32 +847,34 @@ void ImageDialog::loadImagesFromProvider(QString id)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemType::Movie) {
+        TmdbId movieId = TmdbId(id);
         if (m_type == ImageType::MoviePoster) {
-            m_currentProvider->moviePosters(id);
+            m_currentProvider->moviePosters(movieId);
         } else if (m_type == ImageType::MovieBackdrop) {
-            m_currentProvider->movieBackdrops(id);
+            m_currentProvider->movieBackdrops(movieId);
         } else if (m_type == ImageType::MovieLogo) {
-            m_currentProvider->movieLogos(id);
+            m_currentProvider->movieLogos(movieId);
         } else if (m_type == ImageType::MovieBanner) {
-            m_currentProvider->movieBanners(id);
+            m_currentProvider->movieBanners(movieId);
         } else if (m_type == ImageType::MovieThumb) {
-            m_currentProvider->movieThumbs(id);
+            m_currentProvider->movieThumbs(movieId);
         } else if (m_type == ImageType::MovieClearArt) {
-            m_currentProvider->movieClearArts(id);
+            m_currentProvider->movieClearArts(movieId);
         } else if (m_type == ImageType::MovieCdArt) {
-            m_currentProvider->movieCdArts(id);
+            m_currentProvider->movieCdArts(movieId);
         }
     } else if (m_itemType == ItemType::Concert) {
+        TmdbId movieId = TmdbId(id);
         if (m_type == ImageType::ConcertBackdrop) {
-            m_currentProvider->concertBackdrops(id);
+            m_currentProvider->concertBackdrops(movieId);
         } else if (m_type == ImageType::ConcertPoster) {
-            m_currentProvider->concertPosters(id);
+            m_currentProvider->concertPosters(movieId);
         } else if (m_type == ImageType::ConcertLogo) {
-            m_currentProvider->concertLogos(id);
+            m_currentProvider->concertLogos(movieId);
         } else if (m_type == ImageType::ConcertClearArt) {
-            m_currentProvider->concertClearArts(id);
+            m_currentProvider->concertClearArts(movieId);
         } else if (m_type == ImageType::ConcertCdArt) {
-            m_currentProvider->concertCdArts(id);
+            m_currentProvider->concertCdArts(movieId);
         }
     } else if (m_itemType == ItemType::TvShow) {
         TvDbId showId = TvDbId(id);

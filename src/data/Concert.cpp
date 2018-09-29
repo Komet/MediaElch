@@ -443,7 +443,7 @@ int Concert::mediaCenterId() const
  * @return The concerts tmdb id
  * @see Concert::setTmdbId
  */
-QString Concert::tmdbId() const
+TmdbId Concert::tmdbId() const
 {
     return m_tmdbId;
 }
@@ -454,7 +454,7 @@ QString Concert::tmdbId() const
  * @return The concerts id
  * @see Concert::setId
  */
-QString Concert::id() const
+ImdbId Concert::id() const
 {
     return m_id;
 }
@@ -745,7 +745,7 @@ void Concert::setMediaCenterId(int mediaCenterId)
  * @param id Tmdb id of the concert
  * @see Concert::tmdbId
  */
-void Concert::setTmdbId(QString id)
+void Concert::setTmdbId(TmdbId id)
 {
     m_tmdbId = id;
     setChanged(true);
@@ -756,7 +756,7 @@ void Concert::setTmdbId(QString id)
  * @param id Imdb id of the concert
  * @see Concert::id
  */
-void Concert::setId(QString id)
+void Concert::setId(ImdbId id)
 {
     m_id = id;
     setChanged(true);

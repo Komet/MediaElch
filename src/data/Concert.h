@@ -2,6 +2,8 @@
 #define CONCERT_H
 
 #include "concerts/ConcertController.h"
+#include "data/ImdbId.h"
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QByteArray>
@@ -40,7 +42,7 @@ class Concert : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(bool watched READ watched WRITE setWatched)
     Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
-    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
+    Q_PROPERTY(TmdbId tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Concert(QStringList files, QObject *parent = nullptr);
@@ -76,8 +78,8 @@ public:
     virtual int downloadsSize() const;
     virtual bool inSeparateFolder() const;
     virtual int mediaCenterId() const;
-    virtual QString tmdbId() const;
-    virtual QString id() const;
+    virtual TmdbId tmdbId() const;
+    virtual ImdbId id() const;
     virtual StreamDetails *streamDetails() const;
     virtual bool streamDetailsLoaded() const;
     virtual QString nfoContent() const;
@@ -113,8 +115,8 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
-    void setTmdbId(QString id);
-    void setId(QString id);
+    void setTmdbId(TmdbId id);
+    void setId(ImdbId id);
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -185,8 +187,8 @@ private:
     bool m_downloadsInProgress;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
-    QString m_tmdbId;
-    QString m_id;
+    TmdbId m_tmdbId;
+    ImdbId m_id;
     QList<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;

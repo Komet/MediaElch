@@ -18,7 +18,7 @@ class ConcertScraperInterface : public QObject
 public:
     virtual QString name() = 0;
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QString id, Concert *concert, QList<ConcertScraperInfos> infos) = 0;
+    virtual void loadData(TmdbId id, Concert *concert, QList<ConcertScraperInfos> infos) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;

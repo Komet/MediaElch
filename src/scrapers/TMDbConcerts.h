@@ -21,7 +21,7 @@ public:
     ~TMDbConcerts() override = default;
     QString name() override;
     void search(QString searchStr) override;
-    void loadData(QString id, Concert *concert, QList<ConcertScraperInfos> infos) override;
+    void loadData(TmdbId id, Concert *concert, QList<ConcertScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;

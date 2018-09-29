@@ -30,8 +30,8 @@ QByteArray ConcertXmlWriter::getConcertXml()
     XbmcXml::setTextValue(doc, "title", m_concert.name());
     XbmcXml::setTextValue(doc, "artist", m_concert.artist());
     XbmcXml::setTextValue(doc, "album", m_concert.album());
-    XbmcXml::setTextValue(doc, "id", m_concert.id());
-    XbmcXml::setTextValue(doc, "tmdbid", m_concert.tmdbId());
+    XbmcXml::setTextValue(doc, "id", m_concert.id().toString());
+    XbmcXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
     XbmcXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.rating()));
     XbmcXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
     XbmcXml::setTextValue(doc, "plot", m_concert.overview());
