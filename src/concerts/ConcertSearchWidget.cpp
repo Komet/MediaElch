@@ -100,7 +100,7 @@ void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)
 void ConcertSearchWidget::resultClicked(QTableWidgetItem *item)
 {
     qDebug() << "Entered";
-    m_scraperId = item->data(Qt::UserRole).toString();
+    m_scraperId = TmdbId(item->data(Qt::UserRole).toString());
     emit sigResultClicked();
 }
 
@@ -138,7 +138,7 @@ int ConcertSearchWidget::scraperNo()
     return m_scraperNo;
 }
 
-QString ConcertSearchWidget::scraperId()
+TmdbId ConcertSearchWidget::scraperId()
 {
     qDebug() << "Entered, m_scraperId=" << m_scraperId;
     return m_scraperId;

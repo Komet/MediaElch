@@ -131,8 +131,15 @@ SOURCES += src/main.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
     src/mediaCenterPlugins/XbmcXml.cpp \
+    src/mediaCenterPlugins/kodi/ArtistXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/ArtistXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/ConcertXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/EpisodeXmlReader.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
+    src/mediaCenterPlugins/kodi/TvShowXmlWriter.cpp \
+    src/mediaCenterPlugins/kodi/TvShowXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
     src/movies/FilesWidget.cpp \
     src/movies/GenreWidget.cpp \
@@ -226,7 +233,11 @@ SOURCES += src/main.cpp \
     src/tvShows/TvTunesDialog.cpp \
     src/xbmc/XbmcSync.cpp \
     src/data/ImdbId.cpp \
-    src/data/TmdbId.cpp
+    src/data/TmdbId.cpp \
+    src/data/TvDbId.cpp \
+    src/data/EpisodeNumber.cpp \
+    src/data/SeasonNumber.cpp \
+    src/data/Certification.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
@@ -309,8 +320,15 @@ HEADERS  += Version.h \
     src/main/Navbar.h \
     src/main/Update.h \
     src/mediaCenterPlugins/XbmcXml.h \
+    src/mediaCenterPlugins/kodi/ArtistXmlReader.h \
+    src/mediaCenterPlugins/kodi/ArtistXmlWriter.h \
+    src/mediaCenterPlugins/kodi/ConcertXmlWriter.h \
+    src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
+    src/mediaCenterPlugins/kodi/EpisodeXmlReader.h \
     src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
     src/mediaCenterPlugins/kodi/MovieXmlReader.h \
+    src/mediaCenterPlugins/kodi/TvShowXmlWriter.h \
+    src/mediaCenterPlugins/kodi/TvShowXmlReader.h \
     src/movies/CertificationWidget.h \
     src/movies/FilesWidget.h \
     src/movies/GenreWidget.h \
@@ -406,7 +424,11 @@ HEADERS  += Version.h \
     src/tvShows/TvTunesDialog.h \
     src/xbmc/XbmcSync.h \
     src/data/ImdbId.h \
-    src/data/TmdbId.h
+    src/data/TmdbId.h \
+    src/data/TvDbId.h \
+    src/data/EpisodeNumber.h \
+    src/data/SeasonNumber.h \
+    src/data/Certification.h
 
 FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \

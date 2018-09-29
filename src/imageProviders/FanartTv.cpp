@@ -183,7 +183,7 @@ void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
  * @param tmdbId
  * @param types
  */
-void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void FanartTv::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     loadMovieData(tmdbId, types, movie);
 }
@@ -192,7 +192,7 @@ void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
  * @brief Load movie posters
  * @param tmdbId
  */
-void FanartTv::moviePosters(QString tmdbId)
+void FanartTv::moviePosters(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MoviePoster);
 }
@@ -201,7 +201,7 @@ void FanartTv::moviePosters(QString tmdbId)
  * @brief Load movie backdrops
  * @param tmdbId
  */
-void FanartTv::movieBackdrops(QString tmdbId)
+void FanartTv::movieBackdrops(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieBackdrop);
 }
@@ -210,17 +210,17 @@ void FanartTv::movieBackdrops(QString tmdbId)
  * @brief Load movie logos
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieLogos(QString tmdbId)
+void FanartTv::movieLogos(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieLogo);
 }
 
-void FanartTv::movieBanners(QString tmdbId)
+void FanartTv::movieBanners(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieBanner);
 }
 
-void FanartTv::movieThumbs(QString tmdbId)
+void FanartTv::movieThumbs(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieThumb);
 }
@@ -229,7 +229,7 @@ void FanartTv::movieThumbs(QString tmdbId)
  * @brief Load movie clear arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieClearArts(QString tmdbId)
+void FanartTv::movieClearArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieClearArt);
 }
@@ -238,7 +238,7 @@ void FanartTv::movieClearArts(QString tmdbId)
  * @brief Load movie cd arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::movieCdArts(QString tmdbId)
+void FanartTv::movieCdArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::MovieCdArt);
 }
@@ -249,7 +249,7 @@ void FanartTv::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void FanartTv::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     loadConcertData(tmdbId, types, concert);
 }
@@ -258,7 +258,7 @@ void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<ImageType> 
  * @brief Would load concert posters (not supported by fanart.tv)
  * @param tmdbId
  */
-void FanartTv::concertPosters(QString tmdbId)
+void FanartTv::concertPosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -267,7 +267,7 @@ void FanartTv::concertPosters(QString tmdbId)
  * @brief Load concert backdrops
  * @param tmdbId
  */
-void FanartTv::concertBackdrops(QString tmdbId)
+void FanartTv::concertBackdrops(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertBackdrop);
 }
@@ -276,7 +276,7 @@ void FanartTv::concertBackdrops(QString tmdbId)
  * @brief Load concert logos
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertLogos(QString tmdbId)
+void FanartTv::concertLogos(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertLogo);
 }
@@ -285,7 +285,7 @@ void FanartTv::concertLogos(QString tmdbId)
  * @brief Load concert clear arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertClearArts(QString tmdbId)
+void FanartTv::concertClearArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertClearArt);
 }
@@ -294,7 +294,7 @@ void FanartTv::concertClearArts(QString tmdbId)
  * @brief Load concert cd arts
  * @param tmdbId The Movie DB id
  */
-void FanartTv::concertCdArts(QString tmdbId)
+void FanartTv::concertCdArts(TmdbId tmdbId)
 {
     loadMovieData(tmdbId, ImageType::ConcertCdArt);
 }
@@ -304,12 +304,12 @@ void FanartTv::concertCdArts(QString tmdbId)
  * @param tmdbId
  * @param type
  */
-void FanartTv::loadMovieData(QString tmdbId, ImageType type)
+void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
@@ -322,12 +322,12 @@ void FanartTv::loadMovieData(QString tmdbId, ImageType type)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movie)
+void FanartTv::loadMovieData(TmdbId tmdbId, QList<ImageType> types, Movie *movie)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
@@ -341,12 +341,12 @@ void FanartTv::loadMovieData(QString tmdbId, QList<ImageType> types, Movie *movi
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadConcertData(QString tmdbId, QList<ImageType> types, Concert *concert)
+void FanartTv::loadConcertData(TmdbId tmdbId, QList<ImageType> types, Concert *concert)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
@@ -506,7 +506,7 @@ void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param types
  */
-void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
+void FanartTv::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
 {
     loadTvShowData(tvdbId, types, show);
 }
@@ -516,16 +516,16 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types
  * @param tvdbId The Tv DB Id
  * @param type
  */
-void FanartTv::loadTvShowData(QString tvdbId, ImageType type, int season)
+void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
-    reply->setProperty("season", season);
+    reply->setProperty("season", season.toInt());
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
@@ -534,12 +534,12 @@ void FanartTv::loadTvShowData(QString tvdbId, ImageType type, int season)
  * @param tvdbId The Tv DB Id
  * @param types
  */
-void FanartTv::loadTvShowData(QString tvdbId, QList<ImageType> types, TvShow *show)
+void FanartTv::loadTvShowData(TvDbId tvdbId, QList<ImageType> types, TvShow *show)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
@@ -558,8 +558,8 @@ void FanartTv::onLoadTvShowDataFinished()
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        posters =
-            parseTvShowData(msg, ImageType(reply->property("infoToLoad").toInt()), reply->property("season").toInt());
+        posters = parseTvShowData(
+            msg, ImageType(reply->property("infoToLoad").toInt()), SeasonNumber(reply->property("season").toInt()));
     }
     emit sigImagesLoaded(posters);
 }
@@ -588,7 +588,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
  * @brief Load tv show posters
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowPosters(QString tvdbId)
+void FanartTv::tvShowPosters(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
@@ -597,7 +597,7 @@ void FanartTv::tvShowPosters(QString tvdbId)
  * @brief Load tv show backdrops
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowBackdrops(QString tvdbId)
+void FanartTv::tvShowBackdrops(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
@@ -606,12 +606,12 @@ void FanartTv::tvShowBackdrops(QString tvdbId)
  * @brief Load tv show logos
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowLogos(QString tvdbId)
+void FanartTv::tvShowLogos(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowLogos);
 }
 
-void FanartTv::tvShowThumbs(QString tvdbId)
+void FanartTv::tvShowThumbs(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowThumb);
 }
@@ -620,7 +620,7 @@ void FanartTv::tvShowThumbs(QString tvdbId)
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowClearArts(QString tvdbId)
+void FanartTv::tvShowClearArts(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowClearArt);
 }
@@ -629,7 +629,7 @@ void FanartTv::tvShowClearArts(QString tvdbId)
  * @brief Load tv show character arts
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowCharacterArts(QString tvdbId)
+void FanartTv::tvShowCharacterArts(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowCharacterArt);
 }
@@ -638,7 +638,7 @@ void FanartTv::tvShowCharacterArts(QString tvdbId)
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */
-void FanartTv::tvShowBanners(QString tvdbId)
+void FanartTv::tvShowBanners(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
@@ -649,7 +649,7 @@ void FanartTv::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void FanartTv::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -661,24 +661,24 @@ void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void FanartTv::tvShowSeason(QString tvdbId, int season)
+void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster, season);
 }
 
-void FanartTv::tvShowSeasonBanners(QString tvdbId, int season)
+void FanartTv::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonBackdrops(QString tvdbId, int season)
+void FanartTv::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
+void FanartTv::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 {
     loadTvShowData(tvdbId, ImageType::TvShowSeasonThumb, season);
 }
@@ -689,7 +689,7 @@ void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
  * @param type Type of image (ImageType)
  * @return List of posters
  */
-QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season)
+QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNumber season)
 {
     QMap<ImageType, QStringList> map;
 
@@ -716,7 +716,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season
         return posters;
     }
 
-    foreach (const QString &section, map.value(type)) {
+    for (const QString &section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto &it : jsonPosters) {
@@ -726,16 +726,16 @@ QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, int season
                 continue;
             }
 
-            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2
-                && !poster.value("season").toString().isEmpty()
-                && poster.value("season").toString().toInt() != season) {
+            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster)
+                && season != SeasonNumber::NoSeason && !poster.value("season").toString().isEmpty()
+                && poster.value("season").toString().toInt() != season.toInt()) {
                 continue;
             }
 
             Poster b;
             b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
             b.originalUrl = poster.value("url").toString();
-            b.season = poster.value("season").toString().toInt();
+            b.season = SeasonNumber(poster.value("season").toString().toInt());
 
             const auto discType = poster.value("disc_type").toString();
 

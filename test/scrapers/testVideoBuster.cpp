@@ -3,6 +3,10 @@
 #include "scrapers/VideoBuster.h"
 #include "settings/Settings.h"
 
+#include <chrono>
+
+using namespace std::chrono_literals;
+
 // VideoBuster is a German website so search results and movie
 // details in these tests are German as well.
 
@@ -44,7 +48,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
         CHECK(m.tagline() == "Alles andere kannste vergessen.");
         CHECK(m.images().posters().size() >= 5);
         CHECK(m.images().backdrops().size() >= 4);
-        CHECK(m.runtime() == 93);
+        CHECK(m.runtime() == 93min);
 
         CHECK_THAT(m.overview(), StartsWith("Mit Disney-Pixars Animationshit 'Findet Dorie' gelang"));
         CHECK_THAT(m.outline(), Equals(m.overview()));

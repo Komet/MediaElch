@@ -234,11 +234,11 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.TAGS }}", movie->tags().join(", ").toHtmlEscaped());
     m.replace("{{ MOVIE.WRITER }}", movie->writer().toHtmlEscaped());
     m.replace("{{ MOVIE.DIRECTOR }}", movie->director().toHtmlEscaped());
-    m.replace("{{ MOVIE.CERTIFICATION }}", movie->certification().toHtmlEscaped());
+    m.replace("{{ MOVIE.CERTIFICATION }}", movie->certification().toString().toHtmlEscaped());
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
     m.replace("{{ MOVIE.RATING }}", QString::number(movie->rating(), 'f', 1));
     m.replace("{{ MOVIE.VOTES }}", QString::number(movie->votes(), 'f', 0));
-    m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime(), 'f', 0));
+    m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime().count(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}",
         movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
@@ -333,8 +333,8 @@ void ExportDialog::replaceVars(QString &m, const Concert *concert, QDir dir, boo
     m.replace("{{ CONCERT.TAGLINE }}", concert->tagline().toHtmlEscaped());
     m.replace("{{ CONCERT.RATING }}", QString::number(concert->rating(), 'f', 1));
     m.replace("{{ CONCERT.YEAR }}", concert->released().isValid() ? concert->released().toString("yyyy") : "");
-    m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime(), 'f', 0));
-    m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toHtmlEscaped());
+    m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime().count(), 'f', 0));
+    m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toString().toHtmlEscaped());
     m.replace("{{ CONCERT.TRAILER }}", concert->trailer().toString());
     m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));
     m.replace("{{ CONCERT.LAST_PLAYED }}",
@@ -426,7 +426,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name().toHtmlEscaped());
     m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
-    m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toHtmlEscaped());
+    m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toString().toHtmlEscaped());
     m.replace(
         "{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");
     m.replace("{{ TVSHOW.STUDIO }}", show->network().toHtmlEscaped());
@@ -468,13 +468,13 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
         return;
     }
 
-    QList<int> seasons = show->seasons(false);
+    QList<SeasonNumber> seasons = show->seasons(false);
     qSort(seasons);
-    foreach (const int &season, seasons) {
+    for (const SeasonNumber &season : seasons) {
         QList<TvShowEpisode *> episodes = show->episodes(season);
         qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
-        s.replace("{{ SEASON }}", QString::number(season));
+        s.replace("{{ SEASON }}", season.toString());
 
         QString listEpisodeItem;
         QString listEpisodeBlock;
@@ -510,7 +510,7 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     m.replace("{{ EPISODE.SEASON }}", episode->seasonString().toHtmlEscaped());
     m.replace("{{ EPISODE.EPISODE }}", episode->episodeString().toHtmlEscaped());
     m.replace("{{ EPISODE.RATING }}", QString::number(episode->rating(), 'f', 1));
-    m.replace("{{ EPISODE.CERTIFICATION }}", episode->certification().toHtmlEscaped());
+    m.replace("{{ EPISODE.CERTIFICATION }}", episode->certification().toString().toHtmlEscaped());
     m.replace("{{ EPISODE.FIRST_AIRED }}",
         episode->firstAired().isValid() ? episode->firstAired().toString("yyyy-MM-dd") : "");
     m.replace("{{ EPISODE.LAST_PLAYED }}",

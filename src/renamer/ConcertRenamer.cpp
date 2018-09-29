@@ -115,7 +115,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
             }
 
             QString fileName = QFileInfo(filePath).fileName();
-            QString newDataFileName = files.first().saveFileName(newFileName, -1, concert.files().count() > 1);
+            QString newDataFileName =
+                files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
             Helper::instance()->sanitizeFileName(newDataFileName);
             if (newDataFileName == fileName) {
                 // File already has correct name

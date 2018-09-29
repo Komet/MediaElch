@@ -113,14 +113,14 @@ void TvShowFileSearcher::reload(bool force)
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
         Manager::instance()->database()->transaction();
-        QMap<int, TvShowModelItem *> seasonItems;
+        QMap<SeasonNumber, TvShowModelItem *> seasonItems;
         QList<TvShowEpisode *> episodes;
 
         // Setup episodes list
-        foreach (const QStringList &files, it.value()) {
-            int seasonNumber = getSeasonNumber(files);
-            QList<int> episodeNumbers = getEpisodeNumbers(files);
-            foreach (const int &episodeNumber, episodeNumbers) {
+        for (const QStringList &files : it.value()) {
+            SeasonNumber seasonNumber = getSeasonNumber(files);
+            QList<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+            for (const EpisodeNumber &episodeNumber : episodeNumbers) {
                 TvShowEpisode *episode = new TvShowEpisode(files, show);
                 episode->setSeason(seasonNumber);
                 episode->setEpisode(episodeNumber);
@@ -132,7 +132,7 @@ void TvShowFileSearcher::reload(bool force)
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
         // Add episodes to model
-        foreach (TvShowEpisode *episode, episodes) {
+        for (TvShowEpisode *episode : episodes) {
             Manager::instance()->database()->add(episode, path, show->databaseId());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
@@ -149,7 +149,7 @@ void TvShowFileSearcher::reload(bool force)
     emit currentDir("");
 
     // Setup shows loaded from database
-    foreach (TvShow *show, dbShows) {
+    for (TvShow *show : dbShows) {
         if (m_aborted) {
             return;
         }
@@ -157,10 +157,10 @@ void TvShowFileSearcher::reload(bool force)
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
-        QMap<int, TvShowModelItem *> seasonItems;
+        QMap<SeasonNumber, TvShowModelItem *> seasonItems;
         QList<TvShowEpisode *> episodes = Manager::instance()->database()->episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
-        foreach (TvShowEpisode *episode, episodes) {
+        for (TvShowEpisode *episode : episodes) {
             episode->setShow(show);
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
@@ -175,7 +175,7 @@ void TvShowFileSearcher::reload(bool force)
         }
     }
 
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
         if (show->showMissingEpisodes()) {
             show->fillMissingEpisodes();
         }
@@ -243,15 +243,15 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
-    QMap<int, TvShowModelItem *> seasonItems;
+    QMap<SeasonNumber, TvShowModelItem *> seasonItems;
     QList<TvShowEpisode *> episodes;
-    foreach (const QStringList &files, contents) {
+    for (const QStringList &files : contents) {
         if (m_aborted) {
             return;
         }
-        int seasonNumber = getSeasonNumber(files);
-        QList<int> episodeNumbers = getEpisodeNumbers(files);
-        foreach (const int &episodeNumber, episodeNumbers) {
+        SeasonNumber seasonNumber = getSeasonNumber(files);
+        QList<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+        for (const EpisodeNumber &episodeNumber : episodeNumbers) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
             episode->setSeason(seasonNumber);
             episode->setEpisode(episodeNumber);
@@ -261,7 +261,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
-    foreach (TvShowEpisode *episode, episodes) {
+    for (TvShowEpisode *episode : episodes) {
         Manager::instance()->database()->add(episode, path, show->databaseId());
         show->addEpisode(episode);
         if (!seasonItems.contains(episode->season())) {
@@ -408,10 +408,10 @@ void TvShowFileSearcher::abort()
     m_aborted = true;
 }
 
-int TvShowFileSearcher::getSeasonNumber(QStringList files)
+SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
 {
     if (files.isEmpty()) {
-        return -2;
+        return SeasonNumber::NoSeason;
     }
 
     QStringList filenameParts = files.at(0).split(QDir::separator());
@@ -430,27 +430,28 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
 
     QRegExp rx(R"(S(\d+)[\._\-]?E)", Qt::CaseInsensitive);
     if (rx.indexIn(filename) != -1) {
-        return rx.cap(1).toInt();
+        return SeasonNumber(rx.cap(1).toInt());
     }
     rx.setPattern("(\\d+)?x(\\d+)");
     if (rx.indexIn(filename) != -1) {
-        return rx.cap(1).toInt();
+        return SeasonNumber(rx.cap(1).toInt());
     }
     rx.setPattern("(\\d+)(\\d){2}");
     if (rx.indexIn(filename) != -1) {
-        return rx.cap(1).toInt();
+        return SeasonNumber(rx.cap(1).toInt());
     }
     rx.setPattern("Season[._ ]?(\\d+)[._ ]?Episode");
     if (rx.indexIn(filename) != -1) {
-        return rx.cap(1).toInt();
+        return SeasonNumber(rx.cap(1).toInt());
     }
 
-    return 0;
+    // Default if no valid season could be parsed.
+    return SeasonNumber::SpecialsSeason;
 }
 
-QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
+QList<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 {
-    QList<int> episodes;
+    QList<EpisodeNumber> episodes;
     if (files.isEmpty()) {
         return episodes;
     }
@@ -478,7 +479,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
-    foreach (const QString &pattern, patterns) {
+    for (const QString &pattern : patterns) {
         rx.setPattern(pattern);
         int pos = 0;
         int lastPos = -1;
@@ -488,7 +489,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             if (lastPos != -1 && lastPos < pos + 5) {
                 break;
             }
-            episodes << rx.cap(2).toInt();
+            episodes << EpisodeNumber(rx.cap(2).toInt());
             pos += rx.matchedLength();
             lastPos = pos;
         }
@@ -499,7 +500,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             if (episodes.count() == 1) {
                 rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
                 while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
-                    episodes << rx.cap(1).toInt();
+                    episodes << EpisodeNumber(rx.cap(1).toInt());
                     pos += rx.matchedLength() - 1;
                 }
             }

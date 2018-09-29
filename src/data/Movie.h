@@ -1,6 +1,7 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+#include "data/Certification.h"
 #include "data/ImdbId.h"
 #include "data/MovieImages.h"
 #include "data/Rating.h"
@@ -16,6 +17,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QUrl>
+#include <chrono>
 
 class MediaCenterInterface;
 
@@ -49,8 +51,8 @@ public:
     QDate released() const;
     QString tagline() const;
     QString outline() const;
-    int runtime() const;
-    QString certification() const;
+    std::chrono::minutes runtime() const;
+    Certification certification() const;
     QString writer() const;
     QString director() const;
     QStringList genres() const;
@@ -99,8 +101,8 @@ public:
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setOutline(QString outline);
-    void setRuntime(int runtime);
-    void setCertification(QString certification);
+    void setRuntime(std::chrono::minutes runtime);
+    void setCertification(Certification certification);
     void setWriter(QString writer);
     void setDirector(QString director);
     void addStudio(QString studio);
@@ -176,8 +178,8 @@ private:
     QDate m_released;
     QString m_tagline;
     QString m_outline;
-    int m_runtime;
-    QString m_certification;
+    std::chrono::minutes m_runtime;
+    Certification m_certification;
     QString m_writer;
     QString m_director;
     QStringList m_genres;

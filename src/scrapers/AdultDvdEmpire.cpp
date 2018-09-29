@@ -154,7 +154,9 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
 
     rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(1).toInt() * 60 + rx.cap(2).toInt());
+        using namespace std::chrono;
+        minutes runtime = hours(rx.cap(1).toInt()) + minutes(rx.cap(2).toInt());
+        movie->setRuntime(runtime);
     }
 
     rx.setPattern("<li><small>Production Year:</small> ([0-9]{4})[\\s\\n]*</li>");

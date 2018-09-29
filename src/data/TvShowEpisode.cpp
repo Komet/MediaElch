@@ -1,10 +1,5 @@
 #include "TvShowEpisode.h"
 
-#include <QApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <QTime>
-
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
@@ -12,29 +7,36 @@
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
+#include <QTime>
+#include <utility>
+
 /**
  * @brief TvShowEpisode::TvShowEpisode
  * @param files Files of the episode
  * @param parent
  */
-TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) : QObject(parent)
+TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
+    QObject(parent),
+    m_parent{parent},
+    m_season{SeasonNumber::NoSeason},
+    m_episode{EpisodeNumber::NoEpisode},
+    m_displaySeason{SeasonNumber::NoSeason},
+    m_displayEpisode{EpisodeNumber::NoEpisode},
+    m_playCount{0},
+    m_thumbnailImageChanged{false},
+    m_infoLoaded{false},
+    m_infoFromNfoLoaded{false},
+    m_hasChanged{false},
+    m_streamDetailsLoaded{false},
+    m_databaseId{-1},
+    m_syncNeeded{false},
+    m_isDummy{false}
 {
-    m_parent = parent;
-    m_season = -2;
-    m_episode = -2;
-    m_displaySeason = -1;
-    m_displayEpisode = -1;
-    m_playCount = 0;
-    m_thumbnailImageChanged = false;
-    m_hasChanged = false;
     static int m_idCounter = 0;
     m_episodeId = ++m_idCounter;
-    m_streamDetailsLoaded = false;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_databaseId = -1;
-    m_syncNeeded = false;
-    m_isDummy = false;
     setFiles(files);
 }
 
@@ -80,7 +82,7 @@ void TvShowEpisode::clear()
 void TvShowEpisode::clear(QList<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(TvShowScraperInfos::Rating)) {
         m_rating = Rating();
@@ -158,9 +160,9 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
+void TvShowEpisode::loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
 {
-    qDebug() << "Entered, id=" << id << "scraperInterface=" << tvScraperInterface->name();
+    qDebug() << "Entered, id=" << id.toString() << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;
     tvScraperInterface->loadTvShowEpisodeData(id, this, infosToLoad);
 }
@@ -305,7 +307,7 @@ double TvShowEpisode::rating() const
  * @return Season number
  * @see TvShowEpisode::setSeasonNumber
  */
-int TvShowEpisode::season() const
+SeasonNumber TvShowEpisode::season() const
 {
     return m_season;
 }
@@ -316,7 +318,7 @@ int TvShowEpisode::season() const
  * @return Display Season number
  * @see TvShowEpisode::setDisplaySeasonNumber
  */
-int TvShowEpisode::displaySeason() const
+SeasonNumber TvShowEpisode::displaySeason() const
 {
     return m_displaySeason;
 }
@@ -328,10 +330,7 @@ int TvShowEpisode::displaySeason() const
  */
 QString TvShowEpisode::seasonString() const
 {
-    if (season() == -2) {
-        return QStringLiteral("xx");
-    }
-    return QString("%1").arg(season()).prepend((season() < 10) ? "0" : "");
+    return season().toPaddedString();
 }
 
 /**
@@ -340,7 +339,7 @@ QString TvShowEpisode::seasonString() const
  * @return Episode number
  * @see TvShowEpisode::setEpisode
  */
-int TvShowEpisode::episode() const
+EpisodeNumber TvShowEpisode::episode() const
 {
     return m_episode;
 }
@@ -351,7 +350,7 @@ int TvShowEpisode::episode() const
  * @return Display Episode number
  * @see TvShowEpisode::setDisplayEpisode
  */
-int TvShowEpisode::displayEpisode() const
+EpisodeNumber TvShowEpisode::displayEpisode() const
 {
     return m_displayEpisode;
 }
@@ -363,10 +362,7 @@ int TvShowEpisode::displayEpisode() const
  */
 QString TvShowEpisode::episodeString() const
 {
-    if (episode() == -2) {
-        return QString("xx");
-    }
-    return QString("%1").arg(episode()).prepend((episode() < 10) ? "0" : "");
+    return episode().toPaddedString();
 }
 
 /**
@@ -441,16 +437,16 @@ QDate TvShowEpisode::firstAired() const
  * @return Certification
  * @see TvShowEpisode::setCertification
  */
-QString TvShowEpisode::certification() const
+Certification TvShowEpisode::certification() const
 {
-    if (!m_certification.isEmpty()) {
+    if (m_certification.isValid()) {
         return m_certification;
     }
     if (m_parent) {
         return m_parent->certification();
     }
 
-    return QString();
+    return Certification::NoCertification;
 }
 
 /**
@@ -638,7 +634,7 @@ void TvShowEpisode::setRating(double rating)
  * @param season Season number
  * @see TvShowEpisode::season
  */
-void TvShowEpisode::setSeason(int season)
+void TvShowEpisode::setSeason(SeasonNumber season)
 {
     m_season = season;
     setChanged(true);
@@ -649,9 +645,9 @@ void TvShowEpisode::setSeason(int season)
  * @param episode Episode number
  * @see TvShowEpisode::episode
  */
-void TvShowEpisode::setEpisode(int episode)
+void TvShowEpisode::setEpisode(EpisodeNumber episode)
 {
-    m_episode = episode;
+    m_episode = std::move(episode);
     setChanged(true);
 }
 
@@ -660,9 +656,9 @@ void TvShowEpisode::setEpisode(int episode)
  * @param season Display Season number
  * @see TvShowEpisode::displaySeason
  */
-void TvShowEpisode::setDisplaySeason(int season)
+void TvShowEpisode::setDisplaySeason(SeasonNumber season)
 {
-    m_displaySeason = season;
+    m_displaySeason = std::move(season);
     setChanged(true);
 }
 
@@ -671,9 +667,9 @@ void TvShowEpisode::setDisplaySeason(int season)
  * @param episode Display Episode number
  * @see TvShowEpisode::displayEpisode
  */
-void TvShowEpisode::setDisplayEpisode(int episode)
+void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
 {
-    m_displayEpisode = episode;
+    m_displayEpisode = std::move(episode);
     setChanged(true);
 }
 
@@ -776,7 +772,7 @@ void TvShowEpisode::setFirstAired(QDate firstAired)
  * @param certification Certification
  * @see TvShowEpisode::certification
  */
-void TvShowEpisode::setCertification(QString certification)
+void TvShowEpisode::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
@@ -989,12 +985,12 @@ bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
             < 0);
 }
 
-QString TvShowEpisode::imdbId() const
+ImdbId TvShowEpisode::imdbId() const
 {
     return m_imdbId;
 }
 
-void TvShowEpisode::setImdbId(const QString &imdbId)
+void TvShowEpisode::setImdbId(const ImdbId &imdbId)
 {
     m_imdbId = imdbId;
     setChanged(true);
@@ -1035,13 +1031,13 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     }
     out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));
-    out.append(QStringLiteral("  Season:        %1").arg(episode.season()).append(nl));
-    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode()).append(nl));
+    out.append(QStringLiteral("  Season:        %1").arg(episode.season().toPaddedString()).append(nl));
+    out.append(QStringLiteral("  Episode:       %1").arg(episode.episode().toPaddedString()).append(nl));
     out.append(QStringLiteral("  Rating:        %1").arg(episode.rating()).append(nl));
     out.append(QStringLiteral("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
-    out.append(QStringLiteral("  Certification: ").append(episode.certification()).append(nl));
+    out.append(QStringLiteral("  Certification: ").append(episode.certification().toString()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(episode.overview())).append(nl);
     foreach (const QString &writer, episode.writers()) {
         out.append(QString("  Writer:        ").append(writer)).append(nl);

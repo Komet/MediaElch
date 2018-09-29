@@ -115,9 +115,7 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
     return infoLoaded;
 }
 
-void ConcertController::loadData(QString id,
-    ConcertScraperInterface *scraperInterface,
-    QList<ConcertScraperInfos> infos)
+void ConcertController::loadData(TmdbId id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_concert, infos);
@@ -125,9 +123,11 @@ void ConcertController::loadData(QString id,
 
 void ConcertController::loadStreamDetailsFromFile()
 {
+    using namespace std::chrono;
     m_concert->streamDetails()->loadStreamDetails();
-    m_concert->setRuntime(qFloor(
-        m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+    seconds runtime(
+        m_concert->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
+    m_concert->setRuntime(duration_cast<minutes>(runtime));
     m_concert->setStreamDetailsLoaded(true);
     m_concert->setChanged(true);
 }
@@ -147,7 +147,7 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
     Q_UNUSED(scraper);
 
     emit sigInfoLoadDone(m_concert);
-    if (!m_concert->tmdbId().isEmpty() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
+    if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
         QList<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(Concert *, QMap<ImageType, QList<Poster>>)),

@@ -285,16 +285,16 @@ QStringList Helper::mapGenre(const QStringList &genres)
     return mappedGenres;
 }
 
-QString Helper::mapCertification(const QString &text)
+Certification Helper::mapCertification(const Certification &certification)
 {
     if (Settings::instance()->advanced()->certificationMappings().isEmpty()) {
-        return text;
+        return certification;
     }
-
-    if (Settings::instance()->advanced()->certificationMappings().contains(text)) {
-        return Settings::instance()->advanced()->certificationMappings().value(text);
+    const QString certStr = certification.toString();
+    if (Settings::instance()->advanced()->certificationMappings().contains(certStr)) {
+        return Certification(Settings::instance()->advanced()->certificationMappings().value(certStr));
     }
-    return text;
+    return certification;
 }
 
 QString Helper::mapStudio(const QString &text)

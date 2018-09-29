@@ -111,7 +111,7 @@ void TheTvDbImages::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  * @param tvdbId
  * @param type
  */
-void TheTvDbImages::loadTvShowData(QString tvdbId, ImageType type)
+void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
 {
     m_currentType = type;
     m_dummyShow->clear();
@@ -168,7 +168,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
  * @param tvdbId
  * @param types
  */
-void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
+void TheTvDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -179,7 +179,7 @@ void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> 
  * @brief Load tv show posters
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowPosters(QString tvdbId)
+void TheTvDbImages::tvShowPosters(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
@@ -188,7 +188,7 @@ void TheTvDbImages::tvShowPosters(QString tvdbId)
  * @brief Load tv show backdrops
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowBackdrops(QString tvdbId)
+void TheTvDbImages::tvShowBackdrops(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
@@ -197,7 +197,7 @@ void TheTvDbImages::tvShowBackdrops(QString tvdbId)
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowBanners(QString tvdbId)
+void TheTvDbImages::tvShowBanners(TvDbId tvdbId)
 {
     loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
@@ -208,7 +208,7 @@ void TheTvDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void TheTvDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);
@@ -221,15 +221,15 @@ void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
  * @param tvdbId The TV DB id
  * @param season Season number
  */
-void TheTvDbImages::tvShowSeason(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
-    m_season = season;
+    m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster);
 }
 
-void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
-    m_season = season;
+    m_season = std::move(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner);
 }
 
@@ -241,14 +241,14 @@ void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void TheTvDbImages::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -258,7 +258,7 @@ void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
  * @brief Would load movie posters (not supported by fanart.tv)
  * @param tmdbId
  */
-void TheTvDbImages::moviePosters(QString tmdbId)
+void TheTvDbImages::moviePosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -267,7 +267,7 @@ void TheTvDbImages::moviePosters(QString tmdbId)
  * @brief Load movie backdrops
  * @param tmdbId
  */
-void TheTvDbImages::movieBackdrops(QString tmdbId)
+void TheTvDbImages::movieBackdrops(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -276,17 +276,17 @@ void TheTvDbImages::movieBackdrops(QString tmdbId)
  * @brief Load movie logos
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::movieLogos(QString tmdbId)
+void TheTvDbImages::movieLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TheTvDbImages::movieBanners(QString tmdbId)
+void TheTvDbImages::movieBanners(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void TheTvDbImages::movieThumbs(QString tmdbId)
+void TheTvDbImages::movieThumbs(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -295,7 +295,7 @@ void TheTvDbImages::movieThumbs(QString tmdbId)
  * @brief Load movie clear arts
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::movieClearArts(QString tmdbId)
+void TheTvDbImages::movieClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -304,7 +304,7 @@ void TheTvDbImages::movieClearArts(QString tmdbId)
  * @brief Load movie cd arts
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::movieCdArts(QString tmdbId)
+void TheTvDbImages::movieCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -315,7 +315,7 @@ void TheTvDbImages::movieCdArts(QString tmdbId)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void TheTvDbImages::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -326,7 +326,7 @@ void TheTvDbImages::concertImages(Concert *concert, QString tmdbId, QList<ImageT
  * @brief Would load concert posters (not supported by fanart.tv)
  * @param tmdbId
  */
-void TheTvDbImages::concertPosters(QString tmdbId)
+void TheTvDbImages::concertPosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -335,7 +335,7 @@ void TheTvDbImages::concertPosters(QString tmdbId)
  * @brief Load concert backdrops
  * @param tmdbId
  */
-void TheTvDbImages::concertBackdrops(QString tmdbId)
+void TheTvDbImages::concertBackdrops(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -344,7 +344,7 @@ void TheTvDbImages::concertBackdrops(QString tmdbId)
  * @brief Load concert logos
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::concertLogos(QString tmdbId)
+void TheTvDbImages::concertLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -353,7 +353,7 @@ void TheTvDbImages::concertLogos(QString tmdbId)
  * @brief Load concert clear arts
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::concertClearArts(QString tmdbId)
+void TheTvDbImages::concertClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -362,7 +362,7 @@ void TheTvDbImages::concertClearArts(QString tmdbId)
  * @brief Load concert cd arts
  * @param tmdbId The Movie DB id
  */
-void TheTvDbImages::concertCdArts(QString tmdbId)
+void TheTvDbImages::concertCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -371,12 +371,12 @@ void TheTvDbImages::concertCdArts(QString tmdbId)
  * @brief Load tv show logos
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowLogos(QString tvdbId)
+void TheTvDbImages::tvShowLogos(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void TheTvDbImages::tvShowThumbs(QString tvdbId)
+void TheTvDbImages::tvShowThumbs(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
@@ -385,7 +385,7 @@ void TheTvDbImages::tvShowThumbs(QString tvdbId)
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowClearArts(QString tvdbId)
+void TheTvDbImages::tvShowClearArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
@@ -394,12 +394,12 @@ void TheTvDbImages::tvShowClearArts(QString tvdbId)
  * @brief Load tv show character arts
  * @param tvdbId The TV DB id
  */
-void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
+void TheTvDbImages::tvShowCharacterArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
+void TheTvDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);

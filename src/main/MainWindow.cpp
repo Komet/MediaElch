@@ -160,12 +160,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigTvShowSelected,       ui->tvShowWidget, &TvShowWidget::onTvShowSelected);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigSeasonSelected,       ui->tvShowWidget, &TvShowWidget::onSeasonSelected);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigEpisodeSelected,      ui->tvShowWidget, &TvShowWidget::onEpisodeSelected);
-    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)),         ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *)));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigSeasonSelected(TvShow *, int)),    ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *, int)));
-    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode *)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode *)));
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onClear);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigNothingSelected,      ui->tvShowWidget, &TvShowWidget::onSetDisabledTrue);
     connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigStartSearch,          this,             &MainWindow::onActionSearch);
+    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow *)),         ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShow *)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode *)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode *)));
+    connect(ui->tvShowFilesWidget, &TvShowFilesWidget::sigSeasonSelected,
+            ui->tvShowWidget, static_cast<void (TvShowWidget::*)(TvShow *, SeasonNumber)>(&TvShowWidget::onSetEnabledTrue));
 
     connect(ui->movieWidget, &MovieWidget::actorDownloadProgress, this, &MainWindow::progressProgress);
     connect(ui->movieWidget, &MovieWidget::actorDownloadStarted,  this, &MainWindow::progressStarted);

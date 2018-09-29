@@ -167,9 +167,11 @@ void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
  */
 void MovieController::loadStreamDetailsFromFile()
 {
+    using namespace std::chrono;
     m_movie->streamDetails()->loadStreamDetails();
-    m_movie->setRuntime(qFloor(
-        m_movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+    seconds runtime =
+        seconds(m_movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
+    m_movie->setRuntime(duration_cast<minutes>(runtime));
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
 }
@@ -272,9 +274,8 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
             this,
             SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QList<Poster>>)),
             Qt::UniqueConnection);
-        Manager::instance()->fanartTv()->movieImages(m_movie,
-            (m_movie->tmdbId().isValid()) ? m_movie->tmdbId().toString() : m_movie->imdbId().toString(),
-            images);
+        Manager::instance()->fanartTv()->movieImages(
+            m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
     } else {
         onFanartLoadDone(m_movie, QMap<ImageType, QList<Poster>>());
     }

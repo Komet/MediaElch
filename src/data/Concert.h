@@ -2,6 +2,9 @@
 #define CONCERT_H
 
 #include "concerts/ConcertController.h"
+#include "data/Certification.h"
+#include "data/ImdbId.h"
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QByteArray>
@@ -12,6 +15,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QUrl>
+#include <chrono>
 
 class MediaCenterInterface;
 class StreamDetails;
@@ -30,8 +34,8 @@ class Concert : public QObject
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
-    Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(std::chrono::minutes runtime READ runtime WRITE setRuntime)
+    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
     Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
@@ -39,7 +43,7 @@ class Concert : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(bool watched READ watched WRITE setWatched)
     Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
-    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
+    Q_PROPERTY(TmdbId tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Concert(QStringList files, QObject *parent = nullptr);
@@ -57,8 +61,8 @@ public:
     virtual qreal rating() const;
     virtual QDate released() const;
     virtual QString tagline() const;
-    virtual int runtime() const;
-    virtual QString certification() const;
+    virtual std::chrono::minutes runtime() const;
+    virtual Certification certification() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
     virtual QList<QString *> genresPointer();
@@ -75,8 +79,8 @@ public:
     virtual int downloadsSize() const;
     virtual bool inSeparateFolder() const;
     virtual int mediaCenterId() const;
-    virtual QString tmdbId() const;
-    virtual QString id() const;
+    virtual TmdbId tmdbId() const;
+    virtual ImdbId imdbId() const;
     virtual StreamDetails *streamDetails() const;
     virtual bool streamDetailsLoaded() const;
     virtual QString nfoContent() const;
@@ -93,8 +97,8 @@ public:
     void setRating(qreal rating);
     void setReleased(QDate released);
     void setTagline(QString tagline);
-    void setRuntime(int runtime);
-    void setCertification(QString certification);
+    void setRuntime(std::chrono::minutes runtime);
+    void setCertification(Certification cert);
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
     void addTag(QString tag);
@@ -112,8 +116,8 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
-    void setTmdbId(QString id);
-    void setId(QString id);
+    void setTmdbId(TmdbId id);
+    void setImdbId(ImdbId id);
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -168,8 +172,8 @@ private:
     qreal m_rating;
     QDate m_released;
     QString m_tagline;
-    int m_runtime;
-    QString m_certification;
+    std::chrono::minutes m_runtime;
+    Certification m_certification;
     QStringList m_genres;
     QStringList m_tags;
     QUrl m_trailer;
@@ -184,8 +188,8 @@ private:
     bool m_downloadsInProgress;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
-    QString m_tmdbId;
-    QString m_id;
+    TmdbId m_tmdbId;
+    ImdbId m_imdbId;
     QList<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;

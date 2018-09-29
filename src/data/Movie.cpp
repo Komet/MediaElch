@@ -5,13 +5,13 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
-#include <utility>
 
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
+using namespace std::chrono_literals;
 
 /**
  * @brief Constructs a new movie object
@@ -22,7 +22,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
     m_movieImages(*this),
-    m_runtime{0},
+    m_runtime{0min},
     m_playcount{0},
     m_databaseId{-1},
     m_mediaCenterId{-1},
@@ -137,13 +137,13 @@ void Movie::clear(QList<MovieScraperInfos> infos)
         m_tagline = "";
     }
     if (infos.contains(MovieScraperInfos::Runtime)) {
-        m_runtime = 0;
+        m_runtime = 0min;
     }
     if (infos.contains(MovieScraperInfos::Trailer)) {
         m_trailer = "";
     }
     if (infos.contains(MovieScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(MovieScraperInfos::Writer)) {
         m_writer = "";
@@ -291,7 +291,7 @@ QString Movie::outline() const
  * @return Runtime of the movie
  * @see Movie::setRuntime
  */
-int Movie::runtime() const
+std::chrono::minutes Movie::runtime() const
 {
     return m_runtime;
 }
@@ -302,7 +302,7 @@ int Movie::runtime() const
  * @return Certification of the movie
  * @see Movie::setCertification
  */
-QString Movie::certification() const
+Certification Movie::certification() const
 {
     return m_certification;
 }
@@ -745,7 +745,7 @@ void Movie::setOutline(QString outline)
  * @param runtime Runtime in minutes
  * @see Movie::runtime
  */
-void Movie::setRuntime(int runtime)
+void Movie::setRuntime(std::chrono::minutes runtime)
 {
     m_runtime = runtime;
     setChanged(true);
@@ -756,7 +756,7 @@ void Movie::setRuntime(int runtime)
  * @param certification Certification of the movie
  * @see Movie::certification
  */
-void Movie::setCertification(QString certification)
+void Movie::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
@@ -1268,8 +1268,8 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  Rating:        %1").arg(movie.rating()).append(nl));
     out.append(QString("  Released:      ").append(movie.released().toString("yyyy-MM-dd")).append(nl));
     out.append(QString("  Tagline:       ").append(movie.tagline()).append(nl));
-    out.append(QString("  Runtime:       %1").arg(movie.runtime()).append(nl));
-    out.append(QString("  Certification: ").append(movie.certification()).append(nl));
+    out.append(QString("  Runtime:       %1").arg(movie.runtime().count()).append(nl));
+    out.append(QString("  Certification: ").append(movie.certification().toString()).append(nl));
     out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
     out.append(QString("  TMDb ID:       ").append(movie.imdbId().toString()).append(nl));

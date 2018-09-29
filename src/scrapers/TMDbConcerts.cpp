@@ -361,7 +361,7 @@ QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPage
  * @see TMDbConcerts::loadImagesFinished
  * @see TMDbConcerts::loadReleasesFinished
  */
-void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperInfos> infos)
+void TMDbConcerts::loadData(TmdbId id, Concert *concert, QList<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
@@ -376,9 +376,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
     // Infos
     loadsLeft.append(ScraperData::Infos);
     url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                   .arg(id)
-                   .arg(m_apiKey)
-                   .arg(localeForTMDb()));
+                   .arg(id.toString(), m_apiKey, localeForTMDb()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
@@ -389,7 +387,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
     // Trailers
     if (infos.contains(ConcertScraperInfos::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
@@ -401,7 +399,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
     // Images
     if (infos.contains(ConcertScraperInfos::Poster) || infos.contains(ConcertScraperInfos::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
@@ -413,7 +411,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<ConcertScraperIn
     // Releases
     if (infos.contains(ConcertScraperInfos::Certification)) {
         loadsLeft.append(ScraperData::Releases);
-        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
@@ -535,7 +533,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
 
     // Infos
     if (!parsedJson.value("imdb_id").toString().isEmpty()) {
-        concert->setId(parsedJson.value("imdb_id").toString());
+        concert->setImdbId(ImdbId(parsedJson.value("imdb_id").toString()));
     }
     if (infos.contains(ConcertScraperInfos::Title) && !parsedJson.value("title").toString().isEmpty()) {
         concert->setName(parsedJson.value("title").toString());
@@ -556,7 +554,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
         concert->setReleased(QDate::fromString(parsedJson.value("release_date").toString(), "yyyy-MM-dd"));
     }
     if (infos.contains(ConcertScraperInfos::Runtime) && parsedJson.value("runtime").toInt(-1) >= 0) {
-        concert->setRuntime(parsedJson.value("runtime").toInt());
+        concert->setRuntime(std::chrono::minutes(parsedJson.value("runtime").toInt()));
     }
     if (infos.contains(ConcertScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
@@ -618,14 +616,14 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
 
     // Releases
     if (infos.contains(ConcertScraperInfos::Certification) && parsedJson.value("countries").isArray()) {
-        QString locale;
-        QString us;
-        QString gb;
+        Certification locale;
+        Certification us;
+        Certification gb;
         const auto countries = parsedJson.value("countries").toArray();
         for (const auto &it : countries) {
             const auto countryObj = it.toObject();
             const QString iso3166 = countryObj.value("iso_3166_1").toString();
-            const QString certification = countryObj.value("certification").toString();
+            const Certification certification = Certification(countryObj.value("certification").toString());
             if (iso3166 == "US") {
                 us = certification;
             }
@@ -637,19 +635,19 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<Con
             }
         }
 
-        if (m_locale.country() == QLocale::UnitedStates && !us.isEmpty()) {
+        if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
 
-        } else if (m_locale.language() == QLocale::English && !gb.isEmpty()) {
+        } else if (m_locale.language() == QLocale::English && gb.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
 
-        } else if (!locale.isEmpty()) {
+        } else if (locale.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(locale));
 
-        } else if (!us.isEmpty()) {
+        } else if (us.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(us));
 
-        } else if (!gb.isEmpty()) {
+        } else if (gb.isValid()) {
             concert->setCertification(Helper::instance()->mapCertification(gb));
         }
     }

@@ -7,7 +7,9 @@
 #include <QString>
 
 #include "data/Concert.h"
+#include "data/EpisodeNumber.h"
 #include "data/Movie.h"
+#include "data/SeasonNumber.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
 
@@ -20,33 +22,33 @@ class ImageProviderInterface : public QObject
 public:
     virtual QString name() = 0;
     virtual QString identifier() = 0;
-    virtual void movieImages(Movie *movie, QString tmdbId, QList<ImageType> types) = 0;
-    virtual void moviePosters(QString tmdbId) = 0;
-    virtual void movieBackdrops(QString tmdbId) = 0;
-    virtual void movieLogos(QString tmdbId) = 0;
-    virtual void movieBanners(QString tmdbId) = 0;
-    virtual void movieThumbs(QString tmdbId) = 0;
-    virtual void movieClearArts(QString tmdbId) = 0;
-    virtual void movieCdArts(QString tmdbId) = 0;
-    virtual void concertImages(Concert *concert, QString tmdbId, QList<ImageType> types) = 0;
-    virtual void concertPosters(QString tmdbId) = 0;
-    virtual void concertBackdrops(QString tmdbId) = 0;
-    virtual void concertLogos(QString tmdbId) = 0;
-    virtual void concertClearArts(QString tmdbId) = 0;
-    virtual void concertCdArts(QString tmdbId) = 0;
-    virtual void tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types) = 0;
-    virtual void tvShowPosters(QString tvdbId) = 0;
-    virtual void tvShowBackdrops(QString tvdbId) = 0;
-    virtual void tvShowLogos(QString tvdbId) = 0;
-    virtual void tvShowClearArts(QString tvdbId) = 0;
-    virtual void tvShowCharacterArts(QString tvdbId) = 0;
-    virtual void tvShowBanners(QString tvdbId) = 0;
-    virtual void tvShowEpisodeThumb(QString tvdbId, int season, int episode) = 0;
-    virtual void tvShowSeason(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonBanners(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonBackdrops(QString tvdbId, int season) = 0;
-    virtual void tvShowSeasonThumbs(QString tvdbId, int season) = 0;
-    virtual void tvShowThumbs(QString tvdbId) = 0;
+    virtual void movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types) = 0;
+    virtual void moviePosters(TmdbId tmdbId) = 0;
+    virtual void movieBackdrops(TmdbId tmdbId) = 0;
+    virtual void movieLogos(TmdbId tmdbId) = 0;
+    virtual void movieBanners(TmdbId tmdbId) = 0;
+    virtual void movieThumbs(TmdbId tmdbId) = 0;
+    virtual void movieClearArts(TmdbId tmdbId) = 0;
+    virtual void movieCdArts(TmdbId tmdbId) = 0;
+    virtual void concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types) = 0;
+    virtual void concertPosters(TmdbId tmdbId) = 0;
+    virtual void concertBackdrops(TmdbId tmdbId) = 0;
+    virtual void concertLogos(TmdbId tmdbId) = 0;
+    virtual void concertClearArts(TmdbId tmdbId) = 0;
+    virtual void concertCdArts(TmdbId tmdbId) = 0;
+    virtual void tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types) = 0;
+    virtual void tvShowPosters(TvDbId tvdbId) = 0;
+    virtual void tvShowBackdrops(TvDbId tvdbId) = 0;
+    virtual void tvShowLogos(TvDbId tvdbId) = 0;
+    virtual void tvShowClearArts(TvDbId tvdbId) = 0;
+    virtual void tvShowCharacterArts(TvDbId tvdbId) = 0;
+    virtual void tvShowBanners(TvDbId tvdbId) = 0;
+    virtual void tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode) = 0;
+    virtual void tvShowSeason(TvDbId tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season) = 0;
+    virtual void tvShowThumbs(TvDbId tvdbId) = 0;
     virtual void artistFanarts(QString mbId) = 0;
     virtual void artistLogos(QString mbId) = 0;
     virtual void artistThumbs(QString mbId) = 0;

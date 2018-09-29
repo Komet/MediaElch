@@ -83,7 +83,7 @@ int ConcertSearch::scraperNo()
  * @brief ConcertSearch::scraperId
  * @return Scraper id of the concert last clicked in result table
  */
-QString ConcertSearch::scraperId()
+TmdbId ConcertSearch::scraperId()
 {
     return ui->concertSearchWidget->scraperId();
 }

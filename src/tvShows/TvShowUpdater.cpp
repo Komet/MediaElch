@@ -46,12 +46,10 @@ void TvShowUpdater::updateShow(TvShow *show, bool force)
         QNetworkReply *reply = m_qnam.get(request);
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);
-    } else if (!show->id().isEmpty() || !show->tvdbId().isEmpty()) {
-        QString id = show->tvdbId().isEmpty() ? show->id() : show->tvdbId();
+    } else if (show->id().isValid() || show->tvdbId().isValid()) {
+        TvDbId id = !show->tvdbId().isValid() ? show->id() : show->tvdbId();
         QUrl url(QString("https://www.thetvdb.com/api/%1/series/%2/all/%3.xml")
-                     .arg(m_tvdb->apiKey())
-                     .arg(id)
-                     .arg(m_tvdb->language()));
+                     .arg(m_tvdb->apiKey(), id.toString(), m_tvdb->language()));
         QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);

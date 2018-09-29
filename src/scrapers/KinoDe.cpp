@@ -121,7 +121,7 @@ void KinoDe::search(QString searchStr)
 {
     qDebug() << "Entered, movie searchStr = " << searchStr;
     QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
-    QUrl url{QStringLiteral("https://www.kino.de/se/%1/?sp_search_filter=movie").arg(encodedSearch)};
+    QUrl url{QStringLiteral("https://www.kino.de/se/?searchterm=%1&types=movie").arg(encodedSearch)};
     QNetworkReply *const reply = m_qnam.get(QNetworkRequest{url});
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &KinoDe::searchFinished);
@@ -157,7 +157,7 @@ void KinoDe::searchFinished()
 QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
 {
     QList<ScraperSearchResult> results;
-    QRegExp rxTitle(R"rx(<a class="[^"]*" href="https://www.kino.de/film/([^"/]*)/">([^<]*)</a>)rx");
+    QRegExp rxTitle(R"rx(<a class="[^"]*" href="(?:https:)?//www.kino.de/film/([^"/]*)/">([^<]*)</a>)rx");
     rxTitle.setMinimal(true);
 
     int pos = 0;
@@ -278,13 +278,13 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
     // MPAA
     rx.setPattern("<dt>FSK</dt>\n? *<dd><a href=\"https://www.kino.de/filme/fsk/[^\"]+/\">ab ([0-9]+)</a></dd>");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie.setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+        movie.setCertification(Helper::instance()->mapCertification(Certification("FSK " + rx.cap(1))));
     }
 
     // Runtime
     rx.setPattern(R"(<dt class="length">Dauer</dt>\n? *<dd class="length">([0-9]+) Min</dd>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie.setRuntime(rx.cap(1).trimmed().toInt());
+        movie.setRuntime(std::chrono::minutes(rx.cap(1).trimmed().toInt()));
     }
 
     if (infos.contains(MovieScraperInfos::Overview)) {
@@ -296,7 +296,7 @@ void KinoDe::parseAndAssignInfos(const QString &html, Movie &movie, const QList<
             movie.setOutline(doc.toPlainText());
         }
 
-        rx.setPattern(R"(<h2>Handlung von[^<]+</h2>\n *<p>(.*)</p>)");
+        rx.setPattern(R"(<p class="movie-plot-synopsis">.+</p>\n *<p> +<p>(.*)</p>)");
         if (rx.indexIn(html) != -1) {
             doc.setHtml(rx.cap(1).trimmed());
             movie.setOverview(doc.toPlainText());

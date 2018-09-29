@@ -572,7 +572,7 @@ void Database::add(TvShow *show, QString path)
         query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tvdbid, url) "
                       "VALUES(0, 0, :dir, :tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
         show->setShowMissingEpisodes(false);
@@ -591,7 +591,7 @@ void Database::setShowMissingEpisodes(TvShow *show, bool showMissing)
         query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
         query.bindValue(":show", showMissing ? 1 : 0);
         query.bindValue(":dir", show->dir().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
@@ -599,7 +599,7 @@ void Database::setShowMissingEpisodes(TvShow *show, bool showMissing)
             "INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":show", showMissing ? 1 : 0);
         query.exec();
     }
@@ -617,7 +617,7 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow *show, bool hideSpecials)
             "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
         query.bindValue(":show", hideSpecials ? 1 : 0);
         query.bindValue(":dir", show->dir().toUtf8());
-        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
@@ -625,7 +625,7 @@ void Database::setHideSpecialsInMissingEpisodes(TvShow *show, bool hideSpecials)
                       ":tvdbid, :url)");
         query.bindValue(":dir", show->dir().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":tvdbid", show->tvdbId().toString());
         query.bindValue(":hide", hideSpecials ? 1 : 0);
         query.exec();
     }
@@ -639,11 +639,11 @@ void Database::add(TvShowEpisode *episode, QString path, int idShow)
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
     query.bindValue(":idShow", idShow);
     query.bindValue(":path", path.toUtf8());
-    query.bindValue(":seasonNumber", episode->season());
-    query.bindValue(":episodeNumber", episode->episode());
+    query.bindValue(":seasonNumber", episode->season().toInt());
+    query.bindValue(":episodeNumber", episode->episode().toInt());
     query.exec();
     int insertId = query.lastInsertId().toInt();
-    foreach (const QString &file, episode->files()) {
+    for (const QString &file : episode->files()) {
         query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
         query.bindValue(":idEpisode", insertId);
         query.bindValue(":file", file.toUtf8());
@@ -667,7 +667,7 @@ void Database::update(TvShow *show)
     query.bindValue(":show", show->showMissingEpisodes());
     query.bindValue(":hide", show->hideSpecialsInMissingEpisodes());
     query.bindValue(":idShow", id);
-    query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+    query.bindValue(":tvdbid", show->tvdbId().toString());
     query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
     query.exec();
 }
@@ -740,8 +740,8 @@ QList<TvShowEpisode *> Database::episodes(int idShow)
         }
 
         TvShowEpisode *episode = new TvShowEpisode(files);
-        episode->setSeason(query.value(query.record().indexOf("seasonNumber")).toInt());
-        episode->setEpisode(query.value(query.record().indexOf("episodeNumber")).toInt());
+        episode->setSeason(SeasonNumber(query.value(query.record().indexOf("seasonNumber")).toInt()));
+        episode->setEpisode(EpisodeNumber(query.value(query.record().indexOf("episodeNumber")).toInt()));
         episode->setDatabaseId(query.value(query.record().indexOf("idEpisode")).toInt());
         episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         episodes.append(episode);
@@ -857,16 +857,16 @@ void Database::addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId,
                       "content=:content WHERE idEpisode=:idEpisode");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idEpisode", idEpisode);
-        query.bindValue(":seasonNumber", episode->season());
-        query.bindValue(":episodeNumber", episode->episode());
+        query.bindValue(":seasonNumber", episode->season().toInt());
+        query.bindValue(":episodeNumber", episode->episode().toInt());
         query.exec();
     } else {
         query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tvdbid, updated) "
                       "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tvdbid, 1)");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idShow", showsSettingsId);
-        query.bindValue(":seasonNumber", episode->season());
-        query.bindValue(":episodeNumber", episode->episode());
+        query.bindValue(":seasonNumber", episode->season().toInt());
+        query.bindValue(":episodeNumber", episode->episode().toInt());
         query.bindValue(":tvdbid", tvdbid);
         query.exec();
     }
@@ -890,8 +890,8 @@ QList<TvShowEpisode *> Database::showsEpisodes(TvShow *show)
     query.exec();
     while (query.next()) {
         TvShowEpisode *episode = new TvShowEpisode(QStringList(), show);
-        episode->setSeason(query.value(query.record().indexOf("seasonNumber")).toInt());
-        episode->setEpisode(query.value(query.record().indexOf("episodeNumber")).toInt());
+        episode->setSeason(SeasonNumber(query.value(query.record().indexOf("seasonNumber")).toInt()));
+        episode->setEpisode(EpisodeNumber(query.value(query.record().indexOf("episodeNumber")).toInt()));
         episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         episodes.append(episode);
     }

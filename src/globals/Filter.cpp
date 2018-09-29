@@ -198,7 +198,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->hasLocalTrailer()) || (!m_hasInfo && !movie->hasLocalTrailer());
     }
     if (isInfo(MovieFilters::Certification)) {
-        return (m_hasInfo && movie->certification() == m_shortText) || (!m_hasInfo && movie->certification().isEmpty());
+        return (m_hasInfo && movie->certification().toString() == m_shortText)
+               || (!m_hasInfo && !movie->certification().isValid());
     }
     if (isInfo(MovieFilters::Genres)) {
         return (m_hasInfo && movie->genres().contains(m_shortText)) || (!m_hasInfo && movie->genres().isEmpty());

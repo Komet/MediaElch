@@ -184,7 +184,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
             }
 
             QString fileName = QFileInfo(filePath).fileName();
-            QString newDataFileName = files.first().saveFileName(newFileName, -1, movie.files().count() > 1);
+            QString newDataFileName =
+                files.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
             Helper::instance()->sanitizeFileName(newDataFileName);
 
             if (newDataFileName == fileName) {

@@ -1,6 +1,7 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include "data/Certification.h"
 #include "globals/Globals.h"
 
 #include <QComboBox>
@@ -40,7 +41,7 @@ public:
     virtual QString appendArticle(const QString &text);
     virtual QString mapGenre(const QString &text);
     virtual QStringList mapGenre(const QStringList &genres);
-    virtual QString mapCertification(const QString &text);
+    virtual Certification mapCertification(const Certification &text);
     virtual QString mapStudio(const QString &text);
     virtual QString mapCountry(const QString &text);
     virtual QString formatFileSize(const qint64 &size);

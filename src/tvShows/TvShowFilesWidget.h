@@ -41,7 +41,7 @@ public slots:
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
     void sigTvShowSelected(TvShow *show);
-    void sigSeasonSelected(TvShow *show, int season);
+    void sigSeasonSelected(TvShow *show, SeasonNumber season);
     void sigNothingSelected();
     void sigStartSearch();
 
@@ -68,7 +68,7 @@ private:
     QMenu *m_contextMenu;
     TvShow *m_lastTvShow;
     TvShowEpisode *m_lastEpisode;
-    int m_lastSeason;
+    SeasonNumber m_lastSeason;
     QAction *m_actionShowMissingEpisodes;
     QAction *m_actionHideSpecialsInMissingEpisodes;
 };

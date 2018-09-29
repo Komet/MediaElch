@@ -15,6 +15,8 @@ MovieXmlWriter::MovieXmlWriter(Movie &movie) : m_movie{movie}
 
 QByteArray MovieXmlWriter::getMovieXml()
 {
+    using namespace std::chrono_literals;
+
     QDomDocument doc;
     doc.setContent(m_movie.nfoContent());
     if (m_movie.nfoContent().isEmpty()) {
@@ -34,12 +36,12 @@ QByteArray MovieXmlWriter::getMovieXml()
     XbmcXml::setTextValue(doc, "plot", m_movie.overview());
     XbmcXml::setTextValue(doc, "outline", m_movie.outline());
     XbmcXml::setTextValue(doc, "tagline", m_movie.tagline());
-    if (m_movie.runtime() > 0) {
-        XbmcXml::setTextValue(doc, "runtime", QString("%1").arg(m_movie.runtime()));
+    if (m_movie.runtime() > 0min) {
+        XbmcXml::setTextValue(doc, "runtime", QString::number(m_movie.runtime().count()));
     } else {
         XbmcXml::removeChildNodes(doc, "runtime");
     }
-    XbmcXml::setTextValue(doc, "mpaa", m_movie.certification());
+    XbmcXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
     XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
     if (!m_movie.lastPlayed().isNull()) {
         XbmcXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));

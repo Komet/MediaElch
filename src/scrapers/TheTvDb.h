@@ -1,6 +1,9 @@
 #ifndef THETVDB_H
 #define THETVDB_H
 
+#include "data/EpisodeNumber.h"
+#include "data/ImdbId.h"
+#include "data/SeasonNumber.h"
 #include "data/TvScraperInterface.h"
 
 #include <QComboBox>
@@ -23,11 +26,11 @@ public:
     QString name() override;
     QString identifier() override;
     void search(QString searchStr) override;
-    void loadTvShowData(QString id,
+    void loadTvShowData(TvDbId id,
         TvShow *show,
         TvShowUpdateType updateType,
         QList<TvShowScraperInfos> infosToLoad) override;
-    void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
+    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
@@ -93,8 +96,11 @@ private:
     void parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     bool shouldLoadImdb(QList<TvShowScraperInfos> infosToLoad);
     bool shouldLoadFromImdb(TvShowScraperInfos info, QList<TvShowScraperInfos> infosToLoad);
-    void getAiredSeasonAndEpisode(QString xml, TvShowEpisode *episode, int &seasonNumber, int &episodeNumber);
-    QString getImdbIdForEpisode(QString html, int episodeNumber);
+    void getAiredSeasonAndEpisode(QString xml,
+        TvShowEpisode *episode,
+        SeasonNumber &seasonNumber,
+        EpisodeNumber &episodeNumber);
+    ImdbId getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber);
     bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad);
 };

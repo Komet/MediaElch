@@ -1,6 +1,7 @@
 #ifndef TVSHOWMODELITEM_H
 #define TVSHOWMODELITEM_H
 
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
 #include <QList>
@@ -27,18 +28,18 @@ public:
     QVariant data(int column) const;
     TvShowModelItem *appendChild(TvShow *show);
     TvShowModelItem *appendChild(TvShowEpisode *episode);
-    TvShowModelItem *appendChild(int seasonNumber, QString season, TvShow *show);
+    TvShowModelItem *appendChild(SeasonNumber seasonNumber, QString season, TvShow *show);
     TvShowModelItem *parent() const;
     bool removeChildren(int position, int count);
     int childNumber() const;
     void setTvShow(TvShow *show);
     void setTvShowEpisode(TvShowEpisode *episode);
     void setSeason(QString season);
-    void setSeasonNumber(int seasonNumber);
+    void setSeasonNumber(SeasonNumber seasonNumber);
     TvShow *tvShow();
     TvShowEpisode *tvShowEpisode();
     QString season();
-    int seasonNumber();
+    SeasonNumber seasonNumber();
     TvShowType type();
 
 signals:
@@ -55,7 +56,7 @@ private:
     TvShow *m_tvShow;
     TvShowEpisode *m_tvShowEpisode;
     QString m_season;
-    int m_seasonNumber;
+    SeasonNumber m_seasonNumber;
 };
 
 #endif // TVSHOWMODELITEM_H

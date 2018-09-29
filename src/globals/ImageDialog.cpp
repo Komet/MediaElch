@@ -525,7 +525,7 @@ void ImageDialog::setTvShow(TvShow *show)
  * @brief Set season number
  * @param season
  */
-void ImageDialog::setSeason(int season)
+void ImageDialog::setSeason(SeasonNumber season)
 {
     m_season = season;
 }
@@ -762,13 +762,13 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         id = m_movie->tmdbId().toString();
     } else if (m_itemType == ItemType::Concert) {
         initialSearchTerm = m_concert->name();
-        id = m_concert->tmdbId();
+        id = m_concert->tmdbId().toString();
     } else if (m_itemType == ItemType::TvShow) {
         initialSearchTerm = m_tvShow->name();
-        id = m_tvShow->tvdbId();
+        id = m_tvShow->tvdbId().toString();
     } else if (m_itemType == ItemType::TvShowEpisode) {
         initialSearchTerm = m_tvShowEpisode->tvShow()->name();
-        id = m_tvShowEpisode->tvShow()->tvdbId();
+        id = m_tvShowEpisode->tvShow()->tvdbId().toString();
     } else if (m_itemType == ItemType::Album) {
         initialSearchTerm = m_album->title();
         id = m_album->mbReleaseGroupId();
@@ -847,60 +847,64 @@ void ImageDialog::loadImagesFromProvider(QString id)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemType::Movie) {
+        TmdbId movieId = TmdbId(id);
         if (m_type == ImageType::MoviePoster) {
-            m_currentProvider->moviePosters(id);
+            m_currentProvider->moviePosters(movieId);
         } else if (m_type == ImageType::MovieBackdrop) {
-            m_currentProvider->movieBackdrops(id);
+            m_currentProvider->movieBackdrops(movieId);
         } else if (m_type == ImageType::MovieLogo) {
-            m_currentProvider->movieLogos(id);
+            m_currentProvider->movieLogos(movieId);
         } else if (m_type == ImageType::MovieBanner) {
-            m_currentProvider->movieBanners(id);
+            m_currentProvider->movieBanners(movieId);
         } else if (m_type == ImageType::MovieThumb) {
-            m_currentProvider->movieThumbs(id);
+            m_currentProvider->movieThumbs(movieId);
         } else if (m_type == ImageType::MovieClearArt) {
-            m_currentProvider->movieClearArts(id);
+            m_currentProvider->movieClearArts(movieId);
         } else if (m_type == ImageType::MovieCdArt) {
-            m_currentProvider->movieCdArts(id);
+            m_currentProvider->movieCdArts(movieId);
         }
     } else if (m_itemType == ItemType::Concert) {
+        TmdbId movieId = TmdbId(id);
         if (m_type == ImageType::ConcertBackdrop) {
-            m_currentProvider->concertBackdrops(id);
+            m_currentProvider->concertBackdrops(movieId);
         } else if (m_type == ImageType::ConcertPoster) {
-            m_currentProvider->concertPosters(id);
+            m_currentProvider->concertPosters(movieId);
         } else if (m_type == ImageType::ConcertLogo) {
-            m_currentProvider->concertLogos(id);
+            m_currentProvider->concertLogos(movieId);
         } else if (m_type == ImageType::ConcertClearArt) {
-            m_currentProvider->concertClearArts(id);
+            m_currentProvider->concertClearArts(movieId);
         } else if (m_type == ImageType::ConcertCdArt) {
-            m_currentProvider->concertCdArts(id);
+            m_currentProvider->concertCdArts(movieId);
         }
     } else if (m_itemType == ItemType::TvShow) {
+        TvDbId showId = TvDbId(id);
         if (m_type == ImageType::TvShowBackdrop) {
-            m_currentProvider->tvShowBackdrops(id);
+            m_currentProvider->tvShowBackdrops(showId);
         } else if (m_type == ImageType::TvShowBanner) {
-            m_currentProvider->tvShowBanners(id);
+            m_currentProvider->tvShowBanners(showId);
         } else if (m_type == ImageType::TvShowCharacterArt) {
-            m_currentProvider->tvShowCharacterArts(id);
+            m_currentProvider->tvShowCharacterArts(showId);
         } else if (m_type == ImageType::TvShowClearArt) {
-            m_currentProvider->tvShowClearArts(id);
+            m_currentProvider->tvShowClearArts(showId);
         } else if (m_type == ImageType::TvShowLogos) {
-            m_currentProvider->tvShowLogos(id);
+            m_currentProvider->tvShowLogos(showId);
         } else if (m_type == ImageType::TvShowThumb) {
-            m_currentProvider->tvShowThumbs(id);
+            m_currentProvider->tvShowThumbs(showId);
         } else if (m_type == ImageType::TvShowPoster) {
-            m_currentProvider->tvShowPosters(id);
+            m_currentProvider->tvShowPosters(showId);
         } else if (m_type == ImageType::TvShowSeasonPoster) {
-            m_currentProvider->tvShowSeason(id, m_season);
+            m_currentProvider->tvShowSeason(showId, m_season);
         } else if (m_type == ImageType::TvShowSeasonBanner) {
-            m_currentProvider->tvShowSeasonBanners(id, m_season);
+            m_currentProvider->tvShowSeasonBanners(showId, m_season);
         } else if (m_type == ImageType::TvShowSeasonThumb) {
-            m_currentProvider->tvShowSeasonThumbs(id, m_season);
+            m_currentProvider->tvShowSeasonThumbs(showId, m_season);
         } else if (m_type == ImageType::TvShowSeasonBackdrop) {
-            m_currentProvider->tvShowSeasonBackdrops(id, m_season);
+            m_currentProvider->tvShowSeasonBackdrops(showId, m_season);
         }
     } else if (m_itemType == ItemType::TvShowEpisode) {
+        TvDbId showId = TvDbId(id);
         if (m_type == ImageType::TvShowEpisodeThumb) {
-            m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+            m_currentProvider->tvShowEpisodeThumb(showId, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
         }
     } else if (m_itemType == ItemType::Artist) {
         if (m_type == ImageType::ArtistFanart) {

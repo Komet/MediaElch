@@ -416,14 +416,15 @@ void MovieWidget::setDisabledTrue()
  */
 void MovieWidget::setMovie(Movie *movie)
 {
+    using namespace std::chrono;
     qDebug() << "Entered, movie=" << movie->name();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();
-        const int durationInSeconds =
-            movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt();
-        if (movie->streamDetailsLoaded() && durationInSeconds > 0) {
-            movie->setRuntime(qFloor(durationInSeconds / 60));
+        const seconds durationInSeconds = seconds(
+            movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
+        if (movie->streamDetailsLoaded() && durationInSeconds > 0s) {
+            movie->setRuntime(duration_cast<minutes>(durationInSeconds));
         }
     }
     m_movie = movie;
@@ -602,7 +603,7 @@ void MovieWidget::updateMovieInfo()
     ui->votes->setValue(m_movie->votes());
     ui->top250->setValue(m_movie->top250());
     ui->released->setDate(m_movie->released());
-    ui->runtime->setValue(m_movie->runtime());
+    ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
     ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
@@ -616,12 +617,13 @@ void MovieWidget::updateMovieInfo()
     QStringList sets;
     sets.append("");
     certifications.append("");
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (!sets.contains(movie->set()) && !movie->set().isEmpty()) {
             sets.append(movie->set());
         }
-        if (!certifications.contains(movie->certification()) && !movie->certification().isEmpty()) {
-            certifications.append(movie->certification());
+        const QString certStr = movie->certification().toString();
+        if (!certifications.contains(certStr) && movie->certification().isValid()) {
+            certifications.append(certStr);
         }
     }
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
@@ -629,7 +631,7 @@ void MovieWidget::updateMovieInfo()
     ui->certification->addItems(certifications);
     ui->set->addItems(sets);
 
-    ui->certification->setCurrentIndex(certifications.indexOf(m_movie->certification()));
+    ui->certification->setCurrentIndex(certifications.indexOf(m_movie->certification().toString()));
     ui->set->setCurrentIndex(sets.indexOf(m_movie->set()));
 
     ui->set->blockSignals(false);
@@ -1369,7 +1371,7 @@ void MovieWidget::onRuntimeChange(int value)
     if (!m_movie) {
         return;
     }
-    m_movie->setRuntime(value);
+    m_movie->setRuntime(std::chrono::minutes(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1381,7 +1383,7 @@ void MovieWidget::onCertificationChange(QString text)
     if (!m_movie) {
         return;
     }
-    m_movie->setCertification(text);
+    m_movie->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

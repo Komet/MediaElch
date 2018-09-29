@@ -1,6 +1,7 @@
 #ifndef CONCERTSEARCHWIDGET_H
 #define CONCERTSEARCHWIDGET_H
 
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QTableWidgetItem>
@@ -21,7 +22,7 @@ public:
 public slots:
     void search(QString searchString);
     int scraperNo();
-    QString scraperId();
+    TmdbId scraperId();
     QList<ConcertScraperInfos> infosToLoad();
 
 signals:
@@ -37,7 +38,7 @@ private slots:
 private:
     Ui::ConcertSearchWidget *ui;
     int m_scraperNo;
-    QString m_scraperId;
+    TmdbId m_scraperId;
     QList<ConcertScraperInfos> m_infosToLoad;
 
     void clear();

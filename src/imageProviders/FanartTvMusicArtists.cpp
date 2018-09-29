@@ -110,24 +110,24 @@ void FanartTvMusicArtists::onSearchArtistFinished()
     emit sigSearchDone(results);
 }
 
-void FanartTvMusicArtists::concertBackdrops(QString mbId)
+void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertBackdrop));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
-void FanartTvMusicArtists::concertLogos(QString mbId)
+void FanartTvMusicArtists::concertLogos(TmdbId tmdbId)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
+    url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertLogo));
@@ -208,129 +208,129 @@ void FanartTvMusicArtists::searchTvShow(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusicArtists::tvShowImages(TvShow *show, QString tvdbId, QList<ImageType> types)
+void FanartTvMusicArtists::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::tvShowPosters(QString tvdbId)
+void FanartTvMusicArtists::tvShowPosters(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowBackdrops(QString tvdbId)
+void FanartTvMusicArtists::tvShowBackdrops(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowLogos(QString tvdbId)
+void FanartTvMusicArtists::tvShowLogos(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowThumbs(QString tvdbId)
+void FanartTvMusicArtists::tvShowThumbs(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowClearArts(QString tvdbId)
+void FanartTvMusicArtists::tvShowClearArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowCharacterArts(QString tvdbId)
+void FanartTvMusicArtists::tvShowCharacterArts(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowBanners(QString tvdbId)
+void FanartTvMusicArtists::tvShowBanners(TvDbId tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
 
-void FanartTvMusicArtists::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
+void FanartTvMusicArtists::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, EpisodeNumber episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(episode);
 }
 
-void FanartTvMusicArtists::tvShowSeason(QString tvdbId, int season)
+void FanartTvMusicArtists::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::tvShowSeasonBanners(QString tvdbId, int season)
+void FanartTvMusicArtists::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::tvShowSeasonThumbs(QString tvdbId, int season)
+void FanartTvMusicArtists::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::tvShowSeasonBackdrops(QString tvdbId, int season)
+void FanartTvMusicArtists::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::movieImages(Movie *movie, QString tmdbId, QList<ImageType> types)
+void FanartTvMusicArtists::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::moviePosters(QString tmdbId)
+void FanartTvMusicArtists::moviePosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieBackdrops(QString tmdbId)
+void FanartTvMusicArtists::movieBackdrops(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieLogos(QString tmdbId)
+void FanartTvMusicArtists::movieLogos(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieBanners(QString tmdbId)
+void FanartTvMusicArtists::movieBanners(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieThumbs(QString tmdbId)
+void FanartTvMusicArtists::movieThumbs(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieClearArts(QString tmdbId)
+void FanartTvMusicArtists::movieClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::movieCdArts(QString tmdbId)
+void FanartTvMusicArtists::movieCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::concertImages(Concert *concert, QString tmdbId, QList<ImageType> types)
+void FanartTvMusicArtists::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::concertPosters(QString tmdbId)
+void FanartTvMusicArtists::concertPosters(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -341,12 +341,12 @@ void FanartTvMusicArtists::searchMovie(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusicArtists::concertClearArts(QString tmdbId)
+void FanartTvMusicArtists::concertClearArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::concertCdArts(QString tmdbId)
+void FanartTvMusicArtists::concertCdArts(TmdbId tmdbId)
 {
     Q_UNUSED(tmdbId);
 }

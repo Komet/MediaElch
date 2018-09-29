@@ -11,6 +11,8 @@
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"
 
+using namespace std::chrono_literals;
+
 /**
  * @brief Constructs a new concert object
  * @param files List of files for this concert
@@ -20,7 +22,7 @@ Concert::Concert(QStringList files, QObject *parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
     m_rating{0},
-    m_runtime{0},
+    m_runtime{0min},
     m_playcount{0},
     m_downloadsSize{0},
     m_watched{false},
@@ -109,13 +111,13 @@ void Concert::clear(QList<ConcertScraperInfos> infos)
         m_tagline = "";
     }
     if (infos.contains(ConcertScraperInfos::Runtime)) {
-        m_runtime = 0;
+        m_runtime = 0min;
     }
     if (infos.contains(ConcertScraperInfos::Trailer)) {
         m_trailer = "";
     }
     if (infos.contains(ConcertScraperInfos::Certification)) {
-        m_certification = "";
+        m_certification = Certification::NoCertification;
     }
     if (infos.contains(ConcertScraperInfos::Tags)) {
         m_tags.clear();
@@ -236,7 +238,7 @@ QString Concert::tagline() const
  * @return Runtime of the concert
  * @see Concert::setRuntime
  */
-int Concert::runtime() const
+std::chrono::minutes Concert::runtime() const
 {
     return m_runtime;
 }
@@ -247,7 +249,7 @@ int Concert::runtime() const
  * @return Certification of the concert
  * @see Concert::setCertification
  */
-QString Concert::certification() const
+Certification Concert::certification() const
 {
     return m_certification;
 }
@@ -441,7 +443,7 @@ int Concert::mediaCenterId() const
  * @return The concerts tmdb id
  * @see Concert::setTmdbId
  */
-QString Concert::tmdbId() const
+TmdbId Concert::tmdbId() const
 {
     return m_tmdbId;
 }
@@ -452,9 +454,9 @@ QString Concert::tmdbId() const
  * @return The concerts id
  * @see Concert::setId
  */
-QString Concert::id() const
+ImdbId Concert::imdbId() const
 {
-    return m_id;
+    return m_imdbId;
 }
 
 /**
@@ -578,7 +580,7 @@ void Concert::setTagline(QString tagline)
  * @param runtime Runtime in minutes
  * @see Concert::runtime
  */
-void Concert::setRuntime(int runtime)
+void Concert::setRuntime(std::chrono::minutes runtime)
 {
     m_runtime = runtime;
     setChanged(true);
@@ -589,9 +591,9 @@ void Concert::setRuntime(int runtime)
  * @param certification Certification of the concert
  * @see Concert::certification
  */
-void Concert::setCertification(QString certification)
+void Concert::setCertification(Certification cert)
 {
-    m_certification = certification;
+    m_certification = cert;
     setChanged(true);
 }
 
@@ -743,7 +745,7 @@ void Concert::setMediaCenterId(int mediaCenterId)
  * @param id Tmdb id of the concert
  * @see Concert::tmdbId
  */
-void Concert::setTmdbId(QString id)
+void Concert::setTmdbId(TmdbId id)
 {
     m_tmdbId = id;
     setChanged(true);
@@ -754,9 +756,9 @@ void Concert::setTmdbId(QString id)
  * @param id Imdb id of the concert
  * @see Concert::id
  */
-void Concert::setId(QString id)
+void Concert::setImdbId(ImdbId id)
 {
-    m_id = id;
+    m_imdbId = id;
     setChanged(true);
 }
 

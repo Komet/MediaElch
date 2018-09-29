@@ -1,12 +1,6 @@
 #include "TvShowWidgetEpisode.h"
 #include "ui_TvShowWidgetEpisode.h"
 
-#include <QBuffer>
-#include <QFileDialog>
-#include <QHeaderView>
-#include <QMovie>
-#include <QPainter>
-
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -17,6 +11,12 @@
 #include "image/ImageCapture.h"
 #include "notifications/NotificationBox.h"
 #include "tvShows/TvShowSearch.h"
+
+#include <QBuffer>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QMovie>
+#include <QPainter>
 
 /**
  * @brief TvShowWidgetEpisode::TvShowWidgetEpisode
@@ -336,10 +336,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->files->setToolTip(m_episode->files().join("\n"));
     ui->name->setText(m_episode->name());
     ui->showTitle->setText(m_episode->showTitle());
-    ui->season->setValue(m_episode->season());
-    ui->episode->setValue(m_episode->episode());
-    ui->displaySeason->setValue(m_episode->displaySeason());
-    ui->displayEpisode->setValue(m_episode->displayEpisode());
+    ui->season->setValue(m_episode->season().toInt());
+    ui->episode->setValue(m_episode->episode().toInt());
+    ui->displaySeason->setValue(m_episode->displaySeason().toInt());
+    ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
     ui->rating->setValue(m_episode->rating());
     ui->votes->setValue(m_episode->votes());
     ui->top250->setValue(m_episode->top250());
@@ -369,7 +369,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    foreach (Actor *actor, m_episode->actorsPointer()) {
+    for (Actor *actor : m_episode->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -380,12 +380,14 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->actors->blockSignals(false);
 
     if (m_episode->tvShow()) {
-        QStringList certifications = m_episode->tvShow()->certifications();
-        certifications.prepend("");
-        ui->certification->addItems(certifications);
+        auto certifications = m_episode->tvShow()->certifications();
+        certifications.prepend(Certification::NoCertification);
+        for (const auto &cert : certifications) {
+            ui->certification->addItem(cert.toString());
+        }
         ui->certification->setCurrentIndex(certifications.indexOf(m_episode->certification()));
     } else {
-        ui->certification->addItem(m_episode->certification());
+        ui->certification->addItem(m_episode->certification().toString());
     }
 
     // Streamdetails
@@ -853,7 +855,7 @@ void TvShowWidgetEpisode::onShowTitleChange(QString text)
  */
 void TvShowWidgetEpisode::onSeasonChange(int value)
 {
-    m_episode->setSeason(value);
+    m_episode->setSeason(SeasonNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -862,7 +864,7 @@ void TvShowWidgetEpisode::onSeasonChange(int value)
  */
 void TvShowWidgetEpisode::onEpisodeChange(int value)
 {
-    m_episode->setEpisode(value);
+    m_episode->setEpisode(EpisodeNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -871,7 +873,7 @@ void TvShowWidgetEpisode::onEpisodeChange(int value)
  */
 void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
 {
-    m_episode->setDisplaySeason(value);
+    m_episode->setDisplaySeason(SeasonNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -880,7 +882,7 @@ void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
  */
 void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
 {
-    m_episode->setDisplayEpisode(value);
+    m_episode->setDisplayEpisode(EpisodeNumber(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -898,7 +900,7 @@ void TvShowWidgetEpisode::onRatingChange(double value)
  */
 void TvShowWidgetEpisode::onCertificationChange(QString text)
 {
-    m_episode->setCertification(text);
+    m_episode->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

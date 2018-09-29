@@ -286,8 +286,9 @@ void ConcertWidget::setConcert(Concert *concert)
         const auto videoDetails = concert->streamDetails()->videoDetails();
         if (concert->streamDetailsLoaded()
             && videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() != 0) {
-            concert->setRuntime(
-                qFloor(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+            using namespace std::chrono;
+            seconds runtime{videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt()};
+            concert->setRuntime(duration_cast<minutes>(runtime));
         }
     }
     updateConcertInfo();
@@ -323,6 +324,7 @@ void ConcertWidget::onStartScraperSearch()
     ConcertSearch::instance()->exec(m_concert->name());
     if (ConcertSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
+        ConcertSearch::instance()->scraperId();
         m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(),
             Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
             ConcertSearch::instance()->infosToLoad());
@@ -442,7 +444,7 @@ void ConcertWidget::updateConcertInfo()
     ui->tagline->setText(m_concert->tagline());
     ui->rating->setValue(m_concert->rating());
     ui->released->setDate(m_concert->released());
-    ui->runtime->setValue(m_concert->runtime());
+    ui->runtime->setValue(static_cast<int>(m_concert->runtime().count()));
     ui->trailer->setText(m_concert->trailer().toString());
     ui->playcount->setValue(m_concert->playcount());
     ui->lastPlayed->setDateTime(m_concert->lastPlayed());
@@ -454,15 +456,15 @@ void ConcertWidget::updateConcertInfo()
     QStringList tags;
     certifications.append("");
     for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
-        if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty()) {
-            certifications.append(concert->certification());
+        if (!certifications.contains(concert->certification().toString()) && concert->certification().isValid()) {
+            certifications.append(concert->certification().toString());
         }
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
     qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
-    ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
+    ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification().toString()));
     ui->certification->blockSignals(false);
 
     // `setTags` requires distinct lists
@@ -875,7 +877,7 @@ void ConcertWidget::onRuntimeChange(int value)
     if (!m_concert) {
         return;
     }
-    m_concert->setRuntime(value);
+    m_concert->setRuntime(std::chrono::minutes(value));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -887,7 +889,7 @@ void ConcertWidget::onCertificationChange(QString text)
     if (!m_concert) {
         return;
     }
-    m_concert->setCertification(text);
+    m_concert->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 

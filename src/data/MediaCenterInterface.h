@@ -1,6 +1,7 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
 
@@ -61,9 +62,9 @@ public:
     virtual QString imageFileName(const Movie *movie,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const Concert *concert,       ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const TvShow *show,           ImageType type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const Artist *artist,         ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const Album *album,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const TvShow *show,           ImageType type, SeasonNumber season = SeasonNumber::NoSeason, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     // clang-format on
 
     virtual void loadBooklets(Album *album) = 0;

@@ -1,6 +1,7 @@
 #ifndef DOWNLOADMANAGERELEMENT_H
 #define DOWNLOADMANAGERELEMENT_H
 
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
 class Album;
@@ -30,7 +31,7 @@ public:
     Concert *concert{nullptr};
     Album *album{nullptr};
     Artist *artist{nullptr};
-    int season{0};
+    SeasonNumber season{SeasonNumber::SpecialsSeason};
     bool directDownload{false};
 
     template<class T>

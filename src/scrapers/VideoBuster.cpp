@@ -238,11 +238,11 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
     if (infos.contains(MovieScraperInfos::Certification)) {
         rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
         if (rx.indexIn(html) != -1) {
-            movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
+            movie->setCertification(Helper::instance()->mapCertification(Certification::FSK(rx.cap(1))));
         }
         rx.setPattern("Freigegeben ohne Altersbeschränkung");
-        if (movie->certification().isEmpty() && rx.indexIn(html) != -1) {
-            movie->setCertification(Helper::instance()->mapCertification("FSK 0"));
+        if (!movie->certification().isValid() && rx.indexIn(html) != -1) {
+            movie->setCertification(Helper::instance()->mapCertification(Certification::FSK("0")));
         }
     }
 
@@ -296,7 +296,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
     // Runtime
     rx.setPattern("ca. ([0-9]*) Minuten");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
-        movie->setRuntime(rx.cap(1).trimmed().toInt());
+        movie->setRuntime(std::chrono::minutes(rx.cap(1).trimmed().toInt()));
     }
 
     // Rating

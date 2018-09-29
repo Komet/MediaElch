@@ -1,6 +1,7 @@
 #ifndef CONCERTSEARCH_H
 #define CONCERTSEARCH_H
 
+#include "data/TmdbId.h"
 #include "globals/Globals.h"
 
 #include <QDialog>
@@ -24,7 +25,7 @@ public slots:
     int exec(QString searchString);
     static ConcertSearch *instance(QWidget *parent = nullptr);
     int scraperNo();
-    QString scraperId();
+    TmdbId scraperId();
     QList<ConcertScraperInfos> infosToLoad();
 
 private:

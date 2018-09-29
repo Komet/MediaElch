@@ -1,6 +1,7 @@
 #ifndef CERTIFICATIONWIDGET_H
 #define CERTIFICATIONWIDGET_H
 
+#include "data/Certification.h"
 #include "globals/Globals.h"
 
 #include <QMenu>
@@ -47,7 +48,7 @@ private slots:
 private:
     Ui::CertificationWidget *ui;
     QMenu *m_tableContextMenu;
-    QStringList m_addedCertifications;
+    QVector<Certification> m_addedCertifications;
 
     void clear();
 };

@@ -1,8 +1,13 @@
 #ifndef TVSHOWEPISODE_H
 #define TVSHOWEPISODE_H
 
+#include "data/Certification.h"
+#include "data/EpisodeNumber.h"
+#include "data/ImdbId.h"
 #include "data/Rating.h"
+#include "data/SeasonNumber.h"
 #include "data/StreamDetails.h"
+#include "data/TvDbId.h"
 #include "data/TvShowModelItem.h"
 #include "globals/Globals.h"
 
@@ -23,17 +28,17 @@ class TvShowEpisode : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(int season READ season WRITE setSeason)
-    Q_PROPERTY(int episode READ episode WRITE setEpisode)
-    Q_PROPERTY(int displaySeason READ displaySeason WRITE setDisplaySeason)
-    Q_PROPERTY(int displayEpisode READ displayEpisode WRITE setDisplayEpisode)
+    Q_PROPERTY(SeasonNumber season READ season WRITE setSeason)
+    Q_PROPERTY(EpisodeNumber episode READ episode WRITE setEpisode)
+    Q_PROPERTY(SeasonNumber displaySeason READ displaySeason WRITE setDisplaySeason)
+    Q_PROPERTY(EpisodeNumber displayEpisode READ displayEpisode WRITE setDisplayEpisode)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QStringList writers READ writers WRITE setWriters)
     Q_PROPERTY(QStringList directors READ directors WRITE setDirectors)
     Q_PROPERTY(int playCount READ playCount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
     Q_PROPERTY(QDate firstAired READ firstAired WRITE setFirstAired)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
     Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
@@ -50,10 +55,10 @@ public:
     virtual double rating() const;
     virtual int votes() const;
     virtual int top250() const;
-    virtual int season() const;
-    virtual int episode() const;
-    virtual int displaySeason() const;
-    virtual int displayEpisode() const;
+    virtual SeasonNumber season() const;
+    virtual EpisodeNumber episode() const;
+    virtual SeasonNumber displaySeason() const;
+    virtual EpisodeNumber displayEpisode() const;
     virtual QString overview() const;
     virtual QStringList writers() const;
     virtual QStringList directors() const;
@@ -61,7 +66,7 @@ public:
     virtual QDateTime lastPlayed() const;
     virtual QDate firstAired() const;
     virtual QTime epBookmark() const;
-    virtual QString certification() const;
+    virtual Certification certification() const;
     virtual QString network() const;
     virtual QString seasonString() const;
     virtual QString episodeString() const;
@@ -88,10 +93,10 @@ public:
     void setRating(double rating);
     void setVotes(int votes);
     void setTop250(int top250);
-    void setSeason(int season);
-    void setEpisode(int episode);
-    void setDisplaySeason(int season);
-    void setDisplayEpisode(int episode);
+    void setSeason(SeasonNumber season);
+    void setEpisode(EpisodeNumber episode);
+    void setDisplaySeason(SeasonNumber season);
+    void setDisplayEpisode(EpisodeNumber episode);
     void setOverview(QString overview);
     void setWriters(QStringList writers);
     void addWriter(QString writer);
@@ -100,7 +105,7 @@ public:
     void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
     void setFirstAired(QDate firstAired);
-    void setCertification(QString certification);
+    void setCertification(Certification certification);
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QByteArray thumbnail);
@@ -123,7 +128,7 @@ public:
     void removeActor(Actor *actor);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad);
+    void loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();
@@ -136,8 +141,8 @@ public:
 
     static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
 
-    QString imdbId() const;
-    void setImdbId(const QString &imdbId);
+    ImdbId imdbId() const;
+    void setImdbId(const ImdbId &imdbId);
 
 signals:
     void sigLoaded();
@@ -149,11 +154,11 @@ private:
     QString m_name;
     QString m_showTitle;
     Rating m_rating;
-    QString m_imdbId;
-    int m_season;
-    int m_episode;
-    int m_displaySeason;
-    int m_displayEpisode;
+    ImdbId m_imdbId;
+    SeasonNumber m_season;
+    EpisodeNumber m_episode;
+    SeasonNumber m_displaySeason;
+    EpisodeNumber m_displayEpisode;
     QString m_overview;
     QStringList m_writers;
     QStringList m_directors;
@@ -161,7 +166,7 @@ private:
     QDateTime m_lastPlayed;
     QDate m_firstAired;
     QTime m_epBookmark;
-    QString m_certification;
+    Certification m_certification;
     QString m_network;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;

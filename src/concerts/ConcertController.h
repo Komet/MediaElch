@@ -1,6 +1,7 @@
 #ifndef CONCERTCONTROLLER_H
 #define CONCERTCONTROLLER_H
 
+#include "data/TmdbId.h"
 #include "globals/DownloadManagerElement.h"
 
 #include <QMutex>
@@ -19,7 +20,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos);
+    void loadData(TmdbId id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos);
     void loadStreamDetailsFromFile();
     void scraperLoadDone(ConcertScraperInterface *scraper);
     QList<ConcertScraperInfos> infosToLoad();

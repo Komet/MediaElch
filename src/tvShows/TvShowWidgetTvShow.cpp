@@ -327,7 +327,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->dir->setText(m_show->dir());
     ui->name->setText(m_show->name());
     ui->imdbId->setText(m_show->imdbId());
-    ui->tvdbId->setText(m_show->tvdbId());
+    ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
     ui->rating->setValue(m_show->rating());
     ui->votes->setValue(m_show->votes());
@@ -335,7 +335,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
-    ui->runtime->setValue(m_show->runtime());
+    ui->runtime->setValue(static_cast<int>(m_show->runtime().count()));
     if (m_show->status() == "Continuing") {
         ui->comboStatus->setCurrentIndex(1);
     } else if (m_show->status() == "Ended") {
@@ -345,7 +345,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     }
 
     ui->actors->blockSignals(true);
-    foreach (Actor *actor, m_show->actorsPointer()) {
+    for (Actor *actor : m_show->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -369,9 +369,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->genreCloud->setTags(genres, m_show->genres());
     ui->tagCloud->setTags(tags, m_show->tags());
 
-    QStringList certifications = m_show->certifications();
-    certifications.prepend("");
-    ui->certification->addItems(certifications);
+    auto certifications = m_show->certifications();
+    certifications.prepend(Certification::NoCertification);
+    for (const auto &cert : certifications) {
+        ui->certification->addItem(cert.toString());
+    }
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
     updateImages(QList<ImageType>() << ImageType::TvShowPoster       //
@@ -499,7 +501,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb};
 
-    if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
+    if (show->tvdbId().isValid() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(),
             SIGNAL(sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>)),
@@ -572,7 +574,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
         }
     }
 
-    QList<int> thumbsForSeasons;
+    QList<SeasonNumber> thumbsForSeasons;
     QMapIterator<ImageType, QList<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
@@ -617,7 +619,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
             }
             downloadsSize++;
         } else if (it.key() == ImageType::TvShowSeasonThumb && !it.value().isEmpty()) {
-            foreach (Poster p, it.value()) {
+            for (Poster p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
                     continue;
                 }
@@ -653,7 +655,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
         }
     }
 
-    foreach (int season, show->seasons()) {
+    for (SeasonNumber season : show->seasons()) {
         if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonPoster)) {
             emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
             DownloadManagerElement d;
@@ -688,7 +690,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>>
     }
 
     if (show->infosToLoad().contains(TvShowScraperInfos::Thumbnail)) {
-        foreach (TvShowEpisode *episode, show->episodes()) {
+        for (TvShowEpisode *episode : show->episodes()) {
             if (episode->thumbnail().isEmpty() || !episode->hasChanged()) {
                 continue;
             }
@@ -998,7 +1000,7 @@ void TvShowWidgetTvShow::onImdbIdChange(QString text)
 
 void TvShowWidgetTvShow::onTvdbIdChange(QString text)
 {
-    m_show->setTvdbId(text);
+    m_show->setTvdbId(TvDbId(text));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1013,7 +1015,7 @@ void TvShowWidgetTvShow::onSortTitleChange(QString text)
  */
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
-    m_show->setCertification(text);
+    m_show->setCertification(Certification(text));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1028,7 +1030,7 @@ void TvShowWidgetTvShow::onRatingChange(double value)
 
 void TvShowWidgetTvShow::onRuntimeChange(int runtime)
 {
-    m_show->setRuntime(runtime);
+    m_show->setRuntime(std::chrono::minutes(runtime));
     ui->buttonRevert->setVisible(true);
 }
 

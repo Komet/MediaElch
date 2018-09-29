@@ -3,6 +3,10 @@
 #include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 
+#include <chrono>
+
+using namespace std::chrono_literals;
+
 TEST_CASE("TMDb returns valid search results", "[scraper][TMDb][search][requires_internet]")
 {
     TMDb TMDb;
@@ -26,8 +30,8 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
         loadDataSync(tmdb, {{nullptr, "tt2277860"}}, m, tmdb.scraperNativelySupports());
 
-        REQUIRE(m.id() == "tt2277860");
-        CHECK(m.tmdbId() == "127380");
+        REQUIRE(m.imdbId() == ImdbId("tt2277860"));
+        CHECK(m.tmdbId() == TmdbId("127380"));
 
         CHECK(m.name() == "Finding Dory");
         CHECK(m.originalName() == "Finding Dory");
@@ -37,7 +41,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(m.rating() == Approx(6.9).margin(0.5));
         CHECK(m.votes() > 6300);
         CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
-        CHECK(m.runtime() == 97);
+        CHECK(m.runtime() == 97min);
         CHECK(m.set() == "Finding Nemo Collection");
         CHECK(m.trailer() == QUrl("plugin://plugin.video.youtube/?action=play_video&videoid=JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
@@ -79,8 +83,8 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         Movie m(QStringList{}); // Movie without files
         loadDataSync(tmdb, {{nullptr, "127380"}}, m, tmdb.scraperNativelySupports());
 
-        REQUIRE(m.tmdbId() == "127380");
-        CHECK(m.id() == "tt2277860");
+        REQUIRE(m.tmdbId() == TmdbId("127380"));
+        CHECK(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.name() == "Finding Dory");
 
         // Rest is has already been tested and at this point we

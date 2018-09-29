@@ -1,6 +1,7 @@
 #ifndef DATAFILE_H
 #define DATAFILE_H
 
+#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
 #include <QString>
@@ -15,7 +16,7 @@ public:
     DataFileType type() const;
     QString fileName() const;
     int pos() const;
-    QString saveFileName(const QString &fileName, int season = -1, bool stacked = false);
+    QString saveFileName(const QString &fileName, SeasonNumber season = SeasonNumber::NoSeason, bool stacked = false);
     static bool lessThan(DataFile a, DataFile b);
     void setFileName(QString fileName);
 
