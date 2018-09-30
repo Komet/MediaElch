@@ -138,10 +138,6 @@
         <source>Turkish</source>
         <translation>Turco</translation>
     </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Linguagem</translation>
-    </message>
 </context>
 <context>
     <name>AboutDialog</name>
@@ -322,12 +318,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Deletar Classificação Indicativa</translation>
     </message>
     <message>
-        <location filename="../src/movies/CertificationWidget.cpp" line="184"/>
+        <location filename="../src/movies/CertificationWidget.cpp" line="187"/>
         <source>New Certification</source>
         <translation>Nova Classificação Indicativa</translation>
     </message>
     <message>
-        <location filename="../src/movies/CertificationWidget.cpp" line="298"/>
+        <location filename="../src/movies/CertificationWidget.cpp" line="297"/>
         <source>All Movies Saved</source>
         <translation>Todos os filmes foram salvos</translation>
     </message>
@@ -689,8 +685,8 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     </message>
     <message>
         <location filename="../src/concerts/ConcertWidget.ui" line="461"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="594"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="599"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -784,42 +780,42 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="587"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="621"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="589"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="623"/>
         <source>Track %1</source>
         <translation>Track %1</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="593"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="625"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="626"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="627"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="628"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="600"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="613"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="615"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="679"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="681"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="690"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="692"/>
         <source>Concerts Saved</source>
         <translation>Concertos Salvos</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="718"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="720"/>
         <source>All Concerts Saved</source>
         <translation>Todos os Concertos foram Salvos</translation>
     </message>
@@ -1381,676 +1377,676 @@ Veja em  Ajustes -&gt; Importar.</translation>
         <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="369"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="370"/>
         <source>Label &quot;%1&quot;</source>
         <translation>Rótulo &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="371"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="372"/>
         <source>Label</source>
         <translation>Rótulo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="349"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="350"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
         <source>Genre</source>
         <translation>Gênero</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="350"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="417"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="351"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
         <source>Studio</source>
         <translation>Estúdio</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="351"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="352"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
         <source>Country</source>
         <translation>País</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="362"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="363"/>
         <source>Released %1</source>
         <translation>Lançado %1</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="362"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="363"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="356"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="357"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="423"/>
         <source>Certification</source>
         <translation>Classificação</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="352"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="353"/>
         <source>Set</source>
         <translation>Coletânea</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="353"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="354"/>
         <source>Tag</source>
         <translation>Etiqueta</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="354"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="355"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
         <source>Director</source>
         <translation>Diretor</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="355"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="356"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>Video codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="411"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="486"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="412"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="487"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="488"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="489"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="412"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="413"/>
         <source>Filename</source>
         <translation>Nome do Arquivo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="413"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="440"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="441"/>
         <source>Movie has Poster</source>
         <translation>Filme Com Poster</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="440"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="441"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="442"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="441"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="442"/>
         <source>Movie has no Poster</source>
         <translation>Filme Sem Poster</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="441"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="442"/>
         <source>No Poster</source>
         <translation>Sem Poster</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="442"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="443"/>
         <source>Movie has Extra Fanarts</source>
         <translation>Filme Com Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="442"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="443"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="443"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
         <source>Movie has no Extra Fanarts</source>
         <translation>Filme Sem Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="443"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
         <source>No Extra Fanarts</source>
         <translation>Sem Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
         <source>Movie has Backdrop</source>
         <translation>Filme Com Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="444"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <source>Movie has no Backdrop</source>
         <translation>Filme Sem Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <source>No Backdrop</source>
         <translation>Sem Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="445"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <source>No Fanart</source>
         <translation>Sem Fanart</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="447"/>
         <source>Movie has Logo</source>
         <translation>Filme Com Logo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="446"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="447"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="448"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="447"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="448"/>
         <source>Movie has no Logo</source>
         <translation>Filme Sem Logo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="447"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="448"/>
         <source>No Logo</source>
         <translation>Sem Logo</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="448"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="449"/>
         <source>Movie has Clear Art</source>
         <translation>Filme Com Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="448"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="449"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="450"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="449"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="450"/>
         <source>Movie has no Clear Art</source>
         <translation>Filme Sem Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="449"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="450"/>
         <source>No Clear Art</source>
         <translation>Sem Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="450"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="451"/>
         <source>Movie has Banner</source>
         <translation>Filme Com Banner</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="450"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="451"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="452"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="451"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="452"/>
         <source>Movie has no Banner</source>
         <translation>Filme Sem Banner</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="451"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="452"/>
         <source>No Banner</source>
         <translation>Sem Banner</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="452"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="453"/>
         <source>Movie has Thumb</source>
         <translation>Filme Com Miniatura</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="452"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="453"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="454"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="453"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="454"/>
         <source>Movie has no Thumb</source>
         <translation>Filme Sem Miniatura</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="453"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="454"/>
         <source>No Thumb</source>
         <translation>Sem Miniatura</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="454"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="455"/>
         <source>Movie has CD Art</source>
         <translation>Filme Com Disc Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="454"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="455"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="456"/>
         <source>CD Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="455"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="456"/>
         <source>Movie has no CD Art</source>
         <translation>Filme Sem Disc Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="455"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="456"/>
         <source>No CD Art</source>
         <translation>Sem Disc Art</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="458"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="459"/>
         <source>Movie has Trailer</source>
         <translation>Filme Com Trailer</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="458"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="459"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="460"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="462"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="459"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="460"/>
         <source>Movie has no Trailer</source>
         <translation>Filme Sem Trailer</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="459"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="460"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="462"/>
         <source>No Trailer</source>
         <translation>Sem Trailer</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="460"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
         <source>Movie has local Trailer</source>
         <translation>Filme Com Trailer Local</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="460"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="462"/>
         <source>Local Trailer</source>
         <translation>Trailer Local</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="462"/>
         <source>Movie has no local Trailer</source>
         <translation>Filme Sem Trailer Local</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="461"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="462"/>
         <source>No local Trailer</source>
         <translation>Sem Trailer Local</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="425"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
         <source>Movie is Watched</source>
         <translation>Filme Assistido</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="425"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <source>Watched</source>
         <translation>Assisitido</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="425"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <source>Seen</source>
         <translation>Visto</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <source>Movie is Unwatched</source>
         <translation>Filme Não Assistido</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <source>Unwatched</source>
         <translation>Não Assistido</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="426"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <source>Unseen</source>
         <translation>Não Visto</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="423"/>
         <source>Movie has no Certification</source>
         <translation>Filme Sem Classificação</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="423"/>
         <source>No Certification</source>
         <translation>Sem Classificação</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
         <source>Movie has no Genre</source>
         <translation>Filme Sem Gênero</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
         <source>No Genre</source>
         <translation>Sem Gênero</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="428"/>
         <source>Movie has Rating</source>
         <translation>Filme Com Rating</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="427"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="428"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="429"/>
         <source>Rating</source>
         <translation>Rating</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="428"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="429"/>
         <source>Movie has no Rating</source>
         <translation>Filme Sem Rating</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="428"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="429"/>
         <source>No Rating</source>
         <translation>Sem Rating</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="435"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="436"/>
         <source>Stream Details loaded</source>
         <translation>Detalhes Stream Carregados</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="435"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="436"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
         <source>Stream Details</source>
         <translation>Detalhes Stream</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="436"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
         <source>Stream Details not loaded</source>
         <translation>Detalhes Stream Não Carregados</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="436"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
         <source>No Stream Details</source>
         <translation>Sem Detalhes Stream</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="431"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="432"/>
         <source>Movie has Actors</source>
         <translation>Filme Com Elenco</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="431"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="432"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="433"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="432"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="433"/>
         <source>Movie has no Actors</source>
         <translation>Filme Sem Elenco</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="432"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="433"/>
         <source>No Actors</source>
         <translation>Sem Elenco</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="417"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
         <source>Movie has no Studio</source>
         <translation>Filme Sem Estúdio</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="417"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
         <source>No Studio</source>
         <translation>Sem Estúdio</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
         <source>Movie has no Country</source>
         <translation>Filme Sem País</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="418"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
         <source>No Country</source>
         <translation>Sem País</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
         <source>Movie has no Director</source>
         <translation>Filme Sem Diretor</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="419"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="420"/>
         <source>No Director</source>
         <translation>Sem Diretor</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No information about video codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="437"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No video codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
         <source>Movie has no Tags</source>
         <translation>Filme Sem Etiquetas</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
         <source>No Tags</source>
         <translation>Sem Etiquetas</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Movie has no IMDB ID</source>
         <translation>Filme Sem IMDB ID</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>No IMDB ID</source>
         <translation>Sem IMDB ID</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>IMDB</source>
         <translation>IMDB</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="464"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
         <source>Resolution 720p</source>
         <translation>Resolução 720p</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="464"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="464"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="466"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
         <source>Resolution</source>
         <translation>Resolução</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="466"/>
         <source>Resolution 1080p</source>
         <translation>Resolução 1080p</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="466"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="466"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>Resolution 2160p</source>
         <translation type="unfinished">Resolução 1080p {2160p?}</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="466"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>2160p</source>
         <translation type="unfinished">2160p</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
         <source>Resolution SD</source>
         <translation>Resolução SD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="469"/>
         <source>Format DVD</source>
         <translation>Formato DVD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="469"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="469"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="470"/>
         <source>Format</source>
         <translation>Formato</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="469"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="470"/>
         <source>BluRay Format</source>
         <translation>Formato BluRay</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="469"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="470"/>
         <source>BluRay</source>
         <translation>Bluray</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="472"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="473"/>
         <source>Channels 2.0</source>
         <translation>Canais 2.0</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="472"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="473"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="474"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="475"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="476"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="477"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="478"/>
         <source>Audio</source>
         <translation>Áudio</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="472"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="473"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="474"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="475"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="473"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="474"/>
         <source>Channels 5.1</source>
         <translation>Canais 5.1</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="474"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="475"/>
         <source>Channels 7.1</source>
         <translation>Canais 7.1</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="475"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="476"/>
         <source>Audio Quality HD</source>
         <translation>Qualidade de Áudio HD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="475"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="476"/>
         <source>HD Audio</source>
         <translation>Áudio HD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="476"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="477"/>
         <source>Audio Quality Normal</source>
         <translation>Qualidade de Áudio Normal</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="476"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="477"/>
         <source>Normal Audio</source>
         <translation>Áudio Normal</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="477"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="478"/>
         <source>Audio Quality SD</source>
         <translation>Qualidade de Áudio SD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="477"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="478"/>
         <source>SD Audio</source>
         <translation>Áudio SD</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="480"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="481"/>
         <source>Movie has Subtitle</source>
         <translation>Filme Com Legenda</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="480"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="481"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="482"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="484"/>
         <source>Subtitle</source>
         <translation>Legenda</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="481"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="482"/>
         <source>Movie has no Subtitle</source>
         <translation>Filme Sem Legenda</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="481"/>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="482"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="484"/>
         <source>No Subtitle</source>
         <translation>Sem Legenda</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="482"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
         <source>Movie has external Subtitle</source>
         <translation>Filme Com Legenda Externa</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="482"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="484"/>
         <source>External Subtitle</source>
         <translation>Legenda Externa</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="484"/>
         <source>Movie has no external Subtitle</source>
         <translation>Filme Sem Legenda Externa</translation>
     </message>
     <message>
-        <location filename="../src/smallWidgets/FilterWidget.cpp" line="483"/>
+        <location filename="../src/smallWidgets/FilterWidget.cpp" line="484"/>
         <source>No External Subtitle</source>
         <translation>Sem Legenda Externa</translation>
     </message>
@@ -2622,27 +2618,27 @@ Main menu entry (tooltip)</extracomment>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../src/main/MainWindow.cpp" line="713"/>
+        <location filename="../src/main/MainWindow.cpp" line="714"/>
         <source>Reload all Movies (%1)</source>
         <translation>Recarregar Todos os Filmes (%1)</translation>
     </message>
     <message>
-        <location filename="../src/main/MainWindow.cpp" line="719"/>
+        <location filename="../src/main/MainWindow.cpp" line="720"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Recarregar Todos os Seriados (%1)</translation>
     </message>
     <message>
-        <location filename="../src/main/MainWindow.cpp" line="730"/>
+        <location filename="../src/main/MainWindow.cpp" line="731"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Recarregar Todos os Concertos (%1)</translation>
     </message>
     <message>
-        <location filename="../src/main/MainWindow.cpp" line="746"/>
+        <location filename="../src/main/MainWindow.cpp" line="747"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Recarregar Todos os Downloads (%1)</translation>
     </message>
     <message>
-        <location filename="../src/main/MainWindow.cpp" line="752"/>
+        <location filename="../src/main/MainWindow.cpp" line="753"/>
         <source>Reload Music (%1)</source>
         <translation>Recarregando Música (%1)</translation>
     </message>
@@ -3590,8 +3586,8 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     </message>
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="1034"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="812"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="814"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="817"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -3738,79 +3734,79 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estúdio</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="521"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="522"/>
         <source>Downloading images...</source>
         <translation>Transferindo Imagens...</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="804"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="840"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="806"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="842"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="1141"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="811"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="814"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="845"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="846"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="813"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="847"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="848"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="813"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="818"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="831"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="833"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="937"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="939"/>
         <source>Saving movie...</source>
         <translation>Salvando filme...</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="942"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="944"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="918"/>
-        <location filename="../src/movies/MovieWidget.cpp" line="966"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="920"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="968"/>
         <source>Saving movies...</source>
         <translation>Salvando filmes...</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="935"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="937"/>
         <source>Movies Saved</source>
         <translation>Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="984"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="986"/>
         <source>All Movies Saved</source>
         <translation>Todos os Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="1006"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="1008"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="1007"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="1009"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="1174"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../src/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../src/movies/MovieWidget.cpp" line="1174"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
@@ -4690,7 +4686,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Não verificar por atualizações</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="434"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="436"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Não apresentar esta dica novamente</translation>
     </message>
@@ -6521,8 +6517,8 @@ p, li { white-space: pre-wrap; }
         <translation>Formulário</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="628"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="32"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="630"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n seriados</numerusform>
@@ -6530,8 +6526,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="27"/>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="628"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="32"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="630"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódios</numerusform>
@@ -6539,74 +6535,74 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="50"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="52"/>
         <source>Load Information</source>
         <translation>Buscar Informações</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="51"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="53"/>
         <source>Search for new episodes</source>
         <translation>Procurar por novos episódios</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="52"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Mark as watched</source>
         <translation>Marcar como Assistido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="53"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Mark as unwatched</source>
         <translation>Marcar como Não Assistido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="54"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="56"/>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes Stream</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="55"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Add to Synchronization Queue</source>
         <translation>Addcionar na Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="56"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="58"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="57"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="59"/>
         <source>Open TV Show Folder</source>
         <translation>Abrir Pasta Seriados</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="58"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="60"/>
         <source>Open NFO File</source>
         <translation>Abrir Arquivo NFO</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="59"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="61"/>
         <source>Show missing episodes</source>
         <translation>Apresentar episódios ausentes</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="61"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="63"/>
         <source>Hide specials in missing episodes</source>
         <translation>Ocultar especiais em episódios ausentes</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="429"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="431"/>
         <source>Show update needed</source>
         <translation>Mostrar quando atualização for necessária</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="431"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="433"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Você precisa atualizar o seriado para mostrar episódios ausentes.
 Depois o MediaElch vai automaticamente procurar novos episódios na inicialização.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="630"/>
+        <location filename="../src/tvShows/TvShowFilesWidget.cpp" line="632"/>
         <source>%1 of %n tv shows</source>
         <translation>
             <numerusform>%1 de %n seriados</numerusform>
@@ -6660,7 +6656,7 @@ Depois o MediaElch vai automaticamente procurar novos episódios na inicializaç
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../src/data/TvShowModelItem.cpp" line="185"/>
+        <location filename="../src/data/TvShowModelItem.cpp" line="186"/>
         <source>Season %1</source>
         <translation>Temporada %1</translation>
     </message>
@@ -7111,7 +7107,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../src/tvShows/TvShowUpdater.cpp" line="63"/>
+        <location filename="../src/tvShows/TvShowUpdater.cpp" line="61"/>
         <source>Updating TV Shows</source>
         <translation>Atualizando Seriados</translation>
     </message>
@@ -7355,8 +7351,8 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     </message>
     <message>
         <location filename="../src/tvShows/TvShowWidgetEpisode.ui" line="1063"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="488"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="491"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="490"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="493"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -7412,62 +7408,62 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation>Episódio ausente</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="481"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="515"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="483"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="517"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="487"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="490"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="519"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="520"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="489"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="492"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="521"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="522"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="489"/>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="492"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="491"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="494"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="507"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="509"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="577"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="579"/>
         <source>Episode Saved</source>
         <translation>Episódios Salvos</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="736"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="738"/>
         <source>Unknown Director</source>
         <translation>Diretor Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="786"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="788"/>
         <source>Unknown Writer</source>
         <translation>Roteirista Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1016"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1018"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1017"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1019"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1080"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1082"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1080"/>
+        <location filename="../src/tvShows/TvShowWidgetEpisode.cpp" line="1082"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
@@ -7791,37 +7787,37 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
         <translation>Adicionar Tag</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="443"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="445"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="471"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="473"/>
         <source>Please wait while your tv show is scraped</source>
         <translation>Por favor aguarde enquanto seu seriado é escrapeado</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="708"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="710"/>
         <source>Downloading images...</source>
         <translation>Transferindo imagens...</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="860"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="862"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="861"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="863"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="945"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="947"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="945"/>
+        <location filename="../src/tvShows/TvShowWidgetTvShow.cpp" line="947"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagnes (*.jpg*.jpeg)</translation>
     </message>
