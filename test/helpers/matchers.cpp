@@ -27,6 +27,11 @@ bool ContainsMatcher::match(const QString &source) const
     return source.contains(m_comparator);
 }
 
+bool ContainsNotMatcher::match(const QString &source) const
+{
+    return !source.contains(m_comparator);
+}
+
 bool StartsWithMatcher::match(const QString &source) const
 {
     return source.startsWith(m_comparator);
@@ -62,6 +67,11 @@ EqualsMatcher Equals(const QString &str)
 ContainsMatcher Contains(const QString &str)
 {
     return ContainsMatcher(str);
+}
+
+ContainsNotMatcher ContainsNot(const QString &str)
+{
+    return ContainsNotMatcher(str);
 }
 
 EndsWithMatcher EndsWith(const QString &str)

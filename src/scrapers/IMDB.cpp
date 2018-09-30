@@ -325,14 +325,15 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
     }
 
     if (infos.contains(MovieScraperInfos::Director)) {
-        rx.setPattern("<div class=\"txt-block\" itemprop=\"director\" itemscope "
-                      "itemtype=\"http://schema.org/Person\">(.*)</div>");
+        rx.setPattern(
+            R"(<div class="txt-block" itemprop="director" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
         QString directorsBlock;
         if (rx.indexIn(html) != -1) {
             directorsBlock = rx.cap(1);
         } else {
+            // the ghost span may only exist if there are more than 2 directors
             rx.setPattern(
-                R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)<span class="ghost">)");
+                R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)(?:<span class="ghost">|</div>))");
             if (rx.indexIn(html) != -1) {
                 directorsBlock = rx.cap(1);
             }
@@ -357,8 +358,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
         if (rx.indexIn(html) != -1) {
             writersBlock = rx.cap(1);
         } else {
+            // the ghost span may only exist if there are more than 2 writers
             rx.setPattern(
-                R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)<span class="ghost">)");
+                R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)(?:<span class="ghost">|</div>))");
             if (rx.indexIn(html) != -1) {
                 writersBlock = rx.cap(1);
             }
