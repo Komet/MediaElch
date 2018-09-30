@@ -39,7 +39,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
             videoBuster.scraperNativelySupports());
 
         CHECK(m.name() == "Findet Dorie");
-        CHECK(m.certification() == "FSK 0");
+        CHECK(m.certification() == Certification::FSK("0"));
         // Only year is suppported
         CHECK(m.released().toString("yyyy") == "2016");
         // Finding Dory is rated 4.6/5 (date: 2018-09-01)

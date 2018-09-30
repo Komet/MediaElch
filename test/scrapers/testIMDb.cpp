@@ -61,7 +61,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId::NoId);
         CHECK(m.name() == "Finding Dory");
-        CHECK(m.certification() == "PG");
+        CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17");
         // Finding Dory is rated 7.3 (date: 2018-08-31)
         CHECK(m.rating() == Approx(7).margin(0.5));
@@ -113,7 +113,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         REQUIRE(m.imdbId() == ImdbId("tt0111161"));
         CHECK(m.name() == "The Shawshank Redemption");
-        CHECK(m.certification() == "R");
+        CHECK(m.certification() == Certification("R"));
         CHECK(m.released().toString("yyyy-MM-dd") == "1994-10-14");
         // "The Shawshank Redemption" is the highest rated IMDb movie
         CHECK(m.rating() == Approx(9.3).margin(0.5));
@@ -128,9 +128,10 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK_THAT(m.overview(), Contains("jailhouse of Shawshank"));
         CHECK_THAT(m.outline(), StartsWith("Two imprisoned men bond over a number of years"));
         CHECK_THAT(m.director(), Contains("Frank Darabont"));
-        CHECK_THAT(m.director(), Contains("Stephen King"));
+        CHECK_THAT(m.director(), ContainsNot("Stephen King")); // is actually a writer
         CHECK_THAT(m.writer(), Contains("Stephen King"));
-        CHECK_THAT(m.writer(), Contains("Tim Robbins"));
+        CHECK_THAT(m.writer(), Contains("Frank Darabont"));
+        CHECK_THAT(m.writer(), ContainsNot("Tim Robbins")); // is actually a star
 
         const auto genres = m.genres();
         REQUIRE(genres.size() >= 1);
@@ -179,7 +180,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
 
         REQUIRE(m.imdbId() == ImdbId("tt3159708"));
         CHECK(m.name() == "Welcome Back");
-        CHECK(m.certification() == "Not Rated");
+        CHECK(m.certification() == Certification("Not Rated"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-04");
         CHECK(m.rating() == Approx(4.2).margin(0.5));
         CHECK(m.votes() > 4800);

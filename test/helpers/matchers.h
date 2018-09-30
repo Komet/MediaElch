@@ -28,6 +28,12 @@ struct ContainsMatcher : QStringMatcherBase
     bool match(const QString &source) const override;
 };
 
+struct ContainsNotMatcher : QStringMatcherBase
+{
+    ContainsNotMatcher(const QString &comparator) : QStringMatcherBase("does not contain", comparator) {}
+    bool match(const QString &source) const override;
+};
+
 struct StartsWithMatcher : QStringMatcherBase
 {
     StartsWithMatcher(const QString &comparator) : QStringMatcherBase("starts with", comparator) {}
@@ -52,6 +58,7 @@ private:
 
 EqualsMatcher Equals(const QString &str);
 ContainsMatcher Contains(const QString &str);
+ContainsNotMatcher ContainsNot(const QString &str);
 EndsWithMatcher EndsWith(const QString &str);
 StartsWithMatcher StartsWith(const QString &str);
 RegexMatcher Matches(const QString &regex);

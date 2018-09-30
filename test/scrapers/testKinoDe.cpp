@@ -35,7 +35,7 @@ TEST_CASE("KinoDe scrapes correct movie details", "[scraper][KinoDe][load_data][
 
         CHECK(m.name() == "Findet Dorie");
         CHECK(m.originalName() == ""); // Not supported
-        CHECK(m.certification() == "FSK 0");
+        CHECK(m.certification() == Certification::FSK("0"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-09-29");
         // TODO: Rating
         CHECK(m.runtime() == 97min);
