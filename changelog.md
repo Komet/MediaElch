@@ -18,10 +18,11 @@
  - Use new Kodi XML syntax for movie set names (#554)
  - Add context menu in movie duplicate view (#591)
  - Add AEBN genre option (#590)
+ - Select scraper language in movie search panel (#442)
+ - Concert Renamer (#574)
  - Scrape TV show tags when using IMDb
  - Detect duplicate movies
  - Create subdirectories
- - Concert Renamer
 
 ### Bugfixes
 
