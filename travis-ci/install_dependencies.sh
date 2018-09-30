@@ -32,6 +32,11 @@ pushd "${PROJECT_DIR}" > /dev/null
 
 print_important "Getting dependencies for building for ${QT} on ${OS_NAME}"
 
+fold_start "git_submodule"
+print_info "Downloading quazip"
+git submodule update --init -- thirdParty/quazip
+fold_end
+
 if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 	if [ $QT = "qtWin" ]; then
@@ -66,6 +71,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		fold_start "mxe_install"
 		print_info "Installing mxe"
 		sudo apt-get install -y mxe-${MXETARGET}-gcc \
+			mxe-${MXETARGET}-zlib \
 			mxe-${MXETARGET}-qtbase \
 			mxe-${MXETARGET}-qttools \
 			mxe-${MXETARGET}-qtmultimedia \

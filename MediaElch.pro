@@ -2,11 +2,12 @@
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
 lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
 
-include(quazip/quazip/quazip.pri)
+include(thirdParty/quazip/quazip/quazip.pri)
 
 TEMPLATE = app
 TARGET = MediaElch
 INCLUDEPATH += $$PWD/src
+INCLUDEPATH += $$PWD/thirdParty
 
 QT += core gui network xml sql widgets multimedia multimediawidgets \
       concurrent qml quick quickwidgets opengl
@@ -22,6 +23,7 @@ unix:!macx {
 }
 win32 {
     DEFINES+=_UNICODE
+    DEFINES+= ZLIB_WINAPI
 }
 
 *-g++*|*-clang* {

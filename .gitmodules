@@ -1,3 +1,6 @@
 [submodule "documentation"]
 	path = documentation
 	url = https://github.com/mediaelch/mediaelch-doc
+[submodule "thirdParty/quazip"]
+	path = thirdParty/quazip
+	url = https://github.com/stachenov/quazip
