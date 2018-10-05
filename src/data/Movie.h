@@ -3,6 +3,7 @@
 
 #include "data/Certification.h"
 #include "data/ImdbId.h"
+#include "data/MovieCrew.h"
 #include "data/MovieImages.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
@@ -178,16 +179,14 @@ private:
     QDate m_released;
     QString m_tagline;
     QString m_outline;
+    MovieCrew m_crew;
     std::chrono::minutes m_runtime;
     Certification m_certification;
-    QString m_writer;
-    QString m_director;
     QStringList m_genres;
     QStringList m_countries;
     QStringList m_studios;
     QStringList m_tags;
     QUrl m_trailer;
-    QList<Actor> m_actors;
     int m_playcount;
     QDateTime m_lastPlayed;
     ImdbId m_imdbId;

@@ -1,3 +1,7 @@
+# Dependencies
+ZenLib
+MediaInfoDLL
+
 # OS specific
 .directory
 .DS_Store
