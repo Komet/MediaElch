@@ -23,13 +23,17 @@ package_deb() {
 	local FOLDER_NAME=${PROJECT_DIR##*/}
 	pushd "${PROJECT_DIR}/.." > /dev/null
 
+	print_info "Copying sources to ./mediaelch-${ME_VERSION}"
 	cp -R ./${FOLDER_NAME} ./mediaelch-${ME_VERSION}
 
+	print_info "Create .tar.gz"
 	tar --exclude="mediaelch-${ME_VERSION}.orig/scripts" --exclude="mediaelch-${ME_VERSION}/build" \
 			--exclude=".git" --exclude="*.AppImage" \
 			-cf "mediaelch_${ME_VERSION}.orig.tar" "${FOLDER_NAME}"
 	gzip "mediaelch_${ME_VERSION}.orig.tar"
 
+	print_info "Run debuild"
+	echo "Note: Debian Package Version must match the MediaElch version!"
 	pushd "mediaelch-${ME_VERSION}" > /dev/null
 	echo $PWD;
 	debuild -uc -us
