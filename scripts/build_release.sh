@@ -37,6 +37,26 @@ confirm_build() {
 	echo ""
 }
 
+build_release_linux() {
+	if [ "${BUILD_DIR}" == "" ]; then
+		echo "\$BUILD_DIR not set."
+		exit 1
+	fi
+
+	rm -rf "${BUILD_DIR}"
+	mkdir -p "${BUILD_DIR}"
+
+	pushd ${BUILD_DIR} > /dev/null
+	print_important "Running qmake"
+	qmake "${PROJECT_DIR}/MediaElch.pro" CONFIG+=release
+	echo ""
+
+	print_important "Building MediaElch (only warnings and errors shown)"
+	make -j $(nproc) 1>/dev/null
+	popd > /dev/null
+}
+
+
 if [ "${BUILD_OS}" == "linux" ]; then
 	check_dependencies_linux
 	print_system_info_linux
