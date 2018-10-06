@@ -537,7 +537,8 @@ test {
         test/scrapers/testIMDb.cpp \
         test/scrapers/testKinoDe.cpp \
         test/scrapers/testTMDb.cpp \
-        test/scrapers/testVideoBuster.cpp
+        test/scrapers/testVideoBuster.cpp \
+        test/scrapers/testTMDbConcerts.cpp
 
 } else {
     sanitize {

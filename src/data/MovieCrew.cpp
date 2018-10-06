@@ -35,7 +35,6 @@ void MovieCrew::setWriter(QString writer)
     m_writer = writer;
 }
 
-
 void MovieCrew::setDirector(QString director)
 {
     m_director = director;
@@ -48,6 +47,7 @@ void MovieCrew::setActors(QList<Actor> actors)
 
 void MovieCrew::addActor(Actor actor)
 {
+    m_actors.append(actor);
 }
 
 void MovieCrew::removeActor(Actor *actor)

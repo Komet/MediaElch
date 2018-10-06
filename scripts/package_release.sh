@@ -75,7 +75,7 @@ pkg_type="$(lc ${PACKAGE_TYPE:-invalid})"
 no_confirm=${3:-confirm}
 
 if [ "${BUILD_OS}" == "linux" ] ; then
-	if [ $pkg_type != "appimage" ] && [ $pkg_type != "deb" ]; then
+	if [ $pkg_type != "appimage" ] && [ $pkg_type != "deb" ] && [ $pkg_type != "launchpad" ]; then
 		print_error "Unknown package type for linux: \"${PACKAGE_TYPE}\""
 		print_help
 		exit 1

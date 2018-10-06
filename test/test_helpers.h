@@ -1,6 +1,8 @@
 #ifndef TEST_QT_CATCH_HELPER
 #define TEST_QT_CATCH_HELPER
 
+#define CATCH_CONFIG_ENABLE_CHRONO_STRINGMAKER
+
 // Catch2 is included in each test cpp file
 #include "thirdParty/catch2/catch.hpp"
 
@@ -16,7 +18,6 @@
 #include <QMap>
 #include <QString>
 #include <QStringList>
-
 
 /**
  * @brief Searches for searchStr and returns the results synchronously using the given Scraper.
