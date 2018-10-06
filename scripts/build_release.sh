@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -e          # Exit on errors
+set -o pipefail # Unveils hidden failures
 
 export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 export PROJECT_DIR="$( cd "${SCRIPT_DIR}/.." ; pwd -P )"
@@ -9,8 +10,7 @@ BUILD_OS=$1
 
 cd "${SCRIPT_DIR}"
 source utils.sh
-source build-scripts/check_dependencies.sh
-source build-scripts/build_functions.sh
+source build_scripts/check_dependencies.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Build script only works on Debian/Ubuntu systems!"
@@ -36,6 +36,26 @@ confirm_build() {
 	echo ""
 	echo ""
 }
+
+build_release_linux() {
+	if [ "${BUILD_DIR}" == "" ]; then
+		echo "\$BUILD_DIR not set."
+		exit 1
+	fi
+
+	rm -rf "${BUILD_DIR}"
+	mkdir -p "${BUILD_DIR}"
+
+	pushd ${BUILD_DIR} > /dev/null
+	print_important "Running qmake"
+	qmake "${PROJECT_DIR}/MediaElch.pro" CONFIG+=release
+	echo ""
+
+	print_important "Building MediaElch (only warnings and errors shown)"
+	make -j $(nproc) 1>/dev/null
+	popd > /dev/null
+}
+
 
 if [ "${BUILD_OS}" == "linux" ]; then
 	check_dependencies_linux

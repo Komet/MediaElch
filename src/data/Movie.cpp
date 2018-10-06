@@ -105,7 +105,7 @@ void Movie::clear()
 void Movie::clear(QList<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
-        m_actors.clear();
+        m_crew.actors().clear();
     }
     m_movieImages.clear(infos);
     if (infos.contains(MovieScraperInfos::Countries)) {
@@ -146,10 +146,10 @@ void Movie::clear(QList<MovieScraperInfos> infos)
         m_certification = Certification::NoCertification;
     }
     if (infos.contains(MovieScraperInfos::Writer)) {
-        m_writer = "";
+        m_crew.setWriter("");
     }
     if (infos.contains(MovieScraperInfos::Director)) {
-        m_director = "";
+        m_crew.setDirector("");
     }
     if (infos.contains(MovieScraperInfos::Tags)) {
         m_tags.clear();
@@ -162,7 +162,7 @@ void Movie::clear(QList<MovieScraperInfos> infos)
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
-    for (Actor *actor : actorsPointer()) {
+    for (Actor *actor : m_crew.actorsPointer()) {
         actor->image = QByteArray();
     }
 }
@@ -315,7 +315,7 @@ Certification Movie::certification() const
  */
 QString Movie::writer() const
 {
-    return m_writer;
+    return m_crew.writer();
 }
 
 /**
@@ -326,7 +326,7 @@ QString Movie::writer() const
  */
 QString Movie::director() const
 {
-    return m_director;
+    return m_crew.director();
 }
 
 /**
@@ -432,7 +432,7 @@ QUrl Movie::trailer() const
  */
 QList<Actor> Movie::actors() const
 {
-    return m_actors;
+    return m_crew.actors();
 }
 
 /**
@@ -441,11 +441,7 @@ QList<Actor> Movie::actors() const
  */
 QList<Actor *> Movie::actorsPointer()
 {
-    QList<Actor *> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++) {
-        actors.append(&(m_actors[i]));
-    }
-    return actors;
+    return m_crew.actorsPointer();
 }
 
 /**
@@ -769,7 +765,7 @@ void Movie::setCertification(Certification certification)
  */
 void Movie::setWriter(QString writer)
 {
-    m_writer = writer;
+    m_crew.setWriter(writer);
     setChanged(true);
 }
 
@@ -780,7 +776,7 @@ void Movie::setWriter(QString writer)
  */
 void Movie::setDirector(QString director)
 {
-    m_director = director;
+    m_crew.setDirector(director);
     setChanged(true);
 }
 
@@ -802,7 +798,7 @@ void Movie::setTrailer(QUrl trailer)
  */
 void Movie::setActors(QList<Actor> actors)
 {
-    m_actors = actors;
+    m_crew.setActors(actors);
     setChanged(true);
 }
 
@@ -952,7 +948,7 @@ void Movie::setSyncNeeded(bool syncNeeded)
  */
 void Movie::addActor(Actor actor)
 {
-    m_actors.append(actor);
+    m_crew.addActor(actor);
     setChanged(true);
 }
 
@@ -1016,12 +1012,7 @@ void Movie::addTag(QString tag)
  */
 void Movie::removeActor(Actor *actor)
 {
-    for (int i = 0, n = m_actors.size(); i < n; ++i) {
-        if (&m_actors[i] == actor) {
-            m_actors.removeAt(i);
-            break;
-        }
-    }
+    m_crew.removeActor(actor);
     setChanged(true);
 }
 
