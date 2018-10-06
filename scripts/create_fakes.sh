@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -e          # Exit on errors
+set -o pipefail # Unveils hidden failures
+
 root="$(cd "$(dirname "$0")"; pwd -P)"
 outDir="${root}/generated_media"
 

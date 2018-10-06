@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -e          # Exit on errors
+set -o pipefail # Unveils hidden failures
 
 export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 export PROJECT_DIR="$( cd "${SCRIPT_DIR}/.." ; pwd -P )"
@@ -9,7 +10,7 @@ BUILD_OS=$1
 
 cd "${SCRIPT_DIR}"
 source utils.sh
-source build-scripts/check_dependencies.sh
+source build_scripts/check_dependencies.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Build script only works on Debian/Ubuntu systems!"

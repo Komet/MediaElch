@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
-set -e
+set -e          # Exit on errors
+set -o pipefail # Unveils hidden failures
 
 export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 export PROJECT_DIR="$( cd "${SCRIPT_DIR}/.." ; pwd -P )"
 export BUILD_DIR="${PROJECT_DIR}/build"
-BUILD_OS=$1
-PACKAGE_TYPE=$2
+BUILD_OS=${1:-}
+PACKAGE_TYPE=${2:-}
 
 cd "${SCRIPT_DIR}"
 source utils.sh
-source build-scripts/check_dependencies.sh
-source build-scripts/package_appimage.sh
-source build-scripts/package_deb.sh
+source build_scripts/check_dependencies.sh
+source build_scripts/package_appimage.sh
+source build_scripts/package_deb.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Package script only works on Debian/Ubuntu systems!"
@@ -70,8 +71,8 @@ confirm_build() {
 	echo ""
 }
 
-pkg_type="$(lc ${PACKAGE_TYPE})"
-no_confirm=${3}
+pkg_type="$(lc ${PACKAGE_TYPE:-invalid})"
+no_confirm=${3:-confirm}
 
 if [ "${BUILD_OS}" == "linux" ] ; then
 	if [ $pkg_type != "appimage" ] && [ $pkg_type != "deb" ]; then
