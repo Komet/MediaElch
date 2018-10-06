@@ -10,7 +10,6 @@ BUILD_OS=$1
 cd "${SCRIPT_DIR}"
 source utils.sh
 source build-scripts/check_dependencies.sh
-source build-scripts/build_functions.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Build script only works on Debian/Ubuntu systems!"

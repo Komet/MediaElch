@@ -26,8 +26,7 @@ BLUE='\033[0;34m'
 LIGHT_BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
-print_important()
-{
+print_important() {
 	printf '%b' "${BLUE}${1}${NC}\n"
 }
 

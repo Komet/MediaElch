@@ -11,7 +11,8 @@ PACKAGE_TYPE=$2
 cd "${SCRIPT_DIR}"
 source utils.sh
 source build-scripts/check_dependencies.sh
-source build-scripts/package_functions.sh
+source build-scripts/package_appimage.sh
+source build-scripts/package_deb.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Package script only works on Debian/Ubuntu systems!"
