@@ -19,7 +19,6 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget *parent) : QWidget(parent), ui(std:
 
     ui->badgeWatched->setBadgeType(Badge::Type::BadgeInfo);
 
-
     // clang-format off
     connect(ui->name,          &QLineEdit::textChanged,         this, &ConcertInfoWidget::onConcertNameChanged);
     connect(ui->name,          &QLineEdit::textEdited,          this, &ConcertInfoWidget::onNameChange);
@@ -90,11 +89,11 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(
         certifications.indexOf(m_concertController->concert()->certification().toString()));
-    ui->certification->blockSignals(false);
 
     ui->rating->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
+    ui->certification->blockSignals(false);
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
