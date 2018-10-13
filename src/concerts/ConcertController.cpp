@@ -34,6 +34,11 @@ ConcertController::ConcertController(Concert *parent) :
         Qt::UniqueConnection);
 }
 
+Concert *ConcertController::concert()
+{
+    return m_concert;
+}
+
 bool ConcertController::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {

@@ -18,6 +18,8 @@ class ConcertController : public QObject
 public:
     explicit ConcertController(Concert *parent = nullptr);
 
+    Concert *concert();
+
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(TmdbId id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos);
