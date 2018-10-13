@@ -67,20 +67,6 @@ private slots:
     void onArtPageOne();
     void onArtPageTwo();
 
-    void onNameChange(QString text);
-    void onArtistChange(QString text);
-    void onAlbumChange(QString text);
-    void onTaglineChange(QString text);
-    void onRatingChange(double value);
-    void onReleasedChange(QDate date);
-    void onRuntimeChange(int value);
-    void onCertificationChange(QString text);
-    void onTrailerChange(QString text);
-    void onWatchedClicked();
-    void onPlayCountChange(int value);
-    void onLastWatchedChange(QDateTime dateTime);
-    void onOverviewChange();
-
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
@@ -94,7 +80,7 @@ private slots:
 
 private:
     Ui::ConcertWidget *ui;
-    QPointer<Concert> m_concert;
+    QPointer<Concert> m_concert = nullptr;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QList<QWidget *> m_streamDetailsWidgets;

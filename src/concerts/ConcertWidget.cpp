@@ -52,22 +52,20 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
     ui->labelLogo->setFont(font);
     ui->labelPoster->setFont(font);
 
-    ui->badgeWatched->setBadgeType(Badge::Type::BadgeInfo);
-
-    m_concert = nullptr;
-
     ui->poster->setImageType(ImageType::ConcertPoster);
     ui->backdrop->setImageType(ImageType::ConcertBackdrop);
     ui->logo->setImageType(ImageType::ConcertLogo);
     ui->cdArt->setImageType(ImageType::ConcertCdArt);
     ui->clearArt->setImageType(ImageType::ConcertClearArt);
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &ConcertWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &ConcertWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);
     }
 
-    connect(ui->name, &QLineEdit::textChanged, this, &ConcertWidget::concertNameChanged);
+    connect(ui->concertInfo, &ConcertInfoWidget::concertNameChanged, this, &ConcertWidget::concertNameChanged);
+    connect(
+        ui->concertInfo, &ConcertInfoWidget::infoChanged, this, [ui = ui]() { ui->buttonRevert->setVisible(true); });
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &ConcertWidget::onRevertChanges);
     connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &ConcertWidget::onReloadStreamDetails);
 
@@ -104,19 +102,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
 
     // Connect GUI change events to concert object
     // clang-format off
-    connect(ui->name,             &QLineEdit::textEdited, this, &ConcertWidget::onNameChange);
-    connect(ui->artist,           &QLineEdit::textEdited, this, &ConcertWidget::onArtistChange);
-    connect(ui->album,            &QLineEdit::textEdited, this, &ConcertWidget::onAlbumChange);
-    connect(ui->tagline,          &QLineEdit::textEdited, this, &ConcertWidget::onTaglineChange);
-    connect(ui->rating,           SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
-    connect(ui->trailer,          &QLineEdit::textEdited, this, &ConcertWidget::onTrailerChange);
-    connect(ui->runtime,          SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
-    connect(ui->playcount,        SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
-    connect(ui->certification,    &QComboBox::editTextChanged, this, &ConcertWidget::onCertificationChange);
-    connect(ui->badgeWatched,     &Badge::clicked, this, &ConcertWidget::onWatchedClicked);
-    connect(ui->released,         &QDateTimeEdit::dateChanged, this, &ConcertWidget::onReleasedChange);
-    connect(ui->lastPlayed,       &QDateTimeEdit::dateTimeChanged, this, &ConcertWidget::onLastWatchedChange);
-    connect(ui->overview,         &QTextEdit::textChanged, this, &ConcertWidget::onOverviewChange);
     connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoCodec,       &QLineEdit::textEdited, this, &ConcertWidget::onStreamDetailsEdited);
     connect(ui->videoDuration,    &QDateTimeEdit::timeChanged, this, &ConcertWidget::onStreamDetailsEdited);
@@ -176,20 +161,7 @@ void ConcertWidget::setBigWindow(bool bigWindow)
 void ConcertWidget::clear()
 {
     qDebug() << "Entered";
-    ui->certification->clear();
     ui->concertName->clear();
-    ui->files->clear();
-    ui->name->clear();
-    ui->artist->clear();
-    ui->album->clear();
-    ui->tagline->clear();
-    ui->rating->clear();
-    ui->released->setDate(QDate::currentDate());
-    ui->runtime->clear();
-    ui->trailer->clear();
-    ui->playcount->clear();
-    ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
-    ui->overview->clear();
 
     ui->poster->clear();
     ui->backdrop->clear();
@@ -291,6 +263,7 @@ void ConcertWidget::setConcert(Concert *concert)
             concert->setRuntime(duration_cast<minutes>(runtime));
         }
     }
+    ui->concertInfo->setConcertController(concert->controller());
     updateConcertInfo();
 
     // clang-format off
@@ -314,7 +287,6 @@ void ConcertWidget::setConcert(Concert *concert)
  */
 void ConcertWidget::onStartScraperSearch()
 {
-    qDebug() << "Entered";
     if (m_concert == nullptr) {
         qDebug() << "My concert is invalid";
         return;
@@ -425,47 +397,18 @@ void ConcertWidget::updateConcertInfo()
         return;
     }
 
-    ui->rating->blockSignals(true);
-    ui->runtime->blockSignals(true);
-    ui->playcount->blockSignals(true);
-    ui->certification->blockSignals(true);
-    ui->released->blockSignals(true);
-    ui->lastPlayed->blockSignals(true);
-    ui->overview->blockSignals(true);
-
     clear();
 
-    ui->files->setText(m_concert->files().join(", "));
-    ui->files->setToolTip(m_concert->files().join("\n"));
-    ui->name->setText(m_concert->name());
-    ui->artist->setText(m_concert->artist());
-    ui->album->setText(m_concert->album());
-    ui->concertName->setText(m_concert->name());
-    ui->tagline->setText(m_concert->tagline());
-    ui->rating->setValue(m_concert->rating());
-    ui->released->setDate(m_concert->released());
-    ui->runtime->setValue(static_cast<int>(m_concert->runtime().count()));
-    ui->trailer->setText(m_concert->trailer().toString());
-    ui->playcount->setValue(m_concert->playcount());
-    ui->lastPlayed->setDateTime(m_concert->lastPlayed());
-    ui->overview->setPlainText(m_concert->overview());
-    ui->badgeWatched->setActive(m_concert->watched());
+    ui->concertInfo->updateConcertInfo();
 
-    QStringList certifications;
+    ui->concertName->setText(m_concert->name());
+
     QStringList genres;
     QStringList tags;
-    certifications.append("");
     for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
-        if (!certifications.contains(concert->certification().toString()) && concert->certification().isValid()) {
-            certifications.append(concert->certification().toString());
-        }
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
-    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
-    ui->certification->addItems(certifications);
-    ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification().toString()));
-    ui->certification->blockSignals(false);
 
     // `setTags` requires distinct lists
     genres.removeDuplicates();
@@ -492,25 +435,7 @@ void ConcertWidget::updateConcertInfo()
 
     ui->fanarts->setImages(m_concert->extraFanarts(Manager::instance()->mediaCenterInterfaceConcert()));
 
-    ui->rating->blockSignals(false);
-    ui->runtime->blockSignals(false);
-    ui->playcount->blockSignals(false);
-    ui->released->blockSignals(false);
-    ui->lastPlayed->blockSignals(false);
-    ui->overview->blockSignals(false);
-
     emit setActionSaveEnabled(true, MainWidgets::Concerts);
-
-    ui->rating->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertRating));
-    ui->tagline->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTagline));
-    ui->certification->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertCertification));
-    ui->trailer->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTrailer));
-    ui->badgeWatched->setEnabled(
-        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
 
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
@@ -574,11 +499,14 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile) {
-        ui->runtime->setValue(qFloor(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
+        using namespace std::chrono;
+        const seconds runtime{qFloor(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt())};
+        ui->concertInfo->setRuntime(duration_cast<minutes>(runtime));
     }
 
-    foreach (QWidget *widget, m_streamDetailsWidgets)
+    for (QWidget *widget : m_streamDetailsWidgets) {
         widget->deleteLater();
+    }
     m_streamDetailsWidgets.clear();
     m_streamDetailsAudio.clear();
     m_streamDetailsSubtitles.clear();
@@ -796,172 +724,6 @@ void ConcertWidget::onArtPageTwo()
 }
 
 /*** Pass GUI events to concert object ***/
-
-/**
- * @brief Marks the concert as changed when the name has changed
- */
-void ConcertWidget::onNameChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setName(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the artist has changed
- */
-void ConcertWidget::onArtistChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setArtist(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the album has changed
- */
-void ConcertWidget::onAlbumChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setAlbum(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the tagline has changed
- */
-void ConcertWidget::onTaglineChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setTagline(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the rating has changed
- */
-void ConcertWidget::onRatingChange(double value)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setRating(value);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the release date has changed
- */
-void ConcertWidget::onReleasedChange(QDate date)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setReleased(date);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the runtime has changed
- */
-void ConcertWidget::onRuntimeChange(int value)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setRuntime(std::chrono::minutes(value));
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the certification has changed
- */
-void ConcertWidget::onCertificationChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setCertification(Certification(text));
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the trailer has changed
- */
-void ConcertWidget::onTrailerChange(QString text)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setTrailer(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-void ConcertWidget::onWatchedClicked()
-{
-    if (!m_concert) {
-        return;
-    }
-
-    bool active = !ui->badgeWatched->isActive();
-    ui->badgeWatched->setActive(active);
-    m_concert->setWatched(active);
-
-    if (active) {
-        if (m_concert->playcount() < 1) {
-            ui->playcount->setValue(1);
-        }
-        if (!m_concert->lastPlayed().isValid()) {
-            ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
-        }
-    }
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the play count has changed
- */
-void ConcertWidget::onPlayCountChange(int value)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setPlayCount(value);
-    ui->badgeWatched->setActive(value > 0);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the last watched date has changed
- */
-void ConcertWidget::onLastWatchedChange(QDateTime dateTime)
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setLastPlayed(dateTime);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the overview has changed
- */
-void ConcertWidget::onOverviewChange()
-{
-    if (!m_concert) {
-        return;
-    }
-    m_concert->setOverview(ui->overview->toPlainText());
-    ui->buttonRevert->setVisible(true);
-}
 
 /**
  * @brief Updates all stream details for this concert with values from the widget
