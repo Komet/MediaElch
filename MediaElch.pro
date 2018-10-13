@@ -67,6 +67,7 @@ SOURCES += src/main.cpp \
     src/concerts/ConcertFilesWidget.cpp \
     src/concerts/ConcertSearch.cpp \
     src/concerts/ConcertSearchWidget.cpp \
+    src/concerts/ConcertStreamDetailsWidget.cpp \
     src/concerts/ConcertWidget.cpp \
     src/concerts/ConcertInfoWidget.cpp \
     src/data/Concert.cpp \
@@ -257,6 +258,7 @@ HEADERS  += Version.h \
     src/data/ConcertModel.h \
     src/data/ConcertProxyModel.h \
     src/data/ConcertScraperInterface.h \
+    src/concerts/ConcertStreamDetailsWidget.h \
     src/data/Database.h \
     src/data/ImageCache.h \
     src/data/ImageProviderInterface.h \
@@ -438,6 +440,7 @@ FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \
     src/concerts/ConcertSearch.ui \
     src/concerts/ConcertSearchWidget.ui \
+    src/concerts/ConcertStreamDetailsWidget.ui \
     src/concerts/ConcertWidget.ui \
     src/concerts/ConcertInfoWidget.ui \
     src/downloads/DownloadsWidget.ui \

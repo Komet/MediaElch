@@ -47,6 +47,8 @@ signals:
     void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
+    void onInfoChanged();
+
     void onInfoLoadDone(Concert *concert);
     void onLoadDone(Concert *concert);
     void onLoadImagesStarted(Concert *concert);
@@ -67,10 +69,6 @@ private slots:
     void onArtPageOne();
     void onArtPageTwo();
 
-    void onStreamDetailsEdited();
-    void onReloadStreamDetails();
-    void updateStreamDetails(bool reloadFromFile = false);
-
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
@@ -83,9 +81,6 @@ private:
     QPointer<Concert> m_concert = nullptr;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget *> m_streamDetailsWidgets;
-    QList<QList<QLineEdit *>> m_streamDetailsAudio;
-    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
     void updateImages(QList<ImageType> images);
 };
 

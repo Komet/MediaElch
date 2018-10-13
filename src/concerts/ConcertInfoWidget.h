@@ -28,7 +28,7 @@ public:
     explicit ConcertInfoWidget(QWidget *parent = nullptr);
     ~ConcertInfoWidget() override;
 
-    void setConcertController(ConcertController *concert);
+    void setConcertController(ConcertController *controller);
     void updateConcertInfo();
 
     void setRuntime(std::chrono::minutes runtime);
