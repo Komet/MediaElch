@@ -377,8 +377,8 @@
         <location filename="../src/concerts/ConcertFilesWidget.cpp" line="360"/>
         <source>%n concerts</source>
         <translation>
-            <numerusform>%n концерт</numerusform>
-            <numerusform>%n концерта</numerusform>
+            <numerusform>%n концертов</numerusform>
+            <numerusform>%n концертов</numerusform>
             <numerusform>%n концертов</numerusform>
         </translation>
     </message>
@@ -421,10 +421,104 @@
         <location filename="../src/concerts/ConcertFilesWidget.cpp" line="362"/>
         <source>%1 of %n concerts</source>
         <translation>
-            <numerusform>%1 из %n концерта</numerusform>
+            <numerusform>%1 из %n концертов</numerusform>
             <numerusform>%1 из %n концертов</numerusform>
             <numerusform>%1 из %n концертов</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>ConcertInfoWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="20"/>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="44"/>
+        <source>Files</source>
+        <translation>Файл</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="58"/>
+        <source>Name</source>
+        <translation>Название</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="72"/>
+        <source>Artist</source>
+        <translation>Артист</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="82"/>
+        <source>Album</source>
+        <translation>Альбом</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="92"/>
+        <source>Tagline</source>
+        <translation>Слоган</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="102"/>
+        <source>Rating</source>
+        <translation>Рейтинг</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="122"/>
+        <source>Released</source>
+        <translation>Премьера</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="132"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="139"/>
+        <source>Runtime</source>
+        <translation>Время</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="149"/>
+        <source> Minutes</source>
+        <translation> Мин.</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="159"/>
+        <source>Certification</source>
+        <translation>Ограничение</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="176"/>
+        <source>Trailer</source>
+        <translation>Трейлер</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="186"/>
+        <source>Play Count</source>
+        <translation>Количество просмотров</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="221"/>
+        <source>Last Played</source>
+        <translation>Последний просмотр</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="251"/>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="254"/>
+        <source>Watched</source>
+        <translation>Просмотрено</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="257"/>
+        <source>Not watched</source>
+        <translation>Не просмотрено</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="266"/>
+        <source>Overview</source>
+        <translation>Описание</translation>
     </message>
 </context>
 <context>
@@ -534,6 +628,96 @@
     </message>
 </context>
 <context>
+    <name>ConcertStreamDetailsWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="22"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <source>Codec</source>
+        <translation>Видео кодек</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="57"/>
+        <source>HH:mm:ss</source>
+        <translation>ЧЧ:мм:сс</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="80"/>
+        <source>Video</source>
+        <translation>Видео</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="96"/>
+        <source>Audio</source>
+        <translation>Аудио</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="106"/>
+        <source>Scantype</source>
+        <translation>Развёрстка</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="116"/>
+        <source>Duration</source>
+        <translation>Продолжительность</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="138"/>
+        <source>x</source>
+        <translation>х</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="170"/>
+        <source>Aspect Ratio</source>
+        <translation>Соотношение</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="190"/>
+        <source>Resolution</source>
+        <translation>Разрешение</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="200"/>
+        <source>Stereo Mode</source>
+        <translation>Режим стерео</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="217"/>
+        <source>Reload from File</source>
+        <translation>Загрузить из файла</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
+        <source>Track %1</source>
+        <translation>Дорожка %1</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <source>Channels</source>
+        <translation>Каналы</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
+        <source>Subtitles</source>
+        <translation>Субтитры</translation>
+    </message>
+</context>
+<context>
     <name>ConcertWidget</name>
     <message>
         <location filename="../src/concerts/ConcertWidget.ui" line="14"/>
@@ -556,264 +740,96 @@
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="134"/>
-        <source>Files</source>
-        <translation>Файлы</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="148"/>
-        <source>Name</source>
-        <translation>Название</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="162"/>
-        <source>Artist</source>
-        <translation>Артист</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="172"/>
-        <source>Album</source>
-        <translation>Альбом</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="182"/>
-        <source>Tagline</source>
-        <translation>Слоган</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="192"/>
-        <source>Rating</source>
-        <translation>Рейтинг</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="212"/>
-        <source>Released</source>
-        <translation>Премьера</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="229"/>
-        <source>Runtime</source>
-        <translation>Продолжительность</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="249"/>
-        <source>Certification</source>
-        <translation>Ограничение</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="266"/>
-        <source>Trailer</source>
-        <translation>Трейлер</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="341"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="344"/>
-        <source>Watched</source>
-        <translation>Просмотрено</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="276"/>
-        <source>Play Count</source>
-        <translation>Количество просмотров</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="311"/>
-        <source>Last Played</source>
-        <translation>Последний просмотр</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="356"/>
-        <source>Overview</source>
-        <translation>Описание</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="222"/>
-        <source>yyyy</source>
-        <translation>yyyy</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="239"/>
-        <source> Minutes</source>
-        <translation> Мин.</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="347"/>
-        <source>Not watched</source>
-        <translation>Не просмотрено</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="369"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="127"/>
         <source>Extended</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="395"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="153"/>
         <source>Extra Fanarts</source>
         <translation>Фан-арты</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="417"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="175"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Подсказка: Закрытые изображения будут удалены при сохранении.</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="440"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="198"/>
         <source>Add Images</source>
         <translation>Добавить изображения</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="453"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="211"/>
         <source>Streamdetails</source>
         <translation>Информация о потоке</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="609"/>
-        <source>Aspect Ratio</source>
-        <translation>Соотношение</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="545"/>
-        <source>Scantype</source>
-        <translation>Развёрстка</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="629"/>
-        <source>Resolution</source>
-        <translation>Разрешение</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="461"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="599"/>
-        <source>Codec</source>
-        <translation>Кодек</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="577"/>
-        <source>x</source>
-        <translation>х</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="535"/>
-        <source>Audio</source>
-        <translation>Аудио</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="519"/>
-        <source>Video</source>
-        <translation>Видео</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="555"/>
-        <source>Duration</source>
-        <translation>Продолжительность</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="496"/>
-        <source>HH:mm:ss</source>
-        <translation>ЧЧ:мм:сс</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="639"/>
-        <source>Stereo Mode</source>
-        <translation>Режим стерео</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="656"/>
-        <source>Reload from File</source>
-        <translation>Загрузить из файла</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="835"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="357"/>
         <source>Poster</source>
         <translation>Постер</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="857"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="904"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="980"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1027"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1074"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="379"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="426"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="502"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="549"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="596"/>
         <source>Click to Change</source>
         <translation>Нажать чтобы изменить</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="882"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="404"/>
         <source>Fanart</source>
         <translation>Фон</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="958"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="480"/>
         <source>Logo</source>
         <translation>Логотип</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1005"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="527"/>
         <source>Clear Art</source>
         <translation>Обложка</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1052"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="574"/>
         <source>CD Art</source>
         <translation>Обложка диска</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
         <source>Genres</source>
         <translation>Жанры</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Genre</source>
         <translation>Добавить жанр</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="84"/>
         <source>Tags</source>
         <translation>Теги</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="85"/>
         <source>Add Tag</source>
         <translation>Добавить тег</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="589"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="623"/>
-        <source>Track %1</source>
-        <translation>Дорожка %1</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="627"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="628"/>
-        <source>Language</source>
-        <translation>Язык</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="600"/>
-        <source>Channels</source>
-        <translation>Каналы</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="615"/>
-        <source>Subtitles</source>
-        <translation>Субтитры</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="681"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="453"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; сохранён</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="692"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="464"/>
         <source>Concerts Saved</source>
         <translation>Концерты сохранены</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="720"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="492"/>
         <source>All Concerts Saved</source>
         <translation>Все концерты сохранены</translation>
     </message>
@@ -1288,8 +1304,8 @@
         <location filename="../src/movies/FilesWidget.cpp" line="554"/>
         <source>%n movies</source>
         <translation>
-            <numerusform>%n фильм</numerusform>
-            <numerusform>%n фильма</numerusform>
+            <numerusform>%n фильмов</numerusform>
+            <numerusform>%n фильмов</numerusform>
             <numerusform>%n фильмов</numerusform>
         </translation>
     </message>
@@ -1347,7 +1363,7 @@
         <location filename="../src/movies/FilesWidget.cpp" line="556"/>
         <source>%1 of %n movies</source>
         <translation>
-            <numerusform>%1 из %n фильма</numerusform>
+            <numerusform>%1 из %n фильмов</numerusform>
             <numerusform>%1 из %n фильмов</numerusform>
             <numerusform>%1 из %n фильмов</numerusform>
         </translation>
@@ -4861,37 +4877,37 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation>
-            <numerusform>%n концерт будет переименован</numerusform>
-            <numerusform>%n концерта будут переименованы</numerusform>
-            <numerusform>%n концертов будут переименованы</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation>
-            <numerusform>%n фильм будет переименован</numerusform>
-            <numerusform>%n фильма будут переименованы</numerusform>
-            <numerusform>%n фильмов будут переименованы</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation>
-            <numerusform>%n сериал и %1</numerusform>
-            <numerusform>%n сериала и %1</numerusform>
-            <numerusform>%n сериалов и %1</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation>
-            <numerusform>%n серия будет переименована</numerusform>
-            <numerusform>%n серии будут переименованы</numerusform>
-            <numerusform>%n серий будут переименованы</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -5918,14 +5934,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
-        <source>Bulgarian</source>
-        <translation>Болгарский</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDb.cpp" line="173"/>
         <source>Arabic</source>
         <translation>Арабский</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
+        <source>Bulgarian</source>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="175"/>
@@ -6076,14 +6092,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDbConcerts</name>
     <message>
-        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
-        <source>Bulgarian</source>
-        <translation>Болгарский</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
         <translation>Арабский</translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="36"/>

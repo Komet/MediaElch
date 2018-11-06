@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="45"/>
         <source>Genre</source>
-        <translation type="unfinished">장르</translation>
+        <translation>장르</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="54"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../src/main/AboutDialog.ui" line="113"/>
         <source>About</source>
-        <translation type="unfinished">관하여</translation>
+        <translation>관하여</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="119"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/scrapers/AdultDvdEmpire.cpp" line="54"/>
         <source>English</source>
-        <translation type="unfinished">영어</translation>
+        <translation>영어</translation>
     </message>
 </context>
 <context>
@@ -424,6 +424,100 @@
     </message>
 </context>
 <context>
+    <name>ConcertInfoWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="20"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="44"/>
+        <source>Files</source>
+        <translation>파일</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="58"/>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="72"/>
+        <source>Artist</source>
+        <translation>아티스트</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="82"/>
+        <source>Album</source>
+        <translation>앨범</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="92"/>
+        <source>Tagline</source>
+        <translation>태그라인</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="102"/>
+        <source>Rating</source>
+        <translation>평점</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="122"/>
+        <source>Released</source>
+        <translation>출시</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="132"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="139"/>
+        <source>Runtime</source>
+        <translation>상영시간</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="149"/>
+        <source> Minutes</source>
+        <translation>분</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="159"/>
+        <source>Certification</source>
+        <translation>등급</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="176"/>
+        <source>Trailer</source>
+        <translation>예고편</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="186"/>
+        <source>Play Count</source>
+        <translation>재생횟수</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="221"/>
+        <source>Last Played</source>
+        <translation>마지막 재생</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="251"/>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="254"/>
+        <source>Watched</source>
+        <translation>시청함</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="257"/>
+        <source>Not watched</source>
+        <translation>미시청</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="266"/>
+        <source>Overview</source>
+        <translation>개요</translation>
+    </message>
+</context>
+<context>
     <name>ConcertSearch</name>
     <message>
         <location filename="../src/concerts/ConcertSearch.ui" line="17"/>
@@ -530,6 +624,96 @@
     </message>
 </context>
 <context>
+    <name>ConcertStreamDetailsWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="22"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <source>Codec</source>
+        <translation>코덱</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="57"/>
+        <source>HH:mm:ss</source>
+        <translation>HH:mm:ss</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="80"/>
+        <source>Video</source>
+        <translation>비디오</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="96"/>
+        <source>Audio</source>
+        <translation>오디오</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="106"/>
+        <source>Scantype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="116"/>
+        <source>Duration</source>
+        <translation>재생시간</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="138"/>
+        <source>x</source>
+        <translation>x</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="170"/>
+        <source>Aspect Ratio</source>
+        <translation>화면비</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="190"/>
+        <source>Resolution</source>
+        <translation>해상도</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="200"/>
+        <source>Stereo Mode</source>
+        <translation>스테레오 모드</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="217"/>
+        <source>Reload from File</source>
+        <translation>파일에서 다시 불러오기</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
+        <source>Track %1</source>
+        <translation>트랙 %1</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
+        <source>Language</source>
+        <translation>언어</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <source>Channels</source>
+        <translation>채널</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
+        <source>Subtitles</source>
+        <translation>자막</translation>
+    </message>
+</context>
+<context>
     <name>ConcertWidget</name>
     <message>
         <location filename="../src/concerts/ConcertWidget.ui" line="14"/>
@@ -552,264 +736,96 @@
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="134"/>
-        <source>Files</source>
-        <translation>파일</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="148"/>
-        <source>Name</source>
-        <translation>이름</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="162"/>
-        <source>Artist</source>
-        <translation>아티스트</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="172"/>
-        <source>Album</source>
-        <translation>앨범</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="182"/>
-        <source>Tagline</source>
-        <translation>태그라인</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="192"/>
-        <source>Rating</source>
-        <translation>평점</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="212"/>
-        <source>Released</source>
-        <translation>출시</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="229"/>
-        <source>Runtime</source>
-        <translation>재생시간</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="249"/>
-        <source>Certification</source>
-        <translation>등급</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="266"/>
-        <source>Trailer</source>
-        <translation>예고편</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="341"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="344"/>
-        <source>Watched</source>
-        <translation>시청함</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="276"/>
-        <source>Play Count</source>
-        <translation>재생횟수</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="311"/>
-        <source>Last Played</source>
-        <translation>마지막 재생</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="356"/>
-        <source>Overview</source>
-        <translation>개요</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="222"/>
-        <source>yyyy</source>
-        <translation>yyyy</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="239"/>
-        <source> Minutes</source>
-        <translation>분</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="347"/>
-        <source>Not watched</source>
-        <translation>미시청</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="369"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="127"/>
         <source>Extended</source>
         <translation>추가정보</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="395"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="153"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="417"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="175"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="440"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="198"/>
         <source>Add Images</source>
         <translation>이미지 추가</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="453"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="211"/>
         <source>Streamdetails</source>
         <translation>스트림정보</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="609"/>
-        <source>Aspect Ratio</source>
-        <translation>화면비</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="545"/>
-        <source>Scantype</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="629"/>
-        <source>Resolution</source>
-        <translation>해상도</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="461"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="599"/>
-        <source>Codec</source>
-        <translation>코덱</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="577"/>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="535"/>
-        <source>Audio</source>
-        <translation>오디오</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="519"/>
-        <source>Video</source>
-        <translation>비디오</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="555"/>
-        <source>Duration</source>
-        <translation>재생시간</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="496"/>
-        <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="639"/>
-        <source>Stereo Mode</source>
-        <translation>스테레오 모드</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="656"/>
-        <source>Reload from File</source>
-        <translation>파일에서 다시 불러오기</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="835"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="357"/>
         <source>Poster</source>
         <translation>포스터</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="857"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="904"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="980"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1027"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1074"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="379"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="426"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="502"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="549"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="596"/>
         <source>Click to Change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="882"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="404"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="958"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="480"/>
         <source>Logo</source>
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1005"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="527"/>
         <source>Clear Art</source>
         <translation>클리어 아트</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1052"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="574"/>
         <source>CD Art</source>
         <translation>CD 아트</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Genre</source>
         <translation>장르 추가</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="84"/>
         <source>Tags</source>
         <translation>태그</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="85"/>
         <source>Add Tag</source>
         <translation>태그 추가</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="589"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="623"/>
-        <source>Track %1</source>
-        <translation>트랙 %1</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="627"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="628"/>
-        <source>Language</source>
-        <translation>언어</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="600"/>
-        <source>Channels</source>
-        <translation>채널</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="615"/>
-        <source>Subtitles</source>
-        <translation>자막</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="681"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="453"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="692"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="464"/>
         <source>Concerts Saved</source>
         <translation>콘서트 저장됨</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="720"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="492"/>
         <source>All Concerts Saved</source>
         <translation>모든 콘서트 저장됨</translation>
     </message>
@@ -2115,7 +2131,7 @@
     <message>
         <location filename="../src/scrapers/HotMovies.cpp" line="56"/>
         <source>English</source>
-        <translation type="unfinished">영어</translation>
+        <translation>영어</translation>
     </message>
 </context>
 <context>
@@ -2128,7 +2144,7 @@
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="89"/>
         <source>English</source>
-        <translation type="unfinished">영어</translation>
+        <translation>영어</translation>
     </message>
 </context>
 <context>
@@ -2502,7 +2518,7 @@
     <message>
         <location filename="../src/scrapers/KinoDe.cpp" line="102"/>
         <source>German</source>
-        <translation type="unfinished">독일어</translation>
+        <translation>독일어</translation>
     </message>
 </context>
 <context>
@@ -2850,12 +2866,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="130"/>
         <source>Open Movie Folder</source>
-        <translation type="unfinished">영화 폴더 열기</translation>
+        <translation>영화 폴더 열기</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open NFO File</source>
-        <translation type="unfinished">NFO 파일 열기</translation>
+        <translation>NFO 파일 열기</translation>
     </message>
 </context>
 <context>
@@ -3180,7 +3196,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="44"/>
         <source>Language</source>
-        <translation type="unfinished">언어</translation>
+        <translation>언어</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="69"/>
@@ -4623,7 +4639,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/scrapers/OFDb.cpp" line="99"/>
         <source>German</source>
-        <translation type="unfinished">독일어</translation>
+        <translation>독일어</translation>
     </message>
 </context>
 <context>
@@ -4721,12 +4737,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Rename</source>
-        <translation type="unfinished">이름 변경</translation>
+        <translation>이름 변경</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="43"/>
         <source>Language</source>
-        <translation type="unfinished">언어</translation>
+        <translation>언어</translation>
     </message>
 </context>
 <context>
@@ -4742,7 +4758,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
-        <translation type="unfinished">이름 변경</translation>
+        <translation>이름 변경</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="34"/>
@@ -4752,57 +4768,57 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="68"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished">시즌 디렉터리 사용</translation>
+        <translation>시즌 디렉터리 사용</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="78"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished">복수 파일 이름 정리</translation>
+        <translation>복수 파일 이름 정리</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished">&lt;title&gt; (&lt;year&gt;)</translation>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="95"/>
         <source>Rename Directories</source>
-        <translation type="unfinished">디렉터리 이름 변경</translation>
+        <translation>디렉터리 이름 변경</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="105"/>
         <source>Rename Files</source>
-        <translation type="unfinished">파일 이름 변경</translation>
+        <translation>파일 이름 변경</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="125"/>
         <source>Directory Naming</source>
-        <translation type="unfinished">디렉터리 이름 정리</translation>
+        <translation>디렉터리 이름 정리</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="142"/>
         <source>File Naming</source>
-        <translation type="unfinished">파일 이름 정리</translation>
+        <translation>파일 이름 정리</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="149"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished">시즌 디렉터리 이름 정리</translation>
+        <translation>시즌 디렉터리 이름 정리</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished">시즌 &lt;season&gt;</translation>
+        <translation>시즌 &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="179"/>
@@ -4812,17 +4828,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="272"/>
         <source>Close</source>
-        <translation type="unfinished">닫기</translation>
+        <translation>닫기</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="295"/>
         <source>Dry Run</source>
-        <translation type="unfinished">결과 미리보기</translation>
+        <translation>결과 미리보기</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="305"/>
         <source>Rename</source>
-        <translation type="unfinished">이름 변경</translation>
+        <translation>이름 변경</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="37"/>
@@ -4833,34 +4849,34 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n 콘서트의 이름이 변경됩니다</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n 영화의 이름이 변경됩니다</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
         <translation type="unfinished">
-            <numerusform>%n TV 쇼와 %1</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n 에피소드의 이름이 변경됩니다</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="219"/>
         <source>Finished</source>
-        <translation type="unfinished">완료</translation>
+        <translation>완료</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="263"/>
@@ -5866,14 +5882,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
-        <source>Bulgarian</source>
-        <translation>불가리아어</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDb.cpp" line="173"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
+        <source>Bulgarian</source>
+        <translation>불가리아어</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="175"/>
@@ -6024,14 +6040,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDbConcerts</name>
     <message>
-        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
-        <source>Bulgarian</source>
-        <translation>불가리아어</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>불가리아어</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="36"/>
@@ -6696,7 +6712,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../src/tvShows/TvShowMultiScrapeDialog.ui" line="224"/>
         <source>Tags</source>
-        <translation type="unfinished">태그</translation>
+        <translation>태그</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowMultiScrapeDialog.ui" line="237"/>
@@ -6879,7 +6895,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../src/tvShows/TvShowSearch.ui" line="209"/>
         <source>Tags</source>
-        <translation type="unfinished">태그</translation>
+        <translation>태그</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowSearch.ui" line="219"/>
@@ -8000,7 +8016,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../src/scrapers/VideoBuster.cpp" line="79"/>
         <source>German</source>
-        <translation type="unfinished">독일어</translation>
+        <translation>독일어</translation>
     </message>
 </context>
 <context>

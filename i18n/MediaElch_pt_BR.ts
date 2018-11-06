@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="45"/>
         <source>Genre</source>
-        <translation type="unfinished">Gênero</translation>
+        <translation>Gênero</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="54"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../src/main/AboutDialog.ui" line="113"/>
         <source>About</source>
-        <translation type="unfinished">Sobre</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="119"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/scrapers/AdultDvdEmpire.cpp" line="54"/>
         <source>English</source>
-        <translation type="unfinished">Inglês</translation>
+        <translation>Inglês</translation>
     </message>
 </context>
 <context>
@@ -430,6 +430,100 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     </message>
 </context>
 <context>
+    <name>ConcertInfoWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="20"/>
+        <source>Form</source>
+        <translation>Formulário</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="44"/>
+        <source>Files</source>
+        <translation>Caminho Arquivos</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="58"/>
+        <source>Name</source>
+        <translation>Título Local</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="72"/>
+        <source>Artist</source>
+        <translation>Artista</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="82"/>
+        <source>Album</source>
+        <translation>Álbum</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="92"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="102"/>
+        <source>Rating</source>
+        <translation>Rating</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="122"/>
+        <source>Released</source>
+        <translation>Lançado</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="132"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="139"/>
+        <source>Runtime</source>
+        <translation>Duração</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="149"/>
+        <source> Minutes</source>
+        <translation> Minutos</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="159"/>
+        <source>Certification</source>
+        <translation>Classificação</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="176"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="186"/>
+        <source>Play Count</source>
+        <translation>Contador Sessões</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="221"/>
+        <source>Last Played</source>
+        <translation>Última Sessão</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="251"/>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="254"/>
+        <source>Watched</source>
+        <translation>Assistido</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="257"/>
+        <source>Not watched</source>
+        <translation>Não Assistido</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="266"/>
+        <source>Overview</source>
+        <translation>Resumo (Plot)</translation>
+    </message>
+</context>
+<context>
     <name>ConcertSearch</name>
     <message>
         <location filename="../src/concerts/ConcertSearch.ui" line="17"/>
@@ -536,6 +630,96 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     </message>
 </context>
 <context>
+    <name>ConcertStreamDetailsWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulário</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="22"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <source>Codec</source>
+        <translation>Codec</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="57"/>
+        <source>HH:mm:ss</source>
+        <translation>HH:mm:ss</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="80"/>
+        <source>Video</source>
+        <translation>Vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="96"/>
+        <source>Audio</source>
+        <translation>Áudio</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="106"/>
+        <source>Scantype</source>
+        <translation>Varredura</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="116"/>
+        <source>Duration</source>
+        <translation>Duração</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="138"/>
+        <source>x</source>
+        <translation>x</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="170"/>
+        <source>Aspect Ratio</source>
+        <translation>Taxa de Aspecto</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="190"/>
+        <source>Resolution</source>
+        <translation>Resolução</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="200"/>
+        <source>Stereo Mode</source>
+        <translation>Modo Estéreo</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="217"/>
+        <source>Reload from File</source>
+        <translation>Recarregar do Arquivo</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
+        <source>Track %1</source>
+        <translation>Faixa %1</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
+        <source>Language</source>
+        <translation>Linguagem</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <source>Channels</source>
+        <translation>Canais</translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
+        <source>Subtitles</source>
+        <translation>Legendas</translation>
+    </message>
+</context>
+<context>
     <name>ConcertWidget</name>
     <message>
         <location filename="../src/concerts/ConcertWidget.ui" line="14"/>
@@ -558,264 +742,96 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <translation>Informações</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="134"/>
-        <source>Files</source>
-        <translation>Caminho Arquivos</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="148"/>
-        <source>Name</source>
-        <translation>Nome</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="162"/>
-        <source>Artist</source>
-        <translation>Artista</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="172"/>
-        <source>Album</source>
-        <translation>Álbum</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="182"/>
-        <source>Tagline</source>
-        <translation>Tagline</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="192"/>
-        <source>Rating</source>
-        <translation>Rating</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="212"/>
-        <source>Released</source>
-        <translation>Lançado</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="229"/>
-        <source>Runtime</source>
-        <translation>Duração</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="249"/>
-        <source>Certification</source>
-        <translation>Classificação</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="266"/>
-        <source>Trailer</source>
-        <translation>Trailer</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="341"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="344"/>
-        <source>Watched</source>
-        <translation>Assistido</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="276"/>
-        <source>Play Count</source>
-        <translation>Contador Sessões</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="311"/>
-        <source>Last Played</source>
-        <translation>Última Sessão</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="356"/>
-        <source>Overview</source>
-        <translation>Resumo</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="222"/>
-        <source>yyyy</source>
-        <translation>yyyy</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="239"/>
-        <source> Minutes</source>
-        <translation> Minutos</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="347"/>
-        <source>Not watched</source>
-        <translation>Não Assistido</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="369"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="127"/>
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="395"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="153"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="417"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="175"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Dica: Clicando em fechar imagem, as mesmas serão deletadas ao salvar.</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="440"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="198"/>
         <source>Add Images</source>
         <translation>Adicionar Imagens</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="453"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="211"/>
         <source>Streamdetails</source>
         <translation>Detalhes do Stream</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="609"/>
-        <source>Aspect Ratio</source>
-        <translation>Proporção do Aspecto</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="545"/>
-        <source>Scantype</source>
-        <translation>Varredura</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="629"/>
-        <source>Resolution</source>
-        <translation>Resolução</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="461"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="599"/>
-        <source>Codec</source>
-        <translation>Codec</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="577"/>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="535"/>
-        <source>Audio</source>
-        <translation>Áudio</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="519"/>
-        <source>Video</source>
-        <translation>Vídeo</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="555"/>
-        <source>Duration</source>
-        <translation>Duração</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="496"/>
-        <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="639"/>
-        <source>Stereo Mode</source>
-        <translation>Modo Estéreo</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="656"/>
-        <source>Reload from File</source>
-        <translation>Recarregar do Arquivo</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="835"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="357"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="857"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="904"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="980"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1027"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1074"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="379"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="426"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="502"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="549"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="596"/>
         <source>Click to Change</source>
         <translation>Clique para Alterar</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="882"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="404"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="958"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="480"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1005"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="527"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1052"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="574"/>
         <source>CD Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Genre</source>
         <translation>Adicionar Gênero</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="84"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="85"/>
         <source>Add Tag</source>
         <translation>Adicionar Etiqueta</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="589"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="623"/>
-        <source>Track %1</source>
-        <translation>Track %1</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="627"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="628"/>
-        <source>Language</source>
-        <translation>Linguagem</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="600"/>
-        <source>Channels</source>
-        <translation>Canais</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="615"/>
-        <source>Subtitles</source>
-        <translation>Legendas</translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="681"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="453"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="692"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="464"/>
         <source>Concerts Saved</source>
         <translation>Concertos Salvos</translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="720"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="492"/>
         <source>All Concerts Saved</source>
         <translation>Todos os Concertos foram Salvos</translation>
     </message>
@@ -2129,7 +2145,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/scrapers/HotMovies.cpp" line="56"/>
         <source>English</source>
-        <translation type="unfinished">Inglês</translation>
+        <translation>Inglês</translation>
     </message>
 </context>
 <context>
@@ -2142,7 +2158,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="89"/>
         <source>English</source>
-        <translation type="unfinished">Inglês</translation>
+        <translation>Inglês</translation>
     </message>
 </context>
 <context>
@@ -2517,7 +2533,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/scrapers/KinoDe.cpp" line="102"/>
         <source>German</source>
-        <translation type="unfinished">Alemão</translation>
+        <translation>Alemão</translation>
     </message>
 </context>
 <context>
@@ -2865,12 +2881,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="130"/>
         <source>Open Movie Folder</source>
-        <translation type="unfinished">Abrir Pasta do Filme</translation>
+        <translation>Abrir Pasta do Filme</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="131"/>
         <source>Open NFO File</source>
-        <translation type="unfinished">Abrir Arquivo NFO</translation>
+        <translation>Abrir Arquivo NFO</translation>
     </message>
 </context>
 <context>
@@ -3197,7 +3213,7 @@ MediaElch irá usar o melhor resultado possivel para cada filme que você seleci
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="44"/>
         <source>Language</source>
-        <translation type="unfinished">Linguagem</translation>
+        <translation>Linguagem</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="69"/>
@@ -4650,7 +4666,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/scrapers/OFDb.cpp" line="99"/>
         <source>German</source>
-        <translation type="unfinished">Alemão</translation>
+        <translation>Alemão</translation>
     </message>
 </context>
 <context>
@@ -4733,27 +4749,27 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="235"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Filme&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
+        <translation>&lt;b&gt;Filme&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="358"/>
         <source>Create dir</source>
-        <translation type="unfinished">Criar dir</translation>
+        <translation>Criar dir</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="359"/>
         <source>Move</source>
-        <translation type="unfinished">Mover</translation>
+        <translation>Mover</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="360"/>
         <source>Rename</source>
-        <translation type="unfinished">Renomear</translation>
+        <translation>Renomear</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="43"/>
         <source>Language</source>
-        <translation type="unfinished">Linguagem</translation>
+        <translation>Linguagem</translation>
     </message>
 </context>
 <context>
@@ -4769,144 +4785,144 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
-        <translation type="unfinished">Renomear</translation>
+        <translation>Renomear</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="68"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished">Usar Diretórios para Temporadas</translation>
+        <translation>Usar Diretórios para Temporadas</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="78"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished">Nomeando Multi-Arquivos</translation>
+        <translation>Nomeando Multi-Arquivos</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="88"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished">&lt;title&gt; (&lt;year&gt;)</translation>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="95"/>
         <source>Rename Directories</source>
-        <translation type="unfinished">Renomar Diretórios</translation>
+        <translation>Renomar Diretórios</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="105"/>
         <source>Rename Files</source>
-        <translation type="unfinished">Renomear Arquivos</translation>
+        <translation>Renomear Arquivos</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="118"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="125"/>
         <source>Directory Naming</source>
-        <translation type="unfinished">Nomeando Diretório</translation>
+        <translation>Nomeando Diretório</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="135"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished">&lt;title&gt;.&lt;extension&gt;</translation>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="142"/>
         <source>File Naming</source>
-        <translation type="unfinished">Nomeando Arquivo</translation>
+        <translation>Nomeando Arquivo</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="149"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished">Nomeando Diretório de Temporada</translation>
+        <translation>Nomeando Diretório de Temporada</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="156"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished">Temporada &lt;season&gt;</translation>
+        <translation>Temporada &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished">Resultados</translation>
+        <translation>Resultados</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="272"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="295"/>
         <source>Dry Run</source>
-        <translation type="unfinished">Simular</translation>
+        <translation>Simular</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.ui" line="305"/>
         <source>Rename</source>
-        <translation type="unfinished">Renomear</translation>
+        <translation>Renomear</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="37"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished">Veja ajuda em %1 . Temos exemplos de como usar o renomeador.</translation>
+        <translation>Veja ajuda em %1 . Temos exemplos de como usar o renomeador.</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n Concerto será renomeado</numerusform>
-            <numerusform>%n Concertos serão renomeados</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n Filme será renomeado</numerusform>
-            <numerusform>%n Filmes serão renomeados</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
         <translation type="unfinished">
-            <numerusform>%n Seriado e %1</numerusform>
-            <numerusform>%n Seriados e %1</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
         <translation type="unfinished">
-            <numerusform>%n Episódio será renomeado</numerusform>
-            <numerusform>%n Episódios serão renomeados</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="219"/>
         <source>Finished</source>
-        <translation type="unfinished">Finalizado</translation>
+        <translation>Finalizado</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="263"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Episódio&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
+        <translation>&lt;b&gt;Episódio&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="287"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Seriado&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
+        <translation>&lt;b&gt;Seriado&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerDialog.cpp" line="339"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished">&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
+        <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; foi editado mas não foi salvo</translation>
     </message>
 </context>
 <context>
@@ -5912,14 +5928,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
-        <source>Bulgarian</source>
-        <translation>Búlgaro</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDb.cpp" line="173"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDb.cpp" line="174"/>
+        <source>Bulgarian</source>
+        <translation>Búlgaro</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="175"/>
@@ -6070,14 +6086,14 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDbConcerts</name>
     <message>
-        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
-        <source>Bulgarian</source>
-        <translation>Búlgaro</translation>
-    </message>
-    <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>Bulgarian</source>
+        <translation>Búlgaro</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="36"/>
@@ -6747,7 +6763,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../src/tvShows/TvShowMultiScrapeDialog.ui" line="224"/>
         <source>Tags</source>
-        <translation type="unfinished">Etiquetas</translation>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowMultiScrapeDialog.ui" line="237"/>
@@ -6932,7 +6948,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../src/tvShows/TvShowSearch.ui" line="209"/>
         <source>Tags</source>
-        <translation type="unfinished">Etiquetas</translation>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowSearch.ui" line="219"/>
@@ -8054,7 +8070,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../src/scrapers/VideoBuster.cpp" line="79"/>
         <source>German</source>
-        <translation type="unfinished">Alemão</translation>
+        <translation>Alemão</translation>
     </message>
 </context>
 <context>

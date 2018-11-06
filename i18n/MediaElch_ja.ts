@@ -424,6 +424,100 @@
     </message>
 </context>
 <context>
+    <name>ConcertInfoWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="20"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="44"/>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="58"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="72"/>
+        <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="82"/>
+        <source>Album</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="92"/>
+        <source>Tagline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="102"/>
+        <source>Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="122"/>
+        <source>Released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="132"/>
+        <source>yyyy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="139"/>
+        <source>Runtime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="149"/>
+        <source> Minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="159"/>
+        <source>Certification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="176"/>
+        <source>Trailer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="186"/>
+        <source>Play Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="221"/>
+        <source>Last Played</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="251"/>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="254"/>
+        <source>Watched</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="257"/>
+        <source>Not watched</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertInfoWidget.ui" line="266"/>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConcertSearch</name>
     <message>
         <location filename="../src/concerts/ConcertSearch.ui" line="17"/>
@@ -530,6 +624,96 @@
     </message>
 </context>
 <context>
+    <name>ConcertStreamDetailsWidget</name>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="22"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="133"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="136"/>
+        <source>Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="57"/>
+        <source>HH:mm:ss</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="80"/>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="96"/>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="106"/>
+        <source>Scantype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="116"/>
+        <source>Duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="138"/>
+        <source>x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="170"/>
+        <source>Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="190"/>
+        <source>Resolution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="200"/>
+        <source>Stereo Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.ui" line="217"/>
+        <source>Reload from File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="126"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="160"/>
+        <source>Track %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="132"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="135"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="164"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="165"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="134"/>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="137"/>
+        <source>Channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/concerts/ConcertStreamDetailsWidget.cpp" line="152"/>
+        <source>Subtitles</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConcertWidget</name>
     <message>
         <location filename="../src/concerts/ConcertWidget.ui" line="14"/>
@@ -552,264 +736,96 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="134"/>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="148"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="162"/>
-        <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="172"/>
-        <source>Album</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="182"/>
-        <source>Tagline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="192"/>
-        <source>Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="212"/>
-        <source>Released</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="222"/>
-        <source>yyyy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="229"/>
-        <source>Runtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="239"/>
-        <source> Minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="249"/>
-        <source>Certification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="266"/>
-        <source>Trailer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="276"/>
-        <source>Play Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="311"/>
-        <source>Last Played</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="341"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="344"/>
-        <source>Watched</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="347"/>
-        <source>Not watched</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="356"/>
-        <source>Overview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="369"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="127"/>
         <source>Extended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="395"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="153"/>
         <source>Extra Fanarts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="417"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="175"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="440"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="198"/>
         <source>Add Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="453"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="211"/>
         <source>Streamdetails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="461"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="596"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="599"/>
-        <source>Codec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="496"/>
-        <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="519"/>
-        <source>Video</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="535"/>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="545"/>
-        <source>Scantype</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="555"/>
-        <source>Duration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="577"/>
-        <source>x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="609"/>
-        <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="629"/>
-        <source>Resolution</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="639"/>
-        <source>Stereo Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="656"/>
-        <source>Reload from File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="835"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="357"/>
         <source>Poster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="857"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="904"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="980"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1027"/>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1074"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="379"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="426"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="502"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="549"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="596"/>
         <source>Click to Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="882"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="404"/>
         <source>Fanart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="958"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="480"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1005"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="527"/>
         <source>Clear Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.ui" line="1052"/>
+        <location filename="../src/concerts/ConcertWidget.ui" line="574"/>
         <source>CD Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="74"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
         <source>Genres</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="75"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
         <source>Add Genre</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="79"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="84"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="80"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="85"/>
         <source>Add Tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="589"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="623"/>
-        <source>Track %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="595"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="598"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="627"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="628"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="597"/>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="600"/>
-        <source>Channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="615"/>
-        <source>Subtitles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="681"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="453"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="692"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="464"/>
         <source>Concerts Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/concerts/ConcertWidget.cpp" line="720"/>
+        <location filename="../src/concerts/ConcertWidget.cpp" line="492"/>
         <source>All Concerts Saved</source>
         <translation type="unfinished"></translation>
     </message>
