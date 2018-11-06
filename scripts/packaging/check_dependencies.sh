@@ -79,6 +79,7 @@ check_dependencies_linux_deb() {
 
 	require_command tar
 	require_command gzip
+	require_command xz
 	require_command debuild
 	require_command dput
 
