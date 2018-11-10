@@ -294,10 +294,10 @@ create_bintray_json() {
 	"package": {
 		"name": "MediaElch-${TARGET_OS}",
 		"repo": "MediaElch",
-		"subject": "komet",
+		"subject": "bugwelle",
 		"website_url": "https://www.kvibes.de/mediaelch/",
-		"vcs_url": "https://github.com/Komet/MediaElch.git",
-		"issue_tracker_url": "https://github.com/Komet/MediaElch/issues",
+		"vcs_url": "https://github.com/bugwelle/MediaElch.git",
+		"issue_tracker_url": "https://github.com/bugwelle/MediaElch/issues",
 		"licenses": ["LGPL-3.0"]
 	},
 	"version": {

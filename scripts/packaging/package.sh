@@ -278,7 +278,7 @@ package_and_upload_to_launchpad() {
 	popd > /dev/null
 
 	pushd "${PROJECT_DIR}/.." > /dev/null
-	dput ppa:mediaelch/mediaelch-test mediaelch_${VERSION}-${PPA_REVISION}~*.changes
+	dput ppa:bugwelle/mediaelch-test mediaelch_${VERSION}-${PPA_REVISION}~*.changes
 	popd > /dev/null
 }
 

@@ -2,7 +2,9 @@
 	<img alt="MediaElch Logo" src="img/MediaElch.png" />
 </div>
 
-[![Build Status](https://travis-ci.org/Komet/MediaElch.svg?branch=master)](https://travis-ci.org/Komet/MediaElch)
+[![Build Status](https://travis-ci.org/bugwelle/MediaElch.svg?branch=master)](https://travis-ci.org/bugwelle/MediaElch)
+[![pipeline status](https://gitlab.com/bugwelle/MediaElch/badges/travis-archer96/pipeline.svg)](https://gitlab.com/bugwelle/MediaElch/commits/travis-archer96)
+[![coverage report](https://gitlab.com/bugwelle/MediaElch/badges/travis-archer96/coverage.svg)](https://gitlab.com/bugwelle/MediaElch/commits/travis-archer96)
 
 # MediaElch
 
