@@ -1,0 +1,18 @@
+---
+Checks:                'clang-diagnostic-*,clang-analyzer-*,-*,bugprone-*,clang-*,cert-*,cppcoreguidelines-*,-cppcoreguidelines-pro-type-vararg,google-explicit-constructor,google-global-names-in-headers,google-readability-casting,llvm-*,-llvm-header-guard,-llvm-namespace-comment,misc-*,modernize-*,performance-*,-performance-unnecessary-value-param,readability-*,-cert-err58-cpp'
+WarningsAsErrors:      ''
+AnalyzeTemporaryDtors: false
+FormatStyle:           file
+CheckOptions:
+  - key:             bugprone-assert-side-effect.AssertMacros
+    value:           assert
+  - key:             bugprone-assert-side-effect.CheckFunctionCalls
+    value:           '1'
+  - key:             bugprone-dangling-handle.HandleClasses
+    value:           'std::basic_string_view;std::experimental::basic_string_view'
+  - key:             llvm-namespace-comment.ShortNamespaceLines
+    value:           '1'
+  - key:             llvm-namespace-comment.SpacesBeforeComments
+    value:           '1'
+...
+

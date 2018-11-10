@@ -3,6 +3,11 @@
 
 #include <QApplication>
 
+TEST_CASE("Testing works", "[unit]")
+{
+    REQUIRE('a' < 'b');
+}
+
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);

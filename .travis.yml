@@ -1,14 +1,14 @@
 language: generic
 matrix:
   include:
-#  - env: QT=qtMac CXX=clang++ CC=clang
-#    os: osx
+  - env: QT=qtMac CXX=clang++ CC=clang
+    os: osx
   - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
     os: linux
-#  - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
-#    os: linux
-#  - env: QT=qtWin
-#    os: linux
+  - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
+    os: linux
+  - env: QT=qtWin
+    os: linux
 
 dist: trusty
 sudo: required
@@ -18,32 +18,25 @@ branches:
   - travis-archer96
 
 install:
-  - "${TRAVIS_BUILD_DIR}/mediaelch/travis-ci/install_dependencies.sh"
+- "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
 
 before_script:
-  # Move files into subdirecotory
-  - mkdir mediaelch && find . -maxdepth 1 | grep -v mediaelch | xargs -i mv {} ./mediaelch && cd mediaelch
-  - "${TRAVIS_BUILD_DIR}/mediaelch/travis-ci/configure.sh"
+- "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
 
 script:
-  - if [ $QT = qtWin ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
-#  - cd build && make -j 2
+- if [ $QT = qtWin ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
+- cd build && make -j 2
 
 after_success:
-  - "${TRAVIS_BUILD_DIR}/mediaelch/travis-ci/package.sh"
+- "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 
 deploy:
-  - provider: bintray
-    skip_cleanup: true
-    on:
-      branch: master
-      condition: -f ${TRAVIS_BUILD_DIR}/mediaelch/travis-ci/bintray.json
-    user: bugwelle
-    key:
-      secure: r+LUmf0cgZsXBlYnlCmQZslST1G9gsVcPh82ZyOaMwSwJ+jmreBzAlrJSNqphlhbtWgp09ur9tNy7aJ6J/3jzS5IJw4XegnYEzkPxefL9ABgKrsaFZReTXCFgatctQVnuV2wX8l8Ng1UpcEXJu93CVx5va0KjYWAeQ++xdsFdF2yubxlHHso/ml8mpNZddxYBz/kRLhfCeZICcptp++YyEVU1/LwOoNFQ+fRrU11HuCRBos/CARRb/cA5rdxoSHAlEsBGPsJmMRplLQZdIrRMiy4eTzkx15tM6zEW0aFnm3fwNiA09Qsqxaho9kv8eh/ecwObfXyRG+MRZ5dKG6MCgFZ2EGyOx3g4cJdqhwT/09b3eVfMNZmBuN2ymGpOtyjYLDsly001IWS5OdYZz8TwJGQgj8qA8mIQgzG1mKDqVxFK+LoAyzCJr4QRfJAjRSKGFAg8waY6BFjE66qhRl+xbKrRKhWJ3putyZg5sMhQ+hVe4IEsyk8nNcB4UxgYbIi6ilclC6+a20eCnLKo0KfTtHV8YqoE0H/t/tRLcSnsR8teY1CHKqZQwnEsZ0dC/nkXCiv3+yJc4cNxvw40TpbPXMlCE3T6eaBP9vFnn0zeGC5yqMtYDPwd7ISNDHPLM3jVW3Ju/41V6h4gNhFZiU+ovk6nu4emvolEPTcM1p1QV0=
-    file: ${TRAVIS_BUILD_DIR}/mediaelch/travis-ci/bintray.json
- - provider: script
-   script: bash scripts/package/package.sh linux launchpad --no-confirm
-   on:
-     branch: travis-archer96
-     condition: $QT = qt510
+  provider: bintray
+  skip_cleanup: true
+  on:
+    branch: master
+    condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+  user: bugwelle
+  key:
+    secure: r+LUmf0cgZsXBlYnlCmQZslST1G9gsVcPh82ZyOaMwSwJ+jmreBzAlrJSNqphlhbtWgp09ur9tNy7aJ6J/3jzS5IJw4XegnYEzkPxefL9ABgKrsaFZReTXCFgatctQVnuV2wX8l8Ng1UpcEXJu93CVx5va0KjYWAeQ++xdsFdF2yubxlHHso/ml8mpNZddxYBz/kRLhfCeZICcptp++YyEVU1/LwOoNFQ+fRrU11HuCRBos/CARRb/cA5rdxoSHAlEsBGPsJmMRplLQZdIrRMiy4eTzkx15tM6zEW0aFnm3fwNiA09Qsqxaho9kv8eh/ecwObfXyRG+MRZ5dKG6MCgFZ2EGyOx3g4cJdqhwT/09b3eVfMNZmBuN2ymGpOtyjYLDsly001IWS5OdYZz8TwJGQgj8qA8mIQgzG1mKDqVxFK+LoAyzCJr4QRfJAjRSKGFAg8waY6BFjE66qhRl+xbKrRKhWJ3putyZg5sMhQ+hVe4IEsyk8nNcB4UxgYbIi6ilclC6+a20eCnLKo0KfTtHV8YqoE0H/t/tRLcSnsR8teY1CHKqZQwnEsZ0dC/nkXCiv3+yJc4cNxvw40TpbPXMlCE3T6eaBP9vFnn0zeGC5yqMtYDPwd7ISNDHPLM3jVW3Ju/41V6h4gNhFZiU+ovk6nu4emvolEPTcM1p1QV0=
+  file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json

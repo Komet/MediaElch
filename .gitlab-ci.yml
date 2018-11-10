@@ -1,13 +1,81 @@
-deploy_daily:
-  type: deploy
-  script:
-  - deployMediaElchDaily.sh
-  only:
-  - master
+# CI configuration for MediaElch
 
-deploy_release:
-  type: deploy
+stages:
+  - check
+  - build
+  - test
+  - deploy
+
+before_script:
+  - git submodule update --init
+
+clang_format:
+  stage: check
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/clang:master
+  before_script:
+    - clang-format --version
   script:
-  - deployMediaElch.sh
-  only:
-  - tags
+    - ./scripts/run_clang_format.sh
+    - git diff --diff-filter=M --color | cat
+    - git diff --diff-filter=M --quiet || (echo "Found unformatted files! Use clang-format!"; exit 1)
+
+# Deactivated until MediaElch uses CMake to create compile_commands.json
+.clang_tidy:
+  stage: check
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/clang:master
+  script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+    - mkdir build && cd $_
+    - qmake .. && bear make -j2
+    - python3 /usr/lib/llvm-*/share/clang/run-clang-tidy.py -fix ../src
+    - git diff --diff-filter=M --color | cat
+    - git diff --diff-filter=M --quiet || (echo "Found fixable errors! Use clang-tidy!"; exit 1)
+
+qt5.11:
+  stage: build
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/$CI_JOB_NAME:master
+  before_script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+    - mkdir build && cd $_
+    - qmake ..
+  script:
+    - make -j2
+
+qt5.9:
+  stage: build
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/$CI_JOB_NAME:master
+  before_script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+    - mkdir build && cd $_
+    - qmake ..
+  script:
+    - make -j2
+
+qt5.5:
+  stage: build
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/$CI_JOB_NAME:master
+  before_script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+    - mkdir build && cd $_
+    - qmake ..
+  script:
+    - make -j2
+
+.unit-test:
+  stage: test
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/qt5.11:master
+  before_script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+    - mkdir build && cd $_
+    - qmake .. CONFIG+=test
+  script:
+    - make -j2
+    - ./mediaelch-test "[unit]"
+
+launchpad-daily:
+  stage: deploy
+  image: registry.gitlab.com/mediaelch/mediaelch-docker-ci/qt5.11:master
+  before_script:
+    - source /opt/qt5*/bin/qt5*-env.sh || (echo "Could not source qt*-env.sh" && exit 1)
+  script:
+    - ./scripts/packaging/package.sh linux launchpad
