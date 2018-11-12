@@ -16,9 +16,6 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
@@ -129,7 +126,7 @@
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
       <property name="displayFormat">
-       <string>yyyy</string>
+       <string notr="true">yyyy</string>
       </property>
      </widget>
     </item>
