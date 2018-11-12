@@ -63,8 +63,8 @@
    <item>
     <widget class="MyLineEdit" name="searchString">
      <property name="toolTip">
-      <string>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</string>
+      <string>When using IMDb you can also use the IMDb id as search query.
+If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</string>
      </property>
     </widget>
    </item>

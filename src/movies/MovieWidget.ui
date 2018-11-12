@@ -591,7 +591,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_13">
                 <property name="text">
-                 <string>IMDB ID</string>
+                 <string>IMDb ID</string>
                 </property>
                </widget>
               </item>
@@ -996,7 +996,7 @@
                 <item>
                  <widget class="QLabel" name="label_30">
                   <property name="text">
-                   <string>x</string>
+                   <string notr="true">x</string>
                   </property>
                  </widget>
                 </item>

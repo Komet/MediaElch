@@ -412,7 +412,7 @@
               <item>
                <widget class="QLabel" name="label_16">
                 <property name="text">
-                 <string>IMDB ID</string>
+                 <string>IMDb ID</string>
                 </property>
                </widget>
               </item>

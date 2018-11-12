@@ -140,14 +140,14 @@
          <item row="1" column="1">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>TMDB ID</string>
+            <string>TMDb ID</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>IMDB ID</string>
+            <string>IMDb ID</string>
            </property>
           </widget>
          </item>

@@ -88,7 +88,7 @@
         </size>
        </property>
        <property name="text">
-        <string>0:00 / 0:00</string>
+        <string notr="true">0:00 / 0:00</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

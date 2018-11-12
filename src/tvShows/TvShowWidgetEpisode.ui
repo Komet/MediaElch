@@ -963,7 +963,7 @@
               <item>
                <widget class="QLabel" name="label_30">
                 <property name="text">
-                 <string>x</string>
+                 <string notr="true">x</string>
                 </property>
                </widget>
               </item>
@@ -1234,15 +1234,15 @@
    <header>smallWidgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>smallWidgets/MySpinBox.h</header>
+  </customwidget>
+  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MySpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

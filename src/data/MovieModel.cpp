@@ -292,7 +292,7 @@ QString MovieModel::mediaStatusToText(MediaStatusColumn column)
     case MediaStatusColumn::StreamDetails: return tr("Stream Details");
     case MediaStatusColumn::Trailer: return tr("Trailer");
     case MediaStatusColumn::LocalTrailer: return tr("Local Trailer");
-    case MediaStatusColumn::Id: return tr("IMDB ID");
+    case MediaStatusColumn::Id: return tr("IMDb ID");
     default: return QString();
     }
 }

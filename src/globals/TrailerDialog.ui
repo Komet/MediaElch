@@ -260,7 +260,7 @@
             </size>
            </property>
            <property name="text">
-            <string>0:00 / 0:00</string>
+            <string notr="true">0:00 / 0:00</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -380,15 +380,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>smallWidgets/SlidingStackedWidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>
