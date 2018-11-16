@@ -121,9 +121,11 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		fold_end
 
 		#######################################################
-		# Compiler
+		# Compiler & Build System
 
 		fold_start "update_compiler"
+		print_info "Installing CMake using pip"
+		pip install --user cmake
 		print_info "Updating GCC"
 		sudo apt-get install -y g++-7 gcc-7
 		sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
@@ -132,6 +134,11 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 		#######################################################
 		# Dependencies
+
+		fold_start "install_qt"
+		print_info "Installing Python3 and pip3"
+		sudo apt install python3-setuptools python3-pip
+		fold_end
 
 		fold_start "install_qt"
 		print_info "Installing Qt packages"
@@ -177,6 +184,8 @@ elif [ "${OS_NAME}" = "Darwin" ]; then
 	fold_end
 
 	fold_start "brew_install"
+	print_info "Brewing packages: cmake (upgrading if already installed)"
+	brew install cmake || brew upgrade cmake
 	print_info "Brewing packages: qt5"
 	brew install qt5
 	fold_end

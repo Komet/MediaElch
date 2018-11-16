@@ -26,10 +26,16 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 			CONFIG+=release                                     \
 			LIBS+=$MXEDIR/usr/${MXETARGET}/bin/zlib1.dll
 
+	elif [ "${QT}" = "qt55" ]; then
+		# Test CMake CI only for Qt 5.5
+		PATH="/opt/${QT}/bin:$PATH"
+		cmake --version
+		cmake .. -DCMAKE_BUILD_TYPE=Release
+
 	else
 		PATH="/opt/${QT}/bin:$PATH"
 		qmake --version
-		qmake ../MediaElch.pro CONFIG+=release PREFIX=/usr
+		qmake ../MediaElch.pro CONFIG+=release
 	fi
 
 elif [ "${OS_NAME}" = "Darwin" ]; then

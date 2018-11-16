@@ -31,11 +31,21 @@ For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contribut
 
 ### Documentation
 
+**User Documentation**
+
+```sh
+git submodule update --init
+mkdir build && cd $_
+cmake ..
+make docs
+```
+
 **Doxygen**
 
 ```sh
-cd doc
-doxygen ./Doxyfile
+mkdir build && cd $_
+cmake ..
+make doxygen
 ```
 
 ### Testing

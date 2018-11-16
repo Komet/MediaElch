@@ -43,7 +43,7 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
         CHECK(m.runtime() == 97min);
         CHECK(m.set() == "Finding Nemo Collection");
-        CHECK(m.trailer() == QUrl("plugin://plugin.video.youtube/?action=play_video&videoid=JhvrQeY3doI"));
+        CHECK_THAT(m.trailer().toString(), Contains("JhvrQeY3doI"));
         // There are more than 20 posters and backdrops
         // on TMDb (using the API)
         CHECK(m.images().posters().size() >= 20);

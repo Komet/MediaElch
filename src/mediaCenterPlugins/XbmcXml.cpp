@@ -18,13 +18,13 @@
 #include "mediaCenterPlugins/kodi/TvShowXmlWriter.h"
 #include "settings/Settings.h"
 
-#include <array>
 #include <QApplication>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QXmlStreamWriter>
+#include <array>
 
 /**
  * @brief XbmcXml::XbmcXml

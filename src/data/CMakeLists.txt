@@ -1,0 +1,49 @@
+add_library(
+  mediaelch_data OBJECT
+  # Headers so that moc is run on them
+  ConcertScraperInterface.h
+  ImageProviderInterface.h
+  MovieScraperInterface.h
+  MusicScraperInterface.h
+  TvScraperInterface.h
+  # Sources
+  Certification.cpp
+  Concert.cpp
+  ConcertFileSearcher.cpp
+  ConcertModel.cpp
+  ConcertProxyModel.cpp
+  Database.cpp
+  EpisodeNumber.cpp
+  ImageCache.cpp
+  ImdbId.cpp
+  Movie.cpp
+  MovieCrew.cpp
+  MovieFileSearcher.cpp
+  MovieFilesOrganizer.cpp
+  MovieImages.cpp
+  MovieModel.cpp
+  MovieProxyModel.cpp
+  Rating.cpp
+  ScraperInterface.cpp
+  SeasonNumber.cpp
+  Storage.cpp
+  StreamDetails.cpp
+  Subtitle.cpp
+  TmdbId.cpp
+  TvDbId.cpp
+  TvShow.cpp
+  TvShowEpisode.cpp
+  TvShowFileSearcher.cpp
+)
+
+target_link_libraries(
+  mediaelch_data
+  PRIVATE
+    Qt5::Core
+    Qt5::Concurrent
+    Qt5::Widgets
+    Qt5::Multimedia
+    Qt5::Sql
+    Qt5::Xml
+)
+mediaelch_post_target_defaults(mediaelch_data)

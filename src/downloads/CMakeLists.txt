@@ -1,0 +1,24 @@
+add_library(
+  mediaelch_downloads
+  OBJECT
+  DownloadsWidget.cpp
+  Extractor.cpp
+  FileWorker.cpp
+  ImportActions.cpp
+  ImportDialog.cpp
+  MakeMkvCon.cpp
+  MakeMkvDialog.cpp
+  MyFile.cpp
+  UnpackButtons.cpp
+)
+
+target_link_libraries(
+  mediaelch_downloads
+  PRIVATE
+    Qt5::Core
+    Qt5::Widgets
+    Qt5::Multimedia
+    Qt5::Sql
+    Qt5::Xml
+)
+mediaelch_post_target_defaults(mediaelch_downloads)

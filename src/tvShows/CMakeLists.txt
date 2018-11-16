@@ -1,0 +1,32 @@
+add_library(
+  mediaelch_tvShows
+  OBJECT
+  model/EpisodeModelItem.cpp
+  model/SeasonModelItem.cpp
+  model/TvShowBaseModelItem.cpp
+  model/TvShowModelItem.cpp
+  model/TvShowRootModelItem.cpp
+  TvShowModel.cpp
+  TvShowMultiScrapeDialog.cpp
+  TvShowProxyModel.cpp
+  TvShowSearch.cpp
+  TvShowSearchEpisode.cpp
+  TvShowUpdater.cpp
+  TvShowWidget.cpp
+  TvShowWidgetEpisode.cpp
+  TvShowWidgetSeason.cpp
+  TvShowWidgetTvShow.cpp
+  TvTunesDialog.cpp
+)
+
+target_link_libraries(
+  mediaelch_tvShows
+  PRIVATE
+    Qt5::Widgets
+    Qt5::Sql
+    Qt5::Network
+    Qt5::Xml
+    Qt5::MultimediaWidgets
+    quazip
+)
+mediaelch_post_target_defaults(mediaelch_tvShows)
