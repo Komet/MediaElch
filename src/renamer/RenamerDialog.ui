@@ -27,7 +27,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -85,7 +85,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>&lt;title&gt; (&lt;year&gt;)</string>
+            <string notr="true">&lt;title&gt; (&lt;year&gt;)</string>
            </property>
           </widget>
          </item>
@@ -115,7 +115,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</string>
+            <string notr="true">&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</string>
            </property>
           </widget>
          </item>
@@ -132,7 +132,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>&lt;title&gt;.&lt;extension&gt;</string>
+            <string notr="true">&lt;title&gt;.&lt;extension&gt;</string>
            </property>
           </widget>
          </item>

@@ -10,9 +10,6 @@
     <height>547</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -628,7 +625,7 @@
         <item row="20" column="1">
          <widget class="QLabel" name="descImdbId">
           <property name="text">
-           <string>IMDB Id</string>
+           <string>IMDb ID</string>
           </property>
           <property name="itemTypes" stdset="0">
            <stringlist notr="true">

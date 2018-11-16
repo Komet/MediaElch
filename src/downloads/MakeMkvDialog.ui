@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MediaElch</string>
+   <string notr="true">MediaElch</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -328,7 +328,7 @@
             <item row="2" column="0">
              <widget class="QLabel" name="labelPart">
               <property name="text">
-               <string>&lt;partNo&gt;</string>
+               <string notr="true">&lt;partNo&gt;</string>
               </property>
              </widget>
             </item>

@@ -52,8 +52,8 @@ FanartTv::FanartTv(QObject *parent)
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
     m_discBox = new QComboBox(m_widget);
-    m_discBox->addItem(tr("3D"), "3D");
-    m_discBox->addItem(tr("BluRay"), "BluRay");
+    m_discBox->addItem("3D", "3D");
+    m_discBox->addItem(tr("Blu-ray"), "BluRay");
     m_discBox->addItem(tr("DVD"), "DVD");
     m_personalApiKeyEdit = new QLineEdit(m_widget);
     auto layout = new QGridLayout(m_widget);

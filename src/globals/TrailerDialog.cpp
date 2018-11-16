@@ -342,6 +342,7 @@ void TrailerDialog::downloadFinished()
         if (fi.exists()) {
             QMessageBox msgBox;
             msgBox.setText(tr("The file %1 already exists.").arg(fi.fileName()));
+            //: "it" refers to the file
             msgBox.setInformativeText(tr("Do you want to overwrite it?"));
             msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
             msgBox.setDefaultButton(QMessageBox::Yes);

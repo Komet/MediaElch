@@ -1361,7 +1361,7 @@ The directories containg your music must contain subdirectories for each artist 
             </item>
             <item>
              <property name="text">
-              <string>SOCKS 5</string>
+              <string notr="true">SOCKS5</string>
              </property>
             </item>
            </widget>

@@ -10,9 +10,6 @@
     <height>811</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
@@ -529,7 +526,7 @@
                    <enum>QAbstractSpinBox::NoButtons</enum>
                   </property>
                   <property name="displayFormat">
-                   <string>yyyy</string>
+                   <string notr="true">yyyy</string>
                   </property>
                  </widget>
                 </item>
@@ -594,7 +591,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_13">
                 <property name="text">
-                 <string>IMDB ID</string>
+                 <string>IMDb ID</string>
                 </property>
                </widget>
               </item>
@@ -999,7 +996,7 @@
                 <item>
                  <widget class="QLabel" name="label_30">
                   <property name="text">
-                   <string>x</string>
+                   <string notr="true">x</string>
                   </property>
                  </widget>
                 </item>
