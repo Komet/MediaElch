@@ -133,7 +133,7 @@ void TvTunesDialog::onUpdateTime(qint64 currentTime)
 
     int position = 0;
     if (m_totalTime > 0) {
-        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0);
+        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0f);
     }
     ui->seekSlider->setValue(position);
 }

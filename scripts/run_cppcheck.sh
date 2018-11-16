@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
+IFS=$'\n\t'
 
-SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+###############################################################################
+# Run cppcheck on all sources (for usage in CIs)
+# If you develop for this project, please use `make cppcheck`.
+###############################################################################
 
-pushd "${SCRIPT_PATH}/.." > /dev/null
+cd "$( cd "$(dirname "$0")"; pwd -P )/.."
 
 echo "Run cppcheck on all source files"
-
 cppcheck --enable=all --error-exitcode=1 -Isrc -j2 ./src
-
-popd > /dev/null
