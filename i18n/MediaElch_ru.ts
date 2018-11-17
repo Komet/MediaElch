@@ -891,7 +891,7 @@
     <message>
         <location filename="../src/downloads/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, укажите правильный путь к makemkvcon в настройках.</translation>
     </message>
 </context>
 <context>
@@ -1170,7 +1170,7 @@
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="56"/>
         <source>Blu-ray</source>
-        <translation type="unfinished"></translation>
+        <translation>Blu-ray</translation>
     </message>
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="57"/>
@@ -1675,12 +1675,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="139"/>
         <source>IMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
@@ -1813,12 +1813,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Movie has no IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>У фильма нет IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>No IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
@@ -2721,12 +2721,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="143"/>
         <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="150"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -2863,7 +2863,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/data/MovieModel.cpp" line="295"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -2901,7 +2901,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлять только фильмы с IMDb ID/TheMovieDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3082,7 +3082,8 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../src/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Используя IMDb, вы можите искать по IMDb ID.
+Если хотите использовать TMDb или OFDb ID, пожалуста, укаживаейте &quot;id&quot; в качестве префикса.</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="101"/>
@@ -3475,7 +3476,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="594"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="1041"/>
@@ -4704,37 +4705,37 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n концерт будет переименован</numerusform>
+            <numerusform>%n концерта будет переименованы</numerusform>
+            <numerusform>%n концертов будет переименованы</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n фильм будет переименован</numerusform>
+            <numerusform>%n фильма будет переименованы</numerusform>
+            <numerusform>%n фильмов будет переименованы</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n сериал и %1</numerusform>
+            <numerusform>%n сериала и %1</numerusform>
+            <numerusform>%n сериалов и %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n серия будет переименована</numerusform>
+            <numerusform>%n серии будет переименованы</numerusform>
+            <numerusform>%n серий будет переименованы</numerusform>
         </translation>
     </message>
     <message>
@@ -4858,7 +4859,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="682"/>
@@ -7438,7 +7439,7 @@ MediaElch, при запуске, найдёт новые серии.</translati
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="415"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="450"/>
