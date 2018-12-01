@@ -88,7 +88,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		fold_start "mediainfodll"
 		print_info "Downloading MediaInfoDLL"
 		wget --output-document MediaInfoDLL.7z https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Windows_i386_WithoutInstaller.7z
-		7z x -oMediaInfo MediaInfoDLL.7z
+		7zr x -oMediaInfo MediaInfoDLL.7z
 		mv MediaInfo/Developers/Source/MediaInfoDLL ./MediaInfoDLL
 		mv MediaInfo/MediaInfo.dll MediaInfo.dll
 		rm -rf MediaInfo MediaInfoDLL.7z
