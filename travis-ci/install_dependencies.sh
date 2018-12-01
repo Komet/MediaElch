@@ -91,7 +91,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		7z x -oMediaInfo MediaInfoDLL.7z
 		mv MediaInfo/Developers/Source/MediaInfoDLL ./MediaInfoDLL
 		mv MediaInfo/MediaInfo.dll MediaInfo.dll
-		rm -rf MediaInfo
+		rm -rf MediaInfo MediaInfoDLL.7z
 		fold_end
 
 		fold_start "zenlib"

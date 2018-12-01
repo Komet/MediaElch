@@ -2,6 +2,8 @@
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
 lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
 
+DEFINES += QUAZIP_BUILD
+DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
 include(third_party/quazip/quazip/quazip.pri)
 
 TEMPLATE = app
