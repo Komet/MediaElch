@@ -34,7 +34,7 @@ print_important "Getting dependencies for building for ${QT} on ${OS_NAME}"
 
 fold_start "git_submodule"
 print_info "Downloading quazip"
-git submodule update --init -- thirdParty/quazip
+git submodule update --init -- third_party/quazip
 fold_end
 
 if [ $(lc "${OS_NAME}") = "linux" ]; then

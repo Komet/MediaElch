@@ -4,7 +4,7 @@
 #define CATCH_CONFIG_ENABLE_CHRONO_STRINGMAKER
 
 // Catch2 is included in each test cpp file
-#include "thirdParty/catch2/catch.hpp"
+#include "third_party/catch2/catch.hpp"
 
 #include "test/helpers/debug_output.h"
 #include "test/helpers/matchers.h"

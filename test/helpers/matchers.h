@@ -1,7 +1,7 @@
 #ifndef TEST_HELPER_MATCHERS
 #define TEST_HELPER_MATCHERS
 
-#include "thirdParty/catch2/catch.hpp"
+#include "third_party/catch2/catch.hpp"
 
 #include <QRegExp>
 #include <QString>
