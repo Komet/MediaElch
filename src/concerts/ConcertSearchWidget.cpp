@@ -52,7 +52,7 @@ ConcertSearchWidget::~ConcertSearchWidget()
 
 void ConcertSearchWidget::search(QString searchString)
 {
-    ui->searchString->setText(searchString.replace(".", " "));
+    ui->searchString->setText(searchString.replace(".", " ").trimmed());
     search();
 }
 
@@ -75,7 +75,7 @@ void ConcertSearchWidget::search()
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    Manager::instance()->concertScrapers().at(m_scraperNo)->search(ui->searchString->text());
+    Manager::instance()->concertScrapers().at(m_scraperNo)->search(ui->searchString->text().trimmed());
 }
 
 void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)

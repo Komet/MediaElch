@@ -214,7 +214,7 @@ void MovieMultiScrapeDialog::scrapeNext()
 
     m_currentMovie = m_queue.dequeue();
 
-    ui->movie->setText(m_currentMovie->name());
+    ui->movie->setText(m_currentMovie->name().trimmed());
     ui->movieCounter->setText(QString("%1/%2").arg(m_movies.count() - m_queue.count()).arg(m_movies.count()));
 
     ui->progressAll->setValue(ui->progressAll->maximum() - m_queue.size() - 1);
