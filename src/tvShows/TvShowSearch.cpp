@@ -102,7 +102,7 @@ int TvShowSearch::exec(QString searchString, TvDbId id)
     if (id.isValid()) {
         ui->searchString->setText(id.withPrefix());
     } else {
-        ui->searchString->setText(searchString.replace(".", " "));
+        ui->searchString->setText(searchString.replace(".", " ").trimmed());
     }
 
     ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
@@ -135,7 +135,7 @@ void TvShowSearch::onSearch()
     qDebug() << "Entered, with" << ui->searchString->text();
     clear();
     ui->searchString->setLoading(true);
-    Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text());
+    Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text().trimmed());
 }
 
 /**

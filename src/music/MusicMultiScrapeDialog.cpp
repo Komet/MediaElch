@@ -242,9 +242,9 @@ void MusicMultiScrapeDialog::scrapeNext()
     m_currentAlbum = item.album;
     m_currentArtist = item.artist;
     if (m_currentAlbum) {
-        ui->itemName->setText(m_currentAlbum->title());
+        ui->itemName->setText(m_currentAlbum->title().trimmed());
     } else if (m_currentArtist) {
-        ui->itemName->setText(m_currentArtist->name());
+        ui->itemName->setText(m_currentArtist->name().trimmed());
     }
     ui->itemCounter->setText(
         QString("%1/%2").arg(ui->progressAll->maximum() - m_queue.count()).arg(ui->progressAll->maximum()));
@@ -269,8 +269,8 @@ void MusicMultiScrapeDialog::scrapeNext()
                 m_albumInfosToLoad);
         } else {
             m_scraperInterface->searchAlbum((m_currentAlbum->artist().isEmpty() && m_currentAlbum->artistObj())
-                                                ? m_currentAlbum->artistObj()->name()
-                                                : m_currentAlbum->artist(),
+                                                ? m_currentAlbum->artistObj()->name().trimmed()
+                                                : m_currentAlbum->artist().trimmed(),
                 m_currentAlbum->title());
         }
     } else if (m_currentArtist) {
@@ -287,7 +287,7 @@ void MusicMultiScrapeDialog::scrapeNext()
         if (!m_currentArtist->mbId().isEmpty()) {
             m_currentArtist->controller()->loadData(m_currentArtist->mbId(), m_scraperInterface, m_artistInfosToLoad);
         } else {
-            m_scraperInterface->searchArtist(m_currentArtist->name());
+            m_scraperInterface->searchArtist(m_currentArtist->name().trimmed());
         }
     }
 }

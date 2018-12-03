@@ -88,7 +88,7 @@ void MovieSearchWidget::startSearch()
     ui->comboScraper->setEnabled(false);
     ui->comboLanguage->setEnabled(false);
     ui->searchString->setLoading(true);
-    m_currentScraper->search(ui->searchString->text());
+    m_currentScraper->search(ui->searchString->text().trimmed());
     Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
 }
 
@@ -331,7 +331,7 @@ void MovieSearchWidget::setSearchText(ScraperInterface *scraper)
         }
         return m_searchString;
     }();
-    ui->searchString->setText(searchText);
+    ui->searchString->setText(searchText.trimmed());
 }
 
 void MovieSearchWidget::initializeCheckBoxes()

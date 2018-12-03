@@ -262,10 +262,10 @@ void TvShowMultiScrapeDialog::scrapeNext()
 
     if (!m_showQueue.isEmpty()) {
         m_currentShow = m_showQueue.dequeue();
-        ui->title->setText(m_currentShow->name());
+        ui->title->setText(m_currentShow->name().trimmed());
     } else if (!m_episodeQueue.isEmpty()) {
         m_currentEpisode = m_episodeQueue.dequeue();
-        ui->title->setText(m_currentEpisode->name());
+        ui->title->setText(m_currentEpisode->name().trimmed());
     }
 
     int sum = m_shows.count() + m_episodes.count();
@@ -288,7 +288,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             &TvShowMultiScrapeDialog::onInfoLoadDone,
             Qt::UniqueConnection);
         if (!m_currentShow->tvdbId().isValid()) {
-            m_scraperInterface->search(m_currentShow->name());
+            m_scraperInterface->search(m_currentShow->name().trimmed());
         } else {
             m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
         }
@@ -300,11 +300,11 @@ void TvShowMultiScrapeDialog::scrapeNext()
             Qt::UniqueConnection);
         if (m_currentEpisode->tvShow()->tvdbId().isValid()) {
             m_currentEpisode->loadData(m_currentEpisode->tvShow()->tvdbId(), m_scraperInterface, m_infosToLoad);
-        } else if (m_showIds.contains(m_currentEpisode->tvShow()->name())) {
+        } else if (m_showIds.contains(m_currentEpisode->tvShow()->name().trimmed())) {
             m_currentEpisode->loadData(
-                m_showIds.value(m_currentEpisode->tvShow()->name()), m_scraperInterface, m_infosToLoad);
+                m_showIds.value(m_currentEpisode->tvShow()->name().trimmed()), m_scraperInterface, m_infosToLoad);
         } else {
-            m_scraperInterface->search(m_currentEpisode->tvShow()->name());
+            m_scraperInterface->search(m_currentEpisode->tvShow()->name().trimmed());
         }
     }
 }

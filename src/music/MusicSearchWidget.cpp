@@ -68,7 +68,7 @@ MusicSearchWidget::~MusicSearchWidget()
 
 void MusicSearchWidget::search(QString searchString)
 {
-    ui->searchString->setText(searchString.replace(".", " "));
+    ui->searchString->setText(searchString.replace(".", " ").trimmed());
     search();
 }
 
@@ -90,9 +90,12 @@ void MusicSearchWidget::search()
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
     if (m_type == "artist") {
-        Manager::instance()->musicScrapers().at(m_scraperNo)->searchArtist(ui->searchString->text());
+        Manager::instance()->musicScrapers().at(m_scraperNo)->searchArtist(ui->searchString->text().trimmed());
     } else if (m_type == "album") {
-        Manager::instance()->musicScrapers().at(m_scraperNo)->searchAlbum(m_artistName, ui->searchString->text());
+        Manager::instance()
+            ->musicScrapers()
+            .at(m_scraperNo)
+            ->searchAlbum(m_artistName, ui->searchString->text().trimmed());
     }
 }
 
