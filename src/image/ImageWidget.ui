@@ -36,7 +36,7 @@
   <customwidget>
    <class>QQuickWidget</class>
    <extends>QWidget</extends>
-   <header>QtQuickWidgets/QQuickWidget</header>
+   <header>QQuickWidget</header>
   </customwidget>
  </customwidgets>
  <resources/>
