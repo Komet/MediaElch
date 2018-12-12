@@ -116,7 +116,7 @@
            <item>
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</string>
+              <string>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -149,7 +149,7 @@
            <item>
             <widget class="QLabel" name="label_10">
              <property name="text">
-              <string>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</string>
+              <string>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
@@ -159,7 +159,7 @@
            <item>
             <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</string>
+              <string>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
@@ -169,7 +169,7 @@
            <item>
             <widget class="QLabel" name="label_12">
              <property name="text">
-              <string>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</string>
+              <string>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</string>
              </property>
             </widget>
            </item>

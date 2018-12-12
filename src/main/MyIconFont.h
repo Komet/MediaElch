@@ -15,8 +15,8 @@
 #include <QVariantMap>
 
 /// A list of all icon-names with the codepoint (unicode-value) on the right
-/// You can use the names on the page  http://fortawesome.github.io/Font-Awesome/design.html  ( replace every dash '-'
-/// with an underscore '_')
+/// You can use the names on the page  https://github.com/FortAwesome/Font-Awesome
+/// (replace every dash '-' with an underscore '_')
 enum MyIconFontName
 {
     icon_film = 0xe6a5,

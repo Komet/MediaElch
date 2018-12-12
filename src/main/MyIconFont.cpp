@@ -417,8 +417,8 @@ QIcon MyIconFont::icon(int character, const QVariantMap &options)
 
 /// Creates an icon with the given name
 ///
-/// You can use the icon names as defined on http://fortawesome.github.io/Font-Awesome/design.html  withour the 'icon-'
-/// prefix
+/// You can use the icon names as defined on https://fontawesome.com/ without
+/// the 'icon-' prefix
 /// @param name the name of the icon
 /// @param options extra option to pass to the icon renderer
 QIcon MyIconFont::icon(const QString &name, const QVariantMap &options)
