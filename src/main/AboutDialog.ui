@@ -171,6 +171,9 @@
              <property name="text">
               <string>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</string>
              </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
            <item>
