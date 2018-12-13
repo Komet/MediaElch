@@ -189,7 +189,7 @@
     <message>
         <location filename="../src/main/AboutDialog.ui" line="196"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kehittäjä</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="202"/>
@@ -792,7 +792,7 @@
     <message>
         <location filename="../src/scrapers/CustomMovieScraper.cpp" line="358"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuntematon</translation>
     </message>
 </context>
 <context>
@@ -888,7 +888,7 @@
     <message>
         <location filename="../src/downloads/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä makemkvcon-sovelluksen sijainti MediaElchin asetuksissa.</translation>
     </message>
 </context>
 <context>
@@ -1167,7 +1167,7 @@
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="56"/>
         <source>Blu-ray</source>
-        <translation type="unfinished"></translation>
+        <translation>Blu-ray</translation>
     </message>
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="57"/>
@@ -1381,7 +1381,7 @@
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="356"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>Video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Videokoodekki</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="412"/>
@@ -1670,12 +1670,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="139"/>
         <source>IMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
@@ -1778,12 +1778,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No information about video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Videokoodekin tietoja ei ole saatavilla</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei videokoodekkia</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
@@ -1808,12 +1808,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Movie has no IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Elokuvalla ei ole IMDb ID:tä</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>No IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei IMDb ID:tä</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
@@ -1846,12 +1846,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>Resolution 2160p</source>
-        <translation type="unfinished">1080p resoluutio {2160p?}</translation>
+        <translation>Resoluutio 2160p</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>2160p</source>
-        <translation type="unfinished">2160p</translation>
+        <translation>2160p</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
@@ -2715,12 +2715,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="143"/>
         <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="150"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -2857,7 +2857,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../src/data/MovieModel.cpp" line="295"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -2895,7 +2895,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivitä vain elokuvat, joilla on IMDb ID/TheMobieDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3075,7 +3075,7 @@ Toiminto peruutettu.</translation>
         <location filename="../src/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käyttäessäsi IMDb:tä, voit käyttää hakusanana myös IMDb ID:tä. Jos haluat hakea TMDb:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="101"/>
@@ -3468,7 +3468,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="594"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="1041"/>
@@ -4690,33 +4690,33 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n konsertti(a) nimetään uudelleen</numerusform>
+            <numerusform>%n konsertti(a) nimetään uudelleen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n elokuva(a) nimetään uudelleen</numerusform>
+            <numerusform>%n elokuva(a) nimetään uudelleen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n TV-sarja(a) ja %1</numerusform>
+            <numerusform>%n TV-sarja(a) ja %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n jakso(a) nimetään uudelleen</numerusform>
+            <numerusform>%n jakso(a) nimetään uudelleen</numerusform>
         </translation>
     </message>
     <message>
@@ -4840,7 +4840,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="682"/>
@@ -6257,27 +6257,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="363"/>
         <source>Download Not Found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Latauskohdetta ei löytnyt (404)</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="367"/>
         <source>Download Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Latausvirhe (%1)</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="414"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkkovirhe</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="415"/>
         <source>Resource could not be played</source>
-        <translation type="unfinished"></translation>
+        <translation>Resurssia ei voida toistaa</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="416"/>
         <source>Video format error</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe videon muodossa</translation>
     </message>
 </context>
 <context>
@@ -7401,7 +7401,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="415"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="450"/>

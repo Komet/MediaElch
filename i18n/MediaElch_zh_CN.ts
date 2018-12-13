@@ -189,12 +189,12 @@
     <message>
         <location filename="../src/main/AboutDialog.ui" line="196"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>开发人员</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="202"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
-        <translation type="unfinished"></translation>
+        <translation>下面的信息对开发人员很重要。如果需要帮助，请提供。</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="230"/>
@@ -790,7 +790,7 @@
     <message>
         <location filename="../src/scrapers/CustomMovieScraper.cpp" line="358"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>未知</translation>
     </message>
 </context>
 <context>
@@ -885,7 +885,7 @@
     <message>
         <location filename="../src/downloads/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>请在MediaElch的设置中设置makemkvcon的正确路径。</translation>
     </message>
 </context>
 <context>
@@ -1378,7 +1378,7 @@
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="356"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>Video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>视频编解码器</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="412"/>
@@ -1775,12 +1775,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No information about video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>没有关于视频编解码器的信息</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>没有视频编解码器</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
@@ -1805,12 +1805,12 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Movie has no IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>电影没有IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>No IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>无 IMDb ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
@@ -1843,7 +1843,7 @@
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>Resolution 2160p</source>
-        <translation type="unfinished">1080p 分辨率 {2160p?}</translation>
+        <translation> 2160P 分辨率</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
@@ -2071,7 +2071,7 @@
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="33"/>
         <source>Load all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>加载所有标签</translation>
     </message>
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="89"/>
@@ -2734,7 +2734,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
-        <translation type="unfinished"></translation>
+        <translation>打开详细页面</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="130"/>
@@ -2891,7 +2891,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>只更新有 IMDB Id 或 TheMovieDb Id 的电影</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3070,7 +3070,8 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../src/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>当使用 IMDB 刮削器时，也可使用 IMDB id 来搜索。
+如果使用 TMDB 或 OFDb 刮削器，请加上“id”作为前缀。</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="101"/>

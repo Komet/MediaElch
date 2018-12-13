@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="59"/>
         <source>Dutch</source>
-        <translation>Нидерландский</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="60"/>
@@ -357,8 +357,8 @@
         <location filename="../src/concerts/ConcertFilesWidget.cpp" line="360"/>
         <source>%n concerts</source>
         <translation>
-            <numerusform>%n концертов</numerusform>
-            <numerusform>%n концертов</numerusform>
+            <numerusform>%n концерт</numerusform>
+            <numerusform>%n концерта</numerusform>
             <numerusform>%n концертов</numerusform>
         </translation>
     </message>
@@ -1075,7 +1075,7 @@
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="35"/>
         <source>Dutch</source>
-        <translation>Немецкий</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="36"/>
@@ -1239,8 +1239,8 @@
         <location filename="../src/movies/FilesWidget.cpp" line="554"/>
         <source>%n movies</source>
         <translation>
-            <numerusform>%n фильмов</numerusform>
-            <numerusform>%n фильмов</numerusform>
+            <numerusform>%n фильм</numerusform>
+            <numerusform>%n фильма</numerusform>
             <numerusform>%n фильмов</numerusform>
         </translation>
     </message>
@@ -3083,7 +3083,7 @@ Main menu entry (tooltip)</extracomment>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
         <translation>Используя IMDb, вы можите искать по IMDb ID.
-Если хотите использовать TMDb или OFDb ID, пожалуста, укаживаейте &quot;id&quot; в качестве префикса.</translation>
+Если хотите использовать TMDb или OFDb ID, пожалуста, указываейте &quot;id&quot; в качестве префикса.</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="101"/>
@@ -5354,7 +5354,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../src/settings/SettingsWindow.ui" line="1257"/>
         <source>8080</source>
-        <translation>3D {8080?}</translation>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../src/settings/SettingsWindow.ui" line="1442"/>
@@ -5784,7 +5784,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="180"/>
         <source>Dutch</source>
-        <translation>Немецкий</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="181"/>
@@ -5942,7 +5942,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Dutch</source>
-        <translation>Немецкий</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="42"/>
@@ -6098,7 +6098,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TheTvDb.cpp" line="39"/>
         <source>Dutch</source>
-        <translation>Немецкий</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TheTvDb.cpp" line="40"/>
@@ -7682,7 +7682,7 @@ MediaElch, при запуске, найдёт новые серии.</translati
     <message>
         <location filename="../src/scrapers/UniversalMusicScraper.cpp" line="28"/>
         <source>Dutch</source>
-        <translation>Нидерландский</translation>
+        <translation>Голандский</translation>
     </message>
     <message>
         <location filename="../src/scrapers/UniversalMusicScraper.cpp" line="29"/>

@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="39"/>
         <source>Straight</source>
-        <translation type="unfinished"></translation>
+        <translation>Straight</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="40"/>
         <source>Gay</source>
-        <translation type="unfinished"></translation>
+        <translation>Gay</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="45"/>
@@ -126,7 +126,7 @@
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="75"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano</translation>
     </message>
     <message>
         <location filename="../src/scrapers/AEBN.cpp" line="76"/>
@@ -184,17 +184,17 @@
     <message>
         <location filename="../src/main/AboutDialog.ui" line="172"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bugs e pedidos podem ser informados no &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="196"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenvolvedor</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="202"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
-        <translation type="unfinished"></translation>
+        <translation>As dados abaixo são importantes para os desenvolvedores. Por favor, inclua no seu pedido de ajuda.</translation>
     </message>
     <message>
         <location filename="../src/main/AboutDialog.ui" line="230"/>
@@ -796,7 +796,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/scrapers/CustomMovieScraper.cpp" line="358"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconhecido</translation>
     </message>
 </context>
 <context>
@@ -892,7 +892,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/downloads/DownloadsWidget.cpp" line="527"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, informe o caminho para o makemkvcon. Veja em Ajustes -&gt; Importar.</translation>
     </message>
 </context>
 <context>
@@ -1156,7 +1156,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="51"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano</translation>
     </message>
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="52"/>
@@ -1171,7 +1171,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="56"/>
         <source>Blu-ray</source>
-        <translation type="unfinished"></translation>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../src/imageProviders/FanartTv.cpp" line="57"/>
@@ -1385,7 +1385,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="356"/>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>Video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Codec</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="412"/>
@@ -1674,12 +1674,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="139"/>
         <source>IMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="414"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="421"/>
@@ -1782,12 +1782,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No information about video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma informação sobre o Video Codec</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="438"/>
         <source>No video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem Video Codec</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="422"/>
@@ -1812,12 +1812,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>Movie has no IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme Sem IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="415"/>
         <source>No IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="465"/>
@@ -1850,12 +1850,12 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>Resolution 2160p</source>
-        <translation type="unfinished">Resolução 1080p {2160p?}</translation>
+        <translation>Resolução 2160p</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="467"/>
         <source>2160p</source>
-        <translation type="unfinished">2160p</translation>
+        <translation>2160p</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="468"/>
@@ -1891,7 +1891,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="470"/>
         <source>BluRay</source>
-        <translation>Bluray</translation>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/FilterWidget.cpp" line="473"/>
@@ -2082,7 +2082,7 @@ Você precisa ir na lista completa de filmes e clicar em Salvar Tudo ou salvar c
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="33"/>
         <source>Load all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar Todas as Tags</translation>
     </message>
     <message>
         <location filename="../src/scrapers/IMDB.cpp" line="89"/>
@@ -2723,12 +2723,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="143"/>
         <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicateItem.ui" line="150"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -2746,7 +2746,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Página de Detalhes</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieDuplicates.cpp" line="130"/>
@@ -2865,7 +2865,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../src/data/MovieModel.cpp" line="295"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -2904,7 +2904,7 @@ MediaElch irá usar o melhor resultado possivel para cada filme que você seleci
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar somente filmes com IMDB ID / TMDb ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3084,7 +3084,8 @@ MediaElch irá usar o melhor resultado possivel para cada filme que você seleci
         <location filename="../src/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando buscando no IMDB você pode usar também o id do IMDB em sua procura.
+Se você deseja procurar pelo id TMDb ou id OFDb por favor use o prefix &quot;id&quot; antes do número. </translation>
     </message>
     <message>
         <location filename="../src/movies/MovieSearchWidget.ui" line="101"/>
@@ -3478,7 +3479,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="594"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/movies/MovieWidget.ui" line="1041"/>
@@ -4524,12 +4525,12 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/main.cpp" line="78"/>
         <source>Stylesheet could not be opened!</source>
-        <translation type="unfinished"></translation>
+        <translation>Folha de Estilo não pôde ser aberta.</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="79"/>
         <source>The default stylesheet could not be openend for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>A Folha de Estilo default não pôde ser aberta para ser lida.</translation>
     </message>
     <message>
         <location filename="../src/smallWidgets/ClosableImage.cpp" line="409"/>
@@ -4850,7 +4851,7 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/renamer/RenamerPlaceholders.ui" line="682"/>
@@ -5740,7 +5741,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="173"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Árabe</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="174"/>
@@ -5750,12 +5751,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="175"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinês (T)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="176"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinês (S)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="177"/>
@@ -5800,7 +5801,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="185"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francês (Canadá)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="186"/>
@@ -5850,12 +5851,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="195"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Português (Brasil)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="196"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Português (Portugal)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="197"/>
@@ -5870,12 +5871,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="199"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano (Espanha)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="200"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Castelhano (México)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDb.cpp" line="201"/>
@@ -5898,7 +5899,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="34"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Árabe</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="35"/>
@@ -5908,12 +5909,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinês (T)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="37"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinês (S)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="38"/>
@@ -5953,12 +5954,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="45"/>
         <source>French</source>
-        <translation>Francês</translation>
+        <translation>Francês (França)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="46"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francês (Canadá)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="47"/>
@@ -6008,12 +6009,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="56"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Português (Brasil)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="57"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Português (Portugal)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="58"/>
@@ -6028,12 +6029,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="60"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano (Espanha)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="61"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Castelhano (México)</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TMDbConcerts.cpp" line="62"/>
@@ -6169,7 +6170,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/scrapers/TheTvDb.cpp" line="55"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano</translation>
     </message>
     <message>
         <location filename="../src/scrapers/TheTvDb.cpp" line="56"/>
@@ -6280,27 +6281,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="363"/>
         <source>Download Not Found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download não encontrado (404)</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="367"/>
         <source>Download Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro no Download (%1)</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="414"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro na rede</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="415"/>
         <source>Resource could not be played</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo não pode ser exibido</translation>
     </message>
     <message>
         <location filename="../src/globals/TrailerDialog.cpp" line="416"/>
         <source>Video format error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de Formato de Vídeo</translation>
     </message>
 </context>
 <context>
@@ -7425,7 +7426,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="415"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../src/tvShows/TvShowWidgetTvShow.ui" line="450"/>
@@ -7728,7 +7729,7 @@ Mediaelch irá usar o melhor resultado possível para cada seriado e episódio q
     <message>
         <location filename="../src/scrapers/UniversalMusicScraper.cpp" line="40"/>
         <source>Spanish</source>
-        <translation>Espanhol</translation>
+        <translation>Castelhano</translation>
     </message>
     <message>
         <location filename="../src/scrapers/UniversalMusicScraper.cpp" line="41"/>
