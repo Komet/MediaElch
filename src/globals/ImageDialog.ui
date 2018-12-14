@@ -352,18 +352,18 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/ImageGallery.h</header>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>smallWidgets/MyTableWidget.h</header>
+   <header>ui/small_widgets/MyTableWidget.h</header>
   </customwidget>
   <customwidget>
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
+   <header>ui/small_widgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>

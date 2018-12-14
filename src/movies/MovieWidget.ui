@@ -1702,51 +1702,51 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/ImageGallery.h</header>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
+   <header>ui/small_widgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ClosableImage</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
+   <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <header>ui/small_widgets/SlidingStackedWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Badge</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
+   <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>
    <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
+   <header>ui/small_widgets/MySpinBox.h</header>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/MediaFlags.h</header>
+   <header>ui/small_widgets/MediaFlags.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MessageLabel.h</header>
+   <header>ui/small_widgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -2,7 +2,7 @@
 #define ALPHABETICALLIST_H
 
 #include "globals/Globals.h"
-#include "smallWidgets/MyTableView.h"
+#include "ui/small_widgets/MyTableView.h"
 
 #include <QPaintEvent>
 #include <QPointer>

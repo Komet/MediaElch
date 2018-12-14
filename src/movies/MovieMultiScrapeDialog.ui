@@ -461,7 +461,7 @@
   <customwidget>
    <class>MyCheckBox</class>
    <extends>QCheckBox</extends>
-   <header location="global">smallWidgets/MyCheckBox.h</header>
+   <header location="global">ui/small_widgets/MyCheckBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -23,7 +23,7 @@
 #include "globals/NameFormatter.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "smallWidgets/ImageLabel.h"
+#include "ui/small_widgets/ImageLabel.h"
 
 /**
  * @brief ImageDialog::ImageDialog

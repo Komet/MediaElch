@@ -3,7 +3,7 @@
 
 #include "data/MusicScraperInterface.h"
 #include "globals/Manager.h"
-#include "smallWidgets/MyLabel.h"
+#include "ui/small_widgets/MyLabel.h"
 #include <QDebug>
 
 MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicSearchWidget)

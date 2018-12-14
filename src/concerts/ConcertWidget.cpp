@@ -20,7 +20,7 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
-#include "smallWidgets/ClosableImage.h"
+#include "ui/small_widgets/ClosableImage.h"
 
 /**
  * @brief ConcertWidget::ConcertWidget

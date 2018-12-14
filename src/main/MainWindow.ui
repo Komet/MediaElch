@@ -872,7 +872,7 @@
   <customwidget>
    <class>MySplitter</class>
    <extends>QSplitter</extends>
-   <header>smallWidgets/MySplitter.h</header>
+   <header>ui/small_widgets/MySplitter.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

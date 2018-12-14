@@ -6,7 +6,7 @@
 #include <QTableView>
 #include <QTimer>
 
-#include "smallWidgets/SearchOverlay.h"
+#include "ui/small_widgets/SearchOverlay.h"
 
 class MyTableView : public QTableView
 {

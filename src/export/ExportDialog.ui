@@ -144,7 +144,7 @@
   <customwidget>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MessageLabel.h</header>
+   <header>ui/small_widgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

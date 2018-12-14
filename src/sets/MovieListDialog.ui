@@ -100,7 +100,7 @@
   <customwidget>
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
+   <header>ui/small_widgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

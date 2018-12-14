@@ -224,12 +224,12 @@
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MyTableView</class>
    <extends>QTableView</extends>
-   <header>smallWidgets/MyTableView.h</header>
+   <header>ui/small_widgets/MyTableView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

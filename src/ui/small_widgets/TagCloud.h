@@ -6,7 +6,7 @@
 #include <QPointer>
 #include <QWidget>
 
-#include "smallWidgets/Badge.h"
+#include "ui/small_widgets/Badge.h"
 
 namespace Ui {
 class TagCloud;

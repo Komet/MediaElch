@@ -369,7 +369,7 @@
   <customwidget>
    <class>ClosableImage</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
+   <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
  </customwidgets>
  <resources>

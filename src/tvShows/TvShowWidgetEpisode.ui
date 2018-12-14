@@ -1226,22 +1226,22 @@
   <customwidget>
    <class>ClosableImage</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
+   <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>
    <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
+   <header>ui/small_widgets/MySpinBox.h</header>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/MediaFlags.h</header>
+   <header>ui/small_widgets/MediaFlags.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

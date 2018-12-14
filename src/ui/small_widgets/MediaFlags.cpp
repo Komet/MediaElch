@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QPainter>
 
-#include "../globals/Helper.h"
+#include "globals/Helper.h"
 
 /**
  * @brief MediaFlags::MediaFlags

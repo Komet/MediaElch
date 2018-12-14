@@ -3,7 +3,7 @@
 
 #include "image/ImageWidget.h"
 #include "music/Album.h"
-#include "smallWidgets/ClosableImage.h"
+#include "ui/small_widgets/ClosableImage.h"
 
 #include <QLineEdit>
 #include <QPointer>
