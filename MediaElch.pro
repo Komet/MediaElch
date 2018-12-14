@@ -51,11 +51,11 @@ target.path = /usr/bin
 INSTALLS += target
 
 dotDesktop.path = /usr/share/applications
-dotDesktop.files = desktop/MediaElch.desktop
+dotDesktop.files = data/desktop/MediaElch.desktop
 INSTALLS += dotDesktop
 
 icon.path = /usr/share/pixmaps
-icon.files = desktop/MediaElch.png
+icon.files = data/desktop/MediaElch.png
 INSTALLS += icon
 
 ICON = MediaElch.icns

@@ -9,6 +9,7 @@ as the rest of the project, but are good candidates for inclusion in the
 
 ```
 .
+├── desktop               # Files for linux desktops
 ├── i18n                  # Translations for MediaElch pulled from transifex
 │   ├── MediaElch_en.qm
 │   ├── MediaElch_en.ts
