@@ -1,5 +1,5 @@
 <div align="center">
-	<img alt="MediaElch Logo" src="img/MediaElch.png" />
+	<img alt="MediaElch Logo" src="data/img/MediaElch.png" />
 </div>
 
 [![Build Status](https://travis-ci.org/Komet/MediaElch.svg?branch=master)](https://travis-ci.org/Komet/MediaElch)
