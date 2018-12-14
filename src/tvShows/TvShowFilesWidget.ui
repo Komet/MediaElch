@@ -106,7 +106,7 @@
   <customwidget>
    <class>TvShowTreeView</class>
    <extends>QTreeView</extends>
-   <header>smallWidgets/TvShowTreeView.h</header>
+   <header>ui/small_widgets/TvShowTreeView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

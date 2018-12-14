@@ -17,7 +17,7 @@
    <string>MediaElch</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../MediaElch.qrc">
+   <iconset resource="../../data/MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
@@ -214,13 +214,13 @@
   <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <header>ui/small_widgets/SlidingStackedWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Badge</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
+   <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>MovieSearchWidget</class>
@@ -248,7 +248,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -2,7 +2,7 @@
 #define IMAGEGALLERY_H
 
 #include "globals/Globals.h"
-#include "smallWidgets/ClosableImage.h"
+#include "ui/small_widgets/ClosableImage.h"
 
 #include <QResizeEvent>
 #include <QScrollArea>

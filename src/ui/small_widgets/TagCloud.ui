@@ -63,7 +63,7 @@
   <customwidget>
    <class>MyWidget</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/MyWidget.h</header>
+   <header>ui/small_widgets/MyWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

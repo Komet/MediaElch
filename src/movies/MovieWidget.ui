@@ -53,7 +53,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../MediaElch.qrc">
+        <iconset resource="../../data/MediaElch.qrc">
          <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
        </property>
        <property name="iconSize">
@@ -678,7 +678,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="../../MediaElch.qrc">
+                   <iconset resource="../../data/MediaElch.qrc">
                     <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
                   </property>
                   <property name="dropShadow" stdset="0">
@@ -708,7 +708,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="../../MediaElch.qrc">
+                   <iconset resource="../../data/MediaElch.qrc">
                     <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
                   </property>
                   <property name="dropShadow" stdset="0">
@@ -745,7 +745,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/man.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/man.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1062,7 +1062,7 @@
                  <string>Reload from File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../../MediaElch.qrc">
+                 <iconset resource="../../data/MediaElch.qrc">
                   <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
                 </property>
                 <property name="dropShadow" stdset="0">
@@ -1324,7 +1324,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1374,7 +1374,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1424,7 +1424,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1503,7 +1503,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1553,7 +1553,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1603,7 +1603,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1653,7 +1653,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
+                 <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1702,51 +1702,51 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/ImageGallery.h</header>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
+   <header>ui/small_widgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ClosableImage</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
+   <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <header>ui/small_widgets/SlidingStackedWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Badge</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
+   <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>MySpinBox</class>
    <extends>QSpinBox</extends>
-   <header>smallWidgets/MySpinBox.h</header>
+   <header>ui/small_widgets/MySpinBox.h</header>
   </customwidget>
   <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/MediaFlags.h</header>
+   <header>ui/small_widgets/MediaFlags.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
-   <header>smallWidgets/MessageLabel.h</header>
+   <header>ui/small_widgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1770,7 +1770,7 @@
   <tabstop>videoScantype</tabstop>
  </tabstops>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

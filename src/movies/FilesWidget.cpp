@@ -9,8 +9,8 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "movies/MovieMultiScrapeDialog.h"
-#include "smallWidgets/AlphabeticalList.h"
-#include "smallWidgets/LoadingStreamDetails.h"
+#include "ui/small_widgets/AlphabeticalList.h"
+#include "ui/small_widgets/LoadingStreamDetails.h"
 
 #include <QDesktopServices>
 #include <QLocale>

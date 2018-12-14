@@ -3,7 +3,7 @@
 
 #include "globals/Manager.h"
 #include "settings/Settings.h"
-#include "smallWidgets/MyCheckBox.h"
+#include "ui/small_widgets/MyCheckBox.h"
 
 /**
  * @brief TvShowSearch::TvShowSearch

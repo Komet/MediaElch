@@ -9,7 +9,7 @@
 #include "data/TvShowModelItem.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "smallWidgets/LoadingStreamDetails.h"
+#include "ui/small_widgets/LoadingStreamDetails.h"
 #include "tvShows/TvShowMultiScrapeDialog.h"
 #include "tvShows/TvShowUpdater.h"
 

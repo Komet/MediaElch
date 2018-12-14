@@ -225,7 +225,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../MediaElch.qrc">
+        <iconset resource="../../data/MediaElch.qrc">
          <normaloff>:/img/zoom_out.png</normaloff>:/img/zoom_out.png</iconset>
        </property>
       </widget>
@@ -279,7 +279,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../MediaElch.qrc">
+        <iconset resource="../../data/MediaElch.qrc">
          <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
        </property>
       </widget>
@@ -352,22 +352,22 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
-   <header>smallWidgets/ImageGallery.h</header>
+   <header>ui/small_widgets/ImageGallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>smallWidgets/MyTableWidget.h</header>
+   <header>ui/small_widgets/MyTableWidget.h</header>
   </customwidget>
   <customwidget>
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
+   <header>ui/small_widgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

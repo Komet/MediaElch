@@ -2,8 +2,8 @@
 host = https://www.transifex.com
 
 [mediaelch.main]
-file_filter = i18n/MediaElch_<lang>.ts
+file_filter = data/i18n/MediaElch_<lang>.ts
 minimum_perc = 20
-source_file = i18n/MediaElch_en.ts
+source_file = data/i18n/MediaElch_en.ts
 source_lang = en
 type = QT

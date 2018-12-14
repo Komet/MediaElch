@@ -4,7 +4,7 @@
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
-#include "smallWidgets/MyCheckBox.h"
+#include "ui/small_widgets/MyCheckBox.h"
 
 MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MovieMultiScrapeDialog)
 {

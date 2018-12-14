@@ -1,6 +1,6 @@
 #include "MySplitter.h"
 
-#include "smallWidgets/MySplitterHandle.h"
+#include "ui/small_widgets/MySplitterHandle.h"
 
 MySplitter::MySplitter(QWidget *parent) : QSplitter(parent)
 {

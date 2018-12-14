@@ -2,8 +2,8 @@
 
 #include <QDebug>
 
-#include "../globals/Globals.h"
-#include "../globals/Manager.h"
+#include "globals/Globals.h"
+#include "globals/Manager.h"
 
 MusicTreeView::MusicTreeView(QWidget *parent) : QTreeView(parent)
 {

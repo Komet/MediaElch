@@ -33,7 +33,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../MediaElch.qrc">
+      <iconset resource="../../data/MediaElch.qrc">
        <normaloff>:/img/trash_white.png</normaloff>:/img/trash_white.png</iconset>
      </property>
      <property name="iconSize">
@@ -47,7 +47,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

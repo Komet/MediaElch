@@ -102,7 +102,7 @@
   <customwidget>
    <class>MusicTreeView</class>
    <extends>QTreeView</extends>
-   <header>smallWidgets/MusicTreeView.h</header>
+   <header>ui/small_widgets/MusicTreeView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

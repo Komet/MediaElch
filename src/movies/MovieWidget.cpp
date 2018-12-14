@@ -14,7 +14,7 @@
 #include "movies/FilesWidget.h"
 #include "movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
-#include "smallWidgets/ClosableImage.h"
+#include "ui/small_widgets/ClosableImage.h"
 
 #include <QDoubleValidator>
 #include <QFileDialog>

@@ -51,11 +51,11 @@ target.path = /usr/bin
 INSTALLS += target
 
 dotDesktop.path = /usr/share/applications
-dotDesktop.files = desktop/MediaElch.desktop
+dotDesktop.files = data/desktop/MediaElch.desktop
 INSTALLS += dotDesktop
 
 icon.path = /usr/share/pixmaps
-icon.files = desktop/MediaElch.png
+icon.files = data/desktop/MediaElch.png
 INSTALLS += icon
 
 ICON = MediaElch.icns
@@ -196,31 +196,31 @@ SOURCES += src/main.cpp \
     src/settings/ExportTemplateWidget.cpp \
     src/settings/Settings.cpp \
     src/settings/SettingsWindow.cpp \
-    src/smallWidgets/AlphabeticalList.cpp \
-    src/smallWidgets/Badge.cpp \
-    src/smallWidgets/ClosableImage.cpp \
-    src/smallWidgets/FilterWidget.cpp \
-    src/smallWidgets/ImageGallery.cpp \
-    src/smallWidgets/ImageLabel.cpp \
-    src/smallWidgets/LoadingStreamDetails.cpp \
-    src/smallWidgets/MediaFlags.cpp \
-    src/smallWidgets/MessageLabel.cpp \
-    src/smallWidgets/MusicTreeView.cpp \
-    src/smallWidgets/MyCheckBox.cpp \
-    src/smallWidgets/MyLabel.cpp \
-    src/smallWidgets/MyLineEdit.cpp \
-    src/smallWidgets/MySpinBox.cpp \
-    src/smallWidgets/MySplitter.cpp \
-    src/smallWidgets/MySplitterHandle.cpp \
-    src/smallWidgets/MyTableView.cpp \
-    src/smallWidgets/MyTableWidget.cpp \
-    src/smallWidgets/MyTableWidgetItem.cpp \
-    src/smallWidgets/MyTreeView.cpp \
-    src/smallWidgets/MyWidget.cpp \
-    src/smallWidgets/SearchOverlay.cpp \
-    src/smallWidgets/SlidingStackedWidget.cpp \
-    src/smallWidgets/TagCloud.cpp \
-    src/smallWidgets/TvShowTreeView.cpp \
+    src/ui/small_widgets/AlphabeticalList.cpp \
+    src/ui/small_widgets/Badge.cpp \
+    src/ui/small_widgets/ClosableImage.cpp \
+    src/ui/small_widgets/FilterWidget.cpp \
+    src/ui/small_widgets/ImageGallery.cpp \
+    src/ui/small_widgets/ImageLabel.cpp \
+    src/ui/small_widgets/LoadingStreamDetails.cpp \
+    src/ui/small_widgets/MediaFlags.cpp \
+    src/ui/small_widgets/MessageLabel.cpp \
+    src/ui/small_widgets/MusicTreeView.cpp \
+    src/ui/small_widgets/MyCheckBox.cpp \
+    src/ui/small_widgets/MyLabel.cpp \
+    src/ui/small_widgets/MyLineEdit.cpp \
+    src/ui/small_widgets/MySpinBox.cpp \
+    src/ui/small_widgets/MySplitter.cpp \
+    src/ui/small_widgets/MySplitterHandle.cpp \
+    src/ui/small_widgets/MyTableView.cpp \
+    src/ui/small_widgets/MyTableWidget.cpp \
+    src/ui/small_widgets/MyTableWidgetItem.cpp \
+    src/ui/small_widgets/MyTreeView.cpp \
+    src/ui/small_widgets/MyWidget.cpp \
+    src/ui/small_widgets/SearchOverlay.cpp \
+    src/ui/small_widgets/SlidingStackedWidget.cpp \
+    src/ui/small_widgets/TagCloud.cpp \
+    src/ui/small_widgets/TvShowTreeView.cpp \
     src/support/SupportDialog.cpp \
     src/trailerProviders/HdTrailers.cpp \
     src/tvShows/TvShowFilesWidget.cpp \
@@ -389,31 +389,31 @@ HEADERS  += Version.h \
     src/settings/ExportTemplateWidget.h \
     src/settings/Settings.h \
     src/settings/SettingsWindow.h \
-    src/smallWidgets/AlphabeticalList.h \
-    src/smallWidgets/Badge.h \
-    src/smallWidgets/ClosableImage.h \
-    src/smallWidgets/FilterWidget.h \
-    src/smallWidgets/ImageGallery.h \
-    src/smallWidgets/ImageLabel.h \
-    src/smallWidgets/LoadingStreamDetails.h \
-    src/smallWidgets/MediaFlags.h \
-    src/smallWidgets/MessageLabel.h \
-    src/smallWidgets/MusicTreeView.h \
-    src/smallWidgets/MyCheckBox.h \
-    src/smallWidgets/MyLabel.h \
-    src/smallWidgets/MyLineEdit.h \
-    src/smallWidgets/MySpinBox.h \
-    src/smallWidgets/MySplitter.h \
-    src/smallWidgets/MySplitterHandle.h \
-    src/smallWidgets/MyTableView.h \
-    src/smallWidgets/MyTableWidget.h \
-    src/smallWidgets/MyTableWidgetItem.h \
-    src/smallWidgets/MyTreeView.h \
-    src/smallWidgets/MyWidget.h \
-    src/smallWidgets/SearchOverlay.h \
-    src/smallWidgets/SlidingStackedWidget.h \
-    src/smallWidgets/TagCloud.h \
-    src/smallWidgets/TvShowTreeView.h \
+    src/ui/small_widgets/AlphabeticalList.h \
+    src/ui/small_widgets/Badge.h \
+    src/ui/small_widgets/ClosableImage.h \
+    src/ui/small_widgets/FilterWidget.h \
+    src/ui/small_widgets/ImageGallery.h \
+    src/ui/small_widgets/ImageLabel.h \
+    src/ui/small_widgets/LoadingStreamDetails.h \
+    src/ui/small_widgets/MediaFlags.h \
+    src/ui/small_widgets/MessageLabel.h \
+    src/ui/small_widgets/MusicTreeView.h \
+    src/ui/small_widgets/MyCheckBox.h \
+    src/ui/small_widgets/MyLabel.h \
+    src/ui/small_widgets/MyLineEdit.h \
+    src/ui/small_widgets/MySpinBox.h \
+    src/ui/small_widgets/MySplitter.h \
+    src/ui/small_widgets/MySplitterHandle.h \
+    src/ui/small_widgets/MyTableView.h \
+    src/ui/small_widgets/MyTableWidget.h \
+    src/ui/small_widgets/MyTableWidgetItem.h \
+    src/ui/small_widgets/MyTreeView.h \
+    src/ui/small_widgets/MyWidget.h \
+    src/ui/small_widgets/SearchOverlay.h \
+    src/ui/small_widgets/SlidingStackedWidget.h \
+    src/ui/small_widgets/TagCloud.h \
+    src/ui/small_widgets/TvShowTreeView.h \
     src/support/SupportDialog.h \
     src/trailerProviders/HdTrailers.h \
     src/trailerProviders/TrailerProvider.h \
@@ -480,11 +480,11 @@ FORMS    += src/main/MainWindow.ui \
     src/sets/SetsWidget.ui \
     src/settings/ExportTemplateWidget.ui \
     src/settings/SettingsWindow.ui \
-    src/smallWidgets/FilterWidget.ui \
-    src/smallWidgets/ImageLabel.ui \
-    src/smallWidgets/LoadingStreamDetails.ui \
-    src/smallWidgets/MediaFlags.ui \
-    src/smallWidgets/TagCloud.ui \
+    src/ui/small_widgets/FilterWidget.ui \
+    src/ui/small_widgets/ImageLabel.ui \
+    src/ui/small_widgets/LoadingStreamDetails.ui \
+    src/ui/small_widgets/MediaFlags.ui \
+    src/ui/small_widgets/TagCloud.ui \
     src/support/SupportDialog.ui \
     src/tvShows/ItemWidgetShow.ui \
     src/tvShows/TvShowFilesWidget.ui \
@@ -499,8 +499,8 @@ FORMS    += src/main/MainWindow.ui \
     src/xbmc/XbmcSync.ui
 
 RESOURCES += \
-    MediaElch.qrc \
-    i18n.qrc \
+    data/MediaElch.qrc \
+    data/i18n.qrc \
     ui.qrc
 
 TRANSLATIONS += \

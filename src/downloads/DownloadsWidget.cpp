@@ -15,8 +15,8 @@
 #include "notifications/MacNotificationHandler.h"
 #include "notifications/Notificator.h"
 #include "settings/Settings.h"
-#include "smallWidgets/MessageLabel.h"
-#include "smallWidgets/MyTableWidgetItem.h"
+#include "ui/small_widgets/MessageLabel.h"
+#include "ui/small_widgets/MyTableWidgetItem.h"
 
 DownloadsWidget::DownloadsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DownloadsWidget)
 {

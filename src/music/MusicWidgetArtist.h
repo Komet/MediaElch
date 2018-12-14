@@ -2,7 +2,7 @@
 #define MUSICWIDGETARTIST_H
 
 #include "music/Artist.h"
-#include "smallWidgets/ClosableImage.h"
+#include "ui/small_widgets/ClosableImage.h"
 
 #include <QLineEdit>
 #include <QPointer>

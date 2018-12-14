@@ -14,7 +14,7 @@
    <string>TV Show Multi Scrape</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../MediaElch.qrc">
+   <iconset resource="../../data/MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -485,11 +485,11 @@
   <customwidget>
    <class>MyCheckBox</class>
    <extends>QCheckBox</extends>
-   <header location="global">smallWidgets/MyCheckBox.h</header>
+   <header location="global">ui/small_widgets/MyCheckBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

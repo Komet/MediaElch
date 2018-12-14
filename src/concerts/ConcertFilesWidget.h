@@ -4,7 +4,7 @@
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"
-#include "smallWidgets/AlphabeticalList.h"
+#include "ui/small_widgets/AlphabeticalList.h"
 
 #include <QLabel>
 #include <QMenu>
