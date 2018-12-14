@@ -17,7 +17,7 @@
    <string>Search Result</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../MediaElch.qrc">
+   <iconset resource="../../data/MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
@@ -65,7 +65,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

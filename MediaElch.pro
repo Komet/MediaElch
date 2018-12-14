@@ -499,7 +499,7 @@ FORMS    += src/main/MainWindow.ui \
     src/xbmc/XbmcSync.ui
 
 RESOURCES += \
-    MediaElch.qrc \
+    data/MediaElch.qrc \
     data/i18n.qrc \
     ui.qrc
 

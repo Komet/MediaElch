@@ -225,7 +225,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../MediaElch.qrc">
+        <iconset resource="../../data/MediaElch.qrc">
          <normaloff>:/img/zoom_out.png</normaloff>:/img/zoom_out.png</iconset>
        </property>
       </widget>
@@ -279,7 +279,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../MediaElch.qrc">
+        <iconset resource="../../data/MediaElch.qrc">
          <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
        </property>
       </widget>
@@ -367,7 +367,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../MediaElch.qrc"/>
+  <include location="../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

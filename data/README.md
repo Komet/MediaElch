@@ -10,11 +10,14 @@ as the rest of the project, but are good candidates for inclusion in the
 ```
 .
 ├── desktop               # Files for linux desktops
+├── fonts                 # TTF fonts
 ├── i18n                  # Translations for MediaElch pulled from transifex
 │   ├── MediaElch_en.qm
 │   ├── MediaElch_en.ts
 │   ├── ...
-├── i18n.qrc
+├── img                   # Contains all images (e.g. flags and icons)
+├── i18n.qrc              # Qt Resource file for translations
+├── MediaElch.qrc         # Qt Resource file for images and fonts
 └── README.md             # This file
 
 ```
