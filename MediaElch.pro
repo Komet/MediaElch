@@ -500,7 +500,7 @@ FORMS    += src/main/MainWindow.ui \
 
 RESOURCES += \
     MediaElch.qrc \
-    i18n.qrc \
+    data/i18n.qrc \
     ui.qrc
 
 TRANSLATIONS += \
