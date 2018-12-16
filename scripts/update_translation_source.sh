@@ -20,5 +20,5 @@ lrelease MediaElch.pro
 # Update source
 tx push -s
 
-git add i18n
+git add data/i18n
 git commit -m "[i18n] Update translations"

@@ -504,25 +504,25 @@ RESOURCES += \
     ui.qrc
 
 TRANSLATIONS += \
-    i18n/MediaElch_bg.ts \
-    i18n/MediaElch_cs_CZ.ts \
-    i18n/MediaElch_da.ts \
-    i18n/MediaElch_de.ts \
-    i18n/MediaElch_en.ts \
-    i18n/MediaElch_es_ES.ts \
-    i18n/MediaElch_fi.ts \
-    i18n/MediaElch_fr.ts \
-    i18n/MediaElch_it.ts \
-    i18n/MediaElch_ja.ts \
-    i18n/MediaElch_ko.ts \
-    i18n/MediaElch_nl_NL.ts \
-    i18n/MediaElch_no.ts \
-    i18n/MediaElch_pl.ts \
-    i18n/MediaElch_pt_BR.ts \
-    i18n/MediaElch_pt_PT.ts \
-    i18n/MediaElch_ru.ts \
-    i18n/MediaElch_sv.ts \
-    i18n/MediaElch_zh_CN.ts
+    data/i18n/MediaElch_bg.ts \
+    data/i18n/MediaElch_cs_CZ.ts \
+    data/i18n/MediaElch_da.ts \
+    data/i18n/MediaElch_de.ts \
+    data/i18n/MediaElch_en.ts \
+    data/i18n/MediaElch_es_ES.ts \
+    data/i18n/MediaElch_fi.ts \
+    data/i18n/MediaElch_fr.ts \
+    data/i18n/MediaElch_it.ts \
+    data/i18n/MediaElch_ja.ts \
+    data/i18n/MediaElch_ko.ts \
+    data/i18n/MediaElch_nl_NL.ts \
+    data/i18n/MediaElch_no.ts \
+    data/i18n/MediaElch_pl.ts \
+    data/i18n/MediaElch_pt_BR.ts \
+    data/i18n/MediaElch_pt_PT.ts \
+    data/i18n/MediaElch_ru.ts \
+    data/i18n/MediaElch_sv.ts \
+    data/i18n/MediaElch_zh_CN.ts
 
 test {
     message(Test build)
