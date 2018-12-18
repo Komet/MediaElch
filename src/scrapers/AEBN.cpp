@@ -371,7 +371,7 @@ void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
     }
 }
 
-bool AEBN::hasSettings()
+bool AEBN::hasSettings() const
 {
     return true;
 }

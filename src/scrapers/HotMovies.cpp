@@ -248,7 +248,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
     }
 }
 
-bool HotMovies::hasSettings()
+bool HotMovies::hasSettings() const
 {
     return false;
 }

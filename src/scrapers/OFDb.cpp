@@ -46,11 +46,7 @@ bool OFDb::isAdult() const
     return false;
 }
 
-/**
- * @brief Returns if the scraper has settings
- * @return Scraper has settings
- */
-bool OFDb::hasSettings()
+bool OFDb::hasSettings() const
 {
     return false;
 }

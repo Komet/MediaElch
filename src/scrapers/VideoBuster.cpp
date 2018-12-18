@@ -380,7 +380,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScr
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
  */
-bool VideoBuster::hasSettings()
+bool VideoBuster::hasSettings() const
 {
     return false;
 }

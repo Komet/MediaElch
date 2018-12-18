@@ -44,7 +44,7 @@ public:
 
     static Manager *instance();
     QList<MediaCenterInterface *> mediaCenters();
-    QList<MovieScraperInterface *> scrapers();
+    QList<MovieScraperInterface *> movieScrapers();
     MovieScraperInterface *scraper(const QString &identifier);
     QList<TvScraperInterface *> tvScrapers();
     QList<ConcertScraperInterface *> concertScrapers();

@@ -63,7 +63,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->exportTemplates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
-    for (auto *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->movieScrapers()) {
         if (scraper->hasSettings()) {
             QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
@@ -754,7 +754,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info
         box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
         index = 1;
     }
-    for (auto *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->movieScrapers()) {
         if (scraper->identifier() == "custom-movie") {
             continue;
         }
@@ -913,7 +913,7 @@ void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
 void SettingsWindow::onShowAdultScrapers()
 {
     bool show = ui->chkEnableAdultScrapers->isChecked();
-    for (auto *scraper : Manager::instance()->scrapers()) {
+    for (const auto *scraper : Manager::instance()->movieScrapers()) {
         if (scraper->isAdult() && scraper->hasSettings()) {
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 0)->widget()->setVisible(show);
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);

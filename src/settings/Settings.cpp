@@ -209,24 +209,18 @@ void Settings::loadSettings()
                          "read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
                          "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,"
                          "xvid,xvidvd,xxx,www,mkv";
+    }
 
-        // Scrapers
-    }
-    for (auto *scraper : Manager::instance()->scrapers()) {
-        scraper->loadSettings(*settings());
-    }
-    for (auto *scraper : Manager::instance()->tvScrapers()) {
-        scraper->loadSettings(*settings());
-    }
-    for (auto *scraper : Manager::instance()->concertScrapers()) {
-        scraper->loadSettings(*settings());
-    }
-    for (auto *scraper : Manager::instance()->musicScrapers()) {
-        scraper->loadSettings(*settings());
-    }
-    for (auto *scraper : Manager::instance()->imageProviders()) {
-        scraper->loadSettings(*settings());
-    }
+    const auto loadSettings = [&](auto scrapers) {
+        for (auto *scraper : scrapers) {
+            scraper->loadSettings(*settings());
+        }
+    };
+    loadSettings(Manager::instance()->movieScrapers());
+    loadSettings(Manager::instance()->tvScrapers());
+    loadSettings(Manager::instance()->concertScrapers());
+    loadSettings(Manager::instance()->musicScrapers());
+    loadSettings(Manager::instance()->imageProviders());
 
     m_currentMovieScraper = settings()->value("Scraper/CurrentMovieScraper", 0).toInt();
 
@@ -411,7 +405,7 @@ void Settings::saveSettings()
             }
         }
     };
-    saveSettings(Manager::instance()->scrapers());
+    saveSettings(Manager::instance()->movieScrapers());
     saveSettings(Manager::instance()->tvScrapers());
     saveSettings(Manager::instance()->concertScrapers());
     saveSettings(Manager::instance()->musicScrapers());

@@ -250,7 +250,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<Movie
     }
 }
 
-bool AdultDvdEmpire::hasSettings()
+bool AdultDvdEmpire::hasSettings() const
 {
     return false;
 }

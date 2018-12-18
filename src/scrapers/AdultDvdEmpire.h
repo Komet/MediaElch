@@ -16,7 +16,7 @@ public:
     QString identifier() const override;
     void search(QString searchStr) override;
     void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
-    bool hasSettings() override;
+    bool hasSettings() const override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
     QList<MovieScraperInfos> scraperSupports() override;

@@ -53,11 +53,7 @@ bool KinoDe::isAdult() const
     return false;
 }
 
-/**
- * @brief Returns if the scraper has settings
- * @return Scraper has settings
- */
-bool KinoDe::hasSettings()
+bool KinoDe::hasSettings() const
 {
     return false;
 }

@@ -59,7 +59,7 @@ private slots:
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
-    QMap<MovieScraperInterface *, int> m_scraperRows;
+    QMap<const MovieScraperInterface *, int> m_scraperRows;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
 

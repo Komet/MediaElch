@@ -370,7 +370,7 @@ QString CustomMovieScraper::defaultLanguageKey()
     return QStringLiteral("");
 }
 
-bool CustomMovieScraper::hasSettings()
+bool CustomMovieScraper::hasSettings() const
 {
     return false;
 }

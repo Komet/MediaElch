@@ -157,7 +157,7 @@ MusicFileSearcher *Manager::musicFileSearcher()
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
  */
-QList<MovieScraperInterface *> Manager::scrapers()
+QList<MovieScraperInterface *> Manager::movieScrapers()
 {
     return m_scrapers;
 }

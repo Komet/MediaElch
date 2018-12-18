@@ -21,7 +21,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (MovieScraperInterface *scraper : Manager::instance()->movieScrapers()) {
         connect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
@@ -99,7 +99,7 @@ void MovieSearchWidget::setupScraperDropdown()
 
     // Setup new scraper dropdown
     const bool noAdultScrapers = !Settings::instance()->showAdultScrapers();
-    for (const auto *scraper : Manager::instance()->scrapers()) {
+    for (const auto *scraper : Manager::instance()->movieScrapers()) {
         if (noAdultScrapers && scraper->isAdult()) {
             continue;
         }
@@ -289,7 +289,7 @@ QMap<MovieScraperInterface *, QString> MovieSearchWidget::customScraperIds()
 void MovieSearchWidget::onScraperChanged()
 {
     int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
+    if (index < 0 || index >= Manager::instance()->movieScrapers().size()) {
         qCritical() << "[Movie Search] Selected invalid scraper:" << index;
         return;
     }

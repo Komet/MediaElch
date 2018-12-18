@@ -52,7 +52,7 @@ bool IMDB::isAdult() const
     return false;
 }
 
-bool IMDB::hasSettings()
+bool IMDB::hasSettings() const
 {
     return true;
 }

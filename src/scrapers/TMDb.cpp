@@ -107,11 +107,7 @@ bool TMDb::isAdult() const
     return false;
 }
 
-/**
- * @brief Returns if the scraper has settings
- * @return Scraper has settings
- */
-bool TMDb::hasSettings()
+bool TMDb::hasSettings() const
 {
     return true;
 }

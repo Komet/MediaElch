@@ -56,7 +56,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
     }
-    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (const auto *scraper : Manager::instance()->movieScrapers()) {
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
     }
 
@@ -106,7 +106,7 @@ int MovieMultiScrapeDialog::exec()
 
 void MovieMultiScrapeDialog::accept()
 {
-    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
@@ -121,7 +121,7 @@ void MovieMultiScrapeDialog::accept()
 
 void MovieMultiScrapeDialog::reject()
 {
-    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
@@ -145,7 +145,7 @@ void MovieMultiScrapeDialog::setMovies(QList<Movie *> movies)
 
 void MovieMultiScrapeDialog::onStartScraping()
 {
-    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
