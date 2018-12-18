@@ -1,7 +1,7 @@
 #ifndef HOTMOVIES_H
 #define HOTMOVIES_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QNetworkAccessManager>

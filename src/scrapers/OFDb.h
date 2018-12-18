@@ -1,7 +1,7 @@
 #ifndef OFDB_H
 #define OFDB_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QObject>
 #include <QtNetwork/QNetworkAccessManager>

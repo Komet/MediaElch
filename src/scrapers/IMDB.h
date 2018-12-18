@@ -2,7 +2,7 @@
 #define IMDB_H
 
 #include "data/Movie.h"
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>

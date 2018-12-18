@@ -1,5 +1,4 @@
-#ifndef SCRAPER_H
-#define SCRAPER_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -38,5 +37,3 @@ public:
 signals:
     virtual void searchDone(QList<ScraperSearchResult>) = 0;
 };
-
-#endif // SCRAPER_H

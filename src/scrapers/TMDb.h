@@ -10,7 +10,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 /**
  * @brief The TMDb class

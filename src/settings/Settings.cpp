@@ -6,7 +6,7 @@
 #include <QMutexLocker>
 #include <QNetworkProxy>
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
 

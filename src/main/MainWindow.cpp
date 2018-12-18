@@ -15,7 +15,7 @@
 
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"

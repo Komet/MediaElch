@@ -8,7 +8,7 @@
 
 #include "data/ConcertScraperInterface.h"
 #include "data/MovieFilesOrganizer.h"
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 #include "data/Storage.h"
 #include "data/TvScraperInterface.h"
 #include "export/ExportTemplate.h"

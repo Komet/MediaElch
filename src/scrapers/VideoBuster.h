@@ -1,7 +1,7 @@
 #ifndef VIDEOBUSTER_H
 #define VIDEOBUSTER_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QObject>
 #include <QWidget>

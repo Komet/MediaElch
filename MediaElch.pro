@@ -270,8 +270,8 @@ HEADERS  += Version.h \
     src/data/MovieModel.h \
     src/data/MovieProxyModel.h \
     src/data/MusicScraperInterface.h \
+    src/data/MovieScraperInterface.h \
     src/data/Rating.h \
-    src/data/ScraperInterface.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
     src/data/Subtitle.h \

@@ -7,7 +7,7 @@
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
 #include "data/Movie.h"
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

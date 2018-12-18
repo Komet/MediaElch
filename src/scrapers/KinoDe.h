@@ -1,7 +1,7 @@
 #ifndef CINEFACTS_H
 #define CINEFACTS_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QObject>
 #include <QQueue>

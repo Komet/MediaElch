@@ -1,7 +1,7 @@
 #ifndef ADULTDVDEMPIRE_H
 #define ADULTDVDEMPIRE_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QNetworkAccessManager>
 #include <QObject>

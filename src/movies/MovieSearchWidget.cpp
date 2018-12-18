@@ -3,7 +3,7 @@
 
 #include <QDebug>
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"

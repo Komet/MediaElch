@@ -2,7 +2,7 @@
 #define CUSTOMMOVIESCRAPER_H
 
 #include "data/ImageProviderInterface.h"
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QNetworkAccessManager>
 #include <QObject>

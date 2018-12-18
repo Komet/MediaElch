@@ -1,7 +1,7 @@
 #ifndef AEBN_H
 #define AEBN_H
 
-#include "data/ScraperInterface.h"
+#include "data/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QMap>
