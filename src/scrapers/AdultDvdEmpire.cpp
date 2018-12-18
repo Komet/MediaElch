@@ -24,17 +24,17 @@ AdultDvdEmpire::AdultDvdEmpire(QObject *parent) :
     setParent(parent);
 }
 
-QString AdultDvdEmpire::name()
+QString AdultDvdEmpire::name() const
 {
     return QStringLiteral("Adult DVD Empire");
 }
 
-QString AdultDvdEmpire::identifier()
+QString AdultDvdEmpire::identifier() const
 {
     return QStringLiteral("adult-dvd-empire");
 }
 
-bool AdultDvdEmpire::isAdult()
+bool AdultDvdEmpire::isAdult() const
 {
     return true;
 }
@@ -112,7 +112,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void AdultDvdEmpire::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));

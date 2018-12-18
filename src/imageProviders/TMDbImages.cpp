@@ -101,7 +101,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
     m_imageType = ImageType::MoviePoster;
     QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -116,7 +116,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QList<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }

@@ -41,7 +41,7 @@ QList<ScraperSearchResult> searchScraperSync(ScraperInterfaceT &scraper, QString
  */
 template<class ScraperInterfaceT>
 void loadDataSync(ScraperInterfaceT &scraper,
-    QMap<ScraperInterface *, QString> ids,
+    QMap<MovieScraperInterface *, QString> ids,
     Movie &movie,
     QList<MovieScraperInfos> infos)
 {

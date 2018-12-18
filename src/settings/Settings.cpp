@@ -212,19 +212,19 @@ void Settings::loadSettings()
 
         // Scrapers
     }
-    for (ScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (auto *scraper : Manager::instance()->scrapers()) {
         scraper->loadSettings(*settings());
     }
-    for (TvScraperInterface *scraper : Manager::instance()->tvScrapers()) {
+    for (auto *scraper : Manager::instance()->tvScrapers()) {
         scraper->loadSettings(*settings());
     }
-    for (ConcertScraperInterface *scraper : Manager::instance()->concertScrapers()) {
+    for (auto *scraper : Manager::instance()->concertScrapers()) {
         scraper->loadSettings(*settings());
     }
-    for (MusicScraperInterface *scraper : Manager::instance()->musicScrapers()) {
+    for (auto *scraper : Manager::instance()->musicScrapers()) {
         scraper->loadSettings(*settings());
     }
-    for (ImageProviderInterface *scraper : Manager::instance()->imageProviders()) {
+    for (auto *scraper : Manager::instance()->imageProviders()) {
         scraper->loadSettings(*settings());
     }
 
@@ -404,31 +404,18 @@ void Settings::saveSettings()
 
     settings()->setValue("excludeWords", m_excludeWords);
 
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->hasSettings()) {
-            scraper->saveSettings(*settings());
+    const auto saveSettings = [&](auto scrapers) {
+        for (auto *scraper : scrapers) {
+            if (scraper->hasSettings()) {
+                scraper->saveSettings(*settings());
+            }
         }
-    }
-    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
-        if (scraper->hasSettings()) {
-            scraper->saveSettings(*settings());
-        }
-    }
-    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
-        if (scraper->hasSettings()) {
-            scraper->saveSettings(*settings());
-        }
-    }
-    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
-        if (scraper->hasSettings()) {
-            scraper->saveSettings(*settings());
-        }
-    }
-    foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
-        if (scraper->hasSettings()) {
-            scraper->saveSettings(*settings());
-        }
-    }
+    };
+    saveSettings(Manager::instance()->scrapers());
+    saveSettings(Manager::instance()->tvScrapers());
+    saveSettings(Manager::instance()->concertScrapers());
+    saveSettings(Manager::instance()->musicScrapers());
+    saveSettings(Manager::instance()->imageProviders());
 
     settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
 

@@ -11,7 +11,7 @@
 class DownloadManager;
 class MediaCenterInterface;
 class Movie;
-class ScraperInterface;
+class MovieScraperInterface;
 
 class MovieController : public QObject
 {
@@ -21,10 +21,11 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void
-    loadData(QMap<ScraperInterface *, QString> ids, ScraperInterface *scraperInterface, QList<MovieScraperInfos> infos);
+    void loadData(QMap<MovieScraperInterface *, QString> ids,
+        MovieScraperInterface *scraperInterface,
+        QList<MovieScraperInfos> infos);
     void loadStreamDetailsFromFile();
-    void scraperLoadDone(ScraperInterface *scraper);
+    void scraperLoadDone(MovieScraperInterface *scraper);
     QList<MovieScraperInfos> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;

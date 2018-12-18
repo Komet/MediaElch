@@ -245,7 +245,7 @@ void ImportDialog::storeDefaults()
 
 void ImportDialog::onMovieChosen()
 {
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     QList<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();

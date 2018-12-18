@@ -92,17 +92,17 @@ QString TMDb::apiKey()
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString TMDb::name()
+QString TMDb::name() const
 {
     return QStringLiteral("The Movie DB");
 }
 
-QString TMDb::identifier()
+QString TMDb::identifier() const
 {
     return QStringLiteral("tmdb");
 }
 
-bool TMDb::isAdult()
+bool TMDb::isAdult() const
 {
     return false;
 }
@@ -450,7 +450,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     const QString id = ids.values().first();
     const bool isImdbId = id.startsWith("tt");

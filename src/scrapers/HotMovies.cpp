@@ -26,17 +26,17 @@ HotMovies::HotMovies(QObject *parent) :
     setParent(parent);
 }
 
-QString HotMovies::name()
+QString HotMovies::name() const
 {
     return QString("HotMovies");
 }
 
-QString HotMovies::identifier()
+QString HotMovies::identifier() const
 {
     return QString("hotmovies");
 }
 
-bool HotMovies::isAdult()
+bool HotMovies::isAdult() const
 {
     return true;
 }
@@ -115,7 +115,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void HotMovies::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

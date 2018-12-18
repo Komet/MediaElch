@@ -15,7 +15,7 @@ namespace Ui {
 class MovieSearchWidget;
 }
 
-class ScraperInterface;
+class MovieScraperInterface;
 
 class MovieSearchWidget : public QWidget
 {
@@ -29,7 +29,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QList<MovieScraperInfos> infosToLoad();
-    QMap<ScraperInterface *, QString> customScraperIds();
+    QMap<MovieScraperInterface *, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -49,9 +49,9 @@ private:
     // QString m_scraperId;
     QString m_scraperMovieId;
     QList<MovieScraperInfos> m_infosToLoad;
-    QMap<ScraperInterface *, QString> m_customScraperIds;
-    ScraperInterface *m_currentCustomScraper;
-    ScraperInterface *m_currentScraper;
+    QMap<MovieScraperInterface *, QString> m_customScraperIds;
+    MovieScraperInterface *m_currentCustomScraper;
+    MovieScraperInterface *m_currentScraper;
     QString m_currentLanguage;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
@@ -60,7 +60,7 @@ private:
     void clearResults();
     void setCheckBoxesEnabled(QList<MovieScraperInfos> scraperSupports);
     void setupComboBoxes();
-    void setSearchText(ScraperInterface *scraper);
+    void setSearchText(MovieScraperInterface *scraper);
     void setupScraperDropdown();
     void setupLanguageDropdown();
     void initializeCheckBoxes();

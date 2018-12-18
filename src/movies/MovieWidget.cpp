@@ -478,7 +478,7 @@ void MovieWidget::startScraperSearch()
     MovieSearch::instance()->exec(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        QMap<ScraperInterface *, QString> ids;
+        QMap<MovieScraperInterface *, QString> ids;
         QList<MovieScraperInfos> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();

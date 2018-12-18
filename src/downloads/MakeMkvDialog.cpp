@@ -223,7 +223,7 @@ void MakeMkvDialog::onImportComplete()
 
 void MakeMkvDialog::onMovieChosen()
 {
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     QList<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();

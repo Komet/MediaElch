@@ -21,7 +21,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (ScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
         connect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
@@ -99,7 +99,7 @@ void MovieSearchWidget::setupScraperDropdown()
 
     // Setup new scraper dropdown
     const bool noAdultScrapers = !Settings::instance()->showAdultScrapers();
-    for (ScraperInterface *scraper : Manager::instance()->scrapers()) {
+    for (const auto *scraper : Manager::instance()->scrapers()) {
         if (noAdultScrapers && scraper->isAdult()) {
             continue;
         }
@@ -200,7 +200,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
     }
 
     m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-    QList<ScraperInterface *> scrapers =
+    QList<MovieScraperInterface *> scrapers =
         CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
     if (scrapers.isEmpty()) {
@@ -281,7 +281,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QList<MovieScraperInfos> scraperSup
     updateInfoToLoad();
 }
 
-QMap<ScraperInterface *, QString> MovieSearchWidget::customScraperIds()
+QMap<MovieScraperInterface *, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }
@@ -313,7 +313,7 @@ void MovieSearchWidget::onLanguageChanged()
     startSearch();
 }
 
-void MovieSearchWidget::setSearchText(ScraperInterface *scraper)
+void MovieSearchWidget::setSearchText(MovieScraperInterface *scraper)
 {
     if (!scraper) {
         return;

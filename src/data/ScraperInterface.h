@@ -13,16 +13,16 @@ class Movie;
 struct ScraperSearchResult;
 
 /**
- * @brief The ScraperInterface class
+ * @brief The MovieScraperInterface class
  * This class is the base for every movie Scraper.
  */
-class ScraperInterface : public QObject
+class MovieScraperInterface : public QObject
 {
 public:
-    virtual QString name() = 0;
-    virtual QString identifier() = 0;
+    virtual QString name() const = 0;
+    virtual QString identifier() const = 0;
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) = 0;
+    virtual void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;
@@ -33,7 +33,7 @@ public:
     // Default language stored in settings.
     virtual QString defaultLanguageKey() = 0;
     virtual QWidget *settingsWidget() = 0;
-    virtual bool isAdult() = 0;
+    virtual bool isAdult() const = 0;
 
 signals:
     virtual void searchDone(QList<ScraperSearchResult>) = 0;

@@ -9,15 +9,15 @@
 #include <QObject>
 #include <QWidget>
 
-class AEBN : public ScraperInterface
+class AEBN : public MovieScraperInterface
 {
     Q_OBJECT
 public:
     explicit AEBN(QObject *parent = nullptr);
-    QString name() override;
-    QString identifier() override;
+    QString name() const override;
+    QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
     bool hasSettings() override;
     void loadSettings(QSettings &settings) override;
     void saveSettings(QSettings &settings) override;
@@ -27,7 +27,7 @@ public:
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
-    bool isAdult() override;
+    bool isAdult() const override;
 
 signals:
     void searchDone(QList<ScraperSearchResult>) override;

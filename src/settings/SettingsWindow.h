@@ -13,7 +13,7 @@ class SettingsWindow;
 }
 
 class ExportTemplate;
-class ScraperInterface;
+class MovieScraperInterface;
 class Settings;
 
 class SettingsWindow : public QMainWindow
@@ -59,7 +59,7 @@ private slots:
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
-    QMap<ScraperInterface *, int> m_scraperRows;
+    QMap<MovieScraperInterface *, int> m_scraperRows;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
 

@@ -41,8 +41,8 @@ private:
     QList<Movie *> m_movies;
     QQueue<Movie *> m_queue;
     QPointer<Movie> m_currentMovie;
-    ScraperInterface *m_scraperInterface;
-    QMap<ScraperInterface *, QString> m_currentIds;
+    MovieScraperInterface *m_scraperInterface;
+    QMap<MovieScraperInterface *, QString> m_currentIds;
     bool m_isImdb;
     bool m_isTmdb;
     bool m_executed;

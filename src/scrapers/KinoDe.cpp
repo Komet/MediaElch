@@ -38,17 +38,17 @@ KinoDe::KinoDe(QObject *parent)
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString KinoDe::name()
+QString KinoDe::name() const
 {
     return QStringLiteral("Kino.de");
 }
 
-QString KinoDe::identifier()
+QString KinoDe::identifier() const
 {
     return QStringLiteral("kinode");
 }
 
-bool KinoDe::isAdult()
+bool KinoDe::isAdult() const
 {
     return false;
 }
@@ -188,7 +188,7 @@ QList<ScraperSearchResult> KinoDe::parseSearch(const QString &html)
  * @param infos List of infos to load
  * @see KinoDe::loadFinished
  */
-void KinoDe::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void KinoDe::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     const QString &movieSlug = ids.values().first();

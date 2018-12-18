@@ -45,17 +45,17 @@ QNetworkAccessManager *VideoBuster::qnam()
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString VideoBuster::name()
+QString VideoBuster::name() const
 {
     return QString("VideoBuster");
 }
 
-QString VideoBuster::identifier()
+QString VideoBuster::identifier() const
 {
     return QString("videobuster");
 }
 
-bool VideoBuster::isAdult()
+bool VideoBuster::isAdult() const
 {
     return false;
 }
@@ -157,7 +157,7 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void VideoBuster::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

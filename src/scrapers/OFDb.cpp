@@ -31,17 +31,17 @@ OFDb::OFDb(QObject *parent)
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString OFDb::name()
+QString OFDb::name() const
 {
     return QString("OFDb");
 }
 
-QString OFDb::identifier()
+QString OFDb::identifier() const
 {
     return QString("ofdb");
 }
 
-bool OFDb::isAdult()
+bool OFDb::isAdult() const
 {
     return false;
 }
@@ -237,7 +237,7 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void OFDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

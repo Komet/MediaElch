@@ -96,7 +96,7 @@ QList<MovieScraperInfos> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QMap<ScraperInterface *, QString> MovieSearch::customScraperIds()
+QMap<MovieScraperInterface *, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

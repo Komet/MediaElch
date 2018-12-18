@@ -147,8 +147,8 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
  * @param scraperInterface ScraperInterface to use for loading
  * @param infos List of infos to load
  */
-void MovieController::loadData(QMap<ScraperInterface *, QString> ids,
-    ScraperInterface *scraperInterface,
+void MovieController::loadData(QMap<MovieScraperInterface *, QString> ids,
+    MovieScraperInterface *scraperInterface,
     QList<MovieScraperInfos> infos)
 {
     m_infosToLoad = infos;
@@ -194,7 +194,7 @@ void MovieController::setInfosToLoad(QList<MovieScraperInfos> infos)
  * @brief Called when a ScraperInterface has finished loading
  *        Emits the loaded signal
  */
-void MovieController::scraperLoadDone(ScraperInterface *scraper)
+void MovieController::scraperLoadDone(MovieScraperInterface *scraper)
 {
     m_customScraperMutex.lock();
     if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
@@ -215,7 +215,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     }
 
     QList<ImageType> images;
-    ScraperInterface *sigScraper = scraper;
+    MovieScraperInterface *sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
                   ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Backdrop)

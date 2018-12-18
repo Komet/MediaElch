@@ -37,17 +37,17 @@ IMDB::IMDB(QObject *parent) : m_loadAllTags{false}
     m_settingsWidget->setLayout(layout);
 }
 
-QString IMDB::name()
+QString IMDB::name() const
 {
     return QStringLiteral("IMDb");
 }
 
-QString IMDB::identifier()
+QString IMDB::identifier() const
 {
     return QStringLiteral("imdb");
 }
 
-bool IMDB::isAdult()
+bool IMDB::isAdult() const
 {
     return false;
 }
@@ -206,7 +206,7 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString html)
     return results;
 }
 
-void IMDB::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void IMDB::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     QString imdbId = ids.values().first();
     movie->clear(infos);

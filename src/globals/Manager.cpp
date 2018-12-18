@@ -157,14 +157,14 @@ MusicFileSearcher *Manager::musicFileSearcher()
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
  */
-QList<ScraperInterface *> Manager::scrapers()
+QList<MovieScraperInterface *> Manager::scrapers()
 {
     return m_scrapers;
 }
 
-ScraperInterface *Manager::scraper(const QString &identifier)
+MovieScraperInterface *Manager::scraper(const QString &identifier)
 {
-    for (ScraperInterface *scraper : m_scrapers) {
+    for (auto *scraper : m_scrapers) {
         if (scraper->identifier() == identifier) {
             return scraper;
         }
@@ -328,9 +328,9 @@ TvTunes *Manager::tvTunes()
     return m_tvTunes;
 }
 
-QList<ScraperInterface *> Manager::constructNativeScrapers(QObject *parent)
+QList<MovieScraperInterface *> Manager::constructNativeScrapers(QObject *parent)
 {
-    QList<ScraperInterface *> nativeScrapers;
+    QList<MovieScraperInterface *> nativeScrapers;
     nativeScrapers.append(new TMDb(parent));
     nativeScrapers.append(new IMDB(parent));
     nativeScrapers.append(new KinoDe(parent));

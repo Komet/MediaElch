@@ -56,8 +56,9 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
     }
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
+    }
 
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkAllToggled);
     connect(ui->btnStartScraping, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onStartScraping);
@@ -105,11 +106,12 @@ int MovieMultiScrapeDialog::exec()
 
 void MovieMultiScrapeDialog::accept()
 {
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
             SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+    }
     m_executed = false;
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
     Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
@@ -119,11 +121,12 @@ void MovieMultiScrapeDialog::accept()
 
 void MovieMultiScrapeDialog::reject()
 {
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
             SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+    }
     m_executed = false;
     if (m_currentMovie) {
         m_queue.clear();
@@ -142,11 +145,12 @@ void MovieMultiScrapeDialog::setMovies(QList<Movie *> movies)
 
 void MovieMultiScrapeDialog::onStartScraping()
 {
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+    for (MovieScraperInterface *scraper : Manager::instance()->scrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QList<ScraperSearchResult>)),
             this,
             SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+    }
 
     ui->groupBox->setEnabled(false);
     ui->comboScraper->setEnabled(false);
@@ -266,14 +270,14 @@ void MovieMultiScrapeDialog::scrapeNext()
 
 void MovieMultiScrapeDialog::loadMovieData(Movie *movie, ImdbId id)
 {
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie *movie, TmdbId id)
 {
-    QMap<ScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
@@ -289,9 +293,9 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
     }
 
     if (m_scraperInterface->identifier() == "custom-movie") {
-        auto scraper = static_cast<ScraperInterface *>(QObject::sender());
+        auto scraper = static_cast<MovieScraperInterface *>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
-        QList<ScraperInterface *> searchScrapers =
+        QList<MovieScraperInterface *> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
@@ -367,7 +371,7 @@ void MovieMultiScrapeDialog::onChkAllToggled()
 void MovieMultiScrapeDialog::setCheckBoxesEnabled()
 {
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
-    ScraperInterface *scraper = Manager::instance()->scraper(scraperId);
+    MovieScraperInterface *scraper = Manager::instance()->scraper(scraperId);
     if (!scraper) {
         return;
     }

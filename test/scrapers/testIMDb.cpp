@@ -9,7 +9,7 @@ using namespace std::chrono_literals;
 /**
  * @brief Loads movie data synchronously
  */
-void loadImdbSync(IMDB &scraper, QMap<ScraperInterface *, QString> ids, Movie &movie)
+void loadImdbSync(IMDB &scraper, QMap<MovieScraperInterface *, QString> ids, Movie &movie)
 {
     const auto infos = scraper.scraperSupports();
     QList<ScraperSearchResult> results;

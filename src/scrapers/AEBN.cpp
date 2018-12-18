@@ -88,17 +88,17 @@ QString AEBN::defaultLanguageKey()
     return Settings::instance()->settings()->value("Scrapers/AEBN/Language", "en").toString();
 }
 
-QString AEBN::name()
+QString AEBN::name() const
 {
     return QStringLiteral("AEBN");
 }
 
-QString AEBN::identifier()
+QString AEBN::identifier() const
 {
     return QStringLiteral("aebn");
 }
 
-bool AEBN::isAdult()
+bool AEBN::isAdult() const
 {
     return true;
 }
@@ -164,7 +164,7 @@ QList<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QMap<ScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void AEBN::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 

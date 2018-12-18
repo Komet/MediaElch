@@ -15,7 +15,7 @@ namespace Ui {
 class MovieSearch;
 }
 
-class ScraperInterface;
+class MovieScraperInterface;
 
 /**
  * @brief The MovieSearch class
@@ -34,7 +34,7 @@ public slots:
     QString scraperId();
     QString scraperMovieId();
     QList<MovieScraperInfos> infosToLoad();
-    QMap<ScraperInterface *, QString> customScraperIds();
+    QMap<MovieScraperInterface *, QString> customScraperIds();
 
 private:
     Ui::MovieSearch *ui;
