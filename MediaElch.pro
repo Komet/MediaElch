@@ -185,7 +185,6 @@ SOURCES += src/main.cpp \
     src/scrapers/CustomMovieScraper.cpp \
     src/scrapers/HotMovies.cpp \
     src/scrapers/IMDB.cpp \
-    src/scrapers/KinoDe.cpp \
     src/scrapers/OFDb.cpp \
     src/scrapers/TheTvDb.cpp \
     src/scrapers/TMDb.cpp \
@@ -378,7 +377,6 @@ HEADERS  += Version.h \
     src/scrapers/CustomMovieScraper.h \
     src/scrapers/HotMovies.h \
     src/scrapers/IMDB.h \
-    src/scrapers/KinoDe.h \
     src/scrapers/OFDb.h \
     src/scrapers/TheTvDb.h \
     src/scrapers/TMDb.h \
@@ -545,7 +543,6 @@ test {
         test/scrapers/testAEBN.cpp \
         test/scrapers/testHotMovies.cpp \
         test/scrapers/testIMDb.cpp \
-        test/scrapers/testKinoDe.cpp \
         test/scrapers/testTMDb.cpp \
         test/scrapers/testVideoBuster.cpp \
         test/scrapers/testTMDbConcerts.cpp
