@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QRegExp>
+#include <QTextDocument>
 #include <QTextDocumentFragment>
 
 HotMovies::HotMovies(QObject *parent) :
@@ -146,17 +147,18 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<span itemprop=\"name\">(.*)</span>");
+    rx.setPattern(R"(<h1 class="title" itemprop="name">(.*)</h1>)");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1) {
         movie->setName(rx.cap(1));
     }
 
-    rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setRating(rx.cap(1).toDouble());
-    }
+    // Rating currently not available
+    // rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
+    // if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
+    //     movie->setRating(rx.cap(1).toDouble());
+    // }
 
-    rx.setPattern(R"(<span class="rating_number " itemprop="ratingCount">(\d+) Rating)");
+    rx.setPattern(R"(<span itemprop="ratingCount">(\d+) </span> Rating)");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         movie->setVotes(rx.cap(1).toInt());
     }
@@ -166,7 +168,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
     }
 
-    rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]*">(.*)</span>)");
+    rx.setPattern(R"(<span itemprop="duration" datetime="PT[^"]+">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1) {
         using namespace std::chrono;
         QStringList runtimeStr = rx.cap(1).split(":");
@@ -180,15 +182,19 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
         }
     }
 
-    rx.setPattern(R"(<div class="video_description" itemprop="description">(.*)</div>)");
+    rx.setPattern(R"(<span class="video_description" itemprop="description">(.*)</span>)");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        movie->setOverview(rx.cap(1).trimmed());
+        QTextDocument doc;
+        doc.setHtml(rx.cap(1));
+        movie->setOverview(doc.toPlainText().trimmed());
+
         if (Settings::instance()->usePlotForOutline()) {
-            movie->setOutline(rx.cap(1).trimmed());
+            movie->setOutline(movie->overview());
         }
     }
 
-    rx.setPattern(R"lit(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*src="([^"]*)")lit");
+    rx.setPattern(
+        R"rx(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*[^>]*src="([^"]*)")rx");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
@@ -206,16 +212,17 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
 
         //        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\"
         //        itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
-        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><span "
-                      "class=\"star_image_hover\">.*[\\s\\n]*title=\".*\" rel=\"tag\" itemprop=\"url\"><span "
-                      "itemprop=\"name\">(.*)</span></a></div>");
+        rx.setPattern(
+            R"re(<div class="star_wrapper" key="([^"]*)"><img .*/><span itemprop="name">([^<]*)</span>)re");
+        rx.setMinimal(true);
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
             a.name = rx.cap(2);
-            if (!rx.cap(1).endsWith("missing_f.gif") && !rx.cap(1).endsWith("missing_m.gif")) {
-                a.thumb = rx.cap(1);
+            const auto pictureUrl = rx.cap(1);
+            if (!pictureUrl.endsWith("missing_f.gif") && !pictureUrl.endsWith("missing_m.gif")) {
+                a.thumb = pictureUrl;
             }
             movie->addActor(a);
         }
@@ -226,7 +233,11 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
-            movie->addGenre(rx.cap(1));
+            // Some "genres" are just some categories of HotMovies
+            const auto genre = rx.cap(1);
+            if (genre != "Streaming Video" && genre != "Downloads") {
+                movie->addGenre(genre);
+            }
         }
     }
 
@@ -236,13 +247,14 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScrap
         movie->addStudio(rx.cap(1));
     }
 
-    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"https://schema.org/Person\"><a itemprop=\"url\" "
-                  "href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
+    rx.setPattern(R"(<span itemprop="director" itemscope itemtype="http://schema.org/Person"><a itemprop="url" )"
+                  R"(href="[^"]*"[\s\n]*title="[^"]*" rel="tag"><span itemprop="name">([^<]*)</span></a>)");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(1));
     }
 
-    rx.setPattern(R"(<a href="https://www.hotmovies.com/.*[/?]series/[^"]*" title="[^"]*" rel="tag">(.*)</a>)");
+    // Title may contain `"` which results in invalid HTML.
+    rx.setPattern(R"(<a href="https://www.hotmovies.com/series/[^"]*" title=".*" rel="tag">(.*)</a>)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         movie->setSet(rx.cap(1));
     }
