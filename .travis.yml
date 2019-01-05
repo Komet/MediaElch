@@ -5,12 +5,14 @@ matrix:
     os: osx
   - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
     os: linux
+    dist: trusty
   - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
     os: linux
+    dist: trusty
   - env: QT=qtWin
     os: linux
+    dist: xenial
 
-dist: trusty
 sudo: required
 
 branches:

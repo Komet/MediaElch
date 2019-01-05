@@ -32,6 +32,11 @@ pushd "${PROJECT_DIR}" > /dev/null
 
 print_important "Getting dependencies for building for ${QT} on ${OS_NAME}"
 
+fold_start "git_submodule"
+print_info "Downloading quazip"
+git submodule update --init -- third_party/quazip
+fold_end
+
 if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 	if [ $QT = "qtWin" ]; then
@@ -66,6 +71,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		fold_start "mxe_install"
 		print_info "Installing mxe"
 		sudo apt-get install -y mxe-${MXETARGET}-gcc \
+			mxe-${MXETARGET}-zlib \
 			mxe-${MXETARGET}-qtbase \
 			mxe-${MXETARGET}-qttools \
 			mxe-${MXETARGET}-qtmultimedia \
@@ -82,10 +88,10 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 		fold_start "mediainfodll"
 		print_info "Downloading MediaInfoDLL"
 		wget --output-document MediaInfoDLL.7z https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Windows_i386_WithoutInstaller.7z
-		7z x -oMediaInfo MediaInfoDLL.7z
+		7zr x -oMediaInfo MediaInfoDLL.7z
 		mv MediaInfo/Developers/Source/MediaInfoDLL ./MediaInfoDLL
 		mv MediaInfo/MediaInfo.dll MediaInfo.dll
-		rm -rf MediaInfo
+		rm -rf MediaInfo MediaInfoDLL.7z
 		fold_end
 
 		fold_start "zenlib"

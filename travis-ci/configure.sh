@@ -22,7 +22,9 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 	if [ "${QT}" = "qtWin" ]; then
 		PATH="$PATH:${MXEDIR}/usr/bin"
 		$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 --version
-		$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 ../MediaElch.pro CONFIG+=release
+		$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 ../MediaElch.pro \
+			CONFIG+=release                                     \
+			LIBS+=$MXEDIR/usr/${MXETARGET}/bin/zlib1.dll
 
 	else
 		PATH="/opt/${QT}/bin:$PATH"

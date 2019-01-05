@@ -5,6 +5,8 @@ MediaInfoDLL
 # OS specific
 .directory
 .DS_Store
+MediaInfoDLL
+ZenLib
 
 # Fake data
 scripts/generated_media

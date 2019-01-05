@@ -16,9 +16,9 @@
 
 TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{nullptr}
 {
-    foreach (TvScraperInterface *interface, Manager::instance()->tvScrapers()) {
-        if (interface->identifier() == "tvdb") {
-            m_tvdb = static_cast<TheTvDb *>(interface);
+    for (TvScraperInterface *inter : Manager::instance()->tvScrapers()) {
+        if (inter->identifier() == "tvdb") {
+            m_tvdb = static_cast<TheTvDb *>(inter);
             break;
         }
     }
