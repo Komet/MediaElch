@@ -102,7 +102,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     int offset = 0;
 
     QRegExp rx(
-        R"lit(<td colspan="2" class="td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
+        R"lit(<div class="cell td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
