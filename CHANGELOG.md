@@ -1,12 +1,12 @@
 # Changelog
 
-## 2.4.3 (*tbd*)
+## 2.6.0 - Ferenginar (2019-01-06)
 
 ### Features
  
  - Add user documentation (#531)
  - Use HTTPS for scraping (#371)
- - Set UI language in ``advancedsettings.xml`` (#411)
+ - Set UI language in `advancedsettings.xml` (#411)
  - Load *all* tags from IMDb (#469)
  - Add more audio and video codecs (#524, #530)
  - Remove deprecated Cinefacts (#370)

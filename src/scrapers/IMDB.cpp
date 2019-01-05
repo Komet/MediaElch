@@ -595,10 +595,10 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInf
             rxImg.setMinimal(true);
             if (rxImg.indexIn(actor) != -1) {
                 QString img = rxImg.cap(1);
-                QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
+                QRegExp aRx1("https://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
                 aRx1.setMinimal(true);
                 if (aRx1.indexIn(img) != -1) {
-                    a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
+                    a.thumb = "https://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
                 } else {
                     a.thumb = rxImg.cap(1);
                 }

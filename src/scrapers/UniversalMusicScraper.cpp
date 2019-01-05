@@ -181,13 +181,13 @@ void UniversalMusicScraper::onArtistRelsFinished()
     appendDownloadElement(artist,
         "theaudiodb",
         "tadb_data",
-        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
+        QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
                  .arg(m_tadbApiKey)
                  .arg(artist->mbId())));
     appendDownloadElement(artist,
         "theaudiodb",
         "tadb_discography",
-        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
+        QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
                  .arg(m_tadbApiKey)
                  .arg(artist->mbId())));
     if (!artist->allMusicId().isEmpty()) {
@@ -510,7 +510,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
     appendDownloadElement(album,
         "theaudiodb",
         "tadb_data",
-        QUrl(QString("http://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
+        QUrl(QString("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
                  .arg(m_tadbApiKey)
                  .arg(album->mbReleaseGroupId())));
     if (!album->allMusicId().isEmpty()) {

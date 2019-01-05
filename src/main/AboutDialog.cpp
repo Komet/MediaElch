@@ -15,8 +15,9 @@
 AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    ui->labelMediaElch->setText(
-        QStringLiteral("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Talax"));
+    ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
+                                    .arg(QApplication::applicationVersion())
+                                    .arg(MediaElch::Constants::VersionName));
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);

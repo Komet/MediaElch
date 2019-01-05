@@ -256,8 +256,8 @@ void TrailerDialog::startDownload()
     QNetworkRequest request;
     request.setUrl(QUrl(ui->url->text()));
 
-    if (ui->url->text().contains("http://trailers.apple.com")
-        || ui->url->text().contains("http://movietrailers.apple.com")) {
+    if (ui->url->text().contains("//trailers.apple.com")
+        || ui->url->text().contains("//movietrailers.apple.com")) {
         request.setRawHeader("User-Agent", "QuickTime/7.7");
     }
 

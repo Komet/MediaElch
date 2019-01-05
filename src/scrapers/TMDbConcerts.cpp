@@ -235,7 +235,7 @@ void TMDbConcerts::search(QString searchStr)
                        .arg(m_apiKey)
                        .arg(localeForTMDb()));
     } else if (rxTmdbId.exactMatch(searchStr)) {
-        url.setUrl(QStringLiteral("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(searchStr.mid(2))
                        .arg(m_apiKey)
                        .arg(localeForTMDb()));

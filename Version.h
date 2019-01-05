@@ -7,8 +7,8 @@ namespace MediaElch {
 namespace Constants {
 
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.4.3-dev";
-constexpr char VersionName[] = "Talax";
+constexpr char AppVersionStr[] = "2.6.0";
+constexpr char VersionName[] = "Ferenginar";
 constexpr char OrganizationName[] = "kvibes";
 
 #ifdef QT_NO_DEBUG
