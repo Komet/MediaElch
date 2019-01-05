@@ -72,7 +72,7 @@ QNetworkAccessManager *AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
+    QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?view=list&q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
