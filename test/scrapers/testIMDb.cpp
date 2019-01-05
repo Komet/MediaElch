@@ -140,7 +140,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         const auto tags = m.tags();
         REQUIRE(tags.size() >= 2);
         CHECK(tags[0] == "wrongful imprisonment");
-        CHECK(tags[1] == "prison");
+        CHECK_THAT(tags[1], Contains("prison"));
 
         const auto studios = m.studios();
         REQUIRE(studios.size() == 1);
