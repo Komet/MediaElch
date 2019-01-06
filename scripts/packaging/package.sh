@@ -50,6 +50,9 @@ print_help() {
 gather_information() {
 	pushd "${PROJECT_DIR}" > /dev/null
 
+	# Update or download in case something is outdated
+	git submodule update --init
+
 	VERSION_FULL=$(sed -ne 's/.*AppVersionStr[^"]*"\(.*\)";/\1/p' Version.h)    # Format: 2.4.3-dev
 	VERSION=$(echo $VERSION_FULL | sed -e 's/-dev//')                           # Format: 2.4.3
 	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')  # Format: 2.4.3-123
@@ -137,7 +140,7 @@ package_appimage() {
 
 	#######################################################
 	# Copy libmediainfo
-	# 
+	#
 	# libmediainfo.so.0 is loaded at runtime that's why
 	# linuxdeployqt can't detect it and we have to include
 	# it here.
@@ -196,10 +199,10 @@ prepare_deb() {
 
 	cd "${PROJECT_DIR}/.."
 
-	# For Debian packaging, we need a distrinct version for each upload
+	# For Debian packaging, we need a distinct version for each upload
 	# to launchpad. We can achieve this by using the git revision.
 	VERSION="${VERSION}.${GIT_REVISION}"
-	
+
 	# Create target directory
 	TARGET_DIR=mediaelch-${VERSION}
 	rm -rf ${TARGET_DIR} && mkdir ${TARGET_DIR}
@@ -212,13 +215,13 @@ prepare_deb() {
 	# Remove untracked files but keep changes
 	git clean -fdx
 	# .git is ~20MB, so remove it
-	rm -rf scripts obs travis-ci documentation .git
+	rm -rf scripts obs travis-ci docs .git
 
 	# A bit of useful information
 	echo $GIT_HASH > .githash
 	echo $GIT_DATE > .gitdate
 	echo $GIT_VERSION > .gitversion
-	
+
 	# New Version; Get rivision that is not in changelog
 	PPA_REVISION=0
 	while [ $PPA_REVISION -le "99" ]; do
@@ -227,7 +230,7 @@ prepare_deb() {
 			break
 		fi
 	done
-	
+
 	# Create changelog entry
 	print_info "Adding new entry for version ${VERSION}-${PPA_REVISION} in"
 	print_info "debian/changelog using information from debian/control"
@@ -260,11 +263,11 @@ package_and_upload_to_launchpad() {
 	fi
 
 	prepare_deb
-	
+
 	print_info "Run debuild"
 	pushd ${TARGET_DIR} > /dev/null
 	debuild -k${ME_SIGNING_KEY} -S
-	
+
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=xenial # Ubuntu 16.04
 	others="trusty bionic cosmic" # Ubuntu 14.04 17.10 and 18.10

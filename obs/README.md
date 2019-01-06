@@ -17,6 +17,7 @@ https://build.opensuse.org and must have the obs tool installed (e.g.
 `sudo apt install osc obs-build` on Ubuntu).
 
 ## Steps to init a new repository on OBS
+You should only need to do this *once*.
 
 ```sh
 osc checkout home:bugwelle
@@ -30,6 +31,8 @@ cp /path/to/MediaElch/obs/MediaElch.* .
 # Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
 # See "Compress MediaElch" for an example.
 
+# Update MediaElch.changes => copy changelog.md
+osc vc
 osc add *.spec *.changes *.tar.gz
 osc commit
 ```
@@ -42,7 +45,7 @@ cd home:bugwelle/MediaElch
 
 # Package MediaElch into MediaElch-${ME_VERSION}.tar.gz 
 # See "Compress MediaElch" for an example.
-# # Update MediaElch.spec if neccessary
+# Update MediaElch.spec if neccessary
 
 # Update MediaElch.changes => copy changelog.md
 osc vc
@@ -57,12 +60,13 @@ osc commit
 export ME_VERSION=2.6.0
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
+git submodule update --init
 # Exclude .git, documentation and build folder.
 # Reduces the tar.gz size from 27MB to 3MB
 tar -czf MediaElch-${ME_VERSION}.tar.gz MediaElch \
 	--exclude=MediaElch/.git \
 	--exclude=MediaElch/scripts/generated_media \
-	--exclude=MediaElch/documentation \
+	--exclude=MediaElch/docs \
 	--exclude=MediaElch/build
 rm -rf MediaElch
 ```
