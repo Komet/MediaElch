@@ -839,6 +839,10 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
  */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent)
 {
+    if (!episode) {
+        qWarning() << "Passed an empty (null) episode to loadTvShowEpisode";
+        return false;
+    }
     episode->clear();
     episode->setChanged(false);
 

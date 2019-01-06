@@ -126,6 +126,10 @@ QList<TvShowScraperInfos> TvShowEpisode::infosToLoad()
  */
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
 {
+    if (!mediaCenterInterface) {
+        qWarning() << "Passed an empty (null) mediaCenterInterface to loadData";
+        return false;
+    }
     if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded) {
         return m_infoLoaded;
     }
