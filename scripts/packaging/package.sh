@@ -234,7 +234,7 @@ prepare_deb() {
 	# Create changelog entry
 	print_info "Adding new entry for version ${VERSION}-${PPA_REVISION} in"
 	print_info "debian/changelog using information from debian/control"
-	dch -v $VERSION-$PPA_REVISION~xenial -D xenial -M -m "next nightly build"
+	dch -v $VERSION-$PPA_REVISION~xenial -D xenial -M -m "next build"
 	cp debian/changelog ${PROJECT_DIR}/debian/changelog
 
 	popd > /dev/null
@@ -258,6 +258,15 @@ package_and_upload_to_launchpad() {
 	echo ""
 	print_important "Upload a new MediaElch Version to https://launchpad.net"
 
+	if [ -z "$ME_LAUNCHPAD_TYPE" }; then
+		print_error "\$ME_LAUNCHPAD_TYPE is not set or empty! Can be either stable/nightly/test"
+		exit 1
+	fi
+
+	print_important "\$ME_LAUNCHPAD_TYPE is: ${ME_LAUNCHPAD_TYPE} (can be either stable/nightly/test)"
+	print_important "Is this correct?"
+	[ "${no_confirm}" != "--no-confirm" ] && read -s -p  "Press enter to continue, Ctrl+C to cancel"
+
 	if [ -z "$ME_SIGNING_KEY" ]; then
 		print_critical "\$ME_SIGNING_KEY is empty or not set! Must be a GPG key id"
 	fi
@@ -270,7 +279,7 @@ package_and_upload_to_launchpad() {
 
 	# Create builds for other Ubuntu releases that Launchpad supports
 	distr=xenial # Ubuntu 16.04
-	others="trusty bionic cosmic" # Ubuntu 14.04 17.10 and 18.10
+	others="bionic cosmic" # Ubuntu 17.10 and 18.10
 	for next in $others
 	do
 		sed -i "s/${distr}/${next}/g" debian/changelog
@@ -281,7 +290,7 @@ package_and_upload_to_launchpad() {
 	popd > /dev/null
 
 	pushd "${PROJECT_DIR}/.." > /dev/null
-	dput ppa:mediaelch/mediaelch-test mediaelch_${VERSION}-${PPA_REVISION}~*.changes
+	dput ppa:mediaelch/mediaelch-${ME_LAUNCHPAD_TYPE} mediaelch_${VERSION}-${PPA_REVISION}~*.changes
 	popd > /dev/null
 }
 
