@@ -318,7 +318,7 @@
  - Adjust MovieMaze Scraper
  - Cinefacts scraper broken
  - Check DVD aired order
- - Runtime of *.ts files is not detected
+ - Runtime of `*.ts` files is not detected
  - Images from SMB shares under Windows cannot be chosen
  - Filescanner might skip some movies
  - MediaPassion: Discart sometimes not found
@@ -422,7 +422,7 @@
  - Bugfix: Saving of poster and fanarts for DVD and BluRay structures
  - Skip extra files in DVD structures
  - Show all fanarts from The TV Db when choosing season fanart
- - Save tv show specials season artwork as season-special-*.jpg
+ - Save tv show specials season artwork as `season-special-*.jpg`
  - Use JSON RPC to communicate with XBMC
  - Fixed XBMC sync
  - Moved advanced settings to advancedsettings.xml
