@@ -1,17 +1,20 @@
 language: generic
 matrix:
   include:
-  - env: QT=qtMac CXX=clang++ CC=clang
+  - name: "macOS build"
+    env: QT=qtMac CXX=clang++ CC=clang
     os: osx
-  - env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
+  - name: "Linux Qt 5.10 build"
+    env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
     os: linux
     dist: trusty
-  - env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
+  - name: "Linux Qt 5.5 build"
+    env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
     os: linux
     dist: trusty
-  - env: QT=qtWin
-    os: linux
-    dist: xenial
+#  - env: QT=qtWin
+#    os: linux
+#    dist: xenial
 
 sudo: required
 
