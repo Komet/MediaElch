@@ -3,7 +3,6 @@ mediaelch (2.6.0-1) vivid; urgency=low
   * Add user documentation (#531)
   * Use HTTPS for scraping (#371)
   * Set UI language in `advancedsettings.xml` (#411)
-  * Add Kino.de scraper (#370)
   * Load *all* tags from IMDb (#469)
   * Add more audio and video codecs (#524, #530)
   * Remove deprecated Cinefacts (#370)
