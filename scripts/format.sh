@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+IFS=$'\n\t'
+
 SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
-pushd "$SCRIPT_PATH/.." > /dev/null
+cd "$SCRIPT_PATH/.."
 
-echo "Format all files using clang-format"
-find . ! -path "*/quazip/*" -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i -style=file {} \;
+echo "Format all source files using clang-format"
+find src -type f \( -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \) -exec clang-format -i -style=file {} \;
 
-popd > /dev/null
+echo "Format all test files using clang-format"
+find test -type f \( -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \) -exec clang-format -i -style=file {} \;
