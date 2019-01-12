@@ -1,5 +1,9 @@
 # Changelog
 
+## Next Release (*tbd*)
+
+ - ...
+
 ## 2.6.0 - Ferenginar (2019-01-06)
 
 ### Features
