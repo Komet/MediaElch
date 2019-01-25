@@ -249,10 +249,10 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(actors[1].name == "Nana Patekar");
         CHECK(actors[1].role == "Uday Shankar Shetty");
         CHECK(actors[2].name == "Dimple Kapadia");
-        CHECK(actors[2].role == "Poonam / Maharani of nabazgadh");
+        CHECK_THAT(actors[2].role, Contains("Poonam"));
         CHECK(actors[3].name == "John Abraham");
-        CHECK(actors[3].role == "Ajju Bhai / Ajay");
+        CHECK_THAT(actors[3].role, Contains("Ajju Bhai"));
         CHECK(actors[4].name == "Shruti Haasan");
-        CHECK(actors[4].role == "Ranjana Shetty (as Shruti K. Haasan)");
+        CHECK_THAT(actors[4].role, Contains("Ranjana Shetty"));
     }
 }

@@ -1,8 +1,17 @@
 # Changelog
 
 ## Next Release (*tbd*)
+The next release will affect your scraper settings. You'll therefore have
+to reconfigure your scraper settings.
 
- - ...
+### Bugfixes
+
+ - Fix IMDb tag scraping (#649)
+
+### Internal Improvements
+
+ - Implement ScraperSettings class for better mocking
+
 
 ## 2.6.0 - Ferenginar (2019-01-06)
 

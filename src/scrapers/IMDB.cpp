@@ -628,8 +628,14 @@ QUrl IMDB::parsePosters(QString html)
 
 void IMDB::parseAndAssignTags(const QString &html, Movie &movie)
 {
-    QRegExp rx(R"(<a href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
+    QRegExp rx;
     rx.setMinimal(true);
+    if (m_loadAllTags) {
+        rx.setPattern(R"(<a href="/search/keyword[^"]+"\n?>([^<]+)</a>)");
+    } else {
+        rx.setPattern(R"(<a href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
+    }
+
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
         movie.addTag(rx.cap(1).trimmed());
