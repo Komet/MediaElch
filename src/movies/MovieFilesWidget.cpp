@@ -1,5 +1,5 @@
-#include "FilesWidget.h"
-#include "ui_FilesWidget.h"
+#include "movies/MovieFilesWidget.h"
+#include "ui_MovieFilesWidget.h"
 
 #include "data/Movie.h"
 #include "data/MovieModel.h"
@@ -19,13 +19,13 @@
 #include <QTableWidget>
 #include <QTimer>
 
-FilesWidget *FilesWidget::m_instance;
+MovieFilesWidget *MovieFilesWidget::m_instance;
 
 /**
- * @brief FilesWidget::FilesWidget
+ * @brief MovieFilesWidget::FilesWidget
  * @param parent
  */
-FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWidget)
+MovieFilesWidget::MovieFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -66,7 +66,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
         action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumn>(i)));
-        connect(action, &QAction::triggered, this, &FilesWidget::onActionMediaStatusColumn);
+        connect(action, &QAction::triggered, this, &MovieFilesWidget::onActionMediaStatusColumn);
         mediaStatusColumnsMenu->addAction(action);
     }
 
@@ -77,7 +77,7 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
         auto action = new QAction(it.value(), this);
         action->setIcon(Helper::instance()->iconForLabel(it.key()));
         action->setProperty("color", static_cast<int>(it.key()));
-        connect(action, &QAction::triggered, this, &FilesWidget::onLabel);
+        connect(action, &QAction::triggered, this, &MovieFilesWidget::onLabel);
         labelsMenu->addAction(action);
     }
 
@@ -108,38 +108,38 @@ FilesWidget::FilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::FilesWid
     m_contextMenu->addMenu(mediaStatusColumnsMenu);
 
     // clang-format off
-    connect(actionMultiScrape,       &QAction::triggered, this, &FilesWidget::multiScrape);
-    connect(actionMarkAsWatched,     &QAction::triggered, this, &FilesWidget::markAsWatched);
-    connect(actionMarkAsUnwatched,   &QAction::triggered, this, &FilesWidget::markAsUnwatched);
-    connect(actionLoadStreamDetails, &QAction::triggered, this, &FilesWidget::loadStreamDetails);
-    connect(actionMarkForSync,       &QAction::triggered, this, &FilesWidget::markForSync);
-    connect(actionUnmarkForSync,     &QAction::triggered, this, &FilesWidget::unmarkForSync);
-    connect(actionOpenFolder,        &QAction::triggered, this, &FilesWidget::openFolder);
-    connect(actionOpenNfo,           &QAction::triggered, this, &FilesWidget::openNfoFile);
+    connect(actionMultiScrape,       &QAction::triggered, this, &MovieFilesWidget::multiScrape);
+    connect(actionMarkAsWatched,     &QAction::triggered, this, &MovieFilesWidget::markAsWatched);
+    connect(actionMarkAsUnwatched,   &QAction::triggered, this, &MovieFilesWidget::markAsUnwatched);
+    connect(actionLoadStreamDetails, &QAction::triggered, this, &MovieFilesWidget::loadStreamDetails);
+    connect(actionMarkForSync,       &QAction::triggered, this, &MovieFilesWidget::markForSync);
+    connect(actionUnmarkForSync,     &QAction::triggered, this, &MovieFilesWidget::unmarkForSync);
+    connect(actionOpenFolder,        &QAction::triggered, this, &MovieFilesWidget::openFolder);
+    connect(actionOpenNfo,           &QAction::triggered, this, &MovieFilesWidget::openNfoFile);
 
-    connect(ui->files,                   &QWidget::customContextMenuRequested, this, &FilesWidget::showContextMenu);
-    connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &FilesWidget::itemActivated);
-    connect(ui->files->model(),          &QAbstractItemModel::dataChanged,     this, &FilesWidget::setAlphaListData);
-    connect(ui->files,                   &MyTableView::sigLeftEdge,            this, &FilesWidget::onLeftEdge);
-    connect(ui->files,                   &QAbstractItemView::doubleClicked,    this, &FilesWidget::playMovie);
+    connect(ui->files,                   &QWidget::customContextMenuRequested, this, &MovieFilesWidget::showContextMenu);
+    connect(ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &MovieFilesWidget::itemActivated);
+    connect(ui->files->model(),          &QAbstractItemModel::dataChanged,     this, &MovieFilesWidget::setAlphaListData);
+    connect(ui->files,                   &MyTableView::sigLeftEdge,            this, &MovieFilesWidget::onLeftEdge);
+    connect(ui->files,                   &QAbstractItemView::doubleClicked,    this, &MovieFilesWidget::playMovie);
 
-    connect(m_alphaList, &AlphabeticalList::sigAlphaClicked, this, &FilesWidget::scrollToAlpha);
+    connect(m_alphaList, &AlphabeticalList::sigAlphaClicked, this, &MovieFilesWidget::scrollToAlpha);
 
-    connect(ui->sortByNew,       &MyLabel::clicked, this, &FilesWidget::onSortByNew);
-    connect(ui->sortByName,      &MyLabel::clicked, this, &FilesWidget::onSortByName);
-    connect(ui->sortByLastAdded, &MyLabel::clicked, this, &FilesWidget::onSortByAdded);
-    connect(ui->sortBySeen,      &MyLabel::clicked, this, &FilesWidget::onSortBySeen);
-    connect(ui->sortByYear,      &MyLabel::clicked, this, &FilesWidget::onSortByYear);
+    connect(ui->sortByNew,       &MyLabel::clicked, this, &MovieFilesWidget::onSortByNew);
+    connect(ui->sortByName,      &MyLabel::clicked, this, &MovieFilesWidget::onSortByName);
+    connect(ui->sortByLastAdded, &MyLabel::clicked, this, &MovieFilesWidget::onSortByAdded);
+    connect(ui->sortBySeen,      &MyLabel::clicked, this, &MovieFilesWidget::onSortBySeen);
+    connect(ui->sortByYear,      &MyLabel::clicked, this, &MovieFilesWidget::onSortByYear);
 
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &FilesWidget::onViewUpdated);
-    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &FilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsInserted, this, &MovieFilesWidget::onViewUpdated);
+    connect(m_movieProxyModel, &QAbstractItemModel::rowsRemoved,  this, &MovieFilesWidget::onViewUpdated);
     // clang-format on
 }
 
 /**
- * @brief FilesWidget::~FilesWidget
+ * @brief MovieFilesWidget::~FilesWidget
  */
-FilesWidget::~FilesWidget()
+MovieFilesWidget::~MovieFilesWidget()
 {
     delete ui;
 }
@@ -148,12 +148,12 @@ FilesWidget::~FilesWidget()
  * @brief Returns the current instance
  * @return Instance of FilesWidget
  */
-FilesWidget *FilesWidget::instance()
+MovieFilesWidget *MovieFilesWidget::instance()
 {
     return m_instance;
 }
 
-void FilesWidget::resizeEvent(QResizeEvent *event)
+void MovieFilesWidget::resizeEvent(QResizeEvent *event)
 {
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
@@ -165,12 +165,12 @@ void FilesWidget::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void FilesWidget::showContextMenu(QPoint point)
+void MovieFilesWidget::showContextMenu(QPoint point)
 {
     m_contextMenu->exec(ui->files->mapToGlobal(point));
 }
 
-void FilesWidget::multiScrape()
+void MovieFilesWidget::multiScrape()
 {
     m_contextMenu->close();
     QList<Movie *> movies = selectedMovies();
@@ -190,7 +190,7 @@ void FilesWidget::multiScrape()
     }
 }
 
-void FilesWidget::markAsWatched()
+void MovieFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
 
@@ -210,7 +210,7 @@ void FilesWidget::markAsWatched()
     }
 }
 
-void FilesWidget::markAsUnwatched()
+void MovieFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
 
@@ -229,7 +229,7 @@ void FilesWidget::markAsUnwatched()
     }
 }
 
-void FilesWidget::loadStreamDetails()
+void MovieFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
     QList<Movie *> movies;
@@ -250,7 +250,7 @@ void FilesWidget::loadStreamDetails()
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
 }
 
-void FilesWidget::markForSync()
+void MovieFilesWidget::markForSync()
 {
     m_contextMenu->close();
     QList<QModelIndex> indexes;
@@ -264,7 +264,7 @@ void FilesWidget::markForSync()
     }
 }
 
-void FilesWidget::unmarkForSync()
+void MovieFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
     QList<QModelIndex> indexes;
@@ -278,7 +278,7 @@ void FilesWidget::unmarkForSync()
     }
 }
 
-void FilesWidget::openFolder()
+void MovieFilesWidget::openFolder()
 {
     m_contextMenu->close();
     if (!ui->files->currentIndex().isValid()) {
@@ -293,7 +293,7 @@ void FilesWidget::openFolder()
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 
-void FilesWidget::openNfoFile()
+void MovieFilesWidget::openNfoFile()
 {
     m_contextMenu->close();
     if (!ui->files->currentIndex().isValid()) {
@@ -314,7 +314,7 @@ void FilesWidget::openNfoFile()
  * @param index
  * @param previous
  */
-void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
+void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
     qDebug() << "Entered";
     if (!index.isValid()) {
@@ -326,13 +326,13 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     m_lastModelIndex = previous;
     int row = index.model()->data(index, Qt::UserRole).toInt();
     m_lastMovie = Manager::instance()->movieModel()->movie(row);
-    QTimer::singleShot(0, this, &FilesWidget::movieSelectedEmitter);
+    QTimer::singleShot(0, this, &MovieFilesWidget::movieSelectedEmitter);
 }
 
 /**
  * @brief Just emits movieSelected
  */
-void FilesWidget::movieSelectedEmitter()
+void MovieFilesWidget::movieSelectedEmitter()
 {
     qDebug() << "Entered";
     if (m_lastMovie) {
@@ -345,7 +345,7 @@ void FilesWidget::movieSelectedEmitter()
  * @param filters List of filters
  * @param text Filter text
  */
-void FilesWidget::setFilter(QList<Filter *> filters, QString text)
+void MovieFilesWidget::setFilter(QList<Filter *> filters, QString text)
 {
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
@@ -356,14 +356,14 @@ void FilesWidget::setFilter(QList<Filter *> filters, QString text)
 /**
  * @brief Restores the last selected item
  */
-void FilesWidget::restoreLastSelection()
+void MovieFilesWidget::restoreLastSelection()
 {
     qDebug() << "Entered";
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 
 
-void FilesWidget::updateSort(SortBy sortBy)
+void MovieFilesWidget::updateSort(SortBy sortBy)
 {
     ui->sortByNew->setProperty("active", sortBy == SortBy::New);
     ui->sortByLastAdded->setProperty("active", sortBy == SortBy::Added);
@@ -389,7 +389,7 @@ void FilesWidget::updateSort(SortBy sortBy)
 /**
  * @brief Adjusts labels and sets sort by to added
  */
-void FilesWidget::onSortByAdded()
+void MovieFilesWidget::onSortByAdded()
 {
     updateSort(SortBy::Added);
 }
@@ -397,7 +397,7 @@ void FilesWidget::onSortByAdded()
 /**
  * @brief Adjusts labels and sets sort by to name
  */
-void FilesWidget::onSortByName()
+void MovieFilesWidget::onSortByName()
 {
     updateSort(SortBy::Name);
 }
@@ -405,7 +405,7 @@ void FilesWidget::onSortByName()
 /**
  * @brief Adjusts labels and sets sort by to name
  */
-void FilesWidget::onSortByNew()
+void MovieFilesWidget::onSortByNew()
 {
     updateSort(SortBy::New);
 }
@@ -413,7 +413,7 @@ void FilesWidget::onSortByNew()
 /**
  * @brief Adjusts labels and sets sort by to seen
  */
-void FilesWidget::onSortBySeen()
+void MovieFilesWidget::onSortBySeen()
 {
     updateSort(SortBy::Seen);
 }
@@ -421,12 +421,12 @@ void FilesWidget::onSortBySeen()
 /**
  * @brief Adjusts labels and sets sort by to year
  */
-void FilesWidget::onSortByYear()
+void MovieFilesWidget::onSortByYear()
 {
     updateSort(SortBy::Year);
 }
 
-QList<Movie *> FilesWidget::selectedMovies()
+QList<Movie *> MovieFilesWidget::selectedMovies()
 {
     QList<Movie *> movies;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
@@ -439,20 +439,20 @@ QList<Movie *> FilesWidget::selectedMovies()
     return movies;
 }
 
-void FilesWidget::enterEvent(QEvent *event)
+void MovieFilesWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event);
     m_mouseIsIn = true;
 }
 
-void FilesWidget::leaveEvent(QEvent *event)
+void MovieFilesWidget::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event);
     m_mouseIsIn = false;
     m_alphaList->hide();
 }
 
-void FilesWidget::setAlphaListData()
+void MovieFilesWidget::setAlphaListData()
 {
     QStringList alphas;
     for (int i = 0, n = ui->files->model()->rowCount(); i < n; ++i) {
@@ -471,7 +471,7 @@ void FilesWidget::setAlphaListData()
     m_alphaList->setAlphas(alphas);
 }
 
-void FilesWidget::scrollToAlpha(QString alpha)
+void MovieFilesWidget::scrollToAlpha(QString alpha)
 {
     for (int i = 0, n = ui->files->model()->rowCount(); i < n; ++i) {
         QModelIndex index = ui->files->model()->index(i, 0);
@@ -484,7 +484,7 @@ void FilesWidget::scrollToAlpha(QString alpha)
     }
 }
 
-void FilesWidget::renewModel()
+void MovieFilesWidget::renewModel()
 {
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
@@ -494,7 +494,7 @@ void FilesWidget::renewModel()
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 }
 
-void FilesWidget::onLeftEdge(bool isEdge)
+void MovieFilesWidget::onLeftEdge(bool isEdge)
 {
     if (isEdge && m_mouseIsIn) {
         m_alphaList->show();
@@ -503,14 +503,14 @@ void FilesWidget::onLeftEdge(bool isEdge)
     }
 }
 
-void FilesWidget::selectMovie(Movie *movie)
+void MovieFilesWidget::selectMovie(Movie *movie)
 {
     int row = Manager::instance()->movieModel()->movies().indexOf(movie);
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
     ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
 }
 
-void FilesWidget::onActionMediaStatusColumn()
+void MovieFilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction *>(QObject::sender());
@@ -531,7 +531,7 @@ void FilesWidget::onActionMediaStatusColumn()
     renewModel();
 }
 
-void FilesWidget::onLabel()
+void MovieFilesWidget::onLabel()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction *>(QObject::sender());
@@ -546,7 +546,7 @@ void FilesWidget::onLabel()
     }
 }
 
-void FilesWidget::onViewUpdated()
+void MovieFilesWidget::onViewUpdated()
 {
     int movieCount = Manager::instance()->movieModel()->rowCount();
     int visibleCount = m_movieProxyModel->rowCount();
@@ -557,7 +557,7 @@ void FilesWidget::onViewUpdated()
     }
 }
 
-void FilesWidget::playMovie(QModelIndex idx)
+void MovieFilesWidget::playMovie(QModelIndex idx)
 {
     if (!idx.isValid()) {
         return;

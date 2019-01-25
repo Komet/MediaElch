@@ -476,7 +476,7 @@
             <property name="handleWidth">
              <number>1</number>
             </property>
-            <widget class="FilesWidget" name="filesWidget" native="true">
+            <widget class="MovieFilesWidget" name="movieFilesWidget" native="true">
              <property name="minimumSize">
               <size>
                <width>100</width>
@@ -886,9 +886,9 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>FilesWidget</class>
+   <class>MovieFilesWidget</class>
    <extends>QWidget</extends>
-   <header>movies/FilesWidget.h</header>
+   <header>movies/MovieFilesWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

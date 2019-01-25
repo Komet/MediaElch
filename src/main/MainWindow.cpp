@@ -139,11 +139,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     // clang-format off
-    connect(ui->filesWidget, &FilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setMovie);
-    connect(ui->filesWidget, &FilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setEnabledTrue);
-    connect(ui->filesWidget, &FilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::clear);
-    connect(ui->filesWidget, &FilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::setDisabledTrue);
-    connect(ui->filesWidget, &FilesWidget::sigStartSearch,  this,            &MainWindow::onActionSearch);
+    connect(ui->movieFilesWidget, &MovieFilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setMovie);
+    connect(ui->movieFilesWidget, &MovieFilesWidget::movieSelected,   ui->movieWidget, &MovieWidget::setEnabledTrue);
+    connect(ui->movieFilesWidget, &MovieFilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::clear);
+    connect(ui->movieFilesWidget, &MovieFilesWidget::noMovieSelected, ui->movieWidget, &MovieWidget::setDisabledTrue);
+    connect(ui->movieFilesWidget, &MovieFilesWidget::sigStartSearch,  this,            &MainWindow::onActionSearch);
 
     connect(ui->concertFilesWidget, &ConcertFilesWidget::concertSelected,   ui->concertWidget, &ConcertWidget::setConcert);
     connect(ui->concertFilesWidget, &ConcertFilesWidget::concertSelected,   ui->concertWidget, &ConcertWidget::setEnabledTrue);
@@ -362,8 +362,8 @@ void MainWindow::onActionSearch()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0) {
-        if (ui->filesWidget->selectedMovies().count() > 1) {
-            ui->filesWidget->multiScrape();
+        if (ui->movieFilesWidget->selectedMovies().count() > 1) {
+            ui->movieFilesWidget->multiScrape();
         } else {
             QTimer::singleShot(0, ui->movieWidget, &MovieWidget::startScraperSearch);
         }
@@ -458,7 +458,7 @@ void MainWindow::onActionRename()
 {
     if (ui->stackedWidget->currentIndex() == 0) {
         m_renamer->setRenameType(Renamer::RenameType::Movies);
-        m_renamer->setMovies(ui->filesWidget->selectedMovies());
+        m_renamer->setMovies(ui->movieFilesWidget->selectedMovies());
 
     } else if (ui->stackedWidget->currentIndex() == 1) {
         m_renamer->setRenameType(Renamer::RenameType::TvShows);
@@ -484,7 +484,7 @@ void MainWindow::onActionRename()
 void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
 {
     if (ui->stackedWidget->currentIndex() == 0) {
-        ui->filesWidget->setFilter(filters, text);
+        ui->movieFilesWidget->setFilter(filters, text);
     } else if (ui->stackedWidget->currentIndex() == 1) {
         ui->tvShowFilesWidget->setFilter(filters, text);
     } else if (ui->stackedWidget->currentIndex() == 3) {
@@ -611,7 +611,7 @@ void MainWindow::setNewMarks()
             (newDownloads > 0) ? "star" : "",
             newDownloads));
 
-    ui->filesWidget->setAlphaListData();
+    ui->movieFilesWidget->setAlphaListData();
     ui->concertFilesWidget->setAlphaListData();
 }
 
@@ -629,7 +629,7 @@ void MainWindow::onTriggerReloadAll()
 
 void MainWindow::onXbmcSyncFinished()
 {
-    ui->filesWidget->movieSelectedEmitter();
+    ui->movieFilesWidget->movieSelectedEmitter();
     ui->tvShowFilesWidget->emitLastSelection();
     ui->concertFilesWidget->concertSelectedEmitter();
 }
@@ -661,7 +661,7 @@ void MainWindow::onFilesRenamed(Renamer::RenameType type)
 
 void MainWindow::onRenewModels()
 {
-    ui->filesWidget->renewModel();
+    ui->movieFilesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
     ui->downloadsWidget->scanDownloadFolders();
@@ -670,7 +670,7 @@ void MainWindow::onRenewModels()
 void MainWindow::onJumpToMovie(Movie *movie)
 {
     onMenu(ui->buttonMovies);
-    ui->filesWidget->selectMovie(movie);
+    ui->movieFilesWidget->selectMovie(movie);
 }
 
 void MainWindow::updateTvShows()
@@ -693,7 +693,7 @@ void MainWindow::onMenu(QToolButton *button)
     }
 
 
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton *>()) {
+    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
         btn->setProperty("isActive", false);
     }
@@ -706,7 +706,7 @@ void MainWindow::onMenu(QToolButton *button)
     ui->stackedWidget->setCurrentIndex(page);
 
     ui->navbar->setActionReloadEnabled(page == 0 || page == 1 || page == 3 || page == 6 || page == 7);
-    MainWidgets widget;
+    MainWidgets widget = MainWidgets::Movies;
     switch (page) {
     case 0:
         // Movies
@@ -753,7 +753,9 @@ void MainWindow::onMenu(QToolButton *button)
             tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         widget = MainWidgets::Music;
         break;
+    default: qWarning() << "Unhandled page in main window."; break;
     }
+
     ui->navbar->setActionSearchEnabled(m_actions[widget][MainActions::Search]);
     ui->navbar->setActionSaveEnabled(m_actions[widget][MainActions::Save]);
     ui->navbar->setActionSaveAllEnabled(m_actions[widget][MainActions::SaveAll]);

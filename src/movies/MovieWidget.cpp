@@ -11,7 +11,7 @@
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
 #include "main/MainWindow.h"
-#include "movies/FilesWidget.h"
+#include "movies/MovieFilesWidget.h"
 #include "movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
@@ -907,7 +907,7 @@ void MovieWidget::saveInformation()
     qDebug() << "Entered";
     setDisabledTrue();
 
-    QList<Movie *> movies = FilesWidget::instance()->selectedMovies();
+    QList<Movie *> movies = MovieFilesWidget::instance()->selectedMovies();
     if (movies.isEmpty()) {
         movies.append(m_movie);
     }

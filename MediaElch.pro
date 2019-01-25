@@ -148,11 +148,11 @@ SOURCES += src/main.cpp \
     src/mediaCenterPlugins/kodi/TvShowXmlWriter.cpp \
     src/mediaCenterPlugins/kodi/TvShowXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
-    src/movies/FilesWidget.cpp \
     src/movies/GenreWidget.cpp \
     src/movies/MovieController.cpp \
     src/movies/MovieDuplicateItem.cpp \
     src/movies/MovieDuplicates.cpp \
+    src/movies/MovieFilesWidget.cpp \
     src/movies/MovieMultiScrapeDialog.cpp \
     src/movies/MovieSearch.cpp \
     src/movies/MovieSearchWidget.cpp \
@@ -341,11 +341,11 @@ HEADERS  += Version.h \
     src/mediaCenterPlugins/kodi/TvShowXmlWriter.h \
     src/mediaCenterPlugins/kodi/TvShowXmlReader.h \
     src/movies/CertificationWidget.h \
-    src/movies/FilesWidget.h \
     src/movies/GenreWidget.h \
     src/movies/MovieController.h \
     src/movies/MovieDuplicateItem.h \
     src/movies/MovieDuplicates.h \
+    src/movies/MovieFilesWidget.h \
     src/movies/MovieMultiScrapeDialog.h \
     src/movies/MovieSearch.h \
     src/movies/MovieSearchWidget.h \
@@ -464,10 +464,10 @@ FORMS    += src/main/MainWindow.ui \
     src/main/Message.ui \
     src/main/Navbar.ui \
     src/movies/CertificationWidget.ui \
-    src/movies/FilesWidget.ui \
     src/movies/GenreWidget.ui \
     src/movies/MovieDuplicateItem.ui \
     src/movies/MovieDuplicates.ui \
+    src/movies/MovieFilesWidget.ui \
     src/movies/MovieMultiScrapeDialog.ui \
     src/movies/MovieSearch.ui \
     src/movies/MovieSearchWidget.ui \

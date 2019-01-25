@@ -1,5 +1,4 @@
-#ifndef FILESWIDGET_H
-#define FILESWIDGET_H
+#pragma once
 
 #include "globals/Filter.h"
 
@@ -12,7 +11,7 @@
 #include <QWidget>
 
 namespace Ui {
-class FilesWidget;
+class MovieFilesWidget;
 }
 
 class AlphabeticalList;
@@ -23,16 +22,16 @@ class MovieProxyModel;
  * @brief The FilesWidget class
  * This widget displays a list of movies
  * It's a singleton and gets constructed through the gui,
- * the instance can be retrieved through FilesWidget::instance
+ * the instance can be retrieved through MovieFilesWidget::instance
  */
-class FilesWidget : public QWidget
+class MovieFilesWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit FilesWidget(QWidget *parent = nullptr);
-    ~FilesWidget() override;
-    static FilesWidget *instance();
+    explicit MovieFilesWidget(QWidget *parent = nullptr);
+    ~MovieFilesWidget() override;
+    static MovieFilesWidget *instance();
     QList<Movie *> selectedMovies();
     void renewModel();
     void selectMovie(Movie *movie);
@@ -77,16 +76,14 @@ private slots:
     void openNfoFile();
 
 private:
-    Ui::FilesWidget *ui;
+    Ui::MovieFilesWidget *ui;
     MovieProxyModel *m_movieProxyModel;
     Movie *m_lastMovie;
     QModelIndex m_lastModelIndex;
-    static FilesWidget *m_instance;
+    static MovieFilesWidget *m_instance;
     QMenu *m_contextMenu;
     AlphabeticalList *m_alphaList;
     bool m_mouseIsIn;
 
     void updateSort(SortBy sortBy);
 };
-
-#endif // FILESWIDGET_H

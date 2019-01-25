@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FilesWidget</class>
+ <class>MovieFilesWidget</class>
  <widget class="QWidget" name="FilesWidget">
   <property name="geometry">
    <rect>
@@ -55,7 +55,7 @@
          </font>
         </property>
         <property name="text">
-         <string notr="true">384 movies</string>
+         <string notr="true">0 movies</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
