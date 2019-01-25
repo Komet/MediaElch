@@ -1,5 +1,4 @@
-#ifndef ALPHABETICALLIST_H
-#define ALPHABETICALLIST_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "ui/small_widgets/MyTableView.h"
@@ -50,5 +49,3 @@ private:
     int m_animDuration{100};
     MyTableView *m_tableView;
 };
-
-#endif // ALPHABETICALLIST_H

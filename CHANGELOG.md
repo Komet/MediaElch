@@ -8,6 +8,7 @@ to reconfigure your scraper settings.
 
  - Fix IMDb tag scraping (#649)
  - Fix TMDb issue with HTML characters in overview/plot (#651)
+ - `Ctrl+A` works in movie and concert section (#647)
 
 ### Internal Improvements
 

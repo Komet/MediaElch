@@ -60,20 +60,30 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
 
 void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
 {
-    if (!m_useSearchOverlay || keyEvent->key() == Qt::Key_Escape
-        || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
+    const int key = keyEvent->key();
+    const QString value = keyEvent->text();
+
+    if (!m_useSearchOverlay || key == Qt::Key_Escape || (value.isEmpty() && key != Qt::Key_Backspace)) {
         QTableView::keyPressEvent(keyEvent);
         return;
     }
 
-    if (keyEvent->key() == Qt::Key_Backspace && m_currentSearchText.isEmpty()) {
+    // Character may be Ctrl+A, etc.
+    if (value.size() != 1 || value[0] < 'a' || value[0] > 'z') {
+        QTableView::keyPressEvent(keyEvent);
         return;
     }
 
-    if (keyEvent->key() == Qt::Key_Backspace) {
-        m_currentSearchText.remove(m_currentSearchText.length() - 1, 1);
-    } else if (!keyEvent->text().isEmpty()) {
-        m_currentSearchText.append(keyEvent->text());
+    if (key == Qt::Key_Backspace) {
+        if (!m_currentSearchText.isEmpty()) {
+            m_currentSearchText.remove(m_currentSearchText.length() - 1, 1);
+        }
+        QTableView::keyPressEvent(keyEvent);
+        return;
+    }
+
+    if (!value.isEmpty()) {
+        m_currentSearchText.append(value);
     }
 
     m_searchOverlay->fadeIn();
