@@ -106,19 +106,19 @@ FanartTv::FanartTv(QObject *parent)
  * @brief Returns the name of this image provider
  * @return Name of this image provider
  */
-QString FanartTv::name()
+QString FanartTv::name() const
 {
-    return QString("Fanart.tv");
+    return QStringLiteral("Fanart.tv");
 }
 
-QUrl FanartTv::siteUrl()
+QUrl FanartTv::siteUrl() const
 {
     return QUrl("https://fanart.tv");
 }
 
-QString FanartTv::identifier()
+QString FanartTv::identifier() const
 {
-    return QString("images.fanarttv");
+    return QStringLiteral("images.fanarttv");
 }
 
 /**
@@ -762,18 +762,18 @@ QList<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNumb
     return posters;
 }
 
-bool FanartTv::hasSettings()
+bool FanartTv::hasSettings() const
 {
     return true;
 }
 
-void FanartTv::loadSettings(QSettings &settings)
+void FanartTv::loadSettings(const ScraperSettings &settings)
 {
     m_tvdb->loadSettings(settings);
     m_tmdb->loadSettings(settings);
-    m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
-    m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
-    m_personalApiKey = settings.value("Scrapers/FanartTv/PersonalApiKey").toString();
+    m_language = settings.language();
+    m_preferredDiscType = settings.valueString("DiscType", "BluRay");
+    m_personalApiKey = settings.valueString("PersonalApiKey");
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
@@ -787,14 +787,14 @@ void FanartTv::loadSettings(QSettings &settings)
     m_personalApiKeyEdit->setText(m_personalApiKey);
 }
 
-void FanartTv::saveSettings(QSettings &settings)
+void FanartTv::saveSettings(ScraperSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
     m_personalApiKey = m_personalApiKeyEdit->text();
-    settings.setValue("Scrapers/FanartTv/Language", m_language);
-    settings.setValue("Scrapers/FanartTv/DiscType", m_preferredDiscType);
-    settings.setValue("Scrapers/FanartTv/PersonalApiKey", m_personalApiKey);
+    settings.setString("Language", m_language);
+    settings.setString("DiscType", m_preferredDiscType);
+    settings.setString("PersonalApiKey", m_personalApiKey);
 }
 
 QWidget *FanartTv::settingsWidget()

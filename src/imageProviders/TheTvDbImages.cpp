@@ -35,17 +35,17 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
  * @brief Returns the name of this image provider
  * @return Name of this image provider
  */
-QString TheTvDbImages::name()
+QString TheTvDbImages::name() const
 {
     return QString("The TV DB");
 }
 
-QUrl TheTvDbImages::siteUrl()
+QUrl TheTvDbImages::siteUrl() const
 {
     return QUrl("https://www.thetvdb.com");
 }
 
-QString TheTvDbImages::identifier()
+QString TheTvDbImages::identifier() const
 {
     return QString("images.thetvdb");
 }
@@ -405,17 +405,17 @@ void TheTvDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);
 }
 
-bool TheTvDbImages::hasSettings()
+bool TheTvDbImages::hasSettings() const
 {
     return false;
 }
 
-void TheTvDbImages::loadSettings(QSettings &settings)
+void TheTvDbImages::loadSettings(const ScraperSettings &settings)
 {
     m_tvdb->loadSettings(settings);
 }
 
-void TheTvDbImages::saveSettings(QSettings &settings)
+void TheTvDbImages::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

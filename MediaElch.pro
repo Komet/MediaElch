@@ -87,6 +87,7 @@ SOURCES += src/main.cpp \
     src/data/MovieModel.cpp \
     src/data/MovieProxyModel.cpp \
     src/data/Rating.cpp \
+    src/data/ScraperInterface.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
     src/data/Subtitle.cpp \
@@ -197,6 +198,7 @@ SOURCES += src/main.cpp \
     src/settings/AdvancedSettings.cpp \
     src/settings/DataFile.cpp \
     src/settings/ExportTemplateWidget.cpp \
+    src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
     src/settings/SettingsWindow.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
@@ -277,6 +279,7 @@ HEADERS  += Version.h \
     src/data/Rating.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
+    src/data/ScraperInterface.h \
     src/data/Subtitle.h \
     src/data/TvScraperInterface.h \
     src/data/TvShow.h \
@@ -389,6 +392,7 @@ HEADERS  += Version.h \
     src/settings/AdvancedSettings.h \
     src/settings/DataFile.h \
     src/settings/ExportTemplateWidget.h \
+    src/settings/ScraperSettings.h \
     src/settings/Settings.h \
     src/settings/SettingsWindow.h \
     src/ui/small_widgets/AlphabeticalList.h \
@@ -533,12 +537,14 @@ test {
     TARGET = mediaelch-test
 
     HEADERS += test/test_helpers.h \
+        test/mocks/settings/MockScraperSettings.h \
         test/helpers/matchers.h \
         test/helpers/debug_output.h
 
     SOURCES -= src/main.cpp
     SOURCES += test/main.cpp \
         test/helpers/matchers.cpp \
+        test/mocks/settings/MockScraperSettings.cpp \
         test/scrapers/testAdultDvdEmpire.cpp \
         test/scrapers/testAEBN.cpp \
         test/scrapers/testHotMovies.cpp \

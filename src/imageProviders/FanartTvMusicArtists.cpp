@@ -30,17 +30,17 @@ FanartTvMusicArtists::FanartTvMusicArtists(QObject *parent)
  * @brief Returns the name of this image provider
  * @return Name of this image provider
  */
-QString FanartTvMusicArtists::name()
+QString FanartTvMusicArtists::name() const
 {
     return QString("Fanart.tv Music Artists");
 }
 
-QUrl FanartTvMusicArtists::siteUrl()
+QUrl FanartTvMusicArtists::siteUrl() const
 {
     return QUrl("https://fanart.tv");
 }
 
-QString FanartTvMusicArtists::identifier()
+QString FanartTvMusicArtists::identifier() const
 {
     return QString("images.fanarttv-music");
 }
@@ -351,19 +351,19 @@ void FanartTvMusicArtists::concertCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-bool FanartTvMusicArtists::hasSettings()
+bool FanartTvMusicArtists::hasSettings() const
 {
     return false;
 }
 
-void FanartTvMusicArtists::loadSettings(QSettings &settings)
+void FanartTvMusicArtists::loadSettings(const ScraperSettings &settings)
 {
-    m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
-    m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
-    m_personalApiKey = settings.value("Scrapers/FanartTv/PersonalApiKey").toString();
+    m_language = settings.language();
+    m_preferredDiscType = settings.valueString("DiscType", "BluRay");
+    m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 
-void FanartTvMusicArtists::saveSettings(QSettings &settings)
+void FanartTvMusicArtists::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

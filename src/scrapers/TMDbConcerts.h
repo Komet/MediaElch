@@ -19,12 +19,13 @@ class TMDbConcerts : public ConcertScraperInterface
 public:
     explicit TMDbConcerts(QObject *parent = nullptr);
     ~TMDbConcerts() override = default;
-    QString name() override;
+    QString name() const override;
+    QString identifier() const override;
     void search(QString searchStr) override;
     void loadData(TmdbId id, Concert *concert, QList<ConcertScraperInfos> infos) override;
-    bool hasSettings() override;
-    void loadSettings(QSettings &settings) override;
-    void saveSettings(QSettings &settings) override;
+    bool hasSettings() const override;
+    void loadSettings(const ScraperSettings &settings) override;
+    void saveSettings(ScraperSettings &settings) override;
     QList<ConcertScraperInfos> scraperSupports() override;
     QWidget *settingsWidget() override;
 

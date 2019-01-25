@@ -15,9 +15,9 @@ class FanartTvMusic : public ImageProviderInterface
     Q_OBJECT
 public:
     explicit FanartTvMusic(QObject *parent = nullptr);
-    QString name() override;
-    QUrl siteUrl() override;
-    QString identifier() override;
+    QString name() const override;
+    QUrl siteUrl() const override;
+    QString identifier() const override;
     void movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
@@ -54,9 +54,9 @@ public:
     void albumImages(Album *album, QString mbId, QList<ImageType> types) override;
     void albumBooklets(QString mbId) override;
     QList<ImageType> provides() override;
-    bool hasSettings() override;
-    void loadSettings(QSettings &settings) override;
-    void saveSettings(QSettings &settings) override;
+    bool hasSettings() const override;
+    void loadSettings(const ScraperSettings &settings) override;
+    void saveSettings(ScraperSettings &settings) override;
     QWidget *settingsWidget() override;
 
 public slots:

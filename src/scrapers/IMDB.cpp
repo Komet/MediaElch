@@ -44,7 +44,7 @@ QString IMDB::name() const
 
 QString IMDB::identifier() const
 {
-    return QStringLiteral("imdb");
+    return QStringLiteral("IMDb");
 }
 
 bool IMDB::isAdult() const
@@ -62,16 +62,16 @@ QWidget *IMDB::settingsWidget()
     return m_settingsWidget;
 }
 
-void IMDB::loadSettings(QSettings &settings)
+void IMDB::loadSettings(const ScraperSettings &settings)
 {
-    m_loadAllTags = settings.value("Scrapers/IMDb/LoadAllTags", false).toBool();
+    m_loadAllTags = settings.valueBool("LoadAllTags", false);
     m_loadAllTagsWidget->setChecked(m_loadAllTags);
 }
 
-void IMDB::saveSettings(QSettings &settings)
+void IMDB::saveSettings(ScraperSettings &settings)
 {
     m_loadAllTags = m_loadAllTagsWidget->isChecked();
-    settings.setValue("Scrapers/IMDb/LoadAllTags", m_loadAllTags);
+    settings.setBool("LoadAllTags", m_loadAllTags);
 }
 
 QList<MovieScraperInfos> IMDB::scraperSupports()

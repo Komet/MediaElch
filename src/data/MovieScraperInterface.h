@@ -1,10 +1,11 @@
 #pragma once
 
+#include "data/ScraperInterface.h"
 #include "globals/Globals.h"
+#include "settings/ScraperSettings.h"
 
 #include <QList>
 #include <QMap>
-#include <QSettings>
 #include <QString>
 #include <vector>
 
@@ -15,16 +16,11 @@ struct ScraperSearchResult;
  * @brief The MovieScraperInterface class
  * This class is the base for every movie Scraper.
  */
-class MovieScraperInterface : public QObject
+class MovieScraperInterface : public ScraperInterface, public QObject
 {
 public:
-    virtual QString name() const = 0;
-    virtual QString identifier() const = 0;
     virtual void search(QString searchStr) = 0;
     virtual void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) = 0;
-    virtual bool hasSettings() const = 0;
-    virtual void loadSettings(QSettings &settings) = 0;
-    virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<MovieScraperInfos> scraperSupports() = 0;
     virtual QList<MovieScraperInfos> scraperNativelySupports() = 0;
     virtual std::vector<ScraperLanguage> supportedLanguages() = 0;

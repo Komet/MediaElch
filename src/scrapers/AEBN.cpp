@@ -85,7 +85,7 @@ void AEBN::changeLanguage(QString languageKey)
 
 QString AEBN::defaultLanguageKey()
 {
-    return Settings::instance()->settings()->value("Scrapers/AEBN/Language", "en").toString();
+    return Settings::instance()->settings()->value("Language", "en").toString();
 }
 
 QString AEBN::name() const
@@ -376,15 +376,15 @@ bool AEBN::hasSettings() const
     return true;
 }
 
-void AEBN::loadSettings(QSettings &settings)
+void AEBN::loadSettings(const ScraperSettings &settings)
 {
-    m_language = settings.value("Scrapers/AEBN/Language", "en").toString();
+    m_language = settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
         }
     }
-    m_genreId = settings.value("Scrapers/AEBN/Genre", "101").toString();
+    m_genreId = settings.genre("101");
     for (int i = 0, n = m_genreBox->count(); i < n; ++i) {
         if (m_genreBox->itemData(i).toString() == m_genreId) {
             m_genreBox->setCurrentIndex(i);
@@ -392,13 +392,13 @@ void AEBN::loadSettings(QSettings &settings)
     }
 }
 
-void AEBN::saveSettings(QSettings &settings)
+void AEBN::saveSettings(ScraperSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/AEBN/Language", m_language);
+    settings.setString("Language", m_language);
 
     m_genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
-    settings.setValue("Scrapers/AEBN/Genre", m_genreId);
+    settings.setString("Genre", m_genreId);
 }
 
 QWidget *AEBN::settingsWidget()

@@ -89,16 +89,21 @@ TMDbConcerts::TMDbConcerts(QObject *parent) :
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString TMDbConcerts::name()
+QString TMDbConcerts::name() const
 {
     return QStringLiteral("The Movie DB (Concerts)");
+}
+
+QString TMDbConcerts::identifier() const
+{
+    return QStringLiteral("TMDbConcerts");
 }
 
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
  */
-bool TMDbConcerts::hasSettings()
+bool TMDbConcerts::hasSettings() const
 {
     return true;
 }
@@ -111,9 +116,9 @@ QWidget *TMDbConcerts::settingsWidget()
 /**
  * @brief Loads scrapers settings
  */
-void TMDbConcerts::loadSettings(QSettings &settings)
+void TMDbConcerts::loadSettings(const ScraperSettings &settings)
 {
-    m_locale = QLocale(settings.value("Scrapers/TMDbConcerts/Language", "en").toString());
+    m_locale = QLocale(settings.language());
     if (m_locale.name() == "C") {
         m_locale = QLocale("en");
     }
@@ -132,10 +137,10 @@ void TMDbConcerts::loadSettings(QSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void TMDbConcerts::saveSettings(QSettings &settings)
+void TMDbConcerts::saveSettings(ScraperSettings &settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/TMDbConcerts/Language", language);
+    settings.setLanguage(language);
     loadSettings(settings);
 }
 

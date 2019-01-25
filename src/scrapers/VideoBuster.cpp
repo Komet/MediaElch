@@ -388,7 +388,7 @@ bool VideoBuster::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void VideoBuster::loadSettings(QSettings &settings)
+void VideoBuster::loadSettings(const ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
@@ -396,7 +396,7 @@ void VideoBuster::loadSettings(QSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void VideoBuster::saveSettings(QSettings &settings)
+void VideoBuster::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

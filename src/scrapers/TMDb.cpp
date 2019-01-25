@@ -99,7 +99,7 @@ QString TMDb::name() const
 
 QString TMDb::identifier() const
 {
-    return QStringLiteral("tmdb");
+    return QStringLiteral("TMDb");
 }
 
 bool TMDb::isAdult() const
@@ -120,9 +120,9 @@ QWidget *TMDb::settingsWidget()
 /**
  * @brief Loads scrapers settings
  */
-void TMDb::loadSettings(QSettings &settings)
+void TMDb::loadSettings(const ScraperSettings &settings)
 {
-    m_locale = QLocale(settings.value("Scrapers/TMDb/Language", "en").toString());
+    m_locale = QLocale(settings.language());
     if (m_locale.name() == "C") {
         m_locale = QLocale("en");
     }
@@ -141,10 +141,10 @@ void TMDb::loadSettings(QSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void TMDb::saveSettings(QSettings &settings)
+void TMDb::saveSettings(ScraperSettings &settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/TMDb/Language", language);
+    settings.setString("Language", language);
     loadSettings(settings);
 }
 
@@ -206,7 +206,7 @@ void TMDb::changeLanguage(QString languageKey)
 
 QString TMDb::defaultLanguageKey()
 {
-    QString lang = Settings::instance()->settings()->value("Scrapers/TMDb/Language", "en").toString();
+    QString lang = Settings::instance()->settings()->value("Language", "en").toString();
     if (lang.isEmpty()) {
         return QStringLiteral("en");
     }

@@ -1,23 +1,21 @@
 #include "Settings.h"
 
+#include "data/MovieScraperInterface.h"
+#include "globals/Manager.h"
+#include "renamer/RenamerDialog.h"
+
 #include <QApplication>
 #include <QDesktopServices>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QNetworkProxy>
 
-#include "data/MovieScraperInterface.h"
-#include "globals/Manager.h"
-#include "renamer/RenamerDialog.h"
-
 /**
  * @brief Settings::Settings
  * @param parent
  */
-Settings::Settings(QObject *parent) : QObject(parent)
+Settings::Settings(QObject *parent) : QObject(parent), m_advancedSettings{new AdvancedSettings(parent)}
 {
-    m_advancedSettings = new AdvancedSettings(parent);
-
     if (m_advancedSettings->portableMode()) {
         qDebug() << "portable mode!";
         m_settings = new QSettings(Settings::applicationDir() + "/MediaElch.ini", QSettings::IniFormat, this);
@@ -213,7 +211,10 @@ void Settings::loadSettings()
 
     const auto loadSettings = [&](auto scrapers) {
         for (auto *scraper : scrapers) {
-            scraper->loadSettings(*settings());
+            if (scraper->hasSettings()) {
+                ScraperSettingsQt scraperSettings(*scraper, *m_settings);
+                scraper->loadSettings(scraperSettings);
+            }
         }
     };
     loadSettings(Manager::instance()->movieScrapers());
@@ -401,7 +402,8 @@ void Settings::saveSettings()
     const auto saveSettings = [&](auto scrapers) {
         for (auto *scraper : scrapers) {
             if (scraper->hasSettings()) {
-                scraper->saveSettings(*settings());
+                ScraperSettingsQt scraperSettings(*scraper, *m_settings);
+                scraper->saveSettings(scraperSettings);
             }
         }
     };

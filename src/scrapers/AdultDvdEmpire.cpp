@@ -255,12 +255,12 @@ bool AdultDvdEmpire::hasSettings() const
     return false;
 }
 
-void AdultDvdEmpire::loadSettings(QSettings &settings)
+void AdultDvdEmpire::loadSettings(const ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
 
-void AdultDvdEmpire::saveSettings(QSettings &settings)
+void AdultDvdEmpire::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

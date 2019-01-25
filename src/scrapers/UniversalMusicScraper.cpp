@@ -58,14 +58,14 @@ QNetworkAccessManager *UniversalMusicScraper::qnam()
     return &m_qnam;
 }
 
-QString UniversalMusicScraper::name()
+QString UniversalMusicScraper::name() const
 {
     return QString("Universal Music Scraper");
 }
 
-QString UniversalMusicScraper::identifier()
+QString UniversalMusicScraper::identifier() const
 {
-    return QString("universalmusicscraper");
+    return QStringLiteral("UniversalMusicScraper");
 }
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
@@ -1140,20 +1140,20 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     }
 }
 
-bool UniversalMusicScraper::hasSettings()
+bool UniversalMusicScraper::hasSettings() const
 {
     return true;
 }
 
-void UniversalMusicScraper::loadSettings(QSettings &settings)
+void UniversalMusicScraper::loadSettings(const ScraperSettings &settings)
 {
-    m_language = settings.value("Scrapers/UniversalMusicScraper/Language", "en").toString();
+    m_language = settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
         }
     }
-    m_prefer = settings.value("Scrapers/UniversalMusicScraper/Prefer", "theaudiodb").toString();
+    m_prefer = settings.valueString("Prefer", "theaudiodb");
     for (int i = 0, n = m_preferBox->count(); i < n; ++i) {
         if (m_preferBox->itemData(i).toString() == m_prefer) {
             m_preferBox->setCurrentIndex(i);
@@ -1161,12 +1161,12 @@ void UniversalMusicScraper::loadSettings(QSettings &settings)
     }
 }
 
-void UniversalMusicScraper::saveSettings(QSettings &settings)
+void UniversalMusicScraper::saveSettings(ScraperSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/UniversalMusicScraper/Language", m_language);
+    settings.setString("Language", m_language);
     m_prefer = m_preferBox->itemData(m_preferBox->currentIndex()).toString();
-    settings.setValue("Scrapers/UniversalMusicScraper/Prefer", m_prefer);
+    settings.setString("Prefer", m_prefer);
 }
 
 QList<MusicScraperInfos> UniversalMusicScraper::scraperSupports()

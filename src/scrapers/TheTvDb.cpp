@@ -98,14 +98,14 @@ QNetworkAccessManager *TheTvDb::qnam()
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
-QString TheTvDb::name()
+QString TheTvDb::name() const
 {
-    return QString("The TV DB");
+    return QStringLiteral("The TV DB");
 }
 
-QString TheTvDb::identifier()
+QString TheTvDb::identifier() const
 {
-    return QString("tvdb");
+    return QStringLiteral("TheTVDB");
 }
 
 QString TheTvDb::apiKey()
@@ -122,7 +122,7 @@ QString TheTvDb::language()
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
  */
-bool TheTvDb::hasSettings()
+bool TheTvDb::hasSettings() const
 {
     return true;
 }
@@ -130,9 +130,9 @@ bool TheTvDb::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void TheTvDb::loadSettings(QSettings &settings)
+void TheTvDb::loadSettings(const ScraperSettings &settings)
 {
-    m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
+    m_language = settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
         if (m_box->itemData(i).toString() == m_language) {
             m_box->setCurrentIndex(i);
@@ -143,10 +143,10 @@ void TheTvDb::loadSettings(QSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void TheTvDb::saveSettings(QSettings &settings)
+void TheTvDb::saveSettings(ScraperSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/TheTvDb/Language", m_language);
+    settings.setLanguage(m_language);
 }
 
 /**

@@ -5,11 +5,14 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
+#include "settings/ScraperSettings.h"
 
 #include <QObject>
 #include <QPoint>
 #include <QSettings>
 #include <QSize>
+
+#include <memory>
 
 /**
  * @brief The Settings class
@@ -17,13 +20,15 @@
 class Settings : public QObject
 {
     Q_OBJECT
-public:
-    explicit Settings(QObject *parent = nullptr);
+private:
+    explicit Settings(QObject *parent);
 
+public:
     static Settings *instance(QObject *parent = nullptr);
     AdvancedSettings *advanced();
     void loadSettings();
     QSettings *settings();
+    ScraperSettings &scraperSettings();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();

@@ -28,17 +28,17 @@ TMDbImages::TMDbImages(QObject *parent)
  * @brief Returns the name of this image provider
  * @return Name of this image provider
  */
-QString TMDbImages::name()
+QString TMDbImages::name() const
 {
     return QString("The Movie DB");
 }
 
-QUrl TMDbImages::siteUrl()
+QUrl TMDbImages::siteUrl() const
 {
     return QUrl("https://www.themoviedb.org");
 }
 
-QString TMDbImages::identifier()
+QString TMDbImages::identifier() const
 {
     return QString("images.tmdb");
 }
@@ -369,17 +369,17 @@ void TMDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
     Q_UNUSED(season);
 }
 
-bool TMDbImages::hasSettings()
+bool TMDbImages::hasSettings() const
 {
     return false;
 }
 
-void TMDbImages::saveSettings(QSettings &settings)
+void TMDbImages::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
 
-void TMDbImages::loadSettings(QSettings &settings)
+void TMDbImages::loadSettings(const ScraperSettings &settings)
 {
     m_tmdb->loadSettings(settings);
 }

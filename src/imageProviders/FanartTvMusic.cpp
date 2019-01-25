@@ -27,17 +27,17 @@ FanartTvMusic::FanartTvMusic(QObject *parent)
     m_language = "en";
 }
 
-QString FanartTvMusic::name()
+QString FanartTvMusic::name() const
 {
     return QString("Fanart.tv Music");
 }
 
-QUrl FanartTvMusic::siteUrl()
+QUrl FanartTvMusic::siteUrl() const
 {
     return QUrl("https://fanart.tv");
 }
 
-QString FanartTvMusic::identifier()
+QString FanartTvMusic::identifier() const
 {
     return QString("images.fanarttv-music_lib");
 }
@@ -488,18 +488,18 @@ void FanartTvMusic::concertCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-bool FanartTvMusic::hasSettings()
+bool FanartTvMusic::hasSettings() const
 {
     return false;
 }
 
-void FanartTvMusic::loadSettings(QSettings &settings)
+void FanartTvMusic::loadSettings(const ScraperSettings &settings)
 {
-    m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
-    m_personalApiKey = settings.value("Scrapers/FanartTv/PersonalApiKey").toString();
+    m_language = settings.language();
+    m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 
-void FanartTvMusic::saveSettings(QSettings &settings)
+void FanartTvMusic::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

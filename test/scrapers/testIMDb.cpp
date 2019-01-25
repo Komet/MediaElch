@@ -1,5 +1,7 @@
 #include "test/test_helpers.h"
 
+#include "test/mocks/settings/MockScraperSettings.h"
+
 #include "scrapers/IMDB.h"
 
 #include <chrono>
@@ -30,6 +32,8 @@ void loadImdbSync(IMDB &scraper, QMap<MovieScraperInterface *, QString> ids, Mov
 TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search][requires_internet]")
 {
     IMDB imdb;
+    MockScraperSettings settings(imdb);
+    imdb.loadSettings(settings);
 
     SECTION("Search by movie name returns correct results")
     {
@@ -52,6 +56,9 @@ TEST_CASE("IMDb returns valid search results", "[scraper][IMDb][search][requires
 TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requires_internet]")
 {
     IMDB imdb;
+    MockScraperSettings settings(imdb);
+    settings.key_bool_map["LoadAllTags"] = false;
+    imdb.loadSettings(settings);
 
     SECTION("'Normal' movie has correct details")
     {
@@ -156,6 +163,37 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(actors[0].role == "Andy Dufresne");
         CHECK(actors[1].name == "Morgan Freeman");
         CHECK(actors[1].role == "Ellis Boyd 'Red' Redding");
+    }
+
+    SECTION("Loads tags correctly")
+    {
+        SECTION("'load all tags' is true")
+        {
+            settings.key_bool_map["LoadAllTags"] = true;
+            imdb.loadSettings(settings);
+
+            Movie m(QStringList{}); // Movie without files
+            loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
+
+            const auto tags = m.tags();
+            REQUIRE(tags.size() >= 20);
+            CHECK(tags[0] == "wrongful imprisonment");
+            CHECK_THAT(tags[1], Contains("prison"));
+        }
+
+        SECTION("'load all tags' is false")
+        {
+            settings.key_bool_map["LoadAllTags"] = false;
+            imdb.loadSettings(settings);
+
+            Movie m(QStringList{}); // Movie without files
+            loadImdbSync(imdb, {{nullptr, "tt0111161"}}, m);
+
+            const auto tags = m.tags();
+            REQUIRE(tags.size() >= 2);
+            CHECK(tags[0] == "wrongful imprisonment");
+            CHECK_THAT(tags[1], Contains("prison"));
+        }
     }
 
     // Why is this test commented out?

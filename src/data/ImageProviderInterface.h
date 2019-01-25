@@ -1,27 +1,24 @@
-#ifndef IMAGEPROVIDERINTERFACE_H
-#define IMAGEPROVIDERINTERFACE_H
-
-#include <QList>
-#include <QMap>
-#include <QSettings>
-#include <QString>
+#pragma once
 
 #include "data/Concert.h"
 #include "data/EpisodeNumber.h"
 #include "data/Movie.h"
+#include "data/ScraperInterface.h"
 #include "data/SeasonNumber.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
+#include "settings/ScraperSettings.h"
 
+#include <QList>
+#include <QMap>
+#include <QString>
 
-/**
- * @brief The ImageProviderInterface class
- */
-class ImageProviderInterface : public QObject
+class ImageProviderInterface : public ScraperInterface, public QObject
 {
 public:
-    virtual QString name() = 0;
-    virtual QString identifier() = 0;
+    virtual QString name() const = 0;
+    virtual QString identifier() const = 0;
+    virtual QUrl siteUrl() const = 0;
     virtual void movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types) = 0;
     virtual void moviePosters(TmdbId tmdbId) = 0;
     virtual void movieBackdrops(TmdbId tmdbId) = 0;
@@ -58,11 +55,10 @@ public:
     virtual void artistImages(Artist *artist, QString mbId, QList<ImageType> types) = 0;
     virtual void albumImages(Album *album, QString mbId, QList<ImageType> types) = 0;
     virtual QList<ImageType> provides() = 0;
-    virtual bool hasSettings() = 0;
-    virtual void loadSettings(QSettings &settings) = 0;
-    virtual void saveSettings(QSettings &settings) = 0;
+    virtual bool hasSettings() const = 0;
+    virtual void loadSettings(const ScraperSettings &settings) = 0;
+    virtual void saveSettings(ScraperSettings &settings) = 0;
     virtual QWidget *settingsWidget() = 0;
-    virtual QUrl siteUrl() = 0;
 
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;
@@ -70,6 +66,7 @@ public slots:
     virtual void searchTvShow(QString searchStr, int limit) = 0;
     virtual void searchArtist(QString searchStr, int limit) = 0;
     virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
+
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
@@ -82,5 +79,3 @@ signals:
 
 Q_DECLARE_METATYPE(ImageProviderInterface *)
 Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface *)
-
-#endif // IMAGEPROVIDERINTERFACE_H

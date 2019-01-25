@@ -23,17 +23,17 @@ class TheTvDb : public TvScraperInterface
     Q_OBJECT
 public:
     explicit TheTvDb(QObject *parent = nullptr);
-    QString name() override;
-    QString identifier() override;
+    QString name() const override;
+    QString identifier() const override;
     void search(QString searchStr) override;
     void loadTvShowData(TvDbId id,
         TvShow *show,
         TvShowUpdateType updateType,
         QList<TvShowScraperInfos> infosToLoad) override;
     void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
-    bool hasSettings() override;
-    void loadSettings(QSettings &settings) override;
-    void saveSettings(QSettings &settings) override;
+    bool hasSettings() const override;
+    void loadSettings(const ScraperSettings &settings) override;
+    void saveSettings(ScraperSettings &settings) override;
     QWidget *settingsWidget() override;
     void fillDatabaseWithAllEpisodes(QString xml, TvShow *show);
     QString apiKey();

@@ -292,7 +292,8 @@ MovieScraperInterface *CustomMovieScraper::scraperForInfo(MovieScraperInfos info
     for (auto *scraper : m_scrapers) {
         if (scraper->identifier() == identifier) {
             if (scraper->hasSettings()) {
-                scraper->loadSettings(*Settings::instance()->settings());
+                ScraperSettingsQt scraperSettings(*scraper, *Settings::instance()->settings());
+                scraper->loadSettings(scraperSettings);
             }
             return scraper;
         }
@@ -312,7 +313,8 @@ QList<MovieScraperInterface *> CustomMovieScraper::scrapersForInfos(QList<MovieS
 
     for (MovieScraperInterface *scraper : scrapers) {
         if (scraper->hasSettings()) {
-            scraper->loadSettings(*Settings::instance()->settings());
+            ScraperSettingsQt scraperSettings(*scraper, *Settings::instance()->settings());
+            scraper->loadSettings(scraperSettings);
         }
     }
 
@@ -375,12 +377,12 @@ bool CustomMovieScraper::hasSettings() const
     return false;
 }
 
-void CustomMovieScraper::loadSettings(QSettings &settings)
+void CustomMovieScraper::loadSettings(const ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
 
-void CustomMovieScraper::saveSettings(QSettings &settings)
+void CustomMovieScraper::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }

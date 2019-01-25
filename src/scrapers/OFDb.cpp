@@ -54,7 +54,7 @@ bool OFDb::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void OFDb::loadSettings(QSettings &settings)
+void OFDb::loadSettings(const ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
@@ -62,7 +62,7 @@ void OFDb::loadSettings(QSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void OFDb::saveSettings(QSettings &settings)
+void OFDb::saveSettings(ScraperSettings &settings)
 {
     Q_UNUSED(settings);
 }
