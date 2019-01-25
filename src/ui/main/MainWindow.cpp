@@ -230,9 +230,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->labelShows->setFont(font);
     ui->labelMusic->setFont(font);
     ui->labelDownloads->setFont(font);
-#endif
 
-#ifdef Q_OS_WIN
     for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
         btn->setIconSize(QSize(32, 32));
     }
