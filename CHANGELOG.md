@@ -7,6 +7,7 @@ to reconfigure your scraper settings.
 ### Bugfixes
 
  - Fix IMDb tag scraping (#649)
+ - Fix TMDb issue with HTML characters in overview/plot (#651)
 
 ### Internal Improvements
 

@@ -8,6 +8,7 @@
 #include <QJsonValue>
 #include <QLabel>
 #include <QSettings>
+#include <QTextDocument>
 #include <QUrlQuery>
 
 #include "data/Storage.h"
@@ -744,7 +745,9 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInf
         movie->setSet(collection.value("name").toString());
     }
     if (infos.contains(MovieScraperInfos::Overview)) {
-        const auto overviewStr = parsedJson.value("overview").toString();
+        QTextDocument doc;
+        doc.setHtml(parsedJson.value("overview").toString());
+        const auto overviewStr = doc.toPlainText();
         if (!overviewStr.isEmpty()) {
             movie->setOverview(overviewStr);
             if (Settings::instance()->usePlotForOutline()) {
