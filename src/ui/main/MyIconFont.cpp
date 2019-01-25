@@ -60,7 +60,7 @@ public:
         painter->setFont(awesome->font(drawSize));
         painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 
-        float size = 0.5;
+        const float size = 0.5f;
         QRect starRect(rect.left() + 1,
             qRound(rect.top() + rect.height() * (1 - size)) - 1,
             qRound(rect.width() * size),
@@ -69,7 +69,8 @@ public:
         painter->setPen(starColor);
 #ifdef Q_OS_MAC
         drawSize = qRound(starRect.height() * options.value("scale-factor").toFloat());
-        painter->setFont(QFont("", drawSize - 6));
+        const int digits = options.value("marker-text").toString().size();
+        painter->setFont(QFont("", drawSize - (digits * 2 + 1))); // mac needs a smaller font
 #else
         QFont f;
         f.setPointSize(6);
