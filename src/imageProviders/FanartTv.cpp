@@ -7,7 +7,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QLabel>
-#include <QSettings>
 
 #include "data/Storage.h"
 #include "main/MainWindow.h"

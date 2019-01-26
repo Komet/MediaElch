@@ -7,7 +7,6 @@
 #include <QLabel>
 #include <QMovie>
 #include <QPainter>
-#include <QSettings>
 #include <QSize>
 #include <QStandardPaths>
 #include <QTimer>

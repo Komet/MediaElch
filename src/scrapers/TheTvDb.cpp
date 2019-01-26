@@ -4,7 +4,6 @@
 #include <QDomDocument>
 #include <QGridLayout>
 #include <QLabel>
-#include <QSettings>
 #include <QSpacerItem>
 
 #include "data/Movie.h"

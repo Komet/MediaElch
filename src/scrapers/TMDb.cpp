@@ -7,7 +7,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QLabel>
-#include <QSettings>
 #include <QTextDocument>
 #include <QUrlQuery>
 

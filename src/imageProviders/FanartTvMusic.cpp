@@ -7,7 +7,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QSettings>
 
 #include "data/Storage.h"
 #include "imageProviders/FanartTv.h"

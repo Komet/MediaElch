@@ -9,7 +9,6 @@
 #include <QJsonValue>
 #include <QLabel>
 #include <QMutexLocker>
-#include <QSettings>
 
 #include "../data/Storage.h"
 #include "../globals/NetworkReplyWatcher.h"
