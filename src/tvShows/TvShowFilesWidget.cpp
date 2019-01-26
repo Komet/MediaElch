@@ -168,7 +168,7 @@ void TvShowFilesWidget::scanForEpisodes()
     } else {
         return;
     }
-    Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::TypeEpisodes);
+    Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::ReloadType::Episodes);
 
     QString dir = m_lastTvShow->dir();
     ui->files->selectionModel()->blockSignals(true);

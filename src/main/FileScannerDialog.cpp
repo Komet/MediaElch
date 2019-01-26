@@ -27,9 +27,6 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) : QDialog(parent), ui(new 
 #endif
     ui->currentDir->setFont(font);
 
-    m_forceReload = false;
-    m_reloadType = TypeAll;
-
     Manager::instance()->setFileScannerDialog(this);
 
     // clang-format off
@@ -83,15 +80,15 @@ int FileScannerDialog::exec()
         ImageCache::instance()->clearCache();
     }
 
-    if (m_reloadType == TypeMovies || m_reloadType == TypeAll) {
+    if (m_reloadType == ReloadType::Movies || m_reloadType == ReloadType::All) {
         onStartMovieScanner();
-    } else if (m_reloadType == TypeTvShows) {
+    } else if (m_reloadType == ReloadType::TvShows) {
         onStartTvShowScanner();
-    } else if (m_reloadType == TypeConcerts) {
+    } else if (m_reloadType == ReloadType::Concerts) {
         onStartConcertScanner();
-    } else if (m_reloadType == TypeEpisodes) {
+    } else if (m_reloadType == ReloadType::Episodes) {
         onStartEpisodeScanner();
-    } else if (m_reloadType == TypeMusic) {
+    } else if (m_reloadType == ReloadType::Music) {
         onStartMusicScanner();
     }
 
@@ -113,20 +110,20 @@ void FileScannerDialog::setReloadType(ReloadType type)
  */
 void FileScannerDialog::reject()
 {
-    if (m_reloadType == TypeMovies || m_reloadType == TypeAll) {
+    if (m_reloadType == ReloadType::Movies || m_reloadType == ReloadType::All) {
         Manager::instance()->movieFileSearcher()->abort();
         Manager::instance()->movieModel()->clear();
     }
-    if (m_reloadType == TypeTvShows || m_reloadType == TypeAll) {
+    if (m_reloadType == ReloadType::TvShows || m_reloadType == ReloadType::All) {
         Manager::instance()->tvShowFileSearcher()->abort();
         Manager::instance()->tvShowModel()->clear();
         Manager::instance()->tvShowFilesWidget()->renewModel();
     }
-    if (m_reloadType == TypeConcerts || m_reloadType == TypeAll) {
+    if (m_reloadType == ReloadType::Concerts || m_reloadType == ReloadType::All) {
         Manager::instance()->concertFileSearcher()->abort();
         Manager::instance()->concertModel()->clear();
     }
-    if (m_reloadType == TypeMusic || m_reloadType == TypeAll) {
+    if (m_reloadType == ReloadType::Music || m_reloadType == ReloadType::All) {
         Manager::instance()->musicFileSearcher()->abort();
         Manager::instance()->musicModel()->clear();
     }
@@ -258,7 +255,7 @@ void FileScannerDialog::onCurrentDir(QString dir)
 
 void FileScannerDialog::onLoadDone(int msgId)
 {
-    if (m_reloadType != TypeAll) {
+    if (m_reloadType != ReloadType::All) {
         accept();
         return;
     }

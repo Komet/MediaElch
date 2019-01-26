@@ -14,14 +14,14 @@ class FileScannerDialog : public QDialog
     Q_OBJECT
 
 public:
-    enum ReloadType
+    enum class ReloadType
     {
-        TypeAll,
-        TypeMovies,
-        TypeTvShows,
-        TypeConcerts,
-        TypeEpisodes,
-        TypeMusic
+        All,
+        Movies,
+        TvShows,
+        Concerts,
+        Episodes,
+        Music
     };
 
     explicit FileScannerDialog(QWidget *parent = nullptr);
@@ -55,7 +55,7 @@ private slots:
 private:
     Ui::FileScannerDialog *ui;
 
-    bool m_forceReload;
-    ReloadType m_reloadType;
+    bool m_forceReload = false;
+    ReloadType m_reloadType = ReloadType::All;
     QString m_scanDir;
 };

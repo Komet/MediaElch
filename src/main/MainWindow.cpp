@@ -442,13 +442,13 @@ void MainWindow::onActionReload()
     m_fileScannerDialog->setForceReload(true);
 
     if (ui->stackedWidget->currentIndex() == 0) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
     } else if (ui->stackedWidget->currentIndex() == 1) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::TvShows);
     } else if (ui->stackedWidget->currentIndex() == 3) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Concerts);
     } else if (ui->stackedWidget->currentIndex() == 7) {
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMusic);
+        m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Music);
     }
 
     m_fileScannerDialog->exec();
@@ -623,7 +623,7 @@ void MainWindow::onActionXbmc()
 void MainWindow::onTriggerReloadAll()
 {
     m_fileScannerDialog->setForceReload(true);
-    m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+    m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::All);
     m_fileScannerDialog->exec();
 }
 
@@ -639,13 +639,13 @@ void MainWindow::onFilesRenamed(Renamer::RenameType type)
     if (m_renamer->renameErrorOccured()) {
         m_fileScannerDialog->setForceReload(true);
         if (type == Renamer::RenameType::Movies) {
-            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+            m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
         } else if (type == Renamer::RenameType::Concerts) {
-            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+            m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Concerts);
         } else if (type == Renamer::RenameType::TvShows) {
-            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+            m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::TvShows);
         } else if (type == Renamer::RenameType::All) {
-            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+            m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::All);
         }
         m_fileScannerDialog->exec();
     } else {
