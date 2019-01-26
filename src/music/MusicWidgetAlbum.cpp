@@ -427,7 +427,7 @@ void MusicWidgetAlbum::onChooseImage()
     if (!m_album->images(image->imageType()).isEmpty()) {
         ImageDialog::instance()->setDownloads(m_album->images(image->imageType()));
     } else {
-        ImageDialog::instance()->setDownloads(QList<Poster>());
+        ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
 
     ImageDialog::instance()->exec(image->imageType());
@@ -495,7 +495,7 @@ void MusicWidgetAlbum::onDownloadProgress(Album *album, int current, int maximum
     emit sigDownloadsProgress(maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
-void MusicWidgetAlbum::onLoadingImages(Album *album, QList<ImageType> imageTypes)
+void MusicWidgetAlbum::onLoadingImages(Album *album, QVector<ImageType> imageTypes)
 {
     if (m_album != album) {
         return;
@@ -560,7 +560,7 @@ void MusicWidgetAlbum::onAddBooklet()
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMultiSelection(true);
     ImageDialog::instance()->setAlbum(m_album);
-    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->setDownloads(QVector<Poster>());
     ImageDialog::instance()->exec(ImageType::AlbumBooklet);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
@@ -573,7 +573,7 @@ void MusicWidgetAlbum::onAddBooklet()
     }
 }
 
-void MusicWidgetAlbum::onBookletsDropped(QList<QUrl> urls)
+void MusicWidgetAlbum::onBookletsDropped(QVector<QUrl> urls)
 {
     if (m_bookletWidget) {
         m_bookletWidget->setLoading(true);

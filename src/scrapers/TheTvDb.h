@@ -28,8 +28,8 @@ public:
     void loadTvShowData(TvDbId id,
         TvShow *show,
         TvShowUpdateType updateType,
-        QList<TvShowScraperInfos> infosToLoad) override;
-    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad) override;
+        QVector<TvShowScraperInfos> infosToLoad) override;
+    void loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QVector<TvShowScraperInfos> infosToLoad) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings &settings) override;
     void saveSettings(ScraperSettings &settings) override;
@@ -39,7 +39,7 @@ public:
     QString language();
 
 signals:
-    void sigSearchDone(QList<ScraperSearchResult>) override;
+    void sigSearchDone(QVector<ScraperSearchResult>) override;
     void sigImagesLoaded(QString, QString);
     void sigLoadProgress(TvShow *, int, int);
 
@@ -71,35 +71,35 @@ private:
     QMap<QUrl, CacheElement> m_cache;
     IMDB *m_imdb;
     Movie *m_dummyMovie;
-    QList<MovieScraperInfos> m_movieInfos;
+    QVector<MovieScraperInfos> m_movieInfos;
 
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString xml);
+    QVector<ScraperSearchResult> parseSearch(QString xml);
     void parseAndAssignInfos(QString xml,
         TvShow *show,
         TvShowUpdateType updateType,
-        QList<TvShowScraperInfos> infosToLoad,
-        QList<TvShowEpisode *> &updatedEpisodes);
+        QVector<TvShowScraperInfos> infosToLoad,
+        QVector<TvShowEpisode *> &updatedEpisodes);
     void parseAndAssignActors(QString xml, TvShow *show);
     void parseAndAssignBanners(QString xml,
         TvShow *show,
         TvShowUpdateType updateType,
-        QList<TvShowScraperInfos> infosToLoad);
+        QVector<TvShowScraperInfos> infosToLoad);
     void
-    parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad);
+    parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QVector<TvShowScraperInfos> infosToLoad);
     void parseAndAssignImdbInfos(QString xml,
         TvShow *show,
         TvShowUpdateType updateType,
-        QList<TvShowScraperInfos> infosToLoad);
-    void parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad);
-    void parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
-    bool shouldLoadImdb(QList<TvShowScraperInfos> infosToLoad);
-    bool shouldLoadFromImdb(TvShowScraperInfos info, QList<TvShowScraperInfos> infosToLoad);
+        QVector<TvShowScraperInfos> infosToLoad);
+    void parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QVector<TvShowScraperInfos> infosToLoad);
+    void parseEpisodeXml(QString msg, TvShowEpisode *episode, QVector<TvShowScraperInfos> infos);
+    bool shouldLoadImdb(QVector<TvShowScraperInfos> infosToLoad);
+    bool shouldLoadFromImdb(TvShowScraperInfos info, QVector<TvShowScraperInfos> infosToLoad);
     void getAiredSeasonAndEpisode(QString xml,
         TvShowEpisode *episode,
         SeasonNumber &seasonNumber,
         EpisodeNumber &episodeNumber);
     ImdbId getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber);
-    bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
-    void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad);
+    bool processEpisodeData(QString msg, TvShowEpisode *episode, QVector<TvShowScraperInfos> infos);
+    void loadEpisodes(TvShow *show, QVector<TvShowEpisode *> episodes, QVector<TvShowScraperInfos> infosToLoad);
 };

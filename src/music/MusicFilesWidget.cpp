@@ -110,7 +110,7 @@ MusicFilesWidget *MusicFilesWidget::instance()
     return m_instance;
 }
 
-void MusicFilesWidget::setFilter(QList<Filter *> filters, QString text)
+void MusicFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 {
     if (!filters.isEmpty()) {
         m_proxyModel->setFilterWildcard("*" + filters.first()->shortText() + "*");
@@ -144,9 +144,9 @@ void MusicFilesWidget::updateStatusLabel()
     }
 }
 
-QList<Artist *> MusicFilesWidget::selectedArtists()
+QVector<Artist *> MusicFilesWidget::selectedArtists()
 {
-    QList<Artist *> artists;
+    QVector<Artist *> artists;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Artist) {
@@ -156,9 +156,9 @@ QList<Artist *> MusicFilesWidget::selectedArtists()
     return artists;
 }
 
-QList<Album *> MusicFilesWidget::selectedAlbums()
+QVector<Album *> MusicFilesWidget::selectedAlbums()
 {
-    QList<Album *> albums;
+    QVector<Album *> albums;
     foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Album) {

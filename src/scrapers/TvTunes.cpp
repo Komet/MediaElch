@@ -32,7 +32,7 @@ void TvTunes::onSearchFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit sigSearchDone(results);
@@ -45,9 +45,9 @@ void TvTunes::onSearchFinished()
     getNextDownloadUrl(reply->property("searchStr").toString());
 }
 
-QList<ScraperSearchResult> TvTunes::parseSearch(QString html)
+QVector<ScraperSearchResult> TvTunes::parseSearch(QString html)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
 
     QRegExp rx;
     rx.setMinimal(true);

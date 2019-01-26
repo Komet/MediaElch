@@ -12,7 +12,7 @@ using namespace std::chrono_literals;
 void loadHotMoviesSync(HotMovies &scraper, QMap<MovieScraperInterface *, QString> ids, Movie &movie)
 {
     const auto infos = scraper.scraperSupports();
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     QEventLoop loop;
     loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
     scraper.loadData(ids, &movie, infos);

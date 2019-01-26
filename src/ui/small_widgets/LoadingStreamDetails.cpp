@@ -29,7 +29,7 @@ LoadingStreamDetails::~LoadingStreamDetails()
     delete ui;
 }
 
-void LoadingStreamDetails::loadMovies(QList<Movie *> movies)
+void LoadingStreamDetails::loadMovies(QVector<Movie *> movies)
 {
     ui->progressBar->setRange(0, movies.count());
     ui->progressBar->setValue(0);
@@ -48,7 +48,7 @@ void LoadingStreamDetails::loadMovies(QList<Movie *> movies)
     accept();
 }
 
-void LoadingStreamDetails::loadConcerts(QList<Concert *> concerts)
+void LoadingStreamDetails::loadConcerts(QVector<Concert *> concerts)
 {
     ui->progressBar->setRange(0, concerts.count());
     ui->progressBar->setValue(0);
@@ -65,7 +65,7 @@ void LoadingStreamDetails::loadConcerts(QList<Concert *> concerts)
     accept();
 }
 
-void LoadingStreamDetails::loadTvShowEpisodes(QList<TvShowEpisode *> episodes)
+void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode *> episodes)
 {
     ui->progressBar->setRange(0, episodes.count());
     ui->progressBar->setValue(0);

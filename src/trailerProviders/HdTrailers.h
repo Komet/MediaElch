@@ -20,8 +20,8 @@ public slots:
     void loadMovieTrailers(QString id) override;
 
 signals:
-    void sigSearchDone(QList<ScraperSearchResult>) override;
-    void sigLoadDone(QList<TrailerResult>) override;
+    void sigSearchDone(QVector<ScraperSearchResult>) override;
+    void sigLoadDone(QVector<TrailerResult>) override;
 
 private slots:
     void onSearchFinished();
@@ -32,7 +32,7 @@ private:
     QNetworkReply *m_searchReply;
     QNetworkReply *m_loadReply;
     QString m_currentSearch;
-    QList<TrailerResult> parseTrailers(QString html);
+    QVector<TrailerResult> parseTrailers(QString html);
     QMap<QString, QUrl> m_urls;
     QQueue<char> m_libraryPages;
 

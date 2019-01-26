@@ -42,12 +42,12 @@ bool HotMovies::isAdult() const
     return true;
 }
 
-QList<MovieScraperInfos> HotMovies::scraperSupports()
+QVector<MovieScraperInfos> HotMovies::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<MovieScraperInfos> HotMovies::scraperNativelySupports()
+QVector<MovieScraperInfos> HotMovies::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -89,7 +89,7 @@ void HotMovies::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QList<ScraperSearchResult>());
+        emit searchDone(QVector<ScraperSearchResult>());
         return;
     }
 
@@ -97,9 +97,9 @@ void HotMovies::onSearchFinished()
     emit searchDone(parseSearch(msg));
 }
 
-QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
+QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     int offset = 0;
 
     QRegExp rx(
@@ -116,7 +116,7 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void HotMovies::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -142,7 +142,7 @@ void HotMovies::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
+void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);

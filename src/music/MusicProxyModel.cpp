@@ -45,7 +45,7 @@ bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
     return hasAcceptedChildren(sourceRow, sourceParent);
 }
 
-void MusicProxyModel::setFilter(QList<Filter *> filters, QString text)
+void MusicProxyModel::setFilter(QVector<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

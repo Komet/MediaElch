@@ -479,7 +479,7 @@ void MovieWidget::startScraperSearch()
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<MovieScraperInterface *, QString> ids;
-        QList<MovieScraperInfos> infosToLoad;
+        QVector<MovieScraperInfos> infosToLoad;
         if (MovieSearch::instance()->scraperId() == "custom-movie") {
             ids = MovieSearch::instance()->customScraperIds();
             infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
@@ -522,7 +522,7 @@ void MovieWidget::onLoadImagesStarted(Movie *movie)
     emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId + movie->movieId());
 }
 
-void MovieWidget::onLoadingImages(Movie *movie, QList<ImageType> imageTypes)
+void MovieWidget::onLoadingImages(Movie *movie, QVector<ImageType> imageTypes)
 {
     if (movie != m_movie) {
         return;
@@ -732,7 +732,7 @@ void MovieWidget::updateMovieInfo()
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
-void MovieWidget::updateImages(QList<ImageType> images)
+void MovieWidget::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
         for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
@@ -823,7 +823,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         layout->addStretch(10);
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QVector<QLineEdit *>() << edit1 << edit2 << edit3);
         connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
         connect(edit2, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
         connect(edit3, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
@@ -851,7 +851,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
-            m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
+            m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
         }
     }
@@ -907,7 +907,7 @@ void MovieWidget::saveInformation()
     qDebug() << "Entered";
     setDisabledTrue();
 
-    QList<Movie *> movies = MovieFilesWidget::instance()->selectedMovies();
+    QVector<Movie *> movies = MovieFilesWidget::instance()->selectedMovies();
     if (movies.isEmpty()) {
         movies.append(m_movie);
     }
@@ -1566,7 +1566,7 @@ void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
     }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
-    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QList<QUrl>() << imageUrl);
+    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QVector<QUrl>() << imageUrl);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1601,7 +1601,7 @@ void MovieWidget::onChooseImage()
     } else if (image->imageType() == ImageType::MovieCdArt && !m_movie->images().discArts().isEmpty()) {
         ImageDialog::instance()->setDownloads(m_movie->images().discArts());
     } else {
-        ImageDialog::instance()->setDownloads(QList<Poster>());
+        ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
     ImageDialog::instance()->exec(image->imageType());
 

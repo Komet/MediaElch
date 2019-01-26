@@ -224,11 +224,11 @@ QString Helper::stackedBaseName(const QString &fileName)
     QRegExp rx2a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _.-]*[a-d])(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
     QRegExp rx2b("(.*)([ _\\.-]+)$");
 
-    QList<QList<QRegExp>> regex;
-    regex << (QList<QRegExp>() << rx1a << rx1b);
-    regex << (QList<QRegExp>() << rx2a << rx2b);
+    QVector<QVector<QRegExp>> regex;
+    regex << (QVector<QRegExp>() << rx1a << rx1b);
+    regex << (QVector<QRegExp>() << rx2a << rx2b);
 
-    foreach (QList<QRegExp> rx, regex) {
+    foreach (QVector<QRegExp> rx, regex) {
         if (rx.at(0).indexIn(fileName) != -1) {
             QString title = rx.at(0).cap(1);
             QString volume = rx.at(0).cap(2);
@@ -526,12 +526,12 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
         return 0;
     }
 
-    QList<QList<int>> d;
+    QVector<QVector<int>> d;
 
-    d.insert(0, QList<int>());
+    d.insert(0, QVector<int>());
     d[0].insert(0, 0);
     for (int i = 1; i <= len1; ++i) {
-        d.insert(i, QList<int>());
+        d.insert(i, QVector<int>());
         d[i].insert(0, i);
     }
     for (int i = 1; i <= len2; ++i) {

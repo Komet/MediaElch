@@ -180,7 +180,7 @@ void Artist::setBiography(const QString &biography)
     setHasChanged(true);
 }
 
-QList<Poster> Artist::images(ImageType imageType) const
+QVector<Poster> Artist::images(ImageType imageType) const
 {
     return m_images.value(imageType);
 }
@@ -188,7 +188,7 @@ QList<Poster> Artist::images(ImageType imageType) const
 void Artist::addImage(ImageType imageType, Poster image)
 {
     if (!m_images.contains(imageType)) {
-        m_images.insert(imageType, QList<Poster>());
+        m_images.insert(imageType, QVector<Poster>());
     }
     m_images[imageType].append(image);
     setHasChanged(true);
@@ -238,7 +238,7 @@ void Artist::setHasChanged(bool hasChanged)
 
 void Artist::clear()
 {
-    QList<MusicScraperInfos> infos;
+    QVector<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Name        //
           << MusicScraperInfos::Genres      //
           << MusicScraperInfos::Styles      //
@@ -258,7 +258,7 @@ void Artist::clear()
     m_nfoContent.clear();
 }
 
-void Artist::clear(QList<MusicScraperInfos> infos)
+void Artist::clear(QVector<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Genres)) {
         m_genres.clear();
@@ -290,21 +290,21 @@ void Artist::clear(QList<MusicScraperInfos> infos)
 
     if (infos.contains(MusicScraperInfos::Thumb)) {
         if (!m_images.contains(ImageType::ArtistThumb)) {
-            m_images.insert(ImageType::ArtistThumb, QList<Poster>());
+            m_images.insert(ImageType::ArtistThumb, QVector<Poster>());
         }
         m_images[ImageType::ArtistThumb].clear();
         m_rawImages.insert(ImageType::ArtistThumb, QByteArray());
     }
     if (infos.contains(MusicScraperInfos::Fanart)) {
         if (!m_images.contains(ImageType::ArtistFanart)) {
-            m_images.insert(ImageType::ArtistFanart, QList<Poster>());
+            m_images.insert(ImageType::ArtistFanart, QVector<Poster>());
         }
         m_images[ImageType::ArtistFanart].clear();
         m_rawImages.insert(ImageType::ArtistFanart, QByteArray());
     }
     if (infos.contains(MusicScraperInfos::Logo)) {
         if (!m_images.contains(ImageType::ArtistLogo)) {
-            m_images.insert(ImageType::ArtistLogo, QList<Poster>());
+            m_images.insert(ImageType::ArtistLogo, QVector<Poster>());
         }
         m_images[ImageType::ArtistLogo].clear();
         m_rawImages.insert(ImageType::ArtistLogo, QByteArray());
@@ -340,17 +340,17 @@ void Artist::setNfoContent(const QString &nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QList<ImageType> Artist::imageTypes()
+QVector<ImageType> Artist::imageTypes()
 {
     return {ImageType::ArtistThumb, ImageType::ArtistLogo, ImageType::ArtistFanart};
 }
 
-QList<ImageType> Artist::imagesToRemove() const
+QVector<ImageType> Artist::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Artist::setImagesToRemove(const QList<ImageType> &imagesToRemove)
+void Artist::setImagesToRemove(const QVector<ImageType> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }
@@ -385,12 +385,12 @@ void Artist::setMbId(const QString &mbId)
     m_mbId = mbId;
 }
 
-QList<Album *> Artist::albums() const
+QVector<Album *> Artist::albums() const
 {
     return m_albums;
 }
 
-void Artist::setAlbums(const QList<Album *> &albums)
+void Artist::setAlbums(const QVector<Album *> &albums)
 {
     m_albums = albums;
 }
@@ -429,14 +429,14 @@ void Artist::removeExtraFanart(QString file)
     setHasChanged(true);
 }
 
-QList<ExtraFanart> Artist::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> Artist::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
     foreach (const QString &file, m_extraFanartsToRemove)
         m_extraFanarts.removeOne(file);
-    QList<ExtraFanart> fanarts;
+    QVector<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
         f.path = file;
@@ -455,7 +455,7 @@ QStringList Artist::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QByteArray> Artist::extraFanartImagesToAdd()
+QVector<QByteArray> Artist::extraFanartImagesToAdd()
 {
     return m_extraFanartImagesToAdd;
 }
@@ -467,7 +467,7 @@ void Artist::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
-void Artist::setDiscographyAlbums(QList<DiscographyAlbum> albums)
+void Artist::setDiscographyAlbums(QVector<DiscographyAlbum> albums)
 {
     m_discography = albums;
     setHasChanged(true);
@@ -490,14 +490,14 @@ void Artist::removeDiscographyAlbum(DiscographyAlbum *album)
     setHasChanged(true);
 }
 
-QList<DiscographyAlbum> Artist::discographyAlbums() const
+QVector<DiscographyAlbum> Artist::discographyAlbums() const
 {
     return m_discography;
 }
 
-QList<DiscographyAlbum *> Artist::discographyAlbumsPointer()
+QVector<DiscographyAlbum *> Artist::discographyAlbumsPointer()
 {
-    QList<DiscographyAlbum *> albums;
+    QVector<DiscographyAlbum *> albums;
     for (int i = 0, n = m_discography.size(); i < n; i++) {
         albums.append(&(m_discography[i]));
     }

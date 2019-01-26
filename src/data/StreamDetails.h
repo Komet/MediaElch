@@ -2,6 +2,7 @@
 
 #include <QMap>
 #include <QObject>
+#include <QVector>
 
 /**
  * @brief The StreamDetails class
@@ -51,8 +52,8 @@ public:
     QString videoCodec() const;
 
     virtual QMap<VideoDetails, QString> videoDetails() const;
-    virtual QList<QMap<AudioDetails, QString>> audioDetails() const;
-    virtual QList<QMap<SubtitleDetails, QString>> subtitleDetails() const;
+    virtual QVector<QMap<AudioDetails, QString>> audioDetails() const;
+    virtual QVector<QMap<SubtitleDetails, QString>> subtitleDetails() const;
 
 private:
     QString videoFormat(QString format, QString version) const;
@@ -62,10 +63,10 @@ private:
 
     QStringList m_files;
     QMap<VideoDetails, QString> m_videoDetails;
-    QList<QMap<AudioDetails, QString>> m_audioDetails;
-    QList<QMap<SubtitleDetails, QString>> m_subtitles;
-    QList<int> m_availableChannels;
-    QList<QString> m_availableQualities;
+    QVector<QMap<AudioDetails, QString>> m_audioDetails;
+    QVector<QMap<SubtitleDetails, QString>> m_subtitles;
+    QVector<int> m_availableChannels;
+    QVector<QString> m_availableQualities;
 
     QStringList m_hdAudioCodecs;
     QStringList m_normalAudioCodecs;

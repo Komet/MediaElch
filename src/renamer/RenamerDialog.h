@@ -21,10 +21,10 @@ class RenamerDialog : public QDialog
 public:
     explicit RenamerDialog(QWidget *parent = nullptr);
     ~RenamerDialog() override;
-    void setMovies(QList<Movie *> movies);
-    void setConcerts(QList<Concert *> concerts);
-    void setShows(QList<TvShow *> shows);
-    void setEpisodes(QList<TvShowEpisode *> episodes);
+    void setMovies(QVector<Movie *> movies);
+    void setConcerts(QVector<Concert *> concerts);
+    void setShows(QVector<TvShow *> shows);
+    void setEpisodes(QVector<TvShowEpisode *> episodes);
     void setRenameType(Renamer::RenameType type);
 
     bool renameErrorOccured() const;
@@ -51,20 +51,20 @@ private slots:
 private:
     Ui::RenamerDialog *ui;
 
-    QList<Movie *> m_movies;
-    QList<Concert *> m_concerts;
-    QList<TvShow *> m_shows;
-    QList<TvShowEpisode *> m_episodes;
+    QVector<Movie *> m_movies;
+    QVector<Concert *> m_concerts;
+    QVector<TvShow *> m_shows;
+    QVector<TvShowEpisode *> m_episodes;
     Renamer::RenameType m_renameType;
     bool m_filesRenamed;
     QStringList m_extraFiles;
     bool m_renameErrorOccured;
 
     void renameType(const bool isDryRun);
-    void renameMovies(QList<Movie *> movies, const RenamerConfig &config);
-    void renameConcerts(QList<Concert *> concerts, const RenamerConfig &config);
-    void renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config);
-    void renameShows(QList<TvShow *> shows,
+    void renameMovies(QVector<Movie *> movies, const RenamerConfig &config);
+    void renameConcerts(QVector<Concert *> concerts, const RenamerConfig &config);
+    void renameEpisodes(QVector<TvShowEpisode *> episodes, const RenamerConfig &config);
+    void renameShows(QVector<TvShow *> shows,
         const QString &directoryPattern,
         const bool &renameDirectories,
         const bool &dryRun = false);

@@ -5,9 +5,9 @@
 #include "settings/DataFile.h"
 
 #include <QImage>
-#include <QList>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 class Album;
 class Artist;
@@ -58,12 +58,12 @@ public:
     virtual QString nfoFilePath(Album *album) = 0;
 
     // clang-format off
-    virtual QString imageFileName(const Movie *movie,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const Concert *concert,       ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const Artist *artist,         ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const Album *album,           ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const TvShow *show,           ImageType type, SeasonNumber season = SeasonNumber::NoSeason, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Movie *movie,           ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Concert *concert,       ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const TvShowEpisode *episode, ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Artist *artist,         ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const Album *album,           ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(const TvShow *show,           ImageType type, SeasonNumber season = SeasonNumber::NoSeason, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
     // clang-format on
 
     virtual void loadBooklets(Album *album) = 0;

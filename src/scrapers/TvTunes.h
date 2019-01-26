@@ -14,7 +14,7 @@ public:
     void search(QString searchStr);
 
 signals:
-    void sigSearchDone(QList<ScraperSearchResult>);
+    void sigSearchDone(QVector<ScraperSearchResult>);
 
 private slots:
     void onSearchFinished();
@@ -22,9 +22,9 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QList<ScraperSearchResult> m_results;
+    QVector<ScraperSearchResult> m_results;
     QQueue<ScraperSearchResult> m_queue;
     QString m_searchStr;
-    QList<ScraperSearchResult> parseSearch(QString html);
+    QVector<ScraperSearchResult> parseSearch(QString html);
     void getNextDownloadUrl(QString searchStr = "");
 };

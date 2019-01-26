@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
-#include <QList>
+#include <QVector>
 
 /**
  * @brief Renamer base class for renaming files according to given patterns.

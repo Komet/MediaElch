@@ -28,7 +28,7 @@ public slots:
 
 private slots:
     void onSearch();
-    void onShowResults(QList<ScraperSearchResult> results);
+    void onShowResults(QVector<ScraperSearchResult> results);
     void onStateChanged(QMediaPlayer::State newState);
     void onPlayPause();
     void onResultClicked(QTableWidgetItem *item);

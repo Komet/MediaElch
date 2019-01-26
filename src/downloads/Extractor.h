@@ -4,6 +4,7 @@
 #include <QProcess>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 class Extractor : public QObject
 {
@@ -27,5 +28,5 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QList<QProcess *> m_processes;
+    QVector<QProcess *> m_processes;
 };

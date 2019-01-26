@@ -55,7 +55,7 @@ void HdTrailers::searchMovie(QString searchStr)
         connect(m_searchReply, &QNetworkReply::finished, this, &HdTrailers::onSearchFinished);
 
     } else {
-        QList<ScraperSearchResult> results;
+        QVector<ScraperSearchResult> results;
         QMapIterator<QString, QUrl> it(m_urls);
         while (it.hasNext()) {
             it.next();
@@ -96,7 +96,7 @@ void HdTrailers::loadMovieTrailers(QString id)
 
 void HdTrailers::onLoadFinished()
 {
-    QList<TrailerResult> trailers;
+    QVector<TrailerResult> trailers;
     if (m_loadReply->error() == QNetworkReply::NoError) {
         QString msg = m_loadReply->readAll();
         trailers = parseTrailers(msg);
@@ -105,9 +105,9 @@ void HdTrailers::onLoadFinished()
     emit sigLoadDone(trailers);
 }
 
-QList<TrailerResult> HdTrailers::parseTrailers(QString html)
+QVector<TrailerResult> HdTrailers::parseTrailers(QString html)
 {
-    QList<TrailerResult> results;
+    QVector<TrailerResult> results;
 
     int pos = 0;
     QRegExp rx("<tr  itemprop=\"trailer\" itemscope itemtype=\"http://schema.org/VideoObject\">.*<td "

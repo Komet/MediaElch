@@ -14,7 +14,7 @@ MusicFileSearcher::MusicFileSearcher(QObject *parent) :
 {
 }
 
-void MusicFileSearcher::setMusicDirectories(QList<SettingsDir> directories)
+void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
     foreach (SettingsDir dir, directories) {
@@ -32,10 +32,10 @@ void MusicFileSearcher::reload(bool force)
     emit searchStarted(tr("Searching for Music..."), m_progressMessageId);
     Manager::instance()->musicModel()->clear();
 
-    QList<Artist *> artists;
-    QList<Artist *> artistsFromDb;
-    QList<Album *> albums;
-    QList<Album *> albumsFromDb;
+    QVector<Artist *> artists;
+    QVector<Artist *> artistsFromDb;
+    QVector<Album *> albums;
+    QVector<Album *> albumsFromDb;
 
     if (force) {
         Manager::instance()->database()->clearArtists();
@@ -87,12 +87,12 @@ void MusicFileSearcher::reload(bool force)
                 }
             }
         } else {
-            QList<Artist *> artistsInPath = Manager::instance()->database()->artists(dir.path);
+            QVector<Artist *> artistsInPath = Manager::instance()->database()->artists(dir.path);
             foreach (Artist *artist, artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().mid(dir.path.length()));
                 }
-                QList<Album *> albumsOfArtist = Manager::instance()->database()->albums(artist);
+                QVector<Album *> albumsOfArtist = Manager::instance()->database()->albums(artist);
                 artistsFromDb.append(artist);
                 albumsFromDb.append(albumsOfArtist);
             }

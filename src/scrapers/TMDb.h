@@ -23,22 +23,22 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings &settings) override;
     void saveSettings(ScraperSettings &settings) override;
-    QList<MovieScraperInfos> scraperSupports() override;
-    QList<MovieScraperInfos> scraperNativelySupports() override;
+    QVector<MovieScraperInfos> scraperSupports() override;
+    QVector<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
-    static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
+    static QVector<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();
     bool isAdult() const override;
 
 signals:
-    void searchDone(QList<ScraperSearchResult>) override;
+    void searchDone(QVector<ScraperSearchResult>) override;
 
 private slots:
     void searchFinished();
@@ -54,8 +54,8 @@ private:
     QLocale m_locale;
     QString m_baseUrl;
     QMutex m_mutex;
-    QList<MovieScraperInfos> m_scraperSupports;
-    QList<MovieScraperInfos> m_scraperNativelySupports;
+    QVector<MovieScraperInfos> m_scraperSupports;
+    QVector<MovieScraperInfos> m_scraperNativelySupports;
     QWidget *m_widget;
     QComboBox *m_box;
 
@@ -83,5 +83,5 @@ private:
     QUrl getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const;
     QUrl
     getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters = UrlParameterMap{}) const;
-    void parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInfos> infos);
+    void parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperInfos> infos);
 };

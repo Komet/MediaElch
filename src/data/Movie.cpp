@@ -69,7 +69,7 @@ MovieController *Movie::controller() const
  */
 void Movie::clear()
 {
-    QList<MovieScraperInfos> infos;
+    QVector<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Title         //
           << MovieScraperInfos::Set           //
           << MovieScraperInfos::Tagline       //
@@ -102,7 +102,7 @@ void Movie::clear()
  * @brief Clears contents of the movie based on a list
  * @param infos List of infos which should be cleared
  */
-void Movie::clear(QList<MovieScraperInfos> infos)
+void Movie::clear(QVector<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors)) {
         m_crew.actors().clear();
@@ -347,9 +347,9 @@ QStringList Movie::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies genres
  */
-QList<QString *> Movie::genresPointer()
+QVector<QString *> Movie::genresPointer()
 {
-    QList<QString *> genres;
+    QVector<QString *> genres;
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
@@ -374,9 +374,9 @@ QStringList Movie::countries() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies production countries
  */
-QList<QString *> Movie::countriesPointer()
+QVector<QString *> Movie::countriesPointer()
 {
-    QList<QString *> countries;
+    QVector<QString *> countries;
     for (int i = 0, n = m_countries.size(); i < n; ++i) {
         countries.append(&m_countries[i]);
     }
@@ -401,9 +401,9 @@ QStringList Movie::studios() const
  * @brief Returns a list of pointers of QStrings
  * @return List of pointers to the movies studios
  */
-QList<QString *> Movie::studiosPointer()
+QVector<QString *> Movie::studiosPointer()
 {
-    QList<QString *> studios;
+    QVector<QString *> studios;
     for (int i = 0, n = m_studios.size(); i < n; ++i) {
         studios.append(&m_studios[i]);
     }
@@ -430,7 +430,7 @@ QUrl Movie::trailer() const
  * @see Movie::addActor
  * @see Movie::removeActor
  */
-QList<Actor> Movie::actors() const
+QVector<Actor> Movie::actors() const
 {
     return m_crew.actors();
 }
@@ -439,7 +439,7 @@ QList<Actor> Movie::actors() const
  * @brief Returns a list of pointers of Actor
  * @return List of pointers to movies actors
  */
-QList<Actor *> Movie::actorsPointer()
+QVector<Actor *> Movie::actorsPointer()
 {
     return m_crew.actorsPointer();
 }
@@ -796,7 +796,7 @@ void Movie::setTrailer(QUrl trailer)
  * @param actors List of actors
  * @see Movie::actors
  */
-void Movie::setActors(QList<Actor> actors)
+void Movie::setActors(QVector<Actor> actors)
 {
     m_crew.setActors(actors);
     setChanged(true);
@@ -1168,7 +1168,7 @@ bool Movie::lessThan(Movie *a, Movie *b)
             < 0);
 }
 
-QList<ImageType> Movie::imageTypes()
+QVector<ImageType> Movie::imageTypes()
 {
     return {ImageType::MoviePoster,
         ImageType::MovieBanner,
@@ -1179,12 +1179,12 @@ QList<ImageType> Movie::imageTypes()
         ImageType::MovieBackdrop};
 }
 
-QList<Subtitle *> Movie::subtitles() const
+QVector<Subtitle *> Movie::subtitles() const
 {
     return m_subtitles;
 }
 
-void Movie::setSubtitles(const QList<Subtitle *> &subtitles)
+void Movie::setSubtitles(const QVector<Subtitle *> &subtitles)
 {
     m_subtitles = subtitles;
 }

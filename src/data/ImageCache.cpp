@@ -138,7 +138,7 @@ int ImageCache::getLastModified(const QString &fileName)
     int now = QDateTime::currentDateTime().toTime_t();
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
         int lastMod = QFileInfo(fileName).lastModified().toTime_t();
-        m_lastModifiedTimes.insert(fileName, QList<int>() << now << lastMod);
+        m_lastModifiedTimes.insert(fileName, QVector<int>() << now << lastMod);
     }
     return m_lastModifiedTimes.value(fileName).last();
 }

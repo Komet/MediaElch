@@ -65,7 +65,7 @@ void TvShowEpisode::setShow(TvShow *show)
  */
 void TvShowEpisode::clear()
 {
-    QList<TvShowScraperInfos> infos;
+    QVector<TvShowScraperInfos> infos;
     infos << TvShowScraperInfos::Certification //
           << TvShowScraperInfos::Rating        //
           << TvShowScraperInfos::Director      //
@@ -79,7 +79,7 @@ void TvShowEpisode::clear()
     m_nfoContent.clear();
 }
 
-void TvShowEpisode::clear(QList<TvShowScraperInfos> infos)
+void TvShowEpisode::clear(QVector<TvShowScraperInfos> infos)
 {
     if (infos.contains(TvShowScraperInfos::Certification)) {
         m_certification = Certification::NoCertification;
@@ -114,7 +114,7 @@ void TvShowEpisode::clear(QList<TvShowScraperInfos> infos)
     m_hasChanged = false;
 }
 
-QList<TvShowScraperInfos> TvShowEpisode::infosToLoad()
+QVector<TvShowScraperInfos> TvShowEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -164,7 +164,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
  * @param id ID of the show for the scraper
  * @param tvScraperInterface ScraperInterface to use
  */
-void TvShowEpisode::loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad)
+void TvShowEpisode::loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad)
 {
     qDebug() << "Entered, id=" << id.toString() << "scraperInterface=" << tvScraperInterface->name();
     m_infosToLoad = infosToLoad;
@@ -520,9 +520,9 @@ bool TvShowEpisode::hasChanged() const
  * @brief Returns a list of pointer to the writers
  * @return List of pointers
  */
-QList<QString *> TvShowEpisode::writersPointer()
+QVector<QString *> TvShowEpisode::writersPointer()
 {
-    QList<QString *> writers;
+    QVector<QString *> writers;
     for (int i = 0, n = m_writers.size(); i < n; ++i) {
         writers.append(&m_writers[i]);
     }
@@ -533,9 +533,9 @@ QList<QString *> TvShowEpisode::writersPointer()
  * @brief Returns a list of pointers to the directors
  * @return List of pointers
  */
-QList<QString *> TvShowEpisode::directorsPointer()
+QVector<QString *> TvShowEpisode::directorsPointer()
 {
-    QList<QString *> directors;
+    QVector<QString *> directors;
     for (int i = 0, n = m_directors.size(); i < n; ++i) {
         directors.append(&m_directors[i]);
     }
@@ -910,7 +910,7 @@ void TvShowEpisode::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-QList<ImageType> TvShowEpisode::imagesToRemove() const
+QVector<ImageType> TvShowEpisode::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
@@ -938,14 +938,14 @@ bool TvShowEpisode::isDummy() const
     return m_isDummy;
 }
 
-QList<Actor> TvShowEpisode::actors() const
+QVector<Actor> TvShowEpisode::actors() const
 {
     return m_actors;
 }
 
-QList<Actor *> TvShowEpisode::actorsPointer()
+QVector<Actor *> TvShowEpisode::actorsPointer()
 {
-    QList<Actor *> actors;
+    QVector<Actor *> actors;
     for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
     }

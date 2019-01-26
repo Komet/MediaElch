@@ -39,12 +39,12 @@ bool AdultDvdEmpire::isAdult() const
     return true;
 }
 
-QList<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
+QVector<MovieScraperInfos> AdultDvdEmpire::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
+QVector<MovieScraperInfos> AdultDvdEmpire::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -85,7 +85,7 @@ void AdultDvdEmpire::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QList<ScraperSearchResult>());
+        emit searchDone(QVector<ScraperSearchResult>());
         return;
     }
 
@@ -93,10 +93,10 @@ void AdultDvdEmpire::onSearchFinished()
     emit searchDone(parseSearch(msg));
 }
 
-QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
+QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 {
     QTextDocument doc;
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     int offset = 0;
     QRegExp rx(R"re(<a href="([^"]*)"[\n\t\s]*title="([^"]*)" Category="List Page" Label="Title">)re");
     rx.setMinimal(true);
@@ -112,7 +112,9 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void AdultDvdEmpire::loadData(QMap<MovieScraperInterface *, QString> ids,
+    Movie *movie,
+    QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
@@ -140,7 +142,7 @@ void AdultDvdEmpire::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos)
+void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     QTextDocument doc;
     QRegExp rx;

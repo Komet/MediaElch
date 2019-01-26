@@ -85,7 +85,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    QList<QWidget *> m_streamDetailsWidgets;
-    QList<QList<QLineEdit *>> m_streamDetailsAudio;
-    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
+    QVector<QWidget *> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
 };

@@ -18,7 +18,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, MusicScraperInterface *scraperInterface, QList<MusicScraperInfos> infos);
+    void loadData(QString id, MusicScraperInterface *scraperInterface, QVector<MusicScraperInfos> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -30,12 +30,12 @@ public:
     void abortDownloads();
 
     void loadImage(ImageType type, QUrl url);
-    void loadImages(ImageType type, QList<QUrl> urls);
+    void loadImages(ImageType type, QVector<QUrl> urls);
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:
     void sigInfoLoadDone(Artist *);
-    void sigLoadingImages(Artist *, QList<ImageType>);
+    void sigLoadingImages(Artist *, QVector<ImageType>);
     void sigLoadDone(Artist *);
     void sigImage(Artist *, ImageType, QByteArray);
     void sigLoadImagesStarted(Artist *);
@@ -45,7 +45,7 @@ signals:
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Artist *artist, QMap<ImageType, QList<Poster>> posters);
+    void onFanartLoadDone(Artist *artist, QMap<ImageType, QVector<Poster>> posters);
 
 private:
     Artist *m_artist;
@@ -55,5 +55,5 @@ private:
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;
-    QList<MusicScraperInfos> m_infosToLoad;
+    QVector<MusicScraperInfos> m_infosToLoad;
 };

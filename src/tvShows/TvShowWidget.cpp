@@ -136,9 +136,9 @@ void TvShowWidget::onSetDisabledTrue()
  */
 void TvShowWidget::onSaveInformation()
 {
-    QList<TvShow *> shows = TvShowFilesWidget::instance()->selectedShows();
-    QList<TvShowEpisode *> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
-    QList<TvShow *> seasons = TvShowFilesWidget::instance()->selectedSeasons();
+    QVector<TvShow *> shows = TvShowFilesWidget::instance()->selectedShows();
+    QVector<TvShowEpisode *> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
+    QVector<TvShow *> seasons = TvShowFilesWidget::instance()->selectedSeasons();
 
     if (shows.count() == 1 && episodes.count() == 0 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->onSaveInformation();
@@ -199,7 +199,7 @@ void TvShowWidget::onSaveInformation()
 void TvShowWidget::onSaveAll()
 {
     qDebug() << "Entered";
-    QList<TvShow *> shows = Manager::instance()->tvShowModel()->tvShows();
+    QVector<TvShow *> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
     for (int i = 0, n = shows.count(); i < n; ++i) {

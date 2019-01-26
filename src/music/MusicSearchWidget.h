@@ -2,10 +2,10 @@
 
 #include "globals/Globals.h"
 
-#include <QList>
 #include <QSignalMapper>
 #include <QString>
 #include <QTableWidgetItem>
+#include <QVector>
 #include <QWidget>
 
 namespace Ui {
@@ -25,7 +25,7 @@ public slots:
     int scraperNo();
     QString scraperId();
     QString scraperId2();
-    QList<MusicScraperInfos> infosToLoad();
+    QVector<MusicScraperInfos> infosToLoad();
     void setType(const QString &type);
     void setArtistName(const QString &artistName);
 
@@ -34,7 +34,7 @@ signals:
 
 private slots:
     void search();
-    void showResults(QList<ScraperSearchResult> results);
+    void showResults(QVector<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem *item);
     void resultClicked(int row);
     void chkToggled();
@@ -45,11 +45,11 @@ private:
     int m_scraperNo;
     QString m_scraperId;
     QString m_scraperId2;
-    QList<MusicScraperInfos> m_infosToLoad;
+    QVector<MusicScraperInfos> m_infosToLoad;
     QString m_type;
     QString m_artistName;
     QSignalMapper *m_signalMapper;
 
     void clear();
-    void setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperSupports);
 };

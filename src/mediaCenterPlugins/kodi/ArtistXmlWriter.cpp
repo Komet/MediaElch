@@ -69,7 +69,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
         }
     }
 
-    QList<QDomNode> albumNodes;
+    QVector<QDomNode> albumNodes;
     QDomNodeList childNodes = artistElem.childNodes();
     for (int i = 0, n = childNodes.count(); i < n; ++i) {
         if (childNodes.at(i).nodeName() == "album") {

@@ -32,13 +32,13 @@ public:
     explicit MovieFilesWidget(QWidget *parent = nullptr);
     ~MovieFilesWidget() override;
     static MovieFilesWidget *instance();
-    QList<Movie *> selectedMovies();
+    QVector<Movie *> selectedMovies();
     void renewModel();
     void selectMovie(Movie *movie);
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QList<Filter *> filters, QString text);
+    void setFilter(QVector<Filter *> filters, QString text);
     void movieSelectedEmitter();
     void multiScrape();
     void setAlphaListData();

@@ -131,22 +131,22 @@ bool RenamerDialog::renameErrorOccured() const
     return m_renameErrorOccured;
 }
 
-void RenamerDialog::setMovies(QList<Movie *> movies)
+void RenamerDialog::setMovies(QVector<Movie *> movies)
 {
     m_movies = movies;
 }
 
-void RenamerDialog::setConcerts(QList<Concert *> concerts)
+void RenamerDialog::setConcerts(QVector<Concert *> concerts)
 {
     m_concerts = concerts;
 }
 
-void RenamerDialog::setShows(QList<TvShow *> shows)
+void RenamerDialog::setShows(QVector<TvShow *> shows)
 {
     m_shows = shows;
 }
 
-void RenamerDialog::setEpisodes(QList<TvShowEpisode *> episodes)
+void RenamerDialog::setEpisodes(QVector<TvShowEpisode *> episodes)
 {
     m_episodes = episodes;
 }
@@ -219,7 +219,7 @@ void RenamerDialog::renameType(const bool isDryRun)
     ui->results->append("<span style=\"color:#01a800;\"><b>" + tr("Finished") + "</b></span>");
 }
 
-void RenamerDialog::renameMovies(QList<Movie *> movies, const RenamerConfig &config)
+void RenamerDialog::renameMovies(QVector<Movie *> movies, const RenamerConfig &config)
 {
     if ((config.renameFiles && config.filePattern.isEmpty())
         || (config.renameDirectories && config.directoryPattern.isEmpty())) {
@@ -245,14 +245,14 @@ void RenamerDialog::renameMovies(QList<Movie *> movies, const RenamerConfig &con
     }
 }
 
-void RenamerDialog::renameEpisodes(QList<TvShowEpisode *> episodes, const RenamerConfig &config)
+void RenamerDialog::renameEpisodes(QVector<TvShowEpisode *> episodes, const RenamerConfig &config)
 {
     if (config.renameFiles && config.filePattern.isEmpty()) {
         return;
     }
 
     EpisodeRenamer renamer(config, this);
-    QList<TvShowEpisode *> episodesRenamed;
+    QVector<TvShowEpisode *> episodesRenamed;
 
     for (TvShowEpisode *episode : episodes) {
         if (episode->files().isEmpty() || (episode->files().count() > 1 && config.filePatternMulti.isEmpty())
@@ -273,7 +273,7 @@ void RenamerDialog::renameEpisodes(QList<TvShowEpisode *> episodes, const Rename
     }
 }
 
-void RenamerDialog::renameShows(QList<TvShow *> shows,
+void RenamerDialog::renameShows(QVector<TvShow *> shows,
     const QString &directoryPattern,
     const bool &renameDirectories,
     const bool &dryRun)
@@ -322,7 +322,7 @@ void RenamerDialog::renameShows(QList<TvShow *> shows,
     }
 }
 
-void RenamerDialog::renameConcerts(QList<Concert *> concerts, const RenamerConfig &config)
+void RenamerDialog::renameConcerts(QVector<Concert *> concerts, const RenamerConfig &config)
 {
     if ((config.renameFiles && config.filePattern.isEmpty())
         || (config.renameDirectories && config.directoryPattern.isEmpty())) {

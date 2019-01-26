@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QList>
 #include <QMap>
 #include <QModelIndex>
+#include <QVector>
 #include <QWidget>
 
 namespace Ui {
@@ -42,5 +42,5 @@ private:
     MovieProxyModel *m_movieProxyModel;
     QMenu *m_contextMenu;
 
-    QMap<Movie *, QList<Movie *>> m_duplicateMovies;
+    QMap<Movie *, QVector<Movie *>> m_duplicateMovies;
 };

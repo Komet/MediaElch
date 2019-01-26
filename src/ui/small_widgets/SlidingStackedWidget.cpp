@@ -191,7 +191,7 @@ void SlidingStackedWidget::collapse()
 
     m_expanded = false;
 
-    QList<QWidget *> widgetsToDelete;
+    QVector<QWidget *> widgetsToDelete;
     for (int i = 0, n = count(); i < n; ++i) {
         widgetsToDelete.append(widget(i));
     }

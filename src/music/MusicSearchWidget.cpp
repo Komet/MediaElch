@@ -16,9 +16,9 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->musicScrapers().indexOf(scraper));
         connect(scraper,
-            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(showResults(QList<ScraperSearchResult>)));
+            SLOT(showResults(QVector<ScraperSearchResult>)));
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
@@ -99,7 +99,7 @@ void MusicSearchWidget::search()
     }
 }
 
-void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
+void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
 {
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
@@ -186,15 +186,15 @@ QString MusicSearchWidget::scraperId2()
     return m_scraperId2;
 }
 
-QList<MusicScraperInfos> MusicSearchWidget::infosToLoad()
+QVector<MusicScraperInfos> MusicSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MusicSearchWidget::setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports)
+void MusicSearchWidget::setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<MusicScraperInfos> infos =
+    QVector<MusicScraperInfos> infos =
         Settings::instance()->scraperInfos<MusicScraperInfos>(m_type + "/" + QString::number(scraperNo));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {

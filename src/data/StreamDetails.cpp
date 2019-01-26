@@ -383,7 +383,7 @@ QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
  * @brief Access audio details
  * @return
  */
-QList<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() const
+QVector<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() const
 {
     return m_audioDetails;
 }
@@ -392,7 +392,7 @@ QList<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() 
  * @brief Access subtitles
  * @return
  */
-QList<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDetails() const
+QVector<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDetails() const
 {
     return m_subtitles;
 }

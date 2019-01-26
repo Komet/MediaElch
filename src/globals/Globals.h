@@ -117,7 +117,7 @@ struct Actor
 };
 Q_DECLARE_METATYPE(Actor *)
 Q_DECLARE_METATYPE(QString *)
-Q_DECLARE_METATYPE(QList<int>)
+Q_DECLARE_METATYPE(QVector<int>)
 
 struct DiscographyAlbum
 {

@@ -13,14 +13,14 @@ EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog *dialo
 }
 
 EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode,
-    QList<TvShowEpisode *> &episodesRenamed)
+    QVector<TvShowEpisode *> &episodesRenamed)
 {
     const QString &seasonPattern = m_config.directoryPattern;
     const bool useSeasonDirectories = m_config.renameDirectories;
 
     bool errorOccured = false;
 
-    QList<TvShowEpisode *> multiEpisodes;
+    QVector<TvShowEpisode *> multiEpisodes;
     for (TvShowEpisode *subEpisode : episode.tvShow()->episodes()) {
         if (subEpisode->files() == episode.files()) {
             multiEpisodes.append(subEpisode);
@@ -127,7 +127,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
         // Rename nfo
         if (!nfo.isEmpty()) {
             QString nfoFileName = QFileInfo(nfo).fileName();
-            QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
+            QVector<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
             if (!nfoFiles.isEmpty()) {
                 newNfoFileName = nfoFiles.first().saveFileName(newFileName);
                 Helper::instance()->sanitizeFileName(newNfoFileName);
@@ -145,7 +145,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
         // Rename Thumbnail
         if (!thumbnail.isEmpty()) {
             QString thumbnailFileName = QFileInfo(thumbnail).fileName();
-            QList<DataFile> thumbnailFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
+            QVector<DataFile> thumbnailFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
             if (!thumbnailFiles.isEmpty()) {
                 newThumbnailFileName = thumbnailFiles.first().saveFileName(
                     newFileName, SeasonNumber::NoSeason, episode.files().count() > 1);

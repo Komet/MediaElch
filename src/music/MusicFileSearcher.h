@@ -13,7 +13,7 @@ public:
     explicit MusicFileSearcher(QObject *parent = nullptr);
     ~MusicFileSearcher() override = default;
 
-    void setMusicDirectories(QList<SettingsDir> directories);
+    void setMusicDirectories(QVector<SettingsDir> directories);
     static Artist *loadArtistData(Artist *artist);
     static Album *loadAlbumData(Album *album);
 
@@ -28,7 +28,7 @@ signals:
     void currentDir(QString);
 
 private:
-    QList<SettingsDir> m_directories;
+    QVector<SettingsDir> m_directories;
     int m_progressMessageId;
     bool m_aborted;
 };

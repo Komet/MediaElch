@@ -4,8 +4,8 @@
 
 #include <QAbstractItemModel>
 #include <QIcon>
-#include <QList>
 #include <QModelIndex>
+#include <QVector>
 
 /**
  * @brief The MovieModel class
@@ -28,7 +28,7 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent) const override;
     QModelIndex parent(const QModelIndex &child) const override;
 
-    virtual QList<Movie *> movies();
+    virtual QVector<Movie *> movies();
     Movie *movie(int row);
     void addMovie(Movie *movie);
     void update();
@@ -43,7 +43,7 @@ private slots:
     void onMovieChanged(Movie *movie);
 
 private:
-    QList<Movie *> m_movies;
+    QVector<Movie *> m_movies;
     QIcon m_newIcon;
     QIcon m_syncIcon;
 };

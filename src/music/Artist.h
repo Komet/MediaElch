@@ -56,7 +56,7 @@ public:
     QString biography() const;
     void setBiography(const QString &biography);
 
-    QList<Poster> images(ImageType imageType) const;
+    QVector<Poster> images(ImageType imageType) const;
     void addImage(ImageType imageType, Poster image);
 
     QByteArray rawImage(ImageType imageType);
@@ -68,7 +68,7 @@ public:
     void setHasChanged(bool hasChanged);
 
     void clear();
-    void clear(QList<MusicScraperInfos> infos);
+    void clear(QVector<MusicScraperInfos> infos);
 
     MusicModelItem *modelItem() const;
     void setModelItem(MusicModelItem *modelItem);
@@ -76,10 +76,10 @@ public:
     QString nfoContent() const;
     void setNfoContent(const QString &nfoContent);
 
-    static QList<ImageType> imageTypes();
+    static QVector<ImageType> imageTypes();
 
-    QList<ImageType> imagesToRemove() const;
-    void setImagesToRemove(const QList<ImageType> &imagesToRemove);
+    QVector<ImageType> imagesToRemove() const;
+    void setImagesToRemove(const QVector<ImageType> &imagesToRemove);
 
     int databaseId() const;
     void setDatabaseId(int databaseId);
@@ -90,26 +90,26 @@ public:
     QString mbId() const;
     void setMbId(const QString &mbId);
 
-    QList<Album *> albums() const;
-    void setAlbums(const QList<Album *> &albums);
+    QVector<Album *> albums() const;
+    void setAlbums(const QVector<Album *> &albums);
     void addAlbum(Album *album);
 
     QString allMusicId() const;
     void setAllMusicId(const QString &allMusicId);
 
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QByteArray> extraFanartImagesToAdd();
+    QVector<QByteArray> extraFanartImagesToAdd();
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
 
-    void setDiscographyAlbums(QList<DiscographyAlbum> albums);
+    void setDiscographyAlbums(QVector<DiscographyAlbum> albums);
     void addDiscographyAlbum(DiscographyAlbum album);
     void removeDiscographyAlbum(DiscographyAlbum *album);
-    QList<DiscographyAlbum> discographyAlbums() const;
-    QList<DiscographyAlbum *> discographyAlbumsPointer();
+    QVector<DiscographyAlbum> discographyAlbums() const;
+    QVector<DiscographyAlbum *> discographyAlbumsPointer();
 
 signals:
     void sigChanged(Artist *);
@@ -128,19 +128,19 @@ private:
     QString m_died;
     QString m_disbanded;
     bool m_hasChanged;
-    QMap<ImageType, QList<Poster>> m_images;
+    QMap<ImageType, QVector<Poster>> m_images;
     QMap<ImageType, QByteArray> m_rawImages;
-    QList<ImageType> m_imagesToRemove;
+    QVector<ImageType> m_imagesToRemove;
     MusicModelItem *m_modelItem;
     QString m_nfoContent;
     int m_databaseId;
     ArtistController *m_controller;
     QString m_mbId;
     QString m_allMusicId;
-    QList<Album *> m_albums;
-    QList<DiscographyAlbum> m_discography;
+    QVector<Album *> m_albums;
+    QVector<DiscographyAlbum> m_discography;
 
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QList<QByteArray> m_extraFanartImagesToAdd;
+    QVector<QByteArray> m_extraFanartImagesToAdd;
 };

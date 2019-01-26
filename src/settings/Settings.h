@@ -40,11 +40,11 @@ public:
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QByteArray movieDuplicatesSplitterState();
-    QList<SettingsDir> movieDirectories();
-    QList<SettingsDir> tvShowDirectories();
-    QList<SettingsDir> concertDirectories();
-    QList<SettingsDir> downloadDirectories();
-    QList<SettingsDir> musicDirectories();
+    QVector<SettingsDir> movieDirectories();
+    QVector<SettingsDir> tvShowDirectories();
+    QVector<SettingsDir> concertDirectories();
+    QVector<SettingsDir> downloadDirectories();
+    QVector<SettingsDir> musicDirectories();
     QString unrar();
     QString makeMkvCon();
     bool deleteArchives();
@@ -63,12 +63,12 @@ public:
     QString debugLogPath();
     bool useYoutubePluginUrls();
     bool downloadActorImages();
-    QList<DataFile> dataFiles(DataFileType dataType);
-    QList<DataFile> dataFiles(ImageType dataType);
-    QList<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
+    QVector<DataFile> dataFiles(DataFileType dataType);
+    QVector<DataFile> dataFiles(ImageType dataType);
+    QVector<DataFile> dataFilesFrodo(DataFileType type = DataFileType::NoType);
     bool usePlotForOutline();
     template<typename T>
-    QList<T> scraperInfos(MainWidgets widget, QString scraperId);
+    QVector<T> scraperInfos(MainWidgets widget, QString scraperId);
     void renamePatterns(Renamer::RenameType renameType,
         QString &fileNamePattern,
         QString &fileNamePatternMulti,
@@ -79,7 +79,7 @@ public:
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
     QString movieSetArtworkDirectory() const;
-    QList<MediaStatusColumn> mediaStatusColumns() const;
+    QVector<MediaStatusColumn> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<MovieScraperInfos, QString> customMovieScraper() const;
@@ -99,7 +99,7 @@ public:
     QString lastImagePath();
 
     template<typename T>
-    QList<T> scraperInfos(QString scraperId);
+    QVector<T> scraperInfos(QString scraperId);
 
     bool autoLoadStreamDetails();
 
@@ -114,11 +114,11 @@ public:
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
-    void setMovieDirectories(QList<SettingsDir> dirs);
-    void setTvShowDirectories(QList<SettingsDir> dirs);
-    void setConcertDirectories(QList<SettingsDir> dirs);
-    void setDownloadDirectories(QList<SettingsDir> dirs);
-    void setMusicDirectories(QList<SettingsDir> dirs);
+    void setMovieDirectories(QVector<SettingsDir> dirs);
+    void setTvShowDirectories(QVector<SettingsDir> dirs);
+    void setConcertDirectories(QVector<SettingsDir> dirs);
+    void setDownloadDirectories(QVector<SettingsDir> dirs);
+    void setMusicDirectories(QVector<SettingsDir> dirs);
     void setUnrar(QString unrar);
     void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
@@ -134,16 +134,16 @@ public:
     void setDebugModeActivated(bool enabled);
     void setDebugLogPath(QString path);
     void setAutoLoadStreamDetails(bool autoLoad);
-    void setDataFiles(QList<DataFile> files);
+    void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
     void setXbmcHost(QString host);
     void setXbmcPort(int port);
     void setXbmcUser(QString user);
     void setXbmcPassword(QString password);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items);
-    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MovieScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<TvShowScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<ConcertScraperInfos> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MusicScraperInfos> items);
     void setRenamePatterns(Renamer::RenameType renameType,
         QString fileNamePattern,
         QString fileNamePatternMulti,
@@ -154,7 +154,7 @@ public:
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(QString dir);
-    void setMediaStatusColumn(QList<MediaStatusColumn> columns);
+    void setMediaStatusColumn(QVector<MediaStatusColumn> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<MovieScraperInfos, QString> customMovieScraper);
@@ -186,11 +186,11 @@ private:
     QSettings *m_settings;
     AdvancedSettings *m_advancedSettings;
 
-    QList<SettingsDir> m_movieDirectories;
-    QList<SettingsDir> m_tvShowDirectories;
-    QList<SettingsDir> m_concertDirectories;
-    QList<SettingsDir> m_downloadDirectories;
-    QList<SettingsDir> m_musicDirectories;
+    QVector<SettingsDir> m_movieDirectories;
+    QVector<SettingsDir> m_tvShowDirectories;
+    QVector<SettingsDir> m_concertDirectories;
+    QVector<SettingsDir> m_downloadDirectories;
+    QVector<SettingsDir> m_musicDirectories;
     QString m_unrar;
     QString m_makeMkvCon;
     bool m_deleteArchives;
@@ -217,8 +217,8 @@ private:
     bool m_youtubePluginUrls;
     bool m_downloadActorImages;
     bool m_autoLoadStreamDetails;
-    QList<DataFile> m_dataFiles;
-    QList<DataFile> m_initialDataFilesFrodo;
+    QVector<DataFile> m_dataFiles;
+    QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline;
     QString m_xbmcHost;
     int m_xbmcPort;
@@ -227,7 +227,7 @@ private:
     bool m_ignoreArticlesWhenSorting;
     MovieSetArtworkType m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
-    QList<MediaStatusColumn> m_mediaStatusColumns;
+    QVector<MediaStatusColumn> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
     QMap<MovieScraperInfos, QString> m_customMovieScraper;

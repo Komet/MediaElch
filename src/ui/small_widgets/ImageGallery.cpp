@@ -111,7 +111,7 @@ void ImageGallery::clear()
     m_imageLabels.clear();
 }
 
-void ImageGallery::setImages(QList<ExtraFanart> images)
+void ImageGallery::setImages(QVector<ExtraFanart> images)
 {
     clear();
     for (ExtraFanart fanart : images) {

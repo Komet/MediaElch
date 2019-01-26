@@ -4,13 +4,13 @@
 #include "data/Movie.h"
 #include "globals/Globals.h"
 
-#include <QList>
+#include <QVector>
 
 MovieImages::MovieImages(Movie &movie) : m_movie(movie)
 {
 }
 
-void MovieImages::clear(QList<MovieScraperInfos> infos)
+void MovieImages::clear(QVector<MovieScraperInfos> infos)
 {
     if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();
@@ -66,7 +66,7 @@ void MovieImages::clear(QList<MovieScraperInfos> infos)
  * @brief Holds a list of posters of the movie
  * @return List of posters
  */
-QList<Poster> MovieImages::posters() const
+QVector<Poster> MovieImages::posters() const
 {
     return m_posters;
 }
@@ -76,22 +76,22 @@ QList<Poster> MovieImages::posters() const
  * @brief Holds a list of backdrops of the movie
  * @return List of backdrops
  */
-QList<Poster> MovieImages::backdrops() const
+QVector<Poster> MovieImages::backdrops() const
 {
     return m_backdrops;
 }
 
-QList<Poster> MovieImages::discArts() const
+QVector<Poster> MovieImages::discArts() const
 {
     return m_discArts;
 }
 
-QList<Poster> MovieImages::clearArts() const
+QVector<Poster> MovieImages::clearArts() const
 {
     return m_clearArts;
 }
 
-QList<Poster> MovieImages::logos() const
+QVector<Poster> MovieImages::logos() const
 {
     return m_logos;
 }
@@ -101,12 +101,12 @@ QStringList MovieImages::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QByteArray> MovieImages::extraFanartToAdd()
+QVector<QByteArray> MovieImages::extraFanartToAdd()
 {
     return m_extraFanartToAdd;
 }
 
-QList<ImageType> MovieImages::imagesToRemove() const
+QVector<ImageType> MovieImages::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
@@ -184,7 +184,7 @@ void MovieImages::removeExtraFanart(QString file)
     m_movie.setChanged(true);
 }
 
-QList<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(&m_movie);
@@ -192,7 +192,7 @@ QList<ExtraFanart> MovieImages::extraFanarts(MediaCenterInterface *mediaCenterIn
     for (const QString &file : m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }
-    QList<ExtraFanart> fanarts;
+    QVector<ExtraFanart> fanarts;
     for (const QString &file : m_extraFanarts) {
         ExtraFanart f;
         f.path = file;

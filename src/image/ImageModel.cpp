@@ -22,7 +22,7 @@ void ImageModel::clear()
     if (m_images.isEmpty()) {
         return;
     }
-    QList<Image *> imgs;
+    QVector<Image *> imgs;
     beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     imgs = m_images;
     m_images.clear();
@@ -105,7 +105,7 @@ void ImageModel::ImageModel::move(int from, int to)
     setHasChanged(true);
 }
 
-QList<Image *> ImageModel::images()
+QVector<Image *> ImageModel::images()
 {
     return m_images;
 }

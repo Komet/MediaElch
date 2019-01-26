@@ -44,7 +44,7 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
 
     connect(Settings::instance(), &Settings::sigDonated, this, &Navbar::onDonated);
 
-    QList<QColor> navbarColors;
+    QVector<QColor> navbarColors;
     navbarColors << QColor(241, 96, 106, 255);
     navbarColors << QColor(248, 155, 53, 255);
     navbarColors << QColor(248, 155, 53, 255);

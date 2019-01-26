@@ -51,7 +51,7 @@ private slots:
     void onInfoLoadDone(Concert *concert);
     void onLoadDone(Concert *concert);
     void onLoadImagesStarted(Concert *concert);
-    void onLoadingImages(Concert *concert, QList<ImageType> imageTypes);
+    void onLoadingImages(Concert *concert, QVector<ImageType> imageTypes);
     void onDownloadProgress(Concert *concert, int current, int maximum);
     void onSetImage(Concert *concert, ImageType type, QByteArray data);
 
@@ -80,5 +80,5 @@ private:
     QPointer<Concert> m_concert = nullptr;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    void updateImages(QList<ImageType> images);
+    void updateImages(QVector<ImageType> images);
 };

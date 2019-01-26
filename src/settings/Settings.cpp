@@ -229,7 +229,7 @@ void Settings::loadSettings()
     m_youtubePluginUrls = settings()->value("UseYoutubePluginURLs", false).toBool();
 
     // Data Files
-    QList<DataFile> dataFiles;
+    QVector<DataFile> dataFiles;
     int dataFileSize = settings()->beginReadArray("AllDataFiles");
     for (int i = 0; i < dataFileSize; ++i) {
         settings()->setArrayIndex(i);
@@ -569,7 +569,7 @@ QByteArray Settings::movieDuplicatesSplitterState()
  * @brief Returns a list of movie directories
  * @return List of movie directories
  */
-QList<SettingsDir> Settings::movieDirectories()
+QVector<SettingsDir> Settings::movieDirectories()
 {
     return m_movieDirectories;
 }
@@ -578,7 +578,7 @@ QList<SettingsDir> Settings::movieDirectories()
  * @brief Returns a list of tv show directories
  * @return List of tv show directories
  */
-QList<SettingsDir> Settings::tvShowDirectories()
+QVector<SettingsDir> Settings::tvShowDirectories()
 {
     return m_tvShowDirectories;
 }
@@ -587,12 +587,12 @@ QList<SettingsDir> Settings::tvShowDirectories()
  * @brief Returns a list of concert directories
  * @return List of concert directories
  */
-QList<SettingsDir> Settings::concertDirectories()
+QVector<SettingsDir> Settings::concertDirectories()
 {
     return m_concertDirectories;
 }
 
-QList<SettingsDir> Settings::musicDirectories()
+QVector<SettingsDir> Settings::musicDirectories()
 {
     return m_musicDirectories;
 }
@@ -702,9 +702,9 @@ bool Settings::autoLoadStreamDetails()
  * @param type
  * @return
  */
-QList<DataFile> Settings::dataFiles(DataFileType dataType)
+QVector<DataFile> Settings::dataFiles(DataFileType dataType)
 {
-    QList<DataFile> files;
+    QVector<DataFile> files;
     for (const DataFile &file : m_dataFiles) {
         if (file.type() == dataType) {
             files.append(file);
@@ -714,18 +714,18 @@ QList<DataFile> Settings::dataFiles(DataFileType dataType)
     return files;
 }
 
-QList<DataFile> Settings::dataFiles(ImageType dataType)
+QVector<DataFile> Settings::dataFiles(ImageType dataType)
 {
     return dataFiles(DataFile::dataFileTypeForImageType(dataType));
 }
 
-QList<DataFile> Settings::dataFilesFrodo(DataFileType type)
+QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
 {
     if (type == DataFileType::NoType) {
         return m_initialDataFilesFrodo;
     }
 
-    QList<DataFile> files;
+    QVector<DataFile> files;
     for (const DataFile &file : m_initialDataFilesFrodo) {
         if (file.type() == type) {
             files.append(file);
@@ -842,7 +842,7 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
  * @brief Sets the movie directories
  * @param dirs Dirs to set
  */
-void Settings::setMovieDirectories(QList<SettingsDir> dirs)
+void Settings::setMovieDirectories(QVector<SettingsDir> dirs)
 {
     m_movieDirectories = dirs;
 }
@@ -851,7 +851,7 @@ void Settings::setMovieDirectories(QList<SettingsDir> dirs)
  * @brief Sets the tv show directories
  * @param dirs Dirs to set
  */
-void Settings::setTvShowDirectories(QList<SettingsDir> dirs)
+void Settings::setTvShowDirectories(QVector<SettingsDir> dirs)
 {
     m_tvShowDirectories = dirs;
 }
@@ -860,12 +860,12 @@ void Settings::setTvShowDirectories(QList<SettingsDir> dirs)
  * @brief Sets the concert directories
  * @param dirs Dirs to set
  */
-void Settings::setConcertDirectories(QList<SettingsDir> dirs)
+void Settings::setConcertDirectories(QVector<SettingsDir> dirs)
 {
     m_concertDirectories = dirs;
 }
 
-void Settings::setMusicDirectories(QList<SettingsDir> dirs)
+void Settings::setMusicDirectories(QVector<SettingsDir> dirs)
 {
     m_musicDirectories = dirs;
 }
@@ -911,7 +911,7 @@ void Settings::setUseYoutubePluginUrls(bool use)
  * @brief Settings::setDataFiles
  * @param files
  */
-void Settings::setDataFiles(QList<DataFile> files)
+void Settings::setDataFiles(QVector<DataFile> files)
 {
     m_dataFiles = files;
 }
@@ -999,9 +999,9 @@ void Settings::setXbmcPort(int port)
 }
 
 template<>
-QList<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
+QVector<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QList<ConcertScraperInfos> infos;
+    QVector<ConcertScraperInfos> infos;
     for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
         infos << ConcertScraperInfos(info.toInt());
     }
@@ -1012,9 +1012,9 @@ QList<ConcertScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 template<>
-QList<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
+QVector<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QList<MovieScraperInfos> infos;
+    QVector<MovieScraperInfos> infos;
     for (const auto &info : settings()->value(QString("Scrapers/Movies/%1").arg(scraperId)).toString().split(",")) {
         infos << MovieScraperInfos(info.toInt());
     }
@@ -1025,9 +1025,9 @@ QList<MovieScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 template<>
-QList<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
+QVector<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QList<TvShowScraperInfos> infos;
+    QVector<TvShowScraperInfos> infos;
     for (const auto &info : settings()->value(QString("Scrapers/TvShows/%1").arg(scraperId)).toString().split(",")) {
         infos << TvShowScraperInfos(info.toInt());
     }
@@ -1038,9 +1038,9 @@ QList<TvShowScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 template<>
-QList<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
+QVector<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
 {
-    QList<MusicScraperInfos> infos;
+    QVector<MusicScraperInfos> infos;
     for (const auto &info : settings()->value(QString("Scrapers/Music/%1").arg(scraperId)).toString().split(",")) {
         infos << MusicScraperInfos(info.toInt());
     }
@@ -1051,7 +1051,7 @@ QList<MusicScraperInfos> Settings::scraperInfos(QString scraperId)
 }
 
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<MovieScraperInfos> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MovieScraperInfos> items)
 {
     Q_UNUSED(widget);
     QStringList infos;
@@ -1062,7 +1062,7 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<Movi
     settings()->setValue(QString("Scrapers/Movies/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvShowScraperInfos> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<TvShowScraperInfos> items)
 {
     Q_UNUSED(widget);
     QStringList infos;
@@ -1073,7 +1073,7 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<TvSh
     settings()->setValue(QString("Scrapers/TvShows/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<ConcertScraperInfos> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<ConcertScraperInfos> items)
 {
     Q_UNUSED(widget);
     QStringList infos;
@@ -1084,7 +1084,7 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<Conc
     settings()->setValue(QString("Scrapers/Concerts/%2").arg(scraperNo), infos.join(","));
 }
 
-void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<MusicScraperInfos> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MusicScraperInfos> items)
 {
     Q_UNUSED(widget);
     QStringList infos;
@@ -1207,12 +1207,12 @@ QString Settings::movieSetArtworkDirectory() const
     return m_movieSetArtworkDirectory;
 }
 
-void Settings::setMediaStatusColumn(QList<MediaStatusColumn> columns)
+void Settings::setMediaStatusColumn(QVector<MediaStatusColumn> columns)
 {
     m_mediaStatusColumns = columns;
 }
 
-QList<MediaStatusColumn> Settings::mediaStatusColumns() const
+QVector<MediaStatusColumn> Settings::mediaStatusColumns() const
 {
     return m_mediaStatusColumns;
 }
@@ -1271,12 +1271,12 @@ void Settings::setCurrentMovieScraper(int current)
     settings()->sync();
 }
 
-void Settings::setDownloadDirectories(QList<SettingsDir> dirs)
+void Settings::setDownloadDirectories(QVector<SettingsDir> dirs)
 {
     m_downloadDirectories = dirs;
 }
 
-QList<SettingsDir> Settings::downloadDirectories()
+QVector<SettingsDir> Settings::downloadDirectories()
 {
     return m_downloadDirectories;
 }

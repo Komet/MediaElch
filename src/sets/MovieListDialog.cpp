@@ -153,7 +153,7 @@ void MovieListDialog::onAddMovies()
     accept();
 }
 
-QList<Movie *> MovieListDialog::selectedMovies()
+QVector<Movie *> MovieListDialog::selectedMovies()
 {
     return m_selectedMovies;
 }

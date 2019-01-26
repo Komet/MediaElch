@@ -19,9 +19,9 @@ TMDbImages::TMDbImages(QObject *parent)
     m_dummyMovie = new Movie(QStringList(), this);
     connect(m_dummyMovie->controller(), &MovieController::sigInfoLoadDone, this, &TMDbImages::onLoadImagesFinished);
     connect(m_tmdb,
-        SIGNAL(searchDone(QList<ScraperSearchResult>)),
+        SIGNAL(searchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
+        SLOT(onSearchMovieFinished(QVector<ScraperSearchResult>)));
 }
 
 /**
@@ -47,7 +47,7 @@ QString TMDbImages::identifier() const
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<ImageType> TMDbImages::provides()
+QVector<ImageType> TMDbImages::provides()
 {
     return m_provides;
 }
@@ -81,7 +81,7 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
  * @param results List of results from scraper
  * @see TMDb::parseSearch
  */
-void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
+void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results)
 {
     qDebug() << "Entered";
     if (m_searchResultLimit == 0) {
@@ -99,7 +99,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
-    QList<MovieScraperInfos> infos;
+    QVector<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
     QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
@@ -114,7 +114,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
-    QList<MovieScraperInfos> infos;
+    QVector<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
     QMap<MovieScraperInterface *, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
@@ -144,7 +144,7 @@ void TMDbImages::concertBackdrops(TmdbId tmdbId)
  */
 void TMDbImages::onLoadImagesFinished()
 {
-    QList<Poster> posters;
+    QVector<Poster> posters;
     if (m_imageType == ImageType::MovieBackdrop) {
         posters = m_dummyMovie->images().backdrops();
     } else if (m_imageType == ImageType::MoviePoster) {
@@ -160,7 +160,7 @@ void TMDbImages::onLoadImagesFinished()
  * @param tmdbId
  * @param types
  */
-void TMDbImages::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
+void TMDbImages::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -210,7 +210,7 @@ void TMDbImages::movieCdArts(TmdbId tmdbId)
  * @param tmdbId
  * @param types
  */
-void TMDbImages::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
+void TMDbImages::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -261,7 +261,7 @@ void TMDbImages::searchTvShow(QString searchStr, int limit)
  * @param tvdbId
  * @param types
  */
-void TMDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
+void TMDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -427,14 +427,14 @@ void TMDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
+void TMDbImages::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TMDbImages::albumImages(Album *album, QString mbId, QList<ImageType> types)
+void TMDbImages::albumImages(Album *album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

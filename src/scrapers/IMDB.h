@@ -16,21 +16,21 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings &settings) override;
     void saveSettings(ScraperSettings &settings) override;
-    QList<MovieScraperInfos> scraperSupports() override;
-    QList<MovieScraperInfos> scraperNativelySupports() override;
+    QVector<MovieScraperInfos> scraperSupports() override;
+    QVector<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
     QWidget *settingsWidget() override;
     bool isAdult() const override;
-    void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
+    void parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos);
 
 signals:
-    void searchDone(QList<ScraperSearchResult>) override;
+    void searchDone(QVector<ScraperSearchResult>) override;
 
 private slots:
     void onSearchFinished();
@@ -45,10 +45,10 @@ private:
 
     bool m_loadAllTags = false;
     QNetworkAccessManager m_qnam;
-    QList<MovieScraperInfos> m_scraperSupports;
+    QVector<MovieScraperInfos> m_scraperSupports;
 
-    QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignPoster(QString html, QString posterId, Movie *movie, QList<MovieScraperInfos> infos);
+    QVector<ScraperSearchResult> parseSearch(QString html);
+    void parseAndAssignPoster(QString html, QString posterId, Movie *movie, QVector<MovieScraperInfos> infos);
     QUrl parsePosters(QString html);
     void parseAndAssignTags(const QString &html, Movie &movie);
 };

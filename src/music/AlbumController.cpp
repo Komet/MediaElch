@@ -102,7 +102,7 @@ void AlbumController::loadImage(ImageType type, QUrl url)
     m_downloadManager->addDownload(d);
 }
 
-void AlbumController::loadImages(ImageType type, QList<QUrl> urls)
+void AlbumController::loadImages(ImageType type, QVector<QUrl> urls)
 {
     bool started = false;
     foreach (const QUrl &url, urls) {
@@ -152,7 +152,7 @@ bool AlbumController::downloadsInProgress() const
 void AlbumController::loadData(QString id,
     QString id2,
     MusicScraperInterface *scraperInterface,
-    QList<MusicScraperInfos> infos)
+    QVector<MusicScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, id2, m_album, infos);
@@ -163,11 +163,11 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
     emit sigInfoLoadDone(m_album);
 
     if (!scraper) {
-        onFanartLoadDone(m_album, QMap<ImageType, QList<Poster>>());
+        onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
         return;
     }
 
-    QList<ImageType> images;
+    QVector<ImageType> images;
     if (m_infosToLoad.contains(MusicScraperInfos::Cover)) {
         images << ImageType::AlbumThumb;
         m_album->clear({MusicScraperInfos::Cover});
@@ -186,29 +186,29 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
             }
         }
         if (!imageProvider) {
-            onFanartLoadDone(m_album, QMap<ImageType, QList<Poster>>());
+            onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
             return;
         }
         connect(imageProvider,
-            SIGNAL(sigImagesLoaded(Album *, QMap<ImageType, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(Album *, QMap<ImageType, QVector<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Album *, QMap<ImageType, QList<Poster>>)),
+            SLOT(onFanartLoadDone(Album *, QMap<ImageType, QVector<Poster>>)),
             Qt::UniqueConnection);
         imageProvider->albumImages(m_album, m_album->mbReleaseGroupId(), images);
     } else {
-        onFanartLoadDone(m_album, QMap<ImageType, QList<Poster>>());
+        onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
     }
 }
 
-void AlbumController::onFanartLoadDone(Album *album, QMap<ImageType, QList<Poster>> posters)
+void AlbumController::onFanartLoadDone(Album *album, QMap<ImageType, QVector<Poster>> posters)
 {
     if (album != m_album) {
         return;
     }
 
-    QList<DownloadManagerElement> downloads;
-    QList<ImageType> imageTypes;
-    QMapIterator<ImageType, QList<Poster>> it(posters);
+    QVector<DownloadManagerElement> downloads;
+    QVector<ImageType> imageTypes;
+    QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty()) {

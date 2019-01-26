@@ -22,14 +22,14 @@ public slots:
     void search(QString searchString);
     int scraperNo();
     TmdbId scraperId();
-    QList<ConcertScraperInfos> infosToLoad();
+    QVector<ConcertScraperInfos> infosToLoad();
 
 signals:
     void sigResultClicked();
 
 private slots:
     void search();
-    void showResults(QList<ScraperSearchResult> results);
+    void showResults(QVector<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem *item);
     void chkToggled();
     void chkAllToggled(bool toggled);
@@ -38,8 +38,8 @@ private:
     Ui::ConcertSearchWidget *ui;
     int m_scraperNo;
     TmdbId m_scraperId;
-    QList<ConcertScraperInfos> m_infosToLoad;
+    QVector<ConcertScraperInfos> m_infosToLoad;
 
     void clear();
-    void setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
+    void setCheckBoxesEnabled(QVector<ConcertScraperInfos> scraperSupports);
 };

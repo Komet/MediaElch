@@ -48,12 +48,12 @@ QString ExportTemplate::description() const
     return description;
 }
 
-void ExportTemplate::setExportSections(QList<ExportSection> exportSections)
+void ExportTemplate::setExportSections(QVector<ExportSection> exportSections)
 {
     m_exportSections = exportSections;
 }
 
-QList<ExportTemplate::ExportSection> ExportTemplate::exportSections()
+QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
 {
     return m_exportSections;
 }

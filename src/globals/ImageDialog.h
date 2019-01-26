@@ -38,9 +38,9 @@ public:
     explicit ImageDialog(QWidget *parent = nullptr);
     ~ImageDialog() override;
     static ImageDialog *instance(QWidget *parent = nullptr);
-    void setDownloads(QList<Poster> downloads, bool initial = true);
+    void setDownloads(QVector<Poster> downloads, bool initial = true);
     QUrl imageUrl();
-    QList<QUrl> imageUrls();
+    QVector<QUrl> imageUrls();
     void setImageType(ImageType type);
     void setItemType(ItemType type);
     void setMultiSelection(const bool &enable);
@@ -74,9 +74,9 @@ private slots:
     void onZoomOut();
     void onSearch(bool onlyFirstResult = false);
     void onProviderChanged(int index);
-    void onSearchFinished(QList<ScraperSearchResult> results);
+    void onSearchFinished(QVector<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem *item);
-    void onProviderImagesLoaded(QList<Poster> images);
+    void onProviderImagesLoaded(QVector<Poster> images);
     void onImageClosed(const QString &url);
     void updateSourceLink();
 
@@ -102,17 +102,17 @@ private:
     int m_currentDownloadIndex;
     QNetworkReply *m_currentDownloadReply;
     ImageType m_imageType;
-    QList<DownloadElement> m_elements;
+    QVector<DownloadElement> m_elements;
     QUrl m_imageUrl;
-    QList<QUrl> m_imageUrls;
+    QVector<QUrl> m_imageUrls;
     ImageType m_type;
-    QList<ImageProviderInterface *> m_providers;
+    QVector<ImageProviderInterface *> m_providers;
     Concert *m_concert;
     Movie *m_movie;
     TvShow *m_tvShow;
     TvShowEpisode *m_tvShowEpisode;
     ItemType m_itemType;
-    QList<Poster> m_defaultElements;
+    QVector<Poster> m_defaultElements;
     ImageProviderInterface *m_currentProvider;
     SeasonNumber m_season;
     EpisodeNumber m_episode;

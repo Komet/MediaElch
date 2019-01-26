@@ -11,6 +11,7 @@
 class DataFile
 {
 public:
+    DataFile() = default;
     DataFile(DataFileType type, QString fileName, int pos);
     DataFileType type() const;
     QString fileName() const;
@@ -23,6 +24,6 @@ public:
 
 private:
     QString m_fileName;
-    int m_pos;
+    int m_pos = 0;
     DataFileType m_type;
 };

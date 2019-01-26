@@ -173,7 +173,7 @@ void MovieFilesWidget::showContextMenu(QPoint point)
 void MovieFilesWidget::multiScrape()
 {
     m_contextMenu->close();
-    QList<Movie *> movies = selectedMovies();
+    QVector<Movie *> movies = selectedMovies();
     if (movies.isEmpty()) {
         return;
     }
@@ -232,7 +232,7 @@ void MovieFilesWidget::markAsUnwatched()
 void MovieFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QList<Movie *> movies;
+    QVector<Movie *> movies;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
@@ -253,7 +253,7 @@ void MovieFilesWidget::loadStreamDetails()
 void MovieFilesWidget::markForSync()
 {
     m_contextMenu->close();
-    QList<QModelIndex> indexes;
+    QVector<QModelIndex> indexes;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
         indexes << index;
     foreach (const QModelIndex &index, indexes) {
@@ -267,7 +267,7 @@ void MovieFilesWidget::markForSync()
 void MovieFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
-    QList<QModelIndex> indexes;
+    QVector<QModelIndex> indexes;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
         indexes << index;
     foreach (const QModelIndex &index, indexes) {
@@ -345,7 +345,7 @@ void MovieFilesWidget::movieSelectedEmitter()
  * @param filters List of filters
  * @param text Filter text
  */
-void MovieFilesWidget::setFilter(QList<Filter *> filters, QString text)
+void MovieFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 {
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
@@ -426,9 +426,9 @@ void MovieFilesWidget::onSortByYear()
     updateSort(SortBy::Year);
 }
 
-QList<Movie *> MovieFilesWidget::selectedMovies()
+QVector<Movie *> MovieFilesWidget::selectedMovies()
 {
-    QList<Movie *> movies;
+    QVector<Movie *> movies;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         movies.append(Manager::instance()->movieModel()->movie(row));
@@ -520,7 +520,7 @@ void MovieFilesWidget::onActionMediaStatusColumn()
     action->setChecked(action->isChecked());
 
     MediaStatusColumn col = static_cast<MediaStatusColumn>(action->property("mediaStatusColumn").toInt());
-    QList<MediaStatusColumn> columns = Settings::instance()->mediaStatusColumns();
+    QVector<MediaStatusColumn> columns = Settings::instance()->mediaStatusColumns();
     if (action->isChecked() && !columns.contains(col)) {
         columns.append(col);
     } else {

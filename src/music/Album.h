@@ -67,7 +67,7 @@ public:
     int year() const;
     void setYear(int year);
 
-    QList<Poster> images(ImageType imageType) const;
+    QVector<Poster> images(ImageType imageType) const;
     void addImage(ImageType imageType, Poster image);
 
     QByteArray rawImage(ImageType imageType);
@@ -76,7 +76,7 @@ public:
     void clearImages();
 
     void clear();
-    void clear(QList<MusicScraperInfos> infos);
+    void clear(QVector<MusicScraperInfos> infos);
 
     MusicModelItem *modelItem() const;
     void setModelItem(MusicModelItem *item);
@@ -84,10 +84,10 @@ public:
     QString nfoContent() const;
     void setNfoContent(const QString &nfoContent);
 
-    static QList<ImageType> imageTypes();
+    static QVector<ImageType> imageTypes();
 
-    QList<ImageType> imagesToRemove() const;
-    void setImagesToRemove(const QList<ImageType> &imagesToRemove);
+    QVector<ImageType> imagesToRemove() const;
+    void setImagesToRemove(const QVector<ImageType> &imagesToRemove);
 
     int databaseId() const;
     void setDatabaseId(int databaseId);
@@ -130,9 +130,9 @@ private:
     QString m_label;
     qreal m_rating;
     int m_year;
-    QMap<ImageType, QList<Poster>> m_images;
+    QMap<ImageType, QVector<Poster>> m_images;
     QMap<ImageType, QByteArray> m_rawImages;
-    QList<ImageType> m_imagesToRemove;
+    QVector<ImageType> m_imagesToRemove;
     MusicModelItem *m_modelItem;
     QString m_nfoContent;
     int m_databaseId;

@@ -3,9 +3,9 @@
 #include "globals/Globals.h"
 
 #include <QDir>
-#include <QList>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 /**
  * @brief The ConcertFileSearcher class
@@ -15,7 +15,7 @@ class ConcertFileSearcher : public QObject
     Q_OBJECT
 public:
     explicit ConcertFileSearcher(QObject *parent = nullptr);
-    void setConcertDirectories(QList<SettingsDir> directories);
+    void setConcertDirectories(QVector<SettingsDir> directories);
 
 public slots:
     void reload(bool force);
@@ -28,11 +28,11 @@ signals:
     void currentDir(QString);
 
 private:
-    QList<SettingsDir> m_directories;
+    QVector<SettingsDir> m_directories;
     int m_progressMessageId;
     void scanDir(QString startPath,
         QString path,
-        QList<QStringList> &contents,
+        QVector<QStringList> &contents,
         bool separateFolders = false,
         bool firstScan = false);
     QStringList getFiles(QString path);

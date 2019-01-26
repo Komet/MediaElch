@@ -246,7 +246,7 @@ void ImportDialog::storeDefaults()
 void ImportDialog::onMovieChosen()
 {
     QMap<MovieScraperInterface *, QString> ids;
-    QList<MovieScraperInfos> infosToLoad;
+    QVector<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
         infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
@@ -307,7 +307,7 @@ void ImportDialog::onTvShowChosen()
 
     m_episode = new TvShowEpisode(files(), m_show);
     m_episode->setSeason(TvShowFileSearcher::getSeasonNumber(files()));
-    QList<EpisodeNumber> episodes = TvShowFileSearcher::getEpisodeNumbers(files());
+    QVector<EpisodeNumber> episodes = TvShowFileSearcher::getEpisodeNumbers(files());
     if (!episodes.isEmpty()) {
         m_episode->setEpisode(episodes.first());
     }
@@ -342,8 +342,8 @@ QStringList ImportDialog::extraFiles()
 void ImportDialog::setImportDir(QString dir)
 {
     foreach (SettingsDir settingsDir,
-        QList<SettingsDir>() << Settings::instance()->movieDirectories()
-                             << Settings::instance()->concertDirectories()) {
+        QVector<SettingsDir>() << Settings::instance()->movieDirectories()
+                               << Settings::instance()->concertDirectories()) {
         if (settingsDir.path == dir) {
             m_separateFolders = settingsDir.separateFolders;
             break;

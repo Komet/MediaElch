@@ -133,8 +133,8 @@ void SetsWidget::loadSets()
             if (m_sets.contains(movie->set())) {
                 m_sets[movie->set()].append(movie);
             } else {
-                QList<Movie *> l;
-                QList<Movie *> el;
+                QVector<Movie *> l;
+                QVector<Movie *> el;
                 l << movie;
                 m_sets.insert(movie->set(), l);
                 m_moviesToSave.insert(movie->set(), el);
@@ -145,13 +145,13 @@ void SetsWidget::loadSets()
     }
     foreach (const QString &set, m_addedSets) {
         if (!set.isEmpty() && !m_sets.contains(set)) {
-            m_sets.insert(set, QList<Movie *>());
-            m_moviesToSave.insert(set, QList<Movie *>());
+            m_sets.insert(set, QVector<Movie *>());
+            m_moviesToSave.insert(set, QVector<Movie *>());
             m_setPosters.insert(set, QImage());
             m_setBackdrops.insert(set, QImage());
         }
     }
-    QMapIterator<QString, QList<Movie *>> it(m_sets);
+    QMapIterator<QString, QVector<Movie *>> it(m_sets);
     while (it.hasNext()) {
         it.next();
         int row = ui->sets->rowCount();
@@ -320,7 +320,7 @@ void SetsWidget::onAddMovie()
         return;
     }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
+        QVector<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty()) {
             return;
         }
@@ -519,8 +519,8 @@ void SetsWidget::onAddMovieSet()
 
     m_addedSets << setName;
 
-    QList<Movie *> l;
-    QList<Movie *> el;
+    QVector<Movie *> l;
+    QVector<Movie *> el;
     m_sets.insert(setName, l);
     m_moviesToSave.insert(setName, el);
     m_setPosters.insert(setName, QImage());
@@ -572,7 +572,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     }
 
     if (!m_moviesToSave.contains(newName)) {
-        m_moviesToSave.insert(newName, QList<Movie *>());
+        m_moviesToSave.insert(newName, QVector<Movie *>());
     }
 
     foreach (Movie *movie, m_sets[origSetName]) {
@@ -583,7 +583,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     m_moviesToSave[origSetName].clear();
 
     if (!m_sets.contains(newName)) {
-        m_sets[newName].append(QList<Movie *>());
+        m_sets[newName].append(QVector<Movie *>());
     }
 
     m_sets[newName].append(m_sets[origSetName]);

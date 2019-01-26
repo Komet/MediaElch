@@ -30,7 +30,7 @@ public:
     TvShowModelItem *appendChild(TvShow *show);
     void clear();
     TvShowModelItem *getItem(const QModelIndex &index) const;
-    QList<TvShow *> tvShows();
+    QVector<TvShow *> tvShows();
     int hasNewShowOrEpisode();
     void removeShow(TvShow *show);
 

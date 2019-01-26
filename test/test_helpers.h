@@ -13,20 +13,20 @@
 #include "movies/MovieController.h"
 
 #include <QEventLoop>
-#include <QList>
 #include <QMap>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 /**
  * @brief Searches for searchStr and returns the results synchronously using the given Scraper.
  */
 template<class ScraperInterfaceT>
-QList<ScraperSearchResult> searchScraperSync(ScraperInterfaceT &scraper, QString search)
+QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT &scraper, QString search)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     QEventLoop loop;
-    loop.connect(&scraper, &ScraperInterfaceT::searchDone, [&](QList<ScraperSearchResult> res) {
+    loop.connect(&scraper, &ScraperInterfaceT::searchDone, [&](QVector<ScraperSearchResult> res) {
         results = res;
         loop.quit();
     });
@@ -42,9 +42,9 @@ template<class ScraperInterfaceT>
 void loadDataSync(ScraperInterfaceT &scraper,
     QMap<MovieScraperInterface *, QString> ids,
     Movie &movie,
-    QList<MovieScraperInfos> infos)
+    QVector<MovieScraperInfos> infos)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     QEventLoop loop;
     loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, &loop, &QEventLoop::quit);
     scraper.loadData(ids, &movie, infos);

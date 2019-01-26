@@ -393,7 +393,7 @@ void Database::update(Movie *movie)
     }
 }
 
-QList<Movie *> Database::movies(QString path)
+QVector<Movie *> Database::movies(QString path)
 {
     transaction();
     QSqlQuery query(db());
@@ -446,7 +446,7 @@ QList<Movie *> Database::movies(QString path)
     query.exec();
     while (query.next()) {
         int movieId = query.value(query.record().indexOf("idMovie")).toInt();
-        Movie *movie = movies.value(movieId, 0);
+        Movie *movie = movies.value(movieId, nullptr);
         if (!movie) {
             continue;
         }
@@ -460,7 +460,7 @@ QList<Movie *> Database::movies(QString path)
 
     commit();
 
-    return movies.values();
+    return movies.values().toVector();
 }
 
 void Database::clearConcerts(QString path)
@@ -524,9 +524,9 @@ void Database::update(Concert *concert)
     }
 }
 
-QList<Concert *> Database::concerts(QString path)
+QVector<Concert *> Database::concerts(QString path)
 {
-    QList<Concert *> concerts;
+    QVector<Concert *> concerts;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idConcert, content, inSeparateFolder FROM concerts WHERE path=:path");
@@ -692,9 +692,9 @@ void Database::update(TvShowEpisode *episode)
     }
 }
 
-QList<TvShow *> Database::shows(QString path)
+QVector<TvShow *> Database::shows(QString path)
 {
-    QList<TvShow *> shows;
+    QVector<TvShow *> shows;
     QSqlQuery query(db());
     query.prepare("SELECT idShow, dir, content, path FROM shows WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
@@ -722,9 +722,9 @@ QList<TvShow *> Database::shows(QString path)
     return shows;
 }
 
-QList<TvShowEpisode *> Database::episodes(int idShow)
+QVector<TvShowEpisode *> Database::episodes(int idShow)
 {
-    QList<TvShowEpisode *> episodes;
+    QVector<TvShowEpisode *> episodes;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM episodes WHERE idShow=:idShow");
@@ -880,10 +880,10 @@ void Database::cleanUpEpisodeList(int showsSettingsId)
     query.exec();
 }
 
-QList<TvShowEpisode *> Database::showsEpisodes(TvShow *show)
+QVector<TvShowEpisode *> Database::showsEpisodes(TvShow *show)
 {
     int id = showsSettingsId(show);
-    QList<TvShowEpisode *> episodes;
+    QVector<TvShowEpisode *> episodes;
     QSqlQuery query(db());
     query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM showsEpisodes WHERE idShow=:idShow");
     query.bindValue(":idShow", id);
@@ -1020,9 +1020,9 @@ void Database::update(Artist *artist)
     query.exec();
 }
 
-QList<Artist *> Database::artists(QString path)
+QVector<Artist *> Database::artists(QString path)
 {
-    QList<Artist *> artists;
+    QVector<Artist *> artists;
     QSqlQuery query(db());
     query.prepare("SELECT idArtist, content, dir FROM artists WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
@@ -1074,9 +1074,9 @@ void Database::update(Album *album)
     query.exec();
 }
 
-QList<Album *> Database::albums(Artist *artist)
+QVector<Album *> Database::albums(Artist *artist)
 {
-    QList<Album *> albums;
+    QVector<Album *> albums;
     QSqlQuery query(db());
     query.prepare("SELECT idAlbum, content, dir FROM albums WHERE idArtist=:idArtist");
     query.bindValue(":idArtist", artist->databaseId());

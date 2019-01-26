@@ -275,7 +275,7 @@ void FilterWidget::setupFilters()
 /**
  * @brief Sets up movie filters
  */
-QList<Filter *> FilterWidget::setupMovieFilters()
+QVector<Filter *> FilterWidget::setupMovieFilters()
 {
     // Load available genres/directors/etc.
 
@@ -335,7 +335,7 @@ QList<Filter *> FilterWidget::setupMovieFilters()
     // Set new filters
 
     const auto setNewFilters = [](const QStringList &filtersToApply, QString filterTypeName, MovieFilters infoType) {
-        QList<Filter *> newFilters;
+        QVector<Filter *> newFilters;
         for (const QString &filterName : filtersToApply) {
             newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
                 filterName,
@@ -347,23 +347,23 @@ QList<Filter *> FilterWidget::setupMovieFilters()
     };
 
     // clang-format off
-    QList<Filter *> movieGenreFilters         = setNewFilters(genres,         tr("Genre"),         MovieFilters::Genres);
-    QList<Filter *> movieStudioFilters        = setNewFilters(studios,        tr("Studio"),        MovieFilters::Studio);
-    QList<Filter *> movieCountryFilters       = setNewFilters(countries,      tr("Country"),       MovieFilters::Country);
-    QList<Filter *> movieSetsFilters          = setNewFilters(sets,           tr("Set"),           MovieFilters::Set);
-    QList<Filter *> movieTagsFilters          = setNewFilters(tags,           tr("Tag"),           MovieFilters::Tags);
-    QList<Filter *> movieDirectorFilters      = setNewFilters(directors,      tr("Director"),      MovieFilters::Director);
-    QList<Filter *> movieVideoCodecFilters    = setNewFilters(videocodecs,    tr("Video codec"),   MovieFilters::VideoCodec);
-    QList<Filter *> movieCertificationFilters = setNewFilters(certifications, tr("Certification"), MovieFilters::Certification);
+    QVector<Filter *> movieGenreFilters         = setNewFilters(genres,         tr("Genre"),         MovieFilters::Genres);
+    QVector<Filter *> movieStudioFilters        = setNewFilters(studios,        tr("Studio"),        MovieFilters::Studio);
+    QVector<Filter *> movieCountryFilters       = setNewFilters(countries,      tr("Country"),       MovieFilters::Country);
+    QVector<Filter *> movieSetsFilters          = setNewFilters(sets,           tr("Set"),           MovieFilters::Set);
+    QVector<Filter *> movieTagsFilters          = setNewFilters(tags,           tr("Tag"),           MovieFilters::Tags);
+    QVector<Filter *> movieDirectorFilters      = setNewFilters(directors,      tr("Director"),      MovieFilters::Director);
+    QVector<Filter *> movieVideoCodecFilters    = setNewFilters(videocodecs,    tr("Video codec"),   MovieFilters::VideoCodec);
+    QVector<Filter *> movieCertificationFilters = setNewFilters(certifications, tr("Certification"), MovieFilters::Certification);
     // clang-format on
 
-    QList<Filter *> movieYearFilters;
+    QVector<Filter *> movieYearFilters;
     for (const QString &year : years) {
         movieYearFilters << new Filter(
             tr("Released %1").arg(year), year, QStringList() << tr("Year") << year, MovieFilters::Released, true);
     }
 
-    QList<Filter *> movieLabelFilters;
+    QVector<Filter *> movieLabelFilters;
     QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
@@ -375,30 +375,30 @@ QList<Filter *> FilterWidget::setupMovieFilters()
             it.key());
     }
 
-    return QList<Filter *>() << m_availableMovieFilters   //
-                             << movieGenreFilters         //
-                             << movieStudioFilters        //
-                             << movieCountryFilters       //
-                             << movieYearFilters          //
-                             << movieCertificationFilters //
-                             << movieSetsFilters          //
-                             << movieTagsFilters          //
-                             << movieDirectorFilters      //
-                             << movieVideoCodecFilters    //
-                             << movieLabelFilters;
+    return QVector<Filter *>() << m_availableMovieFilters   //
+                               << movieGenreFilters         //
+                               << movieStudioFilters        //
+                               << movieCountryFilters       //
+                               << movieYearFilters          //
+                               << movieCertificationFilters //
+                               << movieSetsFilters          //
+                               << movieTagsFilters          //
+                               << movieDirectorFilters      //
+                               << movieVideoCodecFilters    //
+                               << movieLabelFilters;
 }
 
-QList<Filter *> FilterWidget::setupTvShowFilters()
+QVector<Filter *> FilterWidget::setupTvShowFilters()
 {
     return m_availableTvShowFilters;
 }
 
-QList<Filter *> FilterWidget::setupConcertFilters()
+QVector<Filter *> FilterWidget::setupConcertFilters()
 {
     return m_availableConcertFilters;
 }
 
-QList<Filter *> FilterWidget::setupMusicFilters()
+QVector<Filter *> FilterWidget::setupMusicFilters()
 {
     return m_availableMusicFilters;
 }

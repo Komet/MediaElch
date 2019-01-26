@@ -21,11 +21,11 @@ public:
     explicit MusicFilesWidget(QWidget *parent = nullptr);
     ~MusicFilesWidget() override;
     static MusicFilesWidget *instance();
-    QList<Artist *> selectedArtists();
-    QList<Album *> selectedAlbums();
+    QVector<Artist *> selectedArtists();
+    QVector<Album *> selectedAlbums();
 
 public slots:
-    void setFilter(QList<Filter *> filters, QString text);
+    void setFilter(QVector<Filter *> filters, QString text);
     void multiScrape();
 
 signals:

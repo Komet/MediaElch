@@ -271,7 +271,7 @@ void CertificationWidget::addMovie()
     const auto cert = Certification(ui->certifications->item(ui->certifications->currentRow(), 0)->text());
 
     if (MovieListDialog::instance()->execWithoutCertification(cert) == QDialog::Accepted) {
-        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
+        QVector<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty()) {
             return;
         }

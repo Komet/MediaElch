@@ -18,12 +18,12 @@ public:
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
     void loadSettings(const ScraperSettings &settings) override;
     void saveSettings(ScraperSettings &settings) override;
-    QList<MovieScraperInfos> scraperSupports() override;
-    QList<MovieScraperInfos> scraperNativelySupports() override;
+    QVector<MovieScraperInfos> scraperSupports() override;
+    QVector<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
@@ -31,7 +31,7 @@ public:
     bool isAdult() const override;
 
 signals:
-    void searchDone(QList<ScraperSearchResult>) override;
+    void searchDone(QVector<ScraperSearchResult>) override;
 
 private slots:
     void searchFinished();
@@ -39,10 +39,10 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QList<MovieScraperInfos> m_scraperSupports;
+    QVector<MovieScraperInfos> m_scraperSupports;
 
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
+    QVector<ScraperSearchResult> parseSearch(QString html);
+    void parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos);
     QString replaceEntities(const QString msg);
 };

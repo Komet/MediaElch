@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QDialog>
-#include <QList>
+#include <QVector>
 #include <QWidget>
 
 class Concert;
@@ -19,9 +19,9 @@ class LoadingStreamDetails : public QDialog
 public:
     explicit LoadingStreamDetails(QWidget *parent = nullptr);
     ~LoadingStreamDetails() override;
-    void loadMovies(QList<Movie *> movies);
-    void loadConcerts(QList<Concert *> concerts);
-    void loadTvShowEpisodes(QList<TvShowEpisode *> episodes);
+    void loadMovies(QVector<Movie *> movies);
+    void loadConcerts(QVector<Concert *> concerts);
+    void loadTvShowEpisodes(QVector<TvShowEpisode *> episodes);
 
 private:
     Ui::LoadingStreamDetails *ui;

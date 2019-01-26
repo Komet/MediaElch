@@ -25,7 +25,7 @@ public:
     void setActiveMainWidget(MainWidgets widget);
 signals:
     void sigFilterTextChanged(QString);
-    void sigFilterChanged(QList<Filter *>, QString);
+    void sigFilterChanged(QVector<Filter *>, QString);
 private slots:
     void onFilterTextChanged(QString text);
     void onKeyDown();
@@ -40,23 +40,23 @@ private:
     MainWidgets m_activeWidget;
 
     // Available filters for current widget
-    QList<Filter *> m_availableFilters;
+    QVector<Filter *> m_availableFilters;
 
     // Unique available filters
-    QList<Filter *> m_availableMovieFilters;
-    QList<Filter *> m_availableTvShowFilters;
-    QList<Filter *> m_availableConcertFilters;
-    QList<Filter *> m_availableMusicFilters;
+    QVector<Filter *> m_availableMovieFilters;
+    QVector<Filter *> m_availableTvShowFilters;
+    QVector<Filter *> m_availableConcertFilters;
+    QVector<Filter *> m_availableMusicFilters;
 
     QListWidget *m_list;
-    QList<Filter *> m_activeFilters;
-    QMap<MainWidgets, QList<Filter *>> m_storedFilters;
+    QVector<Filter *> m_activeFilters;
+    QMap<MainWidgets, QVector<Filter *>> m_storedFilters;
 
     void initAvailableFilters();
-    QList<Filter *> setupMovieFilters();
-    QList<Filter *> setupTvShowFilters();
-    QList<Filter *> setupConcertFilters();
-    QList<Filter *> setupMusicFilters();
+    QVector<Filter *> setupMovieFilters();
+    QVector<Filter *> setupTvShowFilters();
+    QVector<Filter *> setupConcertFilters();
+    QVector<Filter *> setupMusicFilters();
     void storeFilters(MainWidgets widget);
     void loadFilters(MainWidgets widget);
     void setupFilterListUi();

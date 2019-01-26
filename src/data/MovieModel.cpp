@@ -239,7 +239,7 @@ void MovieModel::clear()
  * @brief Returns a list of all movies
  * @return List of movies
  */
-QList<Movie *> MovieModel::movies()
+QVector<Movie *> MovieModel::movies()
 {
     return m_movies;
 }

@@ -481,7 +481,7 @@ void MainWindow::onActionRename()
  * @param filters List of filters
  * @param text Filter text
  */
-void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
+void MainWindow::onFilterChanged(QVector<Filter *> filters, QString text)
 {
     if (ui->stackedWidget->currentIndex() == 0) {
         ui->movieFilesWidget->setFilter(filters, text);
@@ -566,8 +566,9 @@ void MainWindow::moveSplitter(int pos, int index)
         }
     }
 
-    foreach (QSplitter *splitter, splitters)
+    foreach (QSplitter *splitter, splitters) {
         splitter->setSizes(sizes);
+    }
 
     Manager::instance()->movieModel()->update();
     Manager::instance()->concertModel()->update();

@@ -48,7 +48,7 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
  * @param elements List of elements to download
  * @see DownloadManagerElement
  */
-void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
+void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
     if (m_downloading) {
         m_currentReply->abort();

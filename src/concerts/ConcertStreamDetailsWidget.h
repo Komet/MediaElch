@@ -3,8 +3,8 @@
 #include "concerts/ConcertController.h"
 
 #include <QLineEdit>
-#include <QList>
 #include <QPointer>
+#include <QVector>
 #include <QWidget>
 #include <chrono>
 #include <memory>
@@ -39,7 +39,7 @@ private:
 
     std::unique_ptr<Ui::ConcertStreamDetailsWidget> ui;
     QPointer<ConcertController> m_concertController = nullptr;
-    QList<QWidget *> m_streamDetailsWidgets;
-    QList<QList<QLineEdit *>> m_streamDetailsAudio;
-    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
+    QVector<QWidget *> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
 };

@@ -24,9 +24,9 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
 
     // clang-format off
     connect(Manager::instance()->tvScrapers().at(0),
-        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onShowResults(QList<ScraperSearchResult>)));
+        SLOT(onShowResults(QVector<ScraperSearchResult>)));
     connect(ui->searchString, &QLineEdit::returnPressed,        this, &TvShowSearch::onSearch);
     connect(ui->results,      &QTableWidget::itemClicked,       this, &TvShowSearch::onResultClicked);
     connect(ui->buttonClose,  &QAbstractButton::clicked,        this, &QDialog::reject);
@@ -142,7 +142,7 @@ void TvShowSearch::onSearch()
  * @brief Displays the results from the scraper
  * @param results List of results
  */
-void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
+void TvShowSearch::onShowResults(QVector<ScraperSearchResult> results)
 {
     qDebug() << "Entered, size of results=" << results.count();
     ui->searchString->setLoading(false);
@@ -228,7 +228,7 @@ void TvShowSearch::onChkAllToggled()
     onChkToggled();
 }
 
-QList<TvShowScraperInfos> TvShowSearch::infosToLoad()
+QVector<TvShowScraperInfos> TvShowSearch::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -258,7 +258,7 @@ void TvShowSearch::onComboIndexChanged()
     } else {
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
     }
-    QList<TvShowScraperInfos> infos =
+    QVector<TvShowScraperInfos> infos =
         Settings::instance()->scraperInfos<TvShowScraperInfos>(QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();

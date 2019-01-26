@@ -108,9 +108,9 @@ void MovieMultiScrapeDialog::accept()
 {
     for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
     m_executed = false;
     Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
@@ -123,9 +123,9 @@ void MovieMultiScrapeDialog::reject()
 {
     for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
     m_executed = false;
     if (m_currentMovie) {
@@ -138,7 +138,7 @@ void MovieMultiScrapeDialog::reject()
     QDialog::reject();
 }
 
-void MovieMultiScrapeDialog::setMovies(QList<Movie *> movies)
+void MovieMultiScrapeDialog::setMovies(QVector<Movie *> movies)
 {
     m_movies = movies;
 }
@@ -147,9 +147,9 @@ void MovieMultiScrapeDialog::onStartScraping()
 {
     for (auto *scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
-            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
 
     ui->groupBox->setEnabled(false);
@@ -168,12 +168,12 @@ void MovieMultiScrapeDialog::onStartScraping()
     m_isImdb = m_scraperInterface->identifier() == "imdb";
 
     connect(m_scraperInterface,
-        SIGNAL(searchDone(QList<ScraperSearchResult>)),
+        SIGNAL(searchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onSearchFinished(QList<ScraperSearchResult>)),
+        SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
         Qt::UniqueConnection);
 
-    m_queue.append(m_movies);
+    m_queue.append(m_movies.toList());
 
     ui->movieCounter->setText(QString("0/%1").arg(m_queue.count()));
     ui->movieCounter->setVisible(true);
@@ -282,7 +282,7 @@ void MovieMultiScrapeDialog::loadMovieData(Movie *movie, TmdbId id)
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
-void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results)
+void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 {
     if (!isExecuted()) {
         return;
@@ -295,13 +295,13 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
     if (m_scraperInterface->identifier() == "custom-movie") {
         auto scraper = static_cast<MovieScraperInterface *>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
-        QList<MovieScraperInterface *> searchScrapers =
+        QVector<MovieScraperInterface *> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
-                SIGNAL(searchDone(QList<ScraperSearchResult>)),
+                SIGNAL(searchDone(QVector<ScraperSearchResult>)),
                 this,
-                SLOT(onSearchFinished(QList<ScraperSearchResult>)),
+                SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
                 Qt::UniqueConnection);
             if ((searchScrapers.first()->identifier() == "tmdb" || searchScrapers.first()->identifier() == "imdb")
                 && m_currentMovie->imdbId().isValid()) {
@@ -376,8 +376,8 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled()
         return;
     }
 
-    QList<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
-    QList<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
+    QVector<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
+    QVector<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));

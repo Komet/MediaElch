@@ -43,7 +43,7 @@ class TvShowEpisode : public QObject
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = nullptr);
     void clear();
-    void clear(QList<TvShowScraperInfos> infos);
+    void clear(QVector<TvShowScraperInfos> infos);
 
     void setFiles(QStringList files);
     virtual TvShow *tvShow() const;
@@ -75,8 +75,8 @@ public:
     virtual bool thumbnailImageChanged() const;
     virtual TvShowModelItem *modelItem();
     virtual bool hasChanged() const;
-    virtual QList<QString *> writersPointer();
-    virtual QList<QString *> directorsPointer();
+    virtual QVector<QString *> writersPointer();
+    virtual QVector<QString *> directorsPointer();
     virtual bool infoLoaded() const;
     virtual int episodeId() const;
     virtual StreamDetails *streamDetails();
@@ -121,19 +121,19 @@ public:
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
 
-    QList<Actor> actors() const;
-    QList<Actor *> actorsPointer();
+    QVector<Actor> actors() const;
+    QVector<Actor *> actorsPointer();
     void addActor(Actor actor);
     void removeActor(Actor *actor);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QList<TvShowScraperInfos> infosToLoad);
+    void loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();
-    QList<TvShowScraperInfos> infosToLoad();
+    QVector<TvShowScraperInfos> infosToLoad();
 
-    QList<ImageType> imagesToRemove() const;
+    QVector<ImageType> imagesToRemove() const;
     void removeImage(ImageType type);
 
     void scraperLoadDone();
@@ -180,10 +180,10 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
-    QList<TvShowScraperInfos> m_infosToLoad;
-    QList<ImageType> m_imagesToRemove;
+    QVector<TvShowScraperInfos> m_infosToLoad;
+    QVector<ImageType> m_imagesToRemove;
     bool m_isDummy;
-    QList<Actor> m_actors;
+    QVector<Actor> m_actors;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

@@ -25,11 +25,11 @@ class TvShowFilesWidget : public QWidget
 public:
     explicit TvShowFilesWidget(QWidget *parent = nullptr);
     ~TvShowFilesWidget() override;
-    void setFilter(QList<Filter *> filters, QString text);
+    void setFilter(QVector<Filter *> filters, QString text);
     static TvShowFilesWidget *instance();
-    QList<TvShowEpisode *> selectedEpisodes(bool includeFromSeasonOrShow = true);
-    QList<TvShow *> selectedShows();
-    QList<TvShow *> selectedSeasons();
+    QVector<TvShowEpisode *> selectedEpisodes(bool includeFromSeasonOrShow = true);
+    QVector<TvShow *> selectedShows();
+    QVector<TvShow *> selectedSeasons();
 
 public slots:
     void renewModel(bool force = false);

@@ -23,11 +23,11 @@ public:
 
     static TvShowMultiScrapeDialog *instance(QWidget *parent = nullptr);
 
-    QList<TvShow *> shows() const;
-    void setShows(const QList<TvShow *> &shows);
+    QVector<TvShow *> shows() const;
+    void setShows(const QVector<TvShow *> &shows);
 
-    QList<TvShowEpisode *> episodes() const;
-    void setEpisodes(const QList<TvShowEpisode *> &episodes);
+    QVector<TvShowEpisode *> episodes() const;
+    void setEpisodes(const QVector<TvShowEpisode *> &episodes);
 
 public slots:
     int exec() override;
@@ -39,21 +39,21 @@ private slots:
     void onChkAllToggled();
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QList<ScraperSearchResult> results);
+    void onSearchFinished(QVector<ScraperSearchResult> results);
     void scrapeNext();
     void onInfoLoadDone(TvShow *show);
     void onEpisodeLoadDone();
-    void onLoadDone(TvShow *show, QMap<ImageType, QList<Poster>> posters);
+    void onLoadDone(TvShow *show, QMap<ImageType, QVector<Poster>> posters);
     void onDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished();
     void onChkDvdOrderToggled();
 
 private:
     Ui::TvShowMultiScrapeDialog *ui;
-    QList<TvShow *> m_shows;
-    QList<TvShowEpisode *> m_episodes;
+    QVector<TvShow *> m_shows;
+    QVector<TvShowEpisode *> m_episodes;
     bool m_executed;
-    QList<TvShowScraperInfos> m_infosToLoad;
+    QVector<TvShowScraperInfos> m_infosToLoad;
     QQueue<TvShow *> m_showQueue;
     QQueue<TvShowEpisode *> m_episodeQueue;
     QPointer<TvShow> m_currentShow;

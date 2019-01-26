@@ -21,7 +21,7 @@ public:
     MusicModelItem *appendChild(Artist *artist);
     void clear();
     MusicModelItem *getItem(const QModelIndex &index) const;
-    QList<Artist *> artists();
+    QVector<Artist *> artists();
     void removeArtist(Artist *artist);
     int hasNewArtistsOrAlbums();
 

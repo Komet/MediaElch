@@ -179,7 +179,7 @@ void TheTvDb::search(QString searchStr)
 void TheTvDb::onSearchFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
@@ -196,9 +196,9 @@ void TheTvDb::onSearchFinished()
  * @param xml XML data
  * @return List of search results
  */
-QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
+QVector<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
 
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -239,7 +239,7 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 void TheTvDb::loadTvShowData(TvDbId id,
     TvShow *show,
     TvShowUpdateType updateType,
-    QList<TvShowScraperInfos> infosToLoad)
+    QVector<TvShowScraperInfos> infosToLoad)
 {
     show->setTvdbId(id);
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(m_mirror, m_apiKey, id.toString(), m_language));
@@ -265,12 +265,12 @@ void TheTvDb::onLoadFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
     if (!show) {
         return;
     }
 
-    QList<TvShowEpisode *> updatedEpisodes;
+    QVector<TvShowEpisode *> updatedEpisodes;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, show, updateType, infos, updatedEpisodes);
@@ -304,8 +304,8 @@ void TheTvDb::onActorsFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
-    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
     if (!show) {
         return;
     }
@@ -340,8 +340,8 @@ void TheTvDb::onBannersFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
-    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
     if (!show) {
         return;
     }
@@ -379,8 +379,8 @@ void TheTvDb::onBannersFinished()
 void TheTvDb::parseAndAssignInfos(QString xml,
     TvShow *show,
     TvShowUpdateType updateType,
-    QList<TvShowScraperInfos> infosToLoad,
-    QList<TvShowEpisode *> &updatedEpisodes)
+    QVector<TvShowScraperInfos> infosToLoad,
+    QVector<TvShowEpisode *> &updatedEpisodes)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -492,7 +492,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
 
 void TheTvDb::fillDatabaseWithAllEpisodes(QString xml, TvShow *show)
 {
-    QList<TvShowScraperInfos> infosToLoad;
+    QVector<TvShowScraperInfos> infosToLoad;
     infosToLoad << TvShowScraperInfos::Director   //
                 << TvShowScraperInfos::Title      //
                 << TvShowScraperInfos::FirstAired //
@@ -559,7 +559,7 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
 void TheTvDb::parseAndAssignBanners(QString xml,
     TvShow *show,
     TvShowUpdateType updateType,
-    QList<TvShowScraperInfos> infosToLoad)
+    QVector<TvShowScraperInfos> infosToLoad)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -682,7 +682,7 @@ void TheTvDb::parseAndAssignBanners(QString xml,
  */
 void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem,
     TvShowEpisode *episode,
-    QList<TvShowScraperInfos> infosToLoad)
+    QVector<TvShowScraperInfos> infosToLoad)
 {
     if (!elem.elementsByTagName("IMDB_ID").isEmpty()) {
         episode->setImdbId(ImdbId(elem.elementsByTagName("IMDB_ID").at(0).toElement().text()));
@@ -743,7 +743,7 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem,
  * @param episode Episode object
  * @see TheTvDb::onEpisodeLoadFinished
  */
-void TheTvDb::loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad)
+void TheTvDb::loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QVector<TvShowScraperInfos> infosToLoad)
 {
     qDebug() << "Entered, id=" << id.toString() << "episode=" << episode->name();
     episode->clear(infosToLoad);
@@ -774,7 +774,7 @@ void TheTvDb::loadTvShowEpisodeData(TvDbId id, TvShowEpisode *episode, QList<TvS
 void TheTvDb::onEpisodeLoadFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
     if (!episode) {
@@ -796,7 +796,7 @@ void TheTvDb::onEpisodeLoadFinished()
     episode->scraperLoadDone();
 }
 
-bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos)
+bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QVector<TvShowScraperInfos> infos)
 {
     parseEpisodeXml(msg, episode, infos);
     if (shouldLoadImdb(infos) && !episode->tvShow()->imdbId().isEmpty()) {
@@ -845,7 +845,7 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvSh
     return false;
 }
 
-void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos)
+void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QVector<TvShowScraperInfos> infos)
 {
     QDomDocument domDoc;
     domDoc.setContent(msg);
@@ -940,7 +940,7 @@ void TheTvDb::getAiredSeasonAndEpisode(QString xml,
     episodeNumber = episode->episode();
 }
 
-bool TheTvDb::shouldLoadImdb(QList<TvShowScraperInfos> infosToLoad)
+bool TheTvDb::shouldLoadImdb(QVector<TvShowScraperInfos> infosToLoad)
 {
     QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
     for (const auto info : infosToLoad) {
@@ -952,7 +952,7 @@ bool TheTvDb::shouldLoadImdb(QList<TvShowScraperInfos> infosToLoad)
     return false;
 }
 
-bool TheTvDb::shouldLoadFromImdb(TvShowScraperInfos info, QList<TvShowScraperInfos> infosToLoad)
+bool TheTvDb::shouldLoadFromImdb(TvShowScraperInfos info, QVector<TvShowScraperInfos> infosToLoad)
 {
     QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
     return infosToLoad.contains(info) && scraperSettings.value(info) == "imdb";
@@ -963,9 +963,9 @@ void TheTvDb::onImdbFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage *>()->show();
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
-    QList<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
+    QVector<TvShowEpisode *> updatedEpisodes = reply->property("updatedEpisodes").value<Storage *>()->episodes();
 
     if (!show) {
         return;
@@ -987,7 +987,7 @@ void TheTvDb::onImdbFinished()
     loadEpisodes(show, updatedEpisodes, infos);
 }
 
-void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad)
+void TheTvDb::loadEpisodes(TvShow *show, QVector<TvShowEpisode *> episodes, QVector<TvShowScraperInfos> infosToLoad)
 {
     if (episodes.isEmpty()) {
         show->scraperLoadDone();
@@ -1053,8 +1053,8 @@ void TheTvDb::onEpisodesImdbSeasonFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
-    QList<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
     TvShow *show = reply->property("show").value<Storage *>()->show();
 
     if (!episode) {
@@ -1093,8 +1093,8 @@ void TheTvDb::onEpisodesImdbEpisodeFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
-    QList<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowEpisode *> episodes = reply->property("episodes").value<Storage *>()->episodes();
     TvShow *show = reply->property("show").value<Storage *>()->show();
 
     if (!episode) {
@@ -1113,7 +1113,7 @@ void TheTvDb::onEpisodesImdbEpisodeFinished()
 void TheTvDb::parseAndAssignImdbInfos(QString xml,
     TvShow *show,
     TvShowUpdateType updateType,
-    QList<TvShowScraperInfos> infosToLoad)
+    QVector<TvShowScraperInfos> infosToLoad)
 {
     using namespace std::chrono_literals;
 
@@ -1156,21 +1156,21 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
-            show->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Genres);
+            show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Genres);
             for (const QString &genre : m_dummyMovie->genres()) {
                 show->addGenre(Helper::instance()->mapGenre(genre));
             }
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Tags, infosToLoad) && !m_dummyMovie->tags().isEmpty()) {
-            show->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Tags);
+            show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Tags);
             foreach (const QString &tag, m_dummyMovie->tags()) {
                 show->addTag(tag);
             }
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
-            show->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
+            show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
             foreach (Actor actor, m_dummyMovie->actors()) {
                 Actor a;
                 a.id = actor.id;
@@ -1190,7 +1190,7 @@ void TheTvDb::onImdbSeasonFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
     EpisodeNumber episodeNumber = EpisodeNumber(reply->property("episodeNumber").toInt());
 
     if (!episode) {
@@ -1230,7 +1230,7 @@ void TheTvDb::onImdbEpisodeFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage *>()->episode();
-    QList<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
+    QVector<TvShowScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->showInfosToLoad();
 
     if (!episode) {
         return;
@@ -1256,7 +1256,7 @@ ImdbId TheTvDb::getImdbIdForEpisode(QString html, EpisodeNumber episodeNumber)
     return ImdbId::NoId;
 }
 
-void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QList<TvShowScraperInfos> infosToLoad)
+void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QVector<TvShowScraperInfos> infosToLoad)
 {
     m_dummyMovie->clear();
     m_imdb->parseAndAssignInfos(xml, m_dummyMovie, m_movieInfos);
@@ -1298,7 +1298,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode *episode, QList
     }
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
-        episode->clear(QList<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
+        episode->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
         for (Actor actor : m_dummyMovie->actors()) {
             Actor a;
             a.id = actor.id;

@@ -57,7 +57,7 @@ void Concert::setFiles(QStringList files)
  */
 void Concert::clear()
 {
-    QList<ConcertScraperInfos> infos;
+    QVector<ConcertScraperInfos> infos;
     infos.reserve(14);
     infos << ConcertScraperInfos::Title         //
           << ConcertScraperInfos::Tagline       //
@@ -81,7 +81,7 @@ void Concert::clear()
  * @brief Clears contents of the concert based on a list
  * @param infos List of infos which should be cleared
  */
-void Concert::clear(QList<ConcertScraperInfos> infos)
+void Concert::clear(QVector<ConcertScraperInfos> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_backdrops.clear();
@@ -272,9 +272,9 @@ QStringList Concert::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the concert genres
  */
-QList<QString *> Concert::genresPointer()
+QVector<QString *> Concert::genresPointer()
 {
-    QList<QString *> genres;
+    QVector<QString *> genres;
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
@@ -332,7 +332,7 @@ QDateTime Concert::lastPlayed() const
  * @see Concert::setPoster
  * @see Concert::addPoster
  */
-QList<Poster> Concert::posters() const
+QVector<Poster> Concert::posters() const
 {
     return m_posters;
 }
@@ -345,7 +345,7 @@ QList<Poster> Concert::posters() const
  * @see Concert::setBackdrop
  * @see Concert::addBackdrop
  */
-QList<Poster> Concert::backdrops() const
+QVector<Poster> Concert::backdrops() const
 {
     return m_backdrops;
 }
@@ -635,7 +635,7 @@ void Concert::setLastPlayed(QDateTime lastPlayed)
  * @param posters List of poster
  * @see Concert::posters
  */
-void Concert::setPosters(QList<Poster> posters)
+void Concert::setPosters(QVector<Poster> posters)
 {
     m_posters = posters;
     setChanged(true);
@@ -661,7 +661,7 @@ void Concert::setPoster(int index, Poster poster)
  * @param backdrops List of backdrops
  * @see Concert::backdrops
  */
-void Concert::setBackdrops(QList<Poster> backdrops)
+void Concert::setBackdrops(QVector<Poster> backdrops)
 {
     m_backdrops.append(backdrops);
     setChanged(true);
@@ -877,7 +877,7 @@ void Concert::removeExtraFanart(QString file)
     setChanged(true);
 }
 
-QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
@@ -885,7 +885,7 @@ QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterf
     foreach (const QString &file, m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }
-    QList<ExtraFanart> fanarts;
+    QVector<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
         f.path = file;
@@ -904,7 +904,7 @@ QStringList Concert::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QByteArray> Concert::extraFanartImagesToAdd()
+QVector<QByteArray> Concert::extraFanartImagesToAdd()
 {
     return m_extraFanartImagesToAdd;
 }
@@ -930,7 +930,7 @@ DiscType Concert::discType() const
     return DiscType::Single;
 }
 
-QList<ImageType> Concert::imagesToRemove() const
+QVector<ImageType> Concert::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
@@ -953,7 +953,7 @@ bool Concert::lessThan(Concert *a, Concert *b)
             < 0);
 }
 
-QList<ImageType> Concert::imageTypes()
+QVector<ImageType> Concert::imageTypes()
 {
     return {ImageType::ConcertPoster,
         ImageType::ConcertCdArt,

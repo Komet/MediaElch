@@ -27,7 +27,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
         canceled(tr("Source %1 is no directory").arg(path));
     }
 
-    QList<QStringList> contents;
+    QVector<QStringList> contents;
     auto fileSearcher = new MovieFileSearcher(this);
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();

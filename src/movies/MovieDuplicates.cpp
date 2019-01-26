@@ -19,7 +19,7 @@ MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::
     if (!Settings::instance()->movieDuplicatesSplitterState().isNull()) {
         ui->splitter->restoreState(Settings::instance()->movieDuplicatesSplitterState());
     } else {
-        ui->splitter->setSizes(QList<int>() << 200 << 600);
+        ui->splitter->setSizes(QList<int>{200, 600});
     }
 
     m_movieProxyModel = new MovieProxyModel(this);
@@ -83,7 +83,7 @@ void MovieDuplicates::detectDuplicates()
             counter, movieCount, Constants::MovieDuplicatesProgressMessageId);
         movie->setHasDuplicates(false);
 
-        QList<Movie *> dups{movie};
+        QVector<Movie *> dups{movie};
         for (Movie *subMovie : Manager::instance()->movieModel()->movies()) {
             if (movie != subMovie && subMovie->isDuplicate(movie)) {
                 dups.append(subMovie);

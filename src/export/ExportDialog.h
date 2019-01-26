@@ -2,9 +2,9 @@
 
 #include <QDialog>
 #include <QDir>
-#include <QList>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 #include "export/ExportTemplate.h"
 
@@ -38,9 +38,9 @@ private:
     Ui::ExportDialog *ui;
     bool m_canceled;
 
-    void parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QList<Movie *> movies);
-    void parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QList<Concert *> concerts);
-    void parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow *> shows);
+    void parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QVector<Movie *> movies);
+    void parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QVector<Concert *> concerts);
+    void parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QVector<TvShow *> shows);
     void saveImage(QSize size, QString imageFile, QString destinationFile, const char *format, int quality);
     void replaceImages(QString &m,
         const QDir &dir,
@@ -68,6 +68,6 @@ private:
     void replaceVars(QString &m, const TvShow *show, QDir dir, bool subDir = false);
     void replaceVars(QString &m, TvShowEpisode *episode, QDir dir, bool subDir = false);
     void replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces);
-    void replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QList<QStringList> replaces);
+    void replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QVector<QStringList> replaces);
     void replaceStreamDetailsVars(QString &m, const StreamDetails *streamDetails);
 };

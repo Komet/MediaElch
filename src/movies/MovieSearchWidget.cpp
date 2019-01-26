@@ -23,9 +23,9 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     // Setup Events
     for (MovieScraperInterface *scraper : Manager::instance()->movieScrapers()) {
         connect(scraper,
-            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(showResults(QList<ScraperSearchResult>)));
+            SLOT(showResults(QVector<ScraperSearchResult>)));
     }
 
     const auto indexChanged = static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged);
@@ -159,7 +159,7 @@ void MovieSearchWidget::setupLanguageDropdown()
     ui->comboLanguage->blockSignals(false);
 }
 
-void MovieSearchWidget::showResults(QList<ScraperSearchResult> results)
+void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
 {
     qDebug() << "[Search Results] Count: " << results.count();
 
@@ -200,7 +200,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
     }
 
     m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-    QList<MovieScraperInterface *> scrapers =
+    QVector<MovieScraperInterface *> scrapers =
         CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
     if (scrapers.isEmpty()) {
@@ -262,12 +262,12 @@ QString MovieSearchWidget::scraperMovieId()
     return m_scraperMovieId;
 }
 
-QList<MovieScraperInfos> MovieSearchWidget::infosToLoad()
+QVector<MovieScraperInfos> MovieSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void MovieSearchWidget::setCheckBoxesEnabled(QList<MovieScraperInfos> scraperSupports)
+void MovieSearchWidget::setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperSupports)
 {
     const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
 

@@ -30,12 +30,12 @@ public:
 
     static ConcertFilesWidget *instance();
 
-    QList<Concert *> selectedConcerts();
+    QVector<Concert *> selectedConcerts();
     void renewModel();
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QList<Filter *> filters, QString text);
+    void setFilter(QVector<Filter *> filters, QString text);
     void concertSelectedEmitter();
     void setAlphaListData();
 

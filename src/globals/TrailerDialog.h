@@ -31,8 +31,8 @@ public slots:
 
 private slots:
     void search();
-    void showResults(QList<ScraperSearchResult> results);
-    void showTrailers(QList<TrailerResult> trailers);
+    void showResults(QVector<ScraperSearchResult> results);
+    void showTrailers(QVector<TrailerResult> trailers);
     void resultClicked(QTableWidgetItem *item);
     void trailerClicked(QTableWidgetItem *item);
     void backToResults();
@@ -55,7 +55,7 @@ private:
     int m_providerNo;
     QString m_providerId;
     Movie *m_currentMovie;
-    QList<TrailerResult> m_currentTrailers;
+    QVector<TrailerResult> m_currentTrailers;
     QNetworkAccessManager *m_qnam;
     QNetworkReply *m_downloadReply;
     QTime m_downloadTime;

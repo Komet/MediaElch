@@ -131,7 +131,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
     connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
-    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate *>)));
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QVector<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QVector<ExportTemplate *>)));
     connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,   this, &SettingsWindow::onTemplateInstalled);
     connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled, this, &SettingsWindow::onTemplateUninstalled);
     connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &SettingsWindow::onChooseUnrar);
@@ -287,32 +287,32 @@ void SettingsWindow::loadSettings()
     // Directories
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
-    QList<SettingsDir> movieDirectories = m_settings->movieDirectories();
+    QVector<SettingsDir> movieDirectories = m_settings->movieDirectories();
     for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
         addDir(movieDirectories.at(i).path,
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
             SettingsDirType::Movies);
     }
-    QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
+    QVector<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
         addDir(tvShowDirectories.at(i).path,
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
             SettingsDirType::TvShows);
     }
-    QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
+    QVector<SettingsDir> concertDirectories = m_settings->concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
         addDir(concertDirectories.at(i).path,
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
             SettingsDirType::Concerts);
     }
-    QList<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
+    QVector<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
         addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
     }
-    QList<SettingsDir> musicDirectories = m_settings->musicDirectories();
+    QVector<SettingsDir> musicDirectories = m_settings->musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
         addDir(musicDirectories.at(i).path,
             musicDirectories.at(i).separateFolders,
@@ -352,14 +352,14 @@ void SettingsWindow::loadSettings()
             continue;
         }
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
-        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
         foreach (DataFile dataFile, dataFiles)
             filenames << dataFile.fileName();
         lineEdit->setText(filenames.join(","));
     }
 
-    QList<MovieScraperInfos> infos = {MovieScraperInfos::Title,
+    QVector<MovieScraperInfos> infos = {MovieScraperInfos::Title,
         MovieScraperInfos::Set,
         MovieScraperInfos::Tagline,
         MovieScraperInfos::Rating,
@@ -393,7 +393,7 @@ void SettingsWindow::loadSettings()
     }
 
 
-    QList<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
+    QVector<TvShowScraperInfos> tvInfos = {TvShowScraperInfos::Title,
         TvShowScraperInfos::Rating,
         TvShowScraperInfos::FirstAired,
         TvShowScraperInfos::Runtime,
@@ -424,7 +424,7 @@ void SettingsWindow::loadSettings()
 
 void SettingsWindow::saveSettings()
 {
-    QList<DataFile> dataFiles;
+    QVector<DataFile> dataFiles;
     foreach (QLineEdit *lineEdit, findChildren<QLineEdit *>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
@@ -464,11 +464,11 @@ void SettingsWindow::saveSettings()
     m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
 
     // Save Directories
-    QList<SettingsDir> movieDirectories;
-    QList<SettingsDir> tvShowDirectories;
-    QList<SettingsDir> concertDirectories;
-    QList<SettingsDir> downloadDirectories;
-    QList<SettingsDir> musicDirectories;
+    QVector<SettingsDir> movieDirectories;
+    QVector<SettingsDir> tvShowDirectories;
+    QVector<SettingsDir> concertDirectories;
+    QVector<SettingsDir> downloadDirectories;
+    QVector<SettingsDir> musicDirectories;
     for (int row = 0, n = ui->dirs->rowCount(); row < n; ++row) {
         SettingsDir dir;
         dir.path = ui->dirs->item(row, 1)->text();
@@ -705,7 +705,7 @@ void SettingsWindow::loadRemoteTemplates()
     ExportTemplateLoader::instance()->getRemoteTemplates();
 }
 
-void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate *> templates)
+void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate *> templates)
 {
     ui->exportTemplates->clearContents();
     ui->exportTemplates->setRowCount(0);
@@ -768,7 +768,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info
         }
     }
 
-    QList<MovieScraperInfos> images{MovieScraperInfos::Backdrop,
+    QVector<MovieScraperInfos> images{MovieScraperInfos::Backdrop,
         MovieScraperInfos::Logo,
         MovieScraperInfos::ClearArt,
         MovieScraperInfos::CdArt,

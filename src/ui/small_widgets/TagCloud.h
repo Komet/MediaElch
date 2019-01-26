@@ -50,7 +50,7 @@ private:
     int m_horizontalSpace;
     QStringList m_tags;
     QStringList m_activeTags;
-    QList<Badge *> m_badges;
+    QVector<Badge *> m_badges;
     QPointer<QCompleter> m_completer;
     void drawTags(bool drawAll = false);
 };

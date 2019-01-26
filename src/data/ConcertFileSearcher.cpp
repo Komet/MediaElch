@@ -23,7 +23,7 @@ ConcertFileSearcher::ConcertFileSearcher(QObject *parent) :
  * @brief Sets the directories to scan for concerts. Not existing directories are skipped.
  * @param directories List of directories
  */
-void ConcertFileSearcher::setConcertDirectories(QList<SettingsDir> directories)
+void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories)
 {
     qDebug() << "Entered";
     m_directories.clear();
@@ -51,15 +51,15 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->concertModel()->clear();
     emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
 
-    QList<Concert *> concerts;
-    QList<Concert *> dbConcerts;
-    QList<QStringList> contents;
+    QVector<Concert *> concerts;
+    QVector<Concert *> dbConcerts;
+    QVector<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
         if (m_aborted) {
             return;
         }
 
-        QList<Concert *> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        QVector<Concert *> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
             Manager::instance()->database()->clearConcerts(dir.path);
             scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
@@ -142,7 +142,7 @@ void ConcertFileSearcher::reload(bool force)
  */
 void ConcertFileSearcher::scanDir(QString startPath,
     QString path,
-    QList<QStringList> &contents,
+    QVector<QStringList> &contents,
     bool separateFolders,
     bool firstScan)
 {

@@ -58,7 +58,7 @@ private:
     LineEditType m_type;
     bool m_showMagnifier;
     QLabel *m_magnifierLabel;
-    QList<QLabel *> m_filterLabels;
+    QVector<QLabel *> m_filterLabels;
     QStringList m_styleSheets;
     QLabel *m_moreLabel;
     int m_paddingLeft;

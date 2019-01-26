@@ -18,7 +18,7 @@ public:
     explicit MovieMultiScrapeDialog(QWidget *parent = nullptr);
     ~MovieMultiScrapeDialog() override;
     static MovieMultiScrapeDialog *instance(QWidget *parent = nullptr);
-    void setMovies(QList<Movie *> movies);
+    void setMovies(QVector<Movie *> movies);
 
 public slots:
     int exec() override;
@@ -28,7 +28,7 @@ public slots:
 private slots:
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QList<ScraperSearchResult> results);
+    void onSearchFinished(QVector<ScraperSearchResult> results);
     void scrapeNext();
     void onProgress(Movie *movie, int current, int maximum);
     void onChkToggled();
@@ -37,7 +37,7 @@ private slots:
 
 private:
     Ui::MovieMultiScrapeDialog *ui;
-    QList<Movie *> m_movies;
+    QVector<Movie *> m_movies;
     QQueue<Movie *> m_queue;
     QPointer<Movie> m_currentMovie;
     MovieScraperInterface *m_scraperInterface;
@@ -45,7 +45,7 @@ private:
     bool m_isImdb;
     bool m_isTmdb;
     bool m_executed;
-    QList<MovieScraperInfos> m_infosToLoad;
+    QVector<MovieScraperInfos> m_infosToLoad;
     void loadMovieData(Movie *movie, ImdbId id);
     void loadMovieData(Movie *movie, TmdbId id);
     bool isExecuted();

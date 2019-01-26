@@ -11,19 +11,19 @@ QString MovieCrew::director() const
     return m_director;
 }
 
-const QList<Actor> &MovieCrew::actors() const
+const QVector<Actor> &MovieCrew::actors() const
 {
     return m_actors;
 }
 
-QList<Actor> &MovieCrew::actors()
+QVector<Actor> &MovieCrew::actors()
 {
     return m_actors;
 }
 
-QList<Actor *> MovieCrew::actorsPointer()
+QVector<Actor *> MovieCrew::actorsPointer()
 {
-    QList<Actor *> actors;
+    QVector<Actor *> actors;
     for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
     }
@@ -40,7 +40,7 @@ void MovieCrew::setDirector(QString director)
     m_director = director;
 }
 
-void MovieCrew::setActors(QList<Actor> actors)
+void MovieCrew::setActors(QVector<Actor> actors)
 {
     m_actors = actors;
 }

@@ -62,7 +62,7 @@ QString MusicSearch::scraperId2()
     return ui->musicSearchWidget->scraperId2();
 }
 
-QList<MusicScraperInfos> MusicSearch::infosToLoad()
+QVector<MusicScraperInfos> MusicSearch::infosToLoad()
 {
     return ui->musicSearchWidget->infosToLoad();
 }

@@ -9,9 +9,9 @@
 #include "globals/Globals.h"
 #include "settings/ScraperSettings.h"
 
-#include <QList>
 #include <QMap>
 #include <QString>
+#include <QVector>
 
 class ImageProviderInterface : public ScraperInterface, public QObject
 {
@@ -19,7 +19,7 @@ public:
     virtual QString name() const = 0;
     virtual QString identifier() const = 0;
     virtual QUrl siteUrl() const = 0;
-    virtual void movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types) = 0;
+    virtual void movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types) = 0;
     virtual void moviePosters(TmdbId tmdbId) = 0;
     virtual void movieBackdrops(TmdbId tmdbId) = 0;
     virtual void movieLogos(TmdbId tmdbId) = 0;
@@ -27,13 +27,13 @@ public:
     virtual void movieThumbs(TmdbId tmdbId) = 0;
     virtual void movieClearArts(TmdbId tmdbId) = 0;
     virtual void movieCdArts(TmdbId tmdbId) = 0;
-    virtual void concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types) = 0;
+    virtual void concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types) = 0;
     virtual void concertPosters(TmdbId tmdbId) = 0;
     virtual void concertBackdrops(TmdbId tmdbId) = 0;
     virtual void concertLogos(TmdbId tmdbId) = 0;
     virtual void concertClearArts(TmdbId tmdbId) = 0;
     virtual void concertCdArts(TmdbId tmdbId) = 0;
-    virtual void tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types) = 0;
+    virtual void tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types) = 0;
     virtual void tvShowPosters(TvDbId tvdbId) = 0;
     virtual void tvShowBackdrops(TvDbId tvdbId) = 0;
     virtual void tvShowLogos(TvDbId tvdbId) = 0;
@@ -52,9 +52,9 @@ public:
     virtual void albumCdArts(QString mbId) = 0;
     virtual void albumThumbs(QString mbId) = 0;
     virtual void albumBooklets(QString mbId) = 0;
-    virtual void artistImages(Artist *artist, QString mbId, QList<ImageType> types) = 0;
-    virtual void albumImages(Album *album, QString mbId, QList<ImageType> types) = 0;
-    virtual QList<ImageType> provides() = 0;
+    virtual void artistImages(Artist *artist, QString mbId, QVector<ImageType> types) = 0;
+    virtual void albumImages(Album *album, QString mbId, QVector<ImageType> types) = 0;
+    virtual QVector<ImageType> provides() = 0;
     virtual bool hasSettings() const = 0;
     virtual void loadSettings(const ScraperSettings &settings) = 0;
     virtual void saveSettings(ScraperSettings &settings) = 0;
@@ -68,13 +68,13 @@ public slots:
     virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
 
 signals:
-    virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
-    virtual void sigImagesLoaded(QList<Poster>) = 0;
-    virtual void sigImagesLoaded(Movie *, QMap<ImageType, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Concert *, QMap<ImageType, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(TvShow *, QMap<ImageType, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Artist *, QMap<ImageType, QList<Poster>>) = 0;
-    virtual void sigImagesLoaded(Album *, QMap<ImageType, QList<Poster>>) = 0;
+    virtual void sigSearchDone(QVector<ScraperSearchResult>) = 0;
+    virtual void sigImagesLoaded(QVector<Poster>) = 0;
+    virtual void sigImagesLoaded(Movie *, QMap<ImageType, QVector<Poster>>) = 0;
+    virtual void sigImagesLoaded(Concert *, QMap<ImageType, QVector<Poster>>) = 0;
+    virtual void sigImagesLoaded(TvShow *, QMap<ImageType, QVector<Poster>>) = 0;
+    virtual void sigImagesLoaded(Artist *, QMap<ImageType, QVector<Poster>>) = 0;
+    virtual void sigImagesLoaded(Album *, QMap<ImageType, QVector<Poster>>) = 0;
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface *)

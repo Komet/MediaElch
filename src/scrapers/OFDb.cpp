@@ -80,12 +80,12 @@ QNetworkAccessManager *OFDb::qnam()
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QList<MovieScraperInfos> OFDb::scraperSupports()
+QVector<MovieScraperInfos> OFDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<MovieScraperInfos> OFDb::scraperNativelySupports()
+QVector<MovieScraperInfos> OFDb::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -171,7 +171,7 @@ void OFDb::searchFinished()
         }
     }
 
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg, searchStr);
@@ -187,10 +187,10 @@ void OFDb::searchFinished()
  * @param xml XML data
  * @return List of search results
  */
-QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
+QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 {
     qDebug() << "Entered";
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     QDomDocument domDoc;
     domDoc.setContent(xml);
 
@@ -233,7 +233,7 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void OFDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -256,7 +256,7 @@ void OFDb::loadFinished()
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
-    QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (!movie) {
         return;
@@ -305,7 +305,7 @@ void OFDb::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<MovieScraperInfos> infos)
+void OFDb::parseAndAssignInfos(QString data, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
     QXmlStreamReader xml(data);

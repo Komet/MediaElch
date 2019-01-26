@@ -120,7 +120,9 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
     return infoLoaded;
 }
 
-void ConcertController::loadData(TmdbId id, ConcertScraperInterface *scraperInterface, QList<ConcertScraperInfos> infos)
+void ConcertController::loadData(TmdbId id,
+    ConcertScraperInterface *scraperInterface,
+    QVector<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, m_concert, infos);
@@ -137,12 +139,12 @@ void ConcertController::loadStreamDetailsFromFile()
     m_concert->setChanged(true);
 }
 
-QList<ConcertScraperInfos> ConcertController::infosToLoad()
+QVector<ConcertScraperInfos> ConcertController::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertController::setInfosToLoad(QList<ConcertScraperInfos> infos)
+void ConcertController::setInfosToLoad(QVector<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
 }
@@ -153,35 +155,35 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
 
     emit sigInfoLoadDone(m_concert);
     if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
-        QList<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
+        QVector<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Concert *, QMap<ImageType, QList<Poster>>)),
+            SIGNAL(sigImagesLoaded(Concert *, QMap<ImageType, QVector<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Concert *, QMap<ImageType, QList<Poster>>)),
+            SLOT(onFanartLoadDone(Concert *, QMap<ImageType, QVector<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->concertImages(m_concert, m_concert->tmdbId(), images);
     } else {
-        onFanartLoadDone(m_concert, QMap<ImageType, QList<Poster>>());
+        onFanartLoadDone(m_concert, QMap<ImageType, QVector<Poster>>());
     }
 }
 
-void ConcertController::onFanartLoadDone(Concert *concert, QMap<ImageType, QList<Poster>> posters)
+void ConcertController::onFanartLoadDone(Concert *concert, QMap<ImageType, QVector<Poster>> posters)
 {
     if (concert != m_concert) {
         return;
     }
 
     if (infosToLoad().contains(ConcertScraperInfos::Poster) && !m_concert->posters().isEmpty()) {
-        posters.insert(ImageType::ConcertPoster, QList<Poster>() << m_concert->posters().at(0));
+        posters.insert(ImageType::ConcertPoster, QVector<Poster>() << m_concert->posters().at(0));
     }
     if (infosToLoad().contains(ConcertScraperInfos::Backdrop) && !m_concert->backdrops().isEmpty()) {
-        posters.insert(ImageType::ConcertBackdrop, QList<Poster>() << m_concert->backdrops().at(0));
+        posters.insert(ImageType::ConcertBackdrop, QVector<Poster>() << m_concert->backdrops().at(0));
     }
 
-    QList<DownloadManagerElement> downloads;
+    QVector<DownloadManagerElement> downloads;
 
-    QList<ImageType> imageTypes;
-    QMapIterator<ImageType, QList<Poster>> it(posters);
+    QVector<ImageType> imageTypes;
+    QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
         if (it.value().isEmpty()) {
@@ -250,7 +252,7 @@ void ConcertController::loadImage(ImageType type, QUrl url)
     m_downloadManager->addDownload(d);
 }
 
-void ConcertController::loadImages(ImageType type, QList<QUrl> urls)
+void ConcertController::loadImages(ImageType type, QVector<QUrl> urls)
 {
     for (const QUrl &url : urls) {
         DownloadManagerElement d;
@@ -277,7 +279,7 @@ void ConcertController::abortDownloads()
     m_downloadManager->abortDownloads();
 }
 
-void ConcertController::setLoadsLeft(QList<ScraperData> loadsLeft)
+void ConcertController::setLoadsLeft(QVector<ScraperData> loadsLeft)
 {
     m_loadDoneFired = false;
     m_loadsLeft = loadsLeft;

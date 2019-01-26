@@ -152,12 +152,12 @@ void TMDb::saveSettings(ScraperSettings &settings)
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
-QList<MovieScraperInfos> TMDb::scraperSupports()
+QVector<MovieScraperInfos> TMDb::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<MovieScraperInfos> TMDb::scraperNativelySupports()
+QVector<MovieScraperInfos> TMDb::scraperNativelySupports()
 {
     return m_scraperNativelySupports;
 }
@@ -303,7 +303,7 @@ void TMDb::search(QString searchStr)
     } else {
         QUrl newUrl(getMovieSearchUrl(searchStr, UrlParameterMap{{ApiUrlParameter::INCLUDE_ADULT, includeAdult}}));
         url.swap(newUrl);
-        QList<QRegExp> rxYears;
+        QVector<QRegExp> rxYears;
         rxYears << QRegExp(R"(^(.*) \((\d{4})\)$)") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
         for (QRegExp rxYear : rxYears) {
             rxYear.setMinimal(true);
@@ -327,7 +327,7 @@ void TMDb::search(QString searchStr)
         reply->setProperty("searchYear", searchYear);
     }
     reply->setProperty("searchString", searchStr);
-    reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
+    reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
     reply->setProperty("page", 1);
     connect(reply, &QNetworkReply::finished, this, &TMDb::searchFinished);
 }
@@ -340,7 +340,7 @@ void TMDb::search(QString searchStr)
 void TMDb::searchFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    QList<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
+    QVector<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -387,9 +387,9 @@ void TMDb::searchFinished()
  * @param nextPage This will hold the next page to get, -1 if there are no more pages
  * @return List of search results
  */
-QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int page)
+QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int page)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
 
     QJsonParseError parseError;
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
@@ -446,7 +446,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int pa
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     const QString id = ids.values().first();
     const bool isImdbId = id.startsWith("tt");
@@ -462,7 +462,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QL
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
 
-    QList<ScraperData> loadsLeft;
+    QVector<ScraperData> loadsLeft;
 
     // Infos
     loadsLeft.append(ScraperData::Infos);
@@ -529,7 +529,7 @@ void TMDb::loadFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -552,7 +552,7 @@ void TMDb::loadCastsFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -575,7 +575,7 @@ void TMDb::loadTrailersFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -598,7 +598,7 @@ void TMDb::loadImagesFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -621,7 +621,7 @@ void TMDb::loadReleasesFinished()
 {
     auto reply = static_cast<QNetworkReply *>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QList<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -713,7 +713,7 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInfos> infos)
+void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
     QJsonParseError parseError;

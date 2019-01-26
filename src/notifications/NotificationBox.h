@@ -45,6 +45,6 @@ private:
     Ui::NotificationBox *ui;
     QSize m_parentSize;
     int m_msgCounter;
-    QList<Message *> m_messages;
+    QVector<Message *> m_messages;
     void adjustSize();
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QList>
 #include <QUrl>
 #include <QVariantList>
+#include <QVector>
 #include <QWidget>
 
 namespace Ui {
@@ -27,7 +27,7 @@ public slots:
     void setLoading(bool loading);
 
 signals:
-    void sigImageDropped(QList<QUrl> urls);
+    void sigImageDropped(QVector<QUrl> urls);
 
 private:
     Ui::ImageWidget *ui;

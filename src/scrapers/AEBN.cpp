@@ -103,12 +103,12 @@ bool AEBN::isAdult() const
     return true;
 }
 
-QList<MovieScraperInfos> AEBN::scraperSupports()
+QVector<MovieScraperInfos> AEBN::scraperSupports()
 {
     return m_scraperSupports;
 }
 
-QList<MovieScraperInfos> AEBN::scraperNativelySupports()
+QVector<MovieScraperInfos> AEBN::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -133,7 +133,7 @@ void AEBN::onSearchFinished()
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        emit searchDone(QList<ScraperSearchResult>());
+        emit searchDone(QVector<ScraperSearchResult>());
         return;
     }
 
@@ -141,9 +141,9 @@ void AEBN::onSearchFinished()
     emit searchDone(parseSearch(msg));
 }
 
-QList<ScraperSearchResult> AEBN::parseSearch(QString html)
+QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
 {
-    QList<ScraperSearchResult> results;
+    QVector<ScraperSearchResult> results;
     int offset = 0;
     QRegExp rx("<a id=\"FTSMovieSearch_link_image_detail_[0-9]+\" "
                "href=\"/dispatcher/"
@@ -164,7 +164,7 @@ QList<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos)
+void AEBN::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
@@ -199,7 +199,7 @@ void AEBN::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos, QStringList &actorIds)
+void AEBN::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos, QStringList &actorIds)
 {
     QRegExp rx;
     rx.setMinimal(true);

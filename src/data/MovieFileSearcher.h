@@ -17,10 +17,10 @@ public:
     explicit MovieFileSearcher(QObject *parent = nullptr);
     ~MovieFileSearcher() override = default;
 
-    void setMovieDirectories(QList<SettingsDir> directories);
+    void setMovieDirectories(QVector<SettingsDir> directories);
     void scanDir(QString startPath,
         QString path,
-        QList<QStringList> &contents,
+        QVector<QStringList> &contents,
         bool separateFolders = false,
         bool firstScan = false);
     static Movie *loadMovieData(Movie *movie);
@@ -38,7 +38,7 @@ signals:
 private:
     QStringList getFiles(QString path);
 
-    QList<SettingsDir> m_directories;
+    QVector<SettingsDir> m_directories;
     int m_progressMessageId;
     QHash<QString, QDateTime> m_lastModifications;
     bool m_aborted;

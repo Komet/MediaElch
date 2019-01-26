@@ -2,9 +2,9 @@
 
 #include <QHash>
 #include <QImage>
-#include <QList>
 #include <QSize>
 #include <QString>
+#include <QVector>
 
 class ImageCache : public QObject
 {
@@ -19,7 +19,7 @@ public:
 
 private:
     QString m_cacheDir;
-    QHash<QString, QList<int>> m_lastModifiedTimes;
+    QHash<QString, QVector<int>> m_lastModifiedTimes;
     QImage scaledImage(QImage img, int width, int height);
     int getLastModified(const QString &fileName);
     bool m_forceCache;

@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QObject>
 #include <QProcess>
+#include <QVector>
 
 class MakeMkvCon : public QObject
 {
@@ -40,7 +41,7 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QList<QProcess *> m_processes;
+    QVector<QProcess *> m_processes;
     QMap<int, QString> m_drives;
     QMap<int, Track> m_tracks;
     QString m_lastOutput;

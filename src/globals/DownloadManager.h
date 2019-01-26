@@ -3,7 +3,6 @@
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
 
-#include <QList>
 #include <QMutex>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -11,6 +10,7 @@
 #include <QQueue>
 #include <QTimer>
 #include <QUrl>
+#include <QVector>
 
 class Artist;
 class Album;
@@ -24,7 +24,7 @@ class DownloadManager : public QObject
 public:
     explicit DownloadManager(QObject *parent = nullptr);
     void addDownload(DownloadManagerElement elem);
-    void setDownloads(QList<DownloadManagerElement> elements);
+    void setDownloads(QVector<DownloadManagerElement> elements);
     void abortDownloads();
     bool isDownloading();
     int downloadQueueSize();

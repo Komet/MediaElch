@@ -30,7 +30,7 @@ ExportDialog::~ExportDialog()
 int ExportDialog::exec()
 {
     m_canceled = false;
-    QList<ExportTemplate *> templates = ExportTemplateLoader::instance()->installedTemplates();
+    QVector<ExportTemplate *> templates = ExportTemplateLoader::instance()->installedTemplates();
     if (templates.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
         ui->btnExport->setEnabled(false);
@@ -58,7 +58,7 @@ void ExportDialog::onBtnExport()
         return;
     }
 
-    QList<ExportTemplate::ExportSection> sections;
+    QVector<ExportTemplate::ExportSection> sections;
     if (ui->chkConcerts->isEnabled() && ui->chkConcerts->isChecked()) {
         sections << ExportTemplate::ExportSection::Concerts;
     }
@@ -163,7 +163,7 @@ void ExportDialog::onThemeChanged()
     ui->chkTvShows->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::TvShows));
 }
 
-void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QList<Movie *> movies)
+void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QVector<Movie *> movies)
 {
     qSort(movies.begin(), movies.end(), Movie::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Movies);
@@ -265,13 +265,13 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
         actorNames << actor.name;
         actorRoles << actor.role;
     }
-    replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QList<QStringList>() << actorNames << actorRoles);
+    replaceMultiBlock(m, "ACTORS", {"ACTOR.NAME", "ACTOR.ROLE"}, QVector<QStringList>() << actorNames << actorRoles);
 
     replaceStreamDetailsVars(m, movie->streamDetails());
     replaceImages(m, dir, subDir, movie);
 }
 
-void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QList<Concert *> concerts)
+void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QVector<Concert *> concerts)
 {
     qSort(concerts.begin(), concerts.end(), Concert::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Concerts);
@@ -349,7 +349,7 @@ void ExportDialog::replaceVars(QString &m, const Concert *concert, QDir dir, boo
     replaceImages(m, dir, subDir, nullptr, concert);
 }
 
-void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QList<TvShow *> shows)
+void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QVector<TvShow *> shows)
 {
     qSort(shows.begin(), shows.end(), TvShow::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::TvShows);
@@ -444,7 +444,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
         "ACTORS",
         QStringList() << "ACTOR.NAME"
                       << "ACTOR.ROLE",
-        QList<QStringList>() << actorNames << actorRoles);
+        QVector<QStringList>() << actorNames << actorRoles);
     replaceSingleBlock(m, "TAGS", "TAG.NAME", show->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", show->genres());
     replaceImages(m, dir, subDir, nullptr, nullptr, show);
@@ -468,10 +468,10 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
         return;
     }
 
-    QList<SeasonNumber> seasons = show->seasons(false);
+    QVector<SeasonNumber> seasons = show->seasons(false);
     qSort(seasons);
     for (const SeasonNumber &season : seasons) {
-        QList<TvShowEpisode *> episodes = show->episodes(season);
+        QVector<TvShowEpisode *> episodes = show->episodes(season);
         qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
         s.replace("{{ SEASON }}", season.toString());
@@ -552,10 +552,13 @@ void ExportDialog::replaceStreamDetailsVars(QString &m, const StreamDetails *str
 
 void ExportDialog::replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces)
 {
-    replaceMultiBlock(m, blockName, QStringList() << itemName, QList<QStringList>() << replaces);
+    replaceMultiBlock(m, blockName, QStringList() << itemName, QVector<QStringList>() << replaces);
 }
 
-void ExportDialog::replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QList<QStringList> replaces)
+void ExportDialog::replaceMultiBlock(QString &m,
+    QString blockName,
+    QStringList itemNames,
+    QVector<QStringList> replaces)
 {
     QRegExp rx;
     rx.setMinimal(true);

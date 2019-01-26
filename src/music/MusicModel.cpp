@@ -169,9 +169,9 @@ void MusicModel::onArtistChanged(Artist *artist)
     emit dataChanged(index, index);
 }
 
-QList<Artist *> MusicModel::artists()
+QVector<Artist *> MusicModel::artists()
 {
-    QList<Artist *> artists;
+    QVector<Artist *> artists;
     for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         artists.append(m_rootItem->child(i)->artist());
     }

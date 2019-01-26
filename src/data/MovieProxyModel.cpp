@@ -27,7 +27,7 @@ MovieProxyModel::MovieProxyModel(QObject *parent) :
 bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QList<Movie *> movies = Manager::instance()->movieModel()->movies();
+    QVector<Movie *> movies = Manager::instance()->movieModel()->movies();
     if (sourceRow < 0 || sourceRow >= movies.count()) {
         return true;
     }
@@ -114,7 +114,7 @@ void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
  * @param filters
  * @param text
  */
-void MovieProxyModel::setFilter(QList<Filter *> filters, QString text)
+void MovieProxyModel::setFilter(QVector<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

@@ -2,10 +2,10 @@
 
 #include "globals/DownloadManagerElement.h"
 
-#include <QList>
 #include <QMap>
 #include <QMutex>
 #include <QObject>
+#include <QVector>
 
 class DownloadManager;
 class MediaCenterInterface;
@@ -22,18 +22,18 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(QMap<MovieScraperInterface *, QString> ids,
         MovieScraperInterface *scraperInterface,
-        QList<MovieScraperInfos> infos);
+        QVector<MovieScraperInfos> infos);
     void loadStreamDetailsFromFile();
     void scraperLoadDone(MovieScraperInterface *scraper);
-    QList<MovieScraperInfos> infosToLoad();
+    QVector<MovieScraperInfos> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;
     void loadImage(ImageType type, QUrl url);
-    void loadImages(ImageType type, QList<QUrl> urls);
+    void loadImages(ImageType type, QVector<QUrl> urls);
     void abortDownloads();
-    void setLoadsLeft(QList<ScraperData> loadsLeft);
+    void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
-    void setInfosToLoad(QList<MovieScraperInfos> infos);
+    void setInfosToLoad(QVector<MovieScraperInfos> infos);
     void setForceFanartBackdrop(const bool &force);
     void setForceFanartPoster(const bool &force);
     void setForceFanartCdArt(const bool &force);
@@ -45,11 +45,11 @@ signals:
     void sigLoadDone(Movie *);
     void sigLoadImagesStarted(Movie *);
     void sigDownloadProgress(Movie *, int, int);
-    void sigLoadingImages(Movie *, QList<ImageType>);
+    void sigLoadingImages(Movie *, QVector<ImageType>);
     void sigImage(Movie *, ImageType, QByteArray);
 
 private slots:
-    void onFanartLoadDone(Movie *movie, QMap<ImageType, QList<Poster>> posters);
+    void onFanartLoadDone(Movie *movie, QMap<ImageType, QVector<Poster>> posters);
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
 
@@ -57,12 +57,12 @@ private:
     Movie *m_movie;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
-    QList<MovieScraperInfos> m_infosToLoad;
+    QVector<MovieScraperInfos> m_infosToLoad;
     DownloadManager *m_downloadManager;
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;
-    QList<ScraperData> m_loadsLeft;
+    QVector<ScraperData> m_loadsLeft;
     bool m_loadDoneFired;
     QMutex m_loadMutex;
     QMutex m_customScraperMutex;

@@ -8,5 +8,5 @@ class EpisodeRenamer : public Renamer
 {
 public:
     EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog);
-    RenameError renameEpisode(TvShowEpisode &episode, QList<TvShowEpisode *> &episodesRenamed);
+    RenameError renameEpisode(TvShowEpisode &episode, QVector<TvShowEpisode *> &episodesRenamed);
 };

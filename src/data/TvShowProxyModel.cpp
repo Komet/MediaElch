@@ -21,7 +21,7 @@ TvShowProxyModel::TvShowProxyModel(QObject *parent) : QSortFilterProxyModel(pare
 bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     if (sourceRow < 0 || sourceRow >= shows.count())
         return true;
 
@@ -132,7 +132,7 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
  * @param filters
  * @param text
  */
-void TvShowProxyModel::setFilter(QList<Filter *> filters, QString text)
+void TvShowProxyModel::setFilter(QVector<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

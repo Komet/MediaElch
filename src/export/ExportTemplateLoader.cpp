@@ -39,7 +39,7 @@ void ExportTemplateLoader::getRemoteTemplates()
 
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
-    QList<ExportTemplate *> templates;
+    QVector<ExportTemplate *> templates;
     auto reply = static_cast<QNetworkReply *>(sender());
     if (!reply) {
         return;
@@ -78,7 +78,7 @@ void ExportTemplateLoader::loadLocalTemplates()
     }
 
     m_localTemplates.clear();
-    foreach (QFileInfo info, storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
+    for (QFileInfo &info : storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
         QList<QFileInfo> infos = QDir(info.absoluteFilePath()).entryInfoList(QStringList() << "metadata.xml");
         if (infos.isEmpty() || infos.count() > 1) {
             continue;
@@ -119,7 +119,7 @@ ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
         } else if (xml.name() == "version") {
             exportTemplate->setVersion(xml.readElementText());
         } else if (xml.name() == "supports") {
-            QList<ExportTemplate::ExportSection> sections;
+            QVector<ExportTemplate::ExportSection> sections;
             while (xml.readNextStartElement()) {
                 if (xml.name() == "section") {
                     QString section = xml.readElementText();
@@ -269,10 +269,10 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
     return result;
 }
 
-QList<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate *> local,
-    QList<ExportTemplate *> remote)
+QVector<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QVector<ExportTemplate *> local,
+    QVector<ExportTemplate *> remote)
 {
-    QList<ExportTemplate *> templates = local;
+    QVector<ExportTemplate *> templates = local;
     foreach (ExportTemplate *remoteTemplate, remote) {
         bool found = false;
         foreach (ExportTemplate *localTemplate, templates) {
@@ -293,7 +293,7 @@ QList<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QList<ExportTemplat
     return templates;
 }
 
-QList<ExportTemplate *> ExportTemplateLoader::installedTemplates()
+QVector<ExportTemplate *> ExportTemplateLoader::installedTemplates()
 {
     qSort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
     return m_localTemplates;

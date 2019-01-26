@@ -92,7 +92,7 @@ TmdbId ConcertSearch::scraperId()
  * @brief ConcertSearch::infosToLoad
  * @return List of infos to load from the scraper
  */
-QList<ConcertScraperInfos> ConcertSearch::infosToLoad()
+QVector<ConcertScraperInfos> ConcertSearch::infosToLoad()
 {
     return ui->concertSearchWidget->infosToLoad();
 }

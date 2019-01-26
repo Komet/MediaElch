@@ -142,7 +142,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         layout->addStretch(10);
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QList<QLineEdit *>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QVector<QLineEdit *>() << edit1 << edit2 << edit3);
         connect(edit1, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         connect(edit2, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         connect(edit3, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
@@ -168,7 +168,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << label << edit1;
-            m_streamDetailsSubtitles << (QList<QLineEdit *>() << edit1);
+            m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         }
     }

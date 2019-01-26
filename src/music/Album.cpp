@@ -197,7 +197,7 @@ void Album::setYear(int year)
     setHasChanged(true);
 }
 
-QList<Poster> Album::images(ImageType imageType) const
+QVector<Poster> Album::images(ImageType imageType) const
 {
     return m_images.value(imageType);
 }
@@ -205,7 +205,7 @@ QList<Poster> Album::images(ImageType imageType) const
 void Album::addImage(ImageType imageType, Poster image)
 {
     if (!m_images.contains(imageType)) {
-        m_images.insert(imageType, QList<Poster>());
+        m_images.insert(imageType, QVector<Poster>());
     }
     m_images[imageType].append(image);
     setHasChanged(true);
@@ -240,7 +240,7 @@ void Album::clearImages()
 
 void Album::clear()
 {
-    QList<MusicScraperInfos> infos;
+    QVector<MusicScraperInfos> infos;
     infos << MusicScraperInfos::Title       //
           << MusicScraperInfos::Artist      //
           << MusicScraperInfos::Genres      //
@@ -257,7 +257,7 @@ void Album::clear()
     m_nfoContent.clear();
 }
 
-void Album::clear(QList<MusicScraperInfos> infos)
+void Album::clear(QVector<MusicScraperInfos> infos)
 {
     if (infos.contains(MusicScraperInfos::Artist)) {
         m_artist.clear();
@@ -292,14 +292,14 @@ void Album::clear(QList<MusicScraperInfos> infos)
 
     if (infos.contains(MusicScraperInfos::Cover)) {
         if (!m_images.contains(ImageType::AlbumThumb)) {
-            m_images.insert(ImageType::AlbumThumb, QList<Poster>());
+            m_images.insert(ImageType::AlbumThumb, QVector<Poster>());
         }
         m_images[ImageType::AlbumThumb].clear();
         m_rawImages.insert(ImageType::AlbumThumb, QByteArray());
     }
     if (infos.contains(MusicScraperInfos::CdArt)) {
         if (!m_images.contains(ImageType::AlbumCdArt)) {
-            m_images.insert(ImageType::AlbumCdArt, QList<Poster>());
+            m_images.insert(ImageType::AlbumCdArt, QVector<Poster>());
         }
         m_images[ImageType::AlbumCdArt].clear();
         m_rawImages.insert(ImageType::AlbumCdArt, QByteArray());
@@ -327,17 +327,17 @@ void Album::setNfoContent(const QString &nfoContent)
     m_nfoContent = nfoContent;
 }
 
-QList<ImageType> Album::imageTypes()
+QVector<ImageType> Album::imageTypes()
 {
     return {ImageType::AlbumThumb, ImageType::AlbumCdArt};
 }
 
-QList<ImageType> Album::imagesToRemove() const
+QVector<ImageType> Album::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Album::setImagesToRemove(const QList<ImageType> &imagesToRemove)
+void Album::setImagesToRemove(const QVector<ImageType> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }

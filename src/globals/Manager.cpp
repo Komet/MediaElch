@@ -156,7 +156,7 @@ MusicFileSearcher *Manager::musicFileSearcher()
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
  */
-QList<MovieScraperInterface *> Manager::movieScrapers()
+QVector<MovieScraperInterface *> Manager::movieScrapers()
 {
     return m_scrapers;
 }
@@ -176,7 +176,7 @@ MovieScraperInterface *Manager::scraper(const QString &identifier)
  * @brief Returns a list of all tv scrapers
  * @return List of pointers of tv scrapers
  */
-QList<TvScraperInterface *> Manager::tvScrapers()
+QVector<TvScraperInterface *> Manager::tvScrapers()
 {
     return m_tvScrapers;
 }
@@ -185,12 +185,12 @@ QList<TvScraperInterface *> Manager::tvScrapers()
  * @brief Returns a list of all concert scrapers
  * @return List of pointers of concert scrapers
  */
-QList<ConcertScraperInterface *> Manager::concertScrapers()
+QVector<ConcertScraperInterface *> Manager::concertScrapers()
 {
     return m_concertScrapers;
 }
 
-QList<MusicScraperInterface *> Manager::musicScrapers()
+QVector<MusicScraperInterface *> Manager::musicScrapers()
 {
     return m_musicScrapers;
 }
@@ -241,9 +241,9 @@ TvShowProxyModel *Manager::tvShowProxyModel()
  * @param type Type of image
  * @return List of pointers of image providers
  */
-QList<ImageProviderInterface *> Manager::imageProviders(ImageType type)
+QVector<ImageProviderInterface *> Manager::imageProviders(ImageType type)
 {
-    QList<ImageProviderInterface *> providers;
+    QVector<ImageProviderInterface *> providers;
     for (auto provider : m_imageProviders) {
         if (provider->provides().contains(type)) {
             providers.append(provider);
@@ -256,7 +256,7 @@ QList<ImageProviderInterface *> Manager::imageProviders(ImageType type)
  * @brief Returns a list of all image providers
  * @return List of pointers of image providers
  */
-QList<ImageProviderInterface *> Manager::imageProviders()
+QVector<ImageProviderInterface *> Manager::imageProviders()
 {
     return m_imageProviders;
 }
@@ -317,7 +317,7 @@ void Manager::setFileScannerDialog(FileScannerDialog *dialog)
     m_fileScannerDialog = dialog;
 }
 
-QList<TrailerProvider *> Manager::trailerProviders()
+QVector<TrailerProvider *> Manager::trailerProviders()
 {
     return m_trailerProviders;
 }
@@ -327,9 +327,9 @@ TvTunes *Manager::tvTunes()
     return m_tvTunes;
 }
 
-QList<MovieScraperInterface *> Manager::constructNativeScrapers(QObject *parent)
+QVector<MovieScraperInterface *> Manager::constructNativeScrapers(QObject *parent)
 {
-    QList<MovieScraperInterface *> nativeScrapers;
+    QVector<MovieScraperInterface *> nativeScrapers;
     nativeScrapers.append(new TMDb(parent));
     nativeScrapers.append(new IMDB(parent));
     nativeScrapers.append(new OFDb(parent));

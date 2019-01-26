@@ -329,9 +329,9 @@ void TvShowModel::onShowChanged(TvShow *show)
  * @brief TvShowModel::tvShows
  * @return
  */
-QList<TvShow *> TvShowModel::tvShows()
+QVector<TvShow *> TvShowModel::tvShows()
 {
-    QList<TvShow *> shows;
+    QVector<TvShow *> shows;
     for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         shows.append(m_rootItem->child(i)->tvShow());
     }

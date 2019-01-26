@@ -51,7 +51,7 @@ private slots:
     void onActionReload();
     void onActionXbmc();
     void onActionRename();
-    void onFilterChanged(QList<Filter *> filters, QString text);
+    void onFilterChanged(QVector<Filter *> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);

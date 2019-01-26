@@ -91,7 +91,7 @@ QString MovieSearch::scraperMovieId()
  * @brief MovieSearch::infosToLoad
  * @return List of infos to load from the scraper
  */
-QList<MovieScraperInfos> MovieSearch::infosToLoad()
+QVector<MovieScraperInfos> MovieSearch::infosToLoad()
 {
     return ui->movieSearchWidget->infosToLoad();
 }

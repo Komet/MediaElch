@@ -5,10 +5,10 @@
 #include "globals/Globals.h"
 
 #include <QDialog>
-#include <QList>
 #include <QMap>
 #include <QString>
 #include <QTableWidgetItem>
+#include <QVector>
 
 namespace Ui {
 class MovieSearch;
@@ -32,7 +32,7 @@ public slots:
     static MovieSearch *instance(QWidget *parent = nullptr);
     QString scraperId();
     QString scraperMovieId();
-    QList<MovieScraperInfos> infosToLoad();
+    QVector<MovieScraperInfos> infosToLoad();
     QMap<MovieScraperInterface *, QString> customScraperIds();
 
 private:

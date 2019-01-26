@@ -3,7 +3,6 @@
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 
-#include <QList>
 #include <QObject>
 #include <QVariant>
 #include <QVector>
@@ -50,7 +49,7 @@ private slots:
     void onSeasonChanged(TvShowModelItem *seasonItem, TvShowModelItem *episodeItem);
 
 private:
-    QList<TvShowModelItem *> m_childItems;
+    QVector<TvShowModelItem *> m_childItems;
     TvShowModelItem *m_parentItem;
     TvShow *m_tvShow;
     TvShowEpisode *m_tvShowEpisode;

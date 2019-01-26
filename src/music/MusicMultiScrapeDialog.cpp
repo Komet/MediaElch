@@ -154,9 +154,9 @@ void MusicMultiScrapeDialog::disconnectScrapers()
 {
     foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers())
         disconnect(scraper,
-            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
 }
 
 void MusicMultiScrapeDialog::onStartScraping()
@@ -170,12 +170,12 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     m_scraperInterface = Manager::instance()->musicScrapers().at(0);
     connect(m_scraperInterface,
-        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onSearchFinished(QList<ScraperSearchResult>)),
+        SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
         Qt::UniqueConnection);
 
-    QList<Album *> queueAlbums;
+    QVector<Album *> queueAlbums;
     foreach (Artist *artist, m_artists) {
         QueueItem item1;
         item1.album = nullptr;
@@ -292,7 +292,7 @@ void MusicMultiScrapeDialog::scrapeNext()
     }
 }
 
-void MusicMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results)
+void MusicMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 {
     if (!isExecuted()) {
         return;
@@ -330,7 +330,7 @@ void MusicMultiScrapeDialog::onProgress(Album *album, int current, int maximum)
     ui->progressItem->setMaximum(maximum);
 }
 
-void MusicMultiScrapeDialog::setItems(QList<Artist *> artists, QList<Album *> albums)
+void MusicMultiScrapeDialog::setItems(QVector<Artist *> artists, QVector<Album *> albums)
 {
     m_artists = artists;
     m_albums = albums;

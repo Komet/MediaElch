@@ -178,7 +178,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 return;
             }
 
-            QList<DataFile> files = Settings::instance()->dataFiles(dataFileType);
+            QVector<DataFile> files = Settings::instance()->dataFiles(dataFileType);
             if (files.isEmpty()) {
                 return;
             }

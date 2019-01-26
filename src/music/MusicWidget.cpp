@@ -93,10 +93,10 @@ void MusicWidget::onStartScraperSearch()
 
 void MusicWidget::onSaveInformation()
 {
-    QList<Artist *> artists = MusicFilesWidget::instance()->selectedArtists();
-    QList<Album *> albums = MusicFilesWidget::instance()->selectedAlbums();
-    QList<Album *> albumsToSave;
-    QList<Artist *> artistsToSave;
+    QVector<Artist *> artists = MusicFilesWidget::instance()->selectedArtists();
+    QVector<Album *> albums = MusicFilesWidget::instance()->selectedAlbums();
+    QVector<Album *> albumsToSave;
+    QVector<Artist *> artistsToSave;
 
     if (artists.count() == 1 && albums.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->artist->onSaveInformation();
@@ -144,8 +144,8 @@ void MusicWidget::onSaveInformation()
 
 void MusicWidget::onSaveAll()
 {
-    QList<Album *> albumsToSave;
-    QList<Artist *> artistsToSave;
+    QVector<Album *> albumsToSave;
+    QVector<Artist *> artistsToSave;
 
     foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
         if (artist->hasChanged()) {

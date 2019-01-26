@@ -395,7 +395,7 @@ void MusicWidgetArtist::onChooseImage()
     if (!m_artist->images(image->imageType()).isEmpty()) {
         ImageDialog::instance()->setDownloads(m_artist->images(image->imageType()));
     } else {
-        ImageDialog::instance()->setDownloads(QList<Poster>());
+        ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
 
     ImageDialog::instance()->exec(image->imageType());
@@ -462,7 +462,7 @@ void MusicWidgetArtist::onDownloadProgress(Artist *artist, int current, int maxi
         maximum - current, maximum, Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
-void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<ImageType> imageTypes)
+void MusicWidgetArtist::onLoadingImages(Artist *artist, QVector<ImageType> imageTypes)
 {
     if (m_artist != artist) {
         return;
@@ -554,7 +554,7 @@ void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
     }
     ui->fanarts->setLoading(true);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-    m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QList<QUrl>() << imageUrl);
+    m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QVector<QUrl>() << imageUrl);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -187,7 +187,7 @@ void ConcertModel::clear()
  * @brief Returns a list of all concerts
  * @return List of concerts
  */
-QList<Concert *> ConcertModel::concerts()
+QVector<Concert *> ConcertModel::concerts()
 {
     return m_concerts;
 }

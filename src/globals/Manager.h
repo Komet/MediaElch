@@ -25,8 +25,8 @@
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
 
-#include <QList>
 #include <QString>
+#include <QVector>
 
 class MediaCenterInterface;
 
@@ -42,15 +42,15 @@ public:
     ~Manager() override;
 
     static Manager *instance();
-    QList<MediaCenterInterface *> mediaCenters();
-    QList<MovieScraperInterface *> movieScrapers();
+    QVector<MediaCenterInterface *> mediaCenters();
+    QVector<MovieScraperInterface *> movieScrapers();
     MovieScraperInterface *scraper(const QString &identifier);
-    QList<TvScraperInterface *> tvScrapers();
-    QList<ConcertScraperInterface *> concertScrapers();
-    QList<MusicScraperInterface *> musicScrapers();
-    QList<ImageProviderInterface *> imageProviders();
-    QList<ImageProviderInterface *> imageProviders(ImageType type);
-    QList<TrailerProvider *> trailerProviders();
+    QVector<TvScraperInterface *> tvScrapers();
+    QVector<ConcertScraperInterface *> concertScrapers();
+    QVector<MusicScraperInterface *> musicScrapers();
+    QVector<ImageProviderInterface *> imageProviders();
+    QVector<ImageProviderInterface *> imageProviders(ImageType type);
+    QVector<TrailerProvider *> trailerProviders();
     MediaCenterInterface *mediaCenterInterface();
     MediaCenterInterface *mediaCenterInterfaceTvShow();
     MediaCenterInterface *mediaCenterInterfaceConcert();
@@ -73,18 +73,18 @@ public:
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
     void setMusicFilesWidget(MusicFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
-    static QList<MovieScraperInterface *> constructNativeScrapers(QObject *parent);
+    static QVector<MovieScraperInterface *> constructNativeScrapers(QObject *parent);
 
 private:
-    QList<MediaCenterInterface *> m_mediaCenters;
-    QList<MediaCenterInterface *> m_mediaCentersTvShow;
-    QList<MediaCenterInterface *> m_mediaCentersConcert;
-    QList<MovieScraperInterface *> m_scrapers;
-    QList<TvScraperInterface *> m_tvScrapers;
-    QList<ConcertScraperInterface *> m_concertScrapers;
-    QList<MusicScraperInterface *> m_musicScrapers;
-    QList<ImageProviderInterface *> m_imageProviders;
-    QList<TrailerProvider *> m_trailerProviders;
+    QVector<MediaCenterInterface *> m_mediaCenters;
+    QVector<MediaCenterInterface *> m_mediaCentersTvShow;
+    QVector<MediaCenterInterface *> m_mediaCentersConcert;
+    QVector<MovieScraperInterface *> m_scrapers;
+    QVector<TvScraperInterface *> m_tvScrapers;
+    QVector<ConcertScraperInterface *> m_concertScrapers;
+    QVector<MusicScraperInterface *> m_musicScrapers;
+    QVector<ImageProviderInterface *> m_imageProviders;
+    QVector<TrailerProvider *> m_trailerProviders;
     MovieFileSearcher *m_movieFileSearcher;
     TvShowFileSearcher *m_tvShowFileSearcher;
     ConcertFileSearcher *m_concertFileSearcher;

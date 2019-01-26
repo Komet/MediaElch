@@ -7,9 +7,9 @@
 
 #include <QByteArray>
 #include <QDomDocument>
-#include <QList>
 #include <QObject>
 #include <QString>
+#include <QVector>
 #include <QXmlStreamWriter>
 
 class Movie;
@@ -57,28 +57,28 @@ public:
 
     QString imageFileName(const Movie *movie,
         ImageType type,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const Concert *concert,
         ImageType type,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const TvShowEpisode *episode,
         ImageType type,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const TvShow *show,
         ImageType type,
         SeasonNumber season = SeasonNumber::NoSeason,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const Artist *artist,
         ImageType type,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
     QString imageFileName(const Album *album,
         ImageType type,
-        QList<DataFile> dataFiles = QList<DataFile>(),
+        QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
 
     QString nfoFilePath(Movie *movie) override;
@@ -92,7 +92,7 @@ public:
     static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     static void writeStreamDetails(QDomDocument &doc,
         const StreamDetails *streamDetails,
-        QList<Subtitle *> subtitles = QList<Subtitle *>());
+        QVector<Subtitle *> subtitles = QVector<Subtitle *>());
     static void setListValue(QDomDocument &doc, const QString &name, const QStringList &values);
     static QDomElement addTextValue(QDomDocument &doc, const QString &name, const QString &value);
     static void appendXmlNode(QDomDocument &doc, QDomNode &node);

@@ -24,9 +24,9 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
     m_tvdb = new TheTvDb(this);
     m_searchResultLimit = 0;
     connect(m_tvdb,
-        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
+        SLOT(onSearchTvShowFinished(QVector<ScraperSearchResult>)));
     connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
     connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
 }
@@ -54,7 +54,7 @@ QString TheTvDbImages::identifier() const
  * @brief Returns a list of supported image types
  * @return List of supported image types
  */
-QList<ImageType> TheTvDbImages::provides()
+QVector<ImageType> TheTvDbImages::provides()
 {
     return m_provides;
 }
@@ -97,7 +97,7 @@ void TheTvDbImages::searchTvShow(QString searchStr, int limit)
  * @brief TheTvDbImages::onSearchTvShowFinished
  * @param results Result list
  */
-void TheTvDbImages::onSearchTvShowFinished(QList<ScraperSearchResult> results)
+void TheTvDbImages::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
 {
     if (m_searchResultLimit == 0) {
         emit sigSearchDone(results);
@@ -116,7 +116,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
     m_currentType = type;
     m_dummyShow->clear();
 
-    QList<TvShowScraperInfos> infosToLoad;
+    QVector<TvShowScraperInfos> infosToLoad;
     infosToLoad.append(TvShowScraperInfos::Thumbnail);
     infosToLoad.append(TvShowScraperInfos::Banner);
     infosToLoad.append(TvShowScraperInfos::Fanart);
@@ -138,7 +138,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
  */
 void TheTvDbImages::onLoadTvShowDataFinished()
 {
-    QList<Poster> posters;
+    QVector<Poster> posters;
     if (m_currentType == ImageType::TvShowPoster) {
         posters = m_dummyShow->posters();
     } else if (m_currentType == ImageType::TvShowBackdrop) {
@@ -168,7 +168,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
  * @param tvdbId
  * @param types
  */
-void TheTvDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QList<ImageType> types)
+void TheTvDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -241,7 +241,7 @@ void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::movieImages(Movie *movie, TmdbId tmdbId, QList<ImageType> types)
+void TheTvDbImages::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -315,7 +315,7 @@ void TheTvDbImages::movieCdArts(TmdbId tmdbId)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::concertImages(Concert *concert, TmdbId tmdbId, QList<ImageType> types)
+void TheTvDbImages::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -463,14 +463,14 @@ void TheTvDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistImages(Artist *artist, QString mbId, QList<ImageType> types)
+void TheTvDbImages::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::albumImages(Album *album, QString mbId, QList<ImageType> types)
+void TheTvDbImages::albumImages(Album *album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

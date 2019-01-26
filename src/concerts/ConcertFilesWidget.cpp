@@ -146,7 +146,7 @@ void ConcertFilesWidget::markAsUnwatched()
 void ConcertFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QList<Concert *> concerts;
+    QVector<Concert *> concerts;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -251,7 +251,7 @@ void ConcertFilesWidget::concertSelectedEmitter()
  * @param filters List of filters
  * @param text Filter text
  */
-void ConcertFilesWidget::setFilter(QList<Filter *> filters, QString text)
+void ConcertFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 {
     m_concertProxyModel->setFilter(filters, text);
     m_concertProxyModel->setFilterWildcard("*" + text + "*");
@@ -267,9 +267,9 @@ void ConcertFilesWidget::restoreLastSelection()
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
 
-QList<Concert *> ConcertFilesWidget::selectedConcerts()
+QVector<Concert *> ConcertFilesWidget::selectedConcerts()
 {
-    QList<Concert *> concerts;
+    QVector<Concert *> concerts;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         concerts.append(Manager::instance()->concertModel()->concert(row));

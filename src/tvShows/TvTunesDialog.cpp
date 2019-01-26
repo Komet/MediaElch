@@ -33,9 +33,9 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TvTu
     connect(ui->buttonDownload, &QAbstractButton::clicked, this, &TvTunesDialog::startDownload);
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TvTunesDialog::cancelDownload);
     connect(Manager::instance()->tvTunes(),
-        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onShowResults(QList<ScraperSearchResult>)));
+        SLOT(onShowResults(QVector<ScraperSearchResult>)));
 
     m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);
@@ -95,7 +95,7 @@ void TvTunesDialog::onSearch()
     Manager::instance()->tvTunes()->search(ui->searchString->text());
 }
 
-void TvTunesDialog::onShowResults(QList<ScraperSearchResult> results)
+void TvTunesDialog::onShowResults(QVector<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();

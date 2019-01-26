@@ -29,7 +29,7 @@ class TvShow : public QObject
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = nullptr);
     void clear();
-    void clear(QList<TvShowScraperInfos> infos);
+    void clear(QVector<TvShowScraperInfos> infos);
     void addEpisode(TvShowEpisode *episode);
     virtual int episodeCount() const;
 
@@ -42,7 +42,7 @@ public:
     virtual QDate firstAired() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
-    virtual QList<QString *> genresPointer();
+    virtual QVector<QString *> genresPointer();
     virtual Certification certification() const;
     virtual QString network() const;
     virtual QString overview() const;
@@ -51,19 +51,19 @@ public:
     virtual QString imdbId() const;
     virtual QString episodeGuideUrl() const;
     virtual QVector<Certification> certifications() const;
-    virtual QList<Actor> actors() const;
-    virtual QList<Actor *> actorsPointer();
-    virtual QList<Poster> posters() const;
-    virtual QList<Poster> backdrops() const;
-    virtual QList<Poster> banners() const;
-    virtual QList<Poster> seasonPosters(SeasonNumber season) const;
-    virtual QList<Poster> seasonBackdrops(SeasonNumber season) const;
-    virtual QList<Poster> seasonBanners(SeasonNumber season, bool returnAll = false) const;
-    virtual QList<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;
+    virtual QVector<Actor> actors() const;
+    virtual QVector<Actor *> actorsPointer();
+    virtual QVector<Poster> posters() const;
+    virtual QVector<Poster> backdrops() const;
+    virtual QVector<Poster> banners() const;
+    virtual QVector<Poster> seasonPosters(SeasonNumber season) const;
+    virtual QVector<Poster> seasonBackdrops(SeasonNumber season) const;
+    virtual QVector<Poster> seasonBanners(SeasonNumber season, bool returnAll = false) const;
+    virtual QVector<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;
     virtual TvShowEpisode *episode(SeasonNumber season, EpisodeNumber episode);
-    virtual QList<SeasonNumber> seasons(bool includeDummies = true) const;
-    virtual QList<TvShowEpisode *> episodes() const;
-    virtual QList<TvShowEpisode *> episodes(SeasonNumber season) const;
+    virtual QVector<SeasonNumber> seasons(bool includeDummies = true) const;
+    virtual QVector<TvShowEpisode *> episodes() const;
+    virtual QVector<TvShowEpisode *> episodes(SeasonNumber season) const;
     virtual TvShowModelItem *modelItem();
     virtual bool hasChanged() const;
     virtual bool infoLoaded() const;
@@ -75,7 +75,7 @@ public:
     virtual QString nfoContent() const;
     virtual int databaseId() const;
     virtual bool syncNeeded() const;
-    virtual QList<TvShowScraperInfos> infosToLoad() const;
+    virtual QVector<TvShowScraperInfos> infosToLoad() const;
     virtual bool hasTune() const;
     virtual std::chrono::minutes runtime() const;
     virtual QString sortTitle() const;
@@ -102,13 +102,13 @@ public:
     void setImdbId(QString id);
     void setEpisodeGuideUrl(QString url);
     void addActor(Actor actor);
-    void setPosters(QList<Poster> posters);
+    void setPosters(QVector<Poster> posters);
     void setPoster(int index, Poster poster);
     void addPoster(Poster poster);
-    void setBackdrops(QList<Poster> backdrops);
+    void setBackdrops(QVector<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setBanners(QList<Poster> banners);
+    void setBanners(QVector<Poster> banners);
     void setBanner(int index, Poster poster);
     void addBanner(Poster banner);
     void addSeasonPoster(SeasonNumber season, Poster poster);
@@ -136,7 +136,7 @@ public:
     void loadData(TvDbId id,
         TvScraperInterface *tvScraperInterface,
         TvShowUpdateType type,
-        QList<TvShowScraperInfos> infosToLoad);
+        QVector<TvShowScraperInfos> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
     void fillMissingEpisodes();
@@ -144,7 +144,7 @@ public:
 
     // Images
     void removeImage(ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
-    QMap<ImageType, QList<SeasonNumber>> imagesToRemove() const;
+    QMap<ImageType, QVector<SeasonNumber>> imagesToRemove() const;
     QByteArray image(ImageType imageType);
     QByteArray seasonImage(SeasonNumber season, ImageType imageType);
     void setImage(ImageType imageType, QByteArray image);
@@ -154,9 +154,9 @@ public:
     bool hasImage(ImageType type);
 
     // Extra Fanarts
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QByteArray> extraFanartImagesToAdd();
+    QVector<QByteArray> extraFanartImagesToAdd();
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
@@ -165,8 +165,8 @@ public:
     void scraperLoadDone();
 
     static bool lessThan(TvShow *a, TvShow *b);
-    static QList<ImageType> imageTypes();
-    static QList<ImageType> seasonImageTypes();
+    static QVector<ImageType> imageTypes();
+    static QVector<ImageType> seasonImageTypes();
 
     void setDir(const QString &dir);
 
@@ -178,7 +178,7 @@ signals:
     void sigChanged(TvShow *);
 
 private:
-    QList<TvShowEpisode *> m_episodes;
+    QVector<TvShowEpisode *> m_episodes;
     QString m_dir;
     QString m_name;
     QString m_showTitle;
@@ -195,14 +195,14 @@ private:
     TvDbId m_id;
     QString m_imdbId;
     QString m_episodeGuideUrl;
-    QList<Actor> m_actors;
-    QList<Poster> m_posters;
-    QList<Poster> m_backdrops;
-    QList<Poster> m_banners;
-    QMap<SeasonNumber, QList<Poster>> m_seasonPosters;
-    QMap<SeasonNumber, QList<Poster>> m_seasonBackdrops;
-    QMap<SeasonNumber, QList<Poster>> m_seasonBanners;
-    QMap<SeasonNumber, QList<Poster>> m_seasonThumbs;
+    QVector<Actor> m_actors;
+    QVector<Poster> m_posters;
+    QVector<Poster> m_backdrops;
+    QVector<Poster> m_banners;
+    QMap<SeasonNumber, QVector<Poster>> m_seasonPosters;
+    QMap<SeasonNumber, QVector<Poster>> m_seasonBackdrops;
+    QMap<SeasonNumber, QVector<Poster>> m_seasonBanners;
+    QMap<SeasonNumber, QVector<Poster>> m_seasonThumbs;
     bool m_hasTune;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
@@ -214,11 +214,11 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
-    QList<TvShowScraperInfos> m_infosToLoad;
-    QList<QByteArray> m_extraFanartImagesToAdd;
+    QVector<TvShowScraperInfos> m_infosToLoad;
+    QVector<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QMap<ImageType, QList<SeasonNumber>> m_imagesToRemove;
+    QMap<ImageType, QVector<SeasonNumber>> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
     bool m_showMissingEpisodes;
     bool m_hideSpecialsInMissingEpisodes;

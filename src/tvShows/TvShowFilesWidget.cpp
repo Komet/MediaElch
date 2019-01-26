@@ -264,7 +264,7 @@ void TvShowFilesWidget::markAsUnwatched()
 void TvShowFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QList<TvShowEpisode *> episodes;
+    QVector<TvShowEpisode *> episodes;
 
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
@@ -473,7 +473,7 @@ void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
  * @param text Filter text
  * @todo: respect filters and not only filter text
  */
-void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
+void TvShowFilesWidget::setFilter(QVector<Filter *> filters, QString text)
 {
     if (!filters.isEmpty()) {
         m_tvShowProxyModel->setFilterWildcard("*" + filters.first()->shortText() + "*");
@@ -562,9 +562,9 @@ void TvShowFilesWidget::emitLastSelection()
     }
 }
 
-QList<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
+QVector<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
 {
-    QList<TvShowEpisode *> episodes;
+    QVector<TvShowEpisode *> episodes;
     for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -593,9 +593,9 @@ QList<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSeaso
     return episodes;
 }
 
-QList<TvShow *> TvShowFilesWidget::selectedShows()
+QVector<TvShow *> TvShowFilesWidget::selectedShows()
 {
-    QList<TvShow *> shows;
+    QVector<TvShow *> shows;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -606,9 +606,9 @@ QList<TvShow *> TvShowFilesWidget::selectedShows()
     return shows;
 }
 
-QList<TvShow *> TvShowFilesWidget::selectedSeasons()
+QVector<TvShow *> TvShowFilesWidget::selectedSeasons()
 {
-    QList<TvShow *> shows;
+    QVector<TvShow *> shows;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -662,8 +662,8 @@ void TvShowFilesWidget::multiScrape()
 {
     m_contextMenu->close();
 
-    QList<TvShow *> shows = selectedShows();
-    QList<TvShowEpisode *> episodes = selectedEpisodes(false);
+    QVector<TvShow *> shows = selectedShows();
+    QVector<TvShowEpisode *> episodes = selectedEpisodes(false);
 
     qDebug() << "Selected" << shows.count() << "shows and" << episodes.count() << "episodes";
     if (shows.isEmpty() && episodes.isEmpty()) {

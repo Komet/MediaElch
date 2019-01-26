@@ -34,7 +34,7 @@ public:
     ConcertController *controller() const;
 
     void clear();
-    void clear(QList<ConcertScraperInfos> infos);
+    void clear(QVector<ConcertScraperInfos> infos);
 
     QString name() const;
     QString artist() const;
@@ -47,14 +47,14 @@ public:
     Certification certification() const;
     QStringList genres() const;
     QStringList tags() const;
-    QList<QString *> genresPointer();
+    QVector<QString *> genresPointer();
     QUrl trailer() const;
     QStringList files() const;
     QString folderName() const;
     int playcount() const;
     QDateTime lastPlayed() const;
-    QList<Poster> posters() const;
-    QList<Poster> backdrops() const;
+    QVector<Poster> posters() const;
+    QVector<Poster> backdrops() const;
     bool watched() const;
     int concertId() const;
     bool downloadsInProgress() const;
@@ -86,10 +86,10 @@ public:
     void addTag(QString tag);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
-    void setPosters(QList<Poster> posters);
+    void setPosters(QVector<Poster> posters);
     void setPoster(int index, Poster poster);
     void addPoster(Poster poster);
-    void setBackdrops(QList<Poster> backdrops);
+    void setBackdrops(QVector<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
     void setWatched(bool watched);
@@ -109,9 +109,9 @@ public:
     void removeTag(QString tag);
 
     // Extra Fanarts
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QByteArray> extraFanartImagesToAdd();
+    QVector<QByteArray> extraFanartImagesToAdd();
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
@@ -119,7 +119,7 @@ public:
 
     void clearImages();
     void removeImage(ImageType type);
-    QList<ImageType> imagesToRemove() const;
+    QVector<ImageType> imagesToRemove() const;
 
     QByteArray image(ImageType imageType);
     bool imageHasChanged(ImageType imageType);
@@ -130,15 +130,15 @@ public:
     void setHasExtraFanarts(bool has);
 
     void scraperLoadDone();
-    QList<ConcertScraperInfos> infosToLoad();
-    void setLoadsLeft(QList<ScraperData> loadsLeft);
+    QVector<ConcertScraperInfos> infosToLoad();
+    void setLoadsLeft(QVector<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
 
     void setDiscType(DiscType type);
     DiscType discType() const;
 
     static bool lessThan(Concert *a, Concert *b);
-    static QList<ImageType> imageTypes();
+    static QVector<ImageType> imageTypes();
 
 signals:
     void sigChanged(Concert *);
@@ -161,8 +161,8 @@ private:
     QUrl m_trailer;
     int m_playcount;
     QDateTime m_lastPlayed;
-    QList<Poster> m_posters;
-    QList<Poster> m_backdrops;
+    QVector<Poster> m_posters;
+    QVector<Poster> m_backdrops;
     int m_concertId;
     int m_downloadsSize;
     bool m_watched;
@@ -172,13 +172,13 @@ private:
     int m_mediaCenterId;
     TmdbId m_tmdbId;
     ImdbId m_imdbId;
-    QList<ConcertScraperInfos> m_infosToLoad;
+    QVector<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
-    QList<ScraperData> m_loadsLeft;
+    QVector<ScraperData> m_loadsLeft;
     QMutex m_loadMutex;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
@@ -186,7 +186,7 @@ private:
 
     QMap<ImageType, QByteArray> m_images;
     QMap<ImageType, bool> m_hasImageChanged;
-    QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<ImageType> m_imagesToRemove;
+    QVector<QByteArray> m_extraFanartImagesToAdd;
+    QVector<ImageType> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
 };

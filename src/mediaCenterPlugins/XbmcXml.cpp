@@ -366,7 +366,7 @@ void XbmcXml::loadStreamDetails(StreamDetails *streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QList<StreamDetails::VideoDetails> details = {StreamDetails::VideoDetails::Codec,
+        QVector<StreamDetails::VideoDetails> details = {StreamDetails::VideoDetails::Codec,
             StreamDetails::VideoDetails::Aspect,
             StreamDetails::VideoDetails::Width,
             StreamDetails::VideoDetails::Height,
@@ -382,7 +382,7 @@ void XbmcXml::loadStreamDetails(StreamDetails *streamDetails, QDomElement elem)
     }
     if (!elem.elementsByTagName("audio").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("audio").count(); i < n; ++i) {
-            QList<StreamDetails::AudioDetails> details = {StreamDetails::AudioDetails::Codec,
+            QVector<StreamDetails::AudioDetails> details = {StreamDetails::AudioDetails::Codec,
                 StreamDetails::AudioDetails::Language,
                 StreamDetails::AudioDetails::Channels};
             QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
@@ -397,7 +397,7 @@ void XbmcXml::loadStreamDetails(StreamDetails *streamDetails, QDomElement elem)
     }
     if (!elem.elementsByTagName("subtitle").isEmpty()) {
         for (int i = 0, n = elem.elementsByTagName("subtitle").count(); i < n; ++i) {
-            QList<StreamDetails::SubtitleDetails> details = {StreamDetails::SubtitleDetails::Language};
+            QVector<StreamDetails::SubtitleDetails> details = {StreamDetails::SubtitleDetails::Language};
             QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
             if (!subtitleElem.elementsByTagName("file").isEmpty()) {
                 continue;
@@ -485,7 +485,7 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeEndElement();
 }
 
-void XbmcXml::writeStreamDetails(QDomDocument &doc, const StreamDetails *streamDetails, QList<Subtitle *> subtitles)
+void XbmcXml::writeStreamDetails(QDomDocument &doc, const StreamDetails *streamDetails, QVector<Subtitle *> subtitles)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
         && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty()) {
@@ -1028,7 +1028,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     qDebug() << "Entered, episode=" << episode->name();
 
     // Multi-Episode handling
-    QList<TvShowEpisode *> episodes;
+    QVector<TvShowEpisode *> episodes;
     foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
         if (subEpisode->isDummy()) {
             continue;
@@ -1384,7 +1384,7 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
     return QString();
 }
 
-QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType = [type]() {
         switch (type) {
@@ -1434,7 +1434,7 @@ QString XbmcXml::imageFileName(const Movie *movie, ImageType type, QList<DataFil
     return fileName;
 }
 
-QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1481,7 +1481,7 @@ QString XbmcXml::imageFileName(const Concert *concert, ImageType type, QList<Dat
 QString XbmcXml::imageFileName(const TvShow *show,
     ImageType type,
     SeasonNumber season,
-    QList<DataFile> dataFiles,
+    QVector<DataFile> dataFiles,
     bool constructName)
 {
     DataFileType fileType;
@@ -1520,7 +1520,7 @@ QString XbmcXml::imageFileName(const TvShow *show,
     return fileName;
 }
 
-QString saveDataFiles(QString basePath, QString fileName, const QList<DataFile> &dataFiles, bool constructName)
+QString saveDataFiles(QString basePath, QString fileName, const QVector<DataFile> &dataFiles, bool constructName)
 {
     for (DataFile dataFile : dataFiles) {
         QString file = dataFile.saveFileName(fileName);
@@ -1533,7 +1533,7 @@ QString saveDataFiles(QString basePath, QString fileName, const QList<DataFile> 
 }
 
 QString
-XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
+XbmcXml::imageFileName(const TvShowEpisode *episode, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1687,7 +1687,7 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     return true;
 }
 
-QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1708,7 +1708,7 @@ QString XbmcXml::imageFileName(const Artist *artist, ImageType type, QList<DataF
     return saveDataFiles(artist->path(), "", dataFiles, constructName);
 }
 
-QString XbmcXml::imageFileName(const Album *album, ImageType type, QList<DataFile> dataFiles, bool constructName)
+QString XbmcXml::imageFileName(const Album *album, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1980,7 +1980,7 @@ void XbmcXml::setListValue(QDomDocument &doc, const QString &name, const QString
         rootNode = rootNode.nextSibling();
     }
     QDomNodeList childNodes = rootNode.childNodes();
-    QList<QDomNode> nodesToRemove;
+    QVector<QDomNode> nodesToRemove;
     for (int i = 0, n = childNodes.count(); i < n; ++i) {
         if (childNodes.at(i).nodeName() == name) {
             nodesToRemove.append(childNodes.at(i));
@@ -2016,7 +2016,7 @@ void XbmcXml::removeChildNodes(QDomDocument &doc, const QString &name)
         rootNode = rootNode.nextSibling();
     }
     QDomNodeList childNodes = rootNode.childNodes();
-    QList<QDomNode> nodesToRemove;
+    QVector<QDomNode> nodesToRemove;
     for (int i = 0, n = childNodes.count(); i < n; ++i) {
         if (childNodes.at(i).nodeName() == name) {
             nodesToRemove.append(childNodes.at(i));

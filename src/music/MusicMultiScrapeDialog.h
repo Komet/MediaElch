@@ -3,8 +3,8 @@
 #include "globals/Globals.h"
 
 #include <QDialog>
-#include <QList>
 #include <QQueue>
+#include <QVector>
 
 class Album;
 class Artist;
@@ -22,7 +22,7 @@ public:
     explicit MusicMultiScrapeDialog(QWidget *parent = nullptr);
     ~MusicMultiScrapeDialog() override;
     static MusicMultiScrapeDialog *instance(QWidget *parent = nullptr);
-    void setItems(QList<Artist *> artists, QList<Album *> albums);
+    void setItems(QVector<Artist *> artists, QVector<Album *> albums);
 
 public slots:
     int exec() override;
@@ -34,7 +34,7 @@ private slots:
     void onChkAllToggled(bool toggled);
     void onStartScraping();
     void onScrapingFinished();
-    void onSearchFinished(QList<ScraperSearchResult> results);
+    void onSearchFinished(QVector<ScraperSearchResult> results);
     void scrapeNext();
     void onProgress(Artist *artist, int current, int maximum);
     void onProgress(Album *album, int current, int maximum);
@@ -55,9 +55,9 @@ private:
     bool m_executed;
     Artist *m_currentArtist;
     Album *m_currentAlbum;
-    QList<MusicScraperInfos> m_artistInfosToLoad;
-    QList<MusicScraperInfos> m_albumInfosToLoad;
-    QList<Artist *> m_artists;
-    QList<Album *> m_albums;
+    QVector<MusicScraperInfos> m_artistInfosToLoad;
+    QVector<MusicScraperInfos> m_albumInfosToLoad;
+    QVector<Artist *> m_artists;
+    QVector<Album *> m_albums;
     MusicScraperInterface *m_scraperInterface;
 };

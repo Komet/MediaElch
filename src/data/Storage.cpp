@@ -25,36 +25,36 @@ Storage::Storage(QObject *parent, Album *album) : QObject(parent), m_album{QPoin
 {
 }
 
-Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) : QObject(parent), m_results{results}
+Storage::Storage(QObject *parent, QVector<ScraperSearchResult> results) : QObject(parent), m_results{results}
 {
 }
 
-Storage::Storage(QObject *parent, QList<MovieScraperInfos> infosToLoad) :
+Storage::Storage(QObject *parent, QVector<MovieScraperInfos> infosToLoad) :
     QObject(parent),
     m_movieInfosToLoad{infosToLoad}
 {
 }
 
-Storage::Storage(QObject *parent, QList<TvShowScraperInfos> infosToLoad) :
+Storage::Storage(QObject *parent, QVector<TvShowScraperInfos> infosToLoad) :
     QObject(parent),
     m_showInfosToLoad{infosToLoad}
 {
 }
 
-Storage::Storage(QObject *parent, QList<ConcertScraperInfos> infosToLoad) :
+Storage::Storage(QObject *parent, QVector<ConcertScraperInfos> infosToLoad) :
     QObject(parent),
     m_concertInfosToLoad{infosToLoad}
 {
 }
 
-Storage::Storage(QObject *parent, QList<MusicScraperInfos> infosToLoad) :
+Storage::Storage(QObject *parent, QVector<MusicScraperInfos> infosToLoad) :
     QObject(parent),
     m_musicInfosToLoad{infosToLoad}
 {
 }
 
 
-Storage::Storage(QObject *parent, QList<ImageType> infosToLoad) : QObject(parent), m_imageInfosToLoad{infosToLoad}
+Storage::Storage(QObject *parent, QVector<ImageType> infosToLoad) : QObject(parent), m_imageInfosToLoad{infosToLoad}
 {
 }
 
@@ -70,7 +70,7 @@ Storage::Storage(QObject *parent, QTableWidgetItem *item) : QObject(parent), m_t
 {
 }
 
-Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) : QObject(parent), m_episodes{episodes}
+Storage::Storage(QObject *parent, QVector<TvShowEpisode *> episodes) : QObject(parent), m_episodes{episodes}
 {
 }
 
@@ -143,7 +143,7 @@ QMap<MovieScraperInterface *, QString> Storage::ids() const
     return m_ids;
 }
 
-QList<TvShowEpisode *> Storage::episodes() const
+QVector<TvShowEpisode *> Storage::episodes() const
 {
     return m_episodes;
 }
@@ -196,7 +196,7 @@ QVariant Storage::toVariant(QObject *parent, Album *album)
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
+QVariant Storage::toVariant(QObject *parent, QVector<ScraperSearchResult> results)
 {
     Storage *const storage = new Storage(parent, results);
     QVariant var;
@@ -204,7 +204,7 @@ QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QVector<MovieScraperInfos> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -212,7 +212,7 @@ QVariant Storage::toVariant(QObject *parent, QList<MovieScraperInfos> infosToLoa
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QVector<TvShowScraperInfos> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -220,7 +220,7 @@ QVariant Storage::toVariant(QObject *parent, QList<TvShowScraperInfos> infosToLo
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<ConcertScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QVector<ConcertScraperInfos> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -228,7 +228,7 @@ QVariant Storage::toVariant(QObject *parent, QList<ConcertScraperInfos> infosToL
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<MusicScraperInfos> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QVector<MusicScraperInfos> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -236,7 +236,7 @@ QVariant Storage::toVariant(QObject *parent, QList<MusicScraperInfos> infosToLoa
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<ImageType> infosToLoad)
+QVariant Storage::toVariant(QObject *parent, QVector<ImageType> infosToLoad)
 {
     Storage *const storage = new Storage(parent, infosToLoad);
     QVariant var;
@@ -268,7 +268,7 @@ QVariant Storage::toVariant(QObject *parent, QTableWidgetItem *item)
     return var;
 }
 
-QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode *> episodes)
+QVariant Storage::toVariant(QObject *parent, QVector<TvShowEpisode *> episodes)
 {
     Storage *const storage = new Storage(parent, episodes);
     QVariant var;
@@ -276,32 +276,32 @@ QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode *> episodes)
     return var;
 }
 
-QList<ScraperSearchResult> Storage::results() const
+QVector<ScraperSearchResult> Storage::results() const
 {
     return m_results;
 }
 
-QList<MovieScraperInfos> Storage::movieInfosToLoad() const
+QVector<MovieScraperInfos> Storage::movieInfosToLoad() const
 {
     return m_movieInfosToLoad;
 }
 
-QList<TvShowScraperInfos> Storage::showInfosToLoad() const
+QVector<TvShowScraperInfos> Storage::showInfosToLoad() const
 {
     return m_showInfosToLoad;
 }
 
-QList<ConcertScraperInfos> Storage::concertInfosToLoad() const
+QVector<ConcertScraperInfos> Storage::concertInfosToLoad() const
 {
     return m_concertInfosToLoad;
 }
 
-QList<MusicScraperInfos> Storage::musicInfosToLoad() const
+QVector<MusicScraperInfos> Storage::musicInfosToLoad() const
 {
     return m_musicInfosToLoad;
 }
 
-QList<ImageType> Storage::imageInfosToLoad() const
+QVector<ImageType> Storage::imageInfosToLoad() const
 {
     return m_imageInfosToLoad;
 }

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <QByteArray>
-#include <QList>
 #include <QObject>
 #include <QString>
+#include <QVector>
 
 #include "globals/Globals.h"
 
@@ -14,17 +14,17 @@ class MovieImages
 {
 public:
     explicit MovieImages(Movie &movie);
-    void clear(QList<MovieScraperInfos> infos);
+    void clear(QVector<MovieScraperInfos> infos);
 
-    QList<Poster> posters() const;
-    QList<Poster> backdrops() const;
-    QList<Poster> discArts() const;
-    QList<Poster> clearArts() const;
-    QList<Poster> logos() const;
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<Poster> posters() const;
+    QVector<Poster> backdrops() const;
+    QVector<Poster> discArts() const;
+    QVector<Poster> clearArts() const;
+    QVector<Poster> logos() const;
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QByteArray> extraFanartToAdd();
-    QList<ImageType> imagesToRemove() const;
+    QVector<QByteArray> extraFanartToAdd();
+    QVector<ImageType> imagesToRemove() const;
 
     void addPoster(Poster poster, bool primaryLang = false);
     void addBackdrop(Poster backdrop);
@@ -52,11 +52,11 @@ public:
     void setImage(ImageType imageType, QByteArray image);
 
 private:
-    QList<Poster> m_posters;
-    QList<Poster> m_backdrops;
-    QList<Poster> m_discArts;
-    QList<Poster> m_clearArts;
-    QList<Poster> m_logos;
+    QVector<Poster> m_posters;
+    QVector<Poster> m_backdrops;
+    QVector<Poster> m_discArts;
+    QVector<Poster> m_clearArts;
+    QVector<Poster> m_logos;
 
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
@@ -66,8 +66,8 @@ private:
     QMap<ImageType, QByteArray> m_images;
     QMap<ImageType, bool> m_hasImage;
     QMap<ImageType, bool> m_hasImageChanged;
-    QList<QByteArray> m_extraFanartToAdd;
-    QList<ImageType> m_imagesToRemove;
+    QVector<QByteArray> m_extraFanartToAdd;
+    QVector<ImageType> m_imagesToRemove;
 
     Movie &m_movie;
 };

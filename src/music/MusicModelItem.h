@@ -37,7 +37,7 @@ private slots:
     void onAlbumChanged(Album *album);
 
 private:
-    QList<MusicModelItem *> m_childItems;
+    QVector<MusicModelItem *> m_childItems;
     MusicModelItem *m_parentItem;
     Artist *m_artist;
     Album *m_album;

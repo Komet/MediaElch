@@ -38,7 +38,7 @@ signals:
     void sigExport();
     void sigAbout();
     void sigLike();
-    void sigFilterChanged(QList<Filter *>, QString);
+    void sigFilterChanged(QVector<Filter *>, QString);
 
 private slots:
     void onDonated(bool donated);

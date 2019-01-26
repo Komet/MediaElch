@@ -315,7 +315,7 @@ void ConcertWidget::onLoadImagesStarted(Concert *concert)
     // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
 }
 
-void ConcertWidget::onLoadingImages(Concert *concert, QList<ImageType> imageTypes)
+void ConcertWidget::onLoadingImages(Concert *concert, QVector<ImageType> imageTypes)
 {
     if (concert != m_concert) {
         return;
@@ -395,7 +395,7 @@ void ConcertWidget::updateConcertInfo()
     ui->genreCloud->setTags(genres, m_concert->genres());
     ui->tagCloud->setTags(tags, m_concert->tags());
 
-    updateImages(QList<ImageType>{ImageType::ConcertPoster,
+    updateImages(QVector<ImageType>{ImageType::ConcertPoster,
         ImageType::ConcertBackdrop,
         ImageType::ConcertLogo,
         ImageType::ConcertCdArt,
@@ -408,7 +408,7 @@ void ConcertWidget::updateConcertInfo()
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
 
-void ConcertWidget::updateImages(QList<ImageType> images)
+void ConcertWidget::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
         for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
@@ -438,7 +438,7 @@ void ConcertWidget::updateImage(ImageType imageType, ClosableImage *image)
  */
 void ConcertWidget::onSaveInformation()
 {
-    QList<Concert *> concerts = ConcertFilesWidget::instance()->selectedConcerts();
+    QVector<Concert *> concerts = ConcertFilesWidget::instance()->selectedConcerts();
     if (concerts.count() == 0) {
         concerts.append(m_concert);
     }
@@ -616,7 +616,7 @@ void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
     }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
-    m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QList<QUrl>() << imageUrl);
+    m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QVector<QUrl>() << imageUrl);
     onInfoChanged();
 }
 
@@ -639,7 +639,7 @@ void ConcertWidget::onChooseImage()
     } else if (image->imageType() == ImageType::ConcertBackdrop) {
         ImageDialog::instance()->setDownloads(m_concert->backdrops());
     } else {
-        ImageDialog::instance()->setDownloads(QList<Poster>());
+        ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
     ImageDialog::instance()->exec(image->imageType());
 

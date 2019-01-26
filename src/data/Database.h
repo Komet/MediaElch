@@ -3,10 +3,10 @@
 #include "globals/Globals.h"
 
 #include <QDateTime>
-#include <QList>
 #include <QSqlDatabase>
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 class Album;
 class Artist;
@@ -27,12 +27,12 @@ public:
     void clearMovies(QString path = "");
     void add(Movie *movie, QString path);
     void update(Movie *movie);
-    QList<Movie *> movies(QString path);
+    QVector<Movie *> movies(QString path);
 
     void clearConcerts(QString path = "");
     void add(Concert *concert, QString path);
     void update(Concert *concert);
-    QList<Concert *> concerts(QString path);
+    QVector<Concert *> concerts(QString path);
 
     void add(TvShow *show, QString path);
     void add(TvShowEpisode *episode, QString path, int idShow);
@@ -40,8 +40,8 @@ public:
     void update(TvShowEpisode *episode);
     void clearTvShows(QString path = "");
     void clearTvShow(QString showDir);
-    QList<TvShow *> shows(QString path);
-    QList<TvShowEpisode *> episodes(int idShow);
+    QVector<TvShow *> shows(QString path);
+    QVector<TvShowEpisode *> episodes(int idShow);
     int episodeCount();
 
     void setShowMissingEpisodes(TvShow *show, bool showMissing);
@@ -50,17 +50,17 @@ public:
     void clearEpisodeList(int showsSettingsId);
     void cleanUpEpisodeList(int showsSettingsId);
     void addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId, QString tvdbid);
-    QList<TvShowEpisode *> showsEpisodes(TvShow *show);
+    QVector<TvShowEpisode *> showsEpisodes(TvShow *show);
 
     void clearArtists(QString path = "");
     void add(Artist *artist, QString path);
     void update(Artist *artist);
-    QList<Artist *> artists(QString path);
+    QVector<Artist *> artists(QString path);
 
     void clearAlbums(QString path = "");
     void add(Album *album, QString path);
     void update(Album *album);
-    QList<Album *> albums(Artist *artist);
+    QVector<Album *> albums(Artist *artist);
 
     void addImport(QString fileName, QString type, QString path);
     bool guessImport(QString fileName, QString &type, QString &path);

@@ -23,7 +23,7 @@ ConcertProxyModel::ConcertProxyModel(QObject *parent) : QSortFilterProxyModel(pa
 bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QList<Concert *> concerts = Manager::instance()->concertModel()->concerts();
+    QVector<Concert *> concerts = Manager::instance()->concertModel()->concerts();
     if (sourceRow < 0 || sourceRow >= concerts.count()) {
         return true;
     }
@@ -63,7 +63,7 @@ bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
  * @param filters
  * @param text
  */
-void ConcertProxyModel::setFilter(QList<Filter *> filters, QString text)
+void ConcertProxyModel::setFilter(QVector<Filter *> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

@@ -14,7 +14,7 @@ class ImageGallery : public QWidget
 public:
     explicit ImageGallery(QWidget *parent = nullptr);
     void clear();
-    void setImages(QList<ExtraFanart> images);
+    void setImages(QVector<ExtraFanart> images);
     void addImage(const QByteArray &img, const QString &url = QString());
     void setLoading(const bool &loading);
     void setAlignment(const int &alignment);
@@ -44,7 +44,7 @@ private slots:
 
 private:
     QLabel *m_loadingLabel;
-    QList<ClosableImage *> m_imageLabels;
+    QVector<ClosableImage *> m_imageLabels;
     QWidget *m_imagesWidget;
     QScrollArea *m_scrollArea;
     QToolButton *m_buttonLeft;

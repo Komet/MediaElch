@@ -36,10 +36,11 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
     foreach (TrailerProvider *provider, Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
         connect(provider,
-            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(showResults(QList<ScraperSearchResult>)));
-        connect(provider, SIGNAL(sigLoadDone(QList<TrailerResult>)), this, SLOT(showTrailers(QList<TrailerResult>)));
+            SLOT(showResults(QVector<ScraperSearchResult>)));
+        connect(
+            provider, SIGNAL(sigLoadDone(QVector<TrailerResult>)), this, SLOT(showTrailers(QVector<TrailerResult>)));
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
@@ -135,7 +136,7 @@ void TrailerDialog::search()
     Manager::instance()->trailerProviders().at(m_providerNo)->searchMovie(ui->searchString->text());
 }
 
-void TrailerDialog::showResults(QList<ScraperSearchResult> results)
+void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
 {
     if (results.count() != 1) {
         ui->stackedWidget->slideInIdx(0);
@@ -167,7 +168,7 @@ void TrailerDialog::resultClicked(QTableWidgetItem *item)
     Manager::instance()->trailerProviders().at(m_providerNo)->loadMovieTrailers(item->data(Qt::UserRole).toString());
 }
 
-void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
+void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
 {
     m_currentTrailers = trailers;
     bool hasPreview = false;

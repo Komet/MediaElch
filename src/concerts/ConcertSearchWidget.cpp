@@ -15,9 +15,9 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->concertScrapers().indexOf(scraper));
         connect(scraper,
-            SIGNAL(searchDone(QList<ScraperSearchResult>)),
+            SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(showResults(QList<ScraperSearchResult>)));
+            SLOT(showResults(QVector<ScraperSearchResult>)));
     }
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
@@ -78,7 +78,7 @@ void ConcertSearchWidget::search()
     Manager::instance()->concertScrapers().at(m_scraperNo)->search(ui->searchString->text().trimmed());
 }
 
-void ConcertSearchWidget::showResults(QList<ScraperSearchResult> results)
+void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)
 {
     qDebug() << "Entered, size of results=" << results.count();
     ui->comboScraper->setEnabled(true);
@@ -144,15 +144,15 @@ TmdbId ConcertSearchWidget::scraperId()
     return m_scraperId;
 }
 
-QList<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
+QVector<ConcertScraperInfos> ConcertSearchWidget::infosToLoad()
 {
     return m_infosToLoad;
 }
 
-void ConcertSearchWidget::setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports)
+void ConcertSearchWidget::setCheckBoxesEnabled(QVector<ConcertScraperInfos> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<ConcertScraperInfos> infos =
+    QVector<ConcertScraperInfos> infos =
         Settings::instance()->scraperInfos<ConcertScraperInfos>(QString::number(scraperNo));
 
     for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {

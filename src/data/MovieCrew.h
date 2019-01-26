@@ -2,26 +2,26 @@
 
 #include "globals/Globals.h"
 
-#include <QList>
 #include <QString>
+#include <QVector>
 
 class MovieCrew
 {
 public:
     QString writer() const;
     QString director() const;
-    const QList<Actor> &actors() const;
-    QList<Actor> &actors();
-    QList<Actor *> actorsPointer();
+    const QVector<Actor> &actors() const;
+    QVector<Actor> &actors();
+    QVector<Actor *> actorsPointer();
 
     void setWriter(QString writer);
     void setDirector(QString director);
-    void setActors(QList<Actor> actors);
+    void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
     void removeActor(Actor *actor);
 
 private:
     QString m_writer;
     QString m_director;
-    QList<Actor> m_actors;
+    QVector<Actor> m_actors;
 };

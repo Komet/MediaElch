@@ -53,7 +53,7 @@ private slots:
     void onInfoLoadDone(Movie *movie);
     void onLoadDone(Movie *movie);
     void onLoadImagesStarted(Movie *movie);
-    void onLoadingImages(Movie *movie, QList<ImageType> imageTypes);
+    void onLoadingImages(Movie *movie, QVector<ImageType> imageTypes);
     void onDownloadProgress(Movie *movie, int current, int maximum);
     void onSetImage(Movie *movie, ImageType type, QByteArray data);
     void onImageDropped(ImageType imageType, QUrl imageUrl);
@@ -120,9 +120,9 @@ private:
     QPointer<Movie> m_movie;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QList<QWidget *> m_streamDetailsWidgets;
-    QList<QList<QLineEdit *>> m_streamDetailsAudio;
-    QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
+    QVector<QWidget *> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
-    void updateImages(QList<ImageType> images);
+    void updateImages(QVector<ImageType> images);
 };

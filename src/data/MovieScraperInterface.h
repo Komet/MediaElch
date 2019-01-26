@@ -4,9 +4,9 @@
 #include "globals/Globals.h"
 #include "settings/ScraperSettings.h"
 
-#include <QList>
 #include <QMap>
 #include <QString>
+#include <QVector>
 #include <vector>
 
 class Movie;
@@ -20,9 +20,10 @@ class MovieScraperInterface : public ScraperInterface, public QObject
 {
 public:
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QList<MovieScraperInfos> infos) = 0;
-    virtual QList<MovieScraperInfos> scraperSupports() = 0;
-    virtual QList<MovieScraperInfos> scraperNativelySupports() = 0;
+    virtual void
+    loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) = 0;
+    virtual QVector<MovieScraperInfos> scraperSupports() = 0;
+    virtual QVector<MovieScraperInfos> scraperNativelySupports() = 0;
     virtual std::vector<ScraperLanguage> supportedLanguages() = 0;
     virtual void changeLanguage(QString languageKey) = 0;
     // Default language stored in settings.
@@ -31,5 +32,5 @@ public:
     virtual bool isAdult() const = 0;
 
 signals:
-    virtual void searchDone(QList<ScraperSearchResult>) = 0;
+    virtual void searchDone(QVector<ScraperSearchResult>) = 0;
 };

@@ -59,6 +59,6 @@ protected:
     bool m_wrap;
     QPoint m_pNow;
     bool m_active;
-    QList<QWidget *> m_widgets;
+    QVector<QWidget *> m_widgets;
     bool m_expanded;
 };

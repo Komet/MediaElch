@@ -47,7 +47,7 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
-    void onTemplatesLoaded(QList<ExportTemplate *> templates);
+    void onTemplatesLoaded(QVector<ExportTemplate *> templates);
     void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
     void onChooseUnrar();

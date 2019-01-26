@@ -86,10 +86,11 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
 
     foreach (ImageProviderInterface *provider, Manager::instance()->imageProviders()) {
         connect(provider,
-            SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+            SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
-            SLOT(onSearchFinished(QList<ScraperSearchResult>)));
-        connect(provider, SIGNAL(sigImagesLoaded(QList<Poster>)), this, SLOT(onProviderImagesLoaded(QList<Poster>)));
+            SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+        connect(
+            provider, SIGNAL(sigImagesLoaded(QVector<Poster>)), this, SLOT(onProviderImagesLoaded(QVector<Poster>)));
     }
 }
 
@@ -289,7 +290,7 @@ void ImageDialog::resizeEvent(QResizeEvent *event)
  * @param downloads List of images (downloads)
  * @param initial If true saves downloads as defaults
  */
-void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
+void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
 {
     qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(1);
@@ -744,7 +745,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         Poster poster;
         poster.originalUrl = searchTerm;
         poster.thumbUrl = searchTerm;
-        onProviderImagesLoaded(QList<Poster>() << poster);
+        onProviderImagesLoaded(QVector<Poster>() << poster);
         return;
     }
 
@@ -811,7 +812,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
  * @brief Fills the results table
  * @param results List of results
  */
-void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
+void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 {
     ui->searchTerm->setLoading(false);
     foreach (const ScraperSearchResult &result, results) {
@@ -938,7 +939,7 @@ void ImageDialog::onResultClicked(QTableWidgetItem *item)
  * @brief Called when the image provider has finished loading
  * @param images List of images
  */
-void ImageDialog::onProviderImagesLoaded(QList<Poster> images)
+void ImageDialog::onProviderImagesLoaded(QVector<Poster> images)
 {
     setDownloads(images, false);
 }
@@ -950,7 +951,7 @@ void ImageDialog::setMultiSelection(const bool &enable)
     ui->btnAcceptImages->setVisible(enable);
 }
 
-QList<QUrl> ImageDialog::imageUrls()
+QVector<QUrl> ImageDialog::imageUrls()
 {
     return m_imageUrls;
 }

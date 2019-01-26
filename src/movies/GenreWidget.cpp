@@ -268,7 +268,7 @@ void GenreWidget::addMovie()
 
     if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text())
         == QDialog::Accepted) {
-        QList<Movie *> movies = MovieListDialog::instance()->selectedMovies();
+        QVector<Movie *> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty()) {
             return;
         }

@@ -36,7 +36,7 @@ public:
     MovieController *controller() const;
 
     void clear();
-    void clear(QList<MovieScraperInfos> infos);
+    void clear(QVector<MovieScraperInfos> infos);
     void clearImages();
 
     QString name() const;
@@ -56,15 +56,15 @@ public:
     QString writer() const;
     QString director() const;
     QStringList genres() const;
-    QList<QString *> genresPointer();
+    QVector<QString *> genresPointer();
     QStringList countries() const;
-    QList<QString *> countriesPointer();
+    QVector<QString *> countriesPointer();
     QStringList studios() const;
     QStringList tags() const;
-    QList<QString *> studiosPointer();
+    QVector<QString *> studiosPointer();
     QUrl trailer() const;
-    QList<Actor> actors() const;
-    QList<Actor *> actorsPointer();
+    QVector<Actor> actors() const;
+    QVector<Actor *> actorsPointer();
     QStringList files() const;
     QString folderName() const;
     int playcount() const;
@@ -108,7 +108,7 @@ public:
     void addStudio(QString studio);
     void addTag(QString label);
     void setTrailer(QUrl trailer);
-    void setActors(QList<Actor> actors);
+    void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
     void addGenre(QString genre);
     void addCountry(QString country);
@@ -146,10 +146,10 @@ public:
     void setDiscType(DiscType type);
 
     static bool lessThan(Movie *a, Movie *b);
-    static QList<ImageType> imageTypes();
+    static QVector<ImageType> imageTypes();
 
-    QList<Subtitle *> subtitles() const;
-    void setSubtitles(const QList<Subtitle *> &subtitles);
+    QVector<Subtitle *> subtitles() const;
+    void setSubtitles(const QVector<Subtitle *> &subtitles);
     void addSubtitle(Subtitle *subtitle, bool fromLoad = false);
 
     bool isDuplicate(Movie *movie);
@@ -206,7 +206,7 @@ private:
     QDateTime m_dateAdded;
     DiscType m_discType;
     ColorLabel m_label;
-    QList<Subtitle *> m_subtitles;
+    QVector<Subtitle *> m_subtitles;
 };
 
 Q_DECLARE_METATYPE(Movie *)

@@ -21,7 +21,7 @@ public:
     explicit TvShowSearch(QWidget *parent = nullptr);
     ~TvShowSearch() override;
     TvDbId scraperId();
-    QList<TvShowScraperInfos> infosToLoad();
+    QVector<TvShowScraperInfos> infosToLoad();
     void setSearchType(TvShowType type);
     TvShowUpdateType updateType();
 
@@ -32,7 +32,7 @@ public slots:
 
 private slots:
     void onSearch();
-    void onShowResults(QList<ScraperSearchResult> results);
+    void onShowResults(QVector<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem *item);
     void onChkToggled();
     void onChkAllToggled();
@@ -43,6 +43,6 @@ private:
     Ui::TvShowSearch *ui;
     void clear();
     TvDbId m_scraperId;
-    QList<TvShowScraperInfos> m_infosToLoad;
+    QVector<TvShowScraperInfos> m_infosToLoad;
     TvShowType m_searchType;
 };

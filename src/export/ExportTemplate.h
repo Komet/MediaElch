@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QList>
 #include <QObject>
 #include <QString>
+#include <QVector>
 
 #include "globals/Globals.h"
 
@@ -32,7 +32,7 @@ public:
     QString version() const;
     QString remoteVersion() const;
     QString remoteFile() const;
-    QList<ExportTemplate::ExportSection> exportSections();
+    QVector<ExportTemplate::ExportSection> exportSections();
     QMap<QString, QString> descriptions() const;
     QString getTemplate(ExportTemplate::ExportSection section);
     QString getTemplateLocation();
@@ -47,7 +47,7 @@ public:
     void addDescription(QString language, QString description);
     void setVersion(QString version);
     void setRemoteVersion(QString remoteVersion);
-    void setExportSections(QList<ExportTemplate::ExportSection> exportSections);
+    void setExportSections(QVector<ExportTemplate::ExportSection> exportSections);
 
     static bool lessThan(ExportTemplate *a, ExportTemplate *b);
 
@@ -61,7 +61,7 @@ private:
     QMap<QString, QString> m_description;
     QString m_version;
     QString m_remoteVersion;
-    QList<ExportTemplate::ExportSection> m_exportSections;
+    QVector<ExportTemplate::ExportSection> m_exportSections;
     bool copyDir(const QString &srcPath, const QString &dstPath);
 };
 

@@ -20,7 +20,7 @@ public:
     explicit ConcertModel(QObject *parent = nullptr);
     void addConcert(Concert *concert);
     void clear();
-    QList<Concert *> concerts();
+    QVector<Concert *> concerts();
     Concert *concert(int row);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -34,7 +34,7 @@ private slots:
     void onConcertChanged(Concert *concert);
 
 private:
-    QList<Concert *> m_concerts;
+    QVector<Concert *> m_concerts;
     QIcon m_newIcon;
     QIcon m_syncIcon;
 };

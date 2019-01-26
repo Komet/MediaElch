@@ -37,8 +37,8 @@ void MovieFileSearcher::reload(bool force)
     Manager::instance()->movieModel()->clear();
     m_lastModifications.clear();
 
-    QList<MovieContents> c;
-    QList<Movie *> dbMovies;
+    QVector<MovieContents> c;
+    QVector<Movie *> dbMovies;
     QStringList bluRays;
     QStringList dvds;
     int movieSum = 0;
@@ -50,7 +50,7 @@ void MovieFileSearcher::reload(bool force)
         if (m_aborted) {
             return;
         }
-        QList<Movie *> moviesFromDb;
+        QVector<Movie *> moviesFromDb;
         if (!dir.autoReload && !force) {
             moviesFromDb = Manager::instance()->database()->movies(dir.path);
         }
@@ -161,7 +161,7 @@ void MovieFileSearcher::reload(bool force)
     emit searchStarted(tr("Loading Movies..."), m_progressMessageId);
 
     qDebug() << "Now processing files";
-    QList<Movie *> movies;
+    QVector<Movie *> movies;
     foreach (const MovieContents &con, c) {
         Manager::instance()->database()->transaction();
         QMapIterator<QString, QStringList> itContents(con.contents);
@@ -331,7 +331,7 @@ Movie *MovieFileSearcher::loadMovieData(Movie *movie)
  * @brief Sets the directories to scan for movies. Not existing directories are skipped.
  * @param directories List of directories
  */
-void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
+void MovieFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
 {
     qDebug() << "Entered";
     m_directories.clear();
@@ -356,7 +356,7 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  */
 void MovieFileSearcher::scanDir(QString startPath,
     QString path,
-    QList<QStringList> &contents,
+    QVector<QStringList> &contents,
     bool separateFolders,
     bool firstScan)
 {

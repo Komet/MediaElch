@@ -111,7 +111,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSearchEnabled(false, MainWidgets::TvShows);
     ui->title->setText(m_show->name() + " - " + tr("Season %1").arg(m_season.toString()));
 
-    updateImages(QList<ImageType>{ImageType::TvShowSeasonPoster,
+    updateImages(QVector<ImageType>{ImageType::TvShowSeasonPoster,
         ImageType::TvShowSeasonBackdrop,
         ImageType::TvShowSeasonBanner,
         ImageType::TvShowSeasonThumb});
@@ -127,7 +127,7 @@ void TvShowWidgetSeason::updateSeasonInfo()
     emit sigSetActionSaveEnabled(!m_show->downloadsInProgress(), MainWidgets::TvShows);
 }
 
-void TvShowWidgetSeason::updateImages(QList<ImageType> images)
+void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
         ClosableImage *image = nullptr;
@@ -236,12 +236,12 @@ void TvShowWidgetSeason::onChooseImage()
     } else if (image->imageType() == ImageType::TvShowSeasonBackdrop) {
         ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
     } else if (image->imageType() == ImageType::TvShowSeasonBanner) {
-        QList<Poster> banners;
+        QVector<Poster> banners;
         banners << m_show->seasonBanners(m_season, true);
         banners << m_show->banners();
         ImageDialog::instance()->setDownloads(banners);
     } else {
-        ImageDialog::instance()->setDownloads(QList<Poster>());
+        ImageDialog::instance()->setDownloads(QVector<Poster>());
     }
     ImageDialog::instance()->exec(image->imageType());
 

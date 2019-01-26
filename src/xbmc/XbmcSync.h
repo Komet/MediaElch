@@ -73,19 +73,19 @@ private:
     Ui::XbmcSync *ui;
 
     QNetworkAccessManager m_qnam;
-    QList<Movie *> m_moviesToSync;
-    QList<Concert *> m_concertsToSync;
-    QList<TvShow *> m_tvShowsToSync;
-    QList<TvShowEpisode *> m_episodesToSync;
-    QList<Element> m_elements;
+    QVector<Movie *> m_moviesToSync;
+    QVector<Concert *> m_concertsToSync;
+    QVector<TvShow *> m_tvShowsToSync;
+    QVector<TvShowEpisode *> m_episodesToSync;
+    QVector<Element> m_elements;
     QMap<int, XbmcData> m_xbmcMovies;
     QMap<int, XbmcData> m_xbmcConcerts;
     QMap<int, XbmcData> m_xbmcShows;
     QMap<int, XbmcData> m_xbmcEpisodes;
-    QList<int> m_moviesToRemove;
-    QList<int> m_concertsToRemove;
-    QList<int> m_tvShowsToRemove;
-    QList<int> m_episodesToRemove;
+    QVector<int> m_moviesToRemove;
+    QVector<int> m_concertsToRemove;
+    QVector<int> m_tvShowsToRemove;
+    QVector<int> m_episodesToRemove;
     QMutex m_mutex;
     bool m_allReady;
     bool m_aborted;

@@ -13,9 +13,9 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     connect(Manager::instance()->tvScrapers().at(0),
-        SIGNAL(sigSearchDone(QList<ScraperSearchResult>)),
+        SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
         this,
-        SLOT(onShowResults(QList<ScraperSearchResult>)));
+        SLOT(onShowResults(QVector<ScraperSearchResult>)));
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TvShowSearchEpisode::onSearch);
     connect(ui->results, &QTableWidget::itemClicked, this, &TvShowSearchEpisode::onResultClicked);
 
@@ -77,7 +77,7 @@ void TvShowSearchEpisode::onChkAllToggled()
     onChkToggled();
 }
 
-QList<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
+QVector<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
 {
     return m_infosToLoad;
 }
@@ -112,7 +112,7 @@ void TvShowSearchEpisode::onSearch()
     Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text());
 }
 
-void TvShowSearchEpisode::onShowResults(QList<ScraperSearchResult> results)
+void TvShowSearchEpisode::onShowResults(QVector<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();

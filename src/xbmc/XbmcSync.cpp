@@ -601,7 +601,7 @@ int XbmcSync::findId(const QStringList &files, const QMap<int, XbmcData> &items)
         return -1;
     }
 
-    QList<int> matches;
+    QVector<int> matches;
     int level = 0;
 
     do {
