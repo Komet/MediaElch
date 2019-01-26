@@ -68,7 +68,7 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
-    foreach (SettingsDir settingsDir, Settings::instance()->downloadDirectories()) {
+    for (SettingsDir settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
         QString dir = settingsDir.path;
         QDirIterator it(dir,
             QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
@@ -451,17 +451,17 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox *sender)
 
     bool sub = false;
     if (type == "movie") {
-        foreach (SettingsDir dir, Settings::instance()->movieDirectories()) {
+        for (SettingsDir dir : Settings::instance()->directorySettings().movieDirectories()) {
             detailBox->addItem(dir.path);
             sub = true;
         }
     } else if (type == "tvshow") {
-        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
             detailBox->addItem(show->name(), Storage::toVariant(this, show));
             sub = true;
         }
     } else if (type == "concert") {
-        foreach (SettingsDir dir, Settings::instance()->concertDirectories()) {
+        for (SettingsDir dir : Settings::instance()->directorySettings().concertDirectories()) {
             detailBox->addItem(dir.path);
             sub = true;
         }

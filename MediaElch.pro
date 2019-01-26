@@ -197,6 +197,7 @@ SOURCES += src/main.cpp \
     src/sets/SetsWidget.cpp \
     src/settings/AdvancedSettings.cpp \
     src/settings/DataFile.cpp \
+    src/settings/DirectorySettings.cpp \
     src/settings/ExportTemplateWidget.cpp \
     src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
@@ -391,6 +392,7 @@ HEADERS  += Version.h \
     src/sets/SetsWidget.h \
     src/settings/AdvancedSettings.h \
     src/settings/DataFile.h \
+    src/settings/DirectorySettings.h \
     src/settings/ExportTemplateWidget.h \
     src/settings/ScraperSettings.h \
     src/settings/Settings.h \

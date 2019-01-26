@@ -141,18 +141,18 @@ int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
     // get path
     QString path;
     int index = -1;
-    for (int i = 0, n = Settings::instance()->tvShowDirectories().count(); i < n; ++i) {
-        if (tvShow->dir().startsWith(Settings::instance()->tvShowDirectories().at(i).path)) {
+    for (int i = 0, n = Settings::instance()->directorySettings().tvShowDirectories().count(); i < n; ++i) {
+        if (tvShow->dir().startsWith(Settings::instance()->directorySettings().tvShowDirectories().at(i).path)) {
             if (index == -1) {
                 index = i;
-            } else if (Settings::instance()->tvShowDirectories().at(index).path.length()
-                       < Settings::instance()->tvShowDirectories().at(i).path.length()) {
+            } else if (Settings::instance()->directorySettings().tvShowDirectories().at(index).path.length()
+                       < Settings::instance()->directorySettings().tvShowDirectories().at(i).path.length()) {
                 index = i;
             }
         }
     }
     if (index != -1) {
-        path = Settings::instance()->tvShowDirectories().at(index).path;
+        path = Settings::instance()->directorySettings().tvShowDirectories().at(index).path;
     }
     m_importDir = path;
 
@@ -341,9 +341,9 @@ QStringList ImportDialog::extraFiles()
 
 void ImportDialog::setImportDir(QString dir)
 {
-    foreach (SettingsDir settingsDir,
-        QVector<SettingsDir>() << Settings::instance()->movieDirectories()
-                               << Settings::instance()->concertDirectories()) {
+    for (SettingsDir settingsDir : QVector<SettingsDir>()
+                                       << Settings::instance()->directorySettings().movieDirectories()
+                                       << Settings::instance()->directorySettings().concertDirectories()) {
         if (settingsDir.path == dir) {
             m_separateFolders = settingsDir.separateFolders;
             break;

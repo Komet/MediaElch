@@ -287,32 +287,32 @@ void SettingsWindow::loadSettings()
     // Directories
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
-    QVector<SettingsDir> movieDirectories = m_settings->movieDirectories();
+    QVector<SettingsDir> movieDirectories = m_settings->directorySettings().movieDirectories();
     for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
         addDir(movieDirectories.at(i).path,
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
             SettingsDirType::Movies);
     }
-    QVector<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
+    QVector<SettingsDir> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
         addDir(tvShowDirectories.at(i).path,
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
             SettingsDirType::TvShows);
     }
-    QVector<SettingsDir> concertDirectories = m_settings->concertDirectories();
+    QVector<SettingsDir> concertDirectories = m_settings->directorySettings().concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
         addDir(concertDirectories.at(i).path,
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
             SettingsDirType::Concerts);
     }
-    QVector<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
+    QVector<SettingsDir> downloadDirectories = m_settings->directorySettings().downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
         addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
     }
-    QVector<SettingsDir> musicDirectories = m_settings->musicDirectories();
+    QVector<SettingsDir> musicDirectories = m_settings->directorySettings().musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
         addDir(musicDirectories.at(i).path,
             musicDirectories.at(i).separateFolders,
@@ -486,11 +486,11 @@ void SettingsWindow::saveSettings()
             musicDirectories.append(dir);
         }
     }
-    m_settings->setMovieDirectories(movieDirectories);
-    m_settings->setTvShowDirectories(tvShowDirectories);
-    m_settings->setConcertDirectories(concertDirectories);
-    m_settings->setDownloadDirectories(downloadDirectories);
-    m_settings->setMusicDirectories(musicDirectories);
+    m_settings->directorySettings().setMovieDirectories(movieDirectories);
+    m_settings->directorySettings().setTvShowDirectories(tvShowDirectories);
+    m_settings->directorySettings().setConcertDirectories(concertDirectories);
+    m_settings->directorySettings().setDownloadDirectories(downloadDirectories);
+    m_settings->directorySettings().setMusicDirectories(musicDirectories);
 
     // exclude words
     m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
@@ -529,10 +529,11 @@ void SettingsWindow::saveSettings()
 
     m_settings->saveSettings();
 
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(m_settings->concertDirectories());
-    Manager::instance()->musicFileSearcher()->setMusicDirectories(m_settings->musicDirectories());
+    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->directorySettings().movieDirectories());
+    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->directorySettings().tvShowDirectories());
+    Manager::instance()->concertFileSearcher()->setConcertDirectories(
+        m_settings->directorySettings().concertDirectories());
+    Manager::instance()->musicFileSearcher()->setMusicDirectories(m_settings->directorySettings().musicDirectories());
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 

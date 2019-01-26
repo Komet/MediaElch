@@ -4,6 +4,7 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
+#include "settings/DirectorySettings.h"
 #include "settings/ScraperSettings.h"
 
 #include <QObject>
@@ -40,11 +41,9 @@ public:
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QByteArray movieDuplicatesSplitterState();
-    QVector<SettingsDir> movieDirectories();
-    QVector<SettingsDir> tvShowDirectories();
-    QVector<SettingsDir> concertDirectories();
-    QVector<SettingsDir> downloadDirectories();
-    QVector<SettingsDir> musicDirectories();
+
+    DirectorySettings &directorySettings();
+
     QString unrar();
     QString makeMkvCon();
     bool deleteArchives();
@@ -114,11 +113,6 @@ public:
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
-    void setMovieDirectories(QVector<SettingsDir> dirs);
-    void setTvShowDirectories(QVector<SettingsDir> dirs);
-    void setConcertDirectories(QVector<SettingsDir> dirs);
-    void setDownloadDirectories(QVector<SettingsDir> dirs);
-    void setMusicDirectories(QVector<SettingsDir> dirs);
     void setUnrar(QString unrar);
     void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
@@ -186,11 +180,8 @@ private:
     QSettings *m_settings;
     AdvancedSettings *m_advancedSettings;
 
-    QVector<SettingsDir> m_movieDirectories;
-    QVector<SettingsDir> m_tvShowDirectories;
-    QVector<SettingsDir> m_concertDirectories;
-    QVector<SettingsDir> m_downloadDirectories;
-    QVector<SettingsDir> m_musicDirectories;
+    DirectorySettings m_directorySettings;
+
     QString m_unrar;
     QString m_makeMkvCon;
     bool m_deleteArchives;

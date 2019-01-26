@@ -23,6 +23,8 @@ Settings::Settings(QObject *parent) : QObject(parent), m_advancedSettings{new Ad
         m_settings = new QSettings(this);
     }
 
+    m_directorySettings.setQSettings(m_settings);
+
     // Frodo
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MoviePoster, "<baseFileName>-poster.jpg", 0));
@@ -136,68 +138,7 @@ void Settings::loadSettings()
     // Warnings
     m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
 
-    // Movie Directories
-    m_movieDirectories.clear();
-    int moviesSize = settings()->beginReadArray("Directories/Movies");
-    for (int i = 0; i < moviesSize; ++i) {
-        settings()->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
-        dir.separateFolders = settings()->value("sepFolders", false).toBool();
-        dir.autoReload = settings()->value("autoReload", false).toBool();
-        m_movieDirectories.append(dir);
-    }
-    settings()->endArray();
-
-    // TV Show Directories
-    m_tvShowDirectories.clear();
-    int tvShowSize = settings()->beginReadArray("Directories/TvShows");
-    for (int i = 0; i < tvShowSize; ++i) {
-        settings()->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
-        dir.separateFolders = settings()->value("sepFolders", false).toBool();
-        dir.autoReload = settings()->value("autoReload", false).toBool();
-        m_tvShowDirectories.append(dir);
-    }
-    settings()->endArray();
-
-    // Concert Directories
-    m_concertDirectories.clear();
-    int concertsSize = settings()->beginReadArray("Directories/Concerts");
-    for (int i = 0; i < concertsSize; ++i) {
-        settings()->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
-        dir.separateFolders = settings()->value("sepFolders", false).toBool();
-        dir.autoReload = settings()->value("autoReload", false).toBool();
-        m_concertDirectories.append(dir);
-    }
-    settings()->endArray();
-
-    m_downloadDirectories.clear();
-    int downloadsSize = settings()->beginReadArray("Directories/Downloads");
-    for (int i = 0; i < downloadsSize; ++i) {
-        settings()->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
-        dir.separateFolders = settings()->value("sepFolders", false).toBool();
-        dir.autoReload = settings()->value("autoReload", false).toBool();
-        m_downloadDirectories.append(dir);
-    }
-    settings()->endArray();
-
-    m_musicDirectories.clear();
-    int musicSize = settings()->beginReadArray("Directories/Music");
-    for (int i = 0; i < musicSize; ++i) {
-        settings()->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
-        dir.separateFolders = settings()->value("sepFolders", false).toBool();
-        dir.autoReload = settings()->value("autoReload", false).toBool();
-        m_musicDirectories.append(dir);
-    }
-    settings()->endArray();
+    directorySettings().loadSettings();
 
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty()) {
@@ -353,49 +294,7 @@ void Settings::saveSettings()
     // Warnings
     settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
-    settings()->beginWriteArray("Directories/Movies");
-    for (int i = 0, n = m_movieDirectories.count(); i < n; ++i) {
-        settings()->setArrayIndex(i);
-        settings()->setValue("path", m_movieDirectories.at(i).path);
-        settings()->setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
-        settings()->setValue("autoReload", m_movieDirectories.at(i).autoReload);
-    }
-    settings()->endArray();
-
-    settings()->beginWriteArray("Directories/TvShows");
-    for (int i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
-        settings()->setArrayIndex(i);
-        settings()->setValue("path", m_tvShowDirectories.at(i).path);
-        settings()->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
-    }
-    settings()->endArray();
-
-    settings()->beginWriteArray("Directories/Concerts");
-    for (int i = 0, n = m_concertDirectories.count(); i < n; ++i) {
-        settings()->setArrayIndex(i);
-        settings()->setValue("path", m_concertDirectories.at(i).path);
-        settings()->setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
-        settings()->setValue("autoReload", m_concertDirectories.at(i).autoReload);
-    }
-    settings()->endArray();
-
-    settings()->beginWriteArray("Directories/Downloads");
-    for (int i = 0, n = m_downloadDirectories.count(); i < n; ++i) {
-        settings()->setArrayIndex(i);
-        settings()->setValue("path", m_downloadDirectories.at(i).path);
-        settings()->setValue("sepFolders", m_downloadDirectories.at(i).separateFolders);
-        settings()->setValue("autoReload", m_downloadDirectories.at(i).autoReload);
-    }
-    settings()->endArray();
-
-    settings()->beginWriteArray("Directories/Music");
-    for (int i = 0, n = m_musicDirectories.count(); i < n; ++i) {
-        settings()->setArrayIndex(i);
-        settings()->setValue("path", m_musicDirectories.at(i).path);
-        settings()->setValue("sepFolders", m_musicDirectories.at(i).separateFolders);
-        settings()->setValue("autoReload", m_musicDirectories.at(i).autoReload);
-    }
-    settings()->endArray();
+    m_directorySettings.saveSettings();
 
     settings()->setValue("excludeWords", m_excludeWords);
 
@@ -565,36 +464,9 @@ QByteArray Settings::movieDuplicatesSplitterState()
     return m_movieDuplicatesSplitterState;
 }
 
-/**
- * @brief Returns a list of movie directories
- * @return List of movie directories
- */
-QVector<SettingsDir> Settings::movieDirectories()
+DirectorySettings &Settings::directorySettings()
 {
-    return m_movieDirectories;
-}
-
-/**
- * @brief Returns a list of tv show directories
- * @return List of tv show directories
- */
-QVector<SettingsDir> Settings::tvShowDirectories()
-{
-    return m_tvShowDirectories;
-}
-
-/**
- * @brief Returns a list of concert directories
- * @return List of concert directories
- */
-QVector<SettingsDir> Settings::concertDirectories()
-{
-    return m_concertDirectories;
-}
-
-QVector<SettingsDir> Settings::musicDirectories()
-{
-    return m_musicDirectories;
+    return m_directorySettings;
 }
 
 /**
@@ -836,38 +708,6 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 {
     m_movieDuplicatesSplitterState = state;
     settings()->setValue("MovieDuplicatesSplitterState", state);
-}
-
-/**
- * @brief Sets the movie directories
- * @param dirs Dirs to set
- */
-void Settings::setMovieDirectories(QVector<SettingsDir> dirs)
-{
-    m_movieDirectories = dirs;
-}
-
-/**
- * @brief Sets the tv show directories
- * @param dirs Dirs to set
- */
-void Settings::setTvShowDirectories(QVector<SettingsDir> dirs)
-{
-    m_tvShowDirectories = dirs;
-}
-
-/**
- * @brief Sets the concert directories
- * @param dirs Dirs to set
- */
-void Settings::setConcertDirectories(QVector<SettingsDir> dirs)
-{
-    m_concertDirectories = dirs;
-}
-
-void Settings::setMusicDirectories(QVector<SettingsDir> dirs)
-{
-    m_musicDirectories = dirs;
 }
 
 /**
@@ -1269,16 +1109,6 @@ void Settings::setCurrentMovieScraper(int current)
     m_currentMovieScraper = current;
     settings()->setValue("Scraper/CurrentMovieScraper", current);
     settings()->sync();
-}
-
-void Settings::setDownloadDirectories(QVector<SettingsDir> dirs)
-{
-    m_downloadDirectories = dirs;
-}
-
-QVector<SettingsDir> Settings::downloadDirectories()
-{
-    return m_downloadDirectories;
 }
 
 void Settings::setUnrar(QString unrar)

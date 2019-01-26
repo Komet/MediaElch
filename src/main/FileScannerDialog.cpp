@@ -65,10 +65,14 @@ FileScannerDialog::~FileScannerDialog()
  */
 int FileScannerDialog::exec()
 {
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(Settings::instance()->movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(Settings::instance()->concertDirectories());
-    Manager::instance()->musicFileSearcher()->setMusicDirectories(Settings::instance()->musicDirectories());
+    Manager::instance()->movieFileSearcher()->setMovieDirectories(
+        Settings::instance()->directorySettings().movieDirectories());
+    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(
+        Settings::instance()->directorySettings().tvShowDirectories());
+    Manager::instance()->concertFileSearcher()->setConcertDirectories(
+        Settings::instance()->directorySettings().concertDirectories());
+    Manager::instance()->musicFileSearcher()->setMusicDirectories(
+        Settings::instance()->directorySettings().musicDirectories());
 
     ui->status->setText("");
     ui->progressBar->setValue(0);
