@@ -1,5 +1,4 @@
-#ifndef IMDBID_H
-#define IMDBID_H
+#pragma once
 
 #include <QDebug>
 #include <QString>
@@ -28,5 +27,3 @@ private:
 
 std::ostream &operator<<(std::ostream &os, const ImdbId &value);
 QDebug operator<<(QDebug debug, const ImdbId &id);
-
-#endif // IMDBID_H

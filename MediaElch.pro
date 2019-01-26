@@ -545,6 +545,7 @@ test {
     SOURCES += test/main.cpp \
         test/helpers/matchers.cpp \
         test/data/testCertification.cpp \
+        test/data/testImdbId.cpp \
         test/mocks/settings/MockScraperSettings.cpp \
         test/scrapers/testAdultDvdEmpire.cpp \
         test/scrapers/testAEBN.cpp \
