@@ -1,5 +1,4 @@
-#ifndef DATA_CERTIFICATION_H
-#define DATA_CERTIFICATION_H
+#pragma once
 
 #include <QDebug>
 #include <QString>
@@ -27,5 +26,3 @@ private:
 
 std::ostream &operator<<(std::ostream &os, const Certification &value);
 QDebug operator<<(QDebug debug, const Certification &id);
-
-#endif // DATA_CERTIFICATION_H
