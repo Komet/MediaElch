@@ -39,7 +39,7 @@ private slots:
     void backToTrailers();
     void startDownload();
     void cancelDownload();
-    void downloadProgress(qint64 received, qint64 total);
+    void downloadProgress(int received, int total);
     void downloadFinished();
     void downloadReadyRead();
     void onNewTotalTime(qint64 totalTime);

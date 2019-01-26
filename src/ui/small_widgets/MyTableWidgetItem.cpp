@@ -8,14 +8,20 @@ MyTableWidgetItem::MyTableWidgetItem(QString text) : QTableWidgetItem(text), m_i
 {
 }
 
-MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) : QTableWidgetItem(number), m_isSize{false}
+MyTableWidgetItem::MyTableWidgetItem(QString text, qreal number) :
+    QTableWidgetItem(static_cast<int>(number)),
+    m_isSize{false}
 {
     setData(1000, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setText(text);
 }
 
-MyTableWidgetItem::MyTableWidgetItem(qreal number, bool isSize) : QTableWidgetItem(number), m_isSize{isSize}
+MyTableWidgetItem::MyTableWidgetItem(int64_t number, bool isSize) : MyTableWidgetItem(static_cast<int>(number), isSize)
+{
+}
+
+MyTableWidgetItem::MyTableWidgetItem(int number, bool isSize) : QTableWidgetItem(number), m_isSize{isSize}
 {
     setData(1000, number);
     setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -25,7 +31,7 @@ MyTableWidgetItem::MyTableWidgetItem(qreal number, bool isSize) : QTableWidgetIt
 QVariant MyTableWidgetItem::data(int role) const
 {
     if (role == Qt::DisplayRole && m_isSize) {
-        return Helper::instance()->formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toReal());
+        return Helper::instance()->formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toLongLong());
     }
 
     return QTableWidgetItem::data(role);

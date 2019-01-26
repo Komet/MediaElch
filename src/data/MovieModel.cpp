@@ -248,7 +248,7 @@ QVector<Movie *> MovieModel::movies()
  * @brief Checks if there are new movies (movies where infoLoaded is false)
  * @return True if there are new movies
  */
-int MovieModel::countNewMovies()
+long MovieModel::countNewMovies()
 {
     const auto checkInfoLoaded = [](const Movie *movie) { return !movie->controller()->infoLoaded(); };
     return std::count_if(m_movies.cbegin(), m_movies.cend(), checkInfoLoaded);

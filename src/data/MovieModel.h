@@ -33,7 +33,7 @@ public:
     void addMovie(Movie *movie);
     void update();
     void clear();
-    int countNewMovies();
+    long countNewMovies();
 
     static int mediaStatusToColumn(MediaStatusColumn column);
     static QString mediaStatusToText(MediaStatusColumn column);

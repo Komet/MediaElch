@@ -17,7 +17,7 @@ public:
         QString name;
         int chapters;
         QString duration;
-        qreal size;
+        int64_t size;
         QString fileName;
     };
 

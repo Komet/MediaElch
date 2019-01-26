@@ -200,7 +200,7 @@ private:
     bool m_useProxy;
     int m_proxyType;
     QString m_proxyHost;
-    int m_proxyPort;
+    uint16_t m_proxyPort;
     QString m_proxyUsername;
     QString m_proxyPassword;
     bool m_debugModeActivated;

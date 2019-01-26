@@ -20,8 +20,8 @@ using namespace ZenLib;
 #define QString2MI(_DATA) QString(_DATA).toStdWString()
 #define MI2QString(_DATA) QString::fromStdWString(_DATA)
 #else
-#define QString2MI(_DATA) QString(_DATA).toUtf8().data()
-#define MI2QString(_DATA) QString(_DATA.c_str())
+#define QString2MI(_DATA) QString{_DATA}.toUtf8().data()
+#define MI2QString(_DATA) QString((_DATA).c_str())
 #endif
 
 /**
@@ -48,8 +48,9 @@ QString StreamDetails::detailToString(VideoDetails details)
     case VideoDetails::DurationInSeconds: return "durationinseconds";
     case VideoDetails::ScanType: return "scantype";
     case VideoDetails::StereoMode: return "stereomode";
-    default: qWarning() << "Undefined video detail: no string representation"; return "undefined";
     }
+    qWarning() << "Undefined video detail: no string representation";
+    return "undefined";
 }
 
 QString StreamDetails::detailToString(AudioDetails details)
@@ -58,16 +59,18 @@ QString StreamDetails::detailToString(AudioDetails details)
     case StreamDetails::AudioDetails::Codec: return "codec";
     case StreamDetails::AudioDetails::Language: return "language";
     case StreamDetails::AudioDetails::Channels: return "channels";
-    default: qWarning() << "Undefined audio detail: no string representation"; return "undefined";
     }
+    qWarning() << "Undefined audio detail: no string representation";
+    return "undefined";
 }
 
 QString StreamDetails::detailToString(SubtitleDetails details)
 {
     switch (details) {
     case StreamDetails::SubtitleDetails::Language: return "language";
-    default: qWarning() << "Undefined subtitle detail: no string representation"; return "undefined";
     }
+    qWarning() << "Undefined subtitle detail: no string representation";
+    return "undefined";
 }
 
 /**

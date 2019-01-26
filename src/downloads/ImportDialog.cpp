@@ -617,7 +617,7 @@ void ImportDialog::onFileWatcherTimeout()
         return;
     }
 
-    ui->progressBar->setValue(qRound(static_cast<float>(destinationSize) * 100.0f / sourceSize));
+    ui->progressBar->setValue(qRound(static_cast<float>(destinationSize) * 100.0f / static_cast<float>(sourceSize)));
 }
 
 void ImportDialog::onMovingFilesFinished()

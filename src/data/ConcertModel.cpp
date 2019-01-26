@@ -196,7 +196,7 @@ QVector<Concert *> ConcertModel::concerts()
  * @brief Checks if there are new concerts (concerts where infoLoaded is false)
  * @return True if there are new concerts
  */
-int ConcertModel::countNewConcerts() const
+long ConcertModel::countNewConcerts() const
 {
     return std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert *concert) {
         return !concert->controller()->infoLoaded();

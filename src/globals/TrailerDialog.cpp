@@ -291,7 +291,7 @@ void TrailerDialog::cancelDownload()
 #endif
 }
 
-void TrailerDialog::downloadProgress(qint64 received, qint64 total)
+void TrailerDialog::downloadProgress(int received, int total)
 {
     ui->progressBar->setRange(0, total);
     ui->progressBar->setValue(received);
@@ -402,7 +402,7 @@ void TrailerDialog::onUpdateTime(qint64 currentTime)
 
     int position = 0;
     if (m_totalTime > 0) {
-        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0);
+        position = qRound((static_cast<float>(currentTime) / m_totalTime) * 100.0f);
     }
     ui->seekSlider->setValue(position);
 }
@@ -468,5 +468,5 @@ void TrailerDialog::onSliderPositionChanged()
     if (m_totalTime == 0) {
         return;
     }
-    m_mediaPlayer->setPosition(qRound(static_cast<float>(m_totalTime) * ui->seekSlider->value() / 100));
+    m_mediaPlayer->setPosition(qRound(static_cast<float>(m_totalTime) * ui->seekSlider->value() / 100.0f));
 }

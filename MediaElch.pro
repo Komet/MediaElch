@@ -38,7 +38,7 @@ win32 {
 
 # Enable (all/most) warnings but ignore them for quazip files.
 *-g++* {
-    WARNINGS += -Wall -Wextra
+    WARNINGS += -Wall -Wextra -pedantic
     WARNINGS += -Wunknown-pragmas -Wundef -Wold-style-cast -Wuseless-cast
     WARNINGS += -Wdisabled-optimization -Wstrict-overflow=4
     WARNINGS += -Winit-self -Wpointer-arith

@@ -125,23 +125,22 @@ public:
         }
         painter->setPen(color);
 
-        float scale = 0.7;
+        float scale = 0.7f;
         QRect firstRect = rect;
-        firstRect.setWidth(rect.width() * scale);
-        firstRect.setHeight(rect.height() * scale);
+        firstRect.setWidth(static_cast<int>(rect.width() * scale));
+        firstRect.setHeight(static_cast<int>(rect.height() * scale));
 
         QRect secondRect = rect;
         secondRect.setTop(rect.top() + (rect.width() - firstRect.width()));
         secondRect.setLeft(rect.left() + (rect.height() - firstRect.height()));
-        secondRect.setWidth(rect.width() * scale);
-        secondRect.setHeight(rect.height() * scale);
+        secondRect.setWidth(static_cast<int>(rect.width() * scale));
+        secondRect.setHeight(static_cast<int>(rect.height() * scale));
 
         int drawSize = qRound(firstRect.height() * options.value("scale-factor").toFloat());
 
         painter->setFont(awesome->font(drawSize));
         painter->drawText(firstRect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
         painter->drawText(secondRect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
-
 
         painter->restore();
     }

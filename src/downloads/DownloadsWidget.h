@@ -21,7 +21,7 @@ class DownloadsWidget : public QWidget
     {
         QString baseName;
         QStringList files;
-        qreal size;
+        int64_t size;
     };
 
     struct Import
@@ -29,7 +29,7 @@ class DownloadsWidget : public QWidget
         QString baseName;
         QStringList files;
         QStringList extraFiles;
-        qreal size;
+        int64_t size;
     };
 
 public:
