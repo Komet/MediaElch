@@ -157,11 +157,6 @@
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="119"/>
-        <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch ha sido creado con &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
-    </message>
-    <message>
         <location filename="../../src/main/AboutDialog.ui" line="132"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
         <translation>Conjuntos de Iconos: Retina por &quot;The Working Group&quot; y &quot;Capital Suite&quot; por &quot;capital18 (Jugal Paryani)&quot;</translation>
@@ -172,62 +167,67 @@
         <translation>Icono MediaElch por Kathrin Luckner</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="152"/>
-        <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Detección de los detalles del Stream con &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/main/AboutDialog.ui" line="162"/>
-        <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; potenciado por &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/main/AboutDialog.ui" line="172"/>
-        <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</source>
+        <location filename="../../src/main/AboutDialog.ui" line="119"/>
+        <source>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="196"/>
+        <location filename="../../src/main/AboutDialog.ui" line="152"/>
+        <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="162"/>
+        <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="172"/>
+        <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="199"/>
         <source>Developer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="202"/>
+        <location filename="../../src/main/AboutDialog.ui" line="205"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="230"/>
+        <location filename="../../src/main/AboutDialog.ui" line="233"/>
         <source>Your Collection</source>
         <translation>Tu colección</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="239"/>
+        <location filename="../../src/main/AboutDialog.ui" line="242"/>
         <source>Movies</source>
         <translation>Películas</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="272"/>
+        <location filename="../../src/main/AboutDialog.ui" line="275"/>
         <source>TV Shows</source>
         <translation>Series</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="305"/>
+        <location filename="../../src/main/AboutDialog.ui" line="308"/>
         <source>Episodes</source>
         <translation>Episodios</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="338"/>
+        <location filename="../../src/main/AboutDialog.ui" line="341"/>
         <source>Concerts</source>
         <translation>Conciertos</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="371"/>
+        <location filename="../../src/main/AboutDialog.ui" line="374"/>
         <source>Artists</source>
         <translation>Artistas</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="401"/>
+        <location filename="../../src/main/AboutDialog.ui" line="404"/>
         <source>Albums</source>
         <translation>Álbumes</translation>
     </message>
@@ -790,7 +790,7 @@
         <translation>Scraper de película personalizada</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/CustomMovieScraper.cpp" line="358"/>
+        <location filename="../../src/scrapers/CustomMovieScraper.cpp" line="362"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1202,101 +1202,6 @@
         <location filename="../../src/main/FileScannerDialog.ui" line="56"/>
         <source>TextLabel</source>
         <translation>EtiquetaTexto</translation>
-    </message>
-</context>
-<context>
-    <name>FilesWidget</name>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="144"/>
-        <source>New</source>
-        <translation>Nuevo</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="160"/>
-        <source>Name</source>
-        <translation>Nombre</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="176"/>
-        <source>Date Added</source>
-        <translation>Fecha agregada</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="192"/>
-        <source>Seen</source>
-        <translation>Ver</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="208"/>
-        <source>Year</source>
-        <translation>Año</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/movies/FilesWidget.cpp" line="32"/>
-        <location filename="../../src/movies/FilesWidget.cpp" line="554"/>
-        <source>%n movies</source>
-        <translation>
-            <numerusform>%n películas</numerusform>
-            <numerusform>%n películas</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="62"/>
-        <source>Media Status Columns</source>
-        <translation>Columnas de estado de medios</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="73"/>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="84"/>
-        <source>Load Information</source>
-        <translation>Cargar información</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="85"/>
-        <source>Mark as watched</source>
-        <translation>Marcar como visto</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="86"/>
-        <source>Mark as unwatched</source>
-        <translation>Marcar como no visto</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="87"/>
-        <source>Load Stream Details</source>
-        <translation>Cargar detalles del stream</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="88"/>
-        <source>Add to Synchronization Queue</source>
-        <translation>Agregar a la cola de sincronización</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="89"/>
-        <source>Remove from Synchronization Queue</source>
-        <translation>Eliminar de la cola de sincronización</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="90"/>
-        <source>Open Movie Folder</source>
-        <translation>Abrir carpeta de películas</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="91"/>
-        <source>Open NFO File</source>
-        <translation>Abrir archivo NFO</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/movies/FilesWidget.cpp" line="556"/>
-        <source>%1 of %n movies</source>
-        <translation>
-            <numerusform>%1 of %n películas</numerusform>
-            <numerusform>%1 of %n películas</numerusform>
-        </translation>
     </message>
 </context>
 <context>
@@ -2064,7 +1969,7 @@
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../../src/scrapers/HotMovies.cpp" line="56"/>
+        <location filename="../../src/scrapers/HotMovies.cpp" line="57"/>
         <source>English</source>
         <translation>Ingles</translation>
     </message>
@@ -2074,7 +1979,7 @@
     <message>
         <location filename="../../src/scrapers/IMDB.cpp" line="33"/>
         <source>Load all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar todos los tags</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/IMDB.cpp" line="89"/>
@@ -2428,14 +2333,6 @@ No se pudo detectar el tiempo de ejecución del archivo</translation>
     </message>
 </context>
 <context>
-    <name>KinoDe</name>
-    <message>
-        <location filename="../../src/scrapers/KinoDe.cpp" line="102"/>
-        <source>German</source>
-        <translation>Alemán</translation>
-    </message>
-</context>
-<context>
     <name>LoadingStreamDetails</name>
     <message>
         <location filename="../../src/ui/small_widgets/LoadingStreamDetails.ui" line="23"/>
@@ -2786,6 +2683,101 @@ Operación cancelada.</translation>
     </message>
 </context>
 <context>
+    <name>MovieFilesWidget</name>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="144"/>
+        <source>New</source>
+        <translation type="unfinished">Nuevo</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="160"/>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="176"/>
+        <source>Date Added</source>
+        <translation type="unfinished">Fecha agregada</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="192"/>
+        <source>Seen</source>
+        <translation type="unfinished">Ver</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="208"/>
+        <source>Year</source>
+        <translation type="unfinished">Año</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="32"/>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="554"/>
+        <source>%n movies</source>
+        <translation type="unfinished">
+            <numerusform>%n películas</numerusform>
+            <numerusform>%n películas</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="62"/>
+        <source>Media Status Columns</source>
+        <translation type="unfinished">Columnas de estado de medios</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="73"/>
+        <source>Label</source>
+        <translation type="unfinished">Etiqueta</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="84"/>
+        <source>Load Information</source>
+        <translation type="unfinished">Cargar información</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="85"/>
+        <source>Mark as watched</source>
+        <translation type="unfinished">Marcar como visto</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="86"/>
+        <source>Mark as unwatched</source>
+        <translation type="unfinished">Marcar como no visto</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="87"/>
+        <source>Load Stream Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="88"/>
+        <source>Add to Synchronization Queue</source>
+        <translation type="unfinished">Agregar a la cola de sincronización</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="89"/>
+        <source>Remove from Synchronization Queue</source>
+        <translation type="unfinished">Eliminar de la cola de sincronización</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="90"/>
+        <source>Open Movie Folder</source>
+        <translation type="unfinished">Abrir carpeta de películas</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="91"/>
+        <source>Open NFO File</source>
+        <translation type="unfinished">Abrir archivo NFO</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="556"/>
+        <source>%1 of %n movies</source>
+        <translation type="unfinished">
+            <numerusform>%1 of %n películas</numerusform>
+            <numerusform>%1 of %n películas</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>MovieListDialog</name>
     <message>
         <location filename="../../src/sets/MovieListDialog.ui" line="17"/>
@@ -3039,7 +3031,7 @@ Operación cancelada.</translation>
         <translation>Empezar scraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/movies/MovieMultiScrapeDialog.cpp" line="193"/>
+        <location filename="../../src/movies/MovieMultiScrapeDialog.cpp" line="197"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>Scraping de %n películas ha terminado.</numerusform>
@@ -4496,7 +4488,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>OFDb</name>
     <message>
-        <location filename="../../src/scrapers/OFDb.cpp" line="99"/>
+        <location filename="../../src/scrapers/OFDb.cpp" line="95"/>
         <source>German</source>
         <translation>Alemán</translation>
     </message>
@@ -4605,11 +4597,47 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
-    <name>QuaZipFilePrivate</name>
+    <name>QuaGzipFile</name>
     <message>
-        <location filename="../../quazip/quazip/quazipfile.cpp" line="217"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="60"/>
+        <source>QIODevice::Append is not supported for GZIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="66"/>
+        <source>Opening gzip for both reading and writing is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
+        <source>You can open a gzip either for reading or for writing. Which is it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
+        <source>Could not gzopen() file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZIODevice</name>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="147"/>
+        <source>QIODevice::Append is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="152"/>
+        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFile</name>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation>ZIP/UNZIP API error %1</translation>
+        <translation type="unfinished">ZIP/UNZIP API error %1</translation>
     </message>
 </context>
 <context>
@@ -4700,25 +4728,25 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n película(s) serán renombrados</numerusform>
+            <numerusform>%n película(s) serán renombrados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n serie(s) y %1</numerusform>
+            <numerusform>%n serie(s) y %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodio(s) serán renombrados</numerusform>
+            <numerusform>%n episodio(s) serán renombrados</numerusform>
         </translation>
     </message>
     <message>
@@ -5669,36 +5697,9 @@ Los directorios que contienen tu música deben contener subdirectorios para cada
         <translation>Si te gusta MediaElch y desea soportarlo Usted tiene la oportunidad de hacerlo! Usted puede donar tanto como quieras a través de PayPal.</translation>
     </message>
     <message>
-        <location filename="../../src/support/SupportDialog.ui" line="40"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;⏎
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;⏎
-p, li { white-space: pre-wrap; }⏎
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;⏎
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;⏎
-&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../../src/support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
         <translation>MediaElch hace uso de varias bases de datos de películas y series. Estas bases de datos también necesitan su ayuda para mantener sus servicios en marcha y funcionando de forma gratuita. Si no desea donar puede también aportar información y obras de arte desaparecidas, si es posible.</translation>
-    </message>
-    <message>
-        <location filename="../../src/support/SupportDialog.ui" line="84"/>
-        <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
-</source>
-        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/support/SupportDialog.ui" line="95"/>
-        <source>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/support/SupportDialog.ui" line="127"/>
@@ -5719,157 +5720,157 @@ p, li { white-space: pre-wrap; }⏎
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="173"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="170"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="174"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="171"/>
         <source>Bulgarian</source>
         <translation>Búlgaro</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="175"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="172"/>
         <source>Chinese (T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="176"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="173"/>
         <source>Chinese (S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="177"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="174"/>
         <source>Croatian</source>
         <translation>Croata</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="178"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="175"/>
         <source>Czech</source>
         <translation>Checo</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="179"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="176"/>
         <source>Danish</source>
         <translation>Danés</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="180"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="177"/>
         <source>Dutch</source>
         <translation>Holanda</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="181"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="178"/>
         <source>English</source>
         <translation>Ingles</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="182"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="179"/>
         <source>English (US)</source>
         <translation>Ingles (US)</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="183"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="180"/>
         <source>Finnish</source>
         <translation>Finlandes</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="184"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="181"/>
         <source>French</source>
         <translation>Francés</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="185"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="182"/>
         <source>French (Canada)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="186"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="183"/>
         <source>German</source>
         <translation>Alemán</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="187"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="184"/>
         <source>Greek</source>
         <translation>Griego</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="188"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="185"/>
         <source>Hebrew</source>
         <translation>Hebreo</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="189"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="186"/>
         <source>Hungarian</source>
         <translation>Húngaro</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="190"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="187"/>
         <source>Italian</source>
         <translation>Italiano</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="191"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="188"/>
         <source>Japanese</source>
         <translation>Japones</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="192"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="189"/>
         <source>Korean</source>
         <translation>Koreano</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="193"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="190"/>
         <source>Norwegian</source>
         <translation>Noruego</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="194"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="191"/>
         <source>Polish</source>
         <translation>Polaco</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="195"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="192"/>
         <source>Portuguese (Brazil)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="196"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="193"/>
         <source>Portuguese (Portugal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="197"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="194"/>
         <source>Russian</source>
         <translation>Ruso</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="198"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="195"/>
         <source>Slovene</source>
         <translation>Esloveno</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="199"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="196"/>
         <source>Spanish</source>
         <translation>Español</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="200"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="197"/>
         <source>Spanish (Mexico)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="201"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="198"/>
         <source>Swedish</source>
         <translation>Suizo</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="202"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="199"/>
         <source>Turkish</source>
         <translation>Turco</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="77"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="78"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -6238,48 +6239,48 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Volver a trailers</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="333"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="332"/>
         <source>Download Finished</source>
         <translation>Descarga completada</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="343"/>
         <source>The file %1 already exists.</source>
         <translation>El archivo %1 ya exite.</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="346"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="345"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>¿Quieres sobreescribir?</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="359"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="358"/>
         <source>Download Canceled</source>
         <translation>Descarga cancelada</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="363"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="362"/>
         <source>Download Not Found (404)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="367"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="366"/>
         <source>Download Error (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="414"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="413"/>
         <source>Network Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="415"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="414"/>
         <source>Resource could not be played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="416"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="415"/>
         <source>Video format error</source>
         <translation type="unfinished"></translation>
     </message>

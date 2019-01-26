@@ -157,11 +157,6 @@
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="119"/>
-        <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch 由 &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt; 开发</translation>
-    </message>
-    <message>
         <location filename="../../src/main/AboutDialog.ui" line="132"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
         <translation>图标： Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</translation>
@@ -172,62 +167,67 @@
         <translation>MediaElch 的图标由 Kathrin Luckner 制作</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="152"/>
-        <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>视频压制编码扫描使用 &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/main/AboutDialog.ui" line="162"/>
-        <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; 由 &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt; 提供技术支持</translation>
-    </message>
-    <message>
-        <location filename="../../src/main/AboutDialog.ui" line="172"/>
-        <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt;.</source>
+        <location filename="../../src/main/AboutDialog.ui" line="119"/>
+        <source>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="196"/>
+        <location filename="../../src/main/AboutDialog.ui" line="152"/>
+        <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="162"/>
+        <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="172"/>
+        <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/AboutDialog.ui" line="199"/>
         <source>Developer</source>
         <translation>开发人员</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="202"/>
+        <location filename="../../src/main/AboutDialog.ui" line="205"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
         <translation>下面的信息对开发人员很重要。如果需要帮助，请提供。</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="230"/>
+        <location filename="../../src/main/AboutDialog.ui" line="233"/>
         <source>Your Collection</source>
         <translation>您的收藏</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="239"/>
+        <location filename="../../src/main/AboutDialog.ui" line="242"/>
         <source>Movies</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="272"/>
+        <location filename="../../src/main/AboutDialog.ui" line="275"/>
         <source>TV Shows</source>
         <translation>电视剧</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="305"/>
+        <location filename="../../src/main/AboutDialog.ui" line="308"/>
         <source>Episodes</source>
         <translation>播出季</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="338"/>
+        <location filename="../../src/main/AboutDialog.ui" line="341"/>
         <source>Concerts</source>
         <translation>MTV</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="371"/>
+        <location filename="../../src/main/AboutDialog.ui" line="374"/>
         <source>Artists</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../../src/main/AboutDialog.ui" line="401"/>
+        <location filename="../../src/main/AboutDialog.ui" line="404"/>
         <source>Albums</source>
         <translation>专辑</translation>
     </message>
@@ -788,7 +788,7 @@
         <translation>自定义电影刮削器</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/CustomMovieScraper.cpp" line="358"/>
+        <location filename="../../src/scrapers/CustomMovieScraper.cpp" line="362"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -1199,100 +1199,6 @@
         <location filename="../../src/main/FileScannerDialog.ui" line="56"/>
         <source>TextLabel</source>
         <translation>文本标签</translation>
-    </message>
-</context>
-<context>
-    <name>FilesWidget</name>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="144"/>
-        <source>New</source>
-        <translation>新增</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="160"/>
-        <source>Name</source>
-        <translation>片名</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="176"/>
-        <source>Date Added</source>
-        <translation>添加日期</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="192"/>
-        <source>Seen</source>
-        <translation>已观看</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.ui" line="208"/>
-        <source>Year</source>
-        <translation>年份</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/movies/FilesWidget.cpp" line="32"/>
-        <location filename="../../src/movies/FilesWidget.cpp" line="554"/>
-        <source>%n movies</source>
-        <translation>
-            <numerusform>%n 电影</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="62"/>
-        <source>Media Status Columns</source>
-        <translation>是否已观看列</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="73"/>
-        <source>Label</source>
-        <translation>标签
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="84"/>
-        <source>Load Information</source>
-        <translation>加载资料</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="85"/>
-        <source>Mark as watched</source>
-        <translation>标记为已观看</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="86"/>
-        <source>Mark as unwatched</source>
-        <translation>标记为未观看</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="87"/>
-        <source>Load Stream Details</source>
-        <translation>加载视频压制编码信息</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="88"/>
-        <source>Add to Synchronization Queue</source>
-        <translation>添加到同步队列</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="89"/>
-        <source>Remove from Synchronization Queue</source>
-        <translation>从同步队列中删除</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="90"/>
-        <source>Open Movie Folder</source>
-        <translation>打开电影所在文件夹</translation>
-    </message>
-    <message>
-        <location filename="../../src/movies/FilesWidget.cpp" line="91"/>
-        <source>Open NFO File</source>
-        <translation>打开NFO文件</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/movies/FilesWidget.cpp" line="556"/>
-        <source>%1 of %n movies</source>
-        <translation>
-            <numerusform>%1 of %n 电影</numerusform>
-        </translation>
     </message>
 </context>
 <context>
@@ -2061,7 +1967,7 @@
 <context>
     <name>HotMovies</name>
     <message>
-        <location filename="../../src/scrapers/HotMovies.cpp" line="56"/>
+        <location filename="../../src/scrapers/HotMovies.cpp" line="57"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
@@ -2423,14 +2329,6 @@
     </message>
 </context>
 <context>
-    <name>KinoDe</name>
-    <message>
-        <location filename="../../src/scrapers/KinoDe.cpp" line="102"/>
-        <source>German</source>
-        <translation>德语</translation>
-    </message>
-</context>
-<context>
     <name>LoadingStreamDetails</name>
     <message>
         <location filename="../../src/ui/small_widgets/LoadingStreamDetails.ui" line="23"/>
@@ -2781,6 +2679,100 @@ Main menu entry (tooltip)</extracomment>
     </message>
 </context>
 <context>
+    <name>MovieFilesWidget</name>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="144"/>
+        <source>New</source>
+        <translation type="unfinished">新增</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="160"/>
+        <source>Name</source>
+        <translation type="unfinished">片名</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="176"/>
+        <source>Date Added</source>
+        <translation type="unfinished">添加日期</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="192"/>
+        <source>Seen</source>
+        <translation type="unfinished">已观看</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.ui" line="208"/>
+        <source>Year</source>
+        <translation type="unfinished">年份</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="32"/>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="554"/>
+        <source>%n movies</source>
+        <translation type="unfinished">
+            <numerusform>%n 电影</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="62"/>
+        <source>Media Status Columns</source>
+        <translation type="unfinished">是否已观看列</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="73"/>
+        <source>Label</source>
+        <translation type="unfinished">标签
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="84"/>
+        <source>Load Information</source>
+        <translation type="unfinished">加载资料</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="85"/>
+        <source>Mark as watched</source>
+        <translation type="unfinished">标记为已观看</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="86"/>
+        <source>Mark as unwatched</source>
+        <translation type="unfinished">标记为未观看</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="87"/>
+        <source>Load Stream Details</source>
+        <translation type="unfinished">加载视频压制编码信息</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="88"/>
+        <source>Add to Synchronization Queue</source>
+        <translation type="unfinished">添加到同步队列</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="89"/>
+        <source>Remove from Synchronization Queue</source>
+        <translation type="unfinished">从同步队列中删除</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="90"/>
+        <source>Open Movie Folder</source>
+        <translation type="unfinished">打开电影所在文件夹</translation>
+    </message>
+    <message>
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="91"/>
+        <source>Open NFO File</source>
+        <translation type="unfinished">打开NFO文件</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/movies/MovieFilesWidget.cpp" line="556"/>
+        <source>%1 of %n movies</source>
+        <translation type="unfinished">
+            <numerusform>%1 of %n 电影</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>MovieListDialog</name>
     <message>
         <location filename="../../src/sets/MovieListDialog.ui" line="17"/>
@@ -3034,7 +3026,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>开始刮削</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/movies/MovieMultiScrapeDialog.cpp" line="193"/>
+        <location filename="../../src/movies/MovieMultiScrapeDialog.cpp" line="197"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>%n 部电影已刮削完毕。</numerusform>
@@ -4490,7 +4482,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>OFDb</name>
     <message>
-        <location filename="../../src/scrapers/OFDb.cpp" line="99"/>
+        <location filename="../../src/scrapers/OFDb.cpp" line="95"/>
         <source>German</source>
         <translation>德语</translation>
     </message>
@@ -4599,11 +4591,47 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
-    <name>QuaZipFilePrivate</name>
+    <name>QuaGzipFile</name>
     <message>
-        <location filename="../../quazip/quazip/quazipfile.cpp" line="217"/>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="60"/>
+        <source>QIODevice::Append is not supported for GZIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="66"/>
+        <source>Opening gzip for both reading and writing is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
+        <source>You can open a gzip either for reading or for writing. Which is it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
+        <source>Could not gzopen() file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZIODevice</name>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="147"/>
+        <source>QIODevice::Append is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="152"/>
+        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFile</name>
+    <message>
+        <location filename="../../third_party/quazip/quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation>ZIP/UNZIP API 错误%1</translation>
+        <translation type="unfinished">ZIP/UNZIP API 错误%1</translation>
     </message>
 </context>
 <context>
@@ -4707,8 +4735,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 剧集(s)将被重命名</numerusform>
         </translation>
     </message>
     <message>
@@ -5658,30 +5686,9 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>如果您喜欢 MediaElch 并愿意资助我们，请通过 PayPal 进行捐赠。</translation>
     </message>
     <message>
-        <location filename="../../src/support/SupportDialog.ui" line="40"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
         <translation>MediaElch 的运行有赖于各种电影和电视剧资料库网站。这些网站也需要您的帮助以维持运行和提供免费服务。如果您不能资助，也可以为其提供信息和图片，以完善器资料库。</translation>
-    </message>
-    <message>
-        <location filename="../../src/support/SupportDialog.ui" line="84"/>
-        <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/support/SupportDialog.ui" line="95"/>
-        <source>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/support/SupportDialog.ui" line="127"/>
@@ -5702,157 +5709,157 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="173"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="170"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="174"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="171"/>
         <source>Bulgarian</source>
         <translation>保加利亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="175"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="172"/>
         <source>Chinese (T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="176"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="173"/>
         <source>Chinese (S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="177"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="174"/>
         <source>Croatian</source>
         <translation>克罗地亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="178"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="175"/>
         <source>Czech</source>
         <translation>捷克</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="179"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="176"/>
         <source>Danish</source>
         <translation>丹麦</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="180"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="177"/>
         <source>Dutch</source>
         <translation>荷兰</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="181"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="178"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="182"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="179"/>
         <source>English (US)</source>
         <translation>英语(US)</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="183"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="180"/>
         <source>Finnish</source>
         <translation>芬兰</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="184"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="181"/>
         <source>French</source>
         <translation>法语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="185"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="182"/>
         <source>French (Canada)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="186"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="183"/>
         <source>German</source>
         <translation>德语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="187"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="184"/>
         <source>Greek</source>
         <translation>希腊</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="188"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="185"/>
         <source>Hebrew</source>
         <translation>希伯来语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="189"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="186"/>
         <source>Hungarian</source>
         <translation>匈牙利</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="190"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="187"/>
         <source>Italian</source>
         <translation>意大利</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="191"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="188"/>
         <source>Japanese</source>
         <translation>日本</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="192"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="189"/>
         <source>Korean</source>
         <translation>韩国</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="193"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="190"/>
         <source>Norwegian</source>
         <translation>挪威语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="194"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="191"/>
         <source>Polish</source>
         <translation>波兰语</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="195"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="192"/>
         <source>Portuguese (Brazil)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="196"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="193"/>
         <source>Portuguese (Portugal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="197"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="194"/>
         <source>Russian</source>
         <translation>俄罗斯</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="198"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="195"/>
         <source>Slovene</source>
         <translation>斯洛文尼亚</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="199"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="196"/>
         <source>Spanish</source>
         <translation>西班牙</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="200"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="197"/>
         <source>Spanish (Mexico)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="201"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="198"/>
         <source>Swedish</source>
         <translation>瑞典</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="202"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="199"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
     <message>
-        <location filename="../../src/scrapers/TMDb.cpp" line="77"/>
+        <location filename="../../src/scrapers/TMDb.cpp" line="78"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -6221,50 +6228,50 @@ p, li { white-space: pre-wrap; }
         <translation>返回预告片</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="333"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="332"/>
         <source>Download Finished</source>
         <translation>下载完成</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="344"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="343"/>
         <source>The file %1 already exists.</source>
         <translation>文件％1已存在。</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="346"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="345"/>
         <source>Do you want to overwrite it?</source>
         <extracomment>&quot;it&quot; refers to the file</extracomment>
         <translation>您要覆盖吗？</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="359"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="358"/>
         <source>Download Canceled</source>
         <translation>下载已取消</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="363"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="362"/>
         <source>Download Not Found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>下载未找到 (404)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="367"/>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="366"/>
         <source>Download Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>下载错误 (%1)</translation>
+    </message>
+    <message>
+        <location filename="../../src/globals/TrailerDialog.cpp" line="413"/>
+        <source>Network Error</source>
+        <translation>网络错误</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="414"/>
-        <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <source>Resource could not be played</source>
+        <translation>资源无法播放</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="415"/>
-        <source>Resource could not be played</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/globals/TrailerDialog.cpp" line="416"/>
         <source>Video format error</source>
-        <translation type="unfinished"></translation>
+        <translation>视频格式错误</translation>
     </message>
 </context>
 <context>

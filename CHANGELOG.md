@@ -10,6 +10,10 @@ to reconfigure your scraper settings.
  - Fix TMDb issue with HTML characters in overview/plot (#651)
  - `Ctrl+A` works in movie and concert section (#647)
 
+### Improvements
+
+ - Update French translation (#646)
+
 ### Internal Improvements
 
  - Implement ScraperSettings class for better mocking
