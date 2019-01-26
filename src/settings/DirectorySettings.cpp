@@ -4,113 +4,51 @@
 
 void DirectorySettings::loadSettings()
 {
-    // Movie Directories
-    m_movieDirectories.clear();
-    int moviesSize = m_settings->beginReadArray("Directories/Movies");
-    for (int i = 0; i < moviesSize; ++i) {
-        m_settings->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
-        dir.separateFolders = m_settings->value("sepFolders", false).toBool();
-        dir.autoReload = m_settings->value("autoReload", false).toBool();
-        m_movieDirectories.append(dir);
-    }
-    m_settings->endArray();
+    const auto loadDirectory = [&](const char *settingsKey, QVector<SettingsDir> &directories) {
+        directories.clear();
+        const int size = m_settings->beginReadArray(settingsKey);
+        for (int i = 0; i < size; ++i) {
+            m_settings->setArrayIndex(i);
+            SettingsDir dir;
+            dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
+            dir.separateFolders = m_settings->value("sepFolders", false).toBool();
+            dir.autoReload = m_settings->value("autoReload", false).toBool();
+            directories.append(dir);
+        }
+        m_settings->endArray();
+    };
 
-    // TV Show Directories
-    m_tvShowDirectories.clear();
-    int tvShowSize = m_settings->beginReadArray("Directories/TvShows");
-    for (int i = 0; i < tvShowSize; ++i) {
-        m_settings->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
-        dir.separateFolders = m_settings->value("sepFolders", false).toBool();
-        dir.autoReload = m_settings->value("autoReload", false).toBool();
-        m_tvShowDirectories.append(dir);
-    }
-    m_settings->endArray();
-
-    // Concert Directories
-    m_concertDirectories.clear();
-    int concertsSize = m_settings->beginReadArray("Directories/Concerts");
-    for (int i = 0; i < concertsSize; ++i) {
-        m_settings->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
-        dir.separateFolders = m_settings->value("sepFolders", false).toBool();
-        dir.autoReload = m_settings->value("autoReload", false).toBool();
-        m_concertDirectories.append(dir);
-    }
-    m_settings->endArray();
-
-    m_downloadDirectories.clear();
-    int downloadsSize = m_settings->beginReadArray("Directories/Downloads");
-    for (int i = 0; i < downloadsSize; ++i) {
-        m_settings->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
-        dir.separateFolders = m_settings->value("sepFolders", false).toBool();
-        dir.autoReload = m_settings->value("autoReload", false).toBool();
-        m_downloadDirectories.append(dir);
-    }
-    m_settings->endArray();
-
-    m_musicDirectories.clear();
-    int musicSize = m_settings->beginReadArray("Directories/Music");
-    for (int i = 0; i < musicSize; ++i) {
-        m_settings->setArrayIndex(i);
-        SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings->value("path").toString());
-        dir.separateFolders = m_settings->value("sepFolders", false).toBool();
-        dir.autoReload = m_settings->value("autoReload", false).toBool();
-        m_musicDirectories.append(dir);
-    }
-    m_settings->endArray();
+    loadDirectory("Directories/Movies", m_movieDirectories);
+    loadDirectory("Directories/TvShows", m_tvShowDirectories);
+    loadDirectory("Directories/Concerts", m_concertDirectories);
+    loadDirectory("Directories/Downloads", m_downloadDirectories);
+    loadDirectory("Directories/Music", m_musicDirectories);
 }
 
 void DirectorySettings::saveSettings()
 {
-    m_settings->beginWriteArray("Directories/Movies");
-    for (int i = 0, n = m_movieDirectories.count(); i < n; ++i) {
-        m_settings->setArrayIndex(i);
-        m_settings->setValue("path", m_movieDirectories.at(i).path);
-        m_settings->setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
-        m_settings->setValue("autoReload", m_movieDirectories.at(i).autoReload);
-    }
-    m_settings->endArray();
+    const auto saveDirectory = [&](const char *settingsKey, QVector<SettingsDir> &directories) {
+        m_settings->beginWriteArray(settingsKey);
+        const int size = directories.count();
+        for (int i = 0; i < size; ++i) {
+            m_settings->setArrayIndex(i);
+            m_settings->setValue("path", directories.at(i).path);
+            m_settings->setValue("sepFolders", directories.at(i).separateFolders);
+            m_settings->setValue("autoReload", directories.at(i).autoReload);
+        }
+        m_settings->endArray();
+    };
+
+    saveDirectory("Directories/Movies", m_movieDirectories);
+    saveDirectory("Directories/Concerts", m_concertDirectories);
+    saveDirectory("Directories/Downloads", m_downloadDirectories);
+    saveDirectory("Directories/Music", m_musicDirectories);
 
     m_settings->beginWriteArray("Directories/TvShows");
     for (int i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
         m_settings->setArrayIndex(i);
         m_settings->setValue("path", m_tvShowDirectories.at(i).path);
         m_settings->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
-    }
-    m_settings->endArray();
-
-    m_settings->beginWriteArray("Directories/Concerts");
-    for (int i = 0, n = m_concertDirectories.count(); i < n; ++i) {
-        m_settings->setArrayIndex(i);
-        m_settings->setValue("path", m_concertDirectories.at(i).path);
-        m_settings->setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
-        m_settings->setValue("autoReload", m_concertDirectories.at(i).autoReload);
-    }
-    m_settings->endArray();
-
-    m_settings->beginWriteArray("Directories/Downloads");
-    for (int i = 0, n = m_downloadDirectories.count(); i < n; ++i) {
-        m_settings->setArrayIndex(i);
-        m_settings->setValue("path", m_downloadDirectories.at(i).path);
-        m_settings->setValue("sepFolders", m_downloadDirectories.at(i).separateFolders);
-        m_settings->setValue("autoReload", m_downloadDirectories.at(i).autoReload);
-    }
-    m_settings->endArray();
-
-    m_settings->beginWriteArray("Directories/Music");
-    for (int i = 0, n = m_musicDirectories.count(); i < n; ++i) {
-        m_settings->setArrayIndex(i);
-        m_settings->setValue("path", m_musicDirectories.at(i).path);
-        m_settings->setValue("sepFolders", m_musicDirectories.at(i).separateFolders);
-        m_settings->setValue("autoReload", m_musicDirectories.at(i).autoReload);
     }
     m_settings->endArray();
 }
