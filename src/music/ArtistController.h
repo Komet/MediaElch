@@ -1,5 +1,4 @@
-#ifndef ARTISTCONTROLLER_H
-#define ARTISTCONTROLLER_H
+#pragma once
 
 #include "globals/DownloadManagerElement.h"
 
@@ -58,5 +57,3 @@ private:
     int m_downloadsLeft;
     QList<MusicScraperInfos> m_infosToLoad;
 };
-
-#endif // ARTISTCONTROLLER_H

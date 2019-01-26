@@ -1,5 +1,4 @@
-#ifndef MYICONFONT_H
-#define MYICONFONT_H
+#pragma once
 
 /**
  * This is all taken from the nice QtAwesome class which can be found at
@@ -134,5 +133,3 @@ public:
         QIcon::State state,
         const QVariantMap &options) = 0;
 };
-
-#endif // MYICONFONT_H

@@ -1,5 +1,4 @@
-#ifndef IMPORTDIALOG_H
-#define IMPORTDIALOG_H
+#pragma once
 
 #include "data/Concert.h"
 #include "data/Movie.h"
@@ -75,5 +74,3 @@ private:
     void setDefaults(Renamer::RenameType renameType);
     void storeDefaults();
 };
-
-#endif // IMPORTDIALOG_H

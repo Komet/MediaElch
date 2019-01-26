@@ -1,5 +1,4 @@
-#ifndef CONCERTSEARCH_H
-#define CONCERTSEARCH_H
+#pragma once
 
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
@@ -31,5 +30,3 @@ public slots:
 private:
     Ui::ConcertSearch *ui;
 };
-
-#endif // CONCERTSEARCH_H

@@ -1,5 +1,4 @@
-#ifndef TRAILERPROVIDER_H
-#define TRAILERPROVIDER_H
+#pragma once
 
 #include <QObject>
 
@@ -21,5 +20,3 @@ signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigLoadDone(QList<TrailerResult>) = 0;
 };
-
-#endif // TRAILERPROVIDER_H

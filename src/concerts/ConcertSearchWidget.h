@@ -1,5 +1,4 @@
-#ifndef CONCERTSEARCHWIDGET_H
-#define CONCERTSEARCHWIDGET_H
+#pragma once
 
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
@@ -44,5 +43,3 @@ private:
     void clear();
     void setCheckBoxesEnabled(QList<ConcertScraperInfos> scraperSupports);
 };
-
-#endif // CONCERTSEARCHWIDGET_H

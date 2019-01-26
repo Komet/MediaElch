@@ -1,5 +1,4 @@
-#ifndef BADGE_H
-#define BADGE_H
+#pragma once
 
 #include <QLabel>
 #include <QMouseEvent>
@@ -50,5 +49,3 @@ private:
     bool m_showActiveMark = true;
     void applyStyleSheet();
 };
-
-#endif // BADGE_H

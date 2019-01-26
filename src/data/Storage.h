@@ -1,5 +1,4 @@
-#ifndef STORAGE_H
-#define STORAGE_H
+#pragma once
 
 #include "data/Concert.h"
 #include "data/Movie.h"
@@ -87,5 +86,3 @@ private:
 };
 
 Q_DECLARE_METATYPE(Storage *)
-
-#endif // STORAGE_H

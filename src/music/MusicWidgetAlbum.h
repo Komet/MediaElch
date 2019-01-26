@@ -1,5 +1,4 @@
-#ifndef MUSICWIDGETALBUM_H
-#define MUSICWIDGETALBUM_H
+#pragma once
 
 #include "image/ImageWidget.h"
 #include "music/Album.h"
@@ -66,5 +65,3 @@ private:
     void setContent(QLineEdit *widget, const QString &content);
     void updateImage(ImageType imageType, ClosableImage *image);
 };
-
-#endif // MUSICWIDGETALBUM_H

@@ -1,5 +1,4 @@
-#ifndef IMAGEDIALOG_H
-#define IMAGEDIALOG_H
+#pragma once
 
 #include "data/EpisodeNumber.h"
 #include "data/SeasonNumber.h"
@@ -129,5 +128,3 @@ private:
     void clearSearch();
     QString formatSearchText(const QString &text);
 };
-
-#endif // IMAGEDIALOG_H

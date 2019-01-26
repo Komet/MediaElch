@@ -1,5 +1,4 @@
-#ifndef CERTIFICATIONWIDGET_H
-#define CERTIFICATIONWIDGET_H
+#pragma once
 
 #include "data/Certification.h"
 #include "globals/Globals.h"
@@ -52,5 +51,3 @@ private:
 
     void clear();
 };
-
-#endif // CERTIFICATIONWIDGET_H

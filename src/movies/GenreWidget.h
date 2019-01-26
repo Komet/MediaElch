@@ -1,5 +1,4 @@
-#ifndef GENREWIDGET_H
-#define GENREWIDGET_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -51,5 +50,3 @@ private:
 
     void clear();
 };
-
-#endif // GENREWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef TMDBID_H
-#define TMDBID_H
+#pragma once
 
 #include <QDebug>
 #include <QString>
@@ -27,5 +26,3 @@ private:
 
 std::ostream &operator<<(std::ostream &os, const TmdbId &value);
 QDebug operator<<(QDebug debug, const TmdbId &id);
-
-#endif // TMDBID_H

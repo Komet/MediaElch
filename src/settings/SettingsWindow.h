@@ -1,5 +1,4 @@
-#ifndef SETTINGSWINDOW_H
-#define SETTINGSWINDOW_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -71,5 +70,3 @@ private:
     QComboBox *comboForTvScraperInfo(TvShowScraperInfos info);
     QString titleForTvScraperInfo(TvShowScraperInfos info);
 };
-
-#endif // SETTINGSWINDOW_H

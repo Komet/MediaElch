@@ -1,5 +1,4 @@
-#ifndef DATA_MOVIEIMAGES_H
-#define DATA_MOVIEIMAGES_H
+#pragma once
 
 #include <QByteArray>
 #include <QList>
@@ -72,5 +71,3 @@ private:
 
     Movie &m_movie;
 };
-
-#endif // DATA_MOVIEIMAGES_H

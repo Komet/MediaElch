@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QLabel>
 #include <QMainWindow>
@@ -92,5 +91,3 @@ private:
     void setupToolbar();
     void setIcons(QToolButton *button);
 };
-
-#endif // MAINWINDOW_H

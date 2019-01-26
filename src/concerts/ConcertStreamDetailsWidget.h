@@ -1,5 +1,4 @@
-#ifndef CONCERT_STREAMDETAILS_WIDGET_H
-#define CONCERT_STREAMDETAILS_WIDGET_H
+#pragma once
 
 #include "concerts/ConcertController.h"
 
@@ -44,5 +43,3 @@ private:
     QList<QList<QLineEdit *>> m_streamDetailsAudio;
     QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
 };
-
-#endif // CONCERT_STREAMDETAILS_WIDGET_H

@@ -1,5 +1,4 @@
-#ifndef DOWNLOADSWIDGET_H
-#define DOWNLOADSWIDGET_H
+#pragma once
 
 #include "downloads/Extractor.h"
 #include "downloads/MakeMkvDialog.h"
@@ -71,5 +70,3 @@ private:
     QMutex m_mutex;
     MakeMkvDialog *m_makeMkvDialog;
 };
-
-#endif // DOWNLOADSWIDGET_H

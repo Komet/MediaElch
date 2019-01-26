@@ -1,5 +1,4 @@
-#ifndef UPDATE_H
-#define UPDATE_H
+#pragma once
 
 #include <QNetworkAccessManager>
 #include <QObject>
@@ -21,5 +20,3 @@ private:
     QNetworkAccessManager m_qnam;
     bool checkIfNewVersion(QString msg, QString &version);
 };
-
-#endif // UPDATE_H

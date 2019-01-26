@@ -1,5 +1,4 @@
-#ifndef TEST_DEBUG_OUTPUT
-#define TEST_DEBUG_OUTPUT
+#pragma once
 
 #include <QString>
 #include <QUrl>
@@ -24,5 +23,3 @@ inline std::ostream &operator<<(std::ostream &os, const QUrl &value)
 {
     return os << value.toDisplayString();
 }
-
-#endif // TEST_DEBUG_OUTPUT

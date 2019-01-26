@@ -1,5 +1,4 @@
-#ifndef HELPER_H
-#define HELPER_H
+#pragma once
 
 #include "data/Certification.h"
 #include "globals/Globals.h"
@@ -66,5 +65,3 @@ public:
     virtual QImage getImage(QString path);
     virtual QString secondsToTimeCode(quint32 duration);
 };
-
-#endif // HELPER_H

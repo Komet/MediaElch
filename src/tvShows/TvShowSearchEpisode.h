@@ -1,5 +1,4 @@
-#ifndef TVSHOWSEARCHEPISODE_H
-#define TVSHOWSEARCHEPISODE_H
+#pragma once
 
 #include "data/TvDbId.h"
 #include "globals/Globals.h"
@@ -40,5 +39,3 @@ private:
     TvDbId m_scraperId;
     QList<TvShowScraperInfos> m_infosToLoad;
 };
-
-#endif // TVSHOWSEARCHEPISODE_H

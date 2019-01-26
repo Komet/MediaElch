@@ -1,5 +1,4 @@
-#ifndef MOVIEPROXYMODEL_H
-#define MOVIEPROXYMODEL_H
+#pragma once
 
 #include "globals/Filter.h"
 
@@ -29,5 +28,3 @@ private:
     SortBy m_sortBy;
     bool m_filterDuplicates;
 };
-
-#endif // MOVIEPROXYMODEL_H

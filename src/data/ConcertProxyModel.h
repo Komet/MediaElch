@@ -1,13 +1,9 @@
-#ifndef CONCERTPROXYMODEL_H
-#define CONCERTPROXYMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
 class Filter;
 
-/**
- * @brief The ConcertProxyModel class
- */
 class ConcertProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -23,5 +19,3 @@ private:
     QList<Filter *> m_filters;
     QString m_filterText;
 };
-
-#endif // CONCERTPROXYMODEL_H

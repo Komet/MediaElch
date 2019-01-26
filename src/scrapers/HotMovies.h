@@ -1,5 +1,4 @@
-#ifndef HOTMOVIES_H
-#define HOTMOVIES_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 
@@ -43,5 +42,3 @@ private:
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
 };
-
-#endif // HOTMOVIES_H

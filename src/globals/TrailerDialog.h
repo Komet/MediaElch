@@ -1,5 +1,4 @@
-#ifndef TRAILERDIALOG_H
-#define TRAILERDIALOG_H
+#pragma once
 
 #include "data/Movie.h"
 #include "globals/Globals.h"
@@ -68,5 +67,3 @@ private:
     qint64 m_totalTime;
     void clear();
 };
-
-#endif // TRAILERDIALOG_H

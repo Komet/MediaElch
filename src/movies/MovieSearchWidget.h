@@ -1,5 +1,4 @@
-#ifndef MOVIESEARCHWIDGET_H
-#define MOVIESEARCHWIDGET_H
+#pragma once
 
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
@@ -66,5 +65,3 @@ private:
     void initializeCheckBoxes();
     int currentScraperIndex();
 };
-
-#endif // MOVIESEARCHWIDGET_H

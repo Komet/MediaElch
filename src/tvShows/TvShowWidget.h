@@ -1,5 +1,4 @@
-#ifndef TVSHOWWIDGET_H
-#define TVSHOWWIDGET_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
@@ -48,5 +47,3 @@ signals:
 private:
     Ui::TvShowWidget *ui;
 };
-
-#endif // TVSHOWWIDGET_H

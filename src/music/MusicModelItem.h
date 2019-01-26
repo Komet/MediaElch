@@ -1,5 +1,4 @@
-#ifndef MUSICMODELITEM_H
-#define MUSICMODELITEM_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -43,5 +42,3 @@ private:
     Artist *m_artist;
     Album *m_album;
 };
-
-#endif // MUSICMODELITEM_H

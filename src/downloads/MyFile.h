@@ -1,6 +1,4 @@
-#ifndef MYFILE_H
-#define MYFILE_H
-
+#pragma once
 #include <QFile>
 
 class MyFile : public QFile
@@ -10,5 +8,3 @@ public:
     explicit MyFile(const QString &name);
     bool copy(const QString &newName);
 };
-
-#endif // MYFILE_H

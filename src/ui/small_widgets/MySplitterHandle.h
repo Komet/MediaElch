@@ -1,5 +1,4 @@
-#ifndef MYSPLITTERHANDLE_H
-#define MYSPLITTERHANDLE_H
+#pragma once
 
 #include <QPaintEvent>
 #include <QResizeEvent>
@@ -17,5 +16,3 @@ protected:
 private:
     QSize sizeHint() const override;
 };
-
-#endif // MYSPLITTERHANDLE_H

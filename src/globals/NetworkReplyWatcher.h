@@ -1,5 +1,4 @@
-#ifndef NETWORKREPLYWATCHER_H
-#define NETWORKREPLYWATCHER_H
+#pragma once
 
 #include <QNetworkReply>
 #include <QObject>
@@ -21,5 +20,3 @@ private:
     QNetworkReply *m_reply;
     QTimer m_timer;
 };
-
-#endif // NETWORKREPLYWATCHER_H

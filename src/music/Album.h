@@ -1,5 +1,4 @@
-#ifndef ALBUM_H
-#define ALBUM_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "image/ImageModel.h"
@@ -145,5 +144,3 @@ private:
     ImageModel *m_bookletModel;
     ImageProxyModel *m_bookletProxyModel;
 };
-
-#endif // ALBUM_H

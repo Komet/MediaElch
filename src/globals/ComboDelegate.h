@@ -1,5 +1,4 @@
-#ifndef COMBODELEGATE_H
-#define COMBODELEGATE_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -27,5 +26,3 @@ private:
     MainWidgets m_widget;
     ComboDelegateType m_type;
 };
-
-#endif // COMBODELEGATE_H

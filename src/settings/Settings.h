@@ -1,5 +1,4 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "renamer/RenamerDialog.h"
@@ -248,5 +247,3 @@ private:
     void setupProxy();
     QPoint fixWindowPosition(QPoint p);
 };
-
-#endif // SETTINGS_H

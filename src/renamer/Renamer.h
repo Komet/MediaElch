@@ -1,5 +1,4 @@
-#ifndef RENAMER_H
-#define RENAMER_H
+#pragma once
 
 #include <QList>
 #include <QString>
@@ -22,25 +21,25 @@ struct RenamerConfig
 class Renamer
 {
 public:
-    enum class RenameType
+    enum class RenameType : int8_t
     {
         Movies,
         TvShows,
         Concerts,
         All
     };
-    enum class RenameResult
+    enum class RenameResult : int8_t
     {
         Failed,
         Success
     };
-    enum class RenameOperation
+    enum class RenameOperation : int8_t
     {
         CreateDir,
         Move,
         Rename
     };
-    enum class RenameError
+    enum class RenameError : int8_t
     {
         None, // Todo: Be more specific about what error occurred
         Error
@@ -61,5 +60,3 @@ protected:
     RenamerDialog *m_dialog;
     QStringList m_extraFiles;
 };
-
-#endif // RENAMER_H

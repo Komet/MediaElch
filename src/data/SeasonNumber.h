@@ -1,5 +1,4 @@
-#ifndef DATA_SEASON_NUMBER
-#define DATA_SEASON_NUMBER
+#pragma once
 
 #include <QString>
 
@@ -24,5 +23,3 @@ public:
 private:
     int m_seasonNumber = -1; // No season
 };
-
-#endif // DATA_SEASON_NUMBER

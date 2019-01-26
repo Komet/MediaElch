@@ -1,5 +1,4 @@
-#ifndef MOVIECONTROLLER_H
-#define MOVIECONTROLLER_H
+#pragma once
 
 #include "globals/DownloadManagerElement.h"
 
@@ -73,5 +72,3 @@ private:
     bool m_forceFanartCdArt;
     bool m_forceFanartLogo;
 };
-
-#endif // MOVIECONTROLLER_H

@@ -1,5 +1,4 @@
-#ifndef DATA_RATING_H
-#define DATA_RATING_H
+#pragma once
 
 class Rating
 {
@@ -12,5 +11,3 @@ public:
     double minRating{0.0};
     int imdbTop250{0};
 };
-
-#endif // DATA_RATING_H

@@ -1,5 +1,4 @@
-#ifndef KODI_ARTIST_XML_WRITER
-#define KODI_ARTIST_XML_WRITER
+#pragma once
 
 #include <QByteArray>
 #include <QDomElement>
@@ -20,5 +19,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_ARTIST_XML_WRITER

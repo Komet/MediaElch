@@ -1,5 +1,4 @@
-#ifndef KODI_ARTIST_XML_READER
-#define KODI_ARTIST_XML_READER
+#pragma once
 
 #include <QDomElement>
 
@@ -18,5 +17,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_ARTIST_XML_READER

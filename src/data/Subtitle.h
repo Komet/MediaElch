@@ -1,5 +1,4 @@
-#ifndef SUBTITLE_H
-#define SUBTITLE_H
+#pragma once
 
 #include <QObject>
 #include <QStringList>
@@ -16,6 +15,7 @@ public:
     QStringList files() const;
     void setFiles(const QStringList &files, bool emitChanged = true);
 
+    /// Whether subtitles are focred, i.e. "burned" into the image.
     bool forced() const;
     void setForced(bool forced);
 
@@ -31,5 +31,3 @@ private:
     bool m_forced;
     bool m_changed;
 };
-
-#endif // SUBTITLE_H

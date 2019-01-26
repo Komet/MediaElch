@@ -1,5 +1,4 @@
-#ifndef EXTRACTOR_H
-#define EXTRACTOR_H
+#pragma once
 
 #include <QObject>
 #include <QProcess>
@@ -30,5 +29,3 @@ private slots:
 private:
     QList<QProcess *> m_processes;
 };
-
-#endif // EXTRACTOR_H

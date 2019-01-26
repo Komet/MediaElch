@@ -1,5 +1,4 @@
-#ifndef CUSTOMMOVIESCRAPER_H
-#define CUSTOMMOVIESCRAPER_H
+#pragma once
 
 #include "data/ImageProviderInterface.h"
 #include "data/MovieScraperInterface.h"
@@ -56,5 +55,3 @@ private:
         QString imdbId);
     QNetworkAccessManager *qnam();
 };
-
-#endif // CUSTOMMOVIESCRAPER_H

@@ -1,5 +1,4 @@
-#ifndef MUSICSEARCH_H
-#define MUSICSEARCH_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 #include "globals/Globals.h"
@@ -30,5 +29,3 @@ public slots:
 private:
     Ui::MusicSearch *ui;
 };
-
-#endif // MUSICSEARCH_H

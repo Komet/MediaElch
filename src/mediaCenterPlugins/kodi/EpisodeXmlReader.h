@@ -1,5 +1,4 @@
-#ifndef KODI_EPISODEXMLREADER_H
-#define KODI_EPISODEXMLREADER_H
+#pragma once
 
 #include <QDomElement>
 #include <QString>
@@ -19,5 +18,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_EPISODEXMLREADER_H

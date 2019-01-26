@@ -1,5 +1,4 @@
-#ifndef CONCERT_H
-#define CONCERT_H
+#pragma once
 
 #include "concerts/ConcertController.h"
 #include "data/Certification.h"
@@ -24,26 +23,9 @@ class StreamDetails;
  * @brief The Concert class
  * This class represents a single concert
  */
-class Concert : public QObject
+class Concert final : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString artist READ artist WRITE setArtist)
-    Q_PROPERTY(QString album READ album WRITE setAlbum)
-    Q_PROPERTY(qreal rating READ rating WRITE setRating)
-    Q_PROPERTY(QDate released READ released WRITE setReleased)
-    Q_PROPERTY(QString overview READ overview WRITE setOverview)
-    Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
-    Q_PROPERTY(std::chrono::minutes runtime READ runtime WRITE setRuntime)
-    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
-    Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
-    Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
-    Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
-    Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
-    Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
-    Q_PROPERTY(bool watched READ watched WRITE setWatched)
-    Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
-    Q_PROPERTY(TmdbId tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Concert(QStringList files, QObject *parent = nullptr);
@@ -54,38 +36,38 @@ public:
     void clear();
     void clear(QList<ConcertScraperInfos> infos);
 
-    virtual QString name() const;
-    virtual QString artist() const;
-    virtual QString album() const;
-    virtual QString overview() const;
-    virtual qreal rating() const;
-    virtual QDate released() const;
-    virtual QString tagline() const;
-    virtual std::chrono::minutes runtime() const;
-    virtual Certification certification() const;
-    virtual QStringList genres() const;
-    virtual QStringList tags() const;
-    virtual QList<QString *> genresPointer();
-    virtual QUrl trailer() const;
-    virtual QStringList files() const;
-    virtual QString folderName() const;
-    virtual int playcount() const;
-    virtual QDateTime lastPlayed() const;
-    virtual QList<Poster> posters() const;
-    virtual QList<Poster> backdrops() const;
-    virtual bool watched() const;
-    virtual int concertId() const;
-    virtual bool downloadsInProgress() const;
-    virtual int downloadsSize() const;
-    virtual bool inSeparateFolder() const;
-    virtual int mediaCenterId() const;
-    virtual TmdbId tmdbId() const;
-    virtual ImdbId imdbId() const;
-    virtual StreamDetails *streamDetails() const;
-    virtual bool streamDetailsLoaded() const;
-    virtual QString nfoContent() const;
-    virtual int databaseId() const;
-    virtual bool syncNeeded() const;
+    QString name() const;
+    QString artist() const;
+    QString album() const;
+    QString overview() const;
+    qreal rating() const;
+    QDate released() const;
+    QString tagline() const;
+    std::chrono::minutes runtime() const;
+    Certification certification() const;
+    QStringList genres() const;
+    QStringList tags() const;
+    QList<QString *> genresPointer();
+    QUrl trailer() const;
+    QStringList files() const;
+    QString folderName() const;
+    int playcount() const;
+    QDateTime lastPlayed() const;
+    QList<Poster> posters() const;
+    QList<Poster> backdrops() const;
+    bool watched() const;
+    int concertId() const;
+    bool downloadsInProgress() const;
+    int downloadsSize() const;
+    bool inSeparateFolder() const;
+    int mediaCenterId() const;
+    TmdbId tmdbId() const;
+    ImdbId imdbId() const;
+    StreamDetails *streamDetails() const;
+    bool streamDetailsLoaded() const;
+    QString nfoContent() const;
+    int databaseId() const;
+    bool syncNeeded() const;
 
     bool hasChanged() const;
 
@@ -208,5 +190,3 @@ private:
     QList<ImageType> m_imagesToRemove;
     QMap<ImageType, bool> m_hasImage;
 };
-
-#endif // CONCERT_H

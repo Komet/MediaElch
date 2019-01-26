@@ -1,5 +1,4 @@
-#ifndef MOVIE_H
-#define MOVIE_H
+#pragma once
 
 #include "data/Certification.h"
 #include "data/ImdbId.h"
@@ -214,5 +213,3 @@ Q_DECLARE_METATYPE(Movie *)
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
 QDebug operator<<(QDebug dbg, const Movie *movie);
-
-#endif // MOVIE_H

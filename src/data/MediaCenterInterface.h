@@ -1,5 +1,4 @@
-#ifndef MEDIACENTERINTERFACE_H
-#define MEDIACENTERINTERFACE_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
@@ -69,5 +68,3 @@ public:
 
     virtual void loadBooklets(Album *album) = 0;
 };
-
-#endif // MEDIACENTERINTERFACE_H

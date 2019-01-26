@@ -1,5 +1,4 @@
-#ifndef MUSICWIDGET_H
-#define MUSICWIDGET_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -43,5 +42,3 @@ signals:
 private:
     Ui::MusicWidget *ui;
 };
-
-#endif // MUSICWIDGET_H

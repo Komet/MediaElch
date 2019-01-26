@@ -1,5 +1,4 @@
-#ifndef IMAGECACHE_H
-#define IMAGECACHE_H
+#pragma once
 
 #include <QHash>
 #include <QImage>
@@ -25,5 +24,3 @@ private:
     int getLastModified(const QString &fileName);
     bool m_forceCache;
 };
-
-#endif // IMAGECACHE_H

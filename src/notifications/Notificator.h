@@ -1,5 +1,4 @@
-#ifndef NOTIFICATOR_H
-#define NOTIFICATOR_H
+#pragma once
 
 #include <QObject>
 #include <QStatusBar>
@@ -37,5 +36,3 @@ private:
     void notifySystray(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout);
     void notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon);
 };
-
-#endif // NOTIFICATOR_H

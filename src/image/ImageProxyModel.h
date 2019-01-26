@@ -1,5 +1,4 @@
-#ifndef IMAGEPROXYMODEL_H
-#define IMAGEPROXYMODEL_H
+#pragma once
 
 #include <QObject>
 #include <QSortFilterProxyModel>
@@ -11,5 +10,3 @@ public:
     explicit ImageProxyModel(QObject *parent = nullptr);
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 };
-
-#endif // IMAGEPROXYMODEL_H

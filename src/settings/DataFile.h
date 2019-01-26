@@ -1,5 +1,4 @@
-#ifndef DATAFILE_H
-#define DATAFILE_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
@@ -27,5 +26,3 @@ private:
     int m_pos;
     DataFileType m_type;
 };
-
-#endif // DATAFILE_H

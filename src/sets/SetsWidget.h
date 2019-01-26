@@ -1,5 +1,4 @@
-#ifndef SETSWIDGET_H
-#define SETSWIDGET_H
+#pragma once
 
 #include <QImage>
 #include <QMap>
@@ -70,5 +69,3 @@ private:
 
     void loadSet(QString set);
 };
-
-#endif // SETSWIDGET_H

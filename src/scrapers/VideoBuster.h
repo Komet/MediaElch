@@ -1,5 +1,4 @@
-#ifndef VIDEOBUSTER_H
-#define VIDEOBUSTER_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 
@@ -47,5 +46,3 @@ private:
     void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
     QString replaceEntities(const QString msg);
 };
-
-#endif // VIDEOBUSTER_H

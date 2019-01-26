@@ -1,5 +1,4 @@
-#ifndef TEST_QT_CATCH_HELPER
-#define TEST_QT_CATCH_HELPER
+#pragma once
 
 #define CATCH_CONFIG_ENABLE_CHRONO_STRINGMAKER
 
@@ -51,5 +50,3 @@ void loadDataSync(ScraperInterfaceT &scraper,
     scraper.loadData(ids, &movie, infos);
     loop.exec();
 }
-
-#endif // TEST_QT_CATCH_HELPER

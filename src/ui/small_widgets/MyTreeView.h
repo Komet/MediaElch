@@ -1,5 +1,4 @@
-#ifndef MYTREEVIEW_H
-#define MYTREEVIEW_H
+#pragma once
 
 #include <QTreeView>
 
@@ -18,5 +17,3 @@ public:
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
 };
-
-#endif // MYTREEVIEW_H

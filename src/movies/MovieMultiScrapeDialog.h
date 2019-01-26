@@ -1,5 +1,4 @@
-#ifndef MOVIEMULTISCRAPEDIALOG_H
-#define MOVIEMULTISCRAPEDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QPointer>
@@ -51,5 +50,3 @@ private:
     void loadMovieData(Movie *movie, TmdbId id);
     bool isExecuted();
 };
-
-#endif // MOVIEMULTISCRAPEDIALOG_H

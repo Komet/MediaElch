@@ -1,5 +1,4 @@
-#ifndef MOVIE_RENAMER_H
-#define MOVIE_RENAMER_H
+#pragma once
 
 #include "renamer/Renamer.h"
 
@@ -12,5 +11,3 @@ public:
     MovieRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog);
     RenameError renameMovie(Movie &movie);
 };
-
-#endif // MOVIE_RENAMER_H

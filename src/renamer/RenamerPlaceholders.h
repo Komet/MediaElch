@@ -1,5 +1,4 @@
-#ifndef RENAMERPLACEHOLDERS_H
-#define RENAMERPLACEHOLDERS_H
+#pragma once
 
 #include "renamer/RenamerDialog.h"
 
@@ -21,5 +20,3 @@ public:
 private:
     Ui::RenamerPlaceholders *ui;
 };
-
-#endif // RENAMERPLACEHOLDERS_H

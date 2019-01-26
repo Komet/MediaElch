@@ -1,5 +1,4 @@
-#ifndef MUSICPROXYMODEL_H
-#define MUSICPROXYMODEL_H
+#pragma once
 
 #include "globals/Filter.h"
 
@@ -27,5 +26,3 @@ private:
 
     bool hasAcceptedChildren(int sourceRow, const QModelIndex &sourceParent) const;
 };
-
-#endif // MUSICPROXYMODEL_H

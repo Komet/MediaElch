@@ -1,5 +1,4 @@
-#ifndef MOVIEDUPLICATEITEM_H
-#define MOVIEDUPLICATEITEM_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -24,5 +23,3 @@ public:
 private:
     Ui::MovieDuplicateItem *ui;
 };
-
-#endif // MOVIEDUPLICATEITEM_H

@@ -1,5 +1,4 @@
-#ifndef XBMCXML_H
-#define XBMCXML_H
+#pragma once
 
 #include "data/Concert.h"
 #include "data/MediaCenterInterface.h"
@@ -115,5 +114,3 @@ private:
     QString getPath(const Concert *concert);
     QString movieSetFileName(QString setName, DataFile *dataFile);
 };
-
-#endif // XBMCXML_H

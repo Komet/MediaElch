@@ -1,5 +1,4 @@
-#ifndef MOVIELISTDIALOG_H
-#define MOVIELISTDIALOG_H
+#pragma once
 
 #include "data/Movie.h"
 
@@ -38,5 +37,3 @@ private:
     QList<Movie *> m_selectedMovies;
     void reposition();
 };
-
-#endif // MOVIELISTDIALOG_H

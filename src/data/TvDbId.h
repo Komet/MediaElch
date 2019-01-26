@@ -1,5 +1,4 @@
-#ifndef DATA_TVDBID_H
-#define DATA_TVDBID_H
+#pragma once
 
 #include <QString>
 
@@ -22,5 +21,3 @@ public:
 private:
     QString m_tvdbId;
 };
-
-#endif // DATA_TVDBID_H

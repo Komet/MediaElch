@@ -1,5 +1,4 @@
-#ifndef EXPORTTEMPLATE_H
-#define EXPORTTEMPLATE_H
+#pragma once
 
 #include <QList>
 #include <QObject>
@@ -68,5 +67,3 @@ private:
 
 QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate);
 QDebug operator<<(QDebug dbg, const ExportTemplate *exportTemplate);
-
-#endif // EXPORTTEMPLATE_H

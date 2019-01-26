@@ -1,5 +1,4 @@
-#ifndef MOVIEMODEL_H
-#define MOVIEMODEL_H
+#pragma once
 
 #include "data/Movie.h"
 
@@ -48,5 +47,3 @@ private:
     QIcon m_newIcon;
     QIcon m_syncIcon;
 };
-
-#endif // MOVIEMODEL_H

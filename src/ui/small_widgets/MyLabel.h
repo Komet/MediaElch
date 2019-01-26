@@ -1,5 +1,4 @@
-#ifndef MYLABEL_H
-#define MYLABEL_H
+#pragma once
 
 #include <QLabel>
 #include <QMouseEvent>
@@ -27,5 +26,3 @@ private:
     int m_season;
     bool m_imageSet;
 };
-
-#endif // MYLABEL_H

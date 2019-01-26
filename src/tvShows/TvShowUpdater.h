@@ -1,5 +1,4 @@
-#ifndef TVSHOWUPDATER_H
-#define TVSHOWUPDATER_H
+#pragma once
 
 #include <QNetworkAccessManager>
 #include <QObject>
@@ -24,5 +23,3 @@ private:
     QList<TvShow *> m_updatedShows;
     QString unzipContent(QByteArray content);
 };
-
-#endif // TVSHOWUPDATER_H

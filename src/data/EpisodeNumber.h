@@ -1,5 +1,4 @@
-#ifndef DATA_EPISODE_NUMBER
-#define DATA_EPISODE_NUMBER
+#pragma once
 
 #include <QString>
 
@@ -23,5 +22,3 @@ public:
 private:
     int m_episodeNumber = -1; // No episode
 };
-
-#endif // DATA_EPISODE_NUMBER

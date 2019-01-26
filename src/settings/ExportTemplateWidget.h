@@ -1,5 +1,4 @@
-#ifndef EXPORTTEMPLATEWIDGET_H
-#define EXPORTTEMPLATEWIDGET_H
+#pragma once
 
 #include "export/ExportTemplate.h"
 
@@ -25,5 +24,3 @@ private:
     Ui::ExportTemplateWidget *ui;
     ExportTemplate *m_exportTemplate;
 };
-
-#endif // EXPORTTEMPLATEWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef CONCERTFILESEARCHER_H
-#define CONCERTFILESEARCHER_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -39,5 +38,3 @@ private:
     QStringList getFiles(QString path);
     bool m_aborted;
 };
-
-#endif // CONCERTFILESEARCHER_H

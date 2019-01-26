@@ -1,5 +1,4 @@
-#ifndef FILESCANNERDIALOG_H
-#define FILESCANNERDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -60,5 +59,3 @@ private:
     ReloadType m_reloadType;
     QString m_scanDir;
 };
-
-#endif // FILESCANNERDIALOG_H

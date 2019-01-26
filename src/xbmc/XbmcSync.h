@@ -1,5 +1,4 @@
-#ifndef XBMCSYNC_H
-#define XBMCSYNC_H
+#pragma once
 
 #include "data/Movie.h"
 
@@ -111,5 +110,3 @@ private:
     void updateFolderLastModified(TvShowEpisode *episode);
     QUrl xbmcUrl();
 };
-
-#endif // XBMCSYNC_H

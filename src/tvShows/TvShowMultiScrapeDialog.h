@@ -1,5 +1,4 @@
-#ifndef TVSHOWMULTISCRAPEDIALOG_H
-#define TVSHOWMULTISCRAPEDIALOG_H
+#pragma once
 
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
@@ -68,5 +67,3 @@ private:
     void addDownload(ImageType imageType, QUrl url, TvShow *show, Actor *actor);
     void addDownload(ImageType imageType, QUrl url, TvShowEpisode *episode);
 };
-
-#endif // TVSHOWMULTISCRAPEDIALOG_H

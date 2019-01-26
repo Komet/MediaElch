@@ -1,5 +1,4 @@
-#ifndef CONCERT_INFO_WIDGET_H
-#define CONCERT_INFO_WIDGET_H
+#pragma once
 
 #include "concerts/ConcertController.h"
 
@@ -60,5 +59,3 @@ private:
     std::unique_ptr<Ui::ConcertInfoWidget> ui;
     QPointer<ConcertController> m_concertController = nullptr;
 };
-
-#endif // CONCERT_INFO_WIDGET_H

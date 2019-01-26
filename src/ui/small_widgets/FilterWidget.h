@@ -1,5 +1,4 @@
-#ifndef FILTERWIDGET_H
-#define FILTERWIDGET_H
+#pragma once
 
 #include "globals/Filter.h"
 #include "globals/Globals.h"
@@ -62,5 +61,3 @@ private:
     void loadFilters(MainWidgets widget);
     void setupFilterListUi();
 };
-
-#endif // FILTERWIDGET_H

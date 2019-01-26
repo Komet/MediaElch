@@ -1,5 +1,4 @@
-#ifndef MUSICFILESWIDGET_H
-#define MUSICFILESWIDGET_H
+#pragma once
 
 #include "Album.h"
 #include "Artist.h"
@@ -47,5 +46,3 @@ private:
     MusicProxyModel *m_proxyModel;
     QMenu *m_contextMenu;
 };
-
-#endif // MUSICFILESWIDGET_H

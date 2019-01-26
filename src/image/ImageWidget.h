@@ -1,5 +1,4 @@
-#ifndef IMAGEWIDGET_H
-#define IMAGEWIDGET_H
+#pragma once
 
 #include <QList>
 #include <QUrl>
@@ -33,5 +32,3 @@ signals:
 private:
     Ui::ImageWidget *ui;
 };
-
-#endif // IMAGEWIDGET_H

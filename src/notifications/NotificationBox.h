@@ -1,5 +1,4 @@
-#ifndef NOTIFICATIONBOX_H
-#define NOTIFICATIONBOX_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "main/Message.h"
@@ -49,5 +48,3 @@ private:
     QList<Message *> m_messages;
     void adjustSize();
 };
-
-#endif // NOTIFICATIONBOX_H

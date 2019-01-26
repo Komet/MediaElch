@@ -1,5 +1,4 @@
-#ifndef MEDIAFLAGS_H
-#define MEDIAFLAGS_H
+#pragma once
 
 #include "data/StreamDetails.h"
 
@@ -34,5 +33,3 @@ private:
     void setupChannels(StreamDetails *streamDetails);
     QPixmap colorIcon(QString icon);
 };
-
-#endif // MEDIAFLAGS_H

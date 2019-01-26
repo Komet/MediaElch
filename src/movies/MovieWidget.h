@@ -1,5 +1,4 @@
-#ifndef MOVIEWIDGET_H
-#define MOVIEWIDGET_H
+#pragma once
 
 #include "data/Movie.h"
 
@@ -127,5 +126,3 @@ private:
     QLabel *m_backgroundLabel;
     void updateImages(QList<ImageType> images);
 };
-
-#endif // MOVIEWIDGET_H

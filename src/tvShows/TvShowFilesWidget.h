@@ -1,5 +1,4 @@
-#ifndef TVSHOWFILESWIDGET_H
-#define TVSHOWFILESWIDGET_H
+#pragma once
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -72,5 +71,3 @@ private:
     QAction *m_actionShowMissingEpisodes;
     QAction *m_actionHideSpecialsInMissingEpisodes;
 };
-
-#endif // TVSHOWFILESWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef IMAGEMODEL_H
-#define IMAGEMODEL_H
+#pragma once
 
 #include "Image.h"
 
@@ -45,5 +44,3 @@ private:
     QList<Image *> m_images;
     bool m_hasChanged;
 };
-
-#endif // IMAGEMODEL_H

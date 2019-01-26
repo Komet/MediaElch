@@ -1,5 +1,4 @@
-#ifndef NAVBAR_H
-#define NAVBAR_H
+#pragma once
 
 #include "globals/Filter.h"
 #include "globals/Globals.h"
@@ -47,5 +46,3 @@ private slots:
 private:
     Ui::Navbar *ui;
 };
-
-#endif // NAVBAR_H

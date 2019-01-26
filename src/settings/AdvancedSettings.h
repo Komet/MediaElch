@@ -1,5 +1,4 @@
-#ifndef ADVANCEDSETTINGS_H
-#define ADVANCEDSETTINGS_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -67,5 +66,3 @@ private:
     void loadFilters(QXmlStreamReader &xml);
     void loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &map);
 };
-
-#endif // ADVANCEDSETTINGS_H

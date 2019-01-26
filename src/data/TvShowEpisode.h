@@ -1,5 +1,4 @@
-#ifndef TVSHOWEPISODE_H
-#define TVSHOWEPISODE_H
+#pragma once
 
 #include "data/Certification.h"
 #include "data/EpisodeNumber.h"
@@ -191,5 +190,3 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);
 QDebug operator<<(QDebug dbg, const TvShowEpisode *episode);
 
 Q_DECLARE_METATYPE(TvShowEpisode *)
-
-#endif // TVSHOWEPISODE_H

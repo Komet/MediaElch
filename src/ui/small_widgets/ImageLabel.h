@@ -1,5 +1,4 @@
-#ifndef IMAGELABEL_H
-#define IMAGELABEL_H
+#pragma once
 
 #include <QWidget>
 
@@ -25,5 +24,3 @@ public:
 private:
     Ui::ImageLabel *ui;
 };
-
-#endif // IMAGELABEL_H

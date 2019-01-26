@@ -1,5 +1,4 @@
-#ifndef MYWIDGET_H
-#define MYWIDGET_H
+#pragma once
 
 #include <QResizeEvent>
 #include <QWidget>
@@ -16,5 +15,3 @@ signals:
 protected:
     void resizeEvent(QResizeEvent *event) override;
 };
-
-#endif // MYWIDGET_H

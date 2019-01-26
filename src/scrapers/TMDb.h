@@ -1,5 +1,4 @@
-#ifndef TMDB_H
-#define TMDB_H
+#pragma once
 
 #include <QComboBox>
 #include <QLocale>
@@ -86,5 +85,3 @@ private:
     getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters = UrlParameterMap{}) const;
     void parseAndAssignInfos(QString json, Movie *movie, QList<MovieScraperInfos> infos);
 };
-
-#endif // TMDB_H

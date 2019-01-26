@@ -1,5 +1,4 @@
-#ifndef KODI_TVSHOWXMLREADER_H
-#define KODI_TVSHOWXMLREADER_H
+#pragma once
 
 #include <QDomDocument>
 #include <QString>
@@ -19,5 +18,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_TVSHOWXMLREADER_H

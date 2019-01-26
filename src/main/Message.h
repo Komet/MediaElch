@@ -1,5 +1,4 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#pragma once
 
 #include <QTimer>
 #include <QWidget>
@@ -39,5 +38,3 @@ private:
     int m_id;
     QTimer *m_timer;
 };
-
-#endif // MESSAGE_H

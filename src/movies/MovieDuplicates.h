@@ -1,5 +1,4 @@
-#ifndef MOVIEDUPLICATES_H
-#define MOVIEDUPLICATES_H
+#pragma once
 
 #include <QList>
 #include <QMap>
@@ -45,5 +44,3 @@ private:
 
     QMap<Movie *, QList<Movie *>> m_duplicateMovies;
 };
-
-#endif // MOVIEDUPLICATES_H

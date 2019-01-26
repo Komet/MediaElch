@@ -1,5 +1,4 @@
-#ifndef TVSHOWFILESEARCHER_H
-#define TVSHOWFILESEARCHER_H
+#pragma once
 
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
@@ -40,5 +39,3 @@ private:
     QStringList getFiles(QString path);
     bool m_aborted;
 };
-
-#endif // TVSHOWFILESEARCHER_H

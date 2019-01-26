@@ -1,5 +1,4 @@
-#ifndef EXPORTDIALOG_H
-#define EXPORTDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QDir>
@@ -72,5 +71,3 @@ private:
     void replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QList<QStringList> replaces);
     void replaceStreamDetailsVars(QString &m, const StreamDetails *streamDetails);
 };
-
-#endif // EXPORTDIALOG_H

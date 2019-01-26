@@ -1,5 +1,4 @@
-#ifndef TVSHOWWIDGETEPISODE_H
-#define TVSHOWWIDGETEPISODE_H
+#pragma once
 
 #include "data/TvShowEpisode.h"
 #include "globals/DownloadManager.h"
@@ -90,5 +89,3 @@ private:
     QList<QList<QLineEdit *>> m_streamDetailsAudio;
     QList<QList<QLineEdit *>> m_streamDetailsSubtitles;
 };
-
-#endif // TVSHOWWIDGETEPISODE_H

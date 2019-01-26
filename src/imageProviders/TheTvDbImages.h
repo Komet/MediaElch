@@ -1,5 +1,4 @@
-#ifndef THETVDBIMAGES_H
-#define THETVDBIMAGES_H
+#pragma once
 
 #include "data/ImageProviderInterface.h"
 #include "globals/Globals.h"
@@ -95,5 +94,3 @@ private:
 
     void loadTvShowData(TvDbId tvdbId, ImageType type);
 };
-
-#endif // THETVDBIMAGES_H

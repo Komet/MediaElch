@@ -1,5 +1,4 @@
-#ifndef MACNOTIFICATIONHANDLER_H
-#define MACNOTIFICATIONHANDLER_H
+#pragma once
 
 #include <QObject>
 
@@ -12,5 +11,3 @@ public:
     bool hasUserNotificationCenterSupport();
     static MacNotificationHandler *instance();
 };
-
-#endif // MACNOTIFICATIONHANDLER_H

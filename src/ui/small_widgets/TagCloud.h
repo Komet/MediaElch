@@ -1,5 +1,4 @@
-#ifndef TAGCLOUD_H
-#define TAGCLOUD_H
+#pragma once
 
 #include <QCompleter>
 #include <QMouseEvent>
@@ -55,5 +54,3 @@ private:
     QPointer<QCompleter> m_completer;
     void drawTags(bool drawAll = false);
 };
-
-#endif // TAGCLOUD_H

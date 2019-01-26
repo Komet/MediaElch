@@ -1,5 +1,4 @@
-#ifndef CLOSABLEIMAGE_H
-#define CLOSABLEIMAGE_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -92,5 +91,3 @@ private:
     ImageType m_imageType;
     QPixmap m_emptyPixmap;
 };
-
-#endif // CLOSABLEIMAGE_H

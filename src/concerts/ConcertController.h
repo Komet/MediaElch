@@ -1,5 +1,4 @@
-#ifndef CONCERTCONTROLLER_H
-#define CONCERTCONTROLLER_H
+#pragma once
 
 #include "data/TmdbId.h"
 #include "globals/DownloadManagerElement.h"
@@ -61,5 +60,3 @@ private:
     bool m_loadDoneFired;
     QMutex m_loadMutex;
 };
-
-#endif // CONCERTCONTROLLER_H

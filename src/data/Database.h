@@ -1,5 +1,4 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -73,5 +72,3 @@ private:
     QSqlDatabase *m_db;
     void updateDbVersion(int version);
 };
-
-#endif // DATABASE_H

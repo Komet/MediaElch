@@ -1,5 +1,4 @@
-#ifndef TMDBCONCERTS_H
-#define TMDBCONCERTS_H
+#pragma once
 
 #include "data/ConcertScraperInterface.h"
 
@@ -58,5 +57,3 @@ private:
     QList<ScraperSearchResult> parseSearch(QString json, int &nextPage);
     void parseAndAssignInfos(QString json, Concert *concert, QList<ConcertScraperInfos> infos);
 };
-
-#endif // TMDBCONCERTS_H

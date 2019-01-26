@@ -1,5 +1,4 @@
-#ifndef MUSICMODEL_H
-#define MUSICMODEL_H
+#pragma once
 
 #include "Artist.h"
 
@@ -34,5 +33,3 @@ private:
     MusicModelItem *m_rootItem;
     QIcon m_newIcon;
 };
-
-#endif // MUSICMODEL_H

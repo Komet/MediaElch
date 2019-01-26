@@ -1,5 +1,4 @@
-#ifndef EXPORTTEMPLATELOADER_H
-#define EXPORTTEMPLATELOADER_H
+#pragma once
 
 #include <QBuffer>
 #include <QNetworkAccessManager>
@@ -43,5 +42,3 @@ private:
     bool removeDir(const QString &dirName);
     QList<ExportTemplate *> mergeTemplates(QList<ExportTemplate *> local, QList<ExportTemplate *> remote);
 };
-
-#endif // EXPORTTEMPLATELOADER_H

@@ -1,5 +1,4 @@
-#ifndef MAKEMKVCON_H
-#define MAKEMKVCON_H
+#pragma once
 
 #include <QMap>
 #include <QObject>
@@ -51,5 +50,3 @@ private:
     void parseMsg(QString line);
     void parseProgress(QString line);
 };
-
-#endif // MAKEMKVCON_H

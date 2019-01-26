@@ -1,5 +1,4 @@
-#ifndef MYTABLEWIDGETITEM_H
-#define MYTABLEWIDGETITEM_H
+#pragma once
 
 #include <QTableWidgetItem>
 
@@ -15,5 +14,3 @@ public:
 private:
     bool m_isSize;
 };
-
-#endif // MYTABLEWIDGETITEM_H

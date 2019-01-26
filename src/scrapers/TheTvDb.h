@@ -1,5 +1,4 @@
-#ifndef THETVDB_H
-#define THETVDB_H
+#pragma once
 
 #include "data/EpisodeNumber.h"
 #include "data/ImdbId.h"
@@ -104,5 +103,3 @@ private:
     bool processEpisodeData(QString msg, TvShowEpisode *episode, QList<TvShowScraperInfos> infos);
     void loadEpisodes(TvShow *show, QList<TvShowEpisode *> episodes, QList<TvShowScraperInfos> infosToLoad);
 };
-
-#endif // THETVDB_H

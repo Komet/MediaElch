@@ -1,5 +1,4 @@
-#ifndef MYSPINBOX_H
-#define MYSPINBOX_H
+#pragma once
 
 #include <QSpinBox>
 
@@ -12,5 +11,3 @@ public:
 protected:
     QString textFromValue(int val) const override;
 };
-
-#endif // MYSPINBOX_H

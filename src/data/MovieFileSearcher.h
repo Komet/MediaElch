@@ -1,5 +1,4 @@
-#ifndef MOVIEFILESEARCHER_H
-#define MOVIEFILESEARCHER_H
+#pragma once
 
 #include "data/Movie.h"
 
@@ -51,5 +50,3 @@ private:
         QMap<QString, QStringList> contents;
     };
 };
-
-#endif // MOVIEFILESEARCHER_H

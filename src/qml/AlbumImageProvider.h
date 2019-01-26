@@ -1,5 +1,4 @@
-#ifndef ALBUMIMAGEPROVIDER_H
-#define ALBUMIMAGEPROVIDER_H
+#pragma once
 
 #include <QObject>
 #include <QQuickImageProvider>
@@ -10,5 +9,3 @@ public:
     explicit AlbumImageProvider();
     QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize);
 };
-
-#endif // ALBUMIMAGEPROVIDER_H

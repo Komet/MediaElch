@@ -1,5 +1,4 @@
-#ifndef SUPPORTDIALOG_H
-#define SUPPORTDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -24,5 +23,3 @@ private slots:
 private:
     Ui::SupportDialog *ui;
 };
-
-#endif // SUPPORTDIALOG_H

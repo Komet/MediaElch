@@ -1,5 +1,4 @@
-#ifndef CONCERTMODEL_H
-#define CONCERTMODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 #include <QIcon>
@@ -39,5 +38,3 @@ private:
     QIcon m_newIcon;
     QIcon m_syncIcon;
 };
-
-#endif // CONCERTMODEL_H

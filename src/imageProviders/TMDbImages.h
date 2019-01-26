@@ -1,5 +1,4 @@
-#ifndef TMDBIMAGES_H
-#define TMDBIMAGES_H
+#pragma once
 
 #include "data/ImageProviderInterface.h"
 #include "data/Movie.h"
@@ -84,5 +83,3 @@ private:
     Movie *m_dummyMovie;
     ImageType m_imageType;
 };
-
-#endif // TMDBIMAGES_H

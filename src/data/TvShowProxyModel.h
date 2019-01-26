@@ -1,5 +1,4 @@
-#ifndef TVSHOWPROXYMODEL_H
-#define TVSHOWPROXYMODEL_H
+#pragma once
 
 #include "globals/Filter.h"
 
@@ -25,5 +24,3 @@ private:
     QList<Filter *> m_filters;
     QString m_filterText;
 };
-
-#endif // TVSHOWPROXYMODEL_H

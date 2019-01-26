@@ -1,5 +1,4 @@
-#ifndef MAKEMKVDIALOG_H
-#define MAKEMKVDIALOG_H
+#pragma once
 
 #include "data/Movie.h"
 #include "downloads/MakeMkvCon.h"
@@ -52,5 +51,3 @@ private:
     void storeDefaults();
     void importFinished();
 };
-
-#endif // MAKEMKVDIALOG_H

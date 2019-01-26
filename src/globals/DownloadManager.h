@@ -1,5 +1,4 @@
-#ifndef DOWNLOADMANAGER_H
-#define DOWNLOADMANAGER_H
+#pragma once
 
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
@@ -63,5 +62,3 @@ private:
     QTimer m_timer;
     int m_retries;
 };
-
-#endif // DOWNLOADMANAGER_H

@@ -1,5 +1,4 @@
-#ifndef IMDB_H
-#define IMDB_H
+#pragma once
 
 #include "data/Movie.h"
 #include "data/MovieScraperInterface.h"
@@ -53,5 +52,3 @@ private:
     QUrl parsePosters(QString html);
     void parseAndAssignTags(const QString &html, Movie &movie);
 };
-
-#endif // IMDB_H

@@ -1,5 +1,4 @@
-#ifndef HDTRAILERS_H
-#define HDTRAILERS_H
+#pragma once
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -39,5 +38,3 @@ private:
 
     QUrl getLibraryUrl(char library);
 };
-
-#endif // HDTRAILERS_H

@@ -1,5 +1,4 @@
-#ifndef MUSICFILESEARCHER_H
-#define MUSICFILESEARCHER_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "music/Album.h"
@@ -33,5 +32,3 @@ private:
     int m_progressMessageId;
     bool m_aborted;
 };
-
-#endif // MUSICFILESEARCHER_H

@@ -1,5 +1,4 @@
-#ifndef MYSPLITTER_H
-#define MYSPLITTER_H
+#pragma once
 
 #include <QSplitter>
 
@@ -12,5 +11,3 @@ public:
 protected:
     QSplitterHandle *createHandle() override;
 };
-
-#endif // MYSPLITTER_H

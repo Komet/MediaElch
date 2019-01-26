@@ -1,5 +1,4 @@
-#ifndef UNPACKBUTTONS_H
-#define UNPACKBUTTONS_H
+#pragma once
 
 #include <QString>
 #include <QWidget>
@@ -35,5 +34,3 @@ private:
     Ui::UnpackButtons *ui;
     QString m_baseName;
 };
-
-#endif // UNPACKBUTTONS_H

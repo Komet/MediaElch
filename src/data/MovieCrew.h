@@ -1,5 +1,4 @@
-#ifndef MOVIECREW_H
-#define MOVIECREW_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -26,5 +25,3 @@ private:
     QString m_director;
     QList<Actor> m_actors;
 };
-
-#endif // MOVIECREW_H

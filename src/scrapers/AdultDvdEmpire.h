@@ -1,5 +1,4 @@
-#ifndef ADULTDVDEMPIRE_H
-#define ADULTDVDEMPIRE_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 
@@ -42,5 +41,3 @@ private:
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie, QList<MovieScraperInfos> infos);
 };
-
-#endif // ADULTDVDEMPIRE_H

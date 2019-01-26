@@ -1,5 +1,4 @@
-#ifndef TVTUNESDIALOG_H
-#define TVTUNESDIALOG_H
+#pragma once
 
 #include "data/TvShow.h"
 
@@ -56,5 +55,3 @@ private:
     bool m_fileDownloaded;
     void clear();
 };
-
-#endif // TVTUNESDIALOG_H

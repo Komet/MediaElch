@@ -1,5 +1,4 @@
-#ifndef NAMEFORMATTER_H
-#define NAMEFORMATTER_H
+#pragma once
 
 #include <QObject>
 #include <QStringList>
@@ -25,5 +24,3 @@ private:
     QStringList m_exWords;
     static bool lengthLessThan(const QString &s1, const QString &s2);
 };
-
-#endif // NAMEFORMATTER_H

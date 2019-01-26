@@ -1,5 +1,4 @@
-#ifndef SEARCHOVERLAY_H
-#define SEARCHOVERLAY_H
+#pragma once
 
 #include <QLabel>
 #include <QPaintEvent>
@@ -21,5 +20,3 @@ protected:
 private:
     QLabel *m_label;
 };
-
-#endif // SEARCHOVERLAY_H

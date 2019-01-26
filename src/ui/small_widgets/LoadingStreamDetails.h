@@ -1,5 +1,4 @@
-#ifndef LOADINGSTREAMDETAILS_H
-#define LOADINGSTREAMDETAILS_H
+#pragma once
 
 #include <QDialog>
 #include <QList>
@@ -27,5 +26,3 @@ public:
 private:
     Ui::LoadingStreamDetails *ui;
 };
-
-#endif // LOADINGSTREAMDETAILS_H

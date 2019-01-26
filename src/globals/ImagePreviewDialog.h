@@ -1,5 +1,4 @@
-#ifndef IMAGEPREVIEWDIALOG_H
-#define IMAGEPREVIEWDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -26,5 +25,3 @@ public slots:
 private:
     Ui::ImagePreviewDialog *ui;
 };
-
-#endif // IMAGEPREVIEWDIALOG_H

@@ -1,5 +1,4 @@
-#ifndef MOVIESEARCH_H
-#define MOVIESEARCH_H
+#pragma once
 
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
@@ -39,5 +38,3 @@ public slots:
 private:
     Ui::MovieSearch *ui;
 };
-
-#endif // MOVIESEARCH_H

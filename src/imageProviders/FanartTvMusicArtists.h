@@ -1,5 +1,4 @@
-#ifndef FANARTTVMUSICARTISTS_H
-#define FANARTTVMUSICARTISTS_H
+#pragma once
 
 #include "data/ImageProviderInterface.h"
 #include "globals/Globals.h"
@@ -93,5 +92,3 @@ private:
     QList<Poster> parseData(QString json, ImageType type);
     QString keyParameter();
 };
-
-#endif // FANARTTVMUSICARTISTS_H

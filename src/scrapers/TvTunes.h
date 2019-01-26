@@ -1,5 +1,4 @@
-#ifndef TVTUNES_H
-#define TVTUNES_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -29,5 +28,3 @@ private:
     QList<ScraperSearchResult> parseSearch(QString html);
     void getNextDownloadUrl(QString searchStr = "");
 };
-
-#endif // TVTUNES_H

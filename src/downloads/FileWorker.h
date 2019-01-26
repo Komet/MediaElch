@@ -1,5 +1,4 @@
-#ifndef FILEWORKER_H
-#define FILEWORKER_H
+#pragma once
 
 #include "downloads/MyFile.h"
 
@@ -24,5 +23,3 @@ signals:
 private:
     QMap<QString, QString> m_files;
 };
-
-#endif // FILEWORKER_H

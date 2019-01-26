@@ -1,5 +1,4 @@
-#ifndef MEDIAELCH_VERSION_H
-#define MEDIAELCH_VERSION_H
+#pragma once
 
 #include <QString>
 
@@ -47,5 +46,3 @@ const QString CompilerString = []() -> QString {
 
 } // namespace Constants
 } // namespace MediaElch
-
-#endif // MEDIAELCH_VERSION_H

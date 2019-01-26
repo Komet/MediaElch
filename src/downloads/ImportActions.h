@@ -1,5 +1,4 @@
-#ifndef IMPORTACTIONS_H
-#define IMPORTACTIONS_H
+#pragma once
 
 #include "data/TvShow.h"
 #include "downloads/ImportDialog.h"
@@ -49,5 +48,3 @@ private:
     QStringList m_files;
     QStringList m_extraFiles;
 };
-
-#endif // IMPORTACTIONS_H

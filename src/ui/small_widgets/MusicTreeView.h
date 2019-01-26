@@ -1,5 +1,4 @@
-#ifndef MUSICTREEVIEW_H
-#define MUSICTREEVIEW_H
+#pragma once
 
 #include <QPainter>
 #include <QTreeView>
@@ -40,5 +39,3 @@ private:
         return MusicType(index.data(MusicRoles::Type).toInt()) == MusicType::Artist;
     }
 };
-
-#endif // MUSICTREEVIEW_H

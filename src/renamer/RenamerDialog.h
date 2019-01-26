@@ -1,5 +1,4 @@
-#ifndef RENAMER_DIALOG_H
-#define RENAMER_DIALOG_H
+#pragma once
 
 #include "data/Concert.h"
 #include "data/Movie.h"
@@ -70,5 +69,3 @@ private:
         const bool &renameDirectories,
         const bool &dryRun = false);
 };
-
-#endif // RENAMER_DIALOG_H

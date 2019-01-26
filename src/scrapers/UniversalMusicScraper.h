@@ -1,5 +1,4 @@
-#ifndef UNIVERSALMUSICSCRAPER_H
-#define UNIVERSALMUSICSCRAPER_H
+#pragma once
 
 #include "data/MusicScraperInterface.h"
 
@@ -81,5 +80,3 @@ private:
     void processDownloadElement(DownloadElement elem, Artist *artist, QList<MusicScraperInfos> infos);
     void processDownloadElement(DownloadElement elem, Album *album, QList<MusicScraperInfos> infos);
 };
-
-#endif // UNIVERSALMUSICSCRAPER_H

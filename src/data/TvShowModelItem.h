@@ -1,5 +1,4 @@
-#ifndef TVSHOWMODELITEM_H
-#define TVSHOWMODELITEM_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
@@ -58,5 +57,3 @@ private:
     QString m_season;
     SeasonNumber m_seasonNumber;
 };
-
-#endif // TVSHOWMODELITEM_H

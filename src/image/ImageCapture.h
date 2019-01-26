@@ -1,5 +1,4 @@
-#ifndef IMAGECAPTURE_H
-#define IMAGECAPTURE_H
+#pragma once
 
 #include "data/StreamDetails.h"
 
@@ -12,5 +11,3 @@ public:
     explicit ImageCapture(QObject *parent = nullptr);
     static bool captureImage(QString file, StreamDetails *streamDetails, QImage &img);
 };
-
-#endif // IMAGECAPTURE_H

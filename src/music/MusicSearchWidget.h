@@ -1,5 +1,4 @@
-#ifndef MUSICSEARCHWIDGET_H
-#define MUSICSEARCHWIDGET_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -54,5 +53,3 @@ private:
     void clear();
     void setCheckBoxesEnabled(QList<MusicScraperInfos> scraperSupports);
 };
-
-#endif // MUSICSEARCHWIDGET_H

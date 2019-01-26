@@ -1,5 +1,4 @@
-#ifndef MESSAGELABEL_H
-#define MESSAGELABEL_H
+#pragma once
 
 #include <QLabel>
 
@@ -14,5 +13,3 @@ public:
 public slots:
     void clear();
 };
-
-#endif // MESSAGELABEL_H

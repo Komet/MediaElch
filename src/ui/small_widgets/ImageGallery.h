@@ -1,5 +1,4 @@
-#ifndef IMAGEGALLERY_H
-#define IMAGEGALLERY_H
+#pragma once
 
 #include "globals/Globals.h"
 #include "ui/small_widgets/ClosableImage.h"
@@ -62,5 +61,3 @@ private:
 
     void positionImages();
 };
-
-#endif // IMAGEGALLERY_H

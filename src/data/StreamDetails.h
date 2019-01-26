@@ -1,5 +1,4 @@
-#ifndef STREAMDETAILS_H
-#define STREAMDETAILS_H
+#pragma once
 
 #include <QMap>
 #include <QObject>
@@ -72,5 +71,3 @@ private:
     QStringList m_normalAudioCodecs;
     QStringList m_sdAudioCodecs;
 };
-
-#endif // STREAMDETAILS_H

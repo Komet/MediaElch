@@ -1,5 +1,4 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#pragma once
 
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"
@@ -103,5 +102,3 @@ private:
     MusicFileSearcher *m_musicFileSearcher;
     MyIconFont *m_iconFont;
 };
-
-#endif // MANAGER_H

@@ -1,5 +1,4 @@
-#ifndef MYLINEEDIT_H
-#define MYLINEEDIT_H
+#pragma once
 
 #include <QKeyEvent>
 #include <QLabel>
@@ -65,5 +64,3 @@ private:
     int m_paddingLeft;
     void drawFilters();
 };
-
-#endif // MYLINEEDIT_H

@@ -1,5 +1,4 @@
-#ifndef OFDB_H
-#define OFDB_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 
@@ -45,5 +44,3 @@ private:
     QList<ScraperSearchResult> parseSearch(QString html, QString searchStr);
     void parseAndAssignInfos(QString data, Movie *movie, QList<MovieScraperInfos> infos);
 };
-
-#endif // OFDB_H

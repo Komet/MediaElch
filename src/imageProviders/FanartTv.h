@@ -1,5 +1,4 @@
-#ifndef FANARTTV_H
-#define FANARTTV_H
+#pragma once
 
 #include "data/ImageProviderInterface.h"
 #include "globals/Globals.h"
@@ -120,5 +119,3 @@ private:
     void loadTvShowData(TvDbId tvdbId, QList<ImageType> types, TvShow *show);
     QString keyParameter();
 };
-
-#endif // FANARTTV_H

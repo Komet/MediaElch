@@ -1,5 +1,4 @@
-#ifndef MYTABLEVIEW_H
-#define MYTABLEVIEW_H
+#pragma once
 
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -42,5 +41,3 @@ private:
     QTimer m_searchOverlayTimer;
     SearchOverlay *m_searchOverlay;
 };
-
-#endif // MYTABLEVIEW_H

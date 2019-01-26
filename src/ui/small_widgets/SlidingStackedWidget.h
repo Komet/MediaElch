@@ -1,5 +1,4 @@
-#ifndef SLIDINGSTACKEDWIDGET_H
-#define SLIDINGSTACKEDWIDGET_H
+#pragma once
 
 #include <QDebug>
 #include <QEasingCurve>
@@ -63,5 +62,3 @@ protected:
     QList<QWidget *> m_widgets;
     bool m_expanded;
 };
-
-#endif // SLIDINGSTACKEDWIDGET_H

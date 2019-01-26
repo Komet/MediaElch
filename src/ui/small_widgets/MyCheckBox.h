@@ -1,5 +1,4 @@
-#ifndef MYCHECKBOX_H
-#define MYCHECKBOX_H
+#pragma once
 
 #include <QCheckBox>
 #include <QVariant>
@@ -15,5 +14,3 @@ public:
 private:
     QVariant m_myData;
 };
-
-#endif // MYCHECKBOX_H

@@ -1,5 +1,4 @@
-#ifndef AEBN_H
-#define AEBN_H
+#pragma once
 
 #include "data/MovieScraperInterface.h"
 
@@ -51,5 +50,3 @@ private:
     void downloadActors(Movie *movie, QStringList actorIds);
     void parseAndAssignActor(QString html, Movie *movie, QString id);
 };
-
-#endif // AEBN_H

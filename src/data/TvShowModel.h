@@ -1,5 +1,4 @@
-#ifndef TVSHOWMODEL_H
-#define TVSHOWMODEL_H
+#pragma once
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -46,5 +45,3 @@ private:
     QIcon m_syncIcon;
     QIcon m_missingIcon;
 };
-
-#endif // TVSHOWMODEL_H

@@ -1,5 +1,4 @@
-#ifndef MUSICWIDGETARTIST_H
-#define MUSICWIDGETARTIST_H
+#pragma once
 
 #include "music/Artist.h"
 #include "ui/small_widgets/ClosableImage.h"
@@ -68,5 +67,3 @@ private:
     void setContent(QLineEdit *widget, const QString &content);
     void updateImage(ImageType imageType, ClosableImage *image);
 };
-
-#endif // MUSICWIDGETARTIST_H

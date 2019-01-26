@@ -1,5 +1,4 @@
-#ifndef DOWNLOADMANAGERELEMENT_H
-#define DOWNLOADMANAGERELEMENT_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 #include "globals/Globals.h"
@@ -37,5 +36,3 @@ public:
     template<class T>
     T *getElement();
 };
-
-#endif // DOWNLOADMANAGERELEMENT_H

@@ -1,5 +1,4 @@
-#ifndef IMAGE_H
-#define IMAGE_H
+#pragma once
 
 #include <QObject>
 
@@ -41,5 +40,3 @@ private:
     int m_imageId;
     static int m_idCounter;
 };
-
-#endif // IMAGE_H

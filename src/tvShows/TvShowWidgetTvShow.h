@@ -1,5 +1,4 @@
-#ifndef TVSHOWWIDGETTVSHOW_H
-#define TVSHOWWIDGETTVSHOW_H
+#pragma once
 
 #include "data/TvShow.h"
 #include "globals/DownloadManager.h"
@@ -98,5 +97,3 @@ private:
     DownloadManager *m_posterDownloadManager;
     void updateImages(QList<ImageType> images);
 };
-
-#endif // TVSHOWWIDGETTVSHOW_H

@@ -1,5 +1,4 @@
-#ifndef GLOBALS_H
-#define GLOBALS_H
+#pragma once
 
 #include "data/SeasonNumber.h"
 
@@ -543,5 +542,3 @@ struct MovieDuplicate
     bool imdbId;
     bool tmdbId;
 };
-
-#endif // GLOBALS_H

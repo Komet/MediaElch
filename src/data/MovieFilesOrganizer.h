@@ -1,5 +1,4 @@
-#ifndef MOVIEFILESORGANIZER_H
-#define MOVIEFILESORGANIZER_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -19,5 +18,3 @@ public:
     void canceled(QString msg);
     void moveToDirs(QString dir);
 };
-
-#endif // MOVIEFILESORGANIZER_H

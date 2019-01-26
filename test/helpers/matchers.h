@@ -1,5 +1,4 @@
-#ifndef TEST_HELPER_MATCHERS
-#define TEST_HELPER_MATCHERS
+#pragma once
 
 #include "third_party/catch2/catch.hpp"
 
@@ -62,5 +61,3 @@ ContainsNotMatcher ContainsNot(const QString &str);
 EndsWithMatcher EndsWith(const QString &str);
 StartsWithMatcher StartsWith(const QString &str);
 RegexMatcher Matches(const QString &regex);
-
-#endif // TEST_HELPER_MATCHERS

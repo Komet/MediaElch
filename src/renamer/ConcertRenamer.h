@@ -1,5 +1,4 @@
-#ifndef CONCERT_RENAMER_H
-#define CONCERT_RENAMER_H
+#pragma once
 
 #include "renamer/Renamer.h"
 
@@ -12,5 +11,3 @@ public:
     ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog);
     RenameError renameConcert(Concert &movie);
 };
-
-#endif // CONCERT_RENAMER_H

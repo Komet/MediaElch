@@ -1,5 +1,4 @@
-#ifndef ARTIST_H
-#define ARTIST_H
+#pragma once
 
 #include "ArtistController.h"
 #include "MusicModelItem.h"
@@ -145,5 +144,3 @@ private:
     QStringList m_extraFanarts;
     QList<QByteArray> m_extraFanartImagesToAdd;
 };
-
-#endif // ARTIST_H

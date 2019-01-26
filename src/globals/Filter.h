@@ -1,5 +1,4 @@
-#ifndef FILTER_H
-#define FILTER_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -94,5 +93,3 @@ private:
 };
 
 Q_DECLARE_METATYPE(Filter *)
-
-#endif // FILTER_H

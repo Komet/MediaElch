@@ -1,5 +1,4 @@
-#ifndef CONCERTWIDGET_H
-#define CONCERTWIDGET_H
+#pragma once
 
 #include "data/Concert.h"
 
@@ -83,5 +82,3 @@ private:
     QLabel *m_savingWidget;
     void updateImages(QList<ImageType> images);
 };
-
-#endif // CONCERTWIDGET_H

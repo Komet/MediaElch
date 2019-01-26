@@ -1,5 +1,4 @@
-#ifndef TVSHOWWIDGETSEASON_H
-#define TVSHOWWIDGETSEASON_H
+#pragma once
 
 #include "data/TvShow.h"
 #include "globals/DownloadManager.h"
@@ -53,5 +52,3 @@ private:
     DownloadManager *m_downloadManager;
     void updateImages(QList<ImageType> images);
 };
-
-#endif // TVSHOWWIDGETSEASON_H

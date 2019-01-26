@@ -1,5 +1,4 @@
-#ifndef TVSHOWSEARCH_H
-#define TVSHOWSEARCH_H
+#pragma once
 
 #include "data/TvDbId.h"
 #include "globals/Globals.h"
@@ -47,5 +46,3 @@ private:
     QList<TvShowScraperInfos> m_infosToLoad;
     TvShowType m_searchType;
 };
-
-#endif // TVSHOWSEARCH_H

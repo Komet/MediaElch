@@ -1,5 +1,4 @@
-#ifndef TVSHOWTREEVIEW_H
-#define TVSHOWTREEVIEW_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -33,5 +32,3 @@ private:
     const int m_episodeIndent = 50;
     const int m_branchIndent = 30;
 };
-
-#endif // TVSHOWTREEVIEW_H

@@ -1,5 +1,4 @@
-#ifndef MUSICMULTISCRAPEDIALOG_H
-#define MUSICMULTISCRAPEDIALOG_H
+#pragma once
 
 #include "globals/Globals.h"
 
@@ -62,5 +61,3 @@ private:
     QList<Album *> m_albums;
     MusicScraperInterface *m_scraperInterface;
 };
-
-#endif // MUSICMULTISCRAPEDIALOG_H

@@ -1,5 +1,4 @@
-#ifndef KODI_TVSHOWXMLWRITER_H
-#define KODI_TVSHOWXMLWRITER_H
+#pragma once
 
 #include <QByteArray>
 #include <QDomElement>
@@ -20,5 +19,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_TVSHOWXMLWRITER_H

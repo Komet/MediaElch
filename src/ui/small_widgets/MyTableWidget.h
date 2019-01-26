@@ -1,5 +1,4 @@
-#ifndef MYTABLEWIDGET_H
-#define MYTABLEWIDGET_H
+#pragma once
 
 #include <QDragEnterEvent>
 #include <QDragMoveEvent>
@@ -24,5 +23,3 @@ protected:
 signals:
     void sigDroppedImage(QUrl);
 };
-
-#endif // MYTABLEWIDGET_H

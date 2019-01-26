@@ -1,5 +1,4 @@
-#ifndef KODI_CONCERTXMLWRITER_H
-#define KODI_CONCERTXMLWRITER_H
+#pragma once
 
 #include <QByteArray>
 #include <QDomElement>
@@ -20,5 +19,3 @@ private:
 };
 
 } // namespace Kodi
-
-#endif // KODI_CONCERTXMLWRITER_H
