@@ -22,9 +22,8 @@ void ImageModel::clear()
     if (m_images.isEmpty()) {
         return;
     }
-    QVector<Image *> imgs;
     beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    imgs = m_images;
+    QList<Image *> imgs = m_images;
     m_images.clear();
     endRemoveRows();
     qDeleteAll(imgs);
@@ -49,9 +48,9 @@ QVariant ImageModel::data(const QModelIndex &index, int role) const
     }
 
     switch (role) {
-    case Qt::UserRole + 1: return img->fileName(); break;
-    case Qt::UserRole + 2: return img->rawData(); break;
-    case Qt::UserRole + 3: return img->deletion(); break;
+    case Qt::UserRole + 1: return img->fileName();
+    case Qt::UserRole + 2: return img->rawData();
+    case Qt::UserRole + 3: return img->deletion();
     case Qt::UserRole + 4: {
         img->load();
         return img->rawData();
@@ -105,7 +104,7 @@ void ImageModel::ImageModel::move(int from, int to)
     setHasChanged(true);
 }
 
-QVector<Image *> ImageModel::images()
+QList<Image *> ImageModel::images()
 {
     return m_images;
 }
