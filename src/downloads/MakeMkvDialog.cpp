@@ -24,7 +24,7 @@ MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Make
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
-    m_makeMkvCon = new MakeMkvCon(this);
+    m_makeMkvCon = new MakeMkvCon(Settings::instance()->importSettings(), this);
 
     // clang-format off
     connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);
