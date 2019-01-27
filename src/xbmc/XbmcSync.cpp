@@ -147,7 +147,8 @@ void XbmcSync::startSync()
         }
     }
 
-    if (Settings::instance()->xbmcHost().isEmpty() || Settings::instance()->xbmcPort() == 0) {
+    if (Settings::instance()->kodiSettings().xbmcHost().isEmpty()
+        || Settings::instance()->kodiSettings().xbmcPort() == 0) {
         ui->status->setText(tr("Please fill in your Kodi host and port."));
         return;
     }
@@ -796,20 +797,22 @@ void XbmcSync::onAuthRequired(QNetworkReply *reply, QAuthenticator *authenticato
 {
     Q_UNUSED(reply);
 
-    authenticator->setUser(Settings::instance()->xbmcUser());
-    authenticator->setPassword(Settings::instance()->xbmcPassword());
+    authenticator->setUser(Settings::instance()->kodiSettings().xbmcUser());
+    authenticator->setPassword(Settings::instance()->kodiSettings().xbmcPassword());
 }
 
 QUrl XbmcSync::xbmcUrl()
 {
     QString url = "http://";
-    if (!Settings::instance()->xbmcUser().isEmpty()) {
-        url.append(Settings::instance()->xbmcUser());
-        if (!Settings::instance()->xbmcPassword().isEmpty()) {
-            url.append(":" + Settings::instance()->xbmcPassword());
+    if (!Settings::instance()->kodiSettings().xbmcUser().isEmpty()) {
+        url.append(Settings::instance()->kodiSettings().xbmcUser());
+        if (!Settings::instance()->kodiSettings().xbmcPassword().isEmpty()) {
+            url.append(":" + Settings::instance()->kodiSettings().xbmcPassword());
         }
         url.append("@");
     }
-    url.append(QString("%1:%2/jsonrpc").arg(Settings::instance()->xbmcHost()).arg(Settings::instance()->xbmcPort()));
+    url.append(QString("%1:%2/jsonrpc")
+                   .arg(Settings::instance()->kodiSettings().xbmcHost())
+                   .arg(Settings::instance()->kodiSettings().xbmcPort()));
     return QUrl{url};
 }

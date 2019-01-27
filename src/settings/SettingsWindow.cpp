@@ -262,12 +262,13 @@ void SettingsWindow::loadSettings()
     ui->chkAutoLoadStreamDetails->setChecked(m_settings->autoLoadStreamDetails());
 
     // Proxy
-    ui->chkUseProxy->setChecked(m_settings->useProxy());
-    ui->proxyType->setCurrentIndex(m_settings->proxyType());
-    ui->proxyHost->setText(m_settings->proxyHost());
-    ui->proxyPort->setValue(m_settings->proxyPort());
-    ui->proxyUsername->setText(m_settings->proxyUsername());
-    ui->proxyPassword->setText(m_settings->proxyPassword());
+    const auto &netSettings = m_settings->networkSettings();
+    ui->chkUseProxy->setChecked(netSettings.useProxy());
+    ui->proxyType->setCurrentIndex(netSettings.proxyType());
+    ui->proxyHost->setText(netSettings.proxyHost());
+    ui->proxyPort->setValue(netSettings.proxyPort());
+    ui->proxyUsername->setText(netSettings.proxyUsername());
+    ui->proxyPassword->setText(netSettings.proxyPassword());
     onUseProxy();
 
     ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
@@ -328,14 +329,14 @@ void SettingsWindow::loadSettings()
     ui->useYoutubePluginUrls->setChecked(m_settings->useYoutubePluginUrls());
 
     // XBMC
-    ui->xbmcHost->setText(m_settings->xbmcHost());
-    if (m_settings->xbmcPort() != 0) {
-        ui->xbmcPort->setText(QString::number(m_settings->xbmcPort()));
+    ui->xbmcHost->setText(m_settings->kodiSettings().xbmcHost());
+    if (m_settings->kodiSettings().xbmcPort() != 0) {
+        ui->xbmcPort->setText(QString::number(m_settings->kodiSettings().xbmcPort()));
     } else {
         ui->xbmcPort->clear();
     }
-    ui->xbmcUser->setText(m_settings->xbmcUser());
-    ui->xbmcPassword->setText(m_settings->xbmcPassword());
+    ui->xbmcUser->setText(m_settings->kodiSettings().xbmcUser());
+    ui->xbmcPassword->setText(m_settings->kodiSettings().xbmcPassword());
 
     // Movie set artwork
     for (int i = 0, n = ui->comboMovieSetArtwork->count(); i < n; ++i) {
@@ -416,8 +417,8 @@ void SettingsWindow::loadSettings()
     }
 
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
-    ui->unrarPath->setText(m_settings->unrar());
-    ui->makemkvconPath->setText(m_settings->makeMkvCon());
+    ui->unrarPath->setText(m_settings->importSettings().unrar());
+    ui->makemkvconPath->setText(m_settings->importSettings().makeMkvCon());
 
     ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
 }
@@ -448,18 +449,18 @@ void SettingsWindow::saveSettings()
     m_settings->setStartupSection(
         ui->comboStartupSection->itemData(ui->comboStartupSection->currentIndex()).toString());
 
-    m_settings->setXbmcHost(ui->xbmcHost->text());
-    m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
-    m_settings->setXbmcUser(ui->xbmcUser->text());
-    m_settings->setXbmcPassword(ui->xbmcPassword->text());
+    m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
+    m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
+    m_settings->kodiSettings().setXbmcUser(ui->xbmcUser->text());
+    m_settings->kodiSettings().setXbmcPassword(ui->xbmcPassword->text());
 
     // Proxy
-    m_settings->setUseProxy(ui->chkUseProxy->isChecked());
-    m_settings->setProxyType(ui->proxyType->currentIndex());
-    m_settings->setProxyHost(ui->proxyHost->text());
-    m_settings->setProxyPort(ui->proxyPort->value());
-    m_settings->setProxyUsername(ui->proxyUsername->text());
-    m_settings->setProxyPassword(ui->proxyPassword->text());
+    m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());
+    m_settings->networkSettings().setProxyType(ui->proxyType->currentIndex());
+    m_settings->networkSettings().setProxyHost(ui->proxyHost->text());
+    m_settings->networkSettings().setProxyPort(ui->proxyPort->value());
+    m_settings->networkSettings().setProxyUsername(ui->proxyUsername->text());
+    m_settings->networkSettings().setProxyPassword(ui->proxyPassword->text());
 
     m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
 
@@ -521,8 +522,8 @@ void SettingsWindow::saveSettings()
     m_settings->setCustomTvScraper(tvScraper);
 
     // Downloads
-    m_settings->setUnrar(ui->unrarPath->text());
-    m_settings->setMakeMkvCon(ui->makemkvconPath->text());
+    m_settings->importSettings().setUnrar(ui->unrarPath->text());
+    m_settings->importSettings().setMakeMkvCon(ui->makemkvconPath->text());
     m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 
     m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());

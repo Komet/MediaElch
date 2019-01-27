@@ -5,6 +5,9 @@
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 #include "settings/DirectorySettings.h"
+#include "settings/ImportSettings.h"
+#include "settings/KodiSettings.h"
+#include "settings/NetworkSettings.h"
 #include "settings/ScraperSettings.h"
 
 #include <QObject>
@@ -43,21 +46,12 @@ public:
     QByteArray movieDuplicatesSplitterState();
 
     DirectorySettings &directorySettings();
+    KodiSettings &kodiSettings();
+    ImportSettings &importSettings();
+    NetworkSettings &networkSettings();
 
-    QString unrar();
-    QString makeMkvCon();
     bool deleteArchives();
     QString excludeWords();
-    QString xbmcHost();
-    int xbmcPort();
-    QString xbmcUser();
-    QString xbmcPassword();
-    bool useProxy();
-    int proxyType();
-    QString proxyHost();
-    int proxyPort();
-    QString proxyUsername();
-    QString proxyPassword();
     bool debugModeActivated();
     QString debugLogPath();
     bool useYoutubePluginUrls();
@@ -113,16 +107,8 @@ public:
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
-    void setUnrar(QString unrar);
-    void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
-    void setUseProxy(bool use);
-    void setProxyType(int type);
-    void setProxyHost(QString host);
-    void setProxyPort(int port);
-    void setProxyUsername(QString username);
-    void setProxyPassword(QString password);
     void setUseYoutubePluginUrls(bool use);
     void setDownloadActorImages(bool download);
     void setDebugModeActivated(bool enabled);
@@ -130,10 +116,6 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
-    void setXbmcHost(QString host);
-    void setXbmcPort(int port);
-    void setXbmcUser(QString user);
-    void setXbmcPassword(QString password);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<MovieScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<TvShowScraperInfos> items);
     void setScraperInfos(MainWidgets widget, QString scraperNo, QVector<ConcertScraperInfos> items);
@@ -181,9 +163,10 @@ private:
     AdvancedSettings *m_advancedSettings;
 
     DirectorySettings m_directorySettings;
+    KodiSettings m_kodiSettings;
+    ImportSettings m_importSettings;
+    NetworkSettings m_networkSettings;
 
-    QString m_unrar;
-    QString m_makeMkvCon;
     bool m_deleteArchives;
     QString m_excludeWords;
     QSize m_mainWindowSize;
@@ -197,12 +180,6 @@ private:
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     QByteArray m_movieDuplicatesSplitterState;
-    bool m_useProxy;
-    int m_proxyType;
-    QString m_proxyHost;
-    uint16_t m_proxyPort;
-    QString m_proxyUsername;
-    QString m_proxyPassword;
     bool m_debugModeActivated;
     QString m_debugLogPath;
     bool m_youtubePluginUrls;
@@ -211,10 +188,6 @@ private:
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline;
-    QString m_xbmcHost;
-    int m_xbmcPort;
-    QString m_xbmcUser;
-    QString m_xbmcPassword;
     bool m_ignoreArticlesWhenSorting;
     MovieSetArtworkType m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
@@ -235,6 +208,5 @@ private:
     QString m_lastImagePath;
     int m_extraFanartsMusicArtists;
 
-    void setupProxy();
     QPoint fixWindowPosition(QPoint p);
 };

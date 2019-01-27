@@ -199,6 +199,9 @@ SOURCES += src/main.cpp \
     src/settings/DataFile.cpp \
     src/settings/DirectorySettings.cpp \
     src/settings/ExportTemplateWidget.cpp \
+    src/settings/ImportSettings.cpp \
+    src/settings/KodiSettings.cpp \
+    src/settings/NetworkSettings.cpp \
     src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
     src/settings/SettingsWindow.cpp \
@@ -394,6 +397,9 @@ HEADERS  += Version.h \
     src/settings/DataFile.h \
     src/settings/DirectorySettings.h \
     src/settings/ExportTemplateWidget.h \
+    src/settings/ImportSettings.h \
+    src/settings/KodiSettings.h \
+    src/settings/NetworkSettings.h \
     src/settings/ScraperSettings.h \
     src/settings/Settings.h \
     src/settings/SettingsWindow.h \

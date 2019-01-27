@@ -32,7 +32,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 
     qSort(rarFiles);
 
-    QString unrar = Settings::instance()->unrar();
+    QString unrar = Settings::instance()->importSettings().unrar();
 
     if (!QFileInfo(unrar).isFile()) {
         emit sigError(baseName, tr("Unrar not found"));

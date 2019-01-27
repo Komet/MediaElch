@@ -521,7 +521,7 @@ int DownloadsWidget::hasNewItems()
 
 void DownloadsWidget::onImportWithMakeMkv()
 {
-    if (!QFileInfo(Settings::instance()->makeMkvCon()).isExecutable()) {
+    if (!QFileInfo(Settings::instance()->importSettings().makeMkvCon()).isExecutable()) {
         QMessageBox::warning(this,
             tr("makemkvcon missing"),
             tr("Please set the correct path to makemkvcon in MediaElch's settings."),

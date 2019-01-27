@@ -27,7 +27,7 @@ void MakeMkvCon::onGetDrives()
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
-    process->start(Settings::instance()->makeMkvCon(), parameters);
+    process->start(Settings::instance()->importSettings().makeMkvCon(), parameters);
     process->setProperty("job", "scanDrives");
     process->waitForStarted(10000);
 }
@@ -46,7 +46,7 @@ void MakeMkvCon::onScanDrive(int id)
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
-    process->start(Settings::instance()->makeMkvCon(), parameters);
+    process->start(Settings::instance()->importSettings().makeMkvCon(), parameters);
     process->setProperty("job", "info");
     process->waitForStarted(10000);
 }
@@ -63,7 +63,7 @@ void MakeMkvCon::onImportTrack(int trackId, int driveId, QString importFolder)
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
-    process->start(Settings::instance()->makeMkvCon(), parameters);
+    process->start(Settings::instance()->importSettings().makeMkvCon(), parameters);
     process->setProperty("job", "importTrack");
     process->setProperty("trackId", trackId);
     process->waitForStarted(10000);
@@ -81,7 +81,7 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
     connect(process, &QProcess::readyReadStandardOutput, this, &MakeMkvCon::onReadyRead);
     connect(process, &QProcess::readyReadStandardError, this, &MakeMkvCon::onReadyReadError);
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished(int, QProcess::ExitStatus)));
-    process->start(Settings::instance()->makeMkvCon(), parameters);
+    process->start(Settings::instance()->importSettings().makeMkvCon(), parameters);
     process->setProperty("job", "backupDisc");
     process->waitForStarted(10000);
 }

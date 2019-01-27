@@ -8,7 +8,6 @@
 #include <QDesktopServices>
 #include <QMutex>
 #include <QMutexLocker>
-#include <QNetworkProxy>
 
 /**
  * @brief Settings::Settings
@@ -24,6 +23,9 @@ Settings::Settings(QObject *parent) : QObject(parent), m_advancedSettings{new Ad
     }
 
     m_directorySettings.setQSettings(m_settings);
+    m_kodiSettings.setQSettings(m_settings);
+    m_importSettings.setQSettings(m_settings);
+    m_networkSettings.setQSettings(m_settings);
 
     // Frodo
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
@@ -117,28 +119,16 @@ void Settings::loadSettings()
     m_importDialogPosition = fixWindowPosition(settings()->value("Downloads/ImportDialogPosition").toPoint());
     m_makeMkvDialogPosition = fixWindowPosition(settings()->value("Downloads/MakeMkvDialogPosition").toPoint());
 
-    // XBMC
-    m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
-    m_xbmcPort = settings()->value("XBMC/RemotePort", 80).toInt();
-    m_xbmcUser = settings()->value("XBMC/RemoteUser").toString();
-    m_xbmcPassword = settings()->value("XBMC/RemotePassword").toString();
-
-    // Proxy
-    m_useProxy = settings()->value("Proxy/Enable", false).toBool();
-    m_proxyType = settings()->value("Proxy/Type", 0).toInt();
-    m_proxyHost = settings()->value("Proxy/Host").toString();
-    m_proxyPort = settings()->value("Proxy/Port", 0).toInt();
-    m_proxyUsername = settings()->value("Proxy/Username").toString();
-    m_proxyPassword = settings()->value("Proxy/Password").toString();
-    setupProxy();
-
     // Tv Shows
     m_tvShowDvdOrder = settings()->value("TvShows/DvdOrder", false).toBool();
 
     // Warnings
     m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
 
-    directorySettings().loadSettings();
+    m_directorySettings.loadSettings();
+    m_kodiSettings.saveSettings();
+    m_importSettings.saveSettings();
+    m_networkSettings.saveSettings();
 
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty()) {
@@ -238,8 +228,6 @@ void Settings::loadSettings()
     settings()->endArray();
 
     // Downloads
-    m_unrar = settings()->value("Downloads/Unrar").toString();
-    m_makeMkvCon = settings()->value("Downloads/MakeMkvCon").toString();
     m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
     m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
     m_makeMkvDialogSize = settings()->value("Downloads/MakeMkvDialogSize").toSize();
@@ -273,20 +261,6 @@ void Settings::saveSettings()
     settings()->setValue("Donated", m_donated);
     settings()->setValue("LastImagePath", m_lastImagePath);
 
-    // XBMC
-    settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
-    settings()->setValue("XBMC/RemotePort", m_xbmcPort);
-    settings()->setValue("XBMC/RemoteUser", m_xbmcUser);
-    settings()->setValue("XBMC/RemotePassword", m_xbmcPassword);
-
-    // Proxy
-    settings()->setValue("Proxy/Enable", m_useProxy);
-    settings()->setValue("Proxy/Type", m_proxyType);
-    settings()->setValue("Proxy/Host", m_proxyHost);
-    settings()->setValue("Proxy/Port", m_proxyPort);
-    settings()->setValue("Proxy/Username", m_proxyUsername);
-    settings()->setValue("Proxy/Password", m_proxyPassword);
-    setupProxy();
 
     // Tv Shows
     settings()->setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
@@ -295,6 +269,9 @@ void Settings::saveSettings()
     settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
     m_directorySettings.saveSettings();
+    m_kodiSettings.saveSettings();
+    m_importSettings.saveSettings();
+    m_networkSettings.saveSettings();
 
     settings()->setValue("excludeWords", m_excludeWords);
 
@@ -354,8 +331,6 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    settings()->setValue("Downloads/Unrar", m_unrar);
-    settings()->setValue("Downloads/MakeMkvCon", m_makeMkvCon);
     settings()->setValue("Downloads/DeleteArchives", m_deleteArchives);
     settings()->setValue("Downloads/KeepSource", m_keepDownloadSource);
 
@@ -369,26 +344,6 @@ void Settings::saveSettings()
     settings()->sync();
 
     emit sigSettingsSaved();
-}
-
-/**
- * @brief Sets up the proxy
- */
-void Settings::setupProxy()
-{
-    QNetworkProxy proxy;
-    if (!m_useProxy) {
-        proxy.setType(QNetworkProxy::NoProxy);
-    } else if (m_proxyType == 0) {
-        proxy.setType(QNetworkProxy::HttpProxy);
-    } else {
-        proxy.setType(QNetworkProxy::Socks5Proxy);
-    }
-    proxy.setHostName(m_proxyHost);
-    proxy.setPort(m_proxyPort);
-    proxy.setUser(m_proxyUsername);
-    proxy.setPassword(m_proxyPassword);
-    QNetworkProxy::setApplicationProxy(proxy);
 }
 
 /*** GETTER ***/
@@ -469,6 +424,21 @@ DirectorySettings &Settings::directorySettings()
     return m_directorySettings;
 }
 
+KodiSettings &Settings::kodiSettings()
+{
+    return m_kodiSettings;
+}
+
+ImportSettings &Settings::importSettings()
+{
+    return m_importSettings;
+}
+
+NetworkSettings &Settings::networkSettings()
+{
+    return m_networkSettings;
+}
+
 /**
  * @brief Returns the words to exclude from media names,
  * seperated by commas
@@ -504,60 +474,6 @@ QString Settings::debugLogPath()
 bool Settings::useYoutubePluginUrls()
 {
     return m_youtubePluginUrls;
-}
-
-/**
- * @brief Holds if a proxy should be used
- * @return Proxy enabled
- */
-bool Settings::useProxy()
-{
-    return m_useProxy;
-}
-
-/**
- * @brief Holds the type of the proxy (0 HTTP, 1 SOCKS5)
- * @return Proxy type
- */
-int Settings::proxyType()
-{
-    return m_proxyType;
-}
-
-/**
- * @brief Holds the host of the proxy
- * @return Proxy host
- */
-QString Settings::proxyHost()
-{
-    return m_proxyHost;
-}
-
-/**
- * @brief Holds the port of the proxy
- * @return Proxy port
- */
-int Settings::proxyPort()
-{
-    return m_proxyPort;
-}
-
-/**
- * @brief Holds the username of the proxy
- * @return Proxy username
- */
-QString Settings::proxyUsername()
-{
-    return m_proxyUsername;
-}
-
-/**
- * @brief Holds the password of the proxy
- * @return Proxy password
- */
-QString Settings::proxyPassword()
-{
-    return m_proxyPassword;
 }
 
 /**
@@ -614,16 +530,6 @@ QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
 bool Settings::usePlotForOutline()
 {
     return m_usePlotForOutline;
-}
-
-QString Settings::xbmcHost()
-{
-    return m_xbmcHost;
-}
-
-int Settings::xbmcPort()
-{
-    return m_xbmcPort;
 }
 
 /*** SETTER ***/
@@ -757,60 +663,6 @@ void Settings::setDataFiles(QVector<DataFile> files)
 }
 
 /**
- * @brief Sets if a proxy should be used
- * @param use Enable proxy
- */
-void Settings::setUseProxy(bool use)
-{
-    m_useProxy = use;
-}
-
-/**
- * @brief Sets the proxy type
- * @param type 0 HTTP, 1 SOCKS5
- */
-void Settings::setProxyType(int type)
-{
-    m_proxyType = type;
-}
-
-/**
- * @brief Sets the host of the proxy
- * @param host Proxy host
- */
-void Settings::setProxyHost(QString host)
-{
-    m_proxyHost = host;
-}
-
-/**
- * @brief Sets the port of the proxy
- * @param port Proxy port
- */
-void Settings::setProxyPort(int port)
-{
-    m_proxyPort = port;
-}
-
-/**
- * @brief Sets the username to use when connecting to the proxy
- * @param username Proxy username
- */
-void Settings::setProxyUsername(QString username)
-{
-    m_proxyUsername = username;
-}
-
-/**
- * @brief Sets the password to use when connecting to the proxy
- * @param password Proxy password
- */
-void Settings::setProxyPassword(QString password)
-{
-    m_proxyPassword = password;
-}
-
-/**
  * @brief Settings::setAutoLoadStreamDetails
  * @param autoLoad
  */
@@ -826,16 +678,6 @@ void Settings::setAutoLoadStreamDetails(bool autoLoad)
 void Settings::setUsePlotForOutline(bool use)
 {
     m_usePlotForOutline = use;
-}
-
-void Settings::setXbmcHost(QString host)
-{
-    m_xbmcHost = host;
-}
-
-void Settings::setXbmcPort(int port)
-{
-    m_xbmcPort = port;
 }
 
 template<>
@@ -1111,16 +953,6 @@ void Settings::setCurrentMovieScraper(int current)
     settings()->sync();
 }
 
-void Settings::setUnrar(QString unrar)
-{
-    m_unrar = unrar;
-}
-
-QString Settings::unrar()
-{
-    return m_unrar;
-}
-
 void Settings::setDeleteArchives(bool deleteArchives)
 {
     m_deleteArchives = deleteArchives;
@@ -1223,16 +1055,6 @@ bool Settings::showAdultScrapers() const
     return m_showAdultScrapers;
 }
 
-void Settings::setMakeMkvCon(QString makeMkvCon)
-{
-    m_makeMkvCon = makeMkvCon;
-}
-
-QString Settings::makeMkvCon()
-{
-    return m_makeMkvCon;
-}
-
 void Settings::setStartupSection(QString startupSection)
 {
     m_startupSection = startupSection;
@@ -1254,26 +1076,6 @@ void Settings::setDonated(bool donated)
 bool Settings::donated() const
 {
     return m_donated;
-}
-
-void Settings::setXbmcUser(QString user)
-{
-    m_xbmcUser = user;
-}
-
-QString Settings::xbmcUser()
-{
-    return m_xbmcUser;
-}
-
-void Settings::setXbmcPassword(QString password)
-{
-    m_xbmcPassword = password;
-}
-
-QString Settings::xbmcPassword()
-{
-    return m_xbmcPassword;
 }
 
 void Settings::setLastImagePath(QString path)
