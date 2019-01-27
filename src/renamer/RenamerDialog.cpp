@@ -36,8 +36,8 @@ RenamerDialog::RenamerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Rena
     m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
                                .arg("<a "
-                                    "href=\"https://github.com/Komet/MediaElch/blob/master/doc/"
-                                    "RenamingFiles.md\">https://github.com/Komet/MediaElch/blob/master/doc/"
+                                    "href=\"https://mediaelch.github.io/mediaelch-doc/renaming.html\">https://"
+                                    "mediaelch.github.io/mediaelch-doc/renaming.html"
                                     "RenamingFiles.md</a>"));
 }
 
