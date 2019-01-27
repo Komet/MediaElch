@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
-    m_xbmcSync = new XbmcSync(this);
+    m_xbmcSync = new XbmcSync(Settings::instance()->kodiSettings(), this);
     m_renamer = new RenamerDialog(this);
     m_settings = Settings::instance(this);
     m_exportDialog = new ExportDialog(this);

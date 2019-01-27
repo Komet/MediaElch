@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/Movie.h"
+#include "settings/KodiSettings.h"
 
 #include <QAuthenticator>
 #include <QDialog>
@@ -20,7 +21,7 @@ class XbmcSync : public QDialog
     Q_OBJECT
 
 public:
-    explicit XbmcSync(QWidget *parent = nullptr);
+    explicit XbmcSync(KodiSettings &settings, QWidget *parent = nullptr);
     ~XbmcSync() override;
     enum class Element
     {
@@ -71,6 +72,7 @@ private slots:
 
 private:
     Ui::XbmcSync *ui;
+    KodiSettings &m_settings;
 
     QNetworkAccessManager m_qnam;
     QVector<Movie *> m_moviesToSync;

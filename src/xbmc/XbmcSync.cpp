@@ -13,9 +13,10 @@
 // XbmcSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
 
-XbmcSync::XbmcSync(QWidget *parent) :
+XbmcSync::XbmcSync(KodiSettings &settings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::XbmcSync),
+    m_settings{settings},
     m_allReady{false},
     m_aborted{false},
     m_syncType{SyncType::Clean},
@@ -147,8 +148,7 @@ void XbmcSync::startSync()
         }
     }
 
-    if (Settings::instance()->kodiSettings().xbmcHost().isEmpty()
-        || Settings::instance()->kodiSettings().xbmcPort() == 0) {
+    if (m_settings.xbmcHost().isEmpty() || m_settings.xbmcPort() == 0) {
         ui->status->setText(tr("Please fill in your Kodi host and port."));
         return;
     }
@@ -797,22 +797,20 @@ void XbmcSync::onAuthRequired(QNetworkReply *reply, QAuthenticator *authenticato
 {
     Q_UNUSED(reply);
 
-    authenticator->setUser(Settings::instance()->kodiSettings().xbmcUser());
-    authenticator->setPassword(Settings::instance()->kodiSettings().xbmcPassword());
+    authenticator->setUser(m_settings.xbmcUser());
+    authenticator->setPassword(m_settings.xbmcPassword());
 }
 
 QUrl XbmcSync::xbmcUrl()
 {
     QString url = "http://";
-    if (!Settings::instance()->kodiSettings().xbmcUser().isEmpty()) {
-        url.append(Settings::instance()->kodiSettings().xbmcUser());
-        if (!Settings::instance()->kodiSettings().xbmcPassword().isEmpty()) {
-            url.append(":" + Settings::instance()->kodiSettings().xbmcPassword());
+    if (!m_settings.xbmcUser().isEmpty()) {
+        url.append(m_settings.xbmcUser());
+        if (!m_settings.xbmcPassword().isEmpty()) {
+            url.append(":" + m_settings.xbmcPassword());
         }
         url.append("@");
     }
-    url.append(QString("%1:%2/jsonrpc")
-                   .arg(Settings::instance()->kodiSettings().xbmcHost())
-                   .arg(Settings::instance()->kodiSettings().xbmcPort()));
+    url.append(QString("%1:%2/jsonrpc").arg(m_settings.xbmcHost()).arg(m_settings.xbmcPort()));
     return QUrl{url};
 }
