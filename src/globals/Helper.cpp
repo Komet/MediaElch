@@ -526,9 +526,9 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
         return 0;
     }
 
-    QVector<QVector<int>> d;
+    QVector<QVector<int>> d(len1);
 
-    d.insert(0, QVector<int>());
+    d.insert(0, QVector<int>(len1));
     d[0].insert(0, 0);
     for (int i = 1; i <= len1; ++i) {
         d.insert(i, QVector<int>());

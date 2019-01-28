@@ -68,7 +68,7 @@ void MovieImages::clear(QVector<MovieScraperInfos> infos)
  */
 QVector<Poster> MovieImages::posters() const
 {
-    return m_posters;
+    return m_posters.toVector();
 }
 
 /**
@@ -78,22 +78,22 @@ QVector<Poster> MovieImages::posters() const
  */
 QVector<Poster> MovieImages::backdrops() const
 {
-    return m_backdrops;
+    return m_backdrops.toVector();
 }
 
 QVector<Poster> MovieImages::discArts() const
 {
-    return m_discArts;
+    return m_discArts.toVector();
 }
 
 QVector<Poster> MovieImages::clearArts() const
 {
-    return m_clearArts;
+    return m_clearArts.toVector();
 }
 
 QVector<Poster> MovieImages::logos() const
 {
-    return m_logos;
+    return m_logos.toVector();
 }
 
 QStringList MovieImages::extraFanartsToRemove()
@@ -103,12 +103,12 @@ QStringList MovieImages::extraFanartsToRemove()
 
 QVector<QByteArray> MovieImages::extraFanartToAdd()
 {
-    return m_extraFanartToAdd;
+    return m_extraFanartToAdd.toVector();
 }
 
 QVector<ImageType> MovieImages::imagesToRemove() const
 {
-    return m_imagesToRemove;
+    return m_imagesToRemove.toVector();
 }
 
 /**

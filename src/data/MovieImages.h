@@ -52,11 +52,11 @@ public:
     void setImage(ImageType imageType, QByteArray image);
 
 private:
-    QVector<Poster> m_posters;
-    QVector<Poster> m_backdrops;
-    QVector<Poster> m_discArts;
-    QVector<Poster> m_clearArts;
-    QVector<Poster> m_logos;
+    QList<Poster> m_posters;
+    QList<Poster> m_backdrops;
+    QList<Poster> m_discArts;
+    QList<Poster> m_clearArts;
+    QList<Poster> m_logos;
 
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
@@ -66,8 +66,8 @@ private:
     QMap<ImageType, QByteArray> m_images;
     QMap<ImageType, bool> m_hasImage;
     QMap<ImageType, bool> m_hasImageChanged;
-    QVector<QByteArray> m_extraFanartToAdd;
-    QVector<ImageType> m_imagesToRemove;
+    QList<QByteArray> m_extraFanartToAdd;
+    QList<ImageType> m_imagesToRemove;
 
     Movie &m_movie;
 };

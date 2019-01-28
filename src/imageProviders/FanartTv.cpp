@@ -820,10 +820,12 @@ void FanartTv::insertPoster(QVector<Poster> &posters, Poster b, QString language
     }
 
     if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType)) {
+        // lastInPreferredLangAndHd < n
         posters.insert(lastInPreferredLangAndHd + 1, b);
     } else if (b.language == language) {
         posters.insert(lastInPreferredLang + 1, b);
     } else if (b.hint == "HD" || b.hint == preferredDiscType) {
+        // lastHd < n
         posters.insert(lastHd + 1, b);
     } else {
         posters.append(b);
