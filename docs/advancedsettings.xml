@@ -152,7 +152,7 @@
             index.bdmv,*.wtv"
         </concerts>
         <subtitle>
-            *.idx,*.sub,*.srr,*.srt
+            *.idx,*.sub,*.srr,*.srt,*.ass,*.ttml
         </subtitle>
     </fileFilters>
 </advancedsettings>

@@ -67,7 +67,7 @@ void AdvancedSettings::reset()
     m_tvShowFilters = videoFiles;
     m_concertFilters = videoFiles;
 
-    m_subtitleFilters = QStringList{"*.idx", "*.sub", "*.srr", "*.srt"};
+    m_subtitleFilters = QStringList{"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"};
 }
 
 QByteArray AdvancedSettings::getAdvancedSettingsXml() const

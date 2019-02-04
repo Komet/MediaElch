@@ -13,6 +13,7 @@ to reconfigure your scraper settings.
 ### Improvements
 
  - Update French translation (#646)
+ - Add more subtitle formats (#661)
 
 ### Internal Improvements
 
