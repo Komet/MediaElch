@@ -58,7 +58,7 @@ int MovieListDialog::exec()
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
@@ -148,8 +148,9 @@ void MovieListDialog::reposition()
 void MovieListDialog::onAddMovies()
 {
     m_selectedMovies.clear();
-    foreach (QTableWidgetItem *item, ui->movies->selectedItems())
+    for (QTableWidgetItem *item : ui->movies->selectedItems()) {
         m_selectedMovies << item->data(Qt::UserRole).value<Movie *>();
+    }
     accept();
 }
 

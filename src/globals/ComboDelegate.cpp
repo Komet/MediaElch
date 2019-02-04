@@ -33,49 +33,49 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     auto box = static_cast<QComboBox *>(editor);
     QStringList items;
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
-        foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-            foreach (const QString &genre, movie->genres()) {
+        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString &genre : movie->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Countries) {
-        foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-            foreach (const QString &country, movie->countries()) {
+        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString &country : movie->countries()) {
                 if (!country.isEmpty() && !items.contains(country)) {
                     items.append(country);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Studios) {
-        foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-            foreach (const QString &studio, movie->studios()) {
+        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString &studio : movie->studios()) {
                 if (!studio.isEmpty() && !items.contains(studio)) {
                     items.append(studio);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Concerts && m_type == ComboDelegateType::Genres) {
-        foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
-            foreach (const QString &genre, concert->genres()) {
+        for (Concert *concert : Manager::instance()->concertModel()->concerts()) {
+            for (const QString &genre : concert->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Genres) {
-        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-            foreach (const QString &genre, show->genres()) {
+        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (const QString &genre : show->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Directors) {
-        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-            foreach (TvShowEpisode *episode, show->episodes()) {
-                foreach (const QString &director, episode->directors()) {
+        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (TvShowEpisode *episode : show->episodes()) {
+                for (const QString &director : episode->directors()) {
                     if (!director.isEmpty() && !items.contains(director)) {
                         items.append(director);
                     }
@@ -83,9 +83,9 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Writers) {
-        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-            foreach (TvShowEpisode *episode, show->episodes()) {
-                foreach (const QString &writer, episode->writers()) {
+        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (TvShowEpisode *episode : show->episodes()) {
+                for (const QString &writer : episode->writers()) {
                     if (!writer.isEmpty() && !items.contains(writer)) {
                         items.append(writer);
                     }

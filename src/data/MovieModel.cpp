@@ -228,7 +228,7 @@ void MovieModel::clear()
         return;
     }
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
-    foreach (Movie *movie, m_movies) {
+    for (Movie *movie : m_movies) {
         movie->deleteLater();
     }
     m_movies.clear();

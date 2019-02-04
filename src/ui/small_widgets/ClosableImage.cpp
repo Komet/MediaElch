@@ -443,7 +443,7 @@ void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
     QStringList filters = QStringList() << ".jpg"
                                         << ".jpeg"
                                         << ".png";
-    foreach (const QString &filter, filters) {
+    for (const QString &filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -458,7 +458,7 @@ void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
     QStringList filters = QStringList() << ".jpg"
                                         << ".jpeg"
                                         << ".png";
-    foreach (const QString &filter, filters) {
+    for (const QString &filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -474,7 +474,7 @@ void ClosableImage::dropEvent(QDropEvent *event)
         QStringList filters = QStringList() << ".jpg"
                                             << ".jpeg"
                                             << ".png";
-        foreach (const QString &filter, filters) {
+        for (const QString &filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(m_imageType, url);
                 return;

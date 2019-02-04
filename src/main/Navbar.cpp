@@ -69,7 +69,7 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
     int i = 0;
 #endif
 
-    foreach (QToolButton *btn, ui->widget->findChildren<QToolButton *>()) {
+    for (QToolButton *btn : ui->widget->findChildren<QToolButton *>()) {
         if (!btn->property("iconName").isValid()) {
             continue;
         }

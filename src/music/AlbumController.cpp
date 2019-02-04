@@ -105,7 +105,7 @@ void AlbumController::loadImage(ImageType type, QUrl url)
 void AlbumController::loadImages(ImageType type, QVector<QUrl> urls)
 {
     bool started = false;
-    foreach (const QUrl &url, urls) {
+    for (const QUrl &url : urls) {
         DownloadManagerElement d;
         d.album = m_album;
         d.imageType = type;
@@ -179,7 +179,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
 
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
         ImageProviderInterface *imageProvider = nullptr;
-        foreach (ImageProviderInterface *interface, Manager::instance()->imageProviders()) {
+        for (ImageProviderInterface *interface : Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;
                 break;

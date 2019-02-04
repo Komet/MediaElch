@@ -56,7 +56,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) : QDialog(parent), ui(new Ui::TvShow
     ui->chkRuntime->setMyData(static_cast<int>(TvShowScraperInfos::Runtime));
     ui->chkStatus->setMyData(static_cast<int>(TvShowScraperInfos::Status));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowSearch::onChkToggled);
         }
@@ -147,7 +147,7 @@ void TvShowSearch::onShowResults(QVector<ScraperSearchResult> results)
     qDebug() << "Entered, size of results=" << results.count();
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         QTableWidgetItem *item =
             new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
         item->setData(Qt::UserRole, result.id);
@@ -199,7 +199,7 @@ void TvShowSearch::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
         }
@@ -220,7 +220,7 @@ void TvShowSearch::onChkToggled()
 void TvShowSearch::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
         }

@@ -29,7 +29,7 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
     ui->chkTitle->setMyData(static_cast<int>(TvShowScraperInfos::Title));
     ui->chkWriter->setMyData(static_cast<int>(TvShowScraperInfos::Writer));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkToggled);
         }
@@ -69,7 +69,7 @@ void TvShowSearchEpisode::onChkToggled()
 void TvShowSearchEpisode::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
         }
@@ -116,7 +116,7 @@ void TvShowSearchEpisode::onShowResults(QVector<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         QTableWidgetItem *item =
             new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
         item->setData(Qt::UserRole, result.id);

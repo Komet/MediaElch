@@ -106,7 +106,7 @@ void StreamDetails::loadStreamDetails()
         QString biggest;
         qint64 biggestSize = 0;
         QFileInfo fi(m_files.first());
-        foreach (const QFileInfo &fiVob,
+        for (const QFileInfo &fiVob :
             fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
             rx.setMinimal(true);
@@ -411,7 +411,7 @@ bool StreamDetails::hasAudioQuality(QString quality) const
 int StreamDetails::audioChannels() const
 {
     int channels = 0;
-    foreach (int c, m_availableChannels) {
+    for (int c : m_availableChannels) {
         if (c > channels) {
             channels = c;
         }

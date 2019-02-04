@@ -242,7 +242,7 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
     const auto appendNextFiltersToList = [&xml](QStringList &list) {
         list.clear();
         const auto filters = xml.readElementText().split(",", QString::SkipEmptyParts);
-        foreach (const QString &filter, filters) {
+        for (const QString &filter : filters) {
             list << filter.trimmed();
         }
     };

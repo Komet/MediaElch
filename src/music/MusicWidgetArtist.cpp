@@ -60,7 +60,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) : QWidget(parent), ui(new 
     ui->logo->setImageType(ImageType::ArtistLogo);
     ui->fanart->setImageType(ImageType::ArtistFanart);
     ui->thumb->setImageType(ImageType::ArtistThumb);
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetArtist::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetArtist::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetArtist::onImageDropped);
@@ -244,7 +244,7 @@ void MusicWidgetArtist::updateArtistInfo()
     ui->biography->blockSignals(false);
 
     ui->discography->blockSignals(true);
-    foreach (DiscographyAlbum *album, m_artist->discographyAlbumsPointer()) {
+    for (DiscographyAlbum *album : m_artist->discographyAlbumsPointer()) {
         int row = ui->discography->rowCount();
         ui->discography->insertRow(row);
         ui->discography->setItem(row, 0, new QTableWidgetItem(album->title));
@@ -469,7 +469,7 @@ void MusicWidgetArtist::onLoadingImages(Artist *artist, QVector<ImageType> image
     }
 
     for (const auto imageType : imageTypes) {
-        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
+        for (ClosableImage *cImage : ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -500,7 +500,7 @@ void MusicWidgetArtist::onSetImage(Artist *artist, ImageType type, QByteArray da
         return;
     }
 
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);

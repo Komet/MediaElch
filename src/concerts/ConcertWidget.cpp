@@ -452,7 +452,7 @@ void ConcertWidget::onSaveInformation()
         updateConcertInfo();
         NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
     } else {
-        foreach (Concert *concert, concerts) {
+        for (Concert *concert : concerts) {
             if (concert->hasChanged()) {
                 concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
                 concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
@@ -478,7 +478,7 @@ void ConcertWidget::onSaveAll()
     setDisabledTrue();
     m_savingWidget->show();
 
-    foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
+    for (Concert *concert : Manager::instance()->concertModel()->concerts()) {
         if (concert->hasChanged()) {
             concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
             concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);

@@ -105,7 +105,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->banner->setImageType(ImageType::TvShowBanner);
     ui->thumb->setImageType(ImageType::TvShowThumb);
     ui->clearArt->setImageType(ImageType::TvShowClearArt);
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &TvShowWidgetTvShow::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &TvShowWidgetTvShow::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetTvShow::onImageDropped);
@@ -404,7 +404,7 @@ void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
     for (const auto imageType : images) {
         ClosableImage *image = nullptr;
 
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+        for (ClosableImage *cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 image = cImage;
             }
@@ -743,7 +743,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->fanarts->addImage(elem.data);
         }
     } else {
-        foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+        for (ClosableImage *image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (image->imageType() == elem.imageType) {
                 if (elem.imageType == ImageType::TvShowBackdrop) {
                     Helper::instance()->resizeBackdrop(elem.data);
@@ -1095,7 +1095,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-        foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
+        for (const QUrl &url : ImageDialog::instance()->imageUrls()) {
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowExtraFanart;
             d.url = url;

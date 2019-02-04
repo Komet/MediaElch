@@ -12,7 +12,7 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
+    for (ConcertScraperInterface *scraper : Manager::instance()->concertScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->concertScrapers().indexOf(scraper));
         connect(scraper,
             SIGNAL(searchDone(QVector<ScraperSearchResult>)),
@@ -37,7 +37,7 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget *parent) : QWidget(parent), ui(
     ui->chkTitle->setMyData(static_cast<int>(ConcertScraperInfos::Title));
     ui->chkTrailer->setMyData(static_cast<int>(ConcertScraperInfos::Trailer));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &ConcertSearchWidget::chkToggled);
         }
@@ -84,7 +84,7 @@ void ConcertSearchWidget::showResults(QVector<ScraperSearchResult> results)
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         QString name = result.name;
         if (result.released.isValid()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
@@ -108,7 +108,7 @@ void ConcertSearchWidget::chkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(ConcertScraperInfos(box->myData().toInt()));
         }
@@ -124,7 +124,7 @@ void ConcertSearchWidget::chkToggled()
 
 void ConcertSearchWidget::chkAllToggled(bool toggled)
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(toggled);
         }

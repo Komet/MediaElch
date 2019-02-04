@@ -351,7 +351,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->epBookmark->setTime(m_episode->epBookmark());
 
     ui->writers->blockSignals(true);
-    foreach (QString *writer, m_episode->writersPointer()) {
+    for (QString *writer : m_episode->writersPointer()) {
         int row = ui->writers->rowCount();
         ui->writers->insertRow(row);
         ui->writers->setItem(row, 0, new QTableWidgetItem(*writer));
@@ -360,7 +360,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->directors->blockSignals(true);
-    foreach (QString *director, m_episode->directorsPointer()) {
+    for (QString *director : m_episode->directorsPointer()) {
         int row = ui->directors->rowCount();
         ui->directors->insertRow(row);
         ui->directors->setItem(row, 0, new QTableWidgetItem(*director));
@@ -471,8 +471,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
 
-    foreach (QWidget *widget, m_streamDetailsWidgets)
+    for (QWidget *widget : m_streamDetailsWidgets) {
         widget->deleteLater();
+    }
     m_streamDetailsWidgets.clear();
     m_streamDetailsAudio.clear();
     m_streamDetailsSubtitles.clear();

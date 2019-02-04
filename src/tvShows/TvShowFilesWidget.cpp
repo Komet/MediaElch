@@ -192,7 +192,7 @@ void TvShowFilesWidget::scanForEpisodes()
 void TvShowFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow || item->type() == TvShowType::Season) {
@@ -231,11 +231,11 @@ void TvShowFilesWidget::markAsWatched()
 void TvShowFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow || item->type() == TvShowType::Season) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
@@ -266,11 +266,11 @@ void TvShowFilesWidget::loadStreamDetails()
     m_contextMenu->close();
     QVector<TvShowEpisode *> episodes;
 
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow || item->type() == TvShowType::Season) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
@@ -331,13 +331,13 @@ void TvShowFilesWidget::markForSync()
 void TvShowFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow) {
             item->tvShow()->setSyncNeeded(false);
         } else if (item->type() == TvShowType::Season) {
-            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+            for (TvShowEpisode *episode : item->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
@@ -415,7 +415,7 @@ void TvShowFilesWidget::openNfo()
 void TvShowFilesWidget::showMissingEpisodes()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow) {
@@ -455,7 +455,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow) {
@@ -596,7 +596,7 @@ QVector<TvShowEpisode *> TvShowFilesWidget::selectedEpisodes(bool includeFromSea
 QVector<TvShow *> TvShowFilesWidget::selectedShows()
 {
     QVector<TvShow *> shows;
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::TvShow) {
@@ -609,7 +609,7 @@ QVector<TvShow *> TvShowFilesWidget::selectedShows()
 QVector<TvShow *> TvShowFilesWidget::selectedSeasons()
 {
     QVector<TvShow *> shows;
-    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TvShowType::Season && !shows.contains(item->tvShow())) {

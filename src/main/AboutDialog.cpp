@@ -51,12 +51,12 @@ int AboutDialog::exec()
     adjustSize();
 
     int episodes = 0;
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
         episodes += show->episodes().count();
     }
 
     int albums = 0;
-    foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
+    for (Artist *artist : Manager::instance()->musicModel()->artists()) {
         albums += artist->albums().count();
     }
 

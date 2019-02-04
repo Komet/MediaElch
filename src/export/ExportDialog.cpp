@@ -375,7 +375,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     dir.mkdir("episodes");
     dir.mkdir("episode_images");
 
-    foreach (TvShow *show, shows) {
+    for (TvShow *show : shows) {
         if (m_canceled) {
             return;
         }
@@ -394,7 +394,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
-        foreach (TvShowEpisode *episode, show->episodes()) {
+        for (TvShowEpisode *episode : show->episodes()) {
             if (episode->isDummy()) {
                 continue;
             }
@@ -436,7 +436,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
 
     QStringList actorNames;
     QStringList actorRoles;
-    foreach (Actor actor, show->actors()) {
+    for (Actor actor : show->actors()) {
         actorNames << actor.name;
         actorRoles << actor.role;
     }

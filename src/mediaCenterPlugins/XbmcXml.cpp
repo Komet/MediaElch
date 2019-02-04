@@ -557,7 +557,7 @@ void XbmcXml::writeStreamDetails(QDomDocument &doc, const StreamDetails *streamD
         elemSd.appendChild(elemSubtitle);
     }
 
-    foreach (Subtitle *subtitle, subtitles) {
+    for (Subtitle *subtitle : subtitles) {
         QDomElement elemSubtitle = doc.createElement("subtitle");
         QDomElement elem = doc.createElement("language");
         elem.appendChild(doc.createTextNode(subtitle->language()));
@@ -938,7 +938,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
     show->setNfoContent(xmlContent);
     Manager::instance()->database()->update(show);
 
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
         QString saveFilePath = show->dir() + "/" + dataFile.saveFileName("");
         QDir saveFileDir = QFileInfo(saveFilePath).dir();
         if (!saveFileDir.exists()) {
@@ -989,13 +989,14 @@ bool XbmcXml::saveTvShow(TvShow *show)
     }
 
     if (!show->dir().isEmpty()) {
-        foreach (const QString &file, show->extraFanartsToRemove())
+        for (const QString &file : show->extraFanartsToRemove()) {
             QFile::remove(file);
+        }
         QDir dir(show->dir() + "/extrafanart");
         if (!dir.exists() && !show->extraFanartImagesToAdd().isEmpty()) {
             QDir(show->dir()).mkdir("extrafanart");
         }
-        foreach (QByteArray img, show->extraFanartImagesToAdd()) {
+        for (QByteArray img : show->extraFanartImagesToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -1004,7 +1005,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
         }
     }
 
-    foreach (const Actor &actor, show->actors()) {
+    for (const Actor &actor : show->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
             dir.mkdir(show->dir() + "/" + ".actors");
@@ -1029,7 +1030,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
     // Multi-Episode handling
     QVector<TvShowEpisode *> episodes;
-    foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
+    for (TvShowEpisode *subEpisode : episode->tvShow()->episodes()) {
         if (subEpisode->isDummy()) {
             continue;
         }
@@ -1086,7 +1087,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
+            for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
                 QString saveFileName =
                     dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().count() > 1);
                 saveFile(fi.absolutePath() + "/" + saveFileName, episode->thumbnailImage());
@@ -1259,7 +1260,7 @@ QImage XbmcXml::movieSetPoster(QString setName)
 
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         QFileInfo fi(fileName);
         if (fi.exists()) {
@@ -1276,7 +1277,7 @@ QImage XbmcXml::movieSetBackdrop(QString setName)
  */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         if (!fileName.isEmpty()) {
             poster.save(fileName, "jpg", 100);
@@ -1291,7 +1292,7 @@ void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
  */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
+    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         if (!fileName.isEmpty()) {
             backdrop.save(fileName, "jpg", 100);
@@ -1366,7 +1367,7 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
     } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
-        foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
             if (movie->set() == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first());
                 QDir dir = fi.dir();
@@ -1778,7 +1779,7 @@ bool XbmcXml::saveArtist(Artist *artist)
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (artist->imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty()) {
                     QFile(artist->path() + "/" + saveFileName).remove();
@@ -1787,20 +1788,21 @@ bool XbmcXml::saveArtist(Artist *artist)
         }
 
         if (!artist->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
             }
         }
     }
 
-    foreach (const QString &file, artist->extraFanartsToRemove())
+    for (const QString &file : artist->extraFanartsToRemove()) {
         QFile::remove(file);
+    }
     QDir dir(artist->path() + "/extrafanart");
     if (!dir.exists() && !artist->extraFanartImagesToAdd().isEmpty()) {
         QDir(artist->path()).mkdir("extrafanart");
     }
-    foreach (QByteArray img, artist->extraFanartImagesToAdd()) {
+    for (QByteArray img : artist->extraFanartImagesToAdd()) {
         int num = 1;
         while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
             ++num;
@@ -1843,7 +1845,7 @@ bool XbmcXml::saveAlbum(Album *album)
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
         if (album->imagesToRemove().contains(imageType)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty()) {
                     QFile(album->path() + "/" + saveFileName).remove();
@@ -1852,7 +1854,7 @@ bool XbmcXml::saveAlbum(Album *album)
         }
 
         if (!album->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+            for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
             }
@@ -1866,7 +1868,7 @@ bool XbmcXml::saveAlbum(Album *album)
         }
 
         // @todo: get filename from settings
-        foreach (Image *image, album->bookletModel()->images()) {
+        for (Image *image : album->bookletModel()->images()) {
             if (image->deletion() && !image->fileName().isEmpty()) {
                 QFile::remove(image->fileName());
             } else if (!image->deletion()) {
@@ -1874,7 +1876,7 @@ bool XbmcXml::saveAlbum(Album *album)
             }
         }
         int bookletNum = 1;
-        foreach (Image *image, album->bookletModel()->images()) {
+        for (Image *image : album->bookletModel()->images()) {
             if (!image->deletion()) {
                 QString fileName =
                     album->path() + "/booklet/booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
@@ -1946,7 +1948,7 @@ QByteArray XbmcXml::getAlbumXml(Album *album)
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         removeChildNodes(doc, "thumb");
 
-        foreach (const Poster &poster, album->images(ImageType::AlbumThumb)) {
+        for (const Poster &poster : album->images(ImageType::AlbumThumb)) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -1986,10 +1988,12 @@ void XbmcXml::setListValue(QDomDocument &doc, const QString &name, const QString
             nodesToRemove.append(childNodes.at(i));
         }
     }
-    foreach (QDomNode node, nodesToRemove)
+    for (QDomNode &node : nodesToRemove) {
         rootNode.removeChild(node);
-    foreach (const QString &style, values)
+    }
+    for (const QString &style : values) {
         addTextValue(doc, name, style);
+    }
 }
 
 QDomElement XbmcXml::addTextValue(QDomDocument &doc, const QString &name, const QString &value)
@@ -2022,7 +2026,7 @@ void XbmcXml::removeChildNodes(QDomDocument &doc, const QString &name)
             nodesToRemove.append(childNodes.at(i));
         }
     }
-    foreach (QDomNode node, nodesToRemove) {
+    for (QDomNode node : nodesToRemove) {
         rootNode.removeChild(node);
     }
 }

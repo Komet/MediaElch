@@ -1251,7 +1251,7 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     QString out;
     out.append("Movie").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    foreach (const QString &file, movie.files()) {
+    for (const QString &file : movie.files()) {
         out.append(QString("    %1").arg(file).append(nl));
     }
     out.append(QString("  Name:          ").append(movie.name()).append(nl));

@@ -462,7 +462,7 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        foreach (QString file, QStringList() << files() << extraFiles()) {
+        for (QString file : QStringList() << files() << extraFiles()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_movie->name());
@@ -498,7 +498,7 @@ void ImportDialog::onImport()
             dir.cd(newFolderName);
         }
 
-        foreach (QString file, QStringList() << files() << extraFiles()) {
+        for (QString file : QStringList() << files() << extraFiles()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
 
@@ -649,7 +649,7 @@ void ImportDialog::onMovingFilesFinished()
         m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         Manager::instance()->database()->add(m_episode, importDir(), m_show->databaseId());
         bool newSeason = true;
-        foreach (TvShowEpisode *episode, m_show->episodes()) {
+        for (TvShowEpisode *episode : m_show->episodes()) {
             if (episode->season() == m_episode->season() && episode != m_episode) {
                 newSeason = false;
                 break;

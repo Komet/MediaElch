@@ -166,15 +166,16 @@ void SlidingStackedWidget::expandToOne()
         m_widgets.append(widget(i));
     }
 
-    foreach (QWidget *widget, m_widgets)
+    for (QWidget *widget : m_widgets) {
         removeWidget(widget);
+    }
 
     QWidget *pWidget = new QWidget();
     auto layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    foreach (QWidget *w, m_widgets) {
+    for (QWidget *w : m_widgets) {
         w->setParent(pWidget);
         w->show();
         layout->addWidget(w);
@@ -198,10 +199,11 @@ void SlidingStackedWidget::collapse()
 
     setFixedWidth((frameRect().width() - ((m_widgets.count() - 1) * 24)) / m_widgets.count());
 
-    foreach (QWidget *w, m_widgets)
+    for (QWidget *w : m_widgets) {
         addWidget(w);
+    }
 
-    foreach (QWidget *w, widgetsToDelete) {
+    for (QWidget *w : widgetsToDelete) {
         removeWidget(w);
         w->deleteLater();
     }

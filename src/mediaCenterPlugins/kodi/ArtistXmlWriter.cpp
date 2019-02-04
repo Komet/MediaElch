@@ -50,7 +50,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        foreach (const Poster &poster, m_artist.images(ImageType::ArtistThumb)) {
+        for (const Poster &poster : m_artist.images(ImageType::ArtistThumb)) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -59,7 +59,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
 
         if (!m_artist.images(ImageType::ArtistFanart).isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, m_artist.images(ImageType::ArtistFanart)) {
+            for (const Poster &poster : m_artist.images(ImageType::ArtistFanart)) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -77,7 +77,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
         }
     }
 
-    foreach (const DiscographyAlbum &album, m_artist.discographyAlbums()) {
+    for (const DiscographyAlbum &album : m_artist.discographyAlbums()) {
         bool nodeFound = false;
         for (QDomNode node : albumNodes) {
             if (!node.toElement().elementsByTagName("title").isEmpty()

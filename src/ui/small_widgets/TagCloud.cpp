@@ -131,7 +131,7 @@ void TagCloud::repositionTags()
     int width = ui->scrollAreaWidgetContents->width();
     int heightToAdd = 0;
 
-    foreach (Badge *badge, m_badges) {
+    for (Badge *badge : m_badges) {
         if (x + badge->width() + 2 > width) {
             x = 0;
             y += badge->height() + m_verticalSpace;

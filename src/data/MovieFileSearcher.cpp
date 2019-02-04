@@ -46,7 +46,7 @@ void MovieFileSearcher::reload(bool force)
 
     emit progress(0, 0, m_progressMessageId);
 
-    foreach (SettingsDir dir, m_directories) {
+    for (const SettingsDir &dir : m_directories) {
         if (m_aborted) {
             return;
         }
@@ -162,7 +162,7 @@ void MovieFileSearcher::reload(bool force)
 
     qDebug() << "Now processing files";
     QVector<Movie *> movies;
-    foreach (const MovieContents &con, c) {
+    for (const MovieContents &con : c) {
         Manager::instance()->database()->transaction();
         QMapIterator<QString, QStringList> itContents(con.contents);
         while (itContents.hasNext()) {
@@ -176,11 +176,11 @@ void MovieFileSearcher::reload(bool force)
             DiscType discType = DiscType::Single;
 
             // BluRay handling
-            foreach (const QString &path, bluRays) {
+            for (const QString &path : bluRays) {
                 if (!files.isEmpty()
                     && (files.first().startsWith(path + "/") || files.first().startsWith(path + "\\"))) {
                     QStringList f;
-                    foreach (const QString &file, files) {
+                    for (const QString &file : files) {
                         if (file.endsWith("index.bdmv", Qt::CaseInsensitive)) {
                             f.append(file);
                         }
@@ -192,11 +192,11 @@ void MovieFileSearcher::reload(bool force)
             }
 
             // DVD handling
-            foreach (const QString &path, dvds) {
+            for (const QString &path : dvds) {
                 if (!files.isEmpty()
                     && (files.first().startsWith(path + "/") || files.first().startsWith(path + "\\"))) {
                     QStringList f;
-                    foreach (const QString &file, files) {
+                    for (const QString &file : files) {
                         if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
                             f.append(file);
                         }
@@ -222,12 +222,8 @@ void MovieFileSearcher::reload(bool force)
                 movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
                 if (discType == DiscType::Single) {
                     QFileInfo mFi(files.first());
-                    foreach (QFileInfo subFi,
-                        mFi.dir().entryInfoList(QStringList() << "*.sub"
-                                                              << "*.srt"
-                                                              << "*.smi"
-                                                              << "*.ssa",
-                            QDir::Files | QDir::NoDotAndDotDot)) {
+                    for (QFileInfo subFi : mFi.dir().entryInfoList(
+                             QStringList{"*.sub", "*.srt", "*.smi", "*.ssa"}, QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
                         QStringList parts = subFileName.split(QRegExp(R"(\s+|\-+|\.+)"));
                         if (parts.isEmpty()) {
@@ -264,7 +260,7 @@ void MovieFileSearcher::reload(bool force)
                     QString file = files.takeLast();
                     QString stackedBase = Helper::instance()->stackedBaseName(file);
                     stacked.insert(stackedBase, QStringList() << file);
-                    foreach (const QString &f, files) {
+                    for (const QString &f : files) {
                         if (Helper::instance()->stackedBaseName(f) == stackedBase) {
                             stacked[stackedBase].append(f);
                             files.removeOne(f);
@@ -301,7 +297,7 @@ void MovieFileSearcher::reload(bool force)
 
     QtConcurrent::blockingMapped(dbMovies, MovieFileSearcher::loadMovieData);
 
-    foreach (Movie *movie, dbMovies) {
+    for (Movie *movie : dbMovies) {
         if (m_aborted) {
             return;
         }
@@ -312,7 +308,7 @@ void MovieFileSearcher::reload(bool force)
         emit progress(++movieCounter, movieSum, m_progressMessageId);
     }
 
-    foreach (Movie *movie, movies) {
+    for (Movie *movie : movies) {
         Manager::instance()->movieModel()->addMovie(movie);
     }
 
@@ -364,7 +360,7 @@ void MovieFileSearcher::scanDir(QString startPath,
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    for (const QString &cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
         }
@@ -397,7 +393,7 @@ void MovieFileSearcher::scanDir(QString startPath,
 
     QStringList files;
     QStringList entries = getFiles(path);
-    foreach (const QString &file, entries) {
+    for (const QString &file : entries) {
         if (m_aborted) {
             return;
         }
@@ -415,7 +411,7 @@ void MovieFileSearcher::scanDir(QString startPath,
 
     if (separateFolders) {
         QStringList movieFiles;
-        foreach (const QString &file, files) {
+        for (const QString &file : files) {
             movieFiles.append(QDir::toNativeSeparators(path + "/" + file));
         }
         if (movieFiles.count() > 0) {
@@ -469,7 +465,7 @@ void MovieFileSearcher::scanDir(QString startPath,
 QStringList MovieFileSearcher::getFiles(QString path)
 {
     QStringList files;
-    foreach (const QString &file,
+    for (const QString &file :
         QDir(path).entryList(Settings::instance()->advanced()->movieFilters(), QDir::Files | QDir::System)) {
         m_lastModifications.insert(
             QDir::toNativeSeparators(path + "/" + file), QFileInfo(path + QDir::separator() + file).lastModified());

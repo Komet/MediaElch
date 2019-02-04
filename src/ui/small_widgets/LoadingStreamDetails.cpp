@@ -36,7 +36,7 @@ void LoadingStreamDetails::loadMovies(QVector<Movie *> movies)
     ui->currentFile->clear();
     adjustSize();
     show();
-    foreach (Movie *movie, movies) {
+    for (Movie *movie : movies) {
         movie->blockSignals(true);
         movie->controller()->loadStreamDetailsFromFile();
         movie->setChanged(true);
@@ -55,7 +55,7 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert *> concerts)
     ui->currentFile->clear();
     adjustSize();
     show();
-    foreach (Concert *concert, concerts) {
+    for (Concert *concert : concerts) {
         concert->controller()->loadStreamDetailsFromFile();
         concert->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
@@ -72,7 +72,7 @@ void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode *> episodes)
     ui->currentFile->clear();
     adjustSize();
     show();
-    foreach (TvShowEpisode *episode, episodes) {
+    for (TvShowEpisode *episode : episodes) {
         episode->loadStreamDetailsFromFile();
         episode->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);

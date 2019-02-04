@@ -92,14 +92,14 @@ void GenreWidget::loadGenres()
     ui->genres->blockSignals(true);
     clear();
     QStringList genres;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        foreach (const QString &genre, movie->genres()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+        for (const QString &genre : movie->genres()) {
             if (!genre.isEmpty() && !genres.contains(genre)) {
                 genres.append(genre);
             };
         }
     }
-    foreach (const QString &genre, m_addedGenres) {
+    for (const QString &genre : m_addedGenres) {
         if (!genre.isEmpty() && !genres.contains(genre)) {
             genres.append(genre);
         }
@@ -107,7 +107,7 @@ void GenreWidget::loadGenres()
 
     qSort(genres.begin(), genres.end(), LocaleStringCompare());
 
-    foreach (const QString &genre, genres) {
+    for (const QString &genre : genres) {
         auto item = new QTableWidgetItem(genre);
         item->setData(Qt::UserRole, genre);
         int row = ui->genres->rowCount();
@@ -134,7 +134,7 @@ void GenreWidget::onGenreSelected()
     ui->movies->setSortingEnabled(false);
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             int row = ui->movies->rowCount();
             QTableWidgetItem *item = new QTableWidgetItem(movie->name());
@@ -160,7 +160,7 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
         return;
     }
 
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(origName)) {
             movie->removeGenre(origName);
             if (!movie->genres().contains(newName)) {
@@ -227,7 +227,7 @@ void GenreWidget::deleteGenre()
     QString origGenreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->genres->removeRow(ui->genres->currentRow());
 
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             movie->removeGenre(genreName);
         }
@@ -274,7 +274,7 @@ void GenreWidget::addMovie()
         }
 
         QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-        foreach (Movie *movie, movies) {
+        for (Movie *movie : movies) {
             if (movie->genres().contains(genreName)) {
                 continue;
             }
@@ -289,7 +289,7 @@ void GenreWidget::addMovie()
  */
 void GenreWidget::onSaveInformation()
 {
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         }

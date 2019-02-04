@@ -29,7 +29,7 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourc
     }
 
     Concert *concert = concerts.at(sourceRow);
-    foreach (Filter *filter, m_filters) {
+    for (Filter *filter : m_filters) {
         if (!filter->accepts(concert)) {
             return false;
         }

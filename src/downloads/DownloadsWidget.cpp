@@ -119,8 +119,9 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
             onlyExtraFiles.append(it.key());
         }
     }
-    foreach (const QString &base, onlyExtraFiles)
+    for (const QString &base : onlyExtraFiles) {
         imports.remove(base);
+    }
 
     if (scanDownloads) {
         updatePackagesList(packages);
@@ -170,7 +171,7 @@ bool DownloadsWidget::isImportable(QFileInfo file) const
     filters << Settings::instance()->advanced()->concertFilters();
     filters.removeDuplicates();
 
-    foreach (const QString &filter, filters) {
+    for (const QString &filter : filters) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
@@ -182,7 +183,7 @@ bool DownloadsWidget::isImportable(QFileInfo file) const
 
 bool DownloadsWidget::isSubtitle(QFileInfo file) const
 {
-    foreach (const QString &filter, Settings::instance()->advanced()->subtitleFilters()) {
+    for (const QString &filter : Settings::instance()->advanced()->subtitleFilters()) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {
@@ -247,8 +248,9 @@ void DownloadsWidget::onDelete(QString baseName)
         return;
     }
 
-    foreach (const QString &fileName, m_packages[baseName].files)
+    for (const QString &fileName : m_packages[baseName].files) {
         QFile::remove(fileName);
+    }
 
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
@@ -266,8 +268,9 @@ void DownloadsWidget::onDeleteImport(QString baseName)
         return;
     }
 
-    foreach (const QString &fileName, m_imports[baseName].files)
+    for (const QString &fileName : m_imports[baseName].files) {
         QFile::remove(fileName);
+    }
 
     for (int row = 0, n = ui->tableImports->rowCount(); row < n; ++row) {
         if (ui->tableImports->item(row, 0)->data(Qt::UserRole).toString() == baseName) {

@@ -33,7 +33,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
     }
 
     Movie *movie = movies.at(sourceRow);
-    foreach (Filter *filter, m_filters) {
+    for (Filter *filter : m_filters) {
         if (!filter->accepts(movie)) {
             return false;
         }

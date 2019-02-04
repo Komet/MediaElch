@@ -47,7 +47,7 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfos::CdArt));
     ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfos::Discography));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkToggled);
         }
@@ -75,7 +75,7 @@ void MusicMultiScrapeDialog::onChkToggled()
     m_albumInfosToLoad.clear();
     m_artistInfosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (!box->isChecked()) {
             allToggled = false;
             continue;
@@ -93,7 +93,7 @@ void MusicMultiScrapeDialog::onChkToggled()
 
 void MusicMultiScrapeDialog::onChkAllToggled(bool toggled)
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             box->setChecked(toggled);
         }
@@ -152,7 +152,7 @@ void MusicMultiScrapeDialog::reject()
 
 void MusicMultiScrapeDialog::disconnectScrapers()
 {
-    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers())
+    for (MusicScraperInterface *scraper : Manager::instance()->musicScrapers())
         disconnect(scraper,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
@@ -176,13 +176,13 @@ void MusicMultiScrapeDialog::onStartScraping()
         Qt::UniqueConnection);
 
     QVector<Album *> queueAlbums;
-    foreach (Artist *artist, m_artists) {
+    for (Artist *artist : m_artists) {
         QueueItem item1;
         item1.album = nullptr;
         item1.artist = artist;
         m_queue.append(item1);
         if (ui->chkScrapeAllAlbums->isChecked()) {
-            foreach (Album *album, artist->albums()) {
+            for (Album *album : artist->albums()) {
                 QueueItem item2;
                 item2.album = album;
                 item2.artist = nullptr;
@@ -192,7 +192,7 @@ void MusicMultiScrapeDialog::onStartScraping()
         }
     }
 
-    foreach (Album *album, m_albums) {
+    for (Album *album : m_albums) {
         if (!queueAlbums.contains(album)) {
             QueueItem item;
             item.album = album;

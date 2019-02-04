@@ -134,8 +134,9 @@ void MusicFilesWidget::updateStatusLabel()
 {
     if (m_proxyModel->filterRegExp().pattern().isEmpty() || m_proxyModel->filterRegExp().pattern() == "**") {
         int albumCount = 0;
-        foreach (Artist *artist, Manager::instance()->musicModel()->artists())
+        for (Artist *artist : Manager::instance()->musicModel()->artists()) {
             albumCount += artist->albums().count();
+        }
         ui->statusLabel->setText(
             tr("%n artists", "", m_proxyModel->rowCount()) + ", " + tr("%n albums", "", albumCount));
     } else {
@@ -147,7 +148,7 @@ void MusicFilesWidget::updateStatusLabel()
 QVector<Artist *> MusicFilesWidget::selectedArtists()
 {
     QVector<Artist *> artists;
-    foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
+    for (const QModelIndex &index : ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Artist) {
             artists.append(item->artist());
@@ -159,7 +160,7 @@ QVector<Artist *> MusicFilesWidget::selectedArtists()
 QVector<Album *> MusicFilesWidget::selectedAlbums()
 {
     QVector<Album *> albums;
-    foreach (const QModelIndex &index, ui->music->selectionModel()->selectedIndexes()) {
+    for (const QModelIndex &index : ui->music->selectionModel()->selectedIndexes()) {
         MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Album) {
             albums.append(item->album());
