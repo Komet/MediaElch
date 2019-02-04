@@ -106,13 +106,13 @@ void MusicWidget::onSaveInformation()
         return;
     }
 
-    foreach (Artist *artist, artists) {
+    for (Artist *artist : artists) {
         if (artist->hasChanged()) {
             artistsToSave.append(artist);
         }
     }
 
-    foreach (Album *album, albums) {
+    for (Album *album : albums) {
         if (album->hasChanged()) {
             albumsToSave.append(album);
         }
@@ -124,14 +124,14 @@ void MusicWidget::onSaveInformation()
         tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
     qApp->processEvents();
 
-    foreach (Artist *artist, artistsToSave) {
+    for (Artist *artist : artistsToSave) {
         artist->controller()->saveData(Manager::instance()->mediaCenterInterface());
         NotificationBox::instance()->progressBarProgress(
             ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
-    foreach (Album *album, albumsToSave) {
+    for (Album *album : albumsToSave) {
         album->controller()->saveData(Manager::instance()->mediaCenterInterface());
         NotificationBox::instance()->progressBarProgress(
             ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
@@ -147,11 +147,11 @@ void MusicWidget::onSaveAll()
     QVector<Album *> albumsToSave;
     QVector<Artist *> artistsToSave;
 
-    foreach (Artist *artist, Manager::instance()->musicModel()->artists()) {
+    for (Artist *artist : Manager::instance()->musicModel()->artists()) {
         if (artist->hasChanged()) {
             artistsToSave.append(artist);
         }
-        foreach (Album *album, artist->albums()) {
+        for (Album *album : artist->albums()) {
             if (album->hasChanged()) {
                 albumsToSave.append(album);
             }
@@ -164,14 +164,14 @@ void MusicWidget::onSaveAll()
         tr("Saving changed Artists and Albums"), Constants::MusicWidgetSaveProgressMessageId);
     qApp->processEvents();
 
-    foreach (Artist *artist, artistsToSave) {
+    for (Artist *artist : artistsToSave) {
         artist->controller()->saveData(Manager::instance()->mediaCenterInterface());
         NotificationBox::instance()->progressBarProgress(
             ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
-    foreach (Album *album, albumsToSave) {
+    for (Album *album : albumsToSave) {
         album->controller()->saveData(Manager::instance()->mediaCenterInterface());
         NotificationBox::instance()->progressBarProgress(
             ++itemsSaved, itemsToSave, Constants::MusicWidgetSaveProgressMessageId);

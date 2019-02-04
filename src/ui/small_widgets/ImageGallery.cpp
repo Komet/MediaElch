@@ -318,7 +318,7 @@ void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters{".jpg", ".jpeg", ".png"};
-    foreach (const QString &filter, filters) {
+    for (const QString &filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -331,7 +331,7 @@ void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
     const QMimeData *mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters{".jpg", ".jpeg", ".png"};
-    foreach (const QString &filter, filters) {
+    for (const QString &filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -345,7 +345,7 @@ void ImageGallery::dropEvent(QDropEvent *event)
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
         QStringList filters{".jpg", ".jpeg", ".png"};
-        foreach (const QString &filter, filters) {
+        for (const QString &filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(url);
                 return;

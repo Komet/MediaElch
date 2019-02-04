@@ -51,7 +51,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfos::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfos::Tags));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
@@ -340,7 +340,7 @@ void MovieMultiScrapeDialog::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0) {
             m_infosToLoad.append(MovieScraperInfos(box->myData().toInt()));
         }
@@ -360,7 +360,7 @@ void MovieMultiScrapeDialog::onChkToggled()
 void MovieMultiScrapeDialog::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             box->setChecked(checked);
         }
@@ -379,7 +379,7 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled()
     QVector<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
     QVector<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));
         box->setChecked((infos.contains(MovieScraperInfos(box->myData().toInt())) || infos.isEmpty())
                         && scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));

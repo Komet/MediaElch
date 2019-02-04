@@ -278,14 +278,14 @@ void MyLineEdit::drawFilters()
     int paddingLeft = m_paddingLeft;
     int labelWidth = 0;
     int hidden = 0;
-    foreach (QLabel *l, m_filterLabels) {
+    for (QLabel *l : m_filterLabels) {
         labelWidth += l->width() + 2;
         l->show();
     }
     while (labelWidth + 50 > width() && hidden < m_filterLabels.count()) {
         m_filterLabels.at(hidden++)->hide();
         labelWidth = 0;
-        foreach (QLabel *l, m_filterLabels) {
+        for (QLabel *l : m_filterLabels) {
             if (l->isVisible()) {
                 labelWidth += l->width() + 2;
             }
@@ -300,7 +300,7 @@ void MyLineEdit::drawFilters()
         m_moreLabel->hide();
     }
 
-    foreach (QLabel *l, m_filterLabels) {
+    for (QLabel *l : m_filterLabels) {
         if (l->isVisible() || l == m_filterLabels.last()) {
             l->move(paddingLeft, 1);
             paddingLeft += l->width() + 2;
@@ -321,7 +321,7 @@ int MyLineEdit::paddingLeft()
     if (m_moreLabel->isVisible()) {
         paddingLeft += m_moreLabel->width();
     }
-    foreach (QLabel *l, m_filterLabels) {
+    for (QLabel *l : m_filterLabels) {
         if (l->isVisible()) {
             paddingLeft += l->width() + 2;
         }

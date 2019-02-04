@@ -133,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     m_buttonActiveColor = QColor(70, 155, 198);
     m_buttonColor = QColor(128, 129, 132);
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton *>()) {
+    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
         connect(btn, SIGNAL(clicked()), this, SLOT(onMenu()));
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
     }
@@ -237,8 +237,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 #endif
 
 #ifdef Q_OS_WIN
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton *>())
+    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
         btn->setIconSize(QSize(32, 32));
+    }
     ui->navbar->setFixedHeight(56);
 #endif
 
@@ -559,14 +560,14 @@ void MainWindow::moveSplitter(int pos, int index)
     QList<QSplitter *> splitters;
     splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter()
               << ui->certificationWidget->splitter() << ui->concertSplitter << ui->musicSplitter;
-    foreach (QSplitter *splitter, splitters) {
+    for (const QSplitter *splitter : splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
             break;
         }
     }
 
-    foreach (QSplitter *splitter, splitters) {
+    for (QSplitter *splitter : splitters) {
         splitter->setSizes(sizes);
     }
 
@@ -676,7 +677,7 @@ void MainWindow::onJumpToMovie(Movie *movie)
 
 void MainWindow::updateTvShows()
 {
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
         if (show->showMissingEpisodes()) {
             TvShowUpdater::instance()->updateShow(show);
         }

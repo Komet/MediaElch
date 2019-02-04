@@ -192,7 +192,7 @@ int MusicModel::hasNewArtistsOrAlbums()
 {
     int newItems = 0;
 
-    foreach (Artist *artist, artists()) {
+    for (Artist *artist : artists()) {
         if (!artist->controller()->infoLoaded()) {
             newItems++;
         }

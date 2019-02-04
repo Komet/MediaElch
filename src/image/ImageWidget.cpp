@@ -60,8 +60,9 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
 void ImageWidget::imagesDropped(QVariantList urls)
 {
     QVector<QUrl> u;
-    foreach (QVariant v, urls)
+    for (QVariant v : urls) {
         u << QUrl(v.toString());
+    }
     emit sigImageDropped(u);
 }
 

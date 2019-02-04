@@ -118,9 +118,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
 
                 /*
                 QStringList filters;
-                foreach (const QString &extra, m_extraFiles)
+                for (const QString &extra: m_extraFiles)
                     filters << baseName + extra;
-                foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files |
+                for (const QString &subFileName: currentDir.entryList(filters, QDir::Files |
                 QDir::NoDotAndDotDot)) { QString subSuffix = subFileName.mid(baseName.length()); QString newBaseName
                 = newFileName.left(newFileName.lastIndexOf(".")); QString newSubName = newBaseName + subSuffix;
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));

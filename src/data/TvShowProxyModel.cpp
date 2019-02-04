@@ -26,7 +26,7 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
         return true;
 
     TvShow *show = shows.at(sourceRow);
-    foreach (Filter *filter, m_filters) {
+    for (Filter *filter: m_filters) {
         if (!filter->accepts(show))
             return false;
     }

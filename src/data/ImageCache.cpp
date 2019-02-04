@@ -105,7 +105,7 @@ void ImageCache::invalidateImages(QString path)
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QDir dir(m_cacheDir);
-    foreach (const QString &file, dir.entryList(QStringList() << md5 + "*")) {
+    for (const QString &file : dir.entryList(QStringList() << md5 + "*")) {
         QFile f(dir.absolutePath() + "/" + file);
         f.remove();
     }
@@ -148,7 +148,7 @@ void ImageCache::clearCache()
     if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache()) {
         return;
     }
-    foreach (const QFileInfo &file, QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+    for (const QFileInfo &file : QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
         QFile(file.absoluteFilePath()).remove();
     }
 }

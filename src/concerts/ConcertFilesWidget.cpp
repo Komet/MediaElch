@@ -109,7 +109,7 @@ void ConcertFilesWidget::showContextMenu(QPoint point)
 void ConcertFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
         concert->setWatched(true);
@@ -128,7 +128,7 @@ void ConcertFilesWidget::markAsWatched()
 void ConcertFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
         if (concert->watched()) {
@@ -147,7 +147,7 @@ void ConcertFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
     QVector<Concert *> concerts;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
         concerts.append(concert);
@@ -166,7 +166,7 @@ void ConcertFilesWidget::loadStreamDetails()
 void ConcertFilesWidget::markForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
         concert->setSyncNeeded(true);
@@ -177,7 +177,7 @@ void ConcertFilesWidget::markForSync()
 void ConcertFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
         concert->setSyncNeeded(false);
@@ -270,8 +270,8 @@ void ConcertFilesWidget::restoreLastSelection()
 QVector<Concert *> ConcertFilesWidget::selectedConcerts()
 {
     QVector<Concert *> concerts;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
-        int row = index.model()->data(index, Qt::UserRole).toInt();
+    for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
+        const int row = index.model()->data(index, Qt::UserRole).toInt();
         concerts.append(Manager::instance()->concertModel()->concert(row));
     }
     if (concerts.isEmpty()) {

@@ -12,14 +12,15 @@ Extractor::Extractor(QObject *parent) : QObject(parent)
 
 Extractor::~Extractor()
 {
-    foreach (QProcess *process, m_processes)
+    for (QProcess *process : m_processes) {
         process->kill();
+    }
 }
 
 void Extractor::extract(QString baseName, QStringList files, QString password)
 {
     QStringList rarFiles;
-    foreach (const QString &file, files) {
+    for (const QString &file : files) {
         if (file.endsWith(".rar")) {
             rarFiles.append(file);
         }
@@ -97,7 +98,7 @@ void Extractor::onFinished(int exitCode, QProcess::ExitStatus status)
 
 void Extractor::stopExtraction(QString baseName)
 {
-    foreach (QProcess *process, m_processes) {
+    for (QProcess *process : m_processes) {
         if (process->property("baseName").toString() == baseName) {
             process->setProperty("hasError", true);
             process->kill();

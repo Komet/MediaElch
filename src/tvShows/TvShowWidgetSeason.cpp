@@ -68,7 +68,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->backdrop->setImageType(ImageType::TvShowSeasonBackdrop);
     ui->banner->setImageType(ImageType::TvShowSeasonBanner);
     ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &TvShowWidgetSeason::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &TvShowWidgetSeason::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
@@ -132,7 +132,7 @@ void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
     for (const auto imageType : images) {
         ClosableImage *image = nullptr;
 
-        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage *>()) {
+        for (ClosableImage *cImage : ui->groupBox_3->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 image = cImage;
             }
@@ -196,7 +196,7 @@ void TvShowWidgetSeason::onRevertChanges()
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
-    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
                 Helper::instance()->resizeBackdrop(elem.data);

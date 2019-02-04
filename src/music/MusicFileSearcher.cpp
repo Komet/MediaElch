@@ -17,7 +17,7 @@ MusicFileSearcher::MusicFileSearcher(QObject *parent) :
 void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
-    foreach (SettingsDir dir, directories) {
+    for (SettingsDir dir : directories) {
         QFileInfo fi(dir.path);
         if (fi.isDir()) {
             m_directories.append(dir);
@@ -43,7 +43,7 @@ void MusicFileSearcher::reload(bool force)
 
     QMap<Artist *, QString> artistPaths;
     QMap<Album *, QString> albumPaths;
-    foreach (SettingsDir dir, m_directories) {
+    for (SettingsDir dir : m_directories) {
         if (m_aborted) {
             break;
         }
@@ -88,7 +88,7 @@ void MusicFileSearcher::reload(bool force)
             }
         } else {
             QVector<Artist *> artistsInPath = Manager::instance()->database()->artists(dir.path);
-            foreach (Artist *artist, artistsInPath) {
+            for (Artist *artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().mid(dir.path.length()));
                 }
@@ -106,7 +106,7 @@ void MusicFileSearcher::reload(bool force)
     int max = artists.length() + albums.length() + artistsFromDb.length() + albumsFromDb.length();
 
     Manager::instance()->database()->transaction();
-    foreach (Artist *artist, artists) {
+    for (Artist *artist : artists) {
         if (m_aborted) {
             Manager::instance()->database()->commit();
             return;
@@ -118,7 +118,7 @@ void MusicFileSearcher::reload(bool force)
         emit progress(++current, max, m_progressMessageId);
         Manager::instance()->database()->add(artist, artistPaths.value(artist));
     }
-    foreach (Album *album, albums) {
+    for (Album *album : albums) {
         if (m_aborted) {
             Manager::instance()->database()->commit();
             return;
@@ -139,11 +139,11 @@ void MusicFileSearcher::reload(bool force)
     albums.append(albumsFromDb);
 
     QMap<Artist *, MusicModelItem *> artistModelItems;
-    foreach (Artist *artist, artists) {
+    for (Artist *artist : artists) {
         MusicModelItem *artistItem = Manager::instance()->musicModel()->appendChild(artist);
         artistModelItems.insert(artist, artistItem);
     }
-    foreach (Album *album, albums) {
+    for (Album *album : albums) {
         MusicModelItem *artistItem = artistModelItems.value(album->artistObj(), 0);
         if (artistItem == nullptr) {
             qWarning() << "Artist item was not found for album" << album->path();

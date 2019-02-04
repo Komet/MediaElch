@@ -203,7 +203,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         appendDownloadElement(artist, "discogs", "discogs_data", QUrl(discogsUrl + "?type=Releases&subtype=Albums"));
     }
 
-    foreach (DownloadElement elem, m_artistDownloads[artist]) {
+    for (DownloadElement elem : m_artistDownloads[artist]) {
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
@@ -281,13 +281,13 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    foreach (DownloadElement elem, m_artistDownloads[artist]) {
+    for (DownloadElement elem : m_artistDownloads[artist]) {
         if (elem.source != m_prefer) {
             continue;
         }
         processDownloadElement(elem, artist, infos);
     }
-    foreach (DownloadElement elem, m_artistDownloads[artist]) {
+    for (DownloadElement elem : m_artistDownloads[artist]) {
         if (elem.source == m_prefer) {
             continue;
         }
@@ -522,7 +522,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
     }
 
-    foreach (DownloadElement elem, m_albumDownloads[album]) {
+    for (DownloadElement elem : m_albumDownloads[album]) {
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
@@ -597,13 +597,13 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         return;
     }
 
-    foreach (DownloadElement elem, m_albumDownloads[album]) {
+    for (DownloadElement elem : m_albumDownloads[album]) {
         if (elem.source != m_prefer) {
             continue;
         }
         processDownloadElement(elem, album, infos);
     }
-    foreach (DownloadElement elem, m_albumDownloads[album]) {
+    for (DownloadElement elem : m_albumDownloads[album]) {
         if (elem.source == m_prefer) {
             continue;
         }
@@ -1223,7 +1223,7 @@ bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScra
     case MusicScraperInfos::Review: return album->review().isEmpty();
     case MusicScraperInfos::ReleaseDate: return album->releaseDate().isEmpty();
     case MusicScraperInfos::Label: return album->label().isEmpty();
-    case MusicScraperInfos::Rating: return album->rating() == 0;
+    case MusicScraperInfos::Rating: return album->rating() < 0.01 && album->rating() > -0.01;
     case MusicScraperInfos::Year: return album->year() == 0;
     case MusicScraperInfos::Genres: return album->genres().isEmpty();
     case MusicScraperInfos::Styles: return album->styles().isEmpty();

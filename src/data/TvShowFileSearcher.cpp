@@ -57,7 +57,7 @@ void TvShowFileSearcher::reload(bool force)
     Manager::instance()->tvShowModel()->clear();
     Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QVector<QStringList>> contents;
-    foreach (SettingsDir dir, m_directories) {
+    for (SettingsDir dir : m_directories) {
         if (m_aborted) {
             return;
         }
@@ -199,7 +199,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     emit searchStarted(tr("Searching for Episodes..."), m_progressMessageId);
 
     // remove old show object
-    foreach (TvShow *s, Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow *s : Manager::instance()->tvShowModel()->tvShows()) {
         if (m_aborted) {
             return;
         }
@@ -291,7 +291,7 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
 {
     QDir dir(path);
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    foreach (const QString &cDir, tvShows) {
+    for (const QString &cDir : tvShows) {
         if (m_aborted) {
             return;
         }
@@ -314,7 +314,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    for (const QString &cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
         }
@@ -346,7 +346,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
 
     QStringList files;
     QStringList entries = getFiles(path);
-    foreach (const QString &file, entries) {
+    for (const QString &file : entries) {
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive)) {
             continue;

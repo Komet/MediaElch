@@ -33,7 +33,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
 
     m_qnam = new QNetworkAccessManager(this);
 
-    foreach (TrailerProvider *provider, Manager::instance()->trailerProviders()) {
+    for (TrailerProvider *provider : Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
         connect(provider,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
@@ -145,7 +145,7 @@ void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         QTableWidgetItem *item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();

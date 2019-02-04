@@ -84,7 +84,7 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    foreach (ImageProviderInterface *provider, Manager::instance()->imageProviders()) {
+    for (ImageProviderInterface *provider : Manager::instance()->imageProviders()) {
         connect(provider,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
@@ -159,7 +159,7 @@ int ImageDialog::exec(ImageType type)
         ui->imageProvider->addItem(tr("Default"));
         ui->imageProvider->setItemData(0, true, Qt::UserRole + 1);
     }
-    foreach (ImageProviderInterface *provider, m_providers) {
+    for (ImageProviderInterface *provider : m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
@@ -297,7 +297,7 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
     if (initial) {
         m_defaultElements = downloads;
     }
-    foreach (const Poster &poster, downloads) {
+    for (const Poster &poster : downloads) {
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
         d.thumbUrl = poster.thumbUrl;
@@ -561,7 +561,7 @@ void ImageDialog::cancelDownloads()
     ui->labelLoading->setVisible(false);
     ui->labelSpinner->setVisible(false);
     bool running = false;
-    foreach (const DownloadElement &d, m_elements) {
+    for (const DownloadElement &d : m_elements) {
         if (!d.downloaded) {
             running = true;
             break;
@@ -815,7 +815,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
 void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 {
     ui->searchTerm->setLoading(false);
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         QString name = result.name;
         if (!result.released.isNull()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));

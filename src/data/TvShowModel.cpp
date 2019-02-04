@@ -345,11 +345,11 @@ QVector<TvShow *> TvShowModel::tvShows()
 int TvShowModel::hasNewShowOrEpisode()
 {
     int newShows = 0;
-    foreach (TvShow *show, tvShows()) {
+    for (TvShow *show : tvShows()) {
         if (!show->infoLoaded()) {
             ++newShows;
         }
-        foreach (TvShowEpisode *episode, show->episodes()) {
+        for (TvShowEpisode *episode : show->episodes()) {
             if (!episode->infoLoaded()) {
                 ++newShows;
             }

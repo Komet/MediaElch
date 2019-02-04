@@ -40,8 +40,9 @@ void TvTunes::onSearchFinished()
     }
     QString msg = QString::fromUtf8(reply->readAll());
     results = parseSearch(msg);
-    foreach (ScraperSearchResult res, results)
+    for (ScraperSearchResult res : results) {
         m_queue.enqueue(res);
+    }
     getNextDownloadUrl(reply->property("searchStr").toString());
 }
 

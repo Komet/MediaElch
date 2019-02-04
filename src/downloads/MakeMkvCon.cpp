@@ -8,8 +8,9 @@ MakeMkvCon::MakeMkvCon(ImportSettings &settings, QObject *parent) : QObject(pare
 
 MakeMkvCon::~MakeMkvCon()
 {
-    foreach (QProcess *process, m_processes)
+    for (QProcess *process : m_processes) {
         process->kill();
+    }
 }
 
 void MakeMkvCon::onGetDrives()

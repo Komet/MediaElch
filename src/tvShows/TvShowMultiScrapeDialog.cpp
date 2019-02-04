@@ -53,7 +53,7 @@ TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget *parent) : QDialog(pare
     ui->chkRuntime->setMyData(static_cast<int>(TvShowScraperInfos::Runtime));
     ui->chkStatus->setMyData(static_cast<int>(TvShowScraperInfos::Status));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowMultiScrapeDialog::onChkToggled);
         }
@@ -186,7 +186,7 @@ void TvShowMultiScrapeDialog::onChkToggled()
 void TvShowMultiScrapeDialog::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isEnabled() && box->myData().toInt() > 0) {
             box->setChecked(checked);
         }
@@ -196,7 +196,7 @@ void TvShowMultiScrapeDialog::onChkAllToggled()
 
 void TvShowMultiScrapeDialog::setCheckBoxesEnabled()
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             if (box->property("type").toString() == "both"
                 || (box->property("type").toString() == "episode" && m_episodes.count() > 0)

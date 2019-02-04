@@ -114,7 +114,7 @@ MovieWidget::MovieWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->banner->setImageType(ImageType::MovieBanner);
     ui->thumb->setImageType(ImageType::MovieThumb);
     ui->clearArt->setImageType(ImageType::MovieClearArt);
-    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (ClosableImage *image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
@@ -529,7 +529,7 @@ void MovieWidget::onLoadingImages(Movie *movie, QVector<ImageType> imageTypes)
     }
 
     for (const auto imageType : imageTypes) {
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage *>()) {
+        for (ClosableImage *cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -638,7 +638,7 @@ void MovieWidget::updateMovieInfo()
     ui->certification->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    foreach (Actor *actor, m_movie->actorsPointer()) {
+    for (Actor *actor : m_movie->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -649,7 +649,7 @@ void MovieWidget::updateMovieInfo()
     ui->actors->blockSignals(false);
 
     ui->subtitles->blockSignals(true);
-    foreach (Subtitle *subtitle, m_movie->subtitles()) {
+    for (Subtitle *subtitle : m_movie->subtitles()) {
         int row = ui->subtitles->rowCount();
         ui->subtitles->insertRow(row);
 
@@ -794,8 +794,9 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             qFloor(streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds).toInt() / 60));
     }
 
-    foreach (QWidget *widget, m_streamDetailsWidgets)
+    for (QWidget *widget : m_streamDetailsWidgets) {
         widget->deleteLater();
+    }
     m_streamDetailsWidgets.clear();
     m_streamDetailsAudio.clear();
     m_streamDetailsSubtitles.clear();
@@ -920,7 +921,7 @@ void MovieWidget::saveInformation()
         NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
         NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
         qApp->processEvents();
-        foreach (Movie *movie, movies) {
+        for (Movie *movie : movies) {
             counter++;
             if (movie->hasChanged()) {
                 NotificationBox::instance()->progressBarProgress(
@@ -959,7 +960,7 @@ void MovieWidget::saveAll()
 
     int counter = 0;
     int moviesToSave = 0;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
             moviesToSave++;
         }
@@ -968,7 +969,7 @@ void MovieWidget::saveAll()
     NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
     qApp->processEvents();
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
             NotificationBox::instance()->progressBarProgress(
                 counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);

@@ -297,7 +297,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
         return jsonObj;
     }();
 
-    foreach (const QString &section, map.value(type)) {
+    for (const QString &section : map.value(type)) {
         const auto jsonValue = jsonObject.value(section);
         if (!jsonValue.isArray()) {
             continue;

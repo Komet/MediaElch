@@ -38,7 +38,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     NameFormatter *nameFormat = NameFormatter::instance(this);
 
 
-    foreach (QStringList movie, contents) {
+    for (const QStringList &movie : contents) {
         int pos = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(pos).endsWith(dirName))) {
             qDebug() << "skipping " << movie.at(0);
@@ -62,7 +62,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
             continue;
         }
 
-        foreach (QString file, movie) {
+        for (const QString &file : movie) {
             if (!dir->rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {

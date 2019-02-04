@@ -279,7 +279,7 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    foreach (Actor *actor, actorsPointer()) {
+    for (Actor *actor : actorsPointer()) {
         actor->image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
@@ -804,7 +804,7 @@ void TvShow::setFirstAired(QDate aired)
 void TvShow::setGenres(QStringList genres)
 {
     m_genres.clear();
-    foreach (const QString &genre, genres) {
+    for (const QString &genre : genres) {
         if (!genre.isEmpty()) {
             m_genres.append(genre);
         }
@@ -1468,7 +1468,7 @@ void TvShow::fillMissingEpisodes()
         addEpisode(episode);
 
         bool newSeason = true;
-        foreach (TvShowEpisode *existEpisode, this->episodes()) {
+        for (const TvShowEpisode *existEpisode : this->episodes()) {
             if (existEpisode->season() == episode->season() && existEpisode != episode) {
                 newSeason = false;
                 break;
@@ -1539,27 +1539,27 @@ QDebug operator<<(QDebug dbg, const TvShow &show)
     out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(show.overview())).append(nl);
     out.append(QStringLiteral("  Status:        ").append(show.status())).append(nl);
-    foreach (const QString &genre, show.genres()) {
+    for (const QString &genre : show.genres()) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
-    foreach (const Actor &actor, show.actors()) {
+    for (const Actor &actor : show.actors()) {
         out.append(QStringLiteral("  Actor:         ").append(nl));
         out.append(QStringLiteral("    Name:  ").append(actor.name)).append(nl);
         out.append(QStringLiteral("    Role:  ").append(actor.role)).append(nl);
         out.append(QStringLiteral("    Thumb: ").append(actor.thumb)).append(nl);
     }
     /*
-    foreach (const QString &studio, movie.studios())
+    for (const QString &studio: movie.studios())
         out.append(QString("  Studio:         ").append(studio)).append(nl);
-    foreach (const QString &country, movie.countries())
+    for (const QString &country: movie.countries())
         out.append(QString("  Country:       ").append(country)).append(nl);
-    foreach (const Poster &poster, movie.posters()) {
+    for (const Poster &poster: movie.posters()) {
         out.append(QString("  Poster:       ")).append(nl);
         out.append(QString("    ID:       ").append(poster.id)).append(nl);
         out.append(QString("    Original: ").append(poster.originalUrl.toString())).append(nl);
         out.append(QString("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
     }
-    foreach (const Poster &backdrop, movie.backdrops()) {
+    for (const Poster &backdrop: movie.backdrops()) {
         out.append(QString("  Backdrop:       ")).append(nl);
         out.append(QString("    ID:       ").append(backdrop.id)).append(nl);
         out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);

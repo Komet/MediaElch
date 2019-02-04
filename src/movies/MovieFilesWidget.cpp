@@ -233,7 +233,7 @@ void MovieFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
     QVector<Movie *> movies;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movies.append(movie);
@@ -254,9 +254,10 @@ void MovieFilesWidget::markForSync()
 {
     m_contextMenu->close();
     QVector<QModelIndex> indexes;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
         indexes << index;
-    foreach (const QModelIndex &index, indexes) {
+    }
+    for (const QModelIndex &index : indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(true);
@@ -268,9 +269,10 @@ void MovieFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
     QVector<QModelIndex> indexes;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
         indexes << index;
-    foreach (const QModelIndex &index, indexes) {
+    }
+    for (const QModelIndex &index : indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(false);
@@ -429,7 +431,7 @@ void MovieFilesWidget::onSortByYear()
 QVector<Movie *> MovieFilesWidget::selectedMovies()
 {
     QVector<Movie *> movies;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         movies.append(Manager::instance()->movieModel()->movie(row));
     }
@@ -490,8 +492,9 @@ void MovieFilesWidget::renewModel()
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
     }
-    foreach (const MediaStatusColumn &column, Settings::instance()->mediaStatusColumns())
+    for (const MediaStatusColumn &column : Settings::instance()->mediaStatusColumns()) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
+    }
 }
 
 void MovieFilesWidget::onLeftEdge(bool isEdge)

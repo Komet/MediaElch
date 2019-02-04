@@ -156,7 +156,7 @@ void TvShowWidget::onSaveInformation()
         return;
     }
 
-    foreach (TvShow *show, seasons) {
+    for (TvShow *show : seasons) {
         if (!shows.contains(show)) {
             shows.append(show);
         }

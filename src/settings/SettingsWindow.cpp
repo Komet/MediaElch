@@ -188,7 +188,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->comboStartupSection->addItem(tr("Import"), "import");
 
     QPainter p;
-    foreach (QAction *action, findChildren<QAction *>()) {
+    for (QAction *action : findChildren<QAction *>()) {
         if (!action->property("page").isValid()) {
             continue;
         }
@@ -246,7 +246,7 @@ void SettingsWindow::onCancel()
 void SettingsWindow::onAction()
 {
     auto triggeredAction = static_cast<QAction *>(sender());
-    foreach (QAction *action, ui->toolBar->actions())
+    for (QAction *action : ui->toolBar->actions())
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     triggeredAction->setIcon(
         Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
@@ -355,8 +355,9 @@ void SettingsWindow::loadSettings()
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
-        foreach (DataFile dataFile, dataFiles)
+        for (DataFile dataFile : dataFiles) {
             filenames << dataFile.fileName();
+        }
         lineEdit->setText(filenames.join(","));
     }
 
@@ -426,14 +427,14 @@ void SettingsWindow::loadSettings()
 void SettingsWindow::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    foreach (QLineEdit *lineEdit, findChildren<QLineEdit *>()) {
+    for (QLineEdit *lineEdit : findChildren<QLineEdit *>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
-        foreach (const QString &filename, filenames) {
+        for (const QString &filename : filenames) {
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
@@ -712,7 +713,7 @@ void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate *> templates)
     ui->exportTemplates->clearContents();
     ui->exportTemplates->setRowCount(0);
 
-    foreach (ExportTemplate *exportTemplate, templates) {
+    for (ExportTemplate *exportTemplate : templates) {
         auto widget = new ExportTemplateWidget(ui->exportTemplates);
         widget->setExportTemplate(exportTemplate);
 

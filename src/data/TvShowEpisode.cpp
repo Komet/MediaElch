@@ -1030,7 +1030,7 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     QString out;
     out.append("TvShowEpisode").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    foreach (const QString &file, episode.files()) {
+    for (const QString &file : episode.files()) {
         out.append(QString("    %1").arg(file).append(nl));
     }
     out.append(QStringLiteral("  Name:          ").append(episode.name()).append(nl));
@@ -1043,30 +1043,30 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)
     out.append(QStringLiteral("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
     out.append(QStringLiteral("  Certification: ").append(episode.certification().toString()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(episode.overview())).append(nl);
-    foreach (const QString &writer, episode.writers()) {
+    for (const QString &writer : episode.writers()) {
         out.append(QString("  Writer:        ").append(writer)).append(nl);
     }
-    foreach (const QString &director, episode.directors()) {
+    for (const QString &director : episode.directors()) {
         out.append(QString("  Director:      ").append(director)).append(nl);
     }
     /*
-    foreach (const QString &studio, movie.studios())
+    for (const QString &studio: movie.studios())
         out.append(QString("  Studio:         ").append(studio)).append(nl);
-    foreach (const QString &country, movie.countries())
+    for (const QString &country: movie.countries())
         out.append(QString("  Country:       ").append(country)).append(nl);
-    foreach (const Actor &actor, movie.actors()) {
+    for (const Actor &actor: movie.actors()) {
         out.append(QString("  Actor:         ").append(nl));
         out.append(QString("    Name:  ").append(actor.name)).append(nl);
         out.append(QString("    Role:  ").append(actor.role)).append(nl);
         out.append(QString("    Thumb: ").append(actor.thumb)).append(nl);
     }
-    foreach (const Poster &poster, movie.posters()) {
+    for (const Poster &poster: movie.posters()) {
         out.append(QString("  Poster:       ")).append(nl);
         out.append(QString("    ID:       ").append(poster.id)).append(nl);
         out.append(QString("    Original: ").append(poster.originalUrl.toString())).append(nl);
         out.append(QString("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
     }
-    foreach (const Poster &backdrop, movie.backdrops()) {
+    for (const Poster &backdrop: movie.backdrops()) {
         out.append(QString("  Backdrop:       ")).append(nl);
         out.append(QString("    ID:       ").append(backdrop.id)).append(nl);
         out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);

@@ -1164,14 +1164,14 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Tags, infosToLoad) && !m_dummyMovie->tags().isEmpty()) {
             show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Tags);
-            foreach (const QString &tag, m_dummyMovie->tags()) {
+            for (const QString &tag : m_dummyMovie->tags()) {
                 show->addTag(tag);
             }
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
             show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
-            foreach (Actor actor, m_dummyMovie->actors()) {
+            for (Actor actor : m_dummyMovie->actors()) {
                 Actor a;
                 a.id = actor.id;
                 a.image = actor.image;

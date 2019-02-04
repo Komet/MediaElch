@@ -167,7 +167,7 @@ void Settings::loadSettings()
         DataFileType type = DataFileType(settings()->value("type").toInt());
         QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
-            foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+            for (DataFile initialDataFile : m_initialDataFilesFrodo) {
                 if (initialDataFile.type() == type) {
                     fileName = initialDataFile.fileName();
                     break;
@@ -180,9 +180,9 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
-    foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+    for (DataFile initialDataFile : m_initialDataFilesFrodo) {
         bool found = false;
-        foreach (DataFile df, dataFiles) {
+        for (DataFile df : dataFiles) {
             if (df.type() == initialDataFile.type()) {
                 found = true;
                 break;
@@ -205,8 +205,9 @@ void Settings::loadSettings()
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
-    foreach (const QVariant &column, settings()->value("MediaStatusColumn").toList())
+    for (const QVariant &column : settings()->value("MediaStatusColumn").toList()) {
         m_mediaStatusColumns.append(static_cast<MediaStatusColumn>(column.toInt()));
+    }
 
 
     m_customMovieScraper.clear();

@@ -67,7 +67,7 @@ QVariant MusicModelItem::data(int column) const
         }
 
         if (m_artist) {
-            foreach (Album *album, m_artist->albums()) {
+            for (Album *album : m_artist->albums()) {
                 if (!album->controller()->infoLoaded()) {
                     return true;
                 }

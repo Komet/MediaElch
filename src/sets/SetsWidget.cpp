@@ -128,7 +128,7 @@ void SetsWidget::loadSets()
     m_moviesToSave.clear();
     m_setPosters.clear();
     m_setBackdrops.clear();
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
         if (!movie->set().isEmpty()) {
             if (m_sets.contains(movie->set())) {
                 m_sets[movie->set()].append(movie);
@@ -143,7 +143,7 @@ void SetsWidget::loadSets()
             }
         }
     }
-    foreach (const QString &set, m_addedSets) {
+    for (const QString &set : m_addedSets) {
         if (!set.isEmpty() && !m_sets.contains(set)) {
             m_sets.insert(set, QVector<Movie *>());
             m_moviesToSave.insert(set, QVector<Movie *>());
@@ -212,7 +212,7 @@ void SetsWidget::loadSet(QString set)
     ui->buttonPreviewPoster->setEnabled(false);
     ui->movies->blockSignals(true);
 
-    foreach (Movie *movie, m_sets[set]) {
+    for (Movie *movie : m_sets[set]) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         ui->movies->setItem(row, 0, new QTableWidgetItem(movie->name()));
@@ -331,7 +331,7 @@ void SetsWidget::onAddMovie()
         }
 
         QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
-        foreach (Movie *movie, movies) {
+        for (Movie *movie : movies) {
             if (movie->set() == setName) {
                 continue;
             }
@@ -454,9 +454,10 @@ void SetsWidget::saveSet()
     setNames << ui->sets->item(ui->sets->currentRow(), 0)->text();
     setNames.removeDuplicates();
 
-    foreach (const QString &setName, setNames) {
-        foreach (Movie *movie, m_moviesToSave[setName])
+    for (const QString &setName : setNames) {
+        for (Movie *movie : m_moviesToSave[setName]) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        }
         m_moviesToSave[setName].clear();
 
         if (!m_setPosters[setName].isNull()
@@ -546,7 +547,7 @@ void SetsWidget::onRemoveMovieSet()
     QString origSetName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->sets->removeRow(ui->sets->currentRow());
 
-    foreach (Movie *movie, m_sets[origSetName]) {
+    for (Movie *movie : m_sets[origSetName]) {
         movie->setSet("");
         movie->setSortTitle("");
     }
@@ -575,7 +576,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
         m_moviesToSave.insert(newName, QVector<Movie *>());
     }
 
-    foreach (Movie *movie, m_sets[origSetName]) {
+    for (Movie *movie : m_sets[origSetName]) {
         m_moviesToSave[newName].append(movie);
         movie->setSet(newName);
     }

@@ -54,7 +54,7 @@ void ConcertFileSearcher::reload(bool force)
     QVector<Concert *> concerts;
     QVector<Concert *> dbConcerts;
     QVector<QStringList> contents;
-    foreach (SettingsDir dir, m_directories) {
+    for (SettingsDir dir : m_directories) {
         if (m_aborted) {
             return;
         }
@@ -75,7 +75,7 @@ void ConcertFileSearcher::reload(bool force)
 
     // Setup concerts
     Manager::instance()->database()->transaction();
-    foreach (const QStringList &files, contents) {
+    for (const QStringList &files : contents) {
         if (m_aborted) {
             return;
         }
@@ -110,7 +110,7 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->database()->commit();
 
     // Setup concerts loaded from database
-    foreach (Concert *concert, dbConcerts) {
+    for (Concert *concert : dbConcerts) {
         if (m_aborted) {
             return;
         }
@@ -121,7 +121,7 @@ void ConcertFileSearcher::reload(bool force)
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
 
-    foreach (Concert *concert, concerts) {
+    for (Concert *concert : concerts) {
         Manager::instance()->concertModel()->addConcert(concert);
     }
 
@@ -149,7 +149,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    for (const QString &cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
         }
@@ -181,7 +181,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     QStringList files;
     QStringList entries = getFiles(path);
-    foreach (const QString &file, entries) {
+    for (const QString &file : entries) {
         if (m_aborted) {
             return;
         }
@@ -196,7 +196,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     if (separateFolders) {
         QStringList concertFiles;
-        foreach (const QString &file, files) {
+        for (const QString &file : files) {
             concertFiles.append(QDir::toNativeSeparators(path + "/" + file));
         }
         if (concertFiles.count() > 0) {

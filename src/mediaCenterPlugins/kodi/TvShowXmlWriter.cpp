@@ -80,7 +80,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 
     XbmcXml::removeChildNodes(doc, "actor");
 
-    foreach (const Actor &actor, m_show.actors()) {
+    for (const Actor &actor : m_show.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");

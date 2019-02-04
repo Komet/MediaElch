@@ -13,7 +13,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
+    for (MusicScraperInterface *scraper : Manager::instance()->musicScrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->musicScrapers().indexOf(scraper));
         connect(scraper,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
@@ -50,7 +50,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) : QWidget(parent), ui(new 
     ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfos::CdArt));
     ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfos::Discography));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MusicSearchWidget::chkToggled);
         }
@@ -105,7 +105,7 @@ void MusicSearchWidget::showResults(QVector<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 
-    foreach (const ScraperSearchResult &result, results) {
+    for (const ScraperSearchResult &result : results) {
         auto label = new MyLabel(ui->results);
         QString name = result.name;
         if (result.released.isValid()) {
@@ -147,7 +147,7 @@ void MusicSearchWidget::chkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             m_infosToLoad.append(MusicScraperInfos(box->myData().toInt()));
         }
@@ -163,7 +163,7 @@ void MusicSearchWidget::chkToggled()
 
 void MusicSearchWidget::chkAllToggled(bool toggled)
 {
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         if (box->myData().toInt() > 0 && box->isEnabled() && !box->isHidden()) {
             box->setChecked(toggled);
         }
@@ -197,7 +197,7 @@ void MusicSearchWidget::setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperS
     QVector<MusicScraperInfos> infos =
         Settings::instance()->scraperInfos<MusicScraperInfos>(m_type + "/" + QString::number(scraperNo));
 
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setEnabled(scraperSupports.contains(MusicScraperInfos(box->myData().toInt())));
         box->setChecked((infos.contains(MusicScraperInfos(box->myData().toInt())) || infos.isEmpty())
                         && scraperSupports.contains(MusicScraperInfos(box->myData().toInt())));
@@ -208,8 +208,9 @@ void MusicSearchWidget::setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperS
 void MusicSearchWidget::setType(const QString &type)
 {
     m_type = type;
-    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox *>())
+    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
         box->setVisible(box->property("type").toString() == "both" || box->property("type").toString() == type);
+    }
 }
 
 void MusicSearchWidget::setArtistName(const QString &artistName)

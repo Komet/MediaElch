@@ -250,9 +250,8 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
     bool result = true;
     QDir dir(dirName);
     if (dir.exists(dirName)) {
-        foreach (QFileInfo info,
-            dir.entryInfoList(
-                QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+        for (QFileInfo info : dir.entryInfoList(
+                 QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
             if (info.isDir()) {
                 result = removeDir(info.absoluteFilePath());
             } else {
@@ -273,9 +272,9 @@ QVector<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QVector<ExportTem
     QVector<ExportTemplate *> remote)
 {
     QVector<ExportTemplate *> templates = local;
-    foreach (ExportTemplate *remoteTemplate, remote) {
+    for (ExportTemplate *remoteTemplate : remote) {
         bool found = false;
-        foreach (ExportTemplate *localTemplate, templates) {
+        for (ExportTemplate *localTemplate : templates) {
             if (localTemplate->identifier() == remoteTemplate->identifier()) {
                 found = true;
                 localTemplate->setRemote(true);
@@ -301,7 +300,7 @@ QVector<ExportTemplate *> ExportTemplateLoader::installedTemplates()
 
 ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
 {
-    foreach (ExportTemplate *exportTemplate, m_localTemplates) {
+    for (ExportTemplate *exportTemplate : m_localTemplates) {
         if (exportTemplate->identifier() == identifier) {
             return exportTemplate;
         }

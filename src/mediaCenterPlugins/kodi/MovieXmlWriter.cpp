@@ -75,13 +75,15 @@ QByteArray MovieXmlWriter::getMovieXml()
     XbmcXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;
-    foreach (const QString &credit, m_movie.writer().split(","))
+    for (const QString &credit : m_movie.writer().split(",")) {
         writers << credit.trimmed();
+    }
     XbmcXml::setListValue(doc, "credits", writers);
 
     QStringList directors;
-    foreach (const QString &director, m_movie.director().split(","))
+    for (const QString &director : m_movie.director().split(",")) {
         directors << director.trimmed();
+    }
     XbmcXml::setListValue(doc, "director", directors);
 
     XbmcXml::setListValue(doc,
@@ -97,7 +99,7 @@ QByteArray MovieXmlWriter::getMovieXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        foreach (const Poster &poster, m_movie.images().posters()) {
+        for (const Poster &poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -106,7 +108,7 @@ QByteArray MovieXmlWriter::getMovieXml()
 
         if (!m_movie.images().backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            foreach (const Poster &poster, m_movie.images().backdrops()) {
+            for (const Poster &poster : m_movie.images().backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));

@@ -132,7 +132,7 @@ bool Helper::isDvd(QString path, bool noSubFolder)
     filters << "VIDEO_TS"
             << "VIDEO TS";
     if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() > 0) {
-        foreach (const QString filter, filters) {
+        for (const QString filter : filters) {
             dir.setPath(path + QDir::separator() + filter);
             if (dir.entryList(QStringList() << "VIDEO_TS.IFO").count() == 1) {
                 return true;
@@ -228,7 +228,7 @@ QString Helper::stackedBaseName(const QString &fileName)
     regex << (QVector<QRegExp>() << rx1a << rx1b);
     regex << (QVector<QRegExp>() << rx2a << rx2b);
 
-    foreach (QVector<QRegExp> rx, regex) {
+    for (const QVector<QRegExp> &rx : regex) {
         if (rx.at(0).indexIn(fileName) != -1) {
             QString title = rx.at(0).cap(1);
             QString volume = rx.at(0).cap(2);
@@ -252,7 +252,7 @@ QString Helper::appendArticle(const QString &text)
     }
 
     QString name = text;
-    foreach (const QString &article, Settings::instance()->advanced()->sortTokens()) {
+    for (const QString &article : Settings::instance()->advanced()->sortTokens()) {
         if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
             name = text.mid(article.length() + 1) + ", " + text.mid(0, article.length());
             break;
@@ -280,8 +280,9 @@ QStringList Helper::mapGenre(const QStringList &genres)
     }
 
     QStringList mappedGenres;
-    foreach (const QString &genre, genres)
+    for (const QString &genre : genres) {
         mappedGenres << Helper::instance()->mapGenre(genre);
+    }
     return mappedGenres;
 }
 
@@ -324,32 +325,39 @@ QString Helper::mapCountry(const QString &text)
 QString Helper::formatFileSize(const qint64 &size)
 {
     if (size > 1024 * 1024 * 1024) {
-        return QString("%1 GB").arg(QString::number(static_cast<float>(size) / 1024 / 1024 / 1024, 'f', 2));
+        return QString("%1 GB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0 / 1024.0, 'f', 2));
     } else if (size > 1024 * 1024) {
-        return QString("%1 MB").arg(QString::number(static_cast<float>(size) / 1024 / 1024, 'f', 2));
+        return QString("%1 MB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0, 'f', 2));
     } else if (size > 1024) {
-        return QString("%1 kB").arg(QString::number(static_cast<float>(size) / 1024, 'f', 2));
+        return QString("%1 kB").arg(QString::number(static_cast<double>(size) / 1024.0, 'f', 2));
     } else {
-        return QString("%1 B").arg(QString::number(static_cast<float>(size), 'f', 2));
+        return QString("%1 B").arg(QString::number(static_cast<double>(size), 'f', 2));
     }
 }
 
 void Helper::removeFocusRect(QWidget *widget)
 {
-    foreach (QListWidget *list, widget->findChildren<QListWidget *>())
+    for (QListWidget *list : widget->findChildren<QListWidget *>()) {
         list->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QLineEdit *edit, widget->findChildren<QLineEdit *>())
+    }
+    for (QLineEdit *edit : widget->findChildren<QLineEdit *>()) {
         edit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QComboBox *box, widget->findChildren<QComboBox *>())
+    }
+    for (QComboBox *box : widget->findChildren<QComboBox *>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QSpinBox *box, widget->findChildren<QSpinBox *>())
+    }
+    for (QSpinBox *box : widget->findChildren<QSpinBox *>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDoubleSpinBox *box, widget->findChildren<QDoubleSpinBox *>())
+    }
+    for (QDoubleSpinBox *box : widget->findChildren<QDoubleSpinBox *>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDateEdit *dateEdit, widget->findChildren<QDateEdit *>())
+    }
+    for (QDateEdit *dateEdit : widget->findChildren<QDateEdit *>()) {
         dateEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
-    foreach (QDateTimeEdit *dateTimeEdit, widget->findChildren<QDateTimeEdit *>())
+    }
+    for (QDateTimeEdit *dateTimeEdit : widget->findChildren<QDateTimeEdit *>()) {
         dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
+    }
 }
 
 void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
@@ -466,7 +474,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
         << ";";
 
-    foreach (QTabWidget *tabWidget, widget->findChildren<QTabWidget *>()) {
+    for (QTabWidget *tabWidget : widget->findChildren<QTabWidget *>()) {
         QFont font = tabWidget->font();
         font.setFamily("Helvetica Neue");
 #ifdef Q_OS_MAC
@@ -480,7 +488,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
 
-    foreach (QPushButton *button, widget->findChildren<QPushButton *>()) {
+    for (QPushButton *button : widget->findChildren<QPushButton *>()) {
         QString styleType = button->property("styleType").toString();
         if (styleType.isEmpty()) {
             continue;
@@ -502,7 +510,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
 void Helper::applyEffect(QWidget *parent)
 {
-    foreach (QPushButton *button, parent->findChildren<QPushButton *>()) {
+    for (QPushButton *button : parent->findChildren<QPushButton *>()) {
         if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             auto effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
