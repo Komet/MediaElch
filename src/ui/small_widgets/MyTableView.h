@@ -35,8 +35,8 @@ private slots:
     void onSearchOverlayTimeout();
 
 private:
-    bool m_mouseInLeftEdge;
-    bool m_useSearchOverlay;
+    bool m_mouseInLeftEdge = false;
+    bool m_useSearchOverlay = false;
     QString m_currentSearchText;
     QTimer m_searchOverlayTimer;
     SearchOverlay *m_searchOverlay;

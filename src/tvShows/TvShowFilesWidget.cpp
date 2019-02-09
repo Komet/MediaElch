@@ -528,7 +528,7 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
 {
     qDebug() << "Entered";
 
-    if (!index.isValid()) {
+    if (!index.isValid() || !m_tvShowProxyModel) {
         qDebug() << "Invalid index";
         emit sigNothingSelected();
         return;

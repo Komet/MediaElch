@@ -126,9 +126,9 @@ void Settings::loadSettings()
     m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
 
     m_directorySettings.loadSettings();
-    m_kodiSettings.saveSettings();
-    m_importSettings.saveSettings();
-    m_networkSettings.saveSettings();
+    m_kodiSettings.loadSettings();
+    m_importSettings.loadSettings();
+    m_networkSettings.loadSettings();
 
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty()) {

@@ -36,6 +36,14 @@ win32 {
     }
 }
 
+# Usage as: CONFIG+=ubsan
+ubsan {
+    message("using ubsan")
+    QMAKE_CXXFLAGS += -fsanitize=undefined
+    QMAKE_LFLAGS += -fsanitize=undefined
+    LIBS += -lubsan
+}
+
 # Enable (all/most) warnings but ignore them for quazip files.
 *-g++* {
     WARNINGS += -Wall -Wextra -pedantic

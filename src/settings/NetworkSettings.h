@@ -29,8 +29,8 @@ private:
 
     QSettings *m_settings = nullptr;
 
-    bool m_useProxy;
-    int m_proxyType;
+    bool m_useProxy = false;
+    int m_proxyType = 0;
     QString m_proxyHost;
     uint16_t m_proxyPort;
     QString m_proxyUsername;
