@@ -28,7 +28,6 @@ void messageHandler(QtMsgType type, const QMessageLogContext &context, const QSt
         out.setDevice(&data);
     }
 
-    const auto srcFile = QString("%1").arg(context.function, -70, QChar(' '));
     const auto typeStr = [type]() -> QString {
         switch (type) {
         case QtInfoMsg: return QStringLiteral("INFO:     ");
@@ -36,11 +35,13 @@ void messageHandler(QtMsgType type, const QMessageLogContext &context, const QSt
         case QtWarningMsg: return QStringLiteral("WARNING:  ");
         case QtCriticalMsg: return QStringLiteral("CRITICAL: ");
         case QtFatalMsg: return QStringLiteral("FATAL:    ");
-        default: return QStringLiteral("UNKNOWN:  ");
         }
+        return QStringLiteral("UNKNOWN:  ");
     }();
 
 #ifdef QT_DEBUG
+    auto srcFile = QString("%1").arg(context.function, -70, QChar(' '));
+    srcFile.truncate(70);
     out << "[" << srcFile << "] " << typeStr << msg.toLocal8Bit() << newLine;
 #else
     out << "[MediaElch] " << typeStr << msg.toLocal8Bit() << newLine;
