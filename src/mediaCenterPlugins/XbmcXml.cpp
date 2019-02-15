@@ -1767,14 +1767,15 @@ bool XbmcXml::saveArtist(Artist *artist)
     if (!saveFileDir.exists()) {
         saveFileDir.mkpath(".");
     }
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "File could not be openend";
-        return false;
+    {
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qWarning() << "File could not be openend";
+            return false;
+        }
+        file.write(xmlContent);
+        file.close();
     }
-    file.write(xmlContent);
-    file.close();
-
     for (const auto imageType : Artist::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
@@ -1824,22 +1825,22 @@ bool XbmcXml::saveAlbum(Album *album)
     album->setNfoContent(xmlContent);
     Manager::instance()->database()->update(album);
 
-    QString fileName = nfoFilePath(album);
-    if (fileName.isEmpty()) {
+    QString nfoFileName = nfoFilePath(album);
+    if (nfoFileName.isEmpty()) {
         return false;
     }
 
-    QDir saveFileDir = QFileInfo(fileName).dir();
+    QDir saveFileDir = QFileInfo(nfoFileName).dir();
     if (!saveFileDir.exists()) {
         saveFileDir.mkpath(".");
     }
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    QFile nfo(nfoFileName);
+    if (!nfo.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "File could not be openend";
         return false;
     }
-    file.write(xmlContent);
-    file.close();
+    nfo.write(xmlContent);
+    nfo.close();
 
     for (const auto imageType : Album::imageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
@@ -1878,9 +1879,9 @@ bool XbmcXml::saveAlbum(Album *album)
         int bookletNum = 1;
         for (Image *image : album->bookletModel()->images()) {
             if (!image->deletion()) {
-                QString fileName =
+                QString imageFileName =
                     album->path() + "/booklet/booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0')) + ".jpg";
-                QFile file(fileName);
+                QFile file(imageFileName);
                 if (file.open(QIODevice::WriteOnly)) {
                     file.write(image->rawData());
                     file.close();

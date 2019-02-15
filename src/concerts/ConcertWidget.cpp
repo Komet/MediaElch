@@ -335,21 +335,21 @@ void ConcertWidget::onLoadingImages(Concert *concert, QVector<ImageType> imageTy
     ui->groupBox_3->update();
 }
 
-void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray data)
+void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray imageData)
 {
     if (concert != m_concert) {
         return;
     }
 
     if (type == ImageType::ConcertExtraFanart) {
-        ui->fanarts->addImage(data);
+        ui->fanarts->addImage(imageData);
         return;
     }
 
     for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
-            image->setImage(data);
+            image->setImage(imageData);
         }
     }
 }

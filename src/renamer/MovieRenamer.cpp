@@ -14,9 +14,9 @@ MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog) :
 
 MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
 {
-    QFileInfo fi(movie.files().first());
-    QString fiCanonicalPath = fi.canonicalPath();
-    QDir dir(fi.canonicalPath());
+    QFileInfo movieInfo(movie.files().first());
+    QString fiCanonicalPath = movieInfo.canonicalPath();
+    QDir dir(movieInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
 
     MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
@@ -34,8 +34,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
     }
 
     // Parent directory of this movie's folder
-    QString baseDir = [&fi]() {
-        QDir chkDir(fi.canonicalPath());
+    QString baseDir = [&movieInfo]() {
+        QDir chkDir(movieInfo.canonicalPath());
         chkDir.cdUp();
         return chkDir.path();
     }();
@@ -78,8 +78,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Helper::instance()->sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
-                int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
                 if (!m_config.dryRun) {
+                    const int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
                     if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
                         m_dialog->setResultStatus(row, RenameResult::Failed);
                         errorOccured = true;
@@ -99,7 +99,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                     newTrailerFileName =
                         newTrailerFileName.left(newTrailerFileName.lastIndexOf(".")) + "-trailer." + trailer.suffix();
                     if (trailer.fileName() != newTrailerFileName) {
-                        int row =
+                        const int row =
                             m_dialog->addResultToTable(trailer.fileName(), newTrailerFileName, RenameOperation::Rename);
                         if (!m_config.dryRun) {
                             if (!rename(fi.canonicalPath() + "/" + trailerFile,
@@ -282,9 +282,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 newFolderName = newFolderName + " " + QString::number(++i);
             }
 
-            int row = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::CreateDir);
 
             if (!m_config.dryRun) {
+                const int row = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::CreateDir);
                 if (!dir.mkdir(newFolderName)) {
                     m_dialog->setResultStatus(row, RenameResult::Failed);
                     return RenameError::Error;
@@ -296,7 +296,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
             for (const QString &fileName : FilmFiles) {
                 QFileInfo fi(fileName);
                 if (dir.dirName() != newFolderName) {
-                    int row = m_dialog->addResultToTable(fi.fileName(),
+                    const int row = m_dialog->addResultToTable(fi.fileName(),
                         dir.dirName() + "/" + newFolderName + "/" + fi.fileName(),
                         RenameOperation::Move);
                     m_dialog->appendResultText(QObject::tr(R"(<b>Move File</b> "%1" to "%2")")

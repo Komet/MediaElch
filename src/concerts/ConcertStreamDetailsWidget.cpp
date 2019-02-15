@@ -149,16 +149,16 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel *label = new QLabel(tr("Subtitles"));
+        QLabel *subtitleLabel = new QLabel(tr("Subtitles"));
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
-        label->setFont(font);
-        ui->streamDetails->addWidget(label, 8 + audioTracks, 0);
-        m_streamDetailsWidgets << label;
+        subtitleLabel->setFont(font);
+        ui->streamDetails->addWidget(subtitleLabel, 8 + audioTracks, 0);
+        m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
-            ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
+            QLabel *trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
             QLineEdit *edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
@@ -167,7 +167,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
-            m_streamDetailsWidgets << label << edit1;
+            m_streamDetailsWidgets << trackLabel << edit1;
             m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         }

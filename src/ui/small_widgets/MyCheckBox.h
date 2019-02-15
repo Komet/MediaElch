@@ -8,7 +8,7 @@ class MyCheckBox : public QCheckBox
     Q_OBJECT
 public:
     explicit MyCheckBox(QWidget *parent = nullptr);
-    void setMyData(const QVariant &data);
+    void setMyData(const QVariant &myData);
     QVariant myData() const;
 
 private:

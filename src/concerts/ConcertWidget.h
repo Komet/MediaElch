@@ -53,7 +53,7 @@ private slots:
     void onLoadImagesStarted(Concert *concert);
     void onLoadingImages(Concert *concert, QVector<ImageType> imageTypes);
     void onDownloadProgress(Concert *concert, int current, int maximum);
-    void onSetImage(Concert *concert, ImageType type, QByteArray data);
+    void onSetImage(Concert *concert, ImageType type, QByteArray imageData);
 
     void onChooseImage();
     void onDeleteImage();

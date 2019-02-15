@@ -51,6 +51,7 @@ ubsan {
     WARNINGS += -Wdisabled-optimization -Wstrict-overflow=4
     WARNINGS += -Winit-self -Wpointer-arith
     WARNINGS += -Wlogical-op -Wunsafe-loop-optimizations
+    WARNINGS += -Wshadow
     WARNINGS += -Wno-error=unsafe-loop-optimizations
 }
 *-clang* {

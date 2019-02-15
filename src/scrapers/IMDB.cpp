@@ -224,7 +224,7 @@ void IMDB::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
 
 void IMDB::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto *reply = static_cast<QNetworkReply *>(QObject::sender());
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage *>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
@@ -238,11 +238,11 @@ void IMDB::onLoadFinished()
         QUrl posterViewerUrl = parsePosters(msg);
         if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
             qDebug() << "Loading movie poster detail view";
-            QNetworkReply *reply = m_qnam.get(QNetworkRequest(posterViewerUrl));
-            new NetworkReplyWatcher(this, reply);
-            reply->setProperty("storage", Storage::toVariant(reply, movie));
-            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-            connect(reply, &QNetworkReply::finished, this, &IMDB::onPosterLoadFinished);
+            QNetworkReply *posterReply = m_qnam.get(QNetworkRequest(posterViewerUrl));
+            new NetworkReplyWatcher(this, posterReply);
+            posterReply->setProperty("storage", Storage::toVariant(posterReply, movie));
+            posterReply->setProperty("infosToLoad", Storage::toVariant(posterReply, infos));
+            connect(posterReply, &QNetworkReply::finished, this, &IMDB::onPosterLoadFinished);
         }
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
@@ -252,10 +252,10 @@ void IMDB::onLoadFinished()
     if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
         QUrl tagsUrl =
             QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->imdbId().toString()).toUtf8());
-        QNetworkReply *reply = m_qnam.get(QNetworkRequest(tagsUrl));
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        new NetworkReplyWatcher(this, reply);
-        connect(reply, &QNetworkReply::finished, this, &IMDB::onTagsFinished);
+        QNetworkReply *tagsReply = m_qnam.get(QNetworkRequest(tagsUrl));
+        tagsReply->setProperty("storage", Storage::toVariant(tagsReply, movie));
+        new NetworkReplyWatcher(this, tagsReply);
+        connect(tagsReply, &QNetworkReply::finished, this, &IMDB::onTagsFinished);
 
     } else {
         movie->controller()->scraperLoadDone(this);

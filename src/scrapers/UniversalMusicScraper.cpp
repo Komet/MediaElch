@@ -207,11 +207,11 @@ void UniversalMusicScraper::onArtistRelsFinished()
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
-        QNetworkReply *reply = qnam()->get(request);
-        new NetworkReplyWatcher(this, reply);
-        reply->setProperty("storage", Storage::toVariant(reply, artist));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
+        QNetworkReply *elemReply = qnam()->get(request);
+        new NetworkReplyWatcher(this, elemReply);
+        elemReply->setProperty("storage", Storage::toVariant(elemReply, artist));
+        elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
+        connect(elemReply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistLoadFinished);
     }
 }
 
@@ -526,11 +526,11 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
-        QNetworkReply *reply = qnam()->get(request);
-        new NetworkReplyWatcher(this, reply);
-        reply->setProperty("storage", Storage::toVariant(reply, album));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
+        QNetworkReply *elemReply = qnam()->get(request);
+        new NetworkReplyWatcher(this, elemReply);
+        elemReply->setProperty("storage", Storage::toVariant(elemReply, album));
+        elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
+        connect(elemReply, &QNetworkReply::finished, this, &UniversalMusicScraper::onAlbumLoadFinished);
     }
 }
 

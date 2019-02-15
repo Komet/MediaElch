@@ -521,7 +521,7 @@ void MusicWidgetAlbum::onLoadImagesStarted(Album *album)
     emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
-void MusicWidgetAlbum::onSetImage(Album *album, ImageType type, QByteArray data)
+void MusicWidgetAlbum::onSetImage(Album *album, ImageType type, QByteArray imageData)
 {
     if (m_album != album) {
         return;
@@ -530,7 +530,7 @@ void MusicWidgetAlbum::onSetImage(Album *album, ImageType type, QByteArray data)
     for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
-            image->setImage(data);
+            image->setImage(imageData);
         }
     }
 }

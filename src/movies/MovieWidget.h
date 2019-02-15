@@ -55,7 +55,7 @@ private slots:
     void onLoadImagesStarted(Movie *movie);
     void onLoadingImages(Movie *movie, QVector<ImageType> imageTypes);
     void onDownloadProgress(Movie *movie, int current, int maximum);
-    void onSetImage(Movie *movie, ImageType type, QByteArray data);
+    void onSetImage(Movie *movie, ImageType type, QByteArray imageData);
     void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onExtraFanartDropped(QUrl imageUrl);
 

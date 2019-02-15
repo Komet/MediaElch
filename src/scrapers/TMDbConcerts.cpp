@@ -378,15 +378,17 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
     QVector<ScraperData> loadsLeft;
 
     // Infos
-    loadsLeft.append(ScraperData::Infos);
-    url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                   .arg(id.toString(), m_apiKey, localeForTMDb()));
-    request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
-    new NetworkReplyWatcher(this, reply);
-    reply->setProperty("storage", Storage::toVariant(reply, concert));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadFinished);
+    {
+        loadsLeft.append(ScraperData::Infos);
+        url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
+                       .arg(id.toString(), m_apiKey, localeForTMDb()));
+        request.setUrl(url);
+        QNetworkReply *reply = qnam()->get(request);
+        new NetworkReplyWatcher(this, reply);
+        reply->setProperty("storage", Storage::toVariant(reply, concert));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::loadFinished);
+    }
 
     // Trailers
     if (infos.contains(ConcertScraperInfos::Trailer)) {
