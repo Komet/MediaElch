@@ -14,9 +14,9 @@ ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog *dialo
 
 ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
 {
-    QFileInfo fi(concert.files().first());
-    QString fiCanonicalPath = fi.canonicalPath();
-    QDir dir(fi.canonicalPath());
+    QFileInfo concertInfo(concert.files().first());
+    QString fiCanonicalPath = concertInfo.canonicalPath();
+    QDir dir(concertInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
     QString newFileName;
     QStringList newConcertFiles;
@@ -32,7 +32,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
         newConcertFiles.append(fi.fileName());
     }
 
-    QDir chkDir(fi.canonicalPath());
+    QDir chkDir(concertInfo.canonicalPath());
     chkDir.cdUp();
 
     bool isBluRay = Helper::instance()->isBluRay(chkDir.path());
@@ -71,8 +71,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Helper::instance()->sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
-                int row = m_dialog->addResultToTable(fi.fileName(), newFileName, Renamer::RenameOperation::Rename);
                 if (!m_config.dryRun) {
+                    const int row =
+                        m_dialog->addResultToTable(fi.fileName(), newFileName, Renamer::RenameOperation::Rename);
                     if (!Renamer::rename(file, fi.canonicalPath() + "/" + newFileName)) {
                         m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                         errorOccured = true;
@@ -90,7 +91,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
                     QString subSuffix = subFileName.mid(baseName.length());
                     QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                     QString newSubName = newBaseName + subSuffix;
-                    int row = m_dialog->addResultToTable(subFileName, newSubName, Renamer::RenameOperation::Rename);
+                    const int row =
+                        m_dialog->addResultToTable(subFileName, newSubName, Renamer::RenameOperation::Rename);
                     if (!m_config.dryRun) {
                         if (!Renamer::rename(currentDir.canonicalPath() + "/" + subFileName,
                                 currentDir.canonicalPath() + "/" + newSubName)) {

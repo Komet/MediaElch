@@ -310,10 +310,10 @@ void TMDb::search(QString searchStr)
             if (rxYear.exactMatch(searchStr)) {
                 searchTitle = rxYear.cap(1);
                 searchYear = rxYear.cap(2);
-                QUrl newUrl = getMovieSearchUrl(searchTitle,
+                QUrl newSearchUrl = getMovieSearchUrl(searchTitle,
                     UrlParameterMap{
                         {ApiUrlParameter::INCLUDE_ADULT, includeAdult}, {ApiUrlParameter::YEAR, searchYear}});
-                url.swap(newUrl);
+                url.swap(newSearchUrl);
                 break;
             }
         }
@@ -465,14 +465,16 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
     QVector<ScraperData> loadsLeft;
 
     // Infos
-    loadsLeft.append(ScraperData::Infos);
+    {
+        loadsLeft.append(ScraperData::Infos);
 
-    request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
-    QNetworkReply *const reply = m_qnam.get(request);
-    new NetworkReplyWatcher(this, reply);
-    reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-    connect(reply, &QNetworkReply::finished, this, &TMDb::loadFinished);
+        request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
+        QNetworkReply *const reply = m_qnam.get(request);
+        new NetworkReplyWatcher(this, reply);
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+        connect(reply, &QNetworkReply::finished, this, &TMDb::loadFinished);
+    }
 
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) || infos.contains(MovieScraperInfos::Director)

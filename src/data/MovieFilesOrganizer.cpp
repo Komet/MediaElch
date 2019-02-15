@@ -32,15 +32,15 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 
-    int pos = path.lastIndexOf(QDir::separator());
+    const int pos = path.lastIndexOf(QDir::separator());
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
     NameFormatter *nameFormat = NameFormatter::instance(this);
 
 
     for (const QStringList &movie : contents) {
-        int pos = movie.at(0).lastIndexOf(QDir::separator());
-        if (!(movie.at(0).left(pos).endsWith(dirName))) {
+        const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
+        if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
             qDebug() << "skipping " << movie.at(0);
             continue;
         }

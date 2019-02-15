@@ -46,30 +46,31 @@ void MovieFileSearcher::reload(bool force)
 
     emit progress(0, 0, m_progressMessageId);
 
-    for (const SettingsDir &dir : m_directories) {
+    for (const SettingsDir &movieDir : m_directories) {
         if (m_aborted) {
             return;
         }
         QVector<Movie *> moviesFromDb;
-        if (!dir.autoReload && !force) {
-            moviesFromDb = Manager::instance()->database()->movies(dir.path);
+        if (!movieDir.autoReload && !force) {
+            moviesFromDb = Manager::instance()->database()->movies(movieDir.path);
         }
 
-        if (dir.autoReload || force || moviesFromDb.count() == 0) {
-            emit currentDir(dir.path);
+        if (movieDir.autoReload || force || moviesFromDb.count() == 0) {
+            emit currentDir(movieDir.path);
             qApp->processEvents();
-            Manager::instance()->database()->clearMovies(dir.path);
+            Manager::instance()->database()->clearMovies(movieDir.path);
             QMap<QString, QStringList> contents;
             if (Settings::instance()->advanced()->movieFilters().isEmpty()) {
                 continue;
             }
-            qDebug() << "Scanning directory" << dir.path;
+            qDebug() << "Scanning directory" << movieDir.path;
             qDebug() << "Filters are" << Settings::instance()->advanced()->movieFilters();
             QString lastDir;
-            QDirIterator it(dir.path,
+            QDirIterator it(movieDir.path,
                 Settings::instance()->advanced()->movieFilters(),
                 QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
                 QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
+
             while (it.hasNext()) {
                 if (m_aborted) {
                     return;
@@ -124,19 +125,19 @@ void MovieFileSearcher::reload(bool force)
 
                 if (QString::compare("index.bdmv", fileName, Qt::CaseInsensitive) == 0) {
                     qDebug() << "Found BluRay structure";
-                    QDir dir(it.fileInfo().dir());
-                    if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
-                        dir.cdUp();
+                    QDir bluRayDir(it.fileInfo().dir());
+                    if (QString::compare(bluRayDir.dirName(), "BDMV", Qt::CaseInsensitive) == 0) {
+                        bluRayDir.cdUp();
                     }
-                    bluRays << dir.path();
+                    bluRays << bluRayDir.path();
                 }
                 if (QString::compare("VIDEO_TS.IFO", fileName, Qt::CaseInsensitive) == 0) {
                     qDebug() << "Found DVD structure";
-                    QDir dir(it.fileInfo().dir());
-                    if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
-                        dir.cdUp();
+                    QDir videoDir(it.fileInfo().dir());
+                    if (QString::compare(videoDir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
+                        videoDir.cdUp();
                     }
-                    dvds << dir.path();
+                    dvds << videoDir.path();
                 }
 
                 QString path = it.fileInfo().path();
@@ -148,8 +149,8 @@ void MovieFileSearcher::reload(bool force)
             }
             movieSum += contents.count();
             MovieContents con;
-            con.path = dir.path;
-            con.inSeparateFolder = dir.separateFolders;
+            con.path = movieDir.path;
+            con.inSeparateFolder = movieDir.separateFolders;
             con.contents = contents;
             c.append(con);
         } else {

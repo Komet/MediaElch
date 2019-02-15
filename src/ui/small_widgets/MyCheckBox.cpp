@@ -4,9 +4,9 @@ MyCheckBox::MyCheckBox(QWidget *parent) : QCheckBox(parent)
 {
 }
 
-void MyCheckBox::setMyData(const QVariant &data)
+void MyCheckBox::setMyData(const QVariant &myData)
 {
-    m_myData = data;
+    m_myData = myData;
 }
 
 QVariant MyCheckBox::myData() const

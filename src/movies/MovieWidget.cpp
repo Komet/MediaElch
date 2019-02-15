@@ -542,21 +542,21 @@ void MovieWidget::onLoadingImages(Movie *movie, QVector<ImageType> imageTypes)
     ui->groupBox_3->update();
 }
 
-void MovieWidget::onSetImage(Movie *movie, ImageType type, QByteArray data)
+void MovieWidget::onSetImage(Movie *movie, ImageType type, QByteArray imageData)
 {
     if (movie != m_movie) {
         return;
     }
 
     if (type == ImageType::MovieExtraFanart) {
-        ui->fanarts->addImage(data);
+        ui->fanarts->addImage(imageData);
         return;
     }
 
     for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
-            image->setImage(data);
+            image->setImage(imageData);
         }
     }
 }
@@ -831,18 +831,18 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel *label = new QLabel(tr("Subtitles"));
-        label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
+        QLabel *subtitleLabel = new QLabel(tr("Subtitles"));
+        subtitleLabel->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
         QFont f = ui->labelStreamDetailsAudio->font();
         f.setBold(true);
-        label->setFont(f);
-        ui->streamDetails->addWidget(label, 8 + audioTracks, 0);
-        m_streamDetailsWidgets << label;
+        subtitleLabel->setFont(f);
+        ui->streamDetails->addWidget(subtitleLabel, 8 + audioTracks, 0);
+        m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
-            label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-            ui->streamDetails->addWidget(label, 9 + audioTracks + i, 0);
+            QLabel *trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            trackLabel->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
+            ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
             QLineEdit *edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
@@ -851,7 +851,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
             layout->addWidget(edit1);
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
-            m_streamDetailsWidgets << label << edit1;
+            m_streamDetailsWidgets << trackLabel << edit1;
             m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
         }

@@ -382,10 +382,12 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 
         QString showTemplate = itemContent;
         replaceVars(showTemplate, show, dir, true);
-        QFile file(dir.currentPath() + QString("/tvshows/%1.html").arg(show->showId()));
-        if (file.open(QFile::WriteOnly | QFile::Text)) {
-            file.write(showTemplate.toUtf8());
-            file.close();
+        {
+            QFile file(dir.currentPath() + QString("/tvshows/%1.html").arg(show->showId()));
+            if (file.open(QFile::WriteOnly | QFile::Text)) {
+                file.write(showTemplate.toUtf8());
+                file.close();
+            }
         }
 
         QString s = listTvShowItem;
@@ -456,8 +458,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
     rx.setMinimal(true);
     rx.setPattern(R"(\{\{ BEGIN_BLOCK_SEASON \}\}(.*)\{\{ END_BLOCK_SEASON \}\})");
 
-    int pos = 0;
-    while ((pos = rx.indexIn(m, pos)) != -1) {
+    for (int pos = 0; (pos = rx.indexIn(m, pos)) != -1;) {
         pos += rx.matchedLength();
 
         listSeasonBlock = rx.cap(0);
@@ -481,8 +482,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
         QStringList episodeList;
         rx.setPattern(R"(\{\{ BEGIN_BLOCK_EPISODE \}\}(.*)\{\{ END_BLOCK_EPISODE \}\})");
 
-        int pos = 0;
-        while ((pos = rx.indexIn(s, pos)) != -1) {
+        for (int pos = 0; (pos = rx.indexIn(s, pos)) != -1;) {
             pos += rx.matchedLength();
 
             listEpisodeBlock = rx.cap(0);

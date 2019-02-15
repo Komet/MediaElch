@@ -19,7 +19,7 @@ class ClosableImage : public QLabel
 
 public:
     explicit ClosableImage(QWidget *parent = nullptr);
-    void setMyData(const QVariant &data);
+    void setMyData(const QVariant &myData);
     QVariant myData() const;
     void setImage(const QByteArray &image);
     void setImage(const QString &image);

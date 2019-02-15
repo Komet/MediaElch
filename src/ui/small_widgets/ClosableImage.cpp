@@ -218,9 +218,9 @@ QVariant ClosableImage::myData() const
     return m_myData;
 }
 
-void ClosableImage::setMyData(const QVariant &data)
+void ClosableImage::setMyData(const QVariant &myData)
 {
-    m_myData = data;
+    m_myData = myData;
 }
 
 void ClosableImage::setImage(const QByteArray &image)

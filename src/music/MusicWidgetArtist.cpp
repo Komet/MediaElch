@@ -489,21 +489,21 @@ void MusicWidgetArtist::onLoadImagesStarted(Artist *artist)
         tr("Downloading images..."), Constants::MusicArtistProgressMessageId + artist->databaseId());
 }
 
-void MusicWidgetArtist::onSetImage(Artist *artist, ImageType type, QByteArray data)
+void MusicWidgetArtist::onSetImage(Artist *artist, ImageType type, QByteArray imageData)
 {
     if (artist != m_artist) {
         return;
     }
 
     if (type == ImageType::ArtistExtraFanart) {
-        ui->fanarts->addImage(data);
+        ui->fanarts->addImage(imageData);
         return;
     }
 
     for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
-            image->setImage(data);
+            image->setImage(imageData);
         }
     }
 }
