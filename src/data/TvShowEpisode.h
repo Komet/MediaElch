@@ -41,12 +41,12 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
-    explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = nullptr);
+    explicit TvShowEpisode(QStringList files = QStringList(), TvShow* parent = nullptr);
     void clear();
     void clear(QVector<TvShowScraperInfos> infos);
 
     void setFiles(QStringList files);
-    virtual TvShow *tvShow() const;
+    virtual TvShow* tvShow() const;
     virtual QStringList files() const;
     virtual QString showTitle() const;
     virtual QString name() const;
@@ -73,20 +73,20 @@ public:
     virtual QUrl thumbnail() const;
     virtual QByteArray thumbnailImage();
     virtual bool thumbnailImageChanged() const;
-    virtual TvShowModelItem *modelItem();
+    virtual TvShowModelItem* modelItem();
     virtual bool hasChanged() const;
-    virtual QVector<QString *> writersPointer();
-    virtual QVector<QString *> directorsPointer();
+    virtual QVector<QString*> writersPointer();
+    virtual QVector<QString*> directorsPointer();
     virtual bool infoLoaded() const;
     virtual int episodeId() const;
-    virtual StreamDetails *streamDetails();
+    virtual StreamDetails* streamDetails();
     virtual bool streamDetailsLoaded() const;
     virtual QString nfoContent() const;
     virtual int databaseId() const;
     virtual bool syncNeeded() const;
     virtual bool isDummy() const;
 
-    void setShow(TvShow *show);
+    void setShow(TvShow* show);
     void setName(QString name);
     void setShowTitle(QString showTitle);
     void setRating(double rating);
@@ -111,24 +111,24 @@ public:
     void setEpBookmark(QTime epBookmark);
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
-    void setModelItem(TvShowModelItem *item);
+    void setModelItem(TvShowModelItem* item);
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setIsDummy(bool dummy);
 
-    void removeWriter(QString *writer);
-    void removeDirector(QString *director);
+    void removeWriter(QString* writer);
+    void removeDirector(QString* director);
 
     QVector<Actor> actors() const;
-    QVector<Actor *> actorsPointer();
+    QVector<Actor*> actorsPointer();
     void addActor(Actor actor);
-    void removeActor(Actor *actor);
+    void removeActor(Actor* actor);
 
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(TvDbId id, TvScraperInterface *tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad);
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo = true);
+    void loadData(TvDbId id, TvScraperInterface* tvScraperInterface, QVector<TvShowScraperInfos> infosToLoad);
+    bool saveData(MediaCenterInterface* mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();
     QVector<TvShowScraperInfos> infosToLoad();
@@ -138,22 +138,25 @@ public:
 
     void scraperLoadDone();
 
-    static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
+    static bool lessThan(TvShowEpisode* a, TvShowEpisode* b);
 
     ImdbId imdbId() const;
-    void setImdbId(const ImdbId &imdbId);
+    void setImdbId(const ImdbId& imdbId);
+    TvDbId tvdbId() const;
+    void setTvdbId(const TvDbId& tvdbId);
 
 signals:
     void sigLoaded();
-    void sigChanged(TvShowEpisode *);
+    void sigChanged(TvShowEpisode*);
 
 private:
     QStringList m_files;
-    TvShow *m_parent;
+    TvShow* m_parent;
     QString m_name;
     QString m_showTitle;
     Rating m_rating;
     ImdbId m_imdbId;
+    TvDbId m_tvdbId;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     SeasonNumber m_displaySeason;
@@ -169,14 +172,14 @@ private:
     QString m_network;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;
-    TvShowModelItem *m_modelItem;
+    TvShowModelItem* m_modelItem;
     bool m_thumbnailImageChanged;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     bool m_hasChanged;
     int m_episodeId;
     bool m_streamDetailsLoaded;
-    StreamDetails *m_streamDetails;
+    StreamDetails* m_streamDetails;
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
@@ -186,7 +189,7 @@ private:
     QVector<Actor> m_actors;
 };
 
-QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);
-QDebug operator<<(QDebug dbg, const TvShowEpisode *episode);
+QDebug operator<<(QDebug dbg, const TvShowEpisode& episode);
+QDebug operator<<(QDebug dbg, const TvShowEpisode* episode);
 
-Q_DECLARE_METATYPE(TvShowEpisode *)
+Q_DECLARE_METATYPE(TvShowEpisode*)

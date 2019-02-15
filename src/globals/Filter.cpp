@@ -81,7 +81,7 @@ bool Filter::accepts(QString text) const
         || isInfo(TvShowFilters::Title) || isInfo(ConcertFilters::Title)) {
         return true;
     }
-    for (const auto &filterText : m_filterText) {
+    for (const auto& filterText : m_filterText) {
         if (filterText.startsWith(text, Qt::CaseInsensitive)) {
             return true;
         }
@@ -155,7 +155,7 @@ QString Filter::shortText() const
  * @param movie Movie to check
  * @return True if the movie object is accepted
  */
-bool Filter::accepts(Movie *movie)
+bool Filter::accepts(Movie* movie)
 {
     if (isInfo(MovieFilters::Poster)) {
         return (m_hasInfo && movie->hasImage(ImageType::MoviePoster))
@@ -292,7 +292,7 @@ bool Filter::accepts(Movie *movie)
     }
 
     if (isInfo(MovieFilters::Path)) {
-        for (const QString &file : movie->files()) {
+        for (const QString& file : movie->files()) {
             if (file.contains(m_shortText, Qt::CaseInsensitive)) {
                 return true;
             }
@@ -312,7 +312,7 @@ bool Filter::accepts(Movie *movie)
  * @param show Tv Show to check
  * @return True if the tv show object is accepted
  */
-bool Filter::accepts(TvShow *show)
+bool Filter::accepts(TvShow* show)
 {
     if (isInfo(TvShowFilters::Title)) {
         return show->name().contains(m_shortText, Qt::CaseInsensitive);
@@ -320,7 +320,7 @@ bool Filter::accepts(TvShow *show)
     return true;
 }
 
-bool Filter::accepts(TvShowEpisode *episode)
+bool Filter::accepts(TvShowEpisode* episode)
 {
     if (isInfo(TvShowFilters::Title)) {
         return episode->name().contains(m_shortText, Qt::CaseInsensitive);
@@ -333,7 +333,7 @@ bool Filter::accepts(TvShowEpisode *episode)
  * @param concert Concert to check
  * @return True if the concert object is accepted
  */
-bool Filter::accepts(Concert *concert)
+bool Filter::accepts(Concert* concert)
 {
     if (isInfo(ConcertFilters::Title)) {
         return concert->name().contains(m_shortText, Qt::CaseInsensitive);

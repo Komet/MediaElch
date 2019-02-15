@@ -18,7 +18,7 @@ using namespace std::chrono_literals;
  * @param files List of files for this concert
  * @param parent
  */
-Concert::Concert(QStringList files, QObject *parent) :
+Concert::Concert(QStringList files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
     m_rating{0},
@@ -140,7 +140,7 @@ void Concert::clear(QVector<ConcertScraperInfos> infos)
     }
 }
 
-ConcertController *Concert::controller() const
+ConcertController* Concert::controller() const
 {
     return m_controller;
 }
@@ -272,9 +272,9 @@ QStringList Concert::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the concert genres
  */
-QVector<QString *> Concert::genresPointer()
+QVector<QString*> Concert::genresPointer()
 {
-    QVector<QString *> genres;
+    QVector<QString*> genres;
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
@@ -463,7 +463,7 @@ ImdbId Concert::imdbId() const
  * @brief The stream details object of this concert
  * @return StreamDetails Object
  */
-StreamDetails *Concert::streamDetails() const
+StreamDetails* Concert::streamDetails() const
 {
     return m_streamDetails;
 }
@@ -877,21 +877,21 @@ void Concert::removeExtraFanart(QString file)
     setChanged(true);
 }
 
-QVector<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> Concert::extraFanarts(MediaCenterInterface* mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
-    for (const QString &file : m_extraFanartsToRemove) {
+    for (const QString& file : m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }
     QVector<ExtraFanart> fanarts;
-    for (const QString &file : m_extraFanarts) {
+    for (const QString& file : m_extraFanarts) {
         ExtraFanart f;
         f.path = file;
         fanarts.append(f);
     }
-    for (const QByteArray &img : m_extraFanartImagesToAdd) {
+    for (const QByteArray& img : m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -946,7 +946,7 @@ void Concert::removeImage(ImageType type)
     setChanged(true);
 }
 
-bool Concert::lessThan(Concert *a, Concert *b)
+bool Concert::lessThan(Concert* a, Concert* b)
 {
     return (QString::localeAwareCompare(
                 Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))

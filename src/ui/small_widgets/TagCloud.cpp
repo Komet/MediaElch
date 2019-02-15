@@ -6,7 +6,7 @@
 #include "Badge.h"
 #include "globals/LocaleStringCompare.h"
 
-TagCloud::TagCloud(QWidget *parent) :
+TagCloud::TagCloud(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::TagCloud),
     m_badgeType{TagCloud::BadgeType::Badge},
@@ -36,7 +36,7 @@ void TagCloud::clear()
  * @param tags        Non-active and active tags. Each tag must be distinct.
  * @param activeTags  Active tags. Each tag must be distinct.
  */
-void TagCloud::setTags(const QStringList &tags, const QStringList &activeTags)
+void TagCloud::setTags(const QStringList& tags, const QStringList& activeTags)
 {
     m_tags = tags;
     m_activeTags = activeTags;
@@ -48,7 +48,7 @@ void TagCloud::setTags(const QStringList &tags, const QStringList &activeTags)
 
 void TagCloud::drawTags(bool printAll)
 {
-    for (Badge *badge : m_badges) {
+    for (Badge* badge : m_badges) {
         delete badge;
     }
     m_badges.clear();
@@ -66,7 +66,7 @@ void TagCloud::drawTags(bool printAll)
     const int maxNonActiveTagCount = (m_activeTags.size() > 150) ? 3 : 150;
     int nonActiveTagCount = 0;
 
-    for (const QString &tag : m_tags) {
+    for (const QString& tag : m_tags) {
         if (!tags.contains(tag)) {
             tags.append(tag);
             ++nonActiveTagCount;
@@ -77,7 +77,7 @@ void TagCloud::drawTags(bool printAll)
         }
     }
 
-    for (const QString &word : tags) {
+    for (const QString& word : tags) {
         auto badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::BadgeType::SimpleLabel) {
             badge->setBadgeType(Badge::Type::LabelWarning);
@@ -131,7 +131,7 @@ void TagCloud::repositionTags()
     int width = ui->scrollAreaWidgetContents->width();
     int heightToAdd = 0;
 
-    for (Badge *badge : m_badges) {
+    for (Badge* badge : m_badges) {
         if (x + badge->width() + 2 > width) {
             x = 0;
             y += badge->height() + m_verticalSpace;
@@ -146,9 +146,9 @@ void TagCloud::repositionTags()
     setMaximumHeight(qMax(80, y + heightToAdd + qMax(30, ui->lineEdit->height()) + 25));
 }
 
-void TagCloud::mousePressEvent(QMouseEvent *event)
+void TagCloud::mousePressEvent(QMouseEvent* event)
 {
-    Badge *child = static_cast<Badge *>(childAt(event->pos()));
+    Badge* child = static_cast<Badge*>(childAt(event->pos()));
     if (!child || !child->inherits("Badge")) {
         return;
     }
@@ -188,7 +188,7 @@ void TagCloud::addTag()
 
     if (m_tags.contains(word)) {
         m_activeTags.append(word);
-        for (Badge *badge : m_badges) {
+        for (Badge* badge : m_badges) {
             if (badge->text() == word) {
                 badge->setActive(true);
                 repositionTags();
@@ -219,12 +219,12 @@ QStringList TagCloud::activeTags() const
     return m_activeTags;
 }
 
-void TagCloud::setText(const QString &text)
+void TagCloud::setText(const QString& text)
 {
     ui->label->setText(text);
 }
 
-void TagCloud::setPlaceholder(const QString &placeholder)
+void TagCloud::setPlaceholder(const QString& placeholder)
 {
     ui->lineEdit->setPlaceholderText(placeholder);
 }
@@ -234,7 +234,7 @@ void TagCloud::setBadgeType(TagCloud::BadgeType type)
     m_badgeType = type;
 }
 
-void TagCloud::setCompleter(QCompleter *completer)
+void TagCloud::setCompleter(QCompleter* completer)
 {
     if (m_completer) {
         m_completer->deleteLater();

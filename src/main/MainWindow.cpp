@@ -39,18 +39,18 @@
 #include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
-MainWindow *MainWindow::m_instance = nullptr;
+MainWindow* MainWindow::m_instance = nullptr;
 
 /**
  * @brief MainWindow::MainWindow
  * @param parent
  */
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
 #ifdef Q_OS_MAC
-    QMenuBar *macMenuBar = new QMenuBar();
-    QMenu *menu = macMenuBar->addMenu("File");
-    QAction *mAbout = menu->addAction("About");
+    QMenuBar* macMenuBar = new QMenuBar();
+    QMenu* menu = macMenuBar->addMenu("File");
+    QAction* mAbout = menu->addAction("About");
     mAbout->setMenuRole(QAction::AboutRole);
     connect(mAbout, SIGNAL(triggered()), new AboutDialog(this), SLOT(exec()));
 #endif
@@ -133,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     m_buttonActiveColor = QColor(70, 155, 198);
     m_buttonColor = QColor(128, 129, 132);
-    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
+    for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
         connect(btn, SIGNAL(clicked()), this, SLOT(onMenu()));
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
     }
@@ -237,7 +237,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 #endif
 
 #ifdef Q_OS_WIN
-    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
+    for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
         btn->setIconSize(QSize(32, 32));
     }
     ui->navbar->setFixedHeight(56);
@@ -278,7 +278,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-MainWindow *MainWindow::instance()
+MainWindow* MainWindow::instance()
 {
     return MainWindow::m_instance;
 }
@@ -287,7 +287,7 @@ MainWindow *MainWindow::instance()
  * @brief Repositions the MessageBox
  * @param event
  */
-void MainWindow::resizeEvent(QResizeEvent *event)
+void MainWindow::resizeEvent(QResizeEvent* event)
 {
     bool isBigWindow = event->size().width() >= 1500;
     ui->movieWidget->setBigWindow(isBigWindow);
@@ -482,7 +482,7 @@ void MainWindow::onActionRename()
  * @param filters List of filters
  * @param text Filter text
  */
-void MainWindow::onFilterChanged(QVector<Filter *> filters, QString text)
+void MainWindow::onFilterChanged(QVector<Filter*> filters, QString text)
 {
     if (ui->stackedWidget->currentIndex() == 0) {
         ui->movieFilesWidget->setFilter(filters, text);
@@ -557,17 +557,17 @@ void MainWindow::moveSplitter(int pos, int index)
 {
     Q_UNUSED(index)
     QList<int> sizes;
-    QList<QSplitter *> splitters;
+    QList<QSplitter*> splitters;
     splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter()
               << ui->certificationWidget->splitter() << ui->concertSplitter << ui->musicSplitter;
-    for (const QSplitter *splitter : splitters) {
+    for (const QSplitter* splitter : splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
             break;
         }
     }
 
-    for (QSplitter *splitter : splitters) {
+    for (QSplitter* splitter : splitters) {
         splitter->setSizes(sizes);
     }
 
@@ -669,7 +669,7 @@ void MainWindow::onRenewModels()
     ui->downloadsWidget->scanDownloadFolders();
 }
 
-void MainWindow::onJumpToMovie(Movie *movie)
+void MainWindow::onJumpToMovie(Movie* movie)
 {
     onMenu(ui->buttonMovies);
     ui->movieFilesWidget->selectMovie(movie);
@@ -677,17 +677,17 @@ void MainWindow::onJumpToMovie(Movie *movie)
 
 void MainWindow::updateTvShows()
 {
-    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
         if (show->showMissingEpisodes()) {
             TvShowUpdater::instance()->updateShow(show);
         }
     }
 }
 
-void MainWindow::onMenu(QToolButton *button)
+void MainWindow::onMenu(QToolButton* button)
 {
     if (button == nullptr) {
-        button = static_cast<QToolButton *>(QObject::sender());
+        button = static_cast<QToolButton*>(QObject::sender());
     }
 
     if (!button) {
@@ -695,7 +695,7 @@ void MainWindow::onMenu(QToolButton *button)
     }
 
 
-    for (QToolButton *btn : ui->menuWidget->findChildren<QToolButton *>()) {
+    for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
         btn->setProperty("isActive", false);
     }

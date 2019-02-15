@@ -29,29 +29,29 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow() override;
 
-    static MainWindow *instance();
+    static MainWindow* instance();
 
 public slots:
     void setNewMarks();
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void progressProgress(int current, int max, int id);
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
-    void onMenu(QToolButton *button = nullptr);
+    void onMenu(QToolButton* button = nullptr);
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
     void onActionReload();
     void onActionXbmc();
     void onActionRename();
-    void onFilterChanged(QVector<Filter *> filters, QString text);
+    void onFilterChanged(QVector<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
@@ -59,35 +59,35 @@ private slots:
     void onXbmcSyncFinished();
     void onFilesRenamed(Renamer::RenameType type = Renamer::RenameType::All);
     void onRenewModels();
-    void onJumpToMovie(Movie *movie);
+    void onJumpToMovie(Movie* movie);
     void updateTvShows();
 
 private:
-    Ui::MainWindow *ui;
-    Settings *m_settings;
-    SettingsWindow *m_settingsWindow;
-    AboutDialog *m_aboutDialog;
-    SupportDialog *m_supportDialog;
-    FileScannerDialog *m_fileScannerDialog;
-    ExportDialog *m_exportDialog;
-    XbmcSync *m_xbmcSync;
-    RenamerDialog *m_renamer;
-    QAction *m_actionSearch;
-    QAction *m_actionSave;
-    QAction *m_actionXbmc;
-    QAction *m_actionAbout;
-    QAction *m_actionQuit;
-    QAction *m_actionSaveAll;
-    QAction *m_actionSettings;
-    QAction *m_actionLike;
-    QAction *m_actionReload;
-    QAction *m_actionRename;
-    QAction *m_actionExport;
+    Ui::MainWindow* ui;
+    Settings* m_settings;
+    SettingsWindow* m_settingsWindow;
+    AboutDialog* m_aboutDialog;
+    SupportDialog* m_supportDialog;
+    FileScannerDialog* m_fileScannerDialog;
+    ExportDialog* m_exportDialog;
+    XbmcSync* m_xbmcSync;
+    RenamerDialog* m_renamer;
+    QAction* m_actionSearch;
+    QAction* m_actionSave;
+    QAction* m_actionXbmc;
+    QAction* m_actionAbout;
+    QAction* m_actionQuit;
+    QAction* m_actionSaveAll;
+    QAction* m_actionSettings;
+    QAction* m_actionLike;
+    QAction* m_actionReload;
+    QAction* m_actionRename;
+    QAction* m_actionExport;
     QMap<MainWidgets, QMap<MainActions, bool>> m_actions;
     QMap<MainWidgets, QIcon> m_icons;
-    static MainWindow *m_instance;
+    static MainWindow* m_instance;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
     void setupToolbar();
-    void setIcons(QToolButton *button);
+    void setIcons(QToolButton* button);
 };

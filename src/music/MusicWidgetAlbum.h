@@ -17,9 +17,9 @@ class MusicWidgetAlbum : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidgetAlbum(QWidget *parent = nullptr);
+    explicit MusicWidgetAlbum(QWidget* parent = nullptr);
     ~MusicWidgetAlbum() override;
-    void setAlbum(Album *album);
+    void setAlbum(Album* album);
 
 public slots:
     void onSetEnabled(bool enabled);
@@ -46,22 +46,22 @@ private slots:
     void onChooseImage();
     void onDeleteImage();
     void onImageDropped(ImageType imageType, QUrl imageUrl);
-    void onInfoLoadDone(Album *album);
-    void onLoadDone(Album *album);
-    void onDownloadProgress(Album *album, int current, int maximum);
-    void onLoadingImages(Album *album, QVector<ImageType> imageTypes);
-    void onLoadImagesStarted(Album *album);
-    void onSetImage(Album *album, ImageType type, QByteArray imageData);
+    void onInfoLoadDone(Album* album);
+    void onLoadDone(Album* album);
+    void onDownloadProgress(Album* album, int current, int maximum);
+    void onLoadingImages(Album* album, QVector<ImageType> imageTypes);
+    void onLoadImagesStarted(Album* album);
+    void onSetImage(Album* album, ImageType type, QByteArray imageData);
     void onBookletModelChanged();
     void onAddBooklet();
     void onBookletsDropped(QVector<QUrl> urls);
 
 private:
-    Ui::MusicWidgetAlbum *ui;
+    Ui::MusicWidgetAlbum* ui;
     QPointer<Album> m_album;
-    ImageWidget *m_bookletWidget;
+    ImageWidget* m_bookletWidget;
 
-    void clearContents(QLineEdit *widget);
-    void setContent(QLineEdit *widget, const QString &content);
-    void updateImage(ImageType imageType, ClosableImage *image);
+    void clearContents(QLineEdit* widget);
+    void setContent(QLineEdit* widget, const QString& content);
+    void updateImage(ImageType imageType, ClosableImage* image);
 };

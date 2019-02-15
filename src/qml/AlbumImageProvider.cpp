@@ -8,7 +8,7 @@ AlbumImageProvider::AlbumImageProvider() : QQuickImageProvider(QQuickImageProvid
 {
 }
 
-QImage AlbumImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
+QImage AlbumImageProvider::requestImage(const QString& id, QSize* size, const QSize& requestedSize)
 {
     QStringList parts = id.split("/");
 
@@ -21,13 +21,13 @@ QImage AlbumImageProvider::requestImage(const QString &id, QSize *size, const QS
             return QImage();
         }
 
-        Artist *artist = Manager::instance()->musicModel()->artists().at(artistNum);
+        Artist* artist = Manager::instance()->musicModel()->artists().at(artistNum);
 
         if (artist->albums().count() <= albumNum) {
             return QImage();
         }
 
-        Album *album = artist->albums().at(albumNum);
+        Album* album = artist->albums().at(albumNum);
 
         int row = album->bookletModel()->rowById(imageId);
         QImage img = QImage::fromData(

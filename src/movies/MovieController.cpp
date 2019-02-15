@@ -15,7 +15,7 @@
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 
-MovieController::MovieController(Movie *parent) :
+MovieController::MovieController(Movie* parent) :
     QObject(parent),
     m_movie{parent},
     m_infoLoaded{false},
@@ -34,7 +34,7 @@ MovieController::MovieController(Movie *parent) :
         this,
         SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Movie *)),
+        SIGNAL(allDownloadsFinished(Movie*)),
         this,
         SLOT(onAllDownloadsFinished()),
         Qt::UniqueConnection);
@@ -45,7 +45,7 @@ MovieController::MovieController(Movie *parent) :
  * @param mediaCenterInterface MediaCenterInterface to use for saving
  * @return Saving was successful or not
  */
-bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
+bool MovieController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     qDebug() << "Entered";
 
@@ -61,7 +61,7 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
     m_movie->clearImages();
     m_movie->images().clearExtraFanartData();
     m_movie->setSyncNeeded(true);
-    for (Subtitle *subtitle : m_movie->subtitles()) {
+    for (Subtitle* subtitle : m_movie->subtitles()) {
         subtitle->setChanged(false);
     }
     return saved;
@@ -73,7 +73,7 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
  * @param force Force the loading. If set to false and infos were already loeaded this function just returns
  * @return Loading was successful or not
  */
-bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
+bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_movie->hasChanged()) && !force
         && (m_infoFromNfoLoaded || (m_movie->hasChanged() && !m_infoFromNfoLoaded))) {
@@ -81,7 +81,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     }
 
     m_movie->blockSignals(true);
-    NameFormatter *nameFormat = NameFormatter::instance();
+    NameFormatter* nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
     if (reloadFromNfo) {
@@ -147,8 +147,8 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
  * @param scraperInterface ScraperInterface to use for loading
  * @param infos List of infos to load
  */
-void MovieController::loadData(QMap<MovieScraperInterface *, QString> ids,
-    MovieScraperInterface *scraperInterface,
+void MovieController::loadData(QMap<MovieScraperInterface*, QString> ids,
+    MovieScraperInterface* scraperInterface,
     QVector<MovieScraperInfos> infos)
 {
     m_infosToLoad = infos;
@@ -194,7 +194,7 @@ void MovieController::setInfosToLoad(QVector<MovieScraperInfos> infos)
  * @brief Called when a ScraperInterface has finished loading
  *        Emits the loaded signal
  */
-void MovieController::scraperLoadDone(MovieScraperInterface *scraper)
+void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
 {
     m_customScraperMutex.lock();
     if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
@@ -215,7 +215,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface *scraper)
     }
 
     QVector<ImageType> images;
-    MovieScraperInterface *sigScraper = scraper;
+    MovieScraperInterface* sigScraper = scraper;
 
     scraper = (property("isCustomScraper").toBool())
                   ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Backdrop)
@@ -270,9 +270,9 @@ void MovieController::scraperLoadDone(MovieScraperInterface *scraper)
 
     if (!images.isEmpty() && (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid())) {
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Movie *, QMap<ImageType, QVector<Poster>>)),
+            SIGNAL(sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Movie *, QMap<ImageType, QVector<Poster>>)),
+            SLOT(onFanartLoadDone(Movie*, QMap<ImageType, QVector<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(
             m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
@@ -281,7 +281,7 @@ void MovieController::scraperLoadDone(MovieScraperInterface *scraper)
     }
 }
 
-void MovieController::onFanartLoadDone(Movie *movie, QMap<ImageType, QVector<Poster>> posters)
+void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Poster>> posters)
 {
     if (movie != m_movie) {
         return;
@@ -311,8 +311,8 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<ImageType, QVector<Pos
 
     QVector<DownloadManagerElement> downloads;
     if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
-        QVector<Actor *> actors = m_movie->actorsPointer();
-        for (const auto &actor : actors) {
+        QVector<Actor*> actors = m_movie->actorsPointer();
+        for (const auto& actor : actors) {
             if (actor->thumb.isEmpty()) {
                 continue;
             }
@@ -401,7 +401,7 @@ void MovieController::loadImage(ImageType type, QUrl url)
 
 void MovieController::loadImages(ImageType type, QVector<QUrl> urls)
 {
-    for (const auto &url : urls) {
+    for (const auto& url : urls) {
         DownloadManagerElement d;
         d.movie = m_movie;
         d.imageType = type;
@@ -451,27 +451,27 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.unlock();
 }
 
-void MovieController::setForceFanartBackdrop(const bool &force)
+void MovieController::setForceFanartBackdrop(const bool& force)
 {
     m_forceFanartBackdrop = force;
 }
 
-void MovieController::setForceFanartPoster(const bool &force)
+void MovieController::setForceFanartPoster(const bool& force)
 {
     m_forceFanartPoster = force;
 }
 
-void MovieController::setForceFanartCdArt(const bool &force)
+void MovieController::setForceFanartCdArt(const bool& force)
 {
     m_forceFanartCdArt = force;
 }
 
-void MovieController::setForceFanartClearArt(const bool &force)
+void MovieController::setForceFanartClearArt(const bool& force)
 {
     m_forceFanartClearArt = force;
 }
 
-void MovieController::setForceFanartLogo(const bool &force)
+void MovieController::setForceFanartLogo(const bool& force)
 {
     m_forceFanartLogo = force;
 }

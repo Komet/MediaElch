@@ -29,7 +29,7 @@ using namespace ZenLib;
  * @param parent
  * @param file
  */
-StreamDetails::StreamDetails(QObject *parent, QStringList files) :
+StreamDetails::StreamDetails(QObject* parent, QStringList files) :
     QObject(parent),
     m_files(files),
     m_hdAudioCodecs{"dtshd_ma", "dtshd_hra", "truehd"},
@@ -106,7 +106,7 @@ void StreamDetails::loadStreamDetails()
         QString biggest;
         qint64 biggestSize = 0;
         QFileInfo fi(m_files.first());
-        for (const QFileInfo &fiVob :
+        for (const QFileInfo& fiVob :
             fi.dir().entryInfoList(QStringList{"VTS_*.VOB", "vts_*.vob"}, QDir::Files, QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
             rx.setMinimal(true);
@@ -161,7 +161,7 @@ void StreamDetails::loadWithLibrary()
     int textCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
 
     if (m_files.count() > 1) {
-        for (const QString &file : m_files) {
+        for (const QString& file : m_files) {
             MediaInfo MI_duration;
             MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
             MI_duration.Option(__T("Internet"), __T("no"));
@@ -277,7 +277,7 @@ QString StreamDetails::videoFormat(QString format, QString version) const
  * @param format Original format, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::audioFormat(const QString &codec, const QString &profile) const
+QString StreamDetails::audioFormat(const QString& codec, const QString& profile) const
 {
     QString xbmcFormat;
     if (codec == "DTS-HD" && profile == "MA / Core") {
@@ -308,7 +308,7 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
     return xbmcFormat;
 }
 
-QString StreamDetails::stereoFormat(const QString &format) const
+QString StreamDetails::stereoFormat(const QString& format) const
 {
     if (Helper::instance()->stereoModes().values().contains(format.toLower())) {
         return Helper::instance()->stereoModes().key(format.toLower());

@@ -5,7 +5,7 @@
 
 #include "settings/Settings.h"
 
-ExportTemplate::ExportTemplate(QObject *parent) : QObject(parent), m_isRemote{false}, m_isInstalled{false}
+ExportTemplate::ExportTemplate(QObject* parent) : QObject(parent), m_isRemote{false}, m_isInstalled{false}
 {
 }
 
@@ -142,7 +142,7 @@ QMap<QString, QString> ExportTemplate::descriptions() const
     return m_description;
 }
 
-bool ExportTemplate::lessThan(ExportTemplate *a, ExportTemplate *b)
+bool ExportTemplate::lessThan(ExportTemplate* a, ExportTemplate* b)
 {
     return (QString::localeAwareCompare(a->name(), b->name()) < 0);
 }
@@ -213,7 +213,7 @@ void ExportTemplate::copyTo(QString path)
         "episode"};
 
     QDir templateDir(getTemplateLocation());
-    for (const QFileInfo &fi : templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
+    for (const QFileInfo& fi : templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs)) {
         if (excludes.contains(fi.fileName())) {
             continue;
         }
@@ -226,7 +226,7 @@ void ExportTemplate::copyTo(QString path)
     }
 }
 
-bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
+bool ExportTemplate::copyDir(const QString& srcPath, const QString& dstPath)
 {
     QDir parentDstDir(QFileInfo(dstPath).path());
     if (!parentDstDir.mkdir(QFileInfo(dstPath).fileName())) {
@@ -234,7 +234,7 @@ bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
     }
 
     QDir srcDir(srcPath);
-    for (const QFileInfo &info : srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
+    for (const QFileInfo& info : srcDir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot)) {
         QString srcItemPath = srcPath + "/" + info.fileName();
         QString dstItemPath = dstPath + "/" + info.fileName();
         if (info.isDir()) {
@@ -252,7 +252,7 @@ bool ExportTemplate::copyDir(const QString &srcPath, const QString &dstPath)
     return true;
 }
 
-QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate)
+QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate)
 {
     QString nl = "\n";
     QString out;
@@ -276,7 +276,7 @@ QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate)
     return dbg.maybeSpace();
 }
 
-QDebug operator<<(QDebug dbg, const ExportTemplate *exportTemplate)
+QDebug operator<<(QDebug dbg, const ExportTemplate* exportTemplate)
 {
     dbg.nospace() << *exportTemplate;
     return dbg.space();

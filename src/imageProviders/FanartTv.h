@@ -23,11 +23,11 @@ class FanartTv : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit FanartTv(QObject *parent = nullptr);
+    explicit FanartTv(QObject* parent = nullptr);
     QString name() const override;
     QUrl siteUrl() const override;
     QString identifier() const override;
-    void movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types) override;
+    void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) override;
     void moviePosters(TmdbId tmdbId) override;
     void movieBackdrops(TmdbId tmdbId) override;
     void movieLogos(TmdbId tmdbId) override;
@@ -35,13 +35,13 @@ public:
     void movieThumbs(TmdbId tmdbId) override;
     void movieClearArts(TmdbId tmdbId) override;
     void movieCdArts(TmdbId tmdbId) override;
-    void concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types) override;
+    void concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types) override;
     void concertPosters(TmdbId tmdbId) override;
     void concertBackdrops(TmdbId tmdbId) override;
     void concertLogos(TmdbId tmdbId) override;
     void concertClearArts(TmdbId tmdbId) override;
     void concertCdArts(TmdbId tmdbId) override;
-    void tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types) override;
+    void tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types) override;
     void tvShowPosters(TvDbId tvdbId) override;
     void tvShowBackdrops(TvDbId tvdbId) override;
     void tvShowLogos(TvDbId tvdbId) override;
@@ -59,15 +59,15 @@ public:
     void artistThumbs(QString mbId) override;
     void albumCdArts(QString mbId) override;
     void albumThumbs(QString mbId) override;
-    void artistImages(Artist *artist, QString mbId, QVector<ImageType> types) override;
-    void albumImages(Album *album, QString mbId, QVector<ImageType> types) override;
+    void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) override;
+    void albumImages(Album* album, QString mbId, QVector<ImageType> types) override;
     void albumBooklets(QString mbId) override;
     QVector<ImageType> provides() override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings &settings) override;
-    void saveSettings(ScraperSettings &settings) override;
-    QWidget *settingsWidget() override;
-    static void insertPoster(QVector<Poster> &posters, Poster b, QString language, QString preferredDiscType);
+    void loadSettings(const ScraperSettings& settings) override;
+    void saveSettings(ScraperSettings& settings) override;
+    QWidget* settingsWidget() override;
+    static void insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType);
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
@@ -79,11 +79,11 @@ public slots:
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>) override;
     void sigImagesLoaded(QVector<Poster>) override;
-    void sigImagesLoaded(Movie *, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Concert *, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(TvShow *, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Artist *, QMap<ImageType, QVector<Poster>>) override;
-    void sigImagesLoaded(Album *, QMap<ImageType, QVector<Poster>>) override;
+    void sigImagesLoaded(Movie*, QMap<ImageType, QVector<Poster>>) override;
+    void sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>) override;
+    void sigImagesLoaded(TvShow*, QMap<ImageType, QVector<Poster>>) override;
+    void sigImagesLoaded(Artist*, QMap<ImageType, QVector<Poster>>) override;
+    void sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>) override;
 
 private slots:
     void onSearchMovieFinished(QVector<ScraperSearchResult> results);
@@ -100,22 +100,22 @@ private:
     QString m_personalApiKey;
     QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
-    TheTvDb *m_tvdb;
-    TMDb *m_tmdb;
+    TheTvDb* m_tvdb;
+    TMDb* m_tmdb;
     QString m_language;
     QString m_preferredDiscType;
-    QWidget *m_widget;
-    QComboBox *m_box;
-    QComboBox *m_discBox;
-    QLineEdit *m_personalApiKeyEdit;
+    QWidget* m_widget;
+    QComboBox* m_box;
+    QComboBox* m_discBox;
+    QLineEdit* m_personalApiKeyEdit;
 
-    QNetworkAccessManager *qnam();
+    QNetworkAccessManager* qnam();
     QVector<Poster> parseMovieData(QString json, ImageType type);
     void loadMovieData(TmdbId tmdbId, ImageType type);
-    void loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie *movie);
-    void loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert *concert);
+    void loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie);
+    void loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert);
     QVector<Poster> parseTvShowData(QString json, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
     void loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
-    void loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow *show);
+    void loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show);
     QString keyParameter();
 };

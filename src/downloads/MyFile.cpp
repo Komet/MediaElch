@@ -2,11 +2,11 @@
 
 #include <QFileInfo>
 
-MyFile::MyFile(const QString &name) : QFile(name)
+MyFile::MyFile(const QString& name) : QFile(name)
 {
 }
 
-bool MyFile::copy(const QString &newName)
+bool MyFile::copy(const QString& newName)
 {
     if (fileName().isEmpty()) {
         qWarning("QFile::copy: Empty or null file name");

@@ -21,9 +21,9 @@ class TvShowWidgetTvShow : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidgetTvShow(QWidget *parent = nullptr);
+    explicit TvShowWidgetTvShow(QWidget* parent = nullptr);
     ~TvShowWidgetTvShow() override;
-    void setTvShow(TvShow *show);
+    void setTvShow(TvShow* show);
     void updateTvShowInfo();
 
 public slots:
@@ -41,7 +41,7 @@ signals:
     void sigDownloadsFinished(int);
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void onAddGenre(QString genre);
@@ -50,15 +50,15 @@ private slots:
     void onRemoveTag(QString tag);
     void onAddActor();
     void onRemoveActor();
-    void onInfoLoadDone(TvShow *show);
-    void onLoadDone(TvShow *show, QMap<ImageType, QVector<Poster>> posters);
+    void onInfoLoadDone(TvShow* show);
+    void onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters);
 
     void onChooseImage();
     void onDeleteImage();
     void onImageDropped(ImageType imageType, QUrl imageUrl);
 
     void onPosterDownloadFinished(DownloadManagerElement elem);
-    void onDownloadsFinished(TvShow *show);
+    void onDownloadsFinished(TvShow* show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
     void onActorChanged();
     void onChangeActorImage();
@@ -79,21 +79,21 @@ private slots:
     void onFirstAiredChange(QDate date);
     void onStudioChange(QString studio);
     void onOverviewChange();
-    void onActorEdited(QTableWidgetItem *item);
+    void onActorEdited(QTableWidgetItem* item);
     void onRuntimeChange(int runtime);
 
-    void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QByteArray &image);
+    void onRemoveExtraFanart(const QString& file);
+    void onRemoveExtraFanart(const QByteArray& image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 
-    void onShowScraperProgress(TvShow *show, int current, int max);
+    void onShowScraperProgress(TvShow* show, int current, int max);
 
 private:
-    Ui::TvShowWidgetTvShow *ui;
+    Ui::TvShowWidgetTvShow* ui;
     QPointer<TvShow> m_show;
-    QLabel *m_savingWidget;
-    QMovie *m_loadingMovie;
-    DownloadManager *m_posterDownloadManager;
+    QLabel* m_savingWidget;
+    QMovie* m_loadingMovie;
+    DownloadManager* m_posterDownloadManager;
     void updateImages(QVector<ImageType> images);
 };

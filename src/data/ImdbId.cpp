@@ -9,12 +9,12 @@ ImdbId::ImdbId(QString imdbId) : m_imdbId(imdbId), m_isValid{isValidFormat(m_imd
 
 const ImdbId ImdbId::NoId = ImdbId();
 
-bool ImdbId::operator==(const ImdbId &other) const
+bool ImdbId::operator==(const ImdbId& other) const
 {
     return m_imdbId == other.m_imdbId;
 }
 
-bool ImdbId::operator!=(const ImdbId &other) const
+bool ImdbId::operator!=(const ImdbId& other) const
 {
     return !(*this == other);
 }
@@ -29,18 +29,18 @@ bool ImdbId::isValid() const
     return m_isValid;
 }
 
-bool ImdbId::isValidFormat(const QString &imdbId)
+bool ImdbId::isValidFormat(const QString& imdbId)
 {
     QRegExp regex("tt\\d{7}");
     return !imdbId.isEmpty() && regex.exactMatch(imdbId);
 }
 
-std::ostream &operator<<(std::ostream &os, const ImdbId &id)
+std::ostream& operator<<(std::ostream& os, const ImdbId& id)
 {
     return os << id.toString().toStdString();
 }
 
-QDebug operator<<(QDebug debug, const ImdbId &id)
+QDebug operator<<(QDebug debug, const ImdbId& id)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "ImdbId(" << id.toString() << ')';

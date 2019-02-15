@@ -21,14 +21,14 @@ class MovieScraperInterface : public ScraperInterface, public QObject
 public:
     virtual void search(QString searchStr) = 0;
     virtual void
-    loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) = 0;
+    loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) = 0;
     virtual QVector<MovieScraperInfos> scraperSupports() = 0;
     virtual QVector<MovieScraperInfos> scraperNativelySupports() = 0;
     virtual std::vector<ScraperLanguage> supportedLanguages() = 0;
     virtual void changeLanguage(QString languageKey) = 0;
     // Default language stored in settings.
     virtual QString defaultLanguageKey() = 0;
-    virtual QWidget *settingsWidget() = 0;
+    virtual QWidget* settingsWidget() = 0;
     virtual bool isAdult() const = 0;
 
 signals:

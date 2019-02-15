@@ -4,7 +4,7 @@
 
 int Image::m_idCounter = 0;
 
-Image::Image(QObject *parent) : QObject(parent), m_deletion{false}
+Image::Image(QObject* parent) : QObject(parent), m_deletion{false}
 {
     m_imageId = ++Image::m_idCounter;
 }
@@ -14,7 +14,7 @@ QString Image::fileName() const
     return m_fileName;
 }
 
-void Image::setFileName(const QString &fileName)
+void Image::setFileName(const QString& fileName)
 {
     if (fileName == m_fileName) {
         return;
@@ -42,7 +42,7 @@ QByteArray Image::rawData() const
     return m_rawData;
 }
 
-void Image::setRawData(const QByteArray &rawData)
+void Image::setRawData(const QByteArray& rawData)
 {
     if (rawData == m_rawData) {
         return;

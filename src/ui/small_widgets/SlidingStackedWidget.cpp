@@ -2,7 +2,7 @@
 
 #include <QHBoxLayout>
 
-SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
+SlidingStackedWidget::SlidingStackedWidget(QWidget* parent) :
     QStackedWidget(parent),
     m_speed{500},
     m_animationType{QEasingCurve::OutBack},
@@ -70,7 +70,7 @@ void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction)
     slideInWgt(widget(idx), direction);
 }
 
-void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direction)
+void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direction)
 {
     if (m_active) {
         return;
@@ -118,13 +118,13 @@ void SlidingStackedWidget::slideInWgt(QWidget *newWidget, enum t_direction direc
     widget(next)->show();
     widget(next)->raise();
 
-    QPropertyAnimation *animNow = new QPropertyAnimation(widget(now), "pos");
+    QPropertyAnimation* animNow = new QPropertyAnimation(widget(now), "pos");
 
     animNow->setDuration(m_speed);
     animNow->setEasingCurve(m_animationType);
     animNow->setStartValue(QPoint(pNow.x(), pNow.y()));
     animNow->setEndValue(QPoint(offsetX + pNow.x(), offsetY + pNow.y()));
-    QPropertyAnimation *animNext = new QPropertyAnimation(widget(next), "pos");
+    QPropertyAnimation* animNext = new QPropertyAnimation(widget(next), "pos");
     animNext->setDuration(m_speed);
     animNext->setEasingCurve(m_animationType);
     animNext->setStartValue(QPoint(-offsetX + pNext.x(), offsetY + pNext.y()));
@@ -166,16 +166,16 @@ void SlidingStackedWidget::expandToOne()
         m_widgets.append(widget(i));
     }
 
-    for (QWidget *widget : m_widgets) {
+    for (QWidget* widget : m_widgets) {
         removeWidget(widget);
     }
 
-    QWidget *pWidget = new QWidget();
+    QWidget* pWidget = new QWidget();
     auto layout = new QHBoxLayout(pWidget);
     layout->setSpacing(24);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    for (QWidget *w : m_widgets) {
+    for (QWidget* w : m_widgets) {
         w->setParent(pWidget);
         w->show();
         layout->addWidget(w);
@@ -192,18 +192,18 @@ void SlidingStackedWidget::collapse()
 
     m_expanded = false;
 
-    QVector<QWidget *> widgetsToDelete;
+    QVector<QWidget*> widgetsToDelete;
     for (int i = 0, n = count(); i < n; ++i) {
         widgetsToDelete.append(widget(i));
     }
 
     setFixedWidth((frameRect().width() - ((m_widgets.count() - 1) * 24)) / m_widgets.count());
 
-    for (QWidget *w : m_widgets) {
+    for (QWidget* w : m_widgets) {
         addWidget(w);
     }
 
-    for (QWidget *w : widgetsToDelete) {
+    for (QWidget* w : widgetsToDelete) {
         removeWidget(w);
         w->deleteLater();
     }

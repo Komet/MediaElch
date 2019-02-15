@@ -21,31 +21,31 @@ class GenreWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit GenreWidget(QWidget *parent = nullptr);
+    explicit GenreWidget(QWidget* parent = nullptr);
     ~GenreWidget() override;
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);
-    void sigJumpToMovie(Movie *);
+    void sigJumpToMovie(Movie*);
 
 public slots:
     void onSaveInformation();
     void loadGenres();
-    QSplitter *splitter();
+    QSplitter* splitter();
 
 private slots:
     void addGenre();
     void deleteGenre();
-    void onGenreNameChanged(QTableWidgetItem *item);
+    void onGenreNameChanged(QTableWidgetItem* item);
     void onGenreSelected();
     void addMovie();
     void removeMovie();
     void showGenresContextMenu(QPoint point);
-    void onJumpToMovie(QTableWidgetItem *item);
+    void onJumpToMovie(QTableWidgetItem* item);
 
 private:
-    Ui::GenreWidget *ui;
-    QMenu *m_tableContextMenu;
+    Ui::GenreWidget* ui;
+    QMenu* m_tableContextMenu;
     QStringList m_addedGenres;
 
     void clear();

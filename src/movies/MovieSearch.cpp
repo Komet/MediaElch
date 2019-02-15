@@ -9,7 +9,7 @@
  * @brief MovieSearch::MovieSearch
  * @param parent
  */
-MovieSearch::MovieSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MovieSearch)
+MovieSearch::MovieSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MovieSearch)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -35,9 +35,9 @@ MovieSearch::~MovieSearch()
  * @param parent Parent widget
  * @return Instance of MovieSearch
  */
-MovieSearch *MovieSearch::instance(QWidget *parent)
+MovieSearch* MovieSearch::instance(QWidget* parent)
 {
-    static MovieSearch *m_instance = nullptr;
+    static MovieSearch* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new MovieSearch(parent);
     }
@@ -96,7 +96,7 @@ QVector<MovieScraperInfos> MovieSearch::infosToLoad()
     return ui->movieSearchWidget->infosToLoad();
 }
 
-QMap<MovieScraperInterface *, QString> MovieSearch::customScraperIds()
+QMap<MovieScraperInterface*, QString> MovieSearch::customScraperIds()
 {
     return ui->movieSearchWidget->customScraperIds();
 }

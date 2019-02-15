@@ -9,8 +9,8 @@ public:
     explicit TvDbId(QString tvdbId);
     explicit TvDbId(int tvdbId);
 
-    bool operator==(const TvDbId &other);
-    bool operator!=(const TvDbId &other);
+    bool operator==(const TvDbId& other);
+    bool operator!=(const TvDbId& other);
 
     QString toString() const;
     QString withPrefix() const;

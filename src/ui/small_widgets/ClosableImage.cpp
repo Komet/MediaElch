@@ -18,7 +18,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 
-ClosableImage::ClosableImage(QWidget *parent) : QLabel(parent)
+ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
 {
     setMouseTracking(true);
     m_showZoomAndResolution = true;
@@ -59,7 +59,7 @@ ClosableImage::ClosableImage(QWidget *parent) : QLabel(parent)
     setAcceptDrops(true);
 }
 
-void ClosableImage::mousePressEvent(QMouseEvent *ev)
+void ClosableImage::mousePressEvent(QMouseEvent* ev)
 {
     if (m_loading || ev->button() != Qt::LeftButton || !m_pixmap.isNull()) {
         return;
@@ -97,7 +97,7 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
     }
 }
 
-void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
+void ClosableImage::mouseMoveEvent(QMouseEvent* ev)
 {
     if (!m_loading) {
         if ((!m_image.isNull() || !m_imagePath.isEmpty()) && closeRect().contains(ev->pos())) {
@@ -129,7 +129,7 @@ void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
     setToolTip("");
 }
 
-void ClosableImage::paintEvent(QPaintEvent *event)
+void ClosableImage::paintEvent(QPaintEvent* event)
 {
     QPainter p(this);
 
@@ -197,7 +197,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
 /**
  * An alternative Option...
  */
-void ClosableImage::drawTitle(QPainter &p)
+void ClosableImage::drawTitle(QPainter& p)
 {
     Q_UNUSED(p);
     /*
@@ -218,12 +218,12 @@ QVariant ClosableImage::myData() const
     return m_myData;
 }
 
-void ClosableImage::setMyData(const QVariant &myData)
+void ClosableImage::setMyData(const QVariant& myData)
 {
     m_myData = myData;
 }
 
-void ClosableImage::setImage(const QByteArray &image)
+void ClosableImage::setImage(const QByteArray& image)
 {
     clear();
     QImage img = QImage::fromData(image);
@@ -231,12 +231,12 @@ void ClosableImage::setImage(const QByteArray &image)
     updateSize(img.width(), img.height());
 }
 
-void ClosableImage::setImage(const QString &image)
+void ClosableImage::setImage(const QString& image)
 {
     setImageByPath(image);
 }
 
-void ClosableImage::setImageByPath(const QString &image)
+void ClosableImage::setImageByPath(const QString& image)
 {
     clear();
     m_imagePath = image;
@@ -285,24 +285,24 @@ int ClosableImage::mySize() const
     return m_mySize;
 }
 
-void ClosableImage::setMySize(const int &size)
+void ClosableImage::setMySize(const int& size)
 {
     m_mySize = size;
     update();
 }
 
-void ClosableImage::setShowZoomAndResolution(const bool &show)
+void ClosableImage::setShowZoomAndResolution(const bool& show)
 {
     m_showZoomAndResolution = show;
 }
 
-void ClosableImage::setFixedSize(const int &scaleTo, const int &size)
+void ClosableImage::setFixedSize(const int& scaleTo, const int& size)
 {
     m_scaleTo = scaleTo;
     m_fixedSize = size;
 }
 
-void ClosableImage::setMyFixedHeight(const int &height)
+void ClosableImage::setMyFixedHeight(const int& height)
 {
     m_fixedHeight = height;
 }
@@ -321,7 +321,7 @@ void ClosableImage::setDefaultPixmap(QPixmap pixmap)
     Helper::instance()->setDevicePixelRatio(m_defaultPixmap, Helper::instance()->devicePixelRatio(this));
 }
 
-void ClosableImage::setClickable(const bool &clickable)
+void ClosableImage::setClickable(const bool& clickable)
 {
     m_clickable = clickable;
 }
@@ -331,7 +331,7 @@ bool ClosableImage::clickable() const
     return m_clickable;
 }
 
-void ClosableImage::setLoading(const bool &loading)
+void ClosableImage::setLoading(const bool& loading)
 {
     m_loading = loading;
     if (loading) {
@@ -416,7 +416,7 @@ bool ClosableImage::confirmDeleteImage()
     return (ret == QMessageBox::Yes);
 }
 
-void ClosableImage::setTitle(const QString &text)
+void ClosableImage::setTitle(const QString& text)
 {
     m_title = text;
 }
@@ -436,14 +436,14 @@ ImageType ClosableImage::imageType() const
     return m_imageType;
 }
 
-void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
+void ClosableImage::dragMoveEvent(QDragMoveEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters = QStringList() << ".jpg"
                                         << ".jpeg"
                                         << ".png";
-    for (const QString &filter : filters) {
+    for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -451,14 +451,14 @@ void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
     }
 }
 
-void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
+void ClosableImage::dragEnterEvent(QDragEnterEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters = QStringList() << ".jpg"
                                         << ".jpeg"
                                         << ".png";
-    for (const QString &filter : filters) {
+    for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -466,15 +466,15 @@ void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
-void ClosableImage::dropEvent(QDropEvent *event)
+void ClosableImage::dropEvent(QDropEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
         QStringList filters = QStringList() << ".jpg"
                                             << ".jpeg"
                                             << ".png";
-        for (const QString &filter : filters) {
+        for (const QString& filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(m_imageType, url);
                 return;

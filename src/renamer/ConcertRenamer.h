@@ -8,6 +8,6 @@ class Concert;
 class ConcertRenamer : public Renamer
 {
 public:
-    ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog);
-    RenameError renameConcert(Concert &movie);
+    ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog);
+    RenameError renameConcert(Concert& movie);
 };

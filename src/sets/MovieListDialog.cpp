@@ -8,7 +8,7 @@
  * @brief MovieListDialog::MovieListDialog
  * @param parent
  */
-MovieListDialog::MovieListDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MovieListDialog)
+MovieListDialog::MovieListDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MovieListDialog)
 {
     ui->setupUi(this);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -36,9 +36,9 @@ MovieListDialog::~MovieListDialog()
  * @param parent Parent widget (used the first time for constructing)
  * @return Instance of MovieListDialog
  */
-MovieListDialog *MovieListDialog::instance(QWidget *parent)
+MovieListDialog* MovieListDialog::instance(QWidget* parent)
 {
-    static MovieListDialog *m_instance = nullptr;
+    static MovieListDialog* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new MovieListDialog(parent);
     }
@@ -58,7 +58,7 @@ int MovieListDialog::exec()
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
@@ -84,7 +84,7 @@ int MovieListDialog::execWithoutGenre(QString genre)
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genre)) {
             continue;
         }
@@ -113,7 +113,7 @@ int MovieListDialog::execWithoutCertification(Certification certification)
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->certification() == certification) {
             continue;
         }
@@ -148,13 +148,13 @@ void MovieListDialog::reposition()
 void MovieListDialog::onAddMovies()
 {
     m_selectedMovies.clear();
-    for (QTableWidgetItem *item : ui->movies->selectedItems()) {
-        m_selectedMovies << item->data(Qt::UserRole).value<Movie *>();
+    for (QTableWidgetItem* item : ui->movies->selectedItems()) {
+        m_selectedMovies << item->data(Qt::UserRole).value<Movie*>();
     }
     accept();
 }
 
-QVector<Movie *> MovieListDialog::selectedMovies()
+QVector<Movie*> MovieListDialog::selectedMovies()
 {
     return m_selectedMovies;
 }

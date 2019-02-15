@@ -13,13 +13,13 @@
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
-Update::Update(QObject *parent) : QObject(parent)
+Update::Update(QObject* parent) : QObject(parent)
 {
 }
 
-Update *Update::instance(QObject *parent)
+Update* Update::instance(QObject* parent)
 {
-    static Update *m_instance = nullptr;
+    static Update* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new Update(parent);
     }
@@ -29,13 +29,13 @@ Update *Update::instance(QObject *parent)
 void Update::checkForUpdate()
 {
     QUrl url("http://data.mediaelch.de/version.xml");
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
     connect(reply, &QNetworkReply::finished, this, &Update::onCheckFinished);
 }
 
 void Update::onCheckFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QString version;
@@ -63,7 +63,7 @@ void Update::onCheckFinished()
     reply->deleteLater();
 }
 
-bool Update::checkIfNewVersion(QString msg, QString &version)
+bool Update::checkIfNewVersion(QString msg, QString& version)
 {
     QString os;
 #ifdef Q_OS_MAC

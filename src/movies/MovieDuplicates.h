@@ -18,11 +18,11 @@ class MovieDuplicates : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieDuplicates(QWidget *parent = nullptr);
+    explicit MovieDuplicates(QWidget* parent = nullptr);
     ~MovieDuplicates() override;
 
 signals:
-    void sigJumpToMovie(Movie *);
+    void sigJumpToMovie(Movie*);
 
 private slots:
     void detectDuplicates();
@@ -32,15 +32,15 @@ private slots:
     void onOpenDetailPage();
     void onOpenFolder();
     void onOpenNfo();
-    void onJumpToMovie(const QModelIndex &index);
+    void onJumpToMovie(const QModelIndex& index);
 
 private:
     void createContextMenu();
-    Movie *activeMovie();
+    Movie* activeMovie();
 
-    Ui::MovieDuplicates *ui;
-    MovieProxyModel *m_movieProxyModel;
-    QMenu *m_contextMenu;
+    Ui::MovieDuplicates* ui;
+    MovieProxyModel* m_movieProxyModel;
+    QMenu* m_contextMenu;
 
-    QMap<Movie *, QVector<Movie *>> m_duplicateMovies;
+    QMap<Movie*, QVector<Movie*>> m_duplicateMovies;
 };

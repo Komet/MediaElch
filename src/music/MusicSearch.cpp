@@ -1,7 +1,7 @@
 #include "MusicSearch.h"
 #include "ui_MusicSearch.h"
 
-MusicSearch::MusicSearch(QWidget *parent) : QDialog(parent), ui(new Ui::MusicSearch)
+MusicSearch::MusicSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MusicSearch)
 {
     ui->setupUi(this);
 
@@ -21,9 +21,9 @@ MusicSearch::~MusicSearch()
     delete ui;
 }
 
-MusicSearch *MusicSearch::instance(QWidget *parent)
+MusicSearch* MusicSearch::instance(QWidget* parent)
 {
-    static MusicSearch *m_instance = nullptr;
+    static MusicSearch* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new MusicSearch(parent);
     }

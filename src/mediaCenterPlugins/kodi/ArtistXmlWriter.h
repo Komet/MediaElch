@@ -11,11 +11,11 @@ namespace Kodi {
 class ArtistXmlWriter
 {
 public:
-    ArtistXmlWriter(Artist &artist);
+    ArtistXmlWriter(Artist& artist);
     QByteArray getArtistXml();
 
 private:
-    Artist &m_artist;
+    Artist& m_artist;
 };
 
 } // namespace Kodi

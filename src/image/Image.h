@@ -11,16 +11,16 @@ class Image : public QObject
     Q_PROPERTY(int imageId READ imageId CONSTANT)
 
 public:
-    explicit Image(QObject *parent = nullptr);
+    explicit Image(QObject* parent = nullptr);
 
     QString fileName() const;
-    void setFileName(const QString &fileName);
+    void setFileName(const QString& fileName);
 
     bool deletion() const;
     void setDeletion(bool deletion);
 
     QByteArray rawData() const;
-    void setRawData(const QByteArray &rawData);
+    void setRawData(const QByteArray& rawData);
 
     int imageId() const;
 

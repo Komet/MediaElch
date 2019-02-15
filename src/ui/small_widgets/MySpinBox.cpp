@@ -1,6 +1,6 @@
 #include "MySpinBox.h"
 
-MySpinBox::MySpinBox(QWidget *parent) : QSpinBox(parent)
+MySpinBox::MySpinBox(QWidget* parent) : QSpinBox(parent)
 {
 }
 

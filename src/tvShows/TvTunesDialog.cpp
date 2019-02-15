@@ -5,7 +5,7 @@
 
 #include "globals/Manager.h"
 
-TvTunesDialog::TvTunesDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_totalTime{0}
+TvTunesDialog::TvTunesDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_totalTime{0}
 {
     ui->setupUi(this);
 
@@ -50,9 +50,9 @@ TvTunesDialog::~TvTunesDialog()
     delete ui;
 }
 
-TvTunesDialog *TvTunesDialog::instance(QWidget *parent)
+TvTunesDialog* TvTunesDialog::instance(QWidget* parent)
 {
-    static TvTunesDialog *m_instance = nullptr;
+    static TvTunesDialog* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new TvTunesDialog(parent);
     }
@@ -68,7 +68,7 @@ void TvTunesDialog::clear()
     ui->results->setRowCount(0);
 }
 
-void TvTunesDialog::setTvShow(TvShow *show)
+void TvTunesDialog::setTvShow(TvShow* show)
 {
     m_show = show;
 }
@@ -99,8 +99,8 @@ void TvTunesDialog::onShowResults(QVector<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    for (const ScraperSearchResult &result : results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1").arg(result.name));
+    for (const ScraperSearchResult& result : results) {
+        QTableWidgetItem* item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -108,7 +108,7 @@ void TvTunesDialog::onShowResults(QVector<ScraperSearchResult> results)
     }
 }
 
-void TvTunesDialog::onResultClicked(QTableWidgetItem *item)
+void TvTunesDialog::onResultClicked(QTableWidgetItem* item)
 {
     m_mediaPlayer->stop();
     QString url = item->data(Qt::UserRole).toString();

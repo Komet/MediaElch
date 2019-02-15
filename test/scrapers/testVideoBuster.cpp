@@ -27,7 +27,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
 {
     VideoBuster videoBuster;
     // VideoBuster has no outline
-    auto *settings = Settings::instance();
+    auto* settings = Settings::instance();
     settings->setUsePlotForOutline(true);
 
     SECTION("'Normal' movie has correct details")

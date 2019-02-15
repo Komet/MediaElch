@@ -14,7 +14,7 @@
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"
 
-ConcertController::ConcertController(Concert *parent) :
+ConcertController::ConcertController(Concert* parent) :
     QObject(parent),
     m_concert{parent},
     m_infoLoaded{false},
@@ -28,18 +28,18 @@ ConcertController::ConcertController(Concert *parent) :
         this,
         SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Concert *)),
+        SIGNAL(allDownloadsFinished(Concert*)),
         this,
         SLOT(onAllDownloadsFinished()),
         Qt::UniqueConnection);
 }
 
-Concert *ConcertController::concert()
+Concert* ConcertController::concert()
 {
     return m_concert;
 }
 
-bool ConcertController::saveData(MediaCenterInterface *mediaCenterInterface)
+bool ConcertController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
@@ -55,7 +55,7 @@ bool ConcertController::saveData(MediaCenterInterface *mediaCenterInterface)
     return saved;
 }
 
-bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
+bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_concert->hasChanged()) && !force
         && (m_infoFromNfoLoaded || (m_concert->hasChanged() && !m_infoFromNfoLoaded))) {
@@ -63,7 +63,7 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
     }
 
     m_concert->blockSignals(true);
-    NameFormatter *nameFormat = NameFormatter::instance();
+    NameFormatter* nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
     if (reloadFromNfo) {
@@ -121,7 +121,7 @@ bool ConcertController::loadData(MediaCenterInterface *mediaCenterInterface, boo
 }
 
 void ConcertController::loadData(TmdbId id,
-    ConcertScraperInterface *scraperInterface,
+    ConcertScraperInterface* scraperInterface,
     QVector<ConcertScraperInfos> infos)
 {
     m_infosToLoad = infos;
@@ -149,7 +149,7 @@ void ConcertController::setInfosToLoad(QVector<ConcertScraperInfos> infos)
     m_infosToLoad = infos;
 }
 
-void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
+void ConcertController::scraperLoadDone(ConcertScraperInterface* scraper)
 {
     Q_UNUSED(scraper);
 
@@ -157,9 +157,9 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
     if (m_concert->tmdbId().isValid() && infosToLoad().contains(ConcertScraperInfos::ExtraArts)) {
         QVector<ImageType> images{ImageType::ConcertCdArt, ImageType::ConcertClearArt, ImageType::ConcertLogo};
         connect(Manager::instance()->fanartTv(),
-            SIGNAL(sigImagesLoaded(Concert *, QMap<ImageType, QVector<Poster>>)),
+            SIGNAL(sigImagesLoaded(Concert*, QMap<ImageType, QVector<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Concert *, QMap<ImageType, QVector<Poster>>)),
+            SLOT(onFanartLoadDone(Concert*, QMap<ImageType, QVector<Poster>>)),
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->concertImages(m_concert, m_concert->tmdbId(), images);
     } else {
@@ -167,7 +167,7 @@ void ConcertController::scraperLoadDone(ConcertScraperInterface *scraper)
     }
 }
 
-void ConcertController::onFanartLoadDone(Concert *concert, QMap<ImageType, QVector<Poster>> posters)
+void ConcertController::onFanartLoadDone(Concert* concert, QMap<ImageType, QVector<Poster>> posters)
 {
     if (concert != m_concert) {
         return;
@@ -254,7 +254,7 @@ void ConcertController::loadImage(ImageType type, QUrl url)
 
 void ConcertController::loadImages(ImageType type, QVector<QUrl> urls)
 {
-    for (const QUrl &url : urls) {
+    for (const QUrl& url : urls) {
         DownloadManagerElement d;
         d.concert = m_concert;
         d.imageType = type;

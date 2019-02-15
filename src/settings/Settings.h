@@ -24,14 +24,14 @@ class Settings : public QObject
 {
     Q_OBJECT
 private:
-    explicit Settings(QObject *parent);
+    explicit Settings(QObject* parent);
 
 public:
-    static Settings *instance(QObject *parent = nullptr);
-    AdvancedSettings *advanced();
+    static Settings* instance(QObject* parent = nullptr);
+    AdvancedSettings* advanced();
     void loadSettings();
-    QSettings *settings();
-    ScraperSettings &scraperSettings();
+    QSettings* settings();
+    ScraperSettings& scraperSettings();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -45,10 +45,10 @@ public:
     QByteArray mainSplitterState();
     QByteArray movieDuplicatesSplitterState();
 
-    DirectorySettings &directorySettings();
-    KodiSettings &kodiSettings();
-    ImportSettings &importSettings();
-    NetworkSettings &networkSettings();
+    DirectorySettings& directorySettings();
+    KodiSettings& kodiSettings();
+    ImportSettings& importSettings();
+    NetworkSettings& networkSettings();
 
     bool deleteArchives();
     QString excludeWords();
@@ -63,11 +63,11 @@ public:
     template<typename T>
     QVector<T> scraperInfos(MainWidgets widget, QString scraperId);
     void renamePatterns(Renamer::RenameType renameType,
-        QString &fileNamePattern,
-        QString &fileNamePatternMulti,
-        QString &directoryPattern,
-        QString &seasonPattern);
-    void renamings(Renamer::RenameType renameType, bool &files, bool &folders, bool &seasonDirectories);
+        QString& fileNamePattern,
+        QString& fileNamePatternMulti,
+        QString& directoryPattern,
+        QString& seasonPattern);
+    void renamings(Renamer::RenameType renameType, bool& files, bool& folders, bool& seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
@@ -159,8 +159,8 @@ signals:
     void sigDonated(bool);
 
 private:
-    QSettings *m_settings;
-    AdvancedSettings *m_advancedSettings;
+    QSettings* m_settings;
+    AdvancedSettings* m_advancedSettings;
 
     DirectorySettings m_directorySettings;
     KodiSettings m_kodiSettings;

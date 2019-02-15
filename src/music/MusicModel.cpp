@@ -4,7 +4,7 @@
 #include "globals/Helper.h"
 #include "music/Album.h"
 
-MusicModel::MusicModel(QObject *parent) :
+MusicModel::MusicModel(QObject* parent) :
     QAbstractItemModel(parent),
     m_rootItem{new MusicModelItem(nullptr)},
     m_newIcon{QIcon(":/img/star_blue.png")}
@@ -16,19 +16,19 @@ MusicModel::~MusicModel()
     delete m_rootItem;
 }
 
-int MusicModel::columnCount(const QModelIndex &parent) const
+int MusicModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
     return m_rootItem->columnCount();
 }
 
-QVariant MusicModel::data(const QModelIndex &index, int role) const
+QVariant MusicModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid()) {
         return QVariant();
     }
 
-    MusicModelItem *item = getItem(index);
+    MusicModelItem* item = getItem(index);
 
     if (role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(item->data(0).toString());
@@ -77,10 +77,10 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-MusicModelItem *MusicModel::getItem(const QModelIndex &index) const
+MusicModelItem* MusicModel::getItem(const QModelIndex& index) const
 {
     if (index.isValid()) {
-        auto item = static_cast<MusicModelItem *>(index.internalPointer());
+        auto item = static_cast<MusicModelItem*>(index.internalPointer());
         if (item) {
             return item;
         }
@@ -88,14 +88,14 @@ MusicModelItem *MusicModel::getItem(const QModelIndex &index) const
     return m_rootItem;
 }
 
-QModelIndex MusicModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex MusicModel::index(int row, int column, const QModelIndex& parent) const
 {
     if (parent.isValid() && parent.column() != 0) {
         return QModelIndex();
     }
 
-    MusicModelItem *parentItem = getItem(parent);
-    MusicModelItem *childItem = parentItem->child(row);
+    MusicModelItem* parentItem = getItem(parent);
+    MusicModelItem* childItem = parentItem->child(row);
     if (childItem) {
         return createIndex(row, column, childItem);
     } else {
@@ -103,11 +103,11 @@ QModelIndex MusicModel::index(int row, int column, const QModelIndex &parent) co
     }
 }
 
-MusicModelItem *MusicModel::appendChild(Artist *artist)
+MusicModelItem* MusicModel::appendChild(Artist* artist)
 {
-    MusicModelItem *parentItem = m_rootItem;
+    MusicModelItem* parentItem = m_rootItem;
     beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
-    MusicModelItem *item = parentItem->appendChild(artist);
+    MusicModelItem* item = parentItem->appendChild(artist);
     endInsertRows();
     connect(item, &MusicModelItem::sigChanged, this, &MusicModel::onSigChanged);
     connect(artist, &Artist::sigChanged, this, &MusicModel::onArtistChanged);
@@ -116,14 +116,14 @@ MusicModelItem *MusicModel::appendChild(Artist *artist)
     return item;
 }
 
-QModelIndex MusicModel::parent(const QModelIndex &index) const
+QModelIndex MusicModel::parent(const QModelIndex& index) const
 {
     if (!index.isValid()) {
         return QModelIndex();
     }
 
-    MusicModelItem *childItem = getItem(index);
-    MusicModelItem *parentItem = childItem->parent();
+    MusicModelItem* childItem = getItem(index);
+    MusicModelItem* parentItem = childItem->parent();
 
     if (parentItem == m_rootItem) {
         return QModelIndex();
@@ -132,9 +132,9 @@ QModelIndex MusicModel::parent(const QModelIndex &index) const
     return createIndex(parentItem->childNumber(), 0, parentItem);
 }
 
-bool MusicModel::removeRows(int position, int rows, const QModelIndex &parent)
+bool MusicModel::removeRows(int position, int rows, const QModelIndex& parent)
 {
-    MusicModelItem *parentItem = getItem(parent);
+    MusicModelItem* parentItem = getItem(parent);
 
     beginRemoveRows(parent, position, position + rows - 1);
     bool success = parentItem->removeChildren(position, rows);
@@ -143,9 +143,9 @@ bool MusicModel::removeRows(int position, int rows, const QModelIndex &parent)
     return success;
 }
 
-int MusicModel::rowCount(const QModelIndex &parent) const
+int MusicModel::rowCount(const QModelIndex& parent) const
 {
-    MusicModelItem *parentItem = getItem(parent);
+    MusicModelItem* parentItem = getItem(parent);
     return parentItem->childCount();
 }
 
@@ -156,29 +156,29 @@ void MusicModel::clear()
     endRemoveRows();
 }
 
-void MusicModel::onSigChanged(MusicModelItem *artistItem, MusicModelItem *albumItem)
+void MusicModel::onSigChanged(MusicModelItem* artistItem, MusicModelItem* albumItem)
 {
     QModelIndex artistIndex = this->index(artistItem->childNumber(), 0);
     QModelIndex index = this->index(albumItem->childNumber(), 0, artistIndex);
     emit dataChanged(index, index);
 }
 
-void MusicModel::onArtistChanged(Artist *artist)
+void MusicModel::onArtistChanged(Artist* artist)
 {
     QModelIndex index = this->index(artist->modelItem()->childNumber(), 0);
     emit dataChanged(index, index);
 }
 
-QVector<Artist *> MusicModel::artists()
+QVector<Artist*> MusicModel::artists()
 {
-    QVector<Artist *> artists;
+    QVector<Artist*> artists;
     for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         artists.append(m_rootItem->child(i)->artist());
     }
     return artists;
 }
 
-void MusicModel::removeArtist(Artist *artist)
+void MusicModel::removeArtist(Artist* artist)
 {
     for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
         if (m_rootItem->child(i)->artist() == artist) {
@@ -192,7 +192,7 @@ int MusicModel::hasNewArtistsOrAlbums()
 {
     int newItems = 0;
 
-    for (Artist *artist : artists()) {
+    for (Artist* artist : artists()) {
         if (!artist->controller()->infoLoaded()) {
             newItems++;
         }

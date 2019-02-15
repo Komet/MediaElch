@@ -12,7 +12,7 @@ class AdvancedSettings : public QObject
 {
     Q_OBJECT
 public:
-    explicit AdvancedSettings(QObject *parent = nullptr);
+    explicit AdvancedSettings(QObject* parent = nullptr);
     ~AdvancedSettings() override = default;
 
     bool debugLog() const;
@@ -60,9 +60,9 @@ private:
     void loadSettings();
     void reset();
     void setLocale(QString locale);
-    void loadLog(QXmlStreamReader &xml);
-    void loadGui(QXmlStreamReader &xml);
-    void loadSortTokens(QXmlStreamReader &xml);
-    void loadFilters(QXmlStreamReader &xml);
-    void loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &map);
+    void loadLog(QXmlStreamReader& xml);
+    void loadGui(QXmlStreamReader& xml);
+    void loadSortTokens(QXmlStreamReader& xml);
+    void loadFilters(QXmlStreamReader& xml);
+    void loadMappings(QXmlStreamReader& xml, QHash<QString, QString>& map);
 };

@@ -13,7 +13,7 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 
-ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImportDialog)
+ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {
     ui->setupUi(this);
 
@@ -23,7 +23,7 @@ ImportDialog::ImportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Import
     ui->badgeSuccess->setBadgeType(Badge::Type::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
-    QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
@@ -131,7 +131,7 @@ int ImportDialog::execMovie(QString searchString)
     return exec();
 }
 
-int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
+int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
 {
     Q_UNUSED(searchString);
 
@@ -245,7 +245,7 @@ void ImportDialog::storeDefaults()
 
 void ImportDialog::onMovieChosen()
 {
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
@@ -267,7 +267,7 @@ void ImportDialog::onMovieChosen()
 
     m_movie = new Movie(files());
     m_movie->controller()->loadData(ids, Manager::instance()->scraper(ui->movieSearchWidget->scraperId()), infosToLoad);
-    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie *)), this, SLOT(onLoadDone(Movie *)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
 }
 
 void ImportDialog::onConcertChosen()
@@ -286,11 +286,8 @@ void ImportDialog::onConcertChosen()
     m_concert->controller()->loadData(ui->concertSearchWidget->scraperId(),
         Manager::instance()->concertScrapers().at(ui->concertSearchWidget->scraperNo()),
         ui->concertSearchWidget->infosToLoad());
-    connect(m_concert->controller(),
-        SIGNAL(sigLoadDone(Concert *)),
-        this,
-        SLOT(onLoadDone(Concert *)),
-        Qt::UniqueConnection);
+    connect(
+        m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
 }
 
 void ImportDialog::onTvShowChosen()
@@ -357,7 +354,7 @@ QString ImportDialog::importDir()
     return m_importDir;
 }
 
-void ImportDialog::onLoadDone(Movie *movie)
+void ImportDialog::onLoadDone(Movie* movie)
 {
     if (movie != m_movie) {
         return;
@@ -371,7 +368,7 @@ void ImportDialog::onLoadDone(Movie *movie)
     ui->formLayout->setEnabled(true);
 }
 
-void ImportDialog::onLoadDone(Concert *concert)
+void ImportDialog::onLoadDone(Concert* concert)
 {
     if (concert != m_concert) {
         return;
@@ -649,7 +646,7 @@ void ImportDialog::onMovingFilesFinished()
         m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         Manager::instance()->database()->add(m_episode, importDir(), m_show->databaseId());
         bool newSeason = true;
-        for (TvShowEpisode *episode : m_show->episodes()) {
+        for (TvShowEpisode* episode : m_show->episodes()) {
             if (episode->season() == m_episode->season() && episode != m_episode) {
                 newSeason = false;
                 break;
@@ -662,7 +659,7 @@ void ImportDialog::onMovingFilesFinished()
                 ->appendChild(m_episode);
         } else {
             for (int i = 0, n = m_show->modelItem()->childCount(); i < n; ++i) {
-                TvShowModelItem *item = m_show->modelItem()->child(i);
+                TvShowModelItem* item = m_show->modelItem()->child(i);
                 if (item->type() == TvShowType::Season && item->season() == m_episode->seasonString()) {
                     item->appendChild(m_episode);
                     break;

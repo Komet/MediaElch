@@ -11,7 +11,7 @@
  * @brief MovieModel::MovieModel
  * @param parent
  */
-MovieModel::MovieModel(QObject *parent) : QAbstractItemModel(parent)
+MovieModel::MovieModel(QObject* parent) : QAbstractItemModel(parent)
 {
 #ifdef Q_OS_WIN
     m_newIcon = QIcon(":/img/star_blue.png");
@@ -28,7 +28,7 @@ MovieModel::MovieModel(QObject *parent) : QAbstractItemModel(parent)
  * @brief Adds a movie to the model
  * @param movie Movie to add
  */
-void MovieModel::addMovie(Movie *movie)
+void MovieModel::addMovie(Movie* movie)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_movies.append(movie);
@@ -41,7 +41,7 @@ void MovieModel::addMovie(Movie *movie)
  * Emits dataChanged
  * @param movie Movie which has changed
  */
-void MovieModel::onMovieChanged(Movie *movie)
+void MovieModel::onMovieChanged(Movie* movie)
 {
     const QModelIndex index = createIndex(m_movies.indexOf(movie), 0);
     emit dataChanged(index, index);
@@ -58,7 +58,7 @@ void MovieModel::update()
  * @param row Row of the movie
  * @return Movie object
  */
-Movie *MovieModel::movie(int row)
+Movie* MovieModel::movie(int row)
 {
     if (row < 0 || row >= m_movies.count()) {
         return nullptr;
@@ -71,7 +71,7 @@ Movie *MovieModel::movie(int row)
  * @param parent
  * @return Number of rows (=number of movies)
  */
-int MovieModel::rowCount(const QModelIndex &parent) const
+int MovieModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     return m_movies.size();
@@ -82,7 +82,7 @@ int MovieModel::rowCount(const QModelIndex &parent) const
  * @param parent
  * @return 1
  */
-int MovieModel::columnCount(const QModelIndex &parent) const
+int MovieModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     // return roleNames().size();
@@ -95,7 +95,7 @@ int MovieModel::columnCount(const QModelIndex &parent) const
  * @param role Role
  * @return data
  */
-QVariant MovieModel::data(const QModelIndex &index, int role) const
+QVariant MovieModel::data(const QModelIndex& index, int role) const
 {
     if (index.row() < 0 || index.row() > m_movies.count()) {
         return QVariant();
@@ -104,7 +104,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         return index.row();
     }
 
-    const Movie *const movie = m_movies[index.row()];
+    const Movie* const movie = m_movies[index.row()];
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
@@ -199,7 +199,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
  * @param child Childindex
  * @return Modelindex of the parent item
  */
-QModelIndex MovieModel::parent(const QModelIndex &child) const
+QModelIndex MovieModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
     return QModelIndex();
@@ -213,7 +213,7 @@ QModelIndex MovieModel::parent(const QModelIndex &child) const
  * @param parent Parent modelindex
  * @return Index of the item
  */
-QModelIndex MovieModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex MovieModel::index(int row, int column, const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     return createIndex(row, column);
@@ -228,7 +228,7 @@ void MovieModel::clear()
         return;
     }
     beginRemoveRows(QModelIndex(), 0, m_movies.size() - 1);
-    for (Movie *movie : m_movies) {
+    for (Movie* movie : m_movies) {
         movie->deleteLater();
     }
     m_movies.clear();
@@ -239,7 +239,7 @@ void MovieModel::clear()
  * @brief Returns a list of all movies
  * @return List of movies
  */
-QVector<Movie *> MovieModel::movies()
+QVector<Movie*> MovieModel::movies()
 {
     return m_movies;
 }
@@ -250,7 +250,7 @@ QVector<Movie *> MovieModel::movies()
  */
 long MovieModel::countNewMovies()
 {
-    const auto checkInfoLoaded = [](const Movie *movie) { return !movie->controller()->infoLoaded(); };
+    const auto checkInfoLoaded = [](const Movie* movie) { return !movie->controller()->infoLoaded(); };
     return std::count_if(m_movies.cbegin(), m_movies.cend(), checkInfoLoaded);
 }
 

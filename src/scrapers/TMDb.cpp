@@ -21,7 +21,7 @@
  * @brief TMDb::TMDb
  * @param parent
  */
-TMDb::TMDb(QObject *parent) :
+TMDb::TMDb(QObject* parent) :
     m_locale{"en"},
     m_baseUrl{"http://cf2.imgobject.com/t/p/"},
     m_scraperSupports{MovieScraperInfos::Title,
@@ -69,7 +69,7 @@ TMDb::TMDb(QObject *parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage &lang : supportedLanguages()) {
+    for (const ScraperLanguage& lang : supportedLanguages()) {
         m_box->addItem(lang.languageName, lang.languageKey);
     }
 
@@ -112,7 +112,7 @@ bool TMDb::hasSettings() const
     return true;
 }
 
-QWidget *TMDb::settingsWidget()
+QWidget* TMDb::settingsWidget()
 {
     return m_widget;
 }
@@ -120,7 +120,7 @@ QWidget *TMDb::settingsWidget()
 /**
  * @brief Loads scrapers settings
  */
-void TMDb::loadSettings(const ScraperSettings &settings)
+void TMDb::loadSettings(const ScraperSettings& settings)
 {
     m_locale = QLocale(settings.language());
     if (m_locale.name() == "C") {
@@ -141,7 +141,7 @@ void TMDb::loadSettings(const ScraperSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void TMDb::saveSettings(ScraperSettings &settings)
+void TMDb::saveSettings(ScraperSettings& settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setString("Language", language);
@@ -222,7 +222,7 @@ void TMDb::setup()
     QUrl url(QStringLiteral("https://api.themoviedb.org/3/configuration?api_key=%1").arg(TMDb::apiKey()));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply *const reply = m_qnam.get(request);
+    QNetworkReply* const reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &TMDb::setupFinished);
 }
@@ -254,7 +254,7 @@ QString TMDb::country() const
  */
 void TMDb::setupFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -320,7 +320,7 @@ void TMDb::search(QString searchStr)
     }
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply *const reply = m_qnam.get(request);
+    QNetworkReply* const reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     if (!searchTitle.isEmpty() && !searchYear.isEmpty()) {
         reply->setProperty("searchTitle", searchTitle);
@@ -339,8 +339,8 @@ void TMDb::search(QString searchStr)
  */
 void TMDb::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    QVector<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -372,7 +372,7 @@ void TMDb::searchFinished()
 
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
@@ -387,7 +387,7 @@ void TMDb::searchFinished()
  * @param nextPage This will hold the next page to get, -1 if there are no more pages
  * @return List of search results
  */
-QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int page)
+QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int page)
 {
     QVector<ScraperSearchResult> results;
 
@@ -406,7 +406,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int 
 
     if (parsedJson.value("results").isArray()) {
         const auto jsonResults = parsedJson.value("results").toArray();
-        for (const auto &it : jsonResults) {
+        for (const auto& it : jsonResults) {
             const auto resultObj = it.toObject();
             if (resultObj.value("id").toInt() == 0) {
                 continue;
@@ -446,7 +446,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int 
  * @see TMDb::loadImagesFinished
  * @see TMDb::loadReleasesFinished
  */
-void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void TMDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     const QString id = ids.values().first();
     const bool isImdbId = id.startsWith("tt");
@@ -469,7 +469,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
         loadsLeft.append(ScraperData::Infos);
 
         request.setUrl(getMovieUrl(id, ApiMovieDetails::INFOS));
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -481,7 +481,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
         || infos.contains(MovieScraperInfos::Writer)) {
         loadsLeft.append(ScraperData::Casts);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::CASTS));
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -492,7 +492,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
     if (infos.contains(MovieScraperInfos::Trailer)) {
         loadsLeft.append(ScraperData::Trailers);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::TRAILERS));
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -503,7 +503,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
     if (infos.contains(MovieScraperInfos::Poster) || infos.contains(MovieScraperInfos::Backdrop)) {
         loadsLeft.append(ScraperData::Images);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::IMAGES));
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -514,7 +514,7 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
     if (infos.contains(MovieScraperInfos::Certification)) {
         loadsLeft.append(ScraperData::Releases);
         request.setUrl(getMovieUrl(id, ApiMovieDetails::RELEASES));
-        QNetworkReply *const reply = m_qnam.get(request);
+        QNetworkReply* const reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -529,9 +529,9 @@ void TMDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
  */
 void TMDb::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -552,9 +552,9 @@ void TMDb::loadFinished()
  */
 void TMDb::loadCastsFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -575,9 +575,9 @@ void TMDb::loadCastsFinished()
  */
 void TMDb::loadTrailersFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *const movie = reply->property("storage").value<Storage *>()->movie();
-    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* const movie = reply->property("storage").value<Storage*>()->movie();
+    const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -598,9 +598,9 @@ void TMDb::loadTrailersFinished()
  */
 void TMDb::loadImagesFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -621,9 +621,9 @@ void TMDb::loadImagesFinished()
  */
 void TMDb::loadReleasesFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -657,7 +657,7 @@ QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
  * @param search Search string. Will be percent encoded.
  * @param arguments A QMap of URL parameters. The values will be percent encoded.
  */
-QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const
+QUrl TMDb::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const
 {
     auto url = QStringLiteral("https://api.themoviedb.org/3/search/movie?");
 
@@ -666,7 +666,7 @@ QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &pa
     queries.addQueryItem("language", localeForTMDb());
     queries.addQueryItem("query", searchStr);
 
-    for (const auto &key : parameters.keys()) {
+    for (const auto& key : parameters.keys()) {
         queries.addQueryItem(apiUrlParameterString(key), parameters.value(key));
     }
 
@@ -678,7 +678,7 @@ QUrl TMDb::getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &pa
  * @param search Search string. Will be percent encoded.
  * @param arguments A QMap of URL parameters. The values will be percent encoded.
  */
-QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters) const
+QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters) const
 {
     const auto typeStr = [type]() {
         switch (type) {
@@ -701,7 +701,7 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
         queries.addQueryItem("include_image_language", "en,null," + language());
     }
 
-    for (const auto &key : parameters.keys()) {
+    for (const auto& key : parameters.keys()) {
         queries.addQueryItem(apiUrlParameterString(key), parameters.value(key));
     }
 
@@ -715,7 +715,7 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperInfos> infos)
+void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
     QJsonParseError parseError;
@@ -772,7 +772,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     }
     if (infos.contains(MovieScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
-        for (const auto &it : genres) {
+        for (const auto& it : genres) {
             const auto genre = it.toObject();
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
@@ -782,7 +782,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     }
     if (infos.contains(MovieScraperInfos::Studios) && parsedJson.value("production_companies").isArray()) {
         const auto companies = parsedJson.value("production_companies").toArray();
-        for (const auto &it : companies) {
+        for (const auto& it : companies) {
             const auto company = it.toObject();
             if (company.value("id").toInt(-1) == -1) {
                 continue;
@@ -792,7 +792,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     }
     if (infos.contains(MovieScraperInfos::Countries) && parsedJson.value("production_countries").isArray()) {
         const auto countries = parsedJson.value("production_countries").toArray();
-        for (const auto &it : countries) {
+        for (const auto& it : countries) {
             const auto country = it.toObject();
             if (country.value("name").toString().isEmpty()) {
                 continue;
@@ -804,7 +804,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) && parsedJson.value("cast").isArray()) {
         const auto cast = parsedJson.value("cast").toArray();
-        for (const auto &it : cast) {
+        for (const auto& it : cast) {
             const auto actor = it.toObject();
             if (actor.value("name").toString().isEmpty()) {
                 continue;
@@ -823,7 +823,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     if ((infos.contains(MovieScraperInfos::Director) || infos.contains(MovieScraperInfos::Writer))
         && parsedJson.value("crew").isArray()) {
         const auto crew = parsedJson.value("crew").toArray();
-        for (const auto &it : crew) {
+        for (const auto& it : crew) {
             const auto member = it.toObject();
             if (member.value("name").toString().isEmpty()) {
                 continue;
@@ -860,7 +860,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
     // Images
     if (infos.contains(MovieScraperInfos::Backdrop) && parsedJson.value("backdrops").isArray()) {
         const auto backdrops = parsedJson.value("backdrops").toArray();
-        for (const auto &it : backdrops) {
+        for (const auto& it : backdrops) {
             const auto backdrop = it.toObject();
             const QString filePath = backdrop.value("file_path").toString();
             if (filePath.isEmpty()) {
@@ -877,7 +877,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
 
     if (infos.contains(MovieScraperInfos::Poster) && parsedJson.value("posters").isArray()) {
         const auto posters = parsedJson.value("posters").toArray();
-        for (const auto &it : posters) {
+        for (const auto& it : posters) {
             const auto poster = it.toObject();
             const QString filePath = poster.value("file_path").toString();
             if (filePath.isEmpty()) {
@@ -900,7 +900,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperI
         Certification us;
         Certification gb;
         const auto countries = parsedJson.value("countries").toArray();
-        for (const auto &it : countries) {
+        for (const auto& it : countries) {
             const auto countryObj = it.toObject();
             const QString iso3166 = countryObj.value("iso_3166_1").toString();
             const Certification certification = Certification(countryObj.value("certification").toString());

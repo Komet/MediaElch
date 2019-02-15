@@ -6,7 +6,7 @@
  * @brief MyLabel::MyLabel
  * @param parent
  */
-MyLabel::MyLabel(QWidget *parent) : QLabel(parent), m_season{-2}, m_imageSet{false}
+MyLabel::MyLabel(QWidget* parent) : QLabel(parent), m_season{-2}, m_imageSet{false}
 {
 }
 
@@ -14,7 +14,7 @@ MyLabel::MyLabel(QWidget *parent) : QLabel(parent), m_season{-2}, m_imageSet{fal
  * @brief Emits the clicked or seasonClicked signal
  * @param ev
  */
-void MyLabel::mousePressEvent(QMouseEvent *ev)
+void MyLabel::mousePressEvent(QMouseEvent* ev)
 {
     if (ev->button() == Qt::LeftButton) {
         if (m_season != -2) {

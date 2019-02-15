@@ -25,22 +25,22 @@ class SetsWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SetsWidget(QWidget *parent = nullptr);
+    explicit SetsWidget(QWidget* parent = nullptr);
     ~SetsWidget() override;
 
 public slots:
     void loadSets();
     void saveSet();
-    QSplitter *splitter();
+    QSplitter* splitter();
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);
-    void sigJumpToMovie(Movie *movie);
+    void sigJumpToMovie(Movie* movie);
 
 private slots:
     void onSetSelected();
     void clear();
-    void onSortTitleChanged(QTableWidgetItem *item);
+    void onSortTitleChanged(QTableWidgetItem* item);
     void onAddMovieSet();
     void onRemoveMovieSet();
     void onAddMovie();
@@ -50,22 +50,22 @@ private slots:
     void onPreviewPoster();
     void onPreviewBackdrop();
     void showSetsContextMenu(QPoint point);
-    void onSetNameChanged(QTableWidgetItem *item);
+    void onSetNameChanged(QTableWidgetItem* item);
     void onDownloadFinished(DownloadManagerElement elem);
-    void onJumpToMovie(QTableWidgetItem *item);
+    void onJumpToMovie(QTableWidgetItem* item);
 
 private:
-    Ui::SetsWidget *ui;
-    QMap<QString, QVector<Movie *>> m_sets;
-    QMap<QString, QVector<Movie *>> m_moviesToSave;
+    Ui::SetsWidget* ui;
+    QMap<QString, QVector<Movie*>> m_sets;
+    QMap<QString, QVector<Movie*>> m_moviesToSave;
     QMap<QString, QImage> m_setPosters;
     QMap<QString, QImage> m_setBackdrops;
     QImage m_currentPoster;
     QImage m_currentBackdrop;
     QStringList m_addedSets;
-    QMenu *m_tableContextMenu;
-    DownloadManager *m_downloadManager;
-    QMovie *m_loadingMovie;
+    QMenu* m_tableContextMenu;
+    DownloadManager* m_downloadManager;
+    QMovie* m_loadingMovie;
 
     void loadSet(QString set);
 };

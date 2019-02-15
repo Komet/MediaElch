@@ -7,7 +7,7 @@
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
 
-TvTunes::TvTunes(QObject *parent) : QObject(parent)
+TvTunes::TvTunes(QObject* parent) : QObject(parent)
 {
 }
 
@@ -22,7 +22,7 @@ void TvTunes::search(QString searchStr)
 
     QUrl url(QString("https://www.televisiontunes.com/search.php?q=%1").arg(searchStr));
     QNetworkRequest request(url);
-    QNetworkReply *reply = m_qnam.get(request);
+    QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     connect(reply, &QNetworkReply::finished, this, &TvTunes::onSearchFinished);
@@ -30,7 +30,7 @@ void TvTunes::search(QString searchStr)
 
 void TvTunes::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QVector<ScraperSearchResult> results;
     if (reply->error() != QNetworkReply::NoError) {
@@ -74,7 +74,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
     }
 
     ScraperSearchResult res = m_queue.dequeue();
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(QUrl(res.id)));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(QUrl(res.id)));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchStr", searchStr);
     reply->setProperty("name", res.name);
@@ -83,7 +83,7 @@ void TvTunes::getNextDownloadUrl(QString searchStr)
 
 void TvTunes::onDownloadUrlFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() == QNetworkReply::NoError) {

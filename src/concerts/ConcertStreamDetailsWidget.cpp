@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QtMath>
 
-ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget *parent) :
+ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::ConcertStreamDetailsWidget)
 {
@@ -33,7 +33,7 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget *parent) :
     Helper::instance()->fillStereoModeCombo(ui->stereoMode);
 }
 
-void ConcertStreamDetailsWidget::setConcertController(ConcertController *controller)
+void ConcertStreamDetailsWidget::setConcertController(ConcertController* controller)
 {
     m_concertController = controller;
 }
@@ -90,7 +90,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         m_concertController->loadStreamDetailsFromFile();
     }
 
-    StreamDetails *streamDetails = m_concertController->concert()->streamDetails();
+    StreamDetails* streamDetails = m_concertController->concert()->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
     ui->videoWidth->setValue(videoDetails.value(StreamDetails::VideoDetails::Width).toInt());
     ui->videoHeight->setValue(videoDetails.value(StreamDetails::VideoDetails::Height).toInt());
@@ -113,7 +113,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         emit runtimeChanged(duration_cast<minutes>(runtime));
     }
 
-    for (QWidget *widget : m_streamDetailsWidgets) {
+    for (QWidget* widget : m_streamDetailsWidgets) {
         widget->deleteLater();
     }
     m_streamDetailsWidgets.clear();
@@ -123,11 +123,11 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
     const auto audioDetails = streamDetails->audioDetails();
     const int audioTracks = audioDetails.count();
     for (int i = 0; i < audioTracks; ++i) {
-        QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+        QLabel* label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit *edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
-        QLineEdit *edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
-        QLineEdit *edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
+        QLineEdit* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        QLineEdit* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        QLineEdit* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -142,14 +142,14 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         layout->addStretch(10);
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QVector<QLineEdit *>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QVector<QLineEdit*>() << edit1 << edit2 << edit3);
         connect(edit1, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         connect(edit2, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         connect(edit3, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel *subtitleLabel = new QLabel(tr("Subtitles"));
+        QLabel* subtitleLabel = new QLabel(tr("Subtitles"));
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         subtitleLabel->setFont(font);
@@ -157,9 +157,9 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
         m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel *trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            QLabel* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
-            QLineEdit *edit1 =
+            QLineEdit* edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
@@ -168,7 +168,7 @@ void ConcertStreamDetailsWidget::updateStreamDetails(bool reloadFromFile)
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << trackLabel << edit1;
-            m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
+            m_streamDetailsSubtitles << (QVector<QLineEdit*>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &ConcertStreamDetailsWidget::onStreamDetailsEdited);
         }
     }
@@ -218,7 +218,7 @@ void ConcertStreamDetailsWidget::onStreamDetailsEdited()
     using AudioDetails = StreamDetails::AudioDetails;
     using SubtitleDetails = StreamDetails::SubtitleDetails;
 
-    StreamDetails *details = m_concertController->concert()->streamDetails();
+    StreamDetails* details = m_concertController->concert()->streamDetails();
     details->setVideoDetail(VideoDetails::Codec, ui->videoCodec->text());
     details->setVideoDetail(VideoDetails::Aspect, ui->videoAspectRatio->text());
     details->setVideoDetail(VideoDetails::Width, ui->videoWidth->text());

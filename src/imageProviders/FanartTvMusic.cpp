@@ -12,7 +12,7 @@
 #include "imageProviders/FanartTv.h"
 #include "scrapers/TMDb.h"
 
-FanartTvMusic::FanartTvMusic(QObject *parent)
+FanartTvMusic::FanartTvMusic(QObject* parent)
 {
     setParent(parent);
     m_provides = {ImageType::AlbumCdArt,
@@ -46,7 +46,7 @@ QVector<ImageType> FanartTvMusic::provides()
     return m_provides;
 }
 
-QNetworkAccessManager *FanartTvMusic::qnam()
+QNetworkAccessManager* FanartTvMusic::qnam()
 {
     return &m_qnam;
 }
@@ -63,7 +63,7 @@ void FanartTvMusic::searchAlbum(QString artistName, QString searchStr, int limit
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent",
         QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchAlbumFinished);
 }
 
@@ -75,7 +75,7 @@ void FanartTvMusic::searchArtist(QString searchStr, int limit)
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent",
         QString("MediaElch/%1 (%2)").arg(QApplication::applicationVersion()).arg("support@mediaelch.de").toUtf8());
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onSearchArtistFinished);
 }
 
@@ -86,7 +86,7 @@ void FanartTvMusic::artistFanarts(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistFanart));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -98,7 +98,7 @@ void FanartTvMusic::artistLogos(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -110,7 +110,7 @@ void FanartTvMusic::artistThumbs(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ArtistThumb));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadArtistFinished);
 }
@@ -122,7 +122,7 @@ void FanartTvMusic::albumCdArts(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::AlbumCdArt));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
@@ -134,7 +134,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::AlbumThumb));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAlbumFinished);
 }
@@ -142,7 +142,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
 void FanartTvMusic::onSearchArtistFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -184,7 +184,7 @@ void FanartTvMusic::onSearchArtistFinished()
 void FanartTvMusic::onSearchAlbumFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -235,7 +235,7 @@ void FanartTvMusic::onSearchAlbumFinished()
 
 void FanartTvMusic::onLoadArtistFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QVector<Poster> posters;
@@ -248,7 +248,7 @@ void FanartTvMusic::onLoadArtistFinished()
 
 void FanartTvMusic::onLoadAlbumFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QVector<Poster> posters;
@@ -297,13 +297,13 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
         return jsonObj;
     }();
 
-    for (const QString &section : map.value(type)) {
+    for (const QString& section : map.value(type)) {
         const auto jsonValue = jsonObject.value(section);
         if (!jsonValue.isArray()) {
             continue;
         }
 
-        for (const auto &it : jsonValue.toArray()) {
+        for (const auto& it : jsonValue.toArray()) {
             const auto val = it.toObject();
             if (val.value("url").toString().isEmpty()) {
                 continue;
@@ -344,7 +344,7 @@ void FanartTvMusic::searchTvShow(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusic::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
+void FanartTvMusic::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
@@ -417,7 +417,7 @@ void FanartTvMusic::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season)
     Q_UNUSED(season);
 }
 
-void FanartTvMusic::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusic::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -459,7 +459,7 @@ void FanartTvMusic::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusic::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusic::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
@@ -492,18 +492,18 @@ bool FanartTvMusic::hasSettings() const
     return false;
 }
 
-void FanartTvMusic::loadSettings(const ScraperSettings &settings)
+void FanartTvMusic::loadSettings(const ScraperSettings& settings)
 {
     m_language = settings.language();
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 
-void FanartTvMusic::saveSettings(ScraperSettings &settings)
+void FanartTvMusic::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *FanartTvMusic::settingsWidget()
+QWidget* FanartTvMusic::settingsWidget()
 {
     return nullptr;
 }
@@ -520,27 +520,27 @@ void FanartTvMusic::searchConcert(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusic::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
+void FanartTvMusic::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllArtistDataFinished);
 }
 
-void FanartTvMusic::albumImages(Album *album, QString mbId, QVector<ImageType> types)
+void FanartTvMusic::albumImages(Album* album, QString mbId, QVector<ImageType> types)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/albums/%1?%2").arg(mbId).arg(keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusic::onLoadAllAlbumDataFinished);
@@ -548,13 +548,13 @@ void FanartTvMusic::albumImages(Album *album, QString mbId, QVector<ImageType> t
 
 void FanartTvMusic::onLoadAllAlbumDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage *>()->album();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Album* album = reply->property("storage").value<Storage*>()->album();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
+        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
             posters.insert(type, parseData(msg, type));
         }
     }
@@ -563,13 +563,13 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
 
 void FanartTvMusic::onLoadAllArtistDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage *>()->artist();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Artist* artist = reply->property("storage").value<Storage*>()->artist();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
+        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
             posters.insert(type, parseData(msg, type));
         }
     }

@@ -2,12 +2,12 @@
 
 #include <QPainter>
 
-MySplitterHandle::MySplitterHandle(Qt::Orientation orientation, QSplitter *parent) :
+MySplitterHandle::MySplitterHandle(Qt::Orientation orientation, QSplitter* parent) :
     QSplitterHandle(orientation, parent)
 {
 }
 
-void MySplitterHandle::paintEvent(QPaintEvent *event)
+void MySplitterHandle::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
     const QColor lightGrey(235, 235, 235);

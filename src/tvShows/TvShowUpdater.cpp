@@ -14,26 +14,26 @@
 #include "quazip/quazip/quazipfile.h"
 #include "scrapers/TheTvDb.h"
 
-TvShowUpdater::TvShowUpdater(QObject *parent) : QObject(parent), m_tvdb{nullptr}
+TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {
-    for (TvScraperInterface *inter : Manager::instance()->tvScrapers()) {
+    for (TvScraperInterface* inter : Manager::instance()->tvScrapers()) {
         if (inter->identifier() == "tvdb") {
-            m_tvdb = static_cast<TheTvDb *>(inter);
+            m_tvdb = static_cast<TheTvDb*>(inter);
             break;
         }
     }
 }
 
-TvShowUpdater *TvShowUpdater::instance(QObject *parent)
+TvShowUpdater* TvShowUpdater::instance(QObject* parent)
 {
-    static TvShowUpdater *instance = nullptr;
+    static TvShowUpdater* instance = nullptr;
     if (!instance) {
         instance = new TvShowUpdater(parent);
     }
     return instance;
 }
 
-void TvShowUpdater::updateShow(TvShow *show, bool force)
+void TvShowUpdater::updateShow(TvShow* show, bool force)
 {
     if (m_updatedShows.contains(show) && !force) {
         return;
@@ -43,14 +43,14 @@ void TvShowUpdater::updateShow(TvShow *show, bool force)
 
     if (!show->episodeGuideUrl().isEmpty()) {
         QNetworkRequest request(QUrl(show->episodeGuideUrl()));
-        QNetworkReply *reply = m_qnam.get(request);
+        QNetworkReply* reply = m_qnam.get(request);
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);
     } else if (show->id().isValid() || show->tvdbId().isValid()) {
         TvDbId id = !show->tvdbId().isValid() ? show->id() : show->tvdbId();
         QUrl url(QString("https://www.thetvdb.com/api/%1/series/%2/all/%3.xml")
                      .arg(m_tvdb->apiKey(), id.toString(), m_tvdb->language()));
-        QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+        QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);
     } else {
@@ -73,9 +73,9 @@ void TvShowUpdater::onLoadFinished()
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
     }
 
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    TvShow *show = reply->property("storage").value<Storage *>()->show();
+    TvShow* show = reply->property("storage").value<Storage*>()->show();
     if (!show) {
         return;
     }

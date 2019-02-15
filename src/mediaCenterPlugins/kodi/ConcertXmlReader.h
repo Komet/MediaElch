@@ -10,11 +10,11 @@ namespace Kodi {
 class ConcertXmlReader
 {
 public:
-    ConcertXmlReader(Concert &concert);
+    ConcertXmlReader(Concert& concert);
     void parseNfoDom(QDomDocument domDoc);
 
 private:
-    Concert &m_concert;
+    Concert& m_concert;
 };
 
 } // namespace Kodi

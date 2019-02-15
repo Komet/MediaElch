@@ -13,14 +13,14 @@ class ExportTemplateWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ExportTemplateWidget(QWidget *parent = nullptr);
+    explicit ExportTemplateWidget(QWidget* parent = nullptr);
     ~ExportTemplateWidget() override;
-    void setExportTemplate(ExportTemplate *exportTemplate);
+    void setExportTemplate(ExportTemplate* exportTemplate);
 
 private slots:
     void onBtnInstall();
 
 private:
-    Ui::ExportTemplateWidget *ui;
-    ExportTemplate *m_exportTemplate;
+    Ui::ExportTemplateWidget* ui;
+    ExportTemplate* m_exportTemplate;
 };

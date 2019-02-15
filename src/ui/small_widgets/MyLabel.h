@@ -10,14 +10,14 @@ class MyLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MyLabel(QWidget *parent = nullptr);
+    explicit MyLabel(QWidget* parent = nullptr);
     void setSeason(int season);
     void setImageSet(bool set);
     bool imageSet();
     int season();
 
 protected:
-    void mousePressEvent(QMouseEvent *ev) override;
+    void mousePressEvent(QMouseEvent* ev) override;
 signals:
     void clicked();
     void seasonClicked(int);

@@ -10,7 +10,7 @@
 namespace Kodi {
 
 
-TvShowXmlReader::TvShowXmlReader(TvShow &tvShow) : m_show{tvShow}
+TvShowXmlReader::TvShowXmlReader(TvShow& tvShow) : m_show{tvShow}
 {
 }
 
@@ -75,7 +75,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        for (const QString &genre :
+        for (const QString& genre :
             domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts)) {
             m_show.addGenre(genre);
         }

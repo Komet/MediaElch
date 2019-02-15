@@ -9,7 +9,7 @@
 
 namespace Kodi {
 
-MovieXmlWriter::MovieXmlWriter(Movie &movie) : m_movie{movie}
+MovieXmlWriter::MovieXmlWriter(Movie& movie) : m_movie{movie}
 {
 }
 
@@ -75,13 +75,13 @@ QByteArray MovieXmlWriter::getMovieXml()
     XbmcXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;
-    for (const QString &credit : m_movie.writer().split(",")) {
+    for (const QString& credit : m_movie.writer().split(",")) {
         writers << credit.trimmed();
     }
     XbmcXml::setListValue(doc, "credits", writers);
 
     QStringList directors;
-    for (const QString &director : m_movie.director().split(",")) {
+    for (const QString& director : m_movie.director().split(",")) {
         directors << director.trimmed();
     }
     XbmcXml::setListValue(doc, "director", directors);
@@ -99,7 +99,7 @@ QByteArray MovieXmlWriter::getMovieXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        for (const Poster &poster : m_movie.images().posters()) {
+        for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -108,7 +108,7 @@ QByteArray MovieXmlWriter::getMovieXml()
 
         if (!m_movie.images().backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster &poster : m_movie.images().backdrops()) {
+            for (const Poster& poster : m_movie.images().backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -120,7 +120,7 @@ QByteArray MovieXmlWriter::getMovieXml()
 
     XbmcXml::removeChildNodes(doc, "actor");
 
-    for (const Actor &actor : m_movie.actors()) {
+    for (const Actor& actor : m_movie.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");

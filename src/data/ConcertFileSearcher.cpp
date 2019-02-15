@@ -12,7 +12,7 @@
  * @brief ConcertFileSearcher::ConcertFileSearcher
  * @param parent
  */
-ConcertFileSearcher::ConcertFileSearcher(QObject *parent) :
+ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
     QObject(parent),
     m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId},
     m_aborted{false}
@@ -28,7 +28,7 @@ void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories
     qDebug() << "Entered";
     m_directories.clear();
 
-    for (const auto &directory : directories) {
+    for (const auto& directory : directories) {
         QFileInfo fi(directory.path);
         if (fi.isDir()) {
             qDebug() << "Adding concert directory" << directory.path;
@@ -51,15 +51,15 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->concertModel()->clear();
     emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
 
-    QVector<Concert *> concerts;
-    QVector<Concert *> dbConcerts;
+    QVector<Concert*> concerts;
+    QVector<Concert*> dbConcerts;
     QVector<QStringList> contents;
     for (SettingsDir dir : m_directories) {
         if (m_aborted) {
             return;
         }
 
-        QVector<Concert *> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        QVector<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
             Manager::instance()->database()->clearConcerts(dir.path);
             scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
@@ -75,7 +75,7 @@ void ConcertFileSearcher::reload(bool force)
 
     // Setup concerts
     Manager::instance()->database()->transaction();
-    for (const QStringList &files : contents) {
+    for (const QStringList& files : contents) {
         if (m_aborted) {
             return;
         }
@@ -99,7 +99,7 @@ void ConcertFileSearcher::reload(bool force)
                 path = m_directories[index].path;
             }
         }
-        Concert *const concert = new Concert(files, this);
+        Concert* const concert = new Concert(files, this);
         concert->setInSeparateFolder(inSeparateFolder);
         concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert->name());
@@ -110,7 +110,7 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->database()->commit();
 
     // Setup concerts loaded from database
-    for (Concert *concert : dbConcerts) {
+    for (Concert* concert : dbConcerts) {
         if (m_aborted) {
             return;
         }
@@ -121,7 +121,7 @@ void ConcertFileSearcher::reload(bool force)
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
 
-    for (Concert *concert : concerts) {
+    for (Concert* concert : concerts) {
         Manager::instance()->concertModel()->addConcert(concert);
     }
 
@@ -142,14 +142,14 @@ void ConcertFileSearcher::reload(bool force)
  */
 void ConcertFileSearcher::scanDir(QString startPath,
     QString path,
-    QVector<QStringList> &contents,
+    QVector<QStringList>& contents,
     bool separateFolders,
     bool firstScan)
 {
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    for (const QString &cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
         }
@@ -181,7 +181,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     QStringList files;
     QStringList entries = getFiles(path);
-    for (const QString &file : entries) {
+    for (const QString& file : entries) {
         if (m_aborted) {
             return;
         }
@@ -196,7 +196,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
     if (separateFolders) {
         QStringList concertFiles;
-        for (const QString &file : files) {
+        for (const QString& file : files) {
             concertFiles.append(QDir::toNativeSeparators(path + "/" + file));
         }
         if (concertFiles.count() > 0) {

@@ -5,7 +5,7 @@
 #include "data/Movie.h"
 #include "data/TvShowEpisode.h"
 
-LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingStreamDetails)
+LoadingStreamDetails::LoadingStreamDetails(QWidget* parent) : QDialog(parent), ui(new Ui::LoadingStreamDetails)
 {
     ui->setupUi(this);
 
@@ -29,14 +29,14 @@ LoadingStreamDetails::~LoadingStreamDetails()
     delete ui;
 }
 
-void LoadingStreamDetails::loadMovies(QVector<Movie *> movies)
+void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
 {
     ui->progressBar->setRange(0, movies.count());
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();
     show();
-    for (Movie *movie : movies) {
+    for (Movie* movie : movies) {
         movie->blockSignals(true);
         movie->controller()->loadStreamDetailsFromFile();
         movie->setChanged(true);
@@ -48,14 +48,14 @@ void LoadingStreamDetails::loadMovies(QVector<Movie *> movies)
     accept();
 }
 
-void LoadingStreamDetails::loadConcerts(QVector<Concert *> concerts)
+void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
 {
     ui->progressBar->setRange(0, concerts.count());
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();
     show();
-    for (Concert *concert : concerts) {
+    for (Concert* concert : concerts) {
         concert->controller()->loadStreamDetailsFromFile();
         concert->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
@@ -65,14 +65,14 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert *> concerts)
     accept();
 }
 
-void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode *> episodes)
+void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode*> episodes)
 {
     ui->progressBar->setRange(0, episodes.count());
     ui->progressBar->setValue(0);
     ui->currentFile->clear();
     adjustSize();
     show();
-    for (TvShowEpisode *episode : episodes) {
+    for (TvShowEpisode* episode : episodes) {
         episode->loadStreamDetailsFromFile();
         episode->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);

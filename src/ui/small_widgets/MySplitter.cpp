@@ -2,11 +2,11 @@
 
 #include "ui/small_widgets/MySplitterHandle.h"
 
-MySplitter::MySplitter(QWidget *parent) : QSplitter(parent)
+MySplitter::MySplitter(QWidget* parent) : QSplitter(parent)
 {
 }
 
-QSplitterHandle *MySplitter::createHandle()
+QSplitterHandle* MySplitter::createHandle()
 {
     return new MySplitterHandle(orientation(), this);
 }

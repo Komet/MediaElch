@@ -17,7 +17,7 @@ class Message : public QWidget
     Q_PROPERTY(int id READ id WRITE setId)
 
 public:
-    explicit Message(QWidget *parent = nullptr);
+    explicit Message(QWidget* parent = nullptr);
     ~Message() override;
     void setType(int type);
     void setMessage(QString message, int timeout = 3000);
@@ -34,7 +34,7 @@ private slots:
     void timeout();
 
 private:
-    Ui::Message *ui;
+    Ui::Message* ui;
     int m_id;
-    QTimer *m_timer;
+    QTimer* m_timer;
 };

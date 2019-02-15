@@ -11,7 +11,7 @@
 
 namespace Kodi {
 
-EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode &episode) : m_episode{episode}
+EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode& episode) : m_episode{episode}
 {
 }
 

@@ -12,7 +12,7 @@
  * @brief AboutDialog::AboutDialog
  * @param parent
  */
-AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AboutDialog)
+AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
     ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
@@ -51,12 +51,12 @@ int AboutDialog::exec()
     adjustSize();
 
     int episodes = 0;
-    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
         episodes += show->episodes().count();
     }
 
     int albums = 0;
-    for (Artist *artist : Manager::instance()->musicModel()->artists()) {
+    for (Artist* artist : Manager::instance()->musicModel()->artists()) {
         albums += artist->albums().count();
     }
 

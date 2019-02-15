@@ -14,7 +14,7 @@ class AlphabeticalList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlphabeticalList(QWidget *parent = nullptr, MyTableView *parentTableView = nullptr);
+    explicit AlphabeticalList(QWidget* parent = nullptr, MyTableView* parentTableView = nullptr);
     void setTopSpace(const int space);
     void setBottomSpace(const int space);
     void setRightSpace(const int space);
@@ -31,7 +31,7 @@ signals:
     void sigAlphaClicked(QString);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
+    void paintEvent(QPaintEvent* event) override;
 
 private slots:
     void onAlphaClicked();
@@ -41,11 +41,11 @@ private:
 
     QPointer<QPropertyAnimation> m_inAnim;
     QPointer<QPropertyAnimation> m_outAnim;
-    QVBoxLayout *m_layout;
+    QVBoxLayout* m_layout;
     int m_bottomSpace{10};
     int m_topSpace{10};
     int m_rightSpace{10};
     int m_leftSpace{10};
     int m_animDuration{100};
-    MyTableView *m_tableView;
+    MyTableView* m_tableView;
 };

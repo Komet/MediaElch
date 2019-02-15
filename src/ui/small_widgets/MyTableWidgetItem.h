@@ -10,7 +10,7 @@ public:
     MyTableWidgetItem(int64_t number, bool isSize = false);
     MyTableWidgetItem(int number, bool isSize = false);
     QVariant data(int role) const;
-    virtual bool operator<(const QTableWidgetItem &other) const;
+    virtual bool operator<(const QTableWidgetItem& other) const;
 
 private:
     bool m_isSize;

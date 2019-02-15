@@ -17,14 +17,14 @@ class MusicWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidget(QWidget *parent = nullptr);
+    explicit MusicWidget(QWidget* parent = nullptr);
     ~MusicWidget() override;
 
 public slots:
-    void onArtistSelected(Artist *artist);
-    void onAlbumSelected(Album *album);
-    void onSetEnabledTrue(Artist *artist);
-    void onSetEnabledTrue(Album *album);
+    void onArtistSelected(Artist* artist);
+    void onAlbumSelected(Album* album);
+    void onSetEnabledTrue(Artist* artist);
+    void onSetEnabledTrue(Album* album);
     void onClear();
     void onSetDisabledTrue();
     void setBigWindow(bool bigWindow);
@@ -40,5 +40,5 @@ signals:
     void sigDownloadsFinished(int);
 
 private:
-    Ui::MusicWidget *ui;
+    Ui::MusicWidget* ui;
 };

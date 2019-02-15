@@ -6,7 +6,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
-Notificator::Notificator(QSystemTrayIcon *trayIcon, QWidget *parent) :
+Notificator::Notificator(QSystemTrayIcon* trayIcon, QWidget* parent) :
     QObject(parent),
     m_mode(None),
     m_parent(parent),
@@ -21,7 +21,7 @@ Notificator::Notificator(QSystemTrayIcon *trayIcon, QWidget *parent) :
 #endif
 }
 
-void Notificator::notifySystray(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout)
+void Notificator::notifySystray(Class cls, const QString& title, const QString& text, const QIcon& icon, int timeout)
 {
     Q_UNUSED(icon);
     QSystemTrayIcon::MessageIcon sicon = QSystemTrayIcon::NoIcon;
@@ -34,9 +34,9 @@ void Notificator::notifySystray(Class cls, const QString &title, const QString &
 }
 
 void Notificator::notifyMacUserNotificationCenter(Class cls,
-    const QString &title,
-    const QString &text,
-    const QIcon &icon)
+    const QString& title,
+    const QString& text,
+    const QIcon& icon)
 {
     Q_UNUSED(cls);
     Q_UNUSED(icon);
@@ -48,7 +48,7 @@ void Notificator::notifyMacUserNotificationCenter(Class cls,
 #endif
 }
 
-void Notificator::notify(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout)
+void Notificator::notify(Class cls, const QString& title, const QString& text, const QIcon& icon, int timeout)
 {
     switch (m_mode) {
     case QSystemTray: notifySystray(cls, title, text, icon, timeout); break;
@@ -63,9 +63,9 @@ void Notificator::notify(Class cls, const QString &title, const QString &text, c
     }
 }
 
-Notificator *Notificator::instance(QSystemTrayIcon *trayIcon, QWidget *parent)
+Notificator* Notificator::instance(QSystemTrayIcon* trayIcon, QWidget* parent)
 {
-    static Notificator *m_instance = nullptr;
+    static Notificator* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new Notificator(trayIcon, parent);
     }

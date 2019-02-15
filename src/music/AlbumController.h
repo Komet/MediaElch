@@ -13,12 +13,12 @@ class AlbumController : public QObject
 {
     Q_OBJECT
 public:
-    explicit AlbumController(Album *parent = nullptr);
+    explicit AlbumController(Album* parent = nullptr);
     ~AlbumController() override;
 
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, QString id2, MusicScraperInterface *scraperInterface, QVector<MusicScraperInfos> infos);
+    bool saveData(MediaCenterInterface* mediaCenterInterface);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
+    void loadData(QString id, QString id2, MusicScraperInterface* scraperInterface, QVector<MusicScraperInfos> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -31,27 +31,27 @@ public:
 
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
-    void scraperLoadDone(MusicScraperInterface *scraper);
+    void scraperLoadDone(MusicScraperInterface* scraper);
 
 signals:
-    void sigInfoLoadDone(Album *);
-    void sigLoadingImages(Album *, QVector<ImageType>);
-    void sigLoadDone(Album *);
-    void sigImage(Album *, ImageType, QByteArray);
-    void sigLoadImagesStarted(Album *);
-    void sigDownloadProgress(Album *, int, int);
-    void sigSaved(Album *);
+    void sigInfoLoadDone(Album*);
+    void sigLoadingImages(Album*, QVector<ImageType>);
+    void sigLoadDone(Album*);
+    void sigImage(Album*, ImageType, QByteArray);
+    void sigLoadImagesStarted(Album*);
+    void sigDownloadProgress(Album*, int, int);
+    void sigSaved(Album*);
 
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Album *album, QMap<ImageType, QVector<Poster>> posters);
+    void onFanartLoadDone(Album* album, QMap<ImageType, QVector<Poster>> posters);
 
 private:
-    Album *m_album;
+    Album* m_album;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
-    DownloadManager *m_downloadManager;
+    DownloadManager* m_downloadManager;
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;

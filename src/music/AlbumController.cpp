@@ -8,7 +8,7 @@
 
 #include <QFileInfo>
 
-AlbumController::AlbumController(Album *parent) :
+AlbumController::AlbumController(Album* parent) :
     QObject(parent),
     m_album{parent},
     m_infoLoaded{false},
@@ -22,7 +22,7 @@ AlbumController::AlbumController(Album *parent) :
         this,
         SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager,
-        SIGNAL(allDownloadsFinished(Album *)),
+        SIGNAL(allDownloadsFinished(Album*)),
         this,
         SLOT(onAllDownloadsFinished()),
         Qt::UniqueConnection);
@@ -30,7 +30,7 @@ AlbumController::AlbumController(Album *parent) :
 
 AlbumController::~AlbumController() = default;
 
-bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
+bool AlbumController::loadData(MediaCenterInterface* mediaCenterInterface, bool force, bool reloadFromNfo)
 {
     if ((m_infoLoaded || m_album->hasChanged()) && !force
         && (m_infoFromNfoLoaded || (m_album->hasChanged() && !m_infoFromNfoLoaded))) {
@@ -57,7 +57,7 @@ bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     return infoLoaded;
 }
 
-bool AlbumController::saveData(MediaCenterInterface *mediaCenterInterface)
+bool AlbumController::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     bool saved = mediaCenterInterface->saveAlbum(m_album);
     if (!m_infoLoaded) {
@@ -105,7 +105,7 @@ void AlbumController::loadImage(ImageType type, QUrl url)
 void AlbumController::loadImages(ImageType type, QVector<QUrl> urls)
 {
     bool started = false;
-    for (const QUrl &url : urls) {
+    for (const QUrl& url : urls) {
         DownloadManagerElement d;
         d.album = m_album;
         d.imageType = type;
@@ -151,14 +151,14 @@ bool AlbumController::downloadsInProgress() const
 
 void AlbumController::loadData(QString id,
     QString id2,
-    MusicScraperInterface *scraperInterface,
+    MusicScraperInterface* scraperInterface,
     QVector<MusicScraperInfos> infos)
 {
     m_infosToLoad = infos;
     scraperInterface->loadData(id, id2, m_album, infos);
 }
 
-void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
+void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
 {
     emit sigInfoLoadDone(m_album);
 
@@ -178,8 +178,8 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
     }
 
     if (!images.isEmpty() && !m_album->mbReleaseGroupId().isEmpty()) {
-        ImageProviderInterface *imageProvider = nullptr;
-        for (ImageProviderInterface *interface : Manager::instance()->imageProviders()) {
+        ImageProviderInterface* imageProvider = nullptr;
+        for (ImageProviderInterface* interface : Manager::instance()->imageProviders()) {
             if (interface->identifier() == "images.fanarttv-music_lib") {
                 imageProvider = interface;
                 break;
@@ -190,9 +190,9 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
             return;
         }
         connect(imageProvider,
-            SIGNAL(sigImagesLoaded(Album *, QMap<ImageType, QVector<Poster>>)),
+            SIGNAL(sigImagesLoaded(Album*, QMap<ImageType, QVector<Poster>>)),
             this,
-            SLOT(onFanartLoadDone(Album *, QMap<ImageType, QVector<Poster>>)),
+            SLOT(onFanartLoadDone(Album*, QMap<ImageType, QVector<Poster>>)),
             Qt::UniqueConnection);
         imageProvider->albumImages(m_album, m_album->mbReleaseGroupId(), images);
     } else {
@@ -200,7 +200,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface *scraper)
     }
 }
 
-void AlbumController::onFanartLoadDone(Album *album, QMap<ImageType, QVector<Poster>> posters)
+void AlbumController::onFanartLoadDone(Album* album, QMap<ImageType, QVector<Poster>> posters)
 {
     if (album != m_album) {
         return;

@@ -14,16 +14,16 @@ class MovieFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MovieFileSearcher(QObject *parent = nullptr);
+    explicit MovieFileSearcher(QObject* parent = nullptr);
     ~MovieFileSearcher() override = default;
 
     void setMovieDirectories(QVector<SettingsDir> directories);
     void scanDir(QString startPath,
         QString path,
-        QVector<QStringList> &contents,
+        QVector<QStringList>& contents,
         bool separateFolders = false,
         bool firstScan = false);
-    static Movie *loadMovieData(Movie *movie);
+    static Movie* loadMovieData(Movie* movie);
 
 public slots:
     void reload(bool force);

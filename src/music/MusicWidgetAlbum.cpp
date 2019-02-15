@@ -13,7 +13,7 @@
 #endif
 #include <QPainter>
 
-MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
+MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
 {
     ui->setupUi(this);
 
@@ -55,7 +55,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) : QWidget(parent), ui(new Ui
 
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
-    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &MusicWidgetAlbum::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
@@ -116,7 +116,7 @@ MusicWidgetAlbum::~MusicWidgetAlbum()
     delete ui;
 }
 
-void MusicWidgetAlbum::setAlbum(Album *album)
+void MusicWidgetAlbum::setAlbum(Album* album)
 {
     m_album = album;
     updateAlbumInfo();
@@ -181,14 +181,14 @@ void MusicWidgetAlbum::onClear()
     ui->buttonRevert->setVisible(false);
 }
 
-void MusicWidgetAlbum::clearContents(QLineEdit *widget)
+void MusicWidgetAlbum::clearContents(QLineEdit* widget)
 {
     bool blocked = widget->blockSignals(true);
     widget->clear();
     widget->blockSignals(blocked);
 }
 
-void MusicWidgetAlbum::setContent(QLineEdit *widget, const QString &content)
+void MusicWidgetAlbum::setContent(QLineEdit* widget, const QString& content)
 {
     widget->blockSignals(true);
     widget->setText(content);
@@ -265,7 +265,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
     QStringList genres;
     QStringList styles;
     QStringList moods;
-    for (const Artist *artist : Manager::instance()->musicModel()->artists()) {
+    for (const Artist* artist : Manager::instance()->musicModel()->artists()) {
         genres << artist->genres();
         styles << artist->styles();
         moods << artist->moods();
@@ -293,7 +293,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
     }
 }
 
-void MusicWidgetAlbum::updateImage(ImageType imageType, ClosableImage *image)
+void MusicWidgetAlbum::updateImage(ImageType imageType, ClosableImage* image)
 {
     if (!m_album->rawImage(imageType).isNull()) {
         image->setImage(m_album->rawImage(imageType));
@@ -311,7 +311,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
         return;
     }
 
-    auto lineEdit = static_cast<QLineEdit *>(sender());
+    auto lineEdit = static_cast<QLineEdit*>(sender());
     if (!lineEdit) {
         return;
     }
@@ -415,7 +415,7 @@ void MusicWidgetAlbum::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }
@@ -445,7 +445,7 @@ void MusicWidgetAlbum::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }
@@ -465,7 +465,7 @@ void MusicWidgetAlbum::onImageDropped(ImageType imageType, QUrl imageUrl)
     ui->buttonRevert->setVisible(true);
 }
 
-void MusicWidgetAlbum::onInfoLoadDone(Album *album)
+void MusicWidgetAlbum::onInfoLoadDone(Album* album)
 {
     if (m_album != album) {
         return;
@@ -476,7 +476,7 @@ void MusicWidgetAlbum::onInfoLoadDone(Album *album)
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
 }
 
-void MusicWidgetAlbum::onLoadDone(Album *album)
+void MusicWidgetAlbum::onLoadDone(Album* album)
 {
     emit sigDownloadsFinished(Constants::MusicAlbumProgressMessageId + album->databaseId());
 
@@ -490,19 +490,19 @@ void MusicWidgetAlbum::onLoadDone(Album *album)
     onSetEnabled(true);
 }
 
-void MusicWidgetAlbum::onDownloadProgress(Album *album, int current, int maximum)
+void MusicWidgetAlbum::onDownloadProgress(Album* album, int current, int maximum)
 {
     emit sigDownloadsProgress(maximum - current, maximum, Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
-void MusicWidgetAlbum::onLoadingImages(Album *album, QVector<ImageType> imageTypes)
+void MusicWidgetAlbum::onLoadingImages(Album* album, QVector<ImageType> imageTypes)
 {
     if (m_album != album) {
         return;
     }
 
     for (const auto imageType : imageTypes) {
-        for (ClosableImage *cImage : ui->groupBox_3->findChildren<ClosableImage *>()) {
+        for (ClosableImage* cImage : ui->groupBox_3->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -516,18 +516,18 @@ void MusicWidgetAlbum::onLoadingImages(Album *album, QVector<ImageType> imageTyp
     ui->groupBox_3->update();
 }
 
-void MusicWidgetAlbum::onLoadImagesStarted(Album *album)
+void MusicWidgetAlbum::onLoadImagesStarted(Album* album)
 {
     emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicAlbumProgressMessageId + album->databaseId());
 }
 
-void MusicWidgetAlbum::onSetImage(Album *album, ImageType type, QByteArray imageData)
+void MusicWidgetAlbum::onSetImage(Album* album, ImageType type, QByteArray imageData)
 {
     if (m_album != album) {
         return;
     }
 
-    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(imageData);
@@ -537,11 +537,11 @@ void MusicWidgetAlbum::onSetImage(Album *album, ImageType type, QByteArray image
 
 void MusicWidgetAlbum::onBookletModelChanged()
 {
-    auto model = static_cast<ImageModel *>(sender());
+    auto model = static_cast<ImageModel*>(sender());
     if (!model) {
         return;
     }
-    if (m_album != static_cast<Album *>(model->parent())) {
+    if (m_album != static_cast<Album*>(model->parent())) {
         return;
     }
     if (model->hasChanged()) {

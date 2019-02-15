@@ -15,7 +15,7 @@ class ConcertSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertSearchWidget(QWidget *parent = nullptr);
+    explicit ConcertSearchWidget(QWidget* parent = nullptr);
     ~ConcertSearchWidget() override;
 
 public slots:
@@ -30,12 +30,12 @@ signals:
 private slots:
     void search();
     void showResults(QVector<ScraperSearchResult> results);
-    void resultClicked(QTableWidgetItem *item);
+    void resultClicked(QTableWidgetItem* item);
     void chkToggled();
     void chkAllToggled(bool toggled);
 
 private:
-    Ui::ConcertSearchWidget *ui;
+    Ui::ConcertSearchWidget* ui;
     int m_scraperNo;
     TmdbId m_scraperId;
     QVector<ConcertScraperInfos> m_infosToLoad;

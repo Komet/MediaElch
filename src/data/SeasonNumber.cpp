@@ -12,23 +12,23 @@ SeasonNumber::SeasonNumber(int seasonNumber) :
 const SeasonNumber SeasonNumber::NoSeason = SeasonNumber(-1);
 const SeasonNumber SeasonNumber::SpecialsSeason = SeasonNumber(0);
 
-bool SeasonNumber::operator==(const SeasonNumber &other) const
+bool SeasonNumber::operator==(const SeasonNumber& other) const
 {
     // Only valid IMDb id's are comparable
     return m_seasonNumber == other.m_seasonNumber;
 }
 
-bool SeasonNumber::operator!=(const SeasonNumber &other) const
+bool SeasonNumber::operator!=(const SeasonNumber& other) const
 {
     return !(*this == other);
 }
 
-bool SeasonNumber::operator>(const SeasonNumber &other) const
+bool SeasonNumber::operator>(const SeasonNumber& other) const
 {
     return m_seasonNumber > other.m_seasonNumber;
 }
 
-bool SeasonNumber::operator<(const SeasonNumber &other) const
+bool SeasonNumber::operator<(const SeasonNumber& other) const
 {
     return m_seasonNumber < other.m_seasonNumber;
 }

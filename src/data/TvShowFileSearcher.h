@@ -13,12 +13,12 @@ class TvShowFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvShowFileSearcher(QObject *parent = nullptr);
+    explicit TvShowFileSearcher(QObject* parent = nullptr);
     void setMovieDirectories(QVector<SettingsDir> directories);
     static SeasonNumber getSeasonNumber(QStringList files);
     static QVector<EpisodeNumber> getEpisodeNumbers(QStringList files);
-    static TvShowEpisode *loadEpisodeData(TvShowEpisode *episode);
-    static TvShowEpisode *reloadEpisodeData(TvShowEpisode *episode);
+    static TvShowEpisode* loadEpisodeData(TvShowEpisode* episode);
+    static TvShowEpisode* reloadEpisodeData(TvShowEpisode* episode);
 
 public slots:
     void reload(bool force);
@@ -34,8 +34,8 @@ signals:
 private:
     QVector<SettingsDir> m_directories;
     int m_progressMessageId;
-    void getTvShows(QString path, QMap<QString, QVector<QStringList>> &contents);
-    void scanTvShowDir(QString startPath, QString path, QVector<QStringList> &contents);
+    void getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents);
+    void scanTvShowDir(QString startPath, QString path, QVector<QStringList>& contents);
     QStringList getFiles(QString path);
     bool m_aborted;
 };

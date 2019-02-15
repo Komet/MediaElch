@@ -5,7 +5,7 @@
  * @brief ImageLabel::ImageLabel
  * @param parent
  */
-ImageLabel::ImageLabel(QWidget *parent) : QWidget(parent), ui(new Ui::ImageLabel)
+ImageLabel::ImageLabel(QWidget* parent) : QWidget(parent), ui(new Ui::ImageLabel)
 {
     ui->setupUi(this);
     ui->resolution->setText("");

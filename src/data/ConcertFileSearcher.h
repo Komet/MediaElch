@@ -14,7 +14,7 @@ class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertFileSearcher(QObject *parent = nullptr);
+    explicit ConcertFileSearcher(QObject* parent = nullptr);
     void setConcertDirectories(QVector<SettingsDir> directories);
 
 public slots:
@@ -32,7 +32,7 @@ private:
     int m_progressMessageId;
     void scanDir(QString startPath,
         QString path,
-        QVector<QStringList> &contents,
+        QVector<QStringList>& contents,
         bool separateFolders = false,
         bool firstScan = false);
     QStringList getFiles(QString path);

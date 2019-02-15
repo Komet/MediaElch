@@ -20,9 +20,9 @@ class TvShowWidgetEpisode : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidgetEpisode(QWidget *parent = nullptr);
+    explicit TvShowWidgetEpisode(QWidget* parent = nullptr);
     ~TvShowWidgetEpisode() override;
-    void setEpisode(TvShowEpisode *episode);
+    void setEpisode(TvShowEpisode* episode);
     void updateEpisodeInfo();
 
 public slots:
@@ -36,7 +36,7 @@ signals:
     void sigSetActionSaveEnabled(bool, MainWidgets);
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void onAddDirector();
@@ -67,8 +67,8 @@ private slots:
     void onStudioChange(QString text);
     void onEpBookmarkChange(QTime time);
     void onOverviewChange();
-    void onDirectorEdited(QTableWidgetItem *item);
-    void onWriterEdited(QTableWidgetItem *item);
+    void onDirectorEdited(QTableWidgetItem* item);
+    void onWriterEdited(QTableWidgetItem* item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
@@ -77,15 +77,15 @@ private slots:
     void onRemoveActor();
     void onActorChanged();
     void onChangeActorImage();
-    void onActorEdited(QTableWidgetItem *item);
+    void onActorEdited(QTableWidgetItem* item);
 
 private:
-    Ui::TvShowWidgetEpisode *ui;
+    Ui::TvShowWidgetEpisode* ui;
     QPointer<TvShowEpisode> m_episode;
-    QLabel *m_savingWidget;
-    QMovie *m_loadingMovie;
-    DownloadManager *m_posterDownloadManager;
-    QVector<QWidget *> m_streamDetailsWidgets;
-    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
-    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
+    QLabel* m_savingWidget;
+    QMovie* m_loadingMovie;
+    DownloadManager* m_posterDownloadManager;
+    QVector<QWidget*> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit*>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
 };

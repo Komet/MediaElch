@@ -13,7 +13,7 @@
  * @brief TvShowWidget::TvShowWidget
  * @param parent
  */
-TvShowWidget::TvShowWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowWidget)
+TvShowWidget::TvShowWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowWidget)
 {
     ui->setupUi(this);
 
@@ -59,14 +59,14 @@ void TvShowWidget::onClear()
  * @brief Shows the tv show widget and sets the show
  * @param show Current show object
  */
-void TvShowWidget::onTvShowSelected(TvShow *show)
+void TvShowWidget::onTvShowSelected(TvShow* show)
 {
     qDebug() << "Entered, show=" << show->name();
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
 }
 
-void TvShowWidget::onSeasonSelected(TvShow *show, SeasonNumber season)
+void TvShowWidget::onSeasonSelected(TvShow* show, SeasonNumber season)
 {
     qDebug() << "Entered, show=" << show->name() << "season=" << season.toString();
     ui->stackedWidget->setCurrentIndex(2);
@@ -77,7 +77,7 @@ void TvShowWidget::onSeasonSelected(TvShow *show, SeasonNumber season)
  * @brief Shows the episode widget and set the episode
  * @param episode Current episode object
  */
-void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
+void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     ui->stackedWidget->setCurrentIndex(1);
@@ -87,7 +87,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShow *show, SeasonNumber season)
+void TvShowWidget::onSetEnabledTrue(TvShow* show, SeasonNumber season)
 {
     if (show && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -104,7 +104,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show, SeasonNumber season)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
+void TvShowWidget::onSetEnabledTrue(TvShowEpisode* episode)
 {
     if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -136,9 +136,9 @@ void TvShowWidget::onSetDisabledTrue()
  */
 void TvShowWidget::onSaveInformation()
 {
-    QVector<TvShow *> shows = TvShowFilesWidget::instance()->selectedShows();
-    QVector<TvShowEpisode *> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
-    QVector<TvShow *> seasons = TvShowFilesWidget::instance()->selectedSeasons();
+    QVector<TvShow*> shows = TvShowFilesWidget::instance()->selectedShows();
+    QVector<TvShowEpisode*> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
+    QVector<TvShow*> seasons = TvShowFilesWidget::instance()->selectedSeasons();
 
     if (shows.count() == 1 && episodes.count() == 0 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->onSaveInformation();
@@ -156,7 +156,7 @@ void TvShowWidget::onSaveInformation()
         return;
     }
 
-    for (TvShow *show : seasons) {
+    for (TvShow* show : seasons) {
         if (!shows.contains(show)) {
             shows.append(show);
         }
@@ -199,7 +199,7 @@ void TvShowWidget::onSaveInformation()
 void TvShowWidget::onSaveAll()
 {
     qDebug() << "Entered";
-    QVector<TvShow *> shows = Manager::instance()->tvShowModel()->tvShows();
+    QVector<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
     for (int i = 0, n = shows.count(); i < n; ++i) {

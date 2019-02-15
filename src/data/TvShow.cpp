@@ -20,7 +20,7 @@ using namespace std::chrono_literals;
  * @param dir
  * @param parent
  */
-TvShow::TvShow(QString dir, QObject *parent) :
+TvShow::TvShow(QString dir, QObject* parent) :
     QObject(parent),
     m_dir{dir},
     m_runtime{0min},
@@ -178,7 +178,7 @@ void TvShow::clearSeasonImageType(ImageType imageType)
  * @brief Adds an episode
  * @param episode Episode to add
  */
-void TvShow::addEpisode(TvShowEpisode *episode)
+void TvShow::addEpisode(TvShowEpisode* episode)
 {
     m_episodes.append(episode);
 }
@@ -197,7 +197,7 @@ int TvShow::episodeCount() const
  * @param mediaCenterInterface MediaCenterInterface to use
  * @return Loading was successful or not
  */
-bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
+bool TvShow::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
 {
     if (hasChanged() || (m_infoLoaded && m_infoFromNfoLoaded && !reloadFromNfo)) {
         return m_infoLoaded;
@@ -231,7 +231,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  * @param tvScraperInterface Scraper to use
  */
 void TvShow::loadData(TvDbId id,
-    TvScraperInterface *tvScraperInterface,
+    TvScraperInterface* tvScraperInterface,
     TvShowUpdateType type,
     QVector<TvShowScraperInfos> infosToLoad)
 {
@@ -247,7 +247,7 @@ void TvShow::loadData(TvDbId id,
  * @param mediaCenterInterface MediaCenterInterface to use
  * @return Saving was successful
  */
-bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
+bool TvShow::saveData(MediaCenterInterface* mediaCenterInterface)
 {
     qDebug() << "Entered";
     bool saved = mediaCenterInterface->saveTvShow(this);
@@ -279,7 +279,7 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    for (Actor *actor : actorsPointer()) {
+    for (Actor* actor : actorsPointer()) {
         actor->image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
@@ -291,7 +291,7 @@ void TvShow::clearImages()
  */
 bool TvShow::hasNewEpisodes() const
 {
-    const auto checkInfoLoaded = [](TvShowEpisode *episode) { return !episode->infoLoaded(); };
+    const auto checkInfoLoaded = [](TvShowEpisode* episode) { return !episode->infoLoaded(); };
     return std::any_of(m_episodes.cbegin(), m_episodes.cend(), checkInfoLoaded);
 }
 
@@ -302,7 +302,7 @@ bool TvShow::hasNewEpisodes() const
  */
 bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 {
-    return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode *const episode) {
+    return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode* const episode) {
         return episode->season() == season && !episode->infoLoaded();
     });
 }
@@ -394,9 +394,9 @@ QStringList TvShow::genres() const
  * @return List of pointers
  * @see TvShow::genres
  */
-QVector<QString *> TvShow::genresPointer()
+QVector<QString*> TvShow::genresPointer()
 {
-    QVector<QString *> genres;
+    QVector<QString*> genres;
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
@@ -475,7 +475,7 @@ QString TvShow::episodeGuideUrl() const
 QVector<Certification> TvShow::certifications() const
 {
     QVector<Certification> certifications;
-    for (TvShowEpisode *episode : m_episodes) {
+    for (TvShowEpisode* episode : m_episodes) {
         if (!certifications.contains(episode->certification()) && episode->certification().isValid()) {
             certifications.append(episode->certification());
         }
@@ -503,9 +503,9 @@ QVector<Actor> TvShow::actors() const
  * @see TvShow::addActor
  * @see TvShow::actors
  */
-QVector<Actor *> TvShow::actorsPointer()
+QVector<Actor*> TvShow::actorsPointer()
 {
-    QVector<Actor *> actors;
+    QVector<Actor*> actors;
     for (int i = 0, n = m_actors.size(); i < n; i++) {
         actors.append(&(m_actors[i]));
     }
@@ -628,7 +628,7 @@ QVector<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
  * @param episode
  * @return Episode object
  */
-TvShowEpisode *TvShow::episode(SeasonNumber season, EpisodeNumber episode)
+TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
         if (m_episodes[i]->season() == season && m_episodes[i]->episode() == episode) {
@@ -645,7 +645,7 @@ TvShowEpisode *TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 QVector<SeasonNumber> TvShow::seasons(bool includeDummies) const
 {
     QVector<SeasonNumber> seasons;
-    for (TvShowEpisode *episode : m_episodes) {
+    for (TvShowEpisode* episode : m_episodes) {
         if (episode->isDummy() && !includeDummies) {
             continue;
         }
@@ -660,15 +660,15 @@ QVector<SeasonNumber> TvShow::seasons(bool includeDummies) const
  * @brief TvShow::episodes
  * @return
  */
-QVector<TvShowEpisode *> TvShow::episodes() const
+QVector<TvShowEpisode*> TvShow::episodes() const
 {
     return m_episodes;
 }
 
-QVector<TvShowEpisode *> TvShow::episodes(SeasonNumber season) const
+QVector<TvShowEpisode*> TvShow::episodes(SeasonNumber season) const
 {
-    QVector<TvShowEpisode *> episodes;
-    for (TvShowEpisode *episode : m_episodes) {
+    QVector<TvShowEpisode*> episodes;
+    for (TvShowEpisode* episode : m_episodes) {
         if (episode->season() == season) {
             episodes << episode;
         }
@@ -681,7 +681,7 @@ QVector<TvShowEpisode *> TvShow::episodes(SeasonNumber season) const
  * @brief TvShow::modelItem
  * @return
  */
-TvShowModelItem *TvShow::modelItem()
+TvShowModelItem* TvShow::modelItem()
 {
     return m_modelItem;
 }
@@ -804,7 +804,7 @@ void TvShow::setFirstAired(QDate aired)
 void TvShow::setGenres(QStringList genres)
 {
     m_genres.clear();
-    for (const QString &genre : genres) {
+    for (const QString& genre : genres) {
         if (!genre.isEmpty()) {
             m_genres.append(genre);
         }
@@ -1074,7 +1074,7 @@ void TvShow::setChanged(bool changed)
  * @brief TvShow::setModelItem
  * @param item
  */
-void TvShow::setModelItem(TvShowModelItem *item)
+void TvShow::setModelItem(TvShowModelItem* item)
 {
     m_modelItem = item;
 }
@@ -1104,7 +1104,7 @@ void TvShow::setDownloadsInProgress(bool inProgress)
  * @param actor Pointer to the actor to remove
  * @see TvShow::actors
  */
-void TvShow::removeActor(Actor *actor)
+void TvShow::removeActor(Actor* actor)
 {
     for (int i = 0, n = m_actors.size(); i < n; ++i) {
         if (&m_actors[i] == actor) {
@@ -1174,21 +1174,21 @@ void TvShow::removeExtraFanart(QString file)
     setChanged(true);
 }
 
-QVector<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface* mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
-    for (const auto &file : m_extraFanartsToRemove) {
+    for (const auto& file : m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }
     QVector<ExtraFanart> fanarts;
-    for (const auto &file : m_extraFanarts) {
+    for (const auto& file : m_extraFanarts) {
         ExtraFanart f;
         f.path = file;
         fanarts.append(f);
     }
-    for (const auto &img : m_extraFanartImagesToAdd) {
+    for (const auto& img : m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -1254,7 +1254,7 @@ bool TvShow::hasTune() const
     return m_hasTune;
 }
 
-bool TvShow::lessThan(TvShow *a, TvShow *b)
+bool TvShow::lessThan(TvShow* a, TvShow* b)
 {
     return (QString::localeAwareCompare(
                 Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
@@ -1327,7 +1327,7 @@ QVector<ImageType> TvShow::seasonImageTypes()
         ImageType::TvShowSeasonThumb};
 }
 
-void TvShow::setDir(const QString &dir)
+void TvShow::setDir(const QString& dir)
 {
     m_dir = dir;
 }
@@ -1337,7 +1337,7 @@ QString TvShow::status() const
     return m_status;
 }
 
-void TvShow::setStatus(const QString &status)
+void TvShow::setStatus(const QString& status)
 {
     m_status = status;
     setChanged(true);
@@ -1394,7 +1394,7 @@ void TvShow::setSortTitle(QString sortTitle)
 
 bool TvShow::isDummySeason(SeasonNumber season) const
 {
-    for (TvShowEpisode *episode : m_episodes) {
+    for (TvShowEpisode* episode : m_episodes) {
         if (episode->season() == season && !episode->isDummy()) {
             return false;
         }
@@ -1404,7 +1404,7 @@ bool TvShow::isDummySeason(SeasonNumber season) const
 
 bool TvShow::hasDummyEpisodes(SeasonNumber season) const
 {
-    return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode *const episode) {
+    return std::any_of(m_episodes.cbegin(), m_episodes.cend(), [season](const TvShowEpisode* const episode) {
         return episode->season() == season && episode->isDummy();
     });
 }
@@ -1412,7 +1412,7 @@ bool TvShow::hasDummyEpisodes(SeasonNumber season) const
 bool TvShow::hasDummyEpisodes() const
 {
     return std::any_of(
-        m_episodes.cbegin(), m_episodes.cend(), [](const TvShowEpisode *const episode) { return episode->isDummy(); });
+        m_episodes.cbegin(), m_episodes.cend(), [](const TvShowEpisode* const episode) { return episode->isDummy(); });
 }
 
 void TvShow::setShowMissingEpisodes(bool showMissing, bool updateDatabase)
@@ -1443,8 +1443,8 @@ bool TvShow::hideSpecialsInMissingEpisodes() const
 
 void TvShow::fillMissingEpisodes()
 {
-    QVector<TvShowEpisode *> episodes = Manager::instance()->database()->showsEpisodes(this);
-    for (TvShowEpisode *episode : episodes) {
+    QVector<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
+    for (TvShowEpisode* episode : episodes) {
         bool found = false;
         for (int i = 0, n = m_episodes.count(); i < n; ++i) {
             if (m_episodes[i]->season() == episode->season() && m_episodes[i]->episode() == episode->episode()) {
@@ -1468,7 +1468,7 @@ void TvShow::fillMissingEpisodes()
         addEpisode(episode);
 
         bool newSeason = true;
-        for (const TvShowEpisode *existEpisode : this->episodes()) {
+        for (const TvShowEpisode* existEpisode : this->episodes()) {
             if (existEpisode->season() == episode->season() && existEpisode != episode) {
                 newSeason = false;
                 break;
@@ -1479,7 +1479,7 @@ void TvShow::fillMissingEpisodes()
             modelItem()->appendChild(episode->season(), episode->seasonString(), this)->appendChild(episode);
         } else {
             for (int i = 0, n = modelItem()->childCount(); i < n; ++i) {
-                TvShowModelItem *item = modelItem()->child(i);
+                TvShowModelItem* item = modelItem()->child(i);
                 if (item->type() == TvShowType::Season && item->season() == episode->seasonString()) {
                     item->appendChild(episode);
                     break;
@@ -1494,13 +1494,13 @@ void TvShow::fillMissingEpisodes()
 void TvShow::clearMissingEpisodes()
 {
     for (int i = 0; i < modelItem()->childCount(); ++i) {
-        TvShowModelItem *seasonItem = modelItem()->child(i);
+        TvShowModelItem* seasonItem = modelItem()->child(i);
         if (seasonItem->type() != TvShowType::Season) {
             continue;
         }
         bool isDummySeason = true;
         for (int x = 0; x < seasonItem->childCount(); ++x) {
-            TvShowModelItem *item = seasonItem->child(x);
+            TvShowModelItem* item = seasonItem->child(x);
             if (item->type() != TvShowType::Episode) {
                 continue;
             }
@@ -1525,7 +1525,7 @@ void TvShow::clearMissingEpisodes()
 
 /*** DEBUG ***/
 
-QDebug operator<<(QDebug dbg, const TvShow &show)
+QDebug operator<<(QDebug dbg, const TvShow& show)
 {
     QString nl = "\n";
     QString out;
@@ -1539,10 +1539,10 @@ QDebug operator<<(QDebug dbg, const TvShow &show)
     out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));
     out.append(QStringLiteral("  Overview:      ").append(show.overview())).append(nl);
     out.append(QStringLiteral("  Status:        ").append(show.status())).append(nl);
-    for (const QString &genre : show.genres()) {
+    for (const QString& genre : show.genres()) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
-    for (const Actor &actor : show.actors()) {
+    for (const Actor& actor : show.actors()) {
         out.append(QStringLiteral("  Actor:         ").append(nl));
         out.append(QStringLiteral("    Name:  ").append(actor.name)).append(nl);
         out.append(QStringLiteral("    Role:  ").append(actor.role)).append(nl);
@@ -1570,7 +1570,7 @@ QDebug operator<<(QDebug dbg, const TvShow &show)
     return dbg.maybeSpace();
 }
 
-QDebug operator<<(QDebug dbg, const TvShow *show)
+QDebug operator<<(QDebug dbg, const TvShow* show)
 {
     dbg.nospace() << *show;
     return dbg.space();

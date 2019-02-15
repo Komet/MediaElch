@@ -10,7 +10,7 @@
  * @brief FileScannerDialog::FileScannerDialog
  * @param parent
  */
-FileScannerDialog::FileScannerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
+FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC

@@ -13,7 +13,7 @@
         }                                                                                                              \
     } while (false)
 
-ConcertInfoWidget::ConcertInfoWidget(QWidget *parent) : QWidget(parent), ui(std::make_unique<Ui::ConcertInfoWidget>())
+ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std::make_unique<Ui::ConcertInfoWidget>())
 {
     ui->setupUi(this);
 
@@ -41,7 +41,7 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget *parent) : QWidget(parent), ui(std:
 // complete type of UI::ConcertInfoWidget
 ConcertInfoWidget::~ConcertInfoWidget() = default;
 
-void ConcertInfoWidget::setConcertController(ConcertController *controller)
+void ConcertInfoWidget::setConcertController(ConcertController* controller)
 {
     m_concertController = controller;
 }
@@ -80,7 +80,7 @@ void ConcertInfoWidget::updateConcertInfo()
 
     QStringList certifications;
     certifications.append("");
-    for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
+    for (const Concert* concert : Manager::instance()->concertModel()->concerts()) {
         if (!certifications.contains(concert->certification().toString()) && concert->certification().isValid()) {
             certifications.append(concert->certification().toString());
         }

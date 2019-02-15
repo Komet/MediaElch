@@ -17,7 +17,7 @@
  * @brief FanartTv::FanartTv
  * @param parent
  */
-FanartTv::FanartTv(QObject *parent)
+FanartTv::FanartTv(QObject* parent)
 {
     setParent(parent);
 
@@ -133,7 +133,7 @@ QVector<ImageType> FanartTv::provides()
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
-QNetworkAccessManager *FanartTv::qnam()
+QNetworkAccessManager* FanartTv::qnam()
 {
     return &m_qnam;
 }
@@ -182,7 +182,7 @@ void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results)
  * @param tmdbId
  * @param types
  */
-void FanartTv::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     loadMovieData(tmdbId, types, movie);
 }
@@ -248,7 +248,7 @@ void FanartTv::movieCdArts(TmdbId tmdbId)
  * @param tmdbId
  * @param types
  */
-void FanartTv::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     loadConcertData(tmdbId, types, concert);
 }
@@ -311,7 +311,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
@@ -321,7 +321,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie *movie)
+void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie)
 {
     QUrl url;
     QNetworkRequest request;
@@ -329,7 +329,7 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie *mov
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
     qDebug() << url;
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
@@ -340,13 +340,13 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie *mov
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert *concert)
+void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/movies/%1?%2").arg(tmdbId.toString(), keyParameter()));
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllConcertDataFinished);
@@ -358,7 +358,7 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert 
  */
 void FanartTv::onLoadMovieDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QVector<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -374,13 +374,13 @@ void FanartTv::onLoadMovieDataFinished()
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
+        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
             posters.insert(type, parseMovieData(msg, type));
         }
     }
@@ -393,13 +393,13 @@ void FanartTv::onLoadAllMovieDataFinished()
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage *>()->concert();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert* concert = reply->property("storage").value<Storage*>()->concert();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
+        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
             posters.insert(type, parseMovieData(msg, type));
         }
     }
@@ -440,10 +440,10 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
         return posters;
     }
 
-    for (const auto &section : map.value(type)) {
+    for (const auto& section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
-        for (const auto &it : jsonPosters) {
+        for (const auto& it : jsonPosters) {
             const auto poster = it.toObject();
             Poster b;
             b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
@@ -505,7 +505,7 @@ void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
  * @param tvdbId
  * @param types
  */
-void FanartTv::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
+void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     loadTvShowData(tvdbId, types, show);
 }
@@ -522,7 +522,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(type));
     reply->setProperty("season", season.toInt());
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
@@ -533,14 +533,14 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
  * @param tvdbId The Tv DB Id
  * @param types
  */
-void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow *show)
+void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show)
 {
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/tv/%1?%2").arg(tvdbId.toString(), keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllTvShowDataFinished);
@@ -552,7 +552,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow *s
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QVector<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -569,13 +569,13 @@ void FanartTv::onLoadTvShowDataFinished()
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    TvShow *show = reply->property("storage").value<Storage *>()->show();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    TvShow* show = reply->property("storage").value<Storage*>()->show();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        for (const auto type : reply->property("infosToLoad").value<Storage *>()->imageInfosToLoad()) {
+        for (const auto type : reply->property("infosToLoad").value<Storage*>()->imageInfosToLoad()) {
             posters.insert(type, parseTvShowData(msg, type));
         }
     }
@@ -715,10 +715,10 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
         return posters;
     }
 
-    for (const QString &section : map.value(type)) {
+    for (const QString& section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
-        for (const auto &it : jsonPosters) {
+        for (const auto& it : jsonPosters) {
             const auto poster = it.toObject();
 
             if (poster.value("url").toString().isEmpty()) {
@@ -766,7 +766,7 @@ bool FanartTv::hasSettings() const
     return true;
 }
 
-void FanartTv::loadSettings(const ScraperSettings &settings)
+void FanartTv::loadSettings(const ScraperSettings& settings)
 {
     m_tvdb->loadSettings(settings);
     m_tmdb->loadSettings(settings);
@@ -786,7 +786,7 @@ void FanartTv::loadSettings(const ScraperSettings &settings)
     m_personalApiKeyEdit->setText(m_personalApiKey);
 }
 
-void FanartTv::saveSettings(ScraperSettings &settings)
+void FanartTv::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
@@ -796,12 +796,12 @@ void FanartTv::saveSettings(ScraperSettings &settings)
     settings.setString("PersonalApiKey", m_personalApiKey);
 }
 
-QWidget *FanartTv::settingsWidget()
+QWidget* FanartTv::settingsWidget()
 {
     return m_widget;
 }
 
-void FanartTv::insertPoster(QVector<Poster> &posters, Poster b, QString language, QString preferredDiscType)
+void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType)
 {
     int lastInPreferredLangAndHd = -1;
     int lastInPreferredLang = -1;
@@ -876,14 +876,14 @@ void FanartTv::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTv::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
+void FanartTv::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTv::albumImages(Album *album, QString mbId, QVector<ImageType> types)
+void FanartTv::albumImages(Album* album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

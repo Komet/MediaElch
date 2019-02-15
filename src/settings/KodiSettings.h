@@ -8,7 +8,7 @@ class KodiSettings
 public:
     void loadSettings();
     void saveSettings();
-    void setQSettings(QSettings *settings) { m_settings = settings; }
+    void setQSettings(QSettings* settings) { m_settings = settings; }
 
     QString xbmcHost() const;
     int xbmcPort() const;
@@ -21,7 +21,7 @@ public:
     void setXbmcPassword(QString password);
 
 private:
-    QSettings *m_settings = nullptr;
+    QSettings* m_settings = nullptr;
 
     QString m_xbmcHost;
     int m_xbmcPort;

@@ -10,7 +10,7 @@
  * @brief MediaFlags::MediaFlags
  * @param parent
  */
-MediaFlags::MediaFlags(QWidget *parent) : QWidget(parent), ui(new Ui::MediaFlags)
+MediaFlags::MediaFlags(QWidget* parent) : QWidget(parent), ui(new Ui::MediaFlags)
 {
     ui->setupUi(this);
 }
@@ -36,7 +36,7 @@ void MediaFlags::clear()
  * @brief MediaFlags::setStreamDetails
  * @param streamDetails
  */
-void MediaFlags::setStreamDetails(StreamDetails *streamDetails)
+void MediaFlags::setStreamDetails(StreamDetails* streamDetails)
 {
     setupResolution(streamDetails);
     setupAspect(streamDetails);
@@ -49,7 +49,7 @@ void MediaFlags::setStreamDetails(StreamDetails *streamDetails)
  * @brief MediaFlags::setupResolution
  * @param streamDetails
  */
-void MediaFlags::setupResolution(StreamDetails *streamDetails)
+void MediaFlags::setupResolution(StreamDetails* streamDetails)
 {
     const auto videoDetails = streamDetails->videoDetails();
     const int height = videoDetails.value(StreamDetails::VideoDetails::Height).toInt();
@@ -66,7 +66,7 @@ void MediaFlags::setupResolution(StreamDetails *streamDetails)
  * @brief MediaFlags::setupAspect
  * @param streamDetails
  */
-void MediaFlags::setupAspect(StreamDetails *streamDetails)
+void MediaFlags::setupAspect(StreamDetails* streamDetails)
 {
     QStringList availableAspects = {"1.31",
         "1.32",
@@ -120,7 +120,7 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
  * @brief MediaFlags::setupCodec
  * @param streamDetails
  */
-void MediaFlags::setupCodec(StreamDetails *streamDetails)
+void MediaFlags::setupCodec(StreamDetails* streamDetails)
 {
     QStringList availableCodecs = {
         "avc1", "avchd", "divx", "flv", "h264", "avc", "av1", "hevc", "mpeg", "mpeg1", "mpeg2", "vc-1", "wmv3", "xvid"};
@@ -138,7 +138,7 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
  * @brief MediaFlags::setupAudio
  * @param streamDetails
  */
-void MediaFlags::setupAudio(StreamDetails *streamDetails)
+void MediaFlags::setupAudio(StreamDetails* streamDetails)
 {
     bool visible = false;
     QStringList availableCodecs = {"dtshdma",
@@ -185,7 +185,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
  * @brief MediaFlags::setupChannels
  * @param streamDetails
  */
-void MediaFlags::setupChannels(StreamDetails *streamDetails)
+void MediaFlags::setupChannels(StreamDetails* streamDetails)
 {
     int channels = -1;
     for (int i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {

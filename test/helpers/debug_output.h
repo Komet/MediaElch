@@ -4,22 +4,22 @@
 #include <QUrl>
 #include <ostream>
 
-inline std::ostream &operator<<(std::ostream &os, const QByteArray &value)
+inline std::ostream& operator<<(std::ostream& os, const QByteArray& value)
 {
     return os << '"' << (value.isEmpty() ? "" : value.constData()) << '"';
 }
 
-inline std::ostream &operator<<(std::ostream &os, const QLatin1String &value)
+inline std::ostream& operator<<(std::ostream& os, const QLatin1String& value)
 {
     return os << '"' << value.latin1() << '"';
 }
 
-inline std::ostream &operator<<(std::ostream &os, const QString &value)
+inline std::ostream& operator<<(std::ostream& os, const QString& value)
 {
     return os << value.toLocal8Bit();
 }
 
-inline std::ostream &operator<<(std::ostream &os, const QUrl &value)
+inline std::ostream& operator<<(std::ostream& os, const QUrl& value)
 {
     return os << value.toDisplayString();
 }

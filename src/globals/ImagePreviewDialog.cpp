@@ -11,7 +11,7 @@
  * @brief ImagePreviewDialog::ImagePreviewDialog
  * @param parent
  */
-ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
+ImagePreviewDialog::ImagePreviewDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
 {
     ui->setupUi(this);
     connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::accept);
@@ -36,9 +36,9 @@ ImagePreviewDialog::~ImagePreviewDialog()
  * @param parent Parent widget
  * @return Instance of ImagePreviewDialog
  */
-ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
+ImagePreviewDialog* ImagePreviewDialog::instance(QWidget* parent)
 {
-    static ImagePreviewDialog *m_instance = nullptr;
+    static ImagePreviewDialog* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new ImagePreviewDialog(parent);
     }

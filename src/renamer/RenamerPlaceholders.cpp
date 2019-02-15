@@ -3,7 +3,7 @@
 
 #include "renamer/RenamerDialog.h"
 
-RenamerPlaceholders::RenamerPlaceholders(QWidget *parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
+RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
 {
     ui->setupUi(this);
 }
@@ -17,7 +17,7 @@ void RenamerPlaceholders::setType(Renamer::RenameType renameType)
 {
     using Type = Renamer::RenameType;
 
-    for (const auto label : ui->groupBox->findChildren<QLabel *>()) {
+    for (const auto label : ui->groupBox->findChildren<QLabel*>()) {
         const auto itemTypes = label->property("itemTypes").toStringList();
         if (itemTypes.isEmpty()) {
             continue;

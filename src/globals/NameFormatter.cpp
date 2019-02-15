@@ -4,7 +4,7 @@
 #include <QRegExp>
 #include <QStringList>
 
-NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
+NameFormatter::NameFormatter(QObject* parent) : QObject(parent)
 {
     onUpdateExcludeWords();
     connect(Settings::instance(), &Settings::sigSettingsSaved, this, &NameFormatter::onUpdateExcludeWords);
@@ -15,9 +15,9 @@ NameFormatter::NameFormatter(QObject *parent) : QObject(parent)
  * @param parent Parent widget
  * @return Instance of name formatter
  */
-NameFormatter *NameFormatter::instance(QObject *parent)
+NameFormatter* NameFormatter::instance(QObject* parent)
 {
-    static NameFormatter *formatterInstance = new NameFormatter(parent);
+    static NameFormatter* formatterInstance = new NameFormatter(parent);
     return formatterInstance;
 }
 
@@ -30,7 +30,7 @@ QString NameFormatter::excludeWords(QString name)
 {
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
-    for (const QString &word : m_exWords) {
+    for (const QString& word : m_exWords) {
         rx.setPattern(R"((^|[\(\s\-\.\[]+))" + word + R"(([\s\-\.\)\],]+|$))");
         int pos = rx.indexIn(name);
         while (pos >= 0) {
@@ -115,7 +115,7 @@ void NameFormatter::onUpdateExcludeWords()
     qSort(m_exWords.begin(), m_exWords.end(), NameFormatter::lengthLessThan);
 }
 
-bool NameFormatter::lengthLessThan(const QString &s1, const QString &s2)
+bool NameFormatter::lengthLessThan(const QString& s1, const QString& s2)
 {
     return s1.length() > s2.length();
 }

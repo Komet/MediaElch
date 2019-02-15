@@ -2,13 +2,13 @@
 
 #include <QDebug>
 
-NetworkReplyWatcher::NetworkReplyWatcher(QObject *parent, QNetworkReply *reply) : QObject(parent), m_reply{nullptr}
+NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) : QObject(parent), m_reply{nullptr}
 {
     connect(&m_timer, &QTimer::timeout, this, &NetworkReplyWatcher::onTimeout);
     setReply(reply);
 }
 
-void NetworkReplyWatcher::setReply(QNetworkReply *reply)
+void NetworkReplyWatcher::setReply(QNetworkReply* reply)
 {
     m_reply = reply;
     if (!m_reply) {

@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-MyTableView::MyTableView(QWidget *parent) :
+MyTableView::MyTableView(QWidget* parent) :
     QTableView(parent),
     m_useSearchOverlay{false},
     m_searchOverlay{new SearchOverlay(this)}
@@ -10,7 +10,7 @@ MyTableView::MyTableView(QWidget *parent) :
     connect(&m_searchOverlayTimer, &QTimer::timeout, this, &MyTableView::onSearchOverlayTimeout);
 }
 
-void MyTableView::resizeEvent(QResizeEvent *event)
+void MyTableView::resizeEvent(QResizeEvent* event)
 {
     m_searchOverlay->setFixedWidth(event->size().width() - 80);
     m_searchOverlay->move((event->size().width() - m_searchOverlay->width()) / 2,
@@ -18,7 +18,7 @@ void MyTableView::resizeEvent(QResizeEvent *event)
     QTableView::resizeEvent(event);
 }
 
-void MyTableView::setLastColumnWidth(int &width)
+void MyTableView::setLastColumnWidth(int& width)
 {
     setColumnWidth(model()->columnCount() - 1, width);
 }
@@ -28,7 +28,7 @@ int MyTableView::lastColumnWidth() const
     return columnWidth(model()->columnCount() - 1);
 }
 
-void MyTableView::setFirstColumnWidth(int &width)
+void MyTableView::setFirstColumnWidth(int& width)
 {
     setColumnWidth(0, width);
 }
@@ -38,12 +38,12 @@ int MyTableView::firstColumnWidth() const
     return columnWidth(0);
 }
 
-void MyTableView::setUseSearchOverlay(const bool &useSearchOverlay)
+void MyTableView::setUseSearchOverlay(const bool& useSearchOverlay)
 {
     m_useSearchOverlay = useSearchOverlay;
 }
 
-void MyTableView::mouseMoveEvent(QMouseEvent *event)
+void MyTableView::mouseMoveEvent(QMouseEvent* event)
 {
     if (event->pos().x() > 0 && event->pos().x() < 30) {
         if (!m_mouseInLeftEdge) {
@@ -58,7 +58,7 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
+void MyTableView::keyPressEvent(QKeyEvent* keyEvent)
 {
     const int key = keyEvent->key();
     const QString value = keyEvent->text();

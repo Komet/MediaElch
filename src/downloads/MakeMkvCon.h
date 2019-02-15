@@ -11,7 +11,7 @@ class MakeMkvCon : public QObject
 {
     Q_OBJECT
 public:
-    explicit MakeMkvCon(ImportSettings &settings, QObject *parent = nullptr);
+    explicit MakeMkvCon(ImportSettings& settings, QObject* parent = nullptr);
     ~MakeMkvCon() override;
 
     struct Track
@@ -43,8 +43,8 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    ImportSettings &m_settings;
-    QVector<QProcess *> m_processes;
+    ImportSettings& m_settings;
+    QVector<QProcess*> m_processes;
     QMap<int, QString> m_drives;
     QMap<int, Track> m_tracks;
     QString m_lastOutput;

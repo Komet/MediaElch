@@ -13,10 +13,10 @@ class RenamerPlaceholders : public QWidget
     Q_OBJECT
 
 public:
-    explicit RenamerPlaceholders(QWidget *parent = nullptr);
+    explicit RenamerPlaceholders(QWidget* parent = nullptr);
     ~RenamerPlaceholders() override;
     void setType(Renamer::RenameType renameType);
 
 private:
-    Ui::RenamerPlaceholders *ui;
+    Ui::RenamerPlaceholders* ui;
 };

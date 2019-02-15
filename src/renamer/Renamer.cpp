@@ -16,7 +16,7 @@
  * @param renamerConfig Configuration on pattern, etc. used by this renamer
  * @param dialog RenamerDialog that is notified on failure.
  */
-Renamer::Renamer(RenamerConfig renamerConfig, RenamerDialog *dialog) :
+Renamer::Renamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
     m_config(std::move(renamerConfig)),
     m_dialog{dialog},
     m_extraFiles(Settings::instance()->advanced()->subtitleFilters())
@@ -35,13 +35,13 @@ QString Renamer::typeToString(Renamer::RenameType type)
     return "unknown";
 }
 
-QString Renamer::replace(QString &text, const QString &search, const QString &replace)
+QString Renamer::replace(QString& text, const QString& search, const QString& replace)
 {
     text.replace("<" + search + ">", replace);
     return text;
 }
 
-QString Renamer::replaceCondition(QString &text, const QString &condition, const QString &replace)
+QString Renamer::replaceCondition(QString& text, const QString& condition, const QString& replace)
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
@@ -54,7 +54,7 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, const
     return Renamer::replace(text, condition, replace);
 }
 
-QString Renamer::replaceCondition(QString &text, const QString &condition, bool hasCondition)
+QString Renamer::replaceCondition(QString& text, const QString& condition, bool hasCondition)
 {
     QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
     rx.setMinimal(true);
@@ -67,7 +67,7 @@ QString Renamer::replaceCondition(QString &text, const QString &condition, bool 
     return text;
 }
 
-bool Renamer::rename(const QString &file, const QString &newName)
+bool Renamer::rename(const QString& file, const QString& newName)
 {
     QFile f(file);
     if (!f.exists()) {
@@ -89,7 +89,7 @@ bool Renamer::rename(const QString &file, const QString &newName)
     }
 }
 
-bool Renamer::rename(QDir &dir, QString newName)
+bool Renamer::rename(QDir& dir, QString newName)
 {
     if (QString::compare(dir.path(), newName, Qt::CaseInsensitive) == 0) {
         QDir tmpDir;

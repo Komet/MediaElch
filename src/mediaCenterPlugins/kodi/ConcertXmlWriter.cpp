@@ -9,7 +9,7 @@
 
 namespace Kodi {
 
-ConcertXmlWriter::ConcertXmlWriter(Concert &concert) : m_concert{concert}
+ConcertXmlWriter::ConcertXmlWriter(Concert& concert) : m_concert{concert}
 {
 }
 
@@ -52,7 +52,7 @@ QByteArray ConcertXmlWriter::getConcertXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        for (const Poster &poster : m_concert.posters()) {
+        for (const Poster& poster : m_concert.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -61,7 +61,7 @@ QByteArray ConcertXmlWriter::getConcertXml()
 
         if (!m_concert.backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster &poster : m_concert.backdrops()) {
+            for (const Poster& poster : m_concert.backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));

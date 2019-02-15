@@ -18,19 +18,19 @@ class MusicFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicFilesWidget(QWidget *parent = nullptr);
+    explicit MusicFilesWidget(QWidget* parent = nullptr);
     ~MusicFilesWidget() override;
-    static MusicFilesWidget *instance();
-    QVector<Artist *> selectedArtists();
-    QVector<Album *> selectedAlbums();
+    static MusicFilesWidget* instance();
+    QVector<Artist*> selectedArtists();
+    QVector<Album*> selectedAlbums();
 
 public slots:
-    void setFilter(QVector<Filter *> filters, QString text);
+    void setFilter(QVector<Filter*> filters, QString text);
     void multiScrape();
 
 signals:
-    void sigArtistSelected(Artist *);
-    void sigAlbumSelected(Album *);
+    void sigArtistSelected(Artist*);
+    void sigAlbumSelected(Album*);
     void sigNothingSelected();
 
 private slots:
@@ -41,8 +41,8 @@ private slots:
     void showContextMenu(QPoint point);
 
 private:
-    Ui::MusicFilesWidget *ui;
-    static MusicFilesWidget *m_instance;
-    MusicProxyModel *m_proxyModel;
-    QMenu *m_contextMenu;
+    Ui::MusicFilesWidget* ui;
+    static MusicFilesWidget* m_instance;
+    MusicProxyModel* m_proxyModel;
+    QMenu* m_contextMenu;
 };

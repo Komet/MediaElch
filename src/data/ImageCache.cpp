@@ -10,7 +10,7 @@
 #include "globals/Helper.h"
 #include "settings/Settings.h"
 
-ImageCache::ImageCache(QObject *parent) : QObject(parent)
+ImageCache::ImageCache(QObject* parent) : QObject(parent)
 {
     QString location = Settings::instance()->imageCacheDir();
     QDir dir(location);
@@ -31,16 +31,16 @@ ImageCache::ImageCache(QObject *parent) : QObject(parent)
     m_forceCache = Settings::instance()->advanced()->forceCache();
 }
 
-ImageCache *ImageCache::instance(QObject *parent)
+ImageCache* ImageCache::instance(QObject* parent)
 {
-    static ImageCache *m_instance = nullptr;
+    static ImageCache* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new ImageCache(parent);
     }
     return m_instance;
 }
 
-QImage ImageCache::image(QString path, int width, int height, int &origWidth, int &origHeight)
+QImage ImageCache::image(QString path, int width, int height, int& origWidth, int& origHeight)
 {
     if (m_cacheDir.isEmpty()) {
         return scaledImage(Helper::instance()->getImage(path), width, height);
@@ -105,7 +105,7 @@ void ImageCache::invalidateImages(QString path)
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QDir dir(m_cacheDir);
-    for (const QString &file : dir.entryList(QStringList() << md5 + "*")) {
+    for (const QString& file : dir.entryList(QStringList() << md5 + "*")) {
         QFile f(dir.absolutePath() + "/" + file);
         f.remove();
     }
@@ -133,7 +133,7 @@ QSize ImageCache::imageSize(QString path)
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());
 }
 
-int ImageCache::getLastModified(const QString &fileName)
+int ImageCache::getLastModified(const QString& fileName)
 {
     int now = QDateTime::currentDateTime().toTime_t();
     if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now - 10) {
@@ -148,7 +148,7 @@ void ImageCache::clearCache()
     if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache()) {
         return;
     }
-    for (const QFileInfo &file : QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+    for (const QFileInfo& file : QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
         QFile(file.absoluteFilePath()).remove();
     }
 }

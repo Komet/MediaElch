@@ -10,11 +10,11 @@ namespace Kodi {
 class TvShowXmlReader
 {
 public:
-    TvShowXmlReader(TvShow &tvShow);
+    TvShowXmlReader(TvShow& tvShow);
     void parseNfoDom(QDomDocument domDoc);
 
 private:
-    TvShow &m_show;
+    TvShow& m_show;
 };
 
 } // namespace Kodi

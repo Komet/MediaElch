@@ -13,7 +13,7 @@ class StreamDetails : public QObject
 {
     Q_OBJECT
 public:
-    explicit StreamDetails(QObject *parent, QStringList files);
+    explicit StreamDetails(QObject* parent, QStringList files);
 
     enum class VideoDetails
     {
@@ -57,8 +57,8 @@ public:
 
 private:
     QString videoFormat(QString format, QString version) const;
-    QString audioFormat(const QString &codec, const QString &profile) const;
-    QString stereoFormat(const QString &format) const;
+    QString audioFormat(const QString& codec, const QString& profile) const;
+    QString stereoFormat(const QString& format) const;
     void loadWithLibrary();
 
     QStringList m_files;

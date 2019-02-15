@@ -10,7 +10,7 @@
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
 
-IMDB::IMDB(QObject *parent) : m_loadAllTags{false}
+IMDB::IMDB(QObject* parent) : m_loadAllTags{false}
 {
     setParent(parent);
     m_scraperSupports << MovieScraperInfos::Title         //
@@ -57,18 +57,18 @@ bool IMDB::hasSettings() const
     return true;
 }
 
-QWidget *IMDB::settingsWidget()
+QWidget* IMDB::settingsWidget()
 {
     return m_settingsWidget;
 }
 
-void IMDB::loadSettings(const ScraperSettings &settings)
+void IMDB::loadSettings(const ScraperSettings& settings)
 {
     m_loadAllTags = settings.valueBool("LoadAllTags", false);
     m_loadAllTagsWidget->setChecked(m_loadAllTags);
 }
 
-void IMDB::saveSettings(ScraperSettings &settings)
+void IMDB::saveSettings(ScraperSettings& settings)
 {
     m_loadAllTags = m_loadAllTagsWidget->isChecked();
     settings.setBool("LoadAllTags", m_loadAllTags);
@@ -108,7 +108,7 @@ void IMDB::search(QString searchStr)
         QUrl url = QUrl(QStringLiteral("https://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
-        QNetworkReply *reply = m_qnam.get(request);
+        QNetworkReply* reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchIdFinished);
 
@@ -117,7 +117,7 @@ void IMDB::search(QString searchStr)
             QStringLiteral("https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
         QNetworkRequest request(url);
         request.setRawHeader("Accept-Language", "en"); // todo: add language dropdown in settings
-        QNetworkReply *reply = m_qnam.get(request);
+        QNetworkReply* reply = m_qnam.get(request);
         new NetworkReplyWatcher(this, reply);
         connect(reply, &QNetworkReply::finished, this, &IMDB::onSearchFinished);
     }
@@ -125,7 +125,7 @@ void IMDB::search(QString searchStr)
 
 void IMDB::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -139,7 +139,7 @@ void IMDB::onSearchFinished()
 
 void IMDB::onSearchIdFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -206,7 +206,7 @@ QVector<ScraperSearchResult> IMDB::parseSearch(QString html)
     return results;
 }
 
-void IMDB::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void IMDB::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     QString imdbId = ids.values().first();
     movie->clear(infos);
@@ -215,7 +215,7 @@ void IMDB::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(imdbId).toUtf8());
     QNetworkRequest request = QNetworkRequest(url);
     request.setRawHeader("Accept-Language", "en");
-    QNetworkReply *reply = m_qnam.get(request);
+    QNetworkReply* reply = m_qnam.get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -224,10 +224,10 @@ void IMDB::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
 
 void IMDB::onLoadFinished()
 {
-    auto *reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     if (!movie) {
         return;
     }
@@ -238,7 +238,7 @@ void IMDB::onLoadFinished()
         QUrl posterViewerUrl = parsePosters(msg);
         if (infos.contains(MovieScraperInfos::Poster) && !posterViewerUrl.isEmpty()) {
             qDebug() << "Loading movie poster detail view";
-            QNetworkReply *posterReply = m_qnam.get(QNetworkRequest(posterViewerUrl));
+            QNetworkReply* posterReply = m_qnam.get(QNetworkRequest(posterViewerUrl));
             new NetworkReplyWatcher(this, posterReply);
             posterReply->setProperty("storage", Storage::toVariant(posterReply, movie));
             posterReply->setProperty("infosToLoad", Storage::toVariant(posterReply, infos));
@@ -252,7 +252,7 @@ void IMDB::onLoadFinished()
     if (m_loadAllTags && infos.contains(MovieScraperInfos::Tags)) {
         QUrl tagsUrl =
             QUrl(QStringLiteral("https://www.imdb.com/title/%1/keywords").arg(movie->imdbId().toString()).toUtf8());
-        QNetworkReply *tagsReply = m_qnam.get(QNetworkRequest(tagsUrl));
+        QNetworkReply* tagsReply = m_qnam.get(QNetworkRequest(tagsUrl));
         tagsReply->setProperty("storage", Storage::toVariant(tagsReply, movie));
         new NetworkReplyWatcher(this, tagsReply);
         connect(tagsReply, &QNetworkReply::finished, this, &IMDB::onTagsFinished);
@@ -264,8 +264,8 @@ void IMDB::onLoadFinished()
 
 void IMDB::onTagsFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -284,11 +284,11 @@ void IMDB::onTagsFinished()
 
 void IMDB::onPosterLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     auto posterId = reply->url().fileName();
     reply->deleteLater();
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     if (!movie) {
         return;
     }
@@ -302,7 +302,7 @@ void IMDB::onPosterLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void IMDB::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
+void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     using namespace std::chrono;
 
@@ -626,7 +626,7 @@ QUrl IMDB::parsePosters(QString html)
     return QString("https://www.imdb.com%1").arg(rx.cap(1));
 }
 
-void IMDB::parseAndAssignTags(const QString &html, Movie &movie)
+void IMDB::parseAndAssignTags(const QString& html, Movie& movie)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -643,7 +643,7 @@ void IMDB::parseAndAssignTags(const QString &html, Movie &movie)
     }
 }
 
-void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie *movie, QVector<MovieScraperInfos> infos)
+void IMDB::parseAndAssignPoster(QString html, QString posterId, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     // IMDB's media viewer contains all links to the gallery's image files.
     // We only want the poster, which has the id "viewerID".

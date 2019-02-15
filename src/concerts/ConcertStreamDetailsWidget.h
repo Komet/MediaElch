@@ -18,10 +18,10 @@ class ConcertStreamDetailsWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertStreamDetailsWidget(QWidget *parent = nullptr);
+    explicit ConcertStreamDetailsWidget(QWidget* parent = nullptr);
     ~ConcertStreamDetailsWidget() override;
 
-    void setConcertController(ConcertController *controller);
+    void setConcertController(ConcertController* controller);
     void updateConcertInfo();
 
 signals:
@@ -39,7 +39,7 @@ private:
 
     std::unique_ptr<Ui::ConcertStreamDetailsWidget> ui;
     QPointer<ConcertController> m_concertController = nullptr;
-    QVector<QWidget *> m_streamDetailsWidgets;
-    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
-    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
+    QVector<QWidget*> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit*>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
 };

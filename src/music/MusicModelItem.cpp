@@ -3,7 +3,7 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 
-MusicModelItem::MusicModelItem(MusicModelItem *parent) :
+MusicModelItem::MusicModelItem(MusicModelItem* parent) :
     QObject(nullptr),
     m_parentItem{parent},
     m_artist{nullptr},
@@ -16,7 +16,7 @@ MusicModelItem::~MusicModelItem()
     qDeleteAll(m_childItems);
 }
 
-MusicModelItem *MusicModelItem::child(int number)
+MusicModelItem* MusicModelItem::child(int number)
 {
     return m_childItems.value(number);
 }
@@ -29,7 +29,7 @@ int MusicModelItem::childCount() const
 int MusicModelItem::childNumber() const
 {
     if (m_parentItem) {
-        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem *>(this));
+        return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
     }
 
     return 0;
@@ -67,7 +67,7 @@ QVariant MusicModelItem::data(int column) const
         }
 
         if (m_artist) {
-            for (Album *album : m_artist->albums()) {
+            for (Album* album : m_artist->albums()) {
                 if (!album->controller()->infoLoaded()) {
                     return true;
                 }
@@ -86,7 +86,7 @@ QVariant MusicModelItem::data(int column) const
     return QVariant();
 }
 
-MusicModelItem *MusicModelItem::appendChild(Artist *artist)
+MusicModelItem* MusicModelItem::appendChild(Artist* artist)
 {
     auto item = new MusicModelItem(this);
     item->setArtist(artist);
@@ -95,7 +95,7 @@ MusicModelItem *MusicModelItem::appendChild(Artist *artist)
     return item;
 }
 
-MusicModelItem *MusicModelItem::appendChild(Album *album)
+MusicModelItem* MusicModelItem::appendChild(Album* album)
 {
     auto item = new MusicModelItem(this);
     item->setAlbum(album);
@@ -107,7 +107,7 @@ MusicModelItem *MusicModelItem::appendChild(Album *album)
     return item;
 }
 
-MusicModelItem *MusicModelItem::parent()
+MusicModelItem* MusicModelItem::parent()
 {
     return m_parentItem;
 }
@@ -125,22 +125,22 @@ bool MusicModelItem::removeChildren(int position, int count)
     return true;
 }
 
-void MusicModelItem::setArtist(Artist *artist)
+void MusicModelItem::setArtist(Artist* artist)
 {
     m_artist = artist;
 }
 
-void MusicModelItem::setAlbum(Album *album)
+void MusicModelItem::setAlbum(Album* album)
 {
     m_album = album;
 }
 
-Artist *MusicModelItem::artist()
+Artist* MusicModelItem::artist()
 {
     return m_artist;
 }
 
-Album *MusicModelItem::album()
+Album* MusicModelItem::album()
 {
     return m_album;
 }
@@ -156,7 +156,7 @@ MusicType MusicModelItem::type() const
     return MusicType::None;
 }
 
-void MusicModelItem::onAlbumChanged(Album *album)
+void MusicModelItem::onAlbumChanged(Album* album)
 {
     emit sigIntChanged(this, album->modelItem());
 }

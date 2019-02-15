@@ -43,17 +43,17 @@ public:
         ColorLabel data = ColorLabel::NoLabel);
 
     // Rule of five
-    Filter(const Filter &other) = default;
-    Filter(Filter &&other) = default;
-    Filter &operator=(const Filter &) & = default;
-    Filter &operator=(Filter &&) & = default;
+    Filter(const Filter& other) = default;
+    Filter(Filter&& other) = default;
+    Filter& operator=(const Filter&) & = default;
+    Filter& operator=(Filter&&) & = default;
     ~Filter() = default;
 
     bool accepts(QString text) const;
-    bool accepts(Movie *movie);
-    bool accepts(Concert *concert);
-    bool accepts(TvShow *show);
-    bool accepts(TvShowEpisode *episode);
+    bool accepts(Movie* movie);
+    bool accepts(Concert* concert);
+    bool accepts(TvShow* show);
+    bool accepts(TvShowEpisode* episode);
     QString text() const;
     QString shortText() const;
     void setShortText(QString shortText);
@@ -92,4 +92,4 @@ private:
     bool m_hasInfo;
 };
 
-Q_DECLARE_METATYPE(Filter *)
+Q_DECLARE_METATYPE(Filter*)

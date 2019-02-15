@@ -18,10 +18,10 @@ class MovieListDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MovieListDialog(QWidget *parent = nullptr);
+    explicit MovieListDialog(QWidget* parent = nullptr);
     ~MovieListDialog() override;
-    QVector<Movie *> selectedMovies();
-    static MovieListDialog *instance(QWidget *parent = nullptr);
+    QVector<Movie*> selectedMovies();
+    static MovieListDialog* instance(QWidget* parent = nullptr);
 
 public slots:
     int exec() override;
@@ -33,7 +33,7 @@ private slots:
     void onFilterEdited(QString text);
 
 private:
-    Ui::MovieListDialog *ui;
-    QVector<Movie *> m_selectedMovies;
+    Ui::MovieListDialog* ui;
+    QVector<Movie*> m_selectedMovies;
     void reposition();
 };

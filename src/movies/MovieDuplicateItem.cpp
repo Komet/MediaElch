@@ -6,7 +6,7 @@
 
 #include <QDebug>
 
-MovieDuplicateItem::MovieDuplicateItem(QWidget *parent) : QWidget(parent), ui(new Ui::MovieDuplicateItem)
+MovieDuplicateItem::MovieDuplicateItem(QWidget* parent) : QWidget(parent), ui(new Ui::MovieDuplicateItem)
 {
     ui->setupUi(this);
     ui->iconImdbId->setFont(Manager::instance()->iconFont()->font(16));
@@ -19,7 +19,7 @@ MovieDuplicateItem::~MovieDuplicateItem()
     delete ui;
 }
 
-void MovieDuplicateItem::setMovie(Movie *movie, bool isOriginal)
+void MovieDuplicateItem::setMovie(Movie* movie, bool isOriginal)
 {
     ui->labelMovieTitle->setText(movie->name());
     ui->labelFiles->setText(movie->files().join("\n"));
@@ -31,7 +31,7 @@ void MovieDuplicateItem::setMovie(Movie *movie, bool isOriginal)
 
 void MovieDuplicateItem::setDuplicateProperties(MovieDuplicate md)
 {
-    MyIconFont *font = Manager::instance()->iconFont();
+    MyIconFont* font = Manager::instance()->iconFont();
 
     QColor red(169, 68, 66);
     QColor green(60, 118, 61);

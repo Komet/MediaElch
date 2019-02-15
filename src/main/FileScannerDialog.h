@@ -24,7 +24,7 @@ public:
         Music
     };
 
-    explicit FileScannerDialog(QWidget *parent = nullptr);
+    explicit FileScannerDialog(QWidget* parent = nullptr);
     ~FileScannerDialog() override;
     void setForceReload(bool force);
     void setReloadType(ReloadType type);
@@ -53,7 +53,7 @@ private slots:
     void onLoadDone(int msgId);
 
 private:
-    Ui::FileScannerDialog *ui;
+    Ui::FileScannerDialog* ui;
 
     bool m_forceReload = false;
     ReloadType m_reloadType = ReloadType::All;

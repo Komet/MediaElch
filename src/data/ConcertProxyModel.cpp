@@ -10,7 +10,7 @@
  * @brief ConcertProxyModel::ConcertProxyModel
  * @param parent
  */
-ConcertProxyModel::ConcertProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+ConcertProxyModel::ConcertProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
 }
 
@@ -20,16 +20,16 @@ ConcertProxyModel::ConcertProxyModel(QObject *parent) : QSortFilterProxyModel(pa
  * @param sourceParent
  * @return Filter is accepted or not
  */
-bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QVector<Concert *> concerts = Manager::instance()->concertModel()->concerts();
+    QVector<Concert*> concerts = Manager::instance()->concertModel()->concerts();
     if (sourceRow < 0 || sourceRow >= concerts.count()) {
         return true;
     }
 
-    Concert *concert = concerts.at(sourceRow);
-    for (Filter *filter : m_filters) {
+    Concert* concert = concerts.at(sourceRow);
+    for (Filter* filter : m_filters) {
         if (!filter->accepts(concert)) {
             return false;
         }
@@ -44,7 +44,7 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourc
  * @param right
  * @return
  */
-bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     if (sourceModel()->data(left, Qt::UserRole + 1).toBool()
         && !sourceModel()->data(right, Qt::UserRole + 1).toBool()) {
@@ -63,7 +63,7 @@ bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
  * @param filters
  * @param text
  */
-void ConcertProxyModel::setFilter(QVector<Filter *> filters, QString text)
+void ConcertProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

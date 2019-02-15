@@ -9,7 +9,7 @@ using namespace std::chrono_literals;
 /**
  * @brief Loads movie data synchronously
  */
-void loadHotMoviesSync(HotMovies &scraper, QMap<MovieScraperInterface *, QString> ids, Movie &movie)
+void loadHotMoviesSync(HotMovies& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
     QVector<ScraperSearchResult> results;

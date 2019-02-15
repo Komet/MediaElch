@@ -11,7 +11,7 @@
  * @brief MovieFilesOrganizer::MovieFilesOrganizer
  * @param parent
  */
-MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) : QThread(parent)
+MovieFilesOrganizer::MovieFilesOrganizer(QObject* parent) : QThread(parent)
 {
 }
 
@@ -35,10 +35,10 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     const int pos = path.lastIndexOf(QDir::separator());
     QString dirName = path.right(path.length() - pos - 1);
     QString fileName;
-    NameFormatter *nameFormat = NameFormatter::instance(this);
+    NameFormatter* nameFormat = NameFormatter::instance(this);
 
 
-    for (const QStringList &movie : contents) {
+    for (const QStringList& movie : contents) {
         const int movieIndex = movie.at(0).lastIndexOf(QDir::separator());
         if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
             qDebug() << "skipping " << movie.at(0);
@@ -47,7 +47,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
 
         fi.setFile(movie.at(0));
         fileName = fi.completeBaseName();
-        QDir *dir = new QDir();
+        QDir* dir = new QDir();
 
         QString newFolder;
         if (movie.length() == 1) {
@@ -62,7 +62,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
             continue;
         }
 
-        for (const QString &file : movie) {
+        for (const QString& file : movie) {
             if (!dir->rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {

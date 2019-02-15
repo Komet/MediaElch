@@ -28,7 +28,7 @@
  * @brief ImageDialog::ImageDialog
  * @param parent
  */
-ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDialog)
+ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
 {
     ui->setupUi(this);
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
@@ -62,7 +62,7 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
 
     ui->btnAcceptImages->hide();
 
-    QMovie *movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    QMovie* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     movie->start();
     ui->labelSpinner->setMovie(movie);
     clearSearch();
@@ -84,7 +84,7 @@ ImageDialog::ImageDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    for (ImageProviderInterface *provider : Manager::instance()->imageProviders()) {
+    for (ImageProviderInterface* provider : Manager::instance()->imageProviders()) {
         connect(provider,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
@@ -159,7 +159,7 @@ int ImageDialog::exec(ImageType type)
         ui->imageProvider->addItem(tr("Default"));
         ui->imageProvider->setItemData(0, true, Qt::UserRole + 1);
     }
-    for (ImageProviderInterface *provider : m_providers) {
+    for (ImageProviderInterface* provider : m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
@@ -233,9 +233,9 @@ void ImageDialog::reject()
  * @param parent Parent widget (used the first time for constructing)
  * @return Instance of ImageDialog
  */
-ImageDialog *ImageDialog::instance(QWidget *parent)
+ImageDialog* ImageDialog::instance(QWidget* parent)
 {
-    static ImageDialog *m_instance = nullptr;
+    static ImageDialog* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new ImageDialog(parent);
     }
@@ -277,7 +277,7 @@ QUrl ImageDialog::imageUrl()
  * @brief Renders the table when the size of the dialog changes
  * @param event
  */
-void ImageDialog::resizeEvent(QResizeEvent *event)
+void ImageDialog::resizeEvent(QResizeEvent* event)
 {
     if (calcColumnCount() != ui->table->columnCount()) {
         renderTable();
@@ -297,7 +297,7 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
     if (initial) {
         m_defaultElements = downloads;
     }
-    for (const Poster &poster : downloads) {
+    for (const Poster& poster : downloads) {
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
         d.thumbUrl = poster.thumbUrl;
@@ -322,7 +322,7 @@ void ImageDialog::setDownloads(QVector<Poster> downloads, bool initial)
  * @brief Returns an instance of a network access manager
  * @return Instance of a network access manager
  */
-QNetworkAccessManager *ImageDialog::qnam()
+QNetworkAccessManager* ImageDialog::qnam()
 {
     return &m_qnam;
 }
@@ -473,7 +473,7 @@ void ImageDialog::imageClicked(int row, int col)
             m_imageUrls.append(url);
             QByteArray ba;
             QBuffer buffer(&ba);
-            QImage img = static_cast<ImageLabel *>(ui->table->cellWidget(row, col))->image();
+            QImage img = static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
             img.save(&buffer, "jpg", 100);
             ui->gallery->addImage(ba, url.toString());
         }
@@ -495,7 +495,7 @@ void ImageDialog::setImageType(ImageType type)
  * @brief Sets the current movie
  * @param movie
  */
-void ImageDialog::setMovie(Movie *movie)
+void ImageDialog::setMovie(Movie* movie)
 {
     m_movie = movie;
     m_itemType = ItemType::Movie;
@@ -505,7 +505,7 @@ void ImageDialog::setMovie(Movie *movie)
  * @brief Sets the current concert
  * @param concert
  */
-void ImageDialog::setConcert(Concert *concert)
+void ImageDialog::setConcert(Concert* concert)
 {
     m_concert = concert;
     m_itemType = ItemType::Concert;
@@ -515,7 +515,7 @@ void ImageDialog::setConcert(Concert *concert)
  * @brief Sets the current tv show
  * @param show
  */
-void ImageDialog::setTvShow(TvShow *show)
+void ImageDialog::setTvShow(TvShow* show)
 {
     m_tvShow = show;
     m_itemType = ItemType::TvShow;
@@ -534,19 +534,19 @@ void ImageDialog::setSeason(SeasonNumber season)
  * @brief Sets the current tv show episode
  * @param episode
  */
-void ImageDialog::setTvShowEpisode(TvShowEpisode *episode)
+void ImageDialog::setTvShowEpisode(TvShowEpisode* episode)
 {
     m_tvShowEpisode = episode;
     m_itemType = ItemType::TvShowEpisode;
 }
 
-void ImageDialog::setArtist(Artist *artist)
+void ImageDialog::setArtist(Artist* artist)
 {
     m_artist = artist;
     m_itemType = ItemType::Artist;
 }
 
-void ImageDialog::setAlbum(Album *album)
+void ImageDialog::setAlbum(Album* album)
 {
     m_album = album;
     m_itemType = ItemType::Album;
@@ -561,7 +561,7 @@ void ImageDialog::cancelDownloads()
     ui->labelLoading->setVisible(false);
     ui->labelSpinner->setVisible(false);
     bool running = false;
-    for (const DownloadElement &d : m_elements) {
+    for (const DownloadElement& d : m_elements) {
         if (!d.downloaded) {
             running = true;
             break;
@@ -723,7 +723,7 @@ void ImageDialog::updateSourceLink()
         ui->noResultsLabel->setText(tr("No images found"));
     } else {
         auto p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole)
-                     .value<ImageProviderInterface *>();
+                     .value<ImageProviderInterface*>();
         ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
         ui->imageSource->setVisible(true);
         ui->noResultsLabel->setText(
@@ -780,7 +780,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider =
-        ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface *>();
+        ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
 
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
@@ -815,7 +815,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
 void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 {
     ui->searchTerm->setLoading(false);
-    for (const ScraperSearchResult &result : results) {
+    for (const ScraperSearchResult& result : results) {
         QString name = result.name;
         if (!result.released.isNull()) {
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
@@ -929,7 +929,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
  * @brief Triggers loading of images
  * @param item
  */
-void ImageDialog::onResultClicked(QTableWidgetItem *item)
+void ImageDialog::onResultClicked(QTableWidgetItem* item)
 {
     ui->stackedWidget->setCurrentIndex(1);
     loadImagesFromProvider(item->data(Qt::UserRole).toString());
@@ -944,7 +944,7 @@ void ImageDialog::onProviderImagesLoaded(QVector<Poster> images)
     setDownloads(images, false);
 }
 
-void ImageDialog::setMultiSelection(const bool &enable)
+void ImageDialog::setMultiSelection(const bool& enable)
 {
     m_multiSelection = enable;
     ui->gallery->setVisible(enable);
@@ -956,12 +956,12 @@ QVector<QUrl> ImageDialog::imageUrls()
     return m_imageUrls;
 }
 
-void ImageDialog::onImageClosed(const QString &url)
+void ImageDialog::onImageClosed(const QString& url)
 {
     m_imageUrls.removeOne(url);
 }
 
-QString ImageDialog::formatSearchText(const QString &text)
+QString ImageDialog::formatSearchText(const QString& text)
 {
     QString fText = text;
     fText.replace(" - ", " ");

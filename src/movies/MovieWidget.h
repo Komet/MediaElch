@@ -25,22 +25,22 @@ class MovieWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieWidget(QWidget *parent = nullptr);
+    explicit MovieWidget(QWidget* parent = nullptr);
     ~MovieWidget() override;
 
 public slots:
     void clear();
-    void setMovie(Movie *movie);
+    void setMovie(Movie* movie);
     void startScraperSearch();
     void saveInformation();
     void saveAll();
-    void setEnabledTrue(Movie *movie = nullptr);
+    void setEnabledTrue(Movie* movie = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
     void updateMovieInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 signals:
     void actorDownloadStarted(QString, int);
@@ -50,12 +50,12 @@ signals:
     void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
-    void onInfoLoadDone(Movie *movie);
-    void onLoadDone(Movie *movie);
-    void onLoadImagesStarted(Movie *movie);
-    void onLoadingImages(Movie *movie, QVector<ImageType> imageTypes);
-    void onDownloadProgress(Movie *movie, int current, int maximum);
-    void onSetImage(Movie *movie, ImageType type, QByteArray imageData);
+    void onInfoLoadDone(Movie* movie);
+    void onLoadDone(Movie* movie);
+    void onLoadImagesStarted(Movie* movie);
+    void onLoadingImages(Movie* movie, QVector<ImageType> imageTypes);
+    void onDownloadProgress(Movie* movie, int current, int maximum);
+    void onSetImage(Movie* movie, ImageType type, QByteArray imageData);
     void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onExtraFanartDropped(QUrl imageUrl);
 
@@ -100,8 +100,8 @@ private slots:
     void onOutlineChange();
     void onImdbIdChange(QString text);
 
-    void onActorEdited(QTableWidgetItem *item);
-    void onSubtitleEdited(QTableWidgetItem *item);
+    void onActorEdited(QTableWidgetItem* item);
+    void onSubtitleEdited(QTableWidgetItem* item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
@@ -109,20 +109,20 @@ private slots:
     void onInsertYoutubeLink();
     void onPlayLocalTrailer();
 
-    void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QByteArray &image);
+    void onRemoveExtraFanart(const QString& file);
+    void onRemoveExtraFanart(const QByteArray& image);
     void onAddExtraFanart();
 
-    void updateImage(ImageType imageType, ClosableImage *image);
+    void updateImage(ImageType imageType, ClosableImage* image);
 
 private:
-    Ui::MovieWidget *ui;
+    Ui::MovieWidget* ui;
     QPointer<Movie> m_movie;
-    QMovie *m_loadingMovie;
-    QLabel *m_savingWidget;
-    QVector<QWidget *> m_streamDetailsWidgets;
-    QVector<QVector<QLineEdit *>> m_streamDetailsAudio;
-    QVector<QVector<QLineEdit *>> m_streamDetailsSubtitles;
-    QLabel *m_backgroundLabel;
+    QMovie* m_loadingMovie;
+    QLabel* m_savingWidget;
+    QVector<QWidget*> m_streamDetailsWidgets;
+    QVector<QVector<QLineEdit*>> m_streamDetailsAudio;
+    QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;
+    QLabel* m_backgroundLabel;
     void updateImages(QVector<ImageType> images);
 };

@@ -12,7 +12,7 @@ class UnpackButtons : public QWidget
     Q_OBJECT
 
 public:
-    explicit UnpackButtons(QWidget *parent = nullptr);
+    explicit UnpackButtons(QWidget* parent = nullptr);
     ~UnpackButtons() override;
     void setBaseName(QString baseName);
     QString baseName() const;
@@ -31,6 +31,6 @@ private slots:
     void onDelete();
 
 private:
-    Ui::UnpackButtons *ui;
+    Ui::UnpackButtons* ui;
     QString m_baseName;
 };

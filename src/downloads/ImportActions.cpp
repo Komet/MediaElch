@@ -7,7 +7,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-ImportActions::ImportActions(QWidget *parent) : QWidget(parent), ui(new Ui::ImportActions)
+ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
     Helper::instance()->setButtonStyle(ui->btnImport, Helper::ButtonSuccess);
@@ -48,13 +48,13 @@ QString ImportActions::type()
     return m_type;
 }
 
-void ImportActions::setTvShow(TvShow *show)
+void ImportActions::setTvShow(TvShow* show)
 {
     m_importDir.clear();
     m_tvShow = show;
 }
 
-TvShow *ImportActions::tvShow()
+TvShow* ImportActions::tvShow()
 {
     return m_tvShow;
 }

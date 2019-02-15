@@ -17,7 +17,7 @@ class MakeMkvDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MakeMkvDialog(QWidget *parent = nullptr);
+    explicit MakeMkvDialog(QWidget* parent = nullptr);
     ~MakeMkvDialog() override;
 
 public slots:
@@ -32,15 +32,15 @@ private slots:
     void onImportTracks();
     void onImportComplete();
     void onMovieChosen();
-    void onLoadDone(Movie *movie);
+    void onLoadDone(Movie* movie);
     void onImport();
     void onDiscBackedUp();
     void onTrackImported(int trackId);
     void onImportProgress(int value, int max);
 
 private:
-    Ui::MakeMkvDialog *ui;
-    MakeMkvCon *m_makeMkvCon;
+    Ui::MakeMkvDialog* ui;
+    MakeMkvCon* m_makeMkvCon;
     QPointer<Movie> m_movie;
     QString m_title;
     QMap<int, QString> m_tracks;

@@ -24,19 +24,19 @@ public:
         BadgeInverse
     };
 
-    explicit Badge(QWidget *parent = nullptr);
-    explicit Badge(const QString &text, QWidget *parent = nullptr);
+    explicit Badge(QWidget* parent = nullptr);
+    explicit Badge(const QString& text, QWidget* parent = nullptr);
     void setBadgeType(Badge::Type type);
-    void setClosable(const bool &closable);
-    void setActive(const bool &active);
-    void setFontBold(const bool &bold);
+    void setClosable(const bool& closable);
+    void setActive(const bool& active);
+    void setFontBold(const bool& bold);
     bool isActive() const;
     bool isClosable() const;
-    void setShowActiveMark(const bool &showActiveMark);
+    void setShowActiveMark(const bool& showActiveMark);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *ev) override;
+    void paintEvent(QPaintEvent* event) override;
+    void mousePressEvent(QMouseEvent* ev) override;
 
 signals:
     void clicked();

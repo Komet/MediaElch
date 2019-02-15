@@ -9,12 +9,12 @@ Certification::Certification(QString certification) : m_certification(certificat
 
 const Certification Certification::NoCertification = Certification();
 
-bool Certification::operator==(const Certification &other) const
+bool Certification::operator==(const Certification& other) const
 {
     return m_certification == other.m_certification;
 }
 
-bool Certification::operator!=(const Certification &other) const
+bool Certification::operator!=(const Certification& other) const
 {
     return !(*this == other);
 }
@@ -34,12 +34,12 @@ Certification Certification::FSK(QString age)
     return Certification(QStringLiteral("FSK %1").arg(age));
 }
 
-std::ostream &operator<<(std::ostream &os, const Certification &id)
+std::ostream& operator<<(std::ostream& os, const Certification& id)
 {
     return os << id.toString().toStdString();
 }
 
-QDebug operator<<(QDebug debug, const Certification &id)
+QDebug operator<<(QDebug debug, const Certification& id)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "Certification(" << id.toString() << ')';

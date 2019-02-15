@@ -22,7 +22,7 @@
  * @brief Searches for searchStr and returns the results synchronously using the given Scraper.
  */
 template<class ScraperInterfaceT>
-QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT &scraper, QString search)
+QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT& scraper, QString search)
 {
     QVector<ScraperSearchResult> results;
     QEventLoop loop;
@@ -39,9 +39,9 @@ QVector<ScraperSearchResult> searchScraperSync(ScraperInterfaceT &scraper, QStri
  * @brief Loads movie data synchronously
  */
 template<class ScraperInterfaceT>
-void loadDataSync(ScraperInterfaceT &scraper,
-    QMap<MovieScraperInterface *, QString> ids,
-    Movie &movie,
+void loadDataSync(ScraperInterfaceT& scraper,
+    QMap<MovieScraperInterface*, QString> ids,
+    Movie& movie,
     QVector<MovieScraperInfos> infos)
 {
     QVector<ScraperSearchResult> results;

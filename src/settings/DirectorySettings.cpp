@@ -4,7 +4,7 @@
 
 void DirectorySettings::loadSettings()
 {
-    const auto loadDirectory = [&](const char *settingsKey, QVector<SettingsDir> &directories) {
+    const auto loadDirectory = [&](const char* settingsKey, QVector<SettingsDir>& directories) {
         directories.clear();
         const int size = m_settings->beginReadArray(settingsKey);
         for (int i = 0; i < size; ++i) {
@@ -27,7 +27,7 @@ void DirectorySettings::loadSettings()
 
 void DirectorySettings::saveSettings()
 {
-    const auto saveDirectory = [&](const char *settingsKey, QVector<SettingsDir> &directories) {
+    const auto saveDirectory = [&](const char* settingsKey, QVector<SettingsDir>& directories) {
         m_settings->beginWriteArray(settingsKey);
         const int size = directories.count();
         for (int i = 0; i < size; ++i) {
@@ -53,27 +53,27 @@ void DirectorySettings::saveSettings()
     m_settings->endArray();
 }
 
-const QVector<SettingsDir> &DirectorySettings::movieDirectories() const
+const QVector<SettingsDir>& DirectorySettings::movieDirectories() const
 {
     return m_movieDirectories;
 }
 
-const QVector<SettingsDir> &DirectorySettings::tvShowDirectories() const
+const QVector<SettingsDir>& DirectorySettings::tvShowDirectories() const
 {
     return m_tvShowDirectories;
 }
 
-const QVector<SettingsDir> &DirectorySettings::concertDirectories() const
+const QVector<SettingsDir>& DirectorySettings::concertDirectories() const
 {
     return m_concertDirectories;
 }
 
-const QVector<SettingsDir> &DirectorySettings::musicDirectories() const
+const QVector<SettingsDir>& DirectorySettings::musicDirectories() const
 {
     return m_musicDirectories;
 }
 
-const QVector<SettingsDir> &DirectorySettings::downloadDirectories() const
+const QVector<SettingsDir>& DirectorySettings::downloadDirectories() const
 {
     return m_downloadDirectories;
 }

@@ -8,10 +8,10 @@ public:
     SeasonNumber() = default;
     explicit SeasonNumber(int seasonNumber);
 
-    bool operator==(const SeasonNumber &other) const;
-    bool operator!=(const SeasonNumber &other) const;
-    bool operator>(const SeasonNumber &other) const;
-    bool operator<(const SeasonNumber &other) const;
+    bool operator==(const SeasonNumber& other) const;
+    bool operator!=(const SeasonNumber& other) const;
+    bool operator>(const SeasonNumber& other) const;
+    bool operator<(const SeasonNumber& other) const;
 
     int toInt() const;
     QString toPaddedString() const;

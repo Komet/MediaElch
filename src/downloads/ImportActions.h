@@ -14,15 +14,15 @@ class ImportActions : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImportActions(QWidget *parent = nullptr);
+    explicit ImportActions(QWidget* parent = nullptr);
     ~ImportActions() override;
     void setButtonEnabled(bool enabled);
     void setBaseName(QString baseName);
     QString baseName();
     void setType(QString type);
     QString type();
-    void setTvShow(TvShow *show);
-    TvShow *tvShow();
+    void setTvShow(TvShow* show);
+    TvShow* tvShow();
     void setImportDir(QString dir);
     QString importDir();
     void setFiles(QStringList files);
@@ -39,12 +39,12 @@ private slots:
     void onDelete();
 
 private:
-    Ui::ImportActions *ui;
+    Ui::ImportActions* ui;
     QString m_baseName;
     QString m_type;
     QString m_importDir;
-    TvShow *m_tvShow;
-    ImportDialog *m_importDialog;
+    TvShow* m_tvShow;
+    ImportDialog* m_importDialog;
     QStringList m_files;
     QStringList m_extraFiles;
 };
