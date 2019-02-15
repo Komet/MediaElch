@@ -9,7 +9,7 @@
  * @brief TheTvDbImages::TheTvDbImages
  * @param parent
  */
-TheTvDbImages::TheTvDbImages(QObject *parent)
+TheTvDbImages::TheTvDbImages(QObject* parent)
 {
     setParent(parent);
     m_provides = {ImageType::TvShowPoster,
@@ -168,7 +168,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
  * @param tvdbId
  * @param types
  */
-void TheTvDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
+void TheTvDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -241,7 +241,7 @@ void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
+void TheTvDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -315,7 +315,7 @@ void TheTvDbImages::movieCdArts(TmdbId tmdbId)
  * @param tmdbId
  * @param types
  */
-void TheTvDbImages::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
+void TheTvDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -410,17 +410,17 @@ bool TheTvDbImages::hasSettings() const
     return false;
 }
 
-void TheTvDbImages::loadSettings(const ScraperSettings &settings)
+void TheTvDbImages::loadSettings(const ScraperSettings& settings)
 {
     m_tvdb->loadSettings(settings);
 }
 
-void TheTvDbImages::saveSettings(ScraperSettings &settings)
+void TheTvDbImages::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *TheTvDbImages::settingsWidget()
+QWidget* TheTvDbImages::settingsWidget()
 {
     return nullptr;
 }
@@ -463,14 +463,14 @@ void TheTvDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TheTvDbImages::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
+void TheTvDbImages::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TheTvDbImages::albumImages(Album *album, QString mbId, QVector<ImageType> types)
+void TheTvDbImages::albumImages(Album* album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

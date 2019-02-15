@@ -28,10 +28,10 @@ class Concert final : public QObject
     Q_OBJECT
 
 public:
-    explicit Concert(QStringList files, QObject *parent = nullptr);
+    explicit Concert(QStringList files, QObject* parent = nullptr);
     ~Concert() = default;
 
-    ConcertController *controller() const;
+    ConcertController* controller() const;
 
     void clear();
     void clear(QVector<ConcertScraperInfos> infos);
@@ -47,7 +47,7 @@ public:
     Certification certification() const;
     QStringList genres() const;
     QStringList tags() const;
-    QVector<QString *> genresPointer();
+    QVector<QString*> genresPointer();
     QUrl trailer() const;
     QStringList files() const;
     QString folderName() const;
@@ -63,7 +63,7 @@ public:
     int mediaCenterId() const;
     TmdbId tmdbId() const;
     ImdbId imdbId() const;
-    StreamDetails *streamDetails() const;
+    StreamDetails* streamDetails() const;
     bool streamDetailsLoaded() const;
     QString nfoContent() const;
     int databaseId() const;
@@ -109,7 +109,7 @@ public:
     void removeTag(QString tag);
 
     // Extra Fanarts
-    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface* mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QVector<QByteArray> extraFanartImagesToAdd();
     void addExtraFanart(QByteArray fanart);
@@ -137,14 +137,14 @@ public:
     void setDiscType(DiscType type);
     DiscType discType() const;
 
-    static bool lessThan(Concert *a, Concert *b);
+    static bool lessThan(Concert* a, Concert* b);
     static QVector<ImageType> imageTypes();
 
 signals:
-    void sigChanged(Concert *);
+    void sigChanged(Concert*);
 
 private:
-    ConcertController *m_controller;
+    ConcertController* m_controller;
     QStringList m_files;
     QString m_folderName;
     QString m_name;
@@ -174,7 +174,7 @@ private:
     ImdbId m_imdbId;
     QVector<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
-    StreamDetails *m_streamDetails;
+    StreamDetails* m_streamDetails;
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;

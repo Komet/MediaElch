@@ -5,7 +5,7 @@
 
 #include "globals/Manager.h"
 
-TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(new Ui::TvShowSearchEpisode)
+TvShowSearchEpisode::TvShowSearchEpisode(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSearchEpisode)
 {
     ui->setupUi(this);
 
@@ -29,7 +29,7 @@ TvShowSearchEpisode::TvShowSearchEpisode(QWidget *parent) : QWidget(parent), ui(
     ui->chkTitle->setMyData(static_cast<int>(TvShowScraperInfos::Title));
     ui->chkWriter->setMyData(static_cast<int>(TvShowScraperInfos::Writer));
 
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &TvShowSearchEpisode::onChkToggled);
         }
@@ -52,7 +52,7 @@ void TvShowSearchEpisode::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled()) {
             m_infosToLoad.append(TvShowScraperInfos(box->myData().toInt()));
         }
@@ -69,7 +69,7 @@ void TvShowSearchEpisode::onChkToggled()
 void TvShowSearchEpisode::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
         }
@@ -82,7 +82,7 @@ QVector<TvShowScraperInfos> TvShowSearchEpisode::infosToLoad()
     return m_infosToLoad;
 }
 
-void TvShowSearchEpisode::onResultClicked(QTableWidgetItem *item)
+void TvShowSearchEpisode::onResultClicked(QTableWidgetItem* item)
 {
     m_scraperId = TvDbId(item->data(Qt::UserRole).toString());
     emit sigResultClicked();
@@ -116,8 +116,8 @@ void TvShowSearchEpisode::onShowResults(QVector<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    for (const ScraperSearchResult &result : results) {
-        QTableWidgetItem *item =
+    for (const ScraperSearchResult& result : results) {
+        QTableWidgetItem* item =
             new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();

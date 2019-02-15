@@ -8,7 +8,7 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
-AEBN::AEBN(QObject *parent) :
+AEBN::AEBN(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Released,
         MovieScraperInfos::Runtime,
@@ -31,7 +31,7 @@ AEBN::AEBN(QObject *parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage &lang : supportedLanguages()) {
+    for (const ScraperLanguage& lang : supportedLanguages()) {
         m_box->addItem(lang.languageName, lang.languageKey);
     }
 
@@ -121,14 +121,14 @@ void AEBN::search(QString searchStr)
         "fts?userQuery=%2&targetSearchMode=basic&locale=%1&searchType=movie&sortType=Relevance&imageType="
         "Large&theaterId=822&genreId=%3")
                  .arg(m_language, encodedSearch, m_genreId));
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AEBN::onSearchFinished);
 }
 
 void AEBN::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -164,14 +164,14 @@ QVector<ScraperSearchResult> AEBN::parseSearch(QString html)
     return results;
 }
 
-void AEBN::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void AEBN::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
     QUrl url(QString(
         "https://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=%3")
                  .arg(ids.values().first(), m_language, m_genreId));
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -180,15 +180,14 @@ void AEBN::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
 
 void AEBN::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QStringList actorIds;
-        parseAndAssignInfos(
-            msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad(), actorIds);
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad(), actorIds);
         if (!actorIds.isEmpty()) {
             downloadActors(movie, actorIds);
             return;
@@ -199,7 +198,7 @@ void AEBN::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AEBN::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos, QStringList &actorIds)
+void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos, QStringList& actorIds)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -322,7 +321,7 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperI
     }
 }
 
-void AEBN::downloadActors(Movie *movie, QStringList actorIds)
+void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 {
     if (actorIds.isEmpty()) {
         movie->controller()->scraperLoadDone(this);
@@ -333,7 +332,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     QUrl url(
         QString("https://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=%3")
             .arg(id, m_language, m_genreId));
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(url));
+    QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);
@@ -343,8 +342,8 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
 
 void AEBN::onActorLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QStringList actorIds = reply->property("actorIds").toStringList();
     QString actorId = reply->property("actorId").toString();
     reply->deleteLater();
@@ -358,12 +357,12 @@ void AEBN::onActorLoadFinished()
     downloadActors(movie, actorIds);
 }
 
-void AEBN::parseAndAssignActor(QString html, Movie *movie, QString id)
+void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)
 {
     QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
-        for (Actor *a : movie->actorsPointer()) {
+        for (Actor* a : movie->actorsPointer()) {
             if (a->id == id) {
                 a->thumb = QStringLiteral("https:") + rx.cap(1);
             }
@@ -376,7 +375,7 @@ bool AEBN::hasSettings() const
     return true;
 }
 
-void AEBN::loadSettings(const ScraperSettings &settings)
+void AEBN::loadSettings(const ScraperSettings& settings)
 {
     m_language = settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
@@ -392,7 +391,7 @@ void AEBN::loadSettings(const ScraperSettings &settings)
     }
 }
 
-void AEBN::saveSettings(ScraperSettings &settings)
+void AEBN::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setString("Language", m_language);
@@ -401,7 +400,7 @@ void AEBN::saveSettings(ScraperSettings &settings)
     settings.setString("Genre", m_genreId);
 }
 
-QWidget *AEBN::settingsWidget()
+QWidget* AEBN::settingsWidget()
 {
     return m_widget;
 }

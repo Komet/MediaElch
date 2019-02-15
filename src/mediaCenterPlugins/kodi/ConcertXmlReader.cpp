@@ -11,7 +11,7 @@
 namespace Kodi {
 
 
-ConcertXmlReader::ConcertXmlReader(Concert &concert) : m_concert{concert}
+ConcertXmlReader::ConcertXmlReader(Concert& concert) : m_concert{concert}
 {
 }
 
@@ -66,7 +66,7 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {
-        for (const QString &genre :
+        for (const QString& genre :
             domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts)) {
             m_concert.addGenre(genre);
         }

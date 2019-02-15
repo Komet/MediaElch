@@ -23,16 +23,16 @@ public:
     QByteArray data;
     qint64 bytesReceived{0};
     qint64 bytesTotal{0};
-    Actor *actor{nullptr};
-    TvShowEpisode *episode{nullptr};
-    Movie *movie{nullptr};
-    TvShow *show{nullptr};
-    Concert *concert{nullptr};
-    Album *album{nullptr};
-    Artist *artist{nullptr};
+    Actor* actor{nullptr};
+    TvShowEpisode* episode{nullptr};
+    Movie* movie{nullptr};
+    TvShow* show{nullptr};
+    Concert* concert{nullptr};
+    Album* album{nullptr};
+    Artist* artist{nullptr};
     SeasonNumber season{SeasonNumber::SpecialsSeason};
     bool directDownload{false};
 
     template<class T>
-    T *getElement();
+    T* getElement();
 };

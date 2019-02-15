@@ -18,22 +18,22 @@ class TMDb : public MovieScraperInterface
 {
     Q_OBJECT
 public:
-    explicit TMDb(QObject *parent = nullptr);
+    explicit TMDb(QObject* parent = nullptr);
     ~TMDb() override = default;
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings &settings) override;
-    void saveSettings(ScraperSettings &settings) override;
+    void loadSettings(const ScraperSettings& settings) override;
+    void saveSettings(ScraperSettings& settings) override;
     QVector<MovieScraperInfos> scraperSupports() override;
     QVector<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
-    QWidget *settingsWidget() override;
-    static QVector<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
+    QWidget* settingsWidget() override;
+    static QVector<ScraperSearchResult> parseSearch(QString json, int* nextPage, int page);
     static QString apiKey();
     bool isAdult() const override;
 
@@ -56,8 +56,8 @@ private:
     QMutex m_mutex;
     QVector<MovieScraperInfos> m_scraperSupports;
     QVector<MovieScraperInfos> m_scraperNativelySupports;
-    QWidget *m_widget;
-    QComboBox *m_box;
+    QWidget* m_widget;
+    QComboBox* m_box;
 
     enum class ApiMovieDetails
     {
@@ -80,8 +80,8 @@ private:
     QString language() const;
     QString country() const;
     QString apiUrlParameterString(ApiUrlParameter parameter) const;
-    QUrl getMovieSearchUrl(const QString &searchStr, const UrlParameterMap &parameters) const;
+    QUrl getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const;
     QUrl
-    getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap &parameters = UrlParameterMap{}) const;
-    void parseAndAssignInfos(QString json, Movie *movie, QVector<MovieScraperInfos> infos);
+    getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters = UrlParameterMap{}) const;
+    void parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos);
 };

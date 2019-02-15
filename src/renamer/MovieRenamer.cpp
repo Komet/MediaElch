@@ -8,18 +8,18 @@
 #include <QDir>
 #include <QFileInfo>
 
-MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog) : Renamer(renamerConfig, dialog)
+MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
 }
 
-MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
+MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 {
     QFileInfo movieInfo(movie.files().first());
     QString fiCanonicalPath = movieInfo.canonicalPath();
     QDir dir(movieInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
 
-    MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
+    MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&movie);
 
     QString newFileName;
@@ -28,7 +28,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
     QString parentDirName;
     bool errorOccured = false;
 
-    for (const QString &file : movie.files()) {
+    for (const QString& file : movie.files()) {
         QFileInfo fi(file);
         newMovieFiles.append(fi.fileName());
     }
@@ -53,7 +53,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
         newMovieFiles.clear();
         int partNo = 0;
         const auto videoDetails = movie.streamDetails()->videoDetails();
-        for (const QString &file : movie.files()) {
+        for (const QString& file : movie.files()) {
             newFileName = (movie.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo fi(file);
             QString baseName = fi.completeBaseName();
@@ -92,7 +92,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                     FilmFiles.append(newFileName);
                 }
 
-                for (const QString &trailerFile : currentDir.entryList(
+                for (const QString& trailerFile : currentDir.entryList(
                          QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
                     QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
                     QString newTrailerFileName = newFileName;
@@ -134,7 +134,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 }
                 */
 
-                for (Subtitle *subtitle : movie.subtitles()) {
+                for (Subtitle* subtitle : movie.subtitles()) {
                     QString subFileName = QFileInfo(newFileName).completeBaseName();
                     if (!subtitle->language().isEmpty()) {
                         subFileName.append("." + subtitle->language());
@@ -144,7 +144,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                     }
 
                     QStringList newSubFiles;
-                    for (const QString &subFile : subtitle->files()) {
+                    for (const QString& subFile : subtitle->files()) {
                         QFileInfo subFi(fi.canonicalPath() + "/" + subFile);
                         QString newSubFileName = subFileName + "." + subFi.suffix();
                         int row = m_dialog->addResultToTable(subFile, newSubFileName, RenameOperation::Rename);
@@ -293,7 +293,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
                 }
             }
 
-            for (const QString &fileName : FilmFiles) {
+            for (const QString& fileName : FilmFiles) {
                 QFileInfo fi(fileName);
                 if (dir.dirName() != newFolderName) {
                     const int row = m_dialog->addResultToTable(fi.fileName(),
@@ -327,7 +327,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie &movie)
 
     if (!errorOccured && !m_config.dryRun) {
         QStringList files;
-        for (const QString &file : newMovieFiles) {
+        for (const QString& file : newMovieFiles) {
             QString f = newMovieFolder;
             if (isBluRay || isDvd) {
                 f += "/" + parentDirName;

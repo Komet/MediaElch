@@ -18,25 +18,25 @@ class ClosableImage : public QLabel
     Q_PROPERTY(QString title READ title WRITE setTitle DESIGNABLE true)
 
 public:
-    explicit ClosableImage(QWidget *parent = nullptr);
-    void setMyData(const QVariant &myData);
+    explicit ClosableImage(QWidget* parent = nullptr);
+    void setMyData(const QVariant& myData);
     QVariant myData() const;
-    void setImage(const QByteArray &image);
-    void setImage(const QString &image);
-    void setImageByPath(const QString &image);
+    void setImage(const QByteArray& image);
+    void setImage(const QString& image);
+    void setImageByPath(const QString& image);
     QByteArray image();
     int mySize() const;
-    void setMySize(const int &size);
-    void setShowZoomAndResolution(const bool &show);
-    void setFixedSize(const int &scaleTo, const int &size);
-    void setMyFixedHeight(const int &height);
+    void setMySize(const int& size);
+    void setShowZoomAndResolution(const bool& show);
+    void setFixedSize(const int& scaleTo, const int& size);
+    void setMyFixedHeight(const int& height);
     int myFixedHeight() const;
     void setDefaultPixmap(QPixmap pixmap);
     void clear();
-    void setClickable(const bool &clickable);
+    void setClickable(const bool& clickable);
     bool clickable() const;
-    void setLoading(const bool &loading);
-    void setTitle(const QString &text);
+    void setLoading(const bool& loading);
+    void setTitle(const QString& text);
     QString title() const;
     void setImageType(ImageType type);
     ImageType imageType() const;
@@ -51,12 +51,12 @@ signals:
     void sigImageDropped(ImageType, QUrl);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *ev) override;
-    void mouseMoveEvent(QMouseEvent *ev) override;
-    void dragEnterEvent(QDragEnterEvent *event) override;
-    void dragMoveEvent(QDragMoveEvent *event) override;
-    void dropEvent(QDropEvent *event) override;
+    void paintEvent(QPaintEvent* event) override;
+    void mousePressEvent(QMouseEvent* ev) override;
+    void mouseMoveEvent(QMouseEvent* ev) override;
+    void dragEnterEvent(QDragEnterEvent* event) override;
+    void dragMoveEvent(QDragMoveEvent* event) override;
+    void dropEvent(QDropEvent* event) override;
 
 private slots:
     void closed();
@@ -79,7 +79,7 @@ private:
     bool m_clickable;
     bool m_loading;
     int m_fixedHeight;
-    QMovie *m_loadingMovie;
+    QMovie* m_loadingMovie;
     QPointer<QPropertyAnimation> m_anim;
     void updateSize(int imageWidth, int imageHeight);
     QRect imgRect();
@@ -87,7 +87,7 @@ private:
     QRect zoomRect();
     QRect captureRect();
     bool confirmDeleteImage();
-    void drawTitle(QPainter &p);
+    void drawTitle(QPainter& p);
     ImageType m_imageType;
     QPixmap m_emptyPixmap;
 };

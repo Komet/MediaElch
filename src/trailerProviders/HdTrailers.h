@@ -12,7 +12,7 @@ class HdTrailers : public TrailerProvider
 {
     Q_OBJECT
 public:
-    explicit HdTrailers(QObject *parent = nullptr);
+    explicit HdTrailers(QObject* parent = nullptr);
     QString name() override;
 
 public slots:
@@ -28,9 +28,9 @@ private slots:
     void onLoadFinished();
 
 private:
-    QNetworkAccessManager *m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
+    QNetworkAccessManager* m_qnam;
+    QNetworkReply* m_searchReply;
+    QNetworkReply* m_loadReply;
     QString m_currentSearch;
     QVector<TrailerResult> parseTrailers(QString html);
     QMap<QString, QUrl> m_urls;

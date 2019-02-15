@@ -18,9 +18,9 @@ class MusicWidgetArtist : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicWidgetArtist(QWidget *parent = nullptr);
+    explicit MusicWidgetArtist(QWidget* parent = nullptr);
     ~MusicWidgetArtist() override;
-    void setArtist(Artist *artist);
+    void setArtist(Artist* artist);
     void updateArtistInfo();
 
 public slots:
@@ -45,25 +45,25 @@ private slots:
     void onChooseImage();
     void onDeleteImage();
     void onImageDropped(ImageType imageType, QUrl imageUrl);
-    void onInfoLoadDone(Artist *artist);
-    void onLoadDone(Artist *artist);
-    void onDownloadProgress(Artist *artist, int current, int maximum);
-    void onLoadingImages(Artist *artist, QVector<ImageType> imageTypes);
-    void onLoadImagesStarted(Artist *artist);
-    void onSetImage(Artist *artist, ImageType type, QByteArray imageData);
-    void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QByteArray &image);
+    void onInfoLoadDone(Artist* artist);
+    void onLoadDone(Artist* artist);
+    void onDownloadProgress(Artist* artist, int current, int maximum);
+    void onLoadingImages(Artist* artist, QVector<ImageType> imageTypes);
+    void onLoadImagesStarted(Artist* artist);
+    void onSetImage(Artist* artist, ImageType type, QByteArray imageData);
+    void onRemoveExtraFanart(const QString& file);
+    void onRemoveExtraFanart(const QByteArray& image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
     void onAddAlbum();
     void onRemoveAlbum();
-    void onAlbumEdited(QTableWidgetItem *item);
+    void onAlbumEdited(QTableWidgetItem* item);
 
 private:
-    Ui::MusicWidgetArtist *ui;
+    Ui::MusicWidgetArtist* ui;
     QPointer<Artist> m_artist;
 
-    void clearContents(QLineEdit *widget);
-    void setContent(QLineEdit *widget, const QString &content);
-    void updateImage(ImageType imageType, ClosableImage *image);
+    void clearContents(QLineEdit* widget);
+    void setContent(QLineEdit* widget, const QString& content);
+    void updateImage(ImageType imageType, ClosableImage* image);
 };

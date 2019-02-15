@@ -6,7 +6,7 @@
  * @brief MyTreeView::MyTreeView
  * @param parent
  */
-MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
+MyTreeView::MyTreeView(QWidget* parent) : QTreeView(parent)
 {
 }
 
@@ -16,7 +16,7 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
  * @param rect
  * @param index
  */
-void MyTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+void MyTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {
     Q_UNUSED(painter);
     Q_UNUSED(rect);

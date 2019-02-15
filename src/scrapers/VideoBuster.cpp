@@ -12,7 +12,7 @@
  * @brief VideoBuster::VideoBuster
  * @param parent
  */
-VideoBuster::VideoBuster(QObject *parent) :
+VideoBuster::VideoBuster(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Released,
         MovieScraperInfos::Countries,
@@ -36,7 +36,7 @@ VideoBuster::VideoBuster(QObject *parent) :
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
-QNetworkAccessManager *VideoBuster::qnam()
+QNetworkAccessManager* VideoBuster::qnam()
 {
     return &m_qnam;
 }
@@ -102,7 +102,7 @@ void VideoBuster::search(QString searchStr)
                      "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
                  .arg(encodedSearch)
                  .toUtf8());
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &VideoBuster::searchFinished);
 }
@@ -114,7 +114,7 @@ void VideoBuster::search(QString searchStr)
  */
 void VideoBuster::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
 
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
@@ -157,12 +157,12 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void VideoBuster::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
-    QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = this->qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -175,9 +175,9 @@ void VideoBuster::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *mo
  */
 void VideoBuster::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
     if (!movie) {
         return;
@@ -199,7 +199,7 @@ void VideoBuster::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
+void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
     movie->clear(infos);
@@ -388,7 +388,7 @@ bool VideoBuster::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void VideoBuster::loadSettings(const ScraperSettings &settings)
+void VideoBuster::loadSettings(const ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
@@ -396,12 +396,12 @@ void VideoBuster::loadSettings(const ScraperSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void VideoBuster::saveSettings(ScraperSettings &settings)
+void VideoBuster::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *VideoBuster::settingsWidget()
+QWidget* VideoBuster::settingsWidget()
 {
     return nullptr;
 }

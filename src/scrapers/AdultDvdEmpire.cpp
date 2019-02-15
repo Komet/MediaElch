@@ -8,7 +8,7 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
-AdultDvdEmpire::AdultDvdEmpire(QObject *parent) :
+AdultDvdEmpire::AdultDvdEmpire(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Released,
         MovieScraperInfos::Runtime,
@@ -64,7 +64,7 @@ QString AdultDvdEmpire::defaultLanguageKey()
     return QStringLiteral("en");
 }
 
-QNetworkAccessManager *AdultDvdEmpire::qnam()
+QNetworkAccessManager* AdultDvdEmpire::qnam()
 {
     return &m_qnam;
 }
@@ -73,14 +73,14 @@ void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com/dvd/search?view=list&q=%1").arg(encodedSearch));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &AdultDvdEmpire::onSearchFinished);
 }
 
 void AdultDvdEmpire::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -112,13 +112,11 @@ QVector<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
     return results;
 }
 
-void AdultDvdEmpire::loadData(QMap<MovieScraperInterface *, QString> ids,
-    Movie *movie,
-    QVector<MovieScraperInfos> infos)
+void AdultDvdEmpire::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
     QUrl url(QStringLiteral("https://www.adultdvdempire.com%1").arg(ids.values().first()));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -128,13 +126,13 @@ void AdultDvdEmpire::loadData(QMap<MovieScraperInterface *, QString> ids,
 
 void AdultDvdEmpire::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -142,7 +140,7 @@ void AdultDvdEmpire::onLoadFinished()
     movie->controller()->scraperLoadDone(this);
 }
 
-void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
+void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     QTextDocument doc;
     QRegExp rx;
@@ -257,17 +255,17 @@ bool AdultDvdEmpire::hasSettings() const
     return false;
 }
 
-void AdultDvdEmpire::loadSettings(const ScraperSettings &settings)
+void AdultDvdEmpire::loadSettings(const ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-void AdultDvdEmpire::saveSettings(ScraperSettings &settings)
+void AdultDvdEmpire::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *AdultDvdEmpire::settingsWidget()
+QWidget* AdultDvdEmpire::settingsWidget()
 {
     return nullptr;
 }

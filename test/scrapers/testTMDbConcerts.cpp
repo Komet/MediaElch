@@ -11,7 +11,7 @@ using namespace std::chrono_literals;
  * @brief Loads movie data synchronously
  */
 template<class ScraperInterfaceT>
-void loadConcertDataSync(ScraperInterfaceT &scraper, TmdbId ids, Concert &concert, QVector<ConcertScraperInfos> infos)
+void loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concert, QVector<ConcertScraperInfos> infos)
 {
     QVector<ScraperSearchResult> results;
     QEventLoop loop;

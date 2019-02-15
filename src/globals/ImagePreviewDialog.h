@@ -14,14 +14,14 @@ class ImagePreviewDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImagePreviewDialog(QWidget *parent = nullptr);
+    explicit ImagePreviewDialog(QWidget* parent = nullptr);
     ~ImagePreviewDialog() override;
-    static ImagePreviewDialog *instance(QWidget *parent = nullptr);
+    static ImagePreviewDialog* instance(QWidget* parent = nullptr);
     void setImage(QPixmap img);
 
 public slots:
     int exec() override;
 
 private:
-    Ui::ImagePreviewDialog *ui;
+    Ui::ImagePreviewDialog* ui;
 };

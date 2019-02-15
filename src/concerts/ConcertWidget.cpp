@@ -26,7 +26,7 @@
  * @brief ConcertWidget::ConcertWidget
  * @param parent
  */
-ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConcertWidget)
+ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertWidget)
 {
     ui->setupUi(this);
     ui->concertName->clear();
@@ -57,7 +57,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Conc
     ui->logo->setImageType(ImageType::ConcertLogo);
     ui->cdArt->setImageType(ImageType::ConcertCdArt);
     ui->clearArt->setImageType(ImageType::ConcertClearArt);
-    for (ClosableImage *image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (ClosableImage* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &ConcertWidget::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &ConcertWidget::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);
@@ -133,7 +133,7 @@ ConcertWidget::~ConcertWidget()
  * @brief Repositions the saving widget
  * @param event
  */
-void ConcertWidget::resizeEvent(QResizeEvent *event)
+void ConcertWidget::resizeEvent(QResizeEvent* event)
 {
     m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
@@ -194,7 +194,7 @@ void ConcertWidget::concertNameChanged(QString text)
  * @brief Sets the state of the main groupbox to enabled
  * @param concert Current concert
  */
-void ConcertWidget::setEnabledTrue(Concert *concert)
+void ConcertWidget::setEnabledTrue(Concert* concert)
 {
     qDebug() << "Entered";
     if (concert) {
@@ -224,7 +224,7 @@ void ConcertWidget::setDisabledTrue()
  * @brief Sets the current concert, tells the concert to load data and images and updates widgets contents
  * @param concert Current concert
  */
-void ConcertWidget::setConcert(Concert *concert)
+void ConcertWidget::setConcert(Concert* concert)
 {
     qDebug() << "Entered, concert=" << concert->name();
     concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert());
@@ -287,7 +287,7 @@ void ConcertWidget::onStartScraperSearch()
  * @brief ConcertWidget::infoLoadDone
  * @param concert
  */
-void ConcertWidget::onInfoLoadDone(Concert *concert)
+void ConcertWidget::onInfoLoadDone(Concert* concert)
 {
     if (m_concert == nullptr) {
         return;
@@ -300,7 +300,7 @@ void ConcertWidget::onInfoLoadDone(Concert *concert)
     }
 }
 
-void ConcertWidget::onLoadDone(Concert *concert)
+void ConcertWidget::onLoadDone(Concert* concert)
 {
     if (m_concert == nullptr || m_concert != concert) {
         return;
@@ -309,20 +309,20 @@ void ConcertWidget::onLoadDone(Concert *concert)
     ui->fanarts->setLoading(false);
 }
 
-void ConcertWidget::onLoadImagesStarted(Concert *concert)
+void ConcertWidget::onLoadImagesStarted(Concert* concert)
 {
     Q_UNUSED(concert);
     // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
 }
 
-void ConcertWidget::onLoadingImages(Concert *concert, QVector<ImageType> imageTypes)
+void ConcertWidget::onLoadingImages(Concert* concert, QVector<ImageType> imageTypes)
 {
     if (concert != m_concert) {
         return;
     }
 
     for (const auto imageType : imageTypes) {
-        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 cImage->setLoading(true);
             }
@@ -335,7 +335,7 @@ void ConcertWidget::onLoadingImages(Concert *concert, QVector<ImageType> imageTy
     ui->groupBox_3->update();
 }
 
-void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray imageData)
+void ConcertWidget::onSetImage(Concert* concert, ImageType type, QByteArray imageData)
 {
     if (concert != m_concert) {
         return;
@@ -346,7 +346,7 @@ void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray imag
         return;
     }
 
-    for (auto image : ui->artStackedWidget->findChildren<ClosableImage *>()) {
+    for (auto image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(imageData);
@@ -354,7 +354,7 @@ void ConcertWidget::onSetImage(Concert *concert, ImageType type, QByteArray imag
     }
 }
 
-void ConcertWidget::onDownloadProgress(Concert *concert, int current, int maximum)
+void ConcertWidget::onDownloadProgress(Concert* concert, int current, int maximum)
 {
     Q_UNUSED(concert);
     Q_UNUSED(current);
@@ -383,7 +383,7 @@ void ConcertWidget::updateConcertInfo()
 
     QStringList genres;
     QStringList tags;
-    for (const Concert *concert : Manager::instance()->concertModel()->concerts()) {
+    for (const Concert* concert : Manager::instance()->concertModel()->concerts()) {
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
@@ -411,7 +411,7 @@ void ConcertWidget::updateConcertInfo()
 void ConcertWidget::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
-        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage *>()) {
+        for (auto cImage : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 updateImage(imageType, cImage);
                 break;
@@ -420,7 +420,7 @@ void ConcertWidget::updateImages(QVector<ImageType> images)
     }
 }
 
-void ConcertWidget::updateImage(ImageType imageType, ClosableImage *image)
+void ConcertWidget::updateImage(ImageType imageType, ClosableImage* image)
 {
     if (!m_concert->image(imageType).isNull()) {
         image->setImage(m_concert->image(imageType));
@@ -438,7 +438,7 @@ void ConcertWidget::updateImage(ImageType imageType, ClosableImage *image)
  */
 void ConcertWidget::onSaveInformation()
 {
-    QVector<Concert *> concerts = ConcertFilesWidget::instance()->selectedConcerts();
+    QVector<Concert*> concerts = ConcertFilesWidget::instance()->selectedConcerts();
     if (concerts.count() == 0) {
         concerts.append(m_concert);
     }
@@ -452,7 +452,7 @@ void ConcertWidget::onSaveInformation()
         updateConcertInfo();
         NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
     } else {
-        for (Concert *concert : concerts) {
+        for (Concert* concert : concerts) {
             if (concert->hasChanged()) {
                 concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
                 concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
@@ -478,7 +478,7 @@ void ConcertWidget::onSaveAll()
     setDisabledTrue();
     m_savingWidget->show();
 
-    for (Concert *concert : Manager::instance()->concertModel()->concerts()) {
+    for (Concert* concert : Manager::instance()->concertModel()->concerts()) {
         if (concert->hasChanged()) {
             concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
             concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
@@ -570,7 +570,7 @@ void ConcertWidget::onArtPageTwo()
 /*** Pass GUI events to concert object ***/
 
 
-void ConcertWidget::onRemoveExtraFanart(const QByteArray &image)
+void ConcertWidget::onRemoveExtraFanart(const QByteArray& image)
 {
     if (!m_concert) {
         return;
@@ -579,7 +579,7 @@ void ConcertWidget::onRemoveExtraFanart(const QByteArray &image)
     onInfoChanged();
 }
 
-void ConcertWidget::onRemoveExtraFanart(const QString &file)
+void ConcertWidget::onRemoveExtraFanart(const QString& file)
 {
     if (!m_concert) {
         return;
@@ -626,7 +626,7 @@ void ConcertWidget::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }
@@ -656,7 +656,7 @@ void ConcertWidget::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }

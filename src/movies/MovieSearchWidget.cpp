@@ -8,20 +8,20 @@
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 
-QDebug operator<<(QDebug lhs, const ScraperSearchResult &rhs)
+QDebug operator<<(QDebug lhs, const ScraperSearchResult& rhs)
 {
     lhs << QString(R"(("%1", "%2", %3))").arg(rhs.id, rhs.name, rhs.released.toString("yyyy"));
     return lhs;
 }
 
-MovieSearchWidget::MovieSearchWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
+MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
 {
     ui->setupUi(this);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     // Setup Events
-    for (MovieScraperInterface *scraper : Manager::instance()->movieScrapers()) {
+    for (MovieScraperInterface* scraper : Manager::instance()->movieScrapers()) {
         connect(scraper,
             SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
@@ -99,7 +99,7 @@ void MovieSearchWidget::setupScraperDropdown()
 
     // Setup new scraper dropdown
     const bool noAdultScrapers = !Settings::instance()->showAdultScrapers();
-    for (const auto *scraper : Manager::instance()->movieScrapers()) {
+    for (const auto* scraper : Manager::instance()->movieScrapers()) {
         if (noAdultScrapers && scraper->isAdult()) {
             continue;
         }
@@ -149,7 +149,7 @@ void MovieSearchWidget::setupLanguageDropdown()
     QString defaultLanguage = m_currentScraper->defaultLanguageKey();
     int i = 0;
 
-    for (const auto &lang : supportedLanguages) {
+    for (const auto& lang : supportedLanguages) {
         ui->comboLanguage->addItem(lang.languageName, lang.languageKey);
         if (lang.languageKey == defaultLanguage) {
             ui->comboLanguage->setCurrentIndex(i);
@@ -168,12 +168,12 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 
-    for (const ScraperSearchResult &result : results) {
+    for (const ScraperSearchResult& result : results) {
         const auto resultName = result.released.isNull()
                                     ? result.name
                                     : QString("%1 (%2)").arg(result.name, result.released.toString("yyyy"));
 
-        auto *item = new QTableWidgetItem(resultName);
+        auto* item = new QTableWidgetItem(resultName);
         item->setData(Qt::UserRole, result.id);
 
         const int row = ui->results->rowCount();
@@ -182,7 +182,7 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
     }
 }
 
-void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
+void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
 {
     if (m_currentScraper->identifier() != "custom-movie" && m_customScraperIds.isEmpty()) {
         m_scraperMovieId = item->data(Qt::UserRole).toString();
@@ -200,7 +200,7 @@ void MovieSearchWidget::resultClicked(QTableWidgetItem *item)
     }
 
     m_customScraperIds.insert(m_currentCustomScraper, item->data(Qt::UserRole).toString());
-    QVector<MovieScraperInterface *> scrapers =
+    QVector<MovieScraperInterface*> scrapers =
         CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad(), m_customScraperIds);
 
     if (scrapers.isEmpty()) {
@@ -222,10 +222,10 @@ void MovieSearchWidget::updateInfoToLoad()
 {
     m_infosToLoad.clear();
     int enabledBoxCount = 0;
-    const auto checkBoxes = ui->groupBox->findChildren<MyCheckBox *>();
+    const auto checkBoxes = ui->groupBox->findChildren<MyCheckBox*>();
 
     // Rebuild list of information to load
-    for (const MyCheckBox *box : checkBoxes) {
+    for (const MyCheckBox* box : checkBoxes) {
         if (!box->isEnabled()) {
             continue;
         }
@@ -244,7 +244,7 @@ void MovieSearchWidget::updateInfoToLoad()
 
 void MovieSearchWidget::toggleAllInfo(bool checked)
 {
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0 && box->isEnabled()) {
             box->setChecked(checked);
         }
@@ -271,7 +271,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperS
 {
     const auto enabledInfos = Settings::instance()->scraperInfos<MovieScraperInfos>(m_currentScraper->identifier());
 
-    for (auto box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (auto box : ui->groupBox->findChildren<MyCheckBox*>()) {
         const MovieScraperInfos info = MovieScraperInfos(box->myData().toInt());
         const bool supportsInfo = scraperSupports.contains(info);
         const bool infoActive = supportsInfo && (enabledInfos.contains(info) || enabledInfos.isEmpty());
@@ -281,7 +281,7 @@ void MovieSearchWidget::setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperS
     updateInfoToLoad();
 }
 
-QMap<MovieScraperInterface *, QString> MovieSearchWidget::customScraperIds()
+QMap<MovieScraperInterface*, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
 }
@@ -313,7 +313,7 @@ void MovieSearchWidget::onLanguageChanged()
     startSearch();
 }
 
-void MovieSearchWidget::setSearchText(MovieScraperInterface *scraper)
+void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
 {
     if (!scraper) {
         return;
@@ -360,7 +360,7 @@ void MovieSearchWidget::initializeCheckBoxes()
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfos::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfos::Tags));
 
-    for (const MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (const MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieSearchWidget::updateInfoToLoad);
         }

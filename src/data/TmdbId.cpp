@@ -13,12 +13,12 @@ TmdbId::TmdbId(int tmdbId) : TmdbId(QString::number(tmdbId))
 
 const TmdbId TmdbId::NoId = TmdbId();
 
-bool TmdbId::operator==(const TmdbId &other) const
+bool TmdbId::operator==(const TmdbId& other) const
 {
     return m_tmdbId == other.m_tmdbId;
 }
 
-bool TmdbId::operator!=(const TmdbId &other) const
+bool TmdbId::operator!=(const TmdbId& other) const
 {
     return !(*this == other);
 }
@@ -40,12 +40,12 @@ bool TmdbId::isValid() const
     return !m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt");
 }
 
-std::ostream &operator<<(std::ostream &os, const TmdbId &id)
+std::ostream& operator<<(std::ostream& os, const TmdbId& id)
 {
     return os << id.toString().toStdString();
 }
 
-QDebug operator<<(QDebug debug, const TmdbId &id)
+QDebug operator<<(QDebug debug, const TmdbId& id)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "TmdbId(" << id.toString() << ')';

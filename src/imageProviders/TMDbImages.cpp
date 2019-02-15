@@ -7,7 +7,7 @@
  * @brief TMDbImages::TMDbImages
  * @param parent
  */
-TMDbImages::TMDbImages(QObject *parent)
+TMDbImages::TMDbImages(QObject* parent)
 {
     setParent(parent);
     m_provides = {ImageType::MovieBackdrop, //
@@ -101,7 +101,7 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
     m_imageType = ImageType::MoviePoster;
     QVector<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Poster;
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -116,7 +116,7 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QVector<MovieScraperInfos> infos;
     infos << MovieScraperInfos::Backdrop;
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, tmdbId.toString());
     m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
@@ -160,7 +160,7 @@ void TMDbImages::onLoadImagesFinished()
  * @param tmdbId
  * @param types
  */
-void TMDbImages::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
+void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -210,7 +210,7 @@ void TMDbImages::movieCdArts(TmdbId tmdbId)
  * @param tmdbId
  * @param types
  */
-void TMDbImages::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
+void TMDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
     Q_UNUSED(tmdbId);
@@ -261,7 +261,7 @@ void TMDbImages::searchTvShow(QString searchStr, int limit)
  * @param tvdbId
  * @param types
  */
-void TMDbImages::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
+void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);
     Q_UNUSED(tvdbId);
@@ -374,17 +374,17 @@ bool TMDbImages::hasSettings() const
     return false;
 }
 
-void TMDbImages::saveSettings(ScraperSettings &settings)
+void TMDbImages::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-void TMDbImages::loadSettings(const ScraperSettings &settings)
+void TMDbImages::loadSettings(const ScraperSettings& settings)
 {
     m_tmdb->loadSettings(settings);
 }
 
-QWidget *TMDbImages::settingsWidget()
+QWidget* TMDbImages::settingsWidget()
 {
     return nullptr;
 }
@@ -427,14 +427,14 @@ void TMDbImages::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void TMDbImages::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
+void TMDbImages::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void TMDbImages::albumImages(Album *album, QString mbId, QVector<ImageType> types)
+void TMDbImages::albumImages(Album* album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

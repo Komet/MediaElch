@@ -18,9 +18,9 @@ class TvShowWidgetSeason : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidgetSeason(QWidget *parent = nullptr);
+    explicit TvShowWidgetSeason(QWidget* parent = nullptr);
     ~TvShowWidgetSeason() override;
-    void setSeason(TvShow *show, SeasonNumber season);
+    void setSeason(TvShow* show, SeasonNumber season);
     void updateSeasonInfo();
 
 public slots:
@@ -29,7 +29,7 @@ public slots:
     void onSetEnabled(bool enabled);
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
@@ -44,11 +44,11 @@ private slots:
     void onDownloadFinished(DownloadManagerElement elem);
 
 private:
-    Ui::TvShowWidgetSeason *ui;
-    TvShow *m_show;
+    Ui::TvShowWidgetSeason* ui;
+    TvShow* m_show;
     SeasonNumber m_season;
-    QLabel *m_savingWidget;
-    QMovie *m_loadingMovie;
-    DownloadManager *m_downloadManager;
+    QLabel* m_savingWidget;
+    QMovie* m_loadingMovie;
+    DownloadManager* m_downloadManager;
     void updateImages(QVector<ImageType> images);
 };

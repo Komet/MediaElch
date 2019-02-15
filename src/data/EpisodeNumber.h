@@ -8,10 +8,10 @@ public:
     EpisodeNumber() = default;
     explicit EpisodeNumber(int episodeNumber);
 
-    bool operator==(const EpisodeNumber &other) const;
-    bool operator!=(const EpisodeNumber &other) const;
-    bool operator>(const EpisodeNumber &other) const;
-    bool operator<(const EpisodeNumber &other) const;
+    bool operator==(const EpisodeNumber& other) const;
+    bool operator!=(const EpisodeNumber& other) const;
+    bool operator>(const EpisodeNumber& other) const;
+    bool operator<(const EpisodeNumber& other) const;
 
     int toInt() const;
     QString toPaddedString() const;

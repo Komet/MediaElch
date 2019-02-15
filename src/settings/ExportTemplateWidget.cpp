@@ -4,7 +4,7 @@
 #include "export/ExportTemplateLoader.h"
 #include "globals/Helper.h"
 
-ExportTemplateWidget::ExportTemplateWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ExportTemplateWidget)
+ExportTemplateWidget::ExportTemplateWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ExportTemplateWidget)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -19,7 +19,7 @@ ExportTemplateWidget::~ExportTemplateWidget()
     delete ui;
 }
 
-void ExportTemplateWidget::setExportTemplate(ExportTemplate *exportTemplate)
+void ExportTemplateWidget::setExportTemplate(ExportTemplate* exportTemplate)
 {
     m_exportTemplate = exportTemplate;
     ui->author->setText(tr("by %1").arg(exportTemplate->author()));

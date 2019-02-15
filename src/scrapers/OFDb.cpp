@@ -14,7 +14,7 @@
  * @brief OFDb::OFDb
  * @param parent
  */
-OFDb::OFDb(QObject *parent)
+OFDb::OFDb(QObject* parent)
 {
     setParent(parent);
     m_scraperSupports << MovieScraperInfos::Title     //
@@ -54,7 +54,7 @@ bool OFDb::hasSettings() const
 /**
  * @brief Loads scrapers settings
  */
-void OFDb::loadSettings(const ScraperSettings &settings)
+void OFDb::loadSettings(const ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
@@ -62,7 +62,7 @@ void OFDb::loadSettings(const ScraperSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void OFDb::saveSettings(ScraperSettings &settings)
+void OFDb::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
@@ -71,7 +71,7 @@ void OFDb::saveSettings(ScraperSettings &settings)
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
-QNetworkAccessManager *OFDb::qnam()
+QNetworkAccessManager* OFDb::qnam()
 {
     return &m_qnam;
 }
@@ -123,7 +123,7 @@ void OFDb::search(QString searchStr)
     } else {
         url.setUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     }
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
@@ -137,7 +137,7 @@ void OFDb::search(QString searchStr)
  */
 void OFDb::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     QString searchStr = reply->property("searchString").toString();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
 
@@ -233,12 +233,12 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void OFDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
     QUrl url(QString("http://ofdbgw.org/movie/%1").arg(ids.values().first()));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("ofdbId", ids.values().first());
@@ -253,10 +253,10 @@ void OFDb::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QV
  */
 void OFDb::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
-    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad();
+    QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (!movie) {
         return;
@@ -305,7 +305,7 @@ void OFDb::loadFinished()
  * @param movie Movie object
  * @param infos List of infos to load
  */
-void OFDb::parseAndAssignInfos(QString data, Movie *movie, QVector<MovieScraperInfos> infos)
+void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
     QXmlStreamReader xml(data);
@@ -385,7 +385,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QVector<MovieScraperI
     }
 }
 
-QWidget *OFDb::settingsWidget()
+QWidget* OFDb::settingsWidget()
 {
     return nullptr;
 }

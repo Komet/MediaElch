@@ -13,7 +13,7 @@ class Movie;
 class MovieImages
 {
 public:
-    explicit MovieImages(Movie &movie);
+    explicit MovieImages(Movie& movie);
     void clear(QVector<MovieScraperInfos> infos);
 
     QVector<Poster> posters() const;
@@ -21,7 +21,7 @@ public:
     QVector<Poster> discArts() const;
     QVector<Poster> clearArts() const;
     QVector<Poster> logos() const;
-    QVector<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QVector<ExtraFanart> extraFanarts(MediaCenterInterface* mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QVector<QByteArray> extraFanartToAdd();
     QVector<ImageType> imagesToRemove() const;
@@ -69,5 +69,5 @@ private:
     QList<QByteArray> m_extraFanartToAdd;
     QList<ImageType> m_imagesToRemove;
 
-    Movie &m_movie;
+    Movie& m_movie;
 };

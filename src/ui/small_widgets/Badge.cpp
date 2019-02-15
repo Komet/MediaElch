@@ -2,19 +2,19 @@
 
 #include <QPainter>
 
-Badge::Badge(QWidget *parent) : QLabel(parent)
+Badge::Badge(QWidget* parent) : QLabel(parent)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Type::LabelDefault);
 }
 
-Badge::Badge(const QString &text, QWidget *parent) : QLabel(text, parent)
+Badge::Badge(const QString& text, QWidget* parent) : QLabel(text, parent)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Type::LabelDefault);
 }
 
-void Badge::paintEvent(QPaintEvent *event)
+void Badge::paintEvent(QPaintEvent* event)
 {
     QLabel::paintEvent(event);
 
@@ -50,7 +50,7 @@ void Badge::paintEvent(QPaintEvent *event)
     }
 }
 
-void Badge::setFontBold(const bool &bold)
+void Badge::setFontBold(const bool& bold)
 {
     m_fontBold = bold;
     applyStyleSheet();
@@ -62,7 +62,7 @@ void Badge::setBadgeType(Badge::Type type)
     applyStyleSheet();
 }
 
-void Badge::setActive(const bool &active)
+void Badge::setActive(const bool& active)
 {
     m_active = active;
     switch (m_badgeType) {
@@ -89,13 +89,13 @@ void Badge::setActive(const bool &active)
     applyStyleSheet();
 }
 
-void Badge::setClosable(const bool &closable)
+void Badge::setClosable(const bool& closable)
 {
     m_closable = closable;
     applyStyleSheet();
 }
 
-void Badge::setShowActiveMark(const bool &showActiveMark)
+void Badge::setShowActiveMark(const bool& showActiveMark)
 {
     m_showActiveMark = showActiveMark;
     applyStyleSheet();
@@ -166,7 +166,7 @@ void Badge::applyStyleSheet()
     resize(sizeHint().width(), sizeHint().height());
 }
 
-void Badge::mousePressEvent(QMouseEvent *ev)
+void Badge::mousePressEvent(QMouseEvent* ev)
 {
     if (ev->button() == Qt::LeftButton) {
         emit clicked();

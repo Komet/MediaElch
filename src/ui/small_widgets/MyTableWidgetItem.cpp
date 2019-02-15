@@ -37,7 +37,7 @@ QVariant MyTableWidgetItem::data(int role) const
     return QTableWidgetItem::data(role);
 }
 
-bool MyTableWidgetItem::operator<(const QTableWidgetItem &other) const
+bool MyTableWidgetItem::operator<(const QTableWidgetItem& other) const
 {
     if (!data(1000).toString().isEmpty()) {
         return data(1000).toReal() < other.data(1000).toReal();

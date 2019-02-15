@@ -8,8 +8,8 @@ class Notificator : public QObject
 {
     Q_OBJECT
 public:
-    explicit Notificator(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
-    static Notificator *instance(QSystemTrayIcon *trayIcon = nullptr, QWidget *parent = nullptr);
+    explicit Notificator(QSystemTrayIcon* trayIcon = nullptr, QWidget* parent = nullptr);
+    static Notificator* instance(QSystemTrayIcon* trayIcon = nullptr, QWidget* parent = nullptr);
 
     enum Class
     {
@@ -20,7 +20,7 @@ public:
 
 public slots:
     virtual void
-    notify(Class cls, const QString &title, const QString &text, const QIcon &icon = QIcon(), int timeout = 10000);
+    notify(Class cls, const QString& title, const QString& text, const QIcon& icon = QIcon(), int timeout = 10000);
 
 private:
     enum Mode
@@ -31,8 +31,8 @@ private:
     };
 
     Mode m_mode;
-    QWidget *m_parent;
-    QSystemTrayIcon *m_trayIcon;
-    void notifySystray(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout);
-    void notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon);
+    QWidget* m_parent;
+    QSystemTrayIcon* m_trayIcon;
+    void notifySystray(Class cls, const QString& title, const QString& text, const QIcon& icon, int timeout);
+    void notifyMacUserNotificationCenter(Class cls, const QString& title, const QString& text, const QIcon& icon);
 };

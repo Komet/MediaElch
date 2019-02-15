@@ -25,28 +25,28 @@ class ConcertFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertFilesWidget(QWidget *parent = nullptr);
+    explicit ConcertFilesWidget(QWidget* parent = nullptr);
     ~ConcertFilesWidget() override;
 
-    static ConcertFilesWidget *instance();
+    static ConcertFilesWidget* instance();
 
-    QVector<Concert *> selectedConcerts();
+    QVector<Concert*> selectedConcerts();
     void renewModel();
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QVector<Filter *> filters, QString text);
+    void setFilter(QVector<Filter*> filters, QString text);
     void concertSelectedEmitter();
     void setAlphaListData();
 
 signals:
     void noConcertSelected();
-    void concertSelected(Concert *);
+    void concertSelected(Concert*);
 
 protected:
-    void enterEvent(QEvent *event) override;
-    void leaveEvent(QEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+    void enterEvent(QEvent* event) override;
+    void leaveEvent(QEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
@@ -64,13 +64,13 @@ private slots:
     void playConcert(QModelIndex idx);
 
 private:
-    Ui::ConcertFilesWidget *ui;
-    ConcertProxyModel *m_concertProxyModel;
-    Concert *m_lastConcert;
+    Ui::ConcertFilesWidget* ui;
+    ConcertProxyModel* m_concertProxyModel;
+    Concert* m_lastConcert;
     QModelIndex m_lastModelIndex;
-    QMenu *m_contextMenu;
-    AlphabeticalList *m_alphaList;
+    QMenu* m_contextMenu;
+    AlphabeticalList* m_alphaList;
     bool m_mouseIsIn;
 
-    static ConcertFilesWidget *m_instance;
+    static ConcertFilesWidget* m_instance;
 };

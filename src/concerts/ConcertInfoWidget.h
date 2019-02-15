@@ -24,10 +24,10 @@ class ConcertInfoWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertInfoWidget(QWidget *parent = nullptr);
+    explicit ConcertInfoWidget(QWidget* parent = nullptr);
     ~ConcertInfoWidget() override;
 
-    void setConcertController(ConcertController *controller);
+    void setConcertController(ConcertController* controller);
     void updateConcertInfo();
 
     void setRuntime(std::chrono::minutes runtime);

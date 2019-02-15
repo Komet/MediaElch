@@ -13,12 +13,12 @@ class ArtistController : public QObject
 {
     Q_OBJECT
 public:
-    explicit ArtistController(Artist *parent = nullptr);
+    explicit ArtistController(Artist* parent = nullptr);
     ~ArtistController() override = default;
 
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, MusicScraperInterface *scraperInterface, QVector<MusicScraperInfos> infos);
+    bool saveData(MediaCenterInterface* mediaCenterInterface);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
+    void loadData(QString id, MusicScraperInterface* scraperInterface, QVector<MusicScraperInfos> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);
@@ -31,27 +31,27 @@ public:
 
     void loadImage(ImageType type, QUrl url);
     void loadImages(ImageType type, QVector<QUrl> urls);
-    void scraperLoadDone(MusicScraperInterface *scraper);
+    void scraperLoadDone(MusicScraperInterface* scraper);
 
 signals:
-    void sigInfoLoadDone(Artist *);
-    void sigLoadingImages(Artist *, QVector<ImageType>);
-    void sigLoadDone(Artist *);
-    void sigImage(Artist *, ImageType, QByteArray);
-    void sigLoadImagesStarted(Artist *);
-    void sigDownloadProgress(Artist *, int, int);
-    void sigSaved(Artist *);
+    void sigInfoLoadDone(Artist*);
+    void sigLoadingImages(Artist*, QVector<ImageType>);
+    void sigLoadDone(Artist*);
+    void sigImage(Artist*, ImageType, QByteArray);
+    void sigLoadImagesStarted(Artist*);
+    void sigDownloadProgress(Artist*, int, int);
+    void sigSaved(Artist*);
 
 private slots:
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
-    void onFanartLoadDone(Artist *artist, QMap<ImageType, QVector<Poster>> posters);
+    void onFanartLoadDone(Artist* artist, QMap<ImageType, QVector<Poster>> posters);
 
 private:
-    Artist *m_artist;
+    Artist* m_artist;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
-    DownloadManager *m_downloadManager;
+    DownloadManager* m_downloadManager;
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;

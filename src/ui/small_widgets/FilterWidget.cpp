@@ -14,7 +14,7 @@
  * @brief FilterWidget::FilterWidget
  * @param parent
  */
-FilterWidget::FilterWidget(QWidget *parent) :
+FilterWidget::FilterWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::FilterWidget),
     m_activeWidget{MainWidgets::Movies}
@@ -44,16 +44,16 @@ FilterWidget::~FilterWidget()
 {
     // Delete original filters
     // todo: There are still memory leaks when using setupMovieFilters()
-    for (Filter *filter : m_availableMovieFilters) {
+    for (Filter* filter : m_availableMovieFilters) {
         delete filter;
     }
-    for (Filter *filter : m_availableTvShowFilters) {
+    for (Filter* filter : m_availableTvShowFilters) {
         delete filter;
     }
-    for (Filter *filter : m_availableConcertFilters) {
+    for (Filter* filter : m_availableConcertFilters) {
         delete filter;
     }
-    for (Filter *filter : m_availableMusicFilters) {
+    for (Filter* filter : m_availableMusicFilters) {
         delete filter;
     }
     delete ui;
@@ -140,7 +140,7 @@ void FilterWidget::onFilterTextChanged(QString text)
             filter->setShortText(text);
         }
 
-        QListWidgetItem *item = new QListWidgetItem(filter->text(), m_list);
+        QListWidgetItem* item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
         item->setBackgroundColor(QColor(255, 255, 255, 200));
         m_list->addItem(item);
@@ -161,13 +161,13 @@ void FilterWidget::onFilterTextChanged(QString text)
     QFont font;
     font.setPixelSize(2);
 
-    QListWidgetItem *topItem = new QListWidgetItem("");
+    QListWidgetItem* topItem = new QListWidgetItem("");
     topItem->setFont(font);
     topItem->setBackgroundColor(QColor(255, 255, 255, 200));
     m_list->insertItem(0, topItem);
     listHeight += m_list->sizeHintForRow(0);
 
-    QListWidgetItem *bottomItem = new QListWidgetItem("");
+    QListWidgetItem* bottomItem = new QListWidgetItem("");
     bottomItem->setBackgroundColor(QColor(255, 255, 255, 200));
     bottomItem->setFont(font);
     m_list->addItem(bottomItem);
@@ -199,8 +199,8 @@ void FilterWidget::addSelectedFilter()
         return;
     }
 
-    Filter *titleFilter = nullptr;
-    for (Filter *f : m_availableFilters) {
+    Filter* titleFilter = nullptr;
+    for (Filter* f : m_availableFilters) {
         if ((f->isInfo(MovieFilters::Title) || f->isInfo(ConcertFilters::Title) || f->isInfo(TvShowFilters::Title)
                 || f->isInfo(MusicFilters::Title))
             && !m_activeFilters.contains(f)) {
@@ -225,10 +225,10 @@ void FilterWidget::addSelectedFilter()
  * @brief Adds the filter given by the item
  * @param item List widget item to take the filter from
  */
-void FilterWidget::addFilterFromItem(QListWidgetItem *item)
+void FilterWidget::addFilterFromItem(QListWidgetItem* item)
 {
     m_list->hide();
-    Filter *filter = item->data(Qt::UserRole).value<Filter *>();
+    Filter* filter = item->data(Qt::UserRole).value<Filter*>();
     if (filter == nullptr) {
         return;
     }
@@ -275,7 +275,7 @@ void FilterWidget::setupFilters()
 /**
  * @brief Sets up movie filters
  */
-QVector<Filter *> FilterWidget::setupMovieFilters()
+QVector<Filter*> FilterWidget::setupMovieFilters()
 {
     // Load available genres/directors/etc.
 
@@ -289,15 +289,15 @@ QVector<Filter *> FilterWidget::setupMovieFilters()
     QStringList videocodecs;
     QStringList sets;
 
-    const auto copyNotEmptyUnique = [](const QStringList &from, QStringList &to) {
-        for (const QString &str : from) {
+    const auto copyNotEmptyUnique = [](const QStringList& from, QStringList& to) {
+        for (const QString& str : from) {
             if (!str.isEmpty() && !to.contains(str)) {
                 to.append(str);
             }
         }
     };
 
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         copyNotEmptyUnique(movie->genres(), genres);
         copyNotEmptyUnique(movie->studios(), studios);
         copyNotEmptyUnique(movie->countries(), countries);
@@ -321,7 +321,7 @@ QVector<Filter *> FilterWidget::setupMovieFilters()
         }
     }
 
-    const auto sortByLocaleCompare = [](QStringList &list) { qSort(list.begin(), list.end(), LocaleStringCompare()); };
+    const auto sortByLocaleCompare = [](QStringList& list) { qSort(list.begin(), list.end(), LocaleStringCompare()); };
     sortByLocaleCompare(certifications);
     sortByLocaleCompare(genres);
     sortByLocaleCompare(years);
@@ -334,9 +334,9 @@ QVector<Filter *> FilterWidget::setupMovieFilters()
 
     // Set new filters
 
-    const auto setNewFilters = [](const QStringList &filtersToApply, QString filterTypeName, MovieFilters infoType) {
-        QVector<Filter *> newFilters;
-        for (const QString &filterName : filtersToApply) {
+    const auto setNewFilters = [](const QStringList& filtersToApply, QString filterTypeName, MovieFilters infoType) {
+        QVector<Filter*> newFilters;
+        for (const QString& filterName : filtersToApply) {
             newFilters << new Filter(QStringLiteral("%1 \"%2\"").arg(filterTypeName, filterName),
                 filterName,
                 QStringList() << filterTypeName << filterName,
@@ -357,13 +357,13 @@ QVector<Filter *> FilterWidget::setupMovieFilters()
     QVector<Filter *> movieCertificationFilters = setNewFilters(certifications, tr("Certification"), MovieFilters::Certification);
     // clang-format on
 
-    QVector<Filter *> movieYearFilters;
-    for (const QString &year : years) {
+    QVector<Filter*> movieYearFilters;
+    for (const QString& year : years) {
         movieYearFilters << new Filter(
             tr("Released %1").arg(year), year, QStringList() << tr("Year") << year, MovieFilters::Released, true);
     }
 
-    QVector<Filter *> movieLabelFilters;
+    QVector<Filter*> movieLabelFilters;
     QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
@@ -375,30 +375,30 @@ QVector<Filter *> FilterWidget::setupMovieFilters()
             it.key());
     }
 
-    return QVector<Filter *>() << m_availableMovieFilters   //
-                               << movieGenreFilters         //
-                               << movieStudioFilters        //
-                               << movieCountryFilters       //
-                               << movieYearFilters          //
-                               << movieCertificationFilters //
-                               << movieSetsFilters          //
-                               << movieTagsFilters          //
-                               << movieDirectorFilters      //
-                               << movieVideoCodecFilters    //
-                               << movieLabelFilters;
+    return QVector<Filter*>() << m_availableMovieFilters   //
+                              << movieGenreFilters         //
+                              << movieStudioFilters        //
+                              << movieCountryFilters       //
+                              << movieYearFilters          //
+                              << movieCertificationFilters //
+                              << movieSetsFilters          //
+                              << movieTagsFilters          //
+                              << movieDirectorFilters      //
+                              << movieVideoCodecFilters    //
+                              << movieLabelFilters;
 }
 
-QVector<Filter *> FilterWidget::setupTvShowFilters()
+QVector<Filter*> FilterWidget::setupTvShowFilters()
 {
     return m_availableTvShowFilters;
 }
 
-QVector<Filter *> FilterWidget::setupConcertFilters()
+QVector<Filter*> FilterWidget::setupConcertFilters()
 {
     return m_availableConcertFilters;
 }
 
-QVector<Filter *> FilterWidget::setupMusicFilters()
+QVector<Filter*> FilterWidget::setupMusicFilters()
 {
     return m_availableMusicFilters;
 }
@@ -513,7 +513,7 @@ void FilterWidget::loadFilters(MainWidgets widget)
     }
 
     m_activeFilters = m_storedFilters[widget];
-    for (Filter *filter : m_activeFilters) {
+    for (Filter* filter : m_activeFilters) {
         ui->lineEdit->addFilter(filter);
     }
 }

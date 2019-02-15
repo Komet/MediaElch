@@ -10,8 +10,8 @@ class NameFormatter : public QObject
 {
     Q_OBJECT
 public:
-    explicit NameFormatter(QObject *parent = nullptr);
-    static NameFormatter *instance(QObject *parent = nullptr);
+    explicit NameFormatter(QObject* parent = nullptr);
+    static NameFormatter* instance(QObject* parent = nullptr);
 
     QString excludeWords(QString name);
     QString formatName(QString name, bool replaceDots = true, bool replaceUnderscores = true);
@@ -22,5 +22,5 @@ private slots:
 
 private:
     QStringList m_exWords;
-    static bool lengthLessThan(const QString &s1, const QString &s2);
+    static bool lengthLessThan(const QString& s1, const QString& s2);
 };

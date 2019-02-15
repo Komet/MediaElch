@@ -12,7 +12,7 @@
  * @brief GenreWidget::GenreWidget
  * @param parent
  */
-GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWidget)
+GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWidget)
 {
     ui->setupUi(this);
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -26,8 +26,8 @@ GenreWidget::GenreWidget(QWidget *parent) : QWidget(parent), ui(new Ui::GenreWid
 
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->genres);
-    QAction *actionAddGenre = new QAction(tr("Add Genre"), this);
-    QAction *actionDeleteGenre = new QAction(tr("Delete Genre"), this);
+    QAction* actionAddGenre = new QAction(tr("Add Genre"), this);
+    QAction* actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionAddGenre);
     m_tableContextMenu->addAction(actionDeleteGenre);
     connect(actionAddGenre, &QAction::triggered, this, &GenreWidget::addGenre);
@@ -65,7 +65,7 @@ void GenreWidget::showGenresContextMenu(QPoint point)
  * @brief Returns the splitter
  * @return The splitter
  */
-QSplitter *GenreWidget::splitter()
+QSplitter* GenreWidget::splitter()
 {
     return ui->splitter;
 }
@@ -92,14 +92,14 @@ void GenreWidget::loadGenres()
     ui->genres->blockSignals(true);
     clear();
     QStringList genres;
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
-        for (const QString &genre : movie->genres()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+        for (const QString& genre : movie->genres()) {
             if (!genre.isEmpty() && !genres.contains(genre)) {
                 genres.append(genre);
             };
         }
     }
-    for (const QString &genre : m_addedGenres) {
+    for (const QString& genre : m_addedGenres) {
         if (!genre.isEmpty() && !genres.contains(genre)) {
             genres.append(genre);
         }
@@ -107,7 +107,7 @@ void GenreWidget::loadGenres()
 
     qSort(genres.begin(), genres.end(), LocaleStringCompare());
 
-    for (const QString &genre : genres) {
+    for (const QString& genre : genres) {
         auto item = new QTableWidgetItem(genre);
         item->setData(Qt::UserRole, genre);
         int row = ui->genres->rowCount();
@@ -134,10 +134,10 @@ void GenreWidget::onGenreSelected()
     ui->movies->setSortingEnabled(false);
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             int row = ui->movies->rowCount();
-            QTableWidgetItem *item = new QTableWidgetItem(movie->name());
+            QTableWidgetItem* item = new QTableWidgetItem(movie->name());
             item->setData(Qt::UserRole, QVariant::fromValue(movie));
             ui->movies->insertRow(row);
             ui->movies->setItem(row, 0, item);
@@ -152,7 +152,7 @@ void GenreWidget::onGenreSelected()
  * @brief Renames a genre
  * @param item Changed item in genres table
  */
-void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
+void GenreWidget::onGenreNameChanged(QTableWidgetItem* item)
 {
     QString newName = item->text();
     QString origName = item->data(Qt::UserRole).toString();
@@ -160,7 +160,7 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
         return;
     }
 
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(origName)) {
             movie->removeGenre(origName);
             if (!movie->genres().contains(newName)) {
@@ -227,7 +227,7 @@ void GenreWidget::deleteGenre()
     QString origGenreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->genres->removeRow(ui->genres->currentRow());
 
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             movie->removeGenre(genreName);
         }
@@ -251,7 +251,7 @@ void GenreWidget::removeMovie()
     }
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
-    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie *>();
+    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->removeGenre(genreName);
     ui->movies->removeRow(ui->movies->currentRow());
 }
@@ -268,13 +268,13 @@ void GenreWidget::addMovie()
 
     if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text())
         == QDialog::Accepted) {
-        QVector<Movie *> movies = MovieListDialog::instance()->selectedMovies();
+        QVector<Movie*> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty()) {
             return;
         }
 
         QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-        for (Movie *movie : movies) {
+        for (Movie* movie : movies) {
             if (movie->genres().contains(genreName)) {
                 continue;
             }
@@ -289,7 +289,7 @@ void GenreWidget::addMovie()
  */
 void GenreWidget::onSaveInformation()
 {
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         }
@@ -300,8 +300,8 @@ void GenreWidget::onSaveInformation()
     NotificationBox::instance()->showMessage(tr("All Movies Saved"));
 }
 
-void GenreWidget::onJumpToMovie(QTableWidgetItem *item)
+void GenreWidget::onJumpToMovie(QTableWidgetItem* item)
 {
-    auto movie = item->data(Qt::UserRole).value<Movie *>();
+    auto movie = item->data(Qt::UserRole).value<Movie*>();
     emit sigJumpToMovie(movie);
 }

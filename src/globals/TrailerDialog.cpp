@@ -6,7 +6,7 @@
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 
-TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TrailerDialog)
+TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TrailerDialog)
 {
     ui->setupUi(this);
 
@@ -33,7 +33,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Trai
 
     m_qnam = new QNetworkAccessManager(this);
 
-    for (TrailerProvider *provider : Manager::instance()->trailerProviders()) {
+    for (TrailerProvider* provider : Manager::instance()->trailerProviders()) {
         ui->comboScraper->addItem(provider->name(), Manager::instance()->trailerProviders().indexOf(provider));
         connect(provider,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
@@ -77,9 +77,9 @@ TrailerDialog::~TrailerDialog()
     delete ui;
 }
 
-TrailerDialog *TrailerDialog::instance(QWidget *parent)
+TrailerDialog* TrailerDialog::instance(QWidget* parent)
 {
-    static TrailerDialog *m_instance = new TrailerDialog(parent);
+    static TrailerDialog* m_instance = new TrailerDialog(parent);
     return m_instance;
 }
 
@@ -91,7 +91,7 @@ void TrailerDialog::clear()
     ui->searchString->setEnabled(true);
 }
 
-int TrailerDialog::exec(Movie *movie)
+int TrailerDialog::exec(Movie* movie)
 {
     m_videoWidget->hide();
     QSize newSize;
@@ -145,8 +145,8 @@ void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
-    for (const ScraperSearchResult &result : results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1").arg(result.name));
+    for (const ScraperSearchResult& result : results) {
+        QTableWidgetItem* item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
@@ -159,7 +159,7 @@ void TrailerDialog::showResults(QVector<ScraperSearchResult> results)
     }
 }
 
-void TrailerDialog::resultClicked(QTableWidgetItem *item)
+void TrailerDialog::resultClicked(QTableWidgetItem* item)
 {
     m_providerId = item->data(Qt::UserRole).toString();
     ui->trailers->clearContents();
@@ -177,7 +177,7 @@ void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
         TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);
-        QLabel *trailerPreview = new QLabel(ui->trailers);
+        QLabel* trailerPreview = new QLabel(ui->trailers);
         trailerPreview->setMargin(4);
         if (!trailer.previewImage.isNull()) {
             trailerPreview->setPixmap(
@@ -197,7 +197,7 @@ void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
     ui->trailers->setColumnHidden(1, !hasLanguage);
 }
 
-void TrailerDialog::trailerClicked(QTableWidgetItem *item)
+void TrailerDialog::trailerClicked(QTableWidgetItem* item)
 {
     int row = item->row();
     if (row < 0 || row >= ui->trailers->rowCount()) {

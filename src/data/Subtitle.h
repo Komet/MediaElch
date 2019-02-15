@@ -7,13 +7,13 @@ class Subtitle : public QObject
 {
     Q_OBJECT
 public:
-    explicit Subtitle(QObject *parent = nullptr);
+    explicit Subtitle(QObject* parent = nullptr);
 
     QString language() const;
-    void setLanguage(const QString &language);
+    void setLanguage(const QString& language);
 
     QStringList files() const;
-    void setFiles(const QStringList &files, bool emitChanged = true);
+    void setFiles(const QStringList& files, bool emitChanged = true);
 
     /// Whether subtitles are focred, i.e. "burned" into the image.
     bool forced() const;

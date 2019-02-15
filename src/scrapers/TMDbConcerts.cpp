@@ -18,7 +18,7 @@
  * @brief TMDbConcerts::TMDbConcerts
  * @param parent
  */
-TMDbConcerts::TMDbConcerts(QObject *parent) :
+TMDbConcerts::TMDbConcerts(QObject* parent) :
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
     m_locale{"en"},
     m_baseUrl{"http://cf2.imgobject.com/t/p/"}
@@ -107,7 +107,7 @@ bool TMDbConcerts::hasSettings() const
     return true;
 }
 
-QWidget *TMDbConcerts::settingsWidget()
+QWidget* TMDbConcerts::settingsWidget()
 {
     return m_widget;
 }
@@ -115,7 +115,7 @@ QWidget *TMDbConcerts::settingsWidget()
 /**
  * @brief Loads scrapers settings
  */
-void TMDbConcerts::loadSettings(const ScraperSettings &settings)
+void TMDbConcerts::loadSettings(const ScraperSettings& settings)
 {
     m_locale = QLocale(settings.language());
     if (m_locale.name() == "C") {
@@ -136,7 +136,7 @@ void TMDbConcerts::loadSettings(const ScraperSettings &settings)
 /**
  * @brief Saves scrapers settings
  */
-void TMDbConcerts::saveSettings(ScraperSettings &settings)
+void TMDbConcerts::saveSettings(ScraperSettings& settings)
 {
     const QString language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setLanguage(language);
@@ -147,7 +147,7 @@ void TMDbConcerts::saveSettings(ScraperSettings &settings)
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
-QNetworkAccessManager *TMDbConcerts::qnam()
+QNetworkAccessManager* TMDbConcerts::qnam()
 {
     return &m_qnam;
 }
@@ -170,7 +170,7 @@ void TMDbConcerts::setup()
     QUrl url(QString("https://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &TMDbConcerts::setupFinished);
 }
@@ -202,7 +202,7 @@ QString TMDbConcerts::country() const
  */
 void TMDbConcerts::setupFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -251,7 +251,7 @@ void TMDbConcerts::search(QString searchStr)
     }
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QVector<ScraperSearchResult>()));
@@ -265,8 +265,8 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    QVector<ScraperSearchResult> results = reply->property("results").value<Storage *>()->results();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -291,7 +291,7 @@ void TMDbConcerts::searchFinished()
                      .arg(searchString));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply *reply = qnam()->get(request);
+        QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
@@ -305,7 +305,7 @@ void TMDbConcerts::searchFinished()
  * @param nextPage This will hold the next page to get, -1 if there are no more pages
  * @return List of search results
  */
-QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPage)
+QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPage)
 {
     QVector<ScraperSearchResult> results;
 
@@ -325,7 +325,7 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPa
 
     if (parsedJson.value("results").isArray()) {
         const auto jsonResults = parsedJson.value("results").toArray();
-        for (const auto &it : jsonResults) {
+        for (const auto& it : jsonResults) {
             const auto resultObj = it.toObject();
             if (resultObj.value("id").toInt() == 0) {
                 continue;
@@ -365,7 +365,7 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int &nextPa
  * @see TMDbConcerts::loadImagesFinished
  * @see TMDbConcerts::loadReleasesFinished
  */
-void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperInfos> infos)
+void TMDbConcerts::loadData(TmdbId id, Concert* concert, QVector<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
@@ -383,7 +383,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
         url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
                        .arg(id.toString(), m_apiKey, localeForTMDb()));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(request);
+        QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -395,7 +395,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
         loadsLeft.append(ScraperData::Trailers);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(request);
+        QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -407,7 +407,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
         loadsLeft.append(ScraperData::Images);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(request);
+        QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -419,7 +419,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
         loadsLeft.append(ScraperData::Releases);
         url.setUrl(QString("https://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id.toString(), m_apiKey));
         request.setUrl(url);
-        QNetworkReply *reply = qnam()->get(request);
+        QNetworkReply* reply = qnam()->get(request);
         new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -434,9 +434,9 @@ void TMDbConcerts::loadData(TmdbId id, Concert *concert, QVector<ConcertScraperI
  */
 void TMDbConcerts::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert* concert = reply->property("storage").value<Storage*>()->concert();
+    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -457,9 +457,9 @@ void TMDbConcerts::loadFinished()
  */
 void TMDbConcerts::loadTrailersFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert* concert = reply->property("storage").value<Storage*>()->concert();
+    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -480,9 +480,9 @@ void TMDbConcerts::loadTrailersFinished()
  */
 void TMDbConcerts::loadImagesFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert* concert = reply->property("storage").value<Storage*>()->concert();
+    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -503,9 +503,9 @@ void TMDbConcerts::loadImagesFinished()
  */
 void TMDbConcerts::loadReleasesFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Concert *concert = reply->property("storage").value<Storage *>()->concert();
-    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->concertInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert* concert = reply->property("storage").value<Storage*>()->concert();
+    QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
     if (!concert) {
         return;
@@ -527,7 +527,7 @@ void TMDbConcerts::loadReleasesFinished()
  * @param concert Concert object
  * @param infos List of infos to load
  */
-void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QVector<ConcertScraperInfos> infos)
+void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered";
     QJsonParseError parseError;
@@ -564,7 +564,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QVector<C
     }
     if (infos.contains(ConcertScraperInfos::Genres) && parsedJson.value("genres").isArray()) {
         const auto genres = parsedJson.value("genres").toArray();
-        for (const auto &it : genres) {
+        for (const auto& it : genres) {
             const auto genre = it.toObject();
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
@@ -587,7 +587,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QVector<C
     // Images
     if (infos.contains(ConcertScraperInfos::Backdrop) && parsedJson.value("backdrops").isArray()) {
         const auto backdrops = parsedJson.value("backdrops").toArray();
-        for (const auto &it : backdrops) {
+        for (const auto& it : backdrops) {
             const auto backdrop = it.toObject();
             const QString filePath = backdrop.value("file_path").toString();
             if (filePath.isEmpty()) {
@@ -604,7 +604,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QVector<C
 
     if (infos.contains(ConcertScraperInfos::Poster) && parsedJson.value("posters").isArray()) {
         const auto posters = parsedJson.value("posters").toArray();
-        for (const auto &it : posters) {
+        for (const auto& it : posters) {
             const auto poster = it.toObject();
             const QString filePath = poster.value("file_path").toString();
             if (filePath.isEmpty()) {
@@ -626,7 +626,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QVector<C
         Certification us;
         Certification gb;
         const auto countries = parsedJson.value("countries").toArray();
-        for (const auto &it : countries) {
+        for (const auto& it : countries) {
             const auto countryObj = it.toObject();
             const QString iso3166 = countryObj.value("iso_3166_1").toString();
             const Certification certification = Certification(countryObj.value("certification").toString());

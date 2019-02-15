@@ -9,7 +9,7 @@
 
 namespace Kodi {
 
-TvShowXmlWriter::TvShowXmlWriter(TvShow &tvShow) : m_show{tvShow}
+TvShowXmlWriter::TvShowXmlWriter(TvShow& tvShow) : m_show{tvShow}
 {
 }
 
@@ -80,7 +80,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 
     XbmcXml::removeChildNodes(doc, "actor");
 
-    for (const Actor &actor : m_show.actors()) {
+    for (const Actor& actor : m_show.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");
@@ -100,7 +100,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
         XbmcXml::removeChildNodes(doc, "thumb");
         XbmcXml::removeChildNodes(doc, "fanart");
 
-        for (const Poster &poster : m_show.posters()) {
+        for (const Poster& poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -115,7 +115,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 
         if (!m_show.backdrops().isEmpty()) {
             QDomElement fanartElem = doc.createElement("fanart");
-            for (const Poster &poster : m_show.backdrops()) {
+            for (const Poster& poster : m_show.backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
@@ -125,7 +125,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
         }
 
         for (SeasonNumber season : m_show.seasons()) {
-            for (const Poster &poster : m_show.seasonPosters(season)) {
+            for (const Poster& poster : m_show.seasonPosters(season)) {
                 QDomElement elemSeason = doc.createElement("thumb");
                 elemSeason.setAttribute("type", "season");
                 elemSeason.setAttribute("season", season.toString());

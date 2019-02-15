@@ -6,7 +6,7 @@
 
 #include "globals/Helper.h"
 
-UnpackButtons::UnpackButtons(QWidget *parent) : QWidget(parent), ui(new Ui::UnpackButtons)
+UnpackButtons::UnpackButtons(QWidget* parent) : QWidget(parent), ui(new Ui::UnpackButtons)
 {
     ui->setupUi(this);
     Helper::instance()->setButtonStyle(ui->btnUnpack, Helper::ButtonPrimary);

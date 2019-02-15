@@ -10,7 +10,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 
-ImageGallery::ImageGallery(QWidget *parent) :
+ImageGallery::ImageGallery(QWidget* parent) :
     QWidget(parent),
     m_imageWidth{200},
     m_imageHeight{100},
@@ -20,7 +20,7 @@ ImageGallery::ImageGallery(QWidget *parent) :
     m_scrollValue{50},
     m_showZoomAndResolution{true}
 {
-    QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     m_loadingLabel = new QLabel(this);
     m_loadingLabel->hide();
@@ -80,7 +80,7 @@ ImageGallery::ImageGallery(QWidget *parent) :
     setAcceptDrops(true);
 }
 
-void ImageGallery::resizeEvent(QResizeEvent *event)
+void ImageGallery::resizeEvent(QResizeEvent* event)
 {
     m_loadingLabel->setFixedSize(size());
     if (m_alignment == Qt::Vertical) {
@@ -104,7 +104,7 @@ void ImageGallery::resizeEvent(QResizeEvent *event)
 
 void ImageGallery::clear()
 {
-    for (ClosableImage *label : m_imageLabels) {
+    for (ClosableImage* label : m_imageLabels) {
         label->hide();
         label->deleteLater();
     }
@@ -136,7 +136,7 @@ void ImageGallery::setImages(QVector<ExtraFanart> images)
     positionImages();
 }
 
-void ImageGallery::addImage(const QByteArray &img, const QString &url)
+void ImageGallery::addImage(const QByteArray& img, const QString& url)
 {
     auto label = new ClosableImage(m_imagesWidget);
     label->hide();
@@ -164,7 +164,7 @@ void ImageGallery::positionImages()
     int x = (m_alignment == Qt::Horizontal) ? m_buttonLeft->width() - 20 : 0;
     int y = (m_alignment == Qt::Vertical) ? m_buttonTop->height() - 20 : 0;
 
-    for (ClosableImage *label : m_imageLabels) {
+    for (ClosableImage* label : m_imageLabels) {
         if (m_alignment == Qt::Vertical) {
             if (x > 0 && x + m_imageWidth + m_horizontalSpace > width()) {
                 x = 0;
@@ -203,7 +203,7 @@ void ImageGallery::positionImages()
 
 void ImageGallery::onCloseImage()
 {
-    auto label = static_cast<ClosableImage *>(QObject::sender());
+    auto label = static_cast<ClosableImage*>(QObject::sender());
     label->hide();
     label->deleteLater();
     m_imageLabels.removeOne(label);
@@ -215,13 +215,13 @@ void ImageGallery::onCloseImage()
     }
 }
 
-void ImageGallery::setLoading(const bool &loading)
+void ImageGallery::setLoading(const bool& loading)
 {
     m_loadingLabel->raise();
     m_loadingLabel->setVisible(loading);
 }
 
-void ImageGallery::setAlignment(const int &alignment)
+void ImageGallery::setAlignment(const int& alignment)
 {
     m_alignment = alignment;
     positionImages();
@@ -232,16 +232,16 @@ void ImageGallery::setAlignment(const int &alignment)
     m_buttonBottom->setVisible(m_alignment == Qt::Vertical);
 }
 
-void ImageGallery::setShowZoomAndResolution(const bool &show)
+void ImageGallery::setShowZoomAndResolution(const bool& show)
 {
     m_showZoomAndResolution = show;
-    for (ClosableImage *label : m_imageLabels) {
+    for (ClosableImage* label : m_imageLabels) {
         label->setShowZoomAndResolution(show);
     }
     positionImages();
 }
 
-void ImageGallery::onVerticalScrollBarMoved(const int &value)
+void ImageGallery::onVerticalScrollBarMoved(const int& value)
 {
     if (m_alignment == Qt::Horizontal) {
         return;
@@ -251,7 +251,7 @@ void ImageGallery::onVerticalScrollBarMoved(const int &value)
     m_buttonBottom->setEnabled(value != m_scrollArea->verticalScrollBar()->maximum());
 }
 
-void ImageGallery::onHorizontalScrollBarMoved(const int &value)
+void ImageGallery::onHorizontalScrollBarMoved(const int& value)
 {
     if (m_alignment == Qt::Vertical) {
         return;
@@ -263,7 +263,7 @@ void ImageGallery::onHorizontalScrollBarMoved(const int &value)
 
 void ImageGallery::onButtonLeft()
 {
-    QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
+    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
     anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() - width() + 50);
     anim->setDuration(500);
@@ -273,7 +273,7 @@ void ImageGallery::onButtonLeft()
 
 void ImageGallery::onButtonRight()
 {
-    QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
+    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->horizontalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->horizontalScrollBar()->value());
     anim->setEndValue(m_scrollArea->horizontalScrollBar()->value() + width() - 50);
     anim->setDuration(500);
@@ -283,7 +283,7 @@ void ImageGallery::onButtonRight()
 
 void ImageGallery::onButtonTop()
 {
-    QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
+    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
     anim->setEndValue(m_scrollArea->verticalScrollBar()->value() - height() + 100);
     anim->setDuration(500);
@@ -293,7 +293,7 @@ void ImageGallery::onButtonTop()
 
 void ImageGallery::onButtonBottom()
 {
-    QPropertyAnimation *anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
+    QPropertyAnimation* anim = new QPropertyAnimation(m_scrollArea->verticalScrollBar(), "value");
     anim->setStartValue(m_scrollArea->verticalScrollBar()->value());
     anim->setEndValue(m_scrollArea->verticalScrollBar()->value() + height() - 100);
     anim->setDuration(500);
@@ -313,12 +313,12 @@ void ImageGallery::onVerticalScrollBarRangeChanged(int min, int max)
     m_buttonBottom->setVisible(min != max);
 }
 
-void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
+void ImageGallery::dragMoveEvent(QDragMoveEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters{".jpg", ".jpeg", ".png"};
-    for (const QString &filter : filters) {
+    for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -326,12 +326,12 @@ void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
     }
 }
 
-void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
+void ImageGallery::dragEnterEvent(QDragEnterEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
     QStringList filters{".jpg", ".jpeg", ".png"};
-    for (const QString &filter : filters) {
+    for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
             return;
@@ -339,13 +339,13 @@ void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
-void ImageGallery::dropEvent(QDropEvent *event)
+void ImageGallery::dropEvent(QDropEvent* event)
 {
-    const QMimeData *mimeData = event->mimeData();
+    const QMimeData* mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
         QStringList filters{".jpg", ".jpeg", ".png"};
-        for (const QString &filter : filters) {
+        for (const QString& filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(url);
                 return;

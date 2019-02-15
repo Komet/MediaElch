@@ -10,7 +10,7 @@ class Extractor : public QObject
 {
     Q_OBJECT
 public:
-    explicit Extractor(QObject *parent = nullptr);
+    explicit Extractor(QObject* parent = nullptr);
     ~Extractor() override;
 
 public slots:
@@ -28,5 +28,5 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
-    QVector<QProcess *> m_processes;
+    QVector<QProcess*> m_processes;
 };

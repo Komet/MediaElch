@@ -21,7 +21,7 @@
 #include "settings/ExportTemplateWidget.h"
 #include "settings/Settings.h"
 
-SettingsWindow::SettingsWindow(QWidget *parent) :
+SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::SettingsWindow),
     m_buttonColor{QColor(128, 129, 132)},
@@ -63,9 +63,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->exportTemplates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
-    for (auto *scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->movieScrapers()) {
         if (scraper->hasSettings()) {
-            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            QLabel* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -74,9 +74,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             scraperCounter++;
         }
     }
-    for (auto *scraper : Manager::instance()->tvScrapers()) {
+    for (auto* scraper : Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings()) {
-            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            QLabel* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -84,9 +84,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             scraperCounter++;
         }
     }
-    for (auto *scraper : Manager::instance()->concertScrapers()) {
+    for (auto* scraper : Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings()) {
-            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            QLabel* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -94,9 +94,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             scraperCounter++;
         }
     }
-    for (auto *scraper : Manager::instance()->musicScrapers()) {
+    for (auto* scraper : Manager::instance()->musicScrapers()) {
         if (scraper->hasSettings()) {
-            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            QLabel* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -105,9 +105,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
         }
     }
 
-    for (ImageProviderInterface *scraper : Manager::instance()->imageProviders()) {
+    for (ImageProviderInterface* scraper : Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {
-            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            QLabel* name = new QLabel("<b>" + scraper->name() + "</b>");
             name->setAlignment(Qt::AlignRight);
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
@@ -188,7 +188,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->comboStartupSection->addItem(tr("Import"), "import");
 
     QPainter p;
-    for (QAction *action : findChildren<QAction *>()) {
+    for (QAction* action : findChildren<QAction*>()) {
         if (!action->property("page").isValid()) {
             continue;
         }
@@ -218,7 +218,7 @@ void SettingsWindow::show()
     QMainWindow::show();
 }
 
-void SettingsWindow::closeEvent(QCloseEvent *event)
+void SettingsWindow::closeEvent(QCloseEvent* event)
 {
     Q_UNUSED(event);
 #ifdef Q_OS_MAC
@@ -245,8 +245,8 @@ void SettingsWindow::onCancel()
 
 void SettingsWindow::onAction()
 {
-    auto triggeredAction = static_cast<QAction *>(sender());
-    for (QAction *action : ui->toolBar->actions())
+    auto triggeredAction = static_cast<QAction*>(sender());
+    for (QAction* action : ui->toolBar->actions())
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     triggeredAction->setIcon(
         Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
@@ -262,7 +262,7 @@ void SettingsWindow::loadSettings()
     ui->chkAutoLoadStreamDetails->setChecked(m_settings->autoLoadStreamDetails());
 
     // Proxy
-    const auto &netSettings = m_settings->networkSettings();
+    const auto& netSettings = m_settings->networkSettings();
     ui->chkUseProxy->setChecked(netSettings.useProxy());
     ui->proxyType->setCurrentIndex(netSettings.proxyType());
     ui->proxyHost->setText(netSettings.proxyHost());
@@ -348,7 +348,7 @@ void SettingsWindow::loadSettings()
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
     onComboMovieSetArtworkChanged();
 
-    for (auto lineEdit : findChildren<QLineEdit *>()) {
+    for (auto lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
@@ -427,14 +427,14 @@ void SettingsWindow::loadSettings()
 void SettingsWindow::saveSettings()
 {
     QVector<DataFile> dataFiles;
-    for (QLineEdit *lineEdit : findChildren<QLineEdit *>()) {
+    for (QLineEdit* lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
             continue;
         }
         int pos = 0;
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
-        for (const QString &filename : filenames) {
+        for (const QString& filename : filenames) {
             DataFile df(dataFileType, filename.trimmed(), pos++);
             dataFiles << df;
         }
@@ -476,15 +476,15 @@ void SettingsWindow::saveSettings()
         dir.path = ui->dirs->item(row, 1)->text();
         dir.separateFolders = ui->dirs->item(row, 2)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
-        if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
+        if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
             movieDirectories.append(dir);
-        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1) {
             tvShowDirectories.append(dir);
-        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 2) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 2) {
             concertDirectories.append(dir);
-        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3) {
             downloadDirectories.append(dir);
-        } else if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4) {
             musicDirectories.append(dir);
         }
     }
@@ -505,7 +505,7 @@ void SettingsWindow::saveSettings()
     // Custom movie scraper
     QMap<MovieScraperInfos, QString> customMovieScraper;
     for (int row = 0, n = ui->customScraperTable->rowCount(); row < n; ++row) {
-        auto box = static_cast<QComboBox *>(ui->customScraperTable->cellWidget(row, 1));
+        auto box = static_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
         MovieScraperInfos info = MovieScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         customMovieScraper.insert(info, scraper);
@@ -515,7 +515,7 @@ void SettingsWindow::saveSettings()
     // tv scraper
     QMap<TvShowScraperInfos, QString> tvScraper;
     for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
-        auto box = static_cast<QComboBox *>(ui->tvScraperTable->cellWidget(row, 1));
+        auto box = static_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
         TvShowScraperInfos info = TvShowScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         tvScraper.insert(info, scraper);
@@ -612,7 +612,7 @@ void SettingsWindow::organize()
     auto organizer = new MovieFilesOrganizer(this);
 
     int row = ui->dirs->currentRow();
-    if (static_cast<QComboBox *>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
+    if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
         || ui->dirs->item(row, 2)->checkState() == Qt::Checked) {
         organizer->canceled(tr("Organizing movies does only work on "
                                "movies, not already sorted to "
@@ -650,7 +650,7 @@ void SettingsWindow::dirListRowChanged(int currentRow)
     } else {
         ui->buttonRemoveDir->setDisabled(false);
         if (ui->dirs->cellWidget(currentRow, 0) != nullptr
-            && static_cast<QComboBox *>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
+            && static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
             && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
             ui->buttonMovieFilesToDirs->setDisabled(false);
         } else {
@@ -708,12 +708,12 @@ void SettingsWindow::loadRemoteTemplates()
     ExportTemplateLoader::instance()->getRemoteTemplates();
 }
 
-void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate *> templates)
+void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate*> templates)
 {
     ui->exportTemplates->clearContents();
     ui->exportTemplates->setRowCount(0);
 
-    for (ExportTemplate *exportTemplate : templates) {
+    for (ExportTemplate* exportTemplate : templates) {
         auto widget = new ExportTemplateWidget(ui->exportTemplates);
         widget->setExportTemplate(exportTemplate);
 
@@ -724,7 +724,7 @@ void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate *> templates)
     }
 }
 
-void SettingsWindow::onTemplateInstalled(ExportTemplate *exportTemplate, bool success)
+void SettingsWindow::onTemplateInstalled(ExportTemplate* exportTemplate, bool success)
 {
     if (success) {
         ui->themesErrorMessage->setSuccessMessage(
@@ -735,7 +735,7 @@ void SettingsWindow::onTemplateInstalled(ExportTemplate *exportTemplate, bool su
     }
 }
 
-void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool success)
+void SettingsWindow::onTemplateUninstalled(ExportTemplate* exportTemplate, bool success)
 {
     if (success) {
         ui->themesErrorMessage->setSuccessMessage(
@@ -746,7 +746,7 @@ void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool 
     }
 }
 
-QComboBox *SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info)
+QComboBox* SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info)
 {
     QString currentScraper = m_settings->customMovieScraper().value(info, "notset");
 
@@ -757,7 +757,7 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info
         box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
         index = 1;
     }
-    for (auto *scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->movieScrapers()) {
         if (scraper->identifier() == "custom-movie") {
             continue;
         }
@@ -826,7 +826,7 @@ QString SettingsWindow::titleForMovieScraperInfo(MovieScraperInfos info)
     }
 }
 
-QComboBox *SettingsWindow::comboForTvScraperInfo(const TvShowScraperInfos info)
+QComboBox* SettingsWindow::comboForTvScraperInfo(const TvShowScraperInfos info)
 {
     QString currentScraper = m_settings->customTvScraper().value(info, "notset");
 
@@ -878,18 +878,18 @@ void SettingsWindow::onChooseMakeMkvCon()
     }
 }
 
-void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
+void SettingsWindow::onDirTypeChanged(QComboBox* comboBox)
 {
-    QComboBox *box = comboBox;
+    QComboBox* box = comboBox;
     if (!box) {
-        box = static_cast<QComboBox *>(QObject::sender());
+        box = static_cast<QComboBox*>(QObject::sender());
     }
     if (!box) {
         return;
     }
 
-    QTableWidgetItem *itemCheck = box->property("itemCheck").value<Storage *>()->tableWidgetItem();
-    QTableWidgetItem *itemCheckReload = box->property("itemCheckReload").value<Storage *>()->tableWidgetItem();
+    QTableWidgetItem* itemCheck = box->property("itemCheck").value<Storage*>()->tableWidgetItem();
+    QTableWidgetItem* itemCheckReload = box->property("itemCheckReload").value<Storage*>()->tableWidgetItem();
 
     if (box->currentIndex() == 0) {
         itemCheck->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -916,7 +916,7 @@ void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
 void SettingsWindow::onShowAdultScrapers()
 {
     bool show = ui->chkEnableAdultScrapers->isChecked();
-    for (const auto *scraper : Manager::instance()->movieScrapers()) {
+    for (const auto* scraper : Manager::instance()->movieScrapers()) {
         if (scraper->isAdult() && scraper->hasSettings()) {
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 0)->widget()->setVisible(show);
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);

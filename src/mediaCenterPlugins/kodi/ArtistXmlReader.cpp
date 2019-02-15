@@ -11,7 +11,7 @@
 
 namespace Kodi {
 
-ArtistXmlReader::ArtistXmlReader(Artist &actor) : m_artist{actor}
+ArtistXmlReader::ArtistXmlReader(Artist& actor) : m_artist{actor}
 {
 }
 

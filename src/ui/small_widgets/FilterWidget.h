@@ -20,43 +20,43 @@ class FilterWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit FilterWidget(QWidget *parent = nullptr);
+    explicit FilterWidget(QWidget* parent = nullptr);
     ~FilterWidget() override;
     void setActiveMainWidget(MainWidgets widget);
 signals:
     void sigFilterTextChanged(QString);
-    void sigFilterChanged(QVector<Filter *>, QString);
+    void sigFilterChanged(QVector<Filter*>, QString);
 private slots:
     void onFilterTextChanged(QString text);
     void onKeyDown();
     void onKeyUp();
     void setupFilters();
     void addSelectedFilter();
-    void addFilterFromItem(QListWidgetItem *item);
+    void addFilterFromItem(QListWidgetItem* item);
     void removeLastFilter();
 
 private:
-    Ui::FilterWidget *ui;
+    Ui::FilterWidget* ui;
     MainWidgets m_activeWidget;
 
     // Available filters for current widget
-    QVector<Filter *> m_availableFilters;
+    QVector<Filter*> m_availableFilters;
 
     // Unique available filters
-    QVector<Filter *> m_availableMovieFilters;
-    QVector<Filter *> m_availableTvShowFilters;
-    QVector<Filter *> m_availableConcertFilters;
-    QVector<Filter *> m_availableMusicFilters;
+    QVector<Filter*> m_availableMovieFilters;
+    QVector<Filter*> m_availableTvShowFilters;
+    QVector<Filter*> m_availableConcertFilters;
+    QVector<Filter*> m_availableMusicFilters;
 
-    QListWidget *m_list;
-    QVector<Filter *> m_activeFilters;
-    QMap<MainWidgets, QVector<Filter *>> m_storedFilters;
+    QListWidget* m_list;
+    QVector<Filter*> m_activeFilters;
+    QMap<MainWidgets, QVector<Filter*>> m_storedFilters;
 
     void initAvailableFilters();
-    QVector<Filter *> setupMovieFilters();
-    QVector<Filter *> setupTvShowFilters();
-    QVector<Filter *> setupConcertFilters();
-    QVector<Filter *> setupMusicFilters();
+    QVector<Filter*> setupMovieFilters();
+    QVector<Filter*> setupTvShowFilters();
+    QVector<Filter*> setupConcertFilters();
+    QVector<Filter*> setupMusicFilters();
     void storeFilters(MainWidgets widget);
     void loadFilters(MainWidgets widget);
     void setupFilterListUi();

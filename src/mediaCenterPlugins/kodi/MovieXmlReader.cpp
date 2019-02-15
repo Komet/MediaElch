@@ -11,7 +11,7 @@
 namespace Kodi {
 
 
-MovieXmlReader::MovieXmlReader(Movie &movie) : m_movie{movie}
+MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
 {
 }
 
@@ -109,7 +109,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 
     QStringList writers;
     for (int i = 0, n = domDoc.elementsByTagName("credits").size(); i < n; i++) {
-        for (const QString &writer :
+        for (const QString& writer :
             domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
             writers.append(writer.trimmed());
         }
@@ -118,7 +118,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 
     QStringList directors;
     for (int i = 0, n = domDoc.elementsByTagName("director").size(); i < n; i++) {
-        for (const QString &director :
+        for (const QString& director :
             domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts)) {
             directors.append(director.trimmed());
         }
@@ -132,7 +132,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         const QDomNodeList tags = domDoc.elementsByTagName(tag);
         const int tagCount = tags.size();
         for (int i = 0; i < tagCount; ++i) {
-            for (const QString &item : tags.at(i).toElement().text().split("/", QString::SkipEmptyParts)) {
+            for (const QString& item : tags.at(i).toElement().text().split("/", QString::SkipEmptyParts)) {
                 callbackFct(item.trimmed());
             }
         }

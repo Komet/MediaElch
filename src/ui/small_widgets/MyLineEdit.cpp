@@ -13,7 +13,7 @@
  * @brief MyLineEdit::MyLineEdit
  * @param parent
  */
-MyLineEdit::MyLineEdit(QWidget *parent) :
+MyLineEdit::MyLineEdit(QWidget* parent) :
     QLineEdit(parent),
     m_loadingLabel{new QLabel(nullptr)},
     m_showMagnifier{false},
@@ -31,7 +31,7 @@ MyLineEdit::MyLineEdit(QWidget *parent) :
 /**
  * @brief Moves the icons to their positions
  */
-void MyLineEdit::resizeEvent(QResizeEvent *)
+void MyLineEdit::resizeEvent(QResizeEvent*)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
     const QSize size = m_loadingLabel->sizeHint();
@@ -54,7 +54,7 @@ void MyLineEdit::resizeEvent(QResizeEvent *)
  * @brief Captures key events and emits signals based on the key
  * @param event
  */
-void MyLineEdit::keyPressEvent(QKeyEvent *event)
+void MyLineEdit::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Down) {
         emit keyDown();
@@ -74,7 +74,7 @@ void MyLineEdit::keyPressEvent(QKeyEvent *event)
  * @brief Emits custom focusOut signal
  * @param event
  */
-void MyLineEdit::focusOutEvent(QFocusEvent *event)
+void MyLineEdit::focusOutEvent(QFocusEvent* event)
 {
     emit focusOut();
     QLineEdit::focusOutEvent(event);
@@ -84,7 +84,7 @@ void MyLineEdit::focusOutEvent(QFocusEvent *event)
  * @brief Emits custom focusIn signal
  * @param event
  */
-void MyLineEdit::focusInEvent(QFocusEvent *event)
+void MyLineEdit::focusInEvent(QFocusEvent* event)
 {
     emit focusIn();
     QLineEdit::focusInEvent(event);
@@ -114,7 +114,7 @@ void MyLineEdit::setType(LineEditType type)
     if (type == TypeLoading) {
         m_loadingLabel->deleteLater();
         m_loadingLabel = new QLabel(this);
-        QMovie *movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+        QMovie* movie = new QMovie(":/img/spinner.gif", QByteArray(), this);
         movie->start();
         m_loadingLabel->setMovie(movie);
         QSize minimumSize = minimumSizeHint();
@@ -223,9 +223,9 @@ void MyLineEdit::setShowMagnifier(bool show)
  * @brief Adds a filter and clears text
  * @param filter
  */
-void MyLineEdit::addFilter(Filter *filter)
+void MyLineEdit::addFilter(Filter* filter)
 {
-    QLabel *label = new QLabel(this);
+    QLabel* label = new QLabel(this);
     if (filter->isInfo(MovieFilters::Title) || filter->isInfo(MovieFilters::Path)
         || filter->isInfo(ConcertFilters::Title) || filter->isInfo(TvShowFilters::Title)
         || filter->isInfo(MusicFilters::Title)) {
@@ -262,7 +262,7 @@ void MyLineEdit::removeLastFilter()
  */
 void MyLineEdit::clearFilters()
 {
-    for (QLabel *label : m_filterLabels) {
+    for (QLabel* label : m_filterLabels) {
         label->deleteLater();
     }
     m_filterLabels.clear();
@@ -278,14 +278,14 @@ void MyLineEdit::drawFilters()
     int paddingLeft = m_paddingLeft;
     int labelWidth = 0;
     int hidden = 0;
-    for (QLabel *l : m_filterLabels) {
+    for (QLabel* l : m_filterLabels) {
         labelWidth += l->width() + 2;
         l->show();
     }
     while (labelWidth + 50 > width() && hidden < m_filterLabels.count()) {
         m_filterLabels.at(hidden++)->hide();
         labelWidth = 0;
-        for (QLabel *l : m_filterLabels) {
+        for (QLabel* l : m_filterLabels) {
             if (l->isVisible()) {
                 labelWidth += l->width() + 2;
             }
@@ -300,7 +300,7 @@ void MyLineEdit::drawFilters()
         m_moreLabel->hide();
     }
 
-    for (QLabel *l : m_filterLabels) {
+    for (QLabel* l : m_filterLabels) {
         if (l->isVisible() || l == m_filterLabels.last()) {
             l->move(paddingLeft, 1);
             paddingLeft += l->width() + 2;
@@ -321,7 +321,7 @@ int MyLineEdit::paddingLeft()
     if (m_moreLabel->isVisible()) {
         paddingLeft += m_moreLabel->width();
     }
-    for (QLabel *l : m_filterLabels) {
+    for (QLabel* l : m_filterLabels) {
         if (l->isVisible()) {
             paddingLeft += l->width() + 2;
         }

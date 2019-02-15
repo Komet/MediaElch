@@ -12,20 +12,20 @@ class AEBN : public MovieScraperInterface
 {
     Q_OBJECT
 public:
-    explicit AEBN(QObject *parent = nullptr);
+    explicit AEBN(QObject* parent = nullptr);
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;
-    void loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos) override;
+    void loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos) override;
     bool hasSettings() const override;
-    void loadSettings(const ScraperSettings &settings) override;
-    void saveSettings(ScraperSettings &settings) override;
+    void loadSettings(const ScraperSettings& settings) override;
+    void saveSettings(ScraperSettings& settings) override;
     QVector<MovieScraperInfos> scraperSupports() override;
     QVector<MovieScraperInfos> scraperNativelySupports() override;
     std::vector<ScraperLanguage> supportedLanguages() override;
     void changeLanguage(QString languageKey) override;
     QString defaultLanguageKey() override;
-    QWidget *settingsWidget() override;
+    QWidget* settingsWidget() override;
     bool isAdult() const override;
 
 signals:
@@ -41,12 +41,12 @@ private:
     QVector<MovieScraperInfos> m_scraperSupports;
     QString m_language;
     QString m_genreId;
-    QWidget *m_widget;
-    QComboBox *m_box;
-    QComboBox *m_genreBox;
+    QWidget* m_widget;
+    QComboBox* m_box;
+    QComboBox* m_genreBox;
 
     QVector<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos, QStringList &actorIds);
-    void downloadActors(Movie *movie, QStringList actorIds);
-    void parseAndAssignActor(QString html, Movie *movie, QString id);
+    void parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos, QStringList& actorIds);
+    void downloadActors(Movie* movie, QStringList actorIds);
+    void parseAndAssignActor(QString html, Movie* movie, QString id);
 };

@@ -12,7 +12,7 @@
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 
-ExportDialog::ExportDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ExportDialog)
+ExportDialog::ExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ExportDialog)
 {
     ui->setupUi(this);
 #ifdef Q_OS_MAC
@@ -30,7 +30,7 @@ ExportDialog::~ExportDialog()
 int ExportDialog::exec()
 {
     m_canceled = false;
-    QVector<ExportTemplate *> templates = ExportTemplateLoader::instance()->installedTemplates();
+    QVector<ExportTemplate*> templates = ExportTemplateLoader::instance()->installedTemplates();
     if (templates.isEmpty()) {
         ui->message->setErrorMessage(tr("You need to install at least one theme."));
         ui->btnExport->setEnabled(false);
@@ -41,7 +41,7 @@ int ExportDialog::exec()
 
     ui->progressBar->setValue(0);
     ui->comboTheme->clear();
-    for (ExportTemplate *exportTemplate : templates) {
+    for (ExportTemplate* exportTemplate : templates) {
         ui->comboTheme->addItem(exportTemplate->name(), exportTemplate->identifier());
     }
     onThemeChanged();
@@ -74,7 +74,7 @@ void ExportDialog::onBtnExport()
         return;
     }
 
-    ExportTemplate *exportTemplate =
+    ExportTemplate* exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
     if (!exportTemplate) {
         return;
@@ -105,7 +105,7 @@ void ExportDialog::onBtnExport()
         itemsToExport += Manager::instance()->movieModel()->movies().count();
     }
     if (sections.contains(ExportTemplate::ExportSection::TvShows)) {
-        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
             ++itemsToExport;
             itemsToExport += show->episodeCount();
         }
@@ -152,7 +152,7 @@ void ExportDialog::onThemeChanged()
         return;
     }
 
-    ExportTemplate *exportTemplate =
+    ExportTemplate* exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
     if (!exportTemplate) {
         return;
@@ -163,7 +163,7 @@ void ExportDialog::onThemeChanged()
     ui->chkTvShows->setEnabled(exportTemplate->exportSections().contains(ExportTemplate::ExportSection::TvShows));
 }
 
-void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, QVector<Movie *> movies)
+void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, QVector<Movie*> movies)
 {
     qSort(movies.begin(), movies.end(), Movie::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Movies);
@@ -186,7 +186,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     dir.mkdir("movies");
     dir.mkdir("movie_images");
 
-    for (Movie *movie : movies) {
+    for (Movie* movie : movies) {
         if (m_canceled) {
             return;
         }
@@ -215,7 +215,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     }
 }
 
-void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
+void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
 {
     m.replace("{{ MOVIE.ID }}", QString::number(movie->movieId(), 'f', 0));
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
@@ -261,7 +261,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
 
     QStringList actorNames;
     QStringList actorRoles;
-    for (const Actor &actor : movie->actors()) {
+    for (const Actor& actor : movie->actors()) {
         actorNames << actor.name;
         actorRoles << actor.role;
     }
@@ -271,7 +271,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     replaceImages(m, dir, subDir, movie);
 }
 
-void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate, QVector<Concert *> concerts)
+void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate, QVector<Concert*> concerts)
 {
     qSort(concerts.begin(), concerts.end(), Concert::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::Concerts);
@@ -294,7 +294,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     dir.mkdir("concerts");
     dir.mkdir("concert_images");
 
-    for (const Concert *concert : concerts) {
+    for (const Concert* concert : concerts) {
         if (m_canceled) {
             return;
         }
@@ -323,7 +323,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     }
 }
 
-void ExportDialog::replaceVars(QString &m, const Concert *concert, QDir dir, bool subDir)
+void ExportDialog::replaceVars(QString& m, const Concert* concert, QDir dir, bool subDir)
 {
     m.replace("{{ CONCERT.ID }}", QString::number(concert->concertId(), 'f', 0));
     m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(concert->concertId()));
@@ -349,7 +349,7 @@ void ExportDialog::replaceVars(QString &m, const Concert *concert, QDir dir, boo
     replaceImages(m, dir, subDir, nullptr, concert);
 }
 
-void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate, QVector<TvShow *> shows)
+void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate, QVector<TvShow*> shows)
 {
     qSort(shows.begin(), shows.end(), TvShow::lessThan);
     QString listContent = exportTemplate->getTemplate(ExportTemplate::ExportSection::TvShows);
@@ -375,7 +375,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     dir.mkdir("episodes");
     dir.mkdir("episode_images");
 
-    for (TvShow *show : shows) {
+    for (TvShow* show : shows) {
         if (m_canceled) {
             return;
         }
@@ -396,7 +396,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
-        for (TvShowEpisode *episode : show->episodes()) {
+        for (TvShowEpisode* episode : show->episodes()) {
             if (episode->isDummy()) {
                 continue;
             }
@@ -421,7 +421,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     }
 }
 
-void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool subDir)
+void ExportDialog::replaceVars(QString& m, const TvShow* show, QDir dir, bool subDir)
 {
     m.replace("{{ TVSHOW.ID }}", QString::number(show->showId(), 'f', 0));
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
@@ -471,8 +471,8 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
 
     QVector<SeasonNumber> seasons = show->seasons(false);
     qSort(seasons);
-    for (const SeasonNumber &season : seasons) {
-        QVector<TvShowEpisode *> episodes = show->episodes(season);
+    for (const SeasonNumber& season : seasons) {
+        QVector<TvShowEpisode*> episodes = show->episodes(season);
         qSort(episodes.begin(), episodes.end(), TvShowEpisode::lessThan);
         QString s = listSeasonItem;
         s.replace("{{ SEASON }}", season.toString());
@@ -489,7 +489,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
             listEpisodeItem = rx.cap(1).trimmed();
         }
 
-        for (TvShowEpisode *episode : episodes) {
+        for (TvShowEpisode* episode : episodes) {
             QString e = listEpisodeItem;
             replaceVars(e, episode, dir, true);
             episodeList << e;
@@ -501,7 +501,7 @@ void ExportDialog::replaceVars(QString &m, const TvShow *show, QDir dir, bool su
     m.replace(listSeasonBlock, seasonList.join("\n"));
 }
 
-void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, bool subDir)
+void ExportDialog::replaceVars(QString& m, TvShowEpisode* episode, QDir dir, bool subDir)
 {
     m.replace("{{ SHOW.TITLE }}", episode->tvShow()->name().toHtmlEscaped());
     m.replace("{{ SHOW.LINK }}", QString("../tvshows/%1.html").arg(episode->tvShow()->showId()));
@@ -526,7 +526,7 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     replaceImages(m, dir, subDir, nullptr, nullptr, nullptr, episode);
 }
 
-void ExportDialog::replaceStreamDetailsVars(QString &m, const StreamDetails *streamDetails)
+void ExportDialog::replaceStreamDetailsVars(QString& m, const StreamDetails* streamDetails)
 {
     const auto videoDetails = streamDetails->videoDetails();
     const auto audioDetails = streamDetails->audioDetails();
@@ -550,12 +550,12 @@ void ExportDialog::replaceStreamDetailsVars(QString &m, const StreamDetails *str
     m.replace("{{ FILEINFO.AUDIO.LANGUAGE }}", audioLanguages.join("|"));
 }
 
-void ExportDialog::replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces)
+void ExportDialog::replaceSingleBlock(QString& m, QString blockName, QString itemName, QStringList replaces)
 {
     replaceMultiBlock(m, blockName, QStringList() << itemName, QVector<QStringList>() << replaces);
 }
 
-void ExportDialog::replaceMultiBlock(QString &m,
+void ExportDialog::replaceMultiBlock(QString& m,
     QString blockName,
     QStringList itemNames,
     QVector<QStringList> replaces)
@@ -578,7 +578,7 @@ void ExportDialog::replaceMultiBlock(QString &m,
     }
 }
 
-void ExportDialog::saveImage(QSize size, QString imageFile, QString destinationFile, const char *format, int quality)
+void ExportDialog::saveImage(QSize size, QString imageFile, QString destinationFile, const char* format, int quality)
 {
     QImage img(imageFile);
     img = img.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -591,13 +591,13 @@ void ExportDialog::onBtnClose()
     QDialog::reject();
 }
 
-void ExportDialog::replaceImages(QString &m,
-    const QDir &dir,
-    const bool &subDir,
-    const Movie *movie,
-    const Concert *concert,
-    const TvShow *tvShow,
-    const TvShowEpisode *episode)
+void ExportDialog::replaceImages(QString& m,
+    const QDir& dir,
+    const bool& subDir,
+    const Movie* movie,
+    const Concert* concert,
+    const TvShow* tvShow,
+    const TvShowEpisode* episode)
 {
     QString item;
     QSize size;
@@ -644,11 +644,11 @@ void ExportDialog::replaceImages(QString &m,
     }
 }
 
-bool ExportDialog::saveImageForType(const QString &type,
-    const QSize &size,
-    const QDir &dir,
-    QString &destFile,
-    const Movie *movie)
+bool ExportDialog::saveImageForType(const QString& type,
+    const QSize& size,
+    const QDir& dir,
+    QString& destFile,
+    const Movie* movie)
 {
     destFile = "movie_images/"
                + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
@@ -683,11 +683,11 @@ bool ExportDialog::saveImageForType(const QString &type,
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type,
-    const QSize &size,
-    const QDir &dir,
-    QString &destFile,
-    const Concert *concert)
+bool ExportDialog::saveImageForType(const QString& type,
+    const QSize& size,
+    const QDir& dir,
+    QString& destFile,
+    const Concert* concert)
 {
     destFile =
         "concert_images/"
@@ -724,11 +724,11 @@ bool ExportDialog::saveImageForType(const QString &type,
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type,
-    const QSize &size,
-    const QDir &dir,
-    QString &destFile,
-    const TvShow *tvShow)
+bool ExportDialog::saveImageForType(const QString& type,
+    const QSize& size,
+    const QDir& dir,
+    QString& destFile,
+    const TvShow* tvShow)
 {
     destFile = "tvshow_images/"
                + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
@@ -766,11 +766,11 @@ bool ExportDialog::saveImageForType(const QString &type,
     return true;
 }
 
-bool ExportDialog::saveImageForType(const QString &type,
-    const QSize &size,
-    const QDir &dir,
-    QString &destFile,
-    const TvShowEpisode *episode)
+bool ExportDialog::saveImageForType(const QString& type,
+    const QSize& size,
+    const QDir& dir,
+    QString& destFile,
+    const TvShowEpisode* episode)
 {
     destFile = "episode_images/"
                + QString("%1-%2_%3x%4.jpg").arg(episode->episodeId()).arg(type).arg(size.width()).arg(size.height());

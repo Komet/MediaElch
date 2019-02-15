@@ -24,7 +24,7 @@ class ImportDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImportDialog(QWidget *parent = nullptr);
+    explicit ImportDialog(QWidget* parent = nullptr);
     ~ImportDialog() override;
     void setFiles(QStringList files);
     QStringList files();
@@ -36,16 +36,16 @@ public:
 public slots:
     int exec() override;
     int execMovie(QString searchString);
-    int execTvShow(QString searchString, TvShow *tvShow);
+    int execTvShow(QString searchString, TvShow* tvShow);
     int execConcert(QString searchString);
     void reject() override;
     void accept() override;
 
 private slots:
     void onMovieChosen();
-    void onLoadDone(Movie *movie);
+    void onLoadDone(Movie* movie);
     void onConcertChosen();
-    void onLoadDone(Concert *concert);
+    void onLoadDone(Concert* concert);
     void onTvShowChosen();
     void onEpisodeLoadDone();
     void onImport();
@@ -54,7 +54,7 @@ private slots:
     void onEpisodeDownloadFinished(DownloadManagerElement elem);
 
 private:
-    Ui::ImportDialog *ui;
+    Ui::ImportDialog* ui;
     QString m_type;
     QPointer<Movie> m_movie;
     QPointer<Concert> m_concert;
@@ -69,7 +69,7 @@ private:
     QPointer<QThread> m_workerThread;
     QPointer<FileWorker> m_worker;
     QStringList m_newFiles;
-    DownloadManager *m_posterDownloadManager;
+    DownloadManager* m_posterDownloadManager;
 
     void setDefaults(Renamer::RenameType renameType);
     void storeDefaults();

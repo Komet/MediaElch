@@ -24,22 +24,22 @@ class ConcertWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ConcertWidget(QWidget *parent = nullptr);
+    explicit ConcertWidget(QWidget* parent = nullptr);
     ~ConcertWidget() override;
 
 public slots:
     void clear();
-    void setConcert(Concert *concert);
+    void setConcert(Concert* concert);
     void onStartScraperSearch();
     void onSaveInformation();
     void onSaveAll();
-    void setEnabledTrue(Concert *concert = nullptr);
+    void setEnabledTrue(Concert* concert = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
     void updateConcertInfo();
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 signals:
     void setActionSearchEnabled(bool, MainWidgets);
@@ -48,12 +48,12 @@ signals:
 private slots:
     void onInfoChanged();
 
-    void onInfoLoadDone(Concert *concert);
-    void onLoadDone(Concert *concert);
-    void onLoadImagesStarted(Concert *concert);
-    void onLoadingImages(Concert *concert, QVector<ImageType> imageTypes);
-    void onDownloadProgress(Concert *concert, int current, int maximum);
-    void onSetImage(Concert *concert, ImageType type, QByteArray imageData);
+    void onInfoLoadDone(Concert* concert);
+    void onLoadDone(Concert* concert);
+    void onLoadImagesStarted(Concert* concert);
+    void onLoadingImages(Concert* concert, QVector<ImageType> imageTypes);
+    void onDownloadProgress(Concert* concert, int current, int maximum);
+    void onSetImage(Concert* concert, ImageType type, QByteArray imageData);
 
     void onChooseImage();
     void onDeleteImage();
@@ -68,17 +68,17 @@ private slots:
     void onArtPageOne();
     void onArtPageTwo();
 
-    void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QByteArray &image);
+    void onRemoveExtraFanart(const QString& file);
+    void onRemoveExtraFanart(const QByteArray& image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
 
-    void updateImage(ImageType imageType, ClosableImage *image);
+    void updateImage(ImageType imageType, ClosableImage* image);
 
 private:
-    Ui::ConcertWidget *ui;
+    Ui::ConcertWidget* ui;
     QPointer<Concert> m_concert = nullptr;
-    QMovie *m_loadingMovie;
-    QLabel *m_savingWidget;
+    QMovie* m_loadingMovie;
+    QLabel* m_savingWidget;
     void updateImages(QVector<ImageType> images);
 };

@@ -18,7 +18,7 @@ class TvShowSearch : public QDialog
     Q_OBJECT
 
 public:
-    explicit TvShowSearch(QWidget *parent = nullptr);
+    explicit TvShowSearch(QWidget* parent = nullptr);
     ~TvShowSearch() override;
     TvDbId scraperId();
     QVector<TvShowScraperInfos> infosToLoad();
@@ -28,19 +28,19 @@ public:
 public slots:
     int exec() override;
     int exec(QString searchString, TvDbId id);
-    static TvShowSearch *instance(QWidget *parent = nullptr);
+    static TvShowSearch* instance(QWidget* parent = nullptr);
 
 private slots:
     void onSearch();
     void onShowResults(QVector<ScraperSearchResult> results);
-    void onResultClicked(QTableWidgetItem *item);
+    void onResultClicked(QTableWidgetItem* item);
     void onChkToggled();
     void onChkAllToggled();
     void onComboIndexChanged();
     void onChkDvdOrderToggled();
 
 private:
-    Ui::TvShowSearch *ui;
+    Ui::TvShowSearch* ui;
     void clear();
     TvDbId m_scraperId;
     QVector<TvShowScraperInfos> m_infosToLoad;

@@ -14,7 +14,7 @@
 #include "../globals/NetworkReplyWatcher.h"
 #include "../main/MainWindow.h"
 
-UniversalMusicScraper::UniversalMusicScraper(QObject *parent)
+UniversalMusicScraper::UniversalMusicScraper(QObject* parent)
 {
     setParent(parent);
     m_tadbApiKey = "7490823590829082posuda";
@@ -52,7 +52,7 @@ UniversalMusicScraper::UniversalMusicScraper(QObject *parent)
     m_widget->setLayout(layout);
 }
 
-QNetworkAccessManager *UniversalMusicScraper::qnam()
+QNetworkAccessManager* UniversalMusicScraper::qnam()
 {
     return &m_qnam;
 }
@@ -73,7 +73,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchArtistFinished);
 }
@@ -81,7 +81,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
 void UniversalMusicScraper::onSearchArtistFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
@@ -116,7 +116,7 @@ void UniversalMusicScraper::onSearchArtistFinished()
     emit sigSearchDone(results);
 }
 
-void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::loadData(QString mbId, Artist* artist, QVector<MusicScraperInfos> infos)
 {
     // Otherwise deleted images are showing up again
     infos.removeOne(MusicScraperInfos::ExtraFanarts);
@@ -126,7 +126,7 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QVector<Music
     QUrl url(QString("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(mbId));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("storage", Storage::toVariant(reply, artist));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onArtistRelsFinished);
@@ -134,9 +134,9 @@ void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QVector<Music
 
 void UniversalMusicScraper::onArtistRelsFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage *>()->artist();
-    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->musicInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Artist* artist = reply->property("storage").value<Storage*>()->artist();
+    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
     if (!artist) {
         return;
@@ -207,7 +207,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
-        QNetworkReply *elemReply = qnam()->get(request);
+        QNetworkReply* elemReply = qnam()->get(request);
         new NetworkReplyWatcher(this, elemReply);
         elemReply->setProperty("storage", Storage::toVariant(elemReply, artist));
         elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
@@ -219,9 +219,9 @@ void UniversalMusicScraper::onArtistLoadFinished()
 {
     QMutexLocker locker(&m_artistMutex);
 
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Artist *artist = reply->property("storage").value<Storage *>()->artist();
-    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->musicInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Artist* artist = reply->property("storage").value<Storage*>()->artist();
+    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -299,7 +299,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
 }
 
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem,
-    Artist *artist,
+    Artist* artist,
     QVector<MusicScraperInfos> infos)
 {
     if (elem.type.startsWith("tadb_")) {
@@ -356,7 +356,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
     QUrl url(QString("https://musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &UniversalMusicScraper::onSearchAlbumFinished);
 }
@@ -364,7 +364,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 void UniversalMusicScraper::onSearchAlbumFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -441,7 +441,7 @@ void UniversalMusicScraper::onSearchAlbumFinished()
 
 void UniversalMusicScraper::loadData(QString mbAlbumId,
     QString mbReleaseGroupId,
-    Album *album,
+    Album* album,
     QVector<MusicScraperInfos> infos)
 {
     album->clear(infos);
@@ -451,7 +451,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId,
     QUrl url(QString("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", "MediaElch");
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, album));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -460,9 +460,9 @@ void UniversalMusicScraper::loadData(QString mbAlbumId,
 
 void UniversalMusicScraper::onAlbumRelsFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage *>()->album();
-    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->musicInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Album* album = reply->property("storage").value<Storage*>()->album();
+    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
     if (!album) {
         return;
@@ -526,7 +526,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
-        QNetworkReply *elemReply = qnam()->get(request);
+        QNetworkReply* elemReply = qnam()->get(request);
         new NetworkReplyWatcher(this, elemReply);
         elemReply->setProperty("storage", Storage::toVariant(elemReply, album));
         elemReply->setProperty("infosToLoad", Storage::toVariant(elemReply, infos));
@@ -538,9 +538,9 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 {
     QMutexLocker locker(&m_albumMutex);
 
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Album *album = reply->property("storage").value<Storage *>()->album();
-    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage *>()->musicInfosToLoad();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Album* album = reply->property("storage").value<Storage*>()->album();
+    QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
     if (!album) {
         return;
@@ -614,7 +614,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     album->controller()->scraperLoadDone(this);
 }
 
-void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album *album, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album* album, QVector<MusicScraperInfos> infos)
 {
     if (elem.type == "tadb_data") {
         QJsonParseError parseError;
@@ -633,7 +633,7 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album *
 }
 
 void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document,
-    Artist *artist,
+    Artist* artist,
     QVector<MusicScraperInfos> infos)
 {
     // The JSON document contains an array "artists". We take the first one.
@@ -687,7 +687,7 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document,
 }
 
 void UniversalMusicScraper::parseAndAssignTadbDiscography(QJsonObject document,
-    Artist *artist,
+    Artist* artist,
     QVector<MusicScraperInfos> infos)
 {
     if (!shouldLoad(MusicScraperInfos::Discography, infos, artist)) {
@@ -696,7 +696,7 @@ void UniversalMusicScraper::parseAndAssignTadbDiscography(QJsonObject document,
 
     const auto tadbAlbums = document.value("album").toArray();
 
-    for (const auto &albumValue : tadbAlbums) {
+    for (const auto& albumValue : tadbAlbums) {
         const auto album = albumValue.toObject();
         DiscographyAlbum a;
         a.title = album.value("strAlbum").toString();
@@ -707,7 +707,7 @@ void UniversalMusicScraper::parseAndAssignTadbDiscography(QJsonObject document,
     }
 }
 
-void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist* artist, QVector<MusicScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -794,7 +794,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Artist *artist, 
     }
 }
 
-void UniversalMusicScraper::parseAndAssignAmBiography(QString html, Artist *artist, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignAmBiography(QString html, Artist* artist, QVector<MusicScraperInfos> infos)
 {
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {
         QRegExp rx(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
@@ -807,7 +807,7 @@ void UniversalMusicScraper::parseAndAssignAmBiography(QString html, Artist *arti
     }
 }
 
-void UniversalMusicScraper::parseAndAssignAmDiscography(QString html, Artist *artist, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignAmDiscography(QString html, Artist* artist, QVector<MusicScraperInfos> infos)
 {
     if (shouldLoad(MusicScraperInfos::Discography, infos, artist)) {
         QRegExp rx("<td class=\"year\" data\\-sort\\-value=\"[^\"]*\">[\\n\\s]*(.*)[\\n\\s]*</td>[\\n\\s]*<td "
@@ -826,7 +826,7 @@ void UniversalMusicScraper::parseAndAssignAmDiscography(QString html, Artist *ar
     }
 }
 
-void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist *artist, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist* artist, QVector<MusicScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -875,7 +875,7 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist *art
     }
 }
 
-void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *album, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album* album, QVector<MusicScraperInfos> infos)
 {
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -951,7 +951,7 @@ void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *a
 }
 
 void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document,
-    Album *album,
+    Album* album,
     QVector<MusicScraperInfos> infos)
 {
     // The JSON document contains an array "album". We take the first one.
@@ -998,7 +998,7 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QJsonObject document,
     }
 }
 
-void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album* album, QVector<MusicScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -1088,7 +1088,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QV
     }
 }
 
-void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *album, QVector<MusicScraperInfos> infos)
+void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album* album, QVector<MusicScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -1148,7 +1148,7 @@ bool UniversalMusicScraper::hasSettings() const
     return true;
 }
 
-void UniversalMusicScraper::loadSettings(const ScraperSettings &settings)
+void UniversalMusicScraper::loadSettings(const ScraperSettings& settings)
 {
     m_language = settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
@@ -1164,7 +1164,7 @@ void UniversalMusicScraper::loadSettings(const ScraperSettings &settings)
     }
 }
 
-void UniversalMusicScraper::saveSettings(ScraperSettings &settings)
+void UniversalMusicScraper::saveSettings(ScraperSettings& settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setString("Language", m_language);
@@ -1201,7 +1201,7 @@ QVector<MusicScraperInfos> UniversalMusicScraper::scraperSupports()
         MusicScraperInfos::Label};
 }
 
-QWidget *UniversalMusicScraper::settingsWidget()
+QWidget* UniversalMusicScraper::settingsWidget()
 {
     return m_widget;
 }
@@ -1211,7 +1211,7 @@ QString UniversalMusicScraper::trim(QString text)
     return text.replace(QRegExp("\\s{1,}"), " ").trimmed();
 }
 
-bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScraperInfos> infos, Album *album)
+bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScraperInfos> infos, Album* album)
 {
     if (!infos.contains(info)) {
         return false;
@@ -1234,7 +1234,7 @@ bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScra
     return false;
 }
 
-bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScraperInfos> infos, Artist *artist)
+bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScraperInfos> infos, Artist* artist)
 {
     if (!infos.contains(info)) {
         return false;
@@ -1258,7 +1258,7 @@ bool UniversalMusicScraper::shouldLoad(MusicScraperInfos info, QVector<MusicScra
     return false;
 }
 
-bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Album *album)
+bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Album* album)
 {
     for (const auto info : infos) {
         if (shouldLoad(info, infos, album)) {
@@ -1268,7 +1268,7 @@ bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Album *a
     return false;
 }
 
-bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Artist *artist)
+bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Artist* artist)
 {
     for (const auto info : infos) {
         if (shouldLoad(info, infos, artist)) {
@@ -1278,7 +1278,7 @@ bool UniversalMusicScraper::infosLeft(QVector<MusicScraperInfos> infos, Artist *
     return false;
 }
 
-void UniversalMusicScraper::appendDownloadElement(Artist *artist, QString source, QString type, QUrl url)
+void UniversalMusicScraper::appendDownloadElement(Artist* artist, QString source, QString type, QUrl url)
 {
     DownloadElement elem;
     elem.type = type;
@@ -1291,7 +1291,7 @@ void UniversalMusicScraper::appendDownloadElement(Artist *artist, QString source
     m_artistDownloads[artist].append(elem);
 }
 
-void UniversalMusicScraper::appendDownloadElement(Album *album, QString source, QString type, QUrl url)
+void UniversalMusicScraper::appendDownloadElement(Album* album, QString source, QString type, QUrl url)
 {
     DownloadElement elem;
     elem.type = type;

@@ -19,13 +19,13 @@
 #include <QTableWidget>
 #include <QTimer>
 
-MovieFilesWidget *MovieFilesWidget::m_instance;
+MovieFilesWidget* MovieFilesWidget::m_instance;
 
 /**
  * @brief MovieFilesWidget::FilesWidget
  * @param parent
  */
-MovieFilesWidget::MovieFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MovieFilesWidget)
+MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -53,16 +53,16 @@ MovieFilesWidget::MovieFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    for (const MediaStatusColumn &column : Settings::instance()->mediaStatusColumns()) {
+    for (const MediaStatusColumn& column : Settings::instance()->mediaStatusColumns()) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
     }
 
     m_alphaList = new AlphabeticalList(this, ui->files);
 
-    QMenu *mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
+    QMenu* mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
     for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
          ++i) {
-        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
+        QAction* action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);
         action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumn>(i)));
@@ -70,7 +70,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui
         mediaStatusColumnsMenu->addAction(action);
     }
 
-    QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
+    QMenu* labelsMenu = new QMenu(tr("Label"), ui->files);
     QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
@@ -81,14 +81,14 @@ MovieFilesWidget::MovieFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui
         labelsMenu->addAction(action);
     }
 
-    QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
-    QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
-    QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
-    QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
-    QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
-    QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
-    QAction *actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
-    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    QAction* actionMultiScrape = new QAction(tr("Load Information"), this);
+    QAction* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    QAction* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    QAction* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    QAction* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    QAction* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    QAction* actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
+    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
 
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMultiScrape);
@@ -148,12 +148,12 @@ MovieFilesWidget::~MovieFilesWidget()
  * @brief Returns the current instance
  * @return Instance of FilesWidget
  */
-MovieFilesWidget *MovieFilesWidget::instance()
+MovieFilesWidget* MovieFilesWidget::instance()
 {
     return m_instance;
 }
 
-void MovieFilesWidget::resizeEvent(QResizeEvent *event)
+void MovieFilesWidget::resizeEvent(QResizeEvent* event)
 {
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible()) {
@@ -173,7 +173,7 @@ void MovieFilesWidget::showContextMenu(QPoint point)
 void MovieFilesWidget::multiScrape()
 {
     m_contextMenu->close();
-    QVector<Movie *> movies = selectedMovies();
+    QVector<Movie*> movies = selectedMovies();
     if (movies.isEmpty()) {
         return;
     }
@@ -194,9 +194,9 @@ void MovieFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
 
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
-        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        Movie* movie = Manager::instance()->movieModel()->movie(row);
         movie->setWatched(true);
         if (movie->playcount() < 1) {
             movie->setPlayCount(1);
@@ -214,9 +214,9 @@ void MovieFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
 
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
-        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        Movie* movie = Manager::instance()->movieModel()->movie(row);
         if (movie->watched()) {
             movie->setWatched(false);
         }
@@ -232,10 +232,10 @@ void MovieFilesWidget::markAsUnwatched()
 void MovieFilesWidget::loadStreamDetails()
 {
     m_contextMenu->close();
-    QVector<Movie *> movies;
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    QVector<Movie*> movies;
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        Movie* movie = Manager::instance()->movieModel()->movie(row);
         movies.append(movie);
     }
     if (movies.count() == 1) {
@@ -254,12 +254,12 @@ void MovieFilesWidget::markForSync()
 {
     m_contextMenu->close();
     QVector<QModelIndex> indexes;
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         indexes << index;
     }
-    for (const QModelIndex &index : indexes) {
+    for (const QModelIndex& index : indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        Movie* movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(true);
         ui->files->update(index);
     }
@@ -269,12 +269,12 @@ void MovieFilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
     QVector<QModelIndex> indexes;
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         indexes << index;
     }
-    for (const QModelIndex &index : indexes) {
+    for (const QModelIndex& index : indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
-        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        Movie* movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(false);
         ui->files->update(index);
     }
@@ -287,7 +287,7 @@ void MovieFilesWidget::openFolder()
         return;
     }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
-    Movie *movie = Manager::instance()->movieModel()->movie(row);
+    Movie* movie = Manager::instance()->movieModel()->movie(row);
     if (!movie || movie->files().isEmpty()) {
         return;
     }
@@ -302,7 +302,7 @@ void MovieFilesWidget::openNfoFile()
         return;
     }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
-    Movie *movie = Manager::instance()->movieModel()->movie(row);
+    Movie* movie = Manager::instance()->movieModel()->movie(row);
     if (!movie || movie->files().isEmpty()) {
         return;
     }
@@ -347,7 +347,7 @@ void MovieFilesWidget::movieSelectedEmitter()
  * @param filters List of filters
  * @param text Filter text
  */
-void MovieFilesWidget::setFilter(QVector<Filter *> filters, QString text)
+void MovieFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 {
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
@@ -428,10 +428,10 @@ void MovieFilesWidget::onSortByYear()
     updateSort(SortBy::Year);
 }
 
-QVector<Movie *> MovieFilesWidget::selectedMovies()
+QVector<Movie*> MovieFilesWidget::selectedMovies()
 {
-    QVector<Movie *> movies;
-    for (const QModelIndex &index : ui->files->selectionModel()->selectedRows(0)) {
+    QVector<Movie*> movies;
+    for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         movies.append(Manager::instance()->movieModel()->movie(row));
     }
@@ -441,13 +441,13 @@ QVector<Movie *> MovieFilesWidget::selectedMovies()
     return movies;
 }
 
-void MovieFilesWidget::enterEvent(QEvent *event)
+void MovieFilesWidget::enterEvent(QEvent* event)
 {
     Q_UNUSED(event);
     m_mouseIsIn = true;
 }
 
-void MovieFilesWidget::leaveEvent(QEvent *event)
+void MovieFilesWidget::leaveEvent(QEvent* event)
 {
     Q_UNUSED(event);
     m_mouseIsIn = false;
@@ -492,7 +492,7 @@ void MovieFilesWidget::renewModel()
     for (int i = 1, n = ui->files->model()->columnCount(); i < n; ++i) {
         ui->files->setColumnHidden(i, true);
     }
-    for (const MediaStatusColumn &column : Settings::instance()->mediaStatusColumns()) {
+    for (const MediaStatusColumn& column : Settings::instance()->mediaStatusColumns()) {
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
     }
 }
@@ -506,7 +506,7 @@ void MovieFilesWidget::onLeftEdge(bool isEdge)
     }
 }
 
-void MovieFilesWidget::selectMovie(Movie *movie)
+void MovieFilesWidget::selectMovie(Movie* movie)
 {
     int row = Manager::instance()->movieModel()->movies().indexOf(movie);
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
@@ -516,7 +516,7 @@ void MovieFilesWidget::selectMovie(Movie *movie)
 void MovieFilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
-    auto action = static_cast<QAction *>(QObject::sender());
+    auto action = static_cast<QAction*>(QObject::sender());
     if (!action) {
         return;
     }
@@ -537,13 +537,13 @@ void MovieFilesWidget::onActionMediaStatusColumn()
 void MovieFilesWidget::onLabel()
 {
     m_contextMenu->close();
-    auto action = static_cast<QAction *>(QObject::sender());
+    auto action = static_cast<QAction*>(QObject::sender());
     if (!action) {
         return;
     }
 
     ColorLabel color = static_cast<ColorLabel>(action->property("color").toInt());
-    for (Movie *movie : selectedMovies()) {
+    for (Movie* movie : selectedMovies()) {
         movie->setLabel(color);
         Manager::instance()->database()->setLabel(movie->files(), color);
     }

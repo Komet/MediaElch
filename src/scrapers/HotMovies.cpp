@@ -11,7 +11,7 @@
 #include <QTextDocument>
 #include <QTextDocumentFragment>
 
-HotMovies::HotMovies(QObject *parent) :
+HotMovies::HotMovies(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Rating,
         MovieScraperInfos::Released,
@@ -67,7 +67,7 @@ QString HotMovies::defaultLanguageKey()
     return QStringLiteral("en");
 }
 
-QNetworkAccessManager *HotMovies::qnam()
+QNetworkAccessManager* HotMovies::qnam()
 {
     return &m_qnam;
 }
@@ -77,14 +77,14 @@ void HotMovies::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("https://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30")
                  .arg(encodedSearch));
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     connect(reply, &QNetworkReply::finished, this, &HotMovies::onSearchFinished);
 }
 
 void HotMovies::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -116,12 +116,12 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     return results;
 }
 
-void HotMovies::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movie, QVector<MovieScraperInfos> infos)
+void HotMovies::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     movie->clear(infos);
 
     QUrl url(ids.values().first());
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -130,19 +130,19 @@ void HotMovies::loadData(QMap<MovieScraperInterface *, QString> ids, Movie *movi
 
 void HotMovies::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage *>()->movie();
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage *>()->movieInfosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad());
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
     movie->controller()->scraperLoadDone(this);
 }
 
-void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QVector<MovieScraperInfos> infos)
+void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     QRegExp rx;
     rx.setMinimal(true);
@@ -265,17 +265,17 @@ bool HotMovies::hasSettings() const
     return false;
 }
 
-void HotMovies::loadSettings(const ScraperSettings &settings)
+void HotMovies::loadSettings(const ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-void HotMovies::saveSettings(ScraperSettings &settings)
+void HotMovies::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *HotMovies::settingsWidget()
+QWidget* HotMovies::settingsWidget()
 {
     return nullptr;
 }

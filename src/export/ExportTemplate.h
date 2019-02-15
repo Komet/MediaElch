@@ -21,7 +21,7 @@ public:
         Episode
     };
 
-    explicit ExportTemplate(QObject *parent = nullptr);
+    explicit ExportTemplate(QObject* parent = nullptr);
     bool isRemote() const;
     bool isInstalled() const;
     bool updateAvailable() const;
@@ -49,7 +49,7 @@ public:
     void setRemoteVersion(QString remoteVersion);
     void setExportSections(QVector<ExportTemplate::ExportSection> exportSections);
 
-    static bool lessThan(ExportTemplate *a, ExportTemplate *b);
+    static bool lessThan(ExportTemplate* a, ExportTemplate* b);
 
 private:
     bool m_isRemote;
@@ -62,8 +62,8 @@ private:
     QString m_version;
     QString m_remoteVersion;
     QVector<ExportTemplate::ExportSection> m_exportSections;
-    bool copyDir(const QString &srcPath, const QString &dstPath);
+    bool copyDir(const QString& srcPath, const QString& dstPath);
 };
 
-QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate);
-QDebug operator<<(QDebug dbg, const ExportTemplate *exportTemplate);
+QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate);
+QDebug operator<<(QDebug dbg, const ExportTemplate* exportTemplate);

@@ -2,7 +2,7 @@
 
 #include "data/MediaCenterInterface.h"
 
-Artist::Artist(QString path, QObject *parent) :
+Artist::Artist(QString path, QObject* parent) :
     QObject(parent),
     m_path{path},
     m_hasChanged{false},
@@ -17,7 +17,7 @@ QString Artist::path() const
     return m_path;
 }
 
-void Artist::setPath(const QString &path)
+void Artist::setPath(const QString& path)
 {
     m_path = path;
     setHasChanged(true);
@@ -28,7 +28,7 @@ QString Artist::name() const
     return m_name;
 }
 
-void Artist::setName(const QString &name)
+void Artist::setName(const QString& name)
 {
     m_name = name;
     setHasChanged(true);
@@ -39,13 +39,13 @@ QStringList Artist::genres() const
     return m_genres;
 }
 
-void Artist::setGenres(const QStringList &genres)
+void Artist::setGenres(const QStringList& genres)
 {
     m_genres = genres;
     setHasChanged(true);
 }
 
-void Artist::addGenre(const QString &genre)
+void Artist::addGenre(const QString& genre)
 {
     if (genre.isEmpty()) {
         return;
@@ -55,7 +55,7 @@ void Artist::addGenre(const QString &genre)
     setHasChanged(true);
 }
 
-void Artist::removeGenre(const QString &genre)
+void Artist::removeGenre(const QString& genre)
 {
     m_genres.removeAll(genre);
     setHasChanged(true);
@@ -66,13 +66,13 @@ QStringList Artist::styles() const
     return m_styles;
 }
 
-void Artist::setStyles(const QStringList &styles)
+void Artist::setStyles(const QStringList& styles)
 {
     m_styles = styles;
     setHasChanged(true);
 }
 
-void Artist::addStyle(const QString &style)
+void Artist::addStyle(const QString& style)
 {
     if (style.isEmpty()) {
         return;
@@ -82,7 +82,7 @@ void Artist::addStyle(const QString &style)
     setHasChanged(true);
 }
 
-void Artist::removeStyle(const QString &style)
+void Artist::removeStyle(const QString& style)
 {
     m_styles.removeAll(style);
     setHasChanged(true);
@@ -93,13 +93,13 @@ QStringList Artist::moods() const
     return m_moods;
 }
 
-void Artist::setMoods(const QStringList &moods)
+void Artist::setMoods(const QStringList& moods)
 {
     m_moods = moods;
     setHasChanged(true);
 }
 
-void Artist::addMood(const QString &mood)
+void Artist::addMood(const QString& mood)
 {
     if (mood.isEmpty()) {
         return;
@@ -109,7 +109,7 @@ void Artist::addMood(const QString &mood)
     setHasChanged(true);
 }
 
-void Artist::removeMood(const QString &mood)
+void Artist::removeMood(const QString& mood)
 {
     m_moods.removeAll(mood);
 }
@@ -119,7 +119,7 @@ QString Artist::yearsActive() const
     return m_yearsActive;
 }
 
-void Artist::setYearsActive(const QString &yearsActive)
+void Artist::setYearsActive(const QString& yearsActive)
 {
     m_yearsActive = yearsActive;
     setHasChanged(true);
@@ -130,7 +130,7 @@ QString Artist::formed() const
     return m_formed;
 }
 
-void Artist::setFormed(const QString &formed)
+void Artist::setFormed(const QString& formed)
 {
     m_formed = formed;
     setHasChanged(true);
@@ -141,7 +141,7 @@ QString Artist::born() const
     return m_born;
 }
 
-void Artist::setBorn(const QString &born)
+void Artist::setBorn(const QString& born)
 {
     m_born = born;
     setHasChanged(true);
@@ -152,7 +152,7 @@ QString Artist::died() const
     return m_died;
 }
 
-void Artist::setDied(const QString &died)
+void Artist::setDied(const QString& died)
 {
     m_died = died;
     setHasChanged(true);
@@ -163,7 +163,7 @@ QString Artist::disbanded() const
     return m_disbanded;
 }
 
-void Artist::setDisbanded(const QString &disbanded)
+void Artist::setDisbanded(const QString& disbanded)
 {
     m_disbanded = disbanded;
     setHasChanged(true);
@@ -174,7 +174,7 @@ QString Artist::biography() const
     return m_biography;
 }
 
-void Artist::setBiography(const QString &biography)
+void Artist::setBiography(const QString& biography)
 {
     m_biography = biography;
     setHasChanged(true);
@@ -319,12 +319,12 @@ void Artist::clear(QVector<MusicScraperInfos> infos)
     }
 }
 
-MusicModelItem *Artist::modelItem() const
+MusicModelItem* Artist::modelItem() const
 {
     return m_modelItem;
 }
 
-void Artist::setModelItem(MusicModelItem *modelItem)
+void Artist::setModelItem(MusicModelItem* modelItem)
 {
     m_modelItem = modelItem;
     emit modelItemChanged();
@@ -335,7 +335,7 @@ QString Artist::nfoContent() const
     return m_nfoContent;
 }
 
-void Artist::setNfoContent(const QString &nfoContent)
+void Artist::setNfoContent(const QString& nfoContent)
 {
     m_nfoContent = nfoContent;
 }
@@ -350,7 +350,7 @@ QVector<ImageType> Artist::imagesToRemove() const
     return m_imagesToRemove;
 }
 
-void Artist::setImagesToRemove(const QVector<ImageType> &imagesToRemove)
+void Artist::setImagesToRemove(const QVector<ImageType>& imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
 }
@@ -365,12 +365,12 @@ void Artist::setDatabaseId(int databaseId)
     m_databaseId = databaseId;
 }
 
-ArtistController *Artist::controller() const
+ArtistController* Artist::controller() const
 {
     return m_controller;
 }
 
-void Artist::setController(ArtistController *controller)
+void Artist::setController(ArtistController* controller)
 {
     m_controller = controller;
 }
@@ -380,22 +380,22 @@ QString Artist::mbId() const
     return m_mbId;
 }
 
-void Artist::setMbId(const QString &mbId)
+void Artist::setMbId(const QString& mbId)
 {
     m_mbId = mbId;
 }
 
-QVector<Album *> Artist::albums() const
+QVector<Album*> Artist::albums() const
 {
     return m_albums;
 }
 
-void Artist::setAlbums(const QVector<Album *> &albums)
+void Artist::setAlbums(const QVector<Album*>& albums)
 {
     m_albums = albums;
 }
 
-void Artist::addAlbum(Album *album)
+void Artist::addAlbum(Album* album)
 {
     m_albums.append(album);
 }
@@ -405,7 +405,7 @@ QString Artist::allMusicId() const
     return m_allMusicId;
 }
 
-void Artist::setAllMusicId(const QString &allMusicId)
+void Artist::setAllMusicId(const QString& allMusicId)
 {
     m_allMusicId = allMusicId;
 }
@@ -429,21 +429,21 @@ void Artist::removeExtraFanart(QString file)
     setHasChanged(true);
 }
 
-QVector<ExtraFanart> Artist::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+QVector<ExtraFanart> Artist::extraFanarts(MediaCenterInterface* mediaCenterInterface)
 {
     if (m_extraFanarts.isEmpty()) {
         m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
-    for (const QString &file : m_extraFanartsToRemove) {
+    for (const QString& file : m_extraFanartsToRemove) {
         m_extraFanarts.removeOne(file);
     }
     QVector<ExtraFanart> fanarts;
-    for (const QString &file : m_extraFanarts) {
+    for (const QString& file : m_extraFanarts) {
         ExtraFanart f;
         f.path = file;
         fanarts.append(f);
     }
-    for (const QByteArray &img : m_extraFanartImagesToAdd) {
+    for (const QByteArray& img : m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -480,7 +480,7 @@ void Artist::addDiscographyAlbum(DiscographyAlbum album)
     setHasChanged(true);
 }
 
-void Artist::removeDiscographyAlbum(DiscographyAlbum *album)
+void Artist::removeDiscographyAlbum(DiscographyAlbum* album)
 {
     for (int i = 0, n = m_discography.size(); i < n; ++i) {
         if (&m_discography[i] == album) {
@@ -496,9 +496,9 @@ QVector<DiscographyAlbum> Artist::discographyAlbums() const
     return m_discography;
 }
 
-QVector<DiscographyAlbum *> Artist::discographyAlbumsPointer()
+QVector<DiscographyAlbum*> Artist::discographyAlbumsPointer()
 {
-    QVector<DiscographyAlbum *> albums;
+    QVector<DiscographyAlbum*> albums;
     for (int i = 0, n = m_discography.size(); i < n; i++) {
         albums.append(&(m_discography[i]));
     }

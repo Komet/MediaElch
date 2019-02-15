@@ -13,13 +13,13 @@ TvDbId::TvDbId(int tvdbId) : TvDbId(QString::number(tvdbId))
 
 const TvDbId TvDbId::NoId = TvDbId();
 
-bool TvDbId::operator==(const TvDbId &other)
+bool TvDbId::operator==(const TvDbId& other)
 {
     // Only valid TvDb id's are comparable
     return other.isValid() && m_tvdbId == other.m_tvdbId;
 }
 
-bool TvDbId::operator!=(const TvDbId &other)
+bool TvDbId::operator!=(const TvDbId& other)
 {
     return !(*this == other);
 }

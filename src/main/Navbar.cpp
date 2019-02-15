@@ -8,7 +8,7 @@
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 
-Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
+Navbar::Navbar(QWidget* parent) : QWidget(parent), ui(new Ui::Navbar)
 {
     ui->setupUi(this);
 
@@ -69,7 +69,7 @@ Navbar::Navbar(QWidget *parent) : QWidget(parent), ui(new Ui::Navbar)
     int i = 0;
 #endif
 
-    for (QToolButton *btn : ui->widget->findChildren<QToolButton *>()) {
+    for (QToolButton* btn : ui->widget->findChildren<QToolButton*>()) {
         if (!btn->property("iconName").isValid()) {
             continue;
         }

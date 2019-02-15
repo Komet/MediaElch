@@ -12,7 +12,7 @@
  * @brief TvShowModelItem::TvShowModelItem
  * @param parent
  */
-TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
+TvShowModelItem::TvShowModelItem(TvShowModelItem* parent) :
     QObject(nullptr),
     m_parentItem{parent},
     m_tvShow{nullptr},
@@ -34,7 +34,7 @@ TvShowModelItem::~TvShowModelItem()
  * @param number Child number
  * @return Child
  */
-TvShowModelItem *TvShowModelItem::child(int number) const
+TvShowModelItem* TvShowModelItem::child(int number) const
 {
     return m_childItems.value(number);
 }
@@ -55,7 +55,7 @@ int TvShowModelItem::childCount() const
 int TvShowModelItem::childNumber() const
 {
     if (m_parentItem) {
-        return m_parentItem->m_childItems.indexOf(const_cast<TvShowModelItem *>(this));
+        return m_parentItem->m_childItems.indexOf(const_cast<TvShowModelItem*>(this));
     }
 
     return 0;
@@ -195,7 +195,7 @@ QVariant TvShowModelItem::data(int column) const
  * @param show Show object to append
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
+TvShowModelItem* TvShowModelItem::appendChild(TvShow* show)
 {
     auto item = new TvShowModelItem(this);
     item->setTvShow(show);
@@ -209,7 +209,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
  * @param episode Episode object to append
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
+TvShowModelItem* TvShowModelItem::appendChild(TvShowEpisode* episode)
 {
     auto item = new TvShowModelItem(this);
     item->setTvShowEpisode(episode);
@@ -225,7 +225,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
  * @param show Tv Show object
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(SeasonNumber seasonNumber, QString season, TvShow *show)
+TvShowModelItem* TvShowModelItem::appendChild(SeasonNumber seasonNumber, QString season, TvShow* show)
 {
     auto item = new TvShowModelItem(this);
     item->setSeason(season);
@@ -240,7 +240,7 @@ TvShowModelItem *TvShowModelItem::appendChild(SeasonNumber seasonNumber, QString
  * @brief TvShowModelItem::parent
  * @return Parent item
  */
-TvShowModelItem *TvShowModelItem::parent() const
+TvShowModelItem* TvShowModelItem::parent() const
 {
     return m_parentItem;
 }
@@ -268,7 +268,7 @@ bool TvShowModelItem::removeChildren(int position, int count)
  * @brief TvShowModelItem::setTvShow
  * @param show Sets the TV Show object
  */
-void TvShowModelItem::setTvShow(TvShow *show)
+void TvShowModelItem::setTvShow(TvShow* show)
 {
     m_tvShow = show;
 }
@@ -277,7 +277,7 @@ void TvShowModelItem::setTvShow(TvShow *show)
  * @brief TvShowModelItem::setTvShowEpisode
  * @param episode Sets the episode object
  */
-void TvShowModelItem::setTvShowEpisode(TvShowEpisode *episode)
+void TvShowModelItem::setTvShowEpisode(TvShowEpisode* episode)
 {
     m_tvShowEpisode = episode;
 }
@@ -300,7 +300,7 @@ void TvShowModelItem::setSeasonNumber(SeasonNumber seasonNumber)
  * @brief TvShowModelItem::tvShow
  * @return Tv Show object of this item
  */
-TvShow *TvShowModelItem::tvShow()
+TvShow* TvShowModelItem::tvShow()
 {
     return m_tvShow;
 }
@@ -309,7 +309,7 @@ TvShow *TvShowModelItem::tvShow()
  * @brief TvShowModelItem::tvShowEpisode
  * @return Episode object of this item
  */
-TvShowEpisode *TvShowModelItem::tvShowEpisode()
+TvShowEpisode* TvShowModelItem::tvShowEpisode()
 {
     return m_tvShowEpisode;
 }
@@ -349,7 +349,7 @@ TvShowType TvShowModelItem::type()
  * @brief TvShowModelItem::onTvShowEpisodeChanged
  * @param episode
  */
-void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode *episode)
+void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode* episode)
 {
     emit sigIntChanged(this, episode->modelItem());
 }
@@ -359,7 +359,7 @@ void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode *episode)
  * @param seasonItem
  * @param episodeItem
  */
-void TvShowModelItem::onSeasonChanged(TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
+void TvShowModelItem::onSeasonChanged(TvShowModelItem* seasonItem, TvShowModelItem* episodeItem)
 {
     emit sigChanged(this, seasonItem, episodeItem);
 }

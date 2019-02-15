@@ -21,14 +21,14 @@ class MovieSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieSearchWidget(QWidget *parent = nullptr);
+    explicit MovieSearchWidget(QWidget* parent = nullptr);
     ~MovieSearchWidget() override;
 
 public slots:
     QString scraperId();
     QString scraperMovieId();
     QVector<MovieScraperInfos> infosToLoad();
-    QMap<MovieScraperInterface *, QString> customScraperIds();
+    QMap<MovieScraperInterface*, QString> customScraperIds();
     void search(QString searchString, ImdbId id, TmdbId tmdbId);
 
 signals:
@@ -37,20 +37,20 @@ signals:
 private slots:
     void startSearch();
     void showResults(QVector<ScraperSearchResult> results);
-    void resultClicked(QTableWidgetItem *item);
+    void resultClicked(QTableWidgetItem* item);
     void updateInfoToLoad();
     void toggleAllInfo(bool checked);
     void onScraperChanged();
     void onLanguageChanged();
 
 private:
-    Ui::MovieSearchWidget *ui;
+    Ui::MovieSearchWidget* ui;
     // QString m_scraperId;
     QString m_scraperMovieId;
     QVector<MovieScraperInfos> m_infosToLoad;
-    QMap<MovieScraperInterface *, QString> m_customScraperIds;
-    MovieScraperInterface *m_currentCustomScraper;
-    MovieScraperInterface *m_currentScraper;
+    QMap<MovieScraperInterface*, QString> m_customScraperIds;
+    MovieScraperInterface* m_currentCustomScraper;
+    MovieScraperInterface* m_currentScraper;
     QString m_currentLanguage;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
@@ -59,7 +59,7 @@ private:
     void clearResults();
     void setCheckBoxesEnabled(QVector<MovieScraperInfos> scraperSupports);
     void setupComboBoxes();
-    void setSearchText(MovieScraperInterface *scraper);
+    void setSearchText(MovieScraperInterface* scraper);
     void setupScraperDropdown();
     void setupLanguageDropdown();
     void initializeCheckBoxes();

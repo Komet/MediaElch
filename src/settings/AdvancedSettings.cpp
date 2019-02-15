@@ -7,7 +7,7 @@
 
 #include "Settings.h"
 
-AdvancedSettings::AdvancedSettings(QObject *parent) : QObject(parent)
+AdvancedSettings::AdvancedSettings(QObject* parent) : QObject(parent)
 {
     m_portableMode = false;
     m_bookletCut = 2;
@@ -195,7 +195,7 @@ void AdvancedSettings::setLocale(QString locale)
     }
 }
 
-void AdvancedSettings::loadLog(QXmlStreamReader &xml)
+void AdvancedSettings::loadLog(QXmlStreamReader& xml)
 {
     while (xml.readNextStartElement()) {
         if (xml.name() == "debug") {
@@ -208,7 +208,7 @@ void AdvancedSettings::loadLog(QXmlStreamReader &xml)
     }
 }
 
-void AdvancedSettings::loadGui(QXmlStreamReader &xml)
+void AdvancedSettings::loadGui(QXmlStreamReader& xml)
 {
     while (xml.readNextStartElement()) {
         if (xml.name() == "forceCache") {
@@ -219,7 +219,7 @@ void AdvancedSettings::loadGui(QXmlStreamReader &xml)
     }
 }
 
-void AdvancedSettings::loadSortTokens(QXmlStreamReader &xml)
+void AdvancedSettings::loadSortTokens(QXmlStreamReader& xml)
 {
     m_sortTokens.clear();
     while (xml.readNextStartElement()) {
@@ -231,7 +231,7 @@ void AdvancedSettings::loadSortTokens(QXmlStreamReader &xml)
     }
 }
 
-void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
+void AdvancedSettings::loadFilters(QXmlStreamReader& xml)
 {
     qDebug() << "loading filters";
 
@@ -239,10 +239,10 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
      * The current XML element's text is split by "," and all items
      * are appended to a cleared "list".
      */
-    const auto appendNextFiltersToList = [&xml](QStringList &list) {
+    const auto appendNextFiltersToList = [&xml](QStringList& list) {
         list.clear();
         const auto filters = xml.readElementText().split(",", QString::SkipEmptyParts);
-        for (const QString &filter : filters) {
+        for (const QString& filter : filters) {
             list << filter.trimmed();
         }
     };
@@ -271,7 +271,7 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
  * @param xml XML stream with its position right before <map> elements.
  * @param mappings QHash table that will be cleared and to which the mappings will be appended.
  */
-void AdvancedSettings::loadMappings(QXmlStreamReader &xml, QHash<QString, QString> &mappings)
+void AdvancedSettings::loadMappings(QXmlStreamReader& xml, QHash<QString, QString>& mappings)
 {
     mappings.clear();
     while (xml.readNextStartElement()) {

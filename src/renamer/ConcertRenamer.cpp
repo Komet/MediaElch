@@ -8,11 +8,11 @@
 #include <QDir>
 #include <QFileInfo>
 
-ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog) : Renamer(renamerConfig, dialog)
+ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
 }
 
-ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
+ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 {
     QFileInfo concertInfo(concert.files().first());
     QString fiCanonicalPath = concertInfo.canonicalPath();
@@ -22,12 +22,12 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
     QStringList newConcertFiles;
     QString parentDirName;
 
-    MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
+    MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&concert);
 
     bool errorOccured = false;
 
-    for (const QString &file : concert.files()) {
+    for (const QString& file : concert.files()) {
         QFileInfo fi(file);
         newConcertFiles.append(fi.fileName());
     }
@@ -47,7 +47,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
         newConcertFiles.clear();
         int partNo = 0;
         const auto videoDetails = concert.streamDetails()->videoDetails();
-        for (const QString &file : concert.files()) {
+        for (const QString& file : concert.files()) {
             newFileName = (concert.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo fi(file);
             QString baseName = fi.completeBaseName();
@@ -84,10 +84,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
                 }
 
                 QStringList filters;
-                for (const QString &extra : m_extraFiles) {
+                for (const QString& extra : m_extraFiles) {
                     filters << baseName + extra;
                 }
-                for (const QString &subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                for (const QString& subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
                     QString subSuffix = subFileName.mid(baseName.length());
                     QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                     QString newSubName = newBaseName + subSuffix;
@@ -186,7 +186,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert &concert)
 
     if (!errorOccured && !m_config.dryRun) {
         QStringList files;
-        for (const QString &file : newConcertFiles) {
+        for (const QString& file : newConcertFiles) {
             QString f = newConcertFolder;
             if (isBluRay || isDvd) {
                 f += "/" + parentDirName;

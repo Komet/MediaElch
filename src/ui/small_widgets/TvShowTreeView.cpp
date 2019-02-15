@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QHeaderView>
 
-TvShowTreeView::TvShowTreeView(QWidget *parent) :
+TvShowTreeView::TvShowTreeView(QWidget* parent) :
     QTreeView(parent),
     m_newIcon{QPixmap(":/img/star_blue.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation)},
     m_syncIcon{QPixmap(":/img/reload_orange.png").scaled(14, 14, Qt::KeepAspectRatio, Qt::SmoothTransformation)},
@@ -15,7 +15,7 @@ TvShowTreeView::TvShowTreeView(QWidget *parent) :
     setAllColumnsShowFocus(true);
 }
 
-void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+void TvShowTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {
     if (getTvShowType(index) == TvShowType::Episode) {
         return;
@@ -33,7 +33,7 @@ void TvShowTreeView::drawBranches(QPainter *painter, const QRect &rect, const QM
     painter->restore();
 }
 
-void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void TvShowTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     painter->save();
 
@@ -47,9 +47,9 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
     painter->restore();
 }
 
-void TvShowTreeView::drawTvShowRow(QPainter *painter,
-    const QStyleOptionViewItem &option,
-    const QModelIndex &index) const
+void TvShowTreeView::drawTvShowRow(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const
 {
     const bool isSelected = selectionModel()->isSelected(index);
 
@@ -117,11 +117,11 @@ void TvShowTreeView::drawTvShowRow(QPainter *painter,
     painter->drawLine(lineStart, lineEnd);
 }
 
-void TvShowTreeView::drawTvShowIcons(QPainter *painter,
-    const QStyleOptionViewItem &option,
-    const QModelIndex &index) const
+void TvShowTreeView::drawTvShowIcons(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const
 {
-    const QHeaderView *horizontalHeader = header();
+    const QHeaderView* horizontalHeader = header();
     const int columnCount = index.model()->columnCount();
 
     for (int col = 1; col < columnCount; ++col) {
@@ -137,9 +137,9 @@ void TvShowTreeView::drawTvShowIcons(QPainter *painter,
     }
 }
 
-void TvShowTreeView::drawEpisodeRow(QPainter *painter,
-    const QStyleOptionViewItem &option,
-    const QModelIndex &index) const
+void TvShowTreeView::drawEpisodeRow(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const
 {
     const bool isSelected = selectionModel()->isSelected(index);
     const TvShowType type = getTvShowType(index);
@@ -214,7 +214,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter *painter,
     painter->drawText(itemRect, itemStr, QTextOption(Qt::AlignVCenter));
 }
 
-void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const
+void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem option, const QModelIndex& index) const
 {
     const TvShowType type = getTvShowType(index);
 
@@ -248,7 +248,7 @@ void TvShowTreeView::drawRowBackground(QPainter *painter, QStyleOptionViewItem o
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &option, painter, this);
 }
 
-TvShowType TvShowTreeView::getTvShowType(const QModelIndex &index) const
+TvShowType TvShowTreeView::getTvShowType(const QModelIndex& index) const
 {
     return TvShowType(index.model()->data(index, TvShowRoles::Type).toInt());
 }

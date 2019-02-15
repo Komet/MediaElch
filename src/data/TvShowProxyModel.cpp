@@ -7,7 +7,7 @@
  * @brief TvShowProxyModel::TvShowProxyModel
  * @param parent
  */
-TvShowProxyModel::TvShowProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+TvShowProxyModel::TvShowProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
 }
 
@@ -35,7 +35,7 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
 }
 */
 
-bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
 {
     if (filterAcceptsRowItself(source_row, source_parent)) {
         return true;
@@ -58,12 +58,12 @@ bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sourc
     return false;
 }
 
-bool TvShowProxyModel::filterAcceptsRowItself(int sourceRow, const QModelIndex &sourceParent) const
+bool TvShowProxyModel::filterAcceptsRowItself(int sourceRow, const QModelIndex& sourceParent) const
 {
     return QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
-bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &source_parent) const
+bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& source_parent) const
 {
     QModelIndex item = sourceModel()->index(source_row, 0, source_parent);
     if (!item.isValid()) {
@@ -98,11 +98,11 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
  * @param right
  * @return
  */
-bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    auto model = static_cast<TvShowModel *>(sourceModel());
-    TvShowModelItem *leftItem = model->getItem(left);
-    TvShowModelItem *rightItem = model->getItem(right);
+    auto model = static_cast<TvShowModel*>(sourceModel());
+    TvShowModelItem* leftItem = model->getItem(left);
+    TvShowModelItem* rightItem = model->getItem(right);
 
     if (leftItem->type() == rightItem->type() && leftItem->type() == TvShowType::Season) {
         return leftItem->seasonNumber() < rightItem->seasonNumber();
@@ -132,7 +132,7 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
  * @param filters
  * @param text
  */
-void TvShowProxyModel::setFilter(QVector<Filter *> filters, QString text)
+void TvShowProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

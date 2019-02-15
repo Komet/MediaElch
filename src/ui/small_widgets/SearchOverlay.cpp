@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QStyleOption>
 
-SearchOverlay::SearchOverlay(QWidget *parent) : QWidget(parent)
+SearchOverlay::SearchOverlay(QWidget* parent) : QWidget(parent)
 {
     QSize size(100, 100);
 
@@ -20,12 +20,12 @@ SearchOverlay::SearchOverlay(QWidget *parent) : QWidget(parent)
     hide();
 }
 
-void SearchOverlay::resizeEvent(QResizeEvent *event)
+void SearchOverlay::resizeEvent(QResizeEvent* event)
 {
     m_label->setFixedSize(event->size());
 }
 
-void SearchOverlay::paintEvent(QPaintEvent *event)
+void SearchOverlay::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
     QStyleOption opt;

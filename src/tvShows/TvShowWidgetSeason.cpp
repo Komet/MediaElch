@@ -10,7 +10,7 @@
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
 
-TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
+TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetSeason),
     m_show{nullptr},
@@ -68,7 +68,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->backdrop->setImageType(ImageType::TvShowSeasonBackdrop);
     ui->banner->setImageType(ImageType::TvShowSeasonBanner);
     ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
-    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         connect(image, &ClosableImage::clicked, this, &TvShowWidgetSeason::onChooseImage);
         connect(image, &ClosableImage::sigClose, this, &TvShowWidgetSeason::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
@@ -91,13 +91,13 @@ TvShowWidgetSeason::~TvShowWidgetSeason()
     delete ui;
 }
 
-void TvShowWidgetSeason::resizeEvent(QResizeEvent *event)
+void TvShowWidgetSeason::resizeEvent(QResizeEvent* event)
 {
     m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
-void TvShowWidgetSeason::setSeason(TvShow *show, SeasonNumber season)
+void TvShowWidgetSeason::setSeason(TvShow* show, SeasonNumber season)
 {
     m_show = show;
     m_season = season;
@@ -130,9 +130,9 @@ void TvShowWidgetSeason::updateSeasonInfo()
 void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
 {
     for (const auto imageType : images) {
-        ClosableImage *image = nullptr;
+        ClosableImage* image = nullptr;
 
-        for (ClosableImage *cImage : ui->groupBox_3->findChildren<ClosableImage *>()) {
+        for (ClosableImage* cImage : ui->groupBox_3->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
                 image = cImage;
             }
@@ -196,7 +196,7 @@ void TvShowWidgetSeason::onRevertChanges()
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
-    for (ClosableImage *image : ui->groupBox_3->findChildren<ClosableImage *>()) {
+    for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
                 Helper::instance()->resizeBackdrop(elem.data);
@@ -222,7 +222,7 @@ void TvShowWidgetSeason::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }
@@ -263,7 +263,7 @@ void TvShowWidgetSeason::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }
@@ -277,7 +277,7 @@ void TvShowWidgetSeason::onImageDropped(ImageType imageType, QUrl imageUrl)
     if (!m_show) {
         return;
     }
-    auto image = static_cast<ClosableImage *>(QObject::sender());
+    auto image = static_cast<ClosableImage*>(QObject::sender());
     if (!image) {
         return;
     }

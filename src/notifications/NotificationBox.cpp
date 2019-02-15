@@ -8,7 +8,7 @@
  * @brief NotificationBox::NotificationBox
  * @param parent
  */
-NotificationBox::NotificationBox(QWidget *parent) : QWidget(parent), ui(new Ui::NotificationBox)
+NotificationBox::NotificationBox(QWidget* parent) : QWidget(parent), ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
     m_msgCounter = 0;
@@ -28,9 +28,9 @@ NotificationBox::~NotificationBox()
  * @param parent Parent widget (used when called the first time)
  * @return Instance of message box
  */
-NotificationBox *NotificationBox::instance(QWidget *parent)
+NotificationBox* NotificationBox::instance(QWidget* parent)
 {
-    static NotificationBox *m_instance = nullptr;
+    static NotificationBox* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new NotificationBox(parent);
     }
@@ -53,7 +53,7 @@ void NotificationBox::reposition(QSize size)
 void NotificationBox::adjustSize()
 {
     int height = 48;
-    for (const Message *msg : m_messages) {
+    for (const Message* msg : m_messages) {
         height += msg->sizeHint().height() + ui->layoutMessages->spacing();
     }
     height -= ui->layoutMessages->spacing();
@@ -91,7 +91,7 @@ int NotificationBox::showMessage(QString message, NotificationBox::NotificationT
 void NotificationBox::removeMessage(int id)
 {
     qDebug() << "Entered, id=" << id;
-    for (Message *msg : m_messages) {
+    for (Message* msg : m_messages) {
         if (msg->id() == id) {
             ui->layoutMessages->removeWidget(msg);
             msg->deleteLater();
@@ -113,7 +113,7 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
 {
     qDebug() << "Entered, message=" << message << "id=" << id;
     if (unique) {
-        for (Message *msg : m_messages) {
+        for (Message* msg : m_messages) {
             if (msg->id() == id) {
                 return;
             }
@@ -147,7 +147,7 @@ int NotificationBox::addProgressBar(QString message)
  */
 void NotificationBox::progressBarProgress(int current, int max, int id)
 {
-    for (Message *msg : m_messages) {
+    for (Message* msg : m_messages) {
         if (msg->id() == id) {
             msg->setProgress(current, max);
         }
@@ -166,7 +166,7 @@ void NotificationBox::hideProgressBar(int id)
 
 int NotificationBox::maxValue(int id)
 {
-    for (Message *msg : m_messages) {
+    for (Message* msg : m_messages) {
         if (msg->id() == id) {
             return msg->maxValue();
         }
@@ -177,7 +177,7 @@ int NotificationBox::maxValue(int id)
 
 int NotificationBox::value(int id)
 {
-    for (Message *msg : m_messages) {
+    for (Message* msg : m_messages) {
         if (msg->id() == id) {
             return msg->value();
         }

@@ -12,8 +12,8 @@ class MyTreeView : public QTreeView
 {
     Q_OBJECT
 public:
-    explicit MyTreeView(QWidget *parent = nullptr);
+    explicit MyTreeView(QWidget* parent = nullptr);
 
 protected:
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
+    void drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const override;
 };

@@ -9,11 +9,11 @@ namespace Kodi {
 class ArtistXmlReader
 {
 public:
-    ArtistXmlReader(Artist &artist);
+    ArtistXmlReader(Artist& artist);
     void parseNfoDom(QDomDocument domDoc);
 
 private:
-    Artist &m_artist;
+    Artist& m_artist;
 };
 
 } // namespace Kodi

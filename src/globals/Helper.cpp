@@ -20,13 +20,13 @@
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 
-Helper::Helper(QObject *parent) : QObject(parent)
+Helper::Helper(QObject* parent) : QObject(parent)
 {
 }
 
-Helper *Helper::instance(QObject *parent)
+Helper* Helper::instance(QObject* parent)
 {
-    static Helper *m_instance = nullptr;
+    static Helper* m_instance = nullptr;
     if (!m_instance) {
         m_instance = new Helper(parent);
     }
@@ -170,7 +170,7 @@ bool Helper::isBluRay(QString path)
     return false;
 }
 
-QImage &Helper::resizeBackdrop(QImage &image, bool &resized)
+QImage& Helper::resizeBackdrop(QImage& image, bool& resized)
 {
     resized = false;
     if ((image.width() != 1920 || image.height() != 1080) && image.width() > 1915 && image.width() < 1925
@@ -188,7 +188,7 @@ QImage &Helper::resizeBackdrop(QImage &image, bool &resized)
     return image;
 }
 
-QByteArray &Helper::resizeBackdrop(QByteArray &image)
+QByteArray& Helper::resizeBackdrop(QByteArray& image)
 {
     bool resized;
     QImage img = QImage::fromData(image);
@@ -201,7 +201,7 @@ QByteArray &Helper::resizeBackdrop(QByteArray &image)
     return image;
 }
 
-QString &Helper::sanitizeFileName(QString &fileName)
+QString& Helper::sanitizeFileName(QString& fileName)
 {
     fileName.replace("/", " ");
     fileName.replace("\\", " ");
@@ -216,7 +216,7 @@ QString &Helper::sanitizeFileName(QString &fileName)
     return fileName;
 }
 
-QString Helper::stackedBaseName(const QString &fileName)
+QString Helper::stackedBaseName(const QString& fileName)
 {
     QString baseName = fileName;
     QRegExp rx1a(R"((.*)([ _\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\.-]*[0-9]+)(.*)(\.[^.]+)$)", Qt::CaseInsensitive);
@@ -228,7 +228,7 @@ QString Helper::stackedBaseName(const QString &fileName)
     regex << (QVector<QRegExp>() << rx1a << rx1b);
     regex << (QVector<QRegExp>() << rx2a << rx2b);
 
-    for (const QVector<QRegExp> &rx : regex) {
+    for (const QVector<QRegExp>& rx : regex) {
         if (rx.at(0).indexIn(fileName) != -1) {
             QString title = rx.at(0).cap(1);
             QString volume = rx.at(0).cap(2);
@@ -245,14 +245,14 @@ QString Helper::stackedBaseName(const QString &fileName)
     return baseName;
 }
 
-QString Helper::appendArticle(const QString &text)
+QString Helper::appendArticle(const QString& text)
 {
     if (!Settings::instance()->ignoreArticlesWhenSorting()) {
         return text;
     }
 
     QString name = text;
-    for (const QString &article : Settings::instance()->advanced()->sortTokens()) {
+    for (const QString& article : Settings::instance()->advanced()->sortTokens()) {
         if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
             name = text.mid(article.length() + 1) + ", " + text.mid(0, article.length());
             break;
@@ -261,7 +261,7 @@ QString Helper::appendArticle(const QString &text)
     return name;
 }
 
-QString Helper::mapGenre(const QString &text)
+QString Helper::mapGenre(const QString& text)
 {
     if (Settings::instance()->advanced()->genreMappings().isEmpty()) {
         return text;
@@ -273,20 +273,20 @@ QString Helper::mapGenre(const QString &text)
     return text;
 }
 
-QStringList Helper::mapGenre(const QStringList &genres)
+QStringList Helper::mapGenre(const QStringList& genres)
 {
     if (Settings::instance()->advanced()->genreMappings().isEmpty()) {
         return genres;
     }
 
     QStringList mappedGenres;
-    for (const QString &genre : genres) {
+    for (const QString& genre : genres) {
         mappedGenres << Helper::instance()->mapGenre(genre);
     }
     return mappedGenres;
 }
 
-Certification Helper::mapCertification(const Certification &certification)
+Certification Helper::mapCertification(const Certification& certification)
 {
     if (Settings::instance()->advanced()->certificationMappings().isEmpty()) {
         return certification;
@@ -298,7 +298,7 @@ Certification Helper::mapCertification(const Certification &certification)
     return certification;
 }
 
-QString Helper::mapStudio(const QString &text)
+QString Helper::mapStudio(const QString& text)
 {
     if (Settings::instance()->advanced()->studioMappings().isEmpty()) {
         return text;
@@ -310,7 +310,7 @@ QString Helper::mapStudio(const QString &text)
     return text;
 }
 
-QString Helper::mapCountry(const QString &text)
+QString Helper::mapCountry(const QString& text)
 {
     if (Settings::instance()->advanced()->countryMappings().isEmpty()) {
         return text;
@@ -322,7 +322,7 @@ QString Helper::mapCountry(const QString &text)
     return text;
 }
 
-QString Helper::formatFileSize(const qint64 &size)
+QString Helper::formatFileSize(const qint64& size)
 {
     if (size > 1024 * 1024 * 1024) {
         return QString("%1 GB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0 / 1024.0, 'f', 2));
@@ -335,32 +335,32 @@ QString Helper::formatFileSize(const qint64 &size)
     }
 }
 
-void Helper::removeFocusRect(QWidget *widget)
+void Helper::removeFocusRect(QWidget* widget)
 {
-    for (QListWidget *list : widget->findChildren<QListWidget *>()) {
+    for (QListWidget* list : widget->findChildren<QListWidget*>()) {
         list->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QLineEdit *edit : widget->findChildren<QLineEdit *>()) {
+    for (QLineEdit* edit : widget->findChildren<QLineEdit*>()) {
         edit->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QComboBox *box : widget->findChildren<QComboBox *>()) {
+    for (QComboBox* box : widget->findChildren<QComboBox*>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QSpinBox *box : widget->findChildren<QSpinBox *>()) {
+    for (QSpinBox* box : widget->findChildren<QSpinBox*>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QDoubleSpinBox *box : widget->findChildren<QDoubleSpinBox *>()) {
+    for (QDoubleSpinBox* box : widget->findChildren<QDoubleSpinBox*>()) {
         box->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QDateEdit *dateEdit : widget->findChildren<QDateEdit *>()) {
+    for (QDateEdit* dateEdit : widget->findChildren<QDateEdit*>()) {
         dateEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    for (QDateTimeEdit *dateTimeEdit : widget->findChildren<QDateTimeEdit *>()) {
+    for (QDateTimeEdit* dateTimeEdit : widget->findChildren<QDateTimeEdit*>()) {
         dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
 }
 
-void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
+void Helper::applyStyle(QWidget* widget, bool removeFocusRect, bool /*isTable*/)
 {
     if (removeFocusRect) {
         Helper::instance()->removeFocusRect(widget);
@@ -474,7 +474,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
         << ";";
 
-    for (QTabWidget *tabWidget : widget->findChildren<QTabWidget *>()) {
+    for (QTabWidget* tabWidget : widget->findChildren<QTabWidget*>()) {
         QFont font = tabWidget->font();
         font.setFamily("Helvetica Neue");
 #ifdef Q_OS_MAC
@@ -488,7 +488,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
 
-    for (QPushButton *button : widget->findChildren<QPushButton *>()) {
+    for (QPushButton* button : widget->findChildren<QPushButton*>()) {
         QString styleType = button->property("styleType").toString();
         if (styleType.isEmpty()) {
             continue;
@@ -508,9 +508,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool /*isTable*/)
     }
 }
 
-void Helper::applyEffect(QWidget *parent)
+void Helper::applyEffect(QWidget* parent)
 {
-    for (QPushButton *button : parent->findChildren<QPushButton *>()) {
+    for (QPushButton* button : parent->findChildren<QPushButton*>()) {
         if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             auto effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
@@ -521,7 +521,7 @@ void Helper::applyEffect(QWidget *parent)
     }
 }
 
-qreal Helper::similarity(const QString &s1, const QString &s2)
+qreal Helper::similarity(const QString& s1, const QString& s2)
 {
     const int len1 = s1.length();
     const int len2 = s2.length();
@@ -603,37 +603,37 @@ QIcon Helper::iconForLabel(ColorLabel label)
     return QIcon(pixmap);
 }
 
-qreal Helper::devicePixelRatio(QLabel *label)
+qreal Helper::devicePixelRatio(QLabel* label)
 {
     return label->devicePixelRatio();
 }
 
-qreal Helper::devicePixelRatio(QPushButton *button)
+qreal Helper::devicePixelRatio(QPushButton* button)
 {
     return button->devicePixelRatio();
 }
 
-void Helper::setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio)
+void Helper::setDevicePixelRatio(QPixmap& pixmap, qreal devicePixelRatio)
 {
     pixmap.setDevicePixelRatio(devicePixelRatio);
 }
 
-void Helper::setDevicePixelRatio(QImage &image, qreal devicePixelRatio)
+void Helper::setDevicePixelRatio(QImage& image, qreal devicePixelRatio)
 {
     image.setDevicePixelRatio(devicePixelRatio);
 }
 
-qreal Helper::devicePixelRatio(QWidget *widget)
+qreal Helper::devicePixelRatio(QWidget* widget)
 {
     return widget->devicePixelRatio();
 }
 
-qreal Helper::devicePixelRatio(const QPixmap &pixmap)
+qreal Helper::devicePixelRatio(const QPixmap& pixmap)
 {
     return pixmap.devicePixelRatio();
 }
 
-int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)
+int Helper::compareVersionNumbers(const QString& oldVersion, const QString& newVersion)
 {
     int mMajor;
     int mMinor;
@@ -690,7 +690,7 @@ int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newV
     return 0;
 }
 
-void Helper::setButtonStyle(QPushButton *button, Helper::ButtonStyle style)
+void Helper::setButtonStyle(QPushButton* button, Helper::ButtonStyle style)
 {
     QString styleSheet;
 
@@ -743,7 +743,7 @@ void Helper::setButtonStyle(QPushButton *button, Helper::ButtonStyle style)
     button->setStyleSheet(styleSheet);
 }
 
-void Helper::fillStereoModeCombo(QComboBox *box)
+void Helper::fillStereoModeCombo(QComboBox* box)
 {
     bool blocked = box->blockSignals(true);
     box->clear();
@@ -777,7 +777,7 @@ QMap<QString, QString> Helper::stereoModes()
     return modes;
 }
 
-QString Helper::matchResolution(int width, int height, const QString &scanType)
+QString Helper::matchResolution(int width, int height, const QString& scanType)
 {
     QString res;
     if (height >= 4312 || width >= 7672) {

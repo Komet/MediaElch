@@ -14,12 +14,12 @@
 class StarIconPainter : public MyIconFontIconPainter
 {
 public:
-    void paint(MyIconFont *awesome,
-        QPainter *painter,
-        const QRect &rect,
+    void paint(MyIconFont* awesome,
+        QPainter* painter,
+        const QRect& rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options) override
+        const QVariantMap& options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -87,12 +87,12 @@ public:
 class DuplicateIconPainter : public MyIconFontIconPainter
 {
 public:
-    void paint(MyIconFont *awesome,
-        QPainter *painter,
-        const QRect &rect,
+    void paint(MyIconFont* awesome,
+        QPainter* painter,
+        const QRect& rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options) override
+        const QVariantMap& options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -150,12 +150,12 @@ public:
 class MyIconFontCharIconPainter : public MyIconFontIconPainter
 {
 public:
-    void paint(MyIconFont *awesome,
-        QPainter *painter,
-        const QRect &rect,
+    void paint(MyIconFont* awesome,
+        QPainter* painter,
+        const QRect& rect,
         QIcon::Mode mode,
         QIcon::State state,
-        const QVariantMap &options) override
+        const QVariantMap& options) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
@@ -205,7 +205,7 @@ public:
 class MyIconFontIconPainterIconEngine : public QIconEngine
 {
 public:
-    MyIconFontIconPainterIconEngine(MyIconFont *awesome, MyIconFontIconPainter *painter, const QVariantMap &options) :
+    MyIconFontIconPainterIconEngine(MyIconFont* awesome, MyIconFontIconPainter* painter, const QVariantMap& options) :
         awesomeRef_(awesome),
         iconPainterRef_(painter),
         options_(options)
@@ -214,19 +214,19 @@ public:
 
     ~MyIconFontIconPainterIconEngine() override = default;
 
-    MyIconFontIconPainterIconEngine *clone() const override
+    MyIconFontIconPainterIconEngine* clone() const override
     {
         return new MyIconFontIconPainterIconEngine(awesomeRef_, iconPainterRef_, options_);
     }
 
-    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
+    void paint(QPainter* painter, const QRect& rect, QIcon::Mode mode, QIcon::State state) override
     {
         Q_UNUSED(mode);
         Q_UNUSED(state);
         iconPainterRef_->paint(awesomeRef_, painter, rect, mode, state, options_);
     }
 
-    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
+    QPixmap pixmap(const QSize& size, QIcon::Mode mode, QIcon::State state) override
     {
         QPixmap pm(size);
         pm.fill(Qt::transparent); // we need transparency
@@ -238,8 +238,8 @@ public:
     }
 
 private:
-    MyIconFont *awesomeRef_;                ///< a reference to the QtAwesome instance
-    MyIconFontIconPainter *iconPainterRef_; ///< a reference to the icon painter
+    MyIconFont* awesomeRef_;                ///< a reference to the QtAwesome instance
+    MyIconFontIconPainter* iconPainterRef_; ///< a reference to the icon painter
     QVariantMap options_;                   ///< the options for this icon painter
 };
 
@@ -247,7 +247,7 @@ private:
 //---------------------------------------------------------------------------------------
 
 /// The default icon colors
-MyIconFont::MyIconFont(QObject *parent) : QObject(parent), namedCodepoints_()
+MyIconFont::MyIconFont(QObject* parent) : QObject(parent), namedCodepoints_()
 {
     // initialize the default options
     setDefaultOption("color", QColor(50, 50, 50));
@@ -274,7 +274,7 @@ MyIconFont::~MyIconFont()
 }
 
 /// initializes the QtAwesome icon factory with the given fontname
-void MyIconFont::init(const QString &fontname)
+void MyIconFont::init(const QString& fontname)
 {
     fontName_ = fontname;
 }
@@ -315,7 +315,7 @@ bool MyIconFont::initFontAwesome()
     give("duplicate", new DuplicateIconPainter());
 
     // intialize the map
-    QHash<QString, int> &m = namedCodepoints_;
+    QHash<QString, int>& m = namedCodepoints_;
     m.insert("film", icon_film);
     m.insert("monitor", icon_monitor);
     m.insert("micro", icon_micro);
@@ -360,28 +360,28 @@ bool MyIconFont::initFontAwesome()
     return true;
 }
 
-void MyIconFont::addNamedCodepoint(const QString &name, int codePoint)
+void MyIconFont::addNamedCodepoint(const QString& name, int codePoint)
 {
     namedCodepoints_.insert(name, codePoint);
 }
 
 
 /// Sets a default option. These options are passed on to the icon painters
-void MyIconFont::setDefaultOption(const QString &name, const QVariant &value)
+void MyIconFont::setDefaultOption(const QString& name, const QVariant& value)
 {
     defaultOptions_.insert(name, value);
 }
 
 
 /// Returns the default option for the given name
-QVariant MyIconFont::defaultOption(const QString &name)
+QVariant MyIconFont::defaultOption(const QString& name)
 {
     return defaultOptions_.value(name);
 }
 
 
 // internal helper method to merge to option amps
-static QVariantMap mergeOptions(const QVariantMap &defaults, const QVariantMap &override)
+static QVariantMap mergeOptions(const QVariantMap& defaults, const QVariantMap& override)
 {
     QVariantMap result = defaults;
     if (!override.isEmpty()) {
@@ -399,13 +399,13 @@ static QVariantMap mergeOptions(const QVariantMap &defaults, const QVariantMap &
 /// <code>
 ///     awesome->icon( icon_group )
 /// </code>
-QIcon MyIconFont::icon(int character, const QVariantMap &options)
+QIcon MyIconFont::icon(int character, const QVariantMap& options)
 {
     // create a merged QVariantMap to have default options and icon-specific options
     QVariantMap optionMap = mergeOptions(defaultOptions_, options);
     optionMap.insert("text", QString(QChar(character)));
 
-    MyIconFontIconPainter *painter = painterMap_.value(options.value("painter-name").toString());
+    MyIconFontIconPainter* painter = painterMap_.value(options.value("painter-name").toString());
     if (!painter) {
         painter = fontIconPainter_;
     }
@@ -420,7 +420,7 @@ QIcon MyIconFont::icon(int character, const QVariantMap &options)
 /// the 'icon-' prefix
 /// @param name the name of the icon
 /// @param options extra option to pass to the icon renderer
-QIcon MyIconFont::icon(const QString &name, const QVariantMap &options)
+QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
 {
     // when it's a named codepoint
     if (namedCodepoints_.count(name)) {
@@ -432,7 +432,7 @@ QIcon MyIconFont::icon(const QString &name, const QVariantMap &options)
     QVariantMap optionMap = mergeOptions(defaultOptions_, options);
 
     // this method first tries to retrieve the icon
-    MyIconFontIconPainter *painter = painterMap_.value(name);
+    MyIconFontIconPainter* painter = painterMap_.value(name);
     if (!painter) {
         return QIcon();
     }
@@ -440,10 +440,10 @@ QIcon MyIconFont::icon(const QString &name, const QVariantMap &options)
     return icon(painter, optionMap);
 }
 
-QIcon MyIconFont::icon(const QString &name,
-    const QColor &color,
-    const QColor &selectionColor,
-    const QString &painterName,
+QIcon MyIconFont::icon(const QString& name,
+    const QColor& color,
+    const QColor& selectionColor,
+    const QString& painterName,
     int markerNum,
     float scaleFactor)
 {
@@ -458,9 +458,9 @@ QIcon MyIconFont::icon(const QString &name,
     return icon(name, options);
 }
 
-QIcon MyIconFont::icon(const QString &name,
-    const QColor &color,
-    const QString &painterName,
+QIcon MyIconFont::icon(const QString& name,
+    const QColor& color,
+    const QString& painterName,
     int markerNum,
     float scaleFactor)
 {
@@ -471,7 +471,7 @@ QIcon MyIconFont::icon(const QString &name,
 /// The ownership of the painter is NOT transfered.
 /// @param painter a dynamic painter that is going to paint the icon
 /// @param optionmap the options to pass to the painter
-QIcon MyIconFont::icon(MyIconFontIconPainter *painter, const QVariantMap &optionMap)
+QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap)
 {
     // Warning, when you use memoryleak detection. You should turn it of for the next call
     // QIcon's placed in gui items are often cached and not deleted when my memory-leak detection checks for leaks.
@@ -485,7 +485,7 @@ QIcon MyIconFont::icon(MyIconFontIconPainter *painter, const QVariantMap &option
 ///
 /// @param name the name of the icon
 /// @param painter the icon painter to add for this name
-void MyIconFont::give(const QString &name, MyIconFontIconPainter *painter)
+void MyIconFont::give(const QString& name, MyIconFontIconPainter* painter)
 {
     delete painterMap_.value(name); // delete the old one
     painterMap_.insert(name, painter);

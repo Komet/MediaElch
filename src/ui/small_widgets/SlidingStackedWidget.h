@@ -27,7 +27,7 @@ public:
         AUTOMATIC
     };
 
-    explicit SlidingStackedWidget(QWidget *parent);
+    explicit SlidingStackedWidget(QWidget* parent);
     ~SlidingStackedWidget() override = default;
     bool isExpanded() const;
 
@@ -49,8 +49,8 @@ protected slots:
     void animationDoneSlot();
 
 protected:
-    void slideInWgt(QWidget *widget, enum t_direction direction = AUTOMATIC);
-    QWidget *m_mainWindow;
+    void slideInWgt(QWidget* widget, enum t_direction direction = AUTOMATIC);
+    QWidget* m_mainWindow;
     int m_speed;
     enum QEasingCurve::Type m_animationType;
     bool m_vertical;
@@ -59,6 +59,6 @@ protected:
     bool m_wrap;
     QPoint m_pNow;
     bool m_active;
-    QVector<QWidget *> m_widgets;
+    QVector<QWidget*> m_widgets;
     bool m_expanded;
 };

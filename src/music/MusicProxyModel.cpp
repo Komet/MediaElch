@@ -2,14 +2,14 @@
 
 #include "globals/Globals.h"
 
-MusicProxyModel::MusicProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+MusicProxyModel::MusicProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 }
 
 MusicProxyModel::~MusicProxyModel() = default;
 
-bool MusicProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool MusicProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     QString leftTitle = sourceModel()->data(left).toString();
     QString rightTitle = sourceModel()->data(right).toString();
@@ -28,7 +28,7 @@ bool MusicProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
     return ret;
 }
 
-bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     if (QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent)) {
         return true;
@@ -45,13 +45,13 @@ bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
     return hasAcceptedChildren(sourceRow, sourceParent);
 }
 
-void MusicProxyModel::setFilter(QVector<Filter *> filters, QString text)
+void MusicProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;
 }
 
-bool MusicProxyModel::hasAcceptedChildren(int sourceRow, const QModelIndex &sourceParent) const
+bool MusicProxyModel::hasAcceptedChildren(int sourceRow, const QModelIndex& sourceParent) const
 {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
     if (!index.isValid()) {

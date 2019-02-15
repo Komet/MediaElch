@@ -14,7 +14,7 @@ class Navbar : public QWidget
     Q_OBJECT
 
 public:
-    explicit Navbar(QWidget *parent = nullptr);
+    explicit Navbar(QWidget* parent = nullptr);
     ~Navbar() override;
     void setActionSearchEnabled(bool enabled);
     void setActionSaveEnabled(bool enabled);
@@ -38,11 +38,11 @@ signals:
     void sigExport();
     void sigAbout();
     void sigLike();
-    void sigFilterChanged(QVector<Filter *>, QString);
+    void sigFilterChanged(QVector<Filter*>, QString);
 
 private slots:
     void onDonated(bool donated);
 
 private:
-    Ui::Navbar *ui;
+    Ui::Navbar* ui;
 };

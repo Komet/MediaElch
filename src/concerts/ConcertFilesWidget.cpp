@@ -12,13 +12,13 @@
 #include "globals/Manager.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 
-ConcertFilesWidget *ConcertFilesWidget::m_instance;
+ConcertFilesWidget* ConcertFilesWidget::m_instance;
 
 /**
  * @brief ConcertFilesWidget::ConcertFilesWidget
  * @param parent
  */
-ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConcertFilesWidget)
+ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -42,13 +42,13 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) : QWidget(parent), ui(ne
     ui->files->setIconSize(QSize(16, 16));
 #endif
 
-    QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
-    QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
-    QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
-    QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
-    QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
-    QAction *actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
-    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    QAction* actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    QAction* actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    QAction* actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    QAction* actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    QAction* actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    QAction* actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
+    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);

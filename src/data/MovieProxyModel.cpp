@@ -10,7 +10,7 @@
  * @brief MovieProxyModel::MovieProxyModel
  * @param parent
  */
-MovieProxyModel::MovieProxyModel(QObject *parent) :
+MovieProxyModel::MovieProxyModel(QObject* parent) :
     QSortFilterProxyModel(parent),
     m_sortBy{SortBy::New},
     m_filterDuplicates{false}
@@ -24,16 +24,16 @@ MovieProxyModel::MovieProxyModel(QObject *parent) :
  * @param sourceParent
  * @return Filter is accepted or not
  */
-bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     Q_UNUSED(sourceParent);
-    QVector<Movie *> movies = Manager::instance()->movieModel()->movies();
+    QVector<Movie*> movies = Manager::instance()->movieModel()->movies();
     if (sourceRow < 0 || sourceRow >= movies.count()) {
         return true;
     }
 
-    Movie *movie = movies.at(sourceRow);
-    for (Filter *filter : m_filters) {
+    Movie* movie = movies.at(sourceRow);
+    for (Filter* filter : m_filters) {
         if (!filter->accepts(movie)) {
             return false;
         }
@@ -52,7 +52,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
  * @param right
  * @return
  */
-bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
 
@@ -114,7 +114,7 @@ void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
  * @param filters
  * @param text
  */
-void MovieProxyModel::setFilter(QVector<Filter *> filters, QString text)
+void MovieProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;

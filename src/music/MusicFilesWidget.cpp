@@ -7,9 +7,9 @@
 #include "../globals/Manager.h"
 #include "MusicMultiScrapeDialog.h"
 
-MusicFilesWidget *MusicFilesWidget::m_instance;
+MusicFilesWidget* MusicFilesWidget::m_instance;
 
-MusicFilesWidget::MusicFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MusicFilesWidget)
+MusicFilesWidget::MusicFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicFilesWidget)
 {
     m_instance = this;
     Manager::instance()->setMusicFilesWidget(this);
@@ -27,8 +27,8 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) : QWidget(parent), ui(new Ui
     ui->music->setAnimated(false);
 #endif
 
-    QAction *actionOpenFolder = new QAction(tr("Open Folder"), this);
-    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
+    QAction* actionOpenFolder = new QAction(tr("Open Folder"), this);
+    QAction* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_contextMenu = new QMenu(ui->music);
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
@@ -62,7 +62,7 @@ void MusicFilesWidget::onOpenFolder()
         return;
     }
     QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
-    MusicModelItem *item = Manager::instance()->musicModel()->getItem(index);
+    MusicModelItem* item = Manager::instance()->musicModel()->getItem(index);
     if (!item) {
         return;
     }
@@ -87,7 +87,7 @@ void MusicFilesWidget::onOpenNfo()
         return;
     }
     QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
-    MusicModelItem *item = Manager::instance()->musicModel()->getItem(index);
+    MusicModelItem* item = Manager::instance()->musicModel()->getItem(index);
     if (!item) {
         return;
     }
@@ -105,12 +105,12 @@ void MusicFilesWidget::onOpenNfo()
     QDesktopServices::openUrl(QUrl::fromLocalFile(file));
 }
 
-MusicFilesWidget *MusicFilesWidget::instance()
+MusicFilesWidget* MusicFilesWidget::instance()
 {
     return m_instance;
 }
 
-void MusicFilesWidget::setFilter(QVector<Filter *> filters, QString text)
+void MusicFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 {
     if (!filters.isEmpty()) {
         m_proxyModel->setFilterWildcard("*" + filters.first()->shortText() + "*");
@@ -134,7 +134,7 @@ void MusicFilesWidget::updateStatusLabel()
 {
     if (m_proxyModel->filterRegExp().pattern().isEmpty() || m_proxyModel->filterRegExp().pattern() == "**") {
         int albumCount = 0;
-        for (Artist *artist : Manager::instance()->musicModel()->artists()) {
+        for (Artist* artist : Manager::instance()->musicModel()->artists()) {
             albumCount += artist->albums().count();
         }
         ui->statusLabel->setText(
@@ -145,11 +145,11 @@ void MusicFilesWidget::updateStatusLabel()
     }
 }
 
-QVector<Artist *> MusicFilesWidget::selectedArtists()
+QVector<Artist*> MusicFilesWidget::selectedArtists()
 {
-    QVector<Artist *> artists;
-    for (const QModelIndex &index : ui->music->selectionModel()->selectedIndexes()) {
-        MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
+    QVector<Artist*> artists;
+    for (const QModelIndex& index : ui->music->selectionModel()->selectedIndexes()) {
+        MusicModelItem* item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Artist) {
             artists.append(item->artist());
         }
@@ -157,11 +157,11 @@ QVector<Artist *> MusicFilesWidget::selectedArtists()
     return artists;
 }
 
-QVector<Album *> MusicFilesWidget::selectedAlbums()
+QVector<Album*> MusicFilesWidget::selectedAlbums()
 {
-    QVector<Album *> albums;
-    for (const QModelIndex &index : ui->music->selectionModel()->selectedIndexes()) {
-        MusicModelItem *item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
+    QVector<Album*> albums;
+    for (const QModelIndex& index : ui->music->selectionModel()->selectedIndexes()) {
+        MusicModelItem* item = Manager::instance()->musicModel()->getItem(m_proxyModel->mapToSource(index));
         if (item->type() == MusicType::Album) {
             albums.append(item->album());
         }

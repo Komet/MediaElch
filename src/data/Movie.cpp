@@ -18,7 +18,7 @@ using namespace std::chrono_literals;
  * @param files List of files for this movie
  * @param parent
  */
-Movie::Movie(QStringList files, QObject *parent) :
+Movie::Movie(QStringList files, QObject* parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
     m_movieImages(*this),
@@ -59,7 +59,7 @@ void Movie::setFiles(QStringList files)
     m_streamDetails = new StreamDetails(this, files);
 }
 
-MovieController *Movie::controller() const
+MovieController* Movie::controller() const
 {
     return m_controller;
 }
@@ -162,7 +162,7 @@ void Movie::clear(QVector<MovieScraperInfos> infos)
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
-    for (Actor *actor : m_crew.actorsPointer()) {
+    for (Actor* actor : m_crew.actorsPointer()) {
         actor->image = QByteArray();
     }
 }
@@ -202,12 +202,12 @@ QString Movie::originalName() const
     return m_originalName;
 }
 
-MovieImages &Movie::images()
+MovieImages& Movie::images()
 {
     return m_movieImages;
 }
 
-const MovieImages &Movie::constImages() const
+const MovieImages& Movie::constImages() const
 {
     return m_movieImages;
 }
@@ -347,9 +347,9 @@ QStringList Movie::genres() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies genres
  */
-QVector<QString *> Movie::genresPointer()
+QVector<QString*> Movie::genresPointer()
 {
-    QVector<QString *> genres;
+    QVector<QString*> genres;
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         genres.append(&m_genres[i]);
     }
@@ -374,9 +374,9 @@ QStringList Movie::countries() const
  * @brief Returns a list of pointers to QStrings
  * @return List of pointers to the movies production countries
  */
-QVector<QString *> Movie::countriesPointer()
+QVector<QString*> Movie::countriesPointer()
 {
-    QVector<QString *> countries;
+    QVector<QString*> countries;
     for (int i = 0, n = m_countries.size(); i < n; ++i) {
         countries.append(&m_countries[i]);
     }
@@ -401,9 +401,9 @@ QStringList Movie::studios() const
  * @brief Returns a list of pointers of QStrings
  * @return List of pointers to the movies studios
  */
-QVector<QString *> Movie::studiosPointer()
+QVector<QString*> Movie::studiosPointer()
 {
-    QVector<QString *> studios;
+    QVector<QString*> studios;
     for (int i = 0, n = m_studios.size(); i < n; ++i) {
         studios.append(&m_studios[i]);
     }
@@ -439,7 +439,7 @@ QVector<Actor> Movie::actors() const
  * @brief Returns a list of pointers of Actor
  * @return List of pointers to movies actors
  */
-QVector<Actor *> Movie::actorsPointer()
+QVector<Actor*> Movie::actorsPointer()
 {
     return m_crew.actorsPointer();
 }
@@ -582,7 +582,7 @@ int Movie::mediaCenterId() const
  * @brief The stream details object of this movie
  * @return StreamDetails Object
  */
-StreamDetails *Movie::streamDetails()
+StreamDetails* Movie::streamDetails()
 {
     return m_streamDetails;
 }
@@ -1010,7 +1010,7 @@ void Movie::addTag(QString tag)
  * @param actor Pointer to the actor to remove
  * @see Movie::actors
  */
-void Movie::removeActor(Actor *actor)
+void Movie::removeActor(Actor* actor)
 {
     m_crew.removeActor(actor);
     setChanged(true);
@@ -1021,7 +1021,7 @@ void Movie::removeActor(Actor *actor)
  * @param country Pointer to the country to remove
  * @see Movie::countries
  */
-void Movie::removeCountry(QString *country)
+void Movie::removeCountry(QString* country)
 {
     for (int i = 0, n = m_countries.size(); i < n; ++i) {
         if (&m_countries[i] == country) {
@@ -1048,7 +1048,7 @@ void Movie::removeCountry(QString country)
  * @param genre
  * @see Movie::genres
  */
-void Movie::removeGenre(QString *genre)
+void Movie::removeGenre(QString* genre)
 {
     for (int i = 0, n = m_genres.size(); i < n; ++i) {
         if (&m_genres[i] == genre) {
@@ -1075,7 +1075,7 @@ void Movie::removeGenre(QString genre)
  * @param studio Pointer to the studio to remove
  * @see Movie::studios
  */
-void Movie::removeStudio(QString *studio)
+void Movie::removeStudio(QString* studio)
 {
     for (int i = 0, n = m_studios.size(); i < n; ++i) {
         if (&m_studios[i] == studio) {
@@ -1161,7 +1161,7 @@ DiscType Movie::discType() const
     return m_discType;
 }
 
-bool Movie::lessThan(Movie *a, Movie *b)
+bool Movie::lessThan(Movie* a, Movie* b)
 {
     return (QString::localeAwareCompare(
                 Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
@@ -1179,17 +1179,17 @@ QVector<ImageType> Movie::imageTypes()
         ImageType::MovieBackdrop};
 }
 
-QVector<Subtitle *> Movie::subtitles() const
+QVector<Subtitle*> Movie::subtitles() const
 {
     return m_subtitles;
 }
 
-void Movie::setSubtitles(const QVector<Subtitle *> &subtitles)
+void Movie::setSubtitles(const QVector<Subtitle*>& subtitles)
 {
     m_subtitles = subtitles;
 }
 
-void Movie::addSubtitle(Subtitle *subtitle, bool fromLoad)
+void Movie::addSubtitle(Subtitle* subtitle, bool fromLoad)
 {
     m_subtitles.append(subtitle);
     connect(subtitle, &Subtitle::sigChanged, this, &Movie::onSubtitleChanged);
@@ -1227,13 +1227,13 @@ ColorLabel Movie::label() const
     return m_label;
 }
 
-bool Movie::isDuplicate(Movie *movie)
+bool Movie::isDuplicate(Movie* movie)
 {
     MovieDuplicate md = duplicateProperties(movie);
     return md.imdbId || md.tmdbId || md.title;
 }
 
-MovieDuplicate Movie::duplicateProperties(Movie *movie)
+MovieDuplicate Movie::duplicateProperties(Movie* movie)
 {
     MovieDuplicate md;
     md.imdbId = movie->imdbId().isValid() && movie->imdbId() == imdbId();
@@ -1245,13 +1245,13 @@ MovieDuplicate Movie::duplicateProperties(Movie *movie)
 
 /*** DEBUG ***/
 
-QDebug operator<<(QDebug dbg, const Movie &movie)
+QDebug operator<<(QDebug dbg, const Movie& movie)
 {
     QString nl = "\n";
     QString out;
     out.append("Movie").append(nl);
     out.append(QString("  Files:         ").append(nl));
-    for (const QString &file : movie.files()) {
+    for (const QString& file : movie.files()) {
         out.append(QString("    %1").arg(file).append(nl));
     }
     out.append(QString("  Name:          ").append(movie.name()).append(nl));
@@ -1267,28 +1267,28 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     out.append(QString("  IMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
     out.append(QString("  Set:           ").append(movie.set()).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
-    for (const QString &studio : movie.studios()) {
+    for (const QString& studio : movie.studios()) {
         out.append(QString("  Studio:         ").append(studio)).append(nl);
     }
-    for (const QString &genre : movie.genres()) {
+    for (const QString& genre : movie.genres()) {
         out.append(QString("  Genre:         ").append(genre)).append(nl);
     }
-    for (const QString &country : movie.countries()) {
+    for (const QString& country : movie.countries()) {
         out.append(QString("  Country:       ").append(country)).append(nl);
     }
-    for (const Actor &actor : movie.actors()) {
+    for (const Actor& actor : movie.actors()) {
         out.append(QString("  Actor:         ").append(nl));
         out.append(QString("    Name:  ").append(actor.name)).append(nl);
         out.append(QString("    Role:  ").append(actor.role)).append(nl);
         out.append(QString("    Thumb: ").append(actor.thumb)).append(nl);
     }
-    for (const Poster &poster : movie.constImages().posters()) {
+    for (const Poster& poster : movie.constImages().posters()) {
         out.append(QString("  Poster:       ")).append(nl);
         out.append(QString("    ID:       ").append(poster.id)).append(nl);
         out.append(QString("    Original: ").append(poster.originalUrl.toString())).append(nl);
         out.append(QString("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
     }
-    for (const Poster &backdrop : movie.constImages().backdrops()) {
+    for (const Poster& backdrop : movie.constImages().backdrops()) {
         out.append(QString("  Backdrop:       ")).append(nl);
         out.append(QString("    ID:       ").append(backdrop.id)).append(nl);
         out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);
@@ -1298,7 +1298,7 @@ QDebug operator<<(QDebug dbg, const Movie &movie)
     return dbg.maybeSpace();
 }
 
-QDebug operator<<(QDebug dbg, const Movie *movie)
+QDebug operator<<(QDebug dbg, const Movie* movie)
 {
     dbg.nospace() << *movie;
     return dbg.space();

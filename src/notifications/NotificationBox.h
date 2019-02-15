@@ -25,9 +25,9 @@ public:
         NotificationError
     };
 
-    explicit NotificationBox(QWidget *parent = nullptr);
+    explicit NotificationBox(QWidget* parent = nullptr);
     ~NotificationBox() override;
-    static NotificationBox *instance(QWidget *parent = nullptr);
+    static NotificationBox* instance(QWidget* parent = nullptr);
     void reposition(QSize size);
     virtual int
     showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
@@ -42,9 +42,9 @@ public slots:
     virtual void removeMessage(int id);
 
 private:
-    Ui::NotificationBox *ui;
+    Ui::NotificationBox* ui;
     QSize m_parentSize;
     int m_msgCounter;
-    QVector<Message *> m_messages;
+    QVector<Message*> m_messages;
     void adjustSize();
 };

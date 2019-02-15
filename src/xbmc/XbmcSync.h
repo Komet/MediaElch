@@ -21,7 +21,7 @@ class XbmcSync : public QDialog
     Q_OBJECT
 
 public:
-    explicit XbmcSync(KodiSettings &settings, QWidget *parent = nullptr);
+    explicit XbmcSync(KodiSettings& settings, QWidget* parent = nullptr);
     ~XbmcSync() override;
     enum class Element
     {
@@ -68,17 +68,17 @@ private slots:
     void onButtonClose();
     void triggerReload();
     void triggerClean();
-    void onAuthRequired(QNetworkReply *reply, QAuthenticator *authenticator);
+    void onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator);
 
 private:
-    Ui::XbmcSync *ui;
-    KodiSettings &m_settings;
+    Ui::XbmcSync* ui;
+    KodiSettings& m_settings;
 
     QNetworkAccessManager m_qnam;
-    QVector<Movie *> m_moviesToSync;
-    QVector<Concert *> m_concertsToSync;
-    QVector<TvShow *> m_tvShowsToSync;
-    QVector<TvShowEpisode *> m_episodesToSync;
+    QVector<Movie*> m_moviesToSync;
+    QVector<Concert*> m_concertsToSync;
+    QVector<TvShow*> m_tvShowsToSync;
+    QVector<TvShowEpisode*> m_episodesToSync;
     QVector<Element> m_elements;
     QMap<int, XbmcData> m_xbmcMovies;
     QMap<int, XbmcData> m_xbmcConcerts;
@@ -98,17 +98,17 @@ private:
     int m_reloadTimeOut;
     int m_requestId;
 
-    int findId(const QStringList &files, const QMap<int, XbmcData> &items);
-    bool compareFiles(const QStringList &files, const QStringList &xbmcFiles, const int &level);
-    QStringList splitFile(const QString &file);
+    int findId(const QStringList& files, const QMap<int, XbmcData>& items);
+    bool compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level);
+    QStringList splitFile(const QString& file);
     void setupItemsToRemove();
     void removeItems();
     void updateWatched();
     void checkIfListsReady(Element element);
     XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
-    void updateFolderLastModified(Movie *movie);
-    void updateFolderLastModified(Concert *concert);
-    void updateFolderLastModified(TvShow *show);
-    void updateFolderLastModified(TvShowEpisode *episode);
+    void updateFolderLastModified(Movie* movie);
+    void updateFolderLastModified(Concert* concert);
+    void updateFolderLastModified(TvShow* show);
+    void updateFolderLastModified(TvShowEpisode* episode);
     QUrl xbmcUrl();
 };

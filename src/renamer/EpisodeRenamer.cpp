@@ -8,20 +8,20 @@
 #include <QDir>
 #include <QFileInfo>
 
-EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog *dialog) : Renamer(renamerConfig, dialog)
+EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
 }
 
-EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode,
-    QVector<TvShowEpisode *> &episodesRenamed)
+EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode,
+    QVector<TvShowEpisode*>& episodesRenamed)
 {
-    const QString &seasonPattern = m_config.directoryPattern;
+    const QString& seasonPattern = m_config.directoryPattern;
     const bool useSeasonDirectories = m_config.renameDirectories;
 
     bool errorOccured = false;
 
-    QVector<TvShowEpisode *> multiEpisodes;
-    for (TvShowEpisode *subEpisode : episode.tvShow()->episodes()) {
+    QVector<TvShowEpisode*> multiEpisodes;
+    for (TvShowEpisode* subEpisode : episode.tvShow()->episodes()) {
         if (subEpisode->files() == episode.files()) {
             multiEpisodes.append(subEpisode);
             episodesRenamed.append(subEpisode);
@@ -36,14 +36,14 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
     QFileInfo fi(episode.files().first());
     QString fiCanonicalPath = fi.canonicalPath();
     QStringList episodeFiles = episode.files();
-    MediaCenterInterface *mediaCenter = Manager::instance()->mediaCenterInterface();
+    MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&episode);
     QString newNfoFileName = nfo;
     QString thumbnail = mediaCenter->imageFileName(&episode, ImageType::TvShowEpisodeThumb);
     QString newThumbnailFileName = thumbnail;
     QStringList newEpisodeFiles;
 
-    for (const QString &file : episode.files()) {
+    for (const QString& file : episode.files()) {
         QFileInfo fi(file);
         newEpisodeFiles << fi.fileName();
     }
@@ -56,7 +56,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
         newEpisodeFiles.clear();
         int partNo = 0;
         const auto videoDetails = episode.streamDetails()->videoDetails();
-        for (const QString &file : episode.files()) {
+        for (const QString& file : episode.files()) {
             newFileName = (episode.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo fi(file);
             QString baseName = fi.completeBaseName();
@@ -80,7 +80,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
 
             if (multiEpisodes.count() > 1) {
                 QStringList episodeStrings;
-                for (TvShowEpisode *subEpisode : multiEpisodes) {
+                for (TvShowEpisode* subEpisode : multiEpisodes) {
                     episodeStrings.append(subEpisode->episodeString());
                 }
                 qSort(episodeStrings);
@@ -102,10 +102,10 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
                 }
 
                 QStringList filters;
-                for (const QString &extra : m_extraFiles) {
+                for (const QString& extra : m_extraFiles) {
                     filters << baseName + extra;
                 }
-                for (const QString &subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                for (const QString& subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
                     QString subSuffix = subFileName.mid(baseName.length());
                     QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                     QString newSubName = newBaseName + subSuffix;
@@ -165,7 +165,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
 
     if (!m_config.dryRun) {
         QStringList files;
-        for (const QString &file : newEpisodeFiles) {
+        for (const QString& file : newEpisodeFiles) {
             files << fi.path() + "/" + file;
         }
         episode.setFiles(files);
@@ -206,7 +206,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
                         newEpisodeFiles.clear();
                         QString oldDir = dir.path();
                         QString newDir = seasonDir.absolutePath() + "/" + dir.dirName();
-                        for (const QString &file : episode.files()) {
+                        for (const QString& file : episode.files()) {
                             newEpisodeFiles << newDir + file.mid(oldDir.length());
                         }
                         episode.setFiles(newEpisodeFiles);
@@ -216,7 +216,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode &episode
             }
         } else if (fi.dir() != seasonDir) {
             newEpisodeFiles.clear();
-            for (const QString &fileName : episode.files()) {
+            for (const QString& fileName : episode.files()) {
                 QFileInfo fi(fileName);
                 int row = m_dialog->addResultToTable(fi.fileName(), seasonDirName, Renamer::RenameOperation::Move);
                 if (!m_config.dryRun) {

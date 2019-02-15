@@ -11,23 +11,23 @@ EpisodeNumber::EpisodeNumber(int episodeNumber) :
 
 const EpisodeNumber EpisodeNumber::NoEpisode = EpisodeNumber(-2);
 
-bool EpisodeNumber::operator==(const EpisodeNumber &other) const
+bool EpisodeNumber::operator==(const EpisodeNumber& other) const
 {
     // Only valid IMDb id's are comparable
     return m_episodeNumber == other.m_episodeNumber;
 }
 
-bool EpisodeNumber::operator!=(const EpisodeNumber &other) const
+bool EpisodeNumber::operator!=(const EpisodeNumber& other) const
 {
     return !(*this == other);
 }
 
-bool EpisodeNumber::operator>(const EpisodeNumber &other) const
+bool EpisodeNumber::operator>(const EpisodeNumber& other) const
 {
     return m_episodeNumber > other.m_episodeNumber;
 }
 
-bool EpisodeNumber::operator<(const EpisodeNumber &other) const
+bool EpisodeNumber::operator<(const EpisodeNumber& other) const
 {
     return m_episodeNumber < other.m_episodeNumber;
 }

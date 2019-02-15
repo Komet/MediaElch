@@ -10,12 +10,12 @@ public:
     ImdbId() = default;
     explicit ImdbId(QString imdbId);
 
-    bool operator==(const ImdbId &other) const;
-    bool operator!=(const ImdbId &other) const;
+    bool operator==(const ImdbId& other) const;
+    bool operator!=(const ImdbId& other) const;
 
     QString toString() const;
     bool isValid() const;
-    static bool isValidFormat(const QString &imdbId);
+    static bool isValidFormat(const QString& imdbId);
 
     static const ImdbId NoId;
 
@@ -25,5 +25,5 @@ private:
     bool m_isValid = false;
 };
 
-std::ostream &operator<<(std::ostream &os, const ImdbId &value);
-QDebug operator<<(QDebug debug, const ImdbId &id);
+std::ostream& operator<<(std::ostream& os, const ImdbId& value);
+QDebug operator<<(QDebug debug, const ImdbId& id);

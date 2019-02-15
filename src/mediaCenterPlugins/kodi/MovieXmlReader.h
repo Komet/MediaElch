@@ -10,11 +10,11 @@ namespace Kodi {
 class MovieXmlReader
 {
 public:
-    MovieXmlReader(Movie &movie);
+    MovieXmlReader(Movie& movie);
     void parseNfoDom(QDomDocument domDoc);
 
 private:
-    Movie &m_movie;
+    Movie& m_movie;
 };
 
 } // namespace Kodi

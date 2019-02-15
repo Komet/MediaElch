@@ -29,29 +29,29 @@ class MovieFilesWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MovieFilesWidget(QWidget *parent = nullptr);
+    explicit MovieFilesWidget(QWidget* parent = nullptr);
     ~MovieFilesWidget() override;
-    static MovieFilesWidget *instance();
-    QVector<Movie *> selectedMovies();
+    static MovieFilesWidget* instance();
+    QVector<Movie*> selectedMovies();
     void renewModel();
-    void selectMovie(Movie *movie);
+    void selectMovie(Movie* movie);
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QVector<Filter *> filters, QString text);
+    void setFilter(QVector<Filter*> filters, QString text);
     void movieSelectedEmitter();
     void multiScrape();
     void setAlphaListData();
 
 signals:
     void noMovieSelected();
-    void movieSelected(Movie *);
+    void movieSelected(Movie*);
     void sigStartSearch();
 
 protected:
-    void enterEvent(QEvent *event) override;
-    void leaveEvent(QEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+    void enterEvent(QEvent* event) override;
+    void leaveEvent(QEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
@@ -76,13 +76,13 @@ private slots:
     void openNfoFile();
 
 private:
-    Ui::MovieFilesWidget *ui;
-    MovieProxyModel *m_movieProxyModel;
-    Movie *m_lastMovie;
+    Ui::MovieFilesWidget* ui;
+    MovieProxyModel* m_movieProxyModel;
+    Movie* m_lastMovie;
     QModelIndex m_lastModelIndex;
-    static MovieFilesWidget *m_instance;
-    QMenu *m_contextMenu;
-    AlphabeticalList *m_alphaList;
+    static MovieFilesWidget* m_instance;
+    QMenu* m_contextMenu;
+    AlphabeticalList* m_alphaList;
     bool m_mouseIsIn;
 
     void updateSort(SortBy sortBy);

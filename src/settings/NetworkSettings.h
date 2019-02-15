@@ -8,7 +8,7 @@ class NetworkSettings
 public:
     void loadSettings();
     void saveSettings();
-    void setQSettings(QSettings *settings) { m_settings = settings; }
+    void setQSettings(QSettings* settings) { m_settings = settings; }
 
     bool useProxy() const;
     int proxyType() const;
@@ -27,7 +27,7 @@ public:
 private:
     void setupProxy();
 
-    QSettings *m_settings = nullptr;
+    QSettings* m_settings = nullptr;
 
     bool m_useProxy = false;
     int m_proxyType = 0;

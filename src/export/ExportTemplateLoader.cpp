@@ -12,35 +12,35 @@
 
 #include "data/Storage.h"
 
-ExportTemplateLoader::ExportTemplateLoader(QObject *parent) : QObject(parent)
+ExportTemplateLoader::ExportTemplateLoader(QObject* parent) : QObject(parent)
 {
     loadLocalTemplates();
 }
 
-ExportTemplateLoader *ExportTemplateLoader::instance(QObject *parent)
+ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 {
-    static ExportTemplateLoader *instance = nullptr;
+    static ExportTemplateLoader* instance = nullptr;
     if (!instance) {
         instance = new ExportTemplateLoader(parent);
     }
     return instance;
 }
 
-QNetworkAccessManager *ExportTemplateLoader::qnam()
+QNetworkAccessManager* ExportTemplateLoader::qnam()
 {
     return &m_qnam;
 }
 
 void ExportTemplateLoader::getRemoteTemplates()
 {
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(QUrl("http://data.mediaelch.de/export_themes.xml")));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(QUrl("http://data.mediaelch.de/export_themes.xml")));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onLoadRemoteTemplatesFinished);
 }
 
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
-    QVector<ExportTemplate *> templates;
-    auto reply = static_cast<QNetworkReply *>(sender());
+    QVector<ExportTemplate*> templates;
+    auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         return;
     }
@@ -56,7 +56,7 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
     xml.readNextStartElement();
     while (xml.readNextStartElement()) {
         if (xml.name() == "theme") {
-            ExportTemplate *exportTemplate = parseTemplate(xml);
+            ExportTemplate* exportTemplate = parseTemplate(xml);
             templates << exportTemplate;
         } else {
             xml.skipCurrentElement();
@@ -78,7 +78,7 @@ void ExportTemplateLoader::loadLocalTemplates()
     }
 
     m_localTemplates.clear();
-    for (QFileInfo &info : storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
+    for (QFileInfo& info : storageDir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
         QList<QFileInfo> infos = QDir(info.absoluteFilePath()).entryInfoList(QStringList() << "metadata.xml");
         if (infos.isEmpty() || infos.count() > 1) {
             continue;
@@ -94,13 +94,13 @@ void ExportTemplateLoader::loadLocalTemplates()
 
         QXmlStreamReader xml(content);
         xml.readNextStartElement();
-        ExportTemplate *exportTemplate = parseTemplate(xml);
+        ExportTemplate* exportTemplate = parseTemplate(xml);
         exportTemplate->setInstalled(true);
         m_localTemplates << exportTemplate;
     }
 }
 
-ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
+ExportTemplate* ExportTemplateLoader::parseTemplate(QXmlStreamReader& xml)
 {
     auto exportTemplate = new ExportTemplate(this);
     exportTemplate->setRemote(true);
@@ -143,20 +143,20 @@ ExportTemplate *ExportTemplateLoader::parseTemplate(QXmlStreamReader &xml)
     return exportTemplate;
 }
 
-void ExportTemplateLoader::installTemplate(ExportTemplate *exportTemplate)
+void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 {
-    QNetworkReply *reply = qnam()->get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
+    QNetworkReply* reply = qnam()->get(QNetworkRequest(QUrl(exportTemplate->remoteFile())));
     reply->setProperty("storage", Storage::toVariant(reply, exportTemplate));
     connect(reply, &QNetworkReply::finished, this, &ExportTemplateLoader::onDownloadTemplateFinished);
 }
 
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(sender());
+    auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         return;
     }
-    ExportTemplate *exportTemplate = reply->property("storage").value<Storage *>()->exportTemplate();
+    ExportTemplate* exportTemplate = reply->property("storage").value<Storage*>()->exportTemplate();
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -178,7 +178,7 @@ void ExportTemplateLoader::onDownloadTemplateFinished()
     emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
 }
 
-bool ExportTemplateLoader::uninstallTemplate(ExportTemplate *exportTemplate)
+bool ExportTemplateLoader::uninstallTemplate(ExportTemplate* exportTemplate)
 {
     QString location = Settings::instance()->exportTemplatesDir() + "/" + exportTemplate->identifier();
     QDir storageDir(location);
@@ -193,7 +193,7 @@ bool ExportTemplateLoader::uninstallTemplate(ExportTemplate *exportTemplate)
     return true;
 }
 
-bool ExportTemplateLoader::unpackTemplate(QBuffer &buffer, ExportTemplate *exportTemplate)
+bool ExportTemplateLoader::unpackTemplate(QBuffer& buffer, ExportTemplate* exportTemplate)
 {
     QString location = Settings::instance()->exportTemplatesDir();
     QDir storageDir(location);
@@ -245,7 +245,7 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer &buffer, ExportTemplate *expor
     return true;
 }
 
-bool ExportTemplateLoader::removeDir(const QString &dirName)
+bool ExportTemplateLoader::removeDir(const QString& dirName)
 {
     bool result = true;
     QDir dir(dirName);
@@ -268,13 +268,13 @@ bool ExportTemplateLoader::removeDir(const QString &dirName)
     return result;
 }
 
-QVector<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QVector<ExportTemplate *> local,
-    QVector<ExportTemplate *> remote)
+QVector<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QVector<ExportTemplate*> local,
+    QVector<ExportTemplate*> remote)
 {
-    QVector<ExportTemplate *> templates = local;
-    for (ExportTemplate *remoteTemplate : remote) {
+    QVector<ExportTemplate*> templates = local;
+    for (ExportTemplate* remoteTemplate : remote) {
         bool found = false;
-        for (ExportTemplate *localTemplate : templates) {
+        for (ExportTemplate* localTemplate : templates) {
             if (localTemplate->identifier() == remoteTemplate->identifier()) {
                 found = true;
                 localTemplate->setRemote(true);
@@ -292,15 +292,15 @@ QVector<ExportTemplate *> ExportTemplateLoader::mergeTemplates(QVector<ExportTem
     return templates;
 }
 
-QVector<ExportTemplate *> ExportTemplateLoader::installedTemplates()
+QVector<ExportTemplate*> ExportTemplateLoader::installedTemplates()
 {
     qSort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
     return m_localTemplates;
 }
 
-ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
+ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
 {
-    for (ExportTemplate *exportTemplate : m_localTemplates) {
+    for (ExportTemplate* exportTemplate : m_localTemplates) {
         if (exportTemplate->identifier() == identifier) {
             return exportTemplate;
         }

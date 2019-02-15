@@ -15,7 +15,7 @@
  * @brief FanartTvMusicArtists::FanartTv
  * @param parent
  */
-FanartTvMusicArtists::FanartTvMusicArtists(QObject *parent)
+FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent)
 {
     setParent(parent);
     m_provides << ImageType::ConcertBackdrop << ImageType::ConcertLogo;
@@ -57,7 +57,7 @@ QVector<ImageType> FanartTvMusicArtists::provides()
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
-QNetworkAccessManager *FanartTvMusicArtists::qnam()
+QNetworkAccessManager* FanartTvMusicArtists::qnam()
 {
     return &m_qnam;
 }
@@ -75,14 +75,14 @@ void FanartTvMusicArtists::searchConcert(QString searchStr, int limit)
     QUrl url(QString("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
                  .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onSearchArtistFinished);
 }
 
 void FanartTvMusicArtists::onSearchArtistFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -116,7 +116,7 @@ void FanartTvMusicArtists::concertBackdrops(TmdbId tmdbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertBackdrop));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
@@ -128,14 +128,14 @@ void FanartTvMusicArtists::concertLogos(TmdbId tmdbId)
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("https://webservice.fanart.tv/v3/music/%1?%2").arg(tmdbId.toString(), keyParameter()));
     request.setUrl(url);
-    QNetworkReply *reply = qnam()->get(request);
+    QNetworkReply* reply = qnam()->get(request);
     reply->setProperty("infoToLoad", static_cast<int>(ImageType::ConcertLogo));
     connect(reply, &QNetworkReply::finished, this, &FanartTvMusicArtists::onLoadConcertFinished);
 }
 
 void FanartTvMusicArtists::onLoadConcertFinished()
 {
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QVector<Poster> posters;
@@ -163,10 +163,10 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
         return posters;
     }
 
-    for (const auto &section : map.value(type)) {
+    for (const auto& section : map.value(type)) {
         const auto jsonPosters = parsedJson.value(section).toArray();
 
-        for (const auto &it : jsonPosters) {
+        for (const auto& it : jsonPosters) {
             const auto poster = it.toObject();
             if (poster.value("url").toString().isEmpty()) {
                 continue;
@@ -207,7 +207,7 @@ void FanartTvMusicArtists::searchTvShow(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-void FanartTvMusicArtists::tvShowImages(TvShow *show, TvDbId tvdbId, QVector<ImageType> types)
+void FanartTvMusicArtists::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(show);
@@ -280,7 +280,7 @@ void FanartTvMusicArtists::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber sea
     Q_UNUSED(season);
 }
 
-void FanartTvMusicArtists::movieImages(Movie *movie, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusicArtists::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
@@ -322,7 +322,7 @@ void FanartTvMusicArtists::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void FanartTvMusicArtists::concertImages(Concert *concert, TmdbId tmdbId, QVector<ImageType> types)
+void FanartTvMusicArtists::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(tmdbId);
     Q_UNUSED(concert);
@@ -355,19 +355,19 @@ bool FanartTvMusicArtists::hasSettings() const
     return false;
 }
 
-void FanartTvMusicArtists::loadSettings(const ScraperSettings &settings)
+void FanartTvMusicArtists::loadSettings(const ScraperSettings& settings)
 {
     m_language = settings.language();
     m_preferredDiscType = settings.valueString("DiscType", "BluRay");
     m_personalApiKey = settings.valueString("PersonalApiKey");
 }
 
-void FanartTvMusicArtists::saveSettings(ScraperSettings &settings)
+void FanartTvMusicArtists::saveSettings(ScraperSettings& settings)
 {
     Q_UNUSED(settings);
 }
 
-QWidget *FanartTvMusicArtists::settingsWidget()
+QWidget* FanartTvMusicArtists::settingsWidget()
 {
     return nullptr;
 }
@@ -416,14 +416,14 @@ void FanartTvMusicArtists::albumThumbs(QString mbId)
     Q_UNUSED(mbId);
 }
 
-void FanartTvMusicArtists::artistImages(Artist *artist, QString mbId, QVector<ImageType> types)
+void FanartTvMusicArtists::artistImages(Artist* artist, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(artist);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
 }
 
-void FanartTvMusicArtists::albumImages(Album *album, QString mbId, QVector<ImageType> types)
+void FanartTvMusicArtists::albumImages(Album* album, QString mbId, QVector<ImageType> types)
 {
     Q_UNUSED(album);
     Q_UNUSED(mbId);

@@ -16,9 +16,9 @@ class ImageWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageWidget(QWidget *parent = nullptr);
+    explicit ImageWidget(QWidget* parent = nullptr);
     ~ImageWidget() override;
-    void setAlbum(Album *album);
+    void setAlbum(Album* album);
 
 public slots:
     void zoomImage(int artistIndex, int albumIndex, int imageId);
@@ -30,5 +30,5 @@ signals:
     void sigImageDropped(QVector<QUrl> urls);
 
 private:
-    Ui::ImageWidget *ui;
+    Ui::ImageWidget* ui;
 };

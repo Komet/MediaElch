@@ -14,7 +14,7 @@ class AboutDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AboutDialog(QWidget *parent = nullptr);
+    explicit AboutDialog(QWidget* parent = nullptr);
     ~AboutDialog() override;
 
 public slots:
@@ -22,5 +22,5 @@ public slots:
 
 private:
     void setDeveloperInformation();
-    Ui::AboutDialog *ui;
+    Ui::AboutDialog* ui;
 };

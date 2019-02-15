@@ -6,7 +6,7 @@
 #include "music/Artist.h"
 #include "settings/Settings.h"
 
-MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MusicMultiScrapeDialog)
+MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MusicMultiScrapeDialog)
 {
     ui->setupUi(this);
 
@@ -47,7 +47,7 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->chkCdArt->setMyData(static_cast<int>(MusicScraperInfos::CdArt));
     ui->chkDiscography->setMyData(static_cast<int>(MusicScraperInfos::Discography));
 
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MusicMultiScrapeDialog::onChkToggled);
         }
@@ -61,9 +61,9 @@ MusicMultiScrapeDialog::~MusicMultiScrapeDialog()
     delete ui;
 }
 
-MusicMultiScrapeDialog *MusicMultiScrapeDialog::instance(QWidget *parent)
+MusicMultiScrapeDialog* MusicMultiScrapeDialog::instance(QWidget* parent)
 {
-    static MusicMultiScrapeDialog *m_instance = nullptr;
+    static MusicMultiScrapeDialog* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new MusicMultiScrapeDialog(parent);
     }
@@ -75,7 +75,7 @@ void MusicMultiScrapeDialog::onChkToggled()
     m_albumInfosToLoad.clear();
     m_artistInfosToLoad.clear();
     bool allToggled = true;
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (!box->isChecked()) {
             allToggled = false;
             continue;
@@ -93,7 +93,7 @@ void MusicMultiScrapeDialog::onChkToggled()
 
 void MusicMultiScrapeDialog::onChkAllToggled(bool toggled)
 {
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             box->setChecked(toggled);
         }
@@ -152,7 +152,7 @@ void MusicMultiScrapeDialog::reject()
 
 void MusicMultiScrapeDialog::disconnectScrapers()
 {
-    for (MusicScraperInterface *scraper : Manager::instance()->musicScrapers())
+    for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers())
         disconnect(scraper,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
@@ -175,14 +175,14 @@ void MusicMultiScrapeDialog::onStartScraping()
         SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
         Qt::UniqueConnection);
 
-    QVector<Album *> queueAlbums;
-    for (Artist *artist : m_artists) {
+    QVector<Album*> queueAlbums;
+    for (Artist* artist : m_artists) {
         QueueItem item1;
         item1.album = nullptr;
         item1.artist = artist;
         m_queue.append(item1);
         if (ui->chkScrapeAllAlbums->isChecked()) {
-            for (Album *album : artist->albums()) {
+            for (Album* album : artist->albums()) {
                 QueueItem item2;
                 item2.album = album;
                 item2.artist = nullptr;
@@ -192,7 +192,7 @@ void MusicMultiScrapeDialog::onStartScraping()
         }
     }
 
-    for (Album *album : m_albums) {
+    for (Album* album : m_albums) {
         if (!queueAlbums.contains(album)) {
             QueueItem item;
             item.album = album;
@@ -258,9 +258,9 @@ void MusicMultiScrapeDialog::scrapeNext()
             &MusicMultiScrapeDialog::scrapeNext,
             Qt::UniqueConnection);
         connect(m_currentAlbum->controller(),
-            SIGNAL(sigDownloadProgress(Album *, int, int)),
+            SIGNAL(sigDownloadProgress(Album*, int, int)),
             this,
-            SLOT(onProgress(Album *, int, int)),
+            SLOT(onProgress(Album*, int, int)),
             Qt::UniqueConnection);
         if (!m_currentAlbum->mbAlbumId().isEmpty()) {
             m_currentAlbum->controller()->loadData(m_currentAlbum->mbAlbumId(),
@@ -280,9 +280,9 @@ void MusicMultiScrapeDialog::scrapeNext()
             &MusicMultiScrapeDialog::scrapeNext,
             Qt::UniqueConnection);
         connect(m_currentArtist->controller(),
-            SIGNAL(sigDownloadProgress(Artist *, int, int)),
+            SIGNAL(sigDownloadProgress(Artist*, int, int)),
             this,
-            SLOT(onProgress(Artist *, int, int)),
+            SLOT(onProgress(Artist*, int, int)),
             Qt::UniqueConnection);
         if (!m_currentArtist->mbId().isEmpty()) {
             m_currentArtist->controller()->loadData(m_currentArtist->mbId(), m_scraperInterface, m_artistInfosToLoad);
@@ -310,7 +310,7 @@ void MusicMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     }
 }
 
-void MusicMultiScrapeDialog::onProgress(Artist *artist, int current, int maximum)
+void MusicMultiScrapeDialog::onProgress(Artist* artist, int current, int maximum)
 {
     Q_UNUSED(artist);
     if (!isExecuted()) {
@@ -320,7 +320,7 @@ void MusicMultiScrapeDialog::onProgress(Artist *artist, int current, int maximum
     ui->progressItem->setMaximum(maximum);
 }
 
-void MusicMultiScrapeDialog::onProgress(Album *album, int current, int maximum)
+void MusicMultiScrapeDialog::onProgress(Album* album, int current, int maximum)
 {
     Q_UNUSED(album);
     if (!isExecuted()) {
@@ -330,7 +330,7 @@ void MusicMultiScrapeDialog::onProgress(Album *album, int current, int maximum)
     ui->progressItem->setMaximum(maximum);
 }
 
-void MusicMultiScrapeDialog::setItems(QVector<Artist *> artists, QVector<Album *> albums)
+void MusicMultiScrapeDialog::setItems(QVector<Artist*> artists, QVector<Album*> albums)
 {
     m_artists = artists;
     m_albums = albums;

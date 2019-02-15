@@ -10,7 +10,7 @@
 #include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
 
-MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
+MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
 {
     ui->setupUi(this);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
@@ -20,7 +20,7 @@ MakeMkvDialog::MakeMkvDialog(QWidget *parent) : QDialog(parent), ui(new Ui::Make
     ui->badgeSuccess->setBadgeType(Badge::Type::LabelSuccess);
     ui->badgeSuccess->setShowActiveMark(true);
 
-    QMovie *loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
+    QMovie* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
@@ -89,7 +89,7 @@ int MakeMkvDialog::exec()
     }
 
     ui->comboImportDir->clear();
-    for (const SettingsDir &dir : Settings::instance()->directorySettings().movieDirectories()) {
+    for (const SettingsDir& dir : Settings::instance()->directorySettings().movieDirectories()) {
         ui->comboImportDir->addItem(dir.path, dir.separateFolders);
     }
 
@@ -174,7 +174,7 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
     QMapIterator<int, MakeMkvCon::Track> it(tracks);
     while (it.hasNext()) {
         it.next();
-        QListWidgetItem *item = new QListWidgetItem(QString("%1 (%3, %2)")
+        QListWidgetItem* item = new QListWidgetItem(QString("%1 (%3, %2)")
                                                         .arg(it.value().name)
                                                         .arg(it.value().duration)
                                                         .arg(Helper::instance()->formatFileSize(it.value().size)));
@@ -224,7 +224,7 @@ void MakeMkvDialog::onImportComplete()
 
 void MakeMkvDialog::onMovieChosen()
 {
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
     if (ui->movieSearchWidget->scraperId() == "custom-movie") {
         ids = ui->movieSearchWidget->customScraperIds();
@@ -261,7 +261,7 @@ void MakeMkvDialog::onMovieChosen()
         m_movie->controller(), &MovieController::sigLoadDone, this, &MakeMkvDialog::onLoadDone, Qt::UniqueConnection);
 }
 
-void MakeMkvDialog::onLoadDone(Movie *movie)
+void MakeMkvDialog::onLoadDone(Movie* movie)
 {
     if (movie != m_movie) {
         return;

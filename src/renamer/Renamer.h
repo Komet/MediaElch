@@ -45,18 +45,18 @@ public:
         Error
     };
 
-    Renamer(RenamerConfig config, RenamerDialog *dialog);
+    Renamer(RenamerConfig config, RenamerDialog* dialog);
 
     static QString typeToString(Renamer::RenameType type);
-    static QString replace(QString &text, const QString &search, const QString &replace);
-    static QString replaceCondition(QString &text, const QString &condition, const QString &replace);
-    static QString replaceCondition(QString &text, const QString &condition, bool hasCondition);
+    static QString replace(QString& text, const QString& search, const QString& replace);
+    static QString replaceCondition(QString& text, const QString& condition, const QString& replace);
+    static QString replaceCondition(QString& text, const QString& condition, bool hasCondition);
 
-    static bool rename(QDir &dir, QString newName);
-    static bool rename(const QString &file, const QString &newName);
+    static bool rename(QDir& dir, QString newName);
+    static bool rename(const QString& file, const QString& newName);
 
 protected:
     RenamerConfig m_config;
-    RenamerDialog *m_dialog;
+    RenamerDialog* m_dialog;
     QStringList m_extraFiles;
 };

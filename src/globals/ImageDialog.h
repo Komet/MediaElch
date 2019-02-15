@@ -35,22 +35,22 @@ class ImageDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImageDialog(QWidget *parent = nullptr);
+    explicit ImageDialog(QWidget* parent = nullptr);
     ~ImageDialog() override;
-    static ImageDialog *instance(QWidget *parent = nullptr);
+    static ImageDialog* instance(QWidget* parent = nullptr);
     void setDownloads(QVector<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     QVector<QUrl> imageUrls();
     void setImageType(ImageType type);
     void setItemType(ItemType type);
-    void setMultiSelection(const bool &enable);
-    void setMovie(Movie *movie);
-    void setConcert(Concert *concert);
-    void setTvShow(TvShow *show);
+    void setMultiSelection(const bool& enable);
+    void setMovie(Movie* movie);
+    void setConcert(Concert* concert);
+    void setTvShow(TvShow* show);
     void setSeason(SeasonNumber season);
-    void setTvShowEpisode(TvShowEpisode *episode);
-    void setArtist(Artist *artist);
-    void setAlbum(Album *album);
+    void setTvShowEpisode(TvShowEpisode* episode);
+    void setArtist(Artist* artist);
+    void setAlbum(Album* album);
     void clear();
     void cancelDownloads();
 
@@ -61,7 +61,7 @@ public slots:
     int exec(ImageType type);
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void downloadFinished();
@@ -75,13 +75,13 @@ private slots:
     void onSearch(bool onlyFirstResult = false);
     void onProviderChanged(int index);
     void onSearchFinished(QVector<ScraperSearchResult> results);
-    void onResultClicked(QTableWidgetItem *item);
+    void onResultClicked(QTableWidgetItem* item);
     void onProviderImagesLoaded(QVector<Poster> images);
-    void onImageClosed(const QString &url);
+    void onImageClosed(const QString& url);
     void updateSourceLink();
 
 private:
-    Ui::ImageDialog *ui;
+    Ui::ImageDialog* ui;
 
     /**
      * @brief The DownloadElement struct
@@ -93,38 +93,38 @@ private:
         QPixmap pixmap;
         QPixmap scaledPixmap;
         bool downloaded;
-        ImageLabel *cellWidget;
+        ImageLabel* cellWidget;
         QSize resolution;
         QString hint;
     };
 
     QNetworkAccessManager m_qnam;
     int m_currentDownloadIndex;
-    QNetworkReply *m_currentDownloadReply;
+    QNetworkReply* m_currentDownloadReply;
     ImageType m_imageType;
     QVector<DownloadElement> m_elements;
     QUrl m_imageUrl;
     QVector<QUrl> m_imageUrls;
     ImageType m_type;
-    QVector<ImageProviderInterface *> m_providers;
-    Concert *m_concert;
-    Movie *m_movie;
-    TvShow *m_tvShow;
-    TvShowEpisode *m_tvShowEpisode;
+    QVector<ImageProviderInterface*> m_providers;
+    Concert* m_concert;
+    Movie* m_movie;
+    TvShow* m_tvShow;
+    TvShowEpisode* m_tvShowEpisode;
     ItemType m_itemType;
     QVector<Poster> m_defaultElements;
-    ImageProviderInterface *m_currentProvider;
+    ImageProviderInterface* m_currentProvider;
     SeasonNumber m_season;
     EpisodeNumber m_episode;
     bool m_multiSelection;
-    Artist *m_artist;
-    Album *m_album;
+    Artist* m_artist;
+    Album* m_album;
 
-    QNetworkAccessManager *qnam();
+    QNetworkAccessManager* qnam();
     void renderTable();
     int calcColumnCount();
     int getColumnWidth();
     void loadImagesFromProvider(QString id);
     void clearSearch();
-    QString formatSearchText(const QString &text);
+    QString formatSearchText(const QString& text);
 };

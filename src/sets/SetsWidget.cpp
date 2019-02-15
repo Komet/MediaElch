@@ -19,7 +19,7 @@
  * @brief SetsWidget::SetsWidget
  * @param parent
  */
-SetsWidget::SetsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::SetsWidget)
+SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget)
 {
     ui->setupUi(this);
 
@@ -63,8 +63,8 @@ SetsWidget::SetsWidget(QWidget *parent) : QWidget(parent), ui(new Ui::SetsWidget
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->sets);
-    QAction *actionAddSet = new QAction(tr("Add Movie Set"), this);
-    QAction *actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
+    QAction* actionAddSet = new QAction(tr("Add Movie Set"), this);
+    QAction* actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
     m_tableContextMenu->addAction(actionAddSet);
     m_tableContextMenu->addAction(actionDeleteSet);
     connect(actionAddSet, &QAction::triggered, this, &SetsWidget::onAddMovieSet);
@@ -100,7 +100,7 @@ SetsWidget::~SetsWidget()
  * @brief Returns the splitter
  * @return The splitter
  */
-QSplitter *SetsWidget::splitter()
+QSplitter* SetsWidget::splitter()
 {
     return ui->splitter;
 }
@@ -128,13 +128,13 @@ void SetsWidget::loadSets()
     m_moviesToSave.clear();
     m_setPosters.clear();
     m_setBackdrops.clear();
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (!movie->set().isEmpty()) {
             if (m_sets.contains(movie->set())) {
                 m_sets[movie->set()].append(movie);
             } else {
-                QVector<Movie *> l;
-                QVector<Movie *> el;
+                QVector<Movie*> l;
+                QVector<Movie*> el;
                 l << movie;
                 m_sets.insert(movie->set(), l);
                 m_moviesToSave.insert(movie->set(), el);
@@ -143,15 +143,15 @@ void SetsWidget::loadSets()
             }
         }
     }
-    for (const QString &set : m_addedSets) {
+    for (const QString& set : m_addedSets) {
         if (!set.isEmpty() && !m_sets.contains(set)) {
-            m_sets.insert(set, QVector<Movie *>());
-            m_moviesToSave.insert(set, QVector<Movie *>());
+            m_sets.insert(set, QVector<Movie*>());
+            m_moviesToSave.insert(set, QVector<Movie*>());
             m_setPosters.insert(set, QImage());
             m_setBackdrops.insert(set, QImage());
         }
     }
-    QMapIterator<QString, QVector<Movie *>> it(m_sets);
+    QMapIterator<QString, QVector<Movie*>> it(m_sets);
     while (it.hasNext()) {
         it.next();
         int row = ui->sets->rowCount();
@@ -212,7 +212,7 @@ void SetsWidget::loadSet(QString set)
     ui->buttonPreviewPoster->setEnabled(false);
     ui->movies->blockSignals(true);
 
-    for (Movie *movie : m_sets[set]) {
+    for (Movie* movie : m_sets[set]) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         ui->movies->setItem(row, 0, new QTableWidgetItem(movie->name()));
@@ -293,14 +293,14 @@ void SetsWidget::loadSet(QString set)
  *        Updates movies sorttitle and reorders the table
  * @param item changed item
  */
-void SetsWidget::onSortTitleChanged(QTableWidgetItem *item)
+void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
 {
     qDebug() << "Entered, item->row=" << item->row() << "rowCount=" << ui->movies->rowCount();
     if (item->row() < 0 || item->row() >= ui->movies->rowCount() || item->column() != 1) {
         qDebug() << "Invalid row";
         return;
     }
-    auto movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie *>();
+    auto movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->setSortTitle(item->text());
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
     if (!m_moviesToSave[movie->set()].contains(movie)) {
@@ -320,7 +320,7 @@ void SetsWidget::onAddMovie()
         return;
     }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        QVector<Movie *> movies = MovieListDialog::instance()->selectedMovies();
+        QVector<Movie*> movies = MovieListDialog::instance()->selectedMovies();
         if (movies.isEmpty()) {
             return;
         }
@@ -331,7 +331,7 @@ void SetsWidget::onAddMovie()
         }
 
         QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
-        for (Movie *movie : movies) {
+        for (Movie* movie : movies) {
             if (movie->set() == setName) {
                 continue;
             }
@@ -360,7 +360,7 @@ void SetsWidget::onRemoveMovie()
         qDebug() << "Invalid current row in movies";
         return;
     }
-    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie *>();
+    auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     m_sets[movie->set()].removeOne(movie);
     if (!m_moviesToSave[movie->set()].contains(movie)) {
         m_moviesToSave[movie->set()].append(movie);
@@ -386,7 +386,7 @@ void SetsWidget::chooseSetPoster()
     }
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    Movie *movie = new Movie(QStringList());
+    Movie* movie = new Movie(QStringList());
     movie->setName(setName);
     ImageDialog::instance()->setImageType(ImageType::MovieSetPoster);
     ImageDialog::instance()->clear();
@@ -420,7 +420,7 @@ void SetsWidget::chooseSetBackdrop()
     }
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    Movie *movie = new Movie(QStringList());
+    Movie* movie = new Movie(QStringList());
     movie->setName(setName);
     ImageDialog::instance()->setImageType(ImageType::MovieSetBackdrop);
     ImageDialog::instance()->clear();
@@ -454,8 +454,8 @@ void SetsWidget::saveSet()
     setNames << ui->sets->item(ui->sets->currentRow(), 0)->text();
     setNames.removeDuplicates();
 
-    for (const QString &setName : setNames) {
-        for (Movie *movie : m_moviesToSave[setName]) {
+    for (const QString& setName : setNames) {
+        for (Movie* movie : m_moviesToSave[setName]) {
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         }
         m_moviesToSave[setName].clear();
@@ -520,8 +520,8 @@ void SetsWidget::onAddMovieSet()
 
     m_addedSets << setName;
 
-    QVector<Movie *> l;
-    QVector<Movie *> el;
+    QVector<Movie*> l;
+    QVector<Movie*> el;
     m_sets.insert(setName, l);
     m_moviesToSave.insert(setName, el);
     m_setPosters.insert(setName, QImage());
@@ -547,7 +547,7 @@ void SetsWidget::onRemoveMovieSet()
     QString origSetName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->sets->removeRow(ui->sets->currentRow());
 
-    for (Movie *movie : m_sets[origSetName]) {
+    for (Movie* movie : m_sets[origSetName]) {
         movie->setSet("");
         movie->setSortTitle("");
     }
@@ -557,7 +557,7 @@ void SetsWidget::onRemoveMovieSet()
     m_addedSets.removeOne(setName);
 }
 
-void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
+void SetsWidget::onSetNameChanged(QTableWidgetItem* item)
 {
     QString newName = item->text();
     QString origSetName = item->data(Qt::UserRole).toString();
@@ -573,10 +573,10 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     }
 
     if (!m_moviesToSave.contains(newName)) {
-        m_moviesToSave.insert(newName, QVector<Movie *>());
+        m_moviesToSave.insert(newName, QVector<Movie*>());
     }
 
-    for (Movie *movie : m_sets[origSetName]) {
+    for (Movie* movie : m_sets[origSetName]) {
         m_moviesToSave[newName].append(movie);
         movie->setSet(newName);
     }
@@ -584,7 +584,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     m_moviesToSave[origSetName].clear();
 
     if (!m_sets.contains(newName)) {
-        m_sets[newName].append(QVector<Movie *>());
+        m_sets[newName].append(QVector<Movie*>());
     }
 
     m_sets[newName].append(m_sets[origSetName]);
@@ -632,12 +632,12 @@ void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
     }
 }
 
-void SetsWidget::onJumpToMovie(QTableWidgetItem *item)
+void SetsWidget::onJumpToMovie(QTableWidgetItem* item)
 {
     if (item->column() != 0) {
         return;
     }
 
-    auto movie = item->data(Qt::UserRole).value<Movie *>();
+    auto movie = item->data(Qt::UserRole).value<Movie*>();
     emit sigJumpToMovie(movie);
 }

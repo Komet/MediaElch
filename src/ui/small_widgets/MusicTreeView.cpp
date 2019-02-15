@@ -5,11 +5,11 @@
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 
-MusicTreeView::MusicTreeView(QWidget *parent) : QTreeView(parent)
+MusicTreeView::MusicTreeView(QWidget* parent) : QTreeView(parent)
 {
 }
 
-void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+void MusicTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
 {
 #ifdef Q_OS_WIN
     QTreeView::drawBranches(painter, rect, index);
@@ -31,7 +31,7 @@ void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QMo
     painter->restore();
 }
 
-void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void MusicTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
 #ifdef Q_OS_WIN
     QTreeView::drawRow(painter, option, index);
@@ -59,7 +59,7 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
     painter->restore();
 }
 
-void MusicTreeView::setAlternateRowColors(QStyleOptionViewItem &option, const QModelIndex &index) const
+void MusicTreeView::setAlternateRowColors(QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     if (alternatingRowColors() && isAlbumRow(index)) {
         if (index.row() % 2 == 0) {
@@ -70,7 +70,7 @@ void MusicTreeView::setAlternateRowColors(QStyleOptionViewItem &option, const QM
     }
 }
 
-void MusicTreeView::drawArtistRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     const QRect branches(option.rect.x() + 5, option.rect.y() + 5, 20, option.rect.height() - 10);
     drawBranches(painter, branches, index);
@@ -111,7 +111,7 @@ void MusicTreeView::drawArtistRow(QPainter *painter, const QStyleOptionViewItem 
 }
 
 
-void MusicTreeView::drawAlbumRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void MusicTreeView::drawAlbumRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     const bool isSelected = selectionModel()->isSelected(index);
     const int itemIndent = drawNewIcon(painter, option, index, m_albumIndent);
@@ -132,9 +132,9 @@ void MusicTreeView::drawAlbumRow(QPainter *painter, const QStyleOptionViewItem &
  * Draw the "is new" icon.
  * @return Row indent
  */
-int MusicTreeView::drawNewIcon(QPainter *painter,
-    const QStyleOptionViewItem &option,
-    const QModelIndex &index,
+int MusicTreeView::drawNewIcon(QPainter* painter,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index,
     int branchIndent) const
 {
     if (!index.data(MusicRoles::IsNew).toBool()) {

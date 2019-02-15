@@ -8,15 +8,15 @@ class NetworkReplyWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit NetworkReplyWatcher(QObject *parent = nullptr, QNetworkReply *reply = nullptr);
+    explicit NetworkReplyWatcher(QObject* parent = nullptr, QNetworkReply* reply = nullptr);
     ~NetworkReplyWatcher() override = default;
-    void setReply(QNetworkReply *reply);
+    void setReply(QNetworkReply* reply);
 
 public slots:
     void onTimeout();
     void onProgress();
 
 private:
-    QNetworkReply *m_reply;
+    QNetworkReply* m_reply;
     QTimer m_timer;
 };

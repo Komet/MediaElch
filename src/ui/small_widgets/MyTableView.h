@@ -15,18 +15,18 @@ class MyTableView : public QTableView
     Q_PROPERTY(bool useSearchOverlay READ useSearchOverlay WRITE setUseSearchOverlay DESIGNABLE true)
 
 public:
-    explicit MyTableView(QWidget *parent = nullptr);
+    explicit MyTableView(QWidget* parent = nullptr);
     int lastColumnWidth() const;
-    void setLastColumnWidth(int &width);
+    void setLastColumnWidth(int& width);
     int firstColumnWidth() const;
-    void setFirstColumnWidth(int &width);
-    void setUseSearchOverlay(const bool &useSearchOverlay);
+    void setFirstColumnWidth(int& width);
+    void setUseSearchOverlay(const bool& useSearchOverlay);
     bool useSearchOverlay() const;
 
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+    void keyPressEvent(QKeyEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 signals:
     void sigLeftEdge(bool);
@@ -39,5 +39,5 @@ private:
     bool m_useSearchOverlay = false;
     QString m_currentSearchText;
     QTimer m_searchOverlayTimer;
-    SearchOverlay *m_searchOverlay;
+    SearchOverlay* m_searchOverlay;
 };

@@ -8,7 +8,7 @@
 
 #include "settings/Settings.h"
 
-ImageModel::ImageModel(QObject *parent) : QAbstractListModel(parent), m_hasChanged{false}
+ImageModel::ImageModel(QObject* parent) : QAbstractListModel(parent), m_hasChanged{false}
 {
 }
 
@@ -23,26 +23,26 @@ void ImageModel::clear()
         return;
     }
     beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    QList<Image *> imgs = m_images;
+    QList<Image*> imgs = m_images;
     m_images.clear();
     endRemoveRows();
     qDeleteAll(imgs);
 }
 
-int ImageModel::rowCount(const QModelIndex &parent) const
+int ImageModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
     return m_images.count();
 }
 
-QVariant ImageModel::data(int row, const QString &roleName) const
+QVariant ImageModel::data(int row, const QString& roleName) const
 {
     return data(createIndex(row, 0), role(roleName));
 }
 
-QVariant ImageModel::data(const QModelIndex &index, int role) const
+QVariant ImageModel::data(const QModelIndex& index, int role) const
 {
-    Image *img = image(index);
+    Image* img = image(index);
     if (!img) {
         return QVariant();
     }
@@ -61,12 +61,12 @@ QVariant ImageModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-int ImageModel::role(const QString &roleName) const
+int ImageModel::role(const QString& roleName) const
 {
     return roleNames().key(roleName.toUtf8());
 }
 
-void ImageModel::addImage(Image *image)
+void ImageModel::addImage(Image* image)
 {
     image->setParent(this);
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -76,7 +76,7 @@ void ImageModel::addImage(Image *image)
     setHasChanged(true);
 }
 
-void ImageModel::removeImage(Image *image)
+void ImageModel::removeImage(Image* image)
 {
     int row = m_images.indexOf(image);
     if (row == -1) {
@@ -104,12 +104,12 @@ void ImageModel::ImageModel::move(int from, int to)
     setHasChanged(true);
 }
 
-QList<Image *> ImageModel::images()
+QList<Image*> ImageModel::images()
 {
     return m_images;
 }
 
-Image *ImageModel::image(int row) const
+Image* ImageModel::image(int row) const
 {
     if (row < 0 || row >= m_images.count()) {
         return nullptr;
@@ -117,7 +117,7 @@ Image *ImageModel::image(int row) const
     return m_images.at(row);
 }
 
-Image *ImageModel::image(const QModelIndex &index) const
+Image* ImageModel::image(const QModelIndex& index) const
 {
     return image(index.row());
 }
@@ -134,23 +134,23 @@ QHash<int, QByteArray> ImageModel::roleNames() const
     return roles;
 }
 
-bool ImageModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool ImageModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     return setData(index.row(), value, role);
 }
 
-bool ImageModel::setData(int row, const QVariant &value, const QString &roleName)
+bool ImageModel::setData(int row, const QVariant& value, const QString& roleName)
 {
     return setData(row, value, role(roleName));
 }
 
-bool ImageModel::setData(int row, const QVariant &value, int role)
+bool ImageModel::setData(int row, const QVariant& value, int role)
 {
     if (row < 0 || row >= m_images.count()) {
         return false;
     }
 
-    Image *img = image(row);
+    Image* img = image(row);
 
     switch (role) {
     case Qt::UserRole + 1: {
@@ -212,7 +212,7 @@ void ImageModel::cutImage(int row)
         return;
     }
 
-    Image *image1 = m_images.at(row);
+    Image* image1 = m_images.at(row);
 
     auto cut = static_cast<qreal>(Settings::instance()->advanced()->bookletCut());
     QImage img = QImage::fromData(data(row, "rawData").toByteArray());

@@ -20,16 +20,16 @@ class TvShowWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit TvShowWidget(QWidget *parent = nullptr);
+    explicit TvShowWidget(QWidget* parent = nullptr);
     ~TvShowWidget() override;
     void updateInfo();
 
 public slots:
-    void onTvShowSelected(TvShow *show);
-    void onSeasonSelected(TvShow *show, SeasonNumber season);
-    void onEpisodeSelected(TvShowEpisode *episode);
-    void onSetEnabledTrue(TvShow *show = nullptr, SeasonNumber season = SeasonNumber::NoSeason);
-    void onSetEnabledTrue(TvShowEpisode *episode);
+    void onTvShowSelected(TvShow* show);
+    void onSeasonSelected(TvShow* show, SeasonNumber season);
+    void onEpisodeSelected(TvShowEpisode* episode);
+    void onSetEnabledTrue(TvShow* show = nullptr, SeasonNumber season = SeasonNumber::NoSeason);
+    void onSetEnabledTrue(TvShowEpisode* episode);
     void onSetDisabledTrue();
     void onClear();
     void onSaveInformation();
@@ -45,5 +45,5 @@ signals:
     void sigDownloadsFinished(int);
 
 private:
-    Ui::TvShowWidget *ui;
+    Ui::TvShowWidget* ui;
 };

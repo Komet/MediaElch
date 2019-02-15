@@ -9,7 +9,7 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 
-DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloading{false}
+DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloading{false}
 {
     connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
@@ -18,7 +18,7 @@ DownloadManager::DownloadManager(QObject *parent) : QObject(parent), m_downloadi
  * @brief Returns the network access manager
  * @return Network access manager object
  */
-QNetworkAccessManager *DownloadManager::qnam()
+QNetworkAccessManager* DownloadManager::qnam()
 {
     static auto qnam = new QNetworkAccessManager();
     return qnam;
@@ -59,7 +59,7 @@ void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
     m_queue.clear();
     m_mutex.unlock();
 
-    for (const DownloadManagerElement &elem : elements) {
+    for (const DownloadManagerElement& elem : elements) {
         addDownload(elem);
     }
 
@@ -212,7 +212,7 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
 
-    auto reply = static_cast<QNetworkReply *>(QObject::sender());
+    auto reply = static_cast<QNetworkReply*>(QObject::sender());
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         reply->deleteLater();
@@ -283,7 +283,7 @@ int DownloadManager::downloadQueueSize()
  * @param show Tv show to get number of downloads for
  * @return Number of downloads left
  */
-int DownloadManager::downloadsLeftForShow(TvShow *show)
+int DownloadManager::downloadsLeftForShow(TvShow* show)
 {
     qDebug() << "Entered, show=" << show->name();
     int left = 0;

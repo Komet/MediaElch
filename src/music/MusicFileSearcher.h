@@ -10,12 +10,12 @@ class MusicFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileSearcher(QObject *parent = nullptr);
+    explicit MusicFileSearcher(QObject* parent = nullptr);
     ~MusicFileSearcher() override = default;
 
     void setMusicDirectories(QVector<SettingsDir> directories);
-    static Artist *loadArtistData(Artist *artist);
-    static Album *loadAlbumData(Album *album);
+    static Artist* loadArtistData(Artist* artist);
+    static Album* loadAlbumData(Album* album);
 
 public slots:
     void reload(bool force);

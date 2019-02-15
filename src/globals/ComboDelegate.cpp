@@ -7,7 +7,7 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 
-ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateType type) :
+ComboDelegate::ComboDelegate(QObject* parent, MainWidgets widget, ComboDelegateType type) :
     QItemDelegate(parent),
     m_widget{widget},
     m_type{type}
@@ -17,8 +17,8 @@ ComboDelegate::ComboDelegate(QObject *parent, MainWidgets widget, ComboDelegateT
 /**
  * @brief Sets up a combo box with available genres
  */
-QWidget *
-ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget*
+ComboDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     Q_UNUSED(option);
     Q_UNUSED(index);
@@ -27,55 +27,55 @@ ComboDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,
     return box;
 }
 
-void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    auto box = static_cast<QComboBox *>(editor);
+    auto box = static_cast<QComboBox*>(editor);
     QStringList items;
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
-        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
-            for (const QString &genre : movie->genres()) {
+        for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString& genre : movie->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Countries) {
-        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
-            for (const QString &country : movie->countries()) {
+        for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString& country : movie->countries()) {
                 if (!country.isEmpty() && !items.contains(country)) {
                     items.append(country);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Studios) {
-        for (Movie *movie : Manager::instance()->movieModel()->movies()) {
-            for (const QString &studio : movie->studios()) {
+        for (Movie* movie : Manager::instance()->movieModel()->movies()) {
+            for (const QString& studio : movie->studios()) {
                 if (!studio.isEmpty() && !items.contains(studio)) {
                     items.append(studio);
                 }
             }
         }
     } else if (m_widget == MainWidgets::Concerts && m_type == ComboDelegateType::Genres) {
-        for (Concert *concert : Manager::instance()->concertModel()->concerts()) {
-            for (const QString &genre : concert->genres()) {
+        for (Concert* concert : Manager::instance()->concertModel()->concerts()) {
+            for (const QString& genre : concert->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Genres) {
-        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
-            for (const QString &genre : show->genres()) {
+        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (const QString& genre : show->genres()) {
                 if (!genre.isEmpty() && !items.contains(genre)) {
                     items.append(genre);
                 }
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Directors) {
-        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
-            for (TvShowEpisode *episode : show->episodes()) {
-                for (const QString &director : episode->directors()) {
+        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (TvShowEpisode* episode : show->episodes()) {
+                for (const QString& director : episode->directors()) {
                     if (!director.isEmpty() && !items.contains(director)) {
                         items.append(director);
                     }
@@ -83,9 +83,9 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
             }
         }
     } else if (m_widget == MainWidgets::TvShows && m_type == ComboDelegateType::Writers) {
-        for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
-            for (TvShowEpisode *episode : show->episodes()) {
-                for (const QString &writer : episode->writers()) {
+        for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
+            for (TvShowEpisode* episode : show->episodes()) {
+                for (const QString& writer : episode->writers()) {
                     if (!writer.isEmpty() && !items.contains(writer)) {
                         items.append(writer);
                     }
@@ -98,22 +98,22 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     box->lineEdit()->setText(value);
 }
 
-void ComboDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+void ComboDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto box = static_cast<QComboBox *>(editor);
+    auto box = static_cast<QComboBox*>(editor);
     QString value = box->currentText();
     model->setData(index, value, Qt::EditRole);
 }
 
-void ComboDelegate::updateEditorGeometry(QWidget *editor,
-    const QStyleOptionViewItem &option,
-    const QModelIndex &index) const
+void ComboDelegate::updateEditorGeometry(QWidget* editor,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const
 {
     Q_UNUSED(index);
     editor->setGeometry(option.rect);
 }
 
-QSize ComboDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+QSize ComboDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     int width = QItemDelegate::sizeHint(option, index).width();
     return QSize(width, 25);

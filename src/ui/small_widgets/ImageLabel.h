@@ -15,12 +15,12 @@ class ImageLabel : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageLabel(QWidget *parent = nullptr);
+    explicit ImageLabel(QWidget* parent = nullptr);
     ~ImageLabel() override;
     void setImage(QPixmap img);
     void setHint(QSize resolution, QString hint = "");
     QImage image() const;
 
 private:
-    Ui::ImageLabel *ui;
+    Ui::ImageLabel* ui;
 };

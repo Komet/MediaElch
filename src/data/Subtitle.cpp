@@ -1,6 +1,6 @@
 #include "Subtitle.h"
 
-Subtitle::Subtitle(QObject *parent) : QObject(parent), m_forced{false}, m_changed{false}
+Subtitle::Subtitle(QObject* parent) : QObject(parent), m_forced{false}, m_changed{false}
 {
 }
 
@@ -9,7 +9,7 @@ QString Subtitle::language() const
     return m_language;
 }
 
-void Subtitle::setLanguage(const QString &language)
+void Subtitle::setLanguage(const QString& language)
 {
     m_language = language;
     setChanged(true);
@@ -20,7 +20,7 @@ QStringList Subtitle::files() const
     return m_files;
 }
 
-void Subtitle::setFiles(const QStringList &files, bool emitChanged)
+void Subtitle::setFiles(const QStringList& files, bool emitChanged)
 {
     m_files = files;
     if (emitChanged) {

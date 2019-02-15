@@ -16,53 +16,53 @@ class MusicModelItem;
 class Album : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(ImageModel *bookletModel READ bookletModel CONSTANT)
-    Q_PROPERTY(ImageProxyModel *bookletProxyModel READ bookletProxyModel CONSTANT)
-    Q_PROPERTY(Artist *artistObj READ artistObj NOTIFY artistObjChanged)
-    Q_PROPERTY(MusicModelItem *modelItem READ modelItem NOTIFY modelItemChanged)
+    Q_PROPERTY(ImageModel* bookletModel READ bookletModel CONSTANT)
+    Q_PROPERTY(ImageProxyModel* bookletProxyModel READ bookletProxyModel CONSTANT)
+    Q_PROPERTY(Artist* artistObj READ artistObj NOTIFY artistObjChanged)
+    Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 
 public:
-    explicit Album(QString path, QObject *parent = nullptr);
+    explicit Album(QString path, QObject* parent = nullptr);
     ~Album() override = default;
 
     QString path() const;
-    void setPath(const QString &path);
+    void setPath(const QString& path);
 
     bool hasChanged() const;
     void setHasChanged(bool hasChanged);
 
     QString title() const;
-    void setTitle(const QString &title);
+    void setTitle(const QString& title);
 
     QString artist() const;
-    void setArtist(const QString &artist);
+    void setArtist(const QString& artist);
 
     QStringList genres() const;
-    void setGenres(const QStringList &genres);
-    void addGenre(const QString &genre);
-    void removeGenre(const QString &genre);
+    void setGenres(const QStringList& genres);
+    void addGenre(const QString& genre);
+    void removeGenre(const QString& genre);
 
     QStringList styles() const;
-    void setStyles(const QStringList &styles);
-    void addStyle(const QString &style);
-    void removeStyle(const QString &style);
+    void setStyles(const QStringList& styles);
+    void addStyle(const QString& style);
+    void removeStyle(const QString& style);
 
     QStringList moods() const;
-    void setMoods(const QStringList &moods);
-    void addMood(const QString &mood);
-    void removeMood(const QString &mood);
+    void setMoods(const QStringList& moods);
+    void addMood(const QString& mood);
+    void removeMood(const QString& mood);
 
     QString review() const;
-    void setReview(const QString &review);
+    void setReview(const QString& review);
 
     QString releaseDate() const;
-    void setReleaseDate(const QString &releaseDate);
+    void setReleaseDate(const QString& releaseDate);
 
     QString label() const;
-    void setLabel(const QString &label);
+    void setLabel(const QString& label);
 
     qreal rating() const;
-    void setRating(const qreal &rating);
+    void setRating(const qreal& rating);
 
     int year() const;
     void setYear(int year);
@@ -78,42 +78,42 @@ public:
     void clear();
     void clear(QVector<MusicScraperInfos> infos);
 
-    MusicModelItem *modelItem() const;
-    void setModelItem(MusicModelItem *item);
+    MusicModelItem* modelItem() const;
+    void setModelItem(MusicModelItem* item);
 
     QString nfoContent() const;
-    void setNfoContent(const QString &nfoContent);
+    void setNfoContent(const QString& nfoContent);
 
     static QVector<ImageType> imageTypes();
 
     QVector<ImageType> imagesToRemove() const;
-    void setImagesToRemove(const QVector<ImageType> &imagesToRemove);
+    void setImagesToRemove(const QVector<ImageType>& imagesToRemove);
 
     int databaseId() const;
     void setDatabaseId(int databaseId);
 
-    Artist *artistObj() const;
-    void setArtistObj(Artist *artistObj);
+    Artist* artistObj() const;
+    void setArtistObj(Artist* artistObj);
 
-    AlbumController *controller() const;
-    void setController(AlbumController *controller);
+    AlbumController* controller() const;
+    void setController(AlbumController* controller);
 
     QString mbReleaseGroupId() const;
-    void setMbReleaseGroupId(const QString &mbReleaseGroupId);
+    void setMbReleaseGroupId(const QString& mbReleaseGroupId);
 
     QString mbAlbumId() const;
-    void setMbAlbumId(const QString &mbAlbumId);
+    void setMbAlbumId(const QString& mbAlbumId);
 
     QString allMusicId() const;
-    void setAllMusicId(const QString &allMusicId);
+    void setAllMusicId(const QString& allMusicId);
 
-    ImageModel *bookletModel() const;
-    ImageProxyModel *bookletProxyModel() const;
+    ImageModel* bookletModel() const;
+    ImageProxyModel* bookletProxyModel() const;
 
-    void loadBooklets(MediaCenterInterface *mediaCenterInterface);
+    void loadBooklets(MediaCenterInterface* mediaCenterInterface);
 
 signals:
-    void sigChanged(Album *);
+    void sigChanged(Album*);
     void artistObjChanged();
     void modelItemChanged();
 
@@ -133,14 +133,14 @@ private:
     QMap<ImageType, QVector<Poster>> m_images;
     QMap<ImageType, QByteArray> m_rawImages;
     QVector<ImageType> m_imagesToRemove;
-    MusicModelItem *m_modelItem;
+    MusicModelItem* m_modelItem;
     QString m_nfoContent;
     int m_databaseId;
-    Artist *m_artistObj;
-    AlbumController *m_controller;
+    Artist* m_artistObj;
+    AlbumController* m_controller;
     QString m_mbAlbumId;
     QString m_mbReleaseGroupId;
     QString m_allMusicId;
-    ImageModel *m_bookletModel;
-    ImageProxyModel *m_bookletProxyModel;
+    ImageModel* m_bookletModel;
+    ImageProxyModel* m_bookletProxyModel;
 };

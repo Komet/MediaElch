@@ -5,7 +5,7 @@
 #include <QStyleOption>
 #include <QToolButton>
 
-AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView) :
+AlphabeticalList::AlphabeticalList(QWidget* parent, MyTableView* parentTableView) :
     QWidget(parent),
     m_layout{new QVBoxLayout(this)},
     m_tableView{parentTableView}
@@ -22,12 +22,12 @@ AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView
 
 void AlphabeticalList::adjustSize()
 {
-    const int parentHeight = static_cast<QWidget *>(parent())->size().height();
+    const int parentHeight = static_cast<QWidget*>(parent())->size().height();
     move(-width(), m_topSpace);
     setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
 }
 
-void AlphabeticalList::paintEvent(QPaintEvent * /*event*/)
+void AlphabeticalList::paintEvent(QPaintEvent* /*event*/)
 {
     QStyleOption opt;
     opt.init(this);
@@ -92,12 +92,12 @@ void AlphabeticalList::setRightSpace(const int space)
 
 void AlphabeticalList::setAlphas(QStringList alphas)
 {
-    for (QToolButton *button : findChildren<QToolButton *>()) {
+    for (QToolButton* button : findChildren<QToolButton*>()) {
         m_layout->removeWidget(button);
         button->deleteLater();
     }
 
-    for (const QString &alpha : alphas) {
+    for (const QString& alpha : alphas) {
         auto button = new QToolButton(this);
         button->setText(alpha);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
@@ -108,7 +108,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 
 void AlphabeticalList::onAlphaClicked()
 {
-    auto button = dynamic_cast<QToolButton *>(sender());
+    auto button = dynamic_cast<QToolButton*>(sender());
     if (!button) {
         return;
     }

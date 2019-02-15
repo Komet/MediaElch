@@ -6,7 +6,7 @@
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 
-MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent), ui(new Ui::MovieMultiScrapeDialog)
+MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MovieMultiScrapeDialog)
 {
     ui->setupUi(this);
 
@@ -51,12 +51,12 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) : QDialog(parent
     ui->chkThumb->setMyData(static_cast<int>(MovieScraperInfos::Thumb));
     ui->chkTags->setMyData(static_cast<int>(MovieScraperInfos::Tags));
 
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             connect(box, &QAbstractButton::clicked, this, &MovieMultiScrapeDialog::onChkToggled);
         }
     }
-    for (const auto *scraper : Manager::instance()->movieScrapers()) {
+    for (const auto* scraper : Manager::instance()->movieScrapers()) {
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
     }
 
@@ -70,9 +70,9 @@ MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
     delete ui;
 }
 
-MovieMultiScrapeDialog *MovieMultiScrapeDialog::instance(QWidget *parent)
+MovieMultiScrapeDialog* MovieMultiScrapeDialog::instance(QWidget* parent)
 {
-    static MovieMultiScrapeDialog *m_instance = nullptr;
+    static MovieMultiScrapeDialog* m_instance = nullptr;
     if (m_instance == nullptr) {
         m_instance = new MovieMultiScrapeDialog(parent);
     }
@@ -106,7 +106,7 @@ int MovieMultiScrapeDialog::exec()
 
 void MovieMultiScrapeDialog::accept()
 {
-    for (auto *scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
@@ -121,7 +121,7 @@ void MovieMultiScrapeDialog::accept()
 
 void MovieMultiScrapeDialog::reject()
 {
-    for (auto *scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
@@ -138,14 +138,14 @@ void MovieMultiScrapeDialog::reject()
     QDialog::reject();
 }
 
-void MovieMultiScrapeDialog::setMovies(QVector<Movie *> movies)
+void MovieMultiScrapeDialog::setMovies(QVector<Movie*> movies)
 {
     m_movies = movies;
 }
 
 void MovieMultiScrapeDialog::onStartScraping()
 {
-    for (auto *scraper : Manager::instance()->movieScrapers()) {
+    for (auto* scraper : Manager::instance()->movieScrapers()) {
         disconnect(scraper,
             SIGNAL(searchDone(QVector<ScraperSearchResult>)),
             this,
@@ -187,7 +187,7 @@ void MovieMultiScrapeDialog::onScrapingFinished()
     int numberOfMovies = m_movies.count();
     if (ui->chkOnlyImdb->isChecked()) {
         numberOfMovies = 0;
-        for (Movie *movie : m_movies) {
+        for (Movie* movie : m_movies) {
             if ((m_isImdb && movie->imdbId().isValid())
                 || (m_isTmdb && (movie->imdbId().isValid() || movie->tmdbId().isValid()))) {
                 numberOfMovies++;
@@ -268,16 +268,16 @@ void MovieMultiScrapeDialog::scrapeNext()
     }
 }
 
-void MovieMultiScrapeDialog::loadMovieData(Movie *movie, ImdbId id)
+void MovieMultiScrapeDialog::loadMovieData(Movie* movie, ImdbId id)
 {
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
-void MovieMultiScrapeDialog::loadMovieData(Movie *movie, TmdbId id)
+void MovieMultiScrapeDialog::loadMovieData(Movie* movie, TmdbId id)
 {
-    QMap<MovieScraperInterface *, QString> ids;
+    QMap<MovieScraperInterface*, QString> ids;
     ids.insert(nullptr, id.toString());
     movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
@@ -293,9 +293,9 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     }
 
     if (m_scraperInterface->identifier() == "custom-movie") {
-        auto scraper = static_cast<MovieScraperInterface *>(QObject::sender());
+        auto scraper = static_cast<MovieScraperInterface*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
-        QVector<MovieScraperInterface *> searchScrapers =
+        QVector<MovieScraperInterface*> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
         if (!searchScrapers.isEmpty()) {
             connect(searchScrapers.first(),
@@ -320,7 +320,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);
 }
 
-void MovieMultiScrapeDialog::onProgress(Movie *movie, int current, int maximum)
+void MovieMultiScrapeDialog::onProgress(Movie* movie, int current, int maximum)
 {
     Q_UNUSED(movie);
 
@@ -340,7 +340,7 @@ void MovieMultiScrapeDialog::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->isChecked() && box->myData().toInt() > 0) {
             m_infosToLoad.append(MovieScraperInfos(box->myData().toInt()));
         }
@@ -360,7 +360,7 @@ void MovieMultiScrapeDialog::onChkToggled()
 void MovieMultiScrapeDialog::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0) {
             box->setChecked(checked);
         }
@@ -371,7 +371,7 @@ void MovieMultiScrapeDialog::onChkAllToggled()
 void MovieMultiScrapeDialog::setCheckBoxesEnabled()
 {
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
-    MovieScraperInterface *scraper = Manager::instance()->scraper(scraperId);
+    MovieScraperInterface* scraper = Manager::instance()->scraper(scraperId);
     if (!scraper) {
         return;
     }
@@ -379,7 +379,7 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled()
     QVector<MovieScraperInfos> scraperSupports = scraper->scraperSupports();
     QVector<MovieScraperInfos> infos = Settings::instance()->scraperInfos<MovieScraperInfos>(scraperId);
 
-    for (MyCheckBox *box : ui->groupBox->findChildren<MyCheckBox *>()) {
+    for (MyCheckBox* box : ui->groupBox->findChildren<MyCheckBox*>()) {
         box->setEnabled(scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));
         box->setChecked((infos.contains(MovieScraperInfos(box->myData().toInt())) || infos.isEmpty())
                         && scraperSupports.contains(MovieScraperInfos(box->myData().toInt())));

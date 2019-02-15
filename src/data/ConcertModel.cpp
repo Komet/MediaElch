@@ -11,7 +11,7 @@
  * @brief ConcertModel::ConcertModel
  * @param parent
  */
-ConcertModel::ConcertModel(QObject *parent) : QAbstractItemModel(parent)
+ConcertModel::ConcertModel(QObject* parent) : QAbstractItemModel(parent)
 {
 #ifdef Q_OS_WIN
     m_newIcon = QIcon(":/img/star_blue.png");
@@ -28,7 +28,7 @@ ConcertModel::ConcertModel(QObject *parent) : QAbstractItemModel(parent)
  * @brief Adds a concert to the model
  * @param concert Concert to add
  */
-void ConcertModel::addConcert(Concert *concert)
+void ConcertModel::addConcert(Concert* concert)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_concerts.append(concert);
@@ -41,7 +41,7 @@ void ConcertModel::addConcert(Concert *concert)
  * Emits dataChanged
  * @param concert Concert which has changed
  */
-void ConcertModel::onConcertChanged(Concert *concert)
+void ConcertModel::onConcertChanged(Concert* concert)
 {
     QModelIndex index = createIndex(m_concerts.indexOf(concert), 0);
     emit dataChanged(index, index);
@@ -58,7 +58,7 @@ void ConcertModel::update()
  * @param row Row of the concert
  * @return Concert object
  */
-Concert *ConcertModel::concert(int row)
+Concert* ConcertModel::concert(int row)
 {
     if (row < 0 || row >= m_concerts.count()) {
         return nullptr;
@@ -71,7 +71,7 @@ Concert *ConcertModel::concert(int row)
  * @param parent
  * @return Number of rows (=number of movies)
  */
-int ConcertModel::rowCount(const QModelIndex &parent) const
+int ConcertModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     return m_concerts.size();
@@ -82,7 +82,7 @@ int ConcertModel::rowCount(const QModelIndex &parent) const
  * @param parent
  * @return 1
  */
-int ConcertModel::columnCount(const QModelIndex &parent) const
+int ConcertModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     // return roleNames().size();
@@ -95,7 +95,7 @@ int ConcertModel::columnCount(const QModelIndex &parent) const
  * @param role Role
  * @return data
  */
-QVariant ConcertModel::data(const QModelIndex &index, int role) const
+QVariant ConcertModel::data(const QModelIndex& index, int role) const
 {
     if (index.row() < 0 || index.row() > m_concerts.count()) {
         return QVariant();
@@ -105,7 +105,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
         return index.row();
     }
 
-    Concert *concert = m_concerts[index.row()];
+    Concert* concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(concert->name());
     } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
@@ -147,7 +147,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
  * @param child Childindex
  * @return Modelindex of the parent item
  */
-QModelIndex ConcertModel::parent(const QModelIndex &child) const
+QModelIndex ConcertModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
     return QModelIndex();
@@ -161,7 +161,7 @@ QModelIndex ConcertModel::parent(const QModelIndex &child) const
  * @param parent Parent modelindex
  * @return Index of the item
  */
-QModelIndex ConcertModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex ConcertModel::index(int row, int column, const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     return createIndex(row, column);
@@ -176,7 +176,7 @@ void ConcertModel::clear()
         return;
     }
     beginRemoveRows(QModelIndex(), 0, m_concerts.size() - 1);
-    for (Concert *concert : m_concerts) {
+    for (Concert* concert : m_concerts) {
         delete concert;
     }
     m_concerts.clear();
@@ -187,7 +187,7 @@ void ConcertModel::clear()
  * @brief Returns a list of all concerts
  * @return List of concerts
  */
-QVector<Concert *> ConcertModel::concerts()
+QVector<Concert*> ConcertModel::concerts()
 {
     return m_concerts;
 }
@@ -198,7 +198,7 @@ QVector<Concert *> ConcertModel::concerts()
  */
 long ConcertModel::countNewConcerts() const
 {
-    return std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert *concert) {
+    return std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert* concert) {
         return !concert->controller()->infoLoaded();
     });
 }

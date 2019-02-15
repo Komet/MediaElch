@@ -15,15 +15,15 @@ class ConcertController : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertController(Concert *parent = nullptr);
+    explicit ConcertController(Concert* parent = nullptr);
 
-    Concert *concert();
+    Concert* concert();
 
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(TmdbId id, ConcertScraperInterface *scraperInterface, QVector<ConcertScraperInfos> infos);
+    bool saveData(MediaCenterInterface* mediaCenterInterface);
+    bool loadData(MediaCenterInterface* mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
+    void loadData(TmdbId id, ConcertScraperInterface* scraperInterface, QVector<ConcertScraperInfos> infos);
     void loadStreamDetailsFromFile();
-    void scraperLoadDone(ConcertScraperInterface *scraper);
+    void scraperLoadDone(ConcertScraperInterface* scraper);
     QVector<ConcertScraperInfos> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;
@@ -35,24 +35,24 @@ public:
     void setInfosToLoad(QVector<ConcertScraperInfos> infos);
 
 signals:
-    void sigInfoLoadDone(Concert *);
-    void sigLoadDone(Concert *);
-    void sigLoadImagesStarted(Concert *);
-    void sigDownloadProgress(Concert *, int, int);
-    void sigLoadingImages(Concert *, QVector<ImageType>);
-    void sigImage(Concert *, ImageType, QByteArray);
+    void sigInfoLoadDone(Concert*);
+    void sigLoadDone(Concert*);
+    void sigLoadImagesStarted(Concert*);
+    void sigDownloadProgress(Concert*, int, int);
+    void sigLoadingImages(Concert*, QVector<ImageType>);
+    void sigImage(Concert*, ImageType, QByteArray);
 
 private slots:
-    void onFanartLoadDone(Concert *concert, QMap<ImageType, QVector<Poster>> posters);
+    void onFanartLoadDone(Concert* concert, QMap<ImageType, QVector<Poster>> posters);
     void onAllDownloadsFinished();
     void onDownloadFinished(DownloadManagerElement elem);
 
 private:
-    Concert *m_concert;
+    Concert* m_concert;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     QVector<ConcertScraperInfos> m_infosToLoad;
-    DownloadManager *m_downloadManager;
+    DownloadManager* m_downloadManager;
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;

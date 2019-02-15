@@ -11,11 +11,11 @@ namespace Kodi {
 class MovieXmlWriter
 {
 public:
-    MovieXmlWriter(Movie &movie);
+    MovieXmlWriter(Movie& movie);
     QByteArray getMovieXml();
 
 private:
-    Movie &m_movie;
+    Movie& m_movie;
 };
 
 } // namespace Kodi

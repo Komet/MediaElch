@@ -8,11 +8,11 @@
 #include "globals/Helper.h"
 #include "notifications/NotificationBox.h"
 
-ImageCapture::ImageCapture(QObject *parent) : QObject(parent)
+ImageCapture::ImageCapture(QObject* parent) : QObject(parent)
 {
 }
 
-bool ImageCapture::captureImage(QString file, StreamDetails *streamDetails, QImage &img)
+bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, QImage& img)
 {
     if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
         streamDetails->loadStreamDetails();

@@ -30,10 +30,10 @@ class Movie : public QObject
     Q_OBJECT
 
 public:
-    explicit Movie(QStringList files, QObject *parent = nullptr);
+    explicit Movie(QStringList files, QObject* parent = nullptr);
     ~Movie() override = default;
 
-    MovieController *controller() const;
+    MovieController* controller() const;
 
     void clear();
     void clear(QVector<MovieScraperInfos> infos);
@@ -42,8 +42,8 @@ public:
     QString name() const;
     QString sortTitle() const;
     QString originalName() const;
-    MovieImages &images();
-    const MovieImages &constImages() const;
+    MovieImages& images();
+    const MovieImages& constImages() const;
     QString overview() const;
     double rating() const;
     int votes() const;
@@ -56,15 +56,15 @@ public:
     QString writer() const;
     QString director() const;
     QStringList genres() const;
-    QVector<QString *> genresPointer();
+    QVector<QString*> genresPointer();
     QStringList countries() const;
-    QVector<QString *> countriesPointer();
+    QVector<QString*> countriesPointer();
     QStringList studios() const;
     QStringList tags() const;
-    QVector<QString *> studiosPointer();
+    QVector<QString*> studiosPointer();
     QUrl trailer() const;
     QVector<Actor> actors() const;
-    QVector<Actor *> actorsPointer();
+    QVector<Actor*> actorsPointer();
     QStringList files() const;
     QString folderName() const;
     int playcount() const;
@@ -76,7 +76,7 @@ public:
     int movieId() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
-    StreamDetails *streamDetails();
+    StreamDetails* streamDetails();
     bool streamDetailsLoaded() const;
     QDateTime fileLastModified() const;
     QString nfoContent() const;
@@ -130,12 +130,12 @@ public:
     void setSyncNeeded(bool syncNeeded);
     void setDateAdded(QDateTime date);
 
-    void removeActor(Actor *actor);
-    void removeCountry(QString *country);
+    void removeActor(Actor* actor);
+    void removeCountry(QString* country);
     void removeCountry(QString country);
-    void removeStudio(QString *studio);
+    void removeStudio(QString* studio);
     void removeStudio(QString studio);
-    void removeGenre(QString *genre);
+    void removeGenre(QString* genre);
     void removeGenre(QString genre);
     void removeTag(QString label);
 
@@ -145,28 +145,28 @@ public:
     DiscType discType() const;
     void setDiscType(DiscType type);
 
-    static bool lessThan(Movie *a, Movie *b);
+    static bool lessThan(Movie* a, Movie* b);
     static QVector<ImageType> imageTypes();
 
-    QVector<Subtitle *> subtitles() const;
-    void setSubtitles(const QVector<Subtitle *> &subtitles);
-    void addSubtitle(Subtitle *subtitle, bool fromLoad = false);
+    QVector<Subtitle*> subtitles() const;
+    void setSubtitles(const QVector<Subtitle*>& subtitles);
+    void addSubtitle(Subtitle* subtitle, bool fromLoad = false);
 
-    bool isDuplicate(Movie *movie);
+    bool isDuplicate(Movie* movie);
 
     bool hasDuplicates() const;
     void setHasDuplicates(bool hasDuplicates);
 
-    MovieDuplicate duplicateProperties(Movie *movie);
+    MovieDuplicate duplicateProperties(Movie* movie);
 
 signals:
-    void sigChanged(Movie *);
+    void sigChanged(Movie*);
 
 private slots:
     void onSubtitleChanged();
 
 private:
-    MovieController *m_controller;
+    MovieController* m_controller;
     QStringList m_files;
     MovieImages m_movieImages;
     QString m_folderName;
@@ -200,16 +200,16 @@ private:
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
     bool m_hasDuplicates;
-    StreamDetails *m_streamDetails;
+    StreamDetails* m_streamDetails;
     QDateTime m_fileLastModified;
     QString m_nfoContent;
     QDateTime m_dateAdded;
     DiscType m_discType;
     ColorLabel m_label;
-    QVector<Subtitle *> m_subtitles;
+    QVector<Subtitle*> m_subtitles;
 };
 
-Q_DECLARE_METATYPE(Movie *)
+Q_DECLARE_METATYPE(Movie*)
 
-QDebug operator<<(QDebug dbg, const Movie &movie);
-QDebug operator<<(QDebug dbg, const Movie *movie);
+QDebug operator<<(QDebug dbg, const Movie& movie);
+QDebug operator<<(QDebug dbg, const Movie* movie);

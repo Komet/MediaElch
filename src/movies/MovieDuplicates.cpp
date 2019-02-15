@@ -12,7 +12,7 @@
 #include <QDesktopServices>
 #include <QMenu>
 
-MovieDuplicates::MovieDuplicates(QWidget *parent) : QWidget(parent), ui(new Ui::MovieDuplicates)
+MovieDuplicates::MovieDuplicates(QWidget* parent) : QWidget(parent), ui(new Ui::MovieDuplicates)
 {
     ui->setupUi(this);
 
@@ -75,7 +75,7 @@ void MovieDuplicates::detectDuplicates()
         tr("Detecting duplicate movies..."), Constants::MovieDuplicatesProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, movieCount, Constants::MovieDuplicatesProgressMessageId);
 
-    for (Movie *movie : Manager::instance()->movieModel()->movies()) {
+    for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         ++counter;
         qApp->processEvents();
 
@@ -83,8 +83,8 @@ void MovieDuplicates::detectDuplicates()
             counter, movieCount, Constants::MovieDuplicatesProgressMessageId);
         movie->setHasDuplicates(false);
 
-        QVector<Movie *> dups{movie};
-        for (Movie *subMovie : Manager::instance()->movieModel()->movies()) {
+        QVector<Movie*> dups{movie};
+        for (Movie* subMovie : Manager::instance()->movieModel()->movies()) {
             if (movie != subMovie && subMovie->isDuplicate(movie)) {
                 dups.append(subMovie);
             }
@@ -100,7 +100,7 @@ void MovieDuplicates::detectDuplicates()
 
 void MovieDuplicates::onItemActivated(QModelIndex /*index*/, QModelIndex /*previous*/)
 {
-    Movie *movie = activeMovie();
+    Movie* movie = activeMovie();
     if (movie == nullptr) {
         return;
     }
@@ -112,8 +112,8 @@ void MovieDuplicates::onItemActivated(QModelIndex /*index*/, QModelIndex /*previ
     ui->duplicates->clear();
     ui->duplicates->setRowCount(0);
 
-    for (Movie *dup : m_duplicateMovies[movie]) {
-        auto *item = new MovieDuplicateItem(ui->duplicates);
+    for (Movie* dup : m_duplicateMovies[movie]) {
+        auto* item = new MovieDuplicateItem(ui->duplicates);
         item->setMovie(dup, dup == movie);
         item->setDuplicateProperties(movie->duplicateProperties(dup));
 
@@ -158,7 +158,7 @@ void MovieDuplicates::showContextMenu(QPoint point)
 
 void MovieDuplicates::onOpenDetailPage()
 {
-    Movie *movie = activeMovie();
+    Movie* movie = activeMovie();
     if (movie != nullptr) {
         emit sigJumpToMovie(movie);
     }
@@ -166,7 +166,7 @@ void MovieDuplicates::onOpenDetailPage()
 
 void MovieDuplicates::onOpenFolder()
 {
-    Movie *movie = activeMovie();
+    Movie* movie = activeMovie();
     if (movie != nullptr) {
         QFileInfo fi(movie->files().at(0));
         QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
@@ -175,22 +175,22 @@ void MovieDuplicates::onOpenFolder()
 
 void MovieDuplicates::onOpenNfo()
 {
-    Movie *movie = activeMovie();
+    Movie* movie = activeMovie();
     if (movie != nullptr) {
         QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(movie));
         QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absoluteFilePath()));
     }
 }
 
-void MovieDuplicates::onJumpToMovie(const QModelIndex & /*index*/)
+void MovieDuplicates::onJumpToMovie(const QModelIndex& /*index*/)
 {
-    Movie *movie = activeMovie();
+    Movie* movie = activeMovie();
     if (movie != nullptr) {
         emit sigJumpToMovie(movie);
     }
 }
 
-Movie *MovieDuplicates::activeMovie()
+Movie* MovieDuplicates::activeMovie()
 {
     const QModelIndex currentIndex = ui->movies->currentIndex();
     if (!currentIndex.isValid()) {
@@ -198,7 +198,7 @@ Movie *MovieDuplicates::activeMovie()
     }
 
     const int row = currentIndex.data(Qt::UserRole).toInt();
-    Movie *movie = Manager::instance()->movieModel()->movie(row);
+    Movie* movie = Manager::instance()->movieModel()->movie(row);
     if (movie != nullptr && !movie->files().isEmpty()) {
         return movie;
     }

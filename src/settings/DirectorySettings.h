@@ -10,13 +10,13 @@ class DirectorySettings
 public:
     void loadSettings();
     void saveSettings();
-    void setQSettings(QSettings *settings) { m_settings = settings; }
+    void setQSettings(QSettings* settings) { m_settings = settings; }
 
-    const QVector<SettingsDir> &movieDirectories() const;
-    const QVector<SettingsDir> &tvShowDirectories() const;
-    const QVector<SettingsDir> &concertDirectories() const;
-    const QVector<SettingsDir> &downloadDirectories() const;
-    const QVector<SettingsDir> &musicDirectories() const;
+    const QVector<SettingsDir>& movieDirectories() const;
+    const QVector<SettingsDir>& tvShowDirectories() const;
+    const QVector<SettingsDir>& concertDirectories() const;
+    const QVector<SettingsDir>& downloadDirectories() const;
+    const QVector<SettingsDir>& musicDirectories() const;
 
     void setMovieDirectories(QVector<SettingsDir> dirs);
     void setTvShowDirectories(QVector<SettingsDir> dirs);
@@ -25,7 +25,7 @@ public:
     void setMusicDirectories(QVector<SettingsDir> dirs);
 
 private:
-    QSettings *m_settings = nullptr;
+    QSettings* m_settings = nullptr;
 
     QVector<SettingsDir> m_movieDirectories;
     QVector<SettingsDir> m_tvShowDirectories;

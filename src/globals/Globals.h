@@ -115,8 +115,8 @@ struct Actor
     QString id;
     bool imageHasChanged{false};
 };
-Q_DECLARE_METATYPE(Actor *)
-Q_DECLARE_METATYPE(QString *)
+Q_DECLARE_METATYPE(Actor*)
+Q_DECLARE_METATYPE(QString*)
 Q_DECLARE_METATYPE(QVector<int>)
 
 struct DiscographyAlbum
@@ -124,7 +124,7 @@ struct DiscographyAlbum
     QString title;
     QString year;
 };
-Q_DECLARE_METATYPE(DiscographyAlbum *)
+Q_DECLARE_METATYPE(DiscographyAlbum*)
 
 /**
  * @brief The ScraperSearchResult struct

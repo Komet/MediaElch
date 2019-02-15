@@ -10,15 +10,15 @@ class MovieCrew
 public:
     QString writer() const;
     QString director() const;
-    const QVector<Actor> &actors() const;
-    QVector<Actor> &actors();
-    QVector<Actor *> actorsPointer();
+    const QVector<Actor>& actors() const;
+    QVector<Actor>& actors();
+    QVector<Actor*> actorsPointer();
 
     void setWriter(QString writer);
     void setDirector(QString director);
     void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
-    void removeActor(Actor *actor);
+    void removeActor(Actor* actor);
 
 private:
     QString m_writer;

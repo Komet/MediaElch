@@ -2,13 +2,13 @@
 
 #include "settings/Settings.h"
 
-MakeMkvCon::MakeMkvCon(ImportSettings &settings, QObject *parent) : QObject(parent), m_settings{settings}
+MakeMkvCon::MakeMkvCon(ImportSettings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
 }
 
 MakeMkvCon::~MakeMkvCon()
 {
-    for (QProcess *process : m_processes) {
+    for (QProcess* process : m_processes) {
         process->kill();
     }
 }
@@ -89,7 +89,7 @@ void MakeMkvCon::onBackupDisc(int driveId, QString importFolder)
 
 void MakeMkvCon::onReadyRead()
 {
-    auto process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardOutput();
     msg.prepend(m_lastOutput);
 
@@ -99,7 +99,7 @@ void MakeMkvCon::onReadyRead()
     }
 
     QString job = process->property("job").toString();
-    for (const QString &line : lines) {
+    for (const QString& line : lines) {
         parseMsg(line);
         if (job == "scanDrives") {
             parseScanDrive(line);
@@ -113,7 +113,7 @@ void MakeMkvCon::onReadyRead()
 
 void MakeMkvCon::onReadyReadError()
 {
-    auto process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess*>(QObject::sender());
     qWarning() << process->readAllStandardError();
 }
 
@@ -121,7 +121,7 @@ void MakeMkvCon::onFinished(int exitCode, QProcess::ExitStatus status)
 {
     Q_UNUSED(exitCode);
     Q_UNUSED(status);
-    auto process = static_cast<QProcess *>(QObject::sender());
+    auto process = static_cast<QProcess*>(QObject::sender());
     QString job = process->property("job").toString();
 
     if (job == "scanDrives") {

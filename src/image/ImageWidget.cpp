@@ -10,7 +10,7 @@
 #include "music/Album.h"
 #include "qml/AlbumImageProvider.h"
 
-ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ImageWidget)
+ImageWidget::ImageWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ImageWidget)
 {
     ui->setupUi(this);
     ui->quickWidget->rootContext()->setContextProperty("imageWidget", this);
@@ -30,7 +30,7 @@ ImageWidget::~ImageWidget()
     delete ui;
 }
 
-void ImageWidget::setAlbum(Album *album)
+void ImageWidget::setAlbum(Album* album)
 {
     ui->quickWidget->rootContext()->setContextProperty("album", album);
 }
@@ -41,13 +41,13 @@ void ImageWidget::zoomImage(int artistIndex, int albumIndex, int imageId)
         return;
     }
 
-    Artist *artist = Manager::instance()->musicModel()->artists().at(artistIndex);
+    Artist* artist = Manager::instance()->musicModel()->artists().at(artistIndex);
 
     if (artist->albums().count() <= albumIndex) {
         return;
     }
 
-    Album *album = artist->albums().at(albumIndex);
+    Album* album = artist->albums().at(albumIndex);
 
     int row = album->bookletModel()->rowById(imageId);
     QImage img = QImage::fromData(
@@ -77,13 +77,13 @@ void ImageWidget::cutImage(int artistIndex, int albumIndex, int imageId)
         return;
     }
 
-    Artist *artist = Manager::instance()->musicModel()->artists().at(artistIndex);
+    Artist* artist = Manager::instance()->musicModel()->artists().at(artistIndex);
 
     if (artist->albums().count() <= albumIndex) {
         return;
     }
 
-    Album *album = artist->albums().at(albumIndex);
+    Album* album = artist->albums().at(albumIndex);
 
     int row = album->bookletModel()->rowById(imageId);
     album->bookletModel()->cutImage(row);

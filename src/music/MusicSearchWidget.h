@@ -17,7 +17,7 @@ class MusicSearchWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MusicSearchWidget(QWidget *parent = nullptr);
+    explicit MusicSearchWidget(QWidget* parent = nullptr);
     ~MusicSearchWidget() override;
 
 public slots:
@@ -26,8 +26,8 @@ public slots:
     QString scraperId();
     QString scraperId2();
     QVector<MusicScraperInfos> infosToLoad();
-    void setType(const QString &type);
-    void setArtistName(const QString &artistName);
+    void setType(const QString& type);
+    void setArtistName(const QString& artistName);
 
 signals:
     void sigResultClicked();
@@ -35,20 +35,20 @@ signals:
 private slots:
     void search();
     void showResults(QVector<ScraperSearchResult> results);
-    void resultClicked(QTableWidgetItem *item);
+    void resultClicked(QTableWidgetItem* item);
     void resultClicked(int row);
     void chkToggled();
     void chkAllToggled(bool toggled);
 
 private:
-    Ui::MusicSearchWidget *ui;
+    Ui::MusicSearchWidget* ui;
     int m_scraperNo;
     QString m_scraperId;
     QString m_scraperId2;
     QVector<MusicScraperInfos> m_infosToLoad;
     QString m_type;
     QString m_artistName;
-    QSignalMapper *m_signalMapper;
+    QSignalMapper* m_signalMapper;
 
     void clear();
     void setCheckBoxesEnabled(QVector<MusicScraperInfos> scraperSupports);

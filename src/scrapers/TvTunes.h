@@ -10,7 +10,7 @@ class TvTunes : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvTunes(QObject *parent = nullptr);
+    explicit TvTunes(QObject* parent = nullptr);
     void search(QString searchStr);
 
 signals:

@@ -22,7 +22,7 @@
  * @brief TvShowWidgetEpisode::TvShowWidgetEpisode
  * @param parent
  */
-TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
+TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetEpisode),
     m_episode{nullptr}
@@ -151,7 +151,7 @@ TvShowWidgetEpisode::~TvShowWidgetEpisode()
  * @brief Repositions the saving widget
  * @param event
  */
-void TvShowWidgetEpisode::resizeEvent(QResizeEvent *event)
+void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
 {
     m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
     QWidget::resizeEvent(event);
@@ -291,7 +291,7 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
  * @brief Sets the episode and tells the episode to load its images
  * @param episode Episode to set
  */
-void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
+void TvShowWidgetEpisode::setEpisode(TvShowEpisode* episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     m_episode = episode;
@@ -351,7 +351,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->epBookmark->setTime(m_episode->epBookmark());
 
     ui->writers->blockSignals(true);
-    for (QString *writer : m_episode->writersPointer()) {
+    for (QString* writer : m_episode->writersPointer()) {
         int row = ui->writers->rowCount();
         ui->writers->insertRow(row);
         ui->writers->setItem(row, 0, new QTableWidgetItem(*writer));
@@ -360,7 +360,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->directors->blockSignals(true);
-    for (QString *director : m_episode->directorsPointer()) {
+    for (QString* director : m_episode->directorsPointer()) {
         int row = ui->directors->rowCount();
         ui->directors->insertRow(row);
         ui->directors->setItem(row, 0, new QTableWidgetItem(*director));
@@ -369,7 +369,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    for (Actor *actor : m_episode->actorsPointer()) {
+    for (Actor* actor : m_episode->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
         ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
@@ -382,7 +382,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     if (m_episode->tvShow()) {
         auto certifications = m_episode->tvShow()->certifications();
         certifications.prepend(Certification::NoCertification);
-        for (const auto &cert : certifications) {
+        for (const auto& cert : certifications) {
             ui->certification->addItem(cert.toString());
         }
         ui->certification->setCurrentIndex(certifications.indexOf(m_episode->certification()));
@@ -453,7 +453,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         m_episode->loadStreamDetailsFromFile();
     }
 
-    StreamDetails *streamDetails = m_episode->streamDetails();
+    StreamDetails* streamDetails = m_episode->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
     ui->videoWidth->setValue(videoDetails.value(StreamDetails::VideoDetails::Width).toInt());
     ui->videoHeight->setValue(videoDetails.value(StreamDetails::VideoDetails::Height).toInt());
@@ -471,7 +471,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     time = time.addSecs(videoDetails.value(StreamDetails::VideoDetails::DurationInSeconds).toInt());
     ui->videoDuration->setTime(time);
 
-    for (QWidget *widget : m_streamDetailsWidgets) {
+    for (QWidget* widget : m_streamDetailsWidgets) {
         widget->deleteLater();
     }
     m_streamDetailsWidgets.clear();
@@ -481,11 +481,11 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     int audioTracks = streamDetails->audioDetails().count();
     const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
-        QLabel *label = new QLabel(tr("Track %1").arg(i + 1));
+        QLabel* label = new QLabel(tr("Track %1").arg(i + 1));
         ui->streamDetails->addWidget(label, 8 + i, 0);
-        QLineEdit *edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
-        QLineEdit *edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
-        QLineEdit *edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
+        QLineEdit* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
+        QLineEdit* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
+        QLineEdit* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
         edit3->setMaximumWidth(50);
         edit1->setToolTip(tr("Language"));
         edit2->setToolTip(tr("Codec"));
@@ -500,14 +500,14 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         layout->addStretch(10);
         ui->streamDetails->addLayout(layout, 8 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
-        m_streamDetailsAudio << (QVector<QLineEdit *>() << edit1 << edit2 << edit3);
+        m_streamDetailsAudio << (QVector<QLineEdit*>() << edit1 << edit2 << edit3);
         connect(edit1, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
         connect(edit2, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
         connect(edit3, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
     }
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
-        QLabel *subtitleLabel = new QLabel(tr("Subtitles"));
+        QLabel* subtitleLabel = new QLabel(tr("Subtitles"));
         QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         subtitleLabel->setFont(font);
@@ -515,9 +515,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = streamDetails->subtitleDetails().count(); i < n; ++i) {
-            QLabel *trackLabel = new QLabel(tr("Track %1").arg(i + 1));
+            QLabel* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
-            QLineEdit *edit1 =
+            QLineEdit* edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
@@ -526,7 +526,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
             layout->addStretch(10);
             ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
             m_streamDetailsWidgets << trackLabel << edit1;
-            m_streamDetailsSubtitles << (QVector<QLineEdit *>() << edit1);
+            m_streamDetailsSubtitles << (QVector<QLineEdit*>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStreamDetailsEdited);
         }
     }
@@ -738,7 +738,7 @@ void TvShowWidgetEpisode::onAddDirector()
 {
     QString d = tr("Unknown Director");
     m_episode->addDirector(d);
-    QString *director = m_episode->directorsPointer().last();
+    QString* director = m_episode->directorsPointer().last();
 
     ui->directors->blockSignals(true);
     int row = ui->directors->rowCount();
@@ -760,7 +760,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
         return;
     }
 
-    auto director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString *>();
+    auto director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_episode->removeDirector(director);
     ui->directors->blockSignals(true);
     ui->directors->removeRow(row);
@@ -772,9 +772,9 @@ void TvShowWidgetEpisode::onRemoveDirector()
  * @brief Stores the changed values
  * @param item Edited item
  */
-void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
+void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem* item)
 {
-    auto director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
+    auto director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);
@@ -788,7 +788,7 @@ void TvShowWidgetEpisode::onAddWriter()
 {
     QString w = tr("Unknown Writer");
     m_episode->addWriter(w);
-    QString *writer = m_episode->writersPointer().last();
+    QString* writer = m_episode->writersPointer().last();
 
     ui->writers->blockSignals(true);
     int row = ui->writers->rowCount();
@@ -810,7 +810,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
         return;
     }
 
-    auto writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString *>();
+    auto writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_episode->removeWriter(writer);
     ui->writers->blockSignals(true);
     ui->writers->removeRow(row);
@@ -822,9 +822,9 @@ void TvShowWidgetEpisode::onRemoveWriter()
  * @brief Stores the changed values
  * @param item Edited item
  */
-void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
+void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
 {
-    auto writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString *>();
+    auto writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
@@ -978,7 +978,7 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
  */
 void TvShowWidgetEpisode::onStreamDetailsEdited()
 {
-    StreamDetails *details = m_episode->streamDetails();
+    StreamDetails* details = m_episode->streamDetails();
     details->setVideoDetail(StreamDetails::VideoDetails::Codec, ui->videoCodec->text());
     details->setVideoDetail(StreamDetails::VideoDetails::Aspect, ui->videoAspectRatio->text());
     details->setVideoDetail(StreamDetails::VideoDetails::Width, ui->videoWidth->text());
@@ -1001,9 +1001,9 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
     ui->buttonRevert->setVisible(true);
 }
 
-void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem *item)
+void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem* item)
 {
-    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
     if (item->column() == 0) {
         actor->name = item->text();
     } else if (item->column() == 1) {
@@ -1020,7 +1020,7 @@ void TvShowWidgetEpisode::onAddActor()
     a.role = tr("Unknown Role");
     m_episode->addActor(a);
 
-    Actor *actor = m_episode->actorsPointer().last();
+    Actor* actor = m_episode->actorsPointer().last();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();
@@ -1040,7 +1040,7 @@ void TvShowWidgetEpisode::onRemoveActor()
         return;
     }
 
-    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
     m_episode->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1057,7 +1057,7 @@ void TvShowWidgetEpisode::onActorChanged()
         return;
     }
 
-    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1087,7 +1087,7 @@ void TvShowWidgetEpisode::onChangeActorImage()
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor *>();
+            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
             actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();

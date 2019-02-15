@@ -11,8 +11,8 @@ public:
     explicit Certification(QString certification);
     explicit Certification(int certification);
 
-    bool operator==(const Certification &other) const;
-    bool operator!=(const Certification &other) const;
+    bool operator==(const Certification& other) const;
+    bool operator!=(const Certification& other) const;
 
     QString toString() const;
     bool isValid() const;
@@ -24,5 +24,5 @@ private:
     QString m_certification;
 };
 
-std::ostream &operator<<(std::ostream &os, const Certification &value);
-QDebug operator<<(QDebug debug, const Certification &id);
+std::ostream& operator<<(std::ostream& os, const Certification& value);
+QDebug operator<<(QDebug debug, const Certification& id);

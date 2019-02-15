@@ -12,20 +12,20 @@ class ExportTemplateLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit ExportTemplateLoader(QObject *parent = nullptr);
-    static ExportTemplateLoader *instance(QObject *parent = nullptr);
-    QVector<ExportTemplate *> installedTemplates();
-    ExportTemplate *getTemplateByIdentifier(QString identifier);
+    explicit ExportTemplateLoader(QObject* parent = nullptr);
+    static ExportTemplateLoader* instance(QObject* parent = nullptr);
+    QVector<ExportTemplate*> installedTemplates();
+    ExportTemplate* getTemplateByIdentifier(QString identifier);
 
 signals:
-    void sigTemplatesLoaded(QVector<ExportTemplate *>);
-    void sigTemplateInstalled(ExportTemplate *, bool);
-    void sigTemplateUninstalled(ExportTemplate *, bool);
+    void sigTemplatesLoaded(QVector<ExportTemplate*>);
+    void sigTemplateInstalled(ExportTemplate*, bool);
+    void sigTemplateUninstalled(ExportTemplate*, bool);
 
 public slots:
     void getRemoteTemplates();
-    void installTemplate(ExportTemplate *exportTemplate);
-    bool uninstallTemplate(ExportTemplate *exportTemplate);
+    void installTemplate(ExportTemplate* exportTemplate);
+    bool uninstallTemplate(ExportTemplate* exportTemplate);
 
 private slots:
     void onLoadRemoteTemplatesFinished();
@@ -33,12 +33,12 @@ private slots:
 
 private:
     QNetworkAccessManager m_qnam;
-    QVector<ExportTemplate *> m_localTemplates;
-    QVector<ExportTemplate *> m_remoteTemplates;
-    QNetworkAccessManager *qnam();
+    QVector<ExportTemplate*> m_localTemplates;
+    QVector<ExportTemplate*> m_remoteTemplates;
+    QNetworkAccessManager* qnam();
     void loadLocalTemplates();
-    ExportTemplate *parseTemplate(QXmlStreamReader &xml);
-    bool unpackTemplate(QBuffer &buffer, ExportTemplate *exportTemplate);
-    bool removeDir(const QString &dirName);
-    QVector<ExportTemplate *> mergeTemplates(QVector<ExportTemplate *> local, QVector<ExportTemplate *> remote);
+    ExportTemplate* parseTemplate(QXmlStreamReader& xml);
+    bool unpackTemplate(QBuffer& buffer, ExportTemplate* exportTemplate);
+    bool removeDir(const QString& dirName);
+    QVector<ExportTemplate*> mergeTemplates(QVector<ExportTemplate*> local, QVector<ExportTemplate*> remote);
 };

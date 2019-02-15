@@ -17,7 +17,7 @@
  * @brief TvShowFileSearcher::TvShowFileSearcher
  * @param parent
  */
-TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
+TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
     QObject(parent),
     m_progressMessageId{Constants::TvShowSearcherProgressMessageId},
     m_aborted{false}
@@ -53,7 +53,7 @@ void TvShowFileSearcher::reload(bool force)
     }
 
     emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
-    QVector<TvShow *> dbShows;
+    QVector<TvShow*> dbShows;
     Manager::instance()->tvShowModel()->clear();
     Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QVector<QStringList>> contents;
@@ -62,7 +62,7 @@ void TvShowFileSearcher::reload(bool force)
             return;
         }
 
-        QVector<TvShow *> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
+        QVector<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
             getTvShows(dir.path, contents);
@@ -106,22 +106,22 @@ void TvShowFileSearcher::reload(bool force)
             path = m_directories[index].path;
         }
 
-        TvShow *show = new TvShow(it.key(), this);
+        TvShow* show = new TvShow(it.key(), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         emit currentDir(show->name());
         Manager::instance()->database()->add(show, path);
-        TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
+        TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
         Manager::instance()->database()->transaction();
-        QMap<SeasonNumber, TvShowModelItem *> seasonItems;
-        QVector<TvShowEpisode *> episodes;
+        QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+        QVector<TvShowEpisode*> episodes;
 
         // Setup episodes list
-        for (const QStringList &files : it.value()) {
+        for (const QStringList& files : it.value()) {
             SeasonNumber seasonNumber = getSeasonNumber(files);
             QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
-            for (const EpisodeNumber &episodeNumber : episodeNumbers) {
-                TvShowEpisode *episode = new TvShowEpisode(files, show);
+            for (const EpisodeNumber& episodeNumber : episodeNumbers) {
+                TvShowEpisode* episode = new TvShowEpisode(files, show);
                 episode->setSeason(seasonNumber);
                 episode->setEpisode(episodeNumber);
                 episodes.append(episode);
@@ -132,7 +132,7 @@ void TvShowFileSearcher::reload(bool force)
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
         // Add episodes to model
-        for (TvShowEpisode *episode : episodes) {
+        for (TvShowEpisode* episode : episodes) {
             Manager::instance()->database()->add(episode, path, show->databaseId());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
@@ -149,18 +149,18 @@ void TvShowFileSearcher::reload(bool force)
     emit currentDir("");
 
     // Setup shows loaded from database
-    for (TvShow *show : dbShows) {
+    for (TvShow* show : dbShows) {
         if (m_aborted) {
             return;
         }
 
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
-        TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
+        TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
-        QMap<SeasonNumber, TvShowModelItem *> seasonItems;
-        QVector<TvShowEpisode *> episodes = Manager::instance()->database()->episodes(show->databaseId());
+        QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+        QVector<TvShowEpisode*> episodes = Manager::instance()->database()->episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
-        for (TvShowEpisode *episode : episodes) {
+        for (TvShowEpisode* episode : episodes) {
             episode->setShow(show);
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
@@ -175,7 +175,7 @@ void TvShowFileSearcher::reload(bool force)
         }
     }
 
-    for (TvShow *show : Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow* show : Manager::instance()->tvShowModel()->tvShows()) {
         if (show->showMissingEpisodes()) {
             show->fillMissingEpisodes();
         }
@@ -187,7 +187,7 @@ void TvShowFileSearcher::reload(bool force)
     }
 }
 
-TvShowEpisode *TvShowFileSearcher::loadEpisodeData(TvShowEpisode *episode)
+TvShowEpisode* TvShowFileSearcher::loadEpisodeData(TvShowEpisode* episode)
 {
     episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
     return episode;
@@ -199,7 +199,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     emit searchStarted(tr("Searching for Episodes..."), m_progressMessageId);
 
     // remove old show object
-    for (TvShow *s : Manager::instance()->tvShowModel()->tvShows()) {
+    for (TvShow* s : Manager::instance()->tvShowModel()->tvShows()) {
         if (m_aborted) {
             return;
         }
@@ -233,26 +233,26 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     // search for contents
     QVector<QStringList> contents;
     scanTvShowDir(path, showDir, contents);
-    TvShow *show = new TvShow(showDir, this);
+    TvShow* show = new TvShow(showDir, this);
     show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     Manager::instance()->database()->add(show, path);
-    TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
+    TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
     emit searchStarted(tr("Loading Episodes..."), m_progressMessageId);
     emit currentDir(show->name());
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
-    QMap<SeasonNumber, TvShowModelItem *> seasonItems;
-    QVector<TvShowEpisode *> episodes;
-    for (const QStringList &files : contents) {
+    QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+    QVector<TvShowEpisode*> episodes;
+    for (const QStringList& files : contents) {
         if (m_aborted) {
             return;
         }
         SeasonNumber seasonNumber = getSeasonNumber(files);
         QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
-        for (const EpisodeNumber &episodeNumber : episodeNumbers) {
-            TvShowEpisode *episode = new TvShowEpisode(files, show);
+        for (const EpisodeNumber& episodeNumber : episodeNumbers) {
+            TvShowEpisode* episode = new TvShowEpisode(files, show);
             episode->setSeason(seasonNumber);
             episode->setEpisode(episodeNumber);
             episodes.append(episode);
@@ -261,7 +261,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
-    for (TvShowEpisode *episode : episodes) {
+    for (TvShowEpisode* episode : episodes) {
         Manager::instance()->database()->add(episode, path, show->databaseId());
         show->addEpisode(episode);
         if (!seasonItems.contains(episode->season())) {
@@ -276,7 +276,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     emit tvShowsLoaded(m_progressMessageId);
 }
 
-TvShowEpisode *TvShowFileSearcher::reloadEpisodeData(TvShowEpisode *episode)
+TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
 {
     episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     return episode;
@@ -287,11 +287,11 @@ TvShowEpisode *TvShowFileSearcher::reloadEpisodeData(TvShowEpisode *episode)
  * @param path Directory to scan
  * @param contents
  */
-void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringList>> &contents)
+void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents)
 {
     QDir dir(path);
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    for (const QString &cDir : tvShows) {
+    for (const QString& cDir : tvShows) {
         if (m_aborted) {
             return;
         }
@@ -309,12 +309,12 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringL
  * @param path Path to scan
  * @param contents List of contents
  */
-void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<QStringList> &contents)
+void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<QStringList>& contents)
 {
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
-    for (const QString &cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    for (const QString& cDir : dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         if (m_aborted) {
             return;
         }
@@ -346,7 +346,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
 
     QStringList files;
     QStringList entries = getFiles(path);
-    for (const QString &file : entries) {
+    for (const QString& file : entries) {
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive)) {
             continue;
@@ -479,7 +479,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
-    for (const QString &pattern : patterns) {
+    for (const QString& pattern : patterns) {
         rx.setPattern(pattern);
         int pos = 0;
         int lastPos = -1;

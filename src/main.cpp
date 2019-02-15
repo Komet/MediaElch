@@ -15,7 +15,7 @@
 
 static QFile data;
 
-void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
 #ifdef Q_OS_WIN32
     const QString newLine = "\r\n";
@@ -66,7 +66,7 @@ void installLogger()
     }
 }
 
-void loadStylesheet(QApplication &app)
+void loadStylesheet(QApplication& app)
 {
     QFile file(":/src/ui/default.css");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -81,7 +81,7 @@ void loadStylesheet(QApplication &app)
     }
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 

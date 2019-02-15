@@ -17,12 +17,12 @@ class LoadingStreamDetails : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoadingStreamDetails(QWidget *parent = nullptr);
+    explicit LoadingStreamDetails(QWidget* parent = nullptr);
     ~LoadingStreamDetails() override;
-    void loadMovies(QVector<Movie *> movies);
-    void loadConcerts(QVector<Concert *> concerts);
-    void loadTvShowEpisodes(QVector<TvShowEpisode *> episodes);
+    void loadMovies(QVector<Movie*> movies);
+    void loadConcerts(QVector<Concert*> concerts);
+    void loadTvShowEpisodes(QVector<TvShowEpisode*> episodes);
 
 private:
-    Ui::LoadingStreamDetails *ui;
+    Ui::LoadingStreamDetails* ui;
 };

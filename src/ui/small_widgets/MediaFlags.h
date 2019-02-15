@@ -17,19 +17,19 @@ class MediaFlags : public QWidget
     Q_OBJECT
 
 public:
-    explicit MediaFlags(QWidget *parent = nullptr);
+    explicit MediaFlags(QWidget* parent = nullptr);
     ~MediaFlags() override;
-    void setStreamDetails(StreamDetails *streamDetails);
+    void setStreamDetails(StreamDetails* streamDetails);
     void clear();
 
 private:
-    Ui::MediaFlags *ui;
+    Ui::MediaFlags* ui;
     int m_height{16};
 
-    void setupResolution(StreamDetails *streamDetails);
-    void setupAspect(StreamDetails *streamDetails);
-    void setupCodec(StreamDetails *streamDetails);
-    void setupAudio(StreamDetails *streamDetails);
-    void setupChannels(StreamDetails *streamDetails);
+    void setupResolution(StreamDetails* streamDetails);
+    void setupAspect(StreamDetails* streamDetails);
+    void setupCodec(StreamDetails* streamDetails);
+    void setupAudio(StreamDetails* streamDetails);
+    void setupChannels(StreamDetails* streamDetails);
     QPixmap colorIcon(QString icon);
 };

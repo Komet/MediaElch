@@ -20,7 +20,7 @@ class SettingsWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit SettingsWindow(QWidget *parent = nullptr);
+    explicit SettingsWindow(QWidget* parent = nullptr);
     ~SettingsWindow() override;
 
 public slots:
@@ -30,7 +30,7 @@ signals:
     void sigSaved();
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent* event) override;
 
 private slots:
     void onAction();
@@ -47,26 +47,26 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
-    void onTemplatesLoaded(QVector<ExportTemplate *> templates);
-    void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
-    void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
+    void onTemplatesLoaded(QVector<ExportTemplate*> templates);
+    void onTemplateInstalled(ExportTemplate* exportTemplate, bool success);
+    void onTemplateUninstalled(ExportTemplate* exportTemplate, bool success);
     void onChooseUnrar();
     void onChooseMakeMkvCon();
-    void onDirTypeChanged(QComboBox *comboBox = nullptr);
+    void onDirTypeChanged(QComboBox* comboBox = nullptr);
     void onShowAdultScrapers();
 
 private:
-    Ui::SettingsWindow *ui;
-    Settings *m_settings;
-    QMap<const MovieScraperInterface *, int> m_scraperRows;
+    Ui::SettingsWindow* ui;
+    Settings* m_settings;
+    QMap<const MovieScraperInterface*, int> m_scraperRows;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
 
     void loadSettings();
     void saveSettings();
     void loadRemoteTemplates();
-    QComboBox *comboForMovieScraperInfo(MovieScraperInfos info);
+    QComboBox* comboForMovieScraperInfo(MovieScraperInfos info);
     QString titleForMovieScraperInfo(MovieScraperInfos info);
-    QComboBox *comboForTvScraperInfo(TvShowScraperInfos info);
+    QComboBox* comboForTvScraperInfo(TvShowScraperInfos info);
     QString titleForTvScraperInfo(TvShowScraperInfos info);
 };
