@@ -226,17 +226,17 @@ CertificationWidget #infoGroupBox {
 }
 
 /*********************************************************
- * FilesWidget
+ * MovieFilesWidget
  *********************************************************/
-FilesWidget #widget_2 {
+MovieFilesWidget #widget_2 {
     background-color: #ffffff;
     color: #1b69a5;
     border-bottom: 1px solid #f89b35;
 }
-FilesWidget #sortLabelWidget {
+MovieFilesWidget #sortLabelWidget {
     border-top: 1px solid #f89b35;
 }
-FilesWidget #sortLabelWidget .MyLabel {
+MovieFilesWidget #sortLabelWidget .MyLabel {
     font-weight: normal;
     background-color: #ffffff;
     color: #1b69a5;
@@ -248,7 +248,7 @@ FilesWidget #sortLabelWidget .MyLabel {
     margin-top: 1px;
     margin-bottom: 1px;
 }
-FilesWidget #sortLabelWidget .MyLabel[active="true"] {
+MovieFilesWidget #sortLabelWidget .MyLabel[active="true"] {
     font-weight: bold;
 }
 
@@ -529,7 +529,6 @@ TvShowFilesWidget #files {
 TvShowFilesWidget #widget {
     color: #1b69a5;
     background-color: #ffffff;
-    border-bottom: 1px solid #f0f0f0;
     border-bottom: 1px solid #f89b35;
 }
 

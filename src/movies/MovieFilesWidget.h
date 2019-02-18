@@ -19,7 +19,7 @@ class Movie;
 class MovieProxyModel;
 
 /**
- * @brief The FilesWidget class
+ * @brief The MovieFilesWidget class
  * This widget displays a list of movies
  * It's a singleton and gets constructed through the gui,
  * the instance can be retrieved through MovieFilesWidget::instance
