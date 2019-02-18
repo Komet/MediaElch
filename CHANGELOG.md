@@ -14,7 +14,8 @@ to reconfigure your scraper settings.
 
  - Update French translation (#646)
  - Add more subtitle formats (#661)
- - Fix list/table style for dark themes (#640)
+ - UI: Fix list/table style for dark themes (#640)
+ - UI: Fix stuck splitter cursor (#659)
 
 ### Internal Improvements
 
