@@ -21,10 +21,6 @@
 
 MovieFilesWidget* MovieFilesWidget::m_instance;
 
-/**
- * @brief MovieFilesWidget::FilesWidget
- * @param parent
- */
 MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieFilesWidget)
 {
     m_instance = this;
@@ -137,7 +133,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
 }
 
 /**
- * @brief MovieFilesWidget::~FilesWidget
+ * @brief MovieFilesWidget::~MovieFilesWidget
  */
 MovieFilesWidget::~MovieFilesWidget()
 {
@@ -146,7 +142,7 @@ MovieFilesWidget::~MovieFilesWidget()
 
 /**
  * @brief Returns the current instance
- * @return Instance of FilesWidget
+ * @return Instance of MovieFilesWidget
  */
 MovieFilesWidget* MovieFilesWidget::instance()
 {
