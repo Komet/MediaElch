@@ -68,8 +68,6 @@
 #centralWidget QTableWidget::item,
 #centralWidget QTableView::item,
 #centralWidget QTreeView::item {
-    alternate-background-color: #f9f9f9;
-    background-color: #ffffff;
     color: #395265;
     border: none;
 }
