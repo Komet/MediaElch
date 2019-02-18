@@ -25,7 +25,6 @@ void TvShowTreeView::drawBranches(QPainter* painter, const QRect& rect, const QM
 
     QString text = isExpanded(index) ? QChar(icon_angle_down) : QChar(icon_angle_right);
     const int drawSize = qRound(rect.height() * 0.8);
-    painter->setPen(QColor(70, 155, 198));
     painter->setPen(QColor(180, 180, 180));
     painter->setFont(Manager::instance()->iconFont()->font(drawSize));
     painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
@@ -237,10 +236,11 @@ void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem o
     if (selectionModel()->isSelected(index)) {
         option.state |= QStyle::State_Selected;
 #ifdef Q_OS_WIN
-        QPen pen(QColor(27, 106, 165));
+        const QColor blue(27, 106, 165);
+        QPen pen(blue);
         pen.setWidth(0);
         painter->setPen(pen);
-        painter->setBrush(QBrush(QColor(27, 106, 165)));
+        painter->setBrush(QBrush(blue));
         painter->drawRect(option.rect);
 #endif
     }
