@@ -314,15 +314,14 @@ void MovieFilesWidget::openNfoFile()
  */
 void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
-    qDebug() << "Entered";
     if (!index.isValid()) {
-        qDebug() << "Index is invalid";
+        qDebug() << "[MovieFilesWidget] Index is invalid";
         m_lastMovie = nullptr;
         emit noMovieSelected();
         return;
     }
     m_lastModelIndex = previous;
-    int row = index.model()->data(index, Qt::UserRole).toInt();
+    const int row = index.model()->data(index, Qt::UserRole).toInt();
     m_lastMovie = Manager::instance()->movieModel()->movie(row);
     QTimer::singleShot(0, this, &MovieFilesWidget::movieSelectedEmitter);
 }
@@ -332,7 +331,6 @@ void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
  */
 void MovieFilesWidget::movieSelectedEmitter()
 {
-    qDebug() << "Entered";
     if (m_lastMovie) {
         emit movieSelected(m_lastMovie);
     }

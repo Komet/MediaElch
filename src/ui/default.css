@@ -51,6 +51,10 @@
     color: #787878;
 }
 
+/*
+ * Still required for C++ functions like in TvShowTreeView.cpp
+ * which use the widget's selection-background, etc.
+ */
 #centralWidget QTableWidget,
 #centralWidget QTableView,
 #centralWidget QTreeView {
@@ -60,6 +64,20 @@
     selection-color: #ffffff;
     color: #395265;
     border: none;
+}
+#centralWidget QTableWidget::item,
+#centralWidget QTableView::item,
+#centralWidget QTreeView::item {
+    alternate-background-color: #f9f9f9;
+    background-color: #ffffff;
+    color: #395265;
+    border: none;
+}
+#centralWidget QTableWidget::item:selected,
+#centralWidget QTableView::item:selected,
+#centralWidget QTreeView::item:selected {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+    color: #ffffff;
 }
 
 /*********************************************************

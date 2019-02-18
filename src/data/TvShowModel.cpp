@@ -133,6 +133,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TvShowType::TvShow) {
         return item->data(1);
     } else if (role == Qt::ForegroundRole) {
+        // hasChanged()
         if (item->data(2).toBool()) {
             return QColor(255, 0, 0);
         }
