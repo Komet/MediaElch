@@ -75,7 +75,11 @@ void TvShowUpdater::onLoadFinished()
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
     }
 
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
+    if (reply == nullptr) {
+        qCritical() << "[TvShowUpdater] Cast failed";
+        return;
+    }
     reply->deleteLater();
     TvShow* show = reply->property("storage").value<Storage*>()->show();
     if (!show) {
@@ -89,7 +93,7 @@ void TvShowUpdater::onLoadFinished()
         show->clearMissingEpisodes();
         show->fillMissingEpisodes();
     } else {
-        qWarning() << "Network Error" << reply->errorString();
+        qWarning() << "[TvShowUpdater] Network Error" << reply->errorString();
     }
 }
 

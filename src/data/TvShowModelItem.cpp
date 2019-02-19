@@ -36,6 +36,9 @@ TvShowModelItem::~TvShowModelItem()
  */
 TvShowModelItem* TvShowModelItem::child(int number) const
 {
+    if (number >= m_childItems.size()) {
+        return nullptr;
+    }
     return m_childItems.value(number);
 }
 
@@ -227,7 +230,7 @@ TvShowModelItem* TvShowModelItem::appendChild(TvShowEpisode* episode)
  */
 TvShowModelItem* TvShowModelItem::appendChild(SeasonNumber seasonNumber, QString season, TvShow* show)
 {
-    auto item = new TvShowModelItem(this);
+    auto* item = new TvShowModelItem(this);
     item->setSeason(season);
     item->setSeasonNumber(seasonNumber);
     item->setTvShow(show);
@@ -245,12 +248,6 @@ TvShowModelItem* TvShowModelItem::parent() const
     return m_parentItem;
 }
 
-/**
- * @brief TvShowModelItem::removeChildren
- * @param position
- * @param count
- * @return
- */
 bool TvShowModelItem::removeChildren(int position, int count)
 {
     if (position < 0 || position + count > m_childItems.size()) {
@@ -332,7 +329,7 @@ SeasonNumber TvShowModelItem::seasonNumber()
  * @brief TvShowModelItem::type
  * @return Type of this item
  */
-TvShowType TvShowModelItem::type()
+TvShowType TvShowModelItem::type() const
 {
     if (m_tvShow && m_season.isEmpty()) {
         return TvShowType::TvShow;

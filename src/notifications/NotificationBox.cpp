@@ -120,7 +120,7 @@ void NotificationBox::showProgressBar(QString message, int id, bool unique)
         }
     }
     m_msgCounter++;
-    auto msg = new Message(this);
+    auto* msg = new Message(this);
     msg->setMessage(message);
     msg->setId(id);
     msg->showProgressBar(true);
@@ -160,7 +160,7 @@ void NotificationBox::progressBarProgress(int current, int max, int id)
  */
 void NotificationBox::hideProgressBar(int id)
 {
-    qDebug() << "Entered, id=" << id;
+    qDebug() << "[NotificationBox] Hide Progress bar with id" << id;
     removeMessage(id);
 }
 

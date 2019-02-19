@@ -187,15 +187,10 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
-/**
- * @brief TvShowModel::getItem
- * @param index
- * @return
- */
 TvShowModelItem* TvShowModel::getItem(const QModelIndex& index) const
 {
     if (index.isValid()) {
-        const auto item = static_cast<TvShowModelItem*>(index.internalPointer());
+        auto* item = static_cast<TvShowModelItem*>(index.internalPointer());
         if (item) {
             return item;
         }
@@ -203,34 +198,26 @@ TvShowModelItem* TvShowModel::getItem(const QModelIndex& index) const
     return m_rootItem;
 }
 
-/**
- * @brief TvShowModel::index
- * @param row
- * @param column
- * @param parent
- * @return
- */
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) const
 {
     if (parent.isValid() && parent.column() != 0) {
-        return QModelIndex();
+        return QModelIndex{};
     }
 
     const TvShowModelItem* const parentItem = getItem(parent);
+    if (parentItem == nullptr) {
+        qCritical() << "[TvShowModel] Parent item is nullptr";
+        return QModelIndex{};
+    }
     TvShowModelItem* const childItem = parentItem->child(row);
 
-    if (childItem) {
+    if (childItem != nullptr) {
         return createIndex(row, column, childItem);
     } else {
-        return QModelIndex();
+        return QModelIndex{};
     }
 }
 
-/**
- * @brief TvShowModel::appendChild
- * @param show
- * @return
- */
 TvShowModelItem* TvShowModel::appendChild(TvShow* show)
 {
     TvShowModelItem* parentItem = m_rootItem;
@@ -242,11 +229,6 @@ TvShowModelItem* TvShowModel::appendChild(TvShow* show)
     return item;
 }
 
-/**
- * @brief TvShowModel::parent
- * @param index
- * @return
- */
 QModelIndex TvShowModel::parent(const QModelIndex& index) const
 {
     if (!index.isValid()) {

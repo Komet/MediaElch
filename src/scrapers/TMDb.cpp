@@ -372,12 +372,12 @@ void TMDb::searchFinished()
 
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
-        QNetworkReply* const reply = m_qnam.get(request);
-        new NetworkReplyWatcher(this, reply);
-        reply->setProperty("searchString", searchString);
-        reply->setProperty("results", Storage::toVariant(reply, results));
-        reply->setProperty("page", nextPage);
-        connect(reply, &QNetworkReply::finished, this, &TMDb::searchFinished);
+        QNetworkReply* const searchReply = m_qnam.get(request);
+        new NetworkReplyWatcher(this, searchReply);
+        searchReply->setProperty("searchString", searchString);
+        searchReply->setProperty("results", Storage::toVariant(searchReply, results));
+        searchReply->setProperty("page", nextPage);
+        connect(searchReply, &QNetworkReply::finished, this, &TMDb::searchFinished);
     }
 }
 

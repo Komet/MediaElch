@@ -181,7 +181,7 @@ void TvShow::clearSeasonImageType(ImageType imageType)
  */
 void TvShow::addEpisode(TvShowEpisode* episode)
 {
-    m_episodes.append(episode);
+    m_episodes.push_back(episode);
 }
 
 /**
@@ -190,7 +190,7 @@ void TvShow::addEpisode(TvShowEpisode* episode)
  */
 int TvShow::episodeCount() const
 {
-    return m_episodes.count();
+    return m_episodes.size();
 }
 
 /**
@@ -657,11 +657,7 @@ QVector<SeasonNumber> TvShow::seasons(bool includeDummies) const
     return seasons;
 }
 
-/**
- * @brief TvShow::episodes
- * @return
- */
-QVector<TvShowEpisode*> TvShow::episodes() const
+const QVector<TvShowEpisode*>& TvShow::episodes() const
 {
     return m_episodes;
 }
@@ -671,7 +667,7 @@ QVector<TvShowEpisode*> TvShow::episodes(SeasonNumber season) const
     QVector<TvShowEpisode*> episodes;
     for (TvShowEpisode* episode : m_episodes) {
         if (episode->season() == season) {
-            episodes << episode;
+            episodes.push_back(episode);
         }
     }
 
@@ -1077,6 +1073,10 @@ void TvShow::setChanged(bool changed)
  */
 void TvShow::setModelItem(TvShowModelItem* item)
 {
+    if (item == nullptr) {
+        qCritical() << "[TvShow] Tried to set nullptr model item";
+        return;
+    }
     m_modelItem = item;
 }
 
@@ -1446,6 +1446,10 @@ void TvShow::fillMissingEpisodes()
 {
     QVector<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
     for (TvShowEpisode* episode : episodes) {
+        if (episode == nullptr) {
+            qCritical() << "[TvShow] Episode loaded from database is a nullptr";
+            continue;
+        }
         bool found = false;
         for (int i = 0, n = m_episodes.count(); i < n; ++i) {
             if (m_episodes[i]->season() == episode->season() && m_episodes[i]->episode() == episode->episode()) {
@@ -1469,7 +1473,7 @@ void TvShow::fillMissingEpisodes()
         addEpisode(episode);
 
         bool newSeason = true;
-        for (const TvShowEpisode* existEpisode : this->episodes()) {
+        for (const TvShowEpisode* existEpisode : m_episodes) {
             if (existEpisode->season() == episode->season() && existEpisode != episode) {
                 newSeason = false;
                 break;
@@ -1478,6 +1482,7 @@ void TvShow::fillMissingEpisodes()
 
         if (newSeason) {
             modelItem()->appendChild(episode->season(), episode->seasonString(), this)->appendChild(episode);
+
         } else {
             for (int i = 0, n = modelItem()->childCount(); i < n; ++i) {
                 TvShowModelItem* item = modelItem()->child(i);
@@ -1496,19 +1501,27 @@ void TvShow::clearMissingEpisodes()
 {
     for (int i = 0; i < modelItem()->childCount(); ++i) {
         TvShowModelItem* seasonItem = modelItem()->child(i);
+        if (seasonItem == nullptr) {
+            qCritical() << "[TvShow] (Season) item is a nullptr";
+            continue;
+        }
         if (seasonItem->type() != TvShowType::Season) {
             continue;
         }
         bool isDummySeason = true;
         for (int x = 0; x < seasonItem->childCount(); ++x) {
-            TvShowModelItem* item = seasonItem->child(x);
-            if (item->type() != TvShowType::Episode) {
+            TvShowModelItem* episodeItem = seasonItem->child(x);
+            if (episodeItem == nullptr) {
+                qCritical() << "[TvShow] (Episode) item is a nullptr";
                 continue;
             }
-            if (item->tvShowEpisode()->isDummy()) {
+            if (episodeItem->type() != TvShowType::Episode) {
+                continue;
+            }
+            if (episodeItem->tvShowEpisode()->isDummy()) {
+                m_episodes.removeOne(episodeItem->tvShowEpisode());
+                episodeItem->tvShowEpisode()->deleteLater();
                 seasonItem->removeChildren(x, 1);
-                m_episodes.removeOne(item->tvShowEpisode());
-                item->tvShowEpisode()->deleteLater();
                 x--;
             } else {
                 isDummySeason = false;
