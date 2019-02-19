@@ -110,11 +110,11 @@ create_appimage() {
 
 	#######################################################
 	# Copy libmediainfo
-	# 
+	#
 	# libmediainfo.so.0 is loaded at runtime that's why
 	# linuxdeployqt can't detect it and we have to include
 	# it here.
-	
+
 	fold_start "copy_libmediainfo"
 	print_info "Copying libmediainfo.so"
 	mkdir -p ./appdir/usr/lib
@@ -127,7 +127,16 @@ create_appimage() {
 	fold_start "ffmpeg"
 	print_info "Downloading ffmpeg"
 	# Use static ffmpeg
-	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O ffmpeg.tar.xz
+	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
+	ffmpeg_md5="7bce08bcc241f12d40616d09f810883a  ffmpeg.tar.xz"
+	if [ "$(md5sum ffmpeg.tar.xz)" = $ffmpeg_md5 ]; then
+		print_info "FFMPEG MD5 checksum is valid"
+	else
+		print_error "MD5 checksum no valid"
+		print_error "  Expected: ${ffmpeg_md5}"
+		print_error "  Was:      $(md5sum ffmpeg.tar.xz)"
+		exit 1
+	fi
 	tar -xJvf ffmpeg.tar.xz
 	print_info "Copying ffmpeg into AppDir"
 	cp ffmpeg-*/ffmpeg appdir/usr/bin/
