@@ -14,6 +14,7 @@
 #include "movies/MovieFilesWidget.h"
 #include "movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
+#include "scrapers/CustomMovieScraper.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QDoubleValidator>
@@ -480,9 +481,9 @@ void MovieWidget::startScraperSearch()
         setDisabledTrue();
         QMap<MovieScraperInterface*, QString> ids;
         QVector<MovieScraperInfos> infosToLoad;
-        if (MovieSearch::instance()->scraperId() == "custom-movie") {
+        if (MovieSearch::instance()->scraperId() == CustomMovieScraper::scraperIdentifier) {
             ids = MovieSearch::instance()->customScraperIds();
-            infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
+            infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
         } else {
             ids.insert(0, MovieSearch::instance()->scraperMovieId());
             infosToLoad = MovieSearch::instance()->infosToLoad();

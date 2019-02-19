@@ -3,6 +3,8 @@
 
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
+#include "scrapers/IMDB.h"
+#include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 
@@ -164,8 +166,8 @@ void MovieMultiScrapeDialog::onStartScraping()
         return;
     }
 
-    m_isTmdb = m_scraperInterface->identifier() == "tmdb";
-    m_isImdb = m_scraperInterface->identifier() == "imdb";
+    m_isTmdb = m_scraperInterface->identifier() == TMDb::scraperIdentifier;
+    m_isImdb = m_scraperInterface->identifier() == IMDB::scraperIdentifier;
 
     connect(m_scraperInterface,
         SIGNAL(searchDone(QVector<ScraperSearchResult>)),
@@ -228,7 +230,7 @@ void MovieMultiScrapeDialog::scrapeNext()
         && ((!m_currentMovie->imdbId().isValid() && m_isImdb)
                || (!m_currentMovie->tmdbId().isValid() && !m_currentMovie->imdbId().isValid() && m_isTmdb)
                || (!m_currentMovie->imdbId().isValid() && !m_currentMovie->tmdbId().isValid()
-                      && m_scraperInterface->identifier() == "custom-movie"))) {
+                      && m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier))) {
         scrapeNext();
         return;
     }
@@ -252,12 +254,12 @@ void MovieMultiScrapeDialog::scrapeNext()
         loadMovieData(m_currentMovie, m_currentMovie->tmdbId());
     } else if (m_isTmdb && m_currentMovie->imdbId().isValid()) {
         loadMovieData(m_currentMovie, m_currentMovie->imdbId());
-    } else if (m_scraperInterface->identifier() == "custom-movie") {
-        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == "imdb"
-                || CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb")
+    } else if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
+        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == IMDB::scraperIdentifier
+                || CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::scraperIdentifier)
             && m_currentMovie->imdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->imdbId().toString());
-        } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb"
+        } else if (CustomMovieScraper::instance()->titleScraper()->identifier() == TMDb::scraperIdentifier
                    && m_currentMovie->tmdbId().isValid()) {
             m_scraperInterface->search(m_currentMovie->tmdbId().withPrefix());
         } else {
@@ -292,7 +294,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
         return;
     }
 
-    if (m_scraperInterface->identifier() == "custom-movie") {
+    if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
         auto scraper = static_cast<MovieScraperInterface*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QVector<MovieScraperInterface*> searchScrapers =
@@ -303,10 +305,12 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
                 this,
                 SLOT(onSearchFinished(QVector<ScraperSearchResult>)),
                 Qt::UniqueConnection);
-            if ((searchScrapers.first()->identifier() == "tmdb" || searchScrapers.first()->identifier() == "imdb")
+            if ((searchScrapers.first()->identifier() == TMDb::scraperIdentifier
+                    || searchScrapers.first()->identifier() == IMDB::scraperIdentifier)
                 && m_currentMovie->imdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->imdbId().toString());
-            } else if (searchScrapers.first()->identifier() == "tmdb" && m_currentMovie->tmdbId().isValid()) {
+            } else if (searchScrapers.first()->identifier() == TMDb::scraperIdentifier
+                       && m_currentMovie->tmdbId().isValid()) {
                 searchScrapers.first()->search(m_currentMovie->tmdbId().toString());
             } else {
                 searchScrapers.first()->search(m_currentMovie->name());

@@ -14,6 +14,8 @@ class OFDb : public MovieScraperInterface
     Q_OBJECT
 public:
     explicit OFDb(QObject* parent = nullptr);
+    static constexpr const char* scraperIdentifier = "ofdb";
+
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;

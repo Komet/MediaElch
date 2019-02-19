@@ -64,7 +64,7 @@ QString UniversalMusicScraper::name() const
 
 QString UniversalMusicScraper::identifier() const
 {
-    return QStringLiteral("UniversalMusicScraper");
+    return scraperIdentifier;
 }
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
@@ -391,8 +391,8 @@ void UniversalMusicScraper::onSearchAlbumFinished()
 
             QMap<QString, int> mediumList;
             if (!elem.elementsByTagName("medium-list").isEmpty()) {
-                for (int i = 0, n = elem.elementsByTagName("medium-list").count(); i < n; ++i) {
-                    QDomElement mediumElem = elem.elementsByTagName("medium-list").at(i).toElement();
+                for (int j = 0, n = elem.elementsByTagName("medium-list").count(); j < n; ++j) {
+                    QDomElement mediumElem = elem.elementsByTagName("medium-list").at(j).toElement();
                     if (mediumElem.elementsByTagName("format").isEmpty()) {
                         continue;
                     }

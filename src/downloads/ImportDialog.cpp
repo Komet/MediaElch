@@ -11,6 +11,7 @@
 #include "globals/NameFormatter.h"
 #include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
+#include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 
 ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
@@ -247,9 +248,9 @@ void ImportDialog::onMovieChosen()
 {
     QMap<MovieScraperInterface*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
-    if (ui->movieSearchWidget->scraperId() == "custom-movie") {
+    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
     } else {
         ids.insert(0, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

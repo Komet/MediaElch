@@ -17,6 +17,9 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
+#include "scrapers/CustomMovieScraper.h"
+#include "scrapers/IMDB.h"
+#include "scrapers/TheTvDb.h"
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
 #include "settings/Settings.h"
@@ -758,7 +761,7 @@ QComboBox* SettingsWindow::comboForMovieScraperInfo(const MovieScraperInfos info
         index = 1;
     }
     for (auto* scraper : Manager::instance()->movieScrapers()) {
-        if (scraper->identifier() == "custom-movie") {
+        if (scraper->identifier() == CustomMovieScraper::scraperIdentifier) {
             continue;
         }
         if (scraper->scraperNativelySupports().contains(info)) {
@@ -831,13 +834,13 @@ QComboBox* SettingsWindow::comboForTvScraperInfo(const TvShowScraperInfos info)
     QString currentScraper = m_settings->customTvScraper().value(info, "notset");
 
     auto box = new QComboBox();
-    box->addItem("The TV DB", "tvdb");
+    box->addItem("The TV DB", TheTvDb::scraperIdentifier);
     box->setItemData(0, static_cast<int>(info), Qt::UserRole + 1);
 
-    box->addItem("IMDB", "imdb");
+    box->addItem("IMDB", IMDB::scraperIdentifier);
     box->setItemData(1, static_cast<int>(info), Qt::UserRole + 1);
 
-    if (currentScraper == "imdb") {
+    if (currentScraper == IMDB::scraperIdentifier) {
         box->setCurrentIndex(1);
     }
 

@@ -52,7 +52,7 @@ QString VideoBuster::name() const
 
 QString VideoBuster::identifier() const
 {
-    return QString("videobuster");
+    return scraperIdentifier;
 }
 
 bool VideoBuster::isAdult() const

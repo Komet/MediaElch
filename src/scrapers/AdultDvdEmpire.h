@@ -11,6 +11,8 @@ class AdultDvdEmpire : public MovieScraperInterface
     Q_OBJECT
 public:
     explicit AdultDvdEmpire(QObject* parent = nullptr);
+    static constexpr const char* scraperIdentifier = "adult-dvd-empire";
+
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;

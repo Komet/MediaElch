@@ -95,7 +95,7 @@ QString TMDbConcerts::name() const
 
 QString TMDbConcerts::identifier() const
 {
-    return QStringLiteral("TMDbConcerts");
+    return scraperIdentifier;
 }
 
 /**

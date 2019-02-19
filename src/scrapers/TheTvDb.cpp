@@ -104,7 +104,7 @@ QString TheTvDb::name() const
 
 QString TheTvDb::identifier() const
 {
-    return QStringLiteral("TheTVDB");
+    return scraperIdentifier;
 }
 
 QString TheTvDb::apiKey()
@@ -944,7 +944,7 @@ bool TheTvDb::shouldLoadImdb(QVector<TvShowScraperInfos> infosToLoad)
 {
     QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
     for (const auto info : infosToLoad) {
-        if (scraperSettings.value(info) == "imdb") {
+        if (scraperSettings.value(info) == IMDB::scraperIdentifier) {
             return true;
         }
     }
@@ -955,7 +955,7 @@ bool TheTvDb::shouldLoadImdb(QVector<TvShowScraperInfos> infosToLoad)
 bool TheTvDb::shouldLoadFromImdb(TvShowScraperInfos info, QVector<TvShowScraperInfos> infosToLoad)
 {
     QMap<TvShowScraperInfos, QString> scraperSettings = Settings::instance()->customTvScraper();
-    return infosToLoad.contains(info) && scraperSettings.value(info) == "imdb";
+    return infosToLoad.contains(info) && scraperSettings.value(info) == IMDB::scraperIdentifier;
 }
 
 void TheTvDb::onImdbFinished()

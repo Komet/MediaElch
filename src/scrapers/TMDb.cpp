@@ -99,7 +99,7 @@ QString TMDb::name() const
 
 QString TMDb::identifier() const
 {
-    return QStringLiteral("TMDb");
+    return scraperIdentifier;
 }
 
 bool TMDb::isAdult() const

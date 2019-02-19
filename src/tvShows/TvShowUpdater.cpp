@@ -17,19 +17,19 @@
 TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {
     for (TvScraperInterface* inter : Manager::instance()->tvScrapers()) {
-        if (inter->identifier() == "tvdb") {
-            m_tvdb = static_cast<TheTvDb*>(inter);
+        if (inter->identifier() == TheTvDb::scraperIdentifier) {
+            m_tvdb = dynamic_cast<TheTvDb*>(inter);
             break;
         }
+    }
+    if (m_tvdb == nullptr) {
+        qCritical() << "[TvShowUpdater] Failing cast to TheTvDb scraper";
     }
 }
 
 TvShowUpdater* TvShowUpdater::instance(QObject* parent)
 {
-    static TvShowUpdater* instance = nullptr;
-    if (!instance) {
-        instance = new TvShowUpdater(parent);
-    }
+    static TvShowUpdater* instance = new TvShowUpdater(parent);
     return instance;
 }
 
@@ -46,6 +46,7 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         QNetworkReply* reply = m_qnam.get(request);
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);
+
     } else if (show->id().isValid() || show->tvdbId().isValid()) {
         TvDbId id = !show->tvdbId().isValid() ? show->id() : show->tvdbId();
         QUrl url(QString("https://www.thetvdb.com/api/%1/series/%2/all/%3.xml")
@@ -53,27 +54,28 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         QNetworkReply* reply = m_qnam.get(QNetworkRequest(url));
         reply->setProperty("storage", Storage::toVariant(reply, show));
         connect(reply, &QNetworkReply::finished, this, &TvShowUpdater::onLoadFinished);
+
     } else {
         return;
     }
 
     NotificationBox::instance()->showProgressBar(
         tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
-    int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
-    int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
+    const int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
+    const int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
     NotificationBox::instance()->progressBarProgress(value, maxValue + 1, Constants::TvShowUpdaterProgressMessageId);
 }
 
 void TvShowUpdater::onLoadFinished()
 {
-    int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
-    int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
+    const int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
+    const int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
     NotificationBox::instance()->progressBarProgress(value + 1, maxValue, Constants::TvShowUpdaterProgressMessageId);
-    if (value + 1 == maxValue) {
+    if (value + 1 >= maxValue) {
         NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
     }
 
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     TvShow* show = reply->property("storage").value<Storage*>()->show();
     if (!show) {
@@ -97,8 +99,8 @@ QString TvShowUpdater::unzipContent(QByteArray content)
     QBuffer buffer(&content);
     QuaZip zip(&buffer);
     if (!zip.open(QuaZip::mdUnzip)) {
-        qWarning() << "Zip file could not be opened";
-        return QString();
+        qWarning() << "[TvShowUpdater] Zip file could not be opened";
+        return QString{};
     }
     QuaZipFile file(&zip);
     for (bool more = zip.goToFirstFile(); more; more = zip.goToNextFile()) {

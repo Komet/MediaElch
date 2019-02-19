@@ -7,6 +7,7 @@
 #include "data/Storage.h"
 #include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
+#include "scrapers/IMDB.h"
 #include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 
@@ -43,7 +44,7 @@ QString CustomMovieScraper::name() const
 
 QString CustomMovieScraper::identifier() const
 {
-    return QStringLiteral("custom-movie");
+    return scraperIdentifier;
 }
 
 bool CustomMovieScraper::isAdult() const
@@ -85,7 +86,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
     QMapIterator<MovieScraperInterface*, QString> it(alreadyLoadedIds);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == "imdb" || it.key()->identifier() == "tmdb") {
+        if (it.key()->identifier() == IMDB::scraperIdentifier || it.key()->identifier() == TMDb::scraperIdentifier) {
             imdbIdAvailable = true;
         }
     }
@@ -97,10 +98,10 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
         if (scrapers.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == "tmdb" && imdbIdAvailable) {
+        if (scraper->identifier() == TMDb::scraperIdentifier && imdbIdAvailable) {
             continue;
         }
-        if (scraper->identifier() == "imdb" && imdbIdAvailable) {
+        if (scraper->identifier() == IMDB::scraperIdentifier && imdbIdAvailable) {
             continue;
         }
         if (alreadyLoadedIds.contains(scraper)) {
@@ -116,14 +117,15 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
                 // check if imdb id should be loaded
                 bool shouldLoad = false;
                 for (const auto* scraper : scrapers) {
-                    if (scraper->identifier() == "imdb" || scraper->identifier() == "tmdb") {
+                    if (scraper->identifier() == IMDB::scraperIdentifier
+                        || scraper->identifier() == TMDb::scraperIdentifier) {
                         shouldLoad = true;
                     }
                 }
                 if (!shouldLoad) {
                     // add tmdb
                     for (auto* scraper : m_scrapers) {
-                        if (scraper->identifier() == "tmdb") {
+                        if (scraper->identifier() == TMDb::scraperIdentifier) {
                             scrapers.append(scraper);
                             break;
                         }
@@ -148,10 +150,10 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
     QMapIterator<MovieScraperInterface*, QString> it(ids);
     while (it.hasNext()) {
         it.next();
-        if (it.key()->identifier() == "tmdb") {
+        if (it.key()->identifier() == TMDb::scraperIdentifier) {
             movie->setTmdbId(TmdbId(it.value()));
             tmdbId = it.value();
-        } else if (it.key()->identifier() == "imdb") {
+        } else if (it.key()->identifier() == IMDB::scraperIdentifier) {
             movie->setId(ImdbId(it.value()));
             imdbId = it.value();
         }
@@ -163,7 +165,7 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
         if (!scraper) {
             continue;
         }
-        if (scraper->identifier() == "imdb") {
+        if (scraper->identifier() == IMDB::scraperIdentifier) {
             needImdbId = true;
             break;
         }
@@ -236,9 +238,9 @@ void CustomMovieScraper::loadAllData(QMap<MovieScraperInterface*, QString> ids,
         if (scrapersWithIds.contains(scraper)) {
             continue;
         }
-        if (scraper->identifier() == "tmdb") {
+        if (scraper->identifier() == TMDb::scraperIdentifier) {
             scrapersWithIds.insert(scraper, tmdbId.isEmpty() ? imdbId : tmdbId);
-        } else if (scraper->identifier() == "imdb") {
+        } else if (scraper->identifier() == IMDB::scraperIdentifier) {
             scrapersWithIds.insert(scraper, imdbId);
         } else {
             scrapersWithIds.insert(scraper, ids.value(scraper));
