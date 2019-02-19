@@ -38,7 +38,7 @@ public:
     TvShowEpisode* tvShowEpisode();
     QString season();
     SeasonNumber seasonNumber();
-    TvShowType type();
+    TvShowType type() const;
 
 signals:
     void sigIntChanged(TvShowModelItem*, TvShowModelItem*);
@@ -49,7 +49,7 @@ private slots:
     void onSeasonChanged(TvShowModelItem* seasonItem, TvShowModelItem* episodeItem);
 
 private:
-    QVector<TvShowModelItem*> m_childItems;
+    QList<TvShowModelItem*> m_childItems;
     TvShowModelItem* m_parentItem;
     TvShow* m_tvShow;
     TvShowEpisode* m_tvShowEpisode;

@@ -1139,7 +1139,6 @@ QByteArray XbmcXml::getTvShowXml(TvShow* show)
  */
 void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("imdbid", episode->imdbId().toString());
     xml.writeTextElement("title", episode->name());

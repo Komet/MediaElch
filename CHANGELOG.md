@@ -2,13 +2,16 @@
 
 ## Next Release (*tbd*)
 The next release will affect your scraper settings. You'll therefore have
-to reconfigure your scraper settings.
+to reconfigure your scraper settings. You may also need to delete
+`MediaElch.sqlite`. See:
+https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings-stored
 
 ### Bugfixes
 
  - Fix IMDb tag scraping (#649)
  - Fix TMDb issue with HTML characters in overview/plot (#651)
  - `Ctrl+A` works in movie and concert section (#647)
+ - Fix crash when "Load missing episodes" is enabled (#669)
 
 ### Improvements
 

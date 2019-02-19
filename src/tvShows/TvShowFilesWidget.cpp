@@ -363,7 +363,7 @@ void TvShowFilesWidget::openFolder()
     if (!ui->files->currentIndex().isValid()) {
         return;
     }
-    QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    const QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
     TvShowModelItem* item = Manager::instance()->tvShowModel()->getItem(index);
     if (!item) {
         return;
@@ -392,7 +392,7 @@ void TvShowFilesWidget::openNfo()
     if (!ui->files->currentIndex().isValid()) {
         return;
     }
-    QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    const QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
     TvShowModelItem* item = Manager::instance()->tvShowModel()->getItem(index);
     if (!item) {
         return;
@@ -414,6 +414,7 @@ void TvShowFilesWidget::openNfo()
 
 void TvShowFilesWidget::showMissingEpisodes()
 {
+    // todo(bugwelle): Refactor
     m_contextMenu->close();
     for (const QModelIndex& mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
@@ -467,12 +468,10 @@ void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
     }
 }
 
-/**
- * @brief Sets the filters
- * @param filters List of filters
- * @param text Filter text
- * @todo: respect filters and not only filter text
- */
+/// @brief Sets the filters
+/// @param filters List of filters
+/// @param text Filter text
+/// @todo: respect filters and not only filter text
 void TvShowFilesWidget::setFilter(QVector<Filter*> filters, QString text)
 {
     if (!filters.isEmpty()) {
@@ -483,68 +482,76 @@ void TvShowFilesWidget::setFilter(QVector<Filter*> filters, QString text)
     m_tvShowProxyModel->setFilter(filters, text);
 }
 
-/**
- * @brief Renews the model (necessary after searching for tv shows)
- */
+/// @brief Renews the model (necessary after searching for tv shows)
 void TvShowFilesWidget::renewModel(bool force)
 {
-    qDebug() << "Renewing model" << force;
-    if (force) {
-        disconnect(ui->files->selectionModel(),
-            &QItemSelectionModel::currentChanged,
-            this,
-            &TvShowFilesWidget::onItemSelected);
-        m_tvShowProxyModel->setSourceModel(nullptr);
-        m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
-        ui->files->setModel(nullptr);
-        ui->files->setModel(m_tvShowProxyModel);
-        ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-        connect(ui->files->selectionModel(),
-            &QItemSelectionModel::currentChanged,
-            this,
-            &TvShowFilesWidget::onItemSelected,
-            Qt::QueuedConnection);
+    qDebug() << "Renewing model. Forced:" << force;
+    if (!force) {
+        // When not forced, just update the view.
+        onViewUpdated();
+        return;
+    }
 
-        for (int row = 0, n = ui->files->model()->rowCount(); row < n; ++row) {
-            QModelIndex showIndex = ui->files->model()->index(row, 0);
-            for (int seasonRow = 0, x = ui->files->model()->rowCount(showIndex); seasonRow < x; ++seasonRow) {
-                QModelIndex seasonIndex = ui->files->model()->index(seasonRow, 0, showIndex);
-                ui->files->setFirstColumnSpanned(seasonRow, showIndex, true);
-                for (int episodeRow = 0, y = ui->files->model()->rowCount(seasonIndex); episodeRow < y; ++episodeRow) {
-                    ui->files->setFirstColumnSpanned(episodeRow, seasonIndex, true);
-                }
+    // Disconnect onItemSelected while renewing the model
+    disconnect(
+        ui->files->selectionModel(), &QItemSelectionModel::currentChanged, this, &TvShowFilesWidget::onItemSelected);
+
+    m_tvShowProxyModel->setSourceModel(nullptr);
+    m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+    ui->files->setModel(nullptr);
+    ui->files->setModel(m_tvShowProxyModel);
+    ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    connect(ui->files->selectionModel(),
+        &QItemSelectionModel::currentChanged,
+        this,
+        &TvShowFilesWidget::onItemSelected,
+        Qt::QueuedConnection);
+
+    const int rowCount = ui->files->model()->rowCount();
+    for (int row = 0; row < rowCount; ++row) {
+        QModelIndex showIndex = ui->files->model()->index(row, 0);
+        for (int seasonRow = 0, x = ui->files->model()->rowCount(showIndex); seasonRow < x; ++seasonRow) {
+            QModelIndex seasonIndex = ui->files->model()->index(seasonRow, 0, showIndex);
+            ui->files->setFirstColumnSpanned(seasonRow, showIndex, true);
+            for (int episodeRow = 0, y = ui->files->model()->rowCount(seasonIndex); episodeRow < y; ++episodeRow) {
+                ui->files->setFirstColumnSpanned(episodeRow, seasonIndex, true);
             }
         }
     }
+
     onViewUpdated();
 }
 
-/**
- * @brief Emits sigTvShowSelected or sigEpisodeSelected
- * @param index
- * @param previous
- */
+/// @brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected
+/// @param index Proxy index of the selected item.
 void TvShowFilesWidget::onItemSelected(QModelIndex index)
 {
-    qDebug() << "Entered";
-
-    if (!index.isValid() || !m_tvShowProxyModel) {
-        qDebug() << "Invalid index";
+    if (!index.isValid() || m_tvShowProxyModel == nullptr) {
+        // Can happen if the reload button is clicked
+        qDebug() << "[TvShowFilesWidget] Invalid index or invalid show proxy: Nothing selected";
         emit sigNothingSelected();
         return;
     }
 
+    qDebug() << "[TvShowFilesWidget] Selected item at row" << index.row() << "and column" << index.column();
+
     m_lastEpisode = nullptr;
     m_lastTvShow = nullptr;
     m_lastSeason = SeasonNumber::NoSeason;
-    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
-    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TvShowType::TvShow) {
+
+    const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
+    const TvShowType showType = Manager::instance()->tvShowModel()->getItem(sourceIndex)->type();
+
+    if (showType == TvShowType::TvShow) {
         m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
         emit sigTvShowSelected(m_lastTvShow);
-    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TvShowType::Episode) {
+
+    } else if (showType == TvShowType::Episode) {
         m_lastEpisode = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode();
         emit sigEpisodeSelected(m_lastEpisode);
-    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TvShowType::Season) {
+
+    } else if (showType == TvShowType::Season) {
         m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
         m_lastSeason = Manager::instance()->tvShowModel()->getItem(sourceIndex)->seasonNumber();
         emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
@@ -606,34 +613,43 @@ QVector<TvShow*> TvShowFilesWidget::selectedShows()
     return shows;
 }
 
+/// @brief Returns a vector of shows of which seasons are selected..
 QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
 {
+    const auto seasonProxyIndices = ui->files->selectionModel()->selectedRows(0);
+
     QVector<TvShow*> shows;
-    for (const QModelIndex& mIndex : ui->files->selectionModel()->selectedRows(0)) {
-        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
-        TvShowModelItem* item = Manager::instance()->tvShowModel()->getItem(index);
+    for (const QModelIndex& showIndex : seasonProxyIndices) {
+        const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(showIndex);
+        TvShowModelItem* item = Manager::instance()->tvShowModel()->getItem(sourceIndex);
         if (item->type() == TvShowType::Season && !shows.contains(item->tvShow())) {
-            shows.append(item->tvShow());
+            shows.push_back(item->tvShow());
         }
     }
     return shows;
 }
 
+/// @brief Update the file-widget view. Updates the status label and invalidates the current
+/// m_tvShowProxyModel. Called when rows are inserted or deleted or when the file searcher
+/// has finished loading.
 void TvShowFilesWidget::onViewUpdated()
 {
+    const int rowCount = m_tvShowProxyModel->rowCount();
+
     if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty()
         || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
         int episodeCount = 0;
-        for (const auto show : Manager::instance()->tvShowModel()->tvShows())
+        for (const auto* show : Manager::instance()->tvShowModel()->tvShows()) {
             episodeCount += show->episodeCount();
-        ui->statusLabel->setText(
-            tr("%n tv shows", "", m_tvShowProxyModel->rowCount()) + ", " + tr("%n episodes", "", episodeCount));
+        }
+        ui->statusLabel->setText(tr("%n tv shows", "", rowCount) + ", " + tr("%n episodes", "", episodeCount));
+
     } else {
-        ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count())
-                                     .arg(m_tvShowProxyModel->rowCount()));
+        const int showCount = Manager::instance()->tvShowModel()->tvShows().count();
+        ui->statusLabel->setText(tr("%1 of %n tv shows", "", showCount).arg(rowCount));
     }
-    // @todo(bugwelle) Check why this was needed.
-    // m_tvShowProxyModel->invalidate();
+
+    m_tvShowProxyModel->invalidate();
 }
 
 void TvShowFilesWidget::updateProxy()
@@ -665,11 +681,13 @@ void TvShowFilesWidget::multiScrape()
     QVector<TvShow*> shows = selectedShows();
     QVector<TvShowEpisode*> episodes = selectedEpisodes(false);
 
-    qDebug() << "Selected" << shows.count() << "shows and" << episodes.count() << "episodes";
     if (shows.isEmpty() && episodes.isEmpty()) {
+        qDebug() << "[TvShowFilesWidget] Multi Scrape: Nothing selected";
         return;
     }
 
+    qDebug() << "[TvShowFilesWidget] Multi Scrape: Selected" << shows.count() << "shows and" << episodes.count()
+             << "episodes";
     if (shows.count() + episodes.count() == 1) {
         emit sigStartSearch();
         return;

@@ -62,7 +62,7 @@ public:
     virtual QVector<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;
     virtual TvShowEpisode* episode(SeasonNumber season, EpisodeNumber episode);
     virtual QVector<SeasonNumber> seasons(bool includeDummies = true) const;
-    virtual QVector<TvShowEpisode*> episodes() const;
+    virtual const QVector<TvShowEpisode*>& episodes() const;
     virtual QVector<TvShowEpisode*> episodes(SeasonNumber season) const;
     virtual TvShowModelItem* modelItem();
     virtual bool hasChanged() const;

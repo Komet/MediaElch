@@ -6,6 +6,7 @@
 class TvShow;
 class TheTvDb;
 
+/// @brief Updates all TvShows, e.g. downloads missing episodes.
 class TvShowUpdater : public QObject
 {
     Q_OBJECT
