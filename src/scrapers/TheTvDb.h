@@ -22,6 +22,8 @@ class TheTvDb : public TvScraperInterface
     Q_OBJECT
 public:
     explicit TheTvDb(QObject* parent = nullptr);
+    static constexpr const char* scraperIdentifier = "TheTVDB";
+
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;

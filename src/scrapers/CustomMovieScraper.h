@@ -11,6 +11,7 @@ class CustomMovieScraper : public MovieScraperInterface
     Q_OBJECT
 public:
     explicit CustomMovieScraper(QObject* parent = nullptr);
+    static constexpr const char* scraperIdentifier = "custom-movie";
     static CustomMovieScraper* instance(QObject* parent = nullptr);
 
     QString name() const override;

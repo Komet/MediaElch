@@ -13,6 +13,8 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "scrapers/CustomMovieScraper.h"
+#include "scrapers/IMDB.h"
+#include "scrapers/TMDb.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie* parent) :
@@ -152,11 +154,12 @@ void MovieController::loadData(QMap<MovieScraperInterface*, QString> ids,
     QVector<MovieScraperInfos> infos)
 {
     m_infosToLoad = infos;
-    if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt")) {
+    if (scraperInterface->identifier() == TMDb::scraperIdentifier && !ids.values().first().startsWith("tt")) {
         m_movie->setTmdbId(TmdbId(ids.values().first()));
 
-    } else if (scraperInterface->identifier() == "imdb"
-               || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))) {
+    } else if (scraperInterface->identifier() == IMDB::scraperIdentifier
+               || (scraperInterface->identifier() == TMDb::scraperIdentifier
+                      && ids.values().first().startsWith("tt"))) {
         m_movie->setId(ImdbId(ids.values().first()));
     }
     scraperInterface->loadData(ids, m_movie, infos);
@@ -446,7 +449,7 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone(Manager::instance()->scraper("tmdb"));
+        scraperLoadDone(Manager::instance()->scraper(TMDb::scraperIdentifier));
     }
     m_loadMutex.unlock();
 }

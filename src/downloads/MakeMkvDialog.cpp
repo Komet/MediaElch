@@ -9,6 +9,7 @@
 #include "globals/Manager.h"
 #include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
+#include "scrapers/CustomMovieScraper.h"
 
 MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
 {
@@ -226,9 +227,9 @@ void MakeMkvDialog::onMovieChosen()
 {
     QMap<MovieScraperInterface*, QString> ids;
     QVector<MovieScraperInfos> infosToLoad;
-    if (ui->movieSearchWidget->scraperId() == "custom-movie") {
+    if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::scraperIdentifier) {
         ids = ui->movieSearchWidget->customScraperIds();
-        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>("custom-movie");
+        infosToLoad = Settings::instance()->scraperInfos<MovieScraperInfos>(CustomMovieScraper::scraperIdentifier);
     } else {
         ids.insert(nullptr, ui->movieSearchWidget->scraperMovieId());
         infosToLoad = ui->movieSearchWidget->infosToLoad();

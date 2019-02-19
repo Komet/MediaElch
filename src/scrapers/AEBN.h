@@ -13,6 +13,8 @@ class AEBN : public MovieScraperInterface
     Q_OBJECT
 public:
     explicit AEBN(QObject* parent = nullptr);
+    static constexpr const char* scraperIdentifier = "aebn";
+
     QString name() const override;
     QString identifier() const override;
     void search(QString searchStr) override;

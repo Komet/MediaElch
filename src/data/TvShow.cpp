@@ -12,6 +12,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
+#include "scrapers/TheTvDb.h"
 
 using namespace std::chrono_literals;
 
@@ -235,7 +236,7 @@ void TvShow::loadData(TvDbId id,
     TvShowUpdateType type,
     QVector<TvShowScraperInfos> infosToLoad)
 {
-    if (tvScraperInterface->identifier() == "tvdb") {
+    if (tvScraperInterface->identifier() == TheTvDb::scraperIdentifier) {
         setTvdbId(id);
     }
     m_infosToLoad = infosToLoad;

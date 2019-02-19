@@ -31,7 +31,7 @@ QString AdultDvdEmpire::name() const
 
 QString AdultDvdEmpire::identifier() const
 {
-    return QStringLiteral("adult-dvd-empire");
+    return scraperIdentifier;
 }
 
 bool AdultDvdEmpire::isAdult() const

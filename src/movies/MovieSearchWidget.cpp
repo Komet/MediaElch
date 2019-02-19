@@ -1,12 +1,14 @@
 #include "MovieSearchWidget.h"
 #include "ui_MovieSearchWidget.h"
 
-#include <QDebug>
-
 #include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
+#include "scrapers/IMDB.h"
+#include "scrapers/TMDb.h"
 #include "settings/Settings.h"
+
+#include <QDebug>
 
 QDebug operator<<(QDebug lhs, const ScraperSearchResult& rhs)
 {
@@ -76,7 +78,7 @@ void MovieSearchWidget::search(QString searchString, ImdbId id, TmdbId tmdbId)
 
 void MovieSearchWidget::startSearch()
 {
-    if (m_currentScraper->identifier() == "custom-movie") {
+    if (m_currentScraper->identifier() == CustomMovieScraper::scraperIdentifier) {
         m_currentCustomScraper = CustomMovieScraper::instance()->titleScraper();
     }
     if (m_currentScraper == nullptr) {
@@ -184,7 +186,7 @@ void MovieSearchWidget::showResults(QVector<ScraperSearchResult> results)
 
 void MovieSearchWidget::resultClicked(QTableWidgetItem* item)
 {
-    if (m_currentScraper->identifier() != "custom-movie" && m_customScraperIds.isEmpty()) {
+    if (m_currentScraper->identifier() != CustomMovieScraper::scraperIdentifier && m_customScraperIds.isEmpty()) {
         m_scraperMovieId = item->data(Qt::UserRole).toString();
         m_customScraperIds.clear();
         emit sigResultClicked();
@@ -319,10 +321,10 @@ void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
         return;
     }
     QString searchText = [&]() -> QString {
-        if (scraper->identifier() == "imdb" && m_imdbId.isValid()) {
+        if (scraper->identifier() == IMDB::scraperIdentifier && m_imdbId.isValid()) {
             return m_imdbId.toString();
         }
-        if (scraper->identifier() == "tmdb") {
+        if (scraper->identifier() == TMDb::scraperIdentifier) {
             if (m_tmdbId.isValid()) {
                 return m_tmdbId.withPrefix();
             } else if (m_imdbId.isValid()) {
