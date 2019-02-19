@@ -252,7 +252,7 @@ package_zip() {
 	cp release/MediaElch.exe pkg-zip/MediaElch/
 
 	local MXELIB=${MXEDIR}/usr/${MXETARGET}
-	local FFMPEG_VERSION="ffmpeg-4.0-win64-static"
+	local FFMPEG_VERSION="ffmpeg-latest-win64-static"
 
 	for file in $(cat ${SCRIPT_DIR}/win/dll_list.txt); do
 		cp ${MXEDIR}/usr/${MXETARGET}/${file} pkg-zip/MediaElch/
