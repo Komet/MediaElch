@@ -40,21 +40,23 @@ fold_end
 if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 	if [ $QT = "qtWin" ]; then
-		MXEDIR="/usr/lib/mxe"
-		MXETARGET="i686-w64-mingw32.shared"
+		export MXEDIR="/usr/lib/mxe"
+		export MXEINFIX="x86-64-w64-mingw32.shared"
+		export MXETARGET="x86_64-w64-mingw32.shared"
 
 		# defs.sh is read by "configure.sh"
 		echo "#!/usr/bin/env bash"        >  ${SCRIPT_DIR}/defs.sh
 		echo "MXEDIR=\"${MXEDIR}\""       >> ${SCRIPT_DIR}/defs.sh
+		echo "MXEINFIX=\"${MXEINFIX}\""   >> ${SCRIPT_DIR}/defs.sh
 		echo "MXETARGET=\"${MXETARGET}\"" >> ${SCRIPT_DIR}/defs.sh
 
 		#######################################################
 		# Repositories
 
 		fold_start "mxe_repo"
-		print_info "Adding pkg.mxe.cc apt repo"
-		echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mxeapt.list > /dev/null
-		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
+		print_info "Adding mirror.mxe.cc apt repo"
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
+		sudo add-apt-repository 'deb [arch=amd64] https://mirror.mxe.cc/repos/apt xenial main'
 		fold_end
 
 		fold_start "update"
@@ -70,13 +72,14 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 		fold_start "mxe_install"
 		print_info "Installing mxe"
-		sudo apt-get install -y mxe-${MXETARGET}-gcc \
-			mxe-${MXETARGET}-zlib \
-			mxe-${MXETARGET}-qtbase \
-			mxe-${MXETARGET}-qttools \
-			mxe-${MXETARGET}-qtmultimedia \
-			mxe-${MXETARGET}-qtimageformats \
-			mxe-${MXETARGET}-qtquickcontrols
+		sudo apt-get install -y mxe-${MXEINFIX}-gcc \
+			mxe-${MXEINFIX}-gnutls \
+			mxe-${MXEINFIX}-zlib \
+			mxe-${MXEINFIX}-qtbase \
+			mxe-${MXEINFIX}-qttools \
+			mxe-${MXEINFIX}-qtmultimedia \
+			mxe-${MXEINFIX}-qtimageformats \
+			mxe-${MXEINFIX}-qtquickcontrols
 		fold_end
 
 		echo "Make MXE writable"
