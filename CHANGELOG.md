@@ -19,6 +19,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Add more subtitle formats (#661)
  - UI: Fix list/table style for dark themes (#640)
  - UI: Fix stuck splitter cursor (#659)
+ - UI: Restructured search windows (#660)
 
 ### Internal Improvements
 
