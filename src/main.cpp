@@ -54,7 +54,6 @@ void messageHandler(QtMsgType type, const QMessageLogContext& context, const QSt
 
 void installLogger()
 {
-    Settings::instance(QCoreApplication::instance())->loadSettings();
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
         data.setFileName(Settings::instance()->advanced()->logFile());
         if (!data.open(QFile::WriteOnly | QFile::Truncate)) {
@@ -96,6 +95,9 @@ int main(int argc, char* argv[])
     // "Manager" which instantiates all scrapers which themself add their settings
     // with translated values to the settings dialog.
     qInstallMessageHandler(messageHandler);
+
+    // Load the system's settings, e.g. window position, etc.
+    Settings::instance(QCoreApplication::instance())->loadSettings();
 
     // Qt localization
     QTranslator qtTranslator;
