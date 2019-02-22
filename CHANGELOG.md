@@ -12,6 +12,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Fix TMDb issue with HTML characters in overview/plot (#651)
  - `Ctrl+A` works in movie and concert section (#647)
  - Fix crash when "Load missing episodes" is enabled (#669)
+ - Filter "Movie has no IMDb ID" is inversed (#680)
 
 ### Improvements
 
