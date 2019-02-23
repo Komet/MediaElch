@@ -59,8 +59,13 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         m_episode.setCertification(Certification(episodeDetails.elementsByTagName("mpaa").at(0).toElement().text()));
     }
     if (!episodeDetails.elementsByTagName("aired").isEmpty()) {
-        m_episode.setFirstAired(
-            QDate::fromString(episodeDetails.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
+        const QDomElement aired = episodeDetails.elementsByTagName("aired").at(0).toElement();
+        if (!aired.isNull()) {
+            const QDate date = QDate::fromString(aired.text(), "yyyy-MM-dd");
+            if (date.isValid()) {
+                m_episode.setFirstAired(date);
+            }
+        }
     }
     if (!episodeDetails.elementsByTagName("playcount").isEmpty()) {
         m_episode.setPlayCount(episodeDetails.elementsByTagName("playcount").at(0).toElement().text().toInt());
@@ -70,8 +75,13 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
             QTime(0, 0, 0).addSecs(episodeDetails.elementsByTagName("epbookmark").at(0).toElement().text().toInt()));
     }
     if (!episodeDetails.elementsByTagName("lastplayed").isEmpty()) {
-        m_episode.setLastPlayed(QDateTime::fromString(
-            episodeDetails.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+        const QDomElement lastplayed = episodeDetails.elementsByTagName("lastplayed").at(0).toElement();
+        if (!lastplayed.isNull()) {
+            const QDateTime date = QDateTime::fromString(lastplayed.text(), "yyyy-MM-dd HH:mm:ss");
+            if (date.isValid()) {
+                m_episode.setLastPlayed(date);
+            }
+        }
     }
     if (!episodeDetails.elementsByTagName("studio").isEmpty()) {
         m_episode.setNetwork(episodeDetails.elementsByTagName("studio").at(0).toElement().text());
