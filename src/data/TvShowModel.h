@@ -29,7 +29,7 @@ public:
     bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex()) override;
     TvShowModelItem* appendChild(TvShow* show);
     void clear();
-    TvShowModelItem* getItem(const QModelIndex& index) const;
+    TvShowModelItem& getItem(const QModelIndex& index) const;
     QVector<TvShow*> tvShows();
     int hasNewShowOrEpisode();
     void removeShow(TvShow* show);

@@ -1494,7 +1494,7 @@ void TvShow::fillMissingEpisodes()
         }
     }
 
-    TvShowFilesWidget::instance()->renewModel(true);
+    TvShowFilesWidget::instance().renewModel(true);
 }
 
 void TvShow::clearMissingEpisodes()
@@ -1534,7 +1534,7 @@ void TvShow::clearMissingEpisodes()
         }
     }
 
-    TvShowFilesWidget::instance()->renewModel(true);
+    TvShowFilesWidget::instance().renewModel(true);
 }
 
 /*** DEBUG ***/
