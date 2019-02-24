@@ -894,7 +894,7 @@
   <customwidget>
    <class>TvShowFilesWidget</class>
    <extends>QWidget</extends>
-   <header>tvShows/TvShowFilesWidget.h</header>
+   <header>ui/tv_show/TvShowFilesWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -239,9 +239,9 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
     src/ui/small_widgets/TagCloud.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
+    src/ui/tv_show/TvShowFilesWidget.cpp \
     src/support/SupportDialog.cpp \
     src/trailerProviders/HdTrailers.cpp \
-    src/tvShows/TvShowFilesWidget.cpp \
     src/tvShows/TvShowMultiScrapeDialog.cpp \
     src/tvShows/TvShowSearch.cpp \
     src/tvShows/TvShowSearchEpisode.cpp \
@@ -437,10 +437,10 @@ HEADERS  += Version.h \
     src/ui/small_widgets/SlidingStackedWidget.h \
     src/ui/small_widgets/TagCloud.h \
     src/ui/small_widgets/TvShowTreeView.h \
+    src/ui/tv_show/TvShowFilesWidget.h \
     src/support/SupportDialog.h \
     src/trailerProviders/HdTrailers.h \
     src/trailerProviders/TrailerProvider.h \
-    src/tvShows/TvShowFilesWidget.h \
     src/tvShows/TvShowMultiScrapeDialog.h \
     src/tvShows/TvShowSearch.h \
     src/tvShows/TvShowSearchEpisode.h \
@@ -508,9 +508,9 @@ FORMS    += src/main/MainWindow.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \
     src/ui/small_widgets/MediaFlags.ui \
     src/ui/small_widgets/TagCloud.ui \
+    src/ui/tv_show/TvShowFilesWidget.ui \
     src/support/SupportDialog.ui \
     src/tvShows/ItemWidgetShow.ui \
-    src/tvShows/TvShowFilesWidget.ui \
     src/tvShows/TvShowMultiScrapeDialog.ui \
     src/tvShows/TvShowSearch.ui \
     src/tvShows/TvShowSearchEpisode.ui \
