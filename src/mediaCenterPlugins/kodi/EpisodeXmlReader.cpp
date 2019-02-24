@@ -60,7 +60,7 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     }
     if (!episodeDetails.elementsByTagName("aired").isEmpty()) {
         const QDomElement aired = episodeDetails.elementsByTagName("aired").at(0).toElement();
-        if (!aired.isNull()) {
+        if (!aired.isNull() && !aired.text().isEmpty()) {
             const QDate date = QDate::fromString(aired.text(), "yyyy-MM-dd");
             if (date.isValid()) {
                 m_episode.setFirstAired(date);
@@ -76,7 +76,7 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     }
     if (!episodeDetails.elementsByTagName("lastplayed").isEmpty()) {
         const QDomElement lastplayed = episodeDetails.elementsByTagName("lastplayed").at(0).toElement();
-        if (!lastplayed.isNull()) {
+        if (!lastplayed.isNull() && !lastplayed.text().isEmpty()) {
             const QDateTime date = QDateTime::fromString(lastplayed.text(), "yyyy-MM-dd HH:mm:ss");
             if (date.isValid()) {
                 m_episode.setLastPlayed(date);
