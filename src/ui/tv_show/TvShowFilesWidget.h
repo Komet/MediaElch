@@ -15,9 +15,7 @@ namespace Ui {
 class TvShowFilesWidget;
 }
 
-/**
- * @brief The TvShowFilesWidget class
- */
+/// @brief UI widget for showing TV shows in a table/list view.
 class TvShowFilesWidget : public QWidget
 {
     Q_OBJECT

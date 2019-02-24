@@ -23,7 +23,7 @@
 #include "scrapers/TvTunes.h"
 #include "settings/Settings.h"
 #include "trailerProviders/TrailerProvider.h"
-#include "tvShows/TvShowFilesWidget.h"
+#include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>
 #include <QVector>
