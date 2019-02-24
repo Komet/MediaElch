@@ -39,6 +39,7 @@ public slots:
 
 protected:
     void resizeEvent(QResizeEvent* event) override;
+    void closeEvent(QCloseEvent*) override;
 
 private slots:
     void progressProgress(int current, int max, int id);

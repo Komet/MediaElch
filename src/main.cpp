@@ -96,9 +96,6 @@ int main(int argc, char* argv[])
     // with translated values to the settings dialog.
     qInstallMessageHandler(messageHandler);
 
-    // Load the system's settings, e.g. window position, etc.
-    Settings::instance(QCoreApplication::instance())->loadSettings();
-
     // Qt localization
     QTranslator qtTranslator;
     qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
@@ -115,6 +112,9 @@ int main(int argc, char* argv[])
         editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
     }
     app.installTranslator(&editTranslator);
+
+    // Load the system's settings, e.g. window position, etc.
+    Settings::instance(QCoreApplication::instance())->loadSettings();
 
     installLogger();
     loadStylesheet(app);

@@ -271,10 +271,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
  */
 MainWindow::~MainWindow()
 {
-    m_settings->setMainWindowSize(size());
-    m_settings->setMainWindowPosition(pos());
-    m_settings->setMainSplitterState(ui->movieSplitter->saveState());
-    m_settings->setMainWindowMaximized(isMaximized());
     delete ui;
 }
 
@@ -297,6 +293,14 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
     NotificationBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);
+}
+
+void MainWindow::closeEvent(QCloseEvent*)
+{
+    m_settings->setMainWindowSize(size());
+    m_settings->setMainWindowPosition(pos());
+    m_settings->setMainSplitterState(ui->movieSplitter->saveState());
+    m_settings->setMainWindowMaximized(isMaximized());
 }
 
 /**
