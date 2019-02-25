@@ -8,7 +8,6 @@
 #include "data/StreamDetails.h"
 #include "data/TvDbId.h"
 #include "globals/Globals.h"
-#include "tvShows/TvShowModelItem.h"
 
 #include <QMetaType>
 #include <QObject>
@@ -18,7 +17,7 @@ class MediaCenterInterface;
 class StreamDetails;
 class TvScraperInterface;
 class TvShow;
-class TvShowModelItem;
+class EpisodeModelItem;
 
 /**
  * @brief The TvShowEpisode class
@@ -60,7 +59,7 @@ public:
     QUrl thumbnail() const;
     QByteArray thumbnailImage();
     bool thumbnailImageChanged() const;
-    TvShowModelItem* modelItem();
+    EpisodeModelItem* modelItem();
     bool hasChanged() const;
     QVector<QString*> writersPointer();
     QVector<QString*> directorsPointer();
@@ -98,7 +97,7 @@ public:
     void setEpBookmark(QTime epBookmark);
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
-    void setModelItem(TvShowModelItem* item);
+    void setModelItem(EpisodeModelItem* item);
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
@@ -159,7 +158,7 @@ private:
     QString m_network;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;
-    TvShowModelItem* m_modelItem;
+    EpisodeModelItem* m_modelItem;
     bool m_thumbnailImageChanged;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;

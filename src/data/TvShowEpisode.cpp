@@ -6,6 +6,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
+#include "tvShows/model/EpisodeModelItem.h"
 
 #include <QApplication>
 #include <QDir>
@@ -498,11 +499,7 @@ bool TvShowEpisode::thumbnailImageChanged() const
     return m_thumbnailImageChanged;
 }
 
-/**
- * @brief TvShowEpisode::modelItem
- * @return
- */
-TvShowModelItem* TvShowEpisode::modelItem()
+EpisodeModelItem* TvShowEpisode::modelItem()
 {
     return m_modelItem;
 }
@@ -834,11 +831,7 @@ void TvShowEpisode::setChanged(bool changed)
     emit sigChanged(this);
 }
 
-/**
- * @brief TvShowEpisode::setModelItem
- * @param item
- */
-void TvShowEpisode::setModelItem(TvShowModelItem* item)
+void TvShowEpisode::setModelItem(EpisodeModelItem* item)
 {
     m_modelItem = item;
 }

@@ -13,6 +13,8 @@
 #include "renamer/RenamerDialog.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
+#include "tvShows/model/SeasonModelItem.h"
+#include "tvShows/model/TvShowModelItem.h"
 
 ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {
@@ -659,8 +661,8 @@ void ImportDialog::onMovingFilesFinished()
                 ->appendSeason(m_episode->season(), m_episode->seasonString(), m_show)
                 ->appendEpisode(m_episode);
         } else {
-            for (int i = 0, n = m_show->modelItem()->children().size(); i < n; ++i) {
-                TvShowModelItem* item = m_show->modelItem()->child(i);
+            for (int i = 0, n = m_show->modelItem()->seasons().size(); i < n; ++i) {
+                SeasonModelItem* item = m_show->modelItem()->seasonAtIndex(i);
                 if (item->type() == TvShowType::Season && item->season() == m_episode->seasonString()) {
                     item->appendEpisode(m_episode);
                     break;

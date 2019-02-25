@@ -15,6 +15,8 @@ namespace Ui {
 class TvShowFilesWidget;
 }
 
+class TvShowBaseModelItem;
+
 /// @brief UI widget for showing TV shows in a table/list view.
 class TvShowFilesWidget : public QWidget
 {
@@ -62,7 +64,7 @@ private slots:
 private:
     void setupContextMenu();
     void emitSelected(QModelIndex proxyIndex);
-    void forEachSelectedItem(std::function<void(TvShowModelItem&)> callback);
+    void forEachSelectedItem(std::function<void(TvShowBaseModelItem&)> callback);
 
     static TvShowFilesWidget* m_instance;
 
@@ -70,10 +72,7 @@ private:
     TvShowProxyModel* m_tvShowProxyModel = nullptr;
     QMenu* m_contextMenu = nullptr;
 
-    // last selected show/episode/season
-    TvShow* m_lastTvShow = nullptr;
-    TvShowEpisode* m_lastEpisode = nullptr;
-    SeasonNumber m_lastSeason = SeasonNumber::NoSeason;
+    TvShowBaseModelItem* m_lastItem = nullptr;
 
     QAction* m_actionShowMissingEpisodes = nullptr;
     QAction* m_actionHideSpecialsInMissingEpisodes = nullptr;

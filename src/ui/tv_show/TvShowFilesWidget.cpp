@@ -8,9 +8,11 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "tvShows/TvShowModelItem.h"
 #include "tvShows/TvShowMultiScrapeDialog.h"
 #include "tvShows/TvShowUpdater.h"
+#include "tvShows/model/EpisodeModelItem.h"
+#include "tvShows/model/SeasonModelItem.h"
+#include "tvShows/model/TvShowModelItem.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 
 TvShowFilesWidget* TvShowFilesWidget::m_instance;
@@ -83,7 +85,7 @@ void TvShowFilesWidget::showContextMenu(QPoint point)
 
     } else {
         const QModelIndex index = m_tvShowProxyModel->mapToSource(rows.at(0));
-        TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
+        TvShowBaseModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
 
         if (item.type() == TvShowType::TvShow) {
             m_actionShowMissingEpisodes->setEnabled(true);
@@ -111,23 +113,13 @@ void TvShowFilesWidget::scanForEpisodes()
         return;
     }
 
-    QString scanDir = [](QModelIndex index) -> QString {
-        TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
-        switch (item.type()) {
-        case TvShowType::TvShow:
-        case TvShowType::Season: return item.tvShow()->dir();
-        case TvShowType::Episode: return item.tvShowEpisode()->tvShow()->dir();
-        case TvShowType::None: return QString{};
-        }
-        qCritical() << "[TvShowFilesWidget] Unhandled case";
-        return QString{};
-    }(sourceIndex);
-
-    if (scanDir.isEmpty()) {
+    auto& item = Manager::instance()->tvShowModel()->getItem(sourceIndex);
+    if (item.tvShow() == nullptr) {
+        // item type may be "TvShowType::None"
         return;
     }
 
-    Manager::instance()->fileScannerDialog()->setScanDir(scanDir);
+    Manager::instance()->fileScannerDialog()->setScanDir(item.tvShow()->dir());
     Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::ReloadType::Episodes);
 
     auto* selectionModel = ui->files->selectionModel();
@@ -140,13 +132,13 @@ void TvShowFilesWidget::scanForEpisodes()
 
     qApp->processEvents();
 
-    if (m_lastTvShow == nullptr) {
+    if (m_lastItem == nullptr || m_lastItem->tvShow() == nullptr) {
         return;
     }
 
     // select the show again after re-scanning
 
-    const QString dir = m_lastTvShow->dir();
+    const QString dir = m_lastItem->tvShow()->dir();
     const int rowCount = ui->files->model()->rowCount();
 
     for (int row = 0; row < rowCount; ++row) {
@@ -164,17 +156,12 @@ void TvShowFilesWidget::markAsWatched()
 {
     m_contextMenu->close();
 
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         switch (item.type()) {
         case TvShowType::None: break;
-
-        case TvShowType::TvShow:
-        case TvShowType::Season:
+        case TvShowType::TvShow: {
             for (TvShowEpisode* episode : item.tvShow()->episodes()) {
                 if (episode->isDummy()) {
-                    continue;
-                }
-                if (item.type() == TvShowType::Season && episode->season() != item.seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() < 1) {
@@ -185,18 +172,37 @@ void TvShowFilesWidget::markAsWatched()
                 }
             }
             break;
-
-        case TvShowType::Episode:
-            if (item.tvShowEpisode()->isDummy()) {
-                break;
-            }
-            if (item.tvShowEpisode()->playCount() < 1) {
-                item.tvShowEpisode()->setPlayCount(1);
-            }
-            if (!item.tvShowEpisode()->lastPlayed().isValid()) {
-                item.tvShowEpisode()->setLastPlayed(QDateTime::currentDateTime());
+        }
+        case TvShowType::Season: {
+            auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
+                if (episode->isDummy()) {
+                    continue;
+                }
+                if (episode->season() != seasonModel->seasonNumber()) {
+                    continue;
+                }
+                if (episode->playCount() < 1) {
+                    episode->setPlayCount(1);
+                }
+                if (!episode->lastPlayed().isValid()) {
+                    episode->setLastPlayed(QDateTime::currentDateTime());
+                }
             }
             break;
+        }
+        case TvShowType::Episode: {
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+            if (episode->isDummy()) {
+                break;
+            }
+            if (episode->playCount() < 1) {
+                episode->setPlayCount(1);
+            }
+            if (!episode->lastPlayed().isValid()) {
+                episode->setLastPlayed(QDateTime::currentDateTime());
+            }
+        } break;
         }
     });
 
@@ -207,17 +213,25 @@ void TvShowFilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
 
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         switch (item.type()) {
         case TvShowType::None: break;
-
-        case TvShowType::TvShow:
-        case TvShowType::Season:
-            for (TvShowEpisode* episode : item.tvShow()->episodes()) {
+        case TvShowType::TvShow: {
+            auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
+            for (TvShowEpisode* episode : showModel->tvShow()->episodes()) {
+                if (!episode->isDummy() && episode->playCount() != 0) {
+                    episode->setPlayCount(0);
+                }
+            }
+            break;
+        }
+        case TvShowType::Season: {
+            auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (item.type() == TvShowType::Season && episode->season() != item.seasonNumber()) {
+                if (episode->season() != seasonModel->seasonNumber()) {
                     continue;
                 }
                 if (episode->playCount() != 0) {
@@ -225,16 +239,14 @@ void TvShowFilesWidget::markAsUnwatched()
                 }
             }
             break;
-
-        case TvShowType::Episode:
-            if (item.tvShowEpisode()->isDummy()) {
-                break;
+        }
+        case TvShowType::Episode: {
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+            if (!episode->isDummy() && episode->playCount() != 0) {
+                episode->setPlayCount(0);
             }
-            if (item.tvShowEpisode()->playCount() != 0) {
-                item.tvShowEpisode()->setPlayCount(0);
-            }
-
             break;
+        }
         }
     });
 
@@ -247,20 +259,26 @@ void TvShowFilesWidget::loadStreamDetails()
 
     QVector<TvShowEpisode*> episodes;
 
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::TvShow || item.type() == TvShowType::Season) {
             for (TvShowEpisode* episode : item.tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (item.type() == TvShowType::Season && episode->season() != item.seasonNumber()) {
-                    continue;
+                if (item.type() == TvShowType::Season) {
+                    auto* season = dynamic_cast<SeasonModelItem*>(&item);
+                    if (episode->season() != season->seasonNumber()) {
+                        continue;
+                    }
                 }
                 episodes.append(episode);
             }
 
-        } else if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->isDummy()) {
-            episodes.append(item.tvShowEpisode());
+        } else if (item.type() == TvShowType::Episode) {
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item);
+            if (!episode->tvShowEpisode()->isDummy()) {
+                episodes.append(episode->tvShowEpisode());
+            }
         }
     });
 
@@ -282,29 +300,33 @@ void TvShowFilesWidget::markForSync(bool markForSync)
 
     for (const QModelIndex& mIndex : ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
-        TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
+        TvShowBaseModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
 
         if (item.type() == TvShowType::TvShow) {
             item.tvShow()->setSyncNeeded(markForSync);
 
         } else if (item.type() == TvShowType::Season) {
-            for (TvShowEpisode* episode : item.tvShow()->episodes()) {
+            auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (episode->season() != item.seasonNumber()) {
+                if (episode->season() != seasonModel->seasonNumber()) {
                     continue;
                 }
                 episode->setSyncNeeded(markForSync);
             }
 
-            for (int i = 0, n = item.children().size(); i < n; ++i) {
+            for (int i = 0, n = item.childCount(); i < n; ++i) {
                 ui->files->update(
                     m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
             }
 
-        } else if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->isDummy()) {
-            item.tvShowEpisode()->setSyncNeeded(markForSync);
+        } else if (item.type() == TvShowType::Episode) {
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+            if (!episode->isDummy()) {
+                episode->setSyncNeeded(markForSync);
+            }
         }
         ui->files->update(mIndex);
     }
@@ -324,14 +346,15 @@ void TvShowFilesWidget::openFolder()
 
     QString dir = [this]() {
         const QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
-        TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
+        TvShowBaseModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
         switch (item.type()) {
         case TvShowType::None: return QString{};
         case TvShowType::TvShow:
         case TvShowType::Season: return item.tvShow()->dir();
         case TvShowType::Episode:
-            if (!item.tvShowEpisode()->files().isEmpty() && !item.tvShowEpisode()->isDummy()) {
-                QFileInfo fi(item.tvShowEpisode()->files().at(0));
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+            if (!episode->files().isEmpty() && !episode->isDummy()) {
+                QFileInfo fi(episode->files().at(0));
                 return fi.absolutePath();
             }
         }
@@ -354,14 +377,18 @@ void TvShowFilesWidget::openNfo()
     }
 
     const QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
-    TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
+    TvShowBaseModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
 
     QString file;
     if (item.type() == TvShowType::TvShow) {
-        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item.tvShow());
-    } else if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->files().isEmpty()
-               && !item.tvShowEpisode()->isDummy()) {
-        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item.tvShowEpisode());
+        auto* showModel = dynamic_cast<TvShowModelItem*>(&item);
+        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(showModel->tvShow());
+
+    } else if (item.type() == TvShowType::Episode) {
+        auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+        if (!episode->files().isEmpty() && !episode->isDummy()) {
+            file = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
+        }
     }
 
     if (file.isEmpty()) {
@@ -375,7 +402,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 {
     m_contextMenu->close();
 
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() != TvShowType::TvShow) {
             return;
         }
@@ -420,7 +447,7 @@ void TvShowFilesWidget::showMissingEpisodes()
 void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
 {
     m_contextMenu->close();
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::TvShow) {
             item.tvShow()->setHideSpecialsInMissingEpisodes(!item.tvShow()->hideSpecialsInMissingEpisodes());
             m_actionHideSpecialsInMissingEpisodes->setChecked(item.tvShow()->hideSpecialsInMissingEpisodes());
@@ -448,6 +475,8 @@ void TvShowFilesWidget::renewModel(bool force)
         onViewUpdated();
         return;
     }
+
+    m_tvShowProxyModel->invalidate();
 
     const int rowCount = ui->files->model()->rowCount();
     for (int row = 0; row < rowCount; ++row) {
@@ -479,60 +508,57 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
 
     qDebug() << "[TvShowFilesWidget] Selected item at row" << index.row() << "and column" << index.column();
 
-    m_lastEpisode = nullptr;
-    m_lastTvShow = nullptr;
-    m_lastSeason = SeasonNumber::NoSeason;
-
     const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
-    TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(sourceIndex);
-    const TvShowType showType = item.type();
-
-    if (showType == TvShowType::TvShow) {
-        m_lastTvShow = item.tvShow();
-
-    } else if (showType == TvShowType::Episode) {
-        m_lastEpisode = item.tvShowEpisode();
-
-    } else if (showType == TvShowType::Season) {
-        m_lastTvShow = item.tvShow();
-        m_lastSeason = item.seasonNumber();
-    }
+    m_lastItem = &Manager::instance()->tvShowModel()->getItem(sourceIndex);
 
     emitLastSelection();
 }
 
 void TvShowFilesWidget::emitLastSelection()
 {
-    if (m_lastTvShow != nullptr && m_lastSeason != SeasonNumber::NoSeason) {
-        emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
+    const auto showType = m_lastItem->type();
 
-    } else if (m_lastTvShow != nullptr) {
-        emit sigTvShowSelected(m_lastTvShow);
+    if (showType == TvShowType::TvShow && m_lastItem->tvShow() != nullptr) {
+        emit sigTvShowSelected(m_lastItem->tvShow());
 
-    } else if (m_lastEpisode != nullptr) {
-        emit sigEpisodeSelected(m_lastEpisode);
+    } else if (showType == TvShowType::Episode) {
+        auto* model = dynamic_cast<EpisodeModelItem*>(m_lastItem);
+        if (model->tvShowEpisode() != nullptr) {
+            emit sigEpisodeSelected(model->tvShowEpisode());
+        }
+
+    } else if (showType == TvShowType::Season) {
+        auto* model = dynamic_cast<SeasonModelItem*>(m_lastItem);
+        if (model->seasonNumber() != SeasonNumber::NoSeason) {
+            emit sigSeasonSelected(model->tvShow(), model->seasonNumber());
+        }
     }
 }
 
 QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
 {
     QVector<TvShowEpisode*> episodes;
-    forEachSelectedItem([&](TvShowModelItem& item) {
-        if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->isDummy()) {
-            episodes.append(item.tvShowEpisode());
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
+        if (item.type() == TvShowType::Episode) {
+            auto* episode = dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode();
+            if (!episode->isDummy()) {
+                episodes.append(episode);
+            }
 
         } else if (item.type() == TvShowType::Season && includeFromSeasonOrShow) {
-            for (TvShowEpisode* episode : item.tvShow()->episodes()) {
+            auto* seasonModel = dynamic_cast<SeasonModelItem*>(&item);
+            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
-                if (!episodes.contains(episode) && episode->season() == item.seasonNumber()) {
+                if (!episodes.contains(episode) && episode->season() == seasonModel->seasonNumber()) {
                     episodes.append(episode);
                 }
             }
 
         } else if (item.type() == TvShowType::TvShow && includeFromSeasonOrShow) {
-            for (TvShowEpisode* episode : item.tvShow()->episodes()) {
+            auto* seasonModel = dynamic_cast<TvShowModelItem*>(&item);
+            for (TvShowEpisode* episode : seasonModel->tvShow()->episodes()) {
                 if (episode->isDummy()) {
                     continue;
                 }
@@ -548,9 +574,10 @@ QVector<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeas
 QVector<TvShow*> TvShowFilesWidget::selectedShows()
 {
     QVector<TvShow*> shows;
-    forEachSelectedItem([&](TvShowModelItem& item) {
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
         if (item.type() == TvShowType::TvShow) {
-            shows.append(item.tvShow());
+            auto* show = dynamic_cast<TvShowModelItem*>(&item)->tvShow();
+            shows.append(show);
         }
     });
     return shows;
@@ -561,9 +588,12 @@ QVector<TvShow*> TvShowFilesWidget::selectedShows()
 QVector<TvShow*> TvShowFilesWidget::selectedSeasons()
 {
     QVector<TvShow*> shows;
-    forEachSelectedItem([&](TvShowModelItem& item) {
-        if (item.type() == TvShowType::Season && !shows.contains(item.tvShow())) {
-            shows.push_back(item.tvShow());
+    forEachSelectedItem([&](TvShowBaseModelItem& item) {
+        if (item.type() == TvShowType::Season) {
+            auto* show = dynamic_cast<SeasonModelItem*>(&item)->tvShow();
+            if (!shows.contains(show)) {
+                shows.push_back(show);
+            }
         }
     });
     return shows;
@@ -650,16 +680,16 @@ void TvShowFilesWidget::emitSelected(QModelIndex proxyIndex)
         emit sigTvShowSelected(item.tvShow());
 
     } else if (item.type() == TvShowType::Episode) {
-        emit sigEpisodeSelected(item.tvShowEpisode());
+        emit sigEpisodeSelected(dynamic_cast<EpisodeModelItem*>(&item)->tvShowEpisode());
     }
 }
 
-void TvShowFilesWidget::forEachSelectedItem(std::function<void(TvShowModelItem&)> callback)
+void TvShowFilesWidget::forEachSelectedItem(std::function<void(TvShowBaseModelItem&)> callback)
 {
     const QModelIndexList selectedRows = ui->files->selectionModel()->selectedRows(0);
     for (const QModelIndex& mIndex : selectedRows) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
-        TvShowModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
+        TvShowBaseModelItem& item = Manager::instance()->tvShowModel()->getItem(index);
         callback(item);
     }
 }
