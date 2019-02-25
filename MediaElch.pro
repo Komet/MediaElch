@@ -249,8 +249,12 @@ SOURCES += src/main.cpp \
     src/tvShows/TvShowWidgetTvShow.cpp \
     src/tvShows/TvTunesDialog.cpp \
     src/tvShows/TvShowModel.cpp \
-    src/tvShows/TvShowModelItem.cpp \
     src/tvShows/TvShowProxyModel.cpp \
+    src/tvShows/model/TvShowModelItem.cpp \
+    src/tvShows/model/TvShowBaseModelItem.cpp \
+    src/tvShows/model/TvShowRootModelItem.cpp \
+    src/tvShows/model/EpisodeModelItem.cpp \
+    src/tvShows/model/SeasonModelItem.cpp \
     src/xbmc/XbmcSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
@@ -448,8 +452,12 @@ HEADERS  += Version.h \
     src/tvShows/TvShowWidgetTvShow.h \
     src/tvShows/TvTunesDialog.h \
     src/tvShows/TvShowModel.h \
-    src/tvShows/TvShowModelItem.h \
     src/tvShows/TvShowProxyModel.h \
+    src/tvShows/model/TvShowModelItem.h \
+    src/tvShows/model/TvShowBaseModelItem.h \
+    src/tvShows/model/TvShowRootModelItem.h \
+    src/tvShows/model/EpisodeModelItem.h \
+    src/tvShows/model/SeasonModelItem.h \
     src/xbmc/XbmcSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \

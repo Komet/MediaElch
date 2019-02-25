@@ -2,11 +2,13 @@
 #include <QPainter>
 #include <QtGui>
 
-#include "TvShowModel.h"
-#include "TvShowModelItem.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "tvShows/TvShowModel.h"
+#include "tvShows/model/EpisodeModelItem.h"
+#include "tvShows/model/SeasonModelItem.h"
+#include "tvShows/model/TvShowModelItem.h"
 
 TvShowModel::TvShowModel(QObject* parent) :
     QAbstractItemModel(parent),
@@ -55,7 +57,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
 
-    const TvShowModelItem& item = getItem(index);
+    const TvShowBaseModelItem& item = getItem(index);
 
     if (index.column() != 0) { // column 0 => text
         if (role == Qt::DecorationRole) {
@@ -112,11 +114,17 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         if (item.data(2).toBool()) {
             return QColor(255, 0, 0);
         }
-        if (item.type() == TvShowType::Episode && item.tvShowEpisode()->isDummy()) {
-            return QColor(150, 150, 150);
+        if (item.type() == TvShowType::Episode) {
+            auto* showEpisode = dynamic_cast<const EpisodeModelItem*>(&item);
+            if (showEpisode->tvShowEpisode()->isDummy()) {
+                return QColor(150, 150, 150);
+            }
         }
-        if (item.type() == TvShowType::Season && item.tvShow()->isDummySeason(item.seasonNumber())) {
-            return QColor(150, 150, 150);
+        if (item.type() == TvShowType::Season) {
+            auto* seasonModel = dynamic_cast<const SeasonModelItem*>(&item);
+            if (item.tvShow()->isDummySeason(seasonModel->seasonNumber())) {
+                return QColor(150, 150, 150);
+            }
         }
         return QColor(17, 51, 80);
     }
@@ -137,26 +145,32 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     case TvShowRoles::LogoPath: return item.data(110);
     case TvShowRoles::SelectionForeground: return QColor(255, 255, 255);
     case TvShowRoles::FilePath:
-        if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->files().isEmpty()) {
-            return item.tvShowEpisode()->files().first();
+        if (item.type() == TvShowType::Episode) {
+            auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);
+            if (!episode->tvShowEpisode()->files().isEmpty()) {
+                return episode->tvShowEpisode()->files().first();
+            }
         }
         if (item.type() == TvShowType::TvShow) {
             return item.tvShow()->dir();
         }
         break;
     case TvShowRoles::HasDummyEpisodes:
-        if (item.type() == TvShowType::Season && item.tvShow()->hasDummyEpisodes(item.seasonNumber())) {
-            return true;
+        if (item.type() == TvShowType::Season) {
+            auto* season = dynamic_cast<const SeasonModelItem*>(&item);
+            if (item.tvShow()->hasDummyEpisodes(season->seasonNumber())) {
+                return true;
+            }
         }
         break;
     }
     return QVariant();
 }
 
-const TvShowModelItem& TvShowModel::getItem(const QModelIndex& index) const
+const TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index) const
 {
     if (index.isValid()) {
-        auto* item = static_cast<TvShowModelItem*>(index.internalPointer());
+        auto* item = static_cast<TvShowBaseModelItem*>(index.internalPointer());
         if (item != nullptr) {
             return *item;
         }
@@ -164,10 +178,10 @@ const TvShowModelItem& TvShowModel::getItem(const QModelIndex& index) const
     return m_rootItem;
 }
 
-TvShowModelItem& TvShowModel::getItem(const QModelIndex& index)
+TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index)
 {
     if (index.isValid()) {
-        auto* item = static_cast<TvShowModelItem*>(index.internalPointer());
+        auto* item = static_cast<TvShowBaseModelItem*>(index.internalPointer());
         if (item) {
             return *item;
         }
@@ -181,7 +195,7 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
         return QModelIndex{};
     }
 
-    TvShowModelItem* childItem = getItem(parent).child(row);
+    TvShowBaseModelItem* childItem = getItem(parent).child(row);
     if (childItem != nullptr) {
         return createIndex(row, column, childItem);
     }
@@ -190,7 +204,7 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
 
 TvShowModelItem* TvShowModel::appendChild(TvShow* show)
 {
-    const int size = m_rootItem.children().size();
+    const int size = m_rootItem.shows().size();
 
     beginInsertRows(QModelIndex{}, size, size);
     TvShowModelItem* item = m_rootItem.appendShow(show);
@@ -207,7 +221,7 @@ QModelIndex TvShowModel::parent(const QModelIndex& index) const
         return QModelIndex();
     }
 
-    TvShowModelItem* parentItem = getItem(index).parent();
+    TvShowBaseModelItem* parentItem = getItem(index).parent();
     if (parentItem == nullptr || parentItem == &m_rootItem) {
         return QModelIndex();
     }
@@ -226,19 +240,19 @@ bool TvShowModel::removeRows(int position, int rows, const QModelIndex& parent)
 
 int TvShowModel::rowCount(const QModelIndex& parent) const
 {
-    return getItem(parent).children().size();
+    return getItem(parent).childCount();
 }
 
 /// @brief Removes all children
 void TvShowModel::clear()
 {
-    const int size = m_rootItem.children().size();
+    const int size = m_rootItem.shows().size();
     beginRemoveRows(QModelIndex(), 0, size);
     m_rootItem.removeChildren(0, size);
     endRemoveRows();
 }
 
-void TvShowModel::onSigChanged(TvShowModelItem* showItem, TvShowModelItem* seasonItem, TvShowModelItem* episodeItem)
+void TvShowModel::onSigChanged(TvShowModelItem* showItem, SeasonModelItem* seasonItem, EpisodeModelItem* episodeItem)
 {
     const QModelIndex showIndex = index(showItem->indexInParent(), 0);
     const QModelIndex seasonIndex = index(seasonItem->indexInParent(), 0, showIndex);
@@ -255,7 +269,7 @@ void TvShowModel::onShowChanged(TvShow* show)
 QVector<TvShow*> TvShowModel::tvShows()
 {
     QVector<TvShow*> shows;
-    for (auto* modelShow : m_rootItem.children()) {
+    for (auto* modelShow : m_rootItem.shows()) {
         shows.push_back(modelShow->tvShow());
     }
     return shows;
@@ -281,7 +295,7 @@ int TvShowModel::hasNewShowOrEpisode()
 
 void TvShowModel::removeShow(TvShow* show)
 {
-    for (auto* showModel : m_rootItem.children()) {
+    for (auto* showModel : m_rootItem.shows()) {
         if (showModel->tvShow() == show) {
             removeRow(showModel->indexInParent());
             return;

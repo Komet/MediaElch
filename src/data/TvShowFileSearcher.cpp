@@ -11,7 +11,9 @@
 #include "data/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "tvShows/TvShowModelItem.h"
+#include "tvShows/model/EpisodeModelItem.h"
+#include "tvShows/model/SeasonModelItem.h"
+#include "tvShows/model/TvShowModelItem.h"
 
 /**
  * @brief TvShowFileSearcher::TvShowFileSearcher
@@ -112,7 +114,7 @@ void TvShowFileSearcher::reload(bool force)
         TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
         Manager::instance()->database()->transaction();
-        QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+        QMap<SeasonNumber, SeasonModelItem*> seasonItems;
         QVector<TvShowEpisode*> episodes;
 
         // Setup episodes list
@@ -156,7 +158,7 @@ void TvShowFileSearcher::reload(bool force)
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
         TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
-        QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+        QMap<SeasonNumber, SeasonModelItem*> seasonItems;
         QVector<TvShowEpisode*> episodes = Manager::instance()->database()->episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
         for (TvShowEpisode* episode : episodes) {
@@ -242,7 +244,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     int episodeCounter = 0;
     int episodeSum = contents.count();
-    QMap<SeasonNumber, TvShowModelItem*> seasonItems;
+    QMap<SeasonNumber, SeasonModelItem*> seasonItems;
     QVector<TvShowEpisode*> episodes;
     for (const QStringList& files : contents) {
         if (m_aborted) {

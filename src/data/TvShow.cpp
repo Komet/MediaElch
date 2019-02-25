@@ -13,6 +13,9 @@
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "scrapers/TheTvDb.h"
+#include "tvShows/model/EpisodeModelItem.h"
+#include "tvShows/model/SeasonModelItem.h"
+#include "tvShows/model/TvShowModelItem.h"
 
 using namespace std::chrono_literals;
 
@@ -1484,8 +1487,8 @@ void TvShow::fillMissingEpisodes()
             modelItem()->appendSeason(episode->season(), episode->seasonString(), this)->appendEpisode(episode);
 
         } else {
-            for (int i = 0, n = modelItem()->children().size(); i < n; ++i) {
-                TvShowModelItem* item = modelItem()->child(i);
+            for (int i = 0, n = modelItem()->seasons().size(); i < n; ++i) {
+                SeasonModelItem* item = modelItem()->seasonAtIndex(i);
                 if (item->type() == TvShowType::Season && item->season() == episode->seasonString()) {
                     item->appendEpisode(episode);
                     break;
@@ -1499,8 +1502,8 @@ void TvShow::fillMissingEpisodes()
 
 void TvShow::clearMissingEpisodes()
 {
-    for (int i = 0; i < modelItem()->children().size(); ++i) {
-        TvShowModelItem* seasonItem = modelItem()->child(i);
+    for (int i = 0; i < modelItem()->seasons().size(); ++i) {
+        SeasonModelItem* seasonItem = modelItem()->seasonAtIndex(i);
         if (seasonItem == nullptr) {
             qCritical() << "[TvShow] (Season) item is a nullptr";
             continue;
@@ -1509,8 +1512,8 @@ void TvShow::clearMissingEpisodes()
             continue;
         }
         bool isDummySeason = true;
-        for (int x = 0; x < seasonItem->children().size(); ++x) {
-            TvShowModelItem* episodeItem = seasonItem->child(x);
+        for (int x = 0; x < seasonItem->episodes().size(); ++x) {
+            EpisodeModelItem* episodeItem = seasonItem->episodeAtIndex(x);
             if (episodeItem == nullptr) {
                 qCritical() << "[TvShow] (Episode) item is a nullptr";
                 continue;

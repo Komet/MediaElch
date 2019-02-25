@@ -2,6 +2,7 @@
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "tvShows/model/TvShowRootModelItem.h"
 
 #include <QAbstractItemModel>
 #include <QIcon>
@@ -9,6 +10,8 @@
 #include <QVariant>
 
 class TvShowModelItem;
+class SeasonModelItem;
+class EpisodeModelItem;
 
 /// @brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single
 /// show or season is represented by TvShowModelItem
@@ -29,19 +32,19 @@ public:
 
     TvShowModelItem* appendChild(TvShow* show);
     void removeShow(TvShow* show);
-    const TvShowModelItem& getItem(const QModelIndex& index) const;
-    TvShowModelItem& getItem(const QModelIndex& index);
+    const TvShowBaseModelItem& getItem(const QModelIndex& index) const;
+    TvShowBaseModelItem& getItem(const QModelIndex& index);
     void clear();
 
     QVector<TvShow*> tvShows();
     int hasNewShowOrEpisode();
 
 private slots:
-    void onSigChanged(TvShowModelItem* showItem, TvShowModelItem* seasonItem, TvShowModelItem* episodeItem);
+    void onSigChanged(TvShowModelItem* showItem, SeasonModelItem* seasonItem, EpisodeModelItem* episodeItem);
     void onShowChanged(TvShow* show);
 
 private:
-    TvShowModelItem m_rootItem;
+    TvShowRootModelItem m_rootItem;
 
     QMap<int, QMap<bool, QIcon>> m_icons;
     QIcon m_newIcon;

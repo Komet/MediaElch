@@ -2,6 +2,8 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "tvShows/model/EpisodeModelItem.h"
+#include "tvShows/model/SeasonModelItem.h"
 
 /**
  * @brief TvShowProxyModel::TvShowProxyModel
@@ -91,25 +93,22 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& so
     return false;
 }
 
-
-/**
- * @brief Sort function for the tv show model. Sorts tv shows by name.
- * @param left
- * @param right
- * @return
- */
+/// @brief Sort function for the tv show model. Sorts tv shows by name.
 bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     auto model = static_cast<TvShowModel*>(sourceModel());
-    TvShowModelItem& leftItem = model->getItem(left);
-    TvShowModelItem& rightItem = model->getItem(right);
+    TvShowBaseModelItem& leftItem = model->getItem(left);
+    TvShowBaseModelItem& rightItem = model->getItem(right);
 
     if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::Season) {
-        return leftItem.seasonNumber() < rightItem.seasonNumber();
+        // todo: remove dynamic cast
+        return dynamic_cast<SeasonModelItem*>(&leftItem)->seasonNumber()
+               < dynamic_cast<SeasonModelItem*>(&rightItem)->seasonNumber();
     }
 
     if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::Episode) {
-        return leftItem.tvShowEpisode()->episode() < rightItem.tvShowEpisode()->episode();
+        return dynamic_cast<EpisodeModelItem*>(&leftItem)->tvShowEpisode()->episode()
+               < dynamic_cast<EpisodeModelItem*>(&rightItem)->tvShowEpisode()->episode();
     }
 
     if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::TvShow) {
