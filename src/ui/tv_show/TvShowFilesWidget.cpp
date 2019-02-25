@@ -6,9 +6,9 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 
-#include "data/TvShowModelItem.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "tvShows/TvShowModelItem.h"
 #include "tvShows/TvShowMultiScrapeDialog.h"
 #include "tvShows/TvShowUpdater.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"

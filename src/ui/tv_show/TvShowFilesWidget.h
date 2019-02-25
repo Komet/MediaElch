@@ -2,9 +2,9 @@
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "data/TvShowProxyModel.h"
 #include "globals/Filter.h"
 #include "globals/Globals.h"
+#include "tvShows/TvShowProxyModel.h"
 
 #include <QAction>
 #include <QMenu>

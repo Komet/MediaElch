@@ -9,9 +9,9 @@
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "data/TvShowModelItem.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "tvShows/TvShowModelItem.h"
 
 /**
  * @brief TvShowFileSearcher::TvShowFileSearcher

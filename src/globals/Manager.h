@@ -12,8 +12,6 @@
 #include "data/MusicScraperInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowFileSearcher.h"
-#include "data/TvShowModel.h"
-#include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
 #include "main/MyIconFont.h"
@@ -23,6 +21,8 @@
 #include "scrapers/TvTunes.h"
 #include "settings/Settings.h"
 #include "trailerProviders/TrailerProvider.h"
+#include "tvShows/TvShowModel.h"
+#include "tvShows/TvShowProxyModel.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>
