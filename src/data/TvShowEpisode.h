@@ -7,8 +7,8 @@
 #include "data/SeasonNumber.h"
 #include "data/StreamDetails.h"
 #include "data/TvDbId.h"
-#include "data/TvShowModelItem.h"
 #include "globals/Globals.h"
+#include "tvShows/TvShowModelItem.h"
 
 #include <QMetaType>
 #include <QObject>

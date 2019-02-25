@@ -103,9 +103,6 @@ SOURCES += src/main.cpp \
     src/data/TvShow.cpp \
     src/data/TvShowEpisode.cpp \
     src/data/TvShowFileSearcher.cpp \
-    src/data/TvShowModel.cpp \
-    src/data/TvShowModelItem.cpp \
-    src/data/TvShowProxyModel.cpp \
     src/downloads/DownloadsWidget.cpp \
     src/downloads/Extractor.cpp \
     src/downloads/FileWorker.cpp \
@@ -251,6 +248,9 @@ SOURCES += src/main.cpp \
     src/tvShows/TvShowWidgetSeason.cpp \
     src/tvShows/TvShowWidgetTvShow.cpp \
     src/tvShows/TvTunesDialog.cpp \
+    src/tvShows/TvShowModel.cpp \
+    src/tvShows/TvShowModelItem.cpp \
+    src/tvShows/TvShowProxyModel.cpp \
     src/xbmc/XbmcSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
@@ -298,9 +298,6 @@ HEADERS  += Version.h \
     src/data/TvShow.h \
     src/data/TvShowEpisode.h \
     src/data/TvShowFileSearcher.h \
-    src/data/TvShowModel.h \
-    src/data/TvShowModelItem.h \
-    src/data/TvShowProxyModel.h \
     src/downloads/DownloadsWidget.h \
     src/downloads/Extractor.h \
     src/downloads/FileWorker.h \
@@ -450,6 +447,9 @@ HEADERS  += Version.h \
     src/tvShows/TvShowWidgetSeason.h \
     src/tvShows/TvShowWidgetTvShow.h \
     src/tvShows/TvTunesDialog.h \
+    src/tvShows/TvShowModel.h \
+    src/tvShows/TvShowModelItem.h \
+    src/tvShows/TvShowProxyModel.h \
     src/xbmc/XbmcSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \

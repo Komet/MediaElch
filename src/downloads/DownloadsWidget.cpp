@@ -7,7 +7,6 @@
 #include <QMutexLocker>
 
 #include "data/Storage.h"
-#include "data/TvShowModel.h"
 #include "downloads/ImportActions.h"
 #include "downloads/UnpackButtons.h"
 #include "globals/Helper.h"
@@ -15,6 +14,7 @@
 #include "notifications/MacNotificationHandler.h"
 #include "notifications/Notificator.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShowModel.h"
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
 
