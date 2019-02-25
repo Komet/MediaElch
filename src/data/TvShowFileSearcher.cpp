@@ -41,9 +41,7 @@ void TvShowFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
     }
 }
 
-/**
- * @brief Starts the scan process
- */
+/// @brief Starts the scan process
 void TvShowFileSearcher::reload(bool force)
 {
     m_aborted = false;
@@ -66,6 +64,7 @@ void TvShowFileSearcher::reload(bool force)
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
             getTvShows(dir.path, contents);
+
         } else {
             dbShows.append(showsFromDatabase);
         }
@@ -137,9 +136,9 @@ void TvShowFileSearcher::reload(bool force)
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
                 seasonItems.insert(
-                    episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
             }
-            seasonItems.value(episode->season())->appendChild(episode);
+            seasonItems.value(episode->season())->appendEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         }
 
@@ -165,9 +164,9 @@ void TvShowFileSearcher::reload(bool force)
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season())) {
                 seasonItems.insert(
-                    episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+                    episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
             }
-            seasonItems.value(episode->season())->appendChild(episode);
+            seasonItems.value(episode->season())->appendEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
             if (episodeCounter % 1000 == 0) {
                 emit currentDir("");
@@ -266,9 +265,9 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
         show->addEpisode(episode);
         if (!seasonItems.contains(episode->season())) {
             seasonItems.insert(
-                episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
+                episode->season(), showItem->appendSeason(episode->season(), episode->seasonString(), show));
         }
-        seasonItems.value(episode->season())->appendChild(episode);
+        seasonItems.value(episode->season())->appendEpisode(episode);
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         qApp->processEvents();
     }

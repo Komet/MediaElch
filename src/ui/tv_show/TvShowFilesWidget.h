@@ -23,8 +23,9 @@ class TvShowFilesWidget : public QWidget
 public:
     explicit TvShowFilesWidget(QWidget* parent = nullptr);
     ~TvShowFilesWidget() override;
-    void setFilter(QVector<Filter*> filters, QString text);
-    static TvShowFilesWidget* instance();
+
+    void setFilter(const QVector<Filter*>& filters, QString text);
+    static TvShowFilesWidget& instance();
     QVector<TvShowEpisode*> selectedEpisodes(bool includeFromSeasonOrShow = true);
     QVector<TvShow*> selectedShows();
     QVector<TvShow*> selectedSeasons();
@@ -49,7 +50,7 @@ private slots:
     void markAsWatched();
     void markAsUnwatched();
     void loadStreamDetails();
-    void markForSync();
+    void markForSync(bool markForSync = true);
     void unmarkForSync();
     void openFolder();
     void openNfo();
@@ -59,13 +60,21 @@ private slots:
     void playEpisode(QModelIndex idx);
 
 private:
-    Ui::TvShowFilesWidget* ui;
-    TvShowProxyModel* m_tvShowProxyModel;
+    void setupContextMenu();
+    void emitSelected(QModelIndex proxyIndex);
+    void forEachSelectedItem(std::function<void(TvShowModelItem&)> callback);
+
     static TvShowFilesWidget* m_instance;
-    QMenu* m_contextMenu;
-    TvShow* m_lastTvShow;
-    TvShowEpisode* m_lastEpisode;
-    SeasonNumber m_lastSeason;
-    QAction* m_actionShowMissingEpisodes;
-    QAction* m_actionHideSpecialsInMissingEpisodes;
+
+    Ui::TvShowFilesWidget* ui = nullptr;
+    TvShowProxyModel* m_tvShowProxyModel = nullptr;
+    QMenu* m_contextMenu = nullptr;
+
+    // last selected show/episode/season
+    TvShow* m_lastTvShow = nullptr;
+    TvShowEpisode* m_lastEpisode = nullptr;
+    SeasonNumber m_lastSeason = SeasonNumber::NoSeason;
+
+    QAction* m_actionShowMissingEpisodes = nullptr;
+    QAction* m_actionHideSpecialsInMissingEpisodes = nullptr;
 };

@@ -136,23 +136,23 @@ void TvShowWidget::onSetDisabledTrue()
  */
 void TvShowWidget::onSaveInformation()
 {
-    QVector<TvShow*> shows = TvShowFilesWidget::instance()->selectedShows();
-    QVector<TvShowEpisode*> episodes = TvShowFilesWidget::instance()->selectedEpisodes(false);
-    QVector<TvShow*> seasons = TvShowFilesWidget::instance()->selectedSeasons();
+    QVector<TvShow*> shows = TvShowFilesWidget::instance().selectedShows();
+    QVector<TvShowEpisode*> episodes = TvShowFilesWidget::instance().selectedEpisodes(false);
+    QVector<TvShow*> seasons = TvShowFilesWidget::instance().selectedSeasons();
 
     if (shows.count() == 1 && episodes.count() == 0 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->tvShowWidget->onSaveInformation();
-        TvShowFilesWidget::instance()->updateProxy();
+        TvShowFilesWidget::instance().updateProxy();
         return;
     } else if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0
                && ui->stackedWidget->currentIndex() == 1) {
         ui->episodeWidget->onSaveInformation();
-        TvShowFilesWidget::instance()->updateProxy();
+        TvShowFilesWidget::instance().updateProxy();
         return;
     } else if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1
                && ui->stackedWidget->currentIndex() == 2) {
         ui->seasonWidget->onSaveInformation();
-        TvShowFilesWidget::instance()->updateProxy();
+        TvShowFilesWidget::instance().updateProxy();
         return;
     }
 
@@ -190,7 +190,7 @@ void TvShowWidget::onSaveInformation()
 
     NotificationBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
     NotificationBox::instance()->showMessage(tr("TV Shows and Episodes Saved"));
-    TvShowFilesWidget::instance()->updateProxy();
+    TvShowFilesWidget::instance().updateProxy();
 }
 
 /**

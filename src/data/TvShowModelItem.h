@@ -10,34 +10,39 @@
 class TvShow;
 class TvShowEpisode;
 
-/**
- * @brief The TvShowModelItem class
- */
 class TvShowModelItem : public QObject
 {
     Q_OBJECT
+
 public:
     explicit TvShowModelItem(TvShowModelItem* parent = nullptr);
     ~TvShowModelItem();
 
     TvShowModelItem* child(int number) const;
-    int childCount() const;
     int columnCount() const;
     QVariant data(int column) const;
-    TvShowModelItem* appendChild(TvShow* show);
-    TvShowModelItem* appendChild(TvShowEpisode* episode);
-    TvShowModelItem* appendChild(SeasonNumber seasonNumber, QString season, TvShow* show);
+    TvShowModelItem* appendShow(TvShow* show);
+    TvShowModelItem* appendEpisode(TvShowEpisode* episode);
+    TvShowModelItem* appendSeason(SeasonNumber seasonNumber, QString season, TvShow* show);
     TvShowModelItem* parent() const;
     bool removeChildren(int position, int count);
-    int childNumber() const;
+    int indexInParent() const;
+
+    const QList<TvShowModelItem*>& children() const;
+
     void setTvShow(TvShow* show);
     void setTvShowEpisode(TvShowEpisode* episode);
     void setSeason(QString season);
     void setSeasonNumber(SeasonNumber seasonNumber);
+
     TvShow* tvShow();
+    const TvShow* tvShow() const;
+
     TvShowEpisode* tvShowEpisode();
-    QString season();
-    SeasonNumber seasonNumber();
+    const TvShowEpisode* tvShowEpisode() const;
+
+    QString season() const;
+    SeasonNumber seasonNumber() const;
     TvShowType type() const;
 
 signals:
@@ -49,10 +54,10 @@ private slots:
     void onSeasonChanged(TvShowModelItem* seasonItem, TvShowModelItem* episodeItem);
 
 private:
-    QList<TvShowModelItem*> m_childItems;
-    TvShowModelItem* m_parentItem;
-    TvShow* m_tvShow;
-    TvShowEpisode* m_tvShowEpisode;
+    QList<TvShowModelItem*> m_children;
+    TvShowModelItem* m_parentItem = nullptr;
+    TvShow* m_tvShow = nullptr;
+    TvShowEpisode* m_tvShowEpisode = nullptr;
     QString m_season;
-    SeasonNumber m_seasonNumber;
+    SeasonNumber m_seasonNumber = SeasonNumber::NoSeason;
 };
