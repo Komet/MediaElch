@@ -23,22 +23,9 @@ class TvShowModelItem;
 /**
  * @brief The TvShowEpisode class
  */
-class TvShowEpisode : public QObject
+class TvShowEpisode final : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(SeasonNumber season READ season WRITE setSeason)
-    Q_PROPERTY(EpisodeNumber episode READ episode WRITE setEpisode)
-    Q_PROPERTY(SeasonNumber displaySeason READ displaySeason WRITE setDisplaySeason)
-    Q_PROPERTY(EpisodeNumber displayEpisode READ displayEpisode WRITE setDisplayEpisode)
-    Q_PROPERTY(QString overview READ overview WRITE setOverview)
-    Q_PROPERTY(QStringList writers READ writers WRITE setWriters)
-    Q_PROPERTY(QStringList directors READ directors WRITE setDirectors)
-    Q_PROPERTY(int playCount READ playCount WRITE setPlayCount)
-    Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
-    Q_PROPERTY(QDate firstAired READ firstAired WRITE setFirstAired)
-    Q_PROPERTY(Certification certification READ certification WRITE setCertification)
-    Q_PROPERTY(QString network READ network WRITE setNetwork)
 
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow* parent = nullptr);
@@ -46,45 +33,45 @@ public:
     void clear(QVector<TvShowScraperInfos> infos);
 
     void setFiles(QStringList files);
-    virtual TvShow* tvShow() const;
-    virtual QStringList files() const;
-    virtual QString showTitle() const;
-    virtual QString name() const;
-    virtual QString completeEpisodeName() const;
-    virtual double rating() const;
-    virtual int votes() const;
-    virtual int top250() const;
-    virtual SeasonNumber season() const;
-    virtual EpisodeNumber episode() const;
-    virtual SeasonNumber displaySeason() const;
-    virtual EpisodeNumber displayEpisode() const;
-    virtual QString overview() const;
-    virtual QStringList writers() const;
-    virtual QStringList directors() const;
-    virtual int playCount() const;
-    virtual QDateTime lastPlayed() const;
-    virtual QDate firstAired() const;
-    virtual QTime epBookmark() const;
-    virtual Certification certification() const;
-    virtual QString network() const;
-    virtual QString seasonString() const;
-    virtual QString episodeString() const;
-    virtual bool isValid() const;
-    virtual QUrl thumbnail() const;
-    virtual QByteArray thumbnailImage();
-    virtual bool thumbnailImageChanged() const;
-    virtual TvShowModelItem* modelItem();
-    virtual bool hasChanged() const;
-    virtual QVector<QString*> writersPointer();
-    virtual QVector<QString*> directorsPointer();
-    virtual bool infoLoaded() const;
-    virtual int episodeId() const;
-    virtual StreamDetails* streamDetails();
-    virtual bool streamDetailsLoaded() const;
-    virtual QString nfoContent() const;
-    virtual int databaseId() const;
-    virtual bool syncNeeded() const;
-    virtual bool isDummy() const;
+    TvShow* tvShow() const;
+    QStringList files() const;
+    QString showTitle() const;
+    QString name() const;
+    QString completeEpisodeName() const;
+    double rating() const;
+    int votes() const;
+    int top250() const;
+    SeasonNumber season() const;
+    EpisodeNumber episode() const;
+    SeasonNumber displaySeason() const;
+    EpisodeNumber displayEpisode() const;
+    QString overview() const;
+    QStringList writers() const;
+    QStringList directors() const;
+    int playCount() const;
+    QDateTime lastPlayed() const;
+    QDate firstAired() const;
+    QTime epBookmark() const;
+    Certification certification() const;
+    QString network() const;
+    QString seasonString() const;
+    QString episodeString() const;
+    bool isValid() const;
+    QUrl thumbnail() const;
+    QByteArray thumbnailImage();
+    bool thumbnailImageChanged() const;
+    TvShowModelItem* modelItem();
+    bool hasChanged() const;
+    QVector<QString*> writersPointer();
+    QVector<QString*> directorsPointer();
+    bool infoLoaded() const;
+    int episodeId() const;
+    StreamDetails* streamDetails();
+    bool streamDetailsLoaded() const;
+    QString nfoContent() const;
+    int databaseId() const;
+    bool syncNeeded() const;
+    bool isDummy() const;
 
     void setShow(TvShow* show);
     void setName(QString name);
