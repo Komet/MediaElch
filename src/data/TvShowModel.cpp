@@ -8,25 +8,20 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-/**
- * @brief TvShowModel::TvShowModel
- * @param parent
- */
-TvShowModel::TvShowModel(QObject* parent) : QAbstractItemModel(parent)
+TvShowModel::TvShowModel(QObject* parent) :
+    QAbstractItemModel(parent),
+    m_newIcon{QIcon(":/img/star_blue.png")},
+    m_syncIcon{QIcon(":/img/reload_orange.png")},
+    m_missingIcon{QIcon(":/img/missing.png")}
 {
-    m_rootItem = new TvShowModelItem(nullptr);
-    m_newIcon = QIcon(":/img/star_blue.png");
-    m_syncIcon = QIcon(":/img/reload_orange.png");
-    m_missingIcon = QIcon(":/img/missing.png");
-
-    m_icons.insert(TvShowRoles::HasPoster, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasFanart, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasExtraFanart, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasThumb, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasLogo, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasClearArt, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasCharacterArt, QMap<bool, QIcon>());
-    m_icons.insert(TvShowRoles::HasBanner, QMap<bool, QIcon>());
+    m_icons.insert(TvShowRoles::HasPoster, {});
+    m_icons.insert(TvShowRoles::HasFanart, {});
+    m_icons.insert(TvShowRoles::HasExtraFanart, {});
+    m_icons.insert(TvShowRoles::HasThumb, {});
+    m_icons.insert(TvShowRoles::HasLogo, {});
+    m_icons.insert(TvShowRoles::HasClearArt, {});
+    m_icons.insert(TvShowRoles::HasCharacterArt, {});
+    m_icons.insert(TvShowRoles::HasBanner, {});
 
     m_icons[TvShowRoles::HasPoster].insert(false, QIcon(":mediaStatus/poster/red"));
     m_icons[TvShowRoles::HasPoster].insert(true, QIcon(":mediaStatus/poster/green"));
@@ -46,43 +41,23 @@ TvShowModel::TvShowModel(QObject* parent) : QAbstractItemModel(parent)
     m_icons[TvShowRoles::HasBanner].insert(true, QIcon(":mediaStatus/banner/green"));
 }
 
-/**
- * @brief TvShowModel::~TvShowModel
- */
-TvShowModel::~TvShowModel()
-{
-    delete m_rootItem;
-}
-
-/**
- * @brief TvShowModel::columnCount
- * @param parent
- * @return Column count
- */
 int TvShowModel::columnCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent)
     if (!parent.isValid()) {
-        return 9;
+        return m_icons.size() + 1; // each icon is a column + text
     }
-    return m_rootItem->columnCount();
+    return m_rootItem.columnCount();
 }
 
-/**
- * @brief TvShowModel::data
- * @param index
- * @param role
- * @return
- */
 QVariant TvShowModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid()) {
         return QVariant();
     }
 
-    TvShowModelItem& item = getItem(index);
+    const TvShowModelItem& item = getItem(index);
 
-    if (index.column() != 0) {
+    if (index.column() != 0) { // column 0 => text
         if (role == Qt::DecorationRole) {
             switch (index.column()) {
             case 1: return m_icons.value(TvShowRoles::HasPoster).value(item.data(102).toBool());
@@ -144,50 +119,52 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
             return QColor(150, 150, 150);
         }
         return QColor(17, 51, 80);
-    } else if (role == TvShowRoles::HasChanged) {
-        return item.data(2);
-    } else if (role == TvShowRoles::IsNew) {
-        return item.data(3);
-    } else if (role == TvShowRoles::SyncNeeded) {
-        return item.data(4);
-    } else if (role == TvShowRoles::HasBanner) {
-        return item.data(101);
-    } else if (role == TvShowRoles::HasPoster) {
-        return item.data(102);
-    } else if (role == TvShowRoles::HasExtraFanart) {
-        return item.data(103);
-    } else if (role == TvShowRoles::HasFanart) {
-        return item.data(104);
-    } else if (role == TvShowRoles::HasLogo) {
-        return item.data(105);
-    } else if (role == TvShowRoles::HasThumb) {
-        return item.data(106);
-    } else if (role == TvShowRoles::HasClearArt) {
-        return item.data(107);
-    } else if (role == TvShowRoles::HasCharacterArt) {
-        return item.data(108);
-    } else if (role == TvShowRoles::MissingEpisodes) {
-        return item.data(109);
-    } else if (role == TvShowRoles::LogoPath) {
-        return item.data(110);
-    } else if (role == TvShowRoles::SelectionForeground) {
-        return QColor(255, 255, 255);
-    } else if (role == TvShowRoles::FilePath) {
+    }
+
+    switch (role) {
+    case TvShowRoles::HasChanged: return item.data(2);
+    case TvShowRoles::IsNew: return item.data(3);
+    case TvShowRoles::SyncNeeded: return item.data(4);
+    case TvShowRoles::HasBanner: return item.data(101);
+    case TvShowRoles::HasPoster: return item.data(102);
+    case TvShowRoles::HasExtraFanart: return item.data(103);
+    case TvShowRoles::HasFanart: return item.data(104);
+    case TvShowRoles::HasLogo: return item.data(105);
+    case TvShowRoles::HasThumb: return item.data(106);
+    case TvShowRoles::HasClearArt: return item.data(107);
+    case TvShowRoles::HasCharacterArt: return item.data(108);
+    case TvShowRoles::MissingEpisodes: return item.data(109);
+    case TvShowRoles::LogoPath: return item.data(110);
+    case TvShowRoles::SelectionForeground: return QColor(255, 255, 255);
+    case TvShowRoles::FilePath:
         if (item.type() == TvShowType::Episode && !item.tvShowEpisode()->files().isEmpty()) {
             return item.tvShowEpisode()->files().first();
         }
         if (item.type() == TvShowType::TvShow) {
             return item.tvShow()->dir();
         }
-    } else if (role == TvShowRoles::HasDummyEpisodes) {
+        break;
+    case TvShowRoles::HasDummyEpisodes:
         if (item.type() == TvShowType::Season && item.tvShow()->hasDummyEpisodes(item.seasonNumber())) {
             return true;
         }
+        break;
     }
     return QVariant();
 }
 
-TvShowModelItem& TvShowModel::getItem(const QModelIndex& index) const
+const TvShowModelItem& TvShowModel::getItem(const QModelIndex& index) const
+{
+    if (index.isValid()) {
+        auto* item = static_cast<TvShowModelItem*>(index.internalPointer());
+        if (item != nullptr) {
+            return *item;
+        }
+    }
+    return m_rootItem;
+}
+
+TvShowModelItem& TvShowModel::getItem(const QModelIndex& index)
 {
     if (index.isValid()) {
         auto* item = static_cast<TvShowModelItem*>(index.internalPointer());
@@ -195,7 +172,7 @@ TvShowModelItem& TvShowModel::getItem(const QModelIndex& index) const
             return *item;
         }
     }
-    return *m_rootItem;
+    return m_rootItem;
 }
 
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) const
@@ -204,22 +181,21 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex& parent) c
         return QModelIndex{};
     }
 
-    const TvShowModelItem& parentItem = getItem(parent);
-    TvShowModelItem* const childItem = parentItem.child(row);
-
+    TvShowModelItem* childItem = getItem(parent).child(row);
     if (childItem != nullptr) {
         return createIndex(row, column, childItem);
-    } else {
-        return QModelIndex{};
     }
+    return QModelIndex{};
 }
 
 TvShowModelItem* TvShowModel::appendChild(TvShow* show)
 {
-    TvShowModelItem* parentItem = m_rootItem;
-    beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
-    TvShowModelItem* item = parentItem->appendChild(show);
+    const int size = m_rootItem.children().size();
+
+    beginInsertRows(QModelIndex{}, size, size);
+    TvShowModelItem* item = m_rootItem.appendShow(show);
     endInsertRows();
+
     connect(item, &TvShowModelItem::sigChanged, this, &TvShowModel::onSigChanged);
     connect(show, &TvShow::sigChanged, this, &TvShowModel::onShowChanged);
     return item;
@@ -231,20 +207,18 @@ QModelIndex TvShowModel::parent(const QModelIndex& index) const
         return QModelIndex();
     }
 
-    TvShowModelItem* const parentItem = getItem(index).parent();
-    if (parentItem == m_rootItem) {
+    TvShowModelItem* parentItem = getItem(index).parent();
+    if (parentItem == nullptr || parentItem == &m_rootItem) {
         return QModelIndex();
     }
 
-    return createIndex(parentItem->childNumber(), 0, parentItem);
+    return createIndex(parentItem->indexInParent(), 0, parentItem);
 }
 
 bool TvShowModel::removeRows(int position, int rows, const QModelIndex& parent)
 {
-    TvShowModelItem& parentItem = getItem(parent);
-
     beginRemoveRows(parent, position, position + rows - 1);
-    const bool success = parentItem.removeChildren(position, rows);
+    const bool success = getItem(parent).removeChildren(position, rows);
     endRemoveRows();
 
     return success;
@@ -252,60 +226,43 @@ bool TvShowModel::removeRows(int position, int rows, const QModelIndex& parent)
 
 int TvShowModel::rowCount(const QModelIndex& parent) const
 {
-    return getItem(parent).childCount();
+    return getItem(parent).children().size();
 }
 
-/**
- * @brief Removes all children
- */
+/// @brief Removes all children
 void TvShowModel::clear()
 {
-    beginRemoveRows(QModelIndex(), 0, m_rootItem->childCount());
-    m_rootItem->removeChildren(0, m_rootItem->childCount());
+    const int size = m_rootItem.children().size();
+    beginRemoveRows(QModelIndex(), 0, size);
+    m_rootItem.removeChildren(0, size);
     endRemoveRows();
 }
 
-/**
- * @brief TvShowModel::onSigChanged
- * @param showItem
- * @param seasonItem
- * @param episodeItem
- */
 void TvShowModel::onSigChanged(TvShowModelItem* showItem, TvShowModelItem* seasonItem, TvShowModelItem* episodeItem)
 {
-    const QModelIndex showIndex = this->index(showItem->childNumber(), 0);
-    const QModelIndex seasonIndex = this->index(seasonItem->childNumber(), 0, showIndex);
-    const QModelIndex index = this->index(episodeItem->childNumber(), 0, seasonIndex);
-    emit dataChanged(index, index);
+    const QModelIndex showIndex = index(showItem->indexInParent(), 0);
+    const QModelIndex seasonIndex = index(seasonItem->indexInParent(), 0, showIndex);
+    const QModelIndex modelIndex = index(episodeItem->indexInParent(), 0, seasonIndex);
+    emit dataChanged(modelIndex, modelIndex);
 }
 
-/**
- * @brief TvShowModel::onShowChanged
- * @param show
- */
 void TvShowModel::onShowChanged(TvShow* show)
 {
-    QModelIndex index = this->index(show->modelItem()->childNumber(), 0);
-    emit dataChanged(index, index);
+    const QModelIndex modelIndex = index(show->modelItem()->indexInParent(), 0);
+    emit dataChanged(modelIndex, modelIndex);
 }
 
-/**
- * @brief TvShowModel::tvShows
- * @return
- */
 QVector<TvShow*> TvShowModel::tvShows()
 {
     QVector<TvShow*> shows;
-    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
-        shows.append(m_rootItem->child(i)->tvShow());
+    for (auto* modelShow : m_rootItem.children()) {
+        shows.push_back(modelShow->tvShow());
     }
     return shows;
 }
 
-/**
- * @brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false)
- * @return True if there are new shows or episodes
- */
+/// @brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false).
+/// @return True if there are new shows or episodes.
 int TvShowModel::hasNewShowOrEpisode()
 {
     int newShows = 0;
@@ -322,15 +279,11 @@ int TvShowModel::hasNewShowOrEpisode()
     return newShows;
 }
 
-/**
- * @brief TvShowModel::removeShow
- * @param show
- */
 void TvShowModel::removeShow(TvShow* show)
 {
-    for (int i = 0, n = m_rootItem->childCount(); i < n; ++i) {
-        if (m_rootItem->child(i)->tvShow() == show) {
-            removeRow(m_rootItem->child(i)->childNumber());
+    for (auto* showModel : m_rootItem.children()) {
+        if (showModel->tvShow() == show) {
+            removeRow(showModel->indexInParent());
             return;
         }
     }

@@ -45,7 +45,6 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_musicFileSearcher = new MusicFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
-    m_tvShowProxyModel = new TvShowProxyModel(this);
     m_concertModel = new ConcertModel(this);
     m_musicModel = new MusicModel(this);
     m_database = new Database(this);
@@ -225,15 +224,6 @@ ConcertModel* Manager::concertModel()
 MusicModel* Manager::musicModel()
 {
     return m_musicModel;
-}
-
-/**
- * @brief Returns an instance of the TvShowProxyModel
- * @return Instance of the TvShowProxyModel
- */
-TvShowProxyModel* Manager::tvShowProxyModel()
-{
-    return m_tvShowProxyModel;
 }
 
 /**

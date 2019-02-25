@@ -10,16 +10,15 @@
 
 class TvShowModelItem;
 
-/**
- * @brief The TvShowModel class
- */
+/// @brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single
+/// show or season is represented by TvShowModelItem
 class TvShowModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
     explicit TvShowModel(QObject* parent = nullptr);
-    ~TvShowModel() override;
+    ~TvShowModel() override = default;
 
     QVariant data(const QModelIndex& index, int role) const override;
     QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
@@ -27,19 +26,23 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     bool removeRows(int position, int rows, const QModelIndex& parent = QModelIndex()) override;
+
     TvShowModelItem* appendChild(TvShow* show);
+    void removeShow(TvShow* show);
+    const TvShowModelItem& getItem(const QModelIndex& index) const;
+    TvShowModelItem& getItem(const QModelIndex& index);
     void clear();
-    TvShowModelItem& getItem(const QModelIndex& index) const;
+
     QVector<TvShow*> tvShows();
     int hasNewShowOrEpisode();
-    void removeShow(TvShow* show);
 
 private slots:
     void onSigChanged(TvShowModelItem* showItem, TvShowModelItem* seasonItem, TvShowModelItem* episodeItem);
     void onShowChanged(TvShow* show);
 
 private:
-    TvShowModelItem* m_rootItem;
+    TvShowModelItem m_rootItem;
+
     QMap<int, QMap<bool, QIcon>> m_icons;
     QIcon m_newIcon;
     QIcon m_syncIcon;

@@ -61,7 +61,6 @@ public:
     Database* database();
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
-    TvShowProxyModel* tvShowProxyModel();
     ConcertModel* concertModel();
     MusicModel* musicModel();
     FileScannerDialog* fileScannerDialog();
@@ -90,7 +89,6 @@ private:
     ConcertFileSearcher* m_concertFileSearcher;
     MovieModel* m_movieModel;
     TvShowModel* m_tvShowModel;
-    TvShowProxyModel* m_tvShowProxyModel;
     ConcertModel* m_concertModel;
     MusicModel* m_musicModel;
     Settings* m_settings;

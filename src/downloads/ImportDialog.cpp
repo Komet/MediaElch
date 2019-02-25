@@ -656,13 +656,13 @@ void ImportDialog::onMovingFilesFinished()
 
         if (newSeason) {
             m_show->modelItem()
-                ->appendChild(m_episode->season(), m_episode->seasonString(), m_show)
-                ->appendChild(m_episode);
+                ->appendSeason(m_episode->season(), m_episode->seasonString(), m_show)
+                ->appendEpisode(m_episode);
         } else {
-            for (int i = 0, n = m_show->modelItem()->childCount(); i < n; ++i) {
+            for (int i = 0, n = m_show->modelItem()->children().size(); i < n; ++i) {
                 TvShowModelItem* item = m_show->modelItem()->child(i);
                 if (item->type() == TvShowType::Season && item->season() == m_episode->seasonString()) {
-                    item->appendChild(m_episode);
+                    item->appendEpisode(m_episode);
                     break;
                 }
             }
@@ -671,7 +671,7 @@ void ImportDialog::onMovingFilesFinished()
         if (m_show->showMissingEpisodes()) {
             m_show->fillMissingEpisodes();
         } else if (newSeason) {
-            TvShowFilesWidget::instance()->renewModel(true);
+            TvShowFilesWidget::instance().renewModel(true);
         }
 
         m_episode = nullptr;
