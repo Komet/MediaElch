@@ -6,9 +6,9 @@ export MEDIAINFO_VERSION="18.05"
 
 ###########################################################
 # OS infos
-export OS_NAME=$(uname -s)
-export OS_REV=$(uname -r)
-export OS_MACH=$(uname -m)
+export OS_NAME="$(uname -s)"
+export OS_REV="$(uname -r)"
+export OS_MACH="$(uname -m)"
 
 if [ "${OS_NAME}" = "Linux" ]; then
 	export JOBS=$(grep '^processor' /proc/cpuinfo | wc -l)

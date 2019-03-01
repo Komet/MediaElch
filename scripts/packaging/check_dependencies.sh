@@ -8,9 +8,11 @@
 HAS_MISSING=0
 
 require_command() {
-	command -v $1 >/dev/null 2>&1 && {
+	command -v "$1" >/dev/null 2>&1 && {
+		# shellcheck disable=SC2059
 		printf "  ${GREEN}✔${NC} $1 installed\n"
 	} || {
+		# shellcheck disable=SC2059
 		printf "  ${RED}✘${NC} $1 not installed.\n"
 		HAS_MISSING=1
 	}
@@ -18,9 +20,11 @@ require_command() {
 
 require_package_apt() {
 	if [ $(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+		# shellcheck disable=SC2059
 		printf "  ${RED}✘${NC} $1 not installed.\n"
 		HAS_MISSING=1
 	else
+		# shellcheck disable=SC2059
 		printf "  ${GREEN}✔${NC} $1 installed\n"
 	fi
 }
@@ -39,9 +43,9 @@ check_dependencies_linux() {
 	echo "Checking package dependencies for Linux"
 	echo ""
 
-	require_package_apt libcurl4-openssl-dev 
-	require_package_apt libmediainfo-dev 
-	require_package_apt libpulse-dev 
+	require_package_apt libcurl4-openssl-dev
+	require_package_apt libmediainfo-dev
+	require_package_apt libpulse-dev
 	require_package_apt zlib1g-dev
 	require_package_apt libzen-dev
 

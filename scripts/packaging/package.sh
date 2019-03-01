@@ -78,7 +78,7 @@ gather_information() {
 	echo "  MediaElch Version   = ${VERSION}"
 	echo "  Version Name (Long) = ${VERSION_NAME}"
 
-	if [[ ! $GIT_VERSION == $VERSION ]]; then
+	if [[ ! "$GIT_VERSION" = "$VERSION" ]]; then
 		echo ""
 		print_error    "Git version and MediaElch version do not match!"
 		print_error    "Add a new Git tag using:"
@@ -124,7 +124,7 @@ package_appimage() {
 	echo ""
 	print_info "Downloading linuxdeployqt"
 	DEPLOYQT="${PROJECT_DIR}/linuxdeployqt.AppImage"
-	if [ ! -f $DEPLOYQT ]; then
+	if [ ! -f "$DEPLOYQT" ]; then
 		wget --output-document "${PROJECT_DIR}/linuxdeployqt.AppImage" \
 			https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 	fi
@@ -243,8 +243,8 @@ prepare_deb() {
 	# Create changelog entry
 	print_info "Adding new entry for version ${VERSION}-${PPA_REVISION} in"
 	print_info "debian/changelog using information from debian/control"
-	dch -v $VERSION-$PPA_REVISION~xenial -D xenial -M -m "next build"
-	cp debian/changelog ${PROJECT_DIR}/debian/changelog
+	dch -v "$VERSION-$PPA_REVISION~xenial" -D xenial -M -m "next build"
+	cp debian/changelog "${PROJECT_DIR}/debian/changelog"
 
 	popd > /dev/null
 
@@ -257,7 +257,7 @@ package_deb() {
 	prepare_deb
 
 	print_info "Run debuild"
-	pushd ${TARGET_DIR} > /dev/null
+	pushd "${TARGET_DIR}" > /dev/null
 	debuild -uc -us
 	popd > /dev/null
 }
@@ -267,7 +267,7 @@ package_and_upload_to_launchpad() {
 	echo ""
 	print_important "Upload a new MediaElch Version to https://launchpad.net"
 
-	if [ -z "$ME_LAUNCHPAD_TYPE" }; then
+	if [ -z "$ME_LAUNCHPAD_TYPE" ]; then
 		print_error "\$ME_LAUNCHPAD_TYPE is not set or empty! Can be either stable/nightly/test"
 		exit 1
 	fi
@@ -303,11 +303,11 @@ package_and_upload_to_launchpad() {
 	popd > /dev/null
 }
 
-pkg_type="$(lc ${PACKAGE_TYPE:-invalid})"
+pkg_type="$(lc "${PACKAGE_TYPE:-invalid}")"
 no_confirm=${3:-confirm}
 
 if [ "${BUILD_OS}" == "linux" ] ; then
-	if [ $pkg_type != "appimage" ] && [ $pkg_type != "deb" ] && [ $pkg_type != "launchpad" ]; then
+	if [ "$pkg_type" != "appimage" ] && [ "$pkg_type" != "deb" ] && [ "$pkg_type" != "launchpad" ]; then
 		print_error "Unknown package type for linux: \"${PACKAGE_TYPE}\""
 		print_help
 		exit 1
@@ -317,11 +317,11 @@ if [ "${BUILD_OS}" == "linux" ] ; then
 	[ "${no_confirm}" != "--no-confirm" ] && confirm_build
 	echo ""
 
-	if [ $pkg_type == "appimage" ]; then
+	if [ "$pkg_type" = "appimage" ]; then
 		package_appimage ${no_confirm}
-	elif [ $pkg_type == "launchpad" ]; then
+	elif [ "$pkg_type" = "launchpad" ]; then
 		package_and_upload_to_launchpad
-	elif [ $pkg_type == "deb" ]; then
+	elif [ "$pkg_type" = "deb" ]; then
 		package_deb
 	fi
 

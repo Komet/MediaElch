@@ -13,7 +13,7 @@ if [ -f "${SCRIPT_DIR}/defs.sh" ]; then
 fi
 
 pushd "${PROJECT_DIR}" > /dev/null
-mkdir build && cd $_
+mkdir build && cd build
 
 print_important "Configuring for building for ${QT} on ${OS_NAME}"
 
