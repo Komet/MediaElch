@@ -10,6 +10,7 @@
 #include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
+#include <functional>
 
 namespace Ui {
 class TvShowFilesWidget;
