@@ -2217,80 +2217,80 @@
         <translation>Importar</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="265"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="267"/>
         <source>Loading movie information...</source>
         <translation>Carregando informação de filme...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="282"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="284"/>
         <source>Loading concert information...</source>
         <translation>Carregando informação de concerto...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="302"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="304"/>
         <source>Loading episode information...</source>
         <translation>Carregando informação de episódio...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="365"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="367"/>
         <source>Movie information was loaded</source>
         <translation>A informação de filme foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="379"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="381"/>
         <source>Concert information was loaded</source>
         <translation>A informação de concerto foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="397"/>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="416"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="399"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="418"/>
         <source>Episode information was loaded</source>
         <translation>A informação de episódio foi carregada</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="430"/>
         <source>Renaming not possible</source>
         <translation>Não é possível renomear</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="428"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="430"/>
         <source>Please enter all naming patterns</source>
         <translation>Por favor, introduza todos os padrões de nomenclatura</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="457"/>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="547"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="459"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="549"/>
         <source>Creating destination directory failed</source>
         <translation>Não foi possível criar a pasta de destino</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="458"/>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="548"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="460"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="550"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Não foi possível criar a pasta de destino %1</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="486"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="488"/>
         <source>Importing movie...</source>
         <translation>Importando filme...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="524"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="526"/>
         <source>Importing episode...</source>
         <translation>Importando episódio...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="574"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="576"/>
         <source>Importing concert...</source>
         <translation>Importando concerto...</translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="691"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="693"/>
         <source>Import finished</source>
         <translation>A importação terminou</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/downloads/ImportDialog.cpp" line="691"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="693"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>A importação de %n ficheiros(s) terminou</numerusform>
@@ -2298,7 +2298,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/downloads/ImportDialog.cpp" line="694"/>
+        <location filename="../../src/downloads/ImportDialog.cpp" line="696"/>
         <source>Import has finished</source>
         <translation>A importação terminou</translation>
     </message>
@@ -2429,27 +2429,27 @@ Main menu entry (tooltip)</extracomment>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../../src/main/MainWindow.cpp" line="716"/>
+        <location filename="../../src/main/MainWindow.cpp" line="720"/>
         <source>Reload all Movies (%1)</source>
         <translation>Recarregar todos os Filmes (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/main/MainWindow.cpp" line="722"/>
+        <location filename="../../src/main/MainWindow.cpp" line="726"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Recarregar todas as Séries TV (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/main/MainWindow.cpp" line="733"/>
+        <location filename="../../src/main/MainWindow.cpp" line="737"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Recarregar todos os Concertos (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/main/MainWindow.cpp" line="749"/>
+        <location filename="../../src/main/MainWindow.cpp" line="753"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Recarregar todas as Transferências (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/main/MainWindow.cpp" line="755"/>
+        <location filename="../../src/main/MainWindow.cpp" line="759"/>
         <source>Reload Music (%1)</source>
         <translation>Recarregar Música (%1)</translation>
     </message>
@@ -4494,7 +4494,7 @@ Se quiser procurar por um identificador do TMDb ou do OFDb, por favor utilize o 
 <context>
     <name>OFDb</name>
     <message>
-        <location filename="../../src/scrapers/OFDb.cpp" line="95"/>
+        <location filename="../../src/scrapers/OFDb.cpp" line="93"/>
         <source>German</source>
         <translation>Alemão</translation>
     </message>
@@ -4502,22 +4502,22 @@ Se quiser procurar por um identificador do TMDb ou do OFDb, por favor utilize o 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="62"/>
+        <location filename="../../src/main.cpp" line="61"/>
         <source>Logfile could not be openened</source>
         <translation>Não foi possível abrir o ficheiro de registo</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="63"/>
+        <location filename="../../src/main.cpp" line="62"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Não foi possível modificar o ficheiro de registo %1.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="79"/>
+        <location filename="../../src/main.cpp" line="78"/>
         <source>Stylesheet could not be opened!</source>
         <translation>Não foi possível abrir a folha de estilo.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="80"/>
+        <location filename="../../src/main.cpp" line="79"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4532,7 +4532,7 @@ Se quiser procurar por um identificador do TMDb ou do OFDb, por favor utilize o 
         <translation>Não verificar atualizações</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="437"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="434"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Não voltar a exibir esta dica</translation>
     </message>
@@ -4892,6 +4892,14 @@ Se quiser procurar por um identificador do TMDb ou do OFDb, por favor utilize o 
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
         <translation>Número de canais de áudio</translation>
+    </message>
+</context>
+<context>
+    <name>SeasonModelItem</name>
+    <message>
+        <location filename="../../src/tvShows/model/SeasonModelItem.cpp" line="141"/>
+        <source>Season %1</source>
+        <translation type="unfinished">Temporada %1</translation>
     </message>
 </context>
 <context>
@@ -6295,17 +6303,17 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>Procurando por Séries TV...</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowFileSearcher.cpp" line="75"/>
+        <location filename="../../src/data/TvShowFileSearcher.cpp" line="76"/>
         <source>Loading TV Shows...</source>
         <translation>Carregando Séries TV...</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowFileSearcher.cpp" line="199"/>
+        <location filename="../../src/data/TvShowFileSearcher.cpp" line="200"/>
         <source>Searching for Episodes...</source>
         <translation>Procurando por Episódios...</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowFileSearcher.cpp" line="241"/>
+        <location filename="../../src/data/TvShowFileSearcher.cpp" line="242"/>
         <source>Loading Episodes...</source>
         <translation>Carregando Episódios...</translation>
     </message>
@@ -6313,8 +6321,8 @@ The directories containg your music must contain subdirectories for each artist 
 <context>
     <name>TvShowFilesWidget</name>
     <message numerus="yes">
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="32"/>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="645"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="615"/>
         <source>%n tv shows</source>
         <translation>
             <numerusform>%n série tv</numerusform>
@@ -6322,8 +6330,8 @@ The directories containg your music must contain subdirectories for each artist 
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="32"/>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="645"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="615"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>%n episódio</numerusform>
@@ -6331,74 +6339,74 @@ The directories containg your music must contain subdirectories for each artist 
         </translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="52"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="700"/>
         <source>Load Information</source>
         <translation>Carregar Informação</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="53"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="701"/>
         <source>Search for new episodes</source>
         <translation>Procurando por novos episódios</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="54"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="702"/>
         <source>Mark as watched</source>
         <translation>Marcar como &quot;visto&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="55"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="703"/>
         <source>Mark as unwatched</source>
         <translation>Marcar como &quot;por ver&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="56"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="704"/>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes da Pista</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="57"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="705"/>
         <source>Add to Synchronization Queue</source>
         <translation>Adicionar à Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="58"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="706"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="59"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="707"/>
         <source>Open TV Show Folder</source>
         <translation>Abrir Pasta da Série TV</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="60"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="708"/>
         <source>Open NFO File</source>
         <translation>Abrir Ficheiro NFO</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="61"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="721"/>
         <source>Show missing episodes</source>
         <translation>Exibir episódios em falta</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="63"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="724"/>
         <source>Hide specials in missing episodes</source>
         <translation>Ocultar episódios especiais ao listar episódios em falta</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="432"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="429"/>
         <source>Show update needed</source>
         <translation>É necessário atualizar a Série</translation>
     </message>
     <message>
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="434"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="430"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Tem de atualizar a série uma vez para mostrar episódios em falta.
 Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/tvShows/TvShowFilesWidget.cpp" line="649"/>
+        <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="619"/>
         <source>%1 of %n tv shows</source>
         <translation>
             <numerusform>%1 de %n série tv</numerusform>
@@ -6409,52 +6417,44 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
 <context>
     <name>TvShowModel</name>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="99"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="76"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="100"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="77"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="101"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="78"/>
         <source>Extra Fanarts</source>
         <translation>Fanarts Extra</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="102"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="79"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="103"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="80"/>
         <source>Logo</source>
         <translation>Logotipo</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="104"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="81"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="105"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="82"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../../src/data/TvShowModel.cpp" line="106"/>
+        <location filename="../../src/tvShows/TvShowModel.cpp" line="83"/>
         <source>Banner</source>
         <translation>Faixa</translation>
-    </message>
-</context>
-<context>
-    <name>TvShowModelItem</name>
-    <message>
-        <location filename="../../src/data/TvShowModelItem.cpp" line="189"/>
-        <source>Season %1</source>
-        <translation>Temporada %1</translation>
     </message>
 </context>
 <context>
