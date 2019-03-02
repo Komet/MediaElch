@@ -56,7 +56,6 @@
  */
 QComboBox#set,
 QComboBox#certification,
-QComboBox#comboScraper,
 QComboBox#stereoMode
 QComboBox#comboStatus {
     background: #fcfcfc;
@@ -65,7 +64,6 @@ QComboBox#comboStatus {
 
 QComboBox#set:disabled,
 QComboBox#certification:disabled,
-QComboBox#comboScraper:disabled,
 QComboBox#stereoMode:disabled
 QComboBox#comboStatus:disabled {
     color: #787878;
