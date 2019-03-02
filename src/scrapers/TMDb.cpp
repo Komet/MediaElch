@@ -797,7 +797,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
             if (country.value("name").toString().isEmpty()) {
                 continue;
             }
-            movie->addCountry(Helper::instance()->mapStudio(country.value("name").toString()));
+            movie->addCountry(Helper::instance()->mapCountry(country.value("name").toString()));
         }
     }
 
