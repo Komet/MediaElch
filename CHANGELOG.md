@@ -15,6 +15,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Filter "Movie has no IMDb ID" is inversed (#680)
  - Window positions not saved (#679)
  - Country mappings not used in TMDb (#689)
+ - Windows: Stream Details to not load (#688)
 
 ### Improvements
 
@@ -23,6 +24,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - UI: Fix list/table style for dark themes (#640)
  - UI: Fix stuck splitter cursor (#659)
  - UI: Restructured search windows (#660)
+ - Windows: Update MediaInfo (#688)
 
 ### Internal Improvements
 
