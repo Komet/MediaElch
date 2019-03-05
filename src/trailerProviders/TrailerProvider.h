@@ -9,6 +9,8 @@
  */
 class TrailerProvider : public QObject
 {
+    Q_OBJECT
+
 public:
     virtual QString name() = 0;
 

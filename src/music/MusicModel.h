@@ -8,6 +8,8 @@
 
 class MusicModel : public QAbstractItemModel
 {
+    Q_OBJECT
+
 public:
     explicit MusicModel(QObject* parent = nullptr);
     ~MusicModel();

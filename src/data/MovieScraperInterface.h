@@ -12,12 +12,12 @@
 class Movie;
 struct ScraperSearchResult;
 
-/**
- * @brief The MovieScraperInterface class
- * This class is the base for every movie Scraper.
- */
-class MovieScraperInterface : public ScraperInterface, public QObject
+/// @brief The MovieScraperInterface class
+/// This class is the base for every movie Scraper.
+class MovieScraperInterface : public QObject, public ScraperInterface
 {
+    Q_OBJECT
+
 public:
     virtual void search(QString searchStr) = 0;
     virtual void

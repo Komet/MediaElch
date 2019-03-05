@@ -12,8 +12,10 @@ class Album;
 class Artist;
 struct ScraperSearchResult;
 
-class MusicScraperInterface : public ScraperInterface, public QObject
+class MusicScraperInterface : public QObject, public ScraperInterface
 {
+    Q_OBJECT
+
 public:
     virtual void searchAlbum(QString artistName, QString searchStr) = 0;
     virtual void searchArtist(QString searchStr) = 0;

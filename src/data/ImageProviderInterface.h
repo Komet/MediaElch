@@ -13,8 +13,10 @@
 #include <QString>
 #include <QVector>
 
-class ImageProviderInterface : public ScraperInterface, public QObject
+class ImageProviderInterface : public QObject, public ScraperInterface
 {
+    Q_OBJECT
+
 public:
     virtual QString name() const = 0;
     virtual QString identifier() const = 0;

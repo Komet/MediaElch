@@ -8,13 +8,14 @@
 class Concert;
 struct ScraperSearchResult;
 
-/**
- * @brief The ConcertScraperInterface class
- * This class is the base for every concert Scraper.
- */
-class ConcertScraperInterface : public ScraperInterface, public QObject
+/// @brief The ConcertScraperInterface class
+/// This class is the base for every concert Scraper.
+class ConcertScraperInterface : public QObject, public ScraperInterface
 {
+    Q_OBJECT
+
 public:
+    ConcertScraperInterface() : QObject() {}
     virtual void search(QString searchStr) = 0;
     virtual void loadData(TmdbId id, Concert* concert, QVector<ConcertScraperInfos> infos) = 0;
     virtual QVector<ConcertScraperInfos> scraperSupports() = 0;

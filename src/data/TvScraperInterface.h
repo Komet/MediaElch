@@ -11,12 +11,12 @@
 class TvShow;
 class TvShowEpisode;
 
-/**
- * @brief The TvScraperInterface class
- * This class is the base for every tv show scraper.
- */
-class TvScraperInterface : public ScraperInterface, public QObject
+/// @brief The TvScraperInterface class
+/// This class is the base for every tv show scraper.
+class TvScraperInterface : public QObject, public ScraperInterface
 {
+    Q_OBJECT
+
 public:
     virtual void search(QString searchStr) = 0;
     virtual void
