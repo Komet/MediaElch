@@ -18,6 +18,7 @@
 #include "mediaCenterPlugins/kodi/TvShowXmlWriter.h"
 #include "settings/Settings.h"
 
+#include <array>
 #include <QApplication>
 #include <QBuffer>
 #include <QDebug>
