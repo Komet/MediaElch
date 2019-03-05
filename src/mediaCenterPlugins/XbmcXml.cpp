@@ -345,79 +345,83 @@ bool XbmcXml::loadMovie(Movie* movie, QString initialNfoContent)
     return true;
 }
 
-/**
- * @brief Loads the stream details from the dom document
- * @param streamDetails StreamDetails object
- * @param domDoc Nfo document
- * @return Infos loaded
- */
+/// @brief Loads the stream details from the dom document
+/// @param streamDetails StreamDetails object
+/// @param domDoc Nfo document
+/// @return Infos loaded
 bool XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc)
 {
     streamDetails->clear();
-    if (!domDoc.elementsByTagName("streamdetails").isEmpty()) {
-        QDomElement elem = domDoc.elementsByTagName("streamdetails").at(0).toElement();
-        loadStreamDetails(streamDetails, elem);
-        return true;
+    QDomNodeList elements = domDoc.elementsByTagName("streamdetails");
+    if (elements.isEmpty()) {
+        return false;
     }
-    return false;
+    QDomElement elem = elements.at(0).toElement();
+    loadStreamDetails(streamDetails, elem);
+    return true;
 }
 
 void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QVector<StreamDetails::VideoDetails> details = {StreamDetails::VideoDetails::Codec,
+
+        std::array<StreamDetails::VideoDetails, 7> details{StreamDetails::VideoDetails::Codec,
             StreamDetails::VideoDetails::Aspect,
             StreamDetails::VideoDetails::Width,
             StreamDetails::VideoDetails::Height,
             StreamDetails::VideoDetails::DurationInSeconds,
             StreamDetails::VideoDetails::ScanType,
             StreamDetails::VideoDetails::StereoMode};
-        for (const auto& detail : details) {
+
+        for (const auto detail : details) {
+            const QString detailStr = StreamDetails::detailToString(detail);
+            QDomNodeList elements = videoElem.elementsByTagName(detailStr);
+            if (!elements.isEmpty()) {
+                streamDetails->setVideoDetail(detail, elements.at(0).toElement().text());
+            }
+        }
+    }
+
+    QDomNodeList audioElements = elem.elementsByTagName("audio");
+    std::array<StreamDetails::AudioDetails, 3> audioDetails{StreamDetails::AudioDetails::Codec,
+        StreamDetails::AudioDetails::Language,
+        StreamDetails::AudioDetails::Channels};
+
+    for (int i = 0, n = audioElements.count(); i < n; ++i) {
+        QDomElement audioElem = audioElements.at(i).toElement();
+
+        for (const auto detail : audioDetails) {
+            const QString detailStr = StreamDetails::detailToString(detail);
+            QDomNodeList detailElements = audioElem.elementsByTagName(detailStr);
+
+            if (!detailElements.isEmpty()) {
+                streamDetails->setAudioDetail(i, detail, detailElements.at(0).toElement().text());
+            }
+        }
+    }
+
+    QDomNodeList subtitleElements = elem.elementsByTagName("subtitle");
+    std::array<StreamDetails::SubtitleDetails, 1> subtitleDetails{StreamDetails::SubtitleDetails::Language};
+
+    for (int i = 0, n = subtitleElements.count(); i < n; ++i) {
+        QDomElement subtitleElem = subtitleElements.at(i).toElement();
+        if (!subtitleElem.elementsByTagName("file").isEmpty()) {
+            continue;
+        }
+        for (const auto detail : subtitleDetails) {
             const auto detailStr = StreamDetails::detailToString(detail);
-            if (!videoElem.elementsByTagName(detailStr).isEmpty()) {
-                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detailStr).at(0).toElement().text());
-            }
-        }
-    }
-    if (!elem.elementsByTagName("audio").isEmpty()) {
-        for (int i = 0, n = elem.elementsByTagName("audio").count(); i < n; ++i) {
-            QVector<StreamDetails::AudioDetails> details = {StreamDetails::AudioDetails::Codec,
-                StreamDetails::AudioDetails::Language,
-                StreamDetails::AudioDetails::Channels};
-            QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
-            for (const auto& detail : details) {
-                const auto detailStr = StreamDetails::detailToString(detail);
-                if (!audioElem.elementsByTagName(detailStr).isEmpty()) {
-                    streamDetails->setAudioDetail(
-                        i, detail, audioElem.elementsByTagName(detailStr).at(0).toElement().text());
-                }
-            }
-        }
-    }
-    if (!elem.elementsByTagName("subtitle").isEmpty()) {
-        for (int i = 0, n = elem.elementsByTagName("subtitle").count(); i < n; ++i) {
-            QVector<StreamDetails::SubtitleDetails> details = {StreamDetails::SubtitleDetails::Language};
-            QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
-            if (!subtitleElem.elementsByTagName("file").isEmpty()) {
-                continue;
-            }
-            for (const auto& detail : details) {
-                const auto detailStr = StreamDetails::detailToString(detail);
-                if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
-                    streamDetails->setSubtitleDetail(
-                        i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
-                }
+            if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
+                streamDetails->setSubtitleDetail(
+                    i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
             }
         }
     }
 }
 
-/**
- * @brief Writes streamdetails to xml stream
- * @param xml XML Stream
- * @param streamDetails Stream Details object
- */
+/// @brief Writes streamdetails to xml stream
+/// @param xml XML Stream
+/// @param streamDetails Stream Details object
 void XbmcXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
@@ -740,7 +744,7 @@ bool XbmcXml::loadConcert(Concert* concert, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        for (const auto& imageType : Concert::imageTypes()) {
+        for (const ImageType imageType : Concert::imageTypes()) {
             concert->setHasImage(imageType, !imageFileName(concert, imageType).isEmpty());
         }
         concert->setHasExtraFanarts(!extraFanartNames(concert).isEmpty());
@@ -874,7 +878,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
             def = line;
         }
     }
-    QString nfoContentWithRoot = QString("%1\n<root>%2</root>").arg(def).arg(baseNfoContent.join("\n"));
+    QString nfoContentWithRoot = QStringLiteral("%1\n<root>%2</root>").arg(def, baseNfoContent.join("\n"));
     QDomDocument domDoc;
     domDoc.setContent(nfoContentWithRoot);
 
@@ -971,7 +975,7 @@ bool XbmcXml::saveTvShow(TvShow* show)
 
     for (const auto imageType : TvShow::seasonImageTypes()) {
         DataFileType dataFileType = DataFile::dataFileTypeForImageType(imageType);
-        for (const auto& season : show->seasons()) {
+        for (const SeasonNumber& season : show->seasons()) {
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 for (DataFile dataFile : Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
