@@ -80,6 +80,11 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
             const QDateTime date = QDateTime::fromString(lastplayed.text(), "yyyy-MM-dd HH:mm:ss");
             if (date.isValid()) {
                 m_episode.setLastPlayed(date);
+            } else {
+                const QDateTime date = QDateTime::fromString(lastplayed.text(), "yyyy-MM-dd");
+                if (date.isValid()) {
+                    m_episode.setLastPlayed(date);
+                }
             }
         }
     }
