@@ -15,7 +15,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Filter "Movie has no IMDb ID" is inversed (#680)
  - Window positions not saved (#679)
  - Country mappings not used in TMDb (#689)
- - Windows: Stream Details to not load (#688)
+ - Windows: Stream Details do not load (#688)
 
 ### Improvements
 
