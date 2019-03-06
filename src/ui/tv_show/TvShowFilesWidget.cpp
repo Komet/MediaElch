@@ -146,7 +146,6 @@ void TvShowFilesWidget::scanForEpisodes()
 
         if (ui->files->model()->data(proxyIndex, TvShowRoles::FilePath).toString() == dir) {
             selectionModel->setCurrentIndex(proxyIndex, QItemSelectionModel::Select | QItemSelectionModel::Rows);
-            onItemSelected(proxyIndex);
             break;
         }
     }
@@ -501,10 +500,11 @@ void TvShowFilesWidget::onItemSelected(QModelIndex index)
 {
     if (!index.isValid()) {
         // Can happen if the reload button is clicked
-        qDebug() << "[TvShowFilesWidget] Invalid index or invalid show proxy: Nothing selected";
+        qDebug() << "[TvShowFilesWidget] Invalid proxy index: Nothing selected";
         emit sigNothingSelected();
         return;
     }
+
 
     qDebug() << "[TvShowFilesWidget] Selected item at row" << index.row() << "and column" << index.column();
 
@@ -619,7 +619,7 @@ void TvShowFilesWidget::onViewUpdated()
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", showCount).arg(rowCount));
     }
 
-    m_tvShowProxyModel->invalidate();
+    updateProxy();
 }
 
 void TvShowFilesWidget::updateProxy()

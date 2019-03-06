@@ -30,9 +30,8 @@ TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
  * @brief Sets the directories
  * @param directories List of directories
  */
-void TvShowFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
+void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
 {
-    qDebug() << "Entered";
     m_directories.clear();
     for (int i = 0, n = directories.count(); i < n; ++i) {
         QFileInfo fi(directories.at(i).path);

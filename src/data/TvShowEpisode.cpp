@@ -127,7 +127,7 @@ QVector<TvShowScraperInfos> TvShowEpisode::infosToLoad()
  */
 bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool reloadFromNfo)
 {
-    if (!mediaCenterInterface) {
+    if (mediaCenterInterface == nullptr) {
         qWarning() << "Passed an empty (null) mediaCenterInterface to loadData";
         return false;
     }

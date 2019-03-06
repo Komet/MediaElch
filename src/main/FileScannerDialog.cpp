@@ -65,14 +65,12 @@ FileScannerDialog::~FileScannerDialog()
  */
 int FileScannerDialog::exec()
 {
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(
-        Settings::instance()->directorySettings().movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(
-        Settings::instance()->directorySettings().tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(
-        Settings::instance()->directorySettings().concertDirectories());
-    Manager::instance()->musicFileSearcher()->setMusicDirectories(
-        Settings::instance()->directorySettings().musicDirectories());
+    auto* manager = Manager::instance();
+    const auto& dirSettings = Settings::instance()->directorySettings();
+    manager->movieFileSearcher()->setMovieDirectories(dirSettings.movieDirectories());
+    manager->tvShowFileSearcher()->setTvShowDirectories(dirSettings.tvShowDirectories());
+    manager->concertFileSearcher()->setConcertDirectories(dirSettings.concertDirectories());
+    manager->musicFileSearcher()->setMusicDirectories(dirSettings.musicDirectories());
 
     ui->status->setText("");
     ui->progressBar->setValue(0);
@@ -84,17 +82,15 @@ int FileScannerDialog::exec()
         ImageCache::instance()->clearCache();
     }
 
-    if (m_reloadType == ReloadType::Movies || m_reloadType == ReloadType::All) {
-        onStartMovieScanner();
-    } else if (m_reloadType == ReloadType::TvShows) {
-        onStartTvShowScanner();
-    } else if (m_reloadType == ReloadType::Concerts) {
-        onStartConcertScanner();
-    } else if (m_reloadType == ReloadType::Episodes) {
-        onStartEpisodeScanner();
-    } else if (m_reloadType == ReloadType::Music) {
-        onStartMusicScanner();
+    switch (m_reloadType) {
+    case ReloadType::All:
+    case ReloadType::Movies: onStartMovieScanner(); break;
+    case ReloadType::TvShows: onStartTvShowScanner(); break;
+    case ReloadType::Concerts: onStartConcertScanner(); break;
+    case ReloadType::Episodes: onStartEpisodeScanner(); break;
+    case ReloadType::Music: onStartMusicScanner(); break;
     }
+
 
     return 0;
 }
