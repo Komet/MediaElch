@@ -303,23 +303,20 @@ void MainWindow::closeEvent(QCloseEvent*)
     m_settings->setMainWindowMaximized(isMaximized());
 }
 
-/**
- * @brief Sets up the toolbar
- */
 void MainWindow::setupToolbar()
 {
-    qDebug() << "Entered";
-
-    connect(ui->navbar, &Navbar::sigSearch, this, &MainWindow::onActionSearch);
-    connect(ui->navbar, &Navbar::sigSave, this, &MainWindow::onActionSave);
-    connect(ui->navbar, &Navbar::sigSaveAll, this, &MainWindow::onActionSaveAll);
-    connect(ui->navbar, &Navbar::sigReload, this, &MainWindow::onActionReload);
-    connect(ui->navbar, SIGNAL(sigAbout()), m_aboutDialog, SLOT(exec()));
+    // clang-format off
+    connect(ui->navbar, &Navbar::sigSearch,    this,             &MainWindow::onActionSearch);
+    connect(ui->navbar, &Navbar::sigSave,      this,             &MainWindow::onActionSave);
+    connect(ui->navbar, &Navbar::sigSaveAll,   this,             &MainWindow::onActionSaveAll);
+    connect(ui->navbar, &Navbar::sigReload,    this,             &MainWindow::onActionReload);
+    connect(ui->navbar, SIGNAL(sigAbout()),    m_aboutDialog,    SLOT(exec()));
     connect(ui->navbar, SIGNAL(sigSettings()), m_settingsWindow, SLOT(show()));
-    connect(ui->navbar, &Navbar::sigLike, m_supportDialog, &QDialog::exec);
-    connect(ui->navbar, &Navbar::sigSync, this, &MainWindow::onActionXbmc);
-    connect(ui->navbar, &Navbar::sigRename, this, &MainWindow::onActionRename);
-    connect(ui->navbar, SIGNAL(sigExport()), m_exportDialog, SLOT(exec()));
+    connect(ui->navbar, &Navbar::sigLike,      m_supportDialog,  &QDialog::exec);
+    connect(ui->navbar, &Navbar::sigSync,      this,             &MainWindow::onActionXbmc);
+    connect(ui->navbar, &Navbar::sigRename,    this,             &MainWindow::onActionRename);
+    connect(ui->navbar, SIGNAL(sigExport()),   m_exportDialog,   SLOT(exec()));
+    // clang-format on
 
     ui->navbar->setActionSearchEnabled(false);
     ui->navbar->setActionSaveEnabled(false);

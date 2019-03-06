@@ -535,7 +535,8 @@ void SettingsWindow::saveSettings()
     m_settings->saveSettings();
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->directorySettings().movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->directorySettings().tvShowDirectories());
+    Manager::instance()->tvShowFileSearcher()->setTvShowDirectories(
+        m_settings->directorySettings().tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(
         m_settings->directorySettings().concertDirectories());
     Manager::instance()->musicFileSearcher()->setMusicDirectories(m_settings->directorySettings().musicDirectories());
