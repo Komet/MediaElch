@@ -7,8 +7,8 @@ root="$(cd "$(dirname "$0")"; pwd -P)"
 outDir="${root}/generated_media"
 
 # Create example files.
-echo "Not a valid video file" > "$root/fake_data/Demo.mov"
-echo "Not a valid mp3 file" > "$root/fake_data/Demo.mp3"
+echo "Not a valid video file" > "$root/library/Demo.mov"
+echo "Not a valid mp3 file" > "$root/library/Demo.mp3"
 
 # Delete old data
 rm -rf "${outDir}"
@@ -17,7 +17,7 @@ rm -rf "${outDir}"
 # Movies
 ###########################################################
 
-movieInput="${root}/fake_data/movies_en.txt"
+movieInput="${root}/library/movies_en.txt"
 movieOutDir="${outDir}/movies"
 
 printf "Creating fake movies...         "
@@ -25,7 +25,7 @@ while IFS= read -r line
 do
 	if [ "$line" != "" ]; then
 		mkdir -p "${movieOutDir}/${line}";
-		cp "${root}/fake_data/Demo.mov" "${movieOutDir}/${line}/movie.mov"
+		cp "${root}/library/Demo.mov" "${movieOutDir}/${line}/movie.mov"
 	fi
 done < "$movieInput"
 printf "[Done]\n"
@@ -52,14 +52,14 @@ create_fake_show() {
 		while IFS= read -r episode
 		do
 			if [ "$episode" != "" ]; then
-				cp "${root}/fake_data/Demo.mov" "${seasonDir}/${episode}.mov"
+				cp "${root}/library/Demo.mov" "${seasonDir}/${episode}.mov"
 			fi
 		done < "$season"
 	done
 }
 
 printf "Creating fake tv shows...       "
-for show in "${root}/fake_data/tvshows_en/"*
+for show in "${root}/library/tvshows_en/"*
 do
 	create_fake_show $show
 done
@@ -70,7 +70,7 @@ printf "[Done]\n"
 # Concerts
 ###########################################################
 
-concertInput="${root}/fake_data/concerts.txt"
+concertInput="${root}/library/concerts.txt"
 concertOutDir="${outDir}/concerts"
 
 printf "Creating fake concerts...     "
@@ -78,7 +78,7 @@ while IFS= read -r line
 do
 	if [ "$line" != "" ]; then
 		mkdir -p "${concertOutDir}/${line}";
-		cp "${root}/fake_data/Demo.mov" "${concertOutDir}/${line}/concert.mov"
+		cp "${root}/library/Demo.mov" "${concertOutDir}/${line}/concert.mov"
 	fi
 done < "$concertInput"
 
@@ -105,14 +105,14 @@ create_fake_music() {
 		while IFS= read -r song
 		do
 			if [ "$song" != "" ]; then
-				cp "${root}/fake_data/Demo.mp3" "${albumDir}/${song}.mp3"
+				cp "${root}/library/Demo.mp3" "${albumDir}/${song}.mp3"
 			fi
 		done < "$album"
 	done
 }
 
 printf "Creating fake music albums...   "
-for artist in "${root}/fake_data/music/"*
+for artist in "${root}/library/music/"*
 do
 	create_fake_music $artist
 done
