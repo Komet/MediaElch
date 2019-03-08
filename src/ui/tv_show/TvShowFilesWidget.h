@@ -47,7 +47,7 @@ signals:
     void sigStartSearch();
 
 private slots:
-    void onItemSelected(QModelIndex index);
+    void onItemSelected(const QModelIndex& current, const QModelIndex& previous);
     void showContextMenu(QPoint point);
     void scanForEpisodes();
     void markAsWatched();

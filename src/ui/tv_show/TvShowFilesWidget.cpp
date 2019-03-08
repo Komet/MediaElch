@@ -475,8 +475,6 @@ void TvShowFilesWidget::renewModel(bool force)
         return;
     }
 
-    m_tvShowProxyModel->invalidate();
-
     const int rowCount = ui->files->model()->rowCount();
     for (int row = 0; row < rowCount; ++row) {
         QModelIndex showIndex = ui->files->model()->index(row, 0);
@@ -496,19 +494,19 @@ void TvShowFilesWidget::renewModel(bool force)
 
 /// @brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected
 /// @param index Proxy index of the selected item.
-void TvShowFilesWidget::onItemSelected(QModelIndex index)
+void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelIndex& previous)
 {
-    if (!index.isValid()) {
+    Q_UNUSED(previous);
+    if (!current.isValid()) {
         // Can happen if the reload button is clicked
         qDebug() << "[TvShowFilesWidget] Invalid proxy index: Nothing selected";
         emit sigNothingSelected();
         return;
     }
 
+    qDebug() << "[TvShowFilesWidget] Selected item at row" << current.row() << "and column" << current.column();
 
-    qDebug() << "[TvShowFilesWidget] Selected item at row" << index.row() << "and column" << index.column();
-
-    const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
+    const QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(current);
     m_lastItem = &Manager::instance()->tvShowModel()->getItem(sourceIndex);
 
     emitLastSelection();
@@ -618,8 +616,6 @@ void TvShowFilesWidget::onViewUpdated()
         const int showCount = Manager::instance()->tvShowModel()->tvShows().count();
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", showCount).arg(rowCount));
     }
-
-    updateProxy();
 }
 
 void TvShowFilesWidget::updateProxy()
