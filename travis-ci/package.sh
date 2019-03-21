@@ -255,7 +255,7 @@ package_zip() {
 	local FFMPEG_VERSION="ffmpeg-latest-win64-static"
 
 	for file in $(cat ${SCRIPT_DIR}/win/dll_list.txt); do
-		cp ${MXEDIR}/usr/${MXETARGET}/${file} pkg-zip/MediaElch/
+		cp ${MXELIB}/${file} pkg-zip/MediaElch/
 	done
 
 	mkdir -p pkg-zip/MediaElch/sqldrivers
@@ -264,6 +264,9 @@ package_zip() {
 	mkdir -p pkg-zip/MediaElch/platforms
 	cp ${MXELIB}/qt5/plugins/platforms/qwindows.dll                 pkg-zip/MediaElch/platforms
 	cp ${MXELIB}/qt5/plugins/platforms/qminimal.dll                 pkg-zip/MediaElch/platforms
+
+	mkdir -p pkg-zip/MediaElch/styles
+	cp ${MXELIB}/qt5/plugins/styles/qwindowsvistastyle.dll          pkg-zip/MediaElch/styles
 
 	mkdir -p pkg-zip/MediaElch/QtQuick/Controls
 	cp ${MXELIB}/qt5/qml/QtQuick/Controls/qmldir                    pkg-zip/MediaElch/QtQuick/Controls
