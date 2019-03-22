@@ -31,6 +31,8 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
 ### Internal Improvements
 
  - Implement ScraperSettings class for better mocking
+ - Use `QVector<T>` instead of `QList<T>` as the default container
+ - Reorganize project structure
 
 
 ## 2.6.0 - Ferenginar (2019-01-06)
