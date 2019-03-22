@@ -6,17 +6,11 @@
 
 using namespace std::chrono_literals;
 
-/**
- * @brief Loads movie data synchronously
- */
+/// @brief Loads movie data synchronously
 void loadHotMoviesSync(HotMovies& scraper, QMap<MovieScraperInterface*, QString> ids, Movie& movie)
 {
     const auto infos = scraper.scraperSupports();
-    QVector<ScraperSearchResult> results;
-    QEventLoop loop;
-    loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() { loop.quit(); });
-    scraper.loadData(ids, &movie, infos);
-    loop.exec();
+    loadDataSync(scraper, ids, movie, infos);
 }
 
 TEST_CASE("HotMovies returns valid search results", "[scraper][HotMovies][search][requires_internet]")
@@ -67,14 +61,16 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         const auto actors = m.actors();
         REQUIRE(actors.size() > 15);
         CHECK(actors[0].name == "Adriana Chechik");
+        CHECK(actors[0].thumb == "https://img1.vod.com/image2/star/163/Adriana_Chechik-163576.3.jpg");
         CHECK(actors[1].name == "Amirah Adara");
+        CHECK(actors[1].thumb == "https://img3.vod.com/image2/star/153/Amirah_Adara-153021.2.jpg");
     }
 
     SECTION("Movie has correct set")
     {
         Movie m(QStringList{}); // Movie without files
         loadHotMoviesSync(hm, {{nullptr, "https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/"}}, m);
-        REQUIRE(m.name() == "\"M\" Is For Mischief Number 3");
-        REQUIRE(m.set() == "\"M\" Is For Mischief");
+        CHECK(m.name() == "\"M\" Is For Mischief Number 3");
+        CHECK(m.set() == "\"M\" Is For Mischief");
     }
 }
