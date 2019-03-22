@@ -173,36 +173,37 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
 
     if (infos.contains(MovieScraperInfos::Actors)) {
         int offset = 0;
-        rx.setPattern("<li><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Performer\"><img "
-                      "src=\"[^\"]*\"[\\s\\n]*alt=\"[^\"]*\" title=\"[^\"]*\"[\\s\\n]*class=\"img-responsive "
-                      "headshot\"[\\s\\n]*style=\"background-image:url\\(([^\\)]*)\\);\" /><span>(.*)</span></a></li>");
+        rx.setPattern(
+            R"re(<a href="/\d+/[^"]*"[\r\n\s]*Category="Item Page" Label="Performer">)re"
+            R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
-            a.name = rx.cap(2);
-            a.thumb = rx.cap(1);
+            a.name = rx.cap(1);
+            a.thumb = rx.cap(2);
             movie->addActor(a);
         }
     }
 
-    rx.setPattern("<a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\"[\\s\\n]*Label=\"Director\"><img "
-                  "src=\"[^\"]*\"[\\s\\n]*alt=\"[^\"]*\" title=\"[^\"]*\"[\\s\\n]*class=\"img-responsive headshot "
-                  "director\"[\\s\\n]*style=\"[^\"]*\" />[\\s\\n]*(.*)<br /><small>Director</small></a>");
+    rx.setPattern(R"(<a href="/\d+/[^"]+"\r\n\s+Category="Item Page" Label="Director">([^<]+)</a>)");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1) {
         movie->setDirector(rx.cap(1).trimmed());
     }
 
-    if (infos.contains(MovieScraperInfos::Genres)) {
-        rx.setPattern("<li><a href=\"[^\"]*\"[\\s\\n]*Category=\"Item Page\" Label=\"Category\" "
-                      "/>[\\s\\n]*(.*)[\\s\\n]*</a></li>");
+    // get the list of categories first (to avoid parsing categories of other movies)
+    rx.setPattern(R"(<strong>Categories:</strong>&nbsp;(.*)</div>)");
+    if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
+        QString categoryHtml = rx.cap(1);
+        rx.setPattern(
+            R"(<a href="[^"]*"[\r\s\n]*Category="Item Page" Label="Category">([^<]*)</a>)");
         int offset = 0;
-        while ((offset = rx.indexIn(html, offset)) != -1) {
+        while ((offset = rx.indexIn(categoryHtml, offset)) != -1) {
             movie->addGenre(rx.cap(1).trimmed());
             offset += rx.matchedLength();
         }
     }
 
-    rx.setPattern("<h4 class=\"spacing-bottom text-dark synopsis\">(.*)</h4>");
+    rx.setPattern("<h4 class=\"m-b-0 text-dark synopsis\"><p>(.*)</p></h4>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
@@ -220,7 +221,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
     }
 
     rx.setPattern(
-        R"(<a href="[^"]*"[\s\n]*Category="Item Page" Label="Series"[\s\n]*class="">[\s\n]*([^<]*)<)");
+        R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();
