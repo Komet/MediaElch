@@ -1,7 +1,7 @@
 #include "TvShowXmlWriter.h"
 
 #include "globals/Helper.h"
-#include "media_centers/XbmcXml.h"
+#include "media_centers/KodiXml.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShow.h"
 
@@ -27,33 +27,33 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 
     QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
 
-    XbmcXml::setTextValue(doc, "title", m_show.name());
-    XbmcXml::setTextValue(doc, "showtitle", m_show.showTitle());
+    KodiXml::setTextValue(doc, "title", m_show.name());
+    KodiXml::setTextValue(doc, "showtitle", m_show.showTitle());
     if (!m_show.sortTitle().isEmpty()) {
-        QDomElement elem = XbmcXml::setTextValue(doc, "sorttitle", m_show.sortTitle());
+        QDomElement elem = KodiXml::setTextValue(doc, "sorttitle", m_show.sortTitle());
         elem.setAttribute("clear", "true");
     } else {
-        XbmcXml::removeChildNodes(doc, "sorttitle");
+        KodiXml::removeChildNodes(doc, "sorttitle");
     }
-    XbmcXml::setTextValue(doc, "rating", QString("%1").arg(m_show.rating()));
-    XbmcXml::setTextValue(doc, "votes", QString::number(m_show.votes()));
-    XbmcXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
-    XbmcXml::setTextValue(doc, "episode", QString("%1").arg(m_show.episodes().count()));
-    XbmcXml::setTextValue(doc, "plot", m_show.overview());
-    XbmcXml::setTextValue(doc, "outline", m_show.overview());
-    XbmcXml::setTextValue(doc, "mpaa", m_show.certification().toString());
-    XbmcXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
-    XbmcXml::setTextValue(doc, "studio", m_show.network());
-    XbmcXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
-    XbmcXml::setTextValue(doc, "id", m_show.id().toString());
-    XbmcXml::setTextValue(doc, "imdbid", m_show.imdbId());
+    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_show.rating()));
+    KodiXml::setTextValue(doc, "votes", QString::number(m_show.votes()));
+    KodiXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
+    KodiXml::setTextValue(doc, "episode", QString("%1").arg(m_show.episodes().count()));
+    KodiXml::setTextValue(doc, "plot", m_show.overview());
+    KodiXml::setTextValue(doc, "outline", m_show.overview());
+    KodiXml::setTextValue(doc, "mpaa", m_show.certification().toString());
+    KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
+    KodiXml::setTextValue(doc, "studio", m_show.network());
+    KodiXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
+    KodiXml::setTextValue(doc, "id", m_show.id().toString());
+    KodiXml::setTextValue(doc, "imdbid", m_show.imdbId());
     if (!m_show.status().isEmpty()) {
-        XbmcXml::setTextValue(doc, "status", m_show.status());
+        KodiXml::setTextValue(doc, "status", m_show.status());
     } else {
-        XbmcXml::removeChildNodes(doc, "status");
+        KodiXml::removeChildNodes(doc, "status");
     }
     if (m_show.runtime() > 0min) {
-        XbmcXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
+        KodiXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
     } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
         showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
     }
@@ -70,15 +70,15 @@ QByteArray TvShowXmlWriter::getTvShowXml()
         QDomElement elemUrl = doc.createElement("url");
         elemUrl.appendChild(doc.createTextNode(m_show.episodeGuideUrl()));
         elem.appendChild(elemUrl);
-        XbmcXml::appendXmlNode(doc, elem);
+        KodiXml::appendXmlNode(doc, elem);
     } else {
-        XbmcXml::removeChildNodes(doc, "episodeguide");
+        KodiXml::removeChildNodes(doc, "episodeguide");
     }
 
-    XbmcXml::setTextValue(doc, "genre", m_show.genres().join(" / "));
-    XbmcXml::setListValue(doc, "tag", m_show.tags());
+    KodiXml::setTextValue(doc, "genre", m_show.genres().join(" / "));
+    KodiXml::setListValue(doc, "tag", m_show.tags());
 
-    XbmcXml::removeChildNodes(doc, "actor");
+    KodiXml::removeChildNodes(doc, "actor");
 
     for (const Actor& actor : m_show.actors()) {
         QDomElement elem = doc.createElement("actor");
@@ -93,24 +93,24 @@ QByteArray TvShowXmlWriter::getTvShowXml()
             elemThumb.appendChild(doc.createTextNode(actor.thumb));
             elem.appendChild(elemThumb);
         }
-        XbmcXml::appendXmlNode(doc, elem);
+        KodiXml::appendXmlNode(doc, elem);
     }
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        XbmcXml::removeChildNodes(doc, "thumb");
-        XbmcXml::removeChildNodes(doc, "fanart");
+        KodiXml::removeChildNodes(doc, "thumb");
+        KodiXml::removeChildNodes(doc, "fanart");
 
         for (const Poster& poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            XbmcXml::appendXmlNode(doc, elem);
+            KodiXml::appendXmlNode(doc, elem);
 
             QDomElement elemSeason = doc.createElement("thumb");
             elemSeason.setAttribute("type", "season");
             elemSeason.setAttribute("season", "-1");
             elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            XbmcXml::appendXmlNode(doc, elemSeason);
+            KodiXml::appendXmlNode(doc, elemSeason);
         }
 
         if (!m_show.backdrops().isEmpty()) {
@@ -121,7 +121,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 fanartElem.appendChild(elem);
             }
-            XbmcXml::appendXmlNode(doc, fanartElem);
+            KodiXml::appendXmlNode(doc, fanartElem);
         }
 
         for (SeasonNumber season : m_show.seasons()) {
@@ -130,7 +130,7 @@ QByteArray TvShowXmlWriter::getTvShowXml()
                 elemSeason.setAttribute("type", "season");
                 elemSeason.setAttribute("season", season.toString());
                 elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                XbmcXml::appendXmlNode(doc, elemSeason);
+                KodiXml::appendXmlNode(doc, elemSeason);
             }
         }
     }

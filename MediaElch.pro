@@ -143,7 +143,7 @@ SOURCES += src/main.cpp \
     src/main/MyIconFont.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
-    src/media_centers/XbmcXml.cpp \
+    src/media_centers/KodiXml.cpp \
     src/media_centers/kodi/ArtistXmlReader.cpp \
     src/media_centers/kodi/ArtistXmlWriter.cpp \
     src/media_centers/kodi/ConcertXmlWriter.cpp \
@@ -344,7 +344,7 @@ HEADERS  += Version.h \
     src/main/MyIconFont.h \
     src/main/Navbar.h \
     src/main/Update.h \
-    src/media_centers/XbmcXml.h \
+    src/media_centers/KodiXml.h \
     src/media_centers/kodi/ArtistXmlReader.h \
     src/media_centers/kodi/ArtistXmlWriter.h \
     src/media_centers/kodi/ConcertXmlWriter.h \

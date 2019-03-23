@@ -1,4 +1,4 @@
-#include "XbmcXml.h"
+#include "KodiXml.h"
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -27,31 +27,31 @@
 #include <array>
 
 /**
- * @brief XbmcXml::XbmcXml
+ * @brief KodiXml::KodiXml
  * @param parent
  */
-XbmcXml::XbmcXml(QObject* parent)
+KodiXml::KodiXml(QObject* parent)
 {
     setParent(parent);
 }
 
 /**
- * @brief XbmcXml::~XbmcXml
+ * @brief KodiXml::~KodiXml
  */
-XbmcXml::~XbmcXml() = default;
+KodiXml::~KodiXml() = default;
 
 /**
  * @brief Checks if our MediaCenterPlugin supports a feature
  * @param feature Feature to check
  * @return Feature is supported or not
  */
-bool XbmcXml::hasFeature(int feature)
+bool KodiXml::hasFeature(int feature)
 {
     Q_UNUSED(feature);
     return true;
 }
 
-QByteArray XbmcXml::getMovieXml(Movie* movie)
+QByteArray KodiXml::getMovieXml(Movie* movie)
 {
     Kodi::MovieXmlWriter writer(*movie);
     return writer.getMovieXml();
@@ -61,9 +61,9 @@ QByteArray XbmcXml::getMovieXml(Movie* movie)
  * @brief Saves a movie (including images)
  * @param movie Movie to save
  * @return Saving success
- * @see XbmcXml::writeMovieXml
+ * @see KodiXml::writeMovieXml
  */
-bool XbmcXml::saveMovie(Movie* movie)
+bool KodiXml::saveMovie(Movie* movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
@@ -199,7 +199,7 @@ bool XbmcXml::saveMovie(Movie* movie)
  * @param movie Movie
  * @return Path to nfo file, if none found returns an empty string
  */
-QString XbmcXml::nfoFilePath(Movie* movie)
+QString KodiXml::nfoFilePath(Movie* movie)
 {
     QString nfoFile;
     if (movie->files().empty()) {
@@ -224,7 +224,7 @@ QString XbmcXml::nfoFilePath(Movie* movie)
     return nfoFile;
 }
 
-QString XbmcXml::nfoFilePath(TvShowEpisode* episode)
+QString KodiXml::nfoFilePath(TvShowEpisode* episode)
 {
     QString nfoFile;
     if (episode->files().empty()) {
@@ -249,7 +249,7 @@ QString XbmcXml::nfoFilePath(TvShowEpisode* episode)
     return nfoFile;
 }
 
-QString XbmcXml::nfoFilePath(TvShow* show)
+QString KodiXml::nfoFilePath(TvShow* show)
 {
     QString nfoFile;
     if (show->dir().isEmpty()) {
@@ -273,7 +273,7 @@ QString XbmcXml::nfoFilePath(TvShow* show)
  * @param concert Concert
  * @return Path to nfo file, if none found returns an empty string
  */
-QString XbmcXml::nfoFilePath(Concert* concert)
+QString KodiXml::nfoFilePath(Concert* concert)
 {
     QString nfoFile;
     if (concert->files().empty()) {
@@ -303,7 +303,7 @@ QString XbmcXml::nfoFilePath(Concert* concert)
  * @param movie Movie to load
  * @return Loading success
  */
-bool XbmcXml::loadMovie(Movie* movie, QString initialNfoContent)
+bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
 {
     movie->clear();
     movie->setChanged(false);
@@ -350,7 +350,7 @@ bool XbmcXml::loadMovie(Movie* movie, QString initialNfoContent)
 /// @param streamDetails StreamDetails object
 /// @param domDoc Nfo document
 /// @return Infos loaded
-bool XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc)
+bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc)
 {
     streamDetails->clear();
     QDomNodeList elements = domDoc.elementsByTagName("streamdetails");
@@ -362,7 +362,7 @@ bool XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDo
     return true;
 }
 
-void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
+void KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
@@ -423,7 +423,7 @@ void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 /// @brief Writes streamdetails to xml stream
 /// @param xml XML Stream
 /// @param streamDetails Stream Details object
-void XbmcXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails)
+void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
         && streamDetails->subtitleDetails().isEmpty()) {
@@ -490,7 +490,7 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDet
     xml.writeEndElement();
 }
 
-void XbmcXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamDetails, QVector<Subtitle*> subtitles)
+void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamDetails, QVector<Subtitle*> subtitles)
 {
     if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
         && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty()) {
@@ -585,7 +585,7 @@ void XbmcXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamD
  * @param actor Actor
  * @return Path to actor image
  */
-QString XbmcXml::actorImageName(Movie* movie, Actor actor)
+QString KodiXml::actorImageName(Movie* movie, Actor actor)
 {
     if (movie->files().isEmpty()) {
         return QString();
@@ -601,7 +601,7 @@ QString XbmcXml::actorImageName(Movie* movie, Actor actor)
     return QString();
 }
 
-QByteArray XbmcXml::getConcertXml(Concert* concert)
+QByteArray KodiXml::getConcertXml(Concert* concert)
 {
     Kodi::ConcertXmlWriter writer(*concert);
     return writer.getConcertXml();
@@ -611,9 +611,9 @@ QByteArray XbmcXml::getConcertXml(Concert* concert)
  * @brief Saves a concert (including images)
  * @param concert Concert to save
  * @return Saving success
- * @see XbmcXml::writeConcertXml
+ * @see KodiXml::writeConcertXml
  */
-bool XbmcXml::saveConcert(Concert* concert)
+bool KodiXml::saveConcert(Concert* concert)
 {
     qDebug() << "Entered, concert=" << concert->name();
     QByteArray xmlContent = getConcertXml(concert);
@@ -711,7 +711,7 @@ bool XbmcXml::saveConcert(Concert* concert)
  * @param concert Concert to load
  * @return Loading success
  */
-bool XbmcXml::loadConcert(Concert* concert, QString initialNfoContent)
+bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 {
     concert->clear();
     concert->setChanged(false);
@@ -760,7 +760,7 @@ bool XbmcXml::loadConcert(Concert* concert, QString initialNfoContent)
  * @param actor
  * @return Path to actor image
  */
-QString XbmcXml::actorImageName(TvShow* show, Actor actor)
+QString KodiXml::actorImageName(TvShow* show, Actor actor)
 {
     if (show->dir().isEmpty()) {
         return QString();
@@ -775,7 +775,7 @@ QString XbmcXml::actorImageName(TvShow* show, Actor actor)
     return QString();
 }
 
-QString XbmcXml::actorImageName(TvShowEpisode* episode, Actor actor)
+QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
 {
     if (episode->files().isEmpty()) {
         return QString();
@@ -796,7 +796,7 @@ QString XbmcXml::actorImageName(TvShowEpisode* episode, Actor actor)
  * @param show Show to load
  * @return Loading success
  */
-bool XbmcXml::loadTvShow(TvShow* show, QString initialNfoContent)
+bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
 {
     show->clear();
     show->setChanged(false);
@@ -842,7 +842,7 @@ bool XbmcXml::loadTvShow(TvShow* show, QString initialNfoContent)
  * @param episode Episode to load infos for
  * @return Loading success
  */
-bool XbmcXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent)
+bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent)
 {
     if (!episode) {
         qWarning() << "Passed an empty (null) episode to loadTvShowEpisode";
@@ -930,9 +930,9 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
  * @brief Saves a tv show
  * @param show Show to save
  * @return Saving success
- * @see XbmcXml::writeTvShowXml
+ * @see KodiXml::writeTvShowXml
  */
-bool XbmcXml::saveTvShow(TvShow* show)
+bool KodiXml::saveTvShow(TvShow* show)
 {
     QByteArray xmlContent = getTvShowXml(show);
 
@@ -1027,9 +1027,9 @@ bool XbmcXml::saveTvShow(TvShow* show)
  * @brief Saves a tv show episode
  * @param episode Episode to save
  * @return Saving success
- * @see XbmcXml::writeTvShowEpisodeXml
+ * @see KodiXml::writeTvShowEpisodeXml
  */
-bool XbmcXml::saveTvShowEpisode(TvShowEpisode* episode)
+bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
 
@@ -1131,7 +1131,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode* episode)
     return true;
 }
 
-QByteArray XbmcXml::getTvShowXml(TvShow* show)
+QByteArray KodiXml::getTvShowXml(TvShow* show)
 {
     Kodi::TvShowXmlWriter writer(*show);
     return writer.getTvShowXml();
@@ -1142,7 +1142,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow* show)
  * @param xml XML stream
  * @param episode Episode to save
  */
-void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episode)
+void KodiXml::writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episode)
 {
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("imdbid", episode->imdbId().toString());
@@ -1190,12 +1190,12 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episod
         xml.writeEndElement();
     }
 
-    XbmcXml::writeStreamDetails(xml, episode->streamDetails());
+    KodiXml::writeStreamDetails(xml, episode->streamDetails());
 
     xml.writeEndElement();
 }
 
-QStringList XbmcXml::extraFanartNames(Movie* movie)
+QStringList KodiXml::extraFanartNames(Movie* movie)
 {
     if (movie->files().isEmpty() || !movie->inSeparateFolder()) {
         return QStringList();
@@ -1210,7 +1210,7 @@ QStringList XbmcXml::extraFanartNames(Movie* movie)
     return files;
 }
 
-QStringList XbmcXml::extraFanartNames(Concert* concert)
+QStringList KodiXml::extraFanartNames(Concert* concert)
 {
     if (concert->files().isEmpty() || !concert->inSeparateFolder()) {
         return QStringList();
@@ -1225,7 +1225,7 @@ QStringList XbmcXml::extraFanartNames(Concert* concert)
     return files;
 }
 
-QStringList XbmcXml::extraFanartNames(TvShow* show)
+QStringList KodiXml::extraFanartNames(TvShow* show)
 {
     if (show->dir().isEmpty()) {
         return QStringList();
@@ -1239,7 +1239,7 @@ QStringList XbmcXml::extraFanartNames(TvShow* show)
     return files;
 }
 
-QStringList XbmcXml::extraFanartNames(Artist* artist)
+QStringList KodiXml::extraFanartNames(Artist* artist)
 {
     QDir dir(artist->path() + "/extrafanart");
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
@@ -1250,7 +1250,7 @@ QStringList XbmcXml::extraFanartNames(Artist* artist)
     return files;
 }
 
-QImage XbmcXml::movieSetPoster(QString setName)
+QImage KodiXml::movieSetPoster(QString setName)
 {
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
@@ -1262,7 +1262,7 @@ QImage XbmcXml::movieSetPoster(QString setName)
     return QImage();
 }
 
-QImage XbmcXml::movieSetBackdrop(QString setName)
+QImage KodiXml::movieSetBackdrop(QString setName)
 {
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
         QString fileName = movieSetFileName(setName, &dataFile);
@@ -1279,7 +1279,7 @@ QImage XbmcXml::movieSetBackdrop(QString setName)
  * @param setName
  * @param poster
  */
-void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
+void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 {
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
@@ -1294,7 +1294,7 @@ void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
  * @param setName
  * @param backdrop
  */
-void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
+void KodiXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
         QString fileName = movieSetFileName(setName, &dataFile);
@@ -1304,7 +1304,7 @@ void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
     }
 }
 
-bool XbmcXml::saveFile(QString filename, QByteArray data)
+bool KodiXml::saveFile(QString filename, QByteArray data)
 {
     QDir saveFileDir = QFileInfo(filename).dir();
     if (!saveFileDir.exists()) {
@@ -1320,7 +1320,7 @@ bool XbmcXml::saveFile(QString filename, QByteArray data)
     return false;
 }
 
-QString XbmcXml::getPath(const Movie* movie)
+QString KodiXml::getPath(const Movie* movie)
 {
     if (movie->files().isEmpty()) {
         return QString();
@@ -1342,7 +1342,7 @@ QString XbmcXml::getPath(const Movie* movie)
     return fi.absolutePath();
 }
 
-QString XbmcXml::getPath(const Concert* concert)
+QString KodiXml::getPath(const Concert* concert)
 {
     if (concert->files().isEmpty()) {
         return QString();
@@ -1364,7 +1364,7 @@ QString XbmcXml::getPath(const Concert* concert)
     return fi.absolutePath();
 }
 
-QString XbmcXml::movieSetFileName(QString setName, DataFile* dataFile)
+QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
 {
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleArtworkFolder) {
         QDir dir(Settings::instance()->movieSetArtworkDirectory());
@@ -1389,7 +1389,7 @@ QString XbmcXml::movieSetFileName(QString setName, DataFile* dataFile)
     return QString();
 }
 
-QString XbmcXml::imageFileName(const Movie* movie, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType = [type]() {
         switch (type) {
@@ -1439,7 +1439,7 @@ QString XbmcXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
     return fileName;
 }
 
-QString XbmcXml::imageFileName(const Concert* concert, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1483,7 +1483,7 @@ QString XbmcXml::imageFileName(const Concert* concert, ImageType type, QVector<D
     return fileName;
 }
 
-QString XbmcXml::imageFileName(const TvShow* show,
+QString KodiXml::imageFileName(const TvShow* show,
     ImageType type,
     SeasonNumber season,
     QVector<DataFile> dataFiles,
@@ -1538,7 +1538,7 @@ QString saveDataFiles(QString basePath, QString fileName, const QVector<DataFile
 }
 
 QString
-XbmcXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1570,7 +1570,7 @@ XbmcXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<Dat
     return saveDataFiles(fi.absolutePath(), fi.fileName(), dataFiles, constructName);
 }
 
-bool XbmcXml::loadArtist(Artist* artist, QString initialNfoContent)
+bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
 {
     artist->clear();
     artist->setHasChanged(false);
@@ -1606,7 +1606,7 @@ bool XbmcXml::loadArtist(Artist* artist, QString initialNfoContent)
     return true;
 }
 
-bool XbmcXml::loadAlbum(Album* album, QString initialNfoContent)
+bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
 {
     album->clear();
     album->setHasChanged(false);
@@ -1692,7 +1692,7 @@ bool XbmcXml::loadAlbum(Album* album, QString initialNfoContent)
     return true;
 }
 
-QString XbmcXml::imageFileName(const Artist* artist, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1713,7 +1713,7 @@ QString XbmcXml::imageFileName(const Artist* artist, ImageType type, QVector<Dat
     return saveDataFiles(artist->path(), "", dataFiles, constructName);
 }
 
-QString XbmcXml::imageFileName(const Album* album, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
     DataFileType fileType;
     switch (type) {
@@ -1733,7 +1733,7 @@ QString XbmcXml::imageFileName(const Album* album, ImageType type, QVector<DataF
     return saveDataFiles(album->path(), "", dataFiles, constructName);
 }
 
-QString XbmcXml::nfoFilePath(Artist* artist)
+QString KodiXml::nfoFilePath(Artist* artist)
 {
     if (artist->path().isEmpty()) {
         return QString();
@@ -1742,7 +1742,7 @@ QString XbmcXml::nfoFilePath(Artist* artist)
     return artist->path() + "/artist.nfo";
 }
 
-QString XbmcXml::nfoFilePath(Album* album)
+QString KodiXml::nfoFilePath(Album* album)
 {
     if (album->path().isEmpty()) {
         return QString();
@@ -1751,7 +1751,7 @@ QString XbmcXml::nfoFilePath(Album* album)
     return album->path() + "/album.nfo";
 }
 
-bool XbmcXml::saveArtist(Artist* artist)
+bool KodiXml::saveArtist(Artist* artist)
 {
     QByteArray xmlContent = getArtistXml(artist);
 
@@ -1818,7 +1818,7 @@ bool XbmcXml::saveArtist(Artist* artist)
     return true;
 }
 
-bool XbmcXml::saveAlbum(Album* album)
+bool KodiXml::saveAlbum(Album* album)
 {
     QByteArray xmlContent = getAlbumXml(album);
 
@@ -1898,13 +1898,13 @@ bool XbmcXml::saveAlbum(Album* album)
     return true;
 }
 
-QByteArray XbmcXml::getArtistXml(Artist* artist)
+QByteArray KodiXml::getArtistXml(Artist* artist)
 {
     Kodi::ArtistXmlWriter writer(*artist);
     return writer.getArtistXml();
 }
 
-QByteArray XbmcXml::getAlbumXml(Album* album)
+QByteArray KodiXml::getAlbumXml(Album* album)
 {
     QDomDocument doc;
     doc.setContent(album->nfoContent());
@@ -1964,7 +1964,7 @@ QByteArray XbmcXml::getAlbumXml(Album* album)
     return doc.toByteArray(4);
 }
 
-QDomElement XbmcXml::setTextValue(QDomDocument& doc, const QString& name, const QString& value)
+QDomElement KodiXml::setTextValue(QDomDocument& doc, const QString& name, const QString& value)
 {
     if (!doc.elementsByTagName(name).isEmpty()) {
         if (!doc.elementsByTagName(name).at(0).firstChild().isText()) {
@@ -1980,7 +1980,7 @@ QDomElement XbmcXml::setTextValue(QDomDocument& doc, const QString& name, const 
     }
 }
 
-void XbmcXml::setListValue(QDomDocument& doc, const QString& name, const QStringList& values)
+void KodiXml::setListValue(QDomDocument& doc, const QString& name, const QStringList& values)
 {
     QDomNode rootNode = doc.firstChild();
     while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
@@ -2001,7 +2001,7 @@ void XbmcXml::setListValue(QDomDocument& doc, const QString& name, const QString
     }
 }
 
-QDomElement XbmcXml::addTextValue(QDomDocument& doc, const QString& name, const QString& value)
+QDomElement KodiXml::addTextValue(QDomDocument& doc, const QString& name, const QString& value)
 {
     QDomElement elem = doc.createElement(name);
     elem.appendChild(doc.createTextNode(value));
@@ -2009,7 +2009,7 @@ QDomElement XbmcXml::addTextValue(QDomDocument& doc, const QString& name, const 
     return elem;
 }
 
-void XbmcXml::appendXmlNode(QDomDocument& doc, QDomNode& node)
+void KodiXml::appendXmlNode(QDomDocument& doc, QDomNode& node)
 {
     QDomNode rootNode = doc.firstChild();
     while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
@@ -2018,7 +2018,7 @@ void XbmcXml::appendXmlNode(QDomDocument& doc, QDomNode& node)
     rootNode.appendChild(node);
 }
 
-void XbmcXml::removeChildNodes(QDomDocument& doc, const QString& name)
+void KodiXml::removeChildNodes(QDomDocument& doc, const QString& name)
 {
     QDomNode rootNode = doc.firstChild();
     while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull()) {
@@ -2036,7 +2036,7 @@ void XbmcXml::removeChildNodes(QDomDocument& doc, const QString& name)
     }
 }
 
-void XbmcXml::loadBooklets(Album* album)
+void KodiXml::loadBooklets(Album* album)
 {
     // @todo: get filename from settings
     if (!album->bookletModel()->images().isEmpty()) {

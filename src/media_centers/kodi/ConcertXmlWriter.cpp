@@ -2,7 +2,7 @@
 
 #include "concerts/Concert.h"
 #include "globals/Helper.h"
-#include "media_centers/XbmcXml.h"
+#include "media_centers/KodiXml.h"
 #include "settings/Settings.h"
 
 #include <QDomDocument>
@@ -27,36 +27,36 @@ QByteArray ConcertXmlWriter::getConcertXml()
 
     QDomElement concertElem = doc.elementsByTagName("musicvideo").at(0).toElement();
 
-    XbmcXml::setTextValue(doc, "title", m_concert.name());
-    XbmcXml::setTextValue(doc, "artist", m_concert.artist());
-    XbmcXml::setTextValue(doc, "album", m_concert.album());
-    XbmcXml::setTextValue(doc, "id", m_concert.imdbId().toString());
-    XbmcXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
-    XbmcXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.rating()));
-    XbmcXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
-    XbmcXml::setTextValue(doc, "plot", m_concert.overview());
-    XbmcXml::setTextValue(doc, "outline", m_concert.overview());
-    XbmcXml::setTextValue(doc, "tagline", m_concert.tagline());
+    KodiXml::setTextValue(doc, "title", m_concert.name());
+    KodiXml::setTextValue(doc, "artist", m_concert.artist());
+    KodiXml::setTextValue(doc, "album", m_concert.album());
+    KodiXml::setTextValue(doc, "id", m_concert.imdbId().toString());
+    KodiXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
+    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.rating()));
+    KodiXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
+    KodiXml::setTextValue(doc, "plot", m_concert.overview());
+    KodiXml::setTextValue(doc, "outline", m_concert.overview());
+    KodiXml::setTextValue(doc, "tagline", m_concert.tagline());
     if (m_concert.runtime() > 0min) {
-        XbmcXml::setTextValue(doc, "runtime", QString::number(m_concert.runtime().count()));
+        KodiXml::setTextValue(doc, "runtime", QString::number(m_concert.runtime().count()));
     }
-    XbmcXml::setTextValue(doc, "mpaa", m_concert.certification().toString());
-    XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_concert.playcount()));
-    XbmcXml::setTextValue(doc, "lastplayed", m_concert.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    XbmcXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_concert.trailer().toString()));
-    XbmcXml::setTextValue(doc, "watched", (m_concert.watched()) ? "true" : "false");
-    XbmcXml::setTextValue(doc, "genre", m_concert.genres().join(" / "));
-    XbmcXml::setListValue(doc, "tag", m_concert.tags());
+    KodiXml::setTextValue(doc, "mpaa", m_concert.certification().toString());
+    KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_concert.playcount()));
+    KodiXml::setTextValue(doc, "lastplayed", m_concert.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    KodiXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_concert.trailer().toString()));
+    KodiXml::setTextValue(doc, "watched", (m_concert.watched()) ? "true" : "false");
+    KodiXml::setTextValue(doc, "genre", m_concert.genres().join(" / "));
+    KodiXml::setListValue(doc, "tag", m_concert.tags());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        XbmcXml::removeChildNodes(doc, "thumb");
-        XbmcXml::removeChildNodes(doc, "fanart");
+        KodiXml::removeChildNodes(doc, "thumb");
+        KodiXml::removeChildNodes(doc, "fanart");
 
         for (const Poster& poster : m_concert.posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            XbmcXml::appendXmlNode(doc, elem);
+            KodiXml::appendXmlNode(doc, elem);
         }
 
         if (!m_concert.backdrops().isEmpty()) {
@@ -67,11 +67,11 @@ QByteArray ConcertXmlWriter::getConcertXml()
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 fanartElem.appendChild(elem);
             }
-            XbmcXml::appendXmlNode(doc, fanartElem);
+            KodiXml::appendXmlNode(doc, fanartElem);
         }
     }
 
-    XbmcXml::writeStreamDetails(doc, m_concert.streamDetails());
+    KodiXml::writeStreamDetails(doc, m_concert.streamDetails());
 
     return doc.toByteArray(4);
 }
