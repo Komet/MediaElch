@@ -82,16 +82,12 @@ target_sources(
   ../ui.qrc
 )
 
-# Headers that don't have a corresponding source file
-target_sources(libmediaelch PRIVATE trailerProviders/TrailerProvider.h)
-
 target_sources(
   libmediaelch
   PRIVATE
   sets/MovieListDialog.cpp
   sets/SetsWidget.cpp
   support/SupportDialog.cpp
-  trailerProviders/HdTrailers.cpp
 )
 
 target_sources(

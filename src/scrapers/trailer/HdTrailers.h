@@ -6,7 +6,7 @@
 #include <QQueue>
 #include <QStringList>
 
-#include "trailerProviders/TrailerProvider.h"
+#include "scrapers/trailer/TrailerProvider.h"
 
 class HdTrailers : public TrailerProvider
 {

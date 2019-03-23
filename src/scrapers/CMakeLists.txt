@@ -18,6 +18,8 @@ add_library(
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
   tv_show/TheTvDb.cpp
+  trailer/HdTrailers.cpp
+  trailer/TrailerProvider.cpp
 )
 
 target_link_libraries(
