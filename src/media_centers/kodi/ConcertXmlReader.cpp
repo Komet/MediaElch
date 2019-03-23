@@ -1,6 +1,6 @@
 #include "ConcertXmlReader.h"
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 
 #include <QDate>
 #include <QDomDocument>

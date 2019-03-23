@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 
 #include <QContextMenuEvent>
 #include <QLabel>

@@ -1,13 +1,17 @@
 add_library(
   mediaelch_concert
   OBJECT
+  Concert.cpp
   ConcertController.cpp
+  ConcertFileSearcher.cpp
   ConcertFilesWidget.cpp
+  ConcertInfoWidget.cpp
+  ConcertModel.cpp
+  ConcertProxyModel.cpp
   ConcertSearch.cpp
   ConcertSearchWidget.cpp
   ConcertStreamDetailsWidget.cpp
   ConcertWidget.cpp
-  ConcertInfoWidget.cpp
 )
 
 target_link_libraries(

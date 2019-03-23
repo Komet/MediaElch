@@ -4,7 +4,7 @@
 #include <QFileInfo>
 #include <QtCore/qmath.h>
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
 #include "globals/DownloadManager.h"

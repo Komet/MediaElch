@@ -1,6 +1,6 @@
 #include "ConcertRenamer.h"
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

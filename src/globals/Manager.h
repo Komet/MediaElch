@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/ConcertFileSearcher.h"
-#include "data/ConcertModel.h"
+#include "concerts/ConcertFileSearcher.h"
+#include "concerts/ConcertModel.h"
 #include "data/Database.h"
 #include "data/MediaCenterInterface.h"
 #include "data/TvShowFileSearcher.h"

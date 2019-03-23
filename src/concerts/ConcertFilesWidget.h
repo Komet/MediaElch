@@ -1,8 +1,8 @@
 #pragma once
 
-#include "data/Concert.h"
-#include "data/ConcertModel.h"
-#include "data/ConcertProxyModel.h"
+#include "concerts/Concert.h"
+#include "concerts/ConcertModel.h"
+#include "concerts/ConcertProxyModel.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 
 #include <QLabel>
