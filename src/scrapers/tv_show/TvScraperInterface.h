@@ -3,7 +3,7 @@
 #include "globals/Globals.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
-#include "tvShows/TvDbId.h"
+#include "tv_shows/TvDbId.h"
 
 #include <QString>
 #include <QVector>

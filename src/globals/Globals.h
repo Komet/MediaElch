@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tvShows/SeasonNumber.h"
+#include "tv_shows/SeasonNumber.h"
 
 #include <QDate>
 #include <QDebug>

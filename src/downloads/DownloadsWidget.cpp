@@ -14,7 +14,7 @@
 #include "notifications/MacNotificationHandler.h"
 #include "notifications/Notificator.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShowModel.h"
+#include "tv_shows/TvShowModel.h"
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
 

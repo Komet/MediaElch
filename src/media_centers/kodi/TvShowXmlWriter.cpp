@@ -3,7 +3,7 @@
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShow.h"
+#include "tv_shows/TvShow.h"
 
 #include <QDomDocument>
 

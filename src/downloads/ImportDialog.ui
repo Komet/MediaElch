@@ -237,7 +237,7 @@
   <customwidget>
    <class>TvShowSearchEpisode</class>
    <extends>QWidget</extends>
-   <header>tvShows/TvShowSearchEpisode.h</header>
+   <header>tv_shows/TvShowSearchEpisode.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

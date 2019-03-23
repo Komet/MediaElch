@@ -2,7 +2,7 @@
 
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
-#include "tvShows/SeasonNumber.h"
+#include "tv_shows/SeasonNumber.h"
 
 #include <QImage>
 #include <QString>

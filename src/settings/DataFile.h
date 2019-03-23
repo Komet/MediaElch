@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "tvShows/SeasonNumber.h"
+#include "tv_shows/SeasonNumber.h"
 
 #include <QString>
 

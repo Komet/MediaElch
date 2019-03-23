@@ -13,7 +13,7 @@ add_subdirectory(notifications)
 add_subdirectory(renamer)
 add_subdirectory(scrapers)
 add_subdirectory(settings)
-add_subdirectory(tvShows)
+add_subdirectory(tv_shows)
 add_subdirectory(ui)
 
 target_link_libraries(

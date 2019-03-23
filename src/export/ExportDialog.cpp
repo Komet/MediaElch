@@ -9,8 +9,8 @@
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 #include "movies/Movie.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 ExportDialog::ExportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ExportDialog)
 {

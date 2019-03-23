@@ -20,8 +20,8 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "scrapers/image/ImageProviderInterface.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 #include "ui/small_widgets/ImageLabel.h"
 
 /**
