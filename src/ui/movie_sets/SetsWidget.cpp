@@ -13,7 +13,7 @@
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 #include "notifications/NotificationBox.h"
-#include "sets/MovieListDialog.h"
+#include "ui/movie_sets/MovieListDialog.h"
 
 /**
  * @brief SetsWidget::SetsWidget

@@ -1,7 +1,9 @@
 add_subdirectory(small_widgets)
 
 add_library(
-  mediaelch_ui OBJECT tv_show/TvShowFilesWidget.cpp media_centers/KodiSync.cpp
+  mediaelch_ui OBJECT
+  movie_sets/MovieListDialog.cpp
+  movie_sets/SetsWidget.cpp tv_show/TvShowFilesWidget.cpp media_centers/KodiSync.cpp
 )
 
 target_link_libraries(

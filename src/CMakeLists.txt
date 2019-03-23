@@ -84,14 +84,7 @@ target_sources(
 target_sources(
   libmediaelch
   PRIVATE
-  sets/MovieListDialog.cpp
-  sets/SetsWidget.cpp
   support/SupportDialog.cpp
-)
-
-target_sources(
-  libmediaelch
-  PRIVATE
   main/AboutDialog.cpp
   main/FileScannerDialog.cpp
   main/MainWindow.cpp

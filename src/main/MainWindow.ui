@@ -910,7 +910,7 @@
   <customwidget>
    <class>SetsWidget</class>
    <extends>QWidget</extends>
-   <header>sets/SetsWidget.h</header>
+   <header>ui/movie_sets/SetsWidget.h</header>
    <container>1</container>
    <slots>
     <signal>setActionSaveEnabled(bool,MainWidgets)</signal>

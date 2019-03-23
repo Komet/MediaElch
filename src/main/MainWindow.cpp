@@ -31,7 +31,7 @@
 #include "notifications/NotificationBox.h"
 #include "notifications/Notificator.h"
 #include "scrapers/movie/MovieScraperInterface.h"
-#include "sets/MovieListDialog.h"
+#include "ui/movie_sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowMultiScrapeDialog.h"
 #include "tv_shows/TvShowSearch.h"
