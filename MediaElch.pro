@@ -255,7 +255,7 @@ SOURCES += src/main.cpp \
     src/tvShows/model/TvShowRootModelItem.cpp \
     src/tvShows/model/EpisodeModelItem.cpp \
     src/tvShows/model/SeasonModelItem.cpp \
-    src/xbmc/XbmcSync.cpp \
+    src/ui/media_centers/XbmcSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
     src/data/TvDbId.cpp \
@@ -458,7 +458,7 @@ HEADERS  += Version.h \
     src/tvShows/model/TvShowRootModelItem.h \
     src/tvShows/model/EpisodeModelItem.h \
     src/tvShows/model/SeasonModelItem.h \
-    src/xbmc/XbmcSync.h \
+    src/ui/media_centers/XbmcSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
     src/data/TvDbId.h \
@@ -527,7 +527,7 @@ FORMS    += src/main/MainWindow.ui \
     src/tvShows/TvShowWidgetSeason.ui \
     src/tvShows/TvShowWidgetTvShow.ui \
     src/tvShows/TvTunesDialog.ui \
-    src/xbmc/XbmcSync.ui
+    src/ui/media_centers/XbmcSync.ui
 
 RESOURCES += \
     data/MediaElch.qrc \

@@ -15,7 +15,7 @@
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
-#include "xbmc/XbmcSync.h"
+#include "ui/media_centers/XbmcSync.h"
 
 namespace Ui {
 class MainWindow;

@@ -4,11 +4,6 @@ function(enable_warnings warning_target)
     return()
   endif()
 
-  message(
-    STATUS
-      "Enable ${CMAKE_CXX_COMPILER_ID} compiler warnings for target ${warning_target}"
-  )
-
   if(MSVC)
     target_compile_options(${warning_target} PRIVATE /W3)
 
