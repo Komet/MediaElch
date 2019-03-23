@@ -9,7 +9,7 @@
 #include <QJsonValue>
 
 #include "data/Storage.h"
-#include "imageProviders/FanartTv.h"
+#include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/TMDb.h"
 
 FanartTvMusic::FanartTvMusic(QObject* parent)

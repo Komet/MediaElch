@@ -6,7 +6,6 @@ add_subdirectory(downloads)
 add_subdirectory(export)
 add_subdirectory(globals)
 add_subdirectory(image)
-add_subdirectory(imageProviders)
 add_subdirectory(mediaCenterPlugins)
 add_subdirectory(movies)
 add_subdirectory(music)
@@ -43,7 +42,7 @@ target_link_libraries(
     mediaelch_export
     mediaelch_globals
     mediaelch_image
-    mediaelch_imageProviders
+    mediaelch_image_providers
     mediaelch_mediacenter
     mediaelch_movies
     mediaelch_music
