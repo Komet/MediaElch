@@ -1,11 +1,10 @@
+add_subdirectory(image)
+
 add_library(
   mediaelch_scrapers OBJECT
   # Headers so that moc is run on them
-  image/ImageProviderInterface.h
-  concert/ConcertScraperInterface.h
-  movie/MovieScraperInterface.h
-  music/MusicScraperInterface.h
-  tv_show/TvScraperInterface.h
+  concert/ConcertScraperInterface.h movie/MovieScraperInterface.h
+  music/MusicScraperInterface.h tv_show/TvScraperInterface.h
   # Sources
   concert/TMDbConcerts.cpp
   movie/AdultDvdEmpire.cpp

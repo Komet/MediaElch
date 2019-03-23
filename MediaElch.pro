@@ -131,11 +131,11 @@ SOURCES += src/main.cpp \
     src/image/ImageModel.cpp \
     src/image/ImageProxyModel.cpp \
     src/image/ImageWidget.cpp \
-    src/imageProviders/FanartTv.cpp \
-    src/imageProviders/FanartTvMusic.cpp \
-    src/imageProviders/FanartTvMusicArtists.cpp \
-    src/imageProviders/TheTvDbImages.cpp \
-    src/imageProviders/TMDbImages.cpp \
+    src/scrapers/image/FanartTv.cpp \
+    src/scrapers/image/FanartTvMusic.cpp \
+    src/scrapers/image/FanartTvMusicArtists.cpp \
+    src/scrapers/image/TheTvDbImages.cpp \
+    src/scrapers/image/TMDbImages.cpp \
     src/main/AboutDialog.cpp \
     src/main/FileScannerDialog.cpp \
     src/main/MainWindow.cpp \
@@ -332,11 +332,11 @@ HEADERS  += Version.h \
     src/image/ImageModel.h \
     src/image/ImageProxyModel.h \
     src/image/ImageWidget.h \
-    src/imageProviders/FanartTv.h \
-    src/imageProviders/FanartTvMusic.h \
-    src/imageProviders/FanartTvMusicArtists.h \
-    src/imageProviders/TheTvDbImages.h \
-    src/imageProviders/TMDbImages.h \
+    src/scrapers/image/FanartTv.h \
+    src/scrapers/image/FanartTvMusic.h \
+    src/scrapers/image/FanartTvMusicArtists.h \
+    src/scrapers/image/TheTvDbImages.h \
+    src/scrapers/image/TMDbImages.h \
     src/main/AboutDialog.h \
     src/main/FileScannerDialog.h \
     src/main/MainWindow.h \
