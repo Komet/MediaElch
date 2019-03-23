@@ -13,8 +13,6 @@
 #include <QtCore/qmath.h>
 
 #include "concerts/Concert.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
@@ -22,6 +20,8 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "scrapers/image/ImageProviderInterface.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 #include "ui/small_widgets/ImageLabel.h"
 
 /**

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
 #include "movies/Movie.h"
 #include "renamer/RenamerDialog.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 
 #include <QCloseEvent>
 #include <QDialog>

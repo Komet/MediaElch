@@ -1,13 +1,13 @@
 #pragma once
 
 #include "data/Certification.h"
-#include "data/EpisodeNumber.h"
 #include "data/ImdbId.h"
 #include "data/Rating.h"
-#include "data/SeasonNumber.h"
 #include "data/StreamDetails.h"
-#include "data/TvDbId.h"
 #include "globals/Globals.h"
+#include "tvShows/EpisodeNumber.h"
+#include "tvShows/SeasonNumber.h"
+#include "tvShows/TvDbId.h"
 
 #include <QMetaType>
 #include <QObject>

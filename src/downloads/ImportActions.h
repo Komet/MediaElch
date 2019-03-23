@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/TvShow.h"
 #include "downloads/ImportDialog.h"
+#include "tvShows/TvShow.h"
 
 #include <QWidget>
 

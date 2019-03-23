@@ -5,7 +5,6 @@
 #include <QMovie>
 
 #include "data/ImageCache.h"
-#include "data/TvShowFileSearcher.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
@@ -13,6 +12,7 @@
 #include "renamer/RenamerDialog.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShowFileSearcher.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"
 

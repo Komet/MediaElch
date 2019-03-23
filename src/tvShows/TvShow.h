@@ -1,11 +1,11 @@
 #pragma once
 
-#include "data/EpisodeNumber.h"
 #include "data/Rating.h"
-#include "data/SeasonNumber.h"
-#include "data/TvDbId.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
+#include "tvShows/EpisodeNumber.h"
+#include "tvShows/SeasonNumber.h"
+#include "tvShows/TvDbId.h"
+#include "tvShows/TvShowEpisode.h"
 
 #include <QMetaType>
 #include <QObject>

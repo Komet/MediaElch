@@ -1,6 +1,6 @@
 #include "tvShows/model/TvShowRootModelItem.h"
 
-#include "data/TvShow.h"
+#include "tvShows/TvShow.h"
 #include "tvShows/model/EpisodeModelItem.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"

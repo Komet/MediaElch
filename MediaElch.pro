@@ -100,9 +100,9 @@ SOURCES += src/main.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
     src/data/Subtitle.cpp \
-    src/data/TvShow.cpp \
-    src/data/TvShowEpisode.cpp \
-    src/data/TvShowFileSearcher.cpp \
+    src/tvShows/TvShow.cpp \
+    src/tvShows/TvShowEpisode.cpp \
+    src/tvShows/TvShowFileSearcher.cpp \
     src/downloads/DownloadsWidget.cpp \
     src/downloads/Extractor.cpp \
     src/downloads/FileWorker.cpp \
@@ -258,9 +258,9 @@ SOURCES += src/main.cpp \
     src/ui/media_centers/KodiSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
-    src/data/TvDbId.cpp \
-    src/data/EpisodeNumber.cpp \
-    src/data/SeasonNumber.cpp \
+    src/tvShows/TvDbId.cpp \
+    src/tvShows/EpisodeNumber.cpp \
+    src/tvShows/SeasonNumber.cpp \
     src/data/Certification.cpp \
     src/movies/MovieCrew.cpp
 
@@ -299,9 +299,9 @@ HEADERS  += Version.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
     src/data/Subtitle.h \
-    src/data/TvShow.h \
-    src/data/TvShowEpisode.h \
-    src/data/TvShowFileSearcher.h \
+    src/tvShows/TvShow.h \
+    src/tvShows/TvShowEpisode.h \
+    src/tvShows/TvShowFileSearcher.h \
     src/downloads/DownloadsWidget.h \
     src/downloads/Extractor.h \
     src/downloads/FileWorker.h \
@@ -461,9 +461,9 @@ HEADERS  += Version.h \
     src/ui/media_centers/KodiSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
-    src/data/TvDbId.h \
-    src/data/EpisodeNumber.h \
-    src/data/SeasonNumber.h \
+    src/tvShows/TvDbId.h \
+    src/tvShows/EpisodeNumber.h \
+    src/tvShows/SeasonNumber.h \
     src/data/Certification.h \
     src/movies/MovieCrew.h
 

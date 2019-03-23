@@ -1,13 +1,13 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "data/EpisodeNumber.h"
-#include "data/SeasonNumber.h"
-#include "data/TvShow.h"
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
+#include "tvShows/EpisodeNumber.h"
+#include "tvShows/SeasonNumber.h"
+#include "tvShows/TvShow.h"
 
 #include <QMap>
 #include <QString>

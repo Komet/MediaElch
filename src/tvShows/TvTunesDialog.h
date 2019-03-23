@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/TvShow.h"
+#include "tvShows/TvShow.h"
 
 #include <QDialog>
 #include <QFile>

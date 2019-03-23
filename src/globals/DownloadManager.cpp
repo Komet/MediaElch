@@ -4,10 +4,10 @@
 #include <QFile>
 #include <QTimer>
 
-#include "data/TvShow.h"
 #include "globals/DownloadManagerElement.h"
 #include "music/Album.h"
 #include "music/Artist.h"
+#include "tvShows/TvShow.h"
 
 DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloading{false}
 {

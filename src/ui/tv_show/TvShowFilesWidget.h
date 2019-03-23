@@ -1,9 +1,9 @@
 #pragma once
 
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Filter.h"
 #include "globals/Globals.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 #include "tvShows/TvShowProxyModel.h"
 
 #include <QAction>

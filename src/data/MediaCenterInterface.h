@@ -1,8 +1,8 @@
 #pragma once
 
-#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
+#include "tvShows/SeasonNumber.h"
 
 #include <QImage>
 #include <QString>

@@ -6,13 +6,13 @@
 #include <QNetworkRequest>
 
 #include "data/Storage.h"
-#include "data/TvShow.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
 #include "quazip/quazip/quazip.h"
 #include "quazip/quazip/quazipfile.h"
 #include "scrapers/tv_show/TheTvDb.h"
+#include "tvShows/TvShow.h"
 
 TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {

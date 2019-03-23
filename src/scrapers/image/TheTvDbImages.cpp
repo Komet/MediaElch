@@ -1,9 +1,9 @@
 #include "TheTvDbImages.h"
 
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "scrapers/tv_show/TheTvDb.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 
 /**
  * @brief TheTvDbImages::TheTvDbImages
