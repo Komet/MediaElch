@@ -7,8 +7,8 @@
 #include <QFileInfo>
 
 #include "data/ImageCache.h"
-#include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
+#include "media_centers/MediaCenterInterface.h"
 #include "settings/Settings.h"
 
 using namespace std::chrono_literals;

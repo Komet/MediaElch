@@ -1,8 +1,8 @@
 #include "TvShowEpisode.h"
 
-#include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "media_centers/MediaCenterInterface.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShow.h"

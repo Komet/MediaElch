@@ -11,6 +11,7 @@ add_library(
   kodi/TvShowXmlReader.cpp
   kodi/TvShowXmlWriter.cpp
   XbmcXml.cpp
+  MediaCenterInterface.cpp
 )
 target_link_libraries(
   mediaelch_mediacenter
