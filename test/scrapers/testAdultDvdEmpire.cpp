@@ -57,10 +57,10 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
 
         const auto actors = m.actors();
         REQUIRE(actors.size() == 7);
-        CHECK(actors[0].name == "Kendra Lust");
-        CHECK(actors[0].thumb == "https://imgs1cdn.adultempire.com/actors/643743h.jpg");
-        CHECK(actors[1].name == "Adriana Chechik");
-        CHECK(actors[1].thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+        CHECK(actors[0].name == "Adriana Chechik");
+        CHECK(actors[0].thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
+        CHECK(actors[1].name == "Kendra Lust");
+        CHECK(actors[1].thumb == "https://imgs1cdn.adultempire.com/actors/643743h.jpg");
     }
 
     SECTION("Movie has correct set")
