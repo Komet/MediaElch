@@ -15,7 +15,7 @@
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
-#include "ui/media_centers/XbmcSync.h"
+#include "ui/media_centers/KodiSync.h"
 
 namespace Ui {
 class MainWindow;
@@ -57,7 +57,7 @@ private slots:
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
-    void onXbmcSyncFinished();
+    void onKodiSyncFinished();
     void onFilesRenamed(Renamer::RenameType type = Renamer::RenameType::All);
     void onRenewModels();
     void onJumpToMovie(Movie* movie);
@@ -71,7 +71,7 @@ private:
     SupportDialog* m_supportDialog;
     FileScannerDialog* m_fileScannerDialog;
     ExportDialog* m_exportDialog;
-    XbmcSync* m_xbmcSync;
+    KodiSync* m_xbmcSync;
     RenamerDialog* m_renamer;
     QAction* m_actionSearch;
     QAction* m_actionSave;
