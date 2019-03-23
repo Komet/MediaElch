@@ -15,7 +15,6 @@ add_subdirectory(scrapers)
 add_subdirectory(settings)
 add_subdirectory(tvShows)
 add_subdirectory(ui)
-add_subdirectory(xbmc)
 
 target_link_libraries(
   libmediaelch
@@ -52,7 +51,7 @@ target_link_libraries(
     mediaelch_settings
     mediaelch_tvShows
     mediaelch_ui
-    mediaelch_xbmc
+    mediaelch_ui_smallwidgets
 )
 
 # DL open/close

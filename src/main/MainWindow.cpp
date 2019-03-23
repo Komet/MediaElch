@@ -37,7 +37,7 @@
 #include "tvShows/TvShowSearch.h"
 #include "tvShows/TvShowUpdater.h"
 #include "tvShows/TvTunesDialog.h"
-#include "xbmc/XbmcSync.h"
+#include "ui/media_centers/XbmcSync.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 
