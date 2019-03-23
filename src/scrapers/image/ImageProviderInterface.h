@@ -5,9 +5,9 @@
 #include "movies/Movie.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
-#include "tvShows/EpisodeNumber.h"
-#include "tvShows/SeasonNumber.h"
-#include "tvShows/TvShow.h"
+#include "tv_shows/EpisodeNumber.h"
+#include "tv_shows/SeasonNumber.h"
+#include "tv_shows/TvShow.h"
 
 #include <QMap>
 #include <QString>

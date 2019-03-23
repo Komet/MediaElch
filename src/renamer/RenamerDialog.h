@@ -3,8 +3,8 @@
 #include "concerts/Concert.h"
 #include "movies/Movie.h"
 #include "renamer/Renamer.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QDialog>
 #include <QDir>

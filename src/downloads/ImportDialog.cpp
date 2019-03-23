@@ -12,9 +12,9 @@
 #include "renamer/RenamerDialog.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShowFileSearcher.h"
-#include "tvShows/model/SeasonModelItem.h"
-#include "tvShows/model/TvShowModelItem.h"
+#include "tv_shows/TvShowFileSearcher.h"
+#include "tv_shows/model/SeasonModelItem.h"
+#include "tv_shows/model/TvShowModelItem.h"
 
 ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {

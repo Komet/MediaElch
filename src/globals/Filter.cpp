@@ -2,8 +2,8 @@
 
 #include "concerts/Concert.h"
 #include "movies/Movie.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 /**
  * @brief Filter::Filter

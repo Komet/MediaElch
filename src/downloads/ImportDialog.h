@@ -6,8 +6,8 @@
 #include "globals/DownloadManagerElement.h"
 #include "movies/Movie.h"
 #include "renamer/RenamerDialog.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QCloseEvent>
 #include <QDialog>

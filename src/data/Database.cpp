@@ -16,7 +16,7 @@
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShow.h"
+#include "tv_shows/TvShow.h"
 
 /**
  * @brief Database::Database

@@ -1,7 +1,7 @@
 #include "EpisodeXmlReader.h"
 
 #include "globals/Globals.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QDate>
 #include <QDomElement>

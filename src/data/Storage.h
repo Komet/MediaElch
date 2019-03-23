@@ -6,8 +6,8 @@
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QObject>
 #include <QPointer>

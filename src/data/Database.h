@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "tvShows/TvDbId.h"
+#include "tv_shows/TvDbId.h"
 
 #include <QDateTime>
 #include <QSqlDatabase>

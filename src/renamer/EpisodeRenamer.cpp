@@ -3,7 +3,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QDir>
 #include <QFileInfo>

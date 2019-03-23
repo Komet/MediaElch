@@ -100,9 +100,9 @@ SOURCES += src/main.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
     src/data/Subtitle.cpp \
-    src/tvShows/TvShow.cpp \
-    src/tvShows/TvShowEpisode.cpp \
-    src/tvShows/TvShowFileSearcher.cpp \
+    src/tv_shows/TvShow.cpp \
+    src/tv_shows/TvShowEpisode.cpp \
+    src/tv_shows/TvShowFileSearcher.cpp \
     src/downloads/DownloadsWidget.cpp \
     src/downloads/Extractor.cpp \
     src/downloads/FileWorker.cpp \
@@ -239,28 +239,28 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowFilesWidget.cpp \
     src/support/SupportDialog.cpp \
     src/scrapers/trailer/HdTrailers.cpp \
-    src/tvShows/TvShowMultiScrapeDialog.cpp \
-    src/tvShows/TvShowSearch.cpp \
-    src/tvShows/TvShowSearchEpisode.cpp \
-    src/tvShows/TvShowUpdater.cpp \
-    src/tvShows/TvShowWidget.cpp \
-    src/tvShows/TvShowWidgetEpisode.cpp \
-    src/tvShows/TvShowWidgetSeason.cpp \
-    src/tvShows/TvShowWidgetTvShow.cpp \
-    src/tvShows/TvTunesDialog.cpp \
-    src/tvShows/TvShowModel.cpp \
-    src/tvShows/TvShowProxyModel.cpp \
-    src/tvShows/model/TvShowModelItem.cpp \
-    src/tvShows/model/TvShowBaseModelItem.cpp \
-    src/tvShows/model/TvShowRootModelItem.cpp \
-    src/tvShows/model/EpisodeModelItem.cpp \
-    src/tvShows/model/SeasonModelItem.cpp \
+    src/tv_shows/TvShowMultiScrapeDialog.cpp \
+    src/tv_shows/TvShowSearch.cpp \
+    src/tv_shows/TvShowSearchEpisode.cpp \
+    src/tv_shows/TvShowUpdater.cpp \
+    src/tv_shows/TvShowWidget.cpp \
+    src/tv_shows/TvShowWidgetEpisode.cpp \
+    src/tv_shows/TvShowWidgetSeason.cpp \
+    src/tv_shows/TvShowWidgetTvShow.cpp \
+    src/tv_shows/TvTunesDialog.cpp \
+    src/tv_shows/TvShowModel.cpp \
+    src/tv_shows/TvShowProxyModel.cpp \
+    src/tv_shows/model/TvShowModelItem.cpp \
+    src/tv_shows/model/TvShowBaseModelItem.cpp \
+    src/tv_shows/model/TvShowRootModelItem.cpp \
+    src/tv_shows/model/EpisodeModelItem.cpp \
+    src/tv_shows/model/SeasonModelItem.cpp \
     src/ui/media_centers/KodiSync.cpp \
     src/data/ImdbId.cpp \
     src/data/TmdbId.cpp \
-    src/tvShows/TvDbId.cpp \
-    src/tvShows/EpisodeNumber.cpp \
-    src/tvShows/SeasonNumber.cpp \
+    src/tv_shows/TvDbId.cpp \
+    src/tv_shows/EpisodeNumber.cpp \
+    src/tv_shows/SeasonNumber.cpp \
     src/data/Certification.cpp \
     src/movies/MovieCrew.cpp
 
@@ -299,9 +299,9 @@ HEADERS  += Version.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
     src/data/Subtitle.h \
-    src/tvShows/TvShow.h \
-    src/tvShows/TvShowEpisode.h \
-    src/tvShows/TvShowFileSearcher.h \
+    src/tv_shows/TvShow.h \
+    src/tv_shows/TvShowEpisode.h \
+    src/tv_shows/TvShowFileSearcher.h \
     src/downloads/DownloadsWidget.h \
     src/downloads/Extractor.h \
     src/downloads/FileWorker.h \
@@ -442,28 +442,28 @@ HEADERS  += Version.h \
     src/support/SupportDialog.h \
     src/scrapers/trailer/HdTrailers.h \
     src/scrapers/trailer/TrailerProvider.h \
-    src/tvShows/TvShowMultiScrapeDialog.h \
-    src/tvShows/TvShowSearch.h \
-    src/tvShows/TvShowSearchEpisode.h \
-    src/tvShows/TvShowUpdater.h \
-    src/tvShows/TvShowWidget.h \
-    src/tvShows/TvShowWidgetEpisode.h \
-    src/tvShows/TvShowWidgetSeason.h \
-    src/tvShows/TvShowWidgetTvShow.h \
-    src/tvShows/TvTunesDialog.h \
-    src/tvShows/TvShowModel.h \
-    src/tvShows/TvShowProxyModel.h \
-    src/tvShows/model/TvShowModelItem.h \
-    src/tvShows/model/TvShowBaseModelItem.h \
-    src/tvShows/model/TvShowRootModelItem.h \
-    src/tvShows/model/EpisodeModelItem.h \
-    src/tvShows/model/SeasonModelItem.h \
+    src/tv_shows/TvShowMultiScrapeDialog.h \
+    src/tv_shows/TvShowSearch.h \
+    src/tv_shows/TvShowSearchEpisode.h \
+    src/tv_shows/TvShowUpdater.h \
+    src/tv_shows/TvShowWidget.h \
+    src/tv_shows/TvShowWidgetEpisode.h \
+    src/tv_shows/TvShowWidgetSeason.h \
+    src/tv_shows/TvShowWidgetTvShow.h \
+    src/tv_shows/TvTunesDialog.h \
+    src/tv_shows/TvShowModel.h \
+    src/tv_shows/TvShowProxyModel.h \
+    src/tv_shows/model/TvShowModelItem.h \
+    src/tv_shows/model/TvShowBaseModelItem.h \
+    src/tv_shows/model/TvShowRootModelItem.h \
+    src/tv_shows/model/EpisodeModelItem.h \
+    src/tv_shows/model/SeasonModelItem.h \
     src/ui/media_centers/KodiSync.h \
     src/data/ImdbId.h \
     src/data/TmdbId.h \
-    src/tvShows/TvDbId.h \
-    src/tvShows/EpisodeNumber.h \
-    src/tvShows/SeasonNumber.h \
+    src/tv_shows/TvDbId.h \
+    src/tv_shows/EpisodeNumber.h \
+    src/tv_shows/SeasonNumber.h \
     src/data/Certification.h \
     src/movies/MovieCrew.h
 
@@ -518,15 +518,15 @@ FORMS    += src/main/MainWindow.ui \
     src/ui/small_widgets/TagCloud.ui \
     src/ui/tv_show/TvShowFilesWidget.ui \
     src/support/SupportDialog.ui \
-    src/tvShows/ItemWidgetShow.ui \
-    src/tvShows/TvShowMultiScrapeDialog.ui \
-    src/tvShows/TvShowSearch.ui \
-    src/tvShows/TvShowSearchEpisode.ui \
-    src/tvShows/TvShowWidget.ui \
-    src/tvShows/TvShowWidgetEpisode.ui \
-    src/tvShows/TvShowWidgetSeason.ui \
-    src/tvShows/TvShowWidgetTvShow.ui \
-    src/tvShows/TvTunesDialog.ui \
+    src/tv_shows/ItemWidgetShow.ui \
+    src/tv_shows/TvShowMultiScrapeDialog.ui \
+    src/tv_shows/TvShowSearch.ui \
+    src/tv_shows/TvShowSearchEpisode.ui \
+    src/tv_shows/TvShowWidget.ui \
+    src/tv_shows/TvShowWidgetEpisode.ui \
+    src/tv_shows/TvShowWidgetSeason.ui \
+    src/tv_shows/TvShowWidgetTvShow.ui \
+    src/tv_shows/TvTunesDialog.ui \
     src/ui/media_centers/KodiSync.ui
 
 RESOURCES += \

@@ -20,9 +20,9 @@
 #include "scrapers/trailer/TrailerProvider.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShowFileSearcher.h"
-#include "tvShows/TvShowModel.h"
-#include "tvShows/TvShowProxyModel.h"
+#include "tv_shows/TvShowFileSearcher.h"
+#include "tv_shows/TvShowModel.h"
+#include "tv_shows/TvShowProxyModel.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>

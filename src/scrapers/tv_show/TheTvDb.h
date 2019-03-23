@@ -2,8 +2,8 @@
 
 #include "data/ImdbId.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
-#include "tvShows/EpisodeNumber.h"
-#include "tvShows/SeasonNumber.h"
+#include "tv_shows/EpisodeNumber.h"
+#include "tv_shows/SeasonNumber.h"
 
 #include <QComboBox>
 #include <QDomElement>

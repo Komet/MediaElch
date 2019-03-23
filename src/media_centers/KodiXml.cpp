@@ -15,8 +15,8 @@
 #include "media_centers/kodi/TvShowXmlWriter.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShow.h"
-#include "tvShows/TvShowEpisode.h"
+#include "tv_shows/TvShow.h"
+#include "tv_shows/TvShowEpisode.h"
 
 #include <QApplication>
 #include <QBuffer>

@@ -33,10 +33,10 @@
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
-#include "tvShows/TvShowMultiScrapeDialog.h"
-#include "tvShows/TvShowSearch.h"
-#include "tvShows/TvShowUpdater.h"
-#include "tvShows/TvTunesDialog.h"
+#include "tv_shows/TvShowMultiScrapeDialog.h"
+#include "tv_shows/TvShowSearch.h"
+#include "tv_shows/TvShowUpdater.h"
+#include "tv_shows/TvTunesDialog.h"
 #include "ui/media_centers/KodiSync.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
