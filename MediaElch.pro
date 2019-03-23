@@ -199,8 +199,8 @@ SOURCES += src/main.cpp \
     src/scrapers/music/TvTunes.cpp \
     src/scrapers/music/UniversalMusicScraper.cpp \
     src/scrapers/tv_show/TheTvDb.cpp \
-    src/sets/MovieListDialog.cpp \
-    src/sets/SetsWidget.cpp \
+    src/ui/movie_sets/MovieListDialog.cpp \
+    src/ui/movie_sets/SetsWidget.cpp \
     src/settings/AdvancedSettings.cpp \
     src/settings/DataFile.cpp \
     src/settings/DirectorySettings.cpp \
@@ -401,8 +401,8 @@ HEADERS  += Version.h \
     src/scrapers/music/TvTunes.h \
     src/scrapers/music/UniversalMusicScraper.h \
     src/scrapers/tv_show/TheTvDb.h \
-    src/sets/MovieListDialog.h \
-    src/sets/SetsWidget.h \
+    src/ui/movie_sets/MovieListDialog.h \
+    src/ui/movie_sets/SetsWidget.h \
     src/settings/AdvancedSettings.h \
     src/settings/DataFile.h \
     src/settings/DirectorySettings.h \
@@ -507,8 +507,8 @@ FORMS    += src/main/MainWindow.ui \
     src/notifications/NotificationBox.ui \
     src/renamer/RenamerDialog.ui \
     src/renamer/RenamerPlaceholders.ui \
-    src/sets/MovieListDialog.ui \
-    src/sets/SetsWidget.ui \
+    src/ui/movie_sets/MovieListDialog.ui \
+    src/ui/movie_sets/SetsWidget.ui \
     src/settings/ExportTemplateWidget.ui \
     src/settings/SettingsWindow.ui \
     src/ui/small_widgets/FilterWidget.ui \
