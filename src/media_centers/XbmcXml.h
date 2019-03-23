@@ -1,7 +1,7 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "data/MediaCenterInterface.h"
+#include "media_centers/MediaCenterInterface.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 

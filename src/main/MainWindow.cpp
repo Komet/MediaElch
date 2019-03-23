@@ -14,7 +14,6 @@
 #endif
 
 #include "concerts/ConcertSearch.h"
-#include "data/MediaCenterInterface.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -24,6 +23,7 @@
 #include "globals/NameFormatter.h"
 #include "globals/TrailerDialog.h"
 #include "main/Update.h"
+#include "media_centers/MediaCenterInterface.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
 #include "music/MusicMultiScrapeDialog.h"

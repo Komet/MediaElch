@@ -1,6 +1,6 @@
 #include "Album.h"
 
-#include "data/MediaCenterInterface.h"
+#include "media_centers/MediaCenterInterface.h"
 
 Album::Album(QString path, QObject* parent) :
     QObject(parent),

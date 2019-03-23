@@ -282,7 +282,7 @@ HEADERS  += Version.h \
     src/concerts/ConcertStreamDetailsWidget.h \
     src/data/Database.h \
     src/data/ImageCache.h \
-    src/data/MediaCenterInterface.h \
+    src/media_centers/MediaCenterInterface.h \
     src/movies/Movie.h \
     src/movies/MovieFileSearcher.h \
     src/movies/MovieFilesOrganizer.h \

@@ -4,8 +4,8 @@
 #include <QDesktopServices>
 #include <QSqlQuery>
 
-#include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
+#include "media_centers/MediaCenterInterface.h"
 #include "media_centers/XbmcXml.h"
 #include "scrapers/concert/TMDbConcerts.h"
 #include "scrapers/image/FanartTv.h"

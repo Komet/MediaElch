@@ -1,6 +1,6 @@
 add_library(
-  mediaelch_data OBJECT
-  # Sources
+  mediaelch_data
+  OBJECT
   Certification.cpp
   Database.cpp
   ImageCache.cpp

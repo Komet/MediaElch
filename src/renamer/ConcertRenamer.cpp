@@ -1,9 +1,9 @@
 #include "ConcertRenamer.h"
 
 #include "concerts/Concert.h"
-#include "data/MediaCenterInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "media_centers/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>
