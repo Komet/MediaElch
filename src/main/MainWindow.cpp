@@ -31,13 +31,13 @@
 #include "notifications/NotificationBox.h"
 #include "notifications/Notificator.h"
 #include "scrapers/movie/MovieScraperInterface.h"
-#include "ui/movie_sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowMultiScrapeDialog.h"
 #include "tv_shows/TvShowSearch.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "tv_shows/TvTunesDialog.h"
 #include "ui/media_centers/KodiSync.h"
+#include "ui/movie_sets/MovieListDialog.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 

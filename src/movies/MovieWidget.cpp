@@ -639,13 +639,13 @@ void MovieWidget::updateMovieInfo()
     ui->certification->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    for (Actor* actor : m_movie->actorsPointer()) {
+    for (Actor& actor : m_movie->actors()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
-        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     }
     ui->actors->blockSignals(false);
 
@@ -1011,14 +1011,14 @@ void MovieWidget::addActor()
     a.role = tr("Unknown Role");
     m_movie->addActor(a);
 
-    Actor* actor = m_movie->actorsPointer().last();
+    Actor& actor = m_movie->actors().last();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();
     ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
     ui->buttonRevert->setVisible(true);

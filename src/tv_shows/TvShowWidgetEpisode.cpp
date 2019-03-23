@@ -369,13 +369,13 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->writers->blockSignals(false);
 
     ui->actors->blockSignals(true);
-    for (Actor* actor : m_episode->actorsPointer()) {
+    for (Actor& actor : m_episode->actors()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
-        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     }
     ui->actors->blockSignals(false);
 
@@ -1020,14 +1020,14 @@ void TvShowWidgetEpisode::onAddActor()
     a.role = tr("Unknown Role");
     m_episode->addActor(a);
 
-    Actor* actor = m_episode->actorsPointer().last();
+    Actor& actor = m_episode->actors().last();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();
     ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
     ui->buttonRevert->setVisible(true);

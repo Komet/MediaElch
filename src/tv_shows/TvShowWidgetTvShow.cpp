@@ -345,13 +345,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     }
 
     ui->actors->blockSignals(true);
-    for (Actor* actor : m_show->actorsPointer()) {
+    for (Actor& actor : m_show->actors()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
-        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     }
     ui->actors->blockSignals(false);
 
@@ -640,15 +640,14 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
     }
 
     if (show->infosToLoad().contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
-        QVector<Actor*> actors = show->actorsPointer();
-        for (const auto& actor : actors) {
-            if (actor->thumb.isEmpty()) {
+        for (auto& actor : show->actors()) {
+            if (actor.thumb.isEmpty()) {
                 continue;
             }
             DownloadManagerElement d;
             d.imageType = ImageType::Actor;
-            d.url = QUrl(actor->thumb);
-            d.actor = actor;
+            d.url = QUrl(actor.thumb);
+            d.actor = &actor;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
@@ -863,14 +862,14 @@ void TvShowWidgetTvShow::onAddActor()
     a.role = tr("Unknown Role");
     m_show->addActor(a);
 
-    Actor* actor = m_show->actorsPointer().last();
+    Actor& actor = m_show->actors().last();
 
     ui->actors->blockSignals(true);
     int row = ui->actors->rowCount();
     ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
-    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(&actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
     ui->buttonRevert->setVisible(true);
