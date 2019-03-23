@@ -2,7 +2,7 @@
 
 #include "data/TvShow.h"
 #include "globals/Helper.h"
-#include "mediaCenterPlugins/XbmcXml.h"
+#include "media_centers/XbmcXml.h"
 #include "settings/Settings.h"
 
 #include <QDomDocument>

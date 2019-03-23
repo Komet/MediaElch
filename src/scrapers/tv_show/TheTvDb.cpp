@@ -13,7 +13,7 @@
 #include "globals/Manager.h"
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
-#include "mediaCenterPlugins/XbmcXml.h"
+#include "media_centers/XbmcXml.h"
 #include "scrapers/movie/IMDB.h"
 #include "settings/Settings.h"
 

@@ -13,7 +13,7 @@
 #include "data/TvShow.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "mediaCenterPlugins/XbmcXml.h"
+#include "media_centers/XbmcXml.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "settings/Settings.h"
