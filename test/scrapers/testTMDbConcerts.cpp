@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/TMDbConcerts.h"
+#include "scrapers/concert/TMDbConcerts.h"
 #include "settings/Settings.h"
 
 #include <chrono>

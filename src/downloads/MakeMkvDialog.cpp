@@ -9,7 +9,7 @@
 #include "globals/Manager.h"
 #include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/CustomMovieScraper.h"
+#include "scrapers/movie/CustomMovieScraper.h"
 
 MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
 {

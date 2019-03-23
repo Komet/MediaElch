@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/AEBN.h"
+#include "scrapers/movie/AEBN.h"
 
 TEST_CASE("AEBN returns valid search results", "[scraper][AEBN][search][requires_internet]")
 {

@@ -12,7 +12,7 @@
 #include "notifications/NotificationBox.h"
 #include "quazip/quazip/quazip.h"
 #include "quazip/quazip/quazipfile.h"
-#include "scrapers/TheTvDb.h"
+#include "scrapers/tv_show/TheTvDb.h"
 
 TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tvdb{nullptr}
 {

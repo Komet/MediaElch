@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/HotMovies.h"
+#include "scrapers/movie/HotMovies.h"
 
 #include <chrono>
 

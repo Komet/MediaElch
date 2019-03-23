@@ -18,7 +18,7 @@
 #include "music/MusicFileSearcher.h"
 #include "music/MusicFilesWidget.h"
 #include "music/MusicModel.h"
-#include "scrapers/TvTunes.h"
+#include "scrapers/music/TvTunes.h"
 #include "settings/Settings.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowModel.h"

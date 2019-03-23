@@ -187,18 +187,18 @@ SOURCES += src/main.cpp \
     src/renamer/Renamer.cpp \
     src/renamer/RenamerDialog.cpp \
     src/renamer/RenamerPlaceholders.cpp \
-    src/scrapers/AdultDvdEmpire.cpp \
-    src/scrapers/AEBN.cpp \
-    src/scrapers/CustomMovieScraper.cpp \
-    src/scrapers/HotMovies.cpp \
-    src/scrapers/IMDB.cpp \
-    src/scrapers/OFDb.cpp \
-    src/scrapers/TheTvDb.cpp \
-    src/scrapers/TMDb.cpp \
-    src/scrapers/TMDbConcerts.cpp \
-    src/scrapers/TvTunes.cpp \
-    src/scrapers/UniversalMusicScraper.cpp \
-    src/scrapers/VideoBuster.cpp \
+    src/scrapers/concert/TMDbConcerts.cpp \
+    src/scrapers/movie/AdultDvdEmpire.cpp \
+    src/scrapers/movie/AEBN.cpp \
+    src/scrapers/movie/CustomMovieScraper.cpp \
+    src/scrapers/movie/HotMovies.cpp \
+    src/scrapers/movie/IMDB.cpp \
+    src/scrapers/movie/OFDb.cpp \
+    src/scrapers/movie/TMDb.cpp \
+    src/scrapers/movie/VideoBuster.cpp \
+    src/scrapers/music/TvTunes.cpp \
+    src/scrapers/music/UniversalMusicScraper.cpp \
+    src/scrapers/tv_show/TheTvDb.cpp \
     src/sets/MovieListDialog.cpp \
     src/sets/SetsWidget.cpp \
     src/settings/AdvancedSettings.cpp \
@@ -389,18 +389,18 @@ HEADERS  += Version.h \
     src/renamer/Renamer.h \
     src/renamer/RenamerDialog.h \
     src/renamer/RenamerPlaceholders.h \
-    src/scrapers/AdultDvdEmpire.h \
-    src/scrapers/AEBN.h \
-    src/scrapers/CustomMovieScraper.h \
-    src/scrapers/HotMovies.h \
-    src/scrapers/IMDB.h \
-    src/scrapers/OFDb.h \
-    src/scrapers/TheTvDb.h \
-    src/scrapers/TMDb.h \
-    src/scrapers/TMDbConcerts.h \
-    src/scrapers/TvTunes.h \
-    src/scrapers/UniversalMusicScraper.h \
-    src/scrapers/VideoBuster.h \
+    src/scrapers/concert/TMDbConcerts.h \
+    src/scrapers/movie/AdultDvdEmpire.h \
+    src/scrapers/movie/AEBN.h \
+    src/scrapers/movie/CustomMovieScraper.h \
+    src/scrapers/movie/HotMovies.h \
+    src/scrapers/movie/IMDB.h \
+    src/scrapers/movie/OFDb.h \
+    src/scrapers/movie/TMDb.h \
+    src/scrapers/movie/VideoBuster.h \
+    src/scrapers/music/TvTunes.h \
+    src/scrapers/music/UniversalMusicScraper.h \
+    src/scrapers/tv_show/TheTvDb.h \
     src/sets/MovieListDialog.h \
     src/sets/SetsWidget.h \
     src/settings/AdvancedSettings.h \

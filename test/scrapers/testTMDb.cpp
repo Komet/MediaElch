@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "scrapers/TMDb.h"
+#include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
 #include <chrono>

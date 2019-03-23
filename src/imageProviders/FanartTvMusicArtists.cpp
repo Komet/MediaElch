@@ -9,7 +9,7 @@
 
 #include "data/Storage.h"
 #include "imageProviders/FanartTv.h"
-#include "scrapers/TMDb.h"
+#include "scrapers/movie/TMDb.h"
 
 /**
  * @brief FanartTvMusicArtists::FanartTv

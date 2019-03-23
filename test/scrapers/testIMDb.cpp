@@ -2,7 +2,7 @@
 
 #include "test/mocks/settings/MockScraperSettings.h"
 
-#include "scrapers/IMDB.h"
+#include "scrapers/movie/IMDB.h"
 
 #include <chrono>
 

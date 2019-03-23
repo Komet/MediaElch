@@ -14,7 +14,7 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 #include "mediaCenterPlugins/XbmcXml.h"
-#include "scrapers/IMDB.h"
+#include "scrapers/movie/IMDB.h"
 #include "settings/Settings.h"
 
 /**
