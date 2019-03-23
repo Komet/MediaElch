@@ -6,7 +6,7 @@
 
 #include "data/MediaCenterInterface.h"
 #include "globals/Globals.h"
-#include "mediaCenterPlugins/XbmcXml.h"
+#include "media_centers/XbmcXml.h"
 #include "scrapers/concert/TMDbConcerts.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/FanartTvMusic.h"

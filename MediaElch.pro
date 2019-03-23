@@ -143,16 +143,16 @@ SOURCES += src/main.cpp \
     src/main/MyIconFont.cpp \
     src/main/Navbar.cpp \
     src/main/Update.cpp \
-    src/mediaCenterPlugins/XbmcXml.cpp \
-    src/mediaCenterPlugins/kodi/ArtistXmlReader.cpp \
-    src/mediaCenterPlugins/kodi/ArtistXmlWriter.cpp \
-    src/mediaCenterPlugins/kodi/ConcertXmlWriter.cpp \
-    src/mediaCenterPlugins/kodi/ConcertXmlReader.cpp \
-    src/mediaCenterPlugins/kodi/EpisodeXmlReader.cpp \
-    src/mediaCenterPlugins/kodi/MovieXmlWriter.cpp \
-    src/mediaCenterPlugins/kodi/MovieXmlReader.cpp \
-    src/mediaCenterPlugins/kodi/TvShowXmlWriter.cpp \
-    src/mediaCenterPlugins/kodi/TvShowXmlReader.cpp \
+    src/media_centers/XbmcXml.cpp \
+    src/media_centers/kodi/ArtistXmlReader.cpp \
+    src/media_centers/kodi/ArtistXmlWriter.cpp \
+    src/media_centers/kodi/ConcertXmlWriter.cpp \
+    src/media_centers/kodi/ConcertXmlReader.cpp \
+    src/media_centers/kodi/EpisodeXmlReader.cpp \
+    src/media_centers/kodi/MovieXmlWriter.cpp \
+    src/media_centers/kodi/MovieXmlReader.cpp \
+    src/media_centers/kodi/TvShowXmlWriter.cpp \
+    src/media_centers/kodi/TvShowXmlReader.cpp \
     src/movies/CertificationWidget.cpp \
     src/movies/GenreWidget.cpp \
     src/movies/MovieController.cpp \
@@ -344,16 +344,16 @@ HEADERS  += Version.h \
     src/main/MyIconFont.h \
     src/main/Navbar.h \
     src/main/Update.h \
-    src/mediaCenterPlugins/XbmcXml.h \
-    src/mediaCenterPlugins/kodi/ArtistXmlReader.h \
-    src/mediaCenterPlugins/kodi/ArtistXmlWriter.h \
-    src/mediaCenterPlugins/kodi/ConcertXmlWriter.h \
-    src/mediaCenterPlugins/kodi/ConcertXmlReader.h \
-    src/mediaCenterPlugins/kodi/EpisodeXmlReader.h \
-    src/mediaCenterPlugins/kodi/MovieXmlWriter.h \
-    src/mediaCenterPlugins/kodi/MovieXmlReader.h \
-    src/mediaCenterPlugins/kodi/TvShowXmlWriter.h \
-    src/mediaCenterPlugins/kodi/TvShowXmlReader.h \
+    src/media_centers/XbmcXml.h \
+    src/media_centers/kodi/ArtistXmlReader.h \
+    src/media_centers/kodi/ArtistXmlWriter.h \
+    src/media_centers/kodi/ConcertXmlWriter.h \
+    src/media_centers/kodi/ConcertXmlReader.h \
+    src/media_centers/kodi/EpisodeXmlReader.h \
+    src/media_centers/kodi/MovieXmlWriter.h \
+    src/media_centers/kodi/MovieXmlReader.h \
+    src/media_centers/kodi/TvShowXmlWriter.h \
+    src/media_centers/kodi/TvShowXmlReader.h \
     src/movies/CertificationWidget.h \
     src/movies/GenreWidget.h \
     src/movies/MovieController.h \
