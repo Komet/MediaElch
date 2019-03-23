@@ -37,7 +37,7 @@
 #include "tvShows/TvShowSearch.h"
 #include "tvShows/TvShowUpdater.h"
 #include "tvShows/TvTunesDialog.h"
-#include "ui/media_centers/XbmcSync.h"
+#include "ui/media_centers/KodiSync.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 
@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(this);
     m_fileScannerDialog = new FileScannerDialog(this);
-    m_xbmcSync = new XbmcSync(Settings::instance()->kodiSettings(), this);
+    m_xbmcSync = new KodiSync(Settings::instance()->kodiSettings(), this);
     m_renamer = new RenamerDialog(this);
     m_settings = Settings::instance(this);
     m_exportDialog = new ExportDialog(this);
@@ -195,8 +195,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(m_fileScannerDialog,                       &QDialog::accepted,                 this, &MainWindow::setNewMarks);
     connect(ui->downloadsWidget,                       &DownloadsWidget::sigScanFinished,  this, &MainWindow::setNewMarks);
 
-    connect(m_xbmcSync, &XbmcSync::sigTriggerReload, this, &MainWindow::onTriggerReloadAll);
-    connect(m_xbmcSync, &XbmcSync::sigFinished,      this, &MainWindow::onXbmcSyncFinished);
+    connect(m_xbmcSync, &KodiSync::sigTriggerReload, this, &MainWindow::onTriggerReloadAll);
+    connect(m_xbmcSync, &KodiSync::sigFinished,      this, &MainWindow::onKodiSyncFinished);
 
     connect(m_renamer, &RenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
 
@@ -630,7 +630,7 @@ void MainWindow::onTriggerReloadAll()
     m_fileScannerDialog->exec();
 }
 
-void MainWindow::onXbmcSyncFinished()
+void MainWindow::onKodiSyncFinished()
 {
     ui->movieFilesWidget->movieSelectedEmitter();
     ui->tvShowFilesWidget->emitLastSelection();

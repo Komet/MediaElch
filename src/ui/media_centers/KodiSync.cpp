@@ -1,5 +1,5 @@
-#include "XbmcSync.h"
-#include "ui_XbmcSync.h"
+#include "KodiSync.h"
+#include "ui_KodiSync.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -10,12 +10,12 @@
 #include "notifications/NotificationBox.h"
 #include "settings/Settings.h"
 
-// XbmcSync uses the Kodi JSON-RPC API
+// KodiSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
 
-XbmcSync::XbmcSync(KodiSettings& settings, QWidget* parent) :
+KodiSync::KodiSync(KodiSettings& settings, QWidget* parent) :
     QDialog(parent),
-    ui(new Ui::XbmcSync),
+    ui(new Ui::KodiSync),
     m_settings{settings},
     m_allReady{false},
     m_aborted{false},
@@ -28,26 +28,26 @@ XbmcSync::XbmcSync(KodiSettings& settings, QWidget* parent) :
 {
     ui->setupUi(this);
 
-    connect(&m_qnam, &QNetworkAccessManager::authenticationRequired, this, &XbmcSync::onAuthRequired);
+    connect(&m_qnam, &QNetworkAccessManager::authenticationRequired, this, &KodiSync::onAuthRequired);
 
     // clang-format off
-    connect(ui->buttonSync,          &QAbstractButton::clicked, this, &XbmcSync::startSync);
-    connect(ui->buttonClose,         &QAbstractButton::clicked, this, &XbmcSync::onButtonClose);
-    connect(ui->radioUpdateContents, &QAbstractButton::clicked, this, &XbmcSync::onRadioContents);
-    connect(ui->radioClean,          &QAbstractButton::clicked, this, &XbmcSync::onRadioClean);
-    connect(ui->radioGetWatched,     &QAbstractButton::clicked, this, &XbmcSync::onRadioWatched);
+    connect(ui->buttonSync,          &QAbstractButton::clicked, this, &KodiSync::startSync);
+    connect(ui->buttonClose,         &QAbstractButton::clicked, this, &KodiSync::onButtonClose);
+    connect(ui->radioUpdateContents, &QAbstractButton::clicked, this, &KodiSync::onRadioContents);
+    connect(ui->radioClean,          &QAbstractButton::clicked, this, &KodiSync::onRadioClean);
+    connect(ui->radioGetWatched,     &QAbstractButton::clicked, this, &KodiSync::onRadioWatched);
     // clang-format on
 
     ui->progressBar->setVisible(false);
     onRadioContents();
 }
 
-XbmcSync::~XbmcSync()
+KodiSync::~KodiSync()
 {
     delete ui;
 }
 
-int XbmcSync::exec()
+int KodiSync::exec()
 {
     m_renameArtworkInProgress = false;
     m_cancelRenameArtwork = false;
@@ -57,7 +57,7 @@ int XbmcSync::exec()
     return QDialog::exec();
 }
 
-void XbmcSync::onButtonClose()
+void KodiSync::onButtonClose()
 {
     if (m_renameArtworkInProgress) {
         m_cancelRenameArtwork = true;
@@ -66,7 +66,7 @@ void XbmcSync::onButtonClose()
     reject();
 }
 
-void XbmcSync::reject()
+void KodiSync::reject()
 {
     QDialog::reject();
     if (m_artworkWasRenamed) {
@@ -78,7 +78,7 @@ void XbmcSync::reject()
     }
 }
 
-void XbmcSync::startSync()
+void KodiSync::startSync()
 {
     m_allReady = false;
     m_elements.clear();
@@ -182,7 +182,7 @@ void XbmcSync::startSync()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onMovieListFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onMovieListFinished);
     }
 
     if (!m_concertsToSync.isEmpty()) {
@@ -193,7 +193,7 @@ void XbmcSync::startSync()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onConcertListFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onConcertListFinished);
     }
 
     if (!m_tvShowsToSync.isEmpty()) {
@@ -204,7 +204,7 @@ void XbmcSync::startSync()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onTvShowListFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onTvShowListFinished);
     }
 
     if (!m_episodesToSync.isEmpty()) {
@@ -215,19 +215,19 @@ void XbmcSync::startSync()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onEpisodeListFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onEpisodeListFinished);
     }
 
     if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty()
         && m_episodesToSync.isEmpty()) {
-        QTimer::singleShot(m_reloadTimeOut, this, &XbmcSync::triggerReload);
+        QTimer::singleShot(m_reloadTimeOut, this, &KodiSync::triggerReload);
     } else {
         ui->status->setText(tr("Getting contents from Kodi"));
         ui->buttonSync->setEnabled(false);
     }
 }
 
-void XbmcSync::onMovieListFinished()
+void KodiSync::onMovieListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
@@ -257,7 +257,7 @@ void XbmcSync::onMovieListFinished()
     checkIfListsReady(Element::Movies);
 }
 
-void XbmcSync::onConcertListFinished()
+void KodiSync::onConcertListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
@@ -287,7 +287,7 @@ void XbmcSync::onConcertListFinished()
     checkIfListsReady(Element::Concerts);
 }
 
-void XbmcSync::onTvShowListFinished()
+void KodiSync::onTvShowListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
@@ -317,7 +317,7 @@ void XbmcSync::onTvShowListFinished()
     checkIfListsReady(Element::TvShows);
 }
 
-void XbmcSync::onEpisodeListFinished()
+void KodiSync::onEpisodeListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
@@ -347,7 +347,7 @@ void XbmcSync::onEpisodeListFinished()
     checkIfListsReady(Element::Episodes);
 }
 
-void XbmcSync::checkIfListsReady(Element element)
+void KodiSync::checkIfListsReady(Element element)
 {
     QMutexLocker locker(&m_mutex);
 
@@ -373,7 +373,7 @@ void XbmcSync::checkIfListsReady(Element element)
     }
 }
 
-void XbmcSync::setupItemsToRemove()
+void KodiSync::setupItemsToRemove()
 {
     for (Movie* movie : m_moviesToSync) {
         movie->setSyncNeeded(false);
@@ -417,7 +417,7 @@ void XbmcSync::setupItemsToRemove()
     }
 }
 
-void XbmcSync::removeItems()
+void KodiSync::removeItems()
 {
     QJsonObject o;
     o.insert("jsonrpc", QString("2.0"));
@@ -434,7 +434,7 @@ void XbmcSync::removeItems()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onRemoveFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
 
@@ -449,7 +449,7 @@ void XbmcSync::removeItems()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onRemoveFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
 
@@ -464,7 +464,7 @@ void XbmcSync::removeItems()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onRemoveFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
 
@@ -480,14 +480,14 @@ void XbmcSync::removeItems()
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-        connect(reply, &QNetworkReply::finished, this, &XbmcSync::onRemoveFinished);
+        connect(reply, &QNetworkReply::finished, this, &KodiSync::onRemoveFinished);
         return;
     }
 
-    QTimer::singleShot(m_reloadTimeOut, this, &XbmcSync::triggerReload);
+    QTimer::singleShot(m_reloadTimeOut, this, &KodiSync::triggerReload);
 }
 
-void XbmcSync::onRemoveFinished()
+void KodiSync::onRemoveFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
     if (reply) {
@@ -503,11 +503,11 @@ void XbmcSync::onRemoveFinished()
         || !m_episodesToRemove.isEmpty()) {
         removeItems();
     } else {
-        QTimer::singleShot(m_reloadTimeOut, this, &XbmcSync::triggerReload);
+        QTimer::singleShot(m_reloadTimeOut, this, &KodiSync::triggerReload);
     }
 }
 
-void XbmcSync::triggerReload()
+void KodiSync::triggerReload()
 {
     ui->status->setText(tr("Trigger scan for new items"));
 
@@ -520,16 +520,16 @@ void XbmcSync::triggerReload()
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
     QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-    connect(reply, &QNetworkReply::finished, this, &XbmcSync::onScanFinished);
+    connect(reply, &QNetworkReply::finished, this, &KodiSync::onScanFinished);
 }
 
-void XbmcSync::onScanFinished()
+void KodiSync::onScanFinished()
 {
     ui->status->setText(tr("Finished. Kodi is now loading your updated items."));
     ui->buttonSync->setEnabled(true);
 }
 
-void XbmcSync::triggerClean()
+void KodiSync::triggerClean()
 {
     QJsonObject o;
     o.insert("jsonrpc", QString("2.0"));
@@ -540,16 +540,16 @@ void XbmcSync::triggerClean()
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
     QNetworkReply* reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
-    connect(reply, &QNetworkReply::finished, this, &XbmcSync::onCleanFinished);
+    connect(reply, &QNetworkReply::finished, this, &KodiSync::onCleanFinished);
 }
 
-void XbmcSync::onCleanFinished()
+void KodiSync::onCleanFinished()
 {
     ui->status->setText(tr("Finished. Kodi is now cleaning your database."));
     ui->buttonSync->setEnabled(true);
 }
 
-void XbmcSync::updateWatched()
+void KodiSync::updateWatched()
 {
     for (Movie* movie : m_moviesToSync) {
         int id = findId(movie->files(), m_xbmcMovies);
@@ -596,7 +596,7 @@ void XbmcSync::updateWatched()
     ui->buttonSync->setEnabled(true);
 }
 
-int XbmcSync::findId(const QStringList& files, const QMap<int, XbmcData>& items)
+int KodiSync::findId(const QStringList& files, const QMap<int, XbmcData>& items)
 {
     if (files.isEmpty()) {
         return -1;
@@ -633,7 +633,7 @@ int XbmcSync::findId(const QStringList& files, const QMap<int, XbmcData>& items)
     }
 }
 
-bool XbmcSync::compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level)
+bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level)
 {
     if (files.count() == 1 && xbmcFiles.count() == 1) {
         QStringList file = splitFile(files.at(0));
@@ -683,7 +683,7 @@ bool XbmcSync::compareFiles(const QStringList& files, const QStringList& xbmcFil
     return false;
 }
 
-QStringList XbmcSync::splitFile(const QString& file)
+QStringList KodiSync::splitFile(const QString& file)
 {
     // Windows file names must not contain /
     if (file.contains("/")) {
@@ -693,7 +693,7 @@ QStringList XbmcSync::splitFile(const QString& file)
     }
 }
 
-void XbmcSync::onRadioContents()
+void KodiSync::onRadioContents()
 {
     ui->labelContents->setVisible(true);
     ui->labelWatched->setVisible(false);
@@ -701,7 +701,7 @@ void XbmcSync::onRadioContents()
     m_syncType = SyncType::Contents;
 }
 
-void XbmcSync::onRadioClean()
+void KodiSync::onRadioClean()
 {
     ui->labelContents->setVisible(false);
     ui->labelWatched->setVisible(false);
@@ -709,7 +709,7 @@ void XbmcSync::onRadioClean()
     m_syncType = SyncType::Clean;
 }
 
-void XbmcSync::onRadioWatched()
+void KodiSync::onRadioWatched()
 {
     ui->labelContents->setVisible(false);
     ui->labelWatched->setVisible(true);
@@ -717,7 +717,7 @@ void XbmcSync::onRadioWatched()
     m_syncType = SyncType::Watched;
 }
 
-XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
+KodiSync::XbmcData KodiSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
 {
     XbmcData d;
     d.file = map.value("file").toString().normalized(QString::NormalizationForm_C);
@@ -726,7 +726,7 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
     return d;
 }
 
-void XbmcSync::updateFolderLastModified(Movie* movie)
+void KodiSync::updateFolderLastModified(Movie* movie)
 {
     if (movie->files().isEmpty()) {
         return;
@@ -746,7 +746,7 @@ void XbmcSync::updateFolderLastModified(Movie* movie)
     }
 }
 
-void XbmcSync::updateFolderLastModified(Concert* concert)
+void KodiSync::updateFolderLastModified(Concert* concert)
 {
     if (concert->files().isEmpty()) {
         return;
@@ -766,7 +766,7 @@ void XbmcSync::updateFolderLastModified(Concert* concert)
     }
 }
 
-void XbmcSync::updateFolderLastModified(TvShow* show)
+void KodiSync::updateFolderLastModified(TvShow* show)
 {
     QDir dir(show->dir());
     QFile file(dir.absolutePath() + "/.update");
@@ -777,7 +777,7 @@ void XbmcSync::updateFolderLastModified(TvShow* show)
     }
 }
 
-void XbmcSync::updateFolderLastModified(TvShowEpisode* episode)
+void KodiSync::updateFolderLastModified(TvShowEpisode* episode)
 {
     if (episode->files().isEmpty()) {
         return;
@@ -793,7 +793,7 @@ void XbmcSync::updateFolderLastModified(TvShowEpisode* episode)
     }
 }
 
-void XbmcSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator)
+void KodiSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator)
 {
     Q_UNUSED(reply);
 
@@ -801,7 +801,7 @@ void XbmcSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticato
     authenticator->setPassword(m_settings.xbmcPassword());
 }
 
-QUrl XbmcSync::xbmcUrl()
+QUrl KodiSync::xbmcUrl()
 {
     QString url = "http://";
     if (!m_settings.xbmcUser().isEmpty()) {

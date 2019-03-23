@@ -13,16 +13,16 @@
 #include <QUrl>
 
 namespace Ui {
-class XbmcSync;
+class KodiSync;
 }
 
-class XbmcSync : public QDialog
+class KodiSync : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit XbmcSync(KodiSettings& settings, QWidget* parent = nullptr);
-    ~XbmcSync() override;
+    explicit KodiSync(KodiSettings& settings, QWidget* parent = nullptr);
+    ~KodiSync() override;
     enum class Element
     {
         Movies,
@@ -71,7 +71,7 @@ private slots:
     void onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator);
 
 private:
-    Ui::XbmcSync* ui;
+    Ui::KodiSync* ui;
     KodiSettings& m_settings;
 
     QNetworkAccessManager m_qnam;
@@ -105,7 +105,7 @@ private:
     void removeItems();
     void updateWatched();
     void checkIfListsReady(Element element);
-    XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
+    KodiSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
     void updateFolderLastModified(Movie* movie);
     void updateFolderLastModified(Concert* concert);
     void updateFolderLastModified(TvShow* show);
