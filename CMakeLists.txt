@@ -87,7 +87,6 @@ find_package(
     Quick
     QuickWidgets
     Sql
-    Test
     Widgets
     Xml
   REQUIRED
