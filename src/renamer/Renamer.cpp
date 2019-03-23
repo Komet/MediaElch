@@ -1,7 +1,7 @@
 #include "Renamer.h"
 
-#include "data/Movie.h"
 #include "globals/Helper.h"
+#include "movies/Movie.h"
 #include "settings/Settings.h"
 
 #include <QApplication>

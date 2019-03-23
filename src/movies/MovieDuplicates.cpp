@@ -1,11 +1,11 @@
 #include "MovieDuplicates.h"
 #include "ui_MovieDuplicates.h"
 
-#include "data/Movie.h"
-#include "data/MovieProxyModel.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "movies/Movie.h"
 #include "movies/MovieDuplicateItem.h"
+#include "movies/MovieProxyModel.h"
 #include "notifications/NotificationBox.h"
 
 #include <QDebug>

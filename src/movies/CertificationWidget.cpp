@@ -1,10 +1,10 @@
 #include "CertificationWidget.h"
 #include "ui_CertificationWidget.h"
 
-#include "data/Movie.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "movies/Movie.h"
 #include "notifications/NotificationBox.h"
 #include "sets/MovieListDialog.h"
 

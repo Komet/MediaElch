@@ -6,11 +6,11 @@
 
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
-#include "data/Movie.h"
 #include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
+#include "movies/Movie.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
 #include "scrapers/movie/MovieScraperInterface.h"

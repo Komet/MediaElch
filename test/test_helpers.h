@@ -8,8 +8,8 @@
 #include "test/helpers/debug_output.h"
 #include "test/helpers/matchers.h"
 
-#include "data/Movie.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 #include "movies/MovieController.h"
 
 #include <QEventLoop>

@@ -1,8 +1,8 @@
 #include "MovieXmlWriter.h"
 
-#include "data/Movie.h"
 #include "globals/Helper.h"
 #include "media_centers/XbmcXml.h"
+#include "movies/Movie.h"
 #include "settings/Settings.h"
 
 #include <QDomDocument>

@@ -89,12 +89,12 @@ SOURCES += src/main.cpp \
     src/data/ConcertProxyModel.cpp \
     src/data/Database.cpp \
     src/data/ImageCache.cpp \
-    src/data/Movie.cpp \
-    src/data/MovieFileSearcher.cpp \
-    src/data/MovieFilesOrganizer.cpp \
-    src/data/MovieImages.cpp \
-    src/data/MovieModel.cpp \
-    src/data/MovieProxyModel.cpp \
+    src/movies/Movie.cpp \
+    src/movies/MovieFileSearcher.cpp \
+    src/movies/MovieFilesOrganizer.cpp \
+    src/movies/MovieImages.cpp \
+    src/movies/MovieModel.cpp \
+    src/movies/MovieProxyModel.cpp \
     src/data/Rating.cpp \
     src/scrapers/ScraperInterface.cpp \
     src/data/Storage.cpp \
@@ -262,7 +262,7 @@ SOURCES += src/main.cpp \
     src/data/EpisodeNumber.cpp \
     src/data/SeasonNumber.cpp \
     src/data/Certification.cpp \
-    src/data/MovieCrew.cpp
+    src/movies/MovieCrew.cpp
 
 macx {
     OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
@@ -283,12 +283,12 @@ HEADERS  += Version.h \
     src/data/Database.h \
     src/data/ImageCache.h \
     src/data/MediaCenterInterface.h \
-    src/data/Movie.h \
-    src/data/MovieFileSearcher.h \
-    src/data/MovieFilesOrganizer.h \
-    src/data/MovieImages.h \
-    src/data/MovieModel.h \
-    src/data/MovieProxyModel.h \
+    src/movies/Movie.h \
+    src/movies/MovieFileSearcher.h \
+    src/movies/MovieFilesOrganizer.h \
+    src/movies/MovieImages.h \
+    src/movies/MovieModel.h \
+    src/movies/MovieProxyModel.h \
     src/scrapers/image/ImageProviderInterface.h \
     src/scrapers/concert/ConcertScraperInterface.h \
     src/scrapers/music/MusicScraperInterface.h \
@@ -465,7 +465,7 @@ HEADERS  += Version.h \
     src/data/EpisodeNumber.h \
     src/data/SeasonNumber.h \
     src/data/Certification.h \
-    src/data/MovieCrew.h
+    src/movies/MovieCrew.h
 
 FORMS    += src/main/MainWindow.ui \
     src/concerts/ConcertFilesWidget.ui \

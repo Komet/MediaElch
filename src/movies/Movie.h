@@ -2,14 +2,14 @@
 
 #include "data/Certification.h"
 #include "data/ImdbId.h"
-#include "data/MovieCrew.h"
-#include "data/MovieImages.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
 #include "movies/MovieController.h"
+#include "movies/MovieCrew.h"
+#include "movies/MovieImages.h"
 
 #include <QDate>
 #include <QDebug>

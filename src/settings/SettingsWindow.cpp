@@ -6,13 +6,13 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "data/MovieFilesOrganizer.h"
 #include "data/Storage.h"
 #include "export/ExportTemplate.h"
 #include "export/ExportTemplateLoader.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "movies/MovieFilesOrganizer.h"
 #include "notifications/NotificationBox.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/movie/CustomMovieScraper.h"

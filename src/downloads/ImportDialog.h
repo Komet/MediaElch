@@ -1,12 +1,12 @@
 #pragma once
 
 #include "data/Concert.h"
-#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "downloads/FileWorker.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
+#include "movies/Movie.h"
 #include "renamer/RenamerDialog.h"
 
 #include <QCloseEvent>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 
 #include <QAbstractItemModel>
 #include <QIcon>
