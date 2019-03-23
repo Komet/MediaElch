@@ -283,8 +283,8 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    for (Actor* actor : actorsPointer()) {
-        actor->image = QByteArray();
+    for (Actor& actor : actors()) {
+        actor.image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
 }
@@ -499,21 +499,6 @@ QVector<Certification> TvShow::certifications() const
 QVector<Actor> TvShow::actors() const
 {
     return m_actors;
-}
-
-/**
- * @brief TvShow::actorsPointer
- * @return List of pointers to actors
- * @see TvShow::addActor
- * @see TvShow::actors
- */
-QVector<Actor*> TvShow::actorsPointer()
-{
-    QVector<Actor*> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++) {
-        actors.append(&(m_actors[i]));
-    }
-    return actors;
 }
 
 /**

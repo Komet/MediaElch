@@ -63,8 +63,8 @@ public:
     QStringList tags() const;
     QVector<QString*> studiosPointer();
     QUrl trailer() const;
-    QVector<Actor> actors() const;
-    QVector<Actor*> actorsPointer();
+    const QVector<Actor>& actors() const;
+    QVector<Actor>& actors();
     QStringList files() const;
     QString folderName() const;
     int playcount() const;

@@ -936,15 +936,6 @@ QVector<Actor> TvShowEpisode::actors() const
     return m_actors;
 }
 
-QVector<Actor*> TvShowEpisode::actorsPointer()
-{
-    QVector<Actor*> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++) {
-        actors.append(&(m_actors[i]));
-    }
-    return actors;
-}
-
 void TvShowEpisode::addActor(Actor actor)
 {
     m_actors.append(actor);

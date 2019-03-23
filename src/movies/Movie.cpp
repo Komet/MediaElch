@@ -156,47 +156,27 @@ void Movie::clear(QVector<MovieScraperInfos> infos)
     }
 }
 
-/**
- * @brief Clears the movie images to save memory
- */
+/// @brief Clears the movie images to save memory
 void Movie::clearImages()
 {
     m_movieImages.clearImages();
-    for (Actor* actor : m_crew.actorsPointer()) {
-        actor->image = QByteArray();
+    for (Actor& actor : m_crew.actors()) {
+        actor.image = QByteArray();
     }
 }
 
 /*** GETTER ***/
 
-/**
- * @property Movie::name
- * @brief Holds the movies name
- * @return The movies name
- * @see Movie::setName
- */
 QString Movie::name() const
 {
     return m_name;
 }
 
-/**
- * @property Movie::sortTitle
- * @brief Holds the sort title
- * @return Sort title of the movie
- * @see Movie::setSortTitle
- */
 QString Movie::sortTitle() const
 {
     return m_sortTitle;
 }
 
-/**
- * @property Movie::originalName
- * @brief Holds the original name
- * @return Original name of the movie
- * @see Movie::setOriginalName
- */
 QString Movie::originalName() const
 {
     return m_originalName;
@@ -212,118 +192,56 @@ const MovieImages& Movie::constImages() const
     return m_movieImages;
 }
 
-/**
- * @property Movie::overview
- * @brief Holds the movies plot
- * @return Plot of the movie
- * @see Movie::setOverview
- */
 QString Movie::overview() const
 {
     return m_overview;
 }
 
-/**
- * @brief Holds the movies rating
- * @return Rating of the movie
- * @see Movie::setRating
- */
 double Movie::rating() const
 {
     return m_rating.rating;
 }
 
-/**
- * @brief Holds the movies votes
- * @return Votes of the movie
- * @see Movie::setVotes
- */
 int Movie::votes() const
 {
     return m_rating.voteCount;
 }
 
-/**
- * @brief Holds the movies top 250
- * @return Position of the movie in top 250
- * @see Movie::setTop250
- */
 int Movie::top250() const
 {
     return m_rating.imdbTop250;
 }
 
-/**
- * @property Movie::released
- * @brief Holds the movies release date
- * @return Release date of the movie
- * @see Movie::setReleased
- */
 QDate Movie::released() const
 {
     return m_released;
 }
 
-/**
- * @property Movie::tagline
- * @brief Holds the movies tagline
- * @return Tagline of the movie
- * @see Movie::setTagline
- */
 QString Movie::tagline() const
 {
     return m_tagline;
 }
 
-/**
- * @property Movie::outline
- * @brief Holds the movies outline
- * @return Outline of the movie
- * @see Movie::setOutline
- */
 QString Movie::outline() const
 {
     return m_outline;
 }
 
-/**
- * @brief Holds the movies runtime
- * @return Runtime of the movie
- * @see Movie::setRuntime
- */
 std::chrono::minutes Movie::runtime() const
 {
     return m_runtime;
 }
 
-/**
- * @property Movie::certification
- * @brief Holds the movies certification
- * @return Certification of the movie
- * @see Movie::setCertification
- */
 Certification Movie::certification() const
 {
     return m_certification;
 }
 
-/**
- * @property Movie::writer
- * @brief Holds the movies writer
- * @return Writer of the movie
- * @see Movie::setWriter
- */
 QString Movie::writer() const
 {
     return m_crew.writer();
 }
 
-/**
- * @property Movie::director
- * @brief Holds the movies director
- * @return Director of the movie
- * @see Movie::setDirector
- */
 QString Movie::director() const
 {
     return m_crew.director();
@@ -421,27 +339,14 @@ QUrl Movie::trailer() const
     return m_trailer;
 }
 
-/**
- * @property Movie::actors
- * @brief Holds the movies actors
- * @return List of actors of the movie
- * @see Movie::setActors
- * @see Movie::actorsPointer
- * @see Movie::addActor
- * @see Movie::removeActor
- */
-QVector<Actor> Movie::actors() const
+const QVector<Actor>& Movie::actors() const
 {
     return m_crew.actors();
 }
 
-/**
- * @brief Returns a list of pointers of Actor
- * @return List of pointers to movies actors
- */
-QVector<Actor*> Movie::actorsPointer()
+QVector<Actor>& Movie::actors()
 {
-    return m_crew.actorsPointer();
+    return m_crew.actors();
 }
 
 /**

@@ -12,7 +12,6 @@ public:
     QString director() const;
     const QVector<Actor>& actors() const;
     QVector<Actor>& actors();
-    QVector<Actor*> actorsPointer();
 
     void setWriter(QString writer);
     void setDirector(QString director);

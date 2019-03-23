@@ -362,9 +362,9 @@ void AEBN::parseAndAssignActor(QString html, Movie* movie, QString id)
     QRegExp rx(R"lit(<img itemprop="image" src="([^"]*)" alt="([^"]*)" class="star" />)lit");
     rx.setMinimal(true);
     if (rx.indexIn(html) != -1) {
-        for (Actor* a : movie->actorsPointer()) {
-            if (a->id == id) {
-                a->thumb = QStringLiteral("https:") + rx.cap(1);
+        for (Actor& a : movie->actors()) {
+            if (a.id == id) {
+                a.thumb = QStringLiteral("https:") + rx.cap(1);
             }
         }
     }

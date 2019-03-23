@@ -21,15 +21,6 @@ QVector<Actor>& MovieCrew::actors()
     return m_actors;
 }
 
-QVector<Actor*> MovieCrew::actorsPointer()
-{
-    QVector<Actor*> actors;
-    for (int i = 0, n = m_actors.size(); i < n; i++) {
-        actors.append(&(m_actors[i]));
-    }
-    return actors;
-}
-
 void MovieCrew::setWriter(QString writer)
 {
     m_writer = writer;

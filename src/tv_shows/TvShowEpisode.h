@@ -108,7 +108,6 @@ public:
     void removeDirector(QString* director);
 
     QVector<Actor> actors() const;
-    QVector<Actor*> actorsPointer();
     void addActor(Actor actor);
     void removeActor(Actor* actor);
 

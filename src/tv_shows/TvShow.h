@@ -52,7 +52,6 @@ public:
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
     QVector<Actor> actors() const;
-    QVector<Actor*> actorsPointer();
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
