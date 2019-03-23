@@ -1,8 +1,8 @@
 #include "MovieImages.h"
 
 #include "data/MediaCenterInterface.h"
-#include "data/Movie.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 #include <QVector>
 

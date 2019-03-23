@@ -3,11 +3,18 @@ add_library(
   OBJECT
   CertificationWidget.cpp
   GenreWidget.cpp
+  Movie.cpp
   MovieController.cpp
+  MovieCrew.cpp
   MovieDuplicateItem.cpp
   MovieDuplicates.cpp
+  MovieFileSearcher.cpp
+  MovieFilesOrganizer.cpp
   MovieFilesWidget.cpp
+  MovieImages.cpp
+  MovieModel.cpp
   MovieMultiScrapeDialog.cpp
+  MovieProxyModel.cpp
   MovieSearch.cpp
   MovieSearchWidget.cpp
   MovieWidget.cpp

@@ -1,8 +1,8 @@
 #include "MovieDuplicateItem.h"
 #include "ui_MovieDuplicateItem.h"
 
-#include "data/Movie.h"
 #include "globals/Manager.h"
+#include "movies/Movie.h"
 
 #include <QDebug>
 

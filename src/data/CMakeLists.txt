@@ -10,13 +10,6 @@ add_library(
   EpisodeNumber.cpp
   ImageCache.cpp
   ImdbId.cpp
-  Movie.cpp
-  MovieCrew.cpp
-  MovieFileSearcher.cpp
-  MovieFilesOrganizer.cpp
-  MovieImages.cpp
-  MovieModel.cpp
-  MovieProxyModel.cpp
   Rating.cpp
   SeasonNumber.cpp
   Storage.cpp

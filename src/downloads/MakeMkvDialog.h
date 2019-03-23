@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/Movie.h"
 #include "downloads/MakeMkvCon.h"
+#include "movies/Movie.h"
 
 #include <QDialog>
 #include <QMap>

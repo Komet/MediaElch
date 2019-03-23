@@ -5,12 +5,12 @@
 #include <QProgressBar>
 #include <QToolButton>
 
-#include "data/MovieFileSearcher.h"
 #include "export/ExportDialog.h"
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
+#include "movies/MovieFileSearcher.h"
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"

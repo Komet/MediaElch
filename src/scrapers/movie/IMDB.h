@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QNetworkAccessManager>

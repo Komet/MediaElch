@@ -1,6 +1,5 @@
 #include "XbmcXml.h"
 
-#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
@@ -16,6 +15,7 @@
 #include "media_centers/kodi/MovieXmlWriter.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/TvShowXmlWriter.h"
+#include "movies/Movie.h"
 #include "settings/Settings.h"
 
 #include <QApplication>

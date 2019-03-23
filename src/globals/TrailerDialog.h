@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/Movie.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 #include <QDialog>
 #include <QFile>

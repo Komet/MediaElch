@@ -1,14 +1,14 @@
 #include "movies/MovieFilesWidget.h"
 #include "ui_MovieFilesWidget.h"
 
-#include "data/Movie.h"
-#include "data/MovieModel.h"
-#include "data/MovieProxyModel.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "movies/Movie.h"
+#include "movies/MovieModel.h"
 #include "movies/MovieMultiScrapeDialog.h"
+#include "movies/MovieProxyModel.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 

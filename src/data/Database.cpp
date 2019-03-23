@@ -8,12 +8,12 @@
 #include <QSqlRecord>
 
 #include "data/Concert.h"
-#include "data/Movie.h"
 #include "data/Subtitle.h"
 #include "data/TvShow.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_centers/XbmcXml.h"
+#include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "settings/Settings.h"

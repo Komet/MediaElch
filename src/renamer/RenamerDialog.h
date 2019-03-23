@@ -1,9 +1,9 @@
 #pragma once
 
 #include "data/Concert.h"
-#include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "movies/Movie.h"
 #include "renamer/Renamer.h"
 
 #include <QDialog>

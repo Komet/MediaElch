@@ -1,6 +1,6 @@
 #include "MovieXmlReader.h"
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 
 #include <QDate>
 #include <QDomDocument>
