@@ -2,7 +2,7 @@
 
 #include "data/ImageProviderInterface.h"
 #include "data/Movie.h"
-#include "scrapers/TMDb.h"
+#include "scrapers/movie/TMDb.h"
 
 /**
  * @brief The TMDbImages class

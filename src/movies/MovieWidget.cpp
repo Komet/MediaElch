@@ -14,7 +14,7 @@
 #include "movies/MovieFilesWidget.h"
 #include "movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
-#include "scrapers/CustomMovieScraper.h"
+#include "scrapers/movie/CustomMovieScraper.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QDoubleValidator>

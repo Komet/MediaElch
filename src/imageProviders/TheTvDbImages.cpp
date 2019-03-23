@@ -2,7 +2,7 @@
 
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "scrapers/TheTvDb.h"
+#include "scrapers/tv_show/TheTvDb.h"
 #include "settings/Settings.h"
 
 /**

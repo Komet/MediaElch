@@ -3,9 +3,9 @@
 
 #include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
-#include "scrapers/CustomMovieScraper.h"
-#include "scrapers/IMDB.h"
-#include "scrapers/TMDb.h"
+#include "scrapers/movie/CustomMovieScraper.h"
+#include "scrapers/movie/IMDB.h"
+#include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
 #include <QDebug>

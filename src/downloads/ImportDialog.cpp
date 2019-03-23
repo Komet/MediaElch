@@ -11,7 +11,7 @@
 #include "globals/NameFormatter.h"
 #include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
-#include "scrapers/CustomMovieScraper.h"
+#include "scrapers/movie/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"

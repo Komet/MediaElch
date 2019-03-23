@@ -12,7 +12,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
-#include "scrapers/TheTvDb.h"
+#include "scrapers/tv_show/TheTvDb.h"
 #include "tvShows/model/EpisodeModelItem.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"

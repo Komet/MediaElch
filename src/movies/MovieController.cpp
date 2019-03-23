@@ -12,9 +12,9 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
-#include "scrapers/CustomMovieScraper.h"
-#include "scrapers/IMDB.h"
-#include "scrapers/TMDb.h"
+#include "scrapers/movie/CustomMovieScraper.h"
+#include "scrapers/movie/IMDB.h"
+#include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie* parent) :

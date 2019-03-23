@@ -1,18 +1,18 @@
 add_library(
   mediaelch_scrapers
   OBJECT
-  AdultDvdEmpire.cpp
-  AEBN.cpp
-  CustomMovieScraper.cpp
-  HotMovies.cpp
-  IMDB.cpp
-  OFDb.cpp
-  TheTvDb.cpp
-  TMDb.cpp
-  TMDbConcerts.cpp
-  TvTunes.cpp
-  UniversalMusicScraper.cpp
-  VideoBuster.cpp
+  concert/TMDbConcerts.cpp
+  movie/AdultDvdEmpire.cpp
+  movie/AEBN.cpp
+  movie/CustomMovieScraper.cpp
+  movie/HotMovies.cpp
+  movie/IMDB.cpp
+  movie/OFDb.cpp
+  movie/TMDb.cpp
+  movie/VideoBuster.cpp
+  music/TvTunes.cpp
+  music/UniversalMusicScraper.cpp
+  tv_show/TheTvDb.cpp
 )
 
 target_link_libraries(

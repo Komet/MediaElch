@@ -13,7 +13,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
-#include "scrapers/TheTvDb.h"
+#include "scrapers/tv_show/TheTvDb.h"
 #include "tvShows/TvShowSearch.h"
 #include "tvShows/TvTunesDialog.h"
 
