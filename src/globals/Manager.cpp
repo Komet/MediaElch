@@ -5,8 +5,8 @@
 #include <QSqlQuery>
 
 #include "globals/Globals.h"
+#include "media_centers/KodiXml.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "media_centers/XbmcXml.h"
 #include "scrapers/concert/TMDbConcerts.h"
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/FanartTvMusic.h"
@@ -49,9 +49,9 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_musicModel = new MusicModel(this);
     m_database = new Database(this);
 
-    m_mediaCenters.append(new XbmcXml(this));
-    m_mediaCentersTvShow.append(new XbmcXml(this));
-    m_mediaCentersConcert.append(new XbmcXml(this));
+    m_mediaCenters.append(new KodiXml(this));
+    m_mediaCentersTvShow.append(new KodiXml(this));
+    m_mediaCentersConcert.append(new KodiXml(this));
 
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new FanartTvMusic(this));

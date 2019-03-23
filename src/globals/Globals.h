@@ -62,12 +62,6 @@ namespace MusicRoles {
     const int SelectionForeground = Qt::UserRole+5;
 }
 
-namespace MediaCenterInterfaces {
-    const int XbmcXml    = 1;
-    const int XbmcMysql  = 2;
-    const int XbmcSqlite = 3;
-}
-
 namespace MediaCenterFeatures {
     const int EditTvShowEpisodeCertification = 1;
     const int EditTvShowEpisodeShowTitle     = 2;

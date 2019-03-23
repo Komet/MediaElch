@@ -1,7 +1,7 @@
 #include "MovieXmlWriter.h"
 
 #include "globals/Helper.h"
-#include "media_centers/XbmcXml.h"
+#include "media_centers/KodiXml.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
 
@@ -27,40 +27,40 @@ QByteArray MovieXmlWriter::getMovieXml()
 
     QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
 
-    XbmcXml::setTextValue(doc, "title", m_movie.name());
-    XbmcXml::setTextValue(doc, "originaltitle", m_movie.originalName());
-    XbmcXml::setTextValue(doc, "rating", QString("%1").arg(m_movie.rating()));
-    XbmcXml::setTextValue(doc, "votes", QString::number(m_movie.votes()));
-    XbmcXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
-    XbmcXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
-    XbmcXml::setTextValue(doc, "plot", m_movie.overview());
-    XbmcXml::setTextValue(doc, "outline", m_movie.outline());
-    XbmcXml::setTextValue(doc, "tagline", m_movie.tagline());
+    KodiXml::setTextValue(doc, "title", m_movie.name());
+    KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
+    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_movie.rating()));
+    KodiXml::setTextValue(doc, "votes", QString::number(m_movie.votes()));
+    KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
+    KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
+    KodiXml::setTextValue(doc, "plot", m_movie.overview());
+    KodiXml::setTextValue(doc, "outline", m_movie.outline());
+    KodiXml::setTextValue(doc, "tagline", m_movie.tagline());
     if (m_movie.runtime() > 0min) {
-        XbmcXml::setTextValue(doc, "runtime", QString::number(m_movie.runtime().count()));
+        KodiXml::setTextValue(doc, "runtime", QString::number(m_movie.runtime().count()));
     } else {
-        XbmcXml::removeChildNodes(doc, "runtime");
+        KodiXml::removeChildNodes(doc, "runtime");
     }
-    XbmcXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
-    XbmcXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
+    KodiXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
+    KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
     if (!m_movie.lastPlayed().isNull()) {
-        XbmcXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+        KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     } else {
-        XbmcXml::removeChildNodes(doc, "lastplayed");
+        KodiXml::removeChildNodes(doc, "lastplayed");
     }
     if (!m_movie.dateAdded().isNull()) {
-        XbmcXml::setTextValue(doc, "dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
+        KodiXml::setTextValue(doc, "dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     } else {
-        XbmcXml::removeChildNodes(doc, "dateadded");
+        KodiXml::removeChildNodes(doc, "dateadded");
     }
-    XbmcXml::setTextValue(doc, "id", m_movie.imdbId().toString());
-    XbmcXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
+    KodiXml::setTextValue(doc, "id", m_movie.imdbId().toString());
+    KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
 
     // <set>
     //   <name>...</name>
     //   <overview></overview>
     // </set>
-    XbmcXml::removeChildNodes(doc, "set");
+    KodiXml::removeChildNodes(doc, "set");
     if (!m_movie.set().isEmpty()) {
         QDomElement setElement = doc.createElement("set");
         QDomElement setNameElement = doc.createElement("name");
@@ -68,42 +68,42 @@ QByteArray MovieXmlWriter::getMovieXml()
         QDomElement setOverviewElement = doc.createElement("overview");
         setElement.appendChild(setNameElement);
         setElement.appendChild(setOverviewElement);
-        XbmcXml::appendXmlNode(doc, setElement);
+        KodiXml::appendXmlNode(doc, setElement);
     }
-    XbmcXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
-    XbmcXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_movie.trailer().toString()));
-    XbmcXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
+    KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
+    KodiXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_movie.trailer().toString()));
+    KodiXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;
     for (const QString& credit : m_movie.writer().split(",")) {
         writers << credit.trimmed();
     }
-    XbmcXml::setListValue(doc, "credits", writers);
+    KodiXml::setListValue(doc, "credits", writers);
 
     QStringList directors;
     for (const QString& director : m_movie.director().split(",")) {
         directors << director.trimmed();
     }
-    XbmcXml::setListValue(doc, "director", directors);
+    KodiXml::setListValue(doc, "director", directors);
 
-    XbmcXml::setListValue(doc,
+    KodiXml::setListValue(doc,
         "studio",
         Settings::instance()->advanced()->useFirstStudioOnly() && !m_movie.studios().isEmpty()
             ? m_movie.studios().mid(0, 1)
             : m_movie.studios());
-    XbmcXml::setListValue(doc, "genre", m_movie.genres());
-    XbmcXml::setListValue(doc, "country", m_movie.countries());
-    XbmcXml::setListValue(doc, "tag", m_movie.tags());
+    KodiXml::setListValue(doc, "genre", m_movie.genres());
+    KodiXml::setListValue(doc, "country", m_movie.countries());
+    KodiXml::setListValue(doc, "tag", m_movie.tags());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        XbmcXml::removeChildNodes(doc, "thumb");
-        XbmcXml::removeChildNodes(doc, "fanart");
+        KodiXml::removeChildNodes(doc, "thumb");
+        KodiXml::removeChildNodes(doc, "fanart");
 
         for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            XbmcXml::appendXmlNode(doc, elem);
+            KodiXml::appendXmlNode(doc, elem);
         }
 
         if (!m_movie.images().backdrops().isEmpty()) {
@@ -114,11 +114,11 @@ QByteArray MovieXmlWriter::getMovieXml()
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 fanartElem.appendChild(elem);
             }
-            XbmcXml::appendXmlNode(doc, fanartElem);
+            KodiXml::appendXmlNode(doc, fanartElem);
         }
     }
 
-    XbmcXml::removeChildNodes(doc, "actor");
+    KodiXml::removeChildNodes(doc, "actor");
 
     for (const Actor& actor : m_movie.actors()) {
         QDomElement elem = doc.createElement("actor");
@@ -133,10 +133,10 @@ QByteArray MovieXmlWriter::getMovieXml()
             elemThumb.appendChild(doc.createTextNode(actor.thumb));
             elem.appendChild(elemThumb);
         }
-        XbmcXml::appendXmlNode(doc, elem);
+        KodiXml::appendXmlNode(doc, elem);
     }
 
-    XbmcXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
+    KodiXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
 
     return doc.toByteArray(4);
 }

@@ -11,7 +11,7 @@
 #include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
-#include "media_centers/XbmcXml.h"
+#include "media_centers/KodiXml.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
@@ -844,7 +844,7 @@ void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId,
     QXmlStreamWriter xmlWriter(&xmlContent);
     xmlWriter.setAutoFormatting(true);
     xmlWriter.writeStartDocument("1.0", true);
-    XbmcXml::writeTvShowEpisodeXml(xmlWriter, episode);
+    KodiXml::writeTvShowEpisodeXml(xmlWriter, episode);
     xmlWriter.writeEndDocument();
 
     QSqlQuery query(db());

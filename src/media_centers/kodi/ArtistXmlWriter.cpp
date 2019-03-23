@@ -1,7 +1,7 @@
 #include "ArtistXmlWriter.h"
 
 #include "globals/Helper.h"
-#include "media_centers/XbmcXml.h"
+#include "media_centers/KodiXml.h"
 #include "music/Artist.h"
 #include "settings/Settings.h"
 
@@ -26,35 +26,35 @@ QByteArray ArtistXmlWriter::getArtistXml()
     QDomElement artistElem = doc.elementsByTagName("artist").at(0).toElement();
 
     if (!m_artist.mbId().isEmpty()) {
-        XbmcXml::setTextValue(doc, "musicBrainzArtistID", m_artist.mbId());
+        KodiXml::setTextValue(doc, "musicBrainzArtistID", m_artist.mbId());
     } else {
-        XbmcXml::removeChildNodes(doc, "musicBrainzArtistID");
+        KodiXml::removeChildNodes(doc, "musicBrainzArtistID");
     }
     if (!m_artist.allMusicId().isEmpty()) {
-        XbmcXml::setTextValue(doc, "allmusicid", m_artist.allMusicId());
+        KodiXml::setTextValue(doc, "allmusicid", m_artist.allMusicId());
     } else {
-        XbmcXml::removeChildNodes(doc, "allmusicid");
+        KodiXml::removeChildNodes(doc, "allmusicid");
     }
-    XbmcXml::setTextValue(doc, "name", m_artist.name());
-    XbmcXml::setTextValue(doc, "genre", m_artist.genres().join(" / "));
-    XbmcXml::setListValue(doc, "style", m_artist.styles());
-    XbmcXml::setListValue(doc, "mood", m_artist.moods());
-    XbmcXml::setTextValue(doc, "yearsactive", m_artist.yearsActive());
-    XbmcXml::setTextValue(doc, "formed", m_artist.formed());
-    XbmcXml::setTextValue(doc, "biography", m_artist.biography());
-    XbmcXml::setTextValue(doc, "born", m_artist.born());
-    XbmcXml::setTextValue(doc, "died", m_artist.died());
-    XbmcXml::setTextValue(doc, "disbanded", m_artist.disbanded());
+    KodiXml::setTextValue(doc, "name", m_artist.name());
+    KodiXml::setTextValue(doc, "genre", m_artist.genres().join(" / "));
+    KodiXml::setListValue(doc, "style", m_artist.styles());
+    KodiXml::setListValue(doc, "mood", m_artist.moods());
+    KodiXml::setTextValue(doc, "yearsactive", m_artist.yearsActive());
+    KodiXml::setTextValue(doc, "formed", m_artist.formed());
+    KodiXml::setTextValue(doc, "biography", m_artist.biography());
+    KodiXml::setTextValue(doc, "born", m_artist.born());
+    KodiXml::setTextValue(doc, "died", m_artist.died());
+    KodiXml::setTextValue(doc, "disbanded", m_artist.disbanded());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        XbmcXml::removeChildNodes(doc, "thumb");
-        XbmcXml::removeChildNodes(doc, "fanart");
+        KodiXml::removeChildNodes(doc, "thumb");
+        KodiXml::removeChildNodes(doc, "fanart");
 
         for (const Poster& poster : m_artist.images(ImageType::ArtistThumb)) {
             QDomElement elem = doc.createElement("thumb");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            XbmcXml::appendXmlNode(doc, elem);
+            KodiXml::appendXmlNode(doc, elem);
         }
 
         if (!m_artist.images(ImageType::ArtistFanart).isEmpty()) {
@@ -65,7 +65,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 fanartElem.appendChild(elem);
             }
-            XbmcXml::appendXmlNode(doc, fanartElem);
+            KodiXml::appendXmlNode(doc, fanartElem);
         }
     }
 
@@ -107,7 +107,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
             elemYear.appendChild(doc.createTextNode(album.year));
             elem.appendChild(elemTitle);
             elem.appendChild(elemYear);
-            XbmcXml::appendXmlNode(doc, elem);
+            KodiXml::appendXmlNode(doc, elem);
         }
     }
     for (QDomNode node : albumNodes) {

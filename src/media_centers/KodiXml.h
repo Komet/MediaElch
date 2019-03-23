@@ -18,14 +18,14 @@ class TvShowEpisode;
 class Subtitle;
 
 /**
- * @brief The XbmcXml class
+ * @brief The KodiXml class
  */
-class XbmcXml : public MediaCenterInterface
+class KodiXml : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit XbmcXml(QObject* parent = nullptr);
-    ~XbmcXml() override;
+    explicit KodiXml(QObject* parent = nullptr);
+    ~KodiXml() override;
 
     bool saveMovie(Movie* movie) override;
     bool loadMovie(Movie* movie, QString initialNfoContent = "") override;
