@@ -238,7 +238,7 @@ SOURCES += src/main.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
     src/ui/tv_show/TvShowFilesWidget.cpp \
     src/support/SupportDialog.cpp \
-    src/trailerProviders/HdTrailers.cpp \
+    src/scrapers/trailer/HdTrailers.cpp \
     src/tvShows/TvShowMultiScrapeDialog.cpp \
     src/tvShows/TvShowSearch.cpp \
     src/tvShows/TvShowSearchEpisode.cpp \
@@ -440,8 +440,8 @@ HEADERS  += Version.h \
     src/ui/small_widgets/TvShowTreeView.h \
     src/ui/tv_show/TvShowFilesWidget.h \
     src/support/SupportDialog.h \
-    src/trailerProviders/HdTrailers.h \
-    src/trailerProviders/TrailerProvider.h \
+    src/scrapers/trailer/HdTrailers.h \
+    src/scrapers/trailer/TrailerProvider.h \
     src/tvShows/TvShowMultiScrapeDialog.h \
     src/tvShows/TvShowSearch.h \
     src/tvShows/TvShowSearchEpisode.h \

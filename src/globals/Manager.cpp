@@ -22,8 +22,8 @@
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/movie/VideoBuster.h"
 #include "scrapers/music/UniversalMusicScraper.h"
+#include "scrapers/trailer/HdTrailers.h"
 #include "scrapers/tv_show/TheTvDb.h"
-#include "trailerProviders/HdTrailers.h"
 
 /**
  * @brief Manager::Manager
