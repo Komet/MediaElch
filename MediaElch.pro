@@ -96,7 +96,7 @@ SOURCES += src/main.cpp \
     src/data/MovieModel.cpp \
     src/data/MovieProxyModel.cpp \
     src/data/Rating.cpp \
-    src/data/ScraperInterface.cpp \
+    src/scrapers/ScraperInterface.cpp \
     src/data/Storage.cpp \
     src/data/StreamDetails.cpp \
     src/data/Subtitle.cpp \
@@ -279,11 +279,9 @@ HEADERS  += Version.h \
     src/data/ConcertFileSearcher.h \
     src/data/ConcertModel.h \
     src/data/ConcertProxyModel.h \
-    src/data/ConcertScraperInterface.h \
     src/concerts/ConcertStreamDetailsWidget.h \
     src/data/Database.h \
     src/data/ImageCache.h \
-    src/data/ImageProviderInterface.h \
     src/data/MediaCenterInterface.h \
     src/data/Movie.h \
     src/data/MovieFileSearcher.h \
@@ -291,14 +289,16 @@ HEADERS  += Version.h \
     src/data/MovieImages.h \
     src/data/MovieModel.h \
     src/data/MovieProxyModel.h \
-    src/data/MusicScraperInterface.h \
-    src/data/MovieScraperInterface.h \
+    src/scrapers/image/ImageProviderInterface.h \
+    src/scrapers/concert/ConcertScraperInterface.h \
+    src/scrapers/music/MusicScraperInterface.h \
+    src/scrapers/movie/MovieScraperInterface.h \
+    src/scrapers/tv_show/TvScraperInterface.h \
+    src/scrapers/ScraperInterface.h \
     src/data/Rating.h \
     src/data/Storage.h \
     src/data/StreamDetails.h \
-    src/data/ScraperInterface.h \
     src/data/Subtitle.h \
-    src/data/TvScraperInterface.h \
     src/data/TvShow.h \
     src/data/TvShowEpisode.h \
     src/data/TvShowFileSearcher.h \

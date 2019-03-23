@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QComboBox>
 #include <QNetworkAccessManager>

@@ -1,7 +1,7 @@
 #include "MovieSearch.h"
 #include "ui_MovieSearch.h"
 
-#include "data/MovieScraperInterface.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QDebug>
 

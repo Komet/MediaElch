@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/ConcertScraperInterface.h"
+#include "scrapers/concert/ConcertScraperInterface.h"
 
 #include <QComboBox>
 #include <QLocale>

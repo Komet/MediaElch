@@ -7,12 +7,12 @@
 #include <algorithm>
 
 #include "data/MediaCenterInterface.h"
-#include "data/TvScraperInterface.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 #include "scrapers/tv_show/TheTvDb.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 #include "tvShows/model/EpisodeModelItem.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"

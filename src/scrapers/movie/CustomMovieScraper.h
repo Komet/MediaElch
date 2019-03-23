@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/ImageProviderInterface.h"
-#include "data/MovieScraperInterface.h"
+#include "scrapers/image/ImageProviderInterface.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QNetworkAccessManager>
 #include <QObject>

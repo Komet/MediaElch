@@ -2,11 +2,11 @@
 
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
-#include "data/MusicScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "music/Artist.h"
+#include "scrapers/music/MusicScraperInterface.h"
 
 #include <QDebug>
 #include <QFileInfo>

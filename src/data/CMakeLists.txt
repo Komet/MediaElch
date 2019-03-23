@@ -1,11 +1,5 @@
 add_library(
   mediaelch_data OBJECT
-  # Headers so that moc is run on them
-  ConcertScraperInterface.h
-  ImageProviderInterface.h
-  MovieScraperInterface.h
-  MusicScraperInterface.h
-  TvScraperInterface.h
   # Sources
   Certification.cpp
   Concert.cpp
@@ -24,7 +18,6 @@ add_library(
   MovieModel.cpp
   MovieProxyModel.cpp
   Rating.cpp
-  ScraperInterface.cpp
   SeasonNumber.cpp
   Storage.cpp
   StreamDetails.cpp
