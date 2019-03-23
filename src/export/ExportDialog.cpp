@@ -4,7 +4,7 @@
 #include <QFileDialog>
 #include <string>
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/StreamDetails.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

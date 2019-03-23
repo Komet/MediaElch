@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/MediaCenterInterface.h"
 #include "music/Album.h"
 #include "music/Artist.h"

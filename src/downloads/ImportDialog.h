@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "downloads/FileWorker.h"

@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/Subtitle.h"
 #include "data/TvShow.h"
 #include "globals/Helper.h"

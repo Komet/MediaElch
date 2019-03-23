@@ -1,7 +1,7 @@
 #include "LoadingStreamDetails.h"
 #include "ui_LoadingStreamDetails.h"
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/TvShowEpisode.h"
 #include "movies/Movie.h"
 

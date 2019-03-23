@@ -1,6 +1,6 @@
 #include "ConcertXmlWriter.h"
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "globals/Helper.h"
 #include "media_centers/XbmcXml.h"
 #include "settings/Settings.h"

@@ -83,10 +83,10 @@ SOURCES += src/main.cpp \
     src/concerts/ConcertStreamDetailsWidget.cpp \
     src/concerts/ConcertWidget.cpp \
     src/concerts/ConcertInfoWidget.cpp \
-    src/data/Concert.cpp \
-    src/data/ConcertFileSearcher.cpp \
-    src/data/ConcertModel.cpp \
-    src/data/ConcertProxyModel.cpp \
+    src/concerts/Concert.cpp \
+    src/concerts/ConcertFileSearcher.cpp \
+    src/concerts/ConcertModel.cpp \
+    src/concerts/ConcertProxyModel.cpp \
     src/data/Database.cpp \
     src/data/ImageCache.cpp \
     src/movies/Movie.cpp \
@@ -275,10 +275,10 @@ HEADERS  += Version.h \
     src/concerts/ConcertSearchWidget.h \
     src/concerts/ConcertWidget.h \
     src/concerts/ConcertInfoWidget.h \
-    src/data/Concert.h \
-    src/data/ConcertFileSearcher.h \
-    src/data/ConcertModel.h \
-    src/data/ConcertProxyModel.h \
+    src/concerts/Concert.h \
+    src/concerts/ConcertFileSearcher.h \
+    src/concerts/ConcertModel.h \
+    src/concerts/ConcertProxyModel.h \
     src/concerts/ConcertStreamDetailsWidget.h \
     src/data/Database.h \
     src/data/ImageCache.h \

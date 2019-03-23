@@ -2,7 +2,7 @@
 
 #include <QPainter>
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"

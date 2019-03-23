@@ -2,10 +2,6 @@ add_library(
   mediaelch_data OBJECT
   # Sources
   Certification.cpp
-  Concert.cpp
-  ConcertFileSearcher.cpp
-  ConcertModel.cpp
-  ConcertProxyModel.cpp
   Database.cpp
   EpisodeNumber.cpp
   ImageCache.cpp

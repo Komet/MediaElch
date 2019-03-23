@@ -1,7 +1,7 @@
 #include "ConcertStreamDetailsWidget.h"
 #include "ui_ConcertStreamDetailsWidget.h"
 
-#include "data/Concert.h"
+#include "concerts/Concert.h"
 #include "data/StreamDetails.h"
 #include "globals/Helper.h"
 
