@@ -3,10 +3,10 @@
 #include "data/Concert.h"
 #include "data/EpisodeNumber.h"
 #include "data/Movie.h"
-#include "data/ScraperInterface.h"
 #include "data/SeasonNumber.h"
 #include "data/TvShow.h"
 #include "globals/Globals.h"
+#include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
 #include <QMap>

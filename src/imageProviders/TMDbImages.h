@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/ImageProviderInterface.h"
 #include "data/Movie.h"
+#include "scrapers/image/ImageProviderInterface.h"
 #include "scrapers/movie/TMDb.h"
 
 /**

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "globals/DownloadManager.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 
 #include <QDialog>
 #include <QPointer>

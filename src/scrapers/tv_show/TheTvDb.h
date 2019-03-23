@@ -3,7 +3,7 @@
 #include "data/EpisodeNumber.h"
 #include "data/ImdbId.h"
 #include "data/SeasonNumber.h"
-#include "data/TvScraperInterface.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 
 #include <QComboBox>
 #include <QDomElement>

@@ -1,8 +1,8 @@
 #include "Settings.h"
 
-#include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
 #include "renamer/RenamerDialog.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QApplication>
 #include <QDesktopServices>

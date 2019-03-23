@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/MovieScraperInterface.h"
 #include "globals/Globals.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 
 #include <QDialog>
 

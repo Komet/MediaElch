@@ -4,9 +4,9 @@
 #include <QDebug>
 
 #include "data/ImageCache.h"
-#include "data/TvScraperInterface.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "scrapers/tv_show/TvScraperInterface.h"
 
 TvShowMultiScrapeDialog::TvShowMultiScrapeDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TvShowMultiScrapeDialog)
 {

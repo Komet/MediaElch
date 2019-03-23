@@ -1,6 +1,6 @@
 #include "settings/ScraperSettings.h"
 
-#include "data/ScraperInterface.h"
+#include "scrapers/ScraperInterface.h"
 
 static constexpr auto ScraperKeyLanguage = "Language";
 static constexpr auto ScraperKeyGenre = "Genre";

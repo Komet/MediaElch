@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/ImageProviderInterface.h"
 #include "globals/Globals.h"
+#include "scrapers/image/ImageProviderInterface.h"
 
 #include <QObject>
 #include <QVector>

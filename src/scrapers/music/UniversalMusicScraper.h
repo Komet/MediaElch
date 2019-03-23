@@ -1,6 +1,6 @@
 #pragma once
 
-#include "data/MusicScraperInterface.h"
+#include "scrapers/music/MusicScraperInterface.h"
 
 #include <QComboBox>
 #include <QMutex>

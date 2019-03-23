@@ -1,10 +1,10 @@
 #include "MovieSearchWidget.h"
 #include "ui_MovieSearchWidget.h"
 
-#include "data/MovieScraperInterface.h"
 #include "globals/Manager.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 

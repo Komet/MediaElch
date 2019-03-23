@@ -1,8 +1,8 @@
 #pragma once
 
 #include "data/Concert.h"
-#include "data/ScraperInterface.h"
 #include "globals/Globals.h"
+#include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
 class Concert;

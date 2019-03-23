@@ -5,13 +5,13 @@
 #include <QtCore/qmath.h>
 
 #include "data/Concert.h"
-#include "data/ConcertScraperInterface.h"
 #include "data/ImageCache.h"
 #include "data/MediaCenterInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
+#include "scrapers/concert/ConcertScraperInterface.h"
 #include "settings/Settings.h"
 
 ConcertController::ConcertController(Concert* parent) :

@@ -15,7 +15,6 @@
 
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
-#include "data/MovieScraperInterface.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -31,6 +30,7 @@
 #include "music/MusicSearch.h"
 #include "notifications/NotificationBox.h"
 #include "notifications/Notificator.h"
+#include "scrapers/movie/MovieScraperInterface.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShowMultiScrapeDialog.h"

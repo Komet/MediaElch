@@ -1,8 +1,8 @@
 #pragma once
 
-#include "data/ScraperInterface.h"
 #include "data/TvDbId.h"
 #include "globals/Globals.h"
+#include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 
 #include <QString>
