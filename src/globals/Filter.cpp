@@ -1,9 +1,9 @@
 #include "Filter.h"
 
 #include "concerts/Concert.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "movies/Movie.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 
 /**
  * @brief Filter::Filter

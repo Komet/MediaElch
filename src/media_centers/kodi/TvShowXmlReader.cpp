@@ -1,6 +1,6 @@
 #include "TvShowXmlReader.h"
 
-#include "data/TvShow.h"
+#include "tvShows/TvShow.h"
 
 #include <QDate>
 #include <QDomDocument>

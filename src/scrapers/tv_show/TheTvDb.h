@@ -1,9 +1,9 @@
 #pragma once
 
-#include "data/EpisodeNumber.h"
 #include "data/ImdbId.h"
-#include "data/SeasonNumber.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
+#include "tvShows/EpisodeNumber.h"
+#include "tvShows/SeasonNumber.h"
 
 #include <QComboBox>
 #include <QDomElement>

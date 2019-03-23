@@ -1,9 +1,9 @@
 #include "TvShowXmlWriter.h"
 
-#include "data/TvShow.h"
 #include "globals/Helper.h"
 #include "media_centers/XbmcXml.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShow.h"
 
 #include <QDomDocument>
 

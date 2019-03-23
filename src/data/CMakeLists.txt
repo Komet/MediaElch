@@ -3,19 +3,13 @@ add_library(
   # Sources
   Certification.cpp
   Database.cpp
-  EpisodeNumber.cpp
   ImageCache.cpp
   ImdbId.cpp
   Rating.cpp
-  SeasonNumber.cpp
   Storage.cpp
   StreamDetails.cpp
   Subtitle.cpp
   TmdbId.cpp
-  TvDbId.cpp
-  TvShow.cpp
-  TvShowEpisode.cpp
-  TvShowFileSearcher.cpp
 )
 
 target_link_libraries(

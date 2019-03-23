@@ -1,10 +1,10 @@
 #pragma once
 
 #include "concerts/Concert.h"
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "movies/Movie.h"
 #include "renamer/Renamer.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 
 #include <QDialog>
 #include <QDir>

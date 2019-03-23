@@ -17,9 +17,9 @@ add_library(
   movie/VideoBuster.cpp
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
-  tv_show/TheTvDb.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
+  tv_show/TheTvDb.cpp
 )
 
 target_link_libraries(

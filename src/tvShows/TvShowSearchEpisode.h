@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/TvDbId.h"
 #include "globals/Globals.h"
+#include "tvShows/TvDbId.h"
 
 #include <QTableWidgetItem>
 #include <QWidget>

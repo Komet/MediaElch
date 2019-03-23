@@ -3,10 +3,10 @@
 #include <QApplication>
 #include <QStringList>
 
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 #include "tvShows/model/EpisodeModelItem.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowRootModelItem.h"

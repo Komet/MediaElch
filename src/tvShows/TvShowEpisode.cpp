@@ -1,11 +1,11 @@
 #include "TvShowEpisode.h"
 
 #include "data/MediaCenterInterface.h"
-#include "data/TvShow.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShow.h"
 #include "tvShows/model/EpisodeModelItem.h"
 
 #include <QApplication>

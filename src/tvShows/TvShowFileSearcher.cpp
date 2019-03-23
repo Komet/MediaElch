@@ -7,10 +7,10 @@
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrentMap>
 
-#include "data/TvShow.h"
-#include "data/TvShowEpisode.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "tvShows/TvShow.h"
+#include "tvShows/TvShowEpisode.h"
 #include "tvShows/model/EpisodeModelItem.h"
 #include "tvShows/model/SeasonModelItem.h"
 #include "tvShows/model/TvShowModelItem.h"

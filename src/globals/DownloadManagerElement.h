@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
+#include "tvShows/SeasonNumber.h"
 
 class Album;
 class Artist;

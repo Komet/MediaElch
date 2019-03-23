@@ -1,9 +1,9 @@
 #pragma once
 
-#include "data/TvDbId.h"
 #include "globals/Globals.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
+#include "tvShows/TvDbId.h"
 
 #include <QString>
 #include <QVector>

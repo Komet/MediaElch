@@ -1,7 +1,7 @@
 #pragma once
 
-#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
+#include "tvShows/TvShowEpisode.h"
 
 #include <QDir>
 #include <QObject>

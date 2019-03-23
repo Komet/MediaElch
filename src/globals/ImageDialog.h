@@ -1,8 +1,8 @@
 #pragma once
 
-#include "data/EpisodeNumber.h"
-#include "data/SeasonNumber.h"
 #include "globals/Globals.h"
+#include "tvShows/EpisodeNumber.h"
+#include "tvShows/SeasonNumber.h"
 
 #include <QDialog>
 #include <QLabel>
