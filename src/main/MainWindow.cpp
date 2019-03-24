@@ -29,15 +29,15 @@
 #include "notifications/Notificator.h"
 #include "scrapers/movie/MovieScraperInterface.h"
 #include "settings/Settings.h"
-#include "tv_shows/TvShowMultiScrapeDialog.h"
-#include "tv_shows/TvShowSearch.h"
 #include "tv_shows/TvShowUpdater.h"
-#include "tv_shows/TvTunesDialog.h"
 #include "ui/concerts/ConcertSearch.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/movies/MovieSearch.h"
+#include "ui/tv_show/TvShowMultiScrapeDialog.h"
+#include "ui/tv_show/TvShowSearch.h"
+#include "ui/tv_show/TvTunesDialog.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 

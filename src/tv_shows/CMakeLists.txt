@@ -13,16 +13,8 @@ add_library(
   TvShowEpisode.cpp
   TvShowFileSearcher.cpp
   TvShowModel.cpp
-  TvShowMultiScrapeDialog.cpp
   TvShowProxyModel.cpp
-  TvShowSearch.cpp
-  TvShowSearchEpisode.cpp
   TvShowUpdater.cpp
-  TvShowWidget.cpp
-  TvShowWidgetEpisode.cpp
-  TvShowWidgetSeason.cpp
-  TvShowWidgetTvShow.cpp
-  TvTunesDialog.cpp
 )
 
 target_link_libraries(

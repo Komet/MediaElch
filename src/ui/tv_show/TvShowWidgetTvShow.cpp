@@ -14,8 +14,8 @@
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
 #include "scrapers/tv_show/TheTvDb.h"
-#include "tv_shows/TvShowSearch.h"
-#include "tv_shows/TvTunesDialog.h"
+#include "ui/tv_show/TvShowSearch.h"
+#include "ui/tv_show/TvTunesDialog.h"
 
 /**
  * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
