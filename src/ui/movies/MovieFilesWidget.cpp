@@ -1,4 +1,4 @@
-#include "movies/MovieFilesWidget.h"
+#include "ui/movies/MovieFilesWidget.h"
 #include "ui_MovieFilesWidget.h"
 
 #include "globals/Globals.h"
@@ -7,7 +7,7 @@
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"
-#include "movies/MovieMultiScrapeDialog.h"
+#include "ui/movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieProxyModel.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"

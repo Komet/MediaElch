@@ -60,7 +60,7 @@
   <customwidget>
    <class>MovieSearchWidget</class>
    <extends>QWidget</extends>
-   <header>movies/MovieSearchWidget.h</header>
+   <header>ui/movies/MovieSearchWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

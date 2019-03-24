@@ -1,3 +1,4 @@
+add_subdirectory(movies)
 add_subdirectory(small_widgets)
 
 add_library(
