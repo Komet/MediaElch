@@ -30,7 +30,7 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     // clang-format on
 
-    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
+    Helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 void ConcertStreamDetailsWidget::setConcertController(ConcertController* controller)

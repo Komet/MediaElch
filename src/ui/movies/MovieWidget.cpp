@@ -193,10 +193,10 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->artStackedWidget);
-    Helper::instance()->applyStyle(ui->tabWidget);
-    Helper::instance()->applyEffect(ui->groupBox_3);
-    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
+    Helper::applyStyle(ui->artStackedWidget);
+    Helper::applyStyle(ui->tabWidget);
+    Helper::applyEffect(ui->groupBox_3);
+    Helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 /**
@@ -351,7 +351,7 @@ void MovieWidget::clear()
     ui->stereoMode->blockSignals(blocked);
 
     QPixmap pixmap(":/img/man.png");
-    Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+    Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
     ui->actorResolution->setText("");
@@ -1129,7 +1129,7 @@ void MovieWidget::onActorChanged()
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
         || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         QPixmap pixmap(":/img/man.png");
-        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
         return;
@@ -1139,22 +1139,18 @@ void MovieWidget::onActorChanged()
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
-            Qt::KeepAspectRatio,
-            Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this),
-            Qt::KeepAspectRatio,
-            Qt::SmoothTransformation);
-        Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else {
         QPixmap pixmap(":/img/man.png");
-        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     }

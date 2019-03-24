@@ -29,9 +29,9 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     }
 
     const QString firstEpisode = episode.files().first();
-    const bool isBluRay = Helper::instance()->isBluRay(firstEpisode);
-    const bool isDvd = Helper::instance()->isDvd(firstEpisode);
-    const bool isDvdWithoutSub = Helper::instance()->isDvd(firstEpisode, true);
+    const bool isBluRay = Helper::isBluRay(firstEpisode);
+    const bool isDvd = Helper::isDvd(firstEpisode);
+    const bool isDvdWithoutSub = Helper::isDvd(firstEpisode, true);
 
     QFileInfo fi(episode.files().first());
     QString fiCanonicalPath = fi.canonicalPath();
@@ -72,7 +72,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             Renamer::replace(newFileName, "channels", QString::number(episode.streamDetails()->audioChannels()));
             Renamer::replace(newFileName,
                 "resolution",
-                Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(
@@ -89,7 +89,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 Renamer::replace(newFileName, "episode", episode.episodeString());
             }
 
-            Helper::instance()->sanitizeFileName(newFileName);
+            Helper::sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
                 int row = m_dialog->addResultToTable(fi.fileName(), newFileName, Renamer::RenameOperation::Rename);
                 if (!m_config.dryRun) {
@@ -130,7 +130,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             QVector<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
             if (!nfoFiles.isEmpty()) {
                 newNfoFileName = nfoFiles.first().saveFileName(newFileName);
-                Helper::instance()->sanitizeFileName(newNfoFileName);
+                Helper::sanitizeFileName(newNfoFileName);
                 if (newNfoFileName != nfoFileName) {
                     int row = m_dialog->addResultToTable(nfoFileName, newNfoFileName, Renamer::RenameOperation::Rename);
                     if (!m_config.dryRun) {
@@ -149,7 +149,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             if (!thumbnailFiles.isEmpty()) {
                 newThumbnailFileName = thumbnailFiles.first().saveFileName(
                     newFileName, SeasonNumber::NoSeason, episode.files().count() > 1);
-                Helper::instance()->sanitizeFileName(newThumbnailFileName);
+                Helper::sanitizeFileName(newThumbnailFileName);
                 if (newThumbnailFileName != thumbnailFileName) {
                     int row = m_dialog->addResultToTable(
                         thumbnailFileName, newThumbnailFileName, Renamer::RenameOperation::Rename);
@@ -177,7 +177,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
         QString seasonDirName = seasonPattern;
         Renamer::replace(seasonDirName, "season", episode.seasonString());
         Renamer::replace(seasonDirName, "showTitle", episode.showTitle());
-        Helper::instance()->sanitizeFileName(seasonDirName);
+        Helper::sanitizeFileName(seasonDirName);
         QDir seasonDir(showDir.path() + "/" + seasonDirName);
         if (!seasonDir.exists()) {
             int row = m_dialog->addResultToTable(seasonDirName, "", Renamer::RenameOperation::CreateDir);

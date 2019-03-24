@@ -71,7 +71,7 @@ QByteArray MovieXmlWriter::getMovieXml()
         KodiXml::appendXmlNode(doc, setElement);
     }
     KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
-    KodiXml::setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(m_movie.trailer().toString()));
+    KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_movie.trailer().toString()));
     KodiXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;

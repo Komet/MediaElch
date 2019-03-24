@@ -55,7 +55,7 @@ void MediaFlags::setupResolution(StreamDetails* streamDetails)
     const int height = videoDetails.value(StreamDetails::VideoDetails::Height).toInt();
     const int width = videoDetails.value(StreamDetails::VideoDetails::Width).toInt();
     QString scanType = videoDetails.value(StreamDetails::VideoDetails::ScanType);
-    QString heightFlag = Helper::instance()->matchResolution(width, height, scanType);
+    QString heightFlag = Helper::matchResolution(width, height, scanType);
     ui->mediaFlagResolution->setVisible(heightFlag != "");
     if (heightFlag != "") {
         ui->mediaFlagResolution->setPixmap(colorIcon(":/media/resolution/" + heightFlag));
@@ -211,9 +211,8 @@ QPixmap MediaFlags::colorIcon(QString icon)
         return pixmaps.value(icon);
     }
 
-    QPixmap pixmap =
-        QPixmap(icon).scaledToHeight(m_height * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
-    Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+    QPixmap pixmap = QPixmap(icon).scaledToHeight(m_height * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
+    Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
     QPainter p;
     p.begin(&pixmap);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);

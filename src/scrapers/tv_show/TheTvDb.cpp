@@ -399,7 +399,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
             QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
             if (infosToLoad.contains(TvShowScraperInfos::Certification)
                 && !elem.elementsByTagName("ContentRating").isEmpty()) {
-                show->setCertification(Helper::instance()->mapCertification(
+                show->setCertification(Helper::mapCertification(
                     Certification(elem.elementsByTagName("ContentRating").at(0).toElement().text())));
             }
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired)
@@ -408,12 +408,11 @@ void TheTvDb::parseAndAssignInfos(QString xml,
                     QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
             }
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty()) {
-                show->setGenres(Helper::instance()->mapGenre(
+                show->setGenres(Helper::mapGenre(
                     elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
             }
             if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty()) {
-                show->setNetwork(
-                    Helper::instance()->mapStudio(elem.elementsByTagName("Network").at(0).toElement().text()));
+                show->setNetwork(Helper::mapStudio(elem.elementsByTagName("Network").at(0).toElement().text()));
             }
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty()) {
                 show->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
@@ -1158,7 +1157,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
         if (shouldLoadFromImdb(TvShowScraperInfos::Genres, infosToLoad) && !m_dummyMovie->genres().isEmpty()) {
             show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Genres);
             for (const QString& genre : m_dummyMovie->genres()) {
-                show->addGenre(Helper::instance()->mapGenre(genre));
+                show->addGenre(Helper::mapGenre(genre));
             }
         }
 

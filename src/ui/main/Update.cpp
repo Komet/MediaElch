@@ -92,7 +92,7 @@ bool Update::checkIfNewVersion(QString msg, QString& version)
         return false;
     }
 
-    int result = Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
+    int result = Helper::compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
     version = QString("MediaElch %1 - %2").arg(xmlVersion).arg(codeName);
 
     return (result == 1);

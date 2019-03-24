@@ -67,11 +67,11 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     }
 
     QMenu* labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
+    QMapIterator<ColorLabel, QString> it(Helper::labels());
     while (it.hasNext()) {
         it.next();
         auto action = new QAction(it.value(), this);
-        action->setIcon(Helper::instance()->iconForLabel(it.key()));
+        action->setIcon(Helper::iconForLabel(it.key()));
         action->setProperty("color", static_cast<int>(it.key()));
         connect(action, &QAction::triggered, this, &MovieFilesWidget::onLabel);
         labelsMenu->addAction(action);

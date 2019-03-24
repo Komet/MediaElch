@@ -259,10 +259,10 @@ void MovieFileSearcher::reload(bool force)
                 QMap<QString, QStringList> stacked;
                 while (!files.isEmpty()) {
                     QString file = files.takeLast();
-                    QString stackedBase = Helper::instance()->stackedBaseName(file);
+                    QString stackedBase = Helper::stackedBaseName(file);
                     stacked.insert(stackedBase, QStringList() << file);
                     for (const QString& f : files) {
-                        if (Helper::instance()->stackedBaseName(f) == stackedBase) {
+                        if (Helper::stackedBaseName(f) == stackedBase) {
                             stacked[stackedBase].append(f);
                             files.removeOne(f);
                         }
@@ -375,13 +375,13 @@ void MovieFileSearcher::scanDir(QString startPath,
         }
 
         // Handle DVD
-        if (Helper::instance()->isDvd(path + QDir::separator() + cDir)) {
+        if (Helper::isDvd(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (Helper::instance()->isBluRay(path + QDir::separator() + cDir)) {
+        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
