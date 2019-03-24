@@ -1,6 +1,6 @@
 add_library(
-  mediaelch_ui_movies OBJECT
-
+  mediaelch_ui_movies
+  OBJECT
   CertificationWidget.cpp
   GenreWidget.cpp
   MovieMultiScrapeDialog.cpp

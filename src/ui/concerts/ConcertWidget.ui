@@ -669,13 +669,13 @@
   <customwidget>
    <class>ConcertInfoWidget</class>
    <extends>QWidget</extends>
-   <header>concerts/ConcertInfoWidget.h</header>
+   <header>ui/concerts/ConcertInfoWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ConcertStreamDetailsWidget</class>
    <extends>QWidget</extends>
-   <header>concerts/ConcertStreamDetailsWidget.h</header>
+   <header>ui/concerts/ConcertStreamDetailsWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

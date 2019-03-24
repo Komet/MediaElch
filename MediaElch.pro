@@ -77,12 +77,12 @@ QMAKE_INFO_PLIST = MediaElch.plist
 
 SOURCES += src/main.cpp \
     src/concerts/ConcertController.cpp \
-    src/concerts/ConcertFilesWidget.cpp \
-    src/concerts/ConcertSearch.cpp \
-    src/concerts/ConcertSearchWidget.cpp \
-    src/concerts/ConcertStreamDetailsWidget.cpp \
-    src/concerts/ConcertWidget.cpp \
-    src/concerts/ConcertInfoWidget.cpp \
+    src/ui/concerts/ConcertFilesWidget.cpp \
+    src/ui/concerts/ConcertSearch.cpp \
+    src/ui/concerts/ConcertSearchWidget.cpp \
+    src/ui/concerts/ConcertStreamDetailsWidget.cpp \
+    src/ui/concerts/ConcertWidget.cpp \
+    src/ui/concerts/ConcertInfoWidget.cpp \
     src/concerts/Concert.cpp \
     src/concerts/ConcertFileSearcher.cpp \
     src/concerts/ConcertModel.cpp \
@@ -270,16 +270,16 @@ macx {
 
 HEADERS  += Version.h \
     src/concerts/ConcertController.h \
-    src/concerts/ConcertFilesWidget.h \
-    src/concerts/ConcertSearch.h \
-    src/concerts/ConcertSearchWidget.h \
-    src/concerts/ConcertWidget.h \
-    src/concerts/ConcertInfoWidget.h \
+    src/ui/concerts/ConcertFilesWidget.h \
+    src/ui/concerts/ConcertSearch.h \
+    src/ui/concerts/ConcertSearchWidget.h \
+    src/ui/concerts/ConcertWidget.h \
+    src/ui/concerts/ConcertInfoWidget.h \
     src/concerts/Concert.h \
     src/concerts/ConcertFileSearcher.h \
     src/concerts/ConcertModel.h \
     src/concerts/ConcertProxyModel.h \
-    src/concerts/ConcertStreamDetailsWidget.h \
+    src/ui/concerts/ConcertStreamDetailsWidget.h \
     src/data/Database.h \
     src/data/ImageCache.h \
     src/media_centers/MediaCenterInterface.h \
@@ -468,12 +468,12 @@ HEADERS  += Version.h \
     src/movies/MovieCrew.h
 
 FORMS    += src/main/MainWindow.ui \
-    src/concerts/ConcertFilesWidget.ui \
-    src/concerts/ConcertSearch.ui \
-    src/concerts/ConcertSearchWidget.ui \
-    src/concerts/ConcertStreamDetailsWidget.ui \
-    src/concerts/ConcertWidget.ui \
-    src/concerts/ConcertInfoWidget.ui \
+    src/ui/concerts/ConcertFilesWidget.ui \
+    src/ui/concerts/ConcertSearch.ui \
+    src/ui/concerts/ConcertSearchWidget.ui \
+    src/ui/concerts/ConcertStreamDetailsWidget.ui \
+    src/ui/concerts/ConcertWidget.ui \
+    src/ui/concerts/ConcertInfoWidget.ui \
     src/downloads/DownloadsWidget.ui \
     src/downloads/ImportActions.ui \
     src/downloads/ImportDialog.ui \

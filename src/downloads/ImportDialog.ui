@@ -231,7 +231,7 @@
   <customwidget>
    <class>ConcertSearchWidget</class>
    <extends>QWidget</extends>
-   <header>concerts/ConcertSearchWidget.h</header>
+   <header>ui/concerts/ConcertSearchWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

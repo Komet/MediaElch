@@ -9,8 +9,6 @@
 #include <QScrollBar>
 #include <QtCore/qmath.h>
 
-#include "concerts/ConcertFilesWidget.h"
-#include "concerts/ConcertSearch.h"
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
@@ -20,6 +18,8 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
+#include "ui/concerts/ConcertFilesWidget.h"
+#include "ui/concerts/ConcertSearch.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 /**
