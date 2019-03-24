@@ -130,7 +130,7 @@ SOURCES += src/main.cpp \
     src/image/ImageCapture.cpp \
     src/image/ImageModel.cpp \
     src/image/ImageProxyModel.cpp \
-    src/image/ImageWidget.cpp \
+    src/ui/image/ImageWidget.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
@@ -331,7 +331,7 @@ HEADERS  += Version.h \
     src/image/ImageCapture.h \
     src/image/ImageModel.h \
     src/image/ImageProxyModel.h \
-    src/image/ImageWidget.h \
+    src/ui/image/ImageWidget.h \
     src/scrapers/image/FanartTv.h \
     src/scrapers/image/FanartTvMusic.h \
     src/scrapers/image/FanartTvMusicArtists.h \
@@ -483,7 +483,7 @@ FORMS    += src/main/MainWindow.ui \
     src/globals/ImageDialog.ui \
     src/globals/ImagePreviewDialog.ui \
     src/globals/TrailerDialog.ui \
-    src/image/ImageWidget.ui \
+    src/ui/image/ImageWidget.ui \
     src/main/AboutDialog.ui \
     src/main/FileScannerDialog.ui \
     src/main/Message.ui \

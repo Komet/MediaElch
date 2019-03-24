@@ -1,7 +1,7 @@
 #pragma once
 
-#include "image/ImageWidget.h"
 #include "music/Album.h"
+#include "ui/image/ImageWidget.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QLineEdit>
