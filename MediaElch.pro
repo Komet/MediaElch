@@ -204,13 +204,13 @@ SOURCES += src/main.cpp \
     src/settings/AdvancedSettings.cpp \
     src/settings/DataFile.cpp \
     src/settings/DirectorySettings.cpp \
-    src/settings/ExportTemplateWidget.cpp \
+    src/ui/settings/ExportTemplateWidget.cpp \
     src/settings/ImportSettings.cpp \
     src/settings/KodiSettings.cpp \
     src/settings/NetworkSettings.cpp \
     src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
-    src/settings/SettingsWindow.cpp \
+    src/ui/settings/SettingsWindow.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
     src/ui/small_widgets/Badge.cpp \
     src/ui/small_widgets/ClosableImage.cpp \
@@ -406,13 +406,13 @@ HEADERS  += Version.h \
     src/settings/AdvancedSettings.h \
     src/settings/DataFile.h \
     src/settings/DirectorySettings.h \
-    src/settings/ExportTemplateWidget.h \
+    src/ui/settings/ExportTemplateWidget.h \
     src/settings/ImportSettings.h \
     src/settings/KodiSettings.h \
     src/settings/NetworkSettings.h \
     src/settings/ScraperSettings.h \
     src/settings/Settings.h \
-    src/settings/SettingsWindow.h \
+    src/ui/settings/SettingsWindow.h \
     src/ui/small_widgets/AlphabeticalList.h \
     src/ui/small_widgets/Badge.h \
     src/ui/small_widgets/ClosableImage.h \
@@ -509,8 +509,8 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/renamer/RenamerPlaceholders.ui \
     src/ui/movie_sets/MovieListDialog.ui \
     src/ui/movie_sets/SetsWidget.ui \
-    src/settings/ExportTemplateWidget.ui \
-    src/settings/SettingsWindow.ui \
+    src/ui/settings/ExportTemplateWidget.ui \
+    src/ui/settings/SettingsWindow.ui \
     src/ui/small_widgets/FilterWidget.ui \
     src/ui/small_widgets/ImageLabel.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \

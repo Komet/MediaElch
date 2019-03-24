@@ -4,13 +4,11 @@ add_library(
   AdvancedSettings.cpp
   DataFile.cpp
   DirectorySettings.cpp
-  ExportTemplateWidget.cpp
   ImportSettings.cpp
   KodiSettings.cpp
   NetworkSettings.cpp
   ScraperSettings.cpp
   Settings.cpp
-  SettingsWindow.cpp
 )
 
 target_link_libraries(
