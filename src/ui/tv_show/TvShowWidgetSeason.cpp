@@ -8,7 +8,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     QWidget(parent),

@@ -178,8 +178,8 @@ SOURCES += src/main.cpp \
     src/ui/music/MusicWidget.cpp \
     src/ui/music/MusicWidgetAlbum.cpp \
     src/ui/music/MusicWidgetArtist.cpp \
-    src/notifications/NotificationBox.cpp \
-    src/notifications/Notificator.cpp \
+    src/ui/notifications/NotificationBox.cpp \
+    src/ui/notifications/Notificator.cpp \
     src/qml/AlbumImageProvider.cpp \
     src/renamer/ConcertRenamer.cpp \
     src/renamer/EpisodeRenamer.cpp \
@@ -265,7 +265,7 @@ SOURCES += src/main.cpp \
     src/movies/MovieCrew.cpp
 
 macx {
-    OBJECTIVE_SOURCES += src/notifications/MacNotificationHandler.mm
+    OBJECTIVE_SOURCES += src/ui/notifications/MacNotificationHandler.mm
 }
 
 HEADERS  += Version.h \
@@ -379,9 +379,9 @@ HEADERS  += Version.h \
     src/ui/music/MusicWidget.h \
     src/ui/music/MusicWidgetAlbum.h \
     src/ui/music/MusicWidgetArtist.h \
-    src/notifications/MacNotificationHandler.h \
-    src/notifications/NotificationBox.h \
-    src/notifications/Notificator.h \
+    src/ui/notifications/MacNotificationHandler.h \
+    src/ui/notifications/NotificationBox.h \
+    src/ui/notifications/Notificator.h \
     src/qml/AlbumImageProvider.h \
     src/renamer/ConcertRenamer.h \
     src/renamer/EpisodeRenamer.h \
@@ -504,7 +504,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/music/MusicWidget.ui \
     src/ui/music/MusicWidgetAlbum.ui \
     src/ui/music/MusicWidgetArtist.ui \
-    src/notifications/NotificationBox.ui \
+    src/ui/notifications/NotificationBox.ui \
     src/renamer/RenamerDialog.ui \
     src/renamer/RenamerPlaceholders.ui \
     src/ui/movie_sets/MovieListDialog.ui \

@@ -2,7 +2,7 @@
 
 #include <QMessageBox>
 #ifdef Q_OS_MAC
-#include "notifications/MacNotificationHandler.h"
+#include "ui/notifications/MacNotificationHandler.h"
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 

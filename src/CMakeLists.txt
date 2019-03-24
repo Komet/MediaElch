@@ -9,7 +9,6 @@ add_subdirectory(image)
 add_subdirectory(media_centers)
 add_subdirectory(movies)
 add_subdirectory(music)
-add_subdirectory(notifications)
 add_subdirectory(renamer)
 add_subdirectory(scrapers)
 add_subdirectory(settings)
@@ -45,7 +44,6 @@ target_link_libraries(
     mediaelch_mediacenter
     mediaelch_movies
     mediaelch_music
-    mediaelch_notifications
     mediaelch_renamer
     mediaelch_scrapers
     mediaelch_settings
@@ -60,6 +58,7 @@ target_link_libraries(
     mediaelch_ui_image
     mediaelch_ui_main
     mediaelch_ui_music
+    mediaelch_ui_notifications
 )
 
 # DL open/close

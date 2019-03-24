@@ -4,7 +4,7 @@
 #include "globals/Manager.h"
 #include "music/Album.h"
 #include "music/Artist.h"
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 
 #include <QDebug>
 

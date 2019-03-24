@@ -6,7 +6,7 @@
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 
 #include <QPainter>
 

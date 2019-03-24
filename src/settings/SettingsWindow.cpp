@@ -13,7 +13,6 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "movies/MovieFilesOrganizer.h"
-#include "notifications/NotificationBox.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "scrapers/movie/IMDB.h"
@@ -23,6 +22,7 @@
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
 #include "settings/Settings.h"
+#include "ui/notifications/NotificationBox.h"
 
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),

@@ -12,8 +12,8 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "movies/Movie.h"
-#include "notifications/NotificationBox.h"
 #include "ui/movie_sets/MovieListDialog.h"
+#include "ui/notifications/NotificationBox.h"
 
 /**
  * @brief SetsWidget::SetsWidget

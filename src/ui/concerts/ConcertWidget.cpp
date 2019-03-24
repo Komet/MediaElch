@@ -17,9 +17,9 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
 #include "ui/concerts/ConcertFilesWidget.h"
 #include "ui/concerts/ConcertSearch.h"
+#include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 /**
