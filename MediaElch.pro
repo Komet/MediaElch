@@ -153,16 +153,16 @@ SOURCES += src/main.cpp \
     src/media_centers/kodi/MovieXmlReader.cpp \
     src/media_centers/kodi/TvShowXmlWriter.cpp \
     src/media_centers/kodi/TvShowXmlReader.cpp \
-    src/movies/CertificationWidget.cpp \
-    src/movies/GenreWidget.cpp \
+    src/ui/movies/CertificationWidget.cpp \
+    src/ui/movies/GenreWidget.cpp \
     src/movies/MovieController.cpp \
-    src/movies/MovieDuplicateItem.cpp \
-    src/movies/MovieDuplicates.cpp \
-    src/movies/MovieFilesWidget.cpp \
-    src/movies/MovieMultiScrapeDialog.cpp \
-    src/movies/MovieSearch.cpp \
-    src/movies/MovieSearchWidget.cpp \
-    src/movies/MovieWidget.cpp \
+    src/ui/movies/MovieDuplicateItem.cpp \
+    src/ui/movies/MovieDuplicates.cpp \
+    src/ui/movies/MovieFilesWidget.cpp \
+    src/ui/movies/MovieMultiScrapeDialog.cpp \
+    src/ui/movies/MovieSearch.cpp \
+    src/ui/movies/MovieSearchWidget.cpp \
+    src/ui/movies/MovieWidget.cpp \
     src/music/Album.cpp \
     src/music/AlbumController.cpp \
     src/music/Artist.cpp \
@@ -354,16 +354,16 @@ HEADERS  += Version.h \
     src/media_centers/kodi/MovieXmlReader.h \
     src/media_centers/kodi/TvShowXmlWriter.h \
     src/media_centers/kodi/TvShowXmlReader.h \
-    src/movies/CertificationWidget.h \
-    src/movies/GenreWidget.h \
+    src/ui/movies/CertificationWidget.h \
+    src/ui/movies/GenreWidget.h \
     src/movies/MovieController.h \
-    src/movies/MovieDuplicateItem.h \
-    src/movies/MovieDuplicates.h \
-    src/movies/MovieFilesWidget.h \
-    src/movies/MovieMultiScrapeDialog.h \
-    src/movies/MovieSearch.h \
-    src/movies/MovieSearchWidget.h \
-    src/movies/MovieWidget.h \
+    src/ui/movies/MovieDuplicateItem.h \
+    src/ui/movies/MovieDuplicates.h \
+    src/ui/movies/MovieFilesWidget.h \
+    src/ui/movies/MovieMultiScrapeDialog.h \
+    src/ui/movies/MovieSearch.h \
+    src/ui/movies/MovieSearchWidget.h \
+    src/ui/movies/MovieWidget.h \
     src/music/Album.h \
     src/music/AlbumController.h \
     src/music/Artist.h \
@@ -488,15 +488,15 @@ FORMS    += src/main/MainWindow.ui \
     src/main/FileScannerDialog.ui \
     src/main/Message.ui \
     src/main/Navbar.ui \
-    src/movies/CertificationWidget.ui \
-    src/movies/GenreWidget.ui \
-    src/movies/MovieDuplicateItem.ui \
-    src/movies/MovieDuplicates.ui \
-    src/movies/MovieFilesWidget.ui \
-    src/movies/MovieMultiScrapeDialog.ui \
-    src/movies/MovieSearch.ui \
-    src/movies/MovieSearchWidget.ui \
-    src/movies/MovieWidget.ui \
+    src/ui/movies/CertificationWidget.ui \
+    src/ui/movies/GenreWidget.ui \
+    src/ui/movies/MovieDuplicateItem.ui \
+    src/ui/movies/MovieDuplicates.ui \
+    src/ui/movies/MovieFilesWidget.ui \
+    src/ui/movies/MovieMultiScrapeDialog.ui \
+    src/ui/movies/MovieSearch.ui \
+    src/ui/movies/MovieSearchWidget.ui \
+    src/ui/movies/MovieWidget.ui \
     src/music/MusicFilesWidget.ui \
     src/music/MusicMultiScrapeDialog.ui \
     src/music/MusicSearch.ui \
