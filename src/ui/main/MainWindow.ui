@@ -959,7 +959,7 @@
   <customwidget>
    <class>Navbar</class>
    <extends>QWidget</extends>
-   <header>main/Navbar.h</header>
+   <header>ui/main/Navbar.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

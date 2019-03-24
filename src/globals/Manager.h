@@ -3,8 +3,6 @@
 #include "concerts/ConcertFileSearcher.h"
 #include "concerts/ConcertModel.h"
 #include "data/Database.h"
-#include "main/FileScannerDialog.h"
-#include "main/MyIconFont.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "movies/MovieFileSearcher.h"
 #include "movies/MovieModel.h"
@@ -23,6 +21,8 @@
 #include "tv_shows/TvShowFileSearcher.h"
 #include "tv_shows/TvShowModel.h"
 #include "tv_shows/TvShowProxyModel.h"
+#include "ui/main/FileScannerDialog.h"
+#include "ui/main/MyIconFont.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>

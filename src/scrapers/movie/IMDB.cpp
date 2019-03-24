@@ -7,8 +7,8 @@
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
-#include "main/MainWindow.h"
 #include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
 
 IMDB::IMDB(QObject* parent) : m_loadAllTags{false}
 {

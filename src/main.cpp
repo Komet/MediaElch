@@ -10,8 +10,8 @@
 #include <QTranslator>
 
 #include "Version.h"
-#include "main/MainWindow.h"
 #include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
 
 static QFile data;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "main/Message.h"
+#include "ui/main/Message.h"
 
 #include <QSize>
 #include <QString>

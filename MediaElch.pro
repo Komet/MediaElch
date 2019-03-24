@@ -136,13 +136,13 @@ SOURCES += src/main.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
     src/scrapers/image/TheTvDbImages.cpp \
     src/scrapers/image/TMDbImages.cpp \
-    src/main/AboutDialog.cpp \
-    src/main/FileScannerDialog.cpp \
-    src/main/MainWindow.cpp \
-    src/main/Message.cpp \
-    src/main/MyIconFont.cpp \
-    src/main/Navbar.cpp \
-    src/main/Update.cpp \
+    src/ui/main/AboutDialog.cpp \
+    src/ui/main/FileScannerDialog.cpp \
+    src/ui/main/MainWindow.cpp \
+    src/ui/main/Message.cpp \
+    src/ui/main/MyIconFont.cpp \
+    src/ui/main/Navbar.cpp \
+    src/ui/main/Update.cpp \
     src/media_centers/KodiXml.cpp \
     src/media_centers/kodi/ArtistXmlReader.cpp \
     src/media_centers/kodi/ArtistXmlWriter.cpp \
@@ -337,13 +337,13 @@ HEADERS  += Version.h \
     src/scrapers/image/FanartTvMusicArtists.h \
     src/scrapers/image/TheTvDbImages.h \
     src/scrapers/image/TMDbImages.h \
-    src/main/AboutDialog.h \
-    src/main/FileScannerDialog.h \
-    src/main/MainWindow.h \
-    src/main/Message.h \
-    src/main/MyIconFont.h \
-    src/main/Navbar.h \
-    src/main/Update.h \
+    src/ui/main/AboutDialog.h \
+    src/ui/main/FileScannerDialog.h \
+    src/ui/main/MainWindow.h \
+    src/ui/main/Message.h \
+    src/ui/main/MyIconFont.h \
+    src/ui/main/Navbar.h \
+    src/ui/main/Update.h \
     src/media_centers/KodiXml.h \
     src/media_centers/kodi/ArtistXmlReader.h \
     src/media_centers/kodi/ArtistXmlWriter.h \
@@ -467,7 +467,7 @@ HEADERS  += Version.h \
     src/data/Certification.h \
     src/movies/MovieCrew.h
 
-FORMS    += src/main/MainWindow.ui \
+FORMS    += src/ui/main/MainWindow.ui \
     src/ui/concerts/ConcertFilesWidget.ui \
     src/ui/concerts/ConcertSearch.ui \
     src/ui/concerts/ConcertSearchWidget.ui \
@@ -484,10 +484,10 @@ FORMS    += src/main/MainWindow.ui \
     src/globals/ImagePreviewDialog.ui \
     src/globals/TrailerDialog.ui \
     src/ui/image/ImageWidget.ui \
-    src/main/AboutDialog.ui \
-    src/main/FileScannerDialog.ui \
-    src/main/Message.ui \
-    src/main/Navbar.ui \
+    src/ui/main/AboutDialog.ui \
+    src/ui/main/FileScannerDialog.ui \
+    src/ui/main/Message.ui \
+    src/ui/main/Navbar.ui \
     src/ui/movies/CertificationWidget.ui \
     src/ui/movies/GenreWidget.ui \
     src/ui/movies/MovieDuplicateItem.ui \
