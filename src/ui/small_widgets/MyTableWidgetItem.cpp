@@ -31,7 +31,7 @@ MyTableWidgetItem::MyTableWidgetItem(int number, bool isSize) : QTableWidgetItem
 QVariant MyTableWidgetItem::data(int role) const
 {
     if (role == Qt::DisplayRole && m_isSize) {
-        return Helper::instance()->formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toLongLong());
+        return Helper::formatFileSize(QTableWidgetItem::data(Qt::DisplayRole).toLongLong());
     }
 
     return QTableWidgetItem::data(role);

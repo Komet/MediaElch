@@ -51,7 +51,7 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
 {
     if (type() == DataFileType::MovieSetBackdrop || type() == DataFileType::MovieSetPoster) {
         QString newFileName = m_fileName;
-        return Helper::instance()->sanitizeFileName(newFileName.replace("<setName>", fileName));
+        return Helper::sanitizeFileName(newFileName.replace("<setName>", fileName));
     }
 
     QFileInfo fi(fileName);
@@ -60,7 +60,7 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
     QString baseName = fi.completeBaseName();
     if (stacked) {
         QString f = fileName;
-        baseName = Helper::instance()->stackedBaseName(f);
+        baseName = Helper::stackedBaseName(f);
     }
     newFileName.replace("<baseFileName>", baseName);
 

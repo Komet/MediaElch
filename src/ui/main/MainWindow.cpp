@@ -97,7 +97,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
-    Helper::instance(this);
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
 

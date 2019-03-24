@@ -364,7 +364,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     }
 
     QVector<Filter*> movieLabelFilters;
-    QMapIterator<ColorLabel, QString> it(Helper::instance()->labels());
+    QMapIterator<ColorLabel, QString> it(Helper::labels());
     while (it.hasNext()) {
         it.next();
         movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()),
@@ -533,7 +533,7 @@ void FilterWidget::setupFilterListUi()
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    const qreal pixelRatio = Helper::instance()->devicePixelRatio(m_list);
+    const qreal pixelRatio = Helper::devicePixelRatio(m_list);
     if (pixelRatio >= 0.95 && pixelRatio <= 1.05) {
         // Pixel ratio is 1
         auto effect = new QGraphicsDropShadowEffect(this);

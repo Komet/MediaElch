@@ -569,7 +569,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
             }
-            concert->addGenre(Helper::instance()->mapGenre(genre.value("name").toString()));
+            concert->addGenre(Helper::mapGenre(genre.value("name").toString()));
         }
     }
 
@@ -579,8 +579,8 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
         const auto firstTrailer = parsedJson.value("youtube").toArray().first().toObject();
         if (!firstTrailer.value("source").toString().isEmpty()) {
             const QString youtubeSrc = firstTrailer.value("source").toString();
-            concert->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(
-                QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+            concert->setTrailer(
+                QUrl(Helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
         }
     }
 
@@ -642,19 +642,19 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
         }
 
         if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
-            concert->setCertification(Helper::instance()->mapCertification(us));
+            concert->setCertification(Helper::mapCertification(us));
 
         } else if (m_locale.language() == QLocale::English && gb.isValid()) {
-            concert->setCertification(Helper::instance()->mapCertification(gb));
+            concert->setCertification(Helper::mapCertification(gb));
 
         } else if (locale.isValid()) {
-            concert->setCertification(Helper::instance()->mapCertification(locale));
+            concert->setCertification(Helper::mapCertification(locale));
 
         } else if (us.isValid()) {
-            concert->setCertification(Helper::instance()->mapCertification(us));
+            concert->setCertification(Helper::mapCertification(us));
 
         } else if (gb.isValid()) {
-            concert->setCertification(Helper::instance()->mapCertification(gb));
+            concert->setCertification(Helper::mapCertification(gb));
         }
     }
 }

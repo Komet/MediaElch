@@ -1085,11 +1085,11 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
-        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1102,11 +1102,11 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)) {
-        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             QFile(dir.absolutePath() + "/thumb.jpg").remove();
-        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1551,14 +1551,14 @@ KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<Dat
     }
     QFileInfo fi(episode->files().at(0));
 
-    if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
+    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
         QDir dir = fi.dir();
         dir.cdUp();
         fi.setFile(dir.absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
 
-    if (Helper::instance()->isDvd(episode->files().at(0), true)) {
+    if (Helper::isDvd(episode->files().at(0), true)) {
         fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }

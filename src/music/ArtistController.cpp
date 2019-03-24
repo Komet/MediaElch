@@ -133,13 +133,13 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
     emit sigDownloadProgress(m_artist, m_downloadsLeft, m_downloadsSize);
 
     if (!elem.data.isEmpty() && elem.imageType == ImageType::ArtistExtraFanart) {
-        Helper::instance()->resizeBackdrop(elem.data);
+        Helper::resizeBackdrop(elem.data);
         m_artist->addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
         if (elem.imageType == ImageType::ArtistFanart) {
-            Helper::instance()->resizeBackdrop(elem.data);
+            Helper::resizeBackdrop(elem.data);
         }
         m_artist->setRawImage(elem.imageType, elem.data);
     }

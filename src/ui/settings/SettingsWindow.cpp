@@ -122,7 +122,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
     ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
-    Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
+    Helper::removeFocusRect(ui->stackedWidget->widget(9));
 
     // clang-format off
     connect(ui->buttonAddDir,           &QAbstractButton::clicked, this, &SettingsWindow::chooseDirToAdd);

@@ -921,10 +921,10 @@ DiscType Concert::discType() const
     if (files().isEmpty()) {
         return DiscType::Single;
     }
-    if (Helper::instance()->isDvd(files().first())) {
+    if (Helper::isDvd(files().first())) {
         return DiscType::Dvd;
     }
-    if (Helper::instance()->isBluRay(files().first())) {
+    if (Helper::isBluRay(files().first())) {
         return DiscType::BluRay;
     }
     return DiscType::Single;
@@ -948,9 +948,7 @@ void Concert::removeImage(ImageType type)
 
 bool Concert::lessThan(Concert* a, Concert* b)
 {
-    return (QString::localeAwareCompare(
-                Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name()))
-            < 0);
+    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
 }
 
 QVector<ImageType> Concert::imageTypes()

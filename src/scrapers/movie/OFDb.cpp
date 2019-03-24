@@ -112,7 +112,7 @@ void OFDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
 
-    QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
+    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
 
     QUrl url;
     QRegExp rxId("^id\\d+$");
@@ -339,7 +339,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
         } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "titel") {
-                    movie->addGenre(Helper::instance()->mapGenre(xml.readElementText()));
+                    movie->addGenre(Helper::mapGenre(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }
@@ -365,7 +365,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
         } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "name") {
-                    movie->addCountry(Helper::instance()->mapCountry(xml.readElementText()));
+                    movie->addCountry(Helper::mapCountry(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }

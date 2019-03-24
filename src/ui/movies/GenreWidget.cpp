@@ -38,10 +38,10 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
     connect(ui->genres, &QTableWidget::itemSelectionChanged, this, &GenreWidget::onGenreSelected);
     connect(ui->genres, &QTableWidget::itemChanged, this, &GenreWidget::onGenreNameChanged);
 
-    Helper::instance()->applyStyle(ui->genres);
-    Helper::instance()->applyStyle(ui->infoGroupBox);
-    Helper::instance()->applyStyle(ui->label_2);
-    Helper::instance()->applyStyle(ui->label_3);
+    Helper::applyStyle(ui->genres);
+    Helper::applyStyle(ui->infoGroupBox);
+    Helper::applyStyle(ui->label_2);
+    Helper::applyStyle(ui->label_3);
 }
 
 /**

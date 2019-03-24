@@ -40,8 +40,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         return chkDir.path();
     }();
 
-    const bool isBluRay = Helper::instance()->isBluRay(baseDir);
-    const bool isDvd = Helper::instance()->isDvd(baseDir);
+    const bool isBluRay = Helper::isBluRay(baseDir);
+    const bool isDvd = Helper::isDvd(baseDir);
 
     // BlueRay and DVD folder content must not be renamed.
     if (isBluRay || isDvd) {
@@ -69,14 +69,14 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             MovieRenamer::replace(newFileName, "channels", QString::number(movie.streamDetails()->audioChannels()));
             MovieRenamer::replace(newFileName,
                 "resolution",
-                Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId().toString());
             MovieRenamer::replaceCondition(newFileName, "movieset", movie.set());
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::instance()->sanitizeFileName(newFileName);
+            Helper::sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
                     const int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
@@ -186,7 +186,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
-            Helper::instance()->sanitizeFileName(newDataFileName);
+            Helper::sanitizeFileName(newDataFileName);
 
             if (newDataFileName == fileName) {
                 // File already has correct name
@@ -239,7 +239,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
         Renamer::replace(newFolderName,
             "resolution",
-            Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+            Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
         Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
@@ -248,7 +248,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set());
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        Helper::instance()->sanitizeFileName(newFolderName);
+        Helper::sanitizeFileName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
         }
@@ -265,7 +265,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
         Renamer::replace(newFolderName,
             "resolution",
-            Helper::instance()->matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+            Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
         Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
@@ -274,7 +274,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
         Renamer::replaceCondition(newFolderName, "movieset", movie.set());
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        Helper::instance()->sanitizeFileName(newFolderName);
+        Helper::sanitizeFileName(newFolderName);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
             int i = 0;
