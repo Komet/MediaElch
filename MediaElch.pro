@@ -112,7 +112,7 @@ SOURCES += src/main.cpp \
     src/ui/downloads/MakeMkvDialog.cpp \
     src/downloads/MyFile.cpp \
     src/ui/downloads/UnpackButtons.cpp \
-    src/export/ExportDialog.cpp \
+    src/ui/export/ExportDialog.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
     src/globals/ComboDelegate.cpp \
@@ -311,7 +311,7 @@ HEADERS  += Version.h \
     src/ui/downloads/MakeMkvDialog.h \
     src/downloads/MyFile.h \
     src/ui/downloads/UnpackButtons.h \
-    src/export/ExportDialog.h \
+    src/ui/export/ExportDialog.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
     src/globals/ComboDelegate.h \
@@ -479,7 +479,7 @@ FORMS    += src/main/MainWindow.ui \
     src/ui/downloads/ImportDialog.ui \
     src/ui/downloads/MakeMkvDialog.ui \
     src/ui/downloads/UnpackButtons.ui \
-    src/export/ExportDialog.ui \
+    src/ui/export/ExportDialog.ui \
     src/globals/ImageDialog.ui \
     src/globals/ImagePreviewDialog.ui \
     src/globals/TrailerDialog.ui \

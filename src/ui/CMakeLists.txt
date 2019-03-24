@@ -3,6 +3,7 @@ add_subdirectory(concerts)
 add_subdirectory(small_widgets)
 add_subdirectory(tv_show)
 add_subdirectory(downloads)
+add_subdirectory(export)
 
 add_library(
   mediaelch_ui

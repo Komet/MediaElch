@@ -1,10 +1,4 @@
-add_library(
-  mediaelch_export
-  OBJECT
-  ExportDialog.cpp
-  ExportTemplate.cpp
-  ExportTemplateLoader.cpp
-)
+add_library(mediaelch_export OBJECT ExportTemplate.cpp ExportTemplateLoader.cpp)
 
 target_link_libraries(
   mediaelch_export

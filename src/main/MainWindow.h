@@ -5,7 +5,6 @@
 #include <QProgressBar>
 #include <QToolButton>
 
-#include "export/ExportDialog.h"
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "main/AboutDialog.h"
@@ -14,6 +13,7 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
+#include "ui/export/ExportDialog.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/support/SupportDialog.h"
 
