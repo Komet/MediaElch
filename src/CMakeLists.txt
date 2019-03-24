@@ -87,7 +87,6 @@ target_sources(
 target_sources(
   libmediaelch
   PRIVATE
-  support/SupportDialog.cpp
   main/AboutDialog.cpp
   main/FileScannerDialog.cpp
   main/MainWindow.cpp

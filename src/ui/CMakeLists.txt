@@ -10,6 +10,7 @@ add_library(
   movie_sets/SetsWidget.cpp
   tv_show/TvShowFilesWidget.cpp
   media_centers/KodiSync.cpp
+  support/SupportDialog.cpp
 )
 
 target_link_libraries(
