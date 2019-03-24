@@ -8,6 +8,7 @@ add_subdirectory(image)
 add_subdirectory(main)
 add_subdirectory(music)
 add_subdirectory(notifications)
+add_subdirectory(settings)
 
 add_library(
   mediaelch_ui

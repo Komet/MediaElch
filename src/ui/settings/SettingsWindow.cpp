@@ -20,9 +20,9 @@
 #include "scrapers/tv_show/TheTvDb.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "settings/DataFile.h"
-#include "settings/ExportTemplateWidget.h"
 #include "settings/Settings.h"
 #include "ui/notifications/NotificationBox.h"
+#include "ui/settings/ExportTemplateWidget.h"
 
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),
