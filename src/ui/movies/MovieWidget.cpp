@@ -11,10 +11,10 @@
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
 #include "main/MainWindow.h"
-#include "ui/movies/MovieFilesWidget.h"
-#include "ui/movies/MovieSearch.h"
 #include "notifications/NotificationBox.h"
 #include "scrapers/movie/CustomMovieScraper.h"
+#include "ui/movies/MovieFilesWidget.h"
+#include "ui/movies/MovieSearch.h"
 #include "ui/small_widgets/ClosableImage.h"
 
 #include <QDoubleValidator>

@@ -4,14 +4,8 @@ add_library(
   Concert.cpp
   ConcertController.cpp
   ConcertFileSearcher.cpp
-  ConcertFilesWidget.cpp
-  ConcertInfoWidget.cpp
   ConcertModel.cpp
   ConcertProxyModel.cpp
-  ConcertSearch.cpp
-  ConcertSearchWidget.cpp
-  ConcertStreamDetailsWidget.cpp
-  ConcertWidget.cpp
 )
 
 target_link_libraries(

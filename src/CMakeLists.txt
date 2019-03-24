@@ -53,6 +53,7 @@ target_link_libraries(
     mediaelch_ui
     mediaelch_ui_smallwidgets
     mediaelch_ui_movies
+    mediaelch_ui_concerts
 )
 
 # DL open/close

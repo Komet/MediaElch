@@ -13,7 +13,6 @@
 #include <QMenuBar>
 #endif
 
-#include "concerts/ConcertSearch.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -24,8 +23,6 @@
 #include "globals/TrailerDialog.h"
 #include "main/Update.h"
 #include "media_centers/MediaCenterInterface.h"
-#include "ui/movies/MovieMultiScrapeDialog.h"
-#include "ui/movies/MovieSearch.h"
 #include "music/MusicMultiScrapeDialog.h"
 #include "music/MusicSearch.h"
 #include "notifications/NotificationBox.h"
@@ -36,8 +33,11 @@
 #include "tv_shows/TvShowSearch.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "tv_shows/TvTunesDialog.h"
+#include "ui/concerts/ConcertSearch.h"
 #include "ui/media_centers/KodiSync.h"
 #include "ui/movie_sets/MovieListDialog.h"
+#include "ui/movies/MovieMultiScrapeDialog.h"
+#include "ui/movies/MovieSearch.h"
 
 MainWindow* MainWindow::m_instance = nullptr;
 

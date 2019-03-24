@@ -1,10 +1,14 @@
 add_subdirectory(movies)
+add_subdirectory(concerts)
 add_subdirectory(small_widgets)
 
 add_library(
-  mediaelch_ui OBJECT
+  mediaelch_ui
+  OBJECT
   movie_sets/MovieListDialog.cpp
-  movie_sets/SetsWidget.cpp tv_show/TvShowFilesWidget.cpp media_centers/KodiSync.cpp
+  movie_sets/SetsWidget.cpp
+  tv_show/TvShowFilesWidget.cpp
+  media_centers/KodiSync.cpp
 )
 
 target_link_libraries(

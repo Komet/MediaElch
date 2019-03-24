@@ -7,8 +7,8 @@
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 #include "movies/MovieModel.h"
-#include "ui/movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieProxyModel.h"
+#include "ui/movies/MovieMultiScrapeDialog.h"
 #include "ui/small_widgets/AlphabeticalList.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
 

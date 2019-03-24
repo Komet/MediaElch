@@ -21,4 +21,7 @@ catch_discover_tests(mediaelch_test_scrapers)
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
 
 # Unit tests
-add_custom_target(scraper_test COMMAND $<TARGET_FILE:mediaelch_test_scrapers> --use-colour yes)
+add_custom_target(
+  scraper_test
+  COMMAND $<TARGET_FILE:mediaelch_test_scrapers> --use-colour yes
+)

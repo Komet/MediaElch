@@ -919,13 +919,13 @@
   <customwidget>
    <class>ConcertFilesWidget</class>
    <extends>QWidget</extends>
-   <header>concerts/ConcertFilesWidget.h</header>
+   <header>ui/concerts/ConcertFilesWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ConcertWidget</class>
    <extends>QWidget</extends>
-   <header>concerts/ConcertWidget.h</header>
+   <header>ui/concerts/ConcertWidget.h</header>
    <container>1</container>
    <slots>
     <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
