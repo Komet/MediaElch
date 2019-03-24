@@ -1,4 +1,4 @@
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 #include "ui_NotificationBox.h"
 
 #include <QDebug>

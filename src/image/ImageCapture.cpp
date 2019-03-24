@@ -6,7 +6,7 @@
 #include <QTemporaryFile>
 
 #include "globals/Helper.h"
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 
 ImageCapture::ImageCapture(QObject* parent) : QObject(parent)
 {

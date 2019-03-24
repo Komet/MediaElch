@@ -6,7 +6,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
-#include "notifications/NotificationBox.h"
+#include "ui/notifications/NotificationBox.h"
 
 /**
  * @brief Message::Message

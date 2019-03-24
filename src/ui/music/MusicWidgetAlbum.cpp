@@ -5,8 +5,8 @@
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
 #include "ui/music/MusicSearch.h"
+#include "ui/notifications/NotificationBox.h"
 
 #ifdef Q_OS_WIN
 #include <QGLFormat>

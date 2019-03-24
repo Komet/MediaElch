@@ -5,9 +5,9 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
+#include "ui/notifications/NotificationBox.h"
 
 /**
  * @brief TvShowWidget::TvShowWidget

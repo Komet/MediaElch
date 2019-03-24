@@ -8,13 +8,13 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/NameFormatter.h"
-#include "notifications/Notificator.h"
 #include "renamer/RenamerDialog.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShowFileSearcher.h"
 #include "tv_shows/model/SeasonModelItem.h"
 #include "tv_shows/model/TvShowModelItem.h"
+#include "ui/notifications/Notificator.h"
 
 ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {

@@ -5,8 +5,8 @@
 #include "globals/Manager.h"
 #include "movies/Movie.h"
 #include "movies/MovieProxyModel.h"
-#include "notifications/NotificationBox.h"
 #include "ui/movies/MovieDuplicateItem.h"
+#include "ui/notifications/NotificationBox.h"
 
 #include <QDebug>
 #include <QDesktopServices>

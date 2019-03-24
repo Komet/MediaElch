@@ -7,8 +7,8 @@
 #include <QMessageBox>
 
 #include "globals/Manager.h"
-#include "notifications/NotificationBox.h"
 #include "settings/Settings.h"
+#include "ui/notifications/NotificationBox.h"
 
 // KodiSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
