@@ -953,7 +953,7 @@
   <customwidget>
    <class>DownloadsWidget</class>
    <extends>QWidget</extends>
-   <header>downloads/DownloadsWidget.h</header>
+   <header>ui/downloads/DownloadsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

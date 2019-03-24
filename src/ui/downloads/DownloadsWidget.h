@@ -1,7 +1,7 @@
 #pragma once
 
 #include "downloads/Extractor.h"
-#include "downloads/MakeMkvDialog.h"
+#include "ui/downloads/MakeMkvDialog.h"
 
 #include <QComboBox>
 #include <QFileInfo>

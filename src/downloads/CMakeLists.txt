@@ -1,15 +1,10 @@
 add_library(
   mediaelch_downloads
   OBJECT
-  DownloadsWidget.cpp
   Extractor.cpp
   FileWorker.cpp
-  ImportActions.cpp
-  ImportDialog.cpp
   MakeMkvCon.cpp
-  MakeMkvDialog.cpp
   MyFile.cpp
-  UnpackButtons.cpp
 )
 
 target_link_libraries(

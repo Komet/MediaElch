@@ -103,15 +103,15 @@ SOURCES += src/main.cpp \
     src/tv_shows/TvShow.cpp \
     src/tv_shows/TvShowEpisode.cpp \
     src/tv_shows/TvShowFileSearcher.cpp \
-    src/downloads/DownloadsWidget.cpp \
+    src/ui/downloads/DownloadsWidget.cpp \
     src/downloads/Extractor.cpp \
     src/downloads/FileWorker.cpp \
-    src/downloads/ImportActions.cpp \
-    src/downloads/ImportDialog.cpp \
+    src/ui/downloads/ImportActions.cpp \
+    src/ui/downloads/ImportDialog.cpp \
     src/downloads/MakeMkvCon.cpp \
-    src/downloads/MakeMkvDialog.cpp \
+    src/ui/downloads/MakeMkvDialog.cpp \
     src/downloads/MyFile.cpp \
-    src/downloads/UnpackButtons.cpp \
+    src/ui/downloads/UnpackButtons.cpp \
     src/export/ExportDialog.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
@@ -302,15 +302,15 @@ HEADERS  += Version.h \
     src/tv_shows/TvShow.h \
     src/tv_shows/TvShowEpisode.h \
     src/tv_shows/TvShowFileSearcher.h \
-    src/downloads/DownloadsWidget.h \
+    src/ui/downloads/DownloadsWidget.h \
     src/downloads/Extractor.h \
     src/downloads/FileWorker.h \
-    src/downloads/ImportActions.h \
-    src/downloads/ImportDialog.h \
+    src/ui/downloads/ImportActions.h \
+    src/ui/downloads/ImportDialog.h \
     src/downloads/MakeMkvCon.h \
-    src/downloads/MakeMkvDialog.h \
+    src/ui/downloads/MakeMkvDialog.h \
     src/downloads/MyFile.h \
-    src/downloads/UnpackButtons.h \
+    src/ui/downloads/UnpackButtons.h \
     src/export/ExportDialog.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
@@ -474,11 +474,11 @@ FORMS    += src/main/MainWindow.ui \
     src/ui/concerts/ConcertStreamDetailsWidget.ui \
     src/ui/concerts/ConcertWidget.ui \
     src/ui/concerts/ConcertInfoWidget.ui \
-    src/downloads/DownloadsWidget.ui \
-    src/downloads/ImportActions.ui \
-    src/downloads/ImportDialog.ui \
-    src/downloads/MakeMkvDialog.ui \
-    src/downloads/UnpackButtons.ui \
+    src/ui/downloads/DownloadsWidget.ui \
+    src/ui/downloads/ImportActions.ui \
+    src/ui/downloads/ImportDialog.ui \
+    src/ui/downloads/MakeMkvDialog.ui \
+    src/ui/downloads/UnpackButtons.ui \
     src/export/ExportDialog.ui \
     src/globals/ImageDialog.ui \
     src/globals/ImagePreviewDialog.ui \

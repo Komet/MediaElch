@@ -14,8 +14,8 @@
 #include "renamer/RenamerDialog.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
-#include "ui/support/SupportDialog.h"
 #include "ui/media_centers/KodiSync.h"
+#include "ui/support/SupportDialog.h"
 
 namespace Ui {
 class MainWindow;
