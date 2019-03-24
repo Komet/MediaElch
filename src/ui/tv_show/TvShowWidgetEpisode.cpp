@@ -10,7 +10,7 @@
 #include "globals/Manager.h"
 #include "image/ImageCapture.h"
 #include "notifications/NotificationBox.h"
-#include "tv_shows/TvShowSearch.h"
+#include "ui/tv_show/TvShowSearch.h"
 
 #include <QBuffer>
 #include <QFileDialog>

@@ -239,15 +239,15 @@ SOURCES += src/main.cpp \
     src/ui/tv_show/TvShowFilesWidget.cpp \
     src/support/SupportDialog.cpp \
     src/scrapers/trailer/HdTrailers.cpp \
-    src/tv_shows/TvShowMultiScrapeDialog.cpp \
-    src/tv_shows/TvShowSearch.cpp \
-    src/tv_shows/TvShowSearchEpisode.cpp \
+    src/ui/tv_show/TvShowMultiScrapeDialog.cpp \
+    src/ui/tv_show/TvShowSearch.cpp \
+    src/ui/tv_show/TvShowSearchEpisode.cpp \
     src/tv_shows/TvShowUpdater.cpp \
-    src/tv_shows/TvShowWidget.cpp \
-    src/tv_shows/TvShowWidgetEpisode.cpp \
-    src/tv_shows/TvShowWidgetSeason.cpp \
-    src/tv_shows/TvShowWidgetTvShow.cpp \
-    src/tv_shows/TvTunesDialog.cpp \
+    src/ui/tv_show/TvShowWidget.cpp \
+    src/ui/tv_show/TvShowWidgetEpisode.cpp \
+    src/ui/tv_show/TvShowWidgetSeason.cpp \
+    src/ui/tv_show/TvShowWidgetTvShow.cpp \
+    src/ui/tv_show/TvTunesDialog.cpp \
     src/tv_shows/TvShowModel.cpp \
     src/tv_shows/TvShowProxyModel.cpp \
     src/tv_shows/model/TvShowModelItem.cpp \
@@ -442,15 +442,15 @@ HEADERS  += Version.h \
     src/support/SupportDialog.h \
     src/scrapers/trailer/HdTrailers.h \
     src/scrapers/trailer/TrailerProvider.h \
-    src/tv_shows/TvShowMultiScrapeDialog.h \
-    src/tv_shows/TvShowSearch.h \
-    src/tv_shows/TvShowSearchEpisode.h \
+    src/ui/tv_show/TvShowMultiScrapeDialog.h \
+    src/ui/tv_show/TvShowSearch.h \
+    src/ui/tv_show/TvShowSearchEpisode.h \
     src/tv_shows/TvShowUpdater.h \
-    src/tv_shows/TvShowWidget.h \
-    src/tv_shows/TvShowWidgetEpisode.h \
-    src/tv_shows/TvShowWidgetSeason.h \
-    src/tv_shows/TvShowWidgetTvShow.h \
-    src/tv_shows/TvTunesDialog.h \
+    src/ui/tv_show/TvShowWidget.h \
+    src/ui/tv_show/TvShowWidgetEpisode.h \
+    src/ui/tv_show/TvShowWidgetSeason.h \
+    src/ui/tv_show/TvShowWidgetTvShow.h \
+    src/ui/tv_show/TvTunesDialog.h \
     src/tv_shows/TvShowModel.h \
     src/tv_shows/TvShowProxyModel.h \
     src/tv_shows/model/TvShowModelItem.h \
@@ -519,14 +519,14 @@ FORMS    += src/main/MainWindow.ui \
     src/ui/tv_show/TvShowFilesWidget.ui \
     src/support/SupportDialog.ui \
     src/tv_shows/ItemWidgetShow.ui \
-    src/tv_shows/TvShowMultiScrapeDialog.ui \
-    src/tv_shows/TvShowSearch.ui \
-    src/tv_shows/TvShowSearchEpisode.ui \
-    src/tv_shows/TvShowWidget.ui \
-    src/tv_shows/TvShowWidgetEpisode.ui \
-    src/tv_shows/TvShowWidgetSeason.ui \
-    src/tv_shows/TvShowWidgetTvShow.ui \
-    src/tv_shows/TvTunesDialog.ui \
+    src/ui/tv_show/TvShowMultiScrapeDialog.ui \
+    src/ui/tv_show/TvShowSearch.ui \
+    src/ui/tv_show/TvShowSearchEpisode.ui \
+    src/ui/tv_show/TvShowWidget.ui \
+    src/ui/tv_show/TvShowWidgetEpisode.ui \
+    src/ui/tv_show/TvShowWidgetSeason.ui \
+    src/ui/tv_show/TvShowWidgetTvShow.ui \
+    src/ui/tv_show/TvTunesDialog.ui \
     src/ui/media_centers/KodiSync.ui
 
 RESOURCES += \

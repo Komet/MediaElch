@@ -8,12 +8,12 @@
 
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "tv_shows/TvShowMultiScrapeDialog.h"
 #include "tv_shows/TvShowUpdater.h"
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
 #include "tv_shows/model/TvShowModelItem.h"
 #include "ui/small_widgets/LoadingStreamDetails.h"
+#include "ui/tv_show/TvShowMultiScrapeDialog.h"
 
 TvShowFilesWidget* TvShowFilesWidget::m_instance;
 
