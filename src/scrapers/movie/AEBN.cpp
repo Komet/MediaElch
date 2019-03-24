@@ -6,7 +6,7 @@
 
 #include "data/Storage.h"
 #include "globals/NetworkReplyWatcher.h"
-#include "main/MainWindow.h"
+#include "ui/main/MainWindow.h"
 
 AEBN::AEBN(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,

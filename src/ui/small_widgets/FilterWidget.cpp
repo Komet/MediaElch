@@ -7,8 +7,8 @@
 #include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "main/MainWindow.h"
-#include "main/Navbar.h"
+#include "ui/main/MainWindow.h"
+#include "ui/main/Navbar.h"
 
 /**
  * @brief FilterWidget::FilterWidget

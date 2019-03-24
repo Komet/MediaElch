@@ -9,9 +9,9 @@
 #include <QLabel>
 
 #include "data/Storage.h"
-#include "main/MainWindow.h"
 #include "scrapers/movie/TMDb.h"
 #include "scrapers/tv_show/TheTvDb.h"
+#include "ui/main/MainWindow.h"
 
 /**
  * @brief FanartTv::FanartTv

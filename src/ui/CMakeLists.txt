@@ -5,6 +5,7 @@ add_subdirectory(tv_show)
 add_subdirectory(downloads)
 add_subdirectory(export)
 add_subdirectory(image)
+add_subdirectory(main)
 
 add_library(
   mediaelch_ui

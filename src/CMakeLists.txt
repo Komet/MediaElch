@@ -58,6 +58,7 @@ target_link_libraries(
     mediaelch_ui_downloads
     mediaelch_ui_export
     mediaelch_ui_image
+    mediaelch_ui_main
 )
 
 # DL open/close
@@ -85,18 +86,6 @@ target_sources(
   ../data/MediaElch.qrc
   ../data/i18n.qrc
   ../ui.qrc
-)
-
-target_sources(
-  libmediaelch
-  PRIVATE
-  main/AboutDialog.cpp
-  main/FileScannerDialog.cpp
-  main/MainWindow.cpp
-  main/Message.cpp
-  main/MyIconFont.cpp
-  main/Navbar.cpp
-  main/Update.cpp
 )
 
 target_sources(libmediaelch PRIVATE qml/AlbumImageProvider.cpp)

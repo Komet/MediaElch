@@ -14,8 +14,8 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/NetworkReplyWatcher.h"
-#include "main/MainWindow.h"
 #include "settings/Settings.h"
+#include "ui/main/MainWindow.h"
 
 /**
  * @brief TMDb::TMDb
