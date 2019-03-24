@@ -168,16 +168,16 @@ SOURCES += src/main.cpp \
     src/music/Artist.cpp \
     src/music/ArtistController.cpp \
     src/music/MusicFileSearcher.cpp \
-    src/music/MusicFilesWidget.cpp \
+    src/ui/music/MusicFilesWidget.cpp \
     src/music/MusicModel.cpp \
     src/music/MusicModelItem.cpp \
-    src/music/MusicMultiScrapeDialog.cpp \
+    src/ui/music/MusicMultiScrapeDialog.cpp \
     src/music/MusicProxyModel.cpp \
-    src/music/MusicSearch.cpp \
-    src/music/MusicSearchWidget.cpp \
-    src/music/MusicWidget.cpp \
-    src/music/MusicWidgetAlbum.cpp \
-    src/music/MusicWidgetArtist.cpp \
+    src/ui/music/MusicSearch.cpp \
+    src/ui/music/MusicSearchWidget.cpp \
+    src/ui/music/MusicWidget.cpp \
+    src/ui/music/MusicWidgetAlbum.cpp \
+    src/ui/music/MusicWidgetArtist.cpp \
     src/notifications/NotificationBox.cpp \
     src/notifications/Notificator.cpp \
     src/qml/AlbumImageProvider.cpp \
@@ -369,16 +369,16 @@ HEADERS  += Version.h \
     src/music/Artist.h \
     src/music/ArtistController.h \
     src/music/MusicFileSearcher.h \
-    src/music/MusicFilesWidget.h \
+    src/ui/music/MusicFilesWidget.h \
     src/music/MusicModel.h \
     src/music/MusicModelItem.h \
-    src/music/MusicMultiScrapeDialog.h \
+    src/ui/music/MusicMultiScrapeDialog.h \
     src/music/MusicProxyModel.h \
-    src/music/MusicSearch.h \
-    src/music/MusicSearchWidget.h \
-    src/music/MusicWidget.h \
-    src/music/MusicWidgetAlbum.h \
-    src/music/MusicWidgetArtist.h \
+    src/ui/music/MusicSearch.h \
+    src/ui/music/MusicSearchWidget.h \
+    src/ui/music/MusicWidget.h \
+    src/ui/music/MusicWidgetAlbum.h \
+    src/ui/music/MusicWidgetArtist.h \
     src/notifications/MacNotificationHandler.h \
     src/notifications/NotificationBox.h \
     src/notifications/Notificator.h \
@@ -497,13 +497,13 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/movies/MovieSearch.ui \
     src/ui/movies/MovieSearchWidget.ui \
     src/ui/movies/MovieWidget.ui \
-    src/music/MusicFilesWidget.ui \
-    src/music/MusicMultiScrapeDialog.ui \
-    src/music/MusicSearch.ui \
-    src/music/MusicSearchWidget.ui \
-    src/music/MusicWidget.ui \
-    src/music/MusicWidgetAlbum.ui \
-    src/music/MusicWidgetArtist.ui \
+    src/ui/music/MusicFilesWidget.ui \
+    src/ui/music/MusicMultiScrapeDialog.ui \
+    src/ui/music/MusicSearch.ui \
+    src/ui/music/MusicSearchWidget.ui \
+    src/ui/music/MusicWidget.ui \
+    src/ui/music/MusicWidgetAlbum.ui \
+    src/ui/music/MusicWidgetArtist.ui \
     src/notifications/NotificationBox.ui \
     src/renamer/RenamerDialog.ui \
     src/renamer/RenamerPlaceholders.ui \

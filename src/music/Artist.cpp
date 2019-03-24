@@ -1,4 +1,4 @@
-#include "Artist.h"
+#include "music/Artist.h"
 
 #include "media_centers/MediaCenterInterface.h"
 

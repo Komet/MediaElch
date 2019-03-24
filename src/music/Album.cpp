@@ -1,4 +1,4 @@
-#include "Album.h"
+#include "music/Album.h"
 
 #include "media_centers/MediaCenterInterface.h"
 

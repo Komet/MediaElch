@@ -38,13 +38,13 @@
   <customwidget>
    <class>MusicWidgetArtist</class>
    <extends>QWidget</extends>
-   <header>music/MusicWidgetArtist.h</header>
+   <header>ui/music/MusicWidgetArtist.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicWidgetAlbum</class>
    <extends>QWidget</extends>
-   <header>music/MusicWidgetAlbum.h</header>
+   <header>ui/music/MusicWidgetAlbum.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

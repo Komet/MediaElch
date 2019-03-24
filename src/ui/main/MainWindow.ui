@@ -965,13 +965,13 @@
   <customwidget>
    <class>MusicFilesWidget</class>
    <extends>QWidget</extends>
-   <header>music/MusicFilesWidget.h</header>
+   <header>ui/music/MusicFilesWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicWidget</class>
    <extends>QWidget</extends>
-   <header>music/MusicWidget.h</header>
+   <header>ui/music/MusicWidget.h</header>
    <container>1</container>
    <slots>
     <signal>sigSetActionSearchEnabled(bool,MainWidgets)</signal>

@@ -7,7 +7,6 @@
 #include "movies/MovieFileSearcher.h"
 #include "movies/MovieModel.h"
 #include "music/MusicFileSearcher.h"
-#include "music/MusicFilesWidget.h"
 #include "music/MusicModel.h"
 #include "scrapers/concert/ConcertScraperInterface.h"
 #include "scrapers/image/FanartTv.h"
@@ -23,6 +22,7 @@
 #include "tv_shows/TvShowProxyModel.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/main/MyIconFont.h"
+#include "ui/music/MusicFilesWidget.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>

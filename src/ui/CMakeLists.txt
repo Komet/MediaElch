@@ -6,6 +6,7 @@ add_subdirectory(downloads)
 add_subdirectory(export)
 add_subdirectory(image)
 add_subdirectory(main)
+add_subdirectory(music)
 
 add_library(
   mediaelch_ui

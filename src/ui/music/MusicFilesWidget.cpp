@@ -4,8 +4,8 @@
 #include <QDebug>
 #include <QDesktopServices>
 
-#include "../globals/Manager.h"
 #include "MusicMultiScrapeDialog.h"
+#include "globals/Manager.h"
 
 MusicFilesWidget* MusicFilesWidget::m_instance;
 

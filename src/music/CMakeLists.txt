@@ -6,16 +6,9 @@ add_library(
   Artist.cpp
   ArtistController.cpp
   MusicFileSearcher.cpp
-  MusicFilesWidget.cpp
   MusicModel.cpp
   MusicModelItem.cpp
-  MusicMultiScrapeDialog.cpp
   MusicProxyModel.cpp
-  MusicSearch.cpp
-  MusicSearchWidget.cpp
-  MusicWidget.cpp
-  MusicWidgetAlbum.cpp
-  MusicWidgetArtist.cpp
 )
 target_link_libraries(
   mediaelch_music
