@@ -5,7 +5,7 @@
 #include <QFileInfo>
 #include <QtConcurrent>
 
-#include "../globals/Manager.h"
+#include "globals/Manager.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject* parent) :
     QObject(parent),

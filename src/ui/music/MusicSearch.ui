@@ -60,7 +60,7 @@
   <customwidget>
    <class>MusicSearchWidget</class>
    <extends>QWidget</extends>
-   <header>music/MusicSearchWidget.h</header>
+   <header>ui/music/MusicSearchWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

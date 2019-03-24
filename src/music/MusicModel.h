@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Artist.h"
+#include "music/Artist.h"
 
 #include <QAbstractItemModel>
 #include <QIcon>

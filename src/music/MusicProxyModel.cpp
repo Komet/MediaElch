@@ -1,4 +1,4 @@
-#include "MusicProxyModel.h"
+#include "music/MusicProxyModel.h"
 
 #include "globals/Globals.h"
 

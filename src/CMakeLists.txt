@@ -59,6 +59,7 @@ target_link_libraries(
     mediaelch_ui_export
     mediaelch_ui_image
     mediaelch_ui_main
+    mediaelch_ui_music
 )
 
 # DL open/close
