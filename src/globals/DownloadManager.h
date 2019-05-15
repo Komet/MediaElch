@@ -34,7 +34,7 @@ signals:
     void downloadProgress(DownloadManagerElement);
     void downloadsLeft(int);
     void downloadsLeft(int, DownloadManagerElement);
-    void downloadFinished(DownloadManagerElement);
+    void sigDownloadFinished(DownloadManagerElement);
     void sigElemDownloaded(DownloadManagerElement);
     void allDownloadsFinished();
     void allDownloadsFinished(Movie*);

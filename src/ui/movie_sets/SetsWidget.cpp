@@ -48,17 +48,17 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
     m_downloadManager = new DownloadManager(this);
 
     // clang-format off
-    connect(ui->sets,                  &QTableWidget::itemSelectionChanged, this, &SetsWidget::onSetSelected);
-    connect(ui->sets,                  &QTableWidget::itemChanged,          this, &SetsWidget::onSetNameChanged);
-    connect(ui->movies,                &QTableWidget::itemChanged,          this, &SetsWidget::onSortTitleChanged);
-    connect(ui->movies,                &QTableWidget::itemDoubleClicked,    this, &SetsWidget::onJumpToMovie);
-    connect(ui->buttonAddMovie,        &QAbstractButton::clicked,           this, &SetsWidget::onAddMovie);
-    connect(ui->buttonRemoveMovie,     &QAbstractButton::clicked,           this, &SetsWidget::onRemoveMovie);
-    connect(ui->poster,                &MyLabel::clicked,                   this, &SetsWidget::chooseSetPoster);
-    connect(ui->backdrop,              &MyLabel::clicked,                   this, &SetsWidget::chooseSetBackdrop);
-    connect(ui->buttonPreviewPoster,   &QAbstractButton::clicked,           this, &SetsWidget::onPreviewPoster);
-    connect(ui->buttonPreviewBackdrop, &QAbstractButton::clicked,           this, &SetsWidget::onPreviewBackdrop);
-    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(ui->sets,                  &QTableWidget::itemSelectionChanged,   this, &SetsWidget::onSetSelected);
+    connect(ui->sets,                  &QTableWidget::itemChanged,            this, &SetsWidget::onSetNameChanged);
+    connect(ui->movies,                &QTableWidget::itemChanged,            this, &SetsWidget::onSortTitleChanged);
+    connect(ui->movies,                &QTableWidget::itemDoubleClicked,      this, &SetsWidget::onJumpToMovie);
+    connect(ui->buttonAddMovie,        &QAbstractButton::clicked,             this, &SetsWidget::onAddMovie);
+    connect(ui->buttonRemoveMovie,     &QAbstractButton::clicked,             this, &SetsWidget::onRemoveMovie);
+    connect(ui->poster,                &MyLabel::clicked,                     this, &SetsWidget::chooseSetPoster);
+    connect(ui->backdrop,              &MyLabel::clicked,                     this, &SetsWidget::chooseSetBackdrop);
+    connect(ui->buttonPreviewPoster,   &QAbstractButton::clicked,             this, &SetsWidget::onPreviewPoster);
+    connect(ui->buttonPreviewBackdrop, &QAbstractButton::clicked,             this, &SetsWidget::onPreviewBackdrop);
+    connect(m_downloadManager,         &DownloadManager::sigDownloadFinished, this, &SetsWidget::onDownloadFinished);
     // clang-format on
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);

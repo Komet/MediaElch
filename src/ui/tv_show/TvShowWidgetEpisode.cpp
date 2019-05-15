@@ -71,9 +71,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->buttonAddWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddWriter);
     connect(ui->buttonRemoveWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveWriter);
     connect(m_posterDownloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
+        &DownloadManager::sigDownloadFinished,
         this,
-        SLOT(onPosterDownloadFinished(DownloadManagerElement)));
+        &TvShowWidgetEpisode::onPosterDownloadFinished);
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRevertChanges);
     connect(
         ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onReloadStreamDetails);

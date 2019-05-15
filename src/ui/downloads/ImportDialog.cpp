@@ -33,10 +33,8 @@ ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Import
     m_timer.setInterval(500);
 
     m_posterDownloadManager = new DownloadManager(this);
-    connect(m_posterDownloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
-        this,
-        SLOT(onEpisodeDownloadFinished(DownloadManagerElement)));
+    connect(
+        m_posterDownloadManager, &DownloadManager::sigDownloadFinished, this, &ImportDialog::onEpisodeDownloadFinished);
 
     connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &ImportDialog::onMovieChosen);
     connect(ui->concertSearchWidget, &ConcertSearchWidget::sigResultClicked, this, &ImportDialog::onConcertChosen);

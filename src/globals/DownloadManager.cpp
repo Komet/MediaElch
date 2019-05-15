@@ -156,13 +156,14 @@ void DownloadManager::startNextDownload()
             file.close();
         }
         m_currentDownloadElement.data = data;
-        if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie) {
+        if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
+            && !m_currentDownloadElement.movie) {
             m_currentDownloadElement.actor->image = data;
         } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                    && !m_currentDownloadElement.directDownload) {
             m_currentDownloadElement.episode->setThumbnailImage(data);
         } else {
-            emit downloadFinished(m_currentDownloadElement);
+            emit sigDownloadFinished(m_currentDownloadElement);
         }
         startNextDownload();
     }
@@ -233,13 +234,14 @@ void DownloadManager::downloadFinished()
     }
     m_currentDownloadElement.data = data;
     reply->deleteLater();
-    if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie) {
+    if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
+        && !m_currentDownloadElement.movie) {
         m_currentDownloadElement.actor->image = data;
     } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                && !m_currentDownloadElement.directDownload) {
         m_currentDownloadElement.episode->setThumbnailImage(data);
     } else {
-        emit downloadFinished(m_currentDownloadElement);
+        emit sigDownloadFinished(m_currentDownloadElement);
     }
     emit sigElemDownloaded(m_currentDownloadElement);
     startNextDownload();

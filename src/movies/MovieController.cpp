@@ -31,10 +31,7 @@ MovieController::MovieController(Movie* parent) :
     m_forceFanartCdArt{false},
     m_forceFanartLogo{false}
 {
-    connect(m_downloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
-        this,
-        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &MovieController::onDownloadFinished);
     connect(m_downloadManager,
         SIGNAL(allDownloadsFinished(Movie*)),
         this,
