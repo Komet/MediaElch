@@ -20,10 +20,7 @@ ArtistController::ArtistController(Artist* parent) :
     m_downloadsInProgress{false},
     m_downloadsSize{0}
 {
-    connect(m_downloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
-        this,
-        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &ArtistController::onDownloadFinished);
     connect(m_downloadManager,
         SIGNAL(allDownloadsFinished(Artist*)),
         this,

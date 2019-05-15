@@ -119,9 +119,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddActor);
     connect(ui->buttonRemoveActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRemoveActor);
     connect(m_posterDownloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
+        &DownloadManager::sigDownloadFinished,
         this,
-        SLOT(onPosterDownloadFinished(DownloadManagerElement)));
+        &TvShowWidgetTvShow::onPosterDownloadFinished);
     connect(m_posterDownloadManager,
         SIGNAL(downloadsLeft(int, DownloadManagerElement)),
         this,

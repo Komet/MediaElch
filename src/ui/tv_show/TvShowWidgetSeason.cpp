@@ -75,10 +75,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     }
 
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetSeason::onRevertChanges);
-    connect(m_downloadManager,
-        SIGNAL(downloadFinished(DownloadManagerElement)),
-        this,
-        SLOT(onDownloadFinished(DownloadManagerElement)));
+    connect(m_downloadManager, &DownloadManager::sigDownloadFinished, this, &TvShowWidgetSeason::onDownloadFinished);
 
     ui->missingLabel->setVisible(false);
 
