@@ -21,29 +21,24 @@ using namespace std::chrono_literals;
 Concert::Concert(QStringList files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
-    m_runtime{0min},
-    m_playcount{0},
     m_downloadsSize{0},
-    m_watched{false},
     m_hasChanged{false},
     m_downloadsInProgress{false},
     m_inSeparateFolder{false},
-    m_mediaCenterId{-1},
     m_streamDetailsLoaded{false},
-    m_databaseId{-1},
     m_syncNeeded{false},
     m_hasExtraFanarts{false}
 {
     moveToThread(QApplication::instance()->thread());
     static int m_idCounter = 0;
-    m_concertId = ++m_idCounter;
+    m_concert.concertId = ++m_idCounter;
     setFiles(files);
 }
 
 void Concert::setFiles(QStringList files)
 {
     m_files = files;
-    m_streamDetails = new StreamDetails(this, files);
+    m_concert.streamDetails = new StreamDetails(this, files);
     if (!files.isEmpty()) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -83,50 +78,50 @@ void Concert::clear()
 void Concert::clear(QVector<ConcertScraperInfos> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
-        m_backdrops.clear();
-        m_images.insert(ImageType::ConcertBackdrop, QByteArray());
+        m_concert.backdrops.clear();
+        m_concert.images.insert(ImageType::ConcertBackdrop, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
     }
     if (infos.contains(ConcertScraperInfos::Genres)) {
-        m_genres.clear();
+        m_concert.genres.clear();
     }
     if (infos.contains(ConcertScraperInfos::Poster)) {
-        m_posters.clear();
-        m_images.insert(ImageType::ConcertPoster, QByteArray());
+        m_concert.posters.clear();
+        m_concert.images.insert(ImageType::ConcertPoster, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertPoster, false);
         m_imagesToRemove.removeOne(ImageType::ConcertPoster);
     }
     if (infos.contains(ConcertScraperInfos::Overview)) {
-        m_overview = "";
+        m_concert.overview = "";
     }
     if (infos.contains(ConcertScraperInfos::Rating)) {
-        m_rating = Rating{};
+        m_concert.rating = Rating{};
     }
     if (infos.contains(ConcertScraperInfos::Released)) {
-        m_released = QDate(2000, 02, 30); // invalid date
+        m_concert.releaseDate = QDate(2000, 02, 30); // invalid date
     }
     if (infos.contains(ConcertScraperInfos::Tagline)) {
-        m_tagline = "";
+        m_concert.tagline = "";
     }
     if (infos.contains(ConcertScraperInfos::Runtime)) {
-        m_runtime = 0min;
+        m_concert.runtime = 0min;
     }
     if (infos.contains(ConcertScraperInfos::Trailer)) {
-        m_trailer = "";
+        m_concert.trailer = "";
     }
     if (infos.contains(ConcertScraperInfos::Certification)) {
-        m_certification = Certification::NoCertification;
+        m_concert.certification = Certification::NoCertification;
     }
     if (infos.contains(ConcertScraperInfos::Tags)) {
-        m_tags.clear();
+        m_concert.tags.clear();
     }
     if (infos.contains(ConcertScraperInfos::ExtraArts)) {
-        m_images.insert(ImageType::ConcertCdArt, QByteArray());
+        m_concert.images.insert(ImageType::ConcertCdArt, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertCdArt, false);
-        m_images.insert(ImageType::ConcertLogo, QByteArray());
+        m_concert.images.insert(ImageType::ConcertLogo, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertLogo, false);
-        m_images.insert(ImageType::ConcertClearArt, QByteArray());
+        m_concert.images.insert(ImageType::ConcertClearArt, QByteArray());
         m_hasImageChanged.insert(ImageType::ConcertClearArt, false);
         m_imagesToRemove.removeOne(ImageType::ConcertCdArt);
         m_imagesToRemove.removeOne(ImageType::ConcertClearArt);
@@ -135,7 +130,7 @@ void Concert::clear(QVector<ConcertScraperInfos> infos)
     if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
-        m_extraFanarts.clear();
+        m_concert.extraFanarts.clear();
     }
 }
 
@@ -149,7 +144,7 @@ ConcertController* Concert::controller() const
  */
 void Concert::clearImages()
 {
-    m_images.clear();
+    m_concert.images.clear();
     m_hasImageChanged.clear();
     m_extraFanartImagesToAdd.clear();
 }
@@ -164,7 +159,7 @@ void Concert::clearImages()
  */
 QString Concert::name() const
 {
-    return m_name;
+    return m_concert.name;
 }
 
 /**
@@ -175,7 +170,7 @@ QString Concert::name() const
  */
 QString Concert::artist() const
 {
-    return m_artist;
+    return m_concert.artist;
 }
 
 /**
@@ -186,7 +181,7 @@ QString Concert::artist() const
  */
 QString Concert::album() const
 {
-    return m_album;
+    return m_concert.album;
 }
 
 /**
@@ -197,7 +192,7 @@ QString Concert::album() const
  */
 QString Concert::overview() const
 {
-    return m_overview;
+    return m_concert.overview;
 }
 
 /**
@@ -207,7 +202,7 @@ QString Concert::overview() const
  */
 Rating Concert::rating() const
 {
-    return m_rating;
+    return m_concert.rating;
 }
 
 /**
@@ -218,7 +213,7 @@ Rating Concert::rating() const
  */
 QDate Concert::released() const
 {
-    return m_released;
+    return m_concert.releaseDate;
 }
 
 /**
@@ -229,7 +224,7 @@ QDate Concert::released() const
  */
 QString Concert::tagline() const
 {
-    return m_tagline;
+    return m_concert.tagline;
 }
 
 /**
@@ -239,7 +234,7 @@ QString Concert::tagline() const
  */
 std::chrono::minutes Concert::runtime() const
 {
-    return m_runtime;
+    return m_concert.runtime;
 }
 
 /**
@@ -250,7 +245,7 @@ std::chrono::minutes Concert::runtime() const
  */
 Certification Concert::certification() const
 {
-    return m_certification;
+    return m_concert.certification;
 }
 
 /**
@@ -264,7 +259,7 @@ Certification Concert::certification() const
  */
 QStringList Concert::genres() const
 {
-    return m_genres;
+    return m_concert.genres;
 }
 
 /**
@@ -274,8 +269,8 @@ QStringList Concert::genres() const
 QVector<QString*> Concert::genresPointer()
 {
     QVector<QString*> genres;
-    for (int i = 0, n = m_genres.size(); i < n; ++i) {
-        genres.append(&m_genres[i]);
+    for (int i = 0, n = m_concert.genres.size(); i < n; ++i) {
+        genres.append(&m_concert.genres[i]);
     }
     return genres;
 }
@@ -288,7 +283,7 @@ QVector<QString*> Concert::genresPointer()
  */
 QUrl Concert::trailer() const
 {
-    return m_trailer;
+    return m_concert.trailer;
 }
 
 /**
@@ -308,7 +303,7 @@ QStringList Concert::files() const
  */
 int Concert::playcount() const
 {
-    return m_playcount;
+    return m_concert.playcount;
 }
 
 /**
@@ -320,7 +315,7 @@ int Concert::playcount() const
  */
 QDateTime Concert::lastPlayed() const
 {
-    return m_lastPlayed;
+    return m_concert.lastPlayed;
 }
 
 /**
@@ -333,7 +328,7 @@ QDateTime Concert::lastPlayed() const
  */
 QVector<Poster> Concert::posters() const
 {
-    return m_posters;
+    return m_concert.posters;
 }
 
 /**
@@ -346,7 +341,7 @@ QVector<Poster> Concert::posters() const
  */
 QVector<Poster> Concert::backdrops() const
 {
-    return m_backdrops;
+    return m_concert.backdrops;
 }
 
 /**
@@ -377,7 +372,7 @@ bool Concert::streamDetailsLoaded() const
  */
 bool Concert::watched() const
 {
-    return m_watched;
+    return m_concert.watched;
 }
 
 /**
@@ -397,7 +392,7 @@ bool Concert::hasChanged() const
  */
 int Concert::concertId() const
 {
-    return m_concertId;
+    return m_concert.concertId;
 }
 
 /**
@@ -433,7 +428,7 @@ bool Concert::inSeparateFolder() const
  */
 int Concert::mediaCenterId() const
 {
-    return m_mediaCenterId;
+    return m_concert.mediaCenterId;
 }
 
 /**
@@ -444,7 +439,7 @@ int Concert::mediaCenterId() const
  */
 TmdbId Concert::tmdbId() const
 {
-    return m_tmdbId;
+    return m_concert.tmdbId;
 }
 
 /**
@@ -455,7 +450,7 @@ TmdbId Concert::tmdbId() const
  */
 ImdbId Concert::imdbId() const
 {
-    return m_imdbId;
+    return m_concert.imdbId;
 }
 
 /**
@@ -464,7 +459,7 @@ ImdbId Concert::imdbId() const
  */
 StreamDetails* Concert::streamDetails() const
 {
-    return m_streamDetails;
+    return m_concert.streamDetails;
 }
 
 /**
@@ -482,7 +477,7 @@ QString Concert::nfoContent() const
  */
 int Concert::databaseId() const
 {
-    return m_databaseId;
+    return m_concert.databaseId;
 }
 
 bool Concert::syncNeeded() const
@@ -492,7 +487,7 @@ bool Concert::syncNeeded() const
 
 QStringList Concert::tags() const
 {
-    return m_tags;
+    return m_concert.tags;
 }
 
 /*** SETTER ***/
@@ -504,7 +499,7 @@ QStringList Concert::tags() const
  */
 void Concert::setName(QString name)
 {
-    m_name = name;
+    m_concert.name = name;
     setChanged(true);
 }
 
@@ -515,7 +510,7 @@ void Concert::setName(QString name)
  */
 void Concert::setArtist(QString artist)
 {
-    m_artist = artist;
+    m_concert.artist = artist;
     setChanged(true);
 }
 
@@ -526,7 +521,7 @@ void Concert::setArtist(QString artist)
  */
 void Concert::setAlbum(QString album)
 {
-    m_album = album;
+    m_concert.album = album;
     setChanged(true);
 }
 
@@ -537,7 +532,7 @@ void Concert::setAlbum(QString album)
  */
 void Concert::setOverview(QString overview)
 {
-    m_overview = overview;
+    m_concert.overview = overview;
     setChanged(true);
 }
 
@@ -548,7 +543,7 @@ void Concert::setOverview(QString overview)
  */
 void Concert::setRating(Rating rating)
 {
-    m_rating = rating;
+    m_concert.rating = rating;
     setChanged(true);
 }
 
@@ -559,7 +554,7 @@ void Concert::setRating(Rating rating)
  */
 void Concert::setReleased(QDate released)
 {
-    m_released = released;
+    m_concert.releaseDate = released;
     setChanged(true);
 }
 
@@ -570,7 +565,7 @@ void Concert::setReleased(QDate released)
  */
 void Concert::setTagline(QString tagline)
 {
-    m_tagline = tagline;
+    m_concert.tagline = tagline;
     setChanged(true);
 }
 
@@ -581,7 +576,7 @@ void Concert::setTagline(QString tagline)
  */
 void Concert::setRuntime(std::chrono::minutes runtime)
 {
-    m_runtime = runtime;
+    m_concert.runtime = runtime;
     setChanged(true);
 }
 
@@ -592,7 +587,7 @@ void Concert::setRuntime(std::chrono::minutes runtime)
  */
 void Concert::setCertification(Certification cert)
 {
-    m_certification = cert;
+    m_concert.certification = cert;
     setChanged(true);
 }
 
@@ -603,7 +598,7 @@ void Concert::setCertification(Certification cert)
  */
 void Concert::setTrailer(QUrl trailer)
 {
-    m_trailer = trailer;
+    m_concert.trailer = trailer;
     setChanged(true);
 }
 
@@ -614,7 +609,7 @@ void Concert::setTrailer(QUrl trailer)
  */
 void Concert::setPlayCount(int playcount)
 {
-    m_playcount = playcount;
+    m_concert.playcount = playcount;
     setChanged(true);
 }
 
@@ -625,7 +620,7 @@ void Concert::setPlayCount(int playcount)
  */
 void Concert::setLastPlayed(QDateTime lastPlayed)
 {
-    m_lastPlayed = lastPlayed;
+    m_concert.lastPlayed = lastPlayed;
     setChanged(true);
 }
 
@@ -636,7 +631,7 @@ void Concert::setLastPlayed(QDateTime lastPlayed)
  */
 void Concert::setPosters(QVector<Poster> posters)
 {
-    m_posters = posters;
+    m_concert.posters = posters;
     setChanged(true);
 }
 
@@ -648,10 +643,10 @@ void Concert::setPosters(QVector<Poster> posters)
  */
 void Concert::setPoster(int index, Poster poster)
 {
-    if (m_posters.size() < index) {
+    if (m_concert.posters.size() < index) {
         return;
     }
-    m_posters[index] = poster;
+    m_concert.posters[index] = poster;
     setChanged(true);
 }
 
@@ -662,7 +657,7 @@ void Concert::setPoster(int index, Poster poster)
  */
 void Concert::setBackdrops(QVector<Poster> backdrops)
 {
-    m_backdrops.append(backdrops);
+    m_concert.backdrops.append(backdrops);
     setChanged(true);
 }
 
@@ -674,10 +669,10 @@ void Concert::setBackdrops(QVector<Poster> backdrops)
  */
 void Concert::setBackdrop(int index, Poster backdrop)
 {
-    if (m_backdrops.size() < index) {
+    if (m_concert.backdrops.size() < index) {
         return;
     }
-    m_backdrops[index] = backdrop;
+    m_concert.backdrops[index] = backdrop;
     setChanged(true);
 }
 
@@ -688,7 +683,7 @@ void Concert::setBackdrop(int index, Poster backdrop)
  */
 void Concert::setWatched(bool watched)
 {
-    m_watched = watched;
+    m_concert.watched = watched;
     setChanged(true);
 }
 
@@ -736,7 +731,7 @@ void Concert::setInSeparateFolder(bool inSepFolder)
  */
 void Concert::setMediaCenterId(int mediaCenterId)
 {
-    m_mediaCenterId = mediaCenterId;
+    m_concert.mediaCenterId = mediaCenterId;
 }
 
 /**
@@ -746,7 +741,7 @@ void Concert::setMediaCenterId(int mediaCenterId)
  */
 void Concert::setTmdbId(TmdbId id)
 {
-    m_tmdbId = id;
+    m_concert.tmdbId = id;
     setChanged(true);
 }
 
@@ -757,7 +752,7 @@ void Concert::setTmdbId(TmdbId id)
  */
 void Concert::setImdbId(ImdbId id)
 {
-    m_imdbId = id;
+    m_concert.imdbId = id;
     setChanged(true);
 }
 
@@ -786,7 +781,7 @@ void Concert::setNfoContent(QString content)
  */
 void Concert::setDatabaseId(int id)
 {
-    m_databaseId = id;
+    m_concert.databaseId = id;
 }
 
 /*** ADDER ***/
@@ -801,13 +796,13 @@ void Concert::addGenre(QString genre)
     if (genre.isEmpty()) {
         return;
     }
-    m_genres.append(genre);
+    m_concert.genres.append(genre);
     setChanged(true);
 }
 
 void Concert::addTag(QString tag)
 {
-    m_tags.append(tag);
+    m_concert.tags.append(tag);
     setChanged(true);
 }
 
@@ -818,7 +813,7 @@ void Concert::addTag(QString tag)
  */
 void Concert::addPoster(Poster poster)
 {
-    m_posters.append(poster);
+    m_concert.posters.append(poster);
     setChanged(true);
 }
 
@@ -829,7 +824,7 @@ void Concert::addPoster(Poster poster)
  */
 void Concert::addBackdrop(Poster backdrop)
 {
-    m_backdrops.append(backdrop);
+    m_concert.backdrops.append(backdrop);
     setChanged(true);
 }
 
@@ -847,13 +842,13 @@ void Concert::setSyncNeeded(bool syncNeeded)
  */
 void Concert::removeGenre(QString genre)
 {
-    m_genres.removeAll(genre);
+    m_concert.genres.removeAll(genre);
     setChanged(true);
 }
 
 void Concert::removeTag(QString tag)
 {
-    m_tags.removeAll(tag);
+    m_concert.tags.removeAll(tag);
     setChanged(true);
 }
 
@@ -871,21 +866,21 @@ void Concert::removeExtraFanart(QByteArray fanart)
 
 void Concert::removeExtraFanart(QString file)
 {
-    m_extraFanarts.removeOne(file);
+    m_concert.extraFanarts.removeOne(file);
     m_extraFanartsToRemove.append(file);
     setChanged(true);
 }
 
 QVector<ExtraFanart> Concert::extraFanarts(MediaCenterInterface* mediaCenterInterface)
 {
-    if (m_extraFanarts.isEmpty()) {
-        m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    if (m_concert.extraFanarts.isEmpty()) {
+        m_concert.extraFanarts = mediaCenterInterface->extraFanartNames(this);
     }
     for (const QString& file : m_extraFanartsToRemove) {
-        m_extraFanarts.removeOne(file);
+        m_concert.extraFanarts.removeOne(file);
     }
     QVector<ExtraFanart> fanarts;
-    for (const QString& file : m_extraFanarts) {
+    for (const QString& file : m_concert.extraFanarts) {
         ExtraFanart f;
         f.path = file;
         fanarts.append(f);
@@ -912,7 +907,7 @@ void Concert::clearExtraFanartData()
 {
     m_extraFanartImagesToAdd.clear();
     m_extraFanartsToRemove.clear();
-    m_extraFanarts.clear();
+    m_concert.extraFanarts.clear();
 }
 
 DiscType Concert::discType() const
@@ -936,8 +931,8 @@ QVector<ImageType> Concert::imagesToRemove() const
 
 void Concert::removeImage(ImageType type)
 {
-    if (!m_images.value(type, QByteArray()).isNull()) {
-        m_images.insert(type, QByteArray());
+    if (!m_concert.images.value(type, QByteArray()).isNull()) {
+        m_concert.images.insert(type, QByteArray());
         m_hasImageChanged.insert(type, false);
     } else if (!m_imagesToRemove.contains(type)) {
         m_imagesToRemove.append(type);
@@ -961,7 +956,7 @@ QVector<ImageType> Concert::imageTypes()
 
 QByteArray Concert::image(ImageType imageType)
 {
-    return m_images.value(imageType, QByteArray());
+    return m_concert.images.value(imageType, QByteArray());
 }
 
 bool Concert::imageHasChanged(ImageType imageType)
@@ -971,7 +966,7 @@ bool Concert::imageHasChanged(ImageType imageType)
 
 void Concert::setImage(ImageType imageType, QByteArray image)
 {
-    m_images.insert(imageType, image);
+    m_concert.images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
     setChanged(true);
 }
