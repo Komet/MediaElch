@@ -20,10 +20,50 @@
 class MediaCenterInterface;
 class StreamDetails;
 
-/**
- * @brief The Concert class
- * This class represents a single concert
- */
+namespace mediaelch {
+
+/// POD for concert data
+class Concert
+{
+public:
+    int databaseId{-1};
+    int concertId{-1};
+    int mediaCenterId{-1};
+    TmdbId tmdbId;
+    ImdbId imdbId;
+
+    QString name;
+    QString artist;
+    QString album;
+    QString overview;
+
+    Rating rating;
+    QDate releaseDate;
+    QString tagline;
+    std::chrono::minutes runtime;
+    Certification certification;
+
+    QStringList genres;
+    QStringList tags;
+    QUrl trailer;
+
+    int playcount{0};
+    QDateTime lastPlayed;
+
+    QVector<Poster> posters;
+    QVector<Poster> backdrops;
+    QStringList extraFanarts;
+
+    bool watched{false};
+    StreamDetails* streamDetails = nullptr;
+    QMap<ImageType, QByteArray> images;
+};
+
+} // namespace mediaelch
+
+/// @brief The Concert class.
+/// This class represents a single concert.
+/// It is more a controller than actually a POD.
 class Concert final : public QObject
 {
     Q_OBJECT
@@ -145,47 +185,25 @@ signals:
     void sigChanged(Concert*);
 
 private:
+    mediaelch::Concert m_concert;
+
     ConcertController* m_controller;
     QStringList m_files;
     QString m_folderName;
-    QString m_name;
-    QString m_artist;
-    QString m_album;
-    QString m_overview;
-    Rating m_rating;
-    QDate m_released;
-    QString m_tagline;
-    std::chrono::minutes m_runtime;
-    Certification m_certification;
-    QStringList m_genres;
-    QStringList m_tags;
-    QUrl m_trailer;
-    int m_playcount;
-    QDateTime m_lastPlayed;
-    QVector<Poster> m_posters;
-    QVector<Poster> m_backdrops;
-    int m_concertId;
+
     int m_downloadsSize;
-    bool m_watched;
     bool m_hasChanged;
     bool m_downloadsInProgress;
     bool m_inSeparateFolder;
-    int m_mediaCenterId;
-    TmdbId m_tmdbId;
-    ImdbId m_imdbId;
     QVector<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;
-    StreamDetails* m_streamDetails;
     QString m_nfoContent;
-    int m_databaseId;
     bool m_syncNeeded;
     QVector<ScraperData> m_loadsLeft;
     QMutex m_loadMutex;
     QStringList m_extraFanartsToRemove;
-    QStringList m_extraFanarts;
     bool m_hasExtraFanarts;
 
-    QMap<ImageType, QByteArray> m_images;
     QMap<ImageType, bool> m_hasImageChanged;
     QVector<QByteArray> m_extraFanartImagesToAdd;
     QVector<ImageType> m_imagesToRemove;
