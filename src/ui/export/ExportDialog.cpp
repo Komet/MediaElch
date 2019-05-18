@@ -331,7 +331,7 @@ void ExportDialog::replaceVars(QString& m, const Concert* concert, QDir dir, boo
     m.replace("{{ CONCERT.ARTIST }}", concert->artist().toHtmlEscaped());
     m.replace("{{ CONCERT.ALBUM }}", concert->album().toHtmlEscaped());
     m.replace("{{ CONCERT.TAGLINE }}", concert->tagline().toHtmlEscaped());
-    m.replace("{{ CONCERT.RATING }}", QString::number(concert->rating(), 'f', 1));
+    m.replace("{{ CONCERT.RATING }}", QString::number(concert->rating().rating, 'f', 1));
     m.replace("{{ CONCERT.YEAR }}", concert->released().isValid() ? concert->released().toString("yyyy") : "");
     m.replace("{{ CONCERT.RUNTIME }}", QString::number(concert->runtime().count(), 'f', 0));
     m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toString().toHtmlEscaped());
