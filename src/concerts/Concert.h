@@ -3,6 +3,7 @@
 #include "concerts/ConcertController.h"
 #include "data/Certification.h"
 #include "data/ImdbId.h"
+#include "data/Rating.h"
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
 
@@ -40,7 +41,7 @@ public:
     QString artist() const;
     QString album() const;
     QString overview() const;
-    qreal rating() const;
+    Rating rating() const;
     QDate released() const;
     QString tagline() const;
     std::chrono::minutes runtime() const;
@@ -76,7 +77,7 @@ public:
     void setArtist(QString artist);
     void setAlbum(QString album);
     void setOverview(QString overview);
-    void setRating(qreal rating);
+    void setRating(Rating rating);
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setRuntime(std::chrono::minutes runtime);
@@ -151,7 +152,7 @@ private:
     QString m_artist;
     QString m_album;
     QString m_overview;
-    qreal m_rating;
+    Rating m_rating;
     QDate m_released;
     QString m_tagline;
     std::chrono::minutes m_runtime;

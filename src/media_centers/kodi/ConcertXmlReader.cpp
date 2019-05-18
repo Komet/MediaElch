@@ -33,7 +33,9 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
         m_concert.setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     }
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        m_concert.setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
+        Rating rating;
+        rating.rating = domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble();
+        m_concert.setRating(rating);
     }
     if (!domDoc.elementsByTagName("year").isEmpty()) {
         m_concert.setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));

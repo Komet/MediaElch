@@ -21,7 +21,6 @@ using namespace std::chrono_literals;
 Concert::Concert(QStringList files, QObject* parent) :
     QObject(parent),
     m_controller{new ConcertController(this)},
-    m_rating{0},
     m_runtime{0min},
     m_playcount{0},
     m_downloadsSize{0},
@@ -102,7 +101,7 @@ void Concert::clear(QVector<ConcertScraperInfos> infos)
         m_overview = "";
     }
     if (infos.contains(ConcertScraperInfos::Rating)) {
-        m_rating = 0;
+        m_rating = Rating{};
     }
     if (infos.contains(ConcertScraperInfos::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
@@ -206,7 +205,7 @@ QString Concert::overview() const
  * @return Rating of the concert
  * @see Concert::setRating
  */
-qreal Concert::rating() const
+Rating Concert::rating() const
 {
     return m_rating;
 }
@@ -547,7 +546,7 @@ void Concert::setOverview(QString overview)
  * @param rating Rating of the concert
  * @see Concert::rating
  */
-void Concert::setRating(qreal rating)
+void Concert::setRating(Rating rating)
 {
     m_rating = rating;
     setChanged(true);

@@ -32,7 +32,7 @@ QByteArray ConcertXmlWriter::getConcertXml()
     KodiXml::setTextValue(doc, "album", m_concert.album());
     KodiXml::setTextValue(doc, "id", m_concert.imdbId().toString());
     KodiXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
-    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.rating()));
+    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.rating().rating));
     KodiXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
     KodiXml::setTextValue(doc, "plot", m_concert.overview());
     KodiXml::setTextValue(doc, "outline", m_concert.overview());

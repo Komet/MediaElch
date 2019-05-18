@@ -69,7 +69,7 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->artist->setText(m_concertController->concert()->artist());
     ui->album->setText(m_concertController->concert()->album());
     ui->tagline->setText(m_concertController->concert()->tagline());
-    ui->rating->setValue(m_concertController->concert()->rating());
+    ui->rating->setValue(m_concertController->concert()->rating().rating);
     ui->released->setDate(m_concertController->concert()->released());
     ui->runtime->setValue(static_cast<int>(m_concertController->concert()->runtime().count()));
     ui->trailer->setText(m_concertController->concert()->trailer().toString());
@@ -183,7 +183,9 @@ void ConcertInfoWidget::onTaglineChange(QString text)
 void ConcertInfoWidget::onRatingChange(double value)
 {
     ME_REQUIRE_CONCERT_OR_RETURN;
-    m_concertController->concert()->setRating(value);
+    Rating rating;
+    rating.rating = value;
+    m_concertController->concert()->setRating(rating);
     emit infoChanged();
 }
 
