@@ -49,7 +49,7 @@ TEST_CASE("TMDbConcert scrapes correct concert details", "[scraper][TMDbConcert]
         CHECK(m.certification() == Certification::NoCertification);
         CHECK(m.released().toString("yyyy-MM-dd") == "2015-09-25");
         // Finding Dory has a user score of 69% (date: 2018-08-31)
-        CHECK(m.rating() == Approx(8.0).margin(0.5));
+        CHECK(m.rating().rating == Approx(8.0).margin(0.5));
         CHECK(m.runtime() == 100min);
 
         CHECK_THAT(m.overview(), StartsWith("The concert film celebrates the band’s legendary show in New York’s"));
