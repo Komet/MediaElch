@@ -173,9 +173,8 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
 
     if (infos.contains(MovieScraperInfos::Actors)) {
         int offset = 0;
-        rx.setPattern(
-            R"re(<a href="/\d+/[^"]*"[\r\n\s]*Category="Item Page" Label="Performer">)re"
-            R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
+        rx.setPattern(R"re(<a href="/\d+/[^"]*"[\r\n\s]*Category="Item Page" Label="Performer">)re"
+                      R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
@@ -194,8 +193,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
     rx.setPattern(R"(<strong>Categories:</strong>&nbsp;(.*)</div>)");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
         QString categoryHtml = rx.cap(1);
-        rx.setPattern(
-            R"(<a href="[^"]*"[\r\s\n]*Category="Item Page" Label="Category">([^<]*)</a>)");
+        rx.setPattern(R"(<a href="[^"]*"[\r\s\n]*Category="Item Page" Label="Category">([^<]*)</a>)");
         int offset = 0;
         while ((offset = rx.indexIn(categoryHtml, offset)) != -1) {
             movie->addGenre(rx.cap(1).trimmed());
@@ -220,8 +218,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
         movie->images().addPoster(p);
     }
 
-    rx.setPattern(
-        R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
+    rx.setPattern(R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
         QString set = doc.toPlainText().trimmed();
