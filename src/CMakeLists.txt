@@ -1,5 +1,6 @@
 add_library(libmediaelch)
 
+add_subdirectory(cli)
 add_subdirectory(concerts)
 add_subdirectory(data)
 add_subdirectory(downloads)
