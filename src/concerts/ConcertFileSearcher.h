@@ -36,5 +36,5 @@ private:
         bool separateFolders = false,
         bool firstScan = false);
     QStringList getFiles(QString path);
-    bool m_aborted;
+    bool m_aborted = false;
 };

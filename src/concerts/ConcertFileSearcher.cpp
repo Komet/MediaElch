@@ -14,8 +14,7 @@
  */
 ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
     QObject(parent),
-    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId},
-    m_aborted{false}
+    m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
 {
 }
 
@@ -25,13 +24,11 @@ ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
  */
 void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories)
 {
-    qDebug() << "Entered";
     m_directories.clear();
 
     for (const auto& directory : directories) {
         QFileInfo fi(directory.path);
         if (fi.isDir()) {
-            qDebug() << "Adding concert directory" << directory.path;
             m_directories.append(directory);
         }
     }

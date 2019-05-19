@@ -102,8 +102,7 @@ QVector<ScraperSearchResult> HotMovies::parseSearch(QString html)
     QVector<ScraperSearchResult> results;
     int offset = 0;
 
-    QRegExp rx(
-        R"lit(<div class="cell td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
+    QRegExp rx(R"lit(<div class="cell td_title">.*<h3 class="title">.*<a href="([^"]*)" title="[^"]*">(.*)</a>)lit");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
@@ -193,8 +192,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
         }
     }
 
-    rx.setPattern(
-        R"rx(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*[^>]*src="([^"]*)")rx");
+    rx.setPattern(R"rx(<img itemprop="image" alt="[^"]*" id="cover"[\s\n]*[^>]*src="([^"]*)")rx");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
@@ -212,8 +210,7 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
 
         //        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\"
         //        itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
-        rx.setPattern(
-            R"re(<div class="star_wrapper" key="([^"]*)"><img .*/><span itemprop="name">([^<]*)</span>)re");
+        rx.setPattern(R"re(<div class="star_wrapper" key="([^"]*)"><img .*/><span itemprop="name">([^<]*)</span>)re");
         rx.setMinimal(true);
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
