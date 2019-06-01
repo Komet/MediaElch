@@ -28,6 +28,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - UI: Restructured search windows (#660)
  - Windows: Update MediaInfo (#688)
  - Windows: Update to Qt 5.12 and fix style issues (#678)
+ - Kodi: Use new syntax for ratings (#516)
 
 ### Internal Improvements
 
