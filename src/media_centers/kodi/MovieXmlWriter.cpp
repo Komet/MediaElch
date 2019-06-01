@@ -40,7 +40,7 @@ QByteArray MovieXmlWriter::getMovieXml()
         QDomElement votesElement = doc.createElement("votes");
         ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
         QDomElement ratingElement = doc.createElement("rating");
-        ratingElement.setAttribute("name", "default");
+        ratingElement.setAttribute("name", rating.source);
         ratingElement.setAttribute("default", firstRating ? "true" : "false");
         ratingElement.appendChild(ratingValueElement);
         ratingElement.appendChild(votesElement);
@@ -72,7 +72,9 @@ QByteArray MovieXmlWriter::getMovieXml()
         KodiXml::removeChildNodes(doc, "dateadded");
     }
     KodiXml::setTextValue(doc, "id", m_movie.imdbId().toString());
-    KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
+    if (m_movie.tmdbId().isValid()) {
+        KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
+    }
 
     // <set>
     //   <name>...</name>
