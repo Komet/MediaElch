@@ -61,7 +61,7 @@ QByteArray MovieXmlWriter::getMovieXml()
     }
     KodiXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
     KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
-    if (!m_movie.lastPlayed().isNull()) {
+    if (m_movie.lastPlayed().isValid()) {
         KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     } else {
         KodiXml::removeChildNodes(doc, "lastplayed");
