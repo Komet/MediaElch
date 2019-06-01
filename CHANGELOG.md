@@ -29,6 +29,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Windows: Update MediaInfo (#688)
  - Windows: Update to Qt 5.12 and fix style issues (#678)
  - Kodi: Use new syntax for ratings (#516)
+ - Kodi: Add missing "aspect" attribute to thumbs (#665)
 
 ### Internal Improvements
 
