@@ -29,8 +29,22 @@ QByteArray MovieXmlWriter::getMovieXml()
 
     KodiXml::setTextValue(doc, "title", m_movie.name());
     KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
-    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_movie.rating()));
-    KodiXml::setTextValue(doc, "votes", QString::number(m_movie.votes()));
+
+    // rating
+    KodiXml::removeChildNodes(doc, "ratings");
+    QDomElement ratingValueElement = doc.createElement("value");
+    ratingValueElement.appendChild(doc.createTextNode(QString::number(m_movie.rating())));
+    QDomElement votesElement = doc.createElement("votes");
+    ratingValueElement.appendChild(doc.createTextNode(QString::number(m_movie.votes())));
+    QDomElement ratingElement = doc.createElement("rating");
+    ratingElement.setAttribute("name", "default");
+    ratingElement.setAttribute("default", "true");
+    ratingElement.appendChild(ratingValueElement);
+    ratingElement.appendChild(votesElement);
+    QDomElement ratingsElement = doc.createElement("ratings");
+    ratingsElement.appendChild(ratingElement);
+    KodiXml::appendXmlNode(doc, ratingsElement);
+
     KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
     KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
     KodiXml::setTextValue(doc, "plot", m_movie.overview());
@@ -72,6 +86,7 @@ QByteArray MovieXmlWriter::getMovieXml()
     }
     KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
     KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_movie.trailer().toString()));
+    // TODO: is this required in v17?
     KodiXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;
