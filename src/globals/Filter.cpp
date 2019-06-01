@@ -241,8 +241,7 @@ bool Filter::accepts(Movie* movie)
         return (m_hasInfo && movie->imdbId() == ImdbId(m_shortText)) || (!m_hasInfo && !movie->imdbId().isValid());
     }
     if (isInfo(MovieFilters::Rating)) {
-        return (m_hasInfo && static_cast<int>(movie->rating()) != 0)
-               || (!m_hasInfo && static_cast<int>(movie->rating()) == 0);
+        return (m_hasInfo && !movie->ratings().isEmpty()) || (!m_hasInfo && movie->ratings().isEmpty());
     }
     if (isInfo(MovieFilters::HasExternalSubtitle)) {
         return (m_hasInfo && !movie->subtitles().isEmpty()) || (!m_hasInfo && movie->subtitles().isEmpty());

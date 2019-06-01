@@ -236,8 +236,17 @@ void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.DIRECTOR }}", movie->director().toHtmlEscaped());
     m.replace("{{ MOVIE.CERTIFICATION }}", movie->certification().toString().toHtmlEscaped());
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
-    m.replace("{{ MOVIE.RATING }}", QString::number(movie->rating(), 'f', 1));
-    m.replace("{{ MOVIE.VOTES }}", QString::number(movie->votes(), 'f', 0));
+    // TODO: multiple ratings
+    {
+        double rating = 0.0;
+        int voteCount = 0;
+        if (!movie->ratings().isEmpty()) {
+            rating = movie->ratings().back().rating;
+            voteCount = movie->ratings().back().voteCount;
+        }
+        m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
+        m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
+    }
     m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime().count(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}",

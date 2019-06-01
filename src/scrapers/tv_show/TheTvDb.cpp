@@ -1126,11 +1126,9 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
         }
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
-            if (m_dummyMovie->rating() != 0) {
-                show->setRating(m_dummyMovie->rating());
-            }
-            if (m_dummyMovie->votes() != 0) {
-                show->setVotes(m_dummyMovie->votes());
+            if (!m_dummyMovie->ratings().isEmpty()) {
+                show->setRating(m_dummyMovie->ratings().back().rating);
+                show->setVotes(m_dummyMovie->ratings().back().voteCount);
             }
             if (m_dummyMovie->top250() != 0) {
                 show->setTop250(m_dummyMovie->top250());
@@ -1265,11 +1263,9 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode* episode, QVect
     }
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
-        if (m_dummyMovie->rating() != 0) {
-            episode->setRating(m_dummyMovie->rating());
-        }
-        if (m_dummyMovie->votes() != 0) {
-            episode->setVotes(m_dummyMovie->votes());
+        if (!m_dummyMovie->ratings().isEmpty()) {
+            episode->setRating(m_dummyMovie->ratings().back().rating);
+            episode->setVotes(m_dummyMovie->ratings().back().voteCount);
         }
         if (m_dummyMovie->top250() != 0) {
             episode->setTop250(m_dummyMovie->top250());

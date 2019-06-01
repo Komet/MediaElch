@@ -758,8 +758,11 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
     }
     // Either set both vote_average and vote_count or neither one.
     if (infos.contains(MovieScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
-        movie->setRating(parsedJson.value("vote_average").toDouble());
-        movie->setVotes(parsedJson.value("vote_count").toInt());
+        Rating rating;
+        rating.source = "TMDb";
+        rating.rating = parsedJson.value("vote_average").toDouble();
+        rating.voteCount = parsedJson.value("vote_count").toInt();
+        movie->ratings().push_back(rating);
     }
     if (infos.contains(MovieScraperInfos::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
         movie->setTagline(parsedJson.value("tagline").toString());

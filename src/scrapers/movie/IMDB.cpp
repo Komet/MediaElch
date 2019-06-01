@@ -499,18 +499,20 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
     }
 
     if (infos.contains(MovieScraperInfos::Rating)) {
+        Rating rating;
+        rating.source = "IMDb";
         rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope "
                       "itemprop=\"aggregateRating\">(.*)</div>");
         if (rx.indexIn(html) != -1) {
             QString content = rx.cap(1);
             rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
             if (rx.indexIn(content) != -1) {
-                movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
+                rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
             }
 
             rx.setPattern("<span itemprop=\"ratingCount\">(.*)</span>");
             if (rx.indexIn(content) != -1) {
-                movie->setVotes(rx.cap(1).replace(",", "").replace(".", "").toInt());
+                rating.voteCount = rx.cap(1).replace(",", "").replace(".", "").toInt();
             }
         } else {
             rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
@@ -518,27 +520,29 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
                 QString content = rx.cap(1);
                 rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
                 if (rx.indexIn(content) != -1) {
-                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
-                    movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
+                    rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
+                    rating.voteCount = rx.cap(2).replace(",", "").replace(".", "").toInt();
                 }
                 rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
                 if (rx.indexIn(content) != -1) {
-                    movie->setRating(rx.cap(1).trimmed().replace(",", ".").toDouble());
-                    movie->setVotes(rx.cap(2).replace(",", "").replace(".", "").toInt());
+                    rating.rating = rx.cap(1).trimmed().replace(",", ".").toDouble();
+                    rating.voteCount = rx.cap(2).replace(",", "").replace(".", "").toInt();
                 }
             }
         }
-    }
 
-    // Rating for movies
-    rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setTop250(rx.cap(1).toInt());
-    }
-    // Rating for TV shows (used by TheTvDb)
-    rx.setPattern("Top Rated TV #([0-9]+)\\n</a>");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setTop250(rx.cap(1).toInt());
+        movie->ratings().push_back(rating);
+
+        // Top250 for movies
+        rx.setPattern("Top Rated Movies #([0-9]+)\\n</a>");
+        if (rx.indexIn(html) != -1) {
+            movie->setTop250(rx.cap(1).toInt());
+        }
+        // Top250 for TV shows (used by TheTvDb)
+        rx.setPattern("Top Rated TV #([0-9]+)\\n</a>");
+        if (rx.indexIn(html) != -1) {
+            movie->setTop250(rx.cap(1).toInt());
+        }
     }
 
     rx.setPattern(R"(<h4 class="inline">Production Co:</h4>(.*)<span class="see-more inline">)");

@@ -331,7 +331,15 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
         } else if (infos.contains(MovieScraperInfos::Rating) && xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "note") {
-                    movie->setRating(xml.readElementText().toDouble());
+                    Rating rating;
+                    rating.source = "OFDb";
+                    rating.rating = xml.readElementText().toDouble();
+                    if (movie->ratings().isEmpty()) {
+                        movie->ratings().push_back(rating);
+                    } else {
+                        movie->ratings().back() = rating;
+                    }
+
                 } else {
                     xml.skipCurrentElement();
                 }
