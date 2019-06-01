@@ -140,6 +140,7 @@ private:
     QString m_name;
     QString m_showTitle;
     Rating m_rating;
+    int m_imdbTop250 = 0;
     ImdbId m_imdbId;
     TvDbId m_tvdbId;
     SeasonNumber m_season;
@@ -149,7 +150,7 @@ private:
     QString m_overview;
     QStringList m_writers;
     QStringList m_directors;
-    int m_playCount;
+    int m_playCount = 0;
     QDateTime m_lastPlayed;
     QDate m_firstAired;
     QTime m_epBookmark;
@@ -158,19 +159,19 @@ private:
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;
     EpisodeModelItem* m_modelItem;
-    bool m_thumbnailImageChanged;
-    bool m_infoLoaded;
-    bool m_infoFromNfoLoaded;
-    bool m_hasChanged;
-    int m_episodeId;
-    bool m_streamDetailsLoaded;
+    bool m_thumbnailImageChanged = false;
+    bool m_infoLoaded = false;
+    bool m_infoFromNfoLoaded = false;
+    bool m_hasChanged = false;
+    int m_episodeId = -1;
+    bool m_streamDetailsLoaded = false;
     StreamDetails* m_streamDetails;
     QString m_nfoContent;
-    int m_databaseId;
-    bool m_syncNeeded;
+    int m_databaseId = -1;
+    bool m_syncNeeded = false;
     QVector<TvShowScraperInfos> m_infosToLoad;
     QVector<ImageType> m_imagesToRemove;
-    bool m_isDummy;
+    bool m_isDummy = false;
     QVector<Actor> m_actors;
 };
 

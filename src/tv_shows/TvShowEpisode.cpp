@@ -1006,12 +1006,12 @@ void TvShowEpisode::setVotes(int votes)
 
 int TvShowEpisode::top250() const
 {
-    return m_rating.imdbTop250;
+    return m_imdbTop250;
 }
 
 void TvShowEpisode::setTop250(int top250)
 {
-    m_rating.imdbTop250 = top250;
+    m_imdbTop250 = top250;
     setChanged(true);
 }
 

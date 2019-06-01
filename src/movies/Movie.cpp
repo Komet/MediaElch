@@ -209,7 +209,7 @@ int Movie::votes() const
 
 int Movie::top250() const
 {
-    return m_rating.imdbTop250;
+    return m_imdbTop250;
 }
 
 QDate Movie::released() const
@@ -604,7 +604,7 @@ void Movie::setVotes(int votes)
  */
 void Movie::setTop250(int top250)
 {
-    m_rating.imdbTop250 = top250;
+    m_imdbTop250 = top250;
     setChanged(true);
 }
 
