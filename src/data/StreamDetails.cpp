@@ -336,7 +336,7 @@ void StreamDetails::setAudioDetail(int streamNumber, AudioDetails key, QString v
 {
     if (streamNumber >= m_audioDetails.count()) {
         m_audioDetails.resize(streamNumber);
-        m_audioDetails.insert(streamNumber, QMap<AudioDetails, QString>());
+        m_audioDetails.insert(streamNumber, QMap<AudioDetails, QString>{{key, value}});
         return;
     }
     m_audioDetails[streamNumber].insert(key, value);
@@ -365,7 +365,7 @@ void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QSt
 {
     if (streamNumber >= m_subtitles.count()) {
         m_subtitles.resize(streamNumber + 1);
-        m_subtitles.insert(streamNumber, QMap<SubtitleDetails, QString>());
+        m_subtitles.insert(streamNumber, QMap<SubtitleDetails, QString>{{key, value}});
         return;
     }
     m_subtitles[streamNumber].insert(key, value);
