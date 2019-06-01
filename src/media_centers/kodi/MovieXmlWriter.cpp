@@ -120,6 +120,7 @@ QByteArray MovieXmlWriter::getMovieXml()
 
         for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("aspect", "poster");
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             KodiXml::appendXmlNode(doc, elem);
