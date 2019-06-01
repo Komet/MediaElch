@@ -38,7 +38,7 @@ QByteArray MovieXmlWriter::getMovieXml()
         QDomElement ratingValueElement = doc.createElement("value");
         ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
         QDomElement votesElement = doc.createElement("votes");
-        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
+        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
         QDomElement ratingElement = doc.createElement("rating");
         ratingElement.setAttribute("name", rating.source);
         ratingElement.setAttribute("default", firstRating ? "true" : "false");
