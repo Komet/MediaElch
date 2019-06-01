@@ -23,6 +23,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("originaltitle").isEmpty()) {
         m_movie.setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
     }
+    // TODO: there may be multiple ratings
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
         m_movie.setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
     }
