@@ -301,14 +301,17 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
 
     // Rating
     if (infos.contains(MovieScraperInfos::Rating)) {
+        Rating rating;
+        rating.source = "VideoBuster";
         rx.setPattern("<span itemprop=\"ratingCount\">([0-9]*)</span>");
         if (rx.indexIn(html) != -1) {
-            movie->setVotes(rx.cap(1).trimmed().toInt());
+            rating.voteCount = rx.cap(1).trimmed().toInt();
         }
         rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
         if (rx.indexIn(html) != -1) {
-            movie->setRating(rx.cap(1).trimmed().replace(".", "").replace(",", ".").toDouble());
+            rating.rating = rx.cap(1).trimmed().replace(".", "").replace(",", ".").toDouble();
         }
+        movie->ratings().push_back(rating);
     }
 
     // Genres

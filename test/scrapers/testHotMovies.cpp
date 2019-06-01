@@ -40,9 +40,10 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         CHECK(m.imdbId() == ImdbId::NoId);
         CHECK(m.tmdbId() == TmdbId::NoId);
         CHECK(m.released().toString("yyyy") == "2015");
+        REQUIRE(!m.ratings().isEmpty());
         // Rating currently no available
-        // CHECK(m.rating() == Approx(4).margin(0.5));
-        CHECK(m.votes() > 60);
+        // CHECK(m.ratings().back().rating == Approx(4).margin(0.5));
+        CHECK(m.ratings().back().voteCount > 60);
         CHECK(m.images().posters().size() == 1);
         CHECK(m.runtime() == 201min);
 

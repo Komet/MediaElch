@@ -17,6 +17,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QUrl>
+#include <QVector>
 #include <chrono>
 
 class MediaCenterInterface;
@@ -45,8 +46,8 @@ public:
     MovieImages& images();
     const MovieImages& constImages() const;
     QString overview() const;
-    double rating() const;
-    int votes() const;
+    QVector<Rating>& ratings();
+    const QVector<Rating>& ratings() const;
     int top250() const;
     QDate released() const;
     QString tagline() const;
@@ -95,8 +96,6 @@ public:
     void setSortTitle(QString sortTitle);
     void setOriginalName(QString originalName);
     void setOverview(QString overview);
-    void setRating(double rating);
-    void setVotes(int votes);
     void setTop250(int top250);
     void setReleased(QDate released);
     void setTagline(QString tagline);
@@ -174,7 +173,7 @@ private:
     QString m_sortTitle;
     QString m_originalName;
     QString m_overview;
-    Rating m_rating;
+    QVector<Rating> m_ratings;
     int m_imdbTop250 = 0;
     QDate m_released;
     QString m_tagline;

@@ -38,8 +38,9 @@ TEST_CASE("TMDb scrapes correct movie details", "[scraper][TMDb][load_data][requ
         CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-16");
         // Finding Dory has a user score of 69% (date: 2018-08-31)
-        CHECK(m.rating() == Approx(6.9).margin(0.5));
-        CHECK(m.votes() > 6300);
+        REQUIRE(!m.ratings().isEmpty());
+        CHECK(m.ratings().back().rating == Approx(6.9).margin(0.5));
+        CHECK(m.ratings().back().voteCount > 6300);
         CHECK(m.tagline() == "An unforgettable journey she probably won't remember.");
         CHECK(m.runtime() == 97min);
         CHECK(m.set() == "Finding Nemo Collection");

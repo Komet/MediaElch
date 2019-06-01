@@ -159,7 +159,10 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
 
     rx.setPattern(R"(<span itemprop="ratingCount">(\d+) </span> Rating)");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setVotes(rx.cap(1).toInt());
+        Rating rating;
+        rating.voteCount = rx.cap(1).toInt();
+        rating.source = "HotMovies";
+        movie->ratings().push_back(rating);
     }
 
     rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]{4})</span>");

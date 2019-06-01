@@ -128,7 +128,7 @@ void Movie::clear(QVector<MovieScraperInfos> infos)
         m_outline = "";
     }
     if (infos.contains(MovieScraperInfos::Rating)) {
-        m_rating = Rating();
+        m_ratings.clear();
     }
     if (infos.contains(MovieScraperInfos::Released)) {
         m_released = QDate(2000, 02, 30); // invalid date
@@ -197,14 +197,15 @@ QString Movie::overview() const
     return m_overview;
 }
 
-double Movie::rating() const
+QVector<Rating>& Movie::ratings()
 {
-    return m_rating.rating;
+    return m_ratings;
 }
 
-int Movie::votes() const
+
+const QVector<Rating>& Movie::ratings() const
 {
-    return m_rating.voteCount;
+    return m_ratings;
 }
 
 int Movie::top250() const
@@ -572,28 +573,6 @@ void Movie::setOriginalName(QString originalName)
 void Movie::setOverview(QString overview)
 {
     m_overview = overview;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies rating
- * @param rating Rating of the movie
- * @see Movie::rating
- */
-void Movie::setRating(double rating)
-{
-    m_rating.rating = rating;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies votes
- * @param votes Votes of the movie
- * @see Movie::votes
- */
-void Movie::setVotes(int votes)
-{
-    m_rating.voteCount = votes;
     setChanged(true);
 }
 
@@ -1159,7 +1138,11 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     }
     out.append(QString("  Name:          ").append(movie.name()).append(nl));
     out.append(QString("  Original-Name: ").append(movie.originalName()).append(nl));
-    out.append(QString("  Rating:        %1").arg(movie.rating()).append(nl));
+    out.append(QString("  Ratings:").append(nl));
+    for (const Rating& rating : movie.ratings()) {
+        out.append(
+            QString("    %1: %2 (%3 votes)").arg(rating.source).arg(rating.rating).arg(rating.voteCount).append(nl));
+    }
     out.append(QString("  Released:      ").append(movie.released().toString("yyyy-MM-dd")).append(nl));
     out.append(QString("  Tagline:       ").append(movie.tagline()).append(nl));
     out.append(QString("  Runtime:       %1").arg(movie.runtime().count()).append(nl));

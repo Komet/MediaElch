@@ -23,14 +23,44 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("originaltitle").isEmpty()) {
         m_movie.setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
     }
-    // TODO: there may be multiple ratings
-    if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        m_movie.setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
+    // check for new ratings syntax
+    if (!domDoc.elementsByTagName("ratings").isEmpty()) {
+        // <ratings>
+        //   <rating name="default" default="true">
+        //     <value>10</value>
+        //     <votes>10</votes>
+        //   </rating>
+        // </ratings>
+        auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
+        for (int i = 0; i < ratings.length(); ++i) {
+            Rating rating;
+            auto ratingElement = ratings.at(i).toElement();
+            rating.rating =
+                ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
+            rating.voteCount = ratingElement.elementsByTagName("votes")
+                                   .at(0)
+                                   .toElement()
+                                   .text()
+                                   .replace(",", "")
+                                   .replace(".", "")
+                                   .toInt();
+            m_movie.ratings().push_back(rating);
+        }
+
+    } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
+        // otherwise use "old" syntax:
+        // <rating>10.0</rating>
+        // <votes>10.0</votes>
+        Rating rating;
+        rating.rating = domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble();
+        if (!domDoc.elementsByTagName("votes").isEmpty()) {
+            rating.voteCount =
+                domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt();
+        }
+        m_movie.ratings().clear();
+        m_movie.ratings().push_back(rating);
     }
-    if (!domDoc.elementsByTagName("votes").isEmpty()) {
-        m_movie.setVotes(
-            domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
-    }
+
     if (!domDoc.elementsByTagName("top250").isEmpty()) {
         m_movie.setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     }

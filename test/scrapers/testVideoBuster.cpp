@@ -43,8 +43,9 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[scraper][VideoBuster][l
         // Only year is suppported
         CHECK(m.released().toString("yyyy") == "2016");
         // Finding Dory is rated 4.6/5 (date: 2018-09-01)
-        CHECK(m.rating() == Approx(3.6).margin(0.5));
-        CHECK(m.votes() > 260);
+        REQUIRE(!m.ratings().isEmpty());
+        CHECK(m.ratings().back().rating == Approx(3.6).margin(0.5));
+        CHECK(m.ratings().back().voteCount > 260);
         CHECK(m.tagline() == "Alles andere kannste vergessen.");
         CHECK(m.images().posters().size() >= 5);
         CHECK(m.images().backdrops().size() >= 4);

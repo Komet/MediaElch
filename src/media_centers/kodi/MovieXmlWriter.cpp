@@ -32,18 +32,22 @@ QByteArray MovieXmlWriter::getMovieXml()
 
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
-    QDomElement ratingValueElement = doc.createElement("value");
-    ratingValueElement.appendChild(doc.createTextNode(QString::number(m_movie.rating())));
-    QDomElement votesElement = doc.createElement("votes");
-    ratingValueElement.appendChild(doc.createTextNode(QString::number(m_movie.votes())));
-    QDomElement ratingElement = doc.createElement("rating");
-    ratingElement.setAttribute("name", "default");
-    ratingElement.setAttribute("default", "true");
-    ratingElement.appendChild(ratingValueElement);
-    ratingElement.appendChild(votesElement);
-    QDomElement ratingsElement = doc.createElement("ratings");
-    ratingsElement.appendChild(ratingElement);
-    KodiXml::appendXmlNode(doc, ratingsElement);
+    QDomElement ratings = doc.createElement("ratings");
+    bool firstRating = true;
+    for (Rating& rating : m_movie.ratings()) {
+        QDomElement ratingValueElement = doc.createElement("value");
+        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
+        QDomElement votesElement = doc.createElement("votes");
+        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
+        QDomElement ratingElement = doc.createElement("rating");
+        ratingElement.setAttribute("name", "default");
+        ratingElement.setAttribute("default", firstRating ? "true" : "false");
+        ratingElement.appendChild(ratingValueElement);
+        ratingElement.appendChild(votesElement);
+        ratings.appendChild(ratingElement);
+        firstRating = false;
+    }
+    KodiXml::appendXmlNode(doc, ratings);
 
     KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
     KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));

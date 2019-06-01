@@ -600,8 +600,11 @@ void MovieWidget::updateMovieInfo()
     ui->originalName->setText(m_movie->originalName());
     ui->sortTitle->setText(m_movie->sortTitle());
     ui->tagline->setText(m_movie->tagline());
-    ui->rating->setValue(m_movie->rating());
-    ui->votes->setValue(m_movie->votes());
+    // TODO: multiple ratings
+    if (!m_movie->ratings().isEmpty()) {
+        ui->rating->setValue(m_movie->ratings().back().rating);
+        ui->votes->setValue(m_movie->ratings().back().voteCount);
+    }
     ui->top250->setValue(m_movie->top250());
     ui->released->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
@@ -1318,10 +1321,10 @@ void MovieWidget::onTaglineChange(QString text)
  */
 void MovieWidget::onRatingChange(double value)
 {
-    if (!m_movie) {
+    if (!m_movie || m_movie->ratings().isEmpty()) {
         return;
     }
-    m_movie->setRating(value);
+    m_movie->ratings().back().rating = value;
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1330,10 +1333,10 @@ void MovieWidget::onRatingChange(double value)
  */
 void MovieWidget::onVotesChange(int value)
 {
-    if (!m_movie) {
+    if (!m_movie || m_movie->ratings().isEmpty()) {
         return;
     }
-    m_movie->setVotes(value);
+    m_movie->ratings().back().voteCount = value;
     ui->buttonRevert->setVisible(true);
 }
 
