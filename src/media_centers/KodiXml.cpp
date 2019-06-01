@@ -492,8 +492,9 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDet
 
 void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamDetails, QVector<Subtitle*> subtitles)
 {
-    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
-        && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty()) {
+    if (streamDetails == nullptr
+        || (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty()
+               && streamDetails->subtitleDetails().isEmpty() && subtitles.isEmpty())) {
         return;
     }
 
