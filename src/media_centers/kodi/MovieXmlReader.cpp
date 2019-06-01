@@ -35,6 +35,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         for (int i = 0; i < ratings.length(); ++i) {
             Rating rating;
             auto ratingElement = ratings.at(i).toElement();
+            rating.source = ratingElement.attribute("name", "default");
             rating.rating =
                 ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
             rating.voteCount = ratingElement.elementsByTagName("votes")
