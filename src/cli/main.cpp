@@ -2,6 +2,7 @@
 #include "cli/common.h"
 #include "cli/info.h"
 #include "cli/list.h"
+#include "cli/reload.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
@@ -111,7 +112,7 @@ static int parseArguments(QApplication& app)
     case Command::Help: printHelp(); return 0;
     case Command::Version: parser.showVersion();
     case Command::List: return mediaelch::cli::list(app, parser);
-    case Command::Reload: printUnsupported(); return 1; // movie_main(parser);
+    case Command::Reload: return mediaelch::cli::reload(app, parser);
     case Command::Add: printUnsupported(); return 1;
     case Command::Show: printUnsupported(); return 1;
     case Command::Settings: printUnsupported(); return 1;
