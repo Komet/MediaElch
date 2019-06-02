@@ -31,11 +31,9 @@
  */
 Manager::Manager(QObject* parent) : QObject(parent)
 {
-    m_scrapers.append(Manager::constructNativeScrapers(this));
+    m_scrapers.append(Manager::constructMovieScrapers(this));
     m_scrapers.append(CustomMovieScraper::instance(this));
-    m_scrapers.append(new AEBN(parent));
-    m_scrapers.append(new HotMovies(parent));
-    m_scrapers.append(new AdultDvdEmpire(parent));
+
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
     m_musicScrapers.append(new UniversalMusicScraper(this));
@@ -317,14 +315,24 @@ TvTunes* Manager::tvTunes()
     return m_tvTunes;
 }
 
-QVector<MovieScraperInterface*> Manager::constructNativeScrapers(QObject* parent)
+QVector<MovieScraperInterface*> Manager::constructNativeScrapers(QObject* scraperParent)
 {
     QVector<MovieScraperInterface*> nativeScrapers;
-    nativeScrapers.append(new TMDb(parent));
-    nativeScrapers.append(new IMDB(parent));
-    nativeScrapers.append(new OFDb(parent));
-    nativeScrapers.append(new VideoBuster(parent));
+    nativeScrapers.append(new TMDb(scraperParent));
+    nativeScrapers.append(new IMDB(scraperParent));
+    nativeScrapers.append(new OFDb(scraperParent));
+    nativeScrapers.append(new VideoBuster(scraperParent));
     return nativeScrapers;
+}
+
+QVector<MovieScraperInterface*> Manager::constructMovieScrapers(QObject* scraperParent)
+{
+    auto scrapers = Manager::constructNativeScrapers(scraperParent);
+    scrapers.append(new AEBN(scraperParent));
+    scrapers.append(new HotMovies(scraperParent));
+    scrapers.append(new AdultDvdEmpire(scraperParent));
+
+    return scrapers;
 }
 
 MyIconFont* Manager::iconFont()

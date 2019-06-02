@@ -18,20 +18,20 @@ class TableColumn
 {
 public:
     TableColumn() = default;
-    explicit TableColumn(std::string heading, int width, ColumnAlignment align = ColumnAlignment::Left) :
+    explicit TableColumn(QString heading, unsigned width, ColumnAlignment align = ColumnAlignment::Left) :
         m_heading{heading},
         m_width{width},
         m_align{align}
     {
     }
 
-    const std::string& heading() const { return m_heading; }
+    const QString& heading() const { return m_heading; }
     ColumnAlignment alignment() const { return m_align; }
-    int width() const { return m_width; }
+    unsigned width() const { return m_width; }
 
 private:
-    std::string m_heading;
-    int m_width = 0;
+    QString m_heading;
+    unsigned m_width = 0;
     ColumnAlignment m_align = ColumnAlignment::Left;
 };
 
