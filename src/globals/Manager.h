@@ -72,7 +72,8 @@ public:
     void setTvShowFilesWidget(TvShowFilesWidget* widget);
     void setMusicFilesWidget(MusicFilesWidget* widget);
     void setFileScannerDialog(FileScannerDialog* dialog);
-    static QVector<MovieScraperInterface*> constructNativeScrapers(QObject* parent);
+    static QVector<MovieScraperInterface*> constructNativeScrapers(QObject* scraperParent);
+    static QVector<MovieScraperInterface*> constructMovieScrapers(QObject* scraperParent);
 
 private:
     QVector<MediaCenterInterface*> m_mediaCenters;
