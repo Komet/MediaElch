@@ -6,7 +6,7 @@
 
 class Concert;
 
-namespace Kodi {
+namespace kodi {
 
 class ConcertXmlWriter
 {
@@ -18,4 +18,4 @@ private:
     Concert& m_concert;
 };
 
-} // namespace Kodi
+} // namespace kodi

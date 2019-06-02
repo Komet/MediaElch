@@ -9,7 +9,7 @@
 #include <QTime>
 #include <QUrl>
 
-namespace Kodi {
+namespace kodi {
 
 EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode& episode) : m_episode{episode}
 {
@@ -117,4 +117,4 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     }
 }
 
-} // namespace Kodi
+} // namespace kodi

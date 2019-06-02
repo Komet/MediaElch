@@ -7,7 +7,7 @@
 #include <QFileInfo>
 #include <QUrl>
 
-namespace Kodi {
+namespace kodi {
 
 
 TvShowXmlReader::TvShowXmlReader(TvShow& tvShow) : m_show{tvShow}
@@ -128,4 +128,4 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     m_show.setHasTune(fi.isFile());
 }
 
-} // namespace Kodi
+} // namespace kodi

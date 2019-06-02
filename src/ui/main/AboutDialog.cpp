@@ -17,7 +17,7 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     ui->setupUi(this);
     ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
                                     .arg(QApplication::applicationVersion())
-                                    .arg(MediaElch::Constants::VersionName));
+                                    .arg(mediaelch::constants::VersionName));
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -73,13 +73,13 @@ void AboutDialog::setDeveloperInformation()
 {
     QString infos;
     QTextStream infoStream(&infos);
-    infoStream << MediaElch::Constants::AppName << " " << MediaElch::Constants::AppVersionStr << " - "
-               << MediaElch::Constants::VersionName << "<br><br>"
+    infoStream << mediaelch::constants::AppName << " " << mediaelch::constants::AppVersionStr << " - "
+               << mediaelch::constants::VersionName << "<br><br>"
                << QStringLiteral("Compiled with Qt version %1 (%2 %3, %4)<br>")
                       .arg(QT_VERSION_STR,
                           QString::number(QSysInfo::WordSize),
-                          MediaElch::Constants::CompilationType,
-                          MediaElch::Constants::CompilerString)
+                          mediaelch::constants::CompilationType,
+                          mediaelch::constants::CompilerString)
                << QStringLiteral("Using Qt version %1<br>").arg(qVersion())
                << QStringLiteral("System: %1 (%2)<br><br>").arg(QSysInfo::prettyProductName(), QSysInfo::buildAbi())
                << "Application dir: " << Settings::applicationDir() << "<br>"

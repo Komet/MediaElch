@@ -6,7 +6,7 @@
 
 class Movie;
 
-namespace Kodi {
+namespace kodi {
 
 class MovieXmlWriter
 {
@@ -18,4 +18,4 @@ private:
     Movie& m_movie;
 };
 
-} // namespace Kodi
+} // namespace kodi

@@ -9,7 +9,7 @@
 #include <QTime>
 #include <QUrl>
 
-namespace Kodi {
+namespace kodi {
 
 ArtistXmlReader::ArtistXmlReader(Artist& actor) : m_artist{actor}
 {
@@ -94,4 +94,4 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
     m_artist.setHasChanged(false);
 }
 
-} // namespace Kodi
+} // namespace kodi

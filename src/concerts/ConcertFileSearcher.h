@@ -7,9 +7,6 @@
 #include <QStringList>
 #include <QVector>
 
-/**
- * @brief The ConcertFileSearcher class
- */
 class ConcertFileSearcher : public QObject
 {
     Q_OBJECT

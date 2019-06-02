@@ -7,7 +7,7 @@
 
 #include <QDomDocument>
 
-namespace Kodi {
+namespace kodi {
 
 MovieXmlWriter::MovieXmlWriter(Movie& movie) : m_movie{movie}
 {
@@ -163,4 +163,4 @@ QByteArray MovieXmlWriter::getMovieXml()
     return doc.toByteArray(4);
 }
 
-} // namespace Kodi
+} // namespace kodi

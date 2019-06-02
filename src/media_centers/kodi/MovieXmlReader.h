@@ -5,7 +5,7 @@
 
 class Movie;
 
-namespace Kodi {
+namespace kodi {
 
 class MovieXmlReader
 {
@@ -17,4 +17,4 @@ private:
     Movie& m_movie;
 };
 
-} // namespace Kodi
+} // namespace kodi

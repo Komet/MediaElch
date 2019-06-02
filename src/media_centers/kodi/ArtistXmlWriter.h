@@ -6,7 +6,7 @@
 
 class Artist;
 
-namespace Kodi {
+namespace kodi {
 
 class ArtistXmlWriter
 {
@@ -18,4 +18,4 @@ private:
     Artist& m_artist;
 };
 
-} // namespace Kodi
+} // namespace kodi

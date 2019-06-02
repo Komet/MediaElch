@@ -6,7 +6,7 @@
 
 class TvShow;
 
-namespace Kodi {
+namespace kodi {
 
 class TvShowXmlWriter
 {
@@ -18,4 +18,4 @@ private:
     TvShow& m_show;
 };
 
-} // namespace Kodi
+} // namespace kodi

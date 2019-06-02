@@ -7,7 +7,7 @@
 
 #include <QDomDocument>
 
-namespace Kodi {
+namespace kodi {
 
 ConcertXmlWriter::ConcertXmlWriter(Concert& concert) : m_concert{concert}
 {
@@ -76,4 +76,4 @@ QByteArray ConcertXmlWriter::getConcertXml()
     return doc.toByteArray(4);
 }
 
-} // namespace Kodi
+} // namespace kodi
