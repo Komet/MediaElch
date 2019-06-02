@@ -53,7 +53,7 @@ bool KodiXml::hasFeature(int feature)
 
 QByteArray KodiXml::getMovieXml(Movie* movie)
 {
-    Kodi::MovieXmlWriter writer(*movie);
+    kodi::MovieXmlWriter writer(*movie);
     return writer.getMovieXml();
 }
 
@@ -330,7 +330,7 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    Kodi::MovieXmlReader reader(*movie);
+    kodi::MovieXmlReader reader(*movie);
     reader.parseNfoDom(domDoc);
 
     movie->setStreamDetailsLoaded(loadStreamDetails(movie->streamDetails(), domDoc));
@@ -604,7 +604,7 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
 
 QByteArray KodiXml::getConcertXml(Concert* concert)
 {
-    Kodi::ConcertXmlWriter writer(*concert);
+    kodi::ConcertXmlWriter writer(*concert);
     return writer.getConcertXml();
 }
 
@@ -739,7 +739,7 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    Kodi::ConcertXmlReader reader(*concert);
+    kodi::ConcertXmlReader reader(*concert);
     reader.parseNfoDom(domDoc);
 
     concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
@@ -832,7 +832,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    Kodi::TvShowXmlReader reader(*show);
+    kodi::TvShowXmlReader reader(*show);
     reader.parseNfoDom(domDoc);
 
     return true;
@@ -913,7 +913,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
     }
 
     // todo: move above code into reader as well
-    Kodi::EpisodeXmlReader reader(*episode);
+    kodi::EpisodeXmlReader reader(*episode);
     reader.parseNfoDom(domDoc, episodeDetails);
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
@@ -1134,7 +1134,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
 QByteArray KodiXml::getTvShowXml(TvShow* show)
 {
-    Kodi::TvShowXmlWriter writer(*show);
+    kodi::TvShowXmlWriter writer(*show);
     return writer.getTvShowXml();
 }
 
@@ -1601,7 +1601,7 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    Kodi::ArtistXmlReader reader(*artist);
+    kodi::ArtistXmlReader reader(*artist);
     reader.parseNfoDom(domDoc);
 
     return true;
@@ -1901,7 +1901,7 @@ bool KodiXml::saveAlbum(Album* album)
 
 QByteArray KodiXml::getArtistXml(Artist* artist)
 {
-    Kodi::ArtistXmlWriter writer(*artist);
+    kodi::ArtistXmlWriter writer(*artist);
     return writer.getArtistXml();
 }
 

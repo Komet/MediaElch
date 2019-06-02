@@ -12,7 +12,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
     SECTION("Empty movie")
     {
         Movie movie;
-        Kodi::MovieXmlWriter writer(movie);
+        kodi::MovieXmlWriter writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
@@ -119,7 +119,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
         // TODO: order
         movie.addActor(actor);
 
-        Kodi::MovieXmlWriter writer(movie);
+        kodi::MovieXmlWriter writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>

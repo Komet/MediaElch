@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QUrl>
 
-namespace Kodi {
+namespace kodi {
 
 
 ConcertXmlReader::ConcertXmlReader(Concert& concert) : m_concert{concert}
@@ -92,4 +92,4 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 }
 
-} // namespace Kodi
+} // namespace kodi

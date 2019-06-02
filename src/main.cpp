@@ -84,9 +84,9 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName(MediaElch::Constants::OrganizationName);
-    QCoreApplication::setApplicationName(MediaElch::Constants::AppName);
-    QCoreApplication::setApplicationVersion(MediaElch::Constants::AppVersionStr);
+    QCoreApplication::setOrganizationName(mediaelch::constants::OrganizationName);
+    QCoreApplication::setApplicationName(mediaelch::constants::AppName);
+    QCoreApplication::setApplicationVersion(mediaelch::constants::AppVersionStr);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     // Install a message handler here to get "nice" output but instantiate the

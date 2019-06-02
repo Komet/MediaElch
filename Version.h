@@ -2,8 +2,8 @@
 
 #include <QString>
 
-namespace MediaElch {
-namespace Constants {
+namespace mediaelch {
+namespace constants {
 
 constexpr char AppName[] = "MediaElch";
 constexpr char AppVersionStr[] = "2.6.1-dev";
@@ -44,5 +44,5 @@ const QString CompilerString = []() -> QString {
     return QLatin1String("<unknown compiler>");
 }();
 
-} // namespace Constants
-} // namespace MediaElch
+} // namespace constants
+} // namespace mediaelch

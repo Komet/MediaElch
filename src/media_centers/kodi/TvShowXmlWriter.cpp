@@ -7,7 +7,7 @@
 
 #include <QDomDocument>
 
-namespace Kodi {
+namespace kodi {
 
 TvShowXmlWriter::TvShowXmlWriter(TvShow& tvShow) : m_show{tvShow}
 {
@@ -138,4 +138,4 @@ QByteArray TvShowXmlWriter::getTvShowXml()
     return doc.toByteArray(4);
 }
 
-} // namespace Kodi
+} // namespace kodi

@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QUrl>
 
-namespace Kodi {
+namespace kodi {
 
 
 MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
@@ -208,4 +208,4 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 }
 
-} // namespace Kodi
+} // namespace kodi

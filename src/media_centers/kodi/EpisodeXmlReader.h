@@ -5,7 +5,7 @@
 
 class TvShowEpisode;
 
-namespace Kodi {
+namespace kodi {
 
 class EpisodeXmlReader
 {
@@ -17,4 +17,4 @@ private:
     TvShowEpisode& m_episode;
 };
 
-} // namespace Kodi
+} // namespace kodi

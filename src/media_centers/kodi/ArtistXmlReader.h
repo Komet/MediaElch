@@ -4,7 +4,7 @@
 
 class Artist;
 
-namespace Kodi {
+namespace kodi {
 
 class ArtistXmlReader
 {
@@ -16,4 +16,4 @@ private:
     Artist& m_artist;
 };
 
-} // namespace Kodi
+} // namespace kodi

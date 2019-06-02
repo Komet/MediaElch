@@ -7,7 +7,7 @@
 
 #include <QDomDocument>
 
-namespace Kodi {
+namespace kodi {
 
 ArtistXmlWriter::ArtistXmlWriter(Artist& artist) : m_artist{artist}
 {
@@ -117,4 +117,4 @@ QByteArray ArtistXmlWriter::getArtistXml()
     return doc.toByteArray(4);
 }
 
-} // namespace Kodi
+} // namespace kodi
