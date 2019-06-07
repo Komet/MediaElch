@@ -17,7 +17,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Country mappings not used in TMDb (#689)
  - Windows: Stream Details do not load (#688)
  - Crashes on macOS when scanning episodes due to a Qt bug (#641)
- - Fix ADE scraper (#703)
+ - Fix ADE scraper (#703, #725)
 
 ### Improvements
 

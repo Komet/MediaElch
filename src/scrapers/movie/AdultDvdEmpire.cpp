@@ -173,7 +173,7 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
 
     if (infos.contains(MovieScraperInfos::Actors)) {
         int offset = 0;
-        rx.setPattern(R"re(<a href="/\d+/[^"]*"[\r\n\s]*Category="Item Page" Label="Performer">)re"
+        rx.setPattern(R"re(<a href="/\d+/[^"]*".*Category="Item Page" Label="Performer">)re"
                       R"re(<div class="[^"]+"><u>([^<]+)</u>.*<img src="([^"]+)")re");
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
