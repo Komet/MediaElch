@@ -56,11 +56,11 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
         CHECK(studios[0] == "Wicked Pictures");
 
         const auto actors = m.actors();
-        REQUIRE(actors.size() == 7);
+        REQUIRE(actors.size() > 15);
         CHECK(actors[0].name == "Adriana Chechik");
         CHECK(actors[0].thumb == "https://imgs1cdn.adultempire.com/actors/652646h.jpg");
-        CHECK(actors[1].name == "Kendra Lust");
-        CHECK(actors[1].thumb == "https://imgs1cdn.adultempire.com/actors/643743h.jpg");
+        CHECK(actors[2].name == "Kendra Lust");
+        CHECK(actors[2].thumb == "https://imgs1cdn.adultempire.com/actors/643743h.jpg");
     }
 
     SECTION("Movie has correct set")
