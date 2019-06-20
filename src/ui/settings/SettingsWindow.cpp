@@ -534,12 +534,12 @@ void SettingsWindow::saveSettings()
 
     m_settings->saveSettings();
 
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->directorySettings().movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setTvShowDirectories(
-        m_settings->directorySettings().tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(
-        m_settings->directorySettings().concertDirectories());
-    Manager::instance()->musicFileSearcher()->setMusicDirectories(m_settings->directorySettings().musicDirectories());
+    auto* manager = Manager::instance();
+    auto& dirs = m_settings->directorySettings();
+    manager->movieFileSearcher()->setMovieDirectories(dirs.movieDirectories());
+    manager->tvShowFileSearcher()->setTvShowDirectories(dirs.tvShowDirectories());
+    manager->concertFileSearcher()->setConcertDirectories(dirs.concertDirectories());
+    manager->musicFileSearcher()->setMusicDirectories(dirs.musicDirectories());
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
