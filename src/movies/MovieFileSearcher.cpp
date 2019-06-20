@@ -60,14 +60,14 @@ void MovieFileSearcher::reload(bool force)
             qApp->processEvents();
             Manager::instance()->database()->clearMovies(movieDir.path);
             QMap<QString, QStringList> contents;
-            if (Settings::instance()->advanced()->movieFilters().isEmpty()) {
+            if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {
                 continue;
             }
-            qDebug() << "Scanning directory" << movieDir.path;
-            qDebug() << "Filters are" << Settings::instance()->advanced()->movieFilters();
+
+            qDebug() << "Scanning directory: " << movieDir.path;
             QString lastDir;
             QDirIterator it(movieDir.path,
-                Settings::instance()->advanced()->movieFilters(),
+                Settings::instance()->advanced()->movieFilters().filters(),
                 QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
                 QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
 
@@ -330,7 +330,6 @@ Movie* MovieFileSearcher::loadMovieData(Movie* movie)
  */
 void MovieFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
 {
-    qDebug() << "Entered";
     m_directories.clear();
     for (int i = 0, n = directories.count(); i < n; ++i) {
         QFileInfo fi(directories.at(i).path);
@@ -465,9 +464,10 @@ void MovieFileSearcher::scanDir(QString startPath,
  */
 QStringList MovieFileSearcher::getFiles(QString path)
 {
+    const auto& filters = Settings::instance()->advanced()->movieFilters();
     QStringList files;
-    for (const QString& file :
-        QDir(path).entryList(Settings::instance()->advanced()->movieFilters(), QDir::Files | QDir::System)) {
+
+    for (const QString& file : filters.files(QDir(path))) {
         m_lastModifications.insert(
             QDir::toNativeSeparators(path + "/" + file), QFileInfo(path + QDir::separator() + file).lastModified());
         files.append(file);

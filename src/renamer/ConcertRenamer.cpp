@@ -84,7 +84,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                 }
 
                 QStringList filters;
-                for (const QString& extra : m_extraFiles) {
+                for (const QString& extra : m_extraFiles.filters()) {
                     filters << baseName + extra;
                 }
                 for (const QString& subFileName : currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {

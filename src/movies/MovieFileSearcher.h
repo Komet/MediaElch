@@ -7,9 +7,6 @@
 #include <QObject>
 #include <QTime>
 
-/**
- * @brief The MovieFileSearcher class
- */
 class MovieFileSearcher : public QObject
 {
     Q_OBJECT

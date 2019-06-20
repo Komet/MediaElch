@@ -1,5 +1,7 @@
 #pragma once
 
+#include "file/FileFilter.h"
+
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -58,5 +60,5 @@ public:
 protected:
     RenamerConfig m_config;
     RenamerDialog* m_dialog;
-    QStringList m_extraFiles;
+    const mediaelch::FileFilter& m_extraFiles;
 };

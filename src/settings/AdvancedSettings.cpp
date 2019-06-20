@@ -36,7 +36,7 @@ void AdvancedSettings::reset()
     m_audioCodecMappings.insert("aac lc", "aac");
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 
-    const auto videoFiles = QStringList{"*.mkv",
+    const auto videoFiles = mediaelch::FileFilter({"*.mkv",
         "*.mk3d",
         "*.avi",
         "*.mpg",
@@ -60,14 +60,14 @@ void AdvancedSettings::reset()
         "*.divx",
         "VIDEO_TS.IFO",
         "index.bdmv",
-        "*.wtv"};
+        "*.wtv"});
 
     // Assign video filters.
     m_movieFilters = videoFiles;
     m_tvShowFilters = videoFiles;
     m_concertFilters = videoFiles;
 
-    m_subtitleFilters = QStringList{"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"};
+    m_subtitleFilters = mediaelch::FileFilter({"*.idx", "*.sub", "*.srr", "*.srt", "*.ass", "*.ttml"});
 }
 
 QByteArray AdvancedSettings::getAdvancedSettingsXml() const
@@ -163,10 +163,10 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    logFile               " << m_logFile;
     qDebug() << "    forceCache            " << m_forceCache;
     qDebug() << "    sortTokens            " << m_sortTokens;
-    qDebug() << "    movieFilters          " << m_movieFilters;
-    qDebug() << "    concertFilters        " << m_concertFilters;
-    qDebug() << "    tvShowFilters         " << m_tvShowFilters;
-    qDebug() << "    subtitleFilters       " << m_subtitleFilters;
+    qDebug() << "    movieFilters          " << m_movieFilters.filters();
+    qDebug() << "    concertFilters        " << m_concertFilters.filters();
+    qDebug() << "    tvShowFilters         " << m_tvShowFilters.filters();
+    qDebug() << "    subtitleFilters       " << m_subtitleFilters.filters();
     qDebug() << "    genreMappings         " << m_genreMappings;
     qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
     qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
@@ -239,12 +239,13 @@ void AdvancedSettings::loadFilters(QXmlStreamReader& xml)
      * The current XML element's text is split by "," and all items
      * are appended to a cleared "list".
      */
-    const auto appendNextFiltersToList = [&xml](QStringList& list) {
-        list.clear();
+    const auto appendNextFiltersToList = [&xml](mediaelch::FileFilter& list) {
+        QStringList newFilters;
         const auto filters = xml.readElementText().split(",", QString::SkipEmptyParts);
         for (const QString& filter : filters) {
-            list << filter.trimmed();
+            newFilters << filter.trimmed();
         }
+        list = mediaelch::FileFilter(newFilters);
     };
 
     while (xml.readNextStartElement()) {
@@ -313,22 +314,22 @@ QHash<QString, QString> AdvancedSettings::genreMappings() const
     return m_genreMappings;
 }
 
-QStringList AdvancedSettings::movieFilters() const
+const mediaelch::FileFilter& AdvancedSettings::movieFilters() const
 {
     return m_movieFilters;
 }
 
-QStringList AdvancedSettings::concertFilters() const
+const mediaelch::FileFilter& AdvancedSettings::concertFilters() const
 {
     return m_concertFilters;
 }
 
-QStringList AdvancedSettings::tvShowFilters() const
+const mediaelch::FileFilter& AdvancedSettings::tvShowFilters() const
 {
     return m_tvShowFilters;
 }
 
-QStringList AdvancedSettings::subtitleFilters() const
+const mediaelch::FileFilter& AdvancedSettings::subtitleFilters() const
 {
     return m_subtitleFilters;
 }
