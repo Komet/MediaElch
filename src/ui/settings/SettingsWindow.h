@@ -35,7 +35,7 @@ protected:
 private slots:
     void onAction();
     void chooseDirToAdd();
-    void addDir(QString dir,
+    void addDir(QDir directory,
         bool separateFolders = false,
         bool autoReload = false,
         SettingsDirType dirType = SettingsDirType::Movies);

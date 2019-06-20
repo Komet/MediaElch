@@ -543,9 +543,9 @@ void SettingsWindow::saveSettings()
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
-void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, SettingsDirType dirType)
+void SettingsWindow::addDir(QDir directory, bool separateFolders, bool autoReload, SettingsDirType dirType)
 {
-    dir = QDir::toNativeSeparators(dir);
+    QString dir = QDir::toNativeSeparators(directory.path());
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i = 0, n = ui->dirs->rowCount(); i < n; ++i) {
