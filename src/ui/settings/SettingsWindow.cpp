@@ -663,9 +663,13 @@ void SettingsWindow::dirListEntryChanged(int row, int column)
     if (dirCell == nullptr) {
         return;
     }
+
+    QColor defaultTextColor = QWidget::palette().color(QPalette::Text);
+    QColor invalidColor(255, 0, 0);
+
     // if the directory is not readable, mark it red
     const QDir dir(dirCell->text());
-    const QColor color = dir.isReadable() ? QColor(0, 0, 0) : QColor(255, 0, 0);
+    const QColor color = dir.isReadable() ? defaultTextColor : invalidColor;
     dirCell->setTextColor(color);
 }
 
