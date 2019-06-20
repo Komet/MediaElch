@@ -42,17 +42,29 @@ signals:
     void currentDir(QString);
 
 private:
-    QStringList getFiles(QString path);
-
-    QVector<SettingsDir> m_directories;
-    int m_progressMessageId;
-    QHash<QString, QDateTime> m_lastModifications;
-    bool m_aborted;
-
     struct MovieContents
     {
         QString path;
         bool inSeparateFolder;
         QMap<QString, QStringList> contents;
     };
+
+    QStringList getFiles(QString path);
+
+    int loadMoviesFromDirectory(const SettingsDir& movieDir,
+        bool force,
+        QVector<MovieContents>& moviesContent,
+        QVector<Movie*>& dbMovies,
+        QStringList& bluRays,
+        QStringList& dvds);
+    QVector<Movie*> loadAndStoreMoviesContents(QVector<MovieContents>& moviesContent,
+        QStringList& bluRays,
+        QStringList& dvds,
+        int& movieSum,
+        int& movieCounter);
+
+    QVector<SettingsDir> m_directories;
+    int m_progressMessageId;
+    QHash<QString, QDateTime> m_lastModifications;
+    bool m_aborted;
 };
