@@ -54,7 +54,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->tvScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->tvScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->settingsTabs->setCurrentIndex(0);
     // ui->stackedWidget->setAnimation(QEasingCurve::Linear);
     // ui->stackedWidget->setSpeed(200);
 
@@ -122,7 +122,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
     ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
-    Helper::removeFocusRect(ui->stackedWidget->widget(9));
+    Helper::removeFocusRect(ui->settingsTabs->widget(9));
 
     // clang-format off
     connect(ui->buttonAddDir,           &QAbstractButton::clicked, this, &SettingsWindow::chooseDirToAdd);
@@ -254,7 +254,7 @@ void SettingsWindow::onAction()
     triggeredAction->setIcon(
         Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
     // ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
-    ui->stackedWidget->setCurrentIndex(triggeredAction->property("page").toInt());
+    ui->settingsTabs->setCurrentIndex(triggeredAction->property("page").toInt());
 }
 
 void SettingsWindow::loadSettings()

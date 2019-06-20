@@ -25,11 +25,11 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QStackedWidget" name="settingsTabs">
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="page_0">
+      <widget class="QWidget" name="page_globals">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0">
         <item>
          <widget class="QLabel" name="labelGlobal">
@@ -250,7 +250,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_1">
+      <widget class="QWidget" name="page_scraper">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QTabWidget" name="tabWidget">
@@ -427,7 +427,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="page_movies">
        <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0">
         <item>
          <widget class="QLabel" name="label_44">
@@ -960,7 +960,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_4">
+      <widget class="QWidget" name="page_concerts">
        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_48">
@@ -1213,7 +1213,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_xbmc">
+      <widget class="QWidget" name="page_kodi">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_7">
@@ -1286,7 +1286,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_7">
+      <widget class="QWidget" name="page_network">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <layout class="QFormLayout" name="formLayout_2">
@@ -1380,7 +1380,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_8">
+      <widget class="QWidget" name="page_export">
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <widget class="MessageLabel" name="themesErrorMessage">
@@ -1418,7 +1418,7 @@ The directories containg your music must contain subdirectories for each artist 
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_9">
+      <widget class="QWidget" name="page_import">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
          <layout class="QFormLayout" name="formLayout_8">
