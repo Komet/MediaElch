@@ -293,32 +293,32 @@ void SettingsWindow::loadSettings()
     ui->dirs->clearContents();
     QVector<SettingsDir> movieDirectories = m_settings->directorySettings().movieDirectories();
     for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
-        addDir(movieDirectories.at(i).path,
+        addDir(movieDirectories.at(i).path.path(),
             movieDirectories.at(i).separateFolders,
             movieDirectories.at(i).autoReload,
             SettingsDirType::Movies);
     }
     QVector<SettingsDir> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
-        addDir(tvShowDirectories.at(i).path,
+        addDir(tvShowDirectories.at(i).path.path(),
             tvShowDirectories.at(i).separateFolders,
             tvShowDirectories.at(i).autoReload,
             SettingsDirType::TvShows);
     }
     QVector<SettingsDir> concertDirectories = m_settings->directorySettings().concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
-        addDir(concertDirectories.at(i).path,
+        addDir(concertDirectories.at(i).path.path(),
             concertDirectories.at(i).separateFolders,
             concertDirectories.at(i).autoReload,
             SettingsDirType::Concerts);
     }
     QVector<SettingsDir> downloadDirectories = m_settings->directorySettings().downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
-        addDir(downloadDirectories.at(i).path, false, false, SettingsDirType::Downloads);
+        addDir(downloadDirectories.at(i).path.path(), false, false, SettingsDirType::Downloads);
     }
     QVector<SettingsDir> musicDirectories = m_settings->directorySettings().musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
-        addDir(musicDirectories.at(i).path,
+        addDir(musicDirectories.at(i).path.path(),
             musicDirectories.at(i).separateFolders,
             musicDirectories.at(i).autoReload,
             SettingsDirType::Music);

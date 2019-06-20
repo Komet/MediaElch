@@ -26,18 +26,15 @@ TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
 {
 }
 
-/**
- * @brief Sets the directories
- * @param directories List of directories
- */
 void TvShowFileSearcher::setTvShowDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
-    for (int i = 0, n = directories.count(); i < n; ++i) {
-        QFileInfo fi(directories.at(i).path);
-        if (fi.isDir()) {
-            qDebug() << "Adding tv show directory" << directories.at(i).path;
-            m_directories.append(directories.at(i));
+    for (auto& dir : directories) {
+        if (dir.path.isReadable()) {
+            qDebug() << "Adding tv show directory" << dir.path.path();
+            m_directories.append(dir);
+        } else {
+            qDebug() << "Tv show directory is not redable, skipping:" << dir.path.path();
         }
     }
 }
@@ -60,11 +57,11 @@ void TvShowFileSearcher::reload(bool force)
         if (m_aborted) {
             return;
         }
-
-        QVector<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
+        QString path = dir.path.path();
+        QVector<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
-            Manager::instance()->database()->clearTvShows(dir.path);
-            getTvShows(dir.path, contents);
+            Manager::instance()->database()->clearTvShows(path);
+            getTvShows(path, contents);
 
         } else {
             dbShows.append(showsFromDatabase);
@@ -94,16 +91,16 @@ void TvShowFileSearcher::reload(bool force)
         QString path;
         int index = -1;
         for (int i = 0, n = m_directories.count(); i < n; ++i) {
-            if (it.key().startsWith(m_directories[i].path)) {
+            if (it.key().startsWith(m_directories[i].path.path())) {
                 if (index == -1) {
                     index = i;
-                } else if (m_directories[index].path.length() < m_directories[i].path.length()) {
+                } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
                     index = i;
                 }
             }
         }
         if (index != -1) {
-            path = m_directories[index].path;
+            path = m_directories[index].path.path();
         }
 
         TvShow* show = new TvShow(it.key(), this);
@@ -218,16 +215,16 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
             return;
         }
 
-        if (showDir.startsWith(m_directories[i].path)) {
+        if (showDir.startsWith(m_directories[i].path.path())) {
             if (index == -1) {
                 index = i;
-            } else if (m_directories[index].path.length() < m_directories[i].path.length()) {
+            } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
                 index = i;
             }
         }
     }
     if (index != -1) {
-        path = m_directories[index].path;
+        path = m_directories[index].path.path();
     }
 
     // search for contents

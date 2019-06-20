@@ -32,7 +32,7 @@ void DirectorySettings::saveSettings()
         const int size = directories.count();
         for (int i = 0; i < size; ++i) {
             m_settings->setArrayIndex(i);
-            m_settings->setValue("path", directories.at(i).path);
+            m_settings->setValue("path", directories.at(i).path.path());
             m_settings->setValue("sepFolders", directories.at(i).separateFolders);
             m_settings->setValue("autoReload", directories.at(i).autoReload);
         }
@@ -47,7 +47,7 @@ void DirectorySettings::saveSettings()
     m_settings->beginWriteArray("Directories/TvShows");
     for (int i = 0, n = m_tvShowDirectories.count(); i < n; ++i) {
         m_settings->setArrayIndex(i);
-        m_settings->setValue("path", m_tvShowDirectories.at(i).path);
+        m_settings->setValue("path", m_tvShowDirectories.at(i).path.path());
         m_settings->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
     }
     m_settings->endArray();

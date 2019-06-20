@@ -6,7 +6,15 @@
 #include <QHash>
 #include <QObject>
 #include <QTime>
+#include <QVector>
+#include <memory>
 
+/// MovieFileSearcher is responsible for (re-)loading all movie inside
+/// given directories.
+///
+/// Usage:
+///   MovieFileSearcher searcher;
+///   searcher.setMovieDirectories(directories);
 class MovieFileSearcher : public QObject
 {
     Q_OBJECT
@@ -15,6 +23,7 @@ public:
     ~MovieFileSearcher() override = default;
 
     void setMovieDirectories(QVector<SettingsDir> directories);
+
     void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,

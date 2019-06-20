@@ -4,6 +4,7 @@
 
 #include <QDate>
 #include <QDebug>
+#include <QDir>
 #include <QImage>
 #include <QMap>
 #include <QMetaType>
@@ -204,7 +205,7 @@ enum class MovieSetArtworkType : int
 
 struct SettingsDir
 {
-    QString path;
+    QDir path;
     bool separateFolders;
     bool autoReload;
 };

@@ -91,7 +91,7 @@ int MakeMkvDialog::exec()
 
     ui->comboImportDir->clear();
     for (const SettingsDir& dir : Settings::instance()->directorySettings().movieDirectories()) {
-        ui->comboImportDir->addItem(dir.path, dir.separateFolders);
+        ui->comboImportDir->addItem(dir.path.path(), dir.separateFolders);
     }
 
     ui->btnImport->setVisible(false);
