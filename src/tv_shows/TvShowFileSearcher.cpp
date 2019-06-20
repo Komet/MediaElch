@@ -396,11 +396,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
  */
 QStringList TvShowFileSearcher::getFiles(QString path)
 {
-    if (Settings::instance()->advanced()->tvShowFilters().isEmpty()) {
-        return QStringList();
-    }
-
-    return QDir(path).entryList(Settings::instance()->advanced()->tvShowFilters(), QDir::Files | QDir::System);
+    return Settings::instance()->advanced()->tvShowFilters().files(QDir(path));
 }
 
 void TvShowFileSearcher::abort()

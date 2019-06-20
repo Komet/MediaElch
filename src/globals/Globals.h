@@ -202,9 +202,6 @@ enum class MovieSetArtworkType : int
     SingleArtworkFolder
 };
 
-/**
- * @brief The SettingsDir struct
- */
 struct SettingsDir
 {
     QString path;

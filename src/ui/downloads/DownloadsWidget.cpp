@@ -166,9 +166,9 @@ bool DownloadsWidget::isPackage(QFileInfo file) const
 bool DownloadsWidget::isImportable(QFileInfo file) const
 {
     QStringList filters;
-    filters << Settings::instance()->advanced()->movieFilters();
-    filters << Settings::instance()->advanced()->tvShowFilters();
-    filters << Settings::instance()->advanced()->concertFilters();
+    filters << Settings::instance()->advanced()->movieFilters().filters();
+    filters << Settings::instance()->advanced()->tvShowFilters().filters();
+    filters << Settings::instance()->advanced()->concertFilters().filters();
     filters.removeDuplicates();
 
     for (const QString& filter : filters) {
@@ -183,7 +183,7 @@ bool DownloadsWidget::isImportable(QFileInfo file) const
 
 bool DownloadsWidget::isSubtitle(QFileInfo file) const
 {
-    for (const QString& filter : Settings::instance()->advanced()->subtitleFilters()) {
+    for (const QString& filter : Settings::instance()->advanced()->subtitleFilters().filters()) {
         QRegExp rx(filter);
         rx.setPatternSyntax(QRegExp::Wildcard);
         if (rx.exactMatch(file.fileName())) {

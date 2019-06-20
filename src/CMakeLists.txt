@@ -4,6 +4,7 @@ add_subdirectory(concerts)
 add_subdirectory(data)
 add_subdirectory(downloads)
 add_subdirectory(export)
+add_subdirectory(file)
 add_subdirectory(globals)
 add_subdirectory(image)
 add_subdirectory(media_centers)
@@ -38,6 +39,7 @@ target_link_libraries(
     mediaelch_data
     mediaelch_downloads
     mediaelch_export
+    mediaelch_file
     mediaelch_globals
     mediaelch_image
     mediaelch_image_providers

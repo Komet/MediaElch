@@ -1,5 +1,6 @@
 #pragma once
 
+#include "file/FileFilter.h"
 #include "globals/Globals.h"
 
 #include <QByteArray>
@@ -20,10 +21,12 @@ public:
     QLocale locale() const;
     QStringList sortTokens() const;
     QHash<QString, QString> genreMappings() const;
-    QStringList movieFilters() const;
-    QStringList concertFilters() const;
-    QStringList tvShowFilters() const;
-    QStringList subtitleFilters() const;
+
+    const mediaelch::FileFilter& movieFilters() const;
+    const mediaelch::FileFilter& concertFilters() const;
+    const mediaelch::FileFilter& tvShowFilters() const;
+    const mediaelch::FileFilter& subtitleFilters() const;
+
     QHash<QString, QString> audioCodecMappings() const;
     QHash<QString, QString> videoCodecMappings() const;
     QHash<QString, QString> certificationMappings() const;
@@ -41,10 +44,10 @@ private:
     QLocale m_locale;
     QStringList m_sortTokens;
     QHash<QString, QString> m_genreMappings;
-    QStringList m_movieFilters;
-    QStringList m_concertFilters;
-    QStringList m_tvShowFilters;
-    QStringList m_subtitleFilters;
+    mediaelch::FileFilter m_movieFilters;
+    mediaelch::FileFilter m_concertFilters;
+    mediaelch::FileFilter m_tvShowFilters;
+    mediaelch::FileFilter m_subtitleFilters;
     QHash<QString, QString> m_audioCodecMappings;
     QHash<QString, QString> m_videoCodecMappings;
     QHash<QString, QString> m_certificationMappings;

@@ -57,7 +57,7 @@ private:
     QVector<TvShowEpisode*> m_episodes;
     Renamer::RenameType m_renameType;
     bool m_filesRenamed;
-    QStringList m_extraFiles;
+    mediaelch::FileFilter m_extraFiles;
     bool m_renameErrorOccured;
 
     void renameType(const bool isDryRun);

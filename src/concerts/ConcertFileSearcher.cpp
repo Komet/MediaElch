@@ -243,11 +243,8 @@ void ConcertFileSearcher::scanDir(QString startPath,
  */
 QStringList ConcertFileSearcher::getFiles(QString path)
 {
-    if (Settings::instance()->advanced()->concertFilters().isEmpty()) {
-        return QStringList();
-    }
-
-    return QDir(path).entryList(Settings::instance()->advanced()->concertFilters(), QDir::Files | QDir::System);
+    const auto& fileFilter = Settings::instance()->advanced()->concertFilters();
+    return fileFilter.files(QDir(path));
 }
 
 void ConcertFileSearcher::abort()
