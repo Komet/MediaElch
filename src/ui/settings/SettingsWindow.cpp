@@ -293,35 +293,25 @@ void SettingsWindow::loadSettings()
     ui->dirs->clearContents();
     QVector<SettingsDir> movieDirectories = m_settings->directorySettings().movieDirectories();
     for (int i = 0, n = movieDirectories.count(); i < n; ++i) {
-        addDir(movieDirectories.at(i).path.path(),
-            movieDirectories.at(i).separateFolders,
-            movieDirectories.at(i).autoReload,
-            SettingsDirType::Movies);
+        addDir(movieDirectories.at(i), SettingsDirType::Movies);
     }
     QVector<SettingsDir> tvShowDirectories = m_settings->directorySettings().tvShowDirectories();
     for (int i = 0, n = tvShowDirectories.count(); i < n; ++i) {
-        addDir(tvShowDirectories.at(i).path.path(),
-            tvShowDirectories.at(i).separateFolders,
-            tvShowDirectories.at(i).autoReload,
-            SettingsDirType::TvShows);
+        addDir(tvShowDirectories.at(i), SettingsDirType::TvShows);
     }
     QVector<SettingsDir> concertDirectories = m_settings->directorySettings().concertDirectories();
     for (int i = 0, n = concertDirectories.count(); i < n; ++i) {
-        addDir(concertDirectories.at(i).path.path(),
-            concertDirectories.at(i).separateFolders,
-            concertDirectories.at(i).autoReload,
-            SettingsDirType::Concerts);
+        addDir(concertDirectories.at(i), SettingsDirType::Concerts);
     }
     QVector<SettingsDir> downloadDirectories = m_settings->directorySettings().downloadDirectories();
     for (int i = 0, n = downloadDirectories.count(); i < n; ++i) {
-        addDir(downloadDirectories.at(i).path.path(), false, false, SettingsDirType::Downloads);
+        SettingsDir dir;
+        dir.path = downloadDirectories.at(i).path;
+        addDir(downloadDirectories.at(i), SettingsDirType::Downloads);
     }
     QVector<SettingsDir> musicDirectories = m_settings->directorySettings().musicDirectories();
     for (int i = 0, n = musicDirectories.count(); i < n; ++i) {
-        addDir(musicDirectories.at(i).path.path(),
-            musicDirectories.at(i).separateFolders,
-            musicDirectories.at(i).autoReload,
-            SettingsDirType::Music);
+        addDir(musicDirectories.at(i), SettingsDirType::Music);
     }
 
     dirListRowChanged(ui->dirs->currentRow());
@@ -543,9 +533,9 @@ void SettingsWindow::saveSettings()
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
-void SettingsWindow::addDir(QDir directory, bool separateFolders, bool autoReload, SettingsDirType dirType)
+void SettingsWindow::addDir(SettingsDir directory, SettingsDirType dirType)
 {
-    QString dir = QDir::toNativeSeparators(directory.path());
+    QString dir = QDir::toNativeSeparators(directory.path.path());
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i = 0, n = ui->dirs->rowCount(); i < n; ++i) {
@@ -561,20 +551,16 @@ void SettingsWindow::addDir(QDir directory, bool separateFolders, bool autoReloa
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
             auto itemCheck = new QTableWidgetItem();
-            if (separateFolders) {
+            if (directory.separateFolders) {
                 itemCheck->setCheckState(Qt::Checked);
             } else {
                 itemCheck->setCheckState(Qt::Unchecked);
             }
 
-            auto itemCheckReload = new QTableWidgetItem();
-            if (autoReload) {
-                itemCheckReload->setCheckState(Qt::Checked);
-            } else {
-                itemCheckReload->setCheckState(Qt::Unchecked);
-            }
+            auto* itemCheckReload = new QTableWidgetItem();
+            itemCheckReload->setCheckState(directory.autoReload ? Qt::Checked : Qt::Unchecked);
 
-            auto box = new QComboBox();
+            auto* box = new QComboBox();
             box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
             box->addItems(
@@ -675,9 +661,11 @@ void SettingsWindow::onUseProxy()
 
 void SettingsWindow::chooseDirToAdd()
 {
-    QString dir = QFileDialog::getExistingDirectory(
-        this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
-    if (!dir.isEmpty()) {
+    QDir path(QFileDialog::getExistingDirectory(
+        this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath()));
+    if (!path.isReadable()) {
+        SettingsDir dir;
+        dir.path = path;
         addDir(dir);
     }
 }
