@@ -24,6 +24,13 @@
 #include "ui/notifications/NotificationBox.h"
 #include "ui/settings/ExportTemplateWidget.h"
 
+// The directory table has four columns. We define the indices here
+// to avoid more magic numbers
+static constexpr int tableDirectoryTypeIndex = 0;
+static constexpr int tableDirectoryPathIndex = 1;
+static constexpr int tableDirectorySeparateFoldersIndex = 2;
+static constexpr int tableDirectoryReloadIndex = 3;
+
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::SettingsWindow),
@@ -129,6 +136,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     connect(ui->buttonRemoveDir,        &QAbstractButton::clicked, this, &SettingsWindow::removeDir);
     connect(ui->buttonMovieFilesToDirs, &QAbstractButton::clicked, this, &SettingsWindow::organize);
     connect(ui->dirs,                   &QTableWidget::currentCellChanged, this, &SettingsWindow::dirListRowChanged);
+    connect(ui->dirs,                   &QTableWidget::cellChanged,        this, &SettingsWindow::dirListEntryChanged);
     connect(ui->comboMovieSetArtwork,   SIGNAL(currentIndexChanged(int)),  this, SLOT(onComboMovieSetArtworkChanged()));
     connect(ui->btnMovieSetArtworkDir,  &QAbstractButton::clicked, this, &SettingsWindow::onChooseMovieSetArtworkDir);
     connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
@@ -466,18 +474,18 @@ void SettingsWindow::saveSettings()
     QVector<SettingsDir> musicDirectories;
     for (int row = 0, n = ui->dirs->rowCount(); row < n; ++row) {
         SettingsDir dir;
-        dir.path = ui->dirs->item(row, 1)->text();
-        dir.separateFolders = ui->dirs->item(row, 2)->checkState() == Qt::Checked;
-        dir.autoReload = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
+        dir.path = ui->dirs->item(row, tableDirectoryPathIndex)->text();
+        dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
+        dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
         if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
             movieDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 1) {
             tvShowDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 2) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 2) {
             concertDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 3) {
             downloadDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4) {
+        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 4) {
             musicDirectories.append(dir);
         }
     }
@@ -539,7 +547,7 @@ void SettingsWindow::addDir(SettingsDir directory, SettingsDirType dirType)
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i = 0, n = ui->dirs->rowCount(); i < n; ++i) {
-            if (ui->dirs->item(i, 1)->text() == dir) {
+            if (ui->dirs->item(i, tableDirectoryPathIndex)->text() == dir) {
                 exists = true;
             }
         }
@@ -551,11 +559,7 @@ void SettingsWindow::addDir(SettingsDir directory, SettingsDirType dirType)
             item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
             auto itemCheck = new QTableWidgetItem();
-            if (directory.separateFolders) {
-                itemCheck->setCheckState(Qt::Checked);
-            } else {
-                itemCheck->setCheckState(Qt::Unchecked);
-            }
+            itemCheck->setCheckState(directory.separateFolders ? Qt::Checked : Qt::Unchecked);
 
             auto* itemCheckReload = new QTableWidgetItem();
             itemCheckReload->setCheckState(directory.autoReload ? Qt::Checked : Qt::Unchecked);
@@ -577,10 +581,10 @@ void SettingsWindow::addDir(SettingsDir directory, SettingsDirType dirType)
                 box->setCurrentIndex(4);
             }
 
-            ui->dirs->setCellWidget(row, 0, box);
-            ui->dirs->setItem(row, 1, item);
-            ui->dirs->setItem(row, 2, itemCheck);
-            ui->dirs->setItem(row, 3, itemCheckReload);
+            ui->dirs->setCellWidget(row, tableDirectoryTypeIndex, box);
+            ui->dirs->setItem(row, tableDirectoryPathIndex, item);
+            ui->dirs->setItem(row, tableDirectorySeparateFoldersIndex, itemCheck);
+            ui->dirs->setItem(row, tableDirectoryReloadIndex, itemCheckReload);
 
             connect(box, SIGNAL(currentIndexChanged(int)), this, SLOT(onDirTypeChanged()));
             onDirTypeChanged(box);
@@ -635,18 +639,34 @@ void SettingsWindow::organize()
 void SettingsWindow::dirListRowChanged(int currentRow)
 {
     if (currentRow < 0 || currentRow >= ui->dirs->rowCount()) {
+        // Somehow out of bounds?
         ui->buttonRemoveDir->setDisabled(true);
         ui->buttonMovieFilesToDirs->setDisabled(true);
-    } else {
-        ui->buttonRemoveDir->setDisabled(false);
-        if (ui->dirs->cellWidget(currentRow, 0) != nullptr
-            && static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
-            && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
-            ui->buttonMovieFilesToDirs->setDisabled(false);
-        } else {
-            ui->buttonMovieFilesToDirs->setDisabled(true);
-        }
+        return;
     }
+    ui->buttonRemoveDir->setDisabled(false);
+    auto* typeWidget = ui->dirs->cellWidget(currentRow, 0);
+    if (typeWidget != nullptr && static_cast<QComboBox*>(typeWidget)->currentIndex() == 0
+        && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
+        ui->buttonMovieFilesToDirs->setDisabled(false);
+    } else {
+        ui->buttonMovieFilesToDirs->setDisabled(true);
+    }
+}
+
+void SettingsWindow::dirListEntryChanged(int row, int column)
+{
+    if (column != tableDirectoryPathIndex) {
+        return;
+    }
+    QTableWidgetItem* dirCell = ui->dirs->item(row, tableDirectoryPathIndex);
+    if (dirCell == nullptr) {
+        return;
+    }
+    // if the directory is not readable, mark it red
+    const QDir dir(dirCell->text());
+    const QColor color = dir.isReadable() ? QColor(0, 0, 0) : QColor(255, 0, 0);
+    dirCell->setTextColor(color);
 }
 
 void SettingsWindow::onUseProxy()

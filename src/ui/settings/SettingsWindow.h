@@ -39,6 +39,7 @@ private slots:
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
+    void dirListEntryChanged(int row, int column);
     void onComboMovieSetArtworkChanged();
     void onChooseMovieSetArtworkDir();
     void onUseProxy();
