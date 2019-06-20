@@ -206,8 +206,8 @@ enum class MovieSetArtworkType : int
 struct SettingsDir
 {
     QDir path;
-    bool separateFolders;
-    bool autoReload;
+    bool separateFolders = false;
+    bool autoReload = false;
 };
 
 enum class SettingsDirType : int
