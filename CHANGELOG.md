@@ -30,6 +30,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Windows: Update to Qt 5.12 and fix style issues (#678)
  - Kodi: Use new syntax for ratings (#516)
  - Kodi: Add missing "aspect" attribute to thumbs (#665)
+ - Settings: Color paths red if directories are not readable (#730)
 
 ### Internal Improvements
 
