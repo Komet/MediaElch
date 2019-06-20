@@ -46,19 +46,20 @@ void MovieFileSearcher::reload(bool force)
 
     emit progress(0, 0, m_progressMessageId);
 
-    for (const SettingsDir& movieDir : m_directories) {
+    for (const auto& movieDir : m_directories) {
+        QString path = movieDir.path.path();
         if (m_aborted) {
             return;
         }
         QVector<Movie*> moviesFromDb;
         if (!movieDir.autoReload && !force) {
-            moviesFromDb = Manager::instance()->database()->movies(movieDir.path);
+            moviesFromDb = Manager::instance()->database()->movies(path);
         }
 
         if (movieDir.autoReload || force || moviesFromDb.count() == 0) {
-            emit currentDir(movieDir.path);
+            emit currentDir(path);
             qApp->processEvents();
-            Manager::instance()->database()->clearMovies(movieDir.path);
+            Manager::instance()->database()->clearMovies(path);
             QMap<QString, QStringList> contents;
             if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {
                 continue;
@@ -66,7 +67,7 @@ void MovieFileSearcher::reload(bool force)
 
             qDebug() << "Scanning directory: " << movieDir.path;
             QString lastDir;
-            QDirIterator it(movieDir.path,
+            QDirIterator it(path,
                 Settings::instance()->advanced()->movieFilters().filters(),
                 QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
                 QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
@@ -149,7 +150,7 @@ void MovieFileSearcher::reload(bool force)
             }
             movieSum += contents.count();
             MovieContents con;
-            con.path = movieDir.path;
+            con.path = path;
             con.inSeparateFolder = movieDir.separateFolders;
             con.contents = contents;
             c.append(con);
@@ -324,18 +325,16 @@ Movie* MovieFileSearcher::loadMovieData(Movie* movie)
     return movie;
 }
 
-/**
- * @brief Sets the directories to scan for movies. Not existing directories are skipped.
- * @param directories List of directories
- */
+/// Sets the directories to scan for movies. Not readable directories are skipped.
 void MovieFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
-    for (int i = 0, n = directories.count(); i < n; ++i) {
-        QFileInfo fi(directories.at(i).path);
-        if (fi.isDir()) {
-            qDebug() << "Adding movie directory" << directories.at(i).path;
-            m_directories.append(directories.at(i));
+    for (auto& dir : directories) {
+        if (dir.path.isReadable()) {
+            qDebug() << "Adding movie directory" << dir.path.path();
+            m_directories.append(dir);
+        } else {
+            qDebug() << "Movie directory is not redable, skipping:" << dir.path.path();
         }
     }
 }
@@ -457,11 +456,7 @@ void MovieFileSearcher::scanDir(QString startPath,
     }
 }
 
-/**
- * @brief Get a list of files in a directory
- * @param path
- * @return
- */
+/// Get a list of files in a directory
 QStringList MovieFileSearcher::getFiles(QString path)
 {
     const auto& filters = Settings::instance()->advanced()->movieFilters();

@@ -18,18 +18,16 @@ ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
 {
 }
 
-/**
- * @brief Sets the directories to scan for concerts. Not existing directories are skipped.
- * @param directories List of directories
- */
 void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
 
-    for (const auto& directory : directories) {
-        QFileInfo fi(directory.path);
-        if (fi.isDir()) {
-            m_directories.append(directory);
+    for (const auto& dir : directories) {
+        if (dir.path.isReadable()) {
+            qDebug() << "Adding concert directory" << dir.path.path();
+            m_directories.append(dir);
+        } else {
+            qDebug() << "Movie directory is not redable, skipping:" << dir.path.path();
         }
     }
 }
@@ -55,11 +53,11 @@ void ConcertFileSearcher::reload(bool force)
         if (m_aborted) {
             return;
         }
-
-        QVector<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        QString path = dir.path.path();
+        QVector<Concert*> concertsFromDb = Manager::instance()->database()->concerts(path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
-            Manager::instance()->database()->clearConcerts(dir.path);
-            scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+            Manager::instance()->database()->clearConcerts(path);
+            scanDir(path, path, contents, dir.separateFolders, true);
         } else {
             dbConcerts.append(concertsFromDb);
         }
@@ -83,17 +81,17 @@ void ConcertFileSearcher::reload(bool force)
         if (!files.isEmpty()) {
             int index = -1;
             for (int i = 0, n = m_directories.count(); i < n; ++i) {
-                if (files.at(0).startsWith(m_directories[i].path)) {
+                if (files.at(0).startsWith(m_directories[i].path.path())) {
                     if (index == -1) {
                         index = i;
-                    } else if (m_directories[index].path.length() < m_directories[i].path.length()) {
+                    } else if (m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
                         index = i;
                     }
                 }
             }
             if (index != -1) {
                 inSeparateFolder = m_directories[index].separateFolders;
-                path = m_directories[index].path;
+                path = m_directories[index].path.path();
             }
         }
         Concert* const concert = new Concert(files, this);

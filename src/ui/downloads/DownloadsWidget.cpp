@@ -69,7 +69,7 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
     for (SettingsDir settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
-        QString dir = settingsDir.path;
+        QString dir = settingsDir.path.path();
         QDirIterator it(dir,
             QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
             QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
@@ -455,7 +455,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
     bool sub = false;
     if (type == "movie") {
         for (SettingsDir dir : Settings::instance()->directorySettings().movieDirectories()) {
-            detailBox->addItem(dir.path);
+            detailBox->addItem(dir.path.path());
             sub = true;
         }
     } else if (type == "tvshow") {
@@ -465,7 +465,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
         }
     } else if (type == "concert") {
         for (SettingsDir dir : Settings::instance()->directorySettings().concertDirectories()) {
-            detailBox->addItem(dir.path);
+            detailBox->addItem(dir.path.path());
             sub = true;
         }
     }

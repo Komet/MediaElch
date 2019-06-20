@@ -143,17 +143,17 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     QString path;
     int index = -1;
     for (int i = 0, n = Settings::instance()->directorySettings().tvShowDirectories().count(); i < n; ++i) {
-        if (tvShow->dir().startsWith(Settings::instance()->directorySettings().tvShowDirectories().at(i).path)) {
+        if (tvShow->dir().startsWith(Settings::instance()->directorySettings().tvShowDirectories().at(i).path.path())) {
             if (index == -1) {
                 index = i;
-            } else if (Settings::instance()->directorySettings().tvShowDirectories().at(index).path.length()
-                       < Settings::instance()->directorySettings().tvShowDirectories().at(i).path.length()) {
+            } else if (Settings::instance()->directorySettings().tvShowDirectories().at(index).path.path().length()
+                       < Settings::instance()->directorySettings().tvShowDirectories().at(i).path.path().length()) {
                 index = i;
             }
         }
     }
     if (index != -1) {
-        path = Settings::instance()->directorySettings().tvShowDirectories().at(index).path;
+        path = Settings::instance()->directorySettings().tvShowDirectories().at(index).path.path();
     }
     m_importDir = path;
 

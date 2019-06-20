@@ -18,9 +18,11 @@ void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
     for (SettingsDir dir : directories) {
-        QFileInfo fi(dir.path);
-        if (fi.isDir()) {
+        if (dir.path.isReadable()) {
+            qDebug() << "Adding music directory" << dir.path.path();
             m_directories.append(dir);
+        } else {
+            qDebug() << "Music directory is not redable, skipping:" << dir.path.path();
         }
     }
 }
@@ -49,11 +51,11 @@ void MusicFileSearcher::reload(bool force)
         }
 
         if (dir.autoReload) {
-            Manager::instance()->database()->clearArtists(dir.path);
+            Manager::instance()->database()->clearArtists(dir.path.path());
         }
 
         if (dir.autoReload || force) {
-            QDirIterator it(dir.path, QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
+            QDirIterator it(dir.path.path(), QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
             while (it.hasNext()) {
                 if (m_aborted) {
                     break;
@@ -65,7 +67,7 @@ void MusicFileSearcher::reload(bool force)
                 Artist* artist = new Artist(it.filePath(), this);
                 artist->setName(it.fileInfo().baseName());
                 artists.append(artist);
-                artistPaths.insert(artist, dir.path);
+                artistPaths.insert(artist, dir.path.path());
 
                 QDirIterator itAlbums(it.filePath(), QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
                 while (itAlbums.hasNext()) {
@@ -83,14 +85,14 @@ void MusicFileSearcher::reload(bool force)
                     album->setArtistObj(artist);
                     artist->addAlbum(album);
                     albums.append(album);
-                    albumPaths.insert(album, dir.path);
+                    albumPaths.insert(album, dir.path.path());
                 }
             }
         } else {
-            QVector<Artist*> artistsInPath = Manager::instance()->database()->artists(dir.path);
+            QVector<Artist*> artistsInPath = Manager::instance()->database()->artists(dir.path.path());
             for (Artist* artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
-                    emit currentDir(artist->path().mid(dir.path.length()));
+                    emit currentDir(artist->path().mid(dir.path.path().length()));
                 }
                 QVector<Album*> albumsOfArtist = Manager::instance()->database()->albums(artist);
                 artistsFromDb.append(artist);
@@ -144,7 +146,7 @@ void MusicFileSearcher::reload(bool force)
         artistModelItems.insert(artist, artistItem);
     }
     for (Album* album : albums) {
-        MusicModelItem* artistItem = artistModelItems.value(album->artistObj(), 0);
+        MusicModelItem* artistItem = artistModelItems.value(album->artistObj(), nullptr);
         if (artistItem == nullptr) {
             qWarning() << "Artist item was not found for album" << album->path();
             continue;
