@@ -17,5 +17,6 @@ target_link_libraries(
     Qt5::Network
     Qt5::Xml
     Qt5::Concurrent
+    Qt5::OpenGL
 )
 mediaelch_post_target_defaults(mediaelch_ui_music)
