@@ -43,7 +43,7 @@ check_dependencies_linux() {
 	echo "Checking package dependencies for Linux"
 	echo ""
 
-	require_package_apt libcurl4-openssl-dev
+	require_package_apt libcurl3-gnutls # or libcurl4-openssl-dev
 	require_package_apt libmediainfo-dev
 	require_package_apt libpulse-dev
 	require_package_apt zlib1g-dev

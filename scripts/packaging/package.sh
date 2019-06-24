@@ -80,9 +80,11 @@ gather_information() {
 
 	if [[ ! "$GIT_VERSION" = "$VERSION" ]]; then
 		echo ""
-		print_error    "Git version and MediaElch version do not match!"
-		print_error    "Add a new Git tag using:"
-		print_critical "  git tag -a v1.1.0 -m \"Version 1.1.0\""
+		print_error  "Git version and MediaElch version do not match!"
+		print_error  "Add a new Git tag using:"
+		print_error  "  git tag -a v1.1.0 -m \"Version 1.1.0\""
+		echo         ""
+		print_error  "Will still continue"
 	fi
 
 	popd > /dev/null
@@ -100,7 +102,11 @@ confirm_build() {
 package_appimage() {
 	check_dependencies_linux_appimage
 
-	$SCRIPT_DIR/build_release.sh linux
+	if [ ! -d "${BUILD_DIR}" ]; then
+		$SCRIPT_DIR/../build_release.sh linux
+	fi
+
+	# sudo apt install qt5-style-plugins
 
 	pushd "${BUILD_DIR}" > /dev/null
 	echo ""
@@ -109,8 +115,9 @@ package_appimage() {
 	# Workaround for: https://github.com/probonopd/linuxdeployqt/issues/65
 	unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
 	# linuxdeployqt uses $VERSION this for naming the file
+	export VERSION;
 
-	if [[ ! "$PATH" = *"qt"* ]]; then
+	if [[ ! "$PATH" = *"qt"* ]] && [[ ! "$PATH" = *"Qt"* ]]; then
 		print_critical "/path/to/qt/bin must be in your \$PATH, e.g. \nexport PATH=\"\$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin\""
 	fi
 
@@ -122,21 +129,23 @@ package_appimage() {
 	# Download linuxdeployqt
 
 	echo ""
+	pushd "${PROJECT_DIR}" > /dev/null
 	print_info "Downloading linuxdeployqt"
-	DEPLOYQT="${PROJECT_DIR}/linuxdeployqt.AppImage"
-	if [ ! -f "$DEPLOYQT" ]; then
-		wget --output-document "${PROJECT_DIR}/linuxdeployqt.AppImage" \
-			https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+	if [ ! -f linuxdeploy-x86_64.AppImage ] || [ ! -f linuxdeploy-plugin-qt-x86_64.AppImage ]; then
+		wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+		wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+		wget https://github.com/TheAssassin/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh
 	fi
-	chmod u+x $DEPLOYQT
+	chmod u+x linuxdeploy*.AppImage linuxdeploy*.sh
+	popd > /dev/null
 
 	#######################################################
 	# Install MediaElch into subdirectory
 
 	echo ""
 	print_info "Installing MediaElch in subdirectory to create basic AppDir structure"
-	make INSTALL_ROOT=appdir -j $(nproc) install
-	find appdir/
+	make INSTALL_ROOT=appdir -j$(nproc) install
+	tree appdir/
 
 	#######################################################
 	# Copy libmediainfo
@@ -154,17 +163,21 @@ package_appimage() {
 	# Download and copy ffmpeg
 
 	echo ""
-	print_info "Downloading ffmpeg"
-	# Use static ffmpeg
-	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
-	ffmpeg_md5="d5828f8cc093812041570860c50d5a28  ffmpeg.tar.xz"
-	if [ "$(md5sum ffmpeg.tar.xz)" = "${ffmpeg_md5}" ]; then
-		print_info "FFMPEG MD5 checksum is valid"
+	if [ -f ffmpeg.tar.xz ]; then
+		echo "Using existing ffmpeg"
 	else
-		print_error "MD5 checksum no valid"
-		print_error "  Expected: ${ffmpeg_md5}"
-		print_error "  Was:      $(md5sum ffmpeg.tar.xz)"
-		exit 1
+		print_info "Downloading ffmpeg"
+		# Use static ffmpeg
+		wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
+		ffmpeg_md5="d5828f8cc093812041570860c50d5a28  ffmpeg.tar.xz"
+		if [ "$(md5sum ffmpeg.tar.xz)" = "${ffmpeg_md5}" ]; then
+			print_info "FFMPEG MD5 checksum is valid"
+		else
+			print_error "MD5 checksum no valid"
+			print_error "  Expected: ${ffmpeg_md5}"
+			print_error "  Was:      $(md5sum ffmpeg.tar.xz)"
+			exit 1
+		fi
 	fi
 	tar -xJvf ffmpeg.tar.xz
 	print_info "Copying ffmpeg into AppDir"
@@ -173,20 +186,23 @@ package_appimage() {
 	#######################################################
 	# Create AppImage
 
+	print_error "AppImage creation is currently broken."
+	print_error "We need to update to linuxdeploy with the qt plugin."
+	exit 1
+
 	echo ""
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
-	$DEPLOYQT appdir/usr/share/applications/MediaElch.desktop -verbose=1 -bundle-non-qt-libs -qmldir=../src/ui
-	$DEPLOYQT --appimage-extract
-	export PATH=$(readlink -f ./squashfs-root/usr/bin):$PATH
-	# Workaround to increase compatibility with older systems
-	# see https://github.com/darealshinji/AppImageKit-checkrt for details
-	mkdir -p appdir/usr/optional/libstdc++/
-	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/exec-x86_64.so -O ./appdir/usr/optional/exec.so
-	cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 ./appdir/usr/optional/libstdc++/
-	rm appdir/AppRun
-	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/AppRun-patched-x86_64 -O appdir/AppRun
-	chmod a+x appdir/AppRun
-	./squashfs-root/usr/bin/appimagetool -g ./appdir/ MediaElch-${VERSION}-x86_64.AppImage
+	export QML_SOURCES_PATHS="${PROJECT_DIR}/src/ui"
+	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir \
+		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
+		--plugin qt --plugin checkrt \
+		--output appimage
+	"${PROJECT_DIR}/linuxdeploy-plugin-qt-x86_64.AppImage" --extra-plugin qt5dxcb-plugin --appdir=appdir
+	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir \
+		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
+		--plugin qt --plugin checkrt \
+		--output appimage
+
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 
 	#######################################################
