@@ -106,8 +106,8 @@ mediaelch_post_target_defaults(mediaelch)
 # ------------------------------------------------------------------------------
 # Installation
 install(TARGETS mediaelch RUNTIME DESTINATION bin RENAME MediaElch)
-install(FILES desktop/MediaElch.desktop DESTINATION share/applications)
-install(FILES desktop/MediaElch.png DESTINATION share/pixmaps)
+install(FILES data/desktop/MediaElch.desktop DESTINATION share/applications)
+install(FILES data/desktop/MediaElch.png DESTINATION share/pixmaps)
 
 # ------------------------------------------------------------------------------
 # Testing
