@@ -1,5 +1,9 @@
 add_library(
-  mediaelch_ui_settings OBJECT ExportTemplateWidget.cpp SettingsWindow.cpp
+  mediaelch_ui_settings
+  OBJECT
+  ExportTemplateWidget.cpp
+  GlobalSettingsWidget.cpp
+  SettingsWindow.cpp
 )
 
 if(APPLE)
