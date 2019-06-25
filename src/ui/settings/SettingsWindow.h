@@ -35,7 +35,7 @@ protected:
 private slots:
     void onAction();
     void chooseDirToAdd();
-    void addDir(SettingsDir directory, SettingsDirType dirType = SettingsDirType::Movies);
+    void addDir(const SettingsDir& directory, SettingsDirType dirType = SettingsDirType::Movies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
