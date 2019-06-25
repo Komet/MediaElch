@@ -541,7 +541,7 @@ void SettingsWindow::saveSettings()
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
-void SettingsWindow::addDir(SettingsDir directory, SettingsDirType dirType)
+void SettingsWindow::addDir(const SettingsDir& directory, SettingsDirType dirType)
 {
     QString dir = QDir::toNativeSeparators(directory.path.path());
     if (!dir.isEmpty()) {
@@ -687,7 +687,7 @@ void SettingsWindow::chooseDirToAdd()
 {
     QDir path(QFileDialog::getExistingDirectory(
         this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath()));
-    if (!path.isReadable()) {
+    if (path.isReadable()) {
         SettingsDir dir;
         dir.path = path;
         addDir(dir);
