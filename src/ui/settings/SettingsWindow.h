@@ -34,12 +34,6 @@ protected:
 
 private slots:
     void onAction();
-    void chooseDirToAdd();
-    void addDir(const SettingsDir& directory, SettingsDirType dirType = SettingsDirType::Movies);
-    void removeDir();
-    void organize();
-    void dirListRowChanged(int currentRow);
-    void dirListEntryChanged(int row, int column);
     void onComboMovieSetArtworkChanged();
     void onChooseMovieSetArtworkDir();
     void onUseProxy();
@@ -50,12 +44,11 @@ private slots:
     void onTemplateUninstalled(ExportTemplate* exportTemplate, bool success);
     void onChooseUnrar();
     void onChooseMakeMkvCon();
-    void onDirTypeChanged(QComboBox* comboBox = nullptr);
     void onShowAdultScrapers();
 
 private:
-    Ui::SettingsWindow* ui;
-    Settings* m_settings;
+    Ui::SettingsWindow* ui = nullptr;
+    Settings* m_settings = nullptr;
     QMap<const MovieScraperInterface*, int> m_scraperRows;
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
