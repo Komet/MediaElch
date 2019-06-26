@@ -5,6 +5,7 @@ add_library(
   ExportSettingsWidget.cpp
   ImportSettingsWidget.cpp
   GlobalSettingsWidget.cpp
+  ScraperSettingsWidget.cpp
   SettingsWindow.cpp
 )
 
