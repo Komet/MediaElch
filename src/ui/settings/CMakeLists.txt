@@ -3,6 +3,7 @@ add_library(
   OBJECT
   ExportTemplateWidget.cpp
   ExportSettingsWidget.cpp
+  ImportSettingsWidget.cpp
   GlobalSettingsWidget.cpp
   SettingsWindow.cpp
 )

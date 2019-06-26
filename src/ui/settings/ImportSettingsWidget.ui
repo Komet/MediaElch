@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ImportSettingsWidget</class>
+ <widget class="QWidget" name="ImportSettingsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>970</width>
+    <height>625</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_13">
+   <item>
+    <layout class="QFormLayout" name="formLayout_8">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_57">
+       <property name="text">
+        <string>Automatically delete archives after extraction</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QCheckBox" name="chkDeleteArchives">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_58">
+       <property name="text">
+        <string>Path to unrar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLineEdit" name="unrarPath"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnChooseUnrar">
+         <property name="text">
+          <string>Choose</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_53">
+       <property name="text">
+        <string>Path to makemkvcon</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLineEdit" name="makemkvconPath"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnChooseMakemkvcon">
+         <property name="text">
+          <string>Choose</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

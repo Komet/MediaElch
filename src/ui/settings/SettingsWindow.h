@@ -38,8 +38,6 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
-    void onChooseUnrar();
-    void onChooseMakeMkvCon();
     void onShowAdultScrapers();
 
 private:
