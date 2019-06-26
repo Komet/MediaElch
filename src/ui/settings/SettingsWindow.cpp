@@ -5,8 +5,6 @@
 #include <QDebug>
 #include <QFileDialog>
 
-#include "export/ExportTemplate.h"
-#include "export/ExportTemplateLoader.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -19,7 +17,6 @@
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
 #include "ui/notifications/NotificationBox.h"
-#include "ui/settings/ExportTemplateWidget.h"
 
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -55,9 +52,9 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
 
     m_settings = Settings::instance(this);
     ui->globalSettings->setSettings(*m_settings);
+    ui->exportSettings->setSettings(*m_settings);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
-    ui->exportTemplates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
     for (auto* scraper : Manager::instance()->movieScrapers()) {
@@ -124,9 +121,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
     connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
-    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QVector<ExportTemplate *>)), this, SLOT(onTemplatesLoaded(QVector<ExportTemplate *>)));
-    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateInstalled,   this, &SettingsWindow::onTemplateInstalled);
-    connect(ExportTemplateLoader::instance(this), &ExportTemplateLoader::sigTemplateUninstalled, this, &SettingsWindow::onTemplateUninstalled);
     connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &SettingsWindow::onChooseUnrar);
     connect(ui->btnChooseMakemkvcon,    &QAbstractButton::clicked, this, &SettingsWindow::onChooseMakeMkvCon);
     connect(ui->chkEnableAdultScrapers, &QAbstractButton::clicked, this, &SettingsWindow::onShowAdultScrapers);
@@ -195,8 +189,7 @@ SettingsWindow::~SettingsWindow()
 
 void SettingsWindow::show()
 {
-    ui->themesErrorMessage->setText("");
-    loadRemoteTemplates();
+    ui->exportSettings->show();
     loadSettings();
     if (Settings::instance()->settingsWindowSize().isValid()
         && !Settings::instance()->settingsWindowPosition().isNull()) {
@@ -246,6 +239,7 @@ void SettingsWindow::loadSettings()
 {
     m_settings->loadSettings();
     ui->globalSettings->loadSettings();
+    ui->exportSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -375,6 +369,7 @@ void SettingsWindow::saveSettings()
     m_settings->setShowAdultScrapers(ui->chkEnableAdultScrapers->isChecked());
 
     ui->globalSettings->saveSettings();
+    ui->exportSettings->saveSettings();
 
     m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
@@ -445,7 +440,6 @@ void SettingsWindow::onUseProxy()
     ui->proxyPassword->setEnabled(enabled);
 }
 
-
 void SettingsWindow::onComboMovieSetArtworkChanged()
 {
     MovieSetArtworkType value =
@@ -468,49 +462,6 @@ void SettingsWindow::onChooseMovieSetArtworkDir()
         this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
     if (!dir.isEmpty()) {
         ui->movieSetArtworkDir->setText(dir);
-    }
-}
-
-void SettingsWindow::loadRemoteTemplates()
-{
-    ExportTemplateLoader::instance()->getRemoteTemplates();
-}
-
-void SettingsWindow::onTemplatesLoaded(QVector<ExportTemplate*> templates)
-{
-    ui->exportTemplates->clearContents();
-    ui->exportTemplates->setRowCount(0);
-
-    for (ExportTemplate* exportTemplate : templates) {
-        auto widget = new ExportTemplateWidget(ui->exportTemplates);
-        widget->setExportTemplate(exportTemplate);
-
-        int row = ui->exportTemplates->rowCount();
-        ui->exportTemplates->insertRow(row);
-        ui->exportTemplates->setCellWidget(row, 0, widget);
-        widget->adjustSize();
-    }
-}
-
-void SettingsWindow::onTemplateInstalled(ExportTemplate* exportTemplate, bool success)
-{
-    if (success) {
-        ui->themesErrorMessage->setSuccessMessage(
-            tr("Theme \"%1\" was successfully installed").arg(exportTemplate->name()));
-    } else {
-        ui->themesErrorMessage->setErrorMessage(
-            tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
-    }
-}
-
-void SettingsWindow::onTemplateUninstalled(ExportTemplate* exportTemplate, bool success)
-{
-    if (success) {
-        ui->themesErrorMessage->setSuccessMessage(
-            tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
-    } else {
-        ui->themesErrorMessage->setErrorMessage(
-            tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
     }
 }
 
