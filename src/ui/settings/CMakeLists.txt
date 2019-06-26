@@ -2,6 +2,7 @@ add_library(
   mediaelch_ui_settings
   OBJECT
   ExportTemplateWidget.cpp
+  ExportSettingsWidget.cpp
   GlobalSettingsWidget.cpp
   SettingsWindow.cpp
 )

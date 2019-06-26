@@ -11,7 +11,6 @@ namespace Ui {
 class SettingsWindow;
 }
 
-class ExportTemplate;
 class MovieScraperInterface;
 class Settings;
 
@@ -39,9 +38,6 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
-    void onTemplatesLoaded(QVector<ExportTemplate*> templates);
-    void onTemplateInstalled(ExportTemplate* exportTemplate, bool success);
-    void onTemplateUninstalled(ExportTemplate* exportTemplate, bool success);
     void onChooseUnrar();
     void onChooseMakeMkvCon();
     void onShowAdultScrapers();
@@ -55,7 +51,6 @@ private:
 
     void loadSettings();
     void saveSettings();
-    void loadRemoteTemplates();
     QComboBox* comboForMovieScraperInfo(MovieScraperInfos info);
     QString titleForMovieScraperInfo(MovieScraperInfos info);
     QComboBox* comboForTvScraperInfo(TvShowScraperInfos info);

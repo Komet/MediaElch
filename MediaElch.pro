@@ -213,6 +213,7 @@ SOURCES += src/main.cpp \
     src/settings/Settings.cpp \
     src/ui/settings/SettingsWindow.cpp \
     src/ui/settings/GlobalSettingsWidget.cpp \
+    src/ui/settings/ExportSettingsWidget.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
     src/ui/small_widgets/Badge.cpp \
     src/ui/small_widgets/ClosableImage.cpp \
@@ -417,6 +418,7 @@ HEADERS  += Version.h \
     src/settings/Settings.h \
     src/ui/settings/SettingsWindow.h \
     src/ui/settings/GlobalSettingsWidget.h \
+    src/ui/settings/ExportSettingsWidget.h \
     src/ui/small_widgets/AlphabeticalList.h \
     src/ui/small_widgets/Badge.h \
     src/ui/small_widgets/ClosableImage.h \
@@ -516,6 +518,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/ExportTemplateWidget.ui \
     src/ui/settings/SettingsWindow.ui \
     src/ui/settings/GlobalSettingsWidget.ui \
+    src/ui/settings/ExportSettingsWidget.ui \
     src/ui/small_widgets/FilterWidget.ui \
     src/ui/small_widgets/ImageLabel.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \
