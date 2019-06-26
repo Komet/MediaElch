@@ -53,6 +53,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     m_settings = Settings::instance(this);
     ui->globalSettings->setSettings(*m_settings);
     ui->exportSettings->setSettings(*m_settings);
+    ui->importSettings->setSettings(*m_settings);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
@@ -121,8 +122,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
     connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
-    connect(ui->btnChooseUnrar,         &QAbstractButton::clicked, this, &SettingsWindow::onChooseUnrar);
-    connect(ui->btnChooseMakemkvcon,    &QAbstractButton::clicked, this, &SettingsWindow::onChooseMakeMkvCon);
     connect(ui->chkEnableAdultScrapers, &QAbstractButton::clicked, this, &SettingsWindow::onShowAdultScrapers);
     // clang-format on
 
@@ -240,6 +239,7 @@ void SettingsWindow::loadSettings()
     m_settings->loadSettings();
     ui->globalSettings->loadSettings();
     ui->exportSettings->loadSettings();
+    ui->importSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -343,10 +343,6 @@ void SettingsWindow::loadSettings()
         ui->tvScraperTable->setCellWidget(row, 1, comboForTvScraperInfo(info));
     }
 
-    ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
-    ui->unrarPath->setText(m_settings->importSettings().unrar());
-    ui->makemkvconPath->setText(m_settings->importSettings().makeMkvCon());
-
     ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
 }
 
@@ -370,6 +366,7 @@ void SettingsWindow::saveSettings()
 
     ui->globalSettings->saveSettings();
     ui->exportSettings->saveSettings();
+    ui->importSettings->saveSettings();
 
     m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
@@ -410,11 +407,6 @@ void SettingsWindow::saveSettings()
         tvScraper.insert(info, scraper);
     }
     m_settings->setCustomTvScraper(tvScraper);
-
-    // Downloads
-    m_settings->importSettings().setUnrar(ui->unrarPath->text());
-    m_settings->importSettings().setMakeMkvCon(ui->makemkvconPath->text());
-    m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 
     m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());
 
@@ -578,22 +570,6 @@ QString SettingsWindow::titleForTvScraperInfo(const TvShowScraperInfos info)
     case TvShowScraperInfos::Tags: return tr("Tags");
     case TvShowScraperInfos::Actors: return tr("Actors");
     default: return tr("Unsupported");
-    }
-}
-
-void SettingsWindow::onChooseUnrar()
-{
-    QString unrar = QFileDialog::getOpenFileName(this, tr("Choose unrar"), QDir::homePath());
-    if (!unrar.isEmpty()) {
-        ui->unrarPath->setText(unrar);
-    }
-}
-
-void SettingsWindow::onChooseMakeMkvCon()
-{
-    QString makeMkvCon = QFileDialog::getOpenFileName(this, tr("Choose makemkvcon"), QDir::homePath());
-    if (!makeMkvCon.isEmpty()) {
-        ui->makemkvconPath->setText(makeMkvCon);
     }
 }
 
