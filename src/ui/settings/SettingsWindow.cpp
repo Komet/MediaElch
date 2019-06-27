@@ -21,7 +21,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->labelGlobal->font();
+    QFont smallFont = ui->label_44->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->label_44->setFont(smallFont);
     ui->label_45->setFont(smallFont);

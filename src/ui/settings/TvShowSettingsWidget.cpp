@@ -11,7 +11,7 @@ TvShowSettingsWidget::TvShowSettingsWidget(QWidget* parent) : QWidget(parent), u
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->labelGlobal->font();
+    QFont smallFont = ui->label_7->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
 
     ui->label_7->setFont(smallFont);
