@@ -167,79 +167,7 @@
        </layout>
       </widget>
       <widget class="MusicSettingsWidget" name="musicSettings"/>
-      <widget class="QWidget" name="page_kodi">
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
-        <item>
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QFormLayout" name="formLayout">
-          <property name="fieldGrowthPolicy">
-           <enum>QFormLayout::FieldsStayAtSizeHint</enum>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Host</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="xbmcHost">
-            <property name="placeholderText">
-             <string>127.0.0.1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Port</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="xbmcPort">
-            <property name="placeholderText">
-             <string>8080</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_55">
-            <property name="text">
-             <string>User</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_59">
-            <property name="text">
-             <string>Password</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="xbmcUser"/>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="xbmcPassword">
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
+      <widget class="KodiSettingsWidget" name="kodiSettings"/>
       <widget class="QWidget" name="page_network">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -562,6 +490,12 @@
    <class>MusicSettingsWidget</class>
    <extends>QWidget</extends>
    <header>ui/settings/MusicSettingsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KodiSettingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/settings/KodiSettingsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
