@@ -31,13 +31,13 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->musicSettings->setSettings(*m_settings);
     ui->kodiSettings->setSettings(*m_settings);
     ui->concertSettings->setSettings(*m_settings);
+    ui->networkSettings->setSettings(*m_settings);
 
     Helper::removeFocusRect(ui->settingsTabs->widget(9));
 
     // clang-format off
-    connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
-    connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
-    connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
+    connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
+    connect(ui->btnSave,   &QAbstractButton::clicked, this, &SettingsWindow::onSave);
     // clang-format on
 
 #ifdef Q_OS_MAC
@@ -125,16 +125,7 @@ void SettingsWindow::loadSettings()
     ui->musicSettings->loadSettings();
     ui->kodiSettings->loadSettings();
     ui->concertSettings->loadSettings();
-
-    // Proxy
-    const auto& netSettings = m_settings->networkSettings();
-    ui->chkUseProxy->setChecked(netSettings.useProxy());
-    ui->proxyType->setCurrentIndex(netSettings.proxyType());
-    ui->proxyHost->setText(netSettings.proxyHost());
-    ui->proxyPort->setValue(netSettings.proxyPort());
-    ui->proxyUsername->setText(netSettings.proxyUsername());
-    ui->proxyPassword->setText(netSettings.proxyPassword());
-    onUseProxy();
+    ui->networkSettings->loadSettings();
 
     for (auto lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
@@ -176,14 +167,7 @@ void SettingsWindow::saveSettings()
     ui->musicSettings->saveSettings();
     ui->kodiSettings->saveSettings();
     ui->concertSettings->saveSettings();
-
-    // Proxy
-    m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());
-    m_settings->networkSettings().setProxyType(ui->proxyType->currentIndex());
-    m_settings->networkSettings().setProxyHost(ui->proxyHost->text());
-    m_settings->networkSettings().setProxyPort(ui->proxyPort->value());
-    m_settings->networkSettings().setProxyUsername(ui->proxyUsername->text());
-    m_settings->networkSettings().setProxyPassword(ui->proxyPassword->text());
+    ui->networkSettings->saveSettings();
 
     m_settings->saveSettings();
 
@@ -194,14 +178,4 @@ void SettingsWindow::saveSettings()
     manager->concertFileSearcher()->setConcertDirectories(dirs.concertDirectories());
     manager->musicFileSearcher()->setMusicDirectories(dirs.musicDirectories());
     NotificationBox::instance()->showMessage(tr("Settings saved"));
-}
-
-void SettingsWindow::onUseProxy()
-{
-    bool enabled = ui->chkUseProxy->isChecked();
-    ui->proxyType->setEnabled(enabled);
-    ui->proxyHost->setEnabled(enabled);
-    ui->proxyPort->setEnabled(enabled);
-    ui->proxyUsername->setEnabled(enabled);
-    ui->proxyPassword->setEnabled(enabled);
 }

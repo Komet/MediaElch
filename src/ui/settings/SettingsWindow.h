@@ -31,7 +31,6 @@ protected:
 
 private slots:
     void onAction();
-    void onUseProxy();
     void onSave();
     void onCancel();
 
