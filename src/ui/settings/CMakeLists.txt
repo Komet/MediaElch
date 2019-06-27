@@ -9,6 +9,7 @@ add_library(
   KodiSettingsWidget.cpp
   MovieSettingsWidget.cpp
   MusicSettingsWidget.cpp
+  NetworkSettingsWidget.cpp
   ScraperSettingsWidget.cpp
   SettingsWindow.cpp
   TvShowSettingsWidget.cpp

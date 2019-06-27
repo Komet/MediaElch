@@ -219,6 +219,7 @@ SOURCES += src/main.cpp \
     src/ui/settings/KodiSettingsWidget.cpp \
     src/ui/settings/MovieSettingsWidget.cpp \
     src/ui/settings/MusicSettingsWidget.cpp \
+    src/ui/settings/NetworkSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
     src/ui/settings/TvShowSettingsWidget.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
@@ -431,6 +432,7 @@ HEADERS  += Version.h \
     src/ui/settings/KodiSettingsWidget.h \
     src/ui/settings/MovieSettingsWidget.h \
     src/ui/settings/MusicSettingsWidget.h \
+    src/ui/settings/NetworkSettingsWidget.h \
     src/ui/settings/ScraperSettingsWidget.h \
     src/ui/settings/TvShowSettingsWidget.h \
     src/ui/small_widgets/AlphabeticalList.h \
@@ -538,6 +540,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/KodiSettingsWidget.ui \
     src/ui/settings/MovieSettingsWidget.ui \
     src/ui/settings/MusicSettingsWidget.ui \
+    src/ui/settings/NetworkSettingsWidget.ui \
     src/ui/settings/ScraperSettingsWidget.ui \
     src/ui/settings/TvShowSettingsWidget.ui \
     src/ui/small_widgets/FilterWidget.ui \
