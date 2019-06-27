@@ -1,10 +1,7 @@
 #include "ui/settings/TvShowSettingsWidget.h"
 #include "ui_TvShowSettingsWidget.h"
 
-#include "export/ExportTemplate.h"
-#include "export/ExportTemplateLoader.h"
 #include "settings/Settings.h"
-#include "ui/settings/ExportTemplateWidget.h"
 
 TvShowSettingsWidget::TvShowSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowSettingsWidget)
 {

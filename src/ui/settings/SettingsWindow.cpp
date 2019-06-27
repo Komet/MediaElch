@@ -3,7 +3,6 @@
 
 #include <QAction>
 #include <QDebug>
-#include <QFileDialog>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -21,10 +20,8 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->label_44->font();
+    QFont smallFont = ui->label_48->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->label_44->setFont(smallFont);
-    ui->label_45->setFont(smallFont);
     ui->label_48->setFont(smallFont);
     ui->label_49->setFont(smallFont);
 #endif
@@ -37,32 +34,18 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->importSettings->setSettings(*m_settings);
     ui->scraperSettings->setSettings(*m_settings);
     ui->tvShowSettings->setSettings(*m_settings);
+    ui->movieSettings->setSettings(*m_settings);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
-
-    ui->comboMovieSetArtwork->setItemData(0, static_cast<int>(MovieSetArtworkType::SingleSetFolder));
-    ui->comboMovieSetArtwork->setItemData(1, static_cast<int>(MovieSetArtworkType::SingleArtworkFolder));
 
     Helper::removeFocusRect(ui->settingsTabs->widget(9));
 
     // clang-format off
-    connect(ui->comboMovieSetArtwork,   SIGNAL(currentIndexChanged(int)),  this, SLOT(onComboMovieSetArtworkChanged()));
-    connect(ui->btnMovieSetArtworkDir,  &QAbstractButton::clicked, this, &SettingsWindow::onChooseMovieSetArtworkDir);
     connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &SettingsWindow::onUseProxy);
     connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
     // clang-format on
 
-    ui->movieNfo->setProperty("dataFileType", static_cast<int>(DataFileType::MovieNfo));
-    ui->moviePoster->setProperty("dataFileType", static_cast<int>(DataFileType::MoviePoster));
-    ui->movieBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::MovieBackdrop));
-    ui->movieCdArt->setProperty("dataFileType", static_cast<int>(DataFileType::MovieCdArt));
-    ui->movieClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::MovieClearArt));
-    ui->movieLogo->setProperty("dataFileType", static_cast<int>(DataFileType::MovieLogo));
-    ui->movieBanner->setProperty("dataFileType", static_cast<int>(DataFileType::MovieBanner));
-    ui->movieThumb->setProperty("dataFileType", static_cast<int>(DataFileType::MovieThumb));
-    ui->movieSetPosterFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetPoster));
-    ui->movieSetFanartFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetBackdrop));
     ui->concertNfo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertNfo));
     ui->concertPoster->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertPoster));
     ui->concertBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertBackdrop));
@@ -156,6 +139,7 @@ void SettingsWindow::loadSettings()
     ui->importSettings->loadSettings();
     ui->scraperSettings->loadSettings();
     ui->tvShowSettings->loadSettings();
+    ui->movieSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -167,8 +151,6 @@ void SettingsWindow::loadSettings()
     ui->proxyPassword->setText(netSettings.proxyPassword());
     onUseProxy();
 
-    ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
-
     // XBMC
     ui->xbmcHost->setText(m_settings->kodiSettings().xbmcHost());
     if (m_settings->kodiSettings().xbmcPort() != 0) {
@@ -178,16 +160,6 @@ void SettingsWindow::loadSettings()
     }
     ui->xbmcUser->setText(m_settings->kodiSettings().xbmcUser());
     ui->xbmcPassword->setText(m_settings->kodiSettings().xbmcPassword());
-
-    // Movie set artwork
-    for (int i = 0, n = ui->comboMovieSetArtwork->count(); i < n; ++i) {
-        if (MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(i).toInt()) == m_settings->movieSetArtworkType()) {
-            ui->comboMovieSetArtwork->setCurrentIndex(i);
-            break;
-        }
-    }
-    ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
-    onComboMovieSetArtworkChanged();
 
     for (auto lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
@@ -227,6 +199,7 @@ void SettingsWindow::saveSettings()
     ui->importSettings->saveSettings();
     ui->scraperSettings->saveSettings();
     ui->tvShowSettings->saveSettings();
+    ui->movieSettings->saveSettings();
 
     m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
@@ -240,13 +213,6 @@ void SettingsWindow::saveSettings()
     m_settings->networkSettings().setProxyPort(ui->proxyPort->value());
     m_settings->networkSettings().setProxyUsername(ui->proxyUsername->text());
     m_settings->networkSettings().setProxyPassword(ui->proxyPassword->text());
-
-    m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
-
-    // Movie set artwork
-    m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(
-        ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt()));
-    m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
 
     m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());
 
@@ -269,29 +235,4 @@ void SettingsWindow::onUseProxy()
     ui->proxyPort->setEnabled(enabled);
     ui->proxyUsername->setEnabled(enabled);
     ui->proxyPassword->setEnabled(enabled);
-}
-
-void SettingsWindow::onComboMovieSetArtworkChanged()
-{
-    MovieSetArtworkType value =
-        MovieSetArtworkType(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt());
-    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
-    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkType::SingleArtworkFolder);
-
-    if (value == MovieSetArtworkType::SingleArtworkFolder) {
-        ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
-        ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
-    } else if (value == MovieSetArtworkType::SingleSetFolder) {
-        ui->movieSetPosterFileName->setText("folder.jpg");
-        ui->movieSetFanartFileName->setText("fanart.jpg");
-    }
-}
-
-void SettingsWindow::onChooseMovieSetArtworkDir()
-{
-    QString dir = QFileDialog::getExistingDirectory(
-        this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
-    if (!dir.isEmpty()) {
-        ui->movieSetArtworkDir->setText(dir);
-    }
 }

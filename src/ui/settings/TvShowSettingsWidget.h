@@ -22,8 +22,6 @@ public:
     void loadSettings();
     void saveSettings();
 
-private slots:
-
 private:
     Ui::TvShowSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
