@@ -36,8 +36,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->tvShowSettings->setSettings(*m_settings);
     ui->movieSettings->setSettings(*m_settings);
     ui->musicSettings->setSettings(*m_settings);
-
-    ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
+    ui->kodiSettings->setSettings(*m_settings);
 
     Helper::removeFocusRect(ui->settingsTabs->widget(9));
 
@@ -137,6 +136,7 @@ void SettingsWindow::loadSettings()
     ui->tvShowSettings->loadSettings();
     ui->movieSettings->loadSettings();
     ui->musicSettings->loadSettings();
+    ui->kodiSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -147,16 +147,6 @@ void SettingsWindow::loadSettings()
     ui->proxyUsername->setText(netSettings.proxyUsername());
     ui->proxyPassword->setText(netSettings.proxyPassword());
     onUseProxy();
-
-    // XBMC
-    ui->xbmcHost->setText(m_settings->kodiSettings().xbmcHost());
-    if (m_settings->kodiSettings().xbmcPort() != 0) {
-        ui->xbmcPort->setText(QString::number(m_settings->kodiSettings().xbmcPort()));
-    } else {
-        ui->xbmcPort->clear();
-    }
-    ui->xbmcUser->setText(m_settings->kodiSettings().xbmcUser());
-    ui->xbmcPassword->setText(m_settings->kodiSettings().xbmcPassword());
 
     for (auto lineEdit : findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull()) {
@@ -196,11 +186,7 @@ void SettingsWindow::saveSettings()
     ui->tvShowSettings->saveSettings();
     ui->movieSettings->saveSettings();
     ui->musicSettings->saveSettings();
-
-    m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
-    m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
-    m_settings->kodiSettings().setXbmcUser(ui->xbmcUser->text());
-    m_settings->kodiSettings().setXbmcPassword(ui->xbmcPassword->text());
+    ui->kodiSettings->saveSettings();
 
     // Proxy
     m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());

@@ -215,6 +215,7 @@ SOURCES += src/main.cpp \
     src/ui/settings/GlobalSettingsWidget.cpp \
     src/ui/settings/ExportSettingsWidget.cpp \
     src/ui/settings/ImportSettingsWidget.cpp \
+    src/ui/settings/KodiSettingsWidget.cpp \
     src/ui/settings/MovieSettingsWidget.cpp \
     src/ui/settings/MusicSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
@@ -425,6 +426,7 @@ HEADERS  += Version.h \
     src/ui/settings/GlobalSettingsWidget.h \
     src/ui/settings/ExportSettingsWidget.h \
     src/ui/settings/ImportSettingsWidget.h \
+    src/ui/settings/KodiSettingsWidget.h \
     src/ui/settings/MovieSettingsWidget.h \
     src/ui/settings/MusicSettingsWidget.h \
     src/ui/settings/ScraperSettingsWidget.h \
@@ -530,6 +532,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/GlobalSettingsWidget.ui \
     src/ui/settings/ExportSettingsWidget.ui \
     src/ui/settings/ImportSettingsWidget.ui \
+    src/ui/settings/KodiSettingsWidget.ui \
     src/ui/settings/MovieSettingsWidget.ui \
     src/ui/settings/MusicSettingsWidget.ui \
     src/ui/settings/ScraperSettingsWidget.ui \

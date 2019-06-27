@@ -1,15 +1,16 @@
 add_library(
   mediaelch_ui_settings
   OBJECT
-  ExportTemplateWidget.cpp
   ExportSettingsWidget.cpp
+  ExportTemplateWidget.cpp
+  GlobalSettingsWidget.cpp
   ImportSettingsWidget.cpp
+  KodiSettingsWidget.cpp
   MovieSettingsWidget.cpp
   MusicSettingsWidget.cpp
-  GlobalSettingsWidget.cpp
   ScraperSettingsWidget.cpp
-  TvShowSettingsWidget.cpp
   SettingsWindow.cpp
+  TvShowSettingsWidget.cpp
 )
 
 if(APPLE)
