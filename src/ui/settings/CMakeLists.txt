@@ -1,6 +1,7 @@
 add_library(
   mediaelch_ui_settings
   OBJECT
+  ConcertSettingsWidget.cpp
   ExportSettingsWidget.cpp
   ExportTemplateWidget.cpp
   GlobalSettingsWidget.cpp

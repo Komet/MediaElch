@@ -212,6 +212,7 @@ SOURCES += src/main.cpp \
     src/settings/ScraperSettings.cpp \
     src/settings/Settings.cpp \
     src/ui/settings/SettingsWindow.cpp \
+    src/ui/settings/ConcertSettingsWidget.cpp \
     src/ui/settings/GlobalSettingsWidget.cpp \
     src/ui/settings/ExportSettingsWidget.cpp \
     src/ui/settings/ImportSettingsWidget.cpp \
@@ -423,6 +424,7 @@ HEADERS  += Version.h \
     src/settings/ScraperSettings.h \
     src/settings/Settings.h \
     src/ui/settings/SettingsWindow.h \
+    src/ui/settings/ConcertSettingsWidget.h \
     src/ui/settings/GlobalSettingsWidget.h \
     src/ui/settings/ExportSettingsWidget.h \
     src/ui/settings/ImportSettingsWidget.h \
@@ -529,6 +531,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/movie_sets/SetsWidget.ui \
     src/ui/settings/ExportTemplateWidget.ui \
     src/ui/settings/SettingsWindow.ui \
+    src/ui/settings/ConcertSettingsWidget.ui \
     src/ui/settings/GlobalSettingsWidget.ui \
     src/ui/settings/ExportSettingsWidget.ui \
     src/ui/settings/ImportSettingsWidget.ui \

@@ -19,13 +19,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
-    QFont smallFont = ui->label_48->font();
-    smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->label_48->setFont(smallFont);
-    ui->label_49->setFont(smallFont);
-#endif
-
     ui->settingsTabs->setCurrentIndex(0);
 
     m_settings = Settings::instance(this);
@@ -37,6 +30,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->movieSettings->setSettings(*m_settings);
     ui->musicSettings->setSettings(*m_settings);
     ui->kodiSettings->setSettings(*m_settings);
+    ui->concertSettings->setSettings(*m_settings);
 
     Helper::removeFocusRect(ui->settingsTabs->widget(9));
 
@@ -45,13 +39,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     connect(ui->btnCancel,              &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
     connect(ui->btnSave,                &QAbstractButton::clicked, this, &SettingsWindow::onSave);
     // clang-format on
-
-    ui->concertNfo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertNfo));
-    ui->concertPoster->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertPoster));
-    ui->concertBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertBackdrop));
-    ui->concertLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertLogo));
-    ui->concertClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertClearArt));
-    ui->concertDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertCdArt));
 
 #ifdef Q_OS_MAC
     ui->btnCancel->setVisible(false);
@@ -137,6 +124,7 @@ void SettingsWindow::loadSettings()
     ui->movieSettings->loadSettings();
     ui->musicSettings->loadSettings();
     ui->kodiSettings->loadSettings();
+    ui->concertSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -187,6 +175,7 @@ void SettingsWindow::saveSettings()
     ui->movieSettings->saveSettings();
     ui->musicSettings->saveSettings();
     ui->kodiSettings->saveSettings();
+    ui->concertSettings->saveSettings();
 
     // Proxy
     m_settings->networkSettings().setUseProxy(ui->chkUseProxy->isChecked());
