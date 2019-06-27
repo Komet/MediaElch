@@ -35,6 +35,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->scraperSettings->setSettings(*m_settings);
     ui->tvShowSettings->setSettings(*m_settings);
     ui->movieSettings->setSettings(*m_settings);
+    ui->musicSettings->setSettings(*m_settings);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
@@ -52,11 +53,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->concertLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertLogo));
     ui->concertClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertClearArt));
     ui->concertDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertCdArt));
-    ui->artistFanart->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistFanart));
-    ui->artistLogo->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistLogo));
-    ui->artistThumb->setProperty("dataFileType", static_cast<int>(DataFileType::ArtistThumb));
-    ui->albumThumb->setProperty("dataFileType", static_cast<int>(DataFileType::AlbumThumb));
-    ui->albumDiscArt->setProperty("dataFileType", static_cast<int>(DataFileType::AlbumCdArt));
 
 #ifdef Q_OS_MAC
     ui->btnCancel->setVisible(false);
@@ -140,6 +136,7 @@ void SettingsWindow::loadSettings()
     ui->scraperSettings->loadSettings();
     ui->tvShowSettings->loadSettings();
     ui->movieSettings->loadSettings();
+    ui->musicSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -173,8 +170,6 @@ void SettingsWindow::loadSettings()
         }
         lineEdit->setText(filenames.join(","));
     }
-
-    ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
 }
 
 void SettingsWindow::saveSettings()
@@ -200,6 +195,7 @@ void SettingsWindow::saveSettings()
     ui->scraperSettings->saveSettings();
     ui->tvShowSettings->saveSettings();
     ui->movieSettings->saveSettings();
+    ui->musicSettings->saveSettings();
 
     m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
@@ -213,8 +209,6 @@ void SettingsWindow::saveSettings()
     m_settings->networkSettings().setProxyPort(ui->proxyPort->value());
     m_settings->networkSettings().setProxyUsername(ui->proxyUsername->text());
     m_settings->networkSettings().setProxyPassword(ui->proxyPassword->text());
-
-    m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());
 
     m_settings->saveSettings();
 
