@@ -18,7 +18,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
     ui->setupUi(this);
 
 #ifdef Q_OS_MAC
-    QFont smallFont = ui->labelGlobal->font();
+    QFont smallFont = ui->label_18->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->label_18->setFont(smallFont);
 #endif
