@@ -25,11 +25,8 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->label_44->setFont(smallFont);
     ui->label_45->setFont(smallFont);
-    ui->label_46->setFont(smallFont);
-    ui->label_47->setFont(smallFont);
     ui->label_48->setFont(smallFont);
     ui->label_49->setFont(smallFont);
-    ui->label_7->setFont(smallFont);
 #endif
 
     ui->settingsTabs->setCurrentIndex(0);
@@ -39,6 +36,7 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->exportSettings->setSettings(*m_settings);
     ui->importSettings->setSettings(*m_settings);
     ui->scraperSettings->setSettings(*m_settings);
+    ui->tvShowSettings->setSettings(*m_settings);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
@@ -65,20 +63,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->movieThumb->setProperty("dataFileType", static_cast<int>(DataFileType::MovieThumb));
     ui->movieSetPosterFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetPoster));
     ui->movieSetFanartFileName->setProperty("dataFileType", static_cast<int>(DataFileType::MovieSetBackdrop));
-    ui->showBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowBackdrop));
-    ui->showBanner->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowBanner));
-    ui->showCharacterArt->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowCharacterArt));
-    ui->showClearArt->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowClearArt));
-    ui->showEpisodeNfo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowEpisodeNfo));
-    ui->showEpisodeThumbnail->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowEpisodeThumb));
-    ui->showLogo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowLogo));
-    ui->showThumb->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowThumb));
-    ui->showNfo->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowNfo));
-    ui->showPoster->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowPoster));
-    ui->showSeasonBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonBackdrop));
-    ui->showSeasonBanner->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonBanner));
-    ui->showSeasonPoster->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonPoster));
-    ui->showSeasonThumb->setProperty("dataFileType", static_cast<int>(DataFileType::TvShowSeasonThumb));
     ui->concertNfo->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertNfo));
     ui->concertPoster->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertPoster));
     ui->concertBackdrop->setProperty("dataFileType", static_cast<int>(DataFileType::ConcertBackdrop));
@@ -171,6 +155,7 @@ void SettingsWindow::loadSettings()
     ui->exportSettings->loadSettings();
     ui->importSettings->loadSettings();
     ui->scraperSettings->loadSettings();
+    ui->tvShowSettings->loadSettings();
 
     // Proxy
     const auto& netSettings = m_settings->networkSettings();
@@ -241,6 +226,7 @@ void SettingsWindow::saveSettings()
     ui->exportSettings->saveSettings();
     ui->importSettings->saveSettings();
     ui->scraperSettings->saveSettings();
+    ui->tvShowSettings->saveSettings();
 
     m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
