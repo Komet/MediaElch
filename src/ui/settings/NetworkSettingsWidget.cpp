@@ -9,7 +9,7 @@ NetworkSettingsWidget::NetworkSettingsWidget(QWidget* parent) : QWidget(parent),
 {
     ui->setupUi(this);
 
-    connect(ui->chkUseProxy,            &QAbstractButton::clicked, this, &NetworkSettingsWidget::onUseProxy);
+    connect(ui->chkUseProxy, &QAbstractButton::clicked, this, &NetworkSettingsWidget::onUseProxy);
 }
 
 NetworkSettingsWidget::~NetworkSettingsWidget()

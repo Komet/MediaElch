@@ -1,6 +1,7 @@
 #include "ui/settings/MovieSettingsWidget.h"
 #include "ui_MovieSettingsWidget.h"
 
+#include "settings/DataFile.h"
 #include "settings/Settings.h"
 
 #include <QFileDialog>

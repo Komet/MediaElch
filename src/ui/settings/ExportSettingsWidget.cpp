@@ -3,6 +3,7 @@
 
 #include "export/ExportTemplate.h"
 #include "export/ExportTemplateLoader.h"
+#include "settings/DataFile.h"
 #include "settings/Settings.h"
 #include "ui/settings/ExportTemplateWidget.h"
 
