@@ -3,9 +3,18 @@
 
 #include "settings/Settings.h"
 
+#include <QIntValidator>
+
 KodiSettingsWidget::KodiSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::KodiSettingsWidget)
 {
     ui->setupUi(this);
+
+#ifdef Q_OS_MAC
+    QFont smallFont = ui->label_7->font();
+    smallFont.setPointSize(smallFont.pointSize() - 1);
+
+    ui->label_7->setFont(smallFont);
+#endif
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 }

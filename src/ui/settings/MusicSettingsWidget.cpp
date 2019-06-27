@@ -1,6 +1,7 @@
 #include "ui/settings/MusicSettingsWidget.h"
 #include "ui_MusicSettingsWidget.h"
 
+#include "settings/DataFile.h"
 #include "settings/Settings.h"
 
 MusicSettingsWidget::MusicSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicSettingsWidget)
