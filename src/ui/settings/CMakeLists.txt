@@ -6,6 +6,7 @@ add_library(
   ImportSettingsWidget.cpp
   GlobalSettingsWidget.cpp
   ScraperSettingsWidget.cpp
+  TvShowSettingsWidget.cpp
   SettingsWindow.cpp
 )
 

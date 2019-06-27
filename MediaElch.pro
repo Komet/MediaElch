@@ -216,6 +216,7 @@ SOURCES += src/main.cpp \
     src/ui/settings/ExportSettingsWidget.cpp \
     src/ui/settings/ImportSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
+    src/ui/settings/TvShowSettingsWidget.cpp \
     src/ui/small_widgets/AlphabeticalList.cpp \
     src/ui/small_widgets/Badge.cpp \
     src/ui/small_widgets/ClosableImage.cpp \
@@ -423,6 +424,7 @@ HEADERS  += Version.h \
     src/ui/settings/ExportSettingsWidget.h \
     src/ui/settings/ImportSettingsWidget.h \
     src/ui/settings/ScraperSettingsWidget.h \
+    src/ui/settings/TvShowSettingsWidget.h \
     src/ui/small_widgets/AlphabeticalList.h \
     src/ui/small_widgets/Badge.h \
     src/ui/small_widgets/ClosableImage.h \
@@ -525,6 +527,7 @@ FORMS    += src/ui/main/MainWindow.ui \
     src/ui/settings/ExportSettingsWidget.ui \
     src/ui/settings/ImportSettingsWidget.ui \
     src/ui/settings/ScraperSettingsWidget.ui \
+    src/ui/settings/TvShowSettingsWidget.ui \
     src/ui/small_widgets/FilterWidget.ui \
     src/ui/small_widgets/ImageLabel.ui \
     src/ui/small_widgets/LoadingStreamDetails.ui \
