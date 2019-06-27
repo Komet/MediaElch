@@ -17,6 +17,12 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MAC
+    QFont smallFont = ui->labelGlobal->font();
+    smallFont.setPointSize(smallFont.pointSize() - 1);
+    ui->label_18->setFont(smallFont);
+#endif
+
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

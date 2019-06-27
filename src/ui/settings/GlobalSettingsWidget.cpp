@@ -19,6 +19,12 @@ GlobalSettingsWidget::GlobalSettingsWidget(QWidget* parent) : QWidget(parent), u
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MAC
+    QFont smallFont = ui->labelGlobal->font();
+    smallFont.setPointSize(smallFont.pointSize() - 1);
+    ui->labelGlobal->setFont(smallFont);
+#endif
+
     ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
 
