@@ -4,6 +4,7 @@ add_library(
   ExportTemplateWidget.cpp
   ExportSettingsWidget.cpp
   ImportSettingsWidget.cpp
+  MovieSettingsWidget.cpp
   GlobalSettingsWidget.cpp
   ScraperSettingsWidget.cpp
   TvShowSettingsWidget.cpp

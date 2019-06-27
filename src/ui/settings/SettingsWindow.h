@@ -31,8 +31,6 @@ protected:
 
 private slots:
     void onAction();
-    void onComboMovieSetArtworkChanged();
-    void onChooseMovieSetArtworkDir();
     void onUseProxy();
     void onSave();
     void onCancel();
