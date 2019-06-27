@@ -23,7 +23,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
 #ifdef Q_OS_MAC
     QFont smallFont = ui->labelGlobal->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->labelGlobal->setFont(smallFont);
     ui->label_44->setFont(smallFont);
     ui->label_45->setFont(smallFont);
     ui->label_46->setFont(smallFont);
@@ -31,7 +30,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     ui->label_48->setFont(smallFont);
     ui->label_49->setFont(smallFont);
     ui->label_7->setFont(smallFont);
-    ui->label_18->setFont(smallFont);
 #endif
 
     ui->settingsTabs->setCurrentIndex(0);
@@ -132,6 +130,7 @@ void SettingsWindow::show()
 void SettingsWindow::closeEvent(QCloseEvent* event)
 {
     Q_UNUSED(event);
+
 #ifdef Q_OS_MAC
     saveSettings();
     emit sigSaved();
