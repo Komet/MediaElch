@@ -485,6 +485,7 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
         }
         Manager::instance()->database()->commit();
     }
+    return movies;
 }
 
 void MovieFileSearcher::abort()
