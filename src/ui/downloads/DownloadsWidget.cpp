@@ -49,7 +49,7 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     connect(m_extractor, &Extractor::sigProgress, this, &DownloadsWidget::onExtractorProgress);
     connect(ui->btnImportMakeMkv, &QAbstractButton::clicked, this, &DownloadsWidget::onImportWithMakeMkv);
 
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded()), this, SLOT(scanDownloadFolders()));
 
     scanDownloadFolders();
 

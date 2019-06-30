@@ -39,19 +39,19 @@ void ConcertFileSearcher::reload(bool force)
 
     clearOldConcerts(force);
 
-    emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
+    emit searchStarted(tr("Searching for Concerts..."));
 
     auto contents = loadContentsFromDiskIfRequired(force);
     storeContentsInDatabase(contents);
 
     emit currentDir("");
-    emit searchStarted(tr("Loading Concerts..."), m_progressMessageId);
+    emit searchStarted(tr("Loading Concerts..."));
 
     addConcertsToGui(loadConcertsFromDatabase());
 
     qDebug() << "Searching for concerts done";
     if (!m_aborted) {
-        emit concertsLoaded(m_progressMessageId);
+        emit concertsLoaded();
     }
 }
 

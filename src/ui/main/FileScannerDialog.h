@@ -6,9 +6,6 @@ namespace Ui {
 class FileScannerDialog;
 }
 
-/**
- * @brief The FileScannerDialog class
- */
 class FileScannerDialog : public QDialog
 {
     Q_OBJECT
@@ -50,7 +47,6 @@ private slots:
     void onStartMusicScanner();
     void onStartMusicScannerForce();
     void onStartMusicScannerCache();
-    void onLoadDone(int msgId);
 
 private:
     Ui::FileScannerDialog* ui;

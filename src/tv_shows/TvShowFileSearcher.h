@@ -26,9 +26,9 @@ public slots:
     void abort();
 
 signals:
-    void searchStarted(QString, int);
+    void searchStarted(QString);
     void progress(int, int, int);
-    void tvShowsLoaded(int);
+    void tvShowsLoaded();
     void currentDir(QString);
 
 private:

@@ -22,9 +22,9 @@ public slots:
     void abort();
 
 signals:
-    void searchStarted(QString, int);
+    void searchStarted(QString);
     void progress(int, int, int);
-    void musicLoaded(int);
+    void musicLoaded();
     void currentDir(QString);
 
 private:

@@ -31,7 +31,7 @@ void MusicFileSearcher::reload(bool force)
 {
     m_aborted = false;
 
-    emit searchStarted(tr("Searching for Music..."), m_progressMessageId);
+    emit searchStarted(tr("Searching for Music..."));
     Manager::instance()->musicModel()->clear();
 
     QVector<Artist*> artists;
@@ -102,7 +102,7 @@ void MusicFileSearcher::reload(bool force)
     }
 
     emit currentDir("");
-    emit searchStarted(tr("Loading Music..."), m_progressMessageId);
+    emit searchStarted(tr("Loading Music..."));
 
     int current = 0;
     int max = artists.length() + albums.length() + artistsFromDb.length() + albumsFromDb.length();
@@ -155,7 +155,7 @@ void MusicFileSearcher::reload(bool force)
     }
 
     if (!m_aborted) {
-        emit musicLoaded(m_progressMessageId);
+        emit musicLoaded();
     }
 }
 

@@ -24,7 +24,7 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) :
 void MovieFileSearcher::reload(bool force)
 {
     m_aborted = false;
-    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
+    emit searchStarted(tr("Searching for Movies..."));
 
     if (force) {
         Manager::instance()->database()->clearMovies();
@@ -48,7 +48,7 @@ void MovieFileSearcher::reload(bool force)
         movieSum += loadMoviesFromDirectory(movieDir, force, moviesContent, dbMovies, bluRays, dvds);
     }
 
-    emit searchStarted(tr("Loading Movies..."), m_progressMessageId);
+    emit searchStarted(tr("Loading Movies..."));
 
     qDebug() << "Now processing files";
     int movieCounter = 0;
@@ -76,7 +76,7 @@ void MovieFileSearcher::reload(bool force)
     }
 
     if (!m_aborted) {
-        emit moviesLoaded(m_progressMessageId);
+        emit moviesLoaded();
     }
 }
 
