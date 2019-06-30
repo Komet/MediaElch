@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/Database.h"
 #include "globals/Globals.h"
 
 #include <QDir>
@@ -27,11 +28,13 @@ signals:
 private:
     QVector<SettingsDir> m_directories;
     int m_progressMessageId;
+    bool m_aborted = false;
+
+    Database& database();
     void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
         bool separateFolders = false,
         bool firstScan = false);
     QStringList getFiles(QString path);
-    bool m_aborted = false;
 };

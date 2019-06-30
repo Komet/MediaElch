@@ -286,7 +286,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             || fileName.contains("-deleted", Qt::CaseInsensitive)         //
             || fileName.contains("-featurette", Qt::CaseInsensitive)      //
             || fileName.contains("-interview", Qt::CaseInsensitive)       //
-            || fileName.contains("-scene", Qt::CaseInsensitive) //
+            || fileName.contains("-scene", Qt::CaseInsensitive)           //
             || fileName.contains("-short", Qt::CaseInsensitive)) {
             continue;
         }
