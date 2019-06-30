@@ -18,6 +18,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Windows: Stream Details do not load (#688)
  - Crashes on macOS when scanning episodes due to a Qt bug (#641)
  - Fix ADE scraper (#703, #725)
+ - Fix TV shows always beeing reloaded (#732)
 
 ### Improvements
 

@@ -48,7 +48,7 @@ void TvShowFileSearcher::reload(bool force)
         Manager::instance()->database()->clearTvShows();
     }
 
-    emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
+    emit searchStarted(tr("Searching for TV Shows..."));
     QVector<TvShow*> dbShows;
     Manager::instance()->tvShowModel()->clear();
     Manager::instance()->tvShowFilesWidget()->renewModel();
@@ -69,7 +69,7 @@ void TvShowFileSearcher::reload(bool force)
     }
     emit currentDir("");
 
-    emit searchStarted(tr("Loading TV Shows..."), m_progressMessageId);
+    emit searchStarted(tr("Loading TV Shows..."));
     int episodeCounter = 0;
     int episodeSum = Manager::instance()->database()->episodeCount();
     QMapIterator<QString, QVector<QStringList>> it(contents);
@@ -180,7 +180,7 @@ void TvShowFileSearcher::reload(bool force)
 
     qDebug() << "Searching for tv shows done";
     if (!m_aborted) {
-        emit tvShowsLoaded(m_progressMessageId);
+        emit tvShowsLoaded();
     }
 }
 
@@ -193,7 +193,7 @@ TvShowEpisode* TvShowFileSearcher::loadEpisodeData(TvShowEpisode* episode)
 void TvShowFileSearcher::reloadEpisodes(QString showDir)
 {
     Manager::instance()->database()->clearTvShow(showDir);
-    emit searchStarted(tr("Searching for Episodes..."), m_progressMessageId);
+    emit searchStarted(tr("Searching for Episodes..."));
 
     // remove old show object
     for (TvShow* s : Manager::instance()->tvShowModel()->tvShows()) {
@@ -235,7 +235,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     Manager::instance()->database()->add(show, path);
     TvShowModelItem* showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
-    emit searchStarted(tr("Loading Episodes..."), m_progressMessageId);
+    emit searchStarted(tr("Loading Episodes..."));
     emit currentDir(show->name());
 
     int episodeCounter = 0;
@@ -270,7 +270,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
         qApp->processEvents();
     }
 
-    emit tvShowsLoaded(m_progressMessageId);
+    emit tvShowsLoaded();
 }
 
 TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)

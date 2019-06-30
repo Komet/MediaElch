@@ -36,9 +36,9 @@ public slots:
     void abort();
 
 signals:
-    void searchStarted(QString, int);
+    void searchStarted(QString);
     void progress(int, int, int);
-    void moviesLoaded(int);
+    void moviesLoaded();
     void currentDir(QString);
 
 private:

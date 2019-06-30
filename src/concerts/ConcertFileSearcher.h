@@ -20,9 +20,9 @@ public slots:
     void abort();
 
 signals:
-    void searchStarted(QString, int);
+    void searchStarted(QString);
     void progress(int, int, int);
-    void concertsLoaded(int);
+    void concertsLoaded();
     void currentDir(QString);
 
 private:
@@ -30,6 +30,7 @@ private:
     int m_progressMessageId;
     bool m_aborted = false;
 
+private:
     Database& database();
 
     void clearOldConcerts(bool forceClear);
@@ -46,5 +47,6 @@ private:
         QVector<QStringList>& contents,
         bool separateFolders = false,
         bool firstScan = false);
+
     QStringList getFiles(QString path);
 };
