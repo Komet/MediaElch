@@ -31,6 +31,16 @@ private:
     bool m_aborted = false;
 
     Database& database();
+
+    void clearOldConcerts(bool forceClear);
+
+    QVector<QStringList> loadContentsFromDiskIfRequired(bool forceReload);
+    QVector<Concert*> loadConcertsFromDatabase();
+
+    void storeContentsInDatabase(const QVector<QStringList>& contents);
+    void setupDatabaseConcerts(QVector<Concert*>& concerts);
+    void addConcertsToGui(const QVector<Concert*>& concerts);
+
     void scanDir(QString startPath,
         QString path,
         QVector<QStringList>& contents,
