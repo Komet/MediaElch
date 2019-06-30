@@ -8,10 +8,6 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-/**
- * @brief ConcertFileSearcher::ConcertFileSearcher
- * @param parent
- */
 ConcertFileSearcher::ConcertFileSearcher(QObject* parent) :
     QObject(parent),
     m_progressMessageId{Constants::ConcertFileSearcherProgressMessageId}
@@ -27,20 +23,18 @@ void ConcertFileSearcher::setConcertDirectories(QVector<SettingsDir> directories
             qDebug() << "Adding concert directory" << dir.path.path();
             m_directories.append(dir);
         } else {
-            qDebug() << "Movie directory is not redable, skipping:" << dir.path.path();
+            qDebug() << "Concert directory is not redable, skipping:" << dir.path.path();
         }
     }
 }
 
-/**
- * @brief Starts the scanning process
- */
+/// Starts the scanning process
 void ConcertFileSearcher::reload(bool force)
 {
     m_aborted = false;
 
     if (force) {
-        Manager::instance()->database()->clearConcerts();
+        database().clearConcerts();
     }
 
     Manager::instance()->concertModel()->clear();
@@ -54,9 +48,9 @@ void ConcertFileSearcher::reload(bool force)
             return;
         }
         QString path = dir.path.path();
-        QVector<Concert*> concertsFromDb = Manager::instance()->database()->concerts(path);
+        QVector<Concert*> concertsFromDb = database().concerts(path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
-            Manager::instance()->database()->clearConcerts(path);
+            database().clearConcerts(path);
             scanDir(path, path, contents, dir.separateFolders, true);
         } else {
             dbConcerts.append(concertsFromDb);
@@ -69,7 +63,7 @@ void ConcertFileSearcher::reload(bool force)
     int concertSum = contents.size() + dbConcerts.size();
 
     // Setup concerts
-    Manager::instance()->database()->transaction();
+    database().transaction();
     for (const QStringList& files : contents) {
         if (m_aborted) {
             return;
@@ -98,11 +92,11 @@ void ConcertFileSearcher::reload(bool force)
         concert->setInSeparateFolder(inSeparateFolder);
         concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert->name());
-        Manager::instance()->database()->add(concert, path);
+        database().add(concert, path);
         concerts.append(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
-    Manager::instance()->database()->commit();
+    database().commit();
 
     // Setup concerts loaded from database
     for (Concert* concert : dbConcerts) {
@@ -234,11 +228,7 @@ void ConcertFileSearcher::scanDir(QString startPath,
     }
 }
 
-/**
- * @brief Get a list of files in a directory
- * @param path
- * @return
- */
+/// Get a list of files in a directory
 QStringList ConcertFileSearcher::getFiles(QString path)
 {
     const auto& fileFilter = Settings::instance()->advanced()->concertFilters();
@@ -248,4 +238,9 @@ QStringList ConcertFileSearcher::getFiles(QString path)
 void ConcertFileSearcher::abort()
 {
     m_aborted = true;
+}
+
+Database& ConcertFileSearcher::database()
+{
+    return *Manager::instance()->database();
 }
