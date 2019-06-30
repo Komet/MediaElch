@@ -340,12 +340,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="52"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="47"/>
         <source>Searching for Concerts...</source>
         <translation>Поиск концертов...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="72"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="67"/>
         <source>Loading Concerts...</source>
         <translation>Загрузка концертов...</translation>
     </message>
@@ -590,6 +590,51 @@
         <location filename="../../src/ui/concerts/ConcertSearchWidget.ui" line="225"/>
         <source>(Un)Check all</source>
         <translation>Выбрать/Убрать</translation>
+    </message>
+</context>
+<context>
+    <name>ConcertSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation>Имена файлов для сохранения и загрузки информации о концертах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="42"/>
+        <source>Nfo</source>
+        <translation>Файл описания</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>Постер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>Фон</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="63"/>
+        <source>Logo</source>
+        <translation>Логотип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="70"/>
+        <source>Clear Art</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="77"/>
+        <source>Disc Art</source>
+        <translation>Обложка диска</translation>
     </message>
 </context>
 <context>
@@ -966,6 +1011,35 @@
         <location filename="../../src/ui/export/ExportDialog.cpp" line="144"/>
         <source>Export completed.</source>
         <translation>Экспорт завершён.</translation>
+    </message>
+</context>
+<context>
+    <name>ExportSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.ui" line="17"/>
+        <source>Message</source>
+        <translation>Сообщение</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.ui" line="43"/>
+        <source>Theme</source>
+        <translation>Тема</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="68"/>
+        <source>Theme &quot;%1&quot; was successfully installed</source>
+        <translation>Тема &quot;%1&quot; была успешно установлена</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="71"/>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="82"/>
+        <source>There was an error while processing the theme &quot;%1&quot;</source>
+        <translation>Произошла ошибка при установке темы &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="79"/>
+        <source>Theme &quot;%1&quot; was successfully uninstalled</source>
+        <translation>Тема &quot;%1&quot; была успешно удалена</translation>
     </message>
 </context>
 <context>
@@ -1970,6 +2044,168 @@
     </message>
 </context>
 <context>
+    <name>GlobalSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="17"/>
+        <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
+TV Show Episodes have to be in subfolders with the name of the show.
+The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
+        <translation>Добавьте одну или несколько папок с фильмами, сериалами, концертами, музыкой или файлами для импорта.
+Серии должны быть сортированы по сезонам, в папках с названием этого сериала (Сериал/Сезон/серии).
+Каждый музыкальный исполнитель должен располагаться в отдельной папке с подпапками альбомов (Исполнитель/Альбом/треки).</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="51"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="56"/>
+        <source>Path</source>
+        <translation>Путь</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="61"/>
+        <source>Sep. folders</source>
+        <translation>В отдельной папке</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="64"/>
+        <source>Items are in separate folders</source>
+        <translation>Расположено в отдельных папках</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="69"/>
+        <source>Reload On Start</source>
+        <translation>Проверять</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="72"/>
+        <source>Automatically reload contents on start</source>
+        <translation>Автоматически проверять изменения при запуске программы</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="82"/>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="89"/>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="96"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сортировать фильмы в отдельных папках&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="99"/>
+        <source>Organize</source>
+        <translation>Распределить</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="126"/>
+        <source>Store trailer URLs in YouTube Plugin format</source>
+        <translation>Сохранять ссылки на трейлеры в формате YouTube</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="140"/>
+        <source>Automatically load and save stream details from files</source>
+        <translation>Получать и сохранять информацию о потоке из файла</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="154"/>
+        <source>Ignore articles when sorting (&quot;The&quot;)</source>
+        <translation>При сортировке игнорировать &quot;The&quot; в названии</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="168"/>
+        <source>Download actor images</source>
+        <translation>Скачивать изображения актёров</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="182"/>
+        <source>Check for Updates on start</source>
+        <translation>Проверять наличие обновлений</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="196"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="215"/>
+        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
+        <translation>Исключить эти слова из имён файлов (разделить запятой, без пробелов, любого регистра)</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="222"/>
+        <source>Startup section</source>
+        <translation>Начальный раздел</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="39"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Movies</source>
+        <translation>Фильмы</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="40"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>TV Shows</source>
+        <translation>Сериалы</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="41"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Concerts</source>
+        <translation>Концерты</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Music</source>
+        <translation>Музыка</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="43"/>
+        <source>Import</source>
+        <translation>Импорт</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="59"/>
+        <source>Choose a directory containing your movies, TV show or concerts</source>
+        <translation>Выберите папку с вашими фильмами, сериалами или концертами</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Downloads</source>
+        <translation>Загрузки</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="228"/>
+        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
+        <translation>Распределение фильмов используется только для тех, что не расположены в отдельных папках.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="236"/>
+        <source>Are you sure?</source>
+        <translation>Вы уверены?</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="238"/>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
+        <translation>Эта операция распределит фильмы в подпапках. Нажмите &quot;Ok&quot; если хотите продолжить. </translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="241"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="242"/>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+</context>
+<context>
     <name>HotMovies</name>
     <message>
         <location filename="../../src/scrapers/movie/HotMovies.cpp" line="57"/>
@@ -2220,80 +2456,80 @@
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="267"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="265"/>
         <source>Loading movie information...</source>
         <translation>Загрузка информации о фильме...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="284"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="282"/>
         <source>Loading concert information...</source>
         <translation>Загрузка информации о концерте...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="304"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="302"/>
         <source>Loading episode information...</source>
         <translation>Загрузка информации о серии...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="367"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="365"/>
         <source>Movie information was loaded</source>
         <translation>Информация о фильме загружена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="381"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="379"/>
         <source>Concert information was loaded</source>
         <translation>Информация о концерте загружена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="399"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="418"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="397"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="416"/>
         <source>Episode information was loaded</source>
         <translation>Информация о серии загружена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="430"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
         <source>Renaming not possible</source>
         <translation>Невозможно переименовать</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="430"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
         <source>Please enter all naming patterns</source>
         <translation>Пожалуйста, введите шаблон имени</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="459"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="549"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="457"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="547"/>
         <source>Creating destination directory failed</source>
         <translation>Невозможно создать папку</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="460"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="550"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="458"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="548"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Папку %1 невозможно создать</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="488"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="486"/>
         <source>Importing movie...</source>
         <translation>Импорт фильмов...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="526"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="524"/>
         <source>Importing episode...</source>
         <translation>Импорт серий...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="576"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="574"/>
         <source>Importing concert...</source>
         <translation>Импорт концертов...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="693"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="691"/>
         <source>Import finished</source>
         <translation>Импорт завершён</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="693"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="691"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>Импорт %n файла закончен</numerusform>
@@ -2302,9 +2538,43 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="696"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="694"/>
         <source>Import has finished</source>
         <translation>Изморт закончен</translation>
+    </message>
+</context>
+<context>
+    <name>ImportSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="19"/>
+        <source>Automatically delete archives after extraction</source>
+        <translation>Удалить архивы после извлечения</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="33"/>
+        <source>Path to unrar</source>
+        <translation>Путь к unrar</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="45"/>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="66"/>
+        <source>Choose</source>
+        <translation>Выбрать</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="54"/>
+        <source>Path to makemkvcon</source>
+        <translation>Путь к makemkvcon</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="49"/>
+        <source>Choose unrar</source>
+        <translation>Выберите unrar</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="57"/>
+        <source>Choose makemkvcon</source>
+        <translation>Выберите makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -2333,6 +2603,46 @@
         <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="375"/>
         <source>Synchronization needed</source>
         <translation>Необходима синхронизация</translation>
+    </message>
+</context>
+<context>
+    <name>KodiSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="17"/>
+        <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
+        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер).
+Введите адрес и порт веб-сервера:
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="32"/>
+        <source>Host</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="39"/>
+        <source>127.0.0.1</source>
+        <translation>127.0.0.1</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="46"/>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="53"/>
+        <source>8080</source>
+        <translation>8080</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="60"/>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="67"/>
+        <source>Password</source>
+        <translation>Пароль</translation>
     </message>
 </context>
 <context>
@@ -2772,12 +3082,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="31"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="27"/>
         <source>Searching for Movies...</source>
         <translation>Поиск фильмов...</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="162"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="51"/>
         <source>Loading Movies...</source>
         <translation>Загрузка фильмов...</translation>
     </message>
@@ -3334,6 +3644,123 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>MovieSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation>Имена файлов для сохранения и загрузки информации о фильмах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="42"/>
+        <source>Nfo</source>
+        <translation>Файл описания</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>Постер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>Фон</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="63"/>
+        <source>Logo</source>
+        <translation>Логотип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="70"/>
+        <source>Clear Art</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="77"/>
+        <source>Disc Art</source>
+        <translation>Обложка диска</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="144"/>
+        <source>Banner</source>
+        <translation>Баннер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
+        <source>Thumb</source>
+        <translation>Просмотр</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
+        <source>Movie outline</source>
+        <translation>Содержание фильма</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
+        <source>Use plot when outline is not available</source>
+        <translation>Использовать &quot;сюжет&quot; если недоступно</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
+        <source>Movie Set Artwork</source>
+        <translation>Изображения коллекций</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="207"/>
+        <source>Artwork next to movies</source>
+        <translation>Располагать рядом с фильмом</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="212"/>
+        <source>Separate artwork directory</source>
+        <translation>Располагать в отдельной папке</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="220"/>
+        <source>Movie Set Poster Filename</source>
+        <translation>Постер коллекции</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="227"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="230"/>
+        <source>folder.jpg</source>
+        <translation>folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="237"/>
+        <source>Movie Set Fanart Filname</source>
+        <translation>Фон коллекции</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="244"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="247"/>
+        <source>fanart.jpg</source>
+        <translation>fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="254"/>
+        <source>Artwork directory</source>
+        <translation>Папка изображений</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="266"/>
+        <source>Choose directory</source>
+        <translation>Выбрать</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="122"/>
+        <source>Choose a directory where your movie set artwork is stored</source>
+        <translation>Выберите папку для хранения изображений коллекции</translation>
+    </message>
+</context>
+<context>
     <name>MovieWidget</name>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="50"/>
@@ -3565,8 +3992,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1031"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="819"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="822"/>
         <source>Codec</source>
         <translation>Видео кодек</translation>
     </message>
@@ -3718,74 +4145,74 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Загрузка изображений...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="808"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="844"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="847"/>
         <source>Track %1</source>
         <translation>Дорожка %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1138"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="849"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="850"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="853"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
         <source>Channels</source>
         <translation>Каналы</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="835"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="838"/>
         <source>Subtitles</source>
         <translation>Субтитры</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="944"/>
         <source>Saving movie...</source>
         <translation>Сохранение фильма...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="946"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="949"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="970"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="925"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="973"/>
         <source>Saving movies...</source>
         <translation>Сохранение фильмов...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="939"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="942"/>
         <source>Movies Saved</source>
         <translation>Фильм сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="988"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="991"/>
         <source>All Movies Saved</source>
         <translation>Все фильмы сохранены</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1010"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1013"/>
         <source>Unknown Actor</source>
         <translation>Актёр неизвестен</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1011"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1014"/>
         <source>Unknown Role</source>
         <translation>Роль неизвестна</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1175"/>
         <source>Choose Image</source>
         <translation>Выбрать изображение</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1175"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
@@ -3793,12 +4220,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="32"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="34"/>
         <source>Searching for Music...</source>
         <translation>Поиск музыки...</translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="103"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="105"/>
         <source>Loading Music...</source>
         <translation>Загрузка музыки...</translation>
     </message>
@@ -4187,6 +4614,46 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="387"/>
         <source>(Un)Check all</source>
         <translation>Выбрать всё/Отменить</translation>
+    </message>
+</context>
+<context>
+    <name>MusicSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation>Имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="32"/>
+        <source>Artist Thumbnail</source>
+        <translation>Обложка исполнителя</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="49"/>
+        <source>Artist Fanart</source>
+        <translation>Фан-арт исполнителя</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="66"/>
+        <source>Artist Logo</source>
+        <translation>Логотип исполнителя</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="83"/>
+        <source>Album Thumbnail</source>
+        <translation>Обложка альбома</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="100"/>
+        <source>Album Disc Art</source>
+        <translation>Обложка диска альбома</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="117"/>
+        <source>Download Extra Fanarts for Artists</source>
+        <translation>Загружать дополнительные фан-арты</translation>
     </message>
 </context>
 <context>
@@ -4624,6 +5091,45 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>NetworkSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="19"/>
+        <source>Host</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="26"/>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="33"/>
+        <source>Username</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="40"/>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="67"/>
+        <source>Enable Proxy</source>
+        <translation>Включить Прокси</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="74"/>
+        <source>Type</source>
+        <comment>Proxy Type</comment>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="82"/>
+        <source>HTTP</source>
+        <translation>HTTP</translation>
+    </message>
+</context>
+<context>
     <name>OFDb</name>
     <message>
         <location filename="../../src/scrapers/movie/OFDb.cpp" line="93"/>
@@ -5031,6 +5537,192 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>ScraperSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="21"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="132"/>
+        <source>Scraper</source>
+        <translation>Источники</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="27"/>
+        <source>Enable adult movie scrapers</source>
+        <translation>Включить поиск фильмов &quot;для взрослых&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="95"/>
+        <source>Custom Movie Scraper</source>
+        <translation>Личные настройки поиска фильмов</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="101"/>
+        <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
+        <translation>Комбинируйте различные источники информации.&lt;br&gt;Для идентификации фильма лучше использовать IMDB, The Movie DB или Fanart.tv.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="127"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="173"/>
+        <source>Item</source>
+        <translation>Наименования</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="141"/>
+        <source>TV Scraper</source>
+        <translation>Поиск сериалов</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="147"/>
+        <source>Select which site you prefer for each element of a tv show and episode.</source>
+        <translation>Выберете источник для каждого элемента описания сериала и серий.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="178"/>
+        <source>Site</source>
+        <translation>Сайты</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="208"/>
+        <source>Don&apos;t use</source>
+        <translation>Не использовать</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="254"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="302"/>
+        <source>Title</source>
+        <translation>Название</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="255"/>
+        <source>Tagline</source>
+        <translation>Слоган</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="256"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="303"/>
+        <source>Rating</source>
+        <translation>Рейтинг</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="257"/>
+        <source>Released</source>
+        <translation>Премьера</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="258"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="305"/>
+        <source>Runtime</source>
+        <translation>Время</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="259"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="308"/>
+        <source>Certification</source>
+        <translation>Ограничение</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="260"/>
+        <source>Trailer</source>
+        <translation>Трейлер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="261"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="309"/>
+        <source>Plot</source>
+        <translation>Сюжет</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="262"/>
+        <source>Poster</source>
+        <translation>Постер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="263"/>
+        <source>Fanart</source>
+        <translation>Фан-арт</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="264"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="312"/>
+        <source>Actors</source>
+        <translation>Актёры</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="265"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="310"/>
+        <source>Genres</source>
+        <translation>Жанры</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="266"/>
+        <source>Studios</source>
+        <translation>Студии</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="267"/>
+        <source>Countries</source>
+        <translation>Страны</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="268"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="307"/>
+        <source>Writer</source>
+        <translation>Сценарий</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="269"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="306"/>
+        <source>Director</source>
+        <translation>Режиссёр</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="270"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="311"/>
+        <source>Tags</source>
+        <translation>Теги</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="271"/>
+        <source>Set</source>
+        <translation>Коллекция</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="272"/>
+        <source>Logo</source>
+        <translation>Логотип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="273"/>
+        <source>Disc Art</source>
+        <translation>Обложка диска</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="274"/>
+        <source>Clear Art</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="275"/>
+        <source>Banner</source>
+        <translation>Баннер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="276"/>
+        <source>Thumb</source>
+        <translation>Просмотр</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="277"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="313"/>
+        <source>Unsupported</source>
+        <translation>Не поддерживается</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="304"/>
+        <source>First Aired</source>
+        <translation>Премьера</translation>
+    </message>
+</context>
+<context>
     <name>SeasonModelItem</name>
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="141"/>
@@ -5139,707 +5831,76 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="71"/>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="76"/>
-        <source>Path</source>
-        <translation>Путь</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="81"/>
-        <source>Sep. folders</source>
-        <translation>В отдельной папке</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="84"/>
-        <source>Items are in separate folders</source>
-        <translation>Расположено в отдельных папках</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="89"/>
-        <source>Reload On Start</source>
-        <translation>Проверять</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="92"/>
-        <source>Automatically reload contents on start</source>
-        <translation>Автоматически проверять изменения при запуске программы</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="102"/>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="109"/>
-        <source>Remove</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="116"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сортировать фильмы в отдельных папках&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="119"/>
-        <source>Organize</source>
-        <translation>Распределить</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="146"/>
-        <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Сохранять ссылки на трейлеры в формате YouTube</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="160"/>
-        <source>Automatically load and save stream details from files</source>
-        <translation>Получать и сохранять информацию о потоке из файла</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="174"/>
-        <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation>При сортировке игнорировать &quot;The&quot; в названии</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="188"/>
-        <source>Download actor images</source>
-        <translation>Скачивать изображения актёров</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="216"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="235"/>
-        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation>Исключить эти слова из имён файлов (разделить запятой, без пробелов, любого регистра)</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="202"/>
-        <source>Check for Updates on start</source>
-        <translation>Проверять наличие обновлений</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1463"/>
-        <source>Path to makemkvcon</source>
-        <translation>Путь к makemkvcon</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="262"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="373"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1627"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="184"/>
         <source>Scraper</source>
         <translation>Источники</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="37"/>
-        <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
-TV Show Episodes have to be in subfolders with the name of the show.
-The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation>Добавьте одну или несколько папок с фильмами, сериалами, концертами, музыкой или файлами для импорта.
-Серии должны быть сортированы по сезонам, в папках с названием этого сериала (Сериал/Сезон/серии).
-Каждый музыкальный исполнитель должен располагаться в отдельной папке с подпапками альбомов (Исполнитель/Альбом/треки).</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="242"/>
-        <source>Startup section</source>
-        <translation>Начальный раздел</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="268"/>
-        <source>Enable adult movie scrapers</source>
-        <translation>Включить поиск фильмов &quot;для взрослых&quot;</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="336"/>
-        <source>Custom Movie Scraper</source>
-        <translation>Личные настройки поиска фильмов</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="342"/>
-        <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Комбинируйте различные источники информации.&lt;br&gt;Для идентификации фильма лучше использовать IMDB, The Movie DB или Fanart.tv.</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="368"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="414"/>
-        <source>Item</source>
-        <translation>Наименования</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="382"/>
-        <source>TV Scraper</source>
-        <translation>Поиск сериалов</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="388"/>
-        <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation>Выберете источник для каждого элемента описания сериала и серий.</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="419"/>
-        <source>Site</source>
-        <translation>Сайты</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="435"/>
-        <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Имена файлов для сохранения и загрузки информации о фильмах.
-Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="445"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="978"/>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>&lt;baseFileName&gt; - имя файла без расширения.
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="460"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="993"/>
-        <source>Nfo</source>
-        <translation>Файл описания</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="467"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="731"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1000"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="814"/>
-        <source>Poster</source>
-        <translation>Постер</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="474"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="738"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1007"/>
-        <source>Backdrop</source>
-        <translation>Фон</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="481"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="752"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1014"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="824"/>
-        <source>Logo</source>
-        <translation>Логотип</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="488"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="759"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1021"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="826"/>
-        <source>Clear Art</source>
-        <translation>Обложка</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="495"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1028"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="825"/>
-        <source>Disc Art</source>
-        <translation>Обложка диска</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="562"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="745"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="827"/>
-        <source>Banner</source>
-        <translation>Баннер</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="569"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="935"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="828"/>
-        <source>Thumb</source>
-        <translation>Предварительный просмотр</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="603"/>
-        <source>Movie outline</source>
-        <translation>Содержание фильма</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="610"/>
-        <source>Use plot when outline is not available</source>
-        <translation>Использовать &quot;сюжет&quot; если недоступно</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="617"/>
-        <source>Movie Set Artwork</source>
-        <translation>Изображения коллекций</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="625"/>
-        <source>Artwork next to movies</source>
-        <translation>Располагать рядом с фильмом</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="630"/>
-        <source>Separate artwork directory</source>
-        <translation>Располагать в отдельной папке</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="638"/>
-        <source>Movie Set Poster Filename</source>
-        <translation>Постер коллекции</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="645"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="648"/>
-        <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="655"/>
-        <source>Movie Set Fanart Filname</source>
-        <translation>Фон коллекции</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="662"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="665"/>
-        <source>fanart.jpg</source>
-        <translation>fanart.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="672"/>
-        <source>Artwork directory</source>
-        <translation>Папка изображений</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="684"/>
-        <source>Choose directory</source>
-        <translation>Выбрать</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="699"/>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Имена файлов для сохранения и загрузки информации о сериалах.
-Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="709"/>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>&lt;baseFileName&gt; - имя файла без расширения.
-Для постеров сезонов использовать &lt;seasonNumber&gt; - номер сезона.
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="724"/>
-        <source>Show nfo</source>
-        <translation>Файл описания сериала</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="766"/>
-        <source>Character Art</source>
-        <translation>Концепт</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="773"/>
-        <source>Season Poster</source>
-        <translation>Постер сезона</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="780"/>
-        <source>Season Backdrop</source>
-        <translation>Фон сезона</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="787"/>
-        <source>Episode nfo</source>
-        <translation>Файл описания серии</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="794"/>
-        <source>Episode thumbnail</source>
-        <translation>Обложка серии</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="801"/>
-        <source>Season Banner</source>
-        <translation>Баннер сезона</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="928"/>
-        <source>Season Thumb</source>
-        <translation>Обложка сезона</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="968"/>
-        <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Имена файлов для сохранения и загрузки информации о концертах.
-Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1101"/>
-        <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Имена файлов для сохранения и загрузки информации об исполнителях и альбомах.
-Можно использовать любые имена или несколько имён (необходимо разделить запятой).
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1116"/>
-        <source>Artist Thumbnail</source>
-        <translation>Обложка исполнителя</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1133"/>
-        <source>Artist Fanart</source>
-        <translation>Фан-арт исполнителя</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1150"/>
-        <source>Artist Logo</source>
-        <translation>Логотип исполнителя</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1167"/>
-        <source>Album Thumbnail</source>
-        <translation>Обложка альбома</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1184"/>
-        <source>Album Disc Art</source>
-        <translation>Обложка диска альбома</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1201"/>
-        <source>Download Extra Fanarts for Artists</source>
-        <translation>Загружать дополнительные фан-арты</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1221"/>
-        <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>Для синхронизации необходимо включить веб-сервер в Kodi (Настройки -&gt; Сервисы -&gt; Веб-сервер).
-Введите адрес и порт веб-сервера:
-</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1257"/>
-        <source>8080</source>
-        <translation>8080</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1442"/>
-        <source>Path to unrar</source>
-        <translation>Путь к unrar</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1605"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="162"/>
         <source>Kodi</source>
         <translation>Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1649"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1652"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="191"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="206"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="209"/>
         <source>Import</source>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1663"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1666"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="190"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="220"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="223"/>
         <source>Music</source>
         <translation>Музыка</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1428"/>
-        <source>Automatically delete archives after extraction</source>
-        <translation>Удалить архивы после извлечения</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1454"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1475"/>
-        <source>Choose</source>
-        <translation>Выбрать</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1236"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1296"/>
-        <source>Host</source>
-        <translation>Адрес</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1243"/>
-        <source>127.0.0.1</source>
-        <translation>127.0.0.1</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1250"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1303"/>
-        <source>Port</source>
-        <translation>Порт</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1310"/>
-        <source>Username</source>
-        <translation>Имя пользователя</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1271"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1317"/>
-        <source>Password</source>
-        <translation>Пароль</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1264"/>
-        <source>User</source>
-        <translation>Пользователь</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1344"/>
-        <source>Enable Proxy</source>
-        <translation>Включить Прокси</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1351"/>
-        <source>Type</source>
-        <comment>Proxy Type</comment>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1359"/>
-        <source>HTTP</source>
-        <translation>HTTP</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1388"/>
-        <source>Message</source>
-        <translation>Сообщение</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1414"/>
-        <source>Theme</source>
-        <translation>Тема</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1505"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="635"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="62"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1512"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="69"/>
         <source>Save Settings</source>
         <translation>Сохранить настройки</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1522"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="79"/>
         <source>toolBar</source>
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1561"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="187"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="118"/>
         <source>Movies</source>
         <translation>Фильмы</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1572"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="188"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="129"/>
         <source>TV Shows</source>
         <translation>Сериалы</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1583"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="189"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="140"/>
         <source>Concerts</source>
         <translation>Концерты</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1594"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="151"/>
         <source>Global</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1616"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="173"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1638"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="195"/>
         <source>Export</source>
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="543"/>
+        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="180"/>
         <source>Settings saved</source>
         <translation>Настройки сохранены</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
-        <source>Downloads</source>
-        <translation>Загрузки</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="621"/>
-        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Распределение фильмов используется только для тех, что не расположены в отдельных папках.</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="629"/>
-        <source>Are you sure?</source>
-        <translation>Вы уверены?</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="631"/>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Эта операция распределит фильмы в подпапках. Нажмите &quot;Ok&quot; если хотите продолжить. </translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="634"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="679"/>
-        <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation>Выберите папку с вашими фильмами, сериалами или концертами</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="704"/>
-        <source>Choose a directory where your movie set artwork is stored</source>
-        <translation>Выберите папку для хранения изображений коллекции</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="735"/>
-        <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation>Тема &quot;%1&quot; была успешно установлена</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="738"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="749"/>
-        <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation>Произошла ошибка при установке темы &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="746"/>
-        <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation>Тема &quot;%1&quot; была успешно удалена</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="760"/>
-        <source>Don&apos;t use</source>
-        <translation>Не использовать</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="806"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="854"/>
-        <source>Title</source>
-        <translation>Название</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="807"/>
-        <source>Tagline</source>
-        <translation>Слоган</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="808"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="855"/>
-        <source>Rating</source>
-        <translation>Рейтинг</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="809"/>
-        <source>Released</source>
-        <translation>Премьера</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="810"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="857"/>
-        <source>Runtime</source>
-        <translation>Продолжительность</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="811"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="860"/>
-        <source>Certification</source>
-        <translation>Ограничение</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="812"/>
-        <source>Trailer</source>
-        <translation>Трейлер</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="813"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="861"/>
-        <source>Plot</source>
-        <translation>Сюжет</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="815"/>
-        <source>Fanart</source>
-        <translation>Фон</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="816"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="864"/>
-        <source>Actors</source>
-        <translation>Актёры</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="817"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="862"/>
-        <source>Genres</source>
-        <translation>Жанры</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="818"/>
-        <source>Studios</source>
-        <translation>Студии</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="819"/>
-        <source>Countries</source>
-        <translation>Страны</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="820"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="859"/>
-        <source>Writer</source>
-        <translation>Сценарий</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="821"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="858"/>
-        <source>Director</source>
-        <translation>Режиссёр</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="822"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="863"/>
-        <source>Tags</source>
-        <translation>Теги</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="823"/>
-        <source>Set</source>
-        <translation>Коллекция</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="829"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="865"/>
-        <source>Unsupported</source>
-        <translation>Не поддерживается</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="856"/>
-        <source>First Aired</source>
-        <translation>Премьера</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="871"/>
-        <source>Choose unrar</source>
-        <translation>Выберите unrar</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="879"/>
-        <source>Choose makemkvcon</source>
-        <translation>Выберите makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -6449,22 +6510,22 @@ The directories containg your music must contain subdirectories for each artist 
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="54"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="51"/>
         <source>Searching for TV Shows...</source>
         <translation>Поиск сериалов...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="75"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="72"/>
         <source>Loading TV Shows...</source>
         <translation>Загрузка сериалов...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="199"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="196"/>
         <source>Searching for Episodes...</source>
         <translation>Поиск серий...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="241"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="238"/>
         <source>Loading Episodes...</source>
         <translation>Загрузка серий...</translation>
     </message>
@@ -7040,6 +7101,92 @@ MediaElch, при запуске, найдёт новые серии.</translati
     </message>
 </context>
 <context>
+    <name>TvShowSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation>Имена файлов для сохранения и загрузки информации о сериалах.
+Можно использовать любые имена или несколько имён (необходимо разделить запятой).</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
+        <translation>&lt;baseFileName&gt; - имя файла без расширения.
+Для постеров сезонов использовать &lt;seasonNumber&gt; - номер сезона.
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="42"/>
+        <source>Show nfo</source>
+        <translation>Файл описания сериала</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>Постер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>Фон</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="63"/>
+        <source>Banner</source>
+        <translation>Баннер</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="70"/>
+        <source>Logo</source>
+        <translation>Логотип</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="77"/>
+        <source>Clear Art</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="84"/>
+        <source>Character Art</source>
+        <translation>Концепт</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="91"/>
+        <source>Season Poster</source>
+        <translation>Постер сезона</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="98"/>
+        <source>Season Backdrop</source>
+        <translation>Фон сезона</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="105"/>
+        <source>Episode nfo</source>
+        <translation>Файл описания серии</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="112"/>
+        <source>Episode thumbnail</source>
+        <translation>Обложка серии</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="119"/>
+        <source>Season Banner</source>
+        <translation>Баннер сезона</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
+        <source>Season Thumb</source>
+        <translation>Обложка сезона</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
+        <source>Thumb</source>
+        <translation>Просмотр</translation>
+    </message>
+</context>
+<context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="109"/>
@@ -7450,12 +7597,12 @@ MediaElch, при запуске, найдёт новые серии.</translati
         <translation>Сезон не найден</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="112"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="109"/>
         <source>Season %1</source>
         <translation>Сезон %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="179"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="176"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; сохранён</translation>
     </message>

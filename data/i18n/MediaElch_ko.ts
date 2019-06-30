@@ -340,12 +340,12 @@
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="52"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="47"/>
         <source>Searching for Concerts...</source>
         <translation>콘서트 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="72"/>
+        <location filename="../../src/concerts/ConcertFileSearcher.cpp" line="67"/>
         <source>Loading Concerts...</source>
         <translation>콘서트 불러오는 중...</translation>
     </message>
@@ -586,6 +586,49 @@
         <location filename="../../src/ui/concerts/ConcertSearchWidget.ui" line="225"/>
         <source>(Un)Check all</source>
         <translation>모두 선택(해제)</translation>
+    </message>
+</context>
+<context>
+    <name>ConcertSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="42"/>
+        <source>Nfo</source>
+        <translation>Nfo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>포스터</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>배경</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="63"/>
+        <source>Logo</source>
+        <translation>로고</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="70"/>
+        <source>Clear Art</source>
+        <translation>클리어 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="77"/>
+        <source>Disc Art</source>
+        <translation>디스크 아트</translation>
     </message>
 </context>
 <context>
@@ -960,6 +1003,35 @@
         <location filename="../../src/ui/export/ExportDialog.cpp" line="144"/>
         <source>Export completed.</source>
         <translation>내보내기 완료.</translation>
+    </message>
+</context>
+<context>
+    <name>ExportSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.ui" line="17"/>
+        <source>Message</source>
+        <translation>메지지</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.ui" line="43"/>
+        <source>Theme</source>
+        <translation>테마</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="68"/>
+        <source>Theme &quot;%1&quot; was successfully installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="71"/>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="82"/>
+        <source>There was an error while processing the theme &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="79"/>
+        <source>Theme &quot;%1&quot; was successfully uninstalled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1964,6 +2036,166 @@
     </message>
 </context>
 <context>
+    <name>GlobalSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="17"/>
+        <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
+TV Show Episodes have to be in subfolders with the name of the show.
+The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="51"/>
+        <source>Type</source>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="56"/>
+        <source>Path</source>
+        <translation>경로</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="61"/>
+        <source>Sep. folders</source>
+        <translation>개별 폴더</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="64"/>
+        <source>Items are in separate folders</source>
+        <translation>항목이 개별 폴더에 있음</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="69"/>
+        <source>Reload On Start</source>
+        <translation>시작할 때 다시 불러오기</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="72"/>
+        <source>Automatically reload contents on start</source>
+        <translation>시작할 때 자동으로 콘텐츠를 다시 불러옵니다</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="82"/>
+        <source>Add</source>
+        <translation>추가</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="89"/>
+        <source>Remove</source>
+        <translation>제거</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="96"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="99"/>
+        <source>Organize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="126"/>
+        <source>Store trailer URLs in YouTube Plugin format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="140"/>
+        <source>Automatically load and save stream details from files</source>
+        <translation>파일에서 스트림 정보를 자동으로 가져와 저장합니다.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="154"/>
+        <source>Ignore articles when sorting (&quot;The&quot;)</source>
+        <translation>정렬할 때 무시 (&quot;The&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="168"/>
+        <source>Download actor images</source>
+        <translation>배우 이미지 다운로드</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="182"/>
+        <source>Check for Updates on start</source>
+        <translation>시작할 때 업데이트 확인</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="196"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="215"/>
+        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
+        <translation>미디어 이름에서 제외할 단어 (쉼표로 구분하며 대소문자 구분 없음)</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="222"/>
+        <source>Startup section</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="39"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Movies</source>
+        <translation>영화</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="40"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>TV Shows</source>
+        <translation>TV 쇼</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="41"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Concerts</source>
+        <translation>콘서트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Music</source>
+        <translation>음악</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="43"/>
+        <source>Import</source>
+        <translation>가져오기</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="59"/>
+        <source>Choose a directory containing your movies, TV show or concerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="187"/>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="228"/>
+        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="236"/>
+        <source>Are you sure?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="238"/>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="241"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="242"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+</context>
+<context>
     <name>HotMovies</name>
     <message>
         <location filename="../../src/scrapers/movie/HotMovies.cpp" line="57"/>
@@ -2214,89 +2446,123 @@
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="267"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="265"/>
         <source>Loading movie information...</source>
         <translation>영화 정보 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="284"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="282"/>
         <source>Loading concert information...</source>
         <translation>콘서트 정보 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="304"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="302"/>
         <source>Loading episode information...</source>
         <translation>에피소드 정보 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="367"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="365"/>
         <source>Movie information was loaded</source>
         <translation>영화 정보 가져오기 완료</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="381"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="379"/>
         <source>Concert information was loaded</source>
         <translation>콘서트 정보 가져오기 완료</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="399"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="418"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="397"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="416"/>
         <source>Episode information was loaded</source>
         <translation>에피소드 정보 가져오기 완료</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="430"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
         <source>Renaming not possible</source>
         <translation>이름 변경 불가</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="430"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="428"/>
         <source>Please enter all naming patterns</source>
         <translation>모든 이름 형식을 입력하세요</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="459"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="549"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="457"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="547"/>
         <source>Creating destination directory failed</source>
         <translation>대상 디렉터리 만들기 실패</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="460"/>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="550"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="458"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="548"/>
         <source>The destination directory %1 could not be created</source>
         <translation>대상 디렉터리 %1 을(를) 만들 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="488"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="486"/>
         <source>Importing movie...</source>
         <translation>영화 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="526"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="524"/>
         <source>Importing episode...</source>
         <translation>에피소드 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="576"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="574"/>
         <source>Importing concert...</source>
         <translation>콘서트 가져오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="693"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="691"/>
         <source>Import finished</source>
         <translation>가져오기 완료</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="693"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="691"/>
         <source>Import of %n file(s) has finished</source>
         <translation>
             <numerusform>%n 파일 가져오기 완료</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="696"/>
+        <location filename="../../src/ui/downloads/ImportDialog.cpp" line="694"/>
         <source>Import has finished</source>
         <translation>가져오기 완료</translation>
+    </message>
+</context>
+<context>
+    <name>ImportSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="19"/>
+        <source>Automatically delete archives after extraction</source>
+        <translation>압축을 푼 다음 압축파일 자동 삭제</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="33"/>
+        <source>Path to unrar</source>
+        <translation>unrar 경로</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="45"/>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="66"/>
+        <source>Choose</source>
+        <translation>선택</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="54"/>
+        <source>Path to makemkvcon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="49"/>
+        <source>Choose unrar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="57"/>
+        <source>Choose makemkvcon</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2325,6 +2591,44 @@
         <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="375"/>
         <source>Synchronization needed</source>
         <translation>동기화 방법</translation>
+    </message>
+</context>
+<context>
+    <name>KodiSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="17"/>
+        <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="32"/>
+        <source>Host</source>
+        <translation>호스트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="39"/>
+        <source>127.0.0.1</source>
+        <translation>127.0.0.1</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="46"/>
+        <source>Port</source>
+        <translation>포트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="53"/>
+        <source>8080</source>
+        <translation>8080</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="60"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="67"/>
+        <source>Password</source>
+        <translation>비밀번호</translation>
     </message>
 </context>
 <context>
@@ -2764,12 +3068,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="31"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="27"/>
         <source>Searching for Movies...</source>
         <translation>영화 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieFileSearcher.cpp" line="162"/>
+        <location filename="../../src/movies/MovieFileSearcher.cpp" line="51"/>
         <source>Loading Movies...</source>
         <translation>영화 불러오는 중...</translation>
     </message>
@@ -3317,6 +3621,121 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>MovieSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="42"/>
+        <source>Nfo</source>
+        <translation>Nfo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>포스터</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>배경</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="63"/>
+        <source>Logo</source>
+        <translation>로고</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="70"/>
+        <source>Clear Art</source>
+        <translation>클리어 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="77"/>
+        <source>Disc Art</source>
+        <translation>디스크 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="144"/>
+        <source>Banner</source>
+        <translation>배너</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
+        <source>Thumb</source>
+        <translation>썸네일</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
+        <source>Movie outline</source>
+        <translation>영화 개요</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
+        <source>Use plot when outline is not available</source>
+        <translation>개요를 사용할 수 없는 경우 줄거리 사용</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
+        <source>Movie Set Artwork</source>
+        <translation>시리즈 영화 아트쿼크</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="207"/>
+        <source>Artwork next to movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="212"/>
+        <source>Separate artwork directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="220"/>
+        <source>Movie Set Poster Filename</source>
+        <translation>시리즈 영화 포스터 파일이름</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="227"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="230"/>
+        <source>folder.jpg</source>
+        <translation>folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="237"/>
+        <source>Movie Set Fanart Filname</source>
+        <translation>시리즈 영화 팬아트 파일이름</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="244"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="247"/>
+        <source>fanart.jpg</source>
+        <translation>fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="254"/>
+        <source>Artwork directory</source>
+        <translation>아트워크 디렉터리</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="266"/>
+        <source>Choose directory</source>
+        <translation>디렉터리 선택</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="122"/>
+        <source>Choose a directory where your movie set artwork is stored</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MovieWidget</name>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="50"/>
@@ -3548,8 +3967,8 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1031"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="819"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="822"/>
         <source>Codec</source>
         <translation>코덱</translation>
     </message>
@@ -3701,74 +4120,74 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="808"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="844"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="847"/>
         <source>Track %1</source>
         <translation>트랙 %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1138"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="849"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="850"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="821"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="853"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="817"/>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
         <source>Channels</source>
         <translation>채널</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="835"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="838"/>
         <source>Subtitles</source>
         <translation>자막</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="944"/>
         <source>Saving movie...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="946"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="949"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="922"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="970"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="925"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="973"/>
         <source>Saving movies...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="939"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="942"/>
         <source>Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="988"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="991"/>
         <source>All Movies Saved</source>
         <translation>모든 영화 저장됨</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1010"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1013"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1011"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1014"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1175"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1172"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1175"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -3776,12 +4195,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicFileSearcher</name>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="32"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="34"/>
         <source>Searching for Music...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/music/MusicFileSearcher.cpp" line="103"/>
+        <location filename="../../src/music/MusicFileSearcher.cpp" line="105"/>
         <source>Loading Music...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4158,6 +4577,44 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="387"/>
         <source>(Un)Check all</source>
         <translation>모두 선택(해제)</translation>
+    </message>
+</context>
+<context>
+    <name>MusicSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="32"/>
+        <source>Artist Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="49"/>
+        <source>Artist Fanart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="66"/>
+        <source>Artist Logo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="83"/>
+        <source>Album Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="100"/>
+        <source>Album Disc Art</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="117"/>
+        <source>Download Extra Fanarts for Artists</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4593,6 +5050,45 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>NetworkSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="19"/>
+        <source>Host</source>
+        <translation>호스트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="26"/>
+        <source>Port</source>
+        <translation>포트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="33"/>
+        <source>Username</source>
+        <translation>사용자명</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="40"/>
+        <source>Password</source>
+        <translation>비밀번호</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="67"/>
+        <source>Enable Proxy</source>
+        <translation>프락시 사용</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="74"/>
+        <source>Type</source>
+        <comment>Proxy Type</comment>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="82"/>
+        <source>HTTP</source>
+        <translation>HTTP</translation>
+    </message>
+</context>
+<context>
     <name>OFDb</name>
     <message>
         <location filename="../../src/scrapers/movie/OFDb.cpp" line="93"/>
@@ -4992,6 +5488,192 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
 </context>
 <context>
+    <name>ScraperSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="21"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="132"/>
+        <source>Scraper</source>
+        <translation>자료수집기</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="27"/>
+        <source>Enable adult movie scrapers</source>
+        <translation>성인 영화 자료수집 사용</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="95"/>
+        <source>Custom Movie Scraper</source>
+        <translation>사용자 영화 자료수집기</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="101"/>
+        <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="127"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="173"/>
+        <source>Item</source>
+        <translation>항목</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="141"/>
+        <source>TV Scraper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="147"/>
+        <source>Select which site you prefer for each element of a tv show and episode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="178"/>
+        <source>Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="208"/>
+        <source>Don&apos;t use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="254"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="302"/>
+        <source>Title</source>
+        <translation>제목</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="255"/>
+        <source>Tagline</source>
+        <translation>태그라인</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="256"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="303"/>
+        <source>Rating</source>
+        <translation>평점</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="257"/>
+        <source>Released</source>
+        <translation>출시</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="258"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="305"/>
+        <source>Runtime</source>
+        <translation>상영시간</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="259"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="308"/>
+        <source>Certification</source>
+        <translation>등급</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="260"/>
+        <source>Trailer</source>
+        <translation>예고편</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="261"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="309"/>
+        <source>Plot</source>
+        <translation>줄거리</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="262"/>
+        <source>Poster</source>
+        <translation>포스터</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="263"/>
+        <source>Fanart</source>
+        <translation>팬아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="264"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="312"/>
+        <source>Actors</source>
+        <translation>배우</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="265"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="310"/>
+        <source>Genres</source>
+        <translation>장르</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="266"/>
+        <source>Studios</source>
+        <translation>스튜디오</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="267"/>
+        <source>Countries</source>
+        <translation>국가</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="268"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="307"/>
+        <source>Writer</source>
+        <translation>작가</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="269"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="306"/>
+        <source>Director</source>
+        <translation>감독</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="270"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="311"/>
+        <source>Tags</source>
+        <translation>태그</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="271"/>
+        <source>Set</source>
+        <translation>시리즈</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="272"/>
+        <source>Logo</source>
+        <translation>로고</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="273"/>
+        <source>Disc Art</source>
+        <translation>디스크 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="274"/>
+        <source>Clear Art</source>
+        <translation>클리어 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="275"/>
+        <source>Banner</source>
+        <translation>배너</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="276"/>
+        <source>Thumb</source>
+        <translation>썸네일</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="277"/>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="313"/>
+        <source>Unsupported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="304"/>
+        <source>First Aired</source>
+        <translation>첫 방송</translation>
+    </message>
+</context>
+<context>
     <name>SeasonModelItem</name>
     <message>
         <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="141"/>
@@ -5100,695 +5782,76 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="71"/>
-        <source>Type</source>
-        <translation>종류</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="76"/>
-        <source>Path</source>
-        <translation>경로</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="81"/>
-        <source>Sep. folders</source>
-        <translation>개별 폴더</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="84"/>
-        <source>Items are in separate folders</source>
-        <translation>항목이 개별 폴더에 있음</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="89"/>
-        <source>Reload On Start</source>
-        <translation>시작할 때 다시 불러오기</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="92"/>
-        <source>Automatically reload contents on start</source>
-        <translation>시작할 때 자동으로 콘텐츠를 다시 불러옵니다</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="102"/>
-        <source>Add</source>
-        <translation>추가</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="109"/>
-        <source>Remove</source>
-        <translation>제거</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="116"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="119"/>
-        <source>Organize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="146"/>
-        <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="160"/>
-        <source>Automatically load and save stream details from files</source>
-        <translation>파일에서 스트림 정보를 자동으로 가져와 저장합니다.</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="174"/>
-        <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation>정렬할 때 무시 (&quot;The&quot;)</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="188"/>
-        <source>Download actor images</source>
-        <translation>배우 이미지 다운로드</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="216"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="235"/>
-        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation>미디어 이름에서 제외할 단어 (쉼표로 구분하며 대소문자 구분 없음)</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="202"/>
-        <source>Check for Updates on start</source>
-        <translation>시작할 때 업데이트 확인</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1463"/>
-        <source>Path to makemkvcon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="262"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="373"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1627"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="184"/>
         <source>Scraper</source>
         <translation>자료수집기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="37"/>
-        <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
-TV Show Episodes have to be in subfolders with the name of the show.
-The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="242"/>
-        <source>Startup section</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="268"/>
-        <source>Enable adult movie scrapers</source>
-        <translation>성인 영화 자료수집 사용</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="336"/>
-        <source>Custom Movie Scraper</source>
-        <translation>사용자 영화 자료수집기</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="342"/>
-        <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="368"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="414"/>
-        <source>Item</source>
-        <translation>항목</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="382"/>
-        <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="388"/>
-        <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="419"/>
-        <source>Site</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="435"/>
-        <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="445"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="978"/>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="460"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="993"/>
-        <source>Nfo</source>
-        <translation>Nfo</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="467"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="731"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1000"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="814"/>
-        <source>Poster</source>
-        <translation>포스터</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="474"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="738"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1007"/>
-        <source>Backdrop</source>
-        <translation>배경</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="481"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="752"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1014"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="824"/>
-        <source>Logo</source>
-        <translation>로고</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="488"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="759"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1021"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="826"/>
-        <source>Clear Art</source>
-        <translation>클리어 아트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="495"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1028"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="825"/>
-        <source>Disc Art</source>
-        <translation>디스크 아트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="562"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="745"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="827"/>
-        <source>Banner</source>
-        <translation>배너</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="569"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="935"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="828"/>
-        <source>Thumb</source>
-        <translation>썸네일</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="603"/>
-        <source>Movie outline</source>
-        <translation>영화 개요</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="610"/>
-        <source>Use plot when outline is not available</source>
-        <translation>개요를 사용할 수 없는 경우 줄거리 사용</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="617"/>
-        <source>Movie Set Artwork</source>
-        <translation>시리즈 영화 아트쿼크</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="625"/>
-        <source>Artwork next to movies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="630"/>
-        <source>Separate artwork directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="638"/>
-        <source>Movie Set Poster Filename</source>
-        <translation>시리즈 영화 포스터 파일이름</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="645"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="648"/>
-        <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="655"/>
-        <source>Movie Set Fanart Filname</source>
-        <translation>시리즈 영화 팬아트 파일이름</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="662"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="665"/>
-        <source>fanart.jpg</source>
-        <translation>fanart.jpg</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="672"/>
-        <source>Artwork directory</source>
-        <translation>아트워크 디렉터리</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="684"/>
-        <source>Choose directory</source>
-        <translation>디렉터리 선택</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="699"/>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="709"/>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="724"/>
-        <source>Show nfo</source>
-        <translation>쇼 nfo</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="766"/>
-        <source>Character Art</source>
-        <translation>배우 아트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="773"/>
-        <source>Season Poster</source>
-        <translation>시즌 포스터</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="780"/>
-        <source>Season Backdrop</source>
-        <translation>시즌 배경</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="787"/>
-        <source>Episode nfo</source>
-        <translation>에피소드 nfo</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="794"/>
-        <source>Episode thumbnail</source>
-        <translation>에피소드 썸네일</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="801"/>
-        <source>Season Banner</source>
-        <translation>시즌 배너</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="928"/>
-        <source>Season Thumb</source>
-        <translation>시즌 썸네일</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="968"/>
-        <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1101"/>
-        <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1116"/>
-        <source>Artist Thumbnail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1133"/>
-        <source>Artist Fanart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1150"/>
-        <source>Artist Logo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1167"/>
-        <source>Album Thumbnail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1184"/>
-        <source>Album Disc Art</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1201"/>
-        <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1221"/>
-        <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1257"/>
-        <source>8080</source>
-        <translation>8080</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1442"/>
-        <source>Path to unrar</source>
-        <translation>unrar 경로</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1605"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="162"/>
         <source>Kodi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1649"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1652"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="191"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="206"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="209"/>
         <source>Import</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1663"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1666"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="190"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="220"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="223"/>
         <source>Music</source>
         <translation>음악</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1428"/>
-        <source>Automatically delete archives after extraction</source>
-        <translation>압축을 푼 다음 압축파일 자동 삭제</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1454"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1475"/>
-        <source>Choose</source>
-        <translation>선택</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1236"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1296"/>
-        <source>Host</source>
-        <translation>호스트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1243"/>
-        <source>127.0.0.1</source>
-        <translation>127.0.0.1</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1250"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1303"/>
-        <source>Port</source>
-        <translation>포트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1310"/>
-        <source>Username</source>
-        <translation>사용자명</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1271"/>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1317"/>
-        <source>Password</source>
-        <translation>비밀번호</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1264"/>
-        <source>User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1344"/>
-        <source>Enable Proxy</source>
-        <translation>프락시 사용</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1351"/>
-        <source>Type</source>
-        <comment>Proxy Type</comment>
-        <translation>종류</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1359"/>
-        <source>HTTP</source>
-        <translation>HTTP</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1388"/>
-        <source>Message</source>
-        <translation>메지지</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1414"/>
-        <source>Theme</source>
-        <translation>테마</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1505"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="635"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="62"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1512"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="69"/>
         <source>Save Settings</source>
         <translation>설정 저장</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1522"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="79"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1561"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="187"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="118"/>
         <source>Movies</source>
         <translation>영화</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1572"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="188"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="129"/>
         <source>TV Shows</source>
         <translation>TV 쇼</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1583"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="189"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="140"/>
         <source>Concerts</source>
         <translation>콘서트</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1594"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="151"/>
         <source>Global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1616"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="173"/>
         <source>Network</source>
         <translation>네트워크</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.ui" line="1638"/>
+        <location filename="../../src/ui/settings/SettingsWindow.ui" line="195"/>
         <source>Export</source>
         <translation>내보내기</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="543"/>
+        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="180"/>
         <source>Settings saved</source>
         <translation>설정 저장됨</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="581"/>
-        <source>Downloads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="621"/>
-        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="629"/>
-        <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="631"/>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="634"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="679"/>
-        <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="704"/>
-        <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="735"/>
-        <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="738"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="749"/>
-        <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="746"/>
-        <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="760"/>
-        <source>Don&apos;t use</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="806"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="854"/>
-        <source>Title</source>
-        <translation>제목</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="807"/>
-        <source>Tagline</source>
-        <translation>태그라인</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="808"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="855"/>
-        <source>Rating</source>
-        <translation>평점</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="809"/>
-        <source>Released</source>
-        <translation>출시</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="810"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="857"/>
-        <source>Runtime</source>
-        <translation>재생시간</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="811"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="860"/>
-        <source>Certification</source>
-        <translation>등급</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="812"/>
-        <source>Trailer</source>
-        <translation>예고편</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="813"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="861"/>
-        <source>Plot</source>
-        <translation>줄거리</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="815"/>
-        <source>Fanart</source>
-        <translation>팬아트</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="816"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="864"/>
-        <source>Actors</source>
-        <translation>배우</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="817"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="862"/>
-        <source>Genres</source>
-        <translation>장르</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="818"/>
-        <source>Studios</source>
-        <translation>스튜디오</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="819"/>
-        <source>Countries</source>
-        <translation>국가</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="820"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="859"/>
-        <source>Writer</source>
-        <translation>작가</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="821"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="858"/>
-        <source>Director</source>
-        <translation>감독</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="822"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="863"/>
-        <source>Tags</source>
-        <translation>태그</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="823"/>
-        <source>Set</source>
-        <translation>시리즈</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="829"/>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="865"/>
-        <source>Unsupported</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="856"/>
-        <source>First Aired</source>
-        <translation>첫 방송</translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="871"/>
-        <source>Choose unrar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ui/settings/SettingsWindow.cpp" line="879"/>
-        <source>Choose makemkvcon</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6395,22 +6458,22 @@ The directories containg your music must contain subdirectories for each artist 
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="54"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="51"/>
         <source>Searching for TV Shows...</source>
         <translation>TV 쇼 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="75"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="72"/>
         <source>Loading TV Shows...</source>
         <translation>TV 쇼 불러오는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="199"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="196"/>
         <source>Searching for Episodes...</source>
         <translation>에피소드 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="241"/>
+        <location filename="../../src/tv_shows/TvShowFileSearcher.cpp" line="238"/>
         <source>Loading Episodes...</source>
         <translation>에피소드 불러오는 중...</translation>
     </message>
@@ -6975,6 +7038,89 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     </message>
 </context>
 <context>
+    <name>TvShowSettingsWidget</name>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
+        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="27"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="42"/>
+        <source>Show nfo</source>
+        <translation>쇼 nfo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="49"/>
+        <source>Poster</source>
+        <translation>포스터</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="56"/>
+        <source>Backdrop</source>
+        <translation>배경</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="63"/>
+        <source>Banner</source>
+        <translation>배너</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="70"/>
+        <source>Logo</source>
+        <translation>로고</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="77"/>
+        <source>Clear Art</source>
+        <translation>클리어 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="84"/>
+        <source>Character Art</source>
+        <translation>배우 아트</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="91"/>
+        <source>Season Poster</source>
+        <translation>시즌 포스터</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="98"/>
+        <source>Season Backdrop</source>
+        <translation>시즌 배경</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="105"/>
+        <source>Episode nfo</source>
+        <translation>에피소드 nfo</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="112"/>
+        <source>Episode thumbnail</source>
+        <translation>에피소드 썸네일</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="119"/>
+        <source>Season Banner</source>
+        <translation>시즌 배너</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
+        <source>Season Thumb</source>
+        <translation>시즌 썸네일</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
+        <source>Thumb</source>
+        <translation>썸네일</translation>
+    </message>
+</context>
+<context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="109"/>
@@ -7383,12 +7529,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="112"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="109"/>
         <source>Season %1</source>
         <translation>시즌 %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="179"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="176"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
