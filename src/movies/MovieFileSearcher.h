@@ -15,6 +15,7 @@
 /// Usage:
 ///   MovieFileSearcher searcher;
 ///   searcher.setMovieDirectories(directories);
+///
 class MovieFileSearcher : public QObject
 {
     Q_OBJECT
@@ -29,7 +30,6 @@ public:
         QVector<QStringList>& contents,
         bool separateFolders = false,
         bool firstScan = false);
-    static Movie* loadMovieData(Movie* movie);
 
 public slots:
     void reload(bool force);
@@ -48,6 +48,8 @@ private:
         bool inSeparateFolder;
         QMap<QString, QStringList> contents;
     };
+
+    static Movie* loadMovieData(Movie* movie);
 
     QStringList getFiles(QString path);
 
