@@ -14,6 +14,7 @@ source packaging/check_dependencies.sh
 
 if [ ! -f "/etc/debian_version" ]; then
 	print_critical "Build script only works on Debian/Ubuntu systems!"
+	exit 1
 fi
 
 print_help() {
@@ -63,6 +64,7 @@ if [ "${BUILD_OS}" == "linux" ]; then
 	[ "${2}" != "--no-confirm" ] && confirm_build
 	build_release_linux || {
 		print_critical "Build failed!"
+		exit 1
 	}
 
 elif [ "${BUILD_OS}" == "win" ]; then

@@ -76,6 +76,7 @@ ubsan {
     WARNINGS += -Wshadow
     WARNINGS += -Wno-error=unsafe-loop-optimizations
     WARNINGS += -Wno-unsafe-loop-optimizations
+    WARNINGS += -Wno-strict-overflow
 }
 *-clang* {
     WARNINGS += -Wextra
