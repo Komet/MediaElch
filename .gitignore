@@ -12,7 +12,7 @@ ZenLib
 
 # Fake data
 scripts/generated_media
-scripts/fake_data/Demo.*
+scripts/library/Demo.*
 
 # Doxygen
 doc/html
