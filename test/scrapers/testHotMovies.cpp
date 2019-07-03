@@ -43,7 +43,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         REQUIRE(!m.ratings().isEmpty());
         // Rating currently no available
         // CHECK(m.ratings().back().rating == Approx(4).margin(0.5));
-        CHECK(m.ratings().back().voteCount > 60);
+        CHECK(m.ratings().back().voteCount > 50);
         CHECK(m.images().posters().size() == 1);
         CHECK(m.runtime() == 201min);
 

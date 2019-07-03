@@ -151,13 +151,14 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
         movie->setName(rx.cap(1));
     }
 
-    // Rating currently not available
+    // Rating currently not available; HotMovies has switched to likes
     // rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
     // if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
     //     movie->setRating(rx.cap(1).toDouble());
     // }
 
-    rx.setPattern(R"(<span itemprop="ratingCount">(\d+) </span> Rating)");
+    // Only the main like count has text after the thumbs-up-count
+    rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span></a><br /><span class="thumbs-up-text">)");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
         Rating rating;
         rating.voteCount = rx.cap(1).toInt();
