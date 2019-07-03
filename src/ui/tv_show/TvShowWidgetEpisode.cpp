@@ -425,11 +425,11 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->epBookmark->blockSignals(false);
 
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(
-        MediaCenterFeatures::EditTvShowEpisodeCertification));
+        MediaCenterFeature::EditTvShowEpisodeCertification));
     ui->showTitle->setEnabled(
-        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
+        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeature::EditTvShowEpisodeShowTitle));
     ui->studio->setEnabled(
-        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
+        Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeature::EditTvShowEpisodeNetwork));
     ui->buttonRevert->setVisible(m_episode->hasChanged());
 }
 

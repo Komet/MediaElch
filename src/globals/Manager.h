@@ -91,7 +91,6 @@ private:
     TvShowModel* m_tvShowModel;
     ConcertModel* m_concertModel;
     MusicModel* m_musicModel;
-    Settings* m_settings;
     Database* m_database;
     TvShowFilesWidget* m_tvShowFilesWidget;
     MusicFilesWidget* m_musicFilesWidget;
