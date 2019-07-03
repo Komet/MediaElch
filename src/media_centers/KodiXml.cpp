@@ -26,18 +26,11 @@
 #include <QXmlStreamWriter>
 #include <array>
 
-/**
- * @brief KodiXml::KodiXml
- * @param parent
- */
 KodiXml::KodiXml(QObject* parent)
 {
     setParent(parent);
 }
 
-/**
- * @brief KodiXml::~KodiXml
- */
 KodiXml::~KodiXml() = default;
 
 /**

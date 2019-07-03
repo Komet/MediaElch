@@ -17,9 +17,6 @@ class TvShow;
 class TvShowEpisode;
 class Subtitle;
 
-/**
- * @brief The KodiXml class
- */
 class KodiXml : public MediaCenterInterface
 {
     Q_OBJECT

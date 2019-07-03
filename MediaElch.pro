@@ -146,6 +146,7 @@ SOURCES += src/main.cpp \
     src/ui/main/Navbar.cpp \
     src/ui/main/Update.cpp \
     src/media_centers/KodiXml.cpp \
+    src/media_centers/KodiVersion.cpp \
     src/media_centers/kodi/ArtistXmlReader.cpp \
     src/media_centers/kodi/ArtistXmlWriter.cpp \
     src/media_centers/kodi/ConcertXmlWriter.cpp \
@@ -358,6 +359,7 @@ HEADERS  += Version.h \
     src/ui/main/Navbar.h \
     src/ui/main/Update.h \
     src/media_centers/KodiXml.h \
+    src/media_centers/KodiVersion.h \
     src/media_centers/kodi/ArtistXmlReader.h \
     src/media_centers/kodi/ArtistXmlWriter.h \
     src/media_centers/kodi/ConcertXmlWriter.h \
