@@ -13,7 +13,7 @@ KodiVersion KodiVersion::latest()
 
 bool KodiVersion::isValid(int val)
 {
-    return val >= 17 && val <= 18;
+    return val >= 16 && val <= 18;
 }
 
 QVector<KodiVersion> KodiVersion::all()
