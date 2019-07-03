@@ -39,4 +39,9 @@ QString KodiVersion::toString() const
     return QString::number(toInt());
 }
 
+KodiVersion::Version KodiVersion::version() const
+{
+    return m_version;
+}
+
 } // namespace mediaelch

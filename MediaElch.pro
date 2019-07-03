@@ -153,6 +153,8 @@ SOURCES += src/main.cpp \
     src/media_centers/kodi/ConcertXmlReader.cpp \
     src/media_centers/kodi/EpisodeXmlReader.cpp \
     src/media_centers/kodi/MovieXmlWriter.cpp \
+    src/media_centers/kodi/v17/MovieXmlWriterV17.cpp \
+    src/media_centers/kodi/v18/MovieXmlWriterV18.cpp \
     src/media_centers/kodi/MovieXmlReader.cpp \
     src/media_centers/kodi/TvShowXmlWriter.cpp \
     src/media_centers/kodi/TvShowXmlReader.cpp \
@@ -366,6 +368,8 @@ HEADERS  += Version.h \
     src/media_centers/kodi/ConcertXmlReader.h \
     src/media_centers/kodi/EpisodeXmlReader.h \
     src/media_centers/kodi/MovieXmlWriter.h \
+    src/media_centers/kodi/v17/MovieXmlWriterV17.h \
+    src/media_centers/kodi/v18/MovieXmlWriterV18.h \
     src/media_centers/kodi/MovieXmlReader.h \
     src/media_centers/kodi/TvShowXmlWriter.h \
     src/media_centers/kodi/TvShowXmlReader.h \

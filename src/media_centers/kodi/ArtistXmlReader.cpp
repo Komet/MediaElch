@@ -9,6 +9,7 @@
 #include <QTime>
 #include <QUrl>
 
+namespace mediaelch {
 namespace kodi {
 
 ArtistXmlReader::ArtistXmlReader(Artist& actor) : m_artist{actor}
@@ -95,3 +96,4 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
 }
 
 } // namespace kodi
+} // namespace mediaelch

@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "media_centers/kodi/MovieXmlWriter.h"
+#include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 
 #include <QDateTime>
 #include <chrono>
@@ -12,7 +12,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
     SECTION("Empty movie")
     {
         Movie movie;
-        kodi::MovieXmlWriter writer(movie);
+        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
@@ -65,7 +65,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
         rating.voteCount = 1641;
         rating.source = "IMDb";
         movie.ratings().push_back(rating);
-        movie.setTop250(250);
+        movie.setTop250(240);
         movie.setOutline("TmovieFc02");
         movie.setOverview("Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken "
                           "into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.");
@@ -119,7 +119,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
         // TODO: order
         movie.addActor(actor);
 
-        kodi::MovieXmlWriter writer(movie);
+        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
@@ -127,11 +127,11 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
     <originaltitle>Allegiant</originaltitle>
     <ratings>
         <rating default="true" name="IMDb">
-            <value>5.81641</value>
-            <votes/>
+            <value>5.8</value>
+            <votes>1641</votes>
         </rating>
     </ratings>
-    <top250>250</top250>
+    <top250>240</top250>
     <year>2016</year>
     <plot>Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.</plot>
     <outline>TmovieFc02</outline>

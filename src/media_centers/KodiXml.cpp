@@ -10,9 +10,10 @@
 #include "media_centers/kodi/ConcertXmlWriter.h"
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
-#include "media_centers/kodi/MovieXmlWriter.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/TvShowXmlWriter.h"
+#include "media_centers/kodi/v17/MovieXmlWriterV17.h"
+#include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
@@ -25,6 +26,7 @@
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 #include <array>
+#include <memory>
 
 KodiXml::KodiXml(QObject* parent)
 {
@@ -49,8 +51,17 @@ bool KodiXml::hasFeature(MediaCenterFeature feature)
 
 QByteArray KodiXml::getMovieXml(Movie* movie)
 {
-    kodi::MovieXmlWriter writer(*movie);
-    return writer.getMovieXml();
+    using namespace mediaelch;
+    // @todo(bugwelle):
+    // I'm fully aware that this is bad coding style but writing this clean
+    // requires so much refactoring that writing this whole feature would be easier.
+    // It's on my todo list to refactor this. Maybe into a Kodi factory.
+    std::unique_ptr<kodi::MovieXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v17: writer = std::make_unique<kodi::MovieXmlWriterV17>(*movie); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
+    }
+    return writer->getMovieXml();
 }
 
 /// @brief Saves a movie (including images)
@@ -324,7 +335,7 @@ bool KodiXml::loadMovie(Movie* movie, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    kodi::MovieXmlReader reader(*movie);
+    mediaelch::kodi::MovieXmlReader reader(*movie);
     reader.parseNfoDom(domDoc);
 
     movie->setStreamDetailsLoaded(loadStreamDetails(movie->streamDetails(), domDoc));
@@ -598,7 +609,7 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
 
 QByteArray KodiXml::getConcertXml(Concert* concert)
 {
-    kodi::ConcertXmlWriter writer(*concert);
+    mediaelch::kodi::ConcertXmlWriter writer(*concert);
     return writer.getConcertXml();
 }
 
@@ -733,7 +744,7 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    kodi::ConcertXmlReader reader(*concert);
+    mediaelch::kodi::ConcertXmlReader reader(*concert);
     reader.parseNfoDom(domDoc);
 
     concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
@@ -826,7 +837,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    kodi::TvShowXmlReader reader(*show);
+    mediaelch::kodi::TvShowXmlReader reader(*show);
     reader.parseNfoDom(domDoc);
 
     return true;
@@ -907,7 +918,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
     }
 
     // todo: move above code into reader as well
-    kodi::EpisodeXmlReader reader(*episode);
+    mediaelch::kodi::EpisodeXmlReader reader(*episode);
     reader.parseNfoDom(domDoc, episodeDetails);
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
@@ -1128,7 +1139,7 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
 QByteArray KodiXml::getTvShowXml(TvShow* show)
 {
-    kodi::TvShowXmlWriter writer(*show);
+    mediaelch::kodi::TvShowXmlWriter writer(*show);
     return writer.getTvShowXml();
 }
 
@@ -1595,7 +1606,7 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    kodi::ArtistXmlReader reader(*artist);
+    mediaelch::kodi::ArtistXmlReader reader(*artist);
     reader.parseNfoDom(domDoc);
 
     return true;
@@ -1895,7 +1906,7 @@ bool KodiXml::saveAlbum(Album* album)
 
 QByteArray KodiXml::getArtistXml(Artist* artist)
 {
-    kodi::ArtistXmlWriter writer(*artist);
+    mediaelch::kodi::ArtistXmlWriter writer(*artist);
     return writer.getArtistXml();
 }
 

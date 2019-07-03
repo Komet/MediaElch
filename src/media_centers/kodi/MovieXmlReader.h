@@ -5,6 +5,7 @@
 
 class Movie;
 
+namespace mediaelch {
 namespace kodi {
 
 class MovieXmlReader
@@ -18,3 +19,4 @@ private:
 };
 
 } // namespace kodi
+} // namespace mediaelch

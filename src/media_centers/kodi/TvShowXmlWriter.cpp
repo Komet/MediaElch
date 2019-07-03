@@ -7,6 +7,7 @@
 
 #include <QDomDocument>
 
+namespace mediaelch {
 namespace kodi {
 
 TvShowXmlWriter::TvShowXmlWriter(TvShow& tvShow) : m_show{tvShow}
@@ -139,3 +140,4 @@ QByteArray TvShowXmlWriter::getTvShowXml()
 }
 
 } // namespace kodi
+} // namespace mediaelch

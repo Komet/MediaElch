@@ -1,4 +1,4 @@
-#include "ConcertXmlWriter.h"
+#include "media_centers/kodi/ConcertXmlWriter.h"
 
 #include "concerts/Concert.h"
 #include "globals/Helper.h"
@@ -7,6 +7,7 @@
 
 #include <QDomDocument>
 
+namespace mediaelch {
 namespace kodi {
 
 ConcertXmlWriter::ConcertXmlWriter(Concert& concert) : m_concert{concert}
@@ -77,3 +78,4 @@ QByteArray ConcertXmlWriter::getConcertXml()
 }
 
 } // namespace kodi
+} // namespace mediaelch
