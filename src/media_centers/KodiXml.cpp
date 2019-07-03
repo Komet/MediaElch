@@ -12,6 +12,7 @@
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/TvShowXmlWriter.h"
+#include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 #include "movies/Movie.h"
@@ -58,6 +59,7 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
     // It's on my todo list to refactor this. Maybe into a Kodi factory.
     std::unique_ptr<kodi::MovieXmlWriter> writer;
     switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::MovieXmlWriterV16>(*movie); break;
     case KodiVersion::v17: writer = std::make_unique<kodi::MovieXmlWriterV17>(*movie); break;
     case KodiVersion::v18: writer = std::make_unique<kodi::MovieXmlWriterV18>(*movie); break;
     }

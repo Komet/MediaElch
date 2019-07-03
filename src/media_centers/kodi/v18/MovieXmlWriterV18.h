@@ -1,23 +1,12 @@
 #pragma once
 
-#include "media_centers/kodi/MovieXmlWriter.h"
-
-#include <QByteArray>
-
-class Movie;
+#include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 
 namespace mediaelch {
 namespace kodi {
 
-class MovieXmlWriterV18 : public MovieXmlWriter
-{
-public:
-    MovieXmlWriterV18(Movie& movie);
-    QByteArray getMovieXml() override;
-
-private:
-    Movie& m_movie;
-};
+// currently the same
+using MovieXmlWriterV18 = MovieXmlWriterV17;
 
 } // namespace kodi
 } // namespace mediaelch
