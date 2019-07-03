@@ -18,6 +18,11 @@ indent_size = 2
 
 [*.ui]
 indent_size = 1
+indent_style = space
+
+[*.nfo]
+indent_size = 2
+indent_style = space
 
 [CMakeLists.txt]
 indent_size = 2
