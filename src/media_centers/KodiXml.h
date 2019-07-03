@@ -24,30 +24,41 @@ public:
     explicit KodiXml(QObject* parent = nullptr);
     ~KodiXml() override;
 
+    bool hasFeature(MediaCenterFeature feature) override;
+
+    // movies
     bool saveMovie(Movie* movie) override;
     bool loadMovie(Movie* movie, QString initialNfoContent = "") override;
-    bool saveConcert(Concert* concert) override;
-    bool loadConcert(Concert* concert, QString initialNfoContent = "") override;
-    void loadConcertImages(Concert* concert);
-    bool loadTvShow(TvShow* show, QString initialNfoContent = "") override;
-    bool loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent = "") override;
-    bool saveTvShow(TvShow* show) override;
-    bool saveTvShowEpisode(TvShowEpisode* episode) override;
-    bool hasFeature(int feature) override;
-    QStringList extraFanartNames(Movie* movie) override;
-    QStringList extraFanartNames(Concert* concert) override;
-    QStringList extraFanartNames(TvShow* show) override;
-    QStringList extraFanartNames(Artist* artist) override;
+    // movie images (e.g. posters)
     QImage movieSetPoster(QString setName) override;
     QImage movieSetBackdrop(QString setName) override;
     void saveMovieSetPoster(QString setName, QImage poster) override;
     void saveMovieSetBackdrop(QString setName, QImage backdrop) override;
 
+    // concerts
+    bool saveConcert(Concert* concert) override;
+    bool loadConcert(Concert* concert, QString initialNfoContent = "") override;
+    void loadConcertImages(Concert* concert);
+
+    // TV shows
+    bool loadTvShow(TvShow* show, QString initialNfoContent = "") override;
+    bool loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent = "") override;
+    bool saveTvShow(TvShow* show) override;
+    bool saveTvShowEpisode(TvShowEpisode* episode) override;
+
+    // fanart
+    QStringList extraFanartNames(Movie* movie) override;
+    QStringList extraFanartNames(Concert* concert) override;
+    QStringList extraFanartNames(TvShow* show) override;
+    QStringList extraFanartNames(Artist* artist) override;
+
+    // music
     bool saveArtist(Artist* artist) override;
     bool saveAlbum(Album* album) override;
     bool loadArtist(Artist* artist, QString initialNfoContent = "") override;
     bool loadAlbum(Album* album, QString initialNfoContent = "") override;
 
+    // actors
     QString actorImageName(Movie* movie, Actor actor) override;
     QString actorImageName(TvShow* show, Actor actor) override;
     QString actorImageName(TvShowEpisode* episode, Actor actor) override;

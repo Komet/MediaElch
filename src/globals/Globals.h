@@ -63,17 +63,6 @@ namespace MusicRoles {
     const int SelectionForeground = Qt::UserRole+5;
 }
 
-namespace MediaCenterFeatures {
-    const int EditTvShowEpisodeCertification = 1;
-    const int EditTvShowEpisodeShowTitle     = 2;
-    const int EditTvShowEpisodeNetwork       = 3;
-    const int HandleMovieSetImages           = 4;
-    const int EditConcertRating              = 5;
-    const int EditConcertTagline             = 6;
-    const int EditConcertCertification       = 7;
-    const int EditConcertTrailer             = 8;
-    const int EditConcertWatched             = 9;
-}
 // clang-format on
 
 enum class MainActions

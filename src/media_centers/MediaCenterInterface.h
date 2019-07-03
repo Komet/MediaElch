@@ -16,40 +16,64 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
-/**
- * @brief The MediaCenterInterface class
- * This class is the base for every MediaCenter.
- */
+// clang-format off
+enum class MediaCenterFeature {
+    EditTvShowEpisodeCertification = 1,
+    EditTvShowEpisodeShowTitle     = 2,
+    EditTvShowEpisodeNetwork       = 3,
+    HandleMovieSetImages           = 4,
+    EditConcertRating              = 5,
+    EditConcertTagline             = 6,
+    EditConcertCertification       = 7,
+    EditConcertTrailer             = 8,
+    EditConcertWatched             = 9
+};
+// clang-format on
+
+/// @brief The MediaCenterInterface class
+/// This class is the base for every MediaCenter.
 class MediaCenterInterface : public QObject
 {
 public:
+    virtual bool hasFeature(MediaCenterFeature feature) = 0;
+
+    // movies
     virtual bool saveMovie(Movie* movie) = 0;
     virtual bool loadMovie(Movie* movie, QString nfoContent = "") = 0;
-    virtual bool saveConcert(Concert* concert) = 0;
-    virtual bool loadConcert(Concert* concert, QString nfoContent = "") = 0;
-    virtual bool loadTvShow(TvShow* show, QString nfoContent = "") = 0;
-    virtual bool loadTvShowEpisode(TvShowEpisode* episode, QString nfoContent = "") = 0;
+    // movie images (e.g. posters)
     virtual QImage movieSetPoster(QString setName) = 0;
     virtual QImage movieSetBackdrop(QString setName) = 0;
     virtual void saveMovieSetPoster(QString setName, QImage poster) = 0;
     virtual void saveMovieSetBackdrop(QString setName, QImage backdrop) = 0;
+
+    // concerts
+    virtual bool saveConcert(Concert* concert) = 0;
+    virtual bool loadConcert(Concert* concert, QString nfoContent = "") = 0;
+
+    // TV shows
+    virtual bool loadTvShow(TvShow* show, QString nfoContent = "") = 0;
+    virtual bool loadTvShowEpisode(TvShowEpisode* episode, QString nfoContent = "") = 0;
     virtual bool saveTvShow(TvShow* show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode* episode) = 0;
-    virtual bool hasFeature(int feature) = 0;
+
+    // fanart
     virtual QStringList extraFanartNames(Movie* movie) = 0;
     virtual QStringList extraFanartNames(TvShow* show) = 0;
     virtual QStringList extraFanartNames(Concert* concert) = 0;
     virtual QStringList extraFanartNames(Artist* artist) = 0;
 
+    // music
     virtual bool saveArtist(Artist* artist) = 0;
     virtual bool saveAlbum(Album* album) = 0;
     virtual bool loadArtist(Artist* artist, QString initialNfoContent = "") = 0;
     virtual bool loadAlbum(Album* album, QString initialNfoContent = "") = 0;
 
+    // actors
     virtual QString actorImageName(Movie* movie, Actor actor) = 0;
     virtual QString actorImageName(TvShow* show, Actor actor) = 0;
     virtual QString actorImageName(TvShowEpisode* episode, Actor actor) = 0;
 
+    // nfo file paths
     virtual QString nfoFilePath(Movie* movie) = 0;
     virtual QString nfoFilePath(Concert* concert) = 0;
     virtual QString nfoFilePath(TvShowEpisode* episode) = 0;
