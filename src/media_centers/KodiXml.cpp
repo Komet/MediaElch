@@ -33,12 +33,15 @@ KodiXml::KodiXml(QObject* parent)
 
 KodiXml::~KodiXml() = default;
 
-/**
- * @brief Checks if our MediaCenterPlugin supports a feature
- * @param feature Feature to check
- * @return Feature is supported or not
- */
-bool KodiXml::hasFeature(int feature)
+void KodiXml::setVersion(mediaelch::KodiVersion version)
+{
+    m_version = version;
+}
+
+/// @brief Checks if our MediaCenterPlugin supports a feature
+/// @param feature Feature to check
+/// @return Feature is supported or not
+bool KodiXml::hasFeature(MediaCenterFeature feature)
 {
     Q_UNUSED(feature);
     return true;
@@ -50,15 +53,13 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
     return writer.getMovieXml();
 }
 
-/**
- * @brief Saves a movie (including images)
- * @param movie Movie to save
- * @return Saving success
- * @see KodiXml::writeMovieXml
- */
+/// @brief Saves a movie (including images)
+/// @param movie Movie to save
+/// @return Saving success
+/// @see KodiXml::writeMovieXml
 bool KodiXml::saveMovie(Movie* movie)
 {
-    qDebug() << "Entered, movie=" << movie->name();
+    qDebug() << "Save movie as Kodi NFO file; movie: " << movie->name();
     QByteArray xmlContent = getMovieXml(movie);
 
     if (movie->files().empty()) {
