@@ -10,6 +10,7 @@ add_library(
   kodi/MovieXmlWriter.cpp
   kodi/TvShowXmlReader.cpp
   kodi/TvShowXmlWriter.cpp
+  KodiVersion.cpp
   KodiXml.cpp
   MediaCenterInterface.cpp
 )

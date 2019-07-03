@@ -1,21 +1,32 @@
 #include "settings/KodiSettings.h"
 
+#include <QDebug>
+
+using namespace mediaelch;
+
 void KodiSettings::loadSettings()
 {
-    // XBMC
     m_xbmcHost = m_settings->value("XBMC/RemoteHost").toString();
     m_xbmcPort = m_settings->value("XBMC/RemotePort", 80).toInt();
     m_xbmcUser = m_settings->value("XBMC/RemoteUser").toString();
     m_xbmcPassword = m_settings->value("XBMC/RemotePassword").toString();
+
+    const int version = m_settings->value("kodi/version").toInt();
+    if (!KodiVersion::isValid(version)) {
+        qWarning() << "Found invalid Kodi version" << version
+                   << "in settings; default is:" << KodiVersion::latest().toInt();
+    } else {
+        setKodiVersion(KodiVersion(version));
+    }
 }
 
 void KodiSettings::saveSettings()
 {
-    // XBMC
     m_settings->setValue("XBMC/RemoteHost", m_xbmcHost);
     m_settings->setValue("XBMC/RemotePort", m_xbmcPort);
     m_settings->setValue("XBMC/RemoteUser", m_xbmcUser);
     m_settings->setValue("XBMC/RemotePassword", m_xbmcPassword);
+    m_settings->setValue("kodi/version", m_version.toInt());
 }
 
 void KodiSettings::setXbmcUser(QString user)
@@ -33,6 +44,11 @@ QString KodiSettings::xbmcPassword() const
     return m_xbmcPassword;
 }
 
+const KodiVersion& KodiSettings::kodiVersion() const
+{
+    return m_version;
+}
+
 QString KodiSettings::xbmcHost() const
 {
     return m_xbmcHost;
@@ -46,6 +62,11 @@ int KodiSettings::xbmcPort() const
 void KodiSettings::setXbmcPassword(QString password)
 {
     m_xbmcPassword = password;
+}
+
+void KodiSettings::setKodiVersion(KodiVersion version)
+{
+    m_version = version;
 }
 
 void KodiSettings::setXbmcHost(QString host)
