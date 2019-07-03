@@ -1,6 +1,7 @@
 #pragma once
 
 #include "concerts/Concert.h"
+#include "media_centers/KodiVersion.h"
 #include "media_centers/MediaCenterInterface.h"
 #include "music/Album.h"
 #include "music/Artist.h"
@@ -24,6 +25,7 @@ public:
     explicit KodiXml(QObject* parent = nullptr);
     ~KodiXml() override;
 
+    void setVersion(mediaelch::KodiVersion version);
     bool hasFeature(MediaCenterFeature feature) override;
 
     // movies
@@ -121,4 +123,7 @@ private:
     QString getPath(const Movie* movie);
     QString getPath(const Concert* concert);
     QString movieSetFileName(QString setName, DataFile* dataFile);
+
+private:
+    mediaelch::KodiVersion m_version;
 };
