@@ -5,6 +5,7 @@
 
 class TvShowEpisode;
 
+namespace mediaelch {
 namespace kodi {
 
 class EpisodeXmlReader
@@ -18,3 +19,4 @@ private:
 };
 
 } // namespace kodi
+} // namespace mediaelch

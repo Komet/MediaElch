@@ -1,21 +1,18 @@
 #pragma once
 
 #include <QByteArray>
-#include <QDomElement>
-#include <QString>
 
 class Movie;
 
+namespace mediaelch {
 namespace kodi {
 
 class MovieXmlWriter
 {
 public:
-    MovieXmlWriter(Movie& movie);
-    QByteArray getMovieXml();
-
-private:
-    Movie& m_movie;
+    virtual ~MovieXmlWriter() = default;
+    virtual QByteArray getMovieXml() = 0;
 };
 
 } // namespace kodi
+} // namespace mediaelch

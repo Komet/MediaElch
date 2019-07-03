@@ -23,7 +23,7 @@ class StreamDetails;
 namespace mediaelch {
 
 /// POD for concert data
-class Concert
+class ConcertPod
 {
 public:
     int databaseId{-1};
@@ -185,7 +185,7 @@ signals:
     void sigChanged(Concert*);
 
 private:
-    mediaelch::Concert m_concert;
+    mediaelch::ConcertPod m_concert;
 
     ConcertController* m_controller;
     QStringList m_files;

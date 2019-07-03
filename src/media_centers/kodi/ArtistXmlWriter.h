@@ -6,6 +6,7 @@
 
 class Artist;
 
+namespace mediaelch {
 namespace kodi {
 
 class ArtistXmlWriter
@@ -19,3 +20,4 @@ private:
 };
 
 } // namespace kodi
+} // namespace mediaelch

@@ -5,6 +5,7 @@
 
 class Concert;
 
+namespace mediaelch {
 namespace kodi {
 
 class ConcertXmlReader
@@ -18,3 +19,4 @@ private:
 };
 
 } // namespace kodi
+} // namespace mediaelch

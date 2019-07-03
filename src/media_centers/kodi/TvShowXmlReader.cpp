@@ -7,8 +7,8 @@
 #include <QFileInfo>
 #include <QUrl>
 
+namespace mediaelch {
 namespace kodi {
-
 
 TvShowXmlReader::TvShowXmlReader(TvShow& tvShow) : m_show{tvShow}
 {
@@ -129,3 +129,4 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
 }
 
 } // namespace kodi
+} // namespace mediaelch

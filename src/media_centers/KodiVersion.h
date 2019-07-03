@@ -24,6 +24,7 @@ public:
 
     int toInt() const;
     QString toString() const;
+    Version version() const;
 
 private:
     Version fromInt(int version);

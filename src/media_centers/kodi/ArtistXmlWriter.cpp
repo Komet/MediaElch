@@ -7,6 +7,7 @@
 
 #include <QDomDocument>
 
+namespace mediaelch {
 namespace kodi {
 
 ArtistXmlWriter::ArtistXmlWriter(Artist& artist) : m_artist{artist}
@@ -118,3 +119,4 @@ QByteArray ArtistXmlWriter::getArtistXml()
 }
 
 } // namespace kodi
+} // namespace mediaelch

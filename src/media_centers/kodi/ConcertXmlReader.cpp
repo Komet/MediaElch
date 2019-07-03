@@ -8,8 +8,8 @@
 #include <QStringList>
 #include <QUrl>
 
+namespace mediaelch {
 namespace kodi {
-
 
 ConcertXmlReader::ConcertXmlReader(Concert& concert) : m_concert{concert}
 {
@@ -93,3 +93,4 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
 }
 
 } // namespace kodi
+} // namespace mediaelch
