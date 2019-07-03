@@ -8,6 +8,7 @@ add_library(
   kodi/EpisodeXmlReader.cpp
   kodi/MovieXmlReader.cpp
   kodi/MovieXmlWriter.cpp
+  kodi/v16/MovieXmlWriterV16.cpp
   kodi/v17/MovieXmlWriterV17.cpp
   kodi/v18/MovieXmlWriterV18.cpp
   kodi/TvShowXmlReader.cpp

@@ -11,6 +11,7 @@ public:
     // not an enum class so that we can use KodiVersion::v18
     enum Version : int
     {
+        v16 = 16,
         v17 = 17,
         v18 = 18
     };
