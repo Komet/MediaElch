@@ -1,27 +1,60 @@
 # MediaElch Testing
 
-MediaElch uses [Catch2](https://github.com/catchorg/Catch2) for testing.
+Table of contents:
+
+ - Test types and folder structure
+ - How to test
+ - Code Coverage
+ - CMake Internals
+
+## Test types and folder structure
+MediaElch distinguishes between following tests, each of which has its
+own subdirectory:
+
+ - `unit`: Unit tests. Very fast to execute (<1s)
+ - `scrapers`: Online scrapers tests. Requires an internet connection and
+   can take two minutes to complete. 
+
+`mocks` and `helpers` contain further C++ files that are helpful when writing tests.
+
 
 ## How to test
+As our testframework we use [Catch2](https://github.com/catchorg/Catch2).
+With Catch2 you can create easy to write and easy to read tests.
+
+In combination with CMake it's easy to test MediaElch:
 
 ```sh
+# create test directory
 mkdir build && cd $_
-cmake ..
-make -j4
-
+# run CMake with debug infos enabled
+# we use Ninja as our build system instead of make
+cmake .. -DCMAKE_BUILD_TYPE=Debug -GNinja
+# build all of MediaElch including test executables
+ninja
 # Execute all tests
 make test
 # Execute all unit tests
 make unit
 # Execute all tests
 make scraper_test
+```
 
+If you don't like CMake's test output, you can also run MediaElch's tests on your own.
+There are two test executables in the build folder after compiling everything:
+
+ - `build/test/unit/mediaelch_unit`
+ - `build/test/scrapers/mediaelch_test_scrapers`
+
+Both use CMake and therefore have the same command line interface. Replace `./test`
+with one of the above executables:
+
+```sh
 # Test options
-./test_exe -h            # List Catch2 help
-./test_exe -t            # List all tags
-./test_exe -d yes        # Run *all* tests and print duration
-./test_exe "[load_data]" # Run scraping tests (online test)
-./test_exe "[search]"    # Run scraping search tests (online test)
+./test -h            # List Catch2 help
+./test -t            # List all tags
+./test -d yes        # Run *all* tests and print duration
+./test "[load_data]" # Run scraping tests (online test)
 ```
 
 ## Code Coverage
@@ -29,31 +62,19 @@ make scraper_test
 A CMake target exists to create Mediaelch's coverage: `coverage`
 
 ```sh
+# create test directory
 mkdir build && cd $_
-cmake ..
-make -j4
-make coverage
+# run CMake with coverage enabled and debug infos
+# we use Ninja as our build system instead of make
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -GNinja
+# build all of MediaElch including test executables
+ninja
+# runs the target `test` (see above) and the creates an HTML
+# coverage report in build/coverage`
+ninja coverage
 ```
 
-## CMake and testing
-
-### CTest and Catch2
-
-By using `cmake/Catch.cmake` we can tell CTest to automatically search for Catch tests.
-
-```cmake
-catch_discover_tests(mediaelch_test_scrapers)
-```
-
-### Coverage
-
-If `ENABLE_COVERAGE` is set and `make coverage` is executed, a coverage 
-report should be generated. We have to register tests to be executed first, though:
-
-```cmake
-generate_coverage_report(mediaelch_test_scrapers)
-```
-
+## CMake Internals
 ### Cotire specifics
 
 Cotire tries to use a PCH for Catch2 which results in `CATCH_CONFIG_RUNNER` not
