@@ -20,7 +20,8 @@ KodiSettingsWidget::KodiSettingsWidget(QWidget* parent) : QWidget(parent), ui(ne
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
     for (const auto& version : KodiVersion::all()) {
-        ui->kodiVersion->addItem(version.toString(), version.toInt());
+        const int v = version.toInt();
+        ui->kodiVersion->addItem(QString("v%1").arg(v), version.toInt());
     }
 }
 
@@ -49,6 +50,8 @@ void KodiSettingsWidget::loadSettings()
     const int index = ui->kodiVersion->findData(version);
     if (index != -1) {
         ui->kodiVersion->setCurrentIndex(index);
+    } else {
+        qWarning() << "The GUI doesn't provide an entry for" << version << "; this is a bug";
     }
 }
 
@@ -58,5 +61,9 @@ void KodiSettingsWidget::saveSettings()
     m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
     m_settings->kodiSettings().setXbmcUser(ui->xbmcUser->text());
     m_settings->kodiSettings().setXbmcPassword(ui->xbmcPassword->text());
-    m_settings->kodiSettings().setKodiVersion(KodiVersion(ui->kodiVersion->currentData().toInt()));
+    const int version = ui->kodiVersion->currentData().toInt();
+    m_settings->kodiSettings().setKodiVersion(KodiVersion(version));
+    if (!KodiVersion::isValid(version)) {
+        qWarning() << "Selected invalid Kodi version. The GUI shouldn't allow that.";
+    }
 }
