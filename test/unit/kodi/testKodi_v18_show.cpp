@@ -20,6 +20,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 <tvshow>
    <title></title>
    <showtitle></showtitle>
+   <uniqueid type="unknown" default="true"></uniqueid>
    <ratings></ratings>
    <top250>0</top250>
    <episode>0</episode>
@@ -29,7 +30,6 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
    <premiered></premiered>
    <studio></studio>
    <tvdbid></tvdbid>
-   <id></id>
    <imdbid></imdbid>
    <genre></genre>
 </tvshow>)";

@@ -37,6 +37,19 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
 
+    {
+        // unique id
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "unknown");
+        uniqueId.setAttribute("default", "true"); // we only have one id
+        uniqueId.appendChild(doc.createTextNode(m_show.id().toString()));
+
+        if (!doc.elementsByTagName("uniqueid").isEmpty()) {
+            doc.removeChild(doc.elementsByTagName("uniqueid").at(0));
+        }
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
+
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
     QDomElement ratings = doc.createElement("ratings");
@@ -64,7 +77,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
     KodiXml::setTextValue(doc, "studio", m_show.network());
     KodiXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
-    KodiXml::setTextValue(doc, "id", m_show.id().toString());
+
     KodiXml::setTextValue(doc, "imdbid", m_show.imdbId());
     if (!m_show.status().isEmpty()) {
         KodiXml::setTextValue(doc, "status", m_show.status());
