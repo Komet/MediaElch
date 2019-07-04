@@ -36,8 +36,26 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
-    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_show.rating()));
-    KodiXml::setTextValue(doc, "votes", QString::number(m_show.votes()));
+
+    // rating
+    KodiXml::removeChildNodes(doc, "ratings");
+    QDomElement ratings = doc.createElement("ratings");
+    bool firstRating = true;
+    for (const Rating& rating : m_show.ratings()) {
+        QDomElement ratingValueElement = doc.createElement("value");
+        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
+        QDomElement votesElement = doc.createElement("votes");
+        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
+        QDomElement ratingElement = doc.createElement("rating");
+        ratingElement.setAttribute("name", rating.source);
+        ratingElement.setAttribute("default", firstRating ? "true" : "false");
+        ratingElement.appendChild(ratingValueElement);
+        ratingElement.appendChild(votesElement);
+        ratings.appendChild(ratingElement);
+        firstRating = false;
+    }
+    KodiXml::appendXmlNode(doc, ratings);
+
     KodiXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
     KodiXml::setTextValue(doc, "episode", QString("%1").arg(m_show.episodes().count()));
     KodiXml::setTextValue(doc, "plot", m_show.overview());

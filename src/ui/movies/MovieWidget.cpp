@@ -1326,6 +1326,7 @@ void MovieWidget::onRatingChange(double value)
     }
     m_movie->ratings().back().rating = value;
     ui->buttonRevert->setVisible(true);
+    m_movie->setChanged(true);
 }
 
 /**
@@ -1338,6 +1339,7 @@ void MovieWidget::onVotesChange(int value)
     }
     m_movie->ratings().back().voteCount = value;
     ui->buttonRevert->setVisible(true);
+    m_movie->setChanged(true);
 }
 
 /**

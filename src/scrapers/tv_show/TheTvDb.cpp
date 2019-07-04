@@ -417,11 +417,17 @@ void TheTvDb::parseAndAssignInfos(QString xml,
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty()) {
                 show->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
             }
+            if (show->ratings().empty()) {
+                show->ratings().push_back(Rating{});
+            }
             if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty()) {
-                show->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toDouble());
+                show->ratings().back().rating = elem.elementsByTagName("Rating").at(0).toElement().text().toDouble();
+                show->setChanged(true);
             }
             if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("RatingCount").isEmpty()) {
-                show->setVotes(elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt());
+                show->ratings().back().voteCount =
+                    elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt();
+                show->setChanged(true);
             }
             if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("SeriesName").isEmpty()) {
                 show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text().trimmed());
@@ -1127,8 +1133,8 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
             if (!m_dummyMovie->ratings().isEmpty()) {
-                show->setRating(m_dummyMovie->ratings().back().rating);
-                show->setVotes(m_dummyMovie->ratings().back().voteCount);
+                // TODO: should we really replace all ratings?
+                show->ratings() = m_dummyMovie->ratings();
             }
             if (m_dummyMovie->top250() != 0) {
                 show->setTop250(m_dummyMovie->top250());

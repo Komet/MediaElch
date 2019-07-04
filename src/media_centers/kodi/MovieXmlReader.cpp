@@ -46,6 +46,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
                                    .replace(".", "")
                                    .toInt();
             m_movie.ratings().push_back(rating);
+            m_movie.setChanged(true);
         }
 
     } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
@@ -60,6 +61,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         }
         m_movie.ratings().clear();
         m_movie.ratings().push_back(rating);
+        m_movie.setChanged(true);
     }
 
     if (!domDoc.elementsByTagName("top250").isEmpty()) {
