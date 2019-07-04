@@ -241,8 +241,8 @@ void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
         double rating = 0.0;
         int voteCount = 0;
         if (!movie->ratings().isEmpty()) {
-            rating = movie->ratings().back().rating;
-            voteCount = movie->ratings().back().voteCount;
+            rating = movie->ratings().front().rating;
+            voteCount = movie->ratings().front().voteCount;
         }
         m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
         m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
@@ -436,7 +436,17 @@ void ExportDialog::replaceVars(QString& m, const TvShow* show, QDir dir, bool su
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name().toHtmlEscaped());
-    m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
+    // TODO: multiple ratings
+    {
+        double rating = 0.0;
+        int voteCount = 0;
+        if (!show->ratings().isEmpty()) {
+            rating = show->ratings().front().rating;
+            voteCount = show->ratings().front().voteCount;
+        }
+        m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
+        m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
+    }
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toString().toHtmlEscaped());
     m.replace(
         "{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");

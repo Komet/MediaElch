@@ -329,8 +329,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->imdbId->setText(m_show->imdbId());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
-    ui->rating->setValue(m_show->rating());
-    ui->votes->setValue(m_show->votes());
+    // TODO: multiple ratings
+    if (!m_show->ratings().isEmpty()) {
+        ui->rating->setValue(m_show->ratings().back().rating);
+        ui->votes->setValue(m_show->ratings().back().voteCount);
+    }
     ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
@@ -1020,7 +1023,11 @@ void TvShowWidgetTvShow::onCertificationChange(QString text)
  */
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
-    m_show->setRating(value);
+    if (!m_show || m_show->ratings().isEmpty()) {
+        return;
+    }
+    m_show->ratings().back().rating = value;
+    m_show->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1199,11 +1206,12 @@ void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
 
 void TvShowWidgetTvShow::onVotesChange(int value)
 {
-    if (!m_show) {
+    if (!m_show || m_show->ratings().isEmpty()) {
         return;
     }
-    m_show->setVotes(value);
+    m_show->ratings().back().voteCount = value;
     ui->buttonRevert->setVisible(true);
+    m_show->setChanged(true);
 }
 
 void TvShowWidgetTvShow::onTop250Change(int value)

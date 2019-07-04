@@ -105,7 +105,7 @@ void TvShow::clear(QVector<TvShowScraperInfos> infos)
         m_hasImageChanged.insert(ImageType::TvShowPoster, false);
     }
     if (infos.contains(TvShowScraperInfos::Rating)) {
-        m_rating = Rating();
+        m_ratings.clear();
     }
     if (infos.contains(TvShowScraperInfos::SeasonPoster)) {
         clearSeasonImageType(ImageType::TvShowSeasonPoster);
@@ -359,17 +359,6 @@ QString TvShow::showTitle() const
 }
 
 /**
- * @property TvShow::rating
- * @brief Rating of the show
- * @return The rating
- * @see TvShow::setRating
- */
-double TvShow::rating() const
-{
-    return m_rating.rating;
-}
-
-/**
  * @property TvShow::firstAired
  * @brief First aired date
  * @return Date
@@ -440,6 +429,15 @@ QString TvShow::overview() const
     return m_overview;
 }
 
+QVector<Rating>& TvShow::ratings()
+{
+    return m_ratings;
+}
+
+const QVector<Rating>& TvShow::ratings() const
+{
+    return m_ratings;
+}
 /**
  * @property TvShow::tvdbId
  * @brief TheTvDb Id of the show
@@ -756,17 +754,6 @@ void TvShow::setName(QString name)
 void TvShow::setShowTitle(QString title)
 {
     m_showTitle = title;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the rating
- * @param rating
- * @see TvShow::rating
- */
-void TvShow::setRating(double rating)
-{
-    m_rating.rating = rating;
     setChanged(true);
 }
 
@@ -1330,17 +1317,6 @@ void TvShow::setStatus(const QString& status)
     setChanged(true);
 }
 
-int TvShow::votes() const
-{
-    return m_rating.voteCount;
-}
-
-void TvShow::setVotes(int votes)
-{
-    m_rating.voteCount = votes;
-    setChanged(true);
-}
-
 int TvShow::top250() const
 {
     return m_imdbTop250;
@@ -1533,7 +1509,11 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     out.append(QStringLiteral("  Dir:           ").append(show.dir()).append(nl));
     out.append(QStringLiteral("  Name:          ").append(show.name()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
-    out.append(QStringLiteral("  Rating:        %1").arg(show.rating()).append(nl));
+    out.append(QString("  Ratings:").append(nl));
+    for (const Rating& rating : show.ratings()) {
+        out.append(
+            QString("    %1: %2 (%3 votes)").arg(rating.source).arg(rating.rating).arg(rating.voteCount).append(nl));
+    }
     out.append(QStringLiteral("  FirstAired:    ").append(show.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  Certification: ").append(show.certification().toString()).append(nl));
     out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));

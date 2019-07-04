@@ -36,8 +36,17 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
-    KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_show.rating()));
-    KodiXml::setTextValue(doc, "votes", QString::number(m_show.votes()));
+
+    if (!m_show.ratings().empty()) {
+        // v16 only supports one rating/vote node
+        const auto& rating = m_show.ratings().front();
+        KodiXml::setTextValue(doc, "rating", QString::number(rating.rating));
+        KodiXml::setTextValue(doc, "votes", QString::number(rating.voteCount));
+    } else {
+        KodiXml::setTextValue(doc, "rating", "");
+        KodiXml::setTextValue(doc, "votes", "");
+    }
+
     KodiXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
     KodiXml::setTextValue(doc, "episode", QString("%1").arg(m_show.episodes().count()));
     KodiXml::setTextValue(doc, "plot", m_show.overview());
