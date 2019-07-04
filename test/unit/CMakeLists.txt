@@ -4,6 +4,7 @@ add_executable(
   testCertification.cpp
   testImdbId.cpp
   movie/testMovieFileSearcher.cpp
+  kodi/testKodi_v18_movie.cpp
 )
 
 target_link_libraries(mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers)
