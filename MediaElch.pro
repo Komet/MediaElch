@@ -596,37 +596,10 @@ TRANSLATIONS += \
     data/i18n/MediaElch_sv.ts \
     data/i18n/MediaElch_zh_CN.ts
 
-test {
-    message(Test build)
-
-    QT += testlib
-    TARGET = mediaelch-test
-
-    HEADERS += test/test_helpers.h \
-        test/mocks/settings/MockScraperSettings.h \
-        test/helpers/matchers.h \
-        test/helpers/debug_output.h
-
-    SOURCES -= src/main.cpp
-    SOURCES += test/main.cpp \
-        test/helpers/matchers.cpp \
-        test/data/testCertification.cpp \
-        test/data/testImdbId.cpp \
-        test/mocks/settings/MockScraperSettings.cpp \
-        test/scrapers/testAdultDvdEmpire.cpp \
-        test/scrapers/testAEBN.cpp \
-        test/scrapers/testHotMovies.cpp \
-        test/scrapers/testIMDb.cpp \
-        test/scrapers/testTMDb.cpp \
-        test/scrapers/testVideoBuster.cpp \
-        test/scrapers/testTMDbConcerts.cpp
+sanitize {
+    message(Sanitizer build)
+    CONFIG += sanitizer sanitize_address
 
 } else {
-    sanitize {
-        message(Sanitizer build)
-        CONFIG += sanitizer sanitize_address
-
-    } else {
-        message(Normal build)
-    }
+    message(Normal build)
 }
