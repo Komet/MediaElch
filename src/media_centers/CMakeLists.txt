@@ -11,8 +11,10 @@ add_library(
   kodi/v16/MovieXmlWriterV16.cpp
   kodi/v17/MovieXmlWriterV17.cpp
   kodi/v18/MovieXmlWriterV18.cpp
+  kodi/v16/TvShowXmlWriterV16.cpp
+  kodi/v17/TvShowXmlWriterV17.cpp
+  kodi/v18/TvShowXmlWriterV18.cpp
   kodi/TvShowXmlReader.cpp
-  kodi/TvShowXmlWriter.cpp
   KodiVersion.cpp
   KodiXml.cpp
   MediaCenterInterface.cpp
