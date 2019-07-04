@@ -1,3 +1,4 @@
-add_library(libmediaelch_testhelpers STATIC matchers.cpp)
-target_link_libraries(libmediaelch_testhelpers PRIVATE Qt5::Core)
+add_library(libmediaelch_testhelpers STATIC)
+target_sources(libmediaelch_testhelpers PRIVATE matchers.cpp xml_diff.cpp)
+target_link_libraries(libmediaelch_testhelpers PRIVATE Qt5::Core Qt5::Xml)
 mediaelch_post_target_defaults(libmediaelch_testhelpers)

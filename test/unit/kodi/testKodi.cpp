@@ -3,6 +3,7 @@
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 
 #include <QDateTime>
+#include <QDomDocument>
 #include <chrono>
 
 using namespace std::chrono_literals;
@@ -34,7 +35,7 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
     <director></director>
 </movie>)";
 
-        REQUIRE(writer.getMovieXml().trimmed() == expectedNfo);
+        checkSameXml(expectedNfo, writer.getMovieXml().trimmed());
     }
 
     SECTION("Full movie details")
@@ -195,7 +196,8 @@ TEST_CASE("Movie XML writer for Kodi", "[data][movie][kodi][nfo]")
         </streamdetails>
     </fileinfo>
 </movie>)";
-        // deactivated because it's unstable...
-        // REQUIRE(writer.getMovieXml().trimmed() == expectedNfo);
+
+        QString actual = writer.getMovieXml().trimmed();
+        checkSameXml(expectedNfo, actual);
     }
 }
