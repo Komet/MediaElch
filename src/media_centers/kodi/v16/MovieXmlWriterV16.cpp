@@ -38,23 +38,15 @@ QByteArray MovieXmlWriterV16::getMovieXml()
     KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
 
     // rating
-    KodiXml::removeChildNodes(doc, "ratings");
-    QDomElement ratings = doc.createElement("ratings");
-    bool firstRating = true;
-    for (Rating& rating : m_movie.ratings()) {
-        QDomElement ratingValueElement = doc.createElement("value");
-        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
-        QDomElement votesElement = doc.createElement("votes");
-        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
-        QDomElement ratingElement = doc.createElement("rating");
-        ratingElement.setAttribute("name", rating.source);
-        ratingElement.setAttribute("default", firstRating ? "true" : "false");
-        ratingElement.appendChild(ratingValueElement);
-        ratingElement.appendChild(votesElement);
-        ratings.appendChild(ratingElement);
-        firstRating = false;
+    if (!m_movie.ratings().empty()) {
+        // v16 only supports one rating/vote node
+        const auto& rating = m_movie.ratings().front();
+        KodiXml::setTextValue(doc, "rating", QString::number(rating.rating));
+        KodiXml::setTextValue(doc, "votes", QString::number(rating.voteCount));
+    } else {
+        KodiXml::setTextValue(doc, "rating", "");
+        KodiXml::setTextValue(doc, "votes", "");
     }
-    KodiXml::appendXmlNode(doc, ratings);
 
     KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
     KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
