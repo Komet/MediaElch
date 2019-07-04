@@ -1,10 +1,6 @@
 #pragma once
 
 #include <QByteArray>
-#include <QDomElement>
-#include <QString>
-
-class TvShow;
 
 namespace mediaelch {
 namespace kodi {
@@ -12,11 +8,8 @@ namespace kodi {
 class TvShowXmlWriter
 {
 public:
-    TvShowXmlWriter(TvShow& tvShow);
-    QByteArray getTvShowXml();
-
-private:
-    TvShow& m_show;
+    virtual ~TvShowXmlWriter() = default;
+    virtual QByteArray getTvShowXml() = 0;
 };
 
 } // namespace kodi

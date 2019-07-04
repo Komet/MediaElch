@@ -11,10 +11,12 @@
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
-#include "media_centers/kodi/TvShowXmlWriter.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
+#include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
+#include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
+#include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
@@ -1141,8 +1143,14 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
 QByteArray KodiXml::getTvShowXml(TvShow* show)
 {
-    mediaelch::kodi::TvShowXmlWriter writer(*show);
-    return writer.getTvShowXml();
+    using namespace mediaelch;
+    std::unique_ptr<kodi::TvShowXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::TvShowXmlWriterV16>(*show); break;
+    case KodiVersion::v17: writer = std::make_unique<kodi::TvShowXmlWriterV17>(*show); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
+    }
+    return writer->getTvShowXml();
 }
 
 /**
