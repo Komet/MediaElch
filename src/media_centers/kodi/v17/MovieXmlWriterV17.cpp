@@ -2,9 +2,11 @@
 
 #include "globals/Helper.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/KodiNfoMeta.h"
 #include "movies/Movie.h"
 #include "settings/Settings.h"
 
+#include <QDomComment>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QString>
@@ -26,6 +28,9 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("movie"));
+        QDomComment meta;
+        meta.setData(getKodiNfoComment());
+        doc.appendChild(meta);
     }
 
     QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
