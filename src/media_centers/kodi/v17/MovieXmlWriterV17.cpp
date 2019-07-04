@@ -42,7 +42,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     KodiXml::removeChildNodes(doc, "ratings");
     QDomElement ratings = doc.createElement("ratings");
     bool firstRating = true;
-    for (Rating& rating : m_movie.ratings()) {
+    for (const Rating& rating : m_movie.ratings()) {
         QDomElement ratingValueElement = doc.createElement("value");
         ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
         QDomElement votesElement = doc.createElement("votes");
