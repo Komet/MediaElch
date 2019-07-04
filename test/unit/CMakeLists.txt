@@ -4,10 +4,16 @@ add_executable(
   testCertification.cpp
   testImdbId.cpp
   movie/testMovieFileSearcher.cpp
+  kodi/testKodi_v16_movie.cpp
+  kodi/testKodi_v16_show.cpp
   kodi/testKodi_v18_movie.cpp
+  kodi/testKodi_v18_show.cpp
 )
 
-target_link_libraries(mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers)
+target_link_libraries(
+  mediaelch_unit
+  PRIVATE libmediaelch libmediaelch_testhelpers
+)
 
 set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 generate_coverage_report(mediaelch_unit)

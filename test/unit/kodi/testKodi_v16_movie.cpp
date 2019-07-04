@@ -1,6 +1,6 @@
 #include "test/test_helpers.h"
 
-#include "media_centers/kodi/v18/MovieXmlWriterV18.h"
+#include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -8,18 +8,19 @@
 
 using namespace std::chrono_literals;
 
-TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
+TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
 {
     SECTION("Empty movie")
     {
         Movie movie;
-        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
+        mediaelch::kodi::MovieXmlWriterV16 writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
     <title></title>
     <originaltitle></originaltitle>
-    <ratings/>
+    <rating></rating>
+    <votes></votes>
     <top250>0</top250>
     <year></year>
     <plot></plot>
@@ -61,22 +62,11 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         movie.setName("Allegiant");
         movie.setOriginalName("Allegiant");
         movie.setSortTitle("TmovieFc10");
-
-        {
-            Rating rating;
-            rating.rating = 5.8;
-            rating.voteCount = 1641;
-            rating.source = "IMDb";
-            movie.ratings().push_back(rating);
-        }
-        {
-            Rating rating;
-            rating.rating = 4.2;
-            rating.voteCount = 784;
-            rating.source = "someOther";
-            movie.ratings().push_back(rating);
-        }
-
+        Rating rating;
+        rating.rating = 5.8;
+        rating.voteCount = 1641;
+        rating.source = "IMDb";
+        movie.ratings().push_back(rating);
         movie.setTop250(240);
         movie.setOutline("TmovieFc02");
         movie.setOverview("Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken "
@@ -131,22 +121,14 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         // TODO: order
         movie.addActor(actor);
 
-        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
+        mediaelch::kodi::MovieXmlWriterV16 writer(movie);
 
         const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <movie>
     <title>Allegiant</title>
     <originaltitle>Allegiant</originaltitle>
-    <ratings>
-        <rating default="true" name="IMDb">
-            <value>5.8</value>
-            <votes>1641</votes>
-        </rating>
-        <rating default="false" name="someOther">
-            <value>4.2</value>
-            <votes>784</votes>
-        </rating>
-    </ratings>
+    <rating>5.8</rating>
+    <votes>1641</votes>
     <top250>240</top250>
     <year>2016</year>
     <plot>Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.</plot>
