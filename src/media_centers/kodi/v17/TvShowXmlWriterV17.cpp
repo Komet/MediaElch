@@ -36,7 +36,6 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
-
     {
         // unique id
         QDomElement uniqueId = doc.createElement("uniqueid");
@@ -62,6 +61,9 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         QDomElement ratingElement = doc.createElement("rating");
         ratingElement.setAttribute("name", rating.source);
         ratingElement.setAttribute("default", firstRating ? "true" : "false");
+        if (rating.maxRating > 0) {
+            ratingElement.setAttribute("max", rating.maxRating);
+        }
         ratingElement.appendChild(ratingValueElement);
         ratingElement.appendChild(votesElement);
         ratings.appendChild(ratingElement);
@@ -106,7 +108,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "episodeguide");
     }
-
+    // todo: one entry for each genre
     KodiXml::setTextValue(doc, "genre", m_show.genres().join(" / "));
     KodiXml::setListValue(doc, "tag", m_show.tags());
 
