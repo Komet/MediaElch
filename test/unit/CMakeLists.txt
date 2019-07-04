@@ -3,11 +3,10 @@ add_executable(
   main.cpp
   testCertification.cpp
   testImdbId.cpp
-  testKodi.cpp
   movie/testMovieFileSearcher.cpp
 )
 
-target_link_libraries(mediaelch_unit PRIVATE libmediaelch)
+target_link_libraries(mediaelch_unit PRIVATE libmediaelch libmediaelch_testhelpers)
 
 set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 generate_coverage_report(mediaelch_unit)

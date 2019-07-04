@@ -7,6 +7,7 @@
 
 #include "test/helpers/debug_output.h"
 #include "test/helpers/matchers.h"
+#include "test/helpers/xml_diff.h"
 
 #include "globals/Globals.h"
 #include "movies/Movie.h"
