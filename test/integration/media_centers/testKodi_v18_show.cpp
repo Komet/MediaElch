@@ -1,6 +1,7 @@
 #include "test/test_helpers.h"
 
 #include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
+#include "test/integration/resource_dir.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDateTime>
@@ -15,26 +16,7 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     {
         TvShow tvShow;
         mediaelch::kodi::TvShowXmlWriterV18 writer(tvShow);
-
-        const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone='yes'?>
-<tvshow>
-   <title></title>
-   <showtitle></showtitle>
-   <uniqueid type="unknown" default="true"></uniqueid>
-   <ratings></ratings>
-   <top250>0</top250>
-   <episode>0</episode>
-   <plot></plot>
-   <outline></outline>
-   <mpaa></mpaa>
-   <premiered></premiered>
-   <studio></studio>
-   <tvdbid></tvdbid>
-   <imdbid></imdbid>
-   <genre></genre>
-</tvshow>)";
-
-        checkSameXml(expectedNfo, writer.getTvShowXml().trimmed());
+        checkSameXml(getFileContent("show/kodi_v18_show_empty.nfo"), writer.getTvShowXml().trimmed());
     }
 
     SECTION("Full movie details")
@@ -175,44 +157,10 @@ Currently not yet supported:
 
         mediaelch::kodi::TvShowXmlWriterV18 writer(show);
 
-        const QByteArray expectedNfo = R"(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<tvshow>
-  <title>Angels</title>
-  <showtitle>Angels</showtitle>
-  <sorttitle clear="true">TtvshowC15</sorttitle>
-  <uniqueid type="unknown" default="true">71035</uniqueid>
-  <ratings>
-    <rating max="10" name="default" default="true">
-      <value>8.6</value>
-      <votes>88</votes>
-    </rating>
-  </ratings>
-  <top250>4</top250>
-  <episode>0</episode>
-  <plot>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</plot>
-  <outline>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</outline>
-  <mpaa>TV-PG</mpaa>
-  <premiered>1999-10-05</premiered>
-  <studio>The WB</studio>
-  <tvdbid/>
-  <imdbid/>
-  <status>Ended</status>
-  <runtime>45</runtime>
-  <genre>Action / Comedy / Drama</genre>
-  <tag>BestTag</tag>
-  <actor>
-    <name>David Boreanaz</name>
-    <role>Angel</role>
-    <thumb>http://thetvdb.com/banners/actors/6309.jpg</thumb>
-  </actor>
-  <actor>
-    <name>Stephanie Romanov</name>
-    <role>Lilah Morgan</role>
-  </actor>
-</tvshow>
+        const QByteArray expectedNfo = R"(
 )";
 
         QString actual = writer.getTvShowXml().trimmed();
-        checkSameXml(expectedNfo, actual);
+        checkSameXml(getFileContent("show/kodi_v18_show_all.nfo"), actual);
     }
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<movie>
+    <!-- This file was created using Kodi 18.3 -->
+    <!-- Following fields have been added to get a complete NFO files: -->
+    <!--   <set>       -->
+    <!--   <credits>   -->
+    <!--   <fileinfo>  -->
+    <!--   <actor>     -->
+    <title>Big Buck Bunny</title>
+    <originaltitle>Big Buck Bunny</originaltitle>
+    <ratings>
+        <rating name="imdb" max="10">
+            <value>6.600000</value>
+            <votes>1897</votes>
+        </rating>
+        <rating name="themoviedb" max="10" default="true">
+            <value>6.200000</value>
+            <votes>86</votes>
+        </rating>
+    </ratings>
+    <userrating>0</userrating>
+    <top250>0</top250>
+    <outline>Follow a day of the life of Big Buck Bunny when he meets three bullying rodents: Frank, Rinky, and Gamera. The rodents amuse themselves by harassing helpless creatures by throwing fruits, nuts and rocks at them. After the deaths of two of Bunny&apos;s favorite butterflies, and an offensive attack on Bunny himself, Bunny sets aside his gentle nature and orchestrates a complex plan for revenge.</outline>
+    <plot>Follow a day of the life of Big Buck Bunny when he meets three bullying rodents: Frank, Rinky, and Gamera. The rodents amuse themselves by harassing helpless creatures by throwing fruits, nuts and rocks at them. After the deaths of two of Bunny&apos;s favorite butterflies, and an offensive attack on Bunny himself, Bunny sets aside his gentle nature and orchestrates a complex plan for revenge.</plot>
+    <tagline></tagline>
+    <runtime>8</runtime>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg">http://image.tmdb.org/t/p/original/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/pzUAeshAqvnLnICU4rYB0WtDFg3.jpg">http://image.tmdb.org/t/p/original/pzUAeshAqvnLnICU4rYB0WtDFg3.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/qbiQujPdB9JIuEC2bJDKIReGYV6.jpg">http://image.tmdb.org/t/p/original/qbiQujPdB9JIuEC2bJDKIReGYV6.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/vKipMuCVwfPsPljCCbvz2FUHIJz.jpg">http://image.tmdb.org/t/p/original/vKipMuCVwfPsPljCCbvz2FUHIJz.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg">http://image.tmdb.org/t/p/original/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/pzUAeshAqvnLnICU4rYB0WtDFg3.jpg">http://image.tmdb.org/t/p/original/pzUAeshAqvnLnICU4rYB0WtDFg3.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/qbiQujPdB9JIuEC2bJDKIReGYV6.jpg">http://image.tmdb.org/t/p/original/qbiQujPdB9JIuEC2bJDKIReGYV6.jpg</thumb>
+    <thumb aspect="poster" preview="http://image.tmdb.org/t/p/w500/vKipMuCVwfPsPljCCbvz2FUHIJz.jpg">http://image.tmdb.org/t/p/original/vKipMuCVwfPsPljCCbvz2FUHIJz.jpg</thumb>
+    <fanart>
+        <thumb preview="http://image.tmdb.org/t/p/w780/jR4RmWQRq2BP1SGBUXjroU963HP.jpg">http://image.tmdb.org/t/p/original/jR4RmWQRq2BP1SGBUXjroU963HP.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/1O3tFuQsVgmjwx47xGKBjkSUiU6.jpg">http://image.tmdb.org/t/p/original/1O3tFuQsVgmjwx47xGKBjkSUiU6.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/rIK10zkOKfJ1j6W0nhYjQR5skBg.jpg">http://image.tmdb.org/t/p/original/rIK10zkOKfJ1j6W0nhYjQR5skBg.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/aHLST0g8sOE1ixCxRDgM35SKwwp.jpg">http://image.tmdb.org/t/p/original/aHLST0g8sOE1ixCxRDgM35SKwwp.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/rjB4V9dBuepG7gnHS1Exm1llbSS.jpg">http://image.tmdb.org/t/p/original/rjB4V9dBuepG7gnHS1Exm1llbSS.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/oYdqt7nyP18JZIhNtQSvLXeSVGL.jpg">http://image.tmdb.org/t/p/original/oYdqt7nyP18JZIhNtQSvLXeSVGL.jpg</thumb>
+        <thumb preview="http://image.tmdb.org/t/p/w780/nuQGw5xmkNg0sz3eEUPmCc2cWFM.jpg">http://image.tmdb.org/t/p/original/nuQGw5xmkNg0sz3eEUPmCc2cWFM.jpg</thumb>
+    </fanart>
+    <mpaa>Rated G</mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <id>tt1254207</id>
+    <uniqueid type="imdb" default="true">tt1254207</uniqueid>
+    <uniqueid type="tmdb">10378</uniqueid>
+    <genre>Animation</genre>
+    <genre>Comedy</genre>
+    <genre>Family</genre>
+    <country>Netherlands</country>
+    <set>
+        <name>Blender Movies</name>
+    </set>
+    <credits>Joss Whedon</credits>
+    <director>Sacha Goedegebure</director>
+    <premiered>2008-04-10</premiered>
+    <year>2008</year>
+    <status></status>
+    <code></code>
+    <aired></aired>
+    <studio>Blender Foundation</studio>
+    <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=yUQM7H4Swgw</trailer>
+    <fileinfo>
+        <streamdetails>
+            <video>
+                <codec></codec>
+                <aspect>0.000000</aspect>
+                <width>0</width>
+                <height>0</height>
+                <durationinseconds>0</durationinseconds>
+                <stereomode></stereomode>
+            </video>
+        </streamdetails>
+    </fileinfo>
+    <resume>
+        <position>0.000000</position>
+        <total>0.000000</total>
+    </resume>
+    <actor>
+        <name>Unknown Guy</name>
+        <role>Bunny (voice)</role>
+        <order>0</order>
+        <thumb>http://example.org/example.jpg</thumb>
+    </actor>
+    <dateadded>2019-02-22 19:38:49</dateadded>
+</movie>
