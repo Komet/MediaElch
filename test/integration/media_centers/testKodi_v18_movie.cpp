@@ -1,5 +1,7 @@
 #include "test/test_helpers.h"
 
+#include "media_centers/KodiXml.h"
+#include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 #include "test/integration/resource_dir.h"
 
@@ -9,13 +11,63 @@
 
 using namespace std::chrono_literals;
 
+/// Reads a file, parses it, executes callback (you can add further checks), then
+/// writes the file to a temporary file and compares the created file with the
+/// reference file.
+template<class Callback>
+static void createAndCompareMovie(const QString& filename, Callback callback)
+{
+    CAPTURE(filename);
+
+    Movie movie;
+    QString movieContent = getFileContent("movie/" + filename);
+
+    mediaelch::kodi::MovieXmlReader reader(movie);
+    QDomDocument doc;
+    doc.setContent(movieContent);
+    reader.parseNfoDom(doc);
+
+    callback(movie);
+
+    mediaelch::kodi::MovieXmlWriterV18 writer(movie);
+    QString actual = writer.getMovieXml().trimmed();
+    writeTempFile(filename, actual);
+    checkSameXml(movieContent, actual);
+}
+
 TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 {
     SECTION("Empty movie")
     {
-        Movie movie;
-        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
-        checkSameXml(getFileContent("movie/kodi_v18_movie_empty.nfo"), writer.getMovieXml().trimmed());
+        createAndCompareMovie("kodi_v18_movie_empty.nfo", [](Movie&) {});
+    }
+
+    SECTION("read / write details: Alien 1979")
+    {
+        createAndCompareMovie("kodi_v18_Alien_1979.nfo", [](Movie& movie) {
+            // check some details
+            CHECK(movie.name() == "Alien");
+            CHECK(movie.ratings().first().voteCount == 7653);
+            CHECK(movie.images().posters().size() == 176);  // TODO: currently every thumb is a poster...
+            CHECK(movie.images().backdrops().size() == 57); // <fanart>
+            CHECK(movie.certification() == Certification("Rated R"));
+            CHECK(movie.set() == "Alien Collection");
+            CHECK(movie.actors().size() == 10);
+        });
+    }
+
+    SECTION("read / write details: Toy Story 3 2010")
+    {
+        createAndCompareMovie("kodi_v18_Toy_Story_3_2010.nfo", [](Movie& movie) {
+            // check some details
+            CHECK(movie.name() == "Toy Story 3");
+            CHECK(movie.ratings().first().voteCount == 8542);
+            CHECK(movie.images().posters().size() == 101);  // TODO: currently every thumb is a poster...
+            CHECK(movie.images().backdrops().size() == 29); // <fanart>
+            CHECK(movie.certification() == Certification("Rated G"));
+            CHECK(movie.set() == "Toy Story Collection");
+            CHECK(movie.actors().size() == 59);
+        });
     }
 
     SECTION("Full movie details")

@@ -18,10 +18,13 @@ generate_coverage_report(mediaelch_test_integration)
 catch_discover_tests(mediaelch_test_integration)
 mediaelch_post_target_defaults(mediaelch_test_integration)
 
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
+
 add_custom_target(
   integration_test
   COMMAND
     $<TARGET_FILE:mediaelch_test_integration>
     --use-colour yes
-    --work-dir ${CMAKE_SOURCE_DIR}/test/resources
+    --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+    --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
