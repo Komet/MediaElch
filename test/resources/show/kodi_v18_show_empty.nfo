@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone='yes'?>
+<tvshow>
+   <title></title>
+   <showtitle></showtitle>
+   <uniqueid type="unknown" default="true"></uniqueid>
+   <ratings></ratings>
+   <top250>0</top250>
+   <episode>0</episode>
+   <plot></plot>
+   <outline></outline>
+   <mpaa></mpaa>
+   <premiered></premiered>
+   <studio></studio>
+   <tvdbid></tvdbid>
+   <imdbid></imdbid>
+   <genre></genre>
+</tvshow>

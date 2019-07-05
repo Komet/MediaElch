@@ -1,5 +1,7 @@
 #include "test/helpers/xml_diff.h"
 
+#include "test/helpers/debug_output.h"
+
 QDomDocument parseXml(const QString& content)
 {
     QString errorMsg;

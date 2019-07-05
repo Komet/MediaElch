@@ -11,12 +11,13 @@ Table of contents:
 MediaElch distinguishes between following tests, each of which has its
 own subdirectory:
 
- - `unit`: Unit tests. Very fast to execute (<1s)
+ - `unit`: Unit tests. Very fast to execute (<1s). No dependencies like reference files.
  - `scrapers`: Online scrapers tests. Requires an internet connection and
    can take two minutes to complete. 
+ - `integration`: Integration tests which test all of MediaElch as one unit.
+    Also contains unit-test-like tests for media_centers.
 
 `mocks` and `helpers` contain further C++ files that are helpful when writing tests.
-
 
 ## How to test
 As our testframework we use [Catch2](https://github.com/catchorg/Catch2).
@@ -33,11 +34,13 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -GNinja
 # build all of MediaElch including test executables
 ninja
 # Execute all tests
-make test
+ninja test
 # Execute all unit tests
-make unit
-# Execute all tests
-make scraper_test
+ninja unit
+# Execute all integration tests
+ninja integration_test
+# Execute all scraper tests
+ninja scraper_test
 ```
 
 If you don't like CMake's test output, you can also run MediaElch's tests on your own.

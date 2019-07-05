@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<movie>
+    <title></title>
+    <originaltitle></originaltitle>
+    <ratings/>
+    <top250>0</top250>
+    <year></year>
+    <plot></plot>
+    <outline></outline>
+    <tagline></tagline>
+    <mpaa></mpaa>
+    <playcount>0</playcount>
+    <id></id>
+    <sorttitle></sorttitle>
+    <trailer></trailer>
+    <watched>false</watched>
+    <credits></credits>
+    <director></director>
+</movie>
