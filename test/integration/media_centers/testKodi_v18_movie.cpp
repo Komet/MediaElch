@@ -51,7 +51,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             CHECK(movie.images().posters().size() == 176);  // TODO: currently every thumb is a poster...
             CHECK(movie.images().backdrops().size() == 57); // <fanart>
             CHECK(movie.certification() == Certification("Rated R"));
-            CHECK(movie.set() == "Alien Collection");
+            CHECK(movie.set().name == "Alien Collection");
             CHECK(movie.actors().size() == 10);
         });
     }
@@ -65,7 +65,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             CHECK(movie.images().posters().size() == 101);  // TODO: currently every thumb is a poster...
             CHECK(movie.images().backdrops().size() == 29); // <fanart>
             CHECK(movie.certification() == Certification("Rated G"));
-            CHECK(movie.set() == "Toy Story Collection");
+            CHECK(movie.set().name == "Toy Story Collection");
             CHECK(movie.actors().size() == 59);
         });
     }
@@ -128,7 +128,9 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         movie.addGenre("Adventure");
         movie.addGenre("Science Fiction");
         movie.addCountry("United States of America");
-        movie.setSet("Divergent Collection");
+        MovieSet set;
+        set.name = "Divergent Collection";
+        movie.setSet(set);
         movie.addTag("Best Tag");
         movie.setDirector("Robert Schwentke");
         movie.setWriter("Adam Cooper, Bill Collage, Stephen Chbosky");

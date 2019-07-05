@@ -287,6 +287,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     QStringList tags;
     QStringList directors;
     QStringList videocodecs;
+    // TODO: QVector<MovieSet>
     QStringList sets;
 
     const auto copyNotEmptyUnique = [](const QStringList& from, QStringList& to) {
@@ -316,8 +317,8 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
         if (movie->certification().isValid() && !certifications.contains(certStr)) {
             certifications.append(certStr);
         }
-        if (!movie->set().isEmpty() && !sets.contains(movie->set())) {
-            sets.append(movie->set());
+        if (!movie->set().name.isEmpty() && !sets.contains(movie->set().name)) {
+            sets.append(movie->set().name);
         }
     }
 

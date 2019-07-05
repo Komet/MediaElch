@@ -72,6 +72,6 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         Movie m(QStringList{}); // Movie without files
         loadHotMoviesSync(hm, {{nullptr, "https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/"}}, m);
         CHECK(m.name() == "\"M\" Is For Mischief Number 3");
-        CHECK(m.set() == "\"M\" Is For Mischief");
+        CHECK(m.set().name == "\"M\" Is For Mischief");
     }
 }

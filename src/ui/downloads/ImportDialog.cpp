@@ -450,7 +450,7 @@ void ImportDialog::onImport()
             Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Renamer::replaceCondition(newFolderName, "movieset", m_movie->set());
+            Renamer::replaceCondition(newFolderName, "movieset", m_movie->set().name);
             Helper::sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this,
@@ -474,7 +474,7 @@ void ImportDialog::onImport()
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId().toString());
-            Renamer::replaceCondition(newFileName, "movieset", m_movie->set());
+            Renamer::replaceCondition(newFileName, "movieset", m_movie->set().name);
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Helper::sanitizeFileName(newFileName);

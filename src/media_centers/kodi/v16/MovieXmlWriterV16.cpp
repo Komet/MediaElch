@@ -75,20 +75,9 @@ QByteArray MovieXmlWriterV16::getMovieXml()
         KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
     }
 
-    // <set>
-    //   <name>...</name>
-    //   <overview></overview>
-    // </set>
-    KodiXml::removeChildNodes(doc, "set");
-    if (!m_movie.set().isEmpty()) {
-        QDomElement setElement = doc.createElement("set");
-        QDomElement setNameElement = doc.createElement("name");
-        setNameElement.appendChild(doc.createTextNode(m_movie.set()));
-        QDomElement setOverviewElement = doc.createElement("overview");
-        setElement.appendChild(setNameElement);
-        setElement.appendChild(setOverviewElement);
-        KodiXml::appendXmlNode(doc, setElement);
-    }
+    // v16 syntax is different from v17
+    // <set>Movie set</set>
+    KodiXml::setTextValue(doc, "set", m_movie.set().name);
     KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
     KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_movie.trailer().toString()));
     // TODO: is this required in v17?

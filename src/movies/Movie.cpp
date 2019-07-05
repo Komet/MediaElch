@@ -121,7 +121,7 @@ void Movie::clear(QVector<MovieScraperInfos> infos)
         m_originalName = "";
     }
     if (infos.contains(MovieScraperInfos::Set)) {
-        m_set = "";
+        m_set = MovieSet{};
     }
     if (infos.contains(MovieScraperInfos::Overview)) {
         m_overview = "";
@@ -410,7 +410,7 @@ TmdbId Movie::tmdbId() const
  * @return Set of the movie
  * @see Movie::setSet
  */
-QString Movie::set() const
+MovieSet Movie::set() const
 {
     return m_set;
 }
@@ -735,7 +735,7 @@ void Movie::setTmdbId(TmdbId tmdbId)
  * @param set Setname of the movie
  * @see Movie::set
  */
-void Movie::setSet(QString set)
+void Movie::setSet(MovieSet set)
 {
     m_set = set;
     setChanged(true);
@@ -1151,7 +1151,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
     out.append(QString("  TMDb ID:       ").append(movie.imdbId().toString()).append(nl));
     out.append(QString("  IMDb ID:       ").append(movie.tmdbId().toString()).append(nl));
-    out.append(QString("  Set:           ").append(movie.set()).append(nl));
+    out.append(QString("  Set:           ").append(movie.set().name).append(nl));
     out.append(QString("  Overview:      ").append(movie.overview())).append(nl);
     for (const QString& studio : movie.studios()) {
         out.append(QString("  Studio:         ").append(studio)).append(nl);

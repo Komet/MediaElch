@@ -127,17 +127,17 @@ void SetsWidget::loadSets()
     m_setPosters.clear();
     m_setBackdrops.clear();
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
-        if (!movie->set().isEmpty()) {
-            if (m_sets.contains(movie->set())) {
-                m_sets[movie->set()].append(movie);
+        if (!movie->set().name.isEmpty()) {
+            if (m_sets.contains(movie->set().name)) {
+                m_sets[movie->set().name].append(movie);
             } else {
                 QVector<Movie*> l;
                 QVector<Movie*> el;
                 l << movie;
-                m_sets.insert(movie->set(), l);
-                m_moviesToSave.insert(movie->set(), el);
-                m_setPosters.insert(movie->set(), QImage());
-                m_setBackdrops.insert(movie->set(), QImage());
+                m_sets.insert(movie->set().name, l);
+                m_moviesToSave.insert(movie->set().name, el);
+                m_setPosters.insert(movie->set().name, QImage());
+                m_setBackdrops.insert(movie->set().name, QImage());
             }
         }
     }
@@ -294,8 +294,8 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem* item)
     auto movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->setSortTitle(item->text());
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
-    if (!m_moviesToSave[movie->set()].contains(movie)) {
-        m_moviesToSave[movie->set()].append(movie);
+    if (!m_moviesToSave[movie->set().name].contains(movie)) {
+        m_moviesToSave[movie->set().name].append(movie);
     }
 }
 
@@ -323,10 +323,12 @@ void SetsWidget::onAddMovie()
 
         QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
         for (Movie* movie : movies) {
-            if (movie->set() == setName) {
+            if (movie->set().name == setName) {
                 continue;
             }
-            movie->setSet(setName);
+            MovieSet set = movie->set();
+            set.name = setName;
+            movie->setSet(set);
             m_sets[setName].append(movie);
             if (!m_moviesToSave[setName].contains(movie)) {
                 m_moviesToSave[setName].append(movie);
@@ -352,12 +354,12 @@ void SetsWidget::onRemoveMovie()
         return;
     }
     auto movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
-    m_sets[movie->set()].removeOne(movie);
-    if (!m_moviesToSave[movie->set()].contains(movie)) {
-        m_moviesToSave[movie->set()].append(movie);
+    m_sets[movie->set().name].removeOne(movie);
+    if (!m_moviesToSave[movie->set().name].contains(movie)) {
+        m_moviesToSave[movie->set().name].append(movie);
     }
     movie->setSortTitle("");
-    movie->setSet("");
+    movie->setSet(MovieSet{});
     ui->movies->removeRow(ui->movies->currentRow());
 }
 
@@ -539,7 +541,7 @@ void SetsWidget::onRemoveMovieSet()
     ui->sets->removeRow(ui->sets->currentRow());
 
     for (Movie* movie : m_sets[origSetName]) {
-        movie->setSet("");
+        movie->setSet(MovieSet{});
         movie->setSortTitle("");
     }
     m_sets.remove(setName);
@@ -569,7 +571,9 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem* item)
 
     for (Movie* movie : m_sets[origSetName]) {
         m_moviesToSave[newName].append(movie);
-        movie->setSet(newName);
+        MovieSet set;
+        set.name = newName;
+        movie->setSet(set);
     }
 
     m_moviesToSave[origSetName].clear();

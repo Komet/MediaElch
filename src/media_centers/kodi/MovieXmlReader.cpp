@@ -111,10 +111,11 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!movieSetElements.isEmpty()) {
         const QDomElement movieSetElement = movieSetElements.at(0).toElement();
         const QDomNodeList setNameElements = movieSetElement.elementsByTagName("name");
+        const QDomNodeList setOverviewElements = movieSetElement.elementsByTagName("overview");
 
         // We need to support both the old and new XML syntax.
         //
-        // New Kodi XML Syntax:
+        // New Kodi v17 XML Syntax:
         // <set>
         //   <name>Movie Set Name</name>
         //   <overview></overview>
@@ -123,11 +124,16 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         // Old Syntax:
         // <set>Movie Set Name</set>
         //
+        MovieSet set;
         if (!setNameElements.isEmpty()) {
-            m_movie.setSet(setNameElements.at(0).toElement().text());
+            set.name = setNameElements.at(0).toElement().text();
         } else {
-            m_movie.setSet(movieSetElement.text());
+            set.name = movieSetElement.text();
         }
+        if (!setOverviewElements.isEmpty()) {
+            set.overview = setOverviewElements.at(0).toElement().text();
+        }
+        m_movie.setSet(set);
     }
     if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
         m_movie.setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());

@@ -10,6 +10,7 @@
 #include "movies/MovieController.h"
 #include "movies/MovieCrew.h"
 #include "movies/MovieImages.h"
+#include "movies/MovieSet.h"
 
 #include <QDate>
 #include <QDebug>
@@ -72,7 +73,7 @@ public:
     QDateTime lastPlayed() const;
     ImdbId imdbId() const;
     TmdbId tmdbId() const;
-    QString set() const;
+    MovieSet set() const;
     bool watched() const;
     int movieId() const;
     bool inSeparateFolder() const;
@@ -115,7 +116,7 @@ public:
     void setLastPlayed(QDateTime lastPlayed);
     void setId(ImdbId imdbId);
     void setTmdbId(TmdbId tmdbId);
-    void setSet(QString set);
+    void setSet(MovieSet set);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -190,7 +191,7 @@ private:
     QDateTime m_lastPlayed;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;
-    QString m_set;
+    MovieSet m_set;
     int m_movieId = -1;
     int m_databaseId = -1;
     int m_mediaCenterId = -1;
