@@ -220,7 +220,7 @@ bool Filter::accepts(Movie* movie)
         return (m_hasInfo && movie->studios().contains(m_shortText)) || (!m_hasInfo && movie->studios().isEmpty());
     }
     if (isInfo(MovieFilters::Set)) {
-        return (m_hasInfo && movie->set() == m_shortText) || (!m_hasInfo && movie->set().isEmpty());
+        return (m_hasInfo && movie->set().name == m_shortText) || (!m_hasInfo && movie->set().name.isEmpty());
     }
     if (isInfo(MovieFilters::Country)) {
         return (m_hasInfo && movie->countries().contains(m_shortText)) || (!m_hasInfo && movie->countries().isEmpty());

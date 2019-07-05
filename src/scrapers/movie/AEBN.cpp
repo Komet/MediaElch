@@ -238,7 +238,9 @@ void AEBN::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
 
     rx.setPattern("<span class=\"detailsLink\"><a href=\"([^\"]*)\" class=\"series\">(.*)</a>");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
-        movie->setSet(rx.cap(2));
+        MovieSet set;
+        set.name = rx.cap(2);
+        movie->setSet(set);
     }
 
     rx.setPattern("<span class=\"detailsLink\" itemprop=\"director\" itemscope "

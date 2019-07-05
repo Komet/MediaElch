@@ -73,7 +73,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId().toString());
-            MovieRenamer::replaceCondition(newFileName, "movieset", movie.set());
+            MovieRenamer::replaceCondition(newFileName, "movieset", movie.set().name);
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Helper::sanitizeFileName(newFileName);
@@ -246,7 +246,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "dvd", isDvd);
         Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        Renamer::replaceCondition(newFolderName, "movieset", movie.set());
+        Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Helper::sanitizeFileName(newFolderName);
         if (dir.dirName() != newFolderName) {
@@ -272,7 +272,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "dvd", isDvd);
         Renamer::replaceCondition(
             newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        Renamer::replaceCondition(newFolderName, "movieset", movie.set());
+        Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Helper::sanitizeFileName(newFolderName);
 

@@ -743,7 +743,9 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
     }
     if (infos.contains(MovieScraperInfos::Set) && parsedJson.value("belongs_to_collection").isObject()) {
         const auto collection = parsedJson.value("belongs_to_collection").toObject();
-        movie->setSet(collection.value("name").toString());
+        MovieSet set;
+        set.name = collection.value("name").toString();
+        movie->setSet(set);
     }
     if (infos.contains(MovieScraperInfos::Overview)) {
         QTextDocument doc;

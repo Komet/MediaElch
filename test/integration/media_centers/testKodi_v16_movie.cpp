@@ -66,7 +66,9 @@ TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
         movie.addGenre("Adventure");
         movie.addGenre("Science Fiction");
         movie.addCountry("United States of America");
-        movie.setSet("Divergent Collection");
+        MovieSet set;
+        set.name = "Divergent Collection";
+        movie.setSet(set);
         movie.addTag("Best Tag");
         movie.setDirector("Robert Schwentke");
         movie.setWriter("Adam Cooper, Bill Collage, Stephen Chbosky");

@@ -89,11 +89,13 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     //   <overview></overview>
     // </set>
     KodiXml::removeChildNodes(doc, "set");
-    if (!m_movie.set().isEmpty()) {
+    if (!m_movie.set().name.isEmpty()) {
+        MovieSet set = m_movie.set();
         QDomElement setElement = doc.createElement("set");
         QDomElement setNameElement = doc.createElement("name");
-        setNameElement.appendChild(doc.createTextNode(m_movie.set()));
+        setNameElement.appendChild(doc.createTextNode(set.name));
         QDomElement setOverviewElement = doc.createElement("overview");
+        setOverviewElement.appendChild(doc.createTextNode(set.overview));
         setElement.appendChild(setNameElement);
         setElement.appendChild(setOverviewElement);
         KodiXml::appendXmlNode(doc, setElement);

@@ -226,7 +226,7 @@ void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.ORIGINAL_TITLE }}", movie->originalName().toHtmlEscaped());
     m.replace("{{ MOVIE.PLOT }}", movie->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ MOVIE.PLOT_SIMPLE }}", movie->outline().toHtmlEscaped().replace("\n", "<br />"));
-    m.replace("{{ MOVIE.SET }}", movie->set().toHtmlEscaped());
+    m.replace("{{ MOVIE.SET }}", movie->set().name.toHtmlEscaped());
     m.replace("{{ MOVIE.TAGLINE }}", movie->tagline().toHtmlEscaped());
     m.replace("{{ MOVIE.GENRES }}", movie->genres().join(", ").toHtmlEscaped());
     m.replace("{{ MOVIE.COUNTRIES }}", movie->countries().join(", ").toHtmlEscaped());

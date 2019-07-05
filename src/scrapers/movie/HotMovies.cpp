@@ -257,7 +257,9 @@ void HotMovies::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScr
     // Title may contain `"` which results in invalid HTML.
     rx.setPattern(R"(<a href="https://www.hotmovies.com/series/[^"]*" title=".*" rel="tag">(.*)</a>)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
-        movie->setSet(rx.cap(1));
+        MovieSet set;
+        set.name = rx.cap(1);
+        movie->setSet(set);
     }
 }
 

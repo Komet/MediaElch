@@ -1388,7 +1388,7 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
         return dir.absolutePath() + "/" + fileName;
     } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
-            if (movie->set() == setName && !movie->files().isEmpty()) {
+            if (movie->set().name == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first());
                 QDir dir = fi.dir();
                 if (movie->inSeparateFolder()) {

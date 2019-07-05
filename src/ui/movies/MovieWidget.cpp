@@ -622,8 +622,8 @@ void MovieWidget::updateMovieInfo()
     sets.append("");
     certifications.append("");
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
-        if (!sets.contains(movie->set()) && !movie->set().isEmpty()) {
-            sets.append(movie->set());
+        if (!sets.contains(movie->set().name) && !movie->set().name.isEmpty()) {
+            sets.append(movie->set().name);
         }
         const QString certStr = movie->certification().toString();
         if (!certifications.contains(certStr) && movie->certification().isValid()) {
@@ -636,7 +636,7 @@ void MovieWidget::updateMovieInfo()
     ui->set->addItems(sets);
 
     ui->certification->setCurrentIndex(certifications.indexOf(m_movie->certification().toString()));
-    ui->set->setCurrentIndex(sets.indexOf(m_movie->set()));
+    ui->set->setCurrentIndex(sets.indexOf(m_movie->set().name));
 
     ui->set->blockSignals(false);
     ui->certification->blockSignals(false);
@@ -1300,7 +1300,9 @@ void MovieWidget::onSetChange(QString text)
     if (!m_movie) {
         return;
     }
-    m_movie->setSet(text);
+    MovieSet set;
+    set.name = text;
+    m_movie->setSet(set);
     ui->buttonRevert->setVisible(true);
 }
 

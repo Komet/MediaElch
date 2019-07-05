@@ -66,6 +66,6 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
         Movie m(QStringList{}); // Movie without files
         loadAdultDvdEmpireSync(hm, {{nullptr, "/1613899/m-is-for-mischief-no-3-porn-movies.html"}}, m);
         CHECK(m.name() == "\"M\" Is For Mischief No. 3");
-        CHECK(m.set() == "\"M\" Is For Mischief");
+        CHECK(m.set().name == "\"M\" Is For Mischief");
     }
 }

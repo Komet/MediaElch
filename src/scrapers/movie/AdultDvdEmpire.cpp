@@ -221,18 +221,20 @@ void AdultDvdEmpire::parseAndAssignInfos(QString html, Movie* movie, QVector<Mov
     rx.setPattern(R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
     if (infos.contains(MovieScraperInfos::Set) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1));
-        QString set = doc.toPlainText().trimmed();
-        if (set.endsWith("Series", Qt::CaseInsensitive)) {
-            set.chop(6);
+        QString setName = doc.toPlainText().trimmed();
+        if (setName.endsWith("Series", Qt::CaseInsensitive)) {
+            setName.chop(6);
         }
-        set = set.trimmed();
-        if (set.startsWith("\"")) {
-            set.remove(0, 1);
+        setName = setName.trimmed();
+        if (setName.startsWith("\"")) {
+            setName.remove(0, 1);
         }
-        if (set.endsWith("\"")) {
-            set.chop(1);
+        if (setName.endsWith("\"")) {
+            setName.chop(1);
         }
-        movie->setSet(set.trimmed());
+        MovieSet set;
+        set.name = setName.trimmed();
+        movie->setSet(set);
     }
 
     if (infos.contains(MovieScraperInfos::Backdrop)) {
