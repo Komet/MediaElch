@@ -3,6 +3,7 @@
 #include <QTextStream>
 
 static QDir s_resourceDir;
+static QDir s_tempDir;
 
 QDir resourceDir()
 {
@@ -28,4 +29,24 @@ QString getFileContent(QString filename)
 
     QTextStream in(&file);
     return in.readAll();
+}
+
+void writeTempFile(QString filename, QString content)
+{
+    QString filepath = tempDir().filePath(filename);
+    QFile file(filepath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        throw std::runtime_error(QString("File %1 cab't be opened for writing! Abort.").arg(filepath).toStdString());
+    }
+    file.write(content.toUtf8());
+}
+
+QDir tempDir()
+{
+    return s_tempDir;
+}
+
+void setTempDir(QDir dir)
+{
+    s_tempDir = dir;
 }

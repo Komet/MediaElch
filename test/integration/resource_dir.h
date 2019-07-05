@@ -9,3 +9,9 @@ void setResourceDir(QDir dir);
 /// resource directory. Throws if the file is not found
 /// or not readable.
 QString getFileContent(QString filename);
+
+QDir tempDir();
+void setTempDir(QDir dir);
+/// Creates a temporary file in the build directory.
+/// Useful when you compare NFO files and want the resutls.
+void writeTempFile(QString filename, QString content);

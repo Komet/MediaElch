@@ -1,5 +1,6 @@
 #include "test/test_helpers.h"
 
+#include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
 #include "test/integration/resource_dir.h"
 #include "tv_shows/TvShow.h"
@@ -10,6 +11,30 @@
 
 using namespace std::chrono_literals;
 
+/// Reads a file, parses it, executes callback (you can add further checks), then
+/// writes the file to a temporary file and compares the created file with the
+/// reference file.
+template<class Callback>
+static void createAndCompareTvShow(const QString& filename, Callback callback)
+{
+    CAPTURE(filename);
+
+    TvShow show;
+    QString showContent = getFileContent("show/" + filename);
+
+    mediaelch::kodi::TvShowXmlReader reader(show);
+    QDomDocument doc;
+    doc.setContent(showContent);
+    reader.parseNfoDom(doc);
+
+    callback(show);
+
+    mediaelch::kodi::TvShowXmlWriterV18 writer(show);
+    QString actual = writer.getTvShowXml().trimmed();
+    writeTempFile(filename, actual);
+    checkSameXml(showContent, actual);
+}
+
 TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 {
     SECTION("Empty tvshow")
@@ -17,6 +42,17 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         TvShow tvShow;
         mediaelch::kodi::TvShowXmlWriterV18 writer(tvShow);
         checkSameXml(getFileContent("show/kodi_v18_show_empty.nfo"), writer.getTvShowXml().trimmed());
+    }
+
+    SECTION("read / write details: Game of Thrones")
+    {
+        createAndCompareTvShow("kodi_v18_show_Game_of_Thrones.nfo", [](TvShow& show) {
+            // check some details
+            CHECK(show.name() == "Game of Thrones");
+            CHECK(show.ratings().first().voteCount == 1783);
+            CHECK(show.certification() == Certification("TV-MA"));
+            CHECK(show.actors().size() == 80);
+        });
     }
 
     SECTION("Full movie details")
