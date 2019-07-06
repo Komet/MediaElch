@@ -107,8 +107,12 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "episodeguide");
     }
-    // todo: one entry for each genre
-    KodiXml::setTextValue(doc, "genre", m_show.genres().join(" / "));
+    KodiXml::removeChildNodes(doc, "genre");
+    for (const QString& genre : m_show.genres()) {
+        QDomElement elem = doc.createElement("genre");
+        elem.appendChild(doc.createTextNode(genre));
+        KodiXml::appendXmlNode(doc, elem);
+    }
     KodiXml::setListValue(doc, "tag", m_show.tags());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
