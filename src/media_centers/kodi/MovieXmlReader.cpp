@@ -101,11 +101,25 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setDateAdded(QDateTime::fromString(
             domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     }
+    // v17/v18 tmdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
         m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
+    // v16 tmdbid
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
         m_movie.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
+    }
+    // v17 ids
+    auto uniqueIds = domDoc.elementsByTagName("uniqueid");
+    for (int i = 0; i < uniqueIds.size(); ++i) {
+        QDomElement element = uniqueIds.at(i).toElement();
+        QString type = element.attribute("type");
+        QString value = element.text().trimmed();
+        if (type == "imdb") {
+            m_movie.setId(ImdbId(value));
+        } else if (type == "tmdb") {
+            m_movie.setTmdbId(TmdbId(value));
+        }
     }
     const auto movieSetElements = domDoc.elementsByTagName("set");
     if (!movieSetElements.isEmpty()) {
