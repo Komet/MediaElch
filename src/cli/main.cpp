@@ -3,6 +3,7 @@
 #include "cli/info.h"
 #include "cli/list.h"
 #include "cli/reload.h"
+#include "cli/show.h"
 #include "settings/Settings.h"
 
 #include <QApplication>
@@ -114,7 +115,7 @@ static int parseArguments(QApplication& app)
     case Command::List: return mediaelch::cli::list(app, parser);
     case Command::Reload: return mediaelch::cli::reload(app, parser);
     case Command::Add: printUnsupported(command); return 1;
-    case Command::Show: printUnsupported(command); return 1;
+    case Command::Show: return mediaelch::cli::show(app, parser);
     case Command::Settings: printUnsupported(command); return 1;
     case Command::Sync: printUnsupported(command); return 1;
     case Command::Info: return mediaelch::cli::info(app, parser);
