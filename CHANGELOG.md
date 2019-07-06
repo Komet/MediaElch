@@ -33,6 +33,8 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Kodi: Use new syntax for ratings for movies and tvshows (#516)
  - Kodi: Add missing "aspect" attribute to thumbs (#665)
  - Settings: Color paths red if directories are not readable (#730)
+ - Add `{{ MOVIE.LABEL }}` placeholder in templates (#715)
+ - Add experimental command line interface (#720)
 
 ### Internal Improvements
 
