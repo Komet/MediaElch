@@ -215,6 +215,20 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, 
     }
 }
 
+static QString colorLabelToString(ColorLabel label)
+{
+    switch (label) {
+    case ColorLabel::NoLabel: return "white";
+    case ColorLabel::Red: return "red";
+    case ColorLabel::Orange: return "orange";
+    case ColorLabel::Yellow: return "yellow";
+    case ColorLabel::Green: return "green";
+    case ColorLabel::Blue: return "blue";
+    case ColorLabel::Purple: return "purple";
+    case ColorLabel::Grey: return "grey";
+    }
+}
+
 void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
 {
     m.replace("{{ MOVIE.ID }}", QString::number(movie->movieId(), 'f', 0));
@@ -236,6 +250,7 @@ void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.DIRECTOR }}", movie->director().toHtmlEscaped());
     m.replace("{{ MOVIE.CERTIFICATION }}", movie->certification().toString().toHtmlEscaped());
     m.replace("{{ MOVIE.TRAILER }}", movie->trailer().toString());
+    m.replace("{{ MOVIE.LABEL }}", colorLabelToString(movie->label()));
     // TODO: multiple ratings
     {
         double rating = 0.0;
@@ -444,8 +459,8 @@ void ExportDialog::replaceVars(QString& m, const TvShow* show, QDir dir, bool su
             rating = show->ratings().front().rating;
             voteCount = show->ratings().front().voteCount;
         }
-        m.replace("{{ MOVIE.RATING }}", QString::number(rating, 'f', 1));
-        m.replace("{{ MOVIE.VOTES }}", QString::number(voteCount, 'f', 0));
+        m.replace("{{ TVSHOW.RATING }}", QString::number(rating, 'f', 1));
+        m.replace("{{ TVSHOW.VOTES }}", QString::number(voteCount, 'f', 0));
     }
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toString().toHtmlEscaped());
     m.replace(
