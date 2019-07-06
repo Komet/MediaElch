@@ -50,6 +50,9 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         QDomElement ratingElement = doc.createElement("rating");
         ratingElement.setAttribute("name", rating.source);
         ratingElement.setAttribute("default", firstRating ? "true" : "false");
+        if (rating.maxRating > 0) {
+            ratingElement.setAttribute("max", rating.maxRating);
+        }
         ratingElement.appendChild(ratingValueElement);
         ratingElement.appendChild(votesElement);
         ratings.appendChild(ratingElement);
@@ -87,8 +90,8 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     KodiXml::removeChildNodes(doc, "uniqueid");
     {
         QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("default", "true");
         uniqueId.setAttribute("type", "imdb");
+        uniqueId.setAttribute("default", "true");
         uniqueId.appendChild(doc.createTextNode(m_movie.imdbId().toString()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
