@@ -97,6 +97,10 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
         m_show.setCertification(Certification(domDoc.elementsByTagName("mpaa").at(0).toElement().text()));
     }
+    if (!domDoc.elementsByTagName("year").isEmpty()) {
+        m_show.setFirstAired(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
+    }
+    // will override the first-aired date set by <year>
     if (!domDoc.elementsByTagName("premiered").isEmpty()) {
         m_show.setFirstAired(
             QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
