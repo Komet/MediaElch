@@ -58,15 +58,23 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         // otherwise use "old" syntax:
         // <rating>10.0</rating>
         // <votes>10.0</votes>
-        Rating rating;
-        rating.rating = domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble();
-        if (!domDoc.elementsByTagName("votes").isEmpty()) {
-            rating.voteCount =
-                domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt();
+        QString value = domDoc.elementsByTagName("rating").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            Rating rating;
+            rating.rating = value.replace(",", ".").toDouble();
+            if (!domDoc.elementsByTagName("votes").isEmpty()) {
+                rating.voteCount = domDoc.elementsByTagName("votes")
+                                       .at(0)
+                                       .toElement()
+                                       .text()
+                                       .replace(",", "")
+                                       .replace(".", "")
+                                       .toInt();
+            }
+            m_movie.ratings().clear();
+            m_movie.ratings().push_back(rating);
+            m_movie.setChanged(true);
         }
-        m_movie.ratings().clear();
-        m_movie.ratings().push_back(rating);
-        m_movie.setChanged(true);
     }
 
     if (!domDoc.elementsByTagName("top250").isEmpty()) {
