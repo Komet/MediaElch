@@ -454,7 +454,7 @@ TvDbId TvShow::id() const
     return m_id;
 }
 
-QString TvShow::imdbId() const
+ImdbId TvShow::imdbId() const
 {
     return m_imdbId;
 }
@@ -859,7 +859,7 @@ void TvShow::setId(TvDbId id)
     setChanged(true);
 }
 
-void TvShow::setImdbId(QString id)
+void TvShow::setImdbId(ImdbId id)
 {
     m_imdbId = id;
     setChanged(true);

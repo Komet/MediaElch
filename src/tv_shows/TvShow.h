@@ -48,7 +48,7 @@ public:
     QString overview() const;
     TvDbId tvdbId() const;
     TvDbId id() const;
-    QString imdbId() const;
+    ImdbId imdbId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
     QVector<Actor> actors() const;
@@ -96,7 +96,7 @@ public:
     void setOverview(QString overview);
     void setTvdbId(TvDbId id);
     void setId(TvDbId id);
-    void setImdbId(QString id);
+    void setImdbId(ImdbId id);
     void setEpisodeGuideUrl(QString url);
     void addActor(Actor actor);
     void setPosters(QVector<Poster> posters);
@@ -191,7 +191,7 @@ private:
     QString m_overview;
     TvDbId m_tvdbId;
     TvDbId m_id;
-    QString m_imdbId;
+    ImdbId m_imdbId;
     QString m_episodeGuideUrl;
     QVector<Actor> m_actors;
     QVector<Poster> m_posters;

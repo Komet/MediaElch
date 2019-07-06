@@ -326,7 +326,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->dir->setText(m_show->dir());
     ui->name->setText(m_show->name());
-    ui->imdbId->setText(m_show->imdbId());
+    ui->imdbId->setText(m_show->imdbId().toString());
     ui->tvdbId->setText(m_show->tvdbId().toString());
     ui->sortTitle->setText(m_show->sortTitle());
     // TODO: multiple ratings
@@ -993,7 +993,7 @@ void TvShowWidgetTvShow::onNameChange(QString text)
 
 void TvShowWidgetTvShow::onImdbIdChange(QString text)
 {
-    m_show->setImdbId(text);
+    m_show->setImdbId(ImdbId(text));
     ui->buttonRevert->setVisible(true);
 }
 

@@ -353,9 +353,9 @@ void TheTvDb::onBannersFinished()
         qDebug() << "Network Error" << reply->errorString();
     }
 
-    if (shouldLoadImdb(infos) && !show->imdbId().isEmpty()) {
+    if (shouldLoadImdb(infos) && show->imdbId().isValid()) {
         qDebug() << "Now loading IMDB entry for" << show->imdbId();
-        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(show->imdbId()));
+        QUrl url = QUrl(QString("https://www.imdb.com/title/%1/").arg(show->imdbId().toString()));
         QNetworkRequest request = QNetworkRequest(url);
         request.setRawHeader("Accept-Language", "en;q=0.8");
         QNetworkReply* reply = qnam()->get(request);
@@ -388,7 +388,7 @@ void TheTvDb::parseAndAssignInfos(QString xml,
     if (!domDoc.elementsByTagName("Series").isEmpty()) {
         QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
         if (!elem.elementsByTagName("IMDB_ID").isEmpty()) {
-            show->setImdbId(elem.elementsByTagName("IMDB_ID").at(0).toElement().text());
+            show->setImdbId(ImdbId(elem.elementsByTagName("IMDB_ID").at(0).toElement().text()));
         }
     }
 
@@ -804,7 +804,7 @@ void TheTvDb::onEpisodeLoadFinished()
 bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode* episode, QVector<TvShowScraperInfos> infos)
 {
     parseEpisodeXml(msg, episode, infos);
-    if (shouldLoadImdb(infos) && !episode->tvShow()->imdbId().isEmpty()) {
+    if (shouldLoadImdb(infos) && episode->tvShow()->imdbId().isValid()) {
         SeasonNumber airedSeason = episode->season();
         EpisodeNumber airedEpisode = episode->episode();
         getAiredSeasonAndEpisode(msg, episode, airedSeason, airedEpisode);
@@ -814,7 +814,7 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode* episode, QVector<Tv
                  << "episode" << airedEpisode.toPaddedString();
 
         QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2")
-                            .arg(episode->tvShow()->imdbId(), airedSeason.toString()));
+                            .arg(episode->tvShow()->imdbId().toString(), airedSeason.toString()));
 
         if (episode->imdbId().isValid()
             || (m_cache.contains(url) && m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180))) {
@@ -983,7 +983,7 @@ void TheTvDb::onImdbFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
 
-    if (updatedEpisodes.isEmpty() || show->imdbId().isEmpty()) {
+    if (updatedEpisodes.isEmpty() || !show->imdbId().isValid()) {
         show->scraperLoadDone();
         return;
     }
@@ -1019,7 +1019,7 @@ void TheTvDb::loadEpisodes(TvShow* show, QVector<TvShowEpisode*> episodes, QVect
 
 
     QUrl url = QUrl(QString("https://www.imdb.com/title/%1/episodes?season=%2")
-                        .arg(episode->tvShow()->imdbId())
+                        .arg(episode->tvShow()->imdbId().toString())
                         .arg(episode->property("airedSeason").toInt()));
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {

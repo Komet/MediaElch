@@ -434,7 +434,7 @@ void ExportDialog::replaceVars(QString& m, const TvShow* show, QDir dir, bool su
 {
     m.replace("{{ TVSHOW.ID }}", QString::number(show->showId(), 'f', 0));
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
-    m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
+    m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId().toString());
     m.replace("{{ TVSHOW.TITLE }}", show->name().toHtmlEscaped());
     // TODO: multiple ratings
     {
