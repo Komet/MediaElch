@@ -81,9 +81,9 @@ static void printHelp()
     std::cout << helpMessage << std::endl;
 }
 
-static void printUnsupported()
+static void printUnsupported(QString command)
 {
-    std::cout << "Command not supported, yet." << std::endl;
+    std::cout << "Command '" << command.toStdString() << "' not supported, yet." << std::endl;
 }
 
 static int parseArguments(QApplication& app)
@@ -113,10 +113,10 @@ static int parseArguments(QApplication& app)
     case Command::Version: parser.showVersion();
     case Command::List: return mediaelch::cli::list(app, parser);
     case Command::Reload: return mediaelch::cli::reload(app, parser);
-    case Command::Add: printUnsupported(); return 1;
-    case Command::Show: printUnsupported(); return 1;
-    case Command::Settings: printUnsupported(); return 1;
-    case Command::Sync: printUnsupported(); return 1;
+    case Command::Add: printUnsupported(command); return 1;
+    case Command::Show: printUnsupported(command); return 1;
+    case Command::Settings: printUnsupported(command); return 1;
+    case Command::Sync: printUnsupported(command); return 1;
     case Command::Info: return mediaelch::cli::info(app, parser);
     case Command::Unknown:
         // do not process arguments so that we can show our custom help command
