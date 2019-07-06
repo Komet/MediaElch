@@ -3,7 +3,7 @@
     <title>Alien</title>
     <originaltitle>Alien</originaltitle>
     <ratings>
-        <rating name="themoviedb" max="10" default="true">
+        <rating name="themoviedb" default="true" max="10">
             <value>8.1</value>
             <votes>7653</votes>
         </rating>
@@ -11,6 +11,7 @@
     <userrating>0</userrating>
     <top250>0</top250>
     <year>1979</year>
+    <premiered>1979-05-25</premiered>
     <plot>During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.</plot>
     <outline></outline>
     <tagline>In space no one can hear you scream.</tagline>
@@ -20,23 +21,22 @@
     <dateadded>2019-07-05 17:35:08</dateadded>
     <lastplayed></lastplayed>
     <id>tt0078748</id>
+    <uniqueid default="true" type="imdb">tt0078748</uniqueid>
+    <uniqueid type="tmdb">348</uniqueid>
     <set>
         <name>Alien Collection</name>
         <overview>A science fiction horror film franchise, focusing on Lieutenant Ellen Ripley (Sigourney Weaver) and her battle with an extraterrestrial life-form, commonly referred to as &quot;the Alien&quot;. Produced by 20th Century Fox, the series started with the 1979 film Alien, then Aliens in 1986, Alien³ in 1992, and Alien: Resurrection in 1997.</overview>
     </set>
-    <studio>Brandywine Productions</studio>
     <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=097uj1HjkbM</trailer>
     <status></status>
-    <uniqueid type="imdb" default="true">tt0078748</uniqueid>
-    <uniqueid type="tmdb">348</uniqueid>
+    <credits>Dan O&apos;Bannon</credits>
+    <director>Ridley Scott</director>
+    <studio>Brandywine Productions</studio>
+    <code></code>
+    <aired></aired>
     <genre>Horror</genre>
     <genre>Science Fiction</genre>
     <country>United States of America</country>
-    <credits>Dan O&apos;Bannon</credits>
-    <director>Ridley Scott</director>
-    <premiered>1979-05-25</premiered>
-    <code></code>
-    <aired></aired>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/iVzIeC3PbG9BtDAudpwSNdKAgh6.jpg">http://image.tmdb.org/t/p/original/iVzIeC3PbG9BtDAudpwSNdKAgh6.jpg</thumb>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/aSIsDu77vYlHjPWPpaOBO3072U8.jpg">http://image.tmdb.org/t/p/original/aSIsDu77vYlHjPWPpaOBO3072U8.jpg</thumb>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/vrIjD9pHClg3RWZZw1dYokTYted.jpg">http://image.tmdb.org/t/p/original/vrIjD9pHClg3RWZZw1dYokTYted.jpg</thumb>

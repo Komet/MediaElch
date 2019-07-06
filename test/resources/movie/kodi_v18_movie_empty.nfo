@@ -5,12 +5,14 @@
     <ratings/>
     <top250>0</top250>
     <year></year>
+    <premiered></premiered>
     <plot></plot>
     <outline></outline>
     <tagline></tagline>
     <mpaa></mpaa>
     <playcount>0</playcount>
     <id></id>
+    <uniqueid default="true" type="imdb"></uniqueid>
     <sorttitle></sorttitle>
     <trailer></trailer>
     <watched>false</watched>
