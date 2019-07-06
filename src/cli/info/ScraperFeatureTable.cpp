@@ -9,13 +9,13 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
 {
     using namespace std::string_literals;
 
+    m_out << "Supported movie scraper features:" << std::endl;
+
     TableWriter table(m_out, createTableLayout());
     table.writeHeading();
 
     QObject parent;
     auto scrapers = Manager::constructMovieScrapers(&parent);
-
-    m_out << "Supported movie scraper features:" << std::endl;
 
     for (auto* scraper : scrapers) {
         table.writeCell(scraper->name());
