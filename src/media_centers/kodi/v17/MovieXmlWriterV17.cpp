@@ -152,20 +152,25 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     KodiXml::removeChildNodes(doc, "actor");
 
+    int order = 0; // todo: save the order in the actor struct
     for (const Actor& actor : m_movie.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
         QDomElement elemRole = doc.createElement("role");
+        QDomElement elemOrder = doc.createElement("order");
         elemName.appendChild(doc.createTextNode(actor.name));
         elemRole.appendChild(doc.createTextNode(actor.role));
+        elemOrder.appendChild(doc.createTextNode(QString::number(order)));
         elem.appendChild(elemName);
         elem.appendChild(elemRole);
+        elem.appendChild(elemOrder);
         if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
             QDomElement elemThumb = doc.createElement("thumb");
             elemThumb.appendChild(doc.createTextNode(actor.thumb));
             elem.appendChild(elemThumb);
         }
         KodiXml::appendXmlNode(doc, elem);
+        ++order;
     }
 
     KodiXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
