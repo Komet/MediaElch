@@ -7,6 +7,7 @@ target_sources(mediaelch_cli PRIVATE
   list.cpp
   reload.cpp
   common.cpp
+  show.cpp
   info/ScraperFeatureTable.cpp
 )
 
