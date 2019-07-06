@@ -2,9 +2,12 @@
 <tvshow>
     <title>Game of Thrones</title>
     <showtitle>Game of Thrones</showtitle>
+    <id>121361</id>
+    <uniqueid type="imdb">tt0944947</uniqueid>
+    <uniqueid default="true" type="tvdb">121361</uniqueid>
     <ratings>
-        <rating name="tvdb" max="10" default="true">
-            <value>9.500000</value>
+        <rating name="tvdb" default="true" max="10">
+            <value>9.5</value>
             <votes>1783</votes>
         </rating>
     </ratings>
@@ -14,10 +17,26 @@
     <episode>30</episode>
     <displayseason>-1</displayseason>
     <displayepisode>-1</displayepisode>
-    <outline></outline>
     <plot>Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night&apos;s Watch, is all that stands between the realms of men and the icy horrors beyond.</plot>
+    <outline></outline>
     <tagline></tagline>
+    <mpaa>TV-MA</mpaa>
+    <premiered>2011-04-17</premiered>
+    <year>2011</year>
+    <studio>HBO</studio>
+    <status></status>
     <runtime>55</runtime>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <episodeguide>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:121361}|Content-Type=application/json</url>
+    </episodeguide>
+    <genre>Adventure</genre>
+    <genre>Drama</genre>
+    <genre>Fantasy</genre>
+    <code></code>
+    <aired></aired>
+    <trailer></trailer>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/121361-34.jpg</thumb>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/121361-57.jpg</thumb>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/5ca4ff0dea43a.jpg</thumb>
@@ -448,25 +467,6 @@
         <thumb dim="1920x1080" preview="_cache/fanart/original/5ce6e0273ea6e.jpg">fanart/original/5ce6e0273ea6e.jpg</thumb>
         <thumb dim="1920x1080" preview="_cache/fanart/original/5ce6e09f46753.jpg">fanart/original/5ce6e09f46753.jpg</thumb>
     </fanart>
-    <mpaa>TV-MA</mpaa>
-    <playcount>0</playcount>
-    <lastplayed></lastplayed>
-    <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:121361}|Content-Type=application/json</url>
-    </episodeguide>
-    <id>121361</id>
-    <uniqueid type="imdb">tt0944947</uniqueid>
-    <uniqueid type="tvdb" default="true">121361</uniqueid>
-    <genre>Adventure</genre>
-    <genre>Drama</genre>
-    <genre>Fantasy</genre>
-    <premiered>2011-04-17</premiered>
-    <year>2011</year>
-    <status></status>
-    <code></code>
-    <aired></aired>
-    <studio>HBO</studio>
-    <trailer></trailer>
     <actor>
         <name>Nikolaj Coster-Waldau</name>
         <role>Jaime Lannister</role>

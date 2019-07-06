@@ -74,10 +74,11 @@ QByteArray MovieXmlWriterV16::getMovieXml()
     if (m_movie.tmdbId().isValid()) {
         KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
     }
-
-    // v16 syntax is different from v17
-    // <set>Movie set</set>
-    KodiXml::setTextValue(doc, "set", m_movie.set().name);
+    if (!m_movie.set().name.isEmpty()) {
+        // v16 syntax is different from v17
+        // <set>Movie set</set>
+        KodiXml::setTextValue(doc, "set", m_movie.set().name);
+    }
     KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
     KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_movie.trailer().toString()));
     // TODO: is this required in v17?

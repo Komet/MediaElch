@@ -1,5 +1,6 @@
 #include "test/test_helpers.h"
 
+#include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "test/integration/resource_dir.h"
 
@@ -11,12 +12,31 @@ using namespace std::chrono_literals;
 
 TEST_CASE("Movie XML writer for Kodi v16", "[data][movie][kodi][nfo]")
 {
-    SECTION("Empty movie")
+    SECTION("empty movie")
     {
         Movie movie;
         mediaelch::kodi::MovieXmlWriterV16 writer(movie);
         QString actual = writer.getMovieXml().trimmed();
-        checkSameXml(getFileContent("movie/kodi_v16_movie_empty.nfo"), actual);
+        QString expected = getFileContent("movie/kodi_v16_movie_empty.nfo");
+        checkSameXml(expected, actual);
+    }
+
+    SECTION("read / write details: empty tvshow")
+    {
+        Movie movie;
+        QString filename = "kodi_v16_movie_empty.nfo";
+        QString showContent = getFileContent("movie/" + filename);
+
+        mediaelch::kodi::MovieXmlReader reader(movie);
+
+        QDomDocument doc;
+        doc.setContent(showContent);
+        reader.parseNfoDom(doc);
+
+        mediaelch::kodi::MovieXmlWriterV16 writer(movie);
+        QString actual = writer.getMovieXml().trimmed();
+        writeTempFile(filename, actual);
+        checkSameXml(showContent, actual);
     }
 
     SECTION("Full movie details")

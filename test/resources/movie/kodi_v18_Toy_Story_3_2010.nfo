@@ -3,17 +3,40 @@
     <title>Toy Story 3</title>
     <originaltitle>Toy Story 3</originaltitle>
     <ratings>
-        <rating name="themoviedb" max="10" default="true">
+        <rating name="themoviedb" default="true" max="10">
             <value>7.700000</value>
             <votes>8542</votes>
         </rating>
     </ratings>
-    <userrating>0</userrating>
     <top250>0</top250>
-    <outline></outline>
+    <userrating>0</userrating>
+    <year>2010</year>
+    <premiered>2010-06-16</premiered>
     <plot>Woody, Buzz, and the rest of Andy&apos;s toys haven&apos;t been played with in years. With Andy about to go to college, the gang find themselves accidentally left at a nefarious day care center. The toys must band together to escape and return home to Andy.</plot>
+    <outline></outline>
     <tagline>No toy gets left behind.</tagline>
     <runtime>103</runtime>
+    <mpaa>Rated G</mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <id>tt0435761</id>
+    <uniqueid type="imdb" default="true">tt0435761</uniqueid>
+    <uniqueid type="tmdb">10193</uniqueid>
+    <set>
+        <name>Toy Story Collection</name>
+        <overview>Toy Story is a CGI animated media franchise created by Pixar and distributed by Walt Disney Pictures. The franchise is based on the anthropomorphic concept that all toys, unknown to humans, are secretly alive, and the films focus on a diverse group of toys that feature a classic cowboy named Sheriff Woody and a modern spaceman named Buzz Lightyear. The group unexpectedly embark on adventures that challenge and change them.</overview>
+    </set>
+    <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=TNMpa5yBf5o</trailer>
+    <credits>Michael Arndt</credits>
+    <director>Lee Unkrich</director>
+    <status></status>
+    <code></code>
+    <aired></aired>
+    <studio>Pixar</studio>
+    <genre>Animation</genre>
+    <genre>Family</genre>
+    <genre>Comedy</genre>
+    <country>United States of America</country>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg">http://image.tmdb.org/t/p/original/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg</thumb>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/bDSe7UCiShmiTz7kuOjMyP6mz7l.jpg">http://image.tmdb.org/t/p/original/bDSe7UCiShmiTz7kuOjMyP6mz7l.jpg</thumb>
     <thumb aspect="set.poster" preview="http://image.tmdb.org/t/p/w500/e8zVrm1hcSdh9f1OYTjRFjVKvTz.jpg">http://image.tmdb.org/t/p/original/e8zVrm1hcSdh9f1OYTjRFjVKvTz.jpg</thumb>
@@ -146,29 +169,6 @@
         <thumb preview="http://image.tmdb.org/t/p/w780/xUWqis8sb0qg5uacW4nXAfixJDO.jpg">http://image.tmdb.org/t/p/original/xUWqis8sb0qg5uacW4nXAfixJDO.jpg</thumb>
         <thumb preview="http://image.tmdb.org/t/p/w780/xqNNYru1EXvJugqwphJXEVrHXey.jpg">http://image.tmdb.org/t/p/original/xqNNYru1EXvJugqwphJXEVrHXey.jpg</thumb>
     </fanart>
-    <mpaa>Rated G</mpaa>
-    <playcount>0</playcount>
-    <lastplayed></lastplayed>
-    <id>tt0435761</id>
-    <uniqueid type="imdb" default="true">tt0435761</uniqueid>
-    <uniqueid type="tmdb">10193</uniqueid>
-    <genre>Animation</genre>
-    <genre>Family</genre>
-    <genre>Comedy</genre>
-    <country>United States of America</country>
-    <set>
-        <name>Toy Story Collection</name>
-        <overview>Toy Story is a CGI animated media franchise created by Pixar and distributed by Walt Disney Pictures. The franchise is based on the anthropomorphic concept that all toys, unknown to humans, are secretly alive, and the films focus on a diverse group of toys that feature a classic cowboy named Sheriff Woody and a modern spaceman named Buzz Lightyear. The group unexpectedly embark on adventures that challenge and change them.</overview>
-    </set>
-    <credits>Michael Arndt</credits>
-    <director>Lee Unkrich</director>
-    <premiered>2010-06-16</premiered>
-    <year>2010</year>
-    <status></status>
-    <code></code>
-    <aired></aired>
-    <studio>Pixar</studio>
-    <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=TNMpa5yBf5o</trailer>
     <actor>
         <name>Tom Hanks</name>
         <role>Woody (voice)</role>

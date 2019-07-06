@@ -182,7 +182,9 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         elem.appendChild(elemName);
         elem.appendChild(elemRole);
         elem.appendChild(elemOrder);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+            // create a thumb tag even if its value is empty
+            // Kodi does the same
             QDomElement elemThumb = doc.createElement("thumb");
             elemThumb.appendChild(doc.createTextNode(actor.thumb));
             elem.appendChild(elemThumb);
