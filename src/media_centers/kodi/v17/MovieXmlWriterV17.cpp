@@ -79,9 +79,23 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     } else {
         KodiXml::removeChildNodes(doc, "dateadded");
     }
+
+    // id
     KodiXml::setTextValue(doc, "id", m_movie.imdbId().toString());
+    // unique id: IMDb and TMDb
+    KodiXml::removeChildNodes(doc, "uniqueid");
+    {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("default", "true");
+        uniqueId.setAttribute("type", "imdb");
+        uniqueId.appendChild(doc.createTextNode(m_movie.imdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
     if (m_movie.tmdbId().isValid()) {
-        KodiXml::setTextValue(doc, "tmdbid", m_movie.tmdbId().toString());
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "tmdb");
+        uniqueId.appendChild(doc.createTextNode(m_movie.tmdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
     }
 
     // <set>
