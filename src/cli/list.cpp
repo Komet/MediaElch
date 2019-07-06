@@ -142,7 +142,7 @@ void listTvShows()
 
     for (TvShow* show : tvShowModel->tvShows()) {
         if (show != nullptr) {
-            table.writeCell(show->imdbId());
+            table.writeCell(show->imdbId().toString());
             table.writeCell(show->tvdbId().toString());
             table.writeCell(show->name());
             table.writeCell(show->network());
