@@ -86,7 +86,7 @@ endif()
 # Sources
 target_sources(
   libmediaelch
-  PRIVATE
+  PUBLIC
   ../data/MediaElch.qrc
   ../data/i18n.qrc
   ../ui.qrc
