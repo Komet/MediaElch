@@ -59,6 +59,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
     KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
+    KodiXml::setTextValue(doc, "premiered", m_movie.released().toString("yyyy-MM-dd"));
     KodiXml::setTextValue(doc, "plot", m_movie.overview());
     KodiXml::setTextValue(doc, "outline", m_movie.outline());
     KodiXml::setTextValue(doc, "tagline", m_movie.tagline());
