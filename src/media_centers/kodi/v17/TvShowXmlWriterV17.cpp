@@ -21,7 +21,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     QDomDocument doc;
     doc.setContent(m_show.nfoContent());
     if (m_show.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("tvshow"));
     }
@@ -36,19 +36,23 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
+    // id
+    KodiXml::setTextValue(doc, "id", m_show.id().toString());
+    // unique id: IMDb and TMDb
+    KodiXml::removeChildNodes(doc, "uniqueid");
     {
-        // unique id
         QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "unknown");
-        uniqueId.setAttribute("default", "true"); // we only have one id
-        uniqueId.appendChild(doc.createTextNode(m_show.id().toString()));
-
-        if (!doc.elementsByTagName("uniqueid").isEmpty()) {
-            doc.removeChild(doc.elementsByTagName("uniqueid").at(0));
-        }
+        uniqueId.setAttribute("type", "imdb");
+        uniqueId.appendChild(doc.createTextNode(m_show.imdbId()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
-
+    if (m_show.tvdbId().isValid()) {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "tvdb");
+        uniqueId.setAttribute("default", "true");
+        uniqueId.appendChild(doc.createTextNode(m_show.tvdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
     QDomElement ratings = doc.createElement("ratings");
@@ -78,14 +82,8 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::setTextValue(doc, "mpaa", m_show.certification().toString());
     KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
     KodiXml::setTextValue(doc, "studio", m_show.network());
-    KodiXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
+    KodiXml::setTextValue(doc, "status", m_show.status());
 
-    KodiXml::setTextValue(doc, "imdbid", m_show.imdbId());
-    if (!m_show.status().isEmpty()) {
-        KodiXml::setTextValue(doc, "status", m_show.status());
-    } else {
-        KodiXml::removeChildNodes(doc, "status");
-    }
     if (m_show.runtime() > 0min) {
         KodiXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
     } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
@@ -111,29 +109,6 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     // todo: one entry for each genre
     KodiXml::setTextValue(doc, "genre", m_show.genres().join(" / "));
     KodiXml::setListValue(doc, "tag", m_show.tags());
-
-    KodiXml::removeChildNodes(doc, "actor");
-
-    int order = 0; // todo: save the order in the actor struct
-    for (const Actor& actor : m_show.actors()) {
-        QDomElement elem = doc.createElement("actor");
-        QDomElement elemName = doc.createElement("name");
-        QDomElement elemRole = doc.createElement("role");
-        QDomElement elemOrder = doc.createElement("order");
-        elemName.appendChild(doc.createTextNode(actor.name));
-        elemRole.appendChild(doc.createTextNode(actor.role));
-        elemOrder.appendChild(doc.createTextNode(QString::number(order)));
-        elem.appendChild(elemName);
-        elem.appendChild(elemRole);
-        elem.appendChild(elemOrder);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-            QDomElement elemThumb = doc.createElement("thumb");
-            elemThumb.appendChild(doc.createTextNode(actor.thumb));
-            elem.appendChild(elemThumb);
-        }
-        KodiXml::appendXmlNode(doc, elem);
-        ++order;
-    }
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
         KodiXml::removeChildNodes(doc, "thumb");
@@ -172,6 +147,29 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
                 KodiXml::appendXmlNode(doc, elemSeason);
             }
         }
+    }
+
+    KodiXml::removeChildNodes(doc, "actor");
+
+    int order = 0; // todo: save the order in the actor struct
+    for (const Actor& actor : m_show.actors()) {
+        QDomElement elem = doc.createElement("actor");
+        QDomElement elemName = doc.createElement("name");
+        QDomElement elemRole = doc.createElement("role");
+        QDomElement elemOrder = doc.createElement("order");
+        elemName.appendChild(doc.createTextNode(actor.name));
+        elemRole.appendChild(doc.createTextNode(actor.role));
+        elemOrder.appendChild(doc.createTextNode(QString::number(order)));
+        elem.appendChild(elemName);
+        elem.appendChild(elemRole);
+        elem.appendChild(elemOrder);
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+            QDomElement elemThumb = doc.createElement("thumb");
+            elemThumb.appendChild(doc.createTextNode(actor.thumb));
+            elem.appendChild(elemThumb);
+        }
+        KodiXml::appendXmlNode(doc, elem);
+        ++order;
     }
 
     return doc.toByteArray(4);
