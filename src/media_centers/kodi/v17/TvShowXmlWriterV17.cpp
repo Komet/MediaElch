@@ -43,7 +43,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     {
         QDomElement uniqueId = doc.createElement("uniqueid");
         uniqueId.setAttribute("type", "imdb");
-        uniqueId.appendChild(doc.createTextNode(m_show.imdbId()));
+        uniqueId.appendChild(doc.createTextNode(m_show.imdbId().toString()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
     if (m_show.tvdbId().isValid()) {

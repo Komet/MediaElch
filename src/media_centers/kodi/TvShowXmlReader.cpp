@@ -22,10 +22,16 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
     // v16 TvDbId/ImdbId
     if (!domDoc.elementsByTagName("tvdbid").isEmpty()) {
-        m_show.setTvdbId(TvDbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text()));
+        QString value = domDoc.elementsByTagName("tvdbid").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            m_show.setTvdbId(TvDbId(value));
+        }
     }
     if (!domDoc.elementsByTagName("imdbid").isEmpty()) {
-        m_show.setImdbId(domDoc.elementsByTagName("imdbid").at(0).toElement().text());
+        QString value = domDoc.elementsByTagName("imdbid").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            m_show.setImdbId(ImdbId(value));
+        }
     }
     // v17 ids
     auto uniqueIds = domDoc.elementsByTagName("uniqueid");
@@ -34,7 +40,7 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         QString type = element.attribute("type");
         QString value = element.text().trimmed();
         if (type == "imdb") {
-            m_show.setImdbId(value);
+            m_show.setImdbId(ImdbId(value));
         } else if (type == "tvdb") {
             m_show.setTvdbId(TvDbId(value));
         }

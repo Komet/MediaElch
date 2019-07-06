@@ -56,7 +56,7 @@ QByteArray TvShowXmlWriterV16::getTvShowXml()
     KodiXml::setTextValue(doc, "studio", m_show.network());
     KodiXml::setTextValue(doc, "tvdbid", m_show.tvdbId().toString());
     KodiXml::setTextValue(doc, "id", m_show.id().toString());
-    KodiXml::setTextValue(doc, "imdbid", m_show.imdbId());
+    KodiXml::setTextValue(doc, "imdbid", m_show.imdbId().toString());
     if (!m_show.status().isEmpty()) {
         KodiXml::setTextValue(doc, "status", m_show.status());
     } else {

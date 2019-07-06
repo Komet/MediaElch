@@ -19,6 +19,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Crashes on macOS when scanning episodes due to a Qt bug (#641)
  - Fix ADE scraper (#703, #725)
  - Fix TV shows always beeing reloaded (#732)
+ - Fix incompatibilities with Kodi v17 NFO files (#719)
 
 ### Improvements
 
