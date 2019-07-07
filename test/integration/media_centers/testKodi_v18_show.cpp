@@ -55,6 +55,16 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         });
     }
 
+    SECTION("read / write details: Torchwood")
+    {
+        createAndCompareTvShow("kodi_v18_show_Torchwood.nfo", [](TvShow& show) {
+            // check some details
+            CHECK(show.name() == "Torchwood");
+            CHECK(show.ratings().first().voteCount == 167);
+            CHECK(show.certification() == Certification("TV-MA"));
+        });
+    }
+
     SECTION("Full movie details")
     {
         // Taken from https://kodi.wiki/view/NFO_files/TV_shows
