@@ -5,8 +5,7 @@
 
 set(LCOV_EXCLUDE_COVERAGE)
 
-# Function to register the target for coverage.
-function(generate_lcov_report coverage_target target)
+function(add_coverage_init)
     if(NOT TARGET coverage-init)
         # Create initialize coverage target. Used for zeroing out counters, etc
         add_custom_target(
@@ -94,6 +93,11 @@ function(generate_lcov_report coverage_target target)
         add_dependencies(coverage-report coverage-filter)
         add_dependencies(coverage coverage-report)
     endif()
+endfunction()
+
+# Function to register the target for coverage.
+function(generate_lcov_report coverage_target target)
+    add_coverage_init()
 
     add_custom_target(${coverage_target}
         COMMAND $<TARGET_FILE:${target}>

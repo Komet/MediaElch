@@ -27,7 +27,7 @@ add_custom_target(
     --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
 
-# Manual coverage setup. Requires that the coverage-init target has already been created.
+add_coverage_init()
 add_custom_target(coverage-integration COMMAND
     $<TARGET_FILE:mediaelch_test_integration>
     --use-colour yes
