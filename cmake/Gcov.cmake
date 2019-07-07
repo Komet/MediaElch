@@ -6,6 +6,14 @@
 set(LCOV_EXCLUDE_COVERAGE)
 
 function(add_coverage_init)
+    if(NOT TARGET coverage)
+        add_custom_target(coverage)
+
+        set_target_properties(
+            coverage
+            PROPERTIES FOLDER "Maintenance" EXCLUDE_FROM_DEFAULT_BUILD 1
+        )
+    endif()
     if(NOT TARGET coverage-init)
         # Create initialize coverage target. Used for zeroing out counters, etc
         add_custom_target(

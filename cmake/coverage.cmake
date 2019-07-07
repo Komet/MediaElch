@@ -21,14 +21,6 @@ set(
 # on test executables.
 function(generate_coverage_report target)
   if(${COVERAGE_ENABLED})
-    if(NOT TARGET coverage)
-      add_custom_target(coverage)
-
-      set_target_properties(
-        coverage
-        PROPERTIES FOLDER "Maintenance" EXCLUDE_FROM_DEFAULT_BUILD 1
-      )
-    endif()
     generate_lcov_report(coverage-${target} ${target} ${ARGN})
     add_dependencies(coverage coverage-${target})
   endif()
