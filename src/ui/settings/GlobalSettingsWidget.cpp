@@ -57,7 +57,7 @@ void GlobalSettingsWidget::chooseDirToAdd()
 {
     QDir path(QFileDialog::getExistingDirectory(
         this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath()));
-    if (!path.isReadable()) {
+    if (path.isReadable()) {
         SettingsDir dir;
         dir.path = path;
         addDir(dir);
@@ -134,15 +134,17 @@ void GlobalSettingsWidget::saveSettings()
         dir.path = ui->dirs->item(row, tableDirectoryPathIndex)->text();
         dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
+
+        const int index = static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex();
         if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
             movieDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 1) {
+        } else if (index == 1) {
             tvShowDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 2) {
+        } else if (index == 2) {
             concertDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 3) {
+        } else if (index == 3) {
             downloadDirectories.append(dir);
-        } else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex() == 4) {
+        } else if (index == 4) {
             musicDirectories.append(dir);
         }
     }
