@@ -47,6 +47,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         createAndCompareMovie("kodi_v18_Alien_1979.nfo", [](Movie& movie) {
             // check some details
             CHECK(movie.name() == "Alien");
+            REQUIRE(!movie.ratings().isEmpty());
             CHECK(movie.ratings().first().voteCount == 7653);
             CHECK(movie.images().posters().size() == 176);  // TODO: currently every thumb is a poster...
             CHECK(movie.images().backdrops().size() == 57); // <fanart>

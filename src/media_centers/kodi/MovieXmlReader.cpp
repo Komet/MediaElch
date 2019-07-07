@@ -17,69 +17,45 @@ MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
 
 void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
 {
-    if (!domDoc.elementsByTagName("title").isEmpty()) {
-        m_movie.setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (domDoc.elementsByTagName("movie").isEmpty()) {
+        qWarning() << "[MovieXmlReader] No <movie> tag in the document";
+        return;
     }
-    if (!domDoc.elementsByTagName("originaltitle").isEmpty()) {
-        m_movie.setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
-    }
-    // check for new ratings syntax
-    if (!domDoc.elementsByTagName("ratings").isEmpty()) {
-        // <ratings>
-        //   <rating name="default" default="true">
-        //     <value>10</value>
-        //     <votes>10</votes>
-        //   </rating>
-        // </ratings>
-        auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
-        for (int i = 0; i < ratings.length(); ++i) {
-            Rating rating;
-            auto ratingElement = ratings.at(i).toElement();
-            rating.source = ratingElement.attribute("name", "default");
-            bool ok = false;
-            int max = ratingElement.attribute("max", "0").toInt(&ok);
-            if (ok && max > 0) {
-                rating.maxRating = max;
-            }
-            rating.rating =
-                ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
-            rating.voteCount = ratingElement.elementsByTagName("votes")
-                                   .at(0)
-                                   .toElement()
-                                   .text()
-                                   .replace(",", "")
-                                   .replace(".", "")
-                                   .toInt();
-            m_movie.ratings().push_back(rating);
-            m_movie.setChanged(true);
-        }
+    QDomElement movieElement = domDoc.elementsByTagName("movie").at(0).toElement();
+    QMap<QString, void (MovieXmlReader::*)(QDomElement)> tagParsers;
+    // clang-format off
+    tagParsers.insert("title",         &MovieXmlReader::simpleString<&Movie::setName>);
+    tagParsers.insert("originaltitle", &MovieXmlReader::simpleString<&Movie::setOriginalName>);
+    tagParsers.insert("sorttitle",     &MovieXmlReader::simpleString<&Movie::setSortTitle>);
+    tagParsers.insert("plot",          &MovieXmlReader::simpleString<&Movie::setOverview>);
+    tagParsers.insert("outline",       &MovieXmlReader::simpleString<&Movie::setOutline>);
+    tagParsers.insert("tagline",       &MovieXmlReader::simpleString<&Movie::setTagline>);
+    tagParsers.insert("set",           &MovieXmlReader::movieSet);
+    tagParsers.insert("actor",         &MovieXmlReader::movieActor);
+    tagParsers.insert("thumb",         &MovieXmlReader::movieThumbnail);
+    tagParsers.insert("fanart",        &MovieXmlReader::movieFanart);
+    tagParsers.insert("playcount",     &MovieXmlReader::simpleInt<&Movie::setPlayCount>);
+    tagParsers.insert("top250",        &MovieXmlReader::simpleInt<&Movie::setTop250>);
+    tagParsers.insert("tag",           &MovieXmlReader::simpleString<&Movie::addTag>);
+    tagParsers.insert("studio",        &MovieXmlReader::stringList<&Movie::addStudio, '/'>);
+    tagParsers.insert("genre",         &MovieXmlReader::stringList<&Movie::addGenre, '/'>);
+    tagParsers.insert("country",       &MovieXmlReader::stringList<&Movie::addCountry, '/'>);
+    tagParsers.insert("ratings",       &MovieXmlReader::movieRatingV17);
+    tagParsers.insert("rating",        &MovieXmlReader::movieRatingV16);
+    tagParsers.insert("votes",         &MovieXmlReader::movieVoteCountV16);
+    // clang-format on
 
-    } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        // otherwise use "old" syntax:
-        // <rating>10.0</rating>
-        // <votes>10.0</votes>
-        QString value = domDoc.elementsByTagName("rating").at(0).toElement().text();
-        if (!value.isEmpty()) {
-            Rating rating;
-            rating.rating = value.replace(",", ".").toDouble();
-            if (!domDoc.elementsByTagName("votes").isEmpty()) {
-                rating.voteCount = domDoc.elementsByTagName("votes")
-                                       .at(0)
-                                       .toElement()
-                                       .text()
-                                       .replace(",", "")
-                                       .replace(".", "")
-                                       .toInt();
+    QDomNodeList nodes = movieElement.childNodes();
+    for (int i = 0; i < nodes.size(); ++i) {
+        if (nodes.at(i).isElement()) {
+            QDomElement element = nodes.at(i).toElement();
+            if (tagParsers.contains(element.tagName())) {
+                // call the stored method pointer
+                (this->*tagParsers[element.tagName()])(element);
             }
-            m_movie.ratings().clear();
-            m_movie.ratings().push_back(rating);
-            m_movie.setChanged(true);
         }
     }
 
-    if (!domDoc.elementsByTagName("top250").isEmpty()) {
-        m_movie.setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
-    }
     if (!domDoc.elementsByTagName("year").isEmpty()) {
         m_movie.setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
     }
@@ -88,23 +64,12 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         QString value = domDoc.elementsByTagName("premiered").at(0).toElement().text();
         m_movie.setReleased(QDate::fromString(value, "yyyy-MM-dd"));
     }
-    if (!domDoc.elementsByTagName("plot").isEmpty()) {
-        m_movie.setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("outline").isEmpty()) {
-        m_movie.setOutline(domDoc.elementsByTagName("outline").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("tagline").isEmpty()) {
-        m_movie.setTagline(domDoc.elementsByTagName("tagline").at(0).toElement().text());
-    }
+
     if (!domDoc.elementsByTagName("runtime").isEmpty()) {
         m_movie.setRuntime(std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));
     }
     if (!domDoc.elementsByTagName("mpaa").isEmpty()) {
         m_movie.setCertification(Certification(domDoc.elementsByTagName("mpaa").at(0).toElement().text()));
-    }
-    if (!domDoc.elementsByTagName("playcount").isEmpty()) {
-        m_movie.setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
     }
     if (!domDoc.elementsByTagName("lastplayed").isEmpty()) {
         QDateTime lastPlayed = QDateTime::fromString(
@@ -115,10 +80,15 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         }
         m_movie.setLastPlayed(lastPlayed);
     }
+
     if (!domDoc.elementsByTagName("dateadded").isEmpty()) {
-        m_movie.setDateAdded(QDateTime::fromString(
-            domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+        QDateTime dateadded = QDateTime::fromString(
+            domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss");
+        if (dateadded.isValid()) {
+            m_movie.setDateAdded(dateadded);
+        }
     }
+
     // v17/v18 tmdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
         m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
@@ -139,37 +109,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
             m_movie.setTmdbId(TmdbId(value));
         }
     }
-    const auto movieSetElements = domDoc.elementsByTagName("set");
-    if (!movieSetElements.isEmpty()) {
-        const QDomElement movieSetElement = movieSetElements.at(0).toElement();
-        const QDomNodeList setNameElements = movieSetElement.elementsByTagName("name");
-        const QDomNodeList setOverviewElements = movieSetElement.elementsByTagName("overview");
 
-        // We need to support both the old and new XML syntax.
-        //
-        // New Kodi v17 XML Syntax:
-        // <set>
-        //   <name>Movie Set Name</name>
-        //   <overview></overview>
-        // </set>
-        //
-        // Old Syntax:
-        // <set>Movie Set Name</set>
-        //
-        MovieSet set;
-        if (!setNameElements.isEmpty()) {
-            set.name = setNameElements.at(0).toElement().text();
-        } else {
-            set.name = movieSetElement.text();
-        }
-        if (!setOverviewElements.isEmpty()) {
-            set.overview = setOverviewElements.at(0).toElement().text();
-        }
-        m_movie.setSet(set);
-    }
-    if (!domDoc.elementsByTagName("sorttitle").isEmpty()) {
-        m_movie.setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
-    }
     if (!domDoc.elementsByTagName("trailer").isEmpty()) {
         m_movie.setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
     }
@@ -196,55 +136,119 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         }
     }
     m_movie.setDirector(directors.join(", "));
+}
 
-    /**
-     * For each element "tag", split the text by "/" and call the callbackFct with each item.
-     */
-    const auto forEachElement = [&domDoc](QString tag, auto callbackFct) {
-        const QDomNodeList tags = domDoc.elementsByTagName(tag);
-        const int tagCount = tags.size();
-        for (int i = 0; i < tagCount; ++i) {
-            for (const QString& item : tags.at(i).toElement().text().split("/", QString::SkipEmptyParts)) {
-                callbackFct(item.trimmed());
-            }
-        }
-    };
+void MovieXmlReader::movieSet(QDomElement movieSetElement)
+{
+    const QDomNodeList setNameElements = movieSetElement.elementsByTagName("name");
+    const QDomNodeList setOverviewElements = movieSetElement.elementsByTagName("overview");
 
-    forEachElement("studio", [&](QString studio) { m_movie.addStudio(studio); });
-    forEachElement("genre", [&](QString genre) { m_movie.addGenre(genre); });
-    forEachElement("country", [&](QString country) { m_movie.addCountry(country); });
-
-    for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
-        m_movie.addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
+    // We need to support both the old and new XML syntax.
+    //
+    // New Kodi v17 XML Syntax:
+    // <set>
+    //   <name>Movie Set Name</name>
+    //   <overview></overview>
+    // </set>
+    //
+    // Old Syntax:
+    // <set>Movie Set Name</set>
+    //
+    MovieSet set;
+    if (!setNameElements.isEmpty()) {
+        set.name = setNameElements.at(0).toElement().text();
+    } else {
+        set.name = movieSetElement.text();
     }
-    for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
-        Actor a;
-        a.imageHasChanged = false;
-        const auto actorElement = domDoc.elementsByTagName("actor").at(i).toElement();
-        if (!actorElement.elementsByTagName("name").isEmpty()) {
-            a.name = actorElement.elementsByTagName("name").at(0).toElement().text();
-        }
-        if (!actorElement.elementsByTagName("role").isEmpty()) {
-            a.role = actorElement.elementsByTagName("role").at(0).toElement().text();
-        }
-        if (!actorElement.elementsByTagName("thumb").isEmpty()) {
-            a.thumb = actorElement.elementsByTagName("thumb").at(0).toElement().text();
-        }
-        m_movie.addActor(a);
+    if (!setOverviewElements.isEmpty()) {
+        set.overview = setOverviewElements.at(0).toElement().text();
     }
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
-        if (parentTag == "movie") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            m_movie.images().addPoster(p);
-        } else if (parentTag == "fanart") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            m_movie.images().addBackdrop(p);
+    m_movie.setSet(set);
+}
+
+void MovieXmlReader::movieActor(QDomElement actorElement)
+{
+    Actor a;
+    a.imageHasChanged = false;
+    if (!actorElement.elementsByTagName("name").isEmpty()) {
+        a.name = actorElement.elementsByTagName("name").at(0).toElement().text();
+    }
+    if (!actorElement.elementsByTagName("role").isEmpty()) {
+        a.role = actorElement.elementsByTagName("role").at(0).toElement().text();
+    }
+    if (!actorElement.elementsByTagName("thumb").isEmpty()) {
+        a.thumb = actorElement.elementsByTagName("thumb").at(0).toElement().text();
+    }
+    m_movie.addActor(a);
+}
+
+void MovieXmlReader::movieThumbnail(QDomElement thumbElement)
+{
+    Poster p;
+    p.originalUrl = QUrl(thumbElement.toElement().text());
+    p.thumbUrl = QUrl(thumbElement.toElement().attribute("preview"));
+    m_movie.images().addPoster(p);
+}
+
+void MovieXmlReader::movieFanart(QDomElement fanartElement)
+{
+    QDomNodeList thumbs = fanartElement.elementsByTagName("thumb");
+    for (int i = 0; i < thumbs.size(); ++i) {
+        QDomElement thumbElement = thumbs.at(i).toElement();
+        Poster p;
+        p.originalUrl = QUrl(thumbElement.text());
+        p.thumbUrl = QUrl(thumbElement.attribute("preview"));
+        m_movie.images().addBackdrop(p);
+    }
+}
+
+void MovieXmlReader::movieRatingV17(QDomElement element)
+{
+    // <ratings>
+    //   <rating name="default" default="true">
+    //     <value>10</value>
+    //     <votes>10</votes>
+    //   </rating>
+    // </ratings>
+    auto ratings = element.elementsByTagName("rating");
+    for (int i = 0; i < ratings.length(); ++i) {
+        Rating rating;
+        auto ratingElement = ratings.at(i).toElement();
+        rating.source = ratingElement.attribute("name", "default");
+        bool ok = false;
+        int max = ratingElement.attribute("max", "0").toInt(&ok);
+        if (ok && max > 0) {
+            rating.maxRating = max;
         }
+        rating.rating = ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
+        rating.voteCount =
+            ratingElement.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt();
+        m_movie.ratings().push_back(rating);
+        m_movie.setChanged(true);
+    }
+}
+
+void MovieXmlReader::movieRatingV16(QDomElement element)
+{
+    // <rating>10.0</rating>
+    QString value = element.text();
+    if (!value.isEmpty()) {
+        Rating rating = m_movie.ratings().empty() ? Rating{} : m_movie.ratings().first();
+        rating.rating = value.replace(",", ".").toDouble();
+        m_movie.ratings().first() = rating;
+        m_movie.setChanged(true);
+    }
+}
+
+void MovieXmlReader::movieVoteCountV16(QDomElement element)
+{
+    // <votes>100</votes>
+    QString value = element.text();
+    if (!value.isEmpty()) {
+        Rating rating = m_movie.ratings().empty() ? Rating{} : m_movie.ratings().first();
+        rating.voteCount = value.replace(",", ".").replace(".", "").toInt();
+        m_movie.ratings().first() = rating;
+        m_movie.setChanged(true);
     }
 }
 
