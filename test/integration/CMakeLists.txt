@@ -14,8 +14,6 @@ target_link_libraries(
 )
 
 set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
-generate_coverage_report(mediaelch_test_integration)
-catch_discover_tests(mediaelch_test_integration)
 mediaelch_post_target_defaults(mediaelch_test_integration)
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
@@ -28,3 +26,14 @@ add_custom_target(
     --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
     --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
+
+# Manual coverage setup. Requires that the coverage-init target has already been created.
+add_custom_target(coverage-integration COMMAND
+    $<TARGET_FILE:mediaelch_test_integration>
+    --use-colour yes
+    --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+    --temp-dir ${CMAKE_BINARY_DIR}/test/resources)
+
+add_dependencies(coverage-info coverage-integration)
+add_dependencies(coverage-integration coverage-init)
+add_dependencies(coverage coverage-integration)
