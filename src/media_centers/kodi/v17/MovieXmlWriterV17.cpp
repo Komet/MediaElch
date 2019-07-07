@@ -73,12 +73,9 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     }
     KodiXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
     KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
-    if (m_movie.lastPlayed().isValid()) {
-        KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    } else {
-        KodiXml::removeChildNodes(doc, "lastplayed");
-    }
-    if (!m_movie.dateAdded().isNull()) {
+    KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+
+    if (m_movie.dateAdded().isValid()) {
         KodiXml::setTextValue(doc, "dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     } else {
         KodiXml::removeChildNodes(doc, "dateadded");

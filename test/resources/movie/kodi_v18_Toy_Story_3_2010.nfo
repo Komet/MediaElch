@@ -4,7 +4,7 @@
     <originaltitle>Toy Story 3</originaltitle>
     <ratings>
         <rating name="themoviedb" default="true" max="10">
-            <value>7.700000</value>
+            <value>7.7</value>
             <votes>8542</votes>
         </rating>
     </ratings>
@@ -19,6 +19,7 @@
     <mpaa>Rated G</mpaa>
     <playcount>0</playcount>
     <lastplayed></lastplayed>
+    <dateadded>2019-07-05 17:35:08</dateadded>
     <id>tt0435761</id>
     <uniqueid type="imdb" default="true">tt0435761</uniqueid>
     <uniqueid type="tmdb">10193</uniqueid>
@@ -527,5 +528,4 @@
         <position>0.000000</position>
         <total>0.000000</total>
     </resume>
-    <dateadded>2019-07-05 17:35:08</dateadded>
 </movie>
