@@ -40,4 +40,6 @@ private:
 
 private:
     Database& database();
+
+    void clearOldTvShows(bool forceClear);
 };

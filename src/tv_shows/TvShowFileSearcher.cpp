@@ -40,13 +40,11 @@ void TvShowFileSearcher::reload(bool force)
 {
     m_aborted = false;
 
-    if (force) {
-        database().clearTvShows();
-    }
+    clearOldTvShows(force);
 
     emit searchStarted(tr("Searching for TV Shows..."));
+
     QVector<TvShow*> dbShows;
-    Manager::instance()->tvShowModel()->clear();
     Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QVector<QStringList>> contents;
     for (SettingsDir dir : m_directories) {
@@ -56,7 +54,6 @@ void TvShowFileSearcher::reload(bool force)
         QString path = dir.path.path();
         QVector<TvShow*> showsFromDatabase = database().shows(path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
-            database().clearTvShows(path);
             getTvShows(path, contents);
 
         } else {
@@ -382,11 +379,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QVector<
     }
 }
 
-/**
- * @brief Get a list of files in a directory
- * @param path
- * @return
- */
+/// Get a list of files in a directory
 QStringList TvShowFileSearcher::getFiles(QString path)
 {
     return Settings::instance()->advanced()->tvShowFilters().files(QDir(path));
@@ -503,4 +496,20 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 Database& TvShowFileSearcher::database()
 {
     return *Manager::instance()->database();
+}
+
+void TvShowFileSearcher::clearOldTvShows(bool forceClear)
+{
+    if (forceClear) {
+        database().clearTvShows();
+    }
+
+    // clear gui
+    Manager::instance()->tvShowModel()->clear();
+
+    for (SettingsDir dir : m_directories) {
+        if (dir.autoReload || forceClear) {
+            database().clearTvShows(dir.path.path());
+        }
+    }
 }
