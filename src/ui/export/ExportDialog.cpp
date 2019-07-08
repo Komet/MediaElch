@@ -227,6 +227,7 @@ static QString colorLabelToString(ColorLabel label)
     case ColorLabel::Purple: return "purple";
     case ColorLabel::Grey: return "grey";
     }
+    return "white";
 }
 
 void ExportDialog::replaceVars(QString& m, Movie* movie, QDir dir, bool subDir)
