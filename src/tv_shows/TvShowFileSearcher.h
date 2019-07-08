@@ -6,9 +6,8 @@
 #include <QDir>
 #include <QObject>
 
-/**
- * @brief The TvShowFileSearcher class
- */
+class Database;
+
 class TvShowFileSearcher : public QObject
 {
     Q_OBJECT
@@ -38,4 +37,7 @@ private:
     void scanTvShowDir(QString startPath, QString path, QVector<QStringList>& contents);
     QStringList getFiles(QString path);
     bool m_aborted;
+
+private:
+    Database& database();
 };
