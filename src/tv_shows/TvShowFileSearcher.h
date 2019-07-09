@@ -42,4 +42,5 @@ private:
     Database& database();
 
     void clearOldTvShows(bool forceClear);
+    void setupShowsFromDatabase(QVector<TvShow*>& dbShows, int episodeCounter, int episodeSum);
 };
