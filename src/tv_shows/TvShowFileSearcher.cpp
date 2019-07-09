@@ -54,13 +54,7 @@ void TvShowFileSearcher::reload(bool force)
     int episodeCounter = 0;
     int episodeSum = database().episodeCount();
 
-    QVector<TvShow*> dbShows;
-    for (SettingsDir dir : m_directories) {
-        QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
-        if (!dir.autoReload && !force && !showsFromDatabase.isEmpty()) {
-            dbShows.append(showsFromDatabase);
-        }
-    }
+    QVector<TvShow*> dbShows = getShowsFromDatabase(force);
 
     setupShows(contents, episodeCounter, episodeSum);
 
@@ -534,4 +528,17 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
         }
     }
     return contents;
+}
+
+
+QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
+{
+    QVector<TvShow*> dbShows;
+    for (SettingsDir dir : m_directories) {
+        QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
+        if (!dir.autoReload && !forceReload && !showsFromDatabase.isEmpty()) {
+            dbShows.append(showsFromDatabase);
+        }
+    }
+    return dbShows;
 }
