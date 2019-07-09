@@ -186,8 +186,7 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
     for (const SettingsDir& dir : m_directories) {
         QString path = dir.path.path();
         QVector<Concert*> concertsFromDb = database().concerts(path);
-
-        if (dir.autoReload || forceReload) {
+        if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {
             scanDir(path, path, contents, dir.separateFolders, true);
         }
     }
