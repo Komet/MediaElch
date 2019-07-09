@@ -42,5 +42,6 @@ private:
     Database& database();
 
     void clearOldTvShows(bool forceClear);
+    void setupShows(QMap<QString, QVector<QStringList>>& contents, int& episodeCounter, int episodeSum);
     void setupShowsFromDatabase(QVector<TvShow*>& dbShows, int episodeCounter, int episodeSum);
 };
