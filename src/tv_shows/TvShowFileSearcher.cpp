@@ -44,7 +44,6 @@ void TvShowFileSearcher::reload(bool force)
 
     emit searchStarted(tr("Searching for TV Shows..."));
 
-    QVector<TvShow*> dbShows;
     Manager::instance()->tvShowFilesWidget()->renewModel();
 
     QMap<QString, QVector<QStringList>> contents;
@@ -56,16 +55,22 @@ void TvShowFileSearcher::reload(bool force)
         QVector<TvShow*> showsFromDatabase = database().shows(path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             getTvShows(path, contents);
-
-        } else {
-            dbShows.append(showsFromDatabase);
         }
     }
+
     emit currentDir("");
 
     emit searchStarted(tr("Loading TV Shows..."));
     int episodeCounter = 0;
     int episodeSum = database().episodeCount();
+
+    QVector<TvShow*> dbShows;
+    for (SettingsDir dir : m_directories) {
+        QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
+        if (!dir.autoReload && !force && !showsFromDatabase.isEmpty()) {
+            dbShows.append(showsFromDatabase);
+        }
+    }
 
     setupShows(contents, episodeCounter, episodeSum);
 
@@ -77,7 +82,7 @@ void TvShowFileSearcher::reload(bool force)
         }
     }
 
-    qDebug() << "Searching for tv shows done";
+    qDebug() << "Searching for TV shows done";
     if (!m_aborted) {
         emit tvShowsLoaded();
     }
