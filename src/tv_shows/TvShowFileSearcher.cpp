@@ -46,17 +46,7 @@ void TvShowFileSearcher::reload(bool force)
 
     Manager::instance()->tvShowFilesWidget()->renewModel();
 
-    QMap<QString, QVector<QStringList>> contents;
-    for (SettingsDir dir : m_directories) {
-        if (m_aborted) {
-            return;
-        }
-        QString path = dir.path.path();
-        QVector<TvShow*> showsFromDatabase = database().shows(path);
-        if (dir.autoReload || force || showsFromDatabase.count() == 0) {
-            getTvShows(path, contents);
-        }
-    }
+    auto contents = readTvShowContent(force);
 
     emit currentDir("");
 
@@ -528,4 +518,20 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
     }
 
     emit currentDir("");
+}
+
+QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool forceReload)
+{
+    QMap<QString, QVector<QStringList>> contents;
+    for (SettingsDir dir : m_directories) {
+        if (m_aborted) {
+            break;
+        }
+        QString path = dir.path.path();
+        QVector<TvShow*> showsFromDatabase = database().shows(path);
+        if (dir.autoReload || forceReload || showsFromDatabase.count() == 0) {
+            getTvShows(path, contents);
+        }
+    }
+    return contents;
 }
