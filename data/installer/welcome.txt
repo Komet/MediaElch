@@ -1,0 +1,5 @@
+Welcome!
+
+This file is work-in-progress and will contain a more
+detailed description of MediaElch when the Windows
+installer works.
