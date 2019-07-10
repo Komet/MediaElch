@@ -114,6 +114,7 @@ add_subdirectory(src)
 
 add_executable(mediaelch src/main.cpp)
 target_link_libraries(mediaelch PRIVATE libmediaelch)
+set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
 mediaelch_post_target_defaults(mediaelch)
 
 # ------------------------------------------------------------------------------
@@ -129,3 +130,60 @@ include(Catch)
 enable_testing() # Per CMake documentation, enable_testing() must be called in
                  # the root directory.
 add_subdirectory(test)
+
+# ------------------------------------------------------------------------------
+# Packaging
+
+include(InstallRequiredSystemLibraries)
+
+# As per https://cmake.org/cmake/help/latest/module/CPack.html Only set
+# variables that don't have correct default options.
+
+# cmake-format: off
+set(CPACK_PACKAGE_NAME              "MediaElch")              # Use upper-case name
+set(CPACK_PACKAGE_VENDOR            "kvibes")                 # Be consistent with e.g. the config directory
+set(CPACK_PACKAGE_CONTACT           "info@andremeyering.de")  # Current maintainer
+set(CPACK_PACKAGE_DESCRIPTION       "${PROJECT_DESCRIPTION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "MediaElch")
+set(CPACK_PACKAGE_ICON              "${CMAKE_CURRENT_SOURCE_DIR}/MediaElch.ico")
+set(CPACK_RESOURCE_FILE_LICENSE     "${CMAKE_CURRENT_SOURCE_DIR}/COPYING")
+set(CPACK_RESOURCE_FILE_README      "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_WELCOME     "${CMAKE_CURRENT_SOURCE_DIR}/data/installer/welcome.txt")
+
+set(CPACK_PACKAGE_EXECUTABLES "mediaelch;MediaElch") # MediaElch is an alias for
+                                                     # mediaelch. Used by NSIS
+
+# Ignore these files when creating a source package.
+# Essentially just our .gitignore and a few other files.
+set(CPACK_SOURCE_IGNORE_FILES "/\\\\.git/"      # We don't need git files
+                              "\\\\.swp$"
+                              "\\\\.DS_Store$"
+                              "/travis-ci/"     # Travis CI files
+                              "/build.*/"       # Any build executables
+                              "/ZenLib/"
+                              "/MediaInfoDLL/"
+                              "/docs/user/"     # Git submodule
+                              "/scripts/"       # scripts and generated data
+                              "/\\\\.github/"   # issue templates, etc.
+                              "\\\\.#"
+                              ".*AppImage$"
+                              ".*\\\\.user.*"
+                              "/#"
+                              ".*~")
+# cmake-format: on
+
+if(APPLE AND NOT CPACK_GENERATOR)
+  set(CPACK_GENERATOR "Bundle")
+elseif(WIN32 AND NOT CPACK_GENERATOR)
+  set(CPACK_GENERATOR "ZIP")
+elseif(NOT CPACK_GENERATOR)
+  set(CPACK_GENERATOR "TGZ")
+endif()
+
+if(WIN32 AND NOT CPACK_SOURCE_GENERATOR)
+  set(CPACK_SOURCE_GENERATOR "ZIP")
+else()
+  set(CPACK_SOURCE_GENERATOR "TGZ")
+endif()
+
+include(CPack)
