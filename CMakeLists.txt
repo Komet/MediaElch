@@ -31,6 +31,7 @@ option(ENABLE_CLANG_TIDY       "Analyze code with clang-tidy."                  
 option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."        OFF)
 option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
+option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
 # cmake-format: on
 
 find_package(Sanitizers)
@@ -40,6 +41,17 @@ include(clang-tidy)
 include(colors)
 
 activate_coverage(ENABLE_COVERAGE)
+
+# -----------------------------------------------------------------------------
+# Optional IPO. Do not use IPO if it's not supported by compiler. IPO is
+# interprocedural optimization (also known as link-time-optimization).
+if(ENABLE_LTO)
+  include(CheckIPOSupported)
+  check_ipo_supported() # fatal error if IPO/LTO is not supported
+  message(STATUS "Using LTO")
+endif()
+
+set(LINK_WHAT_YOU_USE ON)
 
 # -----------------------------------------------------------------------------
 # Some defaults for our targets. Currently warnings are enabled and the C++
@@ -59,6 +71,9 @@ function(mediaelch_post_target_defaults target)
   enable_warnings(${target})
   target_enable_coverage(${target})
   add_sanitizers(${target})
+  if(ENABLE_LTO)
+    set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+  endif()
 endfunction()
 
 # ------------------------------------------------------------------------------
