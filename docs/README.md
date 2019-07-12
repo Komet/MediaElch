@@ -35,7 +35,7 @@ The `contribute` folder contains tutorials, guides, best-practices and design
 documents for MediaElch. They are useful to developers and maintainers of
 MediaElch.
 
-See [`contribute/README.md`](contribute/README.md) for the table-of-contents.
+See [`contributing/README.md`](contributing/README.md) for the table-of-contents.
 
 ### Doxygen
 This project does not contain a `Doxyfile` as we have a custom CMake
