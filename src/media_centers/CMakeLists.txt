@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_mediacenter
-  OBJECT
+  mediaelch_mediacenter OBJECT
   kodi/ArtistXmlReader.cpp
   kodi/ArtistXmlWriter.cpp
   kodi/ConcertXmlReader.cpp

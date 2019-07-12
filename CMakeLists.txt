@@ -9,12 +9,9 @@ cmake_minimum_required(VERSION 3.13.0 FATAL_ERROR)
 
 project(
   mediaelch
-  VERSION
-    2.6.0
-    DESCRIPTION
-    "Media Manager for Kodi"
-    HOMEPAGE_URL
-    "http://mediaelch.github.io/"
+  VERSION 2.6.0
+  DESCRIPTION "Media Manager for Kodi"
+  HOMEPAGE_URL "http://mediaelch.github.io/"
 )
 
 # Don't process generated source files with AUTOMOC. New in 3.10
@@ -56,7 +53,8 @@ function(mediaelch_post_target_defaults target)
   target_compile_features(${target} PUBLIC cxx_std_14)
   target_include_directories(
     ${target}
-    PUBLIC "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/src"
+    PUBLIC
+      "${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/src"
   )
   enable_warnings(${target})
   target_enable_coverage(${target})

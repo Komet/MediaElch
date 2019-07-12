@@ -1,13 +1,13 @@
 add_executable(
   mediaelch_test_scrapers
   main.cpp
-  testAdultDvdEmpire.cpp
   testAEBN.cpp
+  testAdultDvdEmpire.cpp
   testHotMovies.cpp
   testIMDb.cpp
   testTMDb.cpp
-  testVideoBuster.cpp
   testTMDbConcerts.cpp
+  testVideoBuster.cpp
 )
 
 target_link_libraries(

@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_globals
-  OBJECT
+  mediaelch_globals OBJECT
   ComboDelegate.cpp
   DownloadManager.cpp
   DownloadManagerElement.cpp

@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_tvShows
-  OBJECT
+  mediaelch_tvShows OBJECT
   EpisodeNumber.cpp
   model/EpisodeModelItem.cpp
   model/SeasonModelItem.cpp

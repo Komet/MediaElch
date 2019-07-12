@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_ui_music
-  OBJECT
+  mediaelch_ui_music OBJECT
   MusicFilesWidget.cpp
   MusicMultiScrapeDialog.cpp
   MusicSearch.cpp

@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_image_providers
-  OBJECT
+  mediaelch_image_providers OBJECT
   FanartTv.cpp
   FanartTvMusic.cpp
   FanartTvMusicArtists.cpp

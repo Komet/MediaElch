@@ -1,10 +1,5 @@
-add_executable(
-  mediaelch_unit
-  main.cpp
-  testCertification.cpp
-  testImdbId.cpp
-  movie/testMovieFileSearcher.cpp
-)
+add_executable(mediaelch_unit main.cpp movie/testMovieFileSearcher.cpp
+                              testCertification.cpp testImdbId.cpp)
 
 target_link_libraries(
   mediaelch_unit

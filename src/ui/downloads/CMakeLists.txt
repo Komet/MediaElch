@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_ui_downloads
-  OBJECT
+  mediaelch_ui_downloads OBJECT
   DownloadsWidget.cpp
   ImportActions.cpp
   ImportDialog.cpp

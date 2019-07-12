@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_ui_main
-  OBJECT
+  mediaelch_ui_main OBJECT
   AboutDialog.cpp
   FileScannerDialog.cpp
   MainWindow.cpp

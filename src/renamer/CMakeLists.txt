@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_renamer
-  OBJECT
+  mediaelch_renamer OBJECT
   ConcertRenamer.cpp
   EpisodeRenamer.cpp
   MovieRenamer.cpp

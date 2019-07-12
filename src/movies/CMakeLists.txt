@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_movies
-  OBJECT
+  mediaelch_movies OBJECT
   Movie.cpp
   MovieController.cpp
   MovieCrew.cpp
