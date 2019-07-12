@@ -1,43 +1,117 @@
 language: generic
-matrix:
-  include:
-  - name: "macOS build"
-    env: QT=qtMac CXX=clang++ CC=clang
-    os: osx
-  - name: "Linux Qt 5.10 build"
-    env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
-    os: linux
-    dist: trusty
-  - name: "Linux Qt 5.5 build"
-    env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
-    os: linux
-    dist: trusty
-  - name: "Windows build"
-    env: QT=qtWin
-    os: linux
-    dist: xenial
 
-sudo: required
+os: linux
+dist: xenial
 
 branches:
   only:
   - master
 
-install:
-- "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+matrix:
+  include:
 
-before_script:
-- "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+  #----------------------------------------------------------------------------
+  # Check
+  # We run some linters and code formatters to check our code base.
+  #----------------------------------------------------------------------------
 
-script:
-- if [ $QT = qtWin ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
-- cd build && make -j 2
+  # Travis CI has integrated ShellCheck by default. This is faster than using
+  # cmake with shellcheck target because we don't need to install conan
+  # dependencies.
+  - name: "shellcheck linting"
+    language: shell
+    script:
+    - shellcheck --version
+    - find . ! -path "./build/*" -type f -name "*.sh" -exec shellcheck -x -e SC2086,SC1090 {} \+ ||
+      echo "Errors running shellcheck. Does not make this run fail, yet."
 
-after_success:
-- "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+  - name: "cmake-format check"
+    language: python
+    python: ['3.6']
+    addons: { apt: { packages: ['python3-setuptools', 'python3-pip'] } }
+    install:
+      - pip install cmake_format
+    before_script:
+      - cmake-format --version
+    script:
+      - ./scripts/run_cmake_format.sh
+      - git diff --diff-filter=M --color | cat
+      - git diff --diff-filter=M --quiet || (echo "Found unformatted CMakeLists.txt! Use cmake-format!"; exit 1)
+
+  - name: "clang-format check"
+    addons: { apt: { packages: ['clang-format'] } }
+    before_script:
+      - clang-format --version
+    script:
+      - ./scripts/run_clang_format.sh
+      - git diff --diff-filter=M --color | cat
+      - git diff --diff-filter=M --quiet || (echo "Found unformatted C++ files! Use clang-format!"; exit 1)
+
+  - name: "cppcheck linting"
+    addons: { apt: { packages: ['cppcheck'] } }
+    before_script:
+      - cppcheck --version
+    script:
+      - ./scripts/run_cppcheck.sh || echo "cppcheck failed. Not an error, yet."
+
+  #----------------------------------------------------------------------------
+  # Build & Test
+  # Build and test our application on macOS and linux. All stages have the
+  # script job in common (see end of this yml).
+  #----------------------------------------------------------------------------
+
+  - name: "macOS build"
+    env: QT=qtMac CXX=clang++ CC=clang
+    os: osx
+    install:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+    before_script:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+    script:
+      - cd build && make -j 2
+    after_success:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  - name: "Linux Qt 5.10 build"
+    env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
+    os: linux
+    dist: trusty
+    install:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+    before_script:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+    script:
+      - cd build && make -j 2
+    after_success:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  - name: "Linux Qt 5.5 build"
+    env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
+    os: linux
+    dist: trusty
+    install:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+    before_script:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+    script:
+      - cd build && make -j 2
+    after_success:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  - name: "Windows build"
+    env: QT=qtWin
+    install:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+    before_script:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+    script:
+      - PATH=$PATH:/usr/lib/mxe/usr/bin
+      - cd build && make -j 2
+    after_success:
+      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 
 deploy:
-  provider: bintray
+- provider: bintray
   skip_cleanup: true
   on:
     branch: master

@@ -1,11 +1,11 @@
 add_executable(
   mediaelch_test_integration
   main.cpp
-  resource_dir.cpp
   media_centers/testKodi_v16_movie.cpp
   media_centers/testKodi_v16_show.cpp
   media_centers/testKodi_v18_movie.cpp
   media_centers/testKodi_v18_show.cpp
+  resource_dir.cpp
 )
 
 target_link_libraries(
@@ -17,6 +17,8 @@ set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
 mediaelch_post_target_defaults(mediaelch_test_integration)
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
+
+# cmake-format: off
 
 add_custom_target(
   integration_test
@@ -33,6 +35,8 @@ add_custom_target(coverage-integration COMMAND
     --use-colour yes
     --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
     --temp-dir ${CMAKE_BINARY_DIR}/test/resources)
+
+# cmake-format: on
 
 add_dependencies(coverage-info coverage-integration)
 add_dependencies(coverage-integration coverage-init)

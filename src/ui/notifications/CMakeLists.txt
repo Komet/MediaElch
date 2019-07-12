@@ -1,6 +1,5 @@
-add_library(
-  mediaelch_ui_notifications OBJECT NotificationBox.cpp Notificator.cpp
-)
+add_library(mediaelch_ui_notifications OBJECT NotificationBox.cpp
+                                              Notificator.cpp)
 
 if(APPLE)
   target_sources(mediaelch_ui_notifications PRIVATE MacNotificationHandler.mm)

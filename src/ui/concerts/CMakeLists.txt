@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_ui_concerts
-  OBJECT
+  mediaelch_ui_concerts OBJECT
   ConcertFilesWidget.cpp
   ConcertInfoWidget.cpp
   ConcertSearch.cpp

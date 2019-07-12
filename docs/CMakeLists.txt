@@ -39,7 +39,9 @@ if(SPHINX_FOUND)
   add_custom_target(
     docs
     COMMAND
-      ${SPHINX_EXECUTABLE} -M html
+      ${SPHINX_EXECUTABLE}
+      -M
+      html
       "${CMAKE_CURRENT_SOURCE_DIR}/user/docs/source"
       "${CMAKE_CURRENT_BINARY_DIR}/user"
     COMMAND

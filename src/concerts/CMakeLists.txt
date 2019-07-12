@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_concert
-  OBJECT
+  mediaelch_concert OBJECT
   Concert.cpp
   ConcertController.cpp
   ConcertFileSearcher.cpp

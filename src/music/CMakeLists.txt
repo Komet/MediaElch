@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_music
-  OBJECT
+  mediaelch_music OBJECT
   Album.cpp
   AlbumController.cpp
   Artist.cpp

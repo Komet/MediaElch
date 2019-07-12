@@ -1,6 +1,5 @@
 add_library(
-  mediaelch_settings
-  OBJECT
+  mediaelch_settings OBJECT
   AdvancedSettings.cpp
   DataFile.cpp
   DirectorySettings.cpp
