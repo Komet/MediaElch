@@ -157,7 +157,7 @@ package_appimage() {
 	print_info "Downloading ffmpeg"
 	# Use static ffmpeg
 	wget -c https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -O ffmpeg.tar.xz
-	ffmpeg_md5="9bdb279ec557e281a6800718add63385  ffmpeg.tar.xz"
+	ffmpeg_md5="d5828f8cc093812041570860c50d5a28  ffmpeg.tar.xz"
 	if [ "$(md5sum ffmpeg.tar.xz)" = "${ffmpeg_md5}" ]; then
 		print_info "FFMPEG MD5 checksum is valid"
 	else
