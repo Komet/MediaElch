@@ -1,10 +1,6 @@
 #!/usr/bin/env sh
 
 ###########################################################
-# Globals
-export MEDIAINFO_VERSION="18.12"
-
-###########################################################
 # OS infos
 export OS_NAME="$(uname -s)"
 export OS_REV="$(uname -r)"

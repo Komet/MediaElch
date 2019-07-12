@@ -24,11 +24,15 @@ if [ -z ${QT+x} ]; then print_error "\$QT is unset"; return 1; fi
 
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
-# Load utils (paths, color output, folding, etc.)
-. "${SCRIPT_DIR}/utils.sh"
-. "${SCRIPT_DIR}/../scripts/utils.sh"
+#######################################################
+# Globals
+export MEDIAINFO_VERSION="19.04"
 
-pushd "${PROJECT_DIR}" > /dev/null
+# Load utils (paths, color output, folding, etc.)
+source "${SCRIPT_DIR}/utils.sh"
+source "${SCRIPT_DIR}/../scripts/utils.sh"
+
+cd "${PROJECT_DIR}"
 
 print_important "Getting dependencies for building for ${QT} on ${OS_NAME}"
 
@@ -37,7 +41,7 @@ print_info "Downloading quazip"
 git submodule update --init -- third_party/quazip
 fold_end
 
-if [ $(lc "${OS_NAME}") = "linux" ]; then
+if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 
 	if [ $QT = "qtWin" ]; then
 		export MXEDIR="/usr/lib/mxe"
@@ -104,7 +108,7 @@ if [ $(lc "${OS_NAME}") = "linux" ]; then
 
 	else
 
-		if [ -z ${QT_PPA+x} ]; then
+		if [ -z "${QT_PPA+x}" ]; then
 			print_error "\$QT_PPA is unset";
 			print_error "For valid PPAs see https://launchpad.net/~beineri/"
 			return 1;
@@ -196,4 +200,3 @@ else
 fi
 
 print_important "Successfully installed dependencies"
-popd > /dev/null
