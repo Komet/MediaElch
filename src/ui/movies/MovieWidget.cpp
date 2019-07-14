@@ -26,10 +26,6 @@
 #include <QScrollBar>
 #include <QtCore/qmath.h>
 
-/**
- * @brief MovieWidget::MovieWidget
- * @param parent
- */
 MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWidget)
 {
     ui->setupUi(this);
@@ -199,9 +195,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     Helper::fillStereoModeCombo(ui->stereoMode);
 }
 
-/**
- * @brief MovieWidget::~MovieWidget
- */
 MovieWidget::~MovieWidget()
 {
     delete ui;
@@ -209,7 +202,6 @@ MovieWidget::~MovieWidget()
 
 /**
  * @brief Repositions the saving widget
- * @param event
  */
 void MovieWidget::resizeEvent(QResizeEvent* event)
 {

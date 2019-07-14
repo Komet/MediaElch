@@ -8,10 +8,6 @@
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
-/**
- * @brief CertificationWidget::CertificationWidget
- * @param parent
- */
 CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(new Ui::CertificationWidget)
 {
     ui->setupUi(this);

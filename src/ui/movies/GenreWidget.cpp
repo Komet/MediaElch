@@ -8,10 +8,6 @@
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
-/**
- * @brief GenreWidget::GenreWidget
- * @param parent
- */
 GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWidget)
 {
     ui->setupUi(this);

@@ -9,10 +9,6 @@
 #include <QMutex>
 #include <QMutexLocker>
 
-/**
- * @brief Settings::Settings
- * @param parent
- */
 Settings::Settings(QObject* parent) : QObject(parent), m_advancedSettings{new AdvancedSettings(parent)}
 {
     if (m_advancedSettings->portableMode()) {
@@ -397,10 +393,6 @@ QPoint Settings::makeMkvDialogPosition()
     return m_makeMkvDialogPosition;
 }
 
-/**
- * @brief Settings::mainWindowMaximized
- * @return
- */
 bool Settings::mainWindowMaximized()
 {
     return m_mainWindowMaximized;
@@ -477,20 +469,11 @@ bool Settings::useYoutubePluginUrls()
     return m_youtubePluginUrls;
 }
 
-/**
- * @brief Settings::autoLoadStreamDetails
- * @return
- */
 bool Settings::autoLoadStreamDetails()
 {
     return m_autoLoadStreamDetails;
 }
 
-/**
- * @brief Settings::dataFiles
- * @param dataType
- * @return
- */
 QVector<DataFile> Settings::dataFiles(DataFileType dataType)
 {
     QVector<DataFile> files;
@@ -524,10 +507,6 @@ QVector<DataFile> Settings::dataFilesFrodo(DataFileType type)
     return files;
 }
 
-/**
- * @brief Settings::usePlotForOutline
- * @return
- */
 bool Settings::usePlotForOutline()
 {
     return m_usePlotForOutline;
@@ -591,10 +570,6 @@ void Settings::setMakeMkvDialogPosition(QPoint position)
     settings()->setValue("Downloads/MakeMkvDialogPosition", position);
 }
 
-/**
- * @brief Settings::setMainWindowMaximized
- * @param max
- */
 void Settings::setMainWindowMaximized(bool max)
 {
     m_mainWindowMaximized = max;
@@ -627,10 +602,6 @@ void Settings::setExcludeWords(QString words)
     m_excludeWords = words;
 }
 
-/**
- * @brief Sets state of debug mode
- * @param enabled
- */
 void Settings::setDebugModeActivated(bool enabled)
 {
     m_debugModeActivated = enabled;
@@ -647,7 +618,6 @@ void Settings::setDebugLogPath(QString path)
 
 /**
  * @brief Convert trailer urls to youtube plugin format
- * @param use
  */
 void Settings::setUseYoutubePluginUrls(bool use)
 {
@@ -656,7 +626,6 @@ void Settings::setUseYoutubePluginUrls(bool use)
 
 /**
  * @brief Settings::setDataFiles
- * @param files
  */
 void Settings::setDataFiles(QVector<DataFile> files)
 {
@@ -665,7 +634,6 @@ void Settings::setDataFiles(QVector<DataFile> files)
 
 /**
  * @brief Settings::setAutoLoadStreamDetails
- * @param autoLoad
  */
 void Settings::setAutoLoadStreamDetails(bool autoLoad)
 {
@@ -674,7 +642,6 @@ void Settings::setAutoLoadStreamDetails(bool autoLoad)
 
 /**
  * @brief Settings::setUsePlotForOutline
- * @param use
  */
 void Settings::setUsePlotForOutline(bool use)
 {

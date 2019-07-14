@@ -15,10 +15,6 @@
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
-/**
- * @brief SetsWidget::SetsWidget
- * @param parent
- */
 SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget)
 {
     ui->setupUi(this);

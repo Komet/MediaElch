@@ -5,10 +5,6 @@
 #include "settings/Settings.h"
 #include "ui/small_widgets/MyCheckBox.h"
 
-/**
- * @brief TvShowSearch::TvShowSearch
- * @param parent
- */
 TvShowSearch::TvShowSearch(QWidget* parent) : QDialog(parent), ui(new Ui::TvShowSearch)
 {
     ui->setupUi(this);

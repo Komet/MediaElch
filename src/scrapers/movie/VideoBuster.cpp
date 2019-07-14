@@ -8,10 +8,6 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
-/**
- * @brief VideoBuster::VideoBuster
- * @param parent
- */
 VideoBuster::VideoBuster(QObject* parent) :
     m_scraperSupports{MovieScraperInfos::Title,
         MovieScraperInfos::Released,

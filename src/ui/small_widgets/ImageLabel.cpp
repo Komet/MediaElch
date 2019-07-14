@@ -1,10 +1,6 @@
 #include "ImageLabel.h"
 #include "ui_ImageLabel.h"
 
-/**
- * @brief ImageLabel::ImageLabel
- * @param parent
- */
 ImageLabel::ImageLabel(QWidget* parent) : QWidget(parent), ui(new Ui::ImageLabel)
 {
     ui->setupUi(this);
@@ -18,9 +14,6 @@ ImageLabel::ImageLabel(QWidget* parent) : QWidget(parent), ui(new Ui::ImageLabel
     ui->resolution->setFont(font);
 }
 
-/**
- * @brief ImageLabel::~ImageLabel
- */
 ImageLabel::~ImageLabel()
 {
     delete ui;

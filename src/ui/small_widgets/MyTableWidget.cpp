@@ -5,27 +5,15 @@
 
 #include "globals/Globals.h"
 
-/**
- * @brief MyTableWidget::MyTableWidget
- * @param parent
- */
 MyTableWidget::MyTableWidget(QWidget* parent) : QTableWidget(parent)
 {
 }
 
-/**
- * @brief MyTableWidget::dragMoveEvent
- * @param event
- */
 void MyTableWidget::dragMoveEvent(QDragMoveEvent* event)
 {
     event->acceptProposedAction();
 }
 
-/**
- * @brief MyTableWidget::dragEnterEvent
- * @param event
- */
 void MyTableWidget::dragEnterEvent(QDragEnterEvent* event)
 {
     event->acceptProposedAction();
@@ -33,7 +21,6 @@ void MyTableWidget::dragEnterEvent(QDragEnterEvent* event)
 
 /**
  * @brief If an image was dropped the sigDroppedImage signal is emitted
- * @param event
  */
 void MyTableWidget::dropEvent(QDropEvent* event)
 {

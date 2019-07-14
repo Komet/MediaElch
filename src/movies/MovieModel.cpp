@@ -7,10 +7,6 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-/**
- * @brief MovieModel::MovieModel
- * @param parent
- */
 MovieModel::MovieModel(QObject* parent) : QAbstractItemModel(parent)
 {
 #ifdef Q_OS_WIN
@@ -68,7 +64,6 @@ Movie* MovieModel::movie(int row)
 
 /**
  * @brief Returns the rowcount in our model. (=number of movies)
- * @param parent
  * @return Number of rows (=number of movies)
  */
 int MovieModel::rowCount(const QModelIndex& parent) const
@@ -79,8 +74,6 @@ int MovieModel::rowCount(const QModelIndex& parent) const
 
 /**
  * @brief Get the column count of our model
- * @param parent
- * @return 1
  */
 int MovieModel::columnCount(const QModelIndex& parent) const
 {

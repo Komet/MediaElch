@@ -5,10 +5,6 @@
 #include "tv_shows/TvShow.h"
 #include "tv_shows/TvShowEpisode.h"
 
-/**
- * @brief TheTvDbImages::TheTvDbImages
- * @param parent
- */
 TheTvDbImages::TheTvDbImages(QObject* parent)
 {
     setParent(parent);
@@ -106,11 +102,6 @@ void TheTvDbImages::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
     }
 }
 
-/**
- * @brief FanartTv::loadTvShowData
- * @param tvdbId
- * @param type
- */
 void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type)
 {
     m_currentType = type;
@@ -162,12 +153,6 @@ void TheTvDbImages::onLoadTvShowDataFinished()
     emit sigImagesLoaded(posters);
 }
 
-/**
- * @brief TheTvDbImages::tvShowImages
- * @param show
- * @param tvdbId
- * @param types
- */
 void TheTvDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);
@@ -235,12 +220,6 @@ void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 
 // UNSUPPORTED
 
-/**
- * @brief TheTvDbImages::movieImages
- * @param movie
- * @param tmdbId
- * @param types
- */
 void TheTvDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
@@ -256,7 +235,6 @@ void TheTvDbImages::tvShowSeasonThumbs(TvDbId tvdbId, SeasonNumber season)
 
 /**
  * @brief Would load movie posters (not supported by fanart.tv)
- * @param tmdbId
  */
 void TheTvDbImages::moviePosters(TmdbId tmdbId)
 {
@@ -265,7 +243,6 @@ void TheTvDbImages::moviePosters(TmdbId tmdbId)
 
 /**
  * @brief Load movie backdrops
- * @param tmdbId
  */
 void TheTvDbImages::movieBackdrops(TmdbId tmdbId)
 {
@@ -309,12 +286,6 @@ void TheTvDbImages::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-/**
- * @brief TheTvDbImages::concertImages
- * @param concert
- * @param tmdbId
- * @param types
- */
 void TheTvDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
@@ -324,7 +295,6 @@ void TheTvDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<Image
 
 /**
  * @brief Would load concert posters (not supported by fanart.tv)
- * @param tmdbId
  */
 void TheTvDbImages::concertPosters(TmdbId tmdbId)
 {
@@ -333,7 +303,6 @@ void TheTvDbImages::concertPosters(TmdbId tmdbId)
 
 /**
  * @brief Load concert backdrops
- * @param tmdbId
  */
 void TheTvDbImages::concertBackdrops(TmdbId tmdbId)
 {

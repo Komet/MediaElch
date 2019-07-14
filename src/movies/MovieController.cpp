@@ -176,10 +176,6 @@ void MovieController::loadStreamDetailsFromFile()
     m_movie->setChanged(true);
 }
 
-/**
- * @brief Movie::infosToLoad
- * @return
- */
 QVector<MovieScraperInfos> MovieController::infosToLoad()
 {
     return m_infosToLoad;

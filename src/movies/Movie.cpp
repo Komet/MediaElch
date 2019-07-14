@@ -16,7 +16,6 @@ using namespace std::chrono_literals;
 /**
  * @brief Constructs a new movie object
  * @param files List of files for this movie
- * @param parent
  */
 Movie::Movie(QStringList files, QObject* parent) :
     QObject(parent),
@@ -502,19 +501,11 @@ QDateTime Movie::fileLastModified() const
     return m_fileLastModified;
 }
 
-/**
- * @brief Movie::nfoContent
- * @return
- */
 QString Movie::nfoContent() const
 {
     return m_nfoContent;
 }
 
-/**
- * @brief Movie::databaseId
- * @return
- */
 int Movie::databaseId() const
 {
     return m_databaseId;
@@ -765,7 +756,6 @@ void Movie::setChanged(bool changed)
 
 /**
  * @brief Sets if the stream details were loaded
- * @param loaded
  * @see Movie::streamDetailsLoaded
  */
 void Movie::setStreamDetailsLoaded(bool loaded)
@@ -800,19 +790,11 @@ void Movie::setFileLastModified(QDateTime modified)
     m_fileLastModified = modified;
 }
 
-/**
- * @brief Movie::setNfoContent
- * @param content
- */
 void Movie::setNfoContent(QString content)
 {
     m_nfoContent = content;
 }
 
-/**
- * @brief Movie::setDatabaseId
- * @param id
- */
 void Movie::setDatabaseId(int id)
 {
     m_databaseId = id;
@@ -929,7 +911,6 @@ void Movie::removeCountry(QString country)
 
 /**
  * @brief Movie::removeGenre
- * @param genre
  * @see Movie::genres
  */
 void Movie::removeGenre(QString* genre)
@@ -945,7 +926,6 @@ void Movie::removeGenre(QString* genre)
 
 /**
  * @brief Movie::removeGenre
- * @param genre
  * @see Movie::genres
  */
 void Movie::removeGenre(QString genre)

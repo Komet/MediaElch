@@ -4,10 +4,6 @@
 #include <QDebug>
 #include <QLabel>
 
-/**
- * @brief NotificationBox::NotificationBox
- * @param parent
- */
 NotificationBox::NotificationBox(QWidget* parent) : QWidget(parent), ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
@@ -61,11 +57,6 @@ void NotificationBox::adjustSize()
 }
 
 /**
- * @brief NotificationBox::showMessage
- * @param message
- * @param type
- * @param timeout
- * @return
  * @todo: use type to display different styles
  */
 int NotificationBox::showMessage(QString message, NotificationBox::NotificationType type, int timeout)

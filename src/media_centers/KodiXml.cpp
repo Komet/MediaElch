@@ -591,7 +591,6 @@ void KodiXml::writeStreamDetails(QDomDocument& doc, const StreamDetails* streamD
 
 /**
  * @brief Get the path to the actor image
- * @param movie
  * @param actor Actor
  * @return Path to actor image
  */
@@ -766,8 +765,6 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 
 /**
  * @brief Get path to actor image
- * @param show
- * @param actor
  * @return Path to actor image
  */
 QString KodiXml::actorImageName(TvShow* show, Actor actor)
@@ -1292,8 +1289,6 @@ QImage KodiXml::movieSetBackdrop(QString setName)
 
 /**
  * @brief Save movie set poster
- * @param setName
- * @param poster
  */
 void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 {
@@ -1307,8 +1302,6 @@ void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 
 /**
  * @brief Save movie set backdrop
- * @param setName
- * @param backdrop
  */
 void KodiXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {

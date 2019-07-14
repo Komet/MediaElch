@@ -11,10 +11,6 @@
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/movie/TMDb.h"
 
-/**
- * @brief FanartTvMusicArtists::FanartTv
- * @param parent
- */
 FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent)
 {
     setParent(parent);

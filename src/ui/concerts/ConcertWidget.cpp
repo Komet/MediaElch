@@ -22,10 +22,6 @@
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 
-/**
- * @brief ConcertWidget::ConcertWidget
- * @param parent
- */
 ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertWidget)
 {
     ui->setupUi(this);
@@ -131,7 +127,6 @@ ConcertWidget::~ConcertWidget()
 
 /**
  * @brief Repositions the saving widget
- * @param event
  */
 void ConcertWidget::resizeEvent(QResizeEvent* event)
 {
@@ -283,10 +278,6 @@ void ConcertWidget::onStartScraperSearch()
     }
 }
 
-/**
- * @brief ConcertWidget::infoLoadDone
- * @param concert
- */
 void ConcertWidget::onInfoLoadDone(Concert* concert)
 {
     if (m_concert == nullptr) {

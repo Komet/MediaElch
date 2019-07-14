@@ -170,7 +170,6 @@ TvShowEpisode* TvShowFileSearcher::reloadEpisodeData(TvShowEpisode* episode)
 /**
  * @brief Scans a dir for tv show files
  * @param path Directory to scan
- * @param contents
  */
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QVector<QStringList>>& contents)
 {

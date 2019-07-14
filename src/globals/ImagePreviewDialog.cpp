@@ -9,7 +9,6 @@
 
 /**
  * @brief ImagePreviewDialog::ImagePreviewDialog
- * @param parent
  */
 ImagePreviewDialog::ImagePreviewDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImagePreviewDialog)
 {

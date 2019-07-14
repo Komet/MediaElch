@@ -7,10 +7,6 @@
 #include <QDir>
 #include <QMessageBox>
 
-/**
- * @brief MovieFilesOrganizer::MovieFilesOrganizer
- * @param parent
- */
 MovieFilesOrganizer::MovieFilesOrganizer(QObject* parent) : QThread(parent)
 {
 }

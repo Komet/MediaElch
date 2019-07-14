@@ -16,7 +16,6 @@ using namespace std::chrono_literals;
 /**
  * @brief Constructs a new concert object
  * @param files List of files for this concert
- * @param parent
  */
 Concert::Concert(QStringList files, QObject* parent) :
     QObject(parent),
@@ -462,19 +461,11 @@ StreamDetails* Concert::streamDetails() const
     return m_concert.streamDetails;
 }
 
-/**
- * @brief Concert::nfoContent
- * @return
- */
 QString Concert::nfoContent() const
 {
     return m_nfoContent;
 }
 
-/**
- * @brief Concert::databaseId
- * @return
- */
 int Concert::databaseId() const
 {
     return m_concert.databaseId;
@@ -758,7 +749,6 @@ void Concert::setImdbId(ImdbId id)
 
 /**
  * @brief Sets if the stream details were loaded
- * @param loaded
  * @see Concert::streamDetailsLoaded
  */
 void Concert::setStreamDetailsLoaded(bool loaded)
@@ -768,7 +758,6 @@ void Concert::setStreamDetailsLoaded(bool loaded)
 
 /**
  * @brief Concert::setNfoContent
- * @param content
  */
 void Concert::setNfoContent(QString content)
 {
@@ -777,7 +766,6 @@ void Concert::setNfoContent(QString content)
 
 /**
  * @brief Concert::setDatabaseId
- * @param id
  */
 void Concert::setDatabaseId(int id)
 {
@@ -837,7 +825,6 @@ void Concert::setSyncNeeded(bool syncNeeded)
 
 /**
  * @brief Concert::removeGenre
- * @param genre
  * @see Concert::genres
  */
 void Concert::removeGenre(QString genre)

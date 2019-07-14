@@ -5,10 +5,6 @@
 
 #include <QDebug>
 
-/**
- * @brief MovieSearch::MovieSearch
- * @param parent
- */
 MovieSearch::MovieSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MovieSearch)
 {
     ui->setupUi(this);

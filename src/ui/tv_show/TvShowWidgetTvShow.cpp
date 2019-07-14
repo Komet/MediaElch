@@ -17,10 +17,6 @@
 #include "ui/tv_show/TvShowSearch.h"
 #include "ui/tv_show/TvTunesDialog.h"
 
-/**
- * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
- * @param parent
- */
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetTvShow),
@@ -187,7 +183,6 @@ TvShowWidgetTvShow::~TvShowWidgetTvShow()
 
 /**
  * @brief Repositions the saving widget
- * @param event
  */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent* event)
 {
@@ -489,7 +484,6 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 
 /**
  * @brief TvShowWidgetTvShow::onInfoLoadDone
- * @param show
  */
 void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show)
 {
@@ -521,8 +515,6 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show)
 /**
  * @brief Called when the search widget finishes
  * Updates infos and starts downloads
- * @param show Tv Show
- * @param posters
  */
 void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster>> posters)
 {

@@ -8,10 +8,6 @@
 #include "globals/Helper.h"
 #include "ui/notifications/NotificationBox.h"
 
-/**
- * @brief Message::Message
- * @param parent
- */
 Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
 {
     ui->setupUi(this);

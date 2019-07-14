@@ -11,7 +11,6 @@
 
 /**
  * @brief MyLineEdit::MyLineEdit
- * @param parent
  */
 MyLineEdit::MyLineEdit(QWidget* parent) :
     QLineEdit(parent),
@@ -52,7 +51,6 @@ void MyLineEdit::resizeEvent(QResizeEvent*)
 
 /**
  * @brief Captures key events and emits signals based on the key
- * @param event
  */
 void MyLineEdit::keyPressEvent(QKeyEvent* event)
 {
@@ -72,7 +70,6 @@ void MyLineEdit::keyPressEvent(QKeyEvent* event)
 
 /**
  * @brief Emits custom focusOut signal
- * @param event
  */
 void MyLineEdit::focusOutEvent(QFocusEvent* event)
 {
@@ -82,7 +79,6 @@ void MyLineEdit::focusOutEvent(QFocusEvent* event)
 
 /**
  * @brief Emits custom focusIn signal
- * @param event
  */
 void MyLineEdit::focusInEvent(QFocusEvent* event)
 {
@@ -186,7 +182,6 @@ void MyLineEdit::addAdditionalStyleSheet(QString style)
 
 /**
  * @brief Show/hide the magnifier
- * @param show
  */
 void MyLineEdit::setShowMagnifier(bool show)
 {
@@ -221,7 +216,6 @@ void MyLineEdit::setShowMagnifier(bool show)
 
 /**
  * @brief Adds a filter and clears text
- * @param filter
  */
 void MyLineEdit::addFilter(Filter* filter)
 {

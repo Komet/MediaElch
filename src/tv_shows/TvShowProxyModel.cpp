@@ -5,19 +5,12 @@
 #include "tv_shows/model/EpisodeModelItem.h"
 #include "tv_shows/model/SeasonModelItem.h"
 
-/**
- * @brief TvShowProxyModel::TvShowProxyModel
- * @param parent
- */
 TvShowProxyModel::TvShowProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
 }
 
 /**
  * @brief Checks if a row accepts the filter. Checks the first column of our model (TV Show name)
- * @param sourceRow
- * @param sourceParent
- * @return
  */
 /*
 bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -128,8 +121,6 @@ bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& righ
 
 /**
  * @brief Sets active filters
- * @param filters
- * @param text
  */
 void TvShowProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {

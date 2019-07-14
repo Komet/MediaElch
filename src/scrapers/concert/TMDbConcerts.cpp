@@ -14,10 +14,6 @@
 #include "globals/NetworkReplyWatcher.h"
 #include "ui/main/MainWindow.h"
 
-/**
- * @brief TMDbConcerts::TMDbConcerts
- * @param parent
- */
 TMDbConcerts::TMDbConcerts(QObject* parent) :
     m_apiKey{"5d832bdf69dcb884922381ab01548d5b"},
     m_locale{"en"},

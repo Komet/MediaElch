@@ -102,8 +102,6 @@ QString formatTrailerUrl(QString url)
 
 /**
  * @brief Returns true if path is a DVD directory
- * @param path
- * @return
  */
 bool isDvd(QString path, bool noSubFolder)
 {
@@ -132,8 +130,6 @@ bool isDvd(QString path, bool noSubFolder)
 
 /**
  * @brief Returns true if path is a bluray directory
- * @param path
- * @return
  */
 bool isBluRay(QString path)
 {
