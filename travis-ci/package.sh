@@ -95,8 +95,18 @@ create_appimage() {
 
 	fold_start "download_linuxdeployqt"
 	print_info "Downloading linuxdeployqt"
-	wget --output-document linuxdeployqt https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
-	chmod a+x ./linuxdeployqt
+	if [ ! -f linuxdeploy-x86_64.AppImage ]; then
+		wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+		chmod u+x linuxdeploy*.AppImage
+	fi
+	if [ ! -f linuxdeploy-plugin-qt-x86_64.AppImage ]; then
+		wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+		chmod u+x linuxdeploy*.AppImage
+	fi
+	if [ ! -f linuxdeploy-plugin-checkrt-x86_64.sh ]; then
+		wget https://github.com/TheAssassin/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh
+		chmod u+x linuxdeploy*.sh
+	fi
 	fold_end
 
 	#######################################################
@@ -148,18 +158,17 @@ create_appimage() {
 	fold_start "linuxdeployqt"
 	print_info "Running linuxdeployqt"
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}"
-	./linuxdeployqt appdir/usr/share/applications/MediaElch.desktop -verbose=2 -bundle-non-qt-libs -qmldir=../src/ui
-	./linuxdeployqt --appimage-extract
-	export PATH=$(readlink -f ./squashfs-root/usr/bin):$PATH
-	# Workaround to increase compatibility with older systems
-	# see https://github.com/darealshinji/AppImageKit-checkrt for details
-	mkdir -p appdir/usr/optional/libstdc++/
-	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/exec-x86_64.so -O ./appdir/usr/optional/exec.so
-	cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 ./appdir/usr/optional/libstdc++/
-	rm appdir/AppRun
-	wget -c https://github.com/darealshinji/AppImageKit-checkrt/releases/download/continuous/AppRun-patched-x86_64 -O appdir/AppRun
-	chmod a+x appdir/AppRun
-	./squashfs-root/usr/bin/appimagetool -g ./appdir/ MediaElch-${VERSION}-x86_64.AppImage
+	export QML_SOURCES_PATHS="${PROJECT_DIR}/src/ui"
+	# Run linuxdeploy with following settings:
+	# - use qt plugin       => so that Qt libraries are bundled correctly
+	# - use checkrt plugin  => we use C++14 which requires libstdc++-6 which is not available on older systems
+	#                          this plugin bundled these newer libraries as well
+	# - use appimage plugin => create an appimage file (essentially just bundles the appdir)
+	"./linuxdeploy-x86_64.AppImage" --appdir appdir                    \
+		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
+		--plugin checkrt                                               \
+		--plugin qt                                                    \
+		--output appimage
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 	fold_end
 

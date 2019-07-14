@@ -102,7 +102,7 @@ confirm_build() {
 package_appimage() {
 	check_dependencies_linux_appimage
 
-	if [ ! -d "${BUILD_DIR}" ]; then
+	if [ ! -d "${BUILD_DIR}" ] || [ ! -f "${BUILD_DIR}/.qmake.stash" ]; then
 		$SCRIPT_DIR/../build_release.sh linux
 	fi
 
@@ -131,12 +131,18 @@ package_appimage() {
 	echo ""
 	pushd "${PROJECT_DIR}" > /dev/null
 	print_info "Downloading linuxdeployqt"
-	if [ ! -f linuxdeploy-x86_64.AppImage ] || [ ! -f linuxdeploy-plugin-qt-x86_64.AppImage ]; then
+	if [ ! -f linuxdeploy-x86_64.AppImage ]; then
 		wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-		wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
-		wget https://github.com/TheAssassin/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh
+		chmod u+x linuxdeploy*.AppImage
 	fi
-	chmod u+x linuxdeploy*.AppImage linuxdeploy*.sh
+	if [ ! -f linuxdeploy-plugin-qt-x86_64.AppImage ]; then
+		wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+		chmod u+x linuxdeploy*.AppImage
+	fi
+	if [ ! -f linuxdeploy-plugin-checkrt-x86_64.sh ]; then
+		wget https://github.com/TheAssassin/linuxdeploy-plugin-checkrt/releases/download/continuous/linuxdeploy-plugin-checkrt-x86_64.sh
+		chmod u+x linuxdeploy*.sh
+	fi
 	popd > /dev/null
 
 	#######################################################
@@ -186,23 +192,20 @@ package_appimage() {
 	#######################################################
 	# Create AppImage
 
-	print_error "AppImage creation is currently broken."
-	print_error "We need to update to linuxdeploy with the qt plugin."
-	exit 1
-
 	echo ""
 	print_important "Creating an AppImage for MediaElch ${VERSION_NAME}. This takes a while and may seem frozen."
 	export QML_SOURCES_PATHS="${PROJECT_DIR}/src/ui"
-	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir \
+	export EXTRA_QT_PLUGINS="qt5dxcb-plugin"
+	# Run linuxdeploy with following settings:
+	# - use qt plugin       => so that Qt libraries are bundled correctly
+	# - use checkrt plugin  => we use C++14 which requires libstdc++-6 which is not available on older systems
+	#                          this plugin bundled these newer libraries as well
+	# - use appimage plugin => create an appimage file (essentially just bundles the appdir)
+	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir       \
 		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
-		--plugin qt --plugin checkrt \
+		--plugin checkrt                                               \
+		--plugin qt                                                    \
 		--output appimage
-	"${PROJECT_DIR}/linuxdeploy-plugin-qt-x86_64.AppImage" --extra-plugin qt5dxcb-plugin --appdir=appdir
-	"${PROJECT_DIR}/linuxdeploy-x86_64.AppImage" --appdir appdir \
-		--desktop-file appdir/usr/share/applications/MediaElch.desktop \
-		--plugin qt --plugin checkrt \
-		--output appimage
-
 	find . -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 
 	#######################################################
