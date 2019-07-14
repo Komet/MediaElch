@@ -116,13 +116,13 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         }
         if (item.type() == TvShowType::Episode) {
             auto* showEpisode = dynamic_cast<const EpisodeModelItem*>(&item);
-            if (showEpisode->tvShowEpisode()->isDummy()) {
+            if (showEpisode != nullptr && showEpisode->tvShowEpisode()->isDummy()) {
                 return QColor(150, 150, 150);
             }
         }
         if (item.type() == TvShowType::Season) {
             auto* seasonModel = dynamic_cast<const SeasonModelItem*>(&item);
-            if (item.tvShow()->isDummySeason(seasonModel->seasonNumber())) {
+            if (seasonModel != nullptr && item.tvShow()->isDummySeason(seasonModel->seasonNumber())) {
                 return QColor(150, 150, 150);
             }
         }
@@ -147,7 +147,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     case TvShowRoles::FilePath:
         if (item.type() == TvShowType::Episode) {
             auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);
-            if (!episode->tvShowEpisode()->files().isEmpty()) {
+            if (episode != nullptr && !episode->tvShowEpisode()->files().isEmpty()) {
                 return episode->tvShowEpisode()->files().first();
             }
         }
@@ -158,7 +158,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     case TvShowRoles::HasDummyEpisodes:
         if (item.type() == TvShowType::Season) {
             auto* season = dynamic_cast<const SeasonModelItem*>(&item);
-            if (item.tvShow()->hasDummyEpisodes(season->seasonNumber())) {
+            if (season != nullptr && item.tvShow()->hasDummyEpisodes(season->seasonNumber())) {
                 return true;
             }
         }

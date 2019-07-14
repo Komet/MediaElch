@@ -47,7 +47,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
 
         fi.setFile(movie.at(0));
         fileName = fi.completeBaseName();
-        QDir* dir = new QDir();
+        QDir dir;
 
         QString newFolder;
         if (movie.length() == 1) {
@@ -58,12 +58,12 @@ void MovieFilesOrganizer::moveToDirs(QString path)
             continue;
         }
 
-        if (!(dir->mkdir(newFolder))) {
+        if (!(dir.mkdir(newFolder))) {
             continue;
         }
 
         for (const QString& file : movie) {
-            if (!dir->rename(file,
+            if (!dir.rename(file,
                     newFolder + QDir::separator()
                         + file.right(file.length() - file.lastIndexOf(QDir::separator()) - 1))) {
                 qDebug() << "Moving " << file << "to " << newFolder << " failed.";

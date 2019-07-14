@@ -50,3 +50,9 @@ target_sources(
 )
 
 target_link_libraries(quazip PUBLIC Qt5::Core ZLIB::ZLIB)
+# We don't want e.g. clang-tidy warnings to quazip
+set_target_properties(
+    quazip
+    PROPERTIES
+         CXX_CLANG_TIDY ""
+)
