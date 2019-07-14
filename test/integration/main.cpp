@@ -5,9 +5,18 @@
 
 #include <QApplication>
 #include <QDir>
+#include <QtGlobal>
 
 int main(int argc, char** argv)
 {
+// QDOmNode attributes are stored in a hash map and therefore
+// the order depends on a random seed; we need to set the seed
+// to get a deterministic output string
+// see: https://stackoverflow.com/questions/21535707/incorrect-order-of-attributes-in-qt-xml/39953337#39953337
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+    qSetGlobalQHashSeed(0);
+#endif
+
     QApplication app(argc, argv);
     Catch::Session session;
 
