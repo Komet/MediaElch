@@ -226,7 +226,7 @@ QVector<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 
 /**
  * @brief Starts network requests to download infos from OFDb
- * @param id OFDb movie ID
+ * @param ids OFDb movie ID
  * @param movie Movie object
  * @param infos List of infos to load
  * @see OFDb::loadFinished

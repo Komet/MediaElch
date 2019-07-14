@@ -582,7 +582,7 @@ void Concert::setRuntime(std::chrono::minutes runtime)
 
 /**
  * @brief Sets the concerts certification
- * @param certification Certification of the concert
+ * @param cert Certification of the concert
  * @see Concert::certification
  */
 void Concert::setCertification(Certification cert)

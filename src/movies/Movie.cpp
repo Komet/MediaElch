@@ -721,7 +721,7 @@ void Movie::setId(ImdbId id)
 
 /**
  * @brief Sets the tmdb id of the movie
- * @param id Tmdb id of the movie
+ * @param tmdbId Tmdb id of the movie
  * @see Movie::tmdbId
  */
 void Movie::setTmdbId(TmdbId tmdbId)

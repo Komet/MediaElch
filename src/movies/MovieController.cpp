@@ -142,7 +142,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
 
 /**
  * @brief Loads the movies info from a scraper
- * @param id Id of the movie within the given ScraperInterface
+ * @param ids Id of the movie within the given ScraperInterface
  * @param scraperInterface ScraperInterface to use for loading
  * @param infos List of infos to load
  */

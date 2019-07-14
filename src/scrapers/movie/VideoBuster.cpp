@@ -152,7 +152,7 @@ QVector<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 
 /**
  * @brief Starts network requests to download infos from VideoBuster
- * @param id VideoBuster movie ID
+ * @param ids VideoBuster movie ID
  * @param movie Movie object
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
