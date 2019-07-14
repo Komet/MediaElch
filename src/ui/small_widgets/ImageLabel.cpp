@@ -28,7 +28,7 @@ ImageLabel::~ImageLabel()
 
 /**
  * @brief Sets the image to show
- * @param pixmap QPixmap of the image
+ * @param img QPixmap of the image
  */
 void ImageLabel::setImage(QPixmap img)
 {

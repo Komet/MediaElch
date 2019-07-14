@@ -488,7 +488,7 @@ bool Settings::autoLoadStreamDetails()
 
 /**
  * @brief Settings::dataFiles
- * @param type
+ * @param dataType
  * @return
  */
 QVector<DataFile> Settings::dataFiles(DataFileType dataType)

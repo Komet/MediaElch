@@ -437,7 +437,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int 
 
 /**
  * @brief Starts network requests to download infos from TMDb
- * @param id TMDb movie ID
+ * @param ids TMDb movie ID
  * @param movie Movie object
  * @param infos List of infos to load
  * @see TMDb::loadFinished

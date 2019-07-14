@@ -27,7 +27,7 @@ using namespace ZenLib;
 /**
  * @brief StreamDetails::StreamDetails
  * @param parent
- * @param file
+ * @param files
  */
 StreamDetails::StreamDetails(QObject* parent, QStringList files) :
     QObject(parent),
