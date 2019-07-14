@@ -13,10 +13,6 @@
 #include "scrapers/tv_show/TheTvDb.h"
 #include "ui/main/MainWindow.h"
 
-/**
- * @brief FanartTv::FanartTv
- * @param parent
- */
 FanartTv::FanartTv(QObject* parent)
 {
     setParent(parent);
@@ -178,9 +174,6 @@ void FanartTv::onSearchMovieFinished(QVector<ScraperSearchResult> results)
 
 /**
  * @brief Loads given image types
- * @param movie
- * @param tmdbId
- * @param types
  */
 void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
@@ -189,7 +182,6 @@ void FanartTv::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types
 
 /**
  * @brief Load movie posters
- * @param tmdbId
  */
 void FanartTv::moviePosters(TmdbId tmdbId)
 {
@@ -198,7 +190,6 @@ void FanartTv::moviePosters(TmdbId tmdbId)
 
 /**
  * @brief Load movie backdrops
- * @param tmdbId
  */
 void FanartTv::movieBackdrops(TmdbId tmdbId)
 {
@@ -244,9 +235,6 @@ void FanartTv::movieCdArts(TmdbId tmdbId)
 
 /**
  * @brief Loads given image types
- * @param concert
- * @param tmdbId
- * @param types
  */
 void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
@@ -255,7 +243,6 @@ void FanartTv::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType>
 
 /**
  * @brief Would load concert posters (not supported by fanart.tv)
- * @param tmdbId
  */
 void FanartTv::concertPosters(TmdbId tmdbId)
 {
@@ -264,7 +251,6 @@ void FanartTv::concertPosters(TmdbId tmdbId)
 
 /**
  * @brief Load concert backdrops
- * @param tmdbId
  */
 void FanartTv::concertBackdrops(TmdbId tmdbId)
 {
@@ -298,11 +284,6 @@ void FanartTv::concertCdArts(TmdbId tmdbId)
     loadMovieData(tmdbId, ImageType::ConcertCdArt);
 }
 
-/**
- * @brief FanartTv::loadMovieData
- * @param tmdbId
- * @param type
- */
 void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
 {
     QUrl url;
@@ -316,11 +297,6 @@ void FanartTv::loadMovieData(TmdbId tmdbId, ImageType type)
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadMovieDataFinished);
 }
 
-/**
- * @brief FanartTv::loadMovieData
- * @param tmdbId
- * @param types
- */
 void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* movie)
 {
     QUrl url;
@@ -335,11 +311,6 @@ void FanartTv::loadMovieData(TmdbId tmdbId, QVector<ImageType> types, Movie* mov
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadAllMovieDataFinished);
 }
 
-/**
- * @brief FanartTv::loadConcertData
- * @param tmdbId
- * @param types
- */
 void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert* concert)
 {
     QUrl url;
@@ -501,20 +472,12 @@ void FanartTv::onSearchTvShowFinished(QVector<ScraperSearchResult> results)
 
 /**
  * @brief Loads given image types
- * @param show
- * @param tvdbId
- * @param types
  */
 void FanartTv::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     loadTvShowData(tvdbId, types, show);
 }
 
-/**
- * @brief FanartTv::loadTvShowData
- * @param tvdbId The Tv DB Id
- * @param type
- */
 void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season)
 {
     QUrl url;
@@ -528,11 +491,6 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season
     connect(reply, &QNetworkReply::finished, this, &FanartTv::onLoadTvShowDataFinished);
 }
 
-/**
- * @brief FanartTv::loadTvShowData
- * @param tvdbId The Tv DB Id
- * @param types
- */
 void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* show)
 {
     QUrl url;

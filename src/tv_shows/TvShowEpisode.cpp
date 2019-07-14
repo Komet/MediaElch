@@ -17,7 +17,6 @@
 /**
  * @brief TvShowEpisode::TvShowEpisode
  * @param files Files of the episode
- * @param parent
  */
 TvShowEpisode::TvShowEpisode(QStringList files, TvShow* parent) :
     QObject(parent),
@@ -51,10 +50,6 @@ void TvShowEpisode::setFiles(QStringList files)
     }
 }
 
-/**
- * @brief TvShowEpisode::setShow
- * @param show
- */
 void TvShowEpisode::setShow(TvShow* show)
 {
     m_parent = show;
@@ -221,10 +216,6 @@ TvShow* TvShowEpisode::tvShow() const
     return m_parent;
 }
 
-/**
- * @brief TvShowEpisode::isValid
- * @return
- */
 bool TvShowEpisode::isValid() const
 {
     return !m_files.isEmpty();
@@ -240,10 +231,6 @@ void TvShowEpisode::clearImages()
 
 /*** GETTER ***/
 
-/**
- * @brief TvShowEpisode::infoLoaded
- * @return
- */
 bool TvShowEpisode::infoLoaded() const
 {
     return m_infoLoaded;
@@ -260,19 +247,11 @@ QString TvShowEpisode::name() const
     return m_name;
 }
 
-/**
- * @brief TvShowEpisode::completeEpisodeName
- * @return
- */
 QString TvShowEpisode::completeEpisodeName() const
 {
     return QString("S%1E%2 %3").arg(seasonString()).arg(episodeString()).arg(name());
 }
 
-/**
- * @brief TvShowEpisode::files
- * @return
- */
 QStringList TvShowEpisode::files() const
 {
     return m_files;
@@ -490,10 +469,6 @@ QByteArray TvShowEpisode::thumbnailImage()
     return m_thumbnailImage;
 }
 
-/**
- * @brief TvShowEpisode::thumbnailImageChanged
- * @return
- */
 bool TvShowEpisode::thumbnailImageChanged() const
 {
     return m_thumbnailImageChanged;
@@ -504,10 +479,6 @@ EpisodeModelItem* TvShowEpisode::modelItem()
     return m_modelItem;
 }
 
-/**
- * @brief TvShowEpisode::hasChanged
- * @return
- */
 bool TvShowEpisode::hasChanged() const
 {
     return m_hasChanged;
@@ -539,10 +510,6 @@ QVector<QString*> TvShowEpisode::directorsPointer()
     return directors;
 }
 
-/**
- * @brief TvShowEpisode::episodeId
- * @return
- */
 int TvShowEpisode::episodeId() const
 {
     return m_episodeId;
@@ -568,19 +535,11 @@ StreamDetails* TvShowEpisode::streamDetails()
     return m_streamDetails;
 }
 
-/**
- * @brief TvShowEpisode::nfoContent
- * @return
- */
 QString TvShowEpisode::nfoContent() const
 {
     return m_nfoContent;
 }
 
-/**
- * @brief TvShowEpisode::databaseId
- * @return
- */
 int TvShowEpisode::databaseId() const
 {
     return m_databaseId;
@@ -611,7 +570,6 @@ void TvShowEpisode::setName(QString name)
 
 /**
  * @brief Sets the title of the show
- * @param showTitle
  */
 void TvShowEpisode::setShowTitle(QString showTitle)
 {
@@ -801,10 +759,6 @@ void TvShowEpisode::setThumbnail(QUrl url)
     setChanged(true);
 }
 
-/**
- * @brief TvShowEpisode::setThumbnailImage
- * @param thumbnail
- */
 void TvShowEpisode::setThumbnailImage(QByteArray thumbnail)
 {
     m_thumbnailImage = thumbnail;
@@ -812,19 +766,11 @@ void TvShowEpisode::setThumbnailImage(QByteArray thumbnail)
     setChanged(true);
 }
 
-/**
- * @brief TvShowEpisode::setInfosLoaded
- * @param loaded
- */
 void TvShowEpisode::setInfosLoaded(bool loaded)
 {
     m_infoLoaded = loaded;
 }
 
-/**
- * @brief TvShowEpisode::setChanged
- * @param changed
- */
 void TvShowEpisode::setChanged(bool changed)
 {
     m_hasChanged = changed;
@@ -838,7 +784,6 @@ void TvShowEpisode::setModelItem(EpisodeModelItem* item)
 
 /**
  * @brief Sets if the stream details were loaded
- * @param loaded
  * @see TvShowEpisode::streamDetailsLoaded
  */
 void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
@@ -850,7 +795,6 @@ void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
 
 /**
  * @brief Removes a writer
- * @param writer
  * @see TvShowEpisode::writers
  */
 void TvShowEpisode::removeWriter(QString* writer)
@@ -866,7 +810,6 @@ void TvShowEpisode::removeWriter(QString* writer)
 
 /**
  * @brief Removes a director
- * @param director
  * @see TvShowEpisode::directors
  */
 void TvShowEpisode::removeDirector(QString* director)
@@ -880,19 +823,11 @@ void TvShowEpisode::removeDirector(QString* director)
     setChanged(true);
 }
 
-/**
- * @brief TvShowEpisode::setNfoContent
- * @param content
- */
 void TvShowEpisode::setNfoContent(QString content)
 {
     m_nfoContent = content;
 }
 
-/**
- * @brief TvShowEpisode::setDatabaseId
- * @param id
- */
 void TvShowEpisode::setDatabaseId(int id)
 {
     m_databaseId = id;

@@ -9,7 +9,6 @@
 
 /**
  * @brief ConcertModel::ConcertModel
- * @param parent
  */
 ConcertModel::ConcertModel(QObject* parent) : QAbstractItemModel(parent)
 {
@@ -68,7 +67,6 @@ Concert* ConcertModel::concert(int row)
 
 /**
  * @brief Returns the rowcount in our model. (=number of movies)
- * @param parent
  * @return Number of rows (=number of movies)
  */
 int ConcertModel::rowCount(const QModelIndex& parent) const
@@ -79,7 +77,6 @@ int ConcertModel::rowCount(const QModelIndex& parent) const
 
 /**
  * @brief Get the column count of our model
- * @param parent
  * @return 1
  */
 int ConcertModel::columnCount(const QModelIndex& parent) const

@@ -18,10 +18,6 @@
 #include "settings/Settings.h"
 #include "tv_shows/TvShow.h"
 
-/**
- * @brief Database::Database
- * @param parent
- */
 Database::Database(QObject* parent) : QObject(parent)
 {
     QString dataLocation = Settings::instance()->databaseDir();

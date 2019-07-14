@@ -17,10 +17,6 @@
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
-/**
- * @brief TMDb::TMDb
- * @param parent
- */
 TMDb::TMDb(QObject* parent) :
     m_locale{"en"},
     m_baseUrl{"http://cf2.imgobject.com/t/p/"},
@@ -654,8 +650,8 @@ QString TMDb::apiUrlParameterString(ApiUrlParameter parameter) const
 
 /**
  * @brief Get the movie search URL for TMDb. Adds the API key and language.
- * @param search Search string. Will be percent encoded.
- * @param arguments A QMap of URL parameters. The values will be percent encoded.
+ * @param searchStr Search string. Will be percent encoded.
+ * @param parameters A QMap of URL parameters. The values will be percent encoded.
  */
 QUrl TMDb::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& parameters) const
 {

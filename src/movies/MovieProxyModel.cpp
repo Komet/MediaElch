@@ -6,10 +6,6 @@
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 
-/**
- * @brief MovieProxyModel::MovieProxyModel
- * @param parent
- */
 MovieProxyModel::MovieProxyModel(QObject* parent) :
     QSortFilterProxyModel(parent),
     m_sortBy{SortBy::New},
@@ -20,8 +16,6 @@ MovieProxyModel::MovieProxyModel(QObject* parent) :
 
 /**
  * @brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Movie name and folder name)
- * @param sourceRow
- * @param sourceParent
  * @return Filter is accepted or not
  */
 bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
@@ -48,9 +42,6 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
 
 /**
  * @brief Sort function for the movie model. Sorts movies by name and new files to top.
- * @param left
- * @param right
- * @return
  */
 bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
@@ -111,8 +102,6 @@ void MovieProxyModel::setFilterDuplicates(bool filterDuplicates)
 
 /**
  * @brief Sets active filters
- * @param filters
- * @param text
  */
 void MovieProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {

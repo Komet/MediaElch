@@ -3,10 +3,6 @@
 #include "scrapers/movie/TMDb.h"
 #include "settings/Settings.h"
 
-/**
- * @brief TMDbImages::TMDbImages
- * @param parent
- */
 TMDbImages::TMDbImages(QObject* parent)
 {
     setParent(parent);
@@ -93,7 +89,6 @@ void TMDbImages::onSearchMovieFinished(QVector<ScraperSearchResult> results)
 
 /**
  * @brief Load movie posters
- * @param tmdbId
  */
 void TMDbImages::moviePosters(TmdbId tmdbId)
 {
@@ -108,7 +103,6 @@ void TMDbImages::moviePosters(TmdbId tmdbId)
 
 /**
  * @brief Load movie backdrops
- * @param tmdbId
  */
 void TMDbImages::movieBackdrops(TmdbId tmdbId)
 {
@@ -123,7 +117,6 @@ void TMDbImages::movieBackdrops(TmdbId tmdbId)
 
 /**
  * @brief Load concert posters
- * @param tmdbId
  */
 void TMDbImages::concertPosters(TmdbId tmdbId)
 {
@@ -132,7 +125,6 @@ void TMDbImages::concertPosters(TmdbId tmdbId)
 
 /**
  * @brief Load concert backdrops
- * @param tmdbId
  */
 void TMDbImages::concertBackdrops(TmdbId tmdbId)
 {
@@ -154,12 +146,6 @@ void TMDbImages::onLoadImagesFinished()
     emit sigImagesLoaded(posters);
 }
 
-/**
- * @brief TMDbImages::movieImages
- * @param movie
- * @param tmdbId
- * @param types
- */
 void TMDbImages::movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(movie);
@@ -204,12 +190,6 @@ void TMDbImages::movieCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-/**
- * @brief TMDbImages::concertImages
- * @param concert
- * @param tmdbId
- * @param types
- */
 void TMDbImages::concertImages(Concert* concert, TmdbId tmdbId, QVector<ImageType> types)
 {
     Q_UNUSED(concert);
@@ -255,12 +235,6 @@ void TMDbImages::searchTvShow(QString searchStr, int limit)
     Q_UNUSED(limit);
 }
 
-/**
- * @brief TMDbImages::tvShowImages
- * @param show
- * @param tvdbId
- * @param types
- */
 void TMDbImages::tvShowImages(TvShow* show, TvDbId tvdbId, QVector<ImageType> types)
 {
     Q_UNUSED(show);

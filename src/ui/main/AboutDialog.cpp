@@ -8,10 +8,6 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-/**
- * @brief AboutDialog::AboutDialog
- * @param parent
- */
 AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
@@ -33,18 +29,11 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     setDeveloperInformation();
 }
 
-/**
- * @brief AboutDialog::~AboutDialog
- */
 AboutDialog::~AboutDialog()
 {
     delete ui;
 }
 
-/**
- * @brief AboutDialog::exec
- * @return
- */
 int AboutDialog::exec()
 {
     adjustSize();

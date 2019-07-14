@@ -6,10 +6,6 @@
 
 #include "data/ImageCache.h"
 
-/**
- * @brief FileScannerDialog::FileScannerDialog
- * @param parent
- */
 FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::FileScannerDialog)
 {
     ui->setupUi(this);

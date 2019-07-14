@@ -24,10 +24,6 @@
 #include "tv_shows/TvShowEpisode.h"
 #include "ui/small_widgets/ImageLabel.h"
 
-/**
- * @brief ImageDialog::ImageDialog
- * @param parent
- */
 ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
 {
     ui->setupUi(this);
@@ -275,7 +271,6 @@ QUrl ImageDialog::imageUrl()
 
 /**
  * @brief Renders the table when the size of the dialog changes
- * @param event
  */
 void ImageDialog::resizeEvent(QResizeEvent* event)
 {
@@ -492,7 +487,6 @@ void ImageDialog::setImageType(ImageType type)
 
 /**
  * @brief Sets the current movie
- * @param movie
  */
 void ImageDialog::setMovie(Movie* movie)
 {
@@ -502,7 +496,6 @@ void ImageDialog::setMovie(Movie* movie)
 
 /**
  * @brief Sets the current concert
- * @param concert
  */
 void ImageDialog::setConcert(Concert* concert)
 {
@@ -512,7 +505,6 @@ void ImageDialog::setConcert(Concert* concert)
 
 /**
  * @brief Sets the current tv show
- * @param show
  */
 void ImageDialog::setTvShow(TvShow* show)
 {
@@ -522,7 +514,6 @@ void ImageDialog::setTvShow(TvShow* show)
 
 /**
  * @brief Set season number
- * @param season
  */
 void ImageDialog::setSeason(SeasonNumber season)
 {
@@ -531,7 +522,6 @@ void ImageDialog::setSeason(SeasonNumber season)
 
 /**
  * @brief Sets the current tv show episode
- * @param episode
  */
 void ImageDialog::setTvShowEpisode(TvShowEpisode* episode)
 {
@@ -839,7 +829,6 @@ void ImageDialog::onSearchFinished(QVector<ScraperSearchResult> results)
 
 /**
  * @brief Triggers loading of images from the current provider
- * @param id
  */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
@@ -926,7 +915,6 @@ void ImageDialog::loadImagesFromProvider(QString id)
 
 /**
  * @brief Triggers loading of images
- * @param item
  */
 void ImageDialog::onResultClicked(QTableWidgetItem* item)
 {

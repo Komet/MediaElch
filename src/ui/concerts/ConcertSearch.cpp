@@ -5,10 +5,6 @@
 
 #include "globals/Manager.h"
 
-/**
- * @brief ConcertSearch::ConcertSearch
- * @param parent
- */
 ConcertSearch::ConcertSearch(QWidget* parent) : QDialog(parent), ui(new Ui::ConcertSearch)
 {
     ui->setupUi(this);
@@ -24,9 +20,6 @@ ConcertSearch::ConcertSearch(QWidget* parent) : QDialog(parent), ui(new Ui::Conc
     connect(ui->concertSearchWidget, &ConcertSearchWidget::sigResultClicked, this, &QDialog::accept);
 }
 
-/**
- * @brief ConcertSearch::~ConcertSearch
- */
 ConcertSearch::~ConcertSearch()
 {
     delete ui;

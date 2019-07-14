@@ -6,18 +6,11 @@
 
 #include "globals/Helper.h"
 
-/**
- * @brief MediaFlags::MediaFlags
- * @param parent
- */
 MediaFlags::MediaFlags(QWidget* parent) : QWidget(parent), ui(new Ui::MediaFlags)
 {
     ui->setupUi(this);
 }
 
-/**
- * @brief MediaFlags::~MediaFlags
- */
 MediaFlags::~MediaFlags()
 {
     delete ui;
@@ -32,10 +25,6 @@ void MediaFlags::clear()
     ui->mediaFlagCodec->setVisible(false);
 }
 
-/**
- * @brief MediaFlags::setStreamDetails
- * @param streamDetails
- */
 void MediaFlags::setStreamDetails(StreamDetails* streamDetails)
 {
     setupResolution(streamDetails);
@@ -45,10 +34,6 @@ void MediaFlags::setStreamDetails(StreamDetails* streamDetails)
     setupChannels(streamDetails);
 }
 
-/**
- * @brief MediaFlags::setupResolution
- * @param streamDetails
- */
 void MediaFlags::setupResolution(StreamDetails* streamDetails)
 {
     const auto videoDetails = streamDetails->videoDetails();
@@ -62,10 +47,6 @@ void MediaFlags::setupResolution(StreamDetails* streamDetails)
     }
 }
 
-/**
- * @brief MediaFlags::setupAspect
- * @param streamDetails
- */
 void MediaFlags::setupAspect(StreamDetails* streamDetails)
 {
     QStringList availableAspects = {"1.31",
@@ -116,10 +97,6 @@ void MediaFlags::setupAspect(StreamDetails* streamDetails)
     }
 }
 
-/**
- * @brief MediaFlags::setupCodec
- * @param streamDetails
- */
 void MediaFlags::setupCodec(StreamDetails* streamDetails)
 {
     QStringList availableCodecs = {
@@ -134,10 +111,6 @@ void MediaFlags::setupCodec(StreamDetails* streamDetails)
     ui->mediaFlagCodec->setVisible(availableCodecs.contains(codec));
 }
 
-/**
- * @brief MediaFlags::setupAudio
- * @param streamDetails
- */
 void MediaFlags::setupAudio(StreamDetails* streamDetails)
 {
     bool visible = false;
@@ -181,10 +154,6 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
     ui->mediaFlagAudio->setVisible(visible);
 }
 
-/**
- * @brief MediaFlags::setupChannels
- * @param streamDetails
- */
 void MediaFlags::setupChannels(StreamDetails* streamDetails)
 {
     int channels = -1;

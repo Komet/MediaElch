@@ -18,10 +18,6 @@
 #include <QMovie>
 #include <QPainter>
 
-/**
- * @brief TvShowWidgetEpisode::TvShowWidgetEpisode
- * @param parent
- */
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetEpisode),
@@ -149,7 +145,6 @@ TvShowWidgetEpisode::~TvShowWidgetEpisode()
 
 /**
  * @brief Repositions the saving widget
- * @param event
  */
 void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
 {

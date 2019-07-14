@@ -10,10 +10,6 @@
 #include "ui/main/MainWindow.h"
 #include "ui/main/Navbar.h"
 
-/**
- * @brief FilterWidget::FilterWidget
- * @param parent
- */
 FilterWidget::FilterWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::FilterWidget),

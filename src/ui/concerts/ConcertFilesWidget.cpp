@@ -14,10 +14,6 @@
 
 ConcertFilesWidget* ConcertFilesWidget::m_instance;
 
-/**
- * @brief ConcertFilesWidget::ConcertFilesWidget
- * @param parent
- */
 ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertFilesWidget)
 {
     m_instance = this;
@@ -217,8 +213,6 @@ void ConcertFilesWidget::openNfo()
 
 /**
  * @brief Called when an item has selected
- * @param index
- * @param previous
  */
 void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {

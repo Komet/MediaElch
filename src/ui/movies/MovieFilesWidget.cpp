@@ -309,8 +309,6 @@ void MovieFilesWidget::openNfoFile()
 
 /**
  * @brief Called when an item has selected
- * @param index
- * @param previous
  */
 void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {

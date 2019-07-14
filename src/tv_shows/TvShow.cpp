@@ -19,11 +19,6 @@
 
 using namespace std::chrono_literals;
 
-/**
- * @brief TvShow::TvShow
- * @param dir
- * @param parent
- */
 TvShow::TvShow(QString dir, QObject* parent) :
     QObject(parent),
     m_dir{dir},
@@ -289,10 +284,6 @@ void TvShow::clearImages()
     m_extraFanartImagesToAdd.clear();
 }
 
-/**
- * @brief TvShow::hasNewEpisodes
- * @return
- */
 bool TvShow::hasNewEpisodes() const
 {
     const auto checkInfoLoaded = [](TvShowEpisode* episode) { return !episode->infoLoaded(); };
@@ -302,7 +293,6 @@ bool TvShow::hasNewEpisodes() const
 /**
  * @brief TvShow::hasNewEpisodesInSeason
  * @param season Season number
- * @return
  */
 bool TvShow::hasNewEpisodesInSeason(SeasonNumber season) const
 {
@@ -318,19 +308,11 @@ QVector<TvShowScraperInfos> TvShow::infosToLoad() const
     return m_infosToLoad;
 }
 
-/**
- * @brief TvShow::infoLoaded
- * @return
- */
 bool TvShow::infoLoaded() const
 {
     return m_infoLoaded;
 }
 
-/**
- * @brief TvShow::dir
- * @return
- */
 QString TvShow::dir() const
 {
     return m_dir;
@@ -538,11 +520,6 @@ QVector<Poster> TvShow::backdrops() const
     return m_backdrops;
 }
 
-/**
- * @brief TvShow::seasonPosters
- * @param season
- * @return
- */
 QVector<Poster> TvShow::seasonPosters(SeasonNumber season) const
 {
     if (!m_seasonPosters.contains(season)) {
@@ -609,12 +586,6 @@ QVector<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
     return thumbs;
 }
 
-/**
- * @brief TvShow::episode
- * @param season
- * @param episode
- * @return Episode object
- */
 TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
 {
     for (int i = 0, n = m_episodes.count(); i < n; ++i) {
@@ -625,10 +596,6 @@ TvShowEpisode* TvShow::episode(SeasonNumber season, EpisodeNumber episode)
     return new TvShowEpisode(QStringList(), this);
 }
 
-/**
- * @brief TvShow::seasons
- * @return
- */
 QVector<SeasonNumber> TvShow::seasons(bool includeDummies) const
 {
     QVector<SeasonNumber> seasons;
@@ -660,10 +627,6 @@ QVector<TvShowEpisode*> TvShow::episodes(SeasonNumber season) const
     return episodes;
 }
 
-/**
- * @brief TvShow::modelItem
- * @return
- */
 TvShowModelItem* TvShow::modelItem()
 {
     return m_modelItem;
@@ -671,53 +634,32 @@ TvShowModelItem* TvShow::modelItem()
 
 /**
  * @brief Returns true if something has changed since the last load
- * @return
  */
 bool TvShow::hasChanged() const
 {
     return m_hasChanged;
 }
 
-/**
- * @brief TvShow::mediaCenterPath
- * @return
- */
 QString TvShow::mediaCenterPath() const
 {
     return m_mediaCenterPath;
 }
 
-/**
- * @brief TvShow::showId
- * @return
- */
 int TvShow::showId() const
 {
     return m_showId;
 }
 
-/**
- * @brief TvShow::downloadsInProgress
- * @return
- */
 bool TvShow::downloadsInProgress() const
 {
     return m_downloadsInProgress;
 }
 
-/**
- * @brief TvShow::nfoContent
- * @return
- */
 QString TvShow::nfoContent() const
 {
     return m_nfoContent;
 }
 
-/**
- * @brief TvShow::databaseId
- * @return
- */
 int TvShow::databaseId() const
 {
     return m_databaseId;
@@ -737,7 +679,6 @@ QStringList TvShow::tags() const
 
 /**
  * @brief Sets the name of the episode
- * @param name
  * @see TvShow::name
  */
 void TvShow::setName(QString name)
@@ -748,7 +689,6 @@ void TvShow::setName(QString name)
 
 /**
  * @brief Sets the show title
- * @param title
  * @see TvShow::showTitle
  */
 void TvShow::setShowTitle(QString title)
@@ -759,7 +699,6 @@ void TvShow::setShowTitle(QString title)
 
 /**
  * @brief Sets the first aired date
- * @param aired
  * @see TvShow::firstAired
  */
 void TvShow::setFirstAired(QDate aired)
@@ -770,7 +709,6 @@ void TvShow::setFirstAired(QDate aired)
 
 /**
  * @brief Sets all genres
- * @param genres
  * @see TvShow::genres
  */
 void TvShow::setGenres(QStringList genres)
@@ -788,7 +726,6 @@ void TvShow::setGenres(QStringList genres)
 
 /**
  * @brief Adds a genre
- * @param genre
  * @see TvShow::genres
  */
 void TvShow::addGenre(QString genre)
@@ -808,7 +745,6 @@ void TvShow::addTag(QString tag)
 
 /**
  * @brief Sets the certification
- * @param certification
  * @see TvShow::certification
  */
 void TvShow::setCertification(Certification certification)
@@ -819,7 +755,6 @@ void TvShow::setCertification(Certification certification)
 
 /**
  * @brief Sets the network
- * @param network
  * @see TvShow::network
  */
 void TvShow::setNetwork(QString network)
@@ -830,7 +765,6 @@ void TvShow::setNetwork(QString network)
 
 /**
  * @brief Sets the plot
- * @param overview
  * @see TvShow::overview
  */
 void TvShow::setOverview(QString overview)
@@ -841,7 +775,6 @@ void TvShow::setOverview(QString overview)
 
 /**
  * @brief Sets the TheTvdbId
- * @param id
  * @see TvShow::tvdbId
  */
 void TvShow::setTvdbId(TvDbId id)
@@ -867,7 +800,6 @@ void TvShow::setImdbId(ImdbId id)
 
 /**
  * @brief Sets the Episode guide url
- * @param url
  * @see TvShow::episodeGuideUrl
  */
 void TvShow::setEpisodeGuideUrl(QString url)
@@ -878,7 +810,6 @@ void TvShow::setEpisodeGuideUrl(QString url)
 
 /**
  * @brief Adds an actor
- * @param actor
  * @see TvShow::actors
  */
 void TvShow::addActor(Actor actor)
@@ -889,7 +820,6 @@ void TvShow::addActor(Actor actor)
 
 /**
  * @brief Sets all posters
- * @param posters
  * @see TvShow::posters
  */
 void TvShow::setPosters(QVector<Poster> posters)
@@ -900,7 +830,6 @@ void TvShow::setPosters(QVector<Poster> posters)
 
 /**
  * @brief Sets all banners
- * @param banners
  * @see TvShow::banners
  */
 void TvShow::setBanners(QVector<Poster> banners)
@@ -911,8 +840,6 @@ void TvShow::setBanners(QVector<Poster> banners)
 
 /**
  * @brief Sets the poster for a specific index
- * @param index
- * @param poster
  * @see TvShow::posters
  */
 void TvShow::setPoster(int index, Poster poster)
@@ -926,7 +853,6 @@ void TvShow::setPoster(int index, Poster poster)
 
 /**
  * @brief Appends a list of backdrops
- * @param backdrops
  * @see TvShow::backdrops
  */
 void TvShow::setBackdrops(QVector<Poster> backdrops)
@@ -937,8 +863,6 @@ void TvShow::setBackdrops(QVector<Poster> backdrops)
 
 /**
  * @brief Sets the backdrop for a specific index
- * @param index
- * @param backdrop
  * @see TvShow::backdrops
  */
 void TvShow::setBackdrop(int index, Poster backdrop)
@@ -952,7 +876,6 @@ void TvShow::setBackdrop(int index, Poster backdrop)
 
 /**
  * @brief Adds a poster
- * @param poster
  * @see TvShow::posters
  */
 void TvShow::addPoster(Poster poster)
@@ -963,7 +886,6 @@ void TvShow::addPoster(Poster poster)
 
 /**
  * @brief Adds a banner
- * @param banner
  * @see TvShow::banners
  */
 void TvShow::addBanner(Poster banner)
@@ -974,7 +896,6 @@ void TvShow::addBanner(Poster banner)
 
 /**
  * @brief Adds a backdrop
- * @param backdrop
  * @see TvShow::backdrops
  */
 void TvShow::addBackdrop(Poster backdrop)
@@ -985,8 +906,6 @@ void TvShow::addBackdrop(Poster backdrop)
 
 /**
  * @brief Adds a new season poster
- * @param season
- * @param poster
  */
 void TvShow::addSeasonPoster(SeasonNumber season, Poster poster)
 {
@@ -1032,20 +951,12 @@ void TvShow::addSeasonThumb(SeasonNumber season, Poster poster)
     setChanged(true);
 }
 
-/**
- * @brief TvShow::setChanged
- * @param changed
- */
 void TvShow::setChanged(bool changed)
 {
     m_hasChanged = changed;
     emit sigChanged(this);
 }
 
-/**
- * @brief TvShow::setModelItem
- * @param item
- */
 void TvShow::setModelItem(TvShowModelItem* item)
 {
     if (item == nullptr) {
@@ -1055,19 +966,11 @@ void TvShow::setModelItem(TvShowModelItem* item)
     m_modelItem = item;
 }
 
-/**
- * @brief TvShow::setMediaCenterPath
- * @param path
- */
 void TvShow::setMediaCenterPath(QString path)
 {
     m_mediaCenterPath = path;
 }
 
-/**
- * @brief TvShow::setDownloadsInProgress
- * @param inProgress
- */
 void TvShow::setDownloadsInProgress(bool inProgress)
 {
     m_downloadsInProgress = inProgress;
@@ -1108,19 +1011,11 @@ void TvShow::removeTag(QString tag)
     setChanged(true);
 }
 
-/**
- * @brief TvShow::setNfoContent
- * @param content
- */
 void TvShow::setNfoContent(QString content)
 {
     m_nfoContent = content;
 }
 
-/**
- * @brief TvShow::setDatabaseId
- * @param id
- */
 void TvShow::setDatabaseId(int id)
 {
     m_databaseId = id;

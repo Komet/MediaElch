@@ -470,7 +470,7 @@ QIcon MyIconFont::icon(const QString& name,
 /// Create a dynamic icon by simlpy supplying a painter object
 /// The ownership of the painter is NOT transfered.
 /// @param painter a dynamic painter that is going to paint the icon
-/// @param optionmap the options to pass to the painter
+/// @param optionMap the options to pass to the painter
 QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap)
 {
     // Warning, when you use memoryleak detection. You should turn it of for the next call

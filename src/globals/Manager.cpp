@@ -25,10 +25,6 @@
 #include "scrapers/trailer/HdTrailers.h"
 #include "scrapers/tv_show/TheTvDb.h"
 
-/**
- * @brief Manager::Manager
- * @param parent
- */
 Manager::Manager(QObject* parent) : QObject(parent)
 {
     m_scrapers.append(Manager::constructMovieScrapers(this));
@@ -249,37 +245,21 @@ QVector<ImageProviderInterface*> Manager::imageProviders()
     return m_imageProviders;
 }
 
-/**
- * @brief Manager::fanartTv
- * @return
- */
 FanartTv* Manager::fanartTv()
 {
     return static_cast<FanartTv*>(m_imageProviders.at(0));
 }
 
-/**
- * @brief Manager::database
- * @return
- */
 Database* Manager::database()
 {
     return m_database;
 }
 
-/**
- * @brief Manager::setTvShowFilesWidget
- * @param widget
- */
 void Manager::setTvShowFilesWidget(TvShowFilesWidget* widget)
 {
     m_tvShowFilesWidget = widget;
 }
 
-/**
- * @brief Manager::tvShowFilesWidget
- * @return
- */
 TvShowFilesWidget* Manager::tvShowFilesWidget()
 {
     return m_tvShowFilesWidget;

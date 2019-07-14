@@ -17,10 +17,6 @@
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
-/**
- * @brief TheTvDb::TheTvDb
- * @param parent
- */
 TheTvDb::TheTvDb(QObject* parent) :
     m_apiKey{QStringLiteral("A0BB9A0F6762942B")},
     m_language{QStringLiteral("en")},
@@ -372,9 +368,6 @@ void TheTvDb::onBannersFinished()
 
 /**
  * @brief Parses info XML data and assigns it to the given tv show object
- * @param xml XML data
- * @param show Tv Show object
- * @param TvShowUpdateType::AllEpisodes Update all child episodes (regardless if they already have infos or not)
  */
 void TheTvDb::parseAndAssignInfos(QString xml,
     TvShow* show,

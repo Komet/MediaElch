@@ -4,10 +4,6 @@
 #include "globals/Globals.h"
 #include "globals/Manager.h"
 
-/**
- * @brief MovieListDialog::MovieListDialog
- * @param parent
- */
 MovieListDialog::MovieListDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MovieListDialog)
 {
     ui->setupUi(this);

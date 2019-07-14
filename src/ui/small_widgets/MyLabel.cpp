@@ -2,17 +2,12 @@
 
 #include "globals/Globals.h"
 
-/**
- * @brief MyLabel::MyLabel
- * @param parent
- */
 MyLabel::MyLabel(QWidget* parent) : QLabel(parent), m_season{-2}, m_imageSet{false}
 {
 }
 
 /**
  * @brief Emits the clicked or seasonClicked signal
- * @param ev
  */
 void MyLabel::mousePressEvent(QMouseEvent* ev)
 {
@@ -55,7 +50,6 @@ void MyLabel::setSeason(int season)
 
 /**
  * @brief Sets if an image was set
- * @param set
  */
 void MyLabel::setImageSet(bool set)
 {

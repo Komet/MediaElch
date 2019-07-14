@@ -9,10 +9,6 @@
 #include "tv_shows/TvShowEpisode.h"
 #include "ui/notifications/NotificationBox.h"
 
-/**
- * @brief TvShowWidget::TvShowWidget
- * @param parent
- */
 TvShowWidget::TvShowWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShowWidget)
 {
     ui->setupUi(this);
@@ -32,9 +28,6 @@ TvShowWidget::TvShowWidget(QWidget* parent) : QWidget(parent), ui(new Ui::TvShow
     // clang-format on
 }
 
-/**
- * @brief TvShowWidget::~TvShowWidget
- */
 TvShowWidget::~TvShowWidget()
 {
     delete ui;

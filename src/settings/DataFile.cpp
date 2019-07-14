@@ -34,7 +34,6 @@ void DataFile::setFileName(QString fileName)
 
 /**
  * @brief Position of this file
- * @return
  */
 int DataFile::pos() const
 {
@@ -45,7 +44,6 @@ int DataFile::pos() const
  * @brief Constructs a filename to save
  * @param fileName File name
  * @param season Season number
- * @return
  */
 QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked)
 {
@@ -86,8 +84,6 @@ DataFileType DataFile::type() const
 
 /**
  * @brief Comparator
- * @param a
- * @param b
  * @return a lessThan b
  */
 bool DataFile::lessThan(DataFile a, DataFile b)

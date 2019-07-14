@@ -276,7 +276,6 @@ MainWindow* MainWindow::instance()
 
 /**
  * @brief Repositions the MessageBox
- * @param event
  */
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
@@ -546,8 +545,6 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 
 /**
  * @brief Moves all splitters
- * @param pos
- * @param index
  */
 void MainWindow::moveSplitter(int pos, int index)
 {

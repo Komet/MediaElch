@@ -8,7 +8,6 @@
 
 /**
  * @brief ConcertProxyModel::ConcertProxyModel
- * @param parent
  */
 ConcertProxyModel::ConcertProxyModel(QObject* parent) : QSortFilterProxyModel(parent)
 {
@@ -16,8 +15,6 @@ ConcertProxyModel::ConcertProxyModel(QObject* parent) : QSortFilterProxyModel(pa
 
 /**
  * @brief Checks if a row accepts the filter. Checks the first two "columns" of our model (Concert name and folder name)
- * @param sourceRow
- * @param sourceParent
  * @return Filter is accepted or not
  */
 bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
@@ -40,9 +37,6 @@ bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
 
 /**
  * @brief Sort function for the concert model. Sorts concerts by name and new files to top.
- * @param left
- * @param right
- * @return
  */
 bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
@@ -60,8 +54,6 @@ bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& rig
 
 /**
  * @brief Sets active filters
- * @param filters
- * @param text
  */
 void ConcertProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {

@@ -26,8 +26,6 @@ using namespace ZenLib;
 
 /**
  * @brief StreamDetails::StreamDetails
- * @param parent
- * @param files
  */
 StreamDetails::StreamDetails(QObject* parent, QStringList files) :
     QObject(parent),
@@ -373,7 +371,6 @@ void StreamDetails::setSubtitleDetail(int streamNumber, SubtitleDetails key, QSt
 
 /**
  * @brief Access video details
- * @return
  */
 QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
 {
@@ -382,7 +379,6 @@ QMap<StreamDetails::VideoDetails, QString> StreamDetails::videoDetails() const
 
 /**
  * @brief Access audio details
- * @return
  */
 QVector<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails() const
 {
@@ -391,7 +387,6 @@ QVector<QMap<StreamDetails::AudioDetails, QString>> StreamDetails::audioDetails(
 
 /**
  * @brief Access subtitles
- * @return
  */
 QVector<QMap<StreamDetails::SubtitleDetails, QString>> StreamDetails::subtitleDetails() const
 {
