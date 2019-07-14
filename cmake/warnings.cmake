@@ -37,7 +37,10 @@ function(enable_warnings warning_target)
         -Wmissing-field-initializers
     )
 
-  elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  elseif(
+    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"
+    OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang"
+  )
     target_compile_options(
       ${warning_target}
       PRIVATE
