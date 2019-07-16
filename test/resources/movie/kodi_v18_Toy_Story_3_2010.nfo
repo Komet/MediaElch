@@ -2,26 +2,27 @@
 <movie>
     <title>Toy Story 3</title>
     <originaltitle>Toy Story 3</originaltitle>
+    <sorttitle></sorttitle>
     <ratings>
-        <rating name="themoviedb" default="true" max="10">
+        <rating default="true" max="10" name="themoviedb">
             <value>7.7</value>
             <votes>8542</votes>
         </rating>
     </ratings>
-    <top250>0</top250>
     <userrating>0</userrating>
+    <top250>0</top250>
     <year>2010</year>
     <premiered>2010-06-16</premiered>
-    <plot>Woody, Buzz, and the rest of Andy&apos;s toys haven&apos;t been played with in years. With Andy about to go to college, the gang find themselves accidentally left at a nefarious day care center. The toys must band together to escape and return home to Andy.</plot>
+    <plot>Woody, Buzz, and the rest of Andy's toys haven't been played with in years. With Andy about to go to college, the gang find themselves accidentally left at a nefarious day care center. The toys must band together to escape and return home to Andy.</plot>
     <outline></outline>
     <tagline>No toy gets left behind.</tagline>
     <runtime>103</runtime>
     <mpaa>Rated G</mpaa>
     <playcount>0</playcount>
-    <lastplayed></lastplayed>
     <dateadded>2019-07-05 17:35:08</dateadded>
+    <lastplayed></lastplayed>
     <id>tt0435761</id>
-    <uniqueid type="imdb" default="true">tt0435761</uniqueid>
+    <uniqueid default="true" type="imdb">tt0435761</uniqueid>
     <uniqueid type="tmdb">10193</uniqueid>
     <set>
         <name>Toy Story Collection</name>
@@ -30,9 +31,6 @@
     <trailer>plugin://plugin.video.youtube/?action=play_video&amp;videoid=TNMpa5yBf5o</trailer>
     <credits>Michael Arndt</credits>
     <director>Lee Unkrich</director>
-    <status></status>
-    <code></code>
-    <aired></aired>
     <studio>Pixar</studio>
     <genre>Animation</genre>
     <genre>Family</genre>
@@ -256,7 +254,7 @@
     </actor>
     <actor>
         <name>Laurie Metcalf</name>
-        <role>Andy&apos;s Mom (voice)</role>
+        <role>Andy's Mom (voice)</role>
         <order>14</order>
         <thumb>http://image.tmdb.org/t/p/original/oHhTbuv9eNJV4YlgizhCkZsPV0N.jpg</thumb>
     </actor>
@@ -304,7 +302,7 @@
     </actor>
     <actor>
         <name>Lori Alan</name>
-        <role>Bonnie&apos;s Mom (voice)</role>
+        <role>Bonnie's Mom (voice)</role>
         <order>22</order>
         <thumb>http://image.tmdb.org/t/p/original/mNfJWzuaKgkIaK7CuirXOMosd2h.jpg</thumb>
     </actor>
@@ -393,7 +391,7 @@
         <thumb>http://image.tmdb.org/t/p/original/ApYftBOqDMBnVColOQwXIodOt5s.jpg</thumb>
     </actor>
     <actor>
-        <name>Colleen O&apos;Shaughnessey</name>
+        <name>Colleen O'Shaughnessey</name>
         <role>Additional Voice (voice)</role>
         <order>37</order>
         <thumb></thumb>
