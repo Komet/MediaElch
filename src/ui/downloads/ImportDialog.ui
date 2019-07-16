@@ -17,7 +17,7 @@
    <string>MediaElch</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../data/MediaElch.qrc">
+   <iconset resource="../../../data/MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
@@ -248,7 +248,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../data/MediaElch.qrc"/>
+  <include location="../../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

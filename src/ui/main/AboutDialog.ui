@@ -23,7 +23,7 @@
    <string>About MediaElch</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../data/MediaElch.qrc">
+   <iconset resource="../../../data/MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
@@ -81,7 +81,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../data/MediaElch.qrc">:/img/MediaElch.png</pixmap>
+        <pixmap resource="../../../data/MediaElch.qrc">:/img/MediaElch.png</pixmap>
        </property>
       </widget>
      </item>
@@ -440,7 +440,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../data/MediaElch.qrc"/>
+  <include location="../../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>
