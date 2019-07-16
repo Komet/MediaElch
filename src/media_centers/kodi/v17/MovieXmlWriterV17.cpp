@@ -37,6 +37,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     KodiXml::setTextValue(doc, "title", m_movie.name());
     KodiXml::setTextValue(doc, "originaltitle", m_movie.originalName());
+    KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
 
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
@@ -74,13 +75,13 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     }
     KodiXml::setTextValue(doc, "mpaa", m_movie.certification().toString());
     KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_movie.playcount()));
-    KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
 
     if (m_movie.dateAdded().isValid()) {
         KodiXml::setTextValue(doc, "dateadded", m_movie.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     } else {
         KodiXml::removeChildNodes(doc, "dateadded");
     }
+    KodiXml::setTextValue(doc, "lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
 
     // id
     KodiXml::setTextValue(doc, "id", m_movie.imdbId().toString());
@@ -116,7 +117,6 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         setElement.appendChild(setOverviewElement);
         KodiXml::appendXmlNode(doc, setElement);
     }
-    KodiXml::setTextValue(doc, "sorttitle", m_movie.sortTitle());
     KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_movie.trailer().toString()));
     // TODO: is this required in v17?
     KodiXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");

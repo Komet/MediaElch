@@ -6,7 +6,7 @@
     <uniqueid type="imdb">tt0944947</uniqueid>
     <uniqueid default="true" type="tvdb">121361</uniqueid>
     <ratings>
-        <rating name="tvdb" default="true" max="10">
+        <rating default="true" max="10" name="tvdb">
             <value>9.5</value>
             <votes>1783</votes>
         </rating>
@@ -15,10 +15,7 @@
     <top250>0</top250>
     <season>3</season>
     <episode>30</episode>
-    <displayseason>-1</displayseason>
-    <displayepisode>-1</displayepisode>
-    <plot>Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night&apos;s Watch, is all that stands between the realms of men and the icy horrors beyond.</plot>
-    <outline></outline>
+    <plot>Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.</plot>
     <tagline></tagline>
     <mpaa>TV-MA</mpaa>
     <premiered>2011-04-17</premiered>
@@ -29,14 +26,13 @@
     <playcount>0</playcount>
     <lastplayed></lastplayed>
     <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{&quot;apikey&quot;:&quot;439DFEBA9D3059C6&quot;,&quot;id&quot;:121361}|Content-Type=application/json</url>
+        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":121361}|Content-Type=application/json</url>
     </episodeguide>
     <genre>Adventure</genre>
     <genre>Drama</genre>
     <genre>Fantasy</genre>
-    <code></code>
-    <aired></aired>
     <trailer></trailer>
+    <dateadded>2019-07-05 17:35:08</dateadded>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/121361-34.jpg</thumb>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/121361-57.jpg</thumb>
     <thumb aspect="poster" language="en">http://www.thetvdb.com/banners/posters/5ca4ff0dea43a.jpg</thumb>
@@ -847,7 +843,7 @@
     </actor>
     <actor>
         <name>Tom Wlaschiha</name>
-        <role>Jaqen H&apos;ghar</role>
+        <role>Jaqen H'ghar</role>
         <order>5</order>
         <thumb>http://www.thetvdb.com/banners/actors/346313.jpg</thumb>
     </actor>
@@ -942,14 +938,9 @@
         <thumb>http://www.thetvdb.com/banners/actors/440975.jpg</thumb>
     </actor>
     <actor>
-        <name>Vladimir &apos;Furdo&apos; Furdik</name>
+        <name>Vladimir 'Furdo' Furdik</name>
         <role>The Night King</role>
         <order>5</order>
         <thumb>http://www.thetvdb.com/banners/actors/528103.jpg</thumb>
     </actor>
-    <resume>
-        <position>0.000000</position>
-        <total>0.000000</total>
-    </resume>
-    <dateadded>2019-07-05 17:35:08</dateadded>
 </tvshow>
