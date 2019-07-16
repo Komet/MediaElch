@@ -20,6 +20,13 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
 
 # cmake-format: off
 
+# Discover all tests so that it can be used by CTest
+catch_discover_tests(mediaelch_test_integration
+  EXTRA_ARGS
+    --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+    --temp-dir ${CMAKE_BINARY_DIR}/test/resources
+)
+
 # Convenience target that is not used by CTest
 add_custom_target(
   integration_test
@@ -29,16 +36,22 @@ add_custom_target(
     --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
     --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
-
-add_coverage_init()
-add_custom_target(coverage-integration COMMAND
-    $<TARGET_FILE:mediaelch_test_integration>
-    --use-colour yes
-    --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
-    --temp-dir ${CMAKE_BINARY_DIR}/test/resources)
-
 # cmake-format: on
 
-add_dependencies(coverage-info coverage-integration)
-add_dependencies(coverage-integration coverage-init)
-add_dependencies(coverage coverage-integration)
+if(ENABLE_COVERAGE)
+  # We don't use the convenience generate_coverage_report function because the
+  # executable requires a few more arguments.
+  add_coverage_init()
+
+  # cmake-format: off
+  add_custom_target(coverage-integration COMMAND
+      $<TARGET_FILE:mediaelch_test_integration>
+      --use-colour yes
+      --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
+      --temp-dir ${CMAKE_BINARY_DIR}/test/resources)
+  # cmake-format: on
+
+  add_dependencies(coverage-info coverage-integration)
+  add_dependencies(coverage-integration coverage-init)
+  add_dependencies(coverage coverage-integration)
+endif()
