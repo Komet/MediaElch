@@ -214,7 +214,7 @@
         <string>Reload from File</string>
        </property>
        <property name="icon">
-        <iconset resource="../../data/MediaElch.qrc">
+        <iconset resource="../../../data/MediaElch.qrc">
          <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
        </property>
        <property name="dropShadow" stdset="0">
@@ -253,7 +253,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../data/MediaElch.qrc"/>
+  <include location="../../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -53,7 +53,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../data/MediaElch.qrc">
+        <iconset resource="../../../data/MediaElch.qrc">
          <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
        </property>
        <property name="iconSize">
@@ -379,7 +379,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
+               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -426,7 +426,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
+               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -502,7 +502,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
+               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -549,7 +549,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
+               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -596,7 +596,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
+               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -680,7 +680,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../data/MediaElch.qrc"/>
+  <include location="../../../data/MediaElch.qrc"/>
  </resources>
  <connections>
   <connection>

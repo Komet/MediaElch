@@ -66,7 +66,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../data/MediaElch.qrc">
+            <iconset resource="../../../data/MediaElch.qrc">
              <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
            </property>
           </widget>
@@ -171,7 +171,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
+           <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -235,7 +235,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
+           <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -282,7 +282,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
+           <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -329,7 +329,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../data/MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
+           <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -373,7 +373,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../data/MediaElch.qrc"/>
+  <include location="../../../data/MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>
