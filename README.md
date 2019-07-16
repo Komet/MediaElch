@@ -30,32 +30,7 @@ Please visit https://mediaelch.github.io/mediaelch-doc/download.html
 For build instructions, see: https://mediaelch.github.io/mediaelch-doc/contributing/build.html
 
 ### Documentation
-
-**User Documentation**
-
-```sh
-git submodule update --init
-mkdir build && cd $_
-cmake ..
-make docs
-```
-
-**Doxygen**
-
-```sh
-mkdir build && cd $_
-cmake ..
-make doxygen
-```
+For building our documentation, see: [`docs/README.md`](docs/README.md).
 
 ### Testing
 See [test/README.md](./test/README.md).
-
-### Sanitizer
-
-```sh
-mkdir build && cd $_
-qmake CONFIG += sanitize ..
-make -j4
-./mediaelch
-```

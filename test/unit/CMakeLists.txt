@@ -11,5 +11,8 @@ generate_coverage_report(mediaelch_unit)
 catch_discover_tests(mediaelch_unit)
 mediaelch_post_target_defaults(mediaelch_unit)
 
-# Unit tests
-add_custom_target(unit COMMAND $<TARGET_FILE:mediaelch_unit> --use-colour yes)
+# Convenience unit test target with color output; does not use CTest
+add_custom_target(
+  unit_test
+  COMMAND $<TARGET_FILE:mediaelch_unit> --use-colour yes
+)

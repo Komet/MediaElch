@@ -36,7 +36,7 @@ ninja
 # Execute all tests
 ninja test
 # Execute all unit tests
-ninja unit
+ninja unit_test
 # Execute all integration tests
 ninja integration_test
 # Execute all scraper tests

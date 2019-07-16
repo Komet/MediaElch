@@ -20,6 +20,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
 
 # cmake-format: off
 
+# Convenience target that is not used by CTest
 add_custom_target(
   integration_test
   COMMAND
