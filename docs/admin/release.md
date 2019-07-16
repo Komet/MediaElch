@@ -11,8 +11,15 @@ Follow these steps when releasing a new version. Start from a fresh git reposito
 git clone https://github.com/Komet/MediaElch.git
 ```
 
+## Update Translations
 
-## Bump MediaElch Version
+There may have been updates to MediaElch's translation files on transifex which
+have not been inlcuded in the current master branch.
+
+See [transifex.md](transifex.md)
+
+
+## Bump MediaElch's Version
 
 Change the version in following files:
 
@@ -21,12 +28,55 @@ Change the version in following files:
  3. `obs/MediaElch.spec`
  4. `obs/README.md`
 
+If done then search for the old version string to ensure that no other
+file was missed. In the latter case, update the list above.
+
 
 ## Update Changelogs
 
- 1. main changelog (`changelog.md`)
- 2. debian changelog (use `dch -v "${ME_VERSION}-1" -D xenial -M`
- 3. obs changelog (`obs/MediaElch.changes`)
+ 1. [main changelog](#user-content-notes--main-changelog) (`changelog.md`)
+ 2. [debian changelog](#user-content-notes--debian-changelog) (use `dch -v "${ME_VERSION}-1" -D xenial -M`)
+ 3. [obs changelog](#user-content-notes--obs-changelog) (`obs/MediaElch.changes`)
+
+### Main Changelog
+The main changelog should already contain all relevant changes because
+they should have been added right with the corresponding commits.
+But better check all commit messages since the last version tag:
+
+```sh
+# Print all commits between the git tag v2.6.0 and the current master branch
+git log --oneline v2.6.0..master
+# Count the number of commits since the last version
+git log --oneline v2.6.0..master | wc -l
+```
+
+
+### Debian Changelog
+TODO
+
+
+### OBS Changelog
+Don't put the full detailed changelog into the spec file. Only add "Updated MediaElch to vX.Y.Z".
+Why? Because that's what the [rpm packaging guide][rpm-guide] tells us to:
+
+> The last section, `%changelog` is a list of date-stamped entries that correlate to a
+> specific Version-Release of the package.  This is not meant to be a log of what
+> changed in the software from release to release, but specifically to packaging changes.
+
+[rpm-guide]: https://rpm-guide.readthedocs.io/en/latest/rpm-guide.html#working-with-spec-files
+
+
+## Update MediaElch's documentation
+
+See https://github.com/mediaelch/mediaelch-doc  
+Update the docs which includes:
+
+ - update download URLs
+ - update config file
+
+Push your changes but do *not* yet upload the updated HTML pages to the `gh-pages` branch.
+Then update the documentation submodule in the main repository so that when you
+add a Git tag (see next section), it includes the latest documentation state.
 
 
 ## Update Git
@@ -48,6 +98,18 @@ do not forget to update this documentation.
 ### Windows
 Wait for travis-ci to finish and download the latest ZIP. This requires a Git tag to be present.
 Rename the ZIP, upload it on GitHub [Releases](https://github.com/Komet/MediaElch/releases).
+
+Notify the current maintainer of the [Chocolatey MediaElch package][choco].
+The update process on their side includes updating MediaElch's version number in the
+download URL and uploading it to Chocolatey.
+It's important that the Windows ZIP is uploaded to a place that is reliable like
+GitHub Releases or otherwise chocolatey will have issues.  
+
+Resources:
+ - https://github.com/Komet/MediaElch/issues/544
+ - https://github.com/sumo300/chocolatey-mediaelch
+
+[choco]: https://chocolatey.org/packages/MediaElch/
 
 ### macOS
 Same as for Windows. Download the latest `.dmg`, rename it and upload the version on
