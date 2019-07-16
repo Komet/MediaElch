@@ -207,6 +207,11 @@ const QVector<Rating>& Movie::ratings() const
     return m_ratings;
 }
 
+double Movie::userRating() const
+{
+    return m_userRating;
+}
+
 int Movie::top250() const
 {
     return m_imdbTop250;
@@ -732,6 +737,12 @@ void Movie::setSet(MovieSet set)
     setChanged(true);
 }
 
+void Movie::setUserRating(double rating)
+{
+    m_userRating = rating;
+    setChanged(true);
+}
+
 /**
  * @brief Sets the movies watched status
  * @param watched Watched status of the movie
@@ -1123,6 +1134,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
         out.append(
             QString("    %1: %2 (%3 votes)").arg(rating.source).arg(rating.rating).arg(rating.voteCount).append(nl));
     }
+    out.append(QString("  User Rating:   ").append(QString::number(movie.userRating())).append(nl));
     out.append(QString("  Released:      ").append(movie.released().toString("yyyy-MM-dd")).append(nl));
     out.append(QString("  Tagline:       ").append(movie.tagline()).append(nl));
     out.append(QString("  Runtime:       %1").arg(movie.runtime().count()).append(nl));

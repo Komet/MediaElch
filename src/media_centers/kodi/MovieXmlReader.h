@@ -41,6 +41,12 @@ private:
         (m_movie.*method)(element.text().toInt());
     }
 
+    template<MovieStoreMethod<double> method>
+    void simpleDouble(QDomElement element)
+    {
+        (m_movie.*method)(element.text().toDouble());
+    }
+
     template<MovieStoreMethod<QDate> method>
     void simpleYear(QDomElement element)
     {

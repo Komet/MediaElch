@@ -35,6 +35,8 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Settings: Color paths red if directories are not readable (#730)
  - Add `{{ MOVIE.LABEL }}` placeholder in templates (#715)
  - Add experimental command line interface (#720)
+ - Add userrating field
+ - Add Kodi v16/v17/v18 switcher (#719)
 
 ### Internal Improvements
 

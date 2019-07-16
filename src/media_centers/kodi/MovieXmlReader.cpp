@@ -6,10 +6,18 @@
 #include <QDomDocument>
 #include <QDomNodeList>
 #include <QStringList>
+#include <QTextDocument>
 #include <QUrl>
 
 namespace mediaelch {
 namespace kodi {
+
+static QString htmlUnescape(const QString& htmlEscaped)
+{
+    QTextDocument doc;
+    doc.setHtml(htmlEscaped);
+    return doc.toPlainText();
+}
 
 MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
 {
@@ -42,6 +50,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     tagParsers.insert("country",       &MovieXmlReader::stringList<&Movie::addCountry, '/'>);
     tagParsers.insert("ratings",       &MovieXmlReader::movieRatingV17);
     tagParsers.insert("rating",        &MovieXmlReader::movieRatingV16);
+    tagParsers.insert("userrating",    &MovieXmlReader::simpleDouble<&Movie::setUserRating>);
     tagParsers.insert("votes",         &MovieXmlReader::movieVoteCountV16);
     // clang-format on
 
@@ -161,7 +170,7 @@ void MovieXmlReader::movieSet(QDomElement movieSetElement)
         set.name = movieSetElement.text();
     }
     if (!setOverviewElements.isEmpty()) {
-        set.overview = setOverviewElements.at(0).toElement().text();
+        set.overview = htmlUnescape(setOverviewElements.at(0).toElement().text());
     }
     m_movie.setSet(set);
 }

@@ -25,7 +25,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     QDomDocument doc;
     doc.setContent(m_movie.nfoContent());
     if (m_movie.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("movie"));
         QDomComment meta;
@@ -60,6 +60,7 @@ QByteArray MovieXmlWriterV17::getMovieXml()
     }
     KodiXml::appendXmlNode(doc, ratings);
 
+    KodiXml::setTextValue(doc, "userrating", QString::number(m_movie.userRating()));
     KodiXml::setTextValue(doc, "top250", QString::number(m_movie.top250()));
     KodiXml::setTextValue(doc, "year", m_movie.released().toString("yyyy"));
     KodiXml::setTextValue(doc, "premiered", m_movie.released().toString("yyyy-MM-dd"));
