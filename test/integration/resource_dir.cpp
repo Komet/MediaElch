@@ -24,7 +24,7 @@ QString getFileContent(QString filename)
     }
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File %1 cab't be opened for reading! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(QString("File %1 can't be opened for reading! Abort.").arg(filepath).toStdString());
     }
 
     QTextStream in(&file);
@@ -36,7 +36,7 @@ void writeTempFile(QString filename, QString content)
     QString filepath = tempDir().filePath(filename);
     QFile file(filepath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File %1 cab't be opened for writing! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(QString("File %1 can't be opened for writing! Abort.").arg(filepath).toStdString());
     }
     file.write(content.toUtf8());
 }

@@ -38,6 +38,12 @@ int main(int argc, char** argv)
         return returnCode;
     }
 
+    // if we don't want to execute tests then don't expect resource arguments
+    if (session.config().listTests() || session.config().listTestNamesOnly() || session.config().listTags()
+        || session.config().listReporters()) {
+        return session.run();
+    }
+
     if (resourceDirString.empty()) {
         std::cerr << "Missing resource directory argument!";
         return 1;

@@ -1,4 +1,5 @@
-# Scraper tests: require an internet connection so they are not included in CTest
+# Scraper tests: require an internet connection so they are not included in
+# CTest
 add_executable(
   mediaelch_test_scrapers
   main.cpp
@@ -17,8 +18,10 @@ target_link_libraries(
 )
 
 set_source_files_properties(main.cpp PROPERTIES COTIRE_EXCLUDED ON)
-generate_coverage_report(mediaelch_test_scrapers)
 mediaelch_post_target_defaults(mediaelch_test_scrapers)
+
+# Scrapers are also not yet part of the coverage report
+# generate_coverage_report(mediaelch_test_scrapers)
 
 # Convenience target for executing all scraper tests;
 add_custom_target(
