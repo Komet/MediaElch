@@ -3793,7 +3793,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="139"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1133"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1169"/>
         <source>Files</source>
         <translation>Caminho Arquivos</translation>
     </message>
@@ -3914,203 +3914,208 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Top 250</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="552"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="538"/>
+        <source>User Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="588"/>
         <source>Runtime</source>
         <translation>Duração</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="562"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="598"/>
         <source> Minutes</source>
         <translation> Minutos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="574"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="610"/>
         <source>Outline</source>
         <translation>Sinopse (Outline)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="604"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="640"/>
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="636"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="672"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="655"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="691"/>
         <source>Actor</source>
         <translation>Artista</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="660"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="696"/>
         <source>Role</source>
         <translation>Papel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="675"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="711"/>
         <source>Remove Actor</source>
         <translation>Remover Personagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="705"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="741"/>
         <source>Add Actor</source>
         <translation>Adicionar Personagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="742"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="778"/>
         <source>Click to change</source>
         <translation>Clique para Alterar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="761"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="873"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="797"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="909"/>
         <source>Resolution</source>
         <translation>Resolução</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="787"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="823"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="799"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="835"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
         <translation>Suporte para Extrafanarts somente está disponível quando seus Filmes estão armazenados em Pastas Separadas (Individuais).
 Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separadas.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="819"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="855"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Dica: Clicando em fechar imagem, as mesmas serão deletadas ao salvar.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="842"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="878"/>
         <source>Add Images</source>
         <translation>Adicionar Imagens</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="855"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="891"/>
         <source>Streamdetails</source>
         <translation>Detalhes do Stream</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="893"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="929"/>
         <source>Aspect Ratio</source>
         <translation>Taxa de Aspecto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="883"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="919"/>
         <source>Scantype</source>
         <translation>Varredura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1031"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1067"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="935"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="971"/>
         <source>Audio</source>
         <translation>Áudio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="951"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="987"/>
         <source>Video</source>
         <translation>Vídeo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="977"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1013"/>
         <source>Duration</source>
         <translation>Duração</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="970"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1006"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="594"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="630"/>
         <source>IMDb ID</source>
         <translation>IMDB ID</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1041"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1077"/>
         <source>Stereo Mode</source>
         <translation>Modo Estéreo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1062"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1098"/>
         <source>Reload from File</source>
         <translation>Recarregar do arquivo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1113"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
         <translation>Legendas Externas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1143"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
         <translation>Forçada</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1299"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1339"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1335"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1375"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1321"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1371"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1421"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1500"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1550"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1600"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1650"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1357"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1407"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1457"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1536"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1586"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1636"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1686"/>
         <source>Click to Change</source>
         <translation>Clique para Alterar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1349"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1389"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1385"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1425"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1399"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1439"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1435"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1475"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1478"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1518"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1514"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1554"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1528"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1568"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1564"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1604"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1578"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1614"/>
         <source>Disc Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1618"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1654"/>
         <source>CD Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1628"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1668"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1664"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1704"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
@@ -4155,79 +4160,79 @@ Verifique em Ajustes -&gt; Global se você já habilitou a opção Pastas Separa
         <translation>Adicionar Estúdio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="515"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="525"/>
         <source>Downloading images...</source>
         <translation>Transferindo Imagens...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="803"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="839"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1138"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="810"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="813"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="844"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="845"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1174"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="857"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="858"/>
         <source>Language</source>
         <translation>Linguagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="828"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="830"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="843"/>
         <source>Subtitles</source>
         <translation>Legendas</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="936"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="949"/>
         <source>Saving movie...</source>
         <translation>Salvando filme...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="954"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="917"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="965"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="930"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="978"/>
         <source>Saving movies...</source>
         <translation>Salvando filmes...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="934"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="947"/>
         <source>Movies Saved</source>
         <translation>Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="983"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="996"/>
         <source>All Movies Saved</source>
         <translation>Todos os Filmes Salvos</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1005"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1018"/>
         <source>Unknown Actor</source>
         <translation>Nome Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1006"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1019"/>
         <source>Unknown Role</source>
         <translation>Papel Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1167"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1167"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
     </message>
