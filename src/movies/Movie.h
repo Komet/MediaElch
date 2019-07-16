@@ -49,6 +49,7 @@ public:
     QString overview() const;
     QVector<Rating>& ratings();
     const QVector<Rating>& ratings() const;
+    double userRating() const;
     int top250() const;
     QDate released() const;
     QString tagline() const;
@@ -117,6 +118,7 @@ public:
     void setId(ImdbId imdbId);
     void setTmdbId(TmdbId tmdbId);
     void setSet(MovieSet set);
+    void setUserRating(double rating);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -175,6 +177,7 @@ private:
     QString m_originalName;
     QString m_overview;
     QVector<Rating> m_ratings;
+    double m_userRating = 0.0;
     int m_imdbTop250 = 0;
     QDate m_released;
     QString m_tagline;

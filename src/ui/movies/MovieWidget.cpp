@@ -157,6 +157,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
     connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
     connect(ui->rating,           SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
+    connect(ui->userRating,       SIGNAL(valueChanged(double)),     this, SLOT(onUserRatingChange(double)));
     connect(ui->votes,            SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
     connect(ui->top250,           SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
     connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
@@ -179,6 +180,11 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->videoScantype,    &QLineEdit::textEdited,           this, &MovieWidget::onStreamDetailsEdited);
     connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     // clang-format on
+
+    ui->rating->setSingleStep(0.1);
+    ui->rating->setMinimum(0.0);
+    ui->userRating->setSingleStep(0.1);
+    ui->userRating->setMinimum(0.0);
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -274,6 +280,10 @@ void MovieWidget::clear()
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
     ui->rating->blockSignals(blocked);
+
+    blocked = ui->userRating->blockSignals(true);
+    ui->userRating->clear();
+    ui->userRating->blockSignals(blocked);
 
     blocked = ui->votes->blockSignals(true);
     ui->votes->clear();
@@ -569,6 +579,7 @@ void MovieWidget::updateMovieInfo()
     }
 
     ui->rating->blockSignals(true);
+    ui->userRating->blockSignals(true);
     ui->votes->blockSignals(true);
     ui->top250->blockSignals(true);
     ui->runtime->blockSignals(true);
@@ -597,6 +608,7 @@ void MovieWidget::updateMovieInfo()
         ui->rating->setValue(m_movie->ratings().back().rating);
         ui->votes->setValue(m_movie->ratings().back().voteCount);
     }
+    ui->userRating->setValue(m_movie->userRating());
     ui->top250->setValue(m_movie->top250());
     ui->released->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
@@ -712,6 +724,7 @@ void MovieWidget::updateMovieInfo()
     ui->fanarts->setImages(m_movie->images().extraFanarts(Manager::instance()->mediaCenterInterface()));
 
     ui->rating->blockSignals(false);
+    ui->userRating->blockSignals(false);
     ui->votes->blockSignals(false);
     ui->top250->blockSignals(false);
     ui->runtime->blockSignals(false);
@@ -1321,6 +1334,16 @@ void MovieWidget::onRatingChange(double value)
     m_movie->ratings().back().rating = value;
     ui->buttonRevert->setVisible(true);
     m_movie->setChanged(true);
+}
+
+/// @brief Marks the movie as changed when the userrating has changed
+void MovieWidget::onUserRatingChange(double value)
+{
+    if (!m_movie) {
+        return;
+    }
+    m_movie->setUserRating(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 /**
