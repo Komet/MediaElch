@@ -23,6 +23,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test/resources)
 # Discover all tests so that it can be used by CTest
 catch_discover_tests(mediaelch_test_integration
   EXTRA_ARGS
+    -r compact
     --resource-dir ${CMAKE_SOURCE_DIR}/test/resources
     --temp-dir ${CMAKE_BINARY_DIR}/test/resources
 )
