@@ -3769,7 +3769,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="139"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1133"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1169"/>
         <source>Files</source>
         <translation>文件</translation>
     </message>
@@ -3890,202 +3890,207 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="552"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="538"/>
+        <source>User Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="588"/>
         <source>Runtime</source>
         <translation>片长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="562"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="598"/>
         <source> Minutes</source>
         <translation>分钟</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="574"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="610"/>
         <source>Outline</source>
         <translation>剧情简介</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="604"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="640"/>
         <source>Extended</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="636"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="672"/>
         <source>Actors</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="655"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="691"/>
         <source>Actor</source>
         <translation>演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="660"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="696"/>
         <source>Role</source>
         <translation>角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="675"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="711"/>
         <source>Remove Actor</source>
         <translation>删除演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="705"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="741"/>
         <source>Add Actor</source>
         <translation>添加演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="742"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="778"/>
         <source>Click to change</source>
         <translation>点击修改</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="761"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="873"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="797"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="909"/>
         <source>Resolution</source>
         <translation>分辨率</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="787"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="823"/>
         <source>Extra Fanarts</source>
         <translation>其他剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="799"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="835"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
         <translation>仅当您的电影存储在单独的文件夹中时，才能支持额外的同人画。 如果您已将电影存储在单独的文件夹中，请检查设置。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="819"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="855"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>注意：如果关闭图像，保存时将删除该图像。</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="842"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="878"/>
         <source>Add Images</source>
         <translation>添加图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="855"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="891"/>
         <source>Streamdetails</source>
         <translation>视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="893"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="929"/>
         <source>Aspect Ratio</source>
         <translation>宽高比</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="883"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="919"/>
         <source>Scantype</source>
         <translation>扫描类型</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1031"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="814"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1067"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="827"/>
         <source>Codec</source>
         <translation>编码</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="935"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="971"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="951"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="987"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="977"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1013"/>
         <source>Duration</source>
         <translation>片长</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="970"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1006"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="594"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="630"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1041"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1077"/>
         <source>Stereo Mode</source>
         <translation>立体声模式</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1062"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1098"/>
         <source>Reload from File</source>
         <translation>从文件载入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1113"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
         <translation>外挂字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1143"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
         <translation>强制</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1299"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1339"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1335"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1375"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1321"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1371"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1421"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1500"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1550"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1600"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1650"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1357"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1407"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1457"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1536"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1586"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1636"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1686"/>
         <source>Click to Change</source>
         <translation>点击修改</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1349"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1389"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1385"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1425"/>
         <source>Fanart</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1399"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1439"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1435"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1475"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1478"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1518"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1514"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1554"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1528"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1568"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1564"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1604"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1578"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1614"/>
         <source>Disc Art</source>
         <translation>光盘封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1618"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1654"/>
         <source>CD Art</source>
         <translation>CD封面</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1628"/>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1668"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1664"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1704"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
@@ -4130,79 +4135,79 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>添加制片公司</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="515"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="525"/>
         <source>Downloading images...</source>
         <translation>下载图片...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="803"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="839"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="816"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
         <source>Track %1</source>
         <translation>音轨 %1</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.ui" line="1138"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="810"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="813"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="844"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="845"/>
+        <location filename="../../src/ui/movies/MovieWidget.ui" line="1174"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="857"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="858"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="812"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="815"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="828"/>
         <source>Channels</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="830"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="843"/>
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="936"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="949"/>
         <source>Saving movie...</source>
         <translation>储存电影...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="941"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="954"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="917"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="965"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="930"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="978"/>
         <source>Saving movies...</source>
         <translation>正在保存电影资料...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="934"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="947"/>
         <source>Movies Saved</source>
         <translation>电影已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="983"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="996"/>
         <source>All Movies Saved</source>
         <translation>更新内容已保存</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1005"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1018"/>
         <source>Unknown Actor</source>
         <translation>未知演员</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1006"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1019"/>
         <source>Unknown Role</source>
         <translation>未知角色</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1167"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1167"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="1180"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>图像 (*.jpg *.jpeg)</translation>
     </message>
