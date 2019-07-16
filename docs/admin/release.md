@@ -101,9 +101,10 @@ Rename the ZIP, upload it on GitHub [Releases](https://github.com/Komet/MediaElc
 
 Notify the current maintainer of the [Chocolatey MediaElch package][choco].
 The update process on their side includes updating MediaElch's version number in the
-download URL and uploading it to Chocolatey.
+download URL and uploading it to Chocolatey. If feasible, you can also follow the steps in
+the GitHub repository and create a PR that bumps the version (see URLs below).
 It's important that the Windows ZIP is uploaded to a place that is reliable like
-GitHub Releases or otherwise chocolatey will have issues.  
+GitHub Releases or otherwise chocolatey will have issues.
 
 Resources:
  - https://github.com/Komet/MediaElch/issues/544
