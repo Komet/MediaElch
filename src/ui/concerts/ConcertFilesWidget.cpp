@@ -20,7 +20,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     ui->setupUi(this);
     ui->statusLabel->setText(tr("%n concerts", "", 0));
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
     m_mouseIsIn = false;

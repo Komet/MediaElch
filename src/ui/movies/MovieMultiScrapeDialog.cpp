@@ -19,7 +19,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
 #endif
 
     QFont font = ui->movieCounter->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

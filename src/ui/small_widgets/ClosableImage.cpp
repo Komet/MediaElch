@@ -29,7 +29,7 @@ ClosableImage::ClosableImage(QWidget* parent) : QLabel(parent)
     m_clickable = false;
     m_loading = false;
     m_font = QApplication::font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     m_font.setPointSize(m_font.pointSize() - 1);
 #else
     m_font.setPointSize(m_font.pointSize() - 2);
