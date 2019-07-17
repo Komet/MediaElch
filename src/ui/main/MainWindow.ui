@@ -87,6 +87,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Movies</string>
          </property>
@@ -115,6 +118,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Movie Sets</string>
          </property>
@@ -143,6 +149,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Genres</string>
          </property>
@@ -171,6 +180,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Certifications</string>
          </property>
@@ -199,6 +211,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Duplicates</string>
          </property>
@@ -245,6 +260,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>TV Shows</string>
          </property>
@@ -291,6 +309,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Concerts</string>
          </property>
@@ -337,6 +358,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string>Music</string>
          </property>
@@ -383,6 +407,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+       	 <property name="cursor">
+       	  <cursorShape>PointingHandCursor</cursorShape>
+       	 </property>
          <property name="toolTip">
           <string extracomment="Main menu entry (tooltip)">Import</string>
          </property>
