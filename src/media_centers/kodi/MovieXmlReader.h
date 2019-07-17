@@ -20,14 +20,14 @@ private:
     using MovieStoreMethod = void (Movie::*)(T);
 
     template<MovieStoreMethod<QString> method>
-    void simpleString(QDomElement element)
+    void simpleString(const QDomElement& element)
     {
         const QString value = element.text();
         (m_movie.*method)(value);
     }
 
     template<MovieStoreMethod<QString> method, const char splitChar>
-    void stringList(QDomElement element)
+    void stringList(const QDomElement& element)
     {
         QStringList values = element.text().split(splitChar, QString::SkipEmptyParts);
         for (const QString& value : values) {
@@ -36,38 +36,38 @@ private:
     }
 
     template<MovieStoreMethod<int> method>
-    void simpleInt(QDomElement element)
+    void simpleInt(const QDomElement& element)
     {
         (m_movie.*method)(element.text().toInt());
     }
 
     template<MovieStoreMethod<double> method>
-    void simpleDouble(QDomElement element)
+    void simpleDouble(const QDomElement& element)
     {
         (m_movie.*method)(element.text().toDouble());
     }
 
     template<MovieStoreMethod<QDate> method>
-    void simpleYear(QDomElement element)
+    void simpleYear(const QDomElement& element)
     {
         const QDate value = QDate::fromString(element.text(), "yyyy");
         (m_movie.*method)(value);
     }
 
     template<MovieStoreMethod<QDate> method>
-    void simpleDate(QDomElement element)
+    void simpleDate(const QDomElement& element)
     {
         const QDate value = QDate::fromString(element.text(), "yyyy-MM-dd");
         (m_movie.*method)(value);
     }
 
-    void movieSet(QDomElement element);
-    void movieActor(QDomElement element);
-    void movieThumbnail(QDomElement element);
-    void movieFanart(QDomElement element);
-    void movieRatingV17(QDomElement element);
-    void movieRatingV16(QDomElement element);
-    void movieVoteCountV16(QDomElement element);
+    void movieSet(const QDomElement& element);
+    void movieActor(const QDomElement& element);
+    void movieThumbnail(const QDomElement& element);
+    void movieFanart(const QDomElement& element);
+    void movieRatingV17(const QDomElement& element);
+    void movieRatingV16(const QDomElement& element);
+    void movieVoteCountV16(const QDomElement& element);
 
     Movie& m_movie;
 };
