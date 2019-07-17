@@ -27,7 +27,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget* parent) :
 
     ui->statusLabel->setText(tr("%n tv shows", "", 0) + ", " + tr("%n episodes", "", 0));
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 

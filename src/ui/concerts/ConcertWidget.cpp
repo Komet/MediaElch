@@ -36,7 +36,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
 #endif
 
     QFont font = ui->labelClearArt->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

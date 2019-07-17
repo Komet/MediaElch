@@ -17,7 +17,7 @@ static QFile data;
 
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     const QString newLine = "\r\n";
 #else
     const QString newLine = "\n";

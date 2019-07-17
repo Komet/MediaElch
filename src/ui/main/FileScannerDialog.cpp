@@ -16,7 +16,7 @@ FileScannerDialog::FileScannerDialog(QWidget* parent) : QDialog(parent), ui(new 
 #endif
 
     QFont font = ui->currentDir->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

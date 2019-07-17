@@ -38,7 +38,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 #endif
 
     QFont font = ui->labelThumbnail->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);
@@ -46,7 +46,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->labelThumbnail->setFont(font);
 
     font = ui->actorResolution->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

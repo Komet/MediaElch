@@ -32,7 +32,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->artStackedWidget->setSpeed(300);
 
     QFont font = ui->labelClearArt->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);
@@ -61,7 +61,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
     font = ui->actorResolution->font();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

@@ -43,7 +43,7 @@ MainWindow* MainWindow::m_instance = nullptr;
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QMenuBar* macMenuBar = new QMenuBar();
     QMenu* menu = macMenuBar->addMenu("File");
     QAction* mAbout = menu->addAction("About");
@@ -118,9 +118,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
         resize(m_settings->mainWindowSize());
         move(m_settings->mainWindowPosition());
-#ifdef Q_OS_WIN32
-        if (m_settings->mainWindowMaximized())
+#ifdef Q_OS_WIN
+        if (m_settings->mainWindowMaximized()) {
             showMaximized();
+        }
 #endif
     }
     // Size for Screenshots
@@ -218,7 +219,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     TvShowMultiScrapeDialog::instance(this);
     Notificator::instance(nullptr, ui->centralWidget);
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
 
     QFont font = ui->labelMovies->font();
