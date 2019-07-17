@@ -30,7 +30,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         return;
     }
     QDomElement movieElement = domDoc.elementsByTagName("movie").at(0).toElement();
-    QMap<QString, void (MovieXmlReader::*)(QDomElement)> tagParsers;
+    QMap<QString, void (MovieXmlReader::*)(const QDomElement&)> tagParsers;
     // clang-format off
     tagParsers.insert("title",         &MovieXmlReader::simpleString<&Movie::setName>);
     tagParsers.insert("originaltitle", &MovieXmlReader::simpleString<&Movie::setOriginalName>);
@@ -147,7 +147,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     m_movie.setDirector(directors.join(", "));
 }
 
-void MovieXmlReader::movieSet(QDomElement movieSetElement)
+void MovieXmlReader::movieSet(const QDomElement& movieSetElement)
 {
     const QDomNodeList setNameElements = movieSetElement.elementsByTagName("name");
     const QDomNodeList setOverviewElements = movieSetElement.elementsByTagName("overview");
@@ -175,7 +175,7 @@ void MovieXmlReader::movieSet(QDomElement movieSetElement)
     m_movie.setSet(set);
 }
 
-void MovieXmlReader::movieActor(QDomElement actorElement)
+void MovieXmlReader::movieActor(const QDomElement& actorElement)
 {
     Actor a;
     a.imageHasChanged = false;
@@ -191,7 +191,7 @@ void MovieXmlReader::movieActor(QDomElement actorElement)
     m_movie.addActor(a);
 }
 
-void MovieXmlReader::movieThumbnail(QDomElement thumbElement)
+void MovieXmlReader::movieThumbnail(const QDomElement& thumbElement)
 {
     Poster p;
     p.originalUrl = QUrl(thumbElement.toElement().text());
@@ -199,7 +199,7 @@ void MovieXmlReader::movieThumbnail(QDomElement thumbElement)
     m_movie.images().addPoster(p);
 }
 
-void MovieXmlReader::movieFanart(QDomElement fanartElement)
+void MovieXmlReader::movieFanart(const QDomElement& fanartElement)
 {
     QDomNodeList thumbs = fanartElement.elementsByTagName("thumb");
     for (int i = 0; i < thumbs.size(); ++i) {
@@ -211,7 +211,7 @@ void MovieXmlReader::movieFanart(QDomElement fanartElement)
     }
 }
 
-void MovieXmlReader::movieRatingV17(QDomElement element)
+void MovieXmlReader::movieRatingV17(const QDomElement& element)
 {
     // <ratings>
     //   <rating name="default" default="true">
@@ -220,6 +220,13 @@ void MovieXmlReader::movieRatingV17(QDomElement element)
     //   </rating>
     // </ratings>
     auto ratings = element.elementsByTagName("rating");
+
+    // clear all ratings in case that there are <rating> tags to avoid
+    // duplicated and/or old ratings
+    if (ratings.length() > 0) {
+        m_movie.ratings().clear();
+    }
+
     for (int i = 0; i < ratings.length(); ++i) {
         Rating rating;
         auto ratingElement = ratings.at(i).toElement();
@@ -237,26 +244,28 @@ void MovieXmlReader::movieRatingV17(QDomElement element)
     }
 }
 
-void MovieXmlReader::movieRatingV16(QDomElement element)
+void MovieXmlReader::movieRatingV16(const QDomElement& element)
 {
     // <rating>10.0</rating>
     QString value = element.text();
     if (!value.isEmpty()) {
-        Rating rating = m_movie.ratings().empty() ? Rating{} : m_movie.ratings().first();
-        rating.rating = value.replace(",", ".").toDouble();
-        m_movie.ratings().first() = rating;
+        if (m_movie.ratings().isEmpty()) {
+            m_movie.ratings().push_back(Rating{});
+        }
+        m_movie.ratings().first().rating = value.replace(",", ".").toDouble();
         m_movie.setChanged(true);
     }
 }
 
-void MovieXmlReader::movieVoteCountV16(QDomElement element)
+void MovieXmlReader::movieVoteCountV16(const QDomElement& element)
 {
     // <votes>100</votes>
     QString value = element.text();
     if (!value.isEmpty()) {
-        Rating rating = m_movie.ratings().empty() ? Rating{} : m_movie.ratings().first();
-        rating.voteCount = value.replace(",", ".").replace(".", "").toInt();
-        m_movie.ratings().first() = rating;
+        if (m_movie.ratings().isEmpty()) {
+            m_movie.ratings().push_back(Rating{});
+        }
+        m_movie.ratings().first().voteCount = value.replace(",", ".").replace(".", "").toInt();
         m_movie.setChanged(true);
     }
 }
