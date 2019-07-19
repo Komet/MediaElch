@@ -155,45 +155,6 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 		fold_end
 	fi
 
-elif [ "${OS_NAME}" = "Darwin" ]; then
-
-	#######################################################
-	# MediaInfoDLL & ZenLib
-
-	fold_start "mediainfo"
-	print_info "Downloading MediaInfoDLL"
-	wget --output-document MediaInfo_DLL.tar.bz2 https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Mac_i386+x86_64.tar.bz2
-	tar -xvjf MediaInfo_DLL.tar.bz2
-	mv MediaInfoLib/libmediainfo.0.dylib ./
-	# The developer folder has a typo: Developpers
-	mv MediaInfoLib/Develo*ers/Include/MediaInfoDLL MediaInfoDLL
-	rm -rf MediaInfoLib
-	fold_end
-
-	fold_start "zenlib"
-	print_info "Dowloading ZenLib sources"
-	svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib
-	fold_end
-
-	#######################################################
-	# Dependencies with Homebrew
-
-	fold_start "homebrew"
-	print_info "Updating homebrew"
-	brew update > brew_update.log || {
-		print_error "Updating homebrew failed. Error log:";
-		cat brew_update.log;
-		exit 1;
-	}
-	fold_end
-
-	fold_start "brew_install"
-	print_info "Brewing packages: cmake (upgrading if already installed)"
-	brew install cmake || brew upgrade cmake
-	print_info "Brewing packages: qt5"
-	brew install qt5
-	fold_end
-
 else
 	print_error "Unknown operating system: ${OS_NAME}"
 	exit 1
