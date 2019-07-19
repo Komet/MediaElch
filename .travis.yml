@@ -61,54 +61,142 @@ matrix:
   #----------------------------------------------------------------------------
 
   - name: "macOS build"
-    env: QT=qtMac CXX=clang++ CC=clang
+    env: QT=qtMac CXX=clang++ CC=clang MEDIAINFO_VERSION=19.07
     os: osx
+    addons:
+      homebrew:
+        packages:
+        - cmake
+        - qt5
+        update: true
     install:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+      # Download MediaInfo & ZenLib
+      - wget --output-document MediaInfo_DLL.tar.bz2
+        https://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VERSION}/MediaInfo_DLL_${MEDIAINFO_VERSION}_Mac_i386+x86_64.tar.bz2
+      - tar -xvjf MediaInfo_DLL.tar.bz2
+      - mv MediaInfoLib/libmediainfo.0.dylib ./
+      # The developer folder has a typo: Developpers
+      - mv MediaInfoLib/Develo*ers/Include/MediaInfoDLL MediaInfoDLL
+      - rm -rf MediaInfoLib
+      - svn checkout https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib
     before_script:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+      - export PATH="/usr/local/opt/qt/bin:$PATH"
+      - mkdir build && cd build
+      - qmake --version
+      - qmake ../MediaElch.pro CONFIG+=release
     script:
-      - cd build && make -j 2
+      - make -j 2
     after_success:
       - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  #----------------------------------------------------------------------------
 
   - name: "Linux Qt 5.10 build"
     env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
     os: linux
     dist: trusty
     install:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+      - "travis-ci/install_dependencies.sh"
     before_script:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+      - export PATH="/opt/${QT}/bin:$PATH"
+      - mkdir build && cd build
+      - qmake --version
+      - qmake ../MediaElch.pro CONFIG+=release
     script:
-      - cd build && make -j 2
+      - make -j 2
     after_success:
       - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  #----------------------------------------------------------------------------
 
   - name: "Linux Qt 5.5 build"
     env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
     os: linux
     dist: trusty
     install:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
+      - "travis-ci/install_dependencies.sh"
     before_script:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+      - export PATH="/opt/${QT}/bin:$PATH"
+      - mkdir build && cd build
+      - qmake --version
+      - qmake ../MediaElch.pro CONFIG+=release
     script:
-      - cd build && make -j 2
-    after_success:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+      - make -j 2
+
+  #----------------------------------------------------------------------------
 
   - name: "Windows build"
     env: QT=qtWin
     install:
       - "${TRAVIS_BUILD_DIR}/travis-ci/install_dependencies.sh"
     before_script:
-      - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+      - mkdir build && cd build
+      - source "${TRAVIS_BUILD_DIR}/travis-ci/defs.sh"
+      - export PATH="$PATH:${MXEDIR}/usr/bin"
+      - $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 --version
+      - $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 ../MediaElch.pro
+          CONFIG+=release
+          LIBS+=$MXEDIR/usr/${MXETARGET}/bin/zlib1.dll
     script:
-      - PATH=$PATH:/usr/lib/mxe/usr/bin
-      - cd build && make -j 2
+      - make -j 2
     after_success:
       - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+
+  #----------------------------------------------------------------------------
+
+  - name: "Linux Qt 5.12.3 build + tests + coverage"
+    os: linux
+    dist: xenial
+    addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+          - sourceline: ppa:beineri/opt-qt-5.12.3-xenial
+        packages:
+          - gcc-8
+          - g++-8
+          - lcov
+          - mesa-common-dev
+          - libgl1-mesa-dev
+          - python3-setuptools
+          - python3-pip
+          - ninja-build
+          - libcurl4-openssl-dev
+          - libmediainfo-dev
+          - libpulse-dev
+          - zlib1g-dev
+          - libzen-dev
+          # Qt dependencies
+          - qt512base
+          - qt512multimedia
+          - qt512declarative
+          - qt512quickcontrols
+          - qt512wayland
+          - qt512x11extras
+          - qt512serialbus
+    env: CC=gcc-8 CXX=g++-8
+    install:
+      - pip3 install cmake --upgrade
+      - cmake --version
+    before_script:
+      - export PATH="/opt/${QT}/bin:$PATH"
+      - export DISPLAY=:99.0
+      - sleep 3
+      - mkdir build && cd build
+      - cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -GNinja
+    script:
+      - cmake --build . -j $(nproc) --target all
+    # Current issue with tests:
+    # Could not load the Qt platform plugin "xcb" in "" even though it was found.
+    #
+    #   - cmake --build . -j $(nproc) --target coverage
+    # after_success:
+    #   - bash <(curl -s https://codecov.io/bash) -f coverage-filtered.info || echo "Codecov did not collect coverage reports"
+
+#----------------------------------------------------------------------------
+# Deploy
+# Nightly builds are uploaded to bintray.com
+#----------------------------------------------------------------------------
 
 deploy:
 - provider: bintray
