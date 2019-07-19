@@ -851,7 +851,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
  */
 bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoContent)
 {
-    if (!episode) {
+    if (episode == nullptr) {
         qWarning() << "Passed an empty (null) episode to loadTvShowEpisode";
         return false;
     }
@@ -1092,11 +1092,11 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
-        } else if (Helper::isDvd(episode->files().at(0), true)) {
+        } else if (helper::isDvd(episode->files().at(0), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1109,11 +1109,11 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)) {
-        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             QFile(dir.absolutePath() + "/thumb.jpg").remove();
-        } else if (Helper::isDvd(episode->files().at(0), true)) {
+        } else if (helper::isDvd(episode->files().at(0), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
             for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1341,7 +1341,8 @@ QString KodiXml::getPath(const Movie* movie)
             dir.cdUp();
         }
         return dir.absolutePath();
-    } else if (movie->discType() == DiscType::Dvd) {
+    }
+    if (movie->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
@@ -1363,7 +1364,8 @@ QString KodiXml::getPath(const Concert* concert)
             dir.cdUp();
         }
         return dir.absolutePath();
-    } else if (concert->discType() == DiscType::Dvd) {
+    }
+    if (concert->discType() == DiscType::Dvd) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
             dir.cdUp();
@@ -1379,7 +1381,8 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
         QDir dir(Settings::instance()->movieSetArtworkDirectory());
         QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
-    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
+    }
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SingleSetFolder) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
             if (movie->set().name == setName && !movie->files().isEmpty()) {
                 QFileInfo fi(movie->files().first());
@@ -1560,14 +1563,14 @@ KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<Dat
     }
     QFileInfo fi(episode->files().at(0));
 
-    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+    if (helper::isBluRay(episode->files().at(0)) || helper::isDvd(episode->files().at(0))) {
         QDir dir = fi.dir();
         dir.cdUp();
         fi.setFile(dir.absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
 
-    if (Helper::isDvd(episode->files().at(0), true)) {
+    if (helper::isDvd(episode->files().at(0), true)) {
         fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
@@ -1980,13 +1983,11 @@ QDomElement KodiXml::setTextValue(QDomDocument& doc, const QString& name, const 
             QDomText t = doc.createTextNode(value);
             doc.elementsByTagName(name).at(0).appendChild(t);
             return doc.elementsByTagName(name).at(0).toElement();
-        } else {
-            doc.elementsByTagName(name).at(0).firstChild().setNodeValue(value);
-            return doc.elementsByTagName(name).at(0).toElement();
         }
-    } else {
-        return addTextValue(doc, name, value);
+        doc.elementsByTagName(name).at(0).firstChild().setNodeValue(value);
+        return doc.elementsByTagName(name).at(0).toElement();
     }
+    return addTextValue(doc, name, value);
 }
 
 void KodiXml::setListValue(QDomDocument& doc, const QString& name, const QStringList& values)

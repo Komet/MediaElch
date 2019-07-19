@@ -231,11 +231,11 @@ void ImageDialog::reject()
  */
 ImageDialog* ImageDialog::instance(QWidget* parent)
 {
-    static ImageDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new ImageDialog(parent);
+    static ImageDialog* s_instance = nullptr;
+    if (s_instance == nullptr) {
+        s_instance = new ImageDialog(parent);
     }
-    return m_instance;
+    return s_instance;
 }
 
 /**
@@ -277,7 +277,7 @@ void ImageDialog::resizeEvent(QResizeEvent* event)
     if (calcColumnCount() != ui->table->columnCount()) {
         renderTable();
     }
-    QWidget::resizeEvent(event);
+    QDialog::resizeEvent(event);
 }
 
 /**
@@ -365,13 +365,14 @@ void ImageDialog::downloadFinished()
 
     if (m_currentDownloadReply->error() == QNetworkReply::NoError) {
         m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-        Helper::setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, Helper::devicePixelRatio(this));
+        helper::setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, helper::devicePixelRatio(this));
 
         if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-            m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(
-                (getColumnWidth() - 10) * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
-            Helper::setDevicePixelRatio(
-                m_elements[m_currentDownloadIndex].scaledPixmap, Helper::devicePixelRatio(this));
+            const int width = static_cast<int>((getColumnWidth() - 10) * helper::devicePixelRatio(this));
+            m_elements[m_currentDownloadIndex].scaledPixmap =
+                m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(width, Qt::SmoothTransformation);
+            helper::setDevicePixelRatio(
+                m_elements[m_currentDownloadIndex].scaledPixmap, helper::devicePixelRatio(this));
             m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
             m_elements[m_currentDownloadIndex].cellWidget->setHint(
                 m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
@@ -416,8 +417,8 @@ void ImageDialog::renderTable()
         auto label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
             QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(
-                (getColumnWidth() - 10) * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
-            Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+                (getColumnWidth() - 10) * helper::devicePixelRatio(this), Qt::SmoothTransformation);
+            helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
             label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }
@@ -463,7 +464,7 @@ void ImageDialog::imageClicked(int row, int col)
     QUrl url = ui->table->item(row, col)->data(Qt::UserRole).toUrl();
     m_imageUrl = url;
     if (m_multiSelection) {
-        if (ui->table->cellWidget(row, col) && !m_imageUrls.contains(url)) {
+        if ((ui->table->cellWidget(row, col) != nullptr) && !m_imageUrls.contains(url)) {
             m_imageUrls.append(url);
             QByteArray ba;
             QBuffer buffer(&ba);

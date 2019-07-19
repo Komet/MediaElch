@@ -141,7 +141,8 @@ void KodiSync::startSync()
                     // updateFolderLastModified(episode);
                     m_tvShowsToSync.append(show);
                     break;
-                } else if (m_syncType == SyncType::Watched) {
+                }
+                if (m_syncType == SyncType::Watched) {
                     m_episodesToSync.append(episode);
                 }
             }
@@ -230,7 +231,7 @@ void KodiSync::startSync()
 void KodiSync::onMovieListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
     }
@@ -260,7 +261,7 @@ void KodiSync::onMovieListFinished()
 void KodiSync::onConcertListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
     }
@@ -290,7 +291,7 @@ void KodiSync::onConcertListFinished()
 void KodiSync::onTvShowListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
     }
@@ -320,7 +321,7 @@ void KodiSync::onTvShowListFinished()
 void KodiSync::onEpisodeListFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
     }
@@ -490,7 +491,7 @@ void KodiSync::removeItems()
 void KodiSync::onRemoveFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (reply) {
+    if (reply != nullptr) {
         reply->deleteLater();
     }
 
@@ -626,11 +627,11 @@ int KodiSync::findId(const QStringList& files, const QMap<int, XbmcData>& items)
 
     if (matches.count() == 1) {
         return matches.at(0);
-    } else if (matches.count() == 0) {
-        return 0;
-    } else {
-        return -1;
     }
+    if (matches.count() == 0) {
+        return 0;
+    }
+    return -1;
 }
 
 bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level)
@@ -647,7 +648,8 @@ bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFil
             }
         }
         return true;
-    } else if (files.count() == xbmcFiles.count()) {
+    }
+    if (files.count() == xbmcFiles.count()) {
         // construct a new stack
         QStringList stack;
         QStringList xbmcStack;
@@ -688,9 +690,8 @@ QStringList KodiSync::splitFile(const QString& file)
     // Windows file names must not contain /
     if (file.contains("/")) {
         return file.split("/");
-    } else {
-        return file.split("\\");
     }
+    return file.split("\\");
 }
 
 void KodiSync::onRadioContents()

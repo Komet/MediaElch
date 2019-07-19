@@ -138,7 +138,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
     Artist* artist = reply->property("storage").value<Storage*>()->artist();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
-    if (!artist) {
+    if (artist == nullptr) {
         return;
     }
 
@@ -242,7 +242,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    if (!artist) {
+    if (artist == nullptr) {
         return;
     }
 
@@ -380,7 +380,7 @@ void UniversalMusicScraper::onSearchAlbumFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
-        for (int i = 0, n = domDoc.elementsByTagName("release").count(); i < n; ++i) {
+        for (int i = 0, releaseCount = domDoc.elementsByTagName("release").count(); i < releaseCount; ++i) {
             QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
             QString name;
             if (!elem.elementsByTagName("title").isEmpty()) {
@@ -464,7 +464,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
     Album* album = reply->property("storage").value<Storage*>()->album();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
-    if (!album) {
+    if (album == nullptr) {
         return;
     }
 
@@ -542,7 +542,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
     Album* album = reply->property("storage").value<Storage*>()->album();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
-    if (!album) {
+    if (album == nullptr) {
         return;
     }
 

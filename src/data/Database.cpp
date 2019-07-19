@@ -214,6 +214,7 @@ Database::Database(QObject* parent) : QObject(parent)
             query.exec();
 
             myDbVersion = 16;
+            Q_UNUSED(myDbVersion);
             updateDbVersion(16);
         }
 
@@ -230,7 +231,7 @@ Database::Database(QObject* parent) : QObject(parent)
  */
 Database::~Database()
 {
-    if (m_db && m_db->isOpen()) {
+    if ((m_db != nullptr) && m_db->isOpen()) {
         m_db->close();
         delete m_db;
         m_db = nullptr;
@@ -443,7 +444,7 @@ QVector<Movie*> Database::movies(QString path)
     while (query.next()) {
         int movieId = query.value(query.record().indexOf("idMovie")).toInt();
         Movie* movie = movies.value(movieId, nullptr);
-        if (!movie) {
+        if (movie == nullptr) {
             continue;
         }
         auto subtitle = new Subtitle(movie);
@@ -920,7 +921,7 @@ bool Database::guessImport(QString fileName, QString& type, QString& path)
     query.prepare("SELECT filename, type, path FROM importCache");
     query.exec();
     while (query.next()) {
-        qreal p = Helper::similarity(fileName, query.value(query.record().indexOf("filename")).toString());
+        qreal p = helper::similarity(fileName, query.value(query.record().indexOf("filename")).toString());
         if (p > 0.7 && p > bestMatch) {
             bestMatch = p;
             type = query.value(query.record().indexOf("type")).toString();

@@ -64,7 +64,7 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
         m_concert.setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("watched").isEmpty()) {
-        m_concert.setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
+        m_concert.setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true");
     }
 
     for (int i = 0, n = domDoc.elementsByTagName("genre").size(); i < n; i++) {

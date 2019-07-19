@@ -19,11 +19,11 @@ ExportTemplateLoader::ExportTemplateLoader(QObject* parent) : QObject(parent)
 
 ExportTemplateLoader* ExportTemplateLoader::instance(QObject* parent)
 {
-    static ExportTemplateLoader* instance = nullptr;
-    if (!instance) {
-        instance = new ExportTemplateLoader(parent);
+    static ExportTemplateLoader* s_instance = nullptr;
+    if (s_instance == nullptr) {
+        s_instance = new ExportTemplateLoader(parent);
     }
-    return instance;
+    return s_instance;
 }
 
 QNetworkAccessManager* ExportTemplateLoader::qnam()
@@ -41,7 +41,7 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
     QVector<ExportTemplate*> templates;
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         return;
     }
     reply->deleteLater();
@@ -153,7 +153,7 @@ void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
     auto reply = static_cast<QNetworkReply*>(sender());
-    if (!reply) {
+    if (reply == nullptr) {
         return;
     }
     ExportTemplate* exportTemplate = reply->property("storage").value<Storage*>()->exportTemplate();
@@ -259,7 +259,7 @@ bool ExportTemplateLoader::removeDir(const QString& dirName)
             }
 
             if (!result) {
-                return result;
+                return false;
             }
         }
         result = dir.rmdir(dirName);
@@ -300,11 +300,8 @@ QVector<ExportTemplate*> ExportTemplateLoader::installedTemplates()
 
 ExportTemplate* ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
 {
-    for (ExportTemplate* exportTemplate : m_localTemplates) {
-        if (exportTemplate->identifier() == identifier) {
-            return exportTemplate;
-        }
-    }
-
-    return nullptr;
+    auto result = std::find_if(m_localTemplates.begin(), m_localTemplates.end(), [&identifier](auto& exportTemplate) {
+        return (exportTemplate->identifier() == identifier);
+    });
+    return (result != m_localTemplates.cend()) ? *result : nullptr;
 }

@@ -228,7 +228,7 @@ void IMDB::onLoadFinished()
     reply->deleteLater();
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -267,7 +267,7 @@ void IMDB::onTagsFinished()
     auto reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -289,7 +289,7 @@ void IMDB::onPosterLoadFinished()
     reply->deleteLater();
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -384,7 +384,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(genres, pos)) != -1) {
-            movie->addGenre(Helper::mapGenre(rx.cap(1).trimmed()));
+            movie->addGenre(helper::mapGenre(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }
@@ -458,7 +458,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
 
     rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1) {
-        movie->setCertification(Helper::mapCertification(Certification(rx.cap(1))));
+        movie->setCertification(helper::mapCertification(Certification(rx.cap(1))));
     }
 
     rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M",)");
@@ -551,7 +551,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         rx.setPattern(R"(<a href="/company/[^"]*"[^>]*>([^<]+)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(studios, pos)) != -1) {
-            movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
+            movie->addStudio(helper::mapStudio(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }
@@ -562,7 +562,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieScraperI
         rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
-            movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
+            movie->addCountry(helper::mapCountry(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }

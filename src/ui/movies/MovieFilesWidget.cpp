@@ -67,11 +67,11 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
     }
 
     QMenu* labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<ColorLabel, QString> it(Helper::labels());
+    QMapIterator<ColorLabel, QString> it(helper::labels());
     while (it.hasNext()) {
         it.next();
         auto action = new QAction(it.value(), this);
-        action->setIcon(Helper::iconForLabel(it.key()));
+        action->setIcon(helper::iconForLabel(it.key()));
         action->setProperty("color", static_cast<int>(it.key()));
         connect(action, &QAction::triggered, this, &MovieFilesWidget::onLabel);
         labelsMenu->addAction(action);
@@ -284,7 +284,7 @@ void MovieFilesWidget::openFolder()
     }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie* movie = Manager::instance()->movieModel()->movie(row);
-    if (!movie || movie->files().isEmpty()) {
+    if ((movie == nullptr) || movie->files().isEmpty()) {
         return;
     }
     QFileInfo fi(movie->files().at(0));
@@ -299,7 +299,7 @@ void MovieFilesWidget::openNfoFile()
     }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie* movie = Manager::instance()->movieModel()->movie(row);
-    if (!movie || movie->files().isEmpty()) {
+    if ((movie == nullptr) || movie->files().isEmpty()) {
         return;
     }
 
@@ -329,7 +329,7 @@ void MovieFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
  */
 void MovieFilesWidget::movieSelectedEmitter()
 {
-    if (m_lastMovie) {
+    if (m_lastMovie != nullptr) {
         emit movieSelected(m_lastMovie);
     }
 }
@@ -509,7 +509,7 @@ void MovieFilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction*>(QObject::sender());
-    if (!action) {
+    if (action == nullptr) {
         return;
     }
     action->setChecked(action->isChecked());
@@ -530,7 +530,7 @@ void MovieFilesWidget::onLabel()
 {
     m_contextMenu->close();
     auto action = static_cast<QAction*>(QObject::sender());
-    if (!action) {
+    if (action == nullptr) {
         return;
     }
 

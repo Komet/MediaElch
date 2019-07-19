@@ -261,21 +261,21 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
-    QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
+    auto searchReply = static_cast<QNetworkReply*>(QObject::sender());
+    QVector<ScraperSearchResult> results = searchReply->property("results").value<Storage*>()->results();
 
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << reply->errorString();
-        reply->deleteLater();
+    if (searchReply->error() != QNetworkReply::NoError) {
+        qWarning() << "Network Error" << searchReply->errorString();
+        searchReply->deleteLater();
         emit searchDone(results);
         return;
     }
 
-    QString searchString = reply->property("searchString").toString();
-    QString msg = QString::fromUtf8(reply->readAll());
+    QString searchString = searchReply->property("searchString").toString();
+    QString msg = QString::fromUtf8(searchReply->readAll());
     int nextPage = -1;
     results.append(parseSearch(msg, nextPage));
-    reply->deleteLater();
+    searchReply->deleteLater();
 
     if (nextPage == -1) {
         emit searchDone(results);
@@ -434,7 +434,7 @@ void TMDbConcerts::loadFinished()
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
-    if (!concert) {
+    if (concert == nullptr) {
         return;
     }
 
@@ -457,7 +457,7 @@ void TMDbConcerts::loadTrailersFinished()
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
-    if (!concert) {
+    if (concert == nullptr) {
         return;
     }
 
@@ -480,7 +480,7 @@ void TMDbConcerts::loadImagesFinished()
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
-    if (!concert) {
+    if (concert == nullptr) {
         return;
     }
 
@@ -503,7 +503,7 @@ void TMDbConcerts::loadReleasesFinished()
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
-    if (!concert) {
+    if (concert == nullptr) {
         return;
     }
 
@@ -567,7 +567,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
             }
-            concert->addGenre(Helper::mapGenre(genre.value("name").toString()));
+            concert->addGenre(helper::mapGenre(genre.value("name").toString()));
         }
     }
 
@@ -578,7 +578,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
         if (!firstTrailer.value("source").toString().isEmpty()) {
             const QString youtubeSrc = firstTrailer.value("source").toString();
             concert->setTrailer(
-                QUrl(Helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+                QUrl(helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
         }
     }
 
@@ -640,19 +640,19 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
         }
 
         if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
-            concert->setCertification(Helper::mapCertification(us));
+            concert->setCertification(helper::mapCertification(us));
 
         } else if (m_locale.language() == QLocale::English && gb.isValid()) {
-            concert->setCertification(Helper::mapCertification(gb));
+            concert->setCertification(helper::mapCertification(gb));
 
         } else if (locale.isValid()) {
-            concert->setCertification(Helper::mapCertification(locale));
+            concert->setCertification(helper::mapCertification(locale));
 
         } else if (us.isValid()) {
-            concert->setCertification(Helper::mapCertification(us));
+            concert->setCertification(helper::mapCertification(us));
 
         } else if (gb.isValid()) {
-            concert->setCertification(Helper::mapCertification(gb));
+            concert->setCertification(helper::mapCertification(gb));
         }
     }
 }

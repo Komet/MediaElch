@@ -424,17 +424,20 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
             b.hint = [&section, &discType] {
                 if (section == "hdmovielogo" || section == "hdmovieclearart") {
                     return QStringLiteral("HD");
-                } else if (section == "movielogo" || section == "movieart") {
-                    return QStringLiteral("SD");
-                } else if (discType == "bluray") {
-                    return QStringLiteral("BluRay");
-                } else if (discType == "dvd") {
-                    return QStringLiteral("DVD");
-                } else if (discType == "3d") {
-                    return QStringLiteral("3D");
-                } else {
-                    return QStringLiteral("");
                 }
+                if (section == "movielogo" || section == "movieart") {
+                    return QStringLiteral("SD");
+                }
+                if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                }
+                if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                }
+                if (discType == "3d") {
+                    return QStringLiteral("3D");
+                }
+                return QStringLiteral("");
             }();
 
             b.language = poster.value("lang").toString();
@@ -699,17 +702,20 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
             b.hint = [&section, &discType] {
                 if (section == "hdtvlogo" || section == "hdclearart") {
                     return QStringLiteral("HD");
-                } else if (section == "clearlogo" || section == "clearart") {
-                    return QStringLiteral("SD");
-                } else if (discType == "bluray") {
-                    return QStringLiteral("BluRay");
-                } else if (discType == "dvd") {
-                    return QStringLiteral("DVD");
-                } else if (discType == "3d") {
-                    return QStringLiteral("3D");
-                } else {
-                    return QStringLiteral("");
                 }
+                if (section == "clearlogo" || section == "clearart") {
+                    return QStringLiteral("SD");
+                }
+                if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                }
+                if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                }
+                if (discType == "3d") {
+                    return QStringLiteral("3D");
+                }
+                return QStringLiteral("");
             }();
             b.language = poster.value("lang").toString();
             insertPoster(posters, b, m_language, m_preferredDiscType);

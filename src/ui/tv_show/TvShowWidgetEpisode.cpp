@@ -129,10 +129,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::applyStyle(ui->tabWidget);
-    Helper::applyStyle(ui->labelThumbnail);
-    Helper::applyEffect(ui->groupBox_3);
-    Helper::fillStereoModeCombo(ui->stereoMode);
+    helper::applyStyle(ui->tabWidget);
+    helper::applyStyle(ui->labelThumbnail);
+    helper::applyEffect(ui->groupBox_3);
+    helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 /**
@@ -275,7 +275,7 @@ void TvShowWidgetEpisode::onClear()
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
     qDebug() << "Entered";
-    if (m_episode && m_episode->isDummy()) {
+    if ((m_episode != nullptr) && m_episode->isDummy()) {
         ui->groupBox_3->setEnabled(false);
         return;
     }
@@ -374,7 +374,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     }
     ui->actors->blockSignals(false);
 
-    if (m_episode->tvShow()) {
+    if (m_episode->tvShow() != nullptr) {
         auto certifications = m_episode->tvShow()->certifications();
         certifications.prepend(Certification::NoCertification);
         for (const auto& cert : certifications) {
@@ -434,7 +434,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
  */
 void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
 {
-    if (m_episode && m_episode->isDummy()) {
+    if ((m_episode != nullptr) && m_episode->isDummy()) {
         return;
     }
 
@@ -689,7 +689,7 @@ void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
     Q_UNUSED(imageType);
 
-    if (!m_episode) {
+    if (m_episode == nullptr) {
         return;
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
@@ -938,7 +938,7 @@ void TvShowWidgetEpisode::onStudioChange(QString text)
 
 void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
 {
-    if (!m_episode) {
+    if (m_episode == nullptr) {
         return;
     }
     m_episode->setEpBookmark(time);
@@ -1094,7 +1094,7 @@ void TvShowWidgetEpisode::onChangeActorImage()
 
 void TvShowWidgetEpisode::onVotesChange(int value)
 {
-    if (!m_episode) {
+    if (m_episode == nullptr) {
         return;
     }
     m_episode->setVotes(value);
@@ -1103,7 +1103,7 @@ void TvShowWidgetEpisode::onVotesChange(int value)
 
 void TvShowWidgetEpisode::onTop250Change(int value)
 {
-    if (!m_episode) {
+    if (m_episode == nullptr) {
         return;
     }
     m_episode->setTop250(value);
@@ -1112,7 +1112,7 @@ void TvShowWidgetEpisode::onTop250Change(int value)
 
 void TvShowWidgetEpisode::onCaptureImage()
 {
-    if (!m_episode || m_episode->files().isEmpty()) {
+    if ((m_episode == nullptr) || m_episode->files().isEmpty()) {
         return;
     }
     QImage img;

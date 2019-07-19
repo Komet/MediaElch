@@ -25,5 +25,5 @@ private:
     bool m_isValid = false;
 };
 
-std::ostream& operator<<(std::ostream& os, const ImdbId& value);
+std::ostream& operator<<(std::ostream& os, const ImdbId& id);
 QDebug operator<<(QDebug debug, const ImdbId& id);

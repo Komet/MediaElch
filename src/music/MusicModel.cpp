@@ -31,18 +31,21 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
     MusicModelItem* item = getItem(index);
 
     if (role == Qt::DisplayRole) {
-        return Helper::appendArticle(item->data(0).toString());
-    } else if (role == MusicRoles::Type) {
+        return helper::appendArticle(item->data(0).toString());
+    }
+    if (role == MusicRoles::Type) {
         return static_cast<int>(item->type());
-    } else if (role == MusicRoles::IsNew) {
+    }
+    if (role == MusicRoles::IsNew) {
         return item->data(role);
-    } else if (role == Qt::ForegroundRole) {
+    }
+    if (role == Qt::ForegroundRole) {
         if (item->data(MusicRoles::HasChanged).toBool()) {
             return QColor(255, 0, 0);
-        } else {
-            return QColor(17, 51, 80);
         }
-    } else if (role == Qt::FontRole) {
+        return QColor(17, 51, 80);
+    }
+    if (role == Qt::FontRole) {
         QFont font;
         if (item->data(MusicRoles::HasChanged).toBool()) {
             font.setItalic(true);
@@ -55,13 +58,15 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
 #endif
         }
         return font;
-    } else if (role == Qt::SizeHintRole) {
+    }
+    if (role == Qt::SizeHintRole) {
 #ifdef Q_OS_WIN
         return QSize(0, 22);
 #else
         return QSize(0, (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) ? 44 : 22);
 #endif
-    } else if (role == MusicRoles::NumOfAlbums) {
+    }
+    if (role == MusicRoles::NumOfAlbums) {
         if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
             return item->data(MusicRoles::NumOfAlbums);
         }
@@ -81,7 +86,7 @@ MusicModelItem* MusicModel::getItem(const QModelIndex& index) const
 {
     if (index.isValid()) {
         auto item = static_cast<MusicModelItem*>(index.internalPointer());
-        if (item) {
+        if (item != nullptr) {
             return item;
         }
     }
@@ -96,11 +101,10 @@ QModelIndex MusicModel::index(int row, int column, const QModelIndex& parent) co
 
     MusicModelItem* parentItem = getItem(parent);
     MusicModelItem* childItem = parentItem->child(row);
-    if (childItem) {
+    if (childItem != nullptr) {
         return createIndex(row, column, childItem);
-    } else {
-        return QModelIndex();
     }
+    return QModelIndex();
 }
 
 MusicModelItem* MusicModel::appendChild(Artist* artist)
@@ -197,7 +201,7 @@ int MusicModel::hasNewArtistsOrAlbums()
             newItems++;
         }
         for (int i = 0, n = artist->modelItem()->childNumber(); i < n; ++i) {
-            if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album()
+            if ((artist->modelItem()->child(i) != nullptr) && (artist->modelItem()->child(i)->album() != nullptr)
                 && !artist->modelItem()->child(i)->album()->controller()->infoLoaded()) {
                 newItems++;
             }

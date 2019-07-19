@@ -52,6 +52,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     tagParsers.insert("rating",        &MovieXmlReader::movieRatingV16);
     tagParsers.insert("userrating",    &MovieXmlReader::simpleDouble<&Movie::setUserRating>);
     tagParsers.insert("votes",         &MovieXmlReader::movieVoteCountV16);
+    tagParsers.insert("dateadded",     &MovieXmlReader::simpleDateTime<&Movie::setDateAdded>);
     // clang-format on
 
     QDomNodeList nodes = movieElement.childNodes();
@@ -90,14 +91,6 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setLastPlayed(lastPlayed);
     }
 
-    if (!domDoc.elementsByTagName("dateadded").isEmpty()) {
-        QDateTime dateadded = QDateTime::fromString(
-            domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss");
-        if (dateadded.isValid()) {
-            m_movie.setDateAdded(dateadded);
-        }
-    }
-
     // v17/v18 tmdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
         m_movie.setId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
@@ -123,7 +116,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
     }
     if (!domDoc.elementsByTagName("watched").isEmpty()) {
-        m_movie.setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
+        m_movie.setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true");
     } else {
         m_movie.setWatched(m_movie.playcount() > 0);
     }

@@ -53,7 +53,7 @@ TvTunesDialog::~TvTunesDialog()
 TvTunesDialog* TvTunesDialog::instance(QWidget* parent)
 {
     static TvTunesDialog* m_instance = nullptr;
-    if (!m_instance) {
+    if (m_instance == nullptr) {
         m_instance = new TvTunesDialog(parent);
     }
     return m_instance;

@@ -10,7 +10,7 @@
 #include <QPushButton>
 #include <QString>
 
-namespace Helper {
+namespace helper {
 
 enum ButtonStyle
 {
@@ -34,7 +34,7 @@ QString stackedBaseName(const QString& fileName);
 QString appendArticle(const QString& text);
 QString mapGenre(const QString& text);
 QStringList mapGenre(const QStringList& genres);
-Certification mapCertification(const Certification& text);
+Certification mapCertification(const Certification& certification);
 QString mapStudio(const QString& text);
 QString mapCountry(const QString& text);
 QString formatFileSize(const qint64& size);
@@ -59,4 +59,4 @@ QString matchResolution(int width, int height, const QString& scanType);
 QImage getImage(QString path);
 QString secondsToTimeCode(quint32 duration);
 
-} // namespace Helper
+} // namespace helper

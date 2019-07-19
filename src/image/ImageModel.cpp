@@ -43,7 +43,7 @@ QVariant ImageModel::data(int row, const QString& roleName) const
 QVariant ImageModel::data(const QModelIndex& index, int role) const
 {
     Image* img = image(index);
-    if (!img) {
+    if (img == nullptr) {
         return QVariant();
     }
 

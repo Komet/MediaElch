@@ -74,9 +74,9 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
 {
     if (m_active) {
         return;
-    } else {
-        m_active = true;
     }
+    m_active = true;
+
 
     enum t_direction directionHint;
     int now = currentIndex();
@@ -84,7 +84,8 @@ void SlidingStackedWidget::slideInWgt(QWidget* newWidget, enum t_direction direc
     if (now == next) {
         m_active = false;
         return;
-    } else if (now < next) {
+    }
+    if (now < next) {
         directionHint = m_vertical ? TOP2BOTTOM : RIGHT2LEFT;
     } else {
         directionHint = m_vertical ? BOTTOM2TOP : LEFT2RIGHT;

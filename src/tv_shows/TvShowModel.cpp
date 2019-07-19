@@ -87,8 +87,9 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     }
 
     if (role == Qt::DisplayRole) {
-        return Helper::appendArticle(item.data(0).toString());
-    } else if (role == Qt::FontRole) {
+        return helper::appendArticle(item.data(0).toString());
+    }
+    if (role == Qt::FontRole) {
         QFont font;
         if (item.data(2).toBool()) {
             font.setItalic(true);
@@ -103,13 +104,17 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
 #endif
         }
         return font;
-    } else if (role == Qt::SizeHintRole) {
+    }
+    if (role == Qt::SizeHintRole) {
         return QSize(0, (item.type() == TvShowType::TvShow) ? 44 : (item.type() == TvShowType::Season) ? 26 : 22);
-    } else if (role == TvShowRoles::Type) {
+    }
+    if (role == TvShowRoles::Type) {
         return static_cast<int>(item.type());
-    } else if (role == TvShowRoles::EpisodeCount && item.type() == TvShowType::TvShow) {
+    }
+    if (role == TvShowRoles::EpisodeCount && item.type() == TvShowType::TvShow) {
         return item.data(1);
-    } else if (role == Qt::ForegroundRole) {
+    }
+    if (role == Qt::ForegroundRole) {
         // hasChanged()
         if (item.data(2).toBool()) {
             return QColor(255, 0, 0);
@@ -182,7 +187,7 @@ TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index)
 {
     if (index.isValid()) {
         auto* item = static_cast<TvShowBaseModelItem*>(index.internalPointer());
-        if (item) {
+        if (item != nullptr) {
             return *item;
         }
     }

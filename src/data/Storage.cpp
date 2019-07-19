@@ -1,8 +1,7 @@
 #include "Storage.h"
 
-Storage::Storage(QObject* parent, Movie* movie) : QObject(parent)
+Storage::Storage(QObject* parent, Movie* movie) : QObject(parent), m_movie{QPointer<Movie>(movie)}
 {
-    m_movie = QPointer<Movie>(movie);
 }
 
 Storage::Storage(QObject* parent, Concert* concert) : QObject(parent), m_concert{QPointer<Concert>(concert)}
@@ -76,7 +75,7 @@ Storage::Storage(QObject* parent, QVector<TvShowEpisode*> episodes) : QObject(pa
 
 Movie* Storage::movie() const
 {
-    if (m_movie) {
+    if (m_movie != nullptr) {
         return m_movie;
     }
     return nullptr;
@@ -84,7 +83,7 @@ Movie* Storage::movie() const
 
 Concert* Storage::concert() const
 {
-    if (m_concert) {
+    if (m_concert != nullptr) {
         return m_concert;
     }
     return nullptr;
@@ -92,7 +91,7 @@ Concert* Storage::concert() const
 
 TvShow* Storage::show() const
 {
-    if (m_show) {
+    if (m_show != nullptr) {
         return m_show;
     }
     return nullptr;
@@ -100,7 +99,7 @@ TvShow* Storage::show() const
 
 TvShowEpisode* Storage::episode() const
 {
-    if (m_episode) {
+    if (m_episode != nullptr) {
         return m_episode;
     }
     return nullptr;
@@ -108,7 +107,7 @@ TvShowEpisode* Storage::episode() const
 
 Artist* Storage::artist() const
 {
-    if (m_artist) {
+    if (m_artist != nullptr) {
         return m_artist;
     }
     return nullptr;
@@ -116,7 +115,7 @@ Artist* Storage::artist() const
 
 Album* Storage::album() const
 {
-    if (m_album) {
+    if (m_album != nullptr) {
         return m_album;
     }
     return nullptr;
@@ -124,7 +123,7 @@ Album* Storage::album() const
 
 ExportTemplate* Storage::exportTemplate() const
 {
-    if (m_exportTemplate) {
+    if (m_exportTemplate != nullptr) {
         return m_exportTemplate;
     }
     return nullptr;
@@ -132,7 +131,7 @@ ExportTemplate* Storage::exportTemplate() const
 
 QTableWidgetItem* Storage::tableWidgetItem() const
 {
-    if (m_tableWidgetItem) {
+    if (m_tableWidgetItem != nullptr) {
         return m_tableWidgetItem;
     }
     return nullptr;

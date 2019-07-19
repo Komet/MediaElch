@@ -30,7 +30,7 @@ ConcertStreamDetailsWidget::ConcertStreamDetailsWidget(QWidget* parent) :
     connect(ui->stereoMode,       SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     // clang-format on
 
-    Helper::fillStereoModeCombo(ui->stereoMode);
+    helper::fillStereoModeCombo(ui->stereoMode);
 }
 
 void ConcertStreamDetailsWidget::setConcertController(ConcertController* controller)
@@ -40,7 +40,7 @@ void ConcertStreamDetailsWidget::setConcertController(ConcertController* control
 
 void ConcertStreamDetailsWidget::updateConcertInfo()
 {
-    if (!m_concertController || !m_concertController->concert()) {
+    if ((m_concertController == nullptr) || (m_concertController->concert() == nullptr)) {
         qDebug() << "My concert is invalid";
         return;
     }

@@ -27,7 +27,7 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    Helper::setButtonStyle(ui->btnImportMakeMkv, Helper::ButtonInfo);
+    helper::setButtonStyle(ui->btnImportMakeMkv, helper::ButtonInfo);
 
 #ifdef Q_OS_WIN32
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -53,8 +53,8 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
 
     scanDownloadFolders();
 
-    Helper::applyStyle(ui->tablePackages, true, false);
-    Helper::applyStyle(ui->tableImports, true, false);
+    helper::applyStyle(ui->tablePackages, true, false);
+    helper::applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()
@@ -156,11 +156,7 @@ bool DownloadsWidget::isPackage(QFileInfo file) const
     }
 
     QRegExp rx("r[0-9]*");
-    if (rx.exactMatch(file.suffix())) {
-        return true;
-    }
-
-    return false;
+    return rx.exactMatch(file.suffix());
 }
 
 bool DownloadsWidget::isImportable(QFileInfo file) const
@@ -427,7 +423,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
 void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
 {
     QComboBox* box;
-    if (sender) {
+    if (sender != nullptr) {
         box = sender;
     } else {
         box = static_cast<QComboBox*>(QObject::sender());
@@ -476,7 +472,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
 void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)
 {
     QComboBox* box;
-    if (sender) {
+    if (sender != nullptr) {
         box = sender;
     } else {
         box = static_cast<QComboBox*>(QObject::sender());

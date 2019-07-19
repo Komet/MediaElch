@@ -247,7 +247,7 @@ private:
 //---------------------------------------------------------------------------------------
 
 /// The default icon colors
-MyIconFont::MyIconFont(QObject* parent) : QObject(parent), namedCodepoints_()
+MyIconFont::MyIconFont(QObject* parent) : QObject(parent)
 {
     // initialize the default options
     setDefaultOption("color", QColor(50, 50, 50));
@@ -406,7 +406,7 @@ QIcon MyIconFont::icon(int character, const QVariantMap& options)
     optionMap.insert("text", QString(QChar(character)));
 
     MyIconFontIconPainter* painter = painterMap_.value(options.value("painter-name").toString());
-    if (!painter) {
+    if (painter == nullptr) {
         painter = fontIconPainter_;
     }
 
@@ -423,7 +423,7 @@ QIcon MyIconFont::icon(int character, const QVariantMap& options)
 QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
 {
     // when it's a named codepoint
-    if (namedCodepoints_.count(name)) {
+    if (namedCodepoints_.count(name) != 0) {
         return icon(namedCodepoints_.value(name), options);
     }
 
@@ -433,7 +433,7 @@ QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
 
     // this method first tries to retrieve the icon
     MyIconFontIconPainter* painter = painterMap_.value(name);
-    if (!painter) {
+    if (painter == nullptr) {
         return QIcon();
     }
 

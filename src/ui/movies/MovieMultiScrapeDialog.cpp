@@ -130,7 +130,7 @@ void MovieMultiScrapeDialog::reject()
             SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
     }
     m_executed = false;
-    if (m_currentMovie) {
+    if (m_currentMovie != nullptr) {
         m_queue.clear();
         m_currentMovie->controller()->abortDownloads();
     }
@@ -162,7 +162,7 @@ void MovieMultiScrapeDialog::onStartScraping()
 
     m_scraperInterface =
         Manager::instance()->scraper(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
-    if (!m_scraperInterface) {
+    if (m_scraperInterface == nullptr) {
         return;
     }
 
@@ -209,7 +209,7 @@ void MovieMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    if (m_currentMovie && ui->chkAutoSave->isChecked()) {
+    if ((m_currentMovie != nullptr) && ui->chkAutoSave->isChecked()) {
         m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
@@ -376,7 +376,7 @@ void MovieMultiScrapeDialog::setCheckBoxesEnabled()
 {
     QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
     MovieScraperInterface* scraper = Manager::instance()->scraper(scraperId);
-    if (!scraper) {
+    if (scraper == nullptr) {
         return;
     }
 

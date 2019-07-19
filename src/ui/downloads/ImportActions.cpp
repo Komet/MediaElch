@@ -10,8 +10,8 @@
 ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
-    Helper::setButtonStyle(ui->btnImport, Helper::ButtonSuccess);
-    Helper::setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
+    helper::setButtonStyle(ui->btnImport, helper::ButtonSuccess);
+    helper::setButtonStyle(ui->btnDelete, helper::ButtonDanger);
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
     connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
     m_tvShow = nullptr;

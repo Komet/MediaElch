@@ -33,17 +33,17 @@ ImageCache::ImageCache(QObject* parent) : QObject(parent)
 
 ImageCache* ImageCache::instance(QObject* parent)
 {
-    static ImageCache* m_instance = nullptr;
-    if (!m_instance) {
-        m_instance = new ImageCache(parent);
+    static ImageCache* s_instance = nullptr;
+    if (s_instance == nullptr) {
+        s_instance = new ImageCache(parent);
     }
-    return m_instance;
+    return s_instance;
 }
 
 QImage ImageCache::image(QString path, int width, int height, int& origWidth, int& origHeight)
 {
     if (m_cacheDir.isEmpty()) {
-        return scaledImage(Helper::getImage(path), width, height);
+        return scaledImage(helper::getImage(path), width, height);
     }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
@@ -65,7 +65,7 @@ QImage ImageCache::image(QString path, int width, int height, int& origWidth, in
     }
 
     if (update) {
-        QImage origImg = Helper::getImage(path);
+        QImage origImg = helper::getImage(path);
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
@@ -82,16 +82,18 @@ QImage ImageCache::image(QString path, int width, int height, int& origWidth, in
         return img;
     }
 
-    return Helper::getImage(m_cacheDir + "/" + files.first());
+    return helper::getImage(m_cacheDir + "/" + files.first());
 }
 
 QImage ImageCache::scaledImage(QImage img, int width, int height)
 {
     if (width != 0 && height != 0) {
         return img.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    } else if (width != 0) {
+    }
+    if (width != 0) {
         return img.scaledToWidth(width, Qt::SmoothTransformation);
-    } else if (height != 0) {
+    }
+    if (height != 0) {
         return img.scaledToHeight(height, Qt::SmoothTransformation);
     }
     return img;
@@ -114,7 +116,7 @@ void ImageCache::invalidateImages(QString path)
 QSize ImageCache::imageSize(QString path)
 {
     if (m_cacheDir.isEmpty()) {
-        return Helper::getImage(path).size();
+        return helper::getImage(path).size();
     }
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
@@ -122,12 +124,12 @@ QSize ImageCache::imageSize(QString path)
     QDir dir(m_cacheDir);
     QStringList files = dir.entryList(QStringList() << baseName + "*");
     if (files.isEmpty() || files.first().split("_").count() < 7) {
-        return Helper::getImage(path).size();
+        return helper::getImage(path).size();
     }
 
     QStringList parts = files.first().split("_");
     if (!m_forceCache && getLastModified(path) != parts.at(5).toInt()) {
-        return Helper::getImage(path).size();
+        return helper::getImage(path).size();
     }
 
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());

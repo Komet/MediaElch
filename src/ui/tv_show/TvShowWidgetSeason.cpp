@@ -79,8 +79,8 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    helper::applyStyle(ui->groupBox_3);
+    helper::applyEffect(ui->groupBox_3);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()
@@ -135,7 +135,7 @@ void TvShowWidgetSeason::updateImages(QVector<ImageType> images)
             }
         }
 
-        if (!image) {
+        if (image == nullptr) {
             continue;
         }
 
@@ -165,7 +165,7 @@ void TvShowWidgetSeason::onClear()
 
 void TvShowWidgetSeason::onSaveInformation()
 {
-    if (!m_show || m_show->isDummySeason(m_season)) {
+    if ((m_show == nullptr) || m_show->isDummySeason(m_season)) {
         return;
     }
     onSetEnabled(false);
@@ -179,7 +179,7 @@ void TvShowWidgetSeason::onSaveInformation()
 void TvShowWidgetSeason::onSetEnabled(bool enabled)
 {
     // todo: m_season != SeasonNumber::NoSeason/SpecialsSeason?
-    if (m_show && m_season.toInt() && m_show->isDummySeason(m_season)) {
+    if ((m_show != nullptr) && (m_season.toInt() != 0) && m_show->isDummySeason(m_season)) {
         ui->groupBox_3->setEnabled(false);
         return;
     }
@@ -196,7 +196,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
     for (ClosableImage* image : ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
-                Helper::resizeBackdrop(elem.data);
+                helper::resizeBackdrop(elem.data);
             }
             if (m_show == elem.show) {
                 image->setImage(elem.data);
@@ -220,7 +220,7 @@ void TvShowWidgetSeason::onChooseImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -261,7 +261,7 @@ void TvShowWidgetSeason::onDeleteImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -271,11 +271,11 @@ void TvShowWidgetSeason::onDeleteImage()
 
 void TvShowWidgetSeason::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 

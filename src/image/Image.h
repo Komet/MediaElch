@@ -38,5 +38,4 @@ private:
     bool m_deletion;
     QByteArray m_rawData;
     int m_imageId;
-    static int m_idCounter;
 };

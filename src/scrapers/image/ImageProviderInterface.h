@@ -18,8 +18,8 @@ class ImageProviderInterface : public QObject, public ScraperInterface
     Q_OBJECT
 
 public:
-    virtual QString name() const = 0;
-    virtual QString identifier() const = 0;
+    QString name() const override = 0;
+    QString identifier() const override = 0;
     virtual QUrl siteUrl() const = 0;
     virtual void movieImages(Movie* movie, TmdbId tmdbId, QVector<ImageType> types) = 0;
     virtual void moviePosters(TmdbId tmdbId) = 0;
@@ -57,9 +57,9 @@ public:
     virtual void artistImages(Artist* artist, QString mbId, QVector<ImageType> types) = 0;
     virtual void albumImages(Album* album, QString mbId, QVector<ImageType> types) = 0;
     virtual QVector<ImageType> provides() = 0;
-    virtual bool hasSettings() const = 0;
-    virtual void loadSettings(const ScraperSettings& settings) = 0;
-    virtual void saveSettings(ScraperSettings& settings) = 0;
+    bool hasSettings() const override = 0;
+    void loadSettings(const ScraperSettings& settings) override = 0;
+    void saveSettings(ScraperSettings& settings) override = 0;
     virtual QWidget* settingsWidget() = 0;
 
 public slots:

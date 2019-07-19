@@ -529,7 +529,7 @@ void TMDb::loadFinished()
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -552,7 +552,7 @@ void TMDb::loadCastsFinished()
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -575,7 +575,7 @@ void TMDb::loadTrailersFinished()
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -598,7 +598,7 @@ void TMDb::loadImagesFinished()
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -621,7 +621,7 @@ void TMDb::loadReleasesFinished()
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -778,7 +778,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
             if (genre.value("id").toInt(-1) == -1) {
                 continue;
             }
-            movie->addGenre(Helper::mapGenre(genre.value("name").toString()));
+            movie->addGenre(helper::mapGenre(genre.value("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Studios) && parsedJson.value("production_companies").isArray()) {
@@ -788,7 +788,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
             if (company.value("id").toInt(-1) == -1) {
                 continue;
             }
-            movie->addStudio(Helper::mapStudio(company.value("name").toString()));
+            movie->addStudio(helper::mapStudio(company.value("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Countries) && parsedJson.value("production_countries").isArray()) {
@@ -798,7 +798,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
             if (country.value("name").toString().isEmpty()) {
                 continue;
             }
-            movie->addCountry(Helper::mapCountry(country.value("name").toString()));
+            movie->addCountry(helper::mapCountry(country.value("name").toString()));
         }
     }
 
@@ -854,7 +854,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
         if (!firstTrailer.value("source").toString().isEmpty()) {
             const QString youtubeSrc = firstTrailer.value("source").toString();
             movie->setTrailer(
-                QUrl(Helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
+                QUrl(helper::formatTrailerUrl(QStringLiteral("https://www.youtube.com/watch?v=%1").arg(youtubeSrc))));
         }
     }
 
@@ -917,19 +917,19 @@ void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperI
         }
 
         if (m_locale.country() == QLocale::UnitedStates && us.isValid()) {
-            movie->setCertification(Helper::mapCertification(us));
+            movie->setCertification(helper::mapCertification(us));
 
         } else if (m_locale.language() == QLocale::English && gb.isValid()) {
-            movie->setCertification(Helper::mapCertification(gb));
+            movie->setCertification(helper::mapCertification(gb));
 
         } else if (locale.isValid()) {
-            movie->setCertification(Helper::mapCertification(locale));
+            movie->setCertification(helper::mapCertification(locale));
 
         } else if (us.isValid()) {
-            movie->setCertification(Helper::mapCertification(us));
+            movie->setCertification(helper::mapCertification(us));
 
         } else if (gb.isValid()) {
-            movie->setCertification(Helper::mapCertification(gb));
+            movie->setCertification(helper::mapCertification(gb));
         }
     }
 }

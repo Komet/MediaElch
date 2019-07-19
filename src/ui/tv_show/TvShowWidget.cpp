@@ -82,7 +82,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode* episode)
  */
 void TvShowWidget::onSetEnabledTrue(TvShow* show, SeasonNumber season)
 {
-    if (show && show->downloadsInProgress()) {
+    if ((show != nullptr) && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
     }
@@ -99,7 +99,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow* show, SeasonNumber season)
  */
 void TvShowWidget::onSetEnabledTrue(TvShowEpisode* episode)
 {
-    if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress()) {
+    if ((episode != nullptr) && (episode->tvShow() != nullptr) && episode->tvShow()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
     }
@@ -137,8 +137,8 @@ void TvShowWidget::onSaveInformation()
         ui->tvShowWidget->onSaveInformation();
         TvShowFilesWidget::instance().updateProxy();
         return;
-    } else if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0
-               && ui->stackedWidget->currentIndex() == 1) {
+    }
+    if (shows.count() == 0 && episodes.count() == 1 && seasons.count() == 0 && ui->stackedWidget->currentIndex() == 1) {
         ui->episodeWidget->onSaveInformation();
         TvShowFilesWidget::instance().updateProxy();
         return;

@@ -107,7 +107,7 @@ void TvShowModelItem::onEpisodeChanged(SeasonModelItem* seasonItem, EpisodeModel
 QVariant TvShowModelItem::data(int column) const
 {
     // todo: magic numbers (columns)
-    if (!m_tvShow) {
+    if (m_tvShow == nullptr) {
         return QVariant{};
     }
 

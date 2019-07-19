@@ -79,11 +79,11 @@ Manager::~Manager() = default;
  */
 Manager* Manager::instance()
 {
-    static Manager* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new Manager(qApp);
+    static Manager* s_instance = nullptr;
+    if (s_instance == nullptr) {
+        s_instance = new Manager(qApp);
     }
-    return m_instance;
+    return s_instance;
 }
 
 /**

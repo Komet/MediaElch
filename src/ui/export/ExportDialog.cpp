@@ -76,7 +76,7 @@ void ExportDialog::onBtnExport()
 
     ExportTemplate* exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
-    if (!exportTemplate) {
+    if (exportTemplate == nullptr) {
         return;
     }
 
@@ -93,7 +93,7 @@ void ExportDialog::onBtnExport()
         ui->message->setErrorMessage(tr("Could not create export directory."));
         return;
     }
-    dir.setCurrent(location + "/" + subDir);
+    QDir::setCurrent(location + "/" + subDir);
 
     ui->btnExport->setEnabled(false);
 
@@ -114,14 +114,14 @@ void ExportDialog::onBtnExport()
     ui->progressBar->setRange(0, itemsToExport);
 
     // Create the base structure
-    exportTemplate->copyTo(dir.currentPath());
+    exportTemplate->copyTo(QDir::currentPath());
 
     // Export movies
     if (sections.contains(ExportTemplate::ExportSection::Movies)) {
         if (m_canceled) {
             return;
         }
-        parseAndSaveMovies(dir.currentPath(), exportTemplate, Manager::instance()->movieModel()->movies());
+        parseAndSaveMovies(QDir::currentPath(), exportTemplate, Manager::instance()->movieModel()->movies());
     }
 
     // Export TV Shows
@@ -129,7 +129,7 @@ void ExportDialog::onBtnExport()
         if (m_canceled) {
             return;
         }
-        parseAndSaveTvShows(dir.currentPath(), exportTemplate, Manager::instance()->tvShowModel()->tvShows());
+        parseAndSaveTvShows(QDir::currentPath(), exportTemplate, Manager::instance()->tvShowModel()->tvShows());
     }
 
     // Export Concerts
@@ -137,7 +137,7 @@ void ExportDialog::onBtnExport()
         if (m_canceled) {
             return;
         }
-        parseAndSaveConcerts(dir.currentPath(), exportTemplate, Manager::instance()->concertModel()->concerts());
+        parseAndSaveConcerts(QDir::currentPath(), exportTemplate, Manager::instance()->concertModel()->concerts());
     }
 
     ui->progressBar->setValue(ui->progressBar->maximum());
@@ -154,7 +154,7 @@ void ExportDialog::onThemeChanged()
 
     ExportTemplate* exportTemplate =
         ExportTemplateLoader::instance()->getTemplateByIdentifier(ui->comboTheme->itemData(index).toString());
-    if (!exportTemplate) {
+    if (exportTemplate == nullptr) {
         return;
     }
 
@@ -193,7 +193,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, 
 
         QString movieTemplate = itemContent;
         replaceVars(movieTemplate, movie, dir, true);
-        QFile file(dir.currentPath() + QString("/movies/%1.html").arg(movie->movieId()));
+        QFile file(QDir::currentPath() + QString("/movies/%1.html").arg(movie->movieId()));
         if (file.open(QFile::WriteOnly | QFile::Text)) {
             file.write(movieTemplate.toUtf8());
             file.close();
@@ -208,7 +208,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, 
 
     listContent.replace(listMovieBlock, movieList.join("\n"));
 
-    QFile file(dir.currentPath() + "/movies.html");
+    QFile file(QDir::currentPath() + "/movies.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
@@ -326,7 +326,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate
 
         QString concertTemplate = itemContent;
         replaceVars(concertTemplate, concert, dir, true);
-        QFile file(dir.currentPath() + QString("/concerts/%1.html").arg(concert->concertId()));
+        QFile file(QDir::currentPath() + QString("/concerts/%1.html").arg(concert->concertId()));
         if (file.open(QFile::WriteOnly | QFile::Text)) {
             file.write(concertTemplate.toUtf8());
             file.close();
@@ -341,7 +341,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate
 
     listContent.replace(listConcertBlock, concertList.join("\n"));
 
-    QFile file(dir.currentPath() + "/concerts.html");
+    QFile file(QDir::currentPath() + "/concerts.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
@@ -408,7 +408,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate,
         QString showTemplate = itemContent;
         replaceVars(showTemplate, show, dir, true);
         {
-            QFile file(dir.currentPath() + QString("/tvshows/%1.html").arg(show->showId()));
+            QFile file(QDir::currentPath() + QString("/tvshows/%1.html").arg(show->showId()));
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 file.write(showTemplate.toUtf8());
                 file.close();
@@ -427,7 +427,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate,
             }
             QString episodeTemplate = episodeContent;
             replaceVars(episodeTemplate, episode, dir, true);
-            QFile file(dir.currentPath() + QString("/episodes/%1.html").arg(episode->episodeId()));
+            QFile file(QDir::currentPath() + QString("/episodes/%1.html").arg(episode->episodeId()));
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 file.write(episodeTemplate.toUtf8());
                 file.close();
@@ -439,7 +439,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate,
 
     listContent.replace(listTvShowBlock, tvShowList.join("\n"));
 
-    QFile file(dir.currentPath() + "/tvshows.html");
+    QFile file(QDir::currentPath() + "/tvshows.html");
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         file.write(listContent.toUtf8());
         file.close();
@@ -655,16 +655,16 @@ void ExportDialog::replaceImages(QString& m,
             QString destFile;
             bool imageSaved = false;
             QString typeName;
-            if (movie) {
+            if (movie != nullptr) {
                 imageSaved = saveImageForType(type, size, dir, destFile, movie);
                 typeName = "movie";
-            } else if (concert) {
+            } else if (concert != nullptr) {
                 imageSaved = saveImageForType(type, size, dir, destFile, concert);
                 typeName = "concert";
-            } else if (tvShow) {
+            } else if (tvShow != nullptr) {
                 imageSaved = saveImageForType(type, size, dir, destFile, tvShow);
                 typeName = "tvshow";
-            } else if (episode) {
+            } else if (episode != nullptr) {
                 imageSaved = saveImageForType(type, size, dir, destFile, episode);
                 typeName = "episode";
             }
@@ -719,7 +719,7 @@ bool ExportDialog::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, dir.currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
@@ -760,7 +760,7 @@ bool ExportDialog::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, dir.currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
@@ -802,7 +802,7 @@ bool ExportDialog::saveImageForType(const QString& type,
     }
 
     int imageQuality = (imageFormat == "jpg") ? 90 : -1;
-    saveImage(size, filename, dir.currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
+    saveImage(size, filename, QDir::currentPath() + "/" + destFile, imageFormat.c_str(), imageQuality);
 
     return true;
 }
@@ -822,7 +822,7 @@ bool ExportDialog::saveImageForType(const QString& type,
         if (filename.isEmpty()) {
             return false;
         }
-        saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
+        saveImage(size, filename, QDir::currentPath() + "/" + destFile, "jpg", 90);
     } else {
         return false;
     }

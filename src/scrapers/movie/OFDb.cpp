@@ -112,7 +112,7 @@ void OFDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
 
-    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
 
     QUrl url;
     QRegExp rxId("^id\\d+$");
@@ -163,10 +163,8 @@ void OFDb::searchFinished()
             reply->setProperty("notFoundCounter", notFoundCounter);
             connect(reply, &QNetworkReply::finished, this, &OFDb::searchFinished);
             return;
-
-        } else {
-            qWarning() << "To many 404 errors. Quit search.";
         }
+        qWarning() << "To many 404 errors. Quit search.";
     }
 
     QVector<ScraperSearchResult> results;
@@ -256,7 +254,7 @@ void OFDb::loadFinished()
     QString ofdbId = reply->property("ofdbId").toString();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -347,7 +345,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
         } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "titel") {
-                    movie->addGenre(Helper::mapGenre(xml.readElementText()));
+                    movie->addGenre(helper::mapGenre(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }
@@ -373,7 +371,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperI
         } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "name") {
-                    movie->addCountry(Helper::mapCountry(xml.readElementText()));
+                    movie->addCountry(helper::mapCountry(xml.readElementText()));
                 } else {
                     xml.skipCurrentElement();
                 }

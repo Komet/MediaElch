@@ -12,7 +12,7 @@ namespace kodi {
 class MovieXmlReader
 {
 public:
-    MovieXmlReader(Movie& movie);
+    explicit MovieXmlReader(Movie& movie);
     void parseNfoDom(QDomDocument domDoc);
 
 private:
@@ -47,18 +47,13 @@ private:
         (m_movie.*method)(element.text().toDouble());
     }
 
-    template<MovieStoreMethod<QDate> method>
-    void simpleYear(const QDomElement& element)
+    template<MovieStoreMethod<QDateTime> method>
+    void simpleDateTime(const QDomElement& element)
     {
-        const QDate value = QDate::fromString(element.text(), "yyyy");
-        (m_movie.*method)(value);
-    }
-
-    template<MovieStoreMethod<QDate> method>
-    void simpleDate(const QDomElement& element)
-    {
-        const QDate value = QDate::fromString(element.text(), "yyyy-MM-dd");
-        (m_movie.*method)(value);
+        const QDateTime value = QDateTime::fromString(element.text(), "yyyy-MM-dd HH:mm:ss");
+        if (value.isValid()) {
+            (m_movie.*method)(value);
+        }
     }
 
     void movieSet(const QDomElement& element);

@@ -11,7 +11,7 @@ NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) 
 void NetworkReplyWatcher::setReply(QNetworkReply* reply)
 {
     m_reply = reply;
-    if (!m_reply) {
+    if (m_reply == nullptr) {
         return;
     }
     connect(m_reply, &QNetworkReply::finished, &m_timer, &QTimer::stop);
@@ -22,7 +22,7 @@ void NetworkReplyWatcher::setReply(QNetworkReply* reply)
 
 void NetworkReplyWatcher::onTimeout()
 {
-    if (m_reply) {
+    if (m_reply != nullptr) {
         m_reply->abort();
     }
 }

@@ -176,17 +176,20 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
             b.hint = [&section, &discType] {
                 if (section == "hdmusiclogo") {
                     return QStringLiteral("HD");
-                } else if (section == "musiclogo") {
-                    return QStringLiteral("SD");
-                } else if (discType == "bluray") {
-                    return QStringLiteral("BluRay");
-                } else if (discType == "dvd") {
-                    return QStringLiteral("DVD");
-                } else if (discType == "3d") {
-                    return QStringLiteral("3D");
-                } else {
-                    return QStringLiteral("");
                 }
+                if (section == "musiclogo") {
+                    return QStringLiteral("SD");
+                }
+                if (discType == "bluray") {
+                    return QStringLiteral("BluRay");
+                }
+                if (discType == "dvd") {
+                    return QStringLiteral("DVD");
+                }
+                if (discType == "3d") {
+                    return QStringLiteral("3D");
+                }
+                return QStringLiteral("");
             }();
 
             b.language = poster.value("lang").toString();

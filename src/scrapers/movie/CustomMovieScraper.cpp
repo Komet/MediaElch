@@ -31,7 +31,7 @@ QNetworkAccessManager* CustomMovieScraper::qnam()
 CustomMovieScraper* CustomMovieScraper::instance(QObject* parent)
 {
     static CustomMovieScraper* m_instance = nullptr;
-    if (!m_instance) {
+    if (m_instance == nullptr) {
         m_instance = new CustomMovieScraper(parent);
     }
     return m_instance;
@@ -55,7 +55,7 @@ bool CustomMovieScraper::isAdult() const
 void CustomMovieScraper::search(QString searchStr)
 {
     auto* scraper = scraperForInfo(MovieScraperInfos::Title);
-    if (!scraper) {
+    if (scraper == nullptr) {
         return;
     }
     scraper->search(searchStr);
@@ -64,7 +64,7 @@ void CustomMovieScraper::search(QString searchStr)
 void CustomMovieScraper::onTitleSearchDone(QVector<ScraperSearchResult> results)
 {
     auto* scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
-    if (!scraper) {
+    if (scraper == nullptr) {
         return;
     }
 
@@ -78,7 +78,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersNeedSearch(QVector<M
 {
     QVector<MovieScraperInterface*> scrapers;
     MovieScraperInterface* titleScraper = scraperForInfo(MovieScraperInfos::Title);
-    if (!titleScraper) {
+    if (titleScraper == nullptr) {
         return scrapers;
     }
 
@@ -162,7 +162,7 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
     bool needImdbId = false;
     for (const auto info : infos) {
         MovieScraperInterface* scraper = scraperForInfo(info);
-        if (!scraper) {
+        if (scraper == nullptr) {
             continue;
         }
         if (scraper->identifier() == IMDB::scraperIdentifier) {
@@ -231,7 +231,7 @@ void CustomMovieScraper::loadAllData(QMap<MovieScraperInterface*, QString> ids,
     QMap<MovieScraperInterface*, QString> scrapersWithIds;
     for (const auto info : infos) {
         auto* scraper = scraperForInfo(info);
-        if (!scraper) {
+        if (scraper == nullptr) {
             continue;
         }
 
@@ -308,7 +308,7 @@ QVector<MovieScraperInterface*> CustomMovieScraper::scrapersForInfos(QVector<Mov
     QVector<MovieScraperInterface*> scrapers;
     for (const auto info : infos) {
         MovieScraperInterface* scraper = scraperForInfo(info);
-        if (scraper && !scrapers.contains(scraper)) {
+        if ((scraper != nullptr) && !scrapers.contains(scraper)) {
             scrapers.append(scraper);
         }
     }

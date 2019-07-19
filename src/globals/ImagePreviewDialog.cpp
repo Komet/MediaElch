@@ -37,11 +37,11 @@ ImagePreviewDialog::~ImagePreviewDialog()
  */
 ImagePreviewDialog* ImagePreviewDialog::instance(QWidget* parent)
 {
-    static ImagePreviewDialog* m_instance = nullptr;
-    if (m_instance == nullptr) {
-        m_instance = new ImagePreviewDialog(parent);
+    static ImagePreviewDialog* s_instance = nullptr;
+    if (s_instance == nullptr) {
+        s_instance = new ImagePreviewDialog(parent);
     }
-    return m_instance;
+    return s_instance;
 }
 
 /**
@@ -51,7 +51,7 @@ ImagePreviewDialog* ImagePreviewDialog::instance(QWidget* parent)
 void ImagePreviewDialog::setImage(QPixmap img)
 {
     qDebug() << "Entered";
-    Helper::setDevicePixelRatio(img, Helper::devicePixelRatio(this));
+    helper::setDevicePixelRatio(img, helper::devicePixelRatio(this));
     ui->image->setPixmap(img);
 }
 

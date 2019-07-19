@@ -9,5 +9,5 @@ class ConcertRenamer : public Renamer
 {
 public:
     ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog);
-    RenameError renameConcert(Concert& movie);
+    RenameError renameConcert(Concert& concert);
 };

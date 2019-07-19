@@ -112,9 +112,9 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::applyStyle(ui->artStackedWidget);
-    Helper::applyStyle(ui->tabWidget);
-    Helper::applyEffect(ui->groupBox_3);
+    helper::applyStyle(ui->artStackedWidget);
+    helper::applyStyle(ui->tabWidget);
+    helper::applyEffect(ui->groupBox_3);
 }
 
 /**
@@ -192,10 +192,10 @@ void ConcertWidget::concertNameChanged(QString text)
 void ConcertWidget::setEnabledTrue(Concert* concert)
 {
     qDebug() << "Entered";
-    if (concert) {
+    if (concert != nullptr) {
         qDebug() << concert->name();
     }
-    if (concert && concert->controller()->downloadsInProgress()) {
+    if ((concert != nullptr) && concert->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
     }
@@ -501,7 +501,7 @@ void ConcertWidget::onRevertChanges()
  */
 void ConcertWidget::addGenre(QString genre)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->addGenre(genre);
@@ -513,7 +513,7 @@ void ConcertWidget::addGenre(QString genre)
  */
 void ConcertWidget::removeGenre(QString genre)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->removeGenre(genre);
@@ -522,7 +522,7 @@ void ConcertWidget::removeGenre(QString genre)
 
 void ConcertWidget::addTag(QString tag)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->addTag(tag);
@@ -531,7 +531,7 @@ void ConcertWidget::addTag(QString tag)
 
 void ConcertWidget::removeTag(QString tag)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->removeTag(tag);
@@ -563,7 +563,7 @@ void ConcertWidget::onArtPageTwo()
 
 void ConcertWidget::onRemoveExtraFanart(const QByteArray& image)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->removeExtraFanart(image);
@@ -572,7 +572,7 @@ void ConcertWidget::onRemoveExtraFanart(const QByteArray& image)
 
 void ConcertWidget::onRemoveExtraFanart(const QString& file)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     m_concert->removeExtraFanart(file);
@@ -581,7 +581,7 @@ void ConcertWidget::onRemoveExtraFanart(const QString& file)
 
 void ConcertWidget::onAddExtraFanart()
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
 
@@ -602,7 +602,7 @@ void ConcertWidget::onAddExtraFanart()
 
 void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     ui->fanarts->setLoading(true);
@@ -618,7 +618,7 @@ void ConcertWidget::onChooseImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -648,7 +648,7 @@ void ConcertWidget::onDeleteImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -659,7 +659,7 @@ void ConcertWidget::onDeleteImage()
 
 void ConcertWidget::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
-    if (!m_concert) {
+    if (m_concert == nullptr) {
         return;
     }
     emit setActionSaveEnabled(false, MainWidgets::Concerts);

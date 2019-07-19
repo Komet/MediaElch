@@ -30,7 +30,7 @@ MyLineEdit::MyLineEdit(QWidget* parent) :
 /**
  * @brief Moves the icons to their positions
  */
-void MyLineEdit::resizeEvent(QResizeEvent*)
+void MyLineEdit::resizeEvent(QResizeEvent* /*event*/)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
     const QSize size = m_loadingLabel->sizeHint();
@@ -194,13 +194,12 @@ void MyLineEdit::setShowMagnifier(bool show)
     m_showMagnifier = show;
 
     if (show) {
-        if (m_magnifierLabel != nullptr) {
-            delete m_magnifierLabel;
-        }
+        delete m_magnifierLabel;
+
         QPixmap magn(":/img/magnifier.png");
         magn =
-            magn.scaled(QSize(14, 14) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(magn, Helper::devicePixelRatio(this));
+            magn.scaled(QSize(14, 14) * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        helper::setDevicePixelRatio(magn, helper::devicePixelRatio(this));
         QPainter p;
         p.begin(&magn);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);

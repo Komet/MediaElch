@@ -52,5 +52,5 @@ private:
     QStringList m_activeTags;
     QVector<Badge*> m_badges;
     QPointer<QCompleter> m_completer;
-    void drawTags(bool drawAll = false);
+    void drawTags(bool printAll = false);
 };

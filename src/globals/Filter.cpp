@@ -255,15 +255,20 @@ bool Filter::accepts(Movie* movie)
         const int width = movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Width).toInt();
         if (m_shortText == "2160p") {
             return width == 3840;
-        } else if (m_shortText == "1080p") {
+        }
+        if (m_shortText == "1080p") {
             return width == 1920;
-        } else if (m_shortText == "720p") {
+        }
+        if (m_shortText == "720p") {
             return width == 1280;
-        } else if (m_shortText == "SD") {
+        }
+        if (m_shortText == "SD") {
             return width > 0 && width <= 720;
-        } else if (m_shortText == "BluRay") {
+        }
+        if (m_shortText == "BluRay") {
             return movie->discType() == DiscType::BluRay;
-        } else if (m_shortText == "DVD") {
+        }
+        if (m_shortText == "DVD") {
             return movie->discType() == DiscType::Dvd;
         }
     }
@@ -271,9 +276,11 @@ bool Filter::accepts(Movie* movie)
     if (isInfo(MovieFilters::AudioChannels)) {
         if (m_shortText == "2.0") {
             return movie->streamDetails()->hasAudioChannels(2);
-        } else if (m_shortText == "5.1") {
+        }
+        if (m_shortText == "5.1") {
             return movie->streamDetails()->hasAudioChannels(6);
-        } else if (m_shortText == "7.1") {
+        }
+        if (m_shortText == "7.1") {
             return movie->streamDetails()->hasAudioChannels(8);
         }
     }

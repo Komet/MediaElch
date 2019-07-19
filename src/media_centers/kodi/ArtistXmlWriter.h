@@ -12,7 +12,7 @@ namespace kodi {
 class ArtistXmlWriter
 {
 public:
-    ArtistXmlWriter(Artist& artist);
+    explicit ArtistXmlWriter(Artist& artist);
     QByteArray getArtistXml();
 
 private:
