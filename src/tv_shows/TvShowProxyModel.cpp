@@ -46,11 +46,7 @@ bool TvShowProxyModel::filterAcceptsRow(int source_row, const QModelIndex& sourc
     }
 
     // accept if any of the children is accepted on it's own merits
-    if (hasAcceptedChildren(source_row, source_parent)) {
-        return true;
-    }
-
-    return false;
+    return hasAcceptedChildren(source_row, source_parent);
 }
 
 bool TvShowProxyModel::filterAcceptsRowItself(int sourceRow, const QModelIndex& sourceParent) const

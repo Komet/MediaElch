@@ -11,7 +11,7 @@ namespace kodi {
 class EpisodeXmlReader
 {
 public:
-    EpisodeXmlReader(TvShowEpisode& episode);
+    explicit EpisodeXmlReader(TvShowEpisode& episode);
     void parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails);
 
 private:

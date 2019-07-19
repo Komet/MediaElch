@@ -314,11 +314,11 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
             b.hint = [&section] {
                 if (section == "hdmusiclogo") {
                     return QStringLiteral("HD");
-                } else if (section == "musiclogo") {
-                    return QStringLiteral("SD");
-                } else {
-                    return QStringLiteral("");
                 }
+                if (section == "musiclogo") {
+                    return QStringLiteral("SD");
+                }
+                return QStringLiteral("");
             }();
             b.language = val.value("lang").toString();
             FanartTv::insertPoster(posters, b, m_language, "");

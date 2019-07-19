@@ -136,7 +136,7 @@ public:
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
-    void setDownloadsSize(int downloadsSize);
+    void setDownloadsSize(int downloadsLeft);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
     void setTmdbId(TmdbId id);

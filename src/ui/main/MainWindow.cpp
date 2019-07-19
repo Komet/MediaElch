@@ -289,7 +289,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     QWidget::resizeEvent(event);
 }
 
-void MainWindow::closeEvent(QCloseEvent*)
+void MainWindow::closeEvent(QCloseEvent* /*event*/)
 {
     m_settings->setMainWindowSize(size());
     m_settings->setMainWindowPosition(pos());
@@ -683,7 +683,7 @@ void MainWindow::onMenu(QToolButton* button)
         button = static_cast<QToolButton*>(QObject::sender());
     }
 
-    if (!button) {
+    if (button == nullptr) {
         return;
     }
 

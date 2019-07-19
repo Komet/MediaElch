@@ -29,13 +29,13 @@ void ExportTemplateWidget::setExportTemplate(ExportTemplate* exportTemplate)
 
     if (exportTemplate->updateAvailable()) {
         ui->btnInstall->setText(tr("Update"));
-        Helper::setButtonStyle(ui->btnInstall, Helper::ButtonWarning);
+        helper::setButtonStyle(ui->btnInstall, helper::ButtonWarning);
     } else if (exportTemplate->isInstalled()) {
         ui->btnInstall->setText(tr("Uninstall"));
-        Helper::setButtonStyle(ui->btnInstall, Helper::ButtonDanger);
+        helper::setButtonStyle(ui->btnInstall, helper::ButtonDanger);
     } else if (exportTemplate->isRemote()) {
         ui->btnInstall->setText(tr("Install"));
-        Helper::setButtonStyle(ui->btnInstall, Helper::ButtonSuccess);
+        helper::setButtonStyle(ui->btnInstall, helper::ButtonSuccess);
     }
 }
 

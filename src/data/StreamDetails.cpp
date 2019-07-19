@@ -133,10 +133,10 @@ void StreamDetails::loadStreamDetails()
 
 void StreamDetails::loadWithLibrary()
 {
-    MediaInfo MI;
-    MI.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
-    MI.Option(__T("Internet"), __T("no"));
-    MI.Option(__T("Complete"), __T("1"));
+    MediaInfo mi;
+    mi.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+    mi.Option(__T("Internet"), __T("no"));
+    mi.Option(__T("Complete"), __T("1"));
 
     QString fileName = m_files.first();
     if (m_files.count() == 1 && m_files.first().endsWith("index.bdmv")) {
@@ -148,56 +148,56 @@ void StreamDetails::loadWithLibrary()
         }
     }
 
-    MI.Open(QString2MI(fileName));
+    mi.Open(QString2MI(fileName));
 
     int duration = 0;
     QString scanType;
     QString videoCodec;
 
-    int videoCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("VideoCount"))).toInt();
-    int audioCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("AudioCount"))).toInt();
-    int textCount = MI2QString(MI.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
+    int videoCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("VideoCount"))).toInt();
+    int audioCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("AudioCount"))).toInt();
+    int textCount = MI2QString(mi.Get(Stream_General, 0, QString2MI("TextCount"))).toInt();
 
     if (m_files.count() > 1) {
         for (const QString& file : m_files) {
-            MediaInfo MI_duration;
-            MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
-            MI_duration.Option(__T("Internet"), __T("no"));
-            MI_duration.Option(__T("Complete"), __T("1"));
-            MI_duration.Open(QString2MI(file));
-            duration += qRound(MI2QString(MI_duration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
-            MI_duration.Close();
+            MediaInfo miDuration;
+            miDuration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+            miDuration.Option(__T("Internet"), __T("no"));
+            miDuration.Option(__T("Complete"), __T("1"));
+            miDuration.Open(QString2MI(file));
+            duration += qRound(MI2QString(miDuration.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
+            miDuration.Close();
         }
     } else {
-        duration += qRound(MI2QString(MI.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
+        duration += qRound(MI2QString(mi.Get(Stream_General, 0, QString2MI("Duration"))).toFloat() / 1000);
     }
 
     setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds, QString::number(duration));
 
     if (videoCount > 0) {
-        double aspectRatio = MI2QString(MI.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
-        int width = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
-        int height = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
+        double aspectRatio = MI2QString(mi.Get(Stream_Video, 0, QString2MI("DisplayAspectRatio"))).toDouble();
+        int width = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Width"))).toInt();
+        int height = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Height"))).toInt();
 
-        QString codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format")));
+        QString codec = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Format")));
         if (codec.isEmpty()) {
-            codec = MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID")));
+            codec = MI2QString(mi.Get(Stream_Video, 0, QString2MI("CodecID")));
         }
 
-        QString version = MI2QString(MI.Get(Stream_Video, 0, QString2MI("Format_Version")));
+        QString version = MI2QString(mi.Get(Stream_Video, 0, QString2MI("Format_Version")));
 
         videoCodec = videoFormat(codec, version);
 
-        if (MI2QString(MI.Get(Stream_Video, 0, QString2MI("CodecID"))) == "V_MPEGH/ISO/HEVC") {
+        if (MI2QString(mi.Get(Stream_Video, 0, QString2MI("CodecID"))) == "V_MPEGH/ISO/HEVC") {
             scanType = "progressive";
         } else {
-            scanType = MI2QString(MI.Get(Stream_Video, 0, QString2MI("ScanType")));
+            scanType = MI2QString(mi.Get(Stream_Video, 0, QString2MI("ScanType")));
             if (scanType == "MBAFF") {
                 scanType = "interlaced";
             }
         }
 
-        QString multiView = MI2QString(MI.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
+        QString multiView = MI2QString(mi.Get(Stream_Video, 0, QString2MI("MultiView_Layout")));
 
         setVideoDetail(VideoDetails::Codec, videoCodec);
         setVideoDetail(VideoDetails::Aspect, QString("%1").arg(aspectRatio));
@@ -208,21 +208,21 @@ void StreamDetails::loadWithLibrary()
     }
 
     for (int i = 0; i < audioCount; ++i) {
-        QString lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String3")));
+        QString lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String3")));
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String2")));
+            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String2")));
         }
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String1")));
+            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String1")));
         }
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Language/String")));
+            lang = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Language/String")));
         }
-        QString audioCodec = audioFormat(MI2QString(MI.Get(Stream_Audio, i, QString2MI("Codec"))),
-            MI2QString(MI.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
-        QString channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)")));
-        if (!MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
-            channels = MI2QString(MI.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
+        QString audioCodec = audioFormat(MI2QString(mi.Get(Stream_Audio, i, QString2MI("Codec"))),
+            MI2QString(mi.Get(Stream_Audio, i, QString2MI("Format_Profile"))));
+        QString channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)")));
+        if (!MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
+            channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
         }
         QRegExp rx("^\\D*(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
@@ -236,20 +236,20 @@ void StreamDetails::loadWithLibrary()
     }
 
     for (int i = 0; i < textCount; ++i) {
-        QString lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String3")));
+        QString lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String3")));
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String2")));
+            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String2")));
         }
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String1")));
+            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String1")));
         }
         if (lang.isEmpty()) {
-            lang = MI2QString(MI.Get(Stream_Text, i, QString2MI("Language/String")));
+            lang = MI2QString(mi.Get(Stream_Text, i, QString2MI("Language/String")));
         }
         setSubtitleDetail(i, StreamDetails::SubtitleDetails::Language, lang);
     }
 
-    MI.Close();
+    mi.Close();
 }
 
 /**
@@ -308,8 +308,8 @@ QString StreamDetails::audioFormat(const QString& codec, const QString& profile)
 
 QString StreamDetails::stereoFormat(const QString& format) const
 {
-    if (Helper::stereoModes().values().contains(format.toLower())) {
-        return Helper::stereoModes().key(format.toLower());
+    if (helper::stereoModes().values().contains(format.toLower())) {
+        return helper::stereoModes().key(format.toLower());
     }
     return "";
 }

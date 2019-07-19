@@ -9,10 +9,10 @@
 UnpackButtons::UnpackButtons(QWidget* parent) : QWidget(parent), ui(new Ui::UnpackButtons)
 {
     ui->setupUi(this);
-    Helper::setButtonStyle(ui->btnUnpack, Helper::ButtonPrimary);
-    Helper::setButtonStyle(ui->btnUnpackWithPassword, Helper::ButtonInfo);
-    Helper::setButtonStyle(ui->btnStop, Helper::ButtonWarning);
-    Helper::setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
+    helper::setButtonStyle(ui->btnUnpack, helper::ButtonPrimary);
+    helper::setButtonStyle(ui->btnUnpackWithPassword, helper::ButtonInfo);
+    helper::setButtonStyle(ui->btnStop, helper::ButtonWarning);
+    helper::setButtonStyle(ui->btnDelete, helper::ButtonDanger);
     ui->progressBar->setVisible(false);
     ui->btnStop->setVisible(false);
     connect(ui->btnUnpack, &QAbstractButton::clicked, this, &UnpackButtons::onUnpack);

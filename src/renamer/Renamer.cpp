@@ -84,9 +84,8 @@ bool Renamer::rename(const QString& file, const QString& newName)
             return false;
         }
         return f.rename(newName);
-    } else {
-        return f.rename(newName);
     }
+    return f.rename(newName);
 }
 
 bool Renamer::rename(QDir& dir, QString newName)
@@ -97,8 +96,7 @@ bool Renamer::rename(QDir& dir, QString newName)
             return false;
         }
         return tmpDir.rename(dir.path() + "tmp", newName);
-    } else {
-        QDir tmpDir;
-        return tmpDir.rename(dir.path(), newName);
     }
+    QDir tmpDir;
+    return tmpDir.rename(dir.path(), newName);
 }

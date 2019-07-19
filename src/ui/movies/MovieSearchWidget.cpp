@@ -317,7 +317,7 @@ void MovieSearchWidget::onLanguageChanged()
 
 void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
 {
-    if (!scraper) {
+    if (scraper == nullptr) {
         return;
     }
     QString searchText = [&]() -> QString {
@@ -327,7 +327,8 @@ void MovieSearchWidget::setSearchText(MovieScraperInterface* scraper)
         if (scraper->identifier() == TMDb::scraperIdentifier) {
             if (m_tmdbId.isValid()) {
                 return m_tmdbId.withPrefix();
-            } else if (m_imdbId.isValid()) {
+            }
+            if (m_imdbId.isValid()) {
                 return m_imdbId.toString();
             }
         }

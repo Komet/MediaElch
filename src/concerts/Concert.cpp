@@ -29,8 +29,8 @@ Concert::Concert(QStringList files, QObject* parent) :
     m_hasExtraFanarts{false}
 {
     moveToThread(QApplication::instance()->thread());
-    static int m_idCounter = 0;
-    m_concert.concertId = ++m_idCounter;
+    static int s_idCounter = 0;
+    m_concert.concertId = ++s_idCounter;
     setFiles(files);
 }
 
@@ -534,7 +534,7 @@ void Concert::setOverview(QString overview)
  */
 void Concert::setRating(Rating rating)
 {
-    m_concert.rating = rating;
+    m_concert.rating = std::move(rating);
     setChanged(true);
 }
 
@@ -902,10 +902,10 @@ DiscType Concert::discType() const
     if (files().isEmpty()) {
         return DiscType::Single;
     }
-    if (Helper::isDvd(files().first())) {
+    if (helper::isDvd(files().first())) {
         return DiscType::Dvd;
     }
-    if (Helper::isBluRay(files().first())) {
+    if (helper::isBluRay(files().first())) {
         return DiscType::BluRay;
     }
     return DiscType::Single;
@@ -929,7 +929,7 @@ void Concert::removeImage(ImageType type)
 
 bool Concert::lessThan(Concert* a, Concert* b)
 {
-    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
 }
 
 QVector<ImageType> Concert::imageTypes()

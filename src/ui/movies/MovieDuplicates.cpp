@@ -44,7 +44,7 @@ MovieDuplicates::MovieDuplicates(QWidget* parent) : QWidget(parent), ui(new Ui::
 
     ui->duplicates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    Helper::applyStyle(ui->movieDuplicatesWidget);
+    helper::applyStyle(ui->movieDuplicatesWidget);
 
     createContextMenu();
 

@@ -137,7 +137,7 @@ QVector<TrailerResult> HdTrailers::parseTrailers(QString html)
             }
 
             TrailerResult r;
-            r.trailerUrl = Helper::urlDecode(url);
+            r.trailerUrl = helper::urlDecode(url);
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
             results.append(r);
         }

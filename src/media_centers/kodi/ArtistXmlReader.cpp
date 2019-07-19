@@ -12,7 +12,7 @@
 namespace mediaelch {
 namespace kodi {
 
-ArtistXmlReader::ArtistXmlReader(Artist& actor) : m_artist{actor}
+ArtistXmlReader::ArtistXmlReader(Artist& artist) : m_artist{artist}
 {
 }
 

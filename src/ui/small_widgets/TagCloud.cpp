@@ -149,7 +149,7 @@ void TagCloud::repositionTags()
 void TagCloud::mousePressEvent(QMouseEvent* event)
 {
     Badge* child = static_cast<Badge*>(childAt(event->pos()));
-    if (!child || !child->inherits("Badge")) {
+    if ((child == nullptr) || !child->inherits("Badge")) {
         return;
     }
 
@@ -236,7 +236,7 @@ void TagCloud::setBadgeType(TagCloud::BadgeType type)
 
 void TagCloud::setCompleter(QCompleter* completer)
 {
-    if (m_completer) {
+    if (m_completer != nullptr) {
         m_completer->deleteLater();
     }
     m_completer = completer;

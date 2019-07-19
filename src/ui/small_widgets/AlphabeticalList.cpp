@@ -109,7 +109,7 @@ void AlphabeticalList::setAlphas(QStringList alphas)
 void AlphabeticalList::onAlphaClicked()
 {
     auto button = dynamic_cast<QToolButton*>(sender());
-    if (!button) {
+    if (button == nullptr) {
         return;
     }
     emit sigAlphaClicked(button->text());
@@ -117,7 +117,7 @@ void AlphabeticalList::onAlphaClicked()
 
 void AlphabeticalList::stopAnimation()
 {
-    if (m_outAnim) {
+    if (m_outAnim != nullptr) {
         m_outAnim->stop();
     }
 }

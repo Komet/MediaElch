@@ -7,12 +7,16 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-MovieModel::MovieModel(QObject* parent) : QAbstractItemModel(parent)
-{
-#ifdef Q_OS_WIN
-    m_newIcon = QIcon(":/img/star_blue.png");
-    m_syncIcon = QIcon(":/img/reload_orange.png");
+MovieModel::MovieModel(QObject* parent) :
+#ifndef Q_OS_WIN
+    QAbstractItemModel(parent)
 #else
+    QAbstractItemModel(parent),
+    m_newIcon(QIcon(":/img/star_blue.png")),
+    m_syncIcon(QIcon(":/img/reload_orange.png"))
+#endif
+{
+#ifndef Q_OS_WIN
     auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
@@ -101,21 +105,27 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
-            return Helper::appendArticle(movie->name());
-        } else if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
+            return helper::appendArticle(movie->name());
+        }
+        if (role == Qt::ToolTipRole || role == Qt::UserRole + 7) {
             if (movie->files().empty()) {
                 return QVariant();
             }
             return movie->files().at(0);
-        } else if (role == Qt::UserRole + 1) {
+        }
+        if (role == Qt::UserRole + 1) {
             return movie->controller()->infoLoaded();
-        } else if (role == Qt::UserRole + 2) {
+        }
+        if (role == Qt::UserRole + 2) {
             return movie->hasChanged();
-        } else if (role == Qt::UserRole + 3) {
+        }
+        if (role == Qt::UserRole + 3) {
             return movie->released();
-        } else if (role == Qt::UserRole + 4) {
+        }
+        if (role == Qt::UserRole + 4) {
             return movie->watched();
-        } else if (role == Qt::UserRole + 5) {
+        }
+        if (role == Qt::UserRole + 5) {
             return movie->fileLastModified();
         } else if (role == Qt::UserRole + 6) {
             return movie->syncNeeded();
@@ -128,11 +138,12 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         } else if (role == Qt::DecorationRole) {
             if (!movie->controller()->infoLoaded()) {
                 return m_newIcon;
-            } else if (movie->syncNeeded()) {
+            }
+            if (movie->syncNeeded()) {
                 return m_syncIcon;
             }
         } else if (role == Qt::BackgroundRole) {
-            return Helper::colorForLabel(movie->label());
+            return helper::colorForLabel(movie->label());
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;

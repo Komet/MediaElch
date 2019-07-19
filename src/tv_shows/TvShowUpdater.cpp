@@ -82,7 +82,7 @@ void TvShowUpdater::onLoadFinished()
     }
     reply->deleteLater();
     TvShow* show = reply->property("storage").value<Storage*>()->show();
-    if (!show) {
+    if (show == nullptr) {
         return;
     }
 

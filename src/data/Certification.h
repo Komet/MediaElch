@@ -24,5 +24,5 @@ private:
     QString m_certification;
 };
 
-std::ostream& operator<<(std::ostream& os, const Certification& value);
+std::ostream& operator<<(std::ostream& os, const Certification& id);
 QDebug operator<<(QDebug debug, const Certification& id);

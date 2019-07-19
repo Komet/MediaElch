@@ -189,7 +189,7 @@ void ConcertFilesWidget::openFolder()
 }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Concert *concert = Manager::instance()->concertModel()->concert(row);
-    if (!concert || concert->files().isEmpty()) {
+    if ((concert == nullptr) || concert->files().isEmpty()) {
         return;
 }
     QFileInfo fi(concert->files().at(0));
@@ -204,7 +204,7 @@ void ConcertFilesWidget::openNfo()
 }
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Concert *concert = Manager::instance()->concertModel()->concert(row);
-    if (!concert || concert->files().isEmpty()) {
+    if ((concert == nullptr) || concert->files().isEmpty()) {
         return;
 }
     QFileInfo fi(Manager::instance()->mediaCenterInterface()->nfoFilePath(concert));
@@ -235,7 +235,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 void ConcertFilesWidget::concertSelectedEmitter()
 {
     qDebug() << "Entered";
-    if (m_lastConcert) {
+    if (m_lastConcert != nullptr) {
         emit concertSelected(m_lastConcert);
 }
 }

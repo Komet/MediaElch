@@ -20,7 +20,7 @@
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 
-namespace Helper {
+namespace helper {
 
 /// @brief Encodes a string to latin1 percent encoding needed for some scrapers
 /// @param str String to encode
@@ -309,13 +309,14 @@ QString formatFileSize(const qint64& size)
 {
     if (size > 1024 * 1024 * 1024) {
         return QString("%1 GB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0 / 1024.0, 'f', 2));
-    } else if (size > 1024 * 1024) {
-        return QString("%1 MB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0, 'f', 2));
-    } else if (size > 1024) {
-        return QString("%1 kB").arg(QString::number(static_cast<double>(size) / 1024.0, 'f', 2));
-    } else {
-        return QString("%1 B").arg(QString::number(static_cast<double>(size), 'f', 2));
     }
+    if (size > 1024 * 1024) {
+        return QString("%1 MB").arg(QString::number(static_cast<double>(size) / 1024.0 / 1024.0, 'f', 2));
+    }
+    if (size > 1024) {
+        return QString("%1 kB").arg(QString::number(static_cast<double>(size) / 1024.0, 'f', 2));
+    }
+    return QString("%1 B").arg(QString::number(static_cast<double>(size), 'f', 2));
 }
 
 void removeFocusRect(QWidget* widget)
@@ -654,19 +655,22 @@ int compareVersionNumbers(const QString& oldVersion, const QString& newVersion)
 
     if (xmlMajor > mMajor) {
         return 1;
-    } else if (xmlMajor < mMajor) {
+    }
+    if (xmlMajor < mMajor) {
         return -1;
     }
 
     if (xmlMajor == mMajor && xmlMinor > mMinor) {
         return 1;
-    } else if (xmlMajor == mMajor && xmlMinor < mMinor) {
+    }
+    if (xmlMajor == mMajor && xmlMinor < mMinor) {
         return -1;
     }
 
     if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix > mBugfix) {
         return 1;
-    } else if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix < mBugfix) {
+    }
+    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix < mBugfix) {
         return -1;
     }
 
@@ -818,4 +822,4 @@ QString secondsToTimeCode(quint32 duration)
     return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds);
 }
 
-} // namespace Helper
+} // namespace helper

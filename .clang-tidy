@@ -1,0 +1,39 @@
+---
+Checks:                '*,-abseil-*, -android-*, -boost-*, -cert-*, -cppcoreguidelines-*, -clang-analyzer-*, -fuchsia-*, -google-*, -hicpp-*, -llvm-*, -misc-*, -modernize-*, -mpi-*, -objc-*, -openmp-*, -performance-*, -portability-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming'
+WarningsAsErrors:      ''
+HeaderFilterRegex:     '^(?!build)/src'
+AnalyzeTemporaryDtors: false
+FormatStyle:           file
+
+# Why are some warnings disabled?
+# We disabled these checks because there are either false positives or too many warnings at the moment.
+#
+# abseil-*
+# android-*
+# boost-*
+# cert-*
+# cppcoreguidelines-*
+# clang-analyzer-*
+# fuchsia-*
+# google-*
+# hicpp-*
+# llvm-*
+# misc-*
+# modernize-*
+# mpi-*
+# objc-*
+# openmp-*
+# performance-*
+# portability-*
+# zircon-*
+# bugprone-narrowing-conversions
+# readability-uppercase-literal-suffix     # We use lowercase literals suffixes
+# readability-magic-numbers                # Used heavily in QColor constructors
+# readability-identifier-naming            # Somehow not stable; warnings don't tell what config parameter is responsible
+
+CheckOptions:
+  - key: bugprone-assert-side-effect.CheckFunctionCalls
+    value: 1
+  - key: bugprone-assert-side-effect.AssertMacros
+    value: 'assert'
+...

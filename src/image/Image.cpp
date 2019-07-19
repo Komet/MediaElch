@@ -2,11 +2,11 @@
 
 #include <QFile>
 
-int Image::m_idCounter = 0;
+static int s_idCounter = 0;
 
 Image::Image(QObject* parent) : QObject(parent), m_deletion{false}
 {
-    m_imageId = ++Image::m_idCounter;
+    m_imageId = ++s_idCounter;
 }
 
 QString Image::fileName() const
@@ -72,5 +72,5 @@ void Image::load()
 
 void Image::resetIdCounter()
 {
-    m_imageId = ++Image::m_idCounter;
+    m_imageId = ++s_idCounter;
 }

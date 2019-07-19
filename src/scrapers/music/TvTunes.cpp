@@ -14,7 +14,7 @@ TvTunes::TvTunes(QObject* parent) : QObject(parent)
 void TvTunes::search(QString searchStr)
 {
     searchStr = searchStr.replace(" ", "+");
-    searchStr = Helper::urlEncode(searchStr);
+    searchStr = helper::urlEncode(searchStr);
 
     m_searchStr = searchStr;
     m_queue.clear();

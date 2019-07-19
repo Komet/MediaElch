@@ -11,7 +11,7 @@ namespace kodi {
 class ConcertXmlReader
 {
 public:
-    ConcertXmlReader(Concert& concert);
+    explicit ConcertXmlReader(Concert& concert);
     void parseNfoDom(QDomDocument domDoc);
 
 private:

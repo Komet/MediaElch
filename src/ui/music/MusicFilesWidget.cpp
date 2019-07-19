@@ -63,7 +63,7 @@ void MusicFilesWidget::onOpenFolder()
     }
     QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
     MusicModelItem* item = Manager::instance()->musicModel()->getItem(index);
-    if (!item) {
+    if (item == nullptr) {
         return;
     }
     QString dir;
@@ -88,7 +88,7 @@ void MusicFilesWidget::onOpenNfo()
     }
     QModelIndex index = m_proxyModel->mapToSource(ui->music->currentIndex());
     MusicModelItem* item = Manager::instance()->musicModel()->getItem(index);
-    if (!item) {
+    if (item == nullptr) {
         return;
     }
     QString file;

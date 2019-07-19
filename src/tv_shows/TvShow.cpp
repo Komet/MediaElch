@@ -1127,7 +1127,7 @@ bool TvShow::hasTune() const
 
 bool TvShow::lessThan(TvShow* a, TvShow* b)
 {
-    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
 }
 
 QByteArray TvShow::image(ImageType imageType)

@@ -44,7 +44,7 @@ QByteArray ConcertXmlWriter::getConcertXml()
     KodiXml::setTextValue(doc, "mpaa", m_concert.certification().toString());
     KodiXml::setTextValue(doc, "playcount", QString("%1").arg(m_concert.playcount()));
     KodiXml::setTextValue(doc, "lastplayed", m_concert.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    KodiXml::setTextValue(doc, "trailer", Helper::formatTrailerUrl(m_concert.trailer().toString()));
+    KodiXml::setTextValue(doc, "trailer", helper::formatTrailerUrl(m_concert.trailer().toString()));
     KodiXml::setTextValue(doc, "watched", (m_concert.watched()) ? "true" : "false");
     KodiXml::setTextValue(doc, "genre", m_concert.genres().join(" / "));
     KodiXml::setListValue(doc, "tag", m_concert.tags());

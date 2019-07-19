@@ -134,13 +134,13 @@ void MovieFileSearcher::scanDir(QString startPath,
         }
 
         // Handle DVD
-        if (Helper::isDvd(path + QDir::separator() + cDir)) {
+        if (helper::isDvd(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
+        if (helper::isBluRay(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
@@ -341,11 +341,11 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
             dvds << videoDir.path();
         }
 
-        QString path = it.fileInfo().path();
-        if (!contents.contains(path)) {
-            contents.insert(path, QStringList());
+        QString filePath = it.fileInfo().path();
+        if (!contents.contains(filePath)) {
+            contents.insert(filePath, QStringList());
         }
-        contents[path].append(it.filePath());
+        contents[filePath].append(it.filePath());
         m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
     }
     MovieContents con;
@@ -459,10 +459,10 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                 QMap<QString, QStringList> stacked;
                 while (!files.isEmpty()) {
                     QString file = files.takeLast();
-                    QString stackedBase = Helper::stackedBaseName(file);
+                    QString stackedBase = helper::stackedBaseName(file);
                     stacked.insert(stackedBase, QStringList() << file);
                     for (const QString& f : files) {
-                        if (Helper::stackedBaseName(f) == stackedBase) {
+                        if (helper::stackedBaseName(f) == stackedBase) {
                             stacked[stackedBase].append(f);
                             files.removeOne(f);
                         }

@@ -10,7 +10,7 @@ namespace kodi {
 class ArtistXmlReader
 {
 public:
-    ArtistXmlReader(Artist& artist);
+    explicit ArtistXmlReader(Artist& artist);
     void parseNfoDom(QDomDocument domDoc);
 
 private:

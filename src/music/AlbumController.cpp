@@ -159,7 +159,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
 {
     emit sigInfoLoadDone(m_album);
 
-    if (!scraper) {
+    if (scraper == nullptr) {
         onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
         return;
     }
@@ -182,7 +182,7 @@ void AlbumController::scraperLoadDone(MusicScraperInterface* scraper)
                 break;
             }
         }
-        if (!imageProvider) {
+        if (imageProvider == nullptr) {
             onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
             return;
         }

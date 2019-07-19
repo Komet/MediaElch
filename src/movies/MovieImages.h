@@ -28,9 +28,9 @@ public:
 
     void addPoster(Poster poster, bool primaryLang = false);
     void addBackdrop(Poster backdrop);
-    void addDiscArt(Poster poster);
-    void addClearArt(Poster poster);
-    void addLogo(Poster poster);
+    void addDiscArt(Poster discArt);
+    void addClearArt(Poster clearArt);
+    void addLogo(Poster logo);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);

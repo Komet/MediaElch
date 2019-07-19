@@ -99,7 +99,7 @@ public:
     void setController(AlbumController* controller);
 
     QString mbReleaseGroupId() const;
-    void setMbReleaseGroupId(const QString& mbReleaseGroupId);
+    void setMbReleaseGroupId(const QString& mbId);
 
     QString mbAlbumId() const;
     void setMbAlbumId(const QString& mbAlbumId);

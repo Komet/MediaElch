@@ -24,5 +24,5 @@ private:
     QString m_tmdbId;
 };
 
-std::ostream& operator<<(std::ostream& os, const TmdbId& value);
+std::ostream& operator<<(std::ostream& os, const TmdbId& id);
 QDebug operator<<(QDebug debug, const TmdbId& id);

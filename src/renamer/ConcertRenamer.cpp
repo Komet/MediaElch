@@ -35,8 +35,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QDir chkDir(concertInfo.canonicalPath());
     chkDir.cdUp();
 
-    bool isBluRay = Helper::isBluRay(chkDir.path());
-    bool isDvd = Helper::isDvd(chkDir.path());
+    bool isBluRay = helper::isBluRay(chkDir.path());
+    bool isDvd = helper::isDvd(chkDir.path());
 
     if (isBluRay || isDvd) {
         parentDirName = dir.dirName();
@@ -64,12 +64,12 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             Renamer::replace(newFileName, "channels", QString::number(concert.streamDetails()->audioChannels()));
             Renamer::replace(newFileName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::sanitizeFileName(newFileName);
+            helper::sanitizeFileName(newFileName);
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
                     const int row =
@@ -78,9 +78,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                         m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                         errorOccured = true;
                         continue;
-                    } else {
-                        newConcertFiles.append(newFileName);
                     }
+                    newConcertFiles.append(newFileName);
                 }
 
                 QStringList filters;
@@ -119,7 +118,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
-            Helper::sanitizeFileName(newDataFileName);
+            helper::sanitizeFileName(newDataFileName);
             if (newDataFileName == fileName) {
                 // File already has correct name
                 return;
@@ -162,10 +161,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
         Renamer::replace(newFolderName, "channels", QString::number(concert.streamDetails()->audioChannels()));
         Renamer::replace(newFolderName,
             "resolution",
-            Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+            helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        Helper::sanitizeFileName(newFolderName);
+        helper::sanitizeFileName(newFolderName);
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
         }

@@ -244,11 +244,11 @@ void TvShowMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    if (m_currentShow && ui->chkAutoSave->isChecked()) {
+    if ((m_currentShow != nullptr) && ui->chkAutoSave->isChecked()) {
         m_currentShow->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     }
 
-    if (m_currentEpisode && ui->chkAutoSave->isChecked()) {
+    if ((m_currentEpisode != nullptr) && ui->chkAutoSave->isChecked()) {
         m_currentEpisode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     }
 
@@ -275,13 +275,13 @@ void TvShowMultiScrapeDialog::scrapeNext()
     ui->progressItem->setValue(0);
 
     if (ui->chkOnlyId->isChecked()
-        && ((m_currentShow && !m_currentShow->tvdbId().isValid())
-               || (m_currentEpisode && !m_currentEpisode->tvShow()->tvdbId().isValid()))) {
+        && (((m_currentShow != nullptr) && !m_currentShow->tvdbId().isValid())
+               || ((m_currentEpisode != nullptr) && !m_currentEpisode->tvShow()->tvdbId().isValid()))) {
         scrapeNext();
         return;
     }
 
-    if (m_currentShow) {
+    if (m_currentShow != nullptr) {
         connect(m_currentShow.data(),
             &TvShow::sigLoaded,
             this,
@@ -292,7 +292,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
         } else {
             m_currentShow->loadData(m_currentShow->tvdbId(), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
         }
-    } else if (m_currentEpisode) {
+    } else if (m_currentEpisode != nullptr) {
         connect(m_currentEpisode.data(),
             &TvShowEpisode::sigLoaded,
             this,
@@ -319,10 +319,10 @@ void TvShowMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resu
         return;
     }
 
-    if (m_currentShow) {
+    if (m_currentShow != nullptr) {
         m_showIds.insert(m_currentShow->name(), TvDbId(results.first().id));
         m_currentShow->loadData(TvDbId(results.first().id), m_scraperInterface, TvShowUpdateType::Show, m_infosToLoad);
-    } else if (m_currentEpisode) {
+    } else if (m_currentEpisode != nullptr) {
         m_showIds.insert(m_currentEpisode->tvShow()->name(), TvDbId(results.first().id));
         m_currentEpisode->loadData(TvDbId(results.first().id), m_scraperInterface, m_infosToLoad);
     }
@@ -528,27 +528,27 @@ void TvShowMultiScrapeDialog::onDownloadFinished(DownloadManagerElement elem)
         return;
     }
 
-    if (elem.show) {
+    if (elem.show != nullptr) {
         int left = m_downloadManager->downloadsLeftForShow(m_currentShow);
         ui->progressItem->setValue(ui->progressItem->maximum() - left);
         qDebug() << "Download finished" << left << ui->progressItem->maximum();
 
         if (TvShow::seasonImageTypes().contains(elem.imageType)) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
-                Helper::resizeBackdrop(elem.data);
+                helper::resizeBackdrop(elem.data);
             }
             ImageCache::instance()->invalidateImages(
                 Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
             elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
         } else if (elem.imageType != ImageType::Actor) {
             if (elem.imageType == ImageType::TvShowBackdrop) {
-                Helper::resizeBackdrop(elem.data);
+                helper::resizeBackdrop(elem.data);
             }
             ImageCache::instance()->invalidateImages(
                 Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType));
             elem.show->setImage(elem.imageType, elem.data);
         }
-    } else if (elem.episode && elem.imageType == ImageType::TvShowEpisodeThumb) {
+    } else if ((elem.episode != nullptr) && elem.imageType == ImageType::TvShowEpisodeThumb) {
         elem.episode->setThumbnailImage(elem.data);
         scrapeNext();
     }
@@ -576,7 +576,7 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
     }
 
     auto episode = static_cast<TvShowEpisode*>(QObject::sender());
-    if (!episode) {
+    if (episode == nullptr) {
         return;
     }
 

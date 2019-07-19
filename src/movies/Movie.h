@@ -107,7 +107,7 @@ public:
     void setWriter(QString writer);
     void setDirector(QString director);
     void addStudio(QString studio);
-    void addTag(QString label);
+    void addTag(QString tag);
     void setTrailer(QUrl trailer);
     void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
@@ -139,7 +139,7 @@ public:
     void removeStudio(QString studio);
     void removeGenre(QString* genre);
     void removeGenre(QString genre);
-    void removeTag(QString label);
+    void removeTag(QString tag);
 
     void setLabel(ColorLabel label);
     ColorLabel label() const;

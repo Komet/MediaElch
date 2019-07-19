@@ -53,7 +53,7 @@ void TableWriter::prepareCellProperties()
 
 {
     const auto& col = m_layout.column(m_currentColumn);
-    m_out << std::setw(col.width());
+    m_out << std::setw(static_cast<int>(col.width()));
     switch (col.alignment()) {
     case ColumnAlignment::Left: m_out << std::left; break;
     case ColumnAlignment::Right: m_out << std::right; break;

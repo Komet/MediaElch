@@ -52,7 +52,7 @@ private:
 class TableWriter
 {
 public:
-    explicit TableWriter(std::ostream& out, TableLayout layout) : m_out{out}, m_layout{layout} {}
+    explicit TableWriter(std::ostream& out, TableLayout layout) : m_out{out}, m_layout{std::move(layout)} {}
 
     void writeHeading();
     void writeCell(const QString& str);

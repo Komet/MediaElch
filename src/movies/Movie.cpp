@@ -1038,7 +1038,7 @@ DiscType Movie::discType() const
 
 bool Movie::lessThan(Movie* a, Movie* b)
 {
-    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
 }
 
 QVector<ImageType> Movie::imageTypes()

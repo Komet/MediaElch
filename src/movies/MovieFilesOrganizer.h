@@ -16,5 +16,5 @@ public:
     explicit MovieFilesOrganizer(QObject* parent = nullptr);
     ~MovieFilesOrganizer() override = default;
     void canceled(QString msg);
-    void moveToDirs(QString dir);
+    void moveToDirs(QString path);
 };

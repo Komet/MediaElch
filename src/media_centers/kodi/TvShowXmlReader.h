@@ -11,7 +11,7 @@ namespace kodi {
 class TvShowXmlReader
 {
 public:
-    TvShowXmlReader(TvShow& tvShow);
+    explicit TvShowXmlReader(TvShow& tvShow);
     void parseNfoDom(QDomDocument domDoc);
 
 private:

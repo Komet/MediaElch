@@ -43,6 +43,6 @@ private:
     QVector<MovieScraperInfos> m_scraperSupports;
 
     QNetworkAccessManager* qnam();
-    QVector<ScraperSearchResult> parseSearch(QString html, QString searchStr);
+    QVector<ScraperSearchResult> parseSearch(QString xml, QString searchStr);
     void parseAndAssignInfos(QString data, Movie* movie, QVector<MovieScraperInfos> infos);
 };

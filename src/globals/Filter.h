@@ -83,13 +83,13 @@ private:
     QString m_text;
     QString m_shortText;
     QStringList m_filterText;
-    MovieFilters m_movieInfo;
-    TvShowFilters m_showInfo;
-    MusicFilters m_musicInfo;
-    ConcertFilters m_concertInfo;
-    ColorLabel m_data;
-    FilterType m_type;
-    bool m_hasInfo;
+    MovieFilters m_movieInfo = MovieFilters::Title;
+    TvShowFilters m_showInfo = TvShowFilters::Title;
+    MusicFilters m_musicInfo = MusicFilters::Title;
+    ConcertFilters m_concertInfo = ConcertFilters::Title;
+    ColorLabel m_data = ColorLabel::NoLabel;
+    FilterType m_type = FilterType::Movie;
+    bool m_hasInfo = false;
 };
 
 Q_DECLARE_METATYPE(Filter*)

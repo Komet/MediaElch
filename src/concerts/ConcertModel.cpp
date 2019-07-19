@@ -7,15 +7,16 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 
-/**
- * @brief ConcertModel::ConcertModel
- */
-ConcertModel::ConcertModel(QObject* parent) : QAbstractItemModel(parent)
-{
-#ifdef Q_OS_WIN
-    m_newIcon = QIcon(":/img/star_blue.png");
-    m_syncIcon = QIcon(":/img/reload_orange.png");
+ConcertModel::ConcertModel(QObject* parent) :
+#ifndef Q_OS_WIN
+    QAbstractItemModel(parent)
 #else
+    QAbstractItemModel(parent),
+    m_newIcon(QIcon(":/img/star_blue.png")),
+    m_syncIcon(QIcon(":/img/reload_orange.png"))
+#endif
+{
+#ifndef Q_OS_WIN
     auto font = new MyIconFont(this);
     font->initFontAwesome();
     m_syncIcon = font->icon("refresh_cloud", QColor(248, 148, 6), QColor(255, 255, 255), "", 0, 1.0);
@@ -104,26 +105,32 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
 
     Concert* concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
-        return Helper::appendArticle(concert->name());
-    } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
+        return helper::appendArticle(concert->name());
+    }
+    if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole + 4)) {
         if (concert->files().empty()) {
             return QVariant();
         }
         return concert->files().at(0);
-    } else if (index.column() == 1 && role == Qt::DisplayRole) {
+    }
+    if (index.column() == 1 && role == Qt::DisplayRole) {
         return concert->folderName();
-    } else if (role == Qt::UserRole + 1) {
+    }
+    if (role == Qt::UserRole + 1) {
         return concert->controller()->infoLoaded();
-    } else if (role == Qt::UserRole + 2) {
+    }
+    if (role == Qt::UserRole + 2) {
         return concert->hasChanged();
-    } else if (role == Qt::UserRole + 3) {
+    }
+    if (role == Qt::UserRole + 3) {
         return concert->syncNeeded();
         /*
         } else if (role == Qt::ForegroundRole) {
             if (concert->hasChanged())
                 return QColor(255, 0, 0);
         */
-    } else if (role == Qt::FontRole) {
+    }
+    if (role == Qt::FontRole) {
         if (concert->hasChanged()) {
             QFont font;
             font.setItalic(true);
@@ -132,7 +139,8 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
     } else if (role == Qt::DecorationRole) {
         if (!concert->controller()->infoLoaded()) {
             return m_newIcon;
-        } else if (concert->syncNeeded()) {
+        }
+        if (concert->syncNeeded()) {
             return m_syncIcon;
         }
     }

@@ -20,8 +20,8 @@ DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloadi
  */
 QNetworkAccessManager* DownloadManager::qnam()
 {
-    static auto qnam = new QNetworkAccessManager();
-    return qnam;
+    static auto s_qnam = new QNetworkAccessManager();
+    return s_qnam;
 }
 
 /**
@@ -88,19 +88,19 @@ void DownloadManager::startNextDownloadType()
 void DownloadManager::startNextDownload()
 {
     m_timer.stop();
-    if (m_currentDownloadElement.movie) {
+    if (m_currentDownloadElement.movie != nullptr) {
         startNextDownloadType<Movie>();
     }
-    if (m_currentDownloadElement.show) {
+    if (m_currentDownloadElement.show != nullptr) {
         startNextDownloadType<TvShow>();
     }
-    if (m_currentDownloadElement.concert) {
+    if (m_currentDownloadElement.concert != nullptr) {
         startNextDownloadType<Concert>();
     }
-    if (m_currentDownloadElement.artist) {
+    if (m_currentDownloadElement.artist != nullptr) {
         startNextDownloadType<Artist>();
     }
-    if (m_currentDownloadElement.album) {
+    if (m_currentDownloadElement.album != nullptr) {
         startNextDownloadType<Album>();
     }
 
@@ -123,7 +123,7 @@ void DownloadManager::startNextDownload()
 
     if (m_currentDownloadElement.imageType == ImageType::Actor
         || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
-        if (m_currentDownloadElement.movie) {
+        if (m_currentDownloadElement.movie != nullptr) {
             int numDownloadsLeft = 0;
             m_mutex.lock();
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
@@ -133,7 +133,7 @@ void DownloadManager::startNextDownload()
             }
             m_mutex.unlock();
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
-        } else if (m_currentDownloadElement.show) {
+        } else if (m_currentDownloadElement.show != nullptr) {
             int numDownloadsLeft = 0;
             m_mutex.lock();
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
@@ -157,7 +157,7 @@ void DownloadManager::startNextDownload()
         }
         m_currentDownloadElement.data = data;
         if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
-            && !m_currentDownloadElement.movie) {
+            && (m_currentDownloadElement.movie == nullptr)) {
             m_currentDownloadElement.actor->image = data;
         } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                    && !m_currentDownloadElement.directDownload) {
@@ -235,7 +235,7 @@ void DownloadManager::downloadFinished()
     m_currentDownloadElement.data = data;
     reply->deleteLater();
     if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
-        && !m_currentDownloadElement.movie) {
+        && (m_currentDownloadElement.movie == nullptr)) {
         m_currentDownloadElement.actor->image = data;
     } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                && !m_currentDownloadElement.directDownload) {

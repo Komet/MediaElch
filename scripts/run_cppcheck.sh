@@ -8,7 +8,18 @@ IFS=$'\n\t'
 # If you develop for this project, please use `make cppcheck`.
 ###############################################################################
 
-cd "$( cd "$(dirname "$0")"; pwd -P )/.."
+cd "$(dirname "$0")/.."
+source scripts/utils.sh
 
-echo "Run cppcheck on all source files"
-cppcheck --enable=all --error-exitcode=1 -Isrc -j2 ./src
+print_important "Run cppcheck on all source files"
+print_info "Will only print warnings"
+
+cppcheck --enable=performance,warning,portability,information,missingInclude \
+	--error-exitcode=1 \
+	--inline-suppr     \
+	-q                 \
+	-Isrc              \
+	-j2                \
+	./src
+
+print_success "No issues found! Great! :-)"

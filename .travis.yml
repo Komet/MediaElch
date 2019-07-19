@@ -52,7 +52,7 @@ matrix:
     before_script:
       - cppcheck --version
     script:
-      - ./scripts/run_cppcheck.sh || echo "cppcheck failed. Not an error, yet."
+      - ./scripts/run_cppcheck.sh || echo "cppcheck failed"
 
   #----------------------------------------------------------------------------
   # Build & Test

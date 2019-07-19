@@ -139,9 +139,9 @@ bool TvShowEpisode::loadData(MediaCenterInterface* mediaCenterInterface, bool re
         QStringList filenameParts = files().at(0).split(QDir::separator());
         QString filename = filenameParts.last();
         if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-            if (filenameParts.count() > 1 && Helper::isDvd(files().at(0))) {
+            if (filenameParts.count() > 1 && helper::isDvd(files().at(0))) {
                 filename = filenameParts.at(filenameParts.count() - 3);
-            } else if (filenameParts.count() > 2 && Helper::isDvd(files().at(0), true)) {
+            } else if (filenameParts.count() > 2 && helper::isDvd(files().at(0), true)) {
                 filename = filenameParts.at(filenameParts.count() - 2);
             }
         } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && filenameParts.count() > 2) {
@@ -267,7 +267,7 @@ QString TvShowEpisode::showTitle() const
     if (!m_showTitle.isEmpty()) {
         return m_showTitle;
     }
-    if (m_parent) {
+    if (m_parent != nullptr) {
         return m_parent->name();
     }
 
@@ -426,7 +426,7 @@ Certification TvShowEpisode::certification() const
     if (m_certification.isValid()) {
         return m_certification;
     }
-    if (m_parent) {
+    if (m_parent != nullptr) {
         return m_parent->certification();
     }
 
@@ -444,7 +444,7 @@ QString TvShowEpisode::network() const
     if (!m_network.isEmpty()) {
         return m_network;
     }
-    if (m_parent) {
+    if (m_parent != nullptr) {
         return m_parent->network();
     }
 
@@ -903,7 +903,7 @@ bool TvShowEpisode::lessThan(TvShowEpisode* a, TvShowEpisode* b)
         return false;
     }
 
-    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
 }
 
 ImdbId TvShowEpisode::imdbId() const

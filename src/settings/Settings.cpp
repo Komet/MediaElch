@@ -75,7 +75,7 @@ Settings* Settings::instance(QObject* parent)
     static QMutex mutex;
     QMutexLocker locker(&mutex);
     static Settings* m_instance = nullptr;
-    if (!m_instance) {
+    if (m_instance == nullptr) {
         m_instance = new Settings(parent);
     }
     return m_instance;
@@ -990,27 +990,24 @@ QString Settings::databaseDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir();
-    } else {
-        return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     }
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 QString Settings::imageCacheDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir();
-    } else {
-        return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     }
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 QString Settings::exportTemplatesDir()
 {
     if (advanced()->portableMode()) {
         return applicationDir() + QDir::separator() + "export_themes";
-    } else {
-        return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
     }
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
 }
 
 void Settings::setShowAdultScrapers(bool show)

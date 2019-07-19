@@ -28,7 +28,7 @@ int MusicModelItem::childCount() const
 
 int MusicModelItem::childNumber() const
 {
-    if (m_parentItem) {
+    if (m_parentItem != nullptr) {
         return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
     }
 
@@ -45,28 +45,28 @@ QVariant MusicModelItem::data(int column) const
     switch (column) {
     case MusicRoles::Type: return static_cast<int>(type());
     case MusicRoles::HasChanged:
-        if (m_album) {
+        if (m_album != nullptr) {
             return m_album->hasChanged();
         }
-        if (m_artist) {
+        if (m_artist != nullptr) {
             return m_artist->hasChanged();
         }
         break;
     case MusicRoles::NumOfAlbums:
-        if (m_artist) {
+        if (m_artist != nullptr) {
             return m_artist->albums().count();
         }
         break;
     case MusicRoles::IsNew: {
-        if (m_album) {
+        if (m_album != nullptr) {
             return !m_album->controller()->infoLoaded();
         }
 
-        if (m_artist && !m_artist->controller()->infoLoaded()) {
+        if ((m_artist != nullptr) && !m_artist->controller()->infoLoaded()) {
             return true;
         }
 
-        if (m_artist) {
+        if (m_artist != nullptr) {
             for (Album* album : m_artist->albums()) {
                 if (!album->controller()->infoLoaded()) {
                     return true;
@@ -76,9 +76,9 @@ QVariant MusicModelItem::data(int column) const
         return false;
     }
     default:
-        if (m_artist) {
+        if (m_artist != nullptr) {
             return m_artist->name();
-        } else if (m_album) {
+        } else if (m_album != nullptr) {
             return m_album->title();
         }
     }
@@ -147,9 +147,10 @@ Album* MusicModelItem::album()
 
 MusicType MusicModelItem::type() const
 {
-    if (m_artist) {
+    if (m_artist != nullptr) {
         return MusicType::Artist;
-    } else if (m_album) {
+    }
+    if (m_album != nullptr) {
         return MusicType::Album;
     }
 

@@ -33,11 +33,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
         }
     }
 
-    if (m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates()) {
-        return false;
-    }
-
-    return true;
+    return !(m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates());
 }
 
 /**

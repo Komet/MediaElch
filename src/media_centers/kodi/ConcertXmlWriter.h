@@ -12,7 +12,7 @@ namespace kodi {
 class ConcertXmlWriter
 {
 public:
-    ConcertXmlWriter(Concert& concert);
+    explicit ConcertXmlWriter(Concert& concert);
     QByteArray getConcertXml();
 
 private:

@@ -108,7 +108,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     }
 
     QPixmap pixmap(":/img/man.png");
-    Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+    helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
     connect(ui->name, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
@@ -168,9 +168,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::applyStyle(ui->artStackedWidget);
-    Helper::applyStyle(ui->tabWidget);
-    Helper::applyEffect(ui->groupBox_3);
+    helper::applyStyle(ui->artStackedWidget);
+    helper::applyStyle(ui->tabWidget);
+    helper::applyEffect(ui->groupBox_3);
 }
 
 /**
@@ -408,7 +408,7 @@ void TvShowWidgetTvShow::updateImages(QVector<ImageType> images)
             }
         }
 
-        if (!image) {
+        if (image == nullptr) {
             continue;
         }
 
@@ -725,13 +725,13 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 
     if (TvShow::seasonImageTypes().contains(elem.imageType)) {
         if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
-            Helper::resizeBackdrop(elem.data);
+            helper::resizeBackdrop(elem.data);
         }
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
         elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
     } else if (elem.imageType == ImageType::TvShowExtraFanart) {
-        Helper::resizeBackdrop(elem.data);
+        helper::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show) {
             ui->fanarts->addImage(elem.data);
@@ -740,7 +740,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         for (ClosableImage* image : ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (image->imageType() == elem.imageType) {
                 if (elem.imageType == ImageType::TvShowBackdrop) {
-                    Helper::resizeBackdrop(elem.data);
+                    helper::resizeBackdrop(elem.data);
                 }
                 if (m_show == elem.show) {
                     image->setImage(elem.data);
@@ -794,7 +794,7 @@ void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
  */
 void TvShowWidgetTvShow::onAddGenre(QString genre)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->addGenre(genre);
@@ -806,7 +806,7 @@ void TvShowWidgetTvShow::onAddGenre(QString genre)
  */
 void TvShowWidgetTvShow::onRemoveGenre(QString genre)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->removeGenre(genre);
@@ -815,7 +815,7 @@ void TvShowWidgetTvShow::onRemoveGenre(QString genre)
 
 void TvShowWidgetTvShow::onAddTag(QString tag)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->addTag(tag);
@@ -824,7 +824,7 @@ void TvShowWidgetTvShow::onAddTag(QString tag)
 
 void TvShowWidgetTvShow::onRemoveTag(QString tag)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->removeTag(tag);
@@ -896,7 +896,7 @@ void TvShowWidgetTvShow::onActorChanged()
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount()
         || ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         QPixmap pixmap(":/img/man.png");
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
         return;
@@ -907,18 +907,18 @@ void TvShowWidgetTvShow::onActorChanged()
         QImage img = QImage::fromData(actor->image);
         ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
         QPixmap pixmap = QPixmap::fromImage(img).scaled(
-            QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+            QSize(120, 180) * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        helper::setDevicePixelRatio(p, helper::devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else {
         QPixmap pixmap(":/img/man.png");
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     }
@@ -1015,7 +1015,7 @@ void TvShowWidgetTvShow::onCertificationChange(QString text)
  */
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
-    if (!m_show || m_show->ratings().isEmpty()) {
+    if ((m_show == nullptr) || m_show->ratings().isEmpty()) {
         return;
     }
     m_show->ratings().back().rating = value;
@@ -1058,7 +1058,7 @@ void TvShowWidgetTvShow::onOverviewChange()
 
 void TvShowWidgetTvShow::onRemoveExtraFanart(const QByteArray& image)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->removeExtraFanart(image);
@@ -1067,7 +1067,7 @@ void TvShowWidgetTvShow::onRemoveExtraFanart(const QByteArray& image)
 
 void TvShowWidgetTvShow::onRemoveExtraFanart(const QString& file)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->removeExtraFanart(file);
@@ -1076,7 +1076,7 @@ void TvShowWidgetTvShow::onRemoveExtraFanart(const QString& file)
 
 void TvShowWidgetTvShow::onAddExtraFanart()
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
 
@@ -1103,7 +1103,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
 
 void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
@@ -1132,7 +1132,7 @@ void TvShowWidgetTvShow::onChooseImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -1167,7 +1167,7 @@ void TvShowWidgetTvShow::onDeleteImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -1178,11 +1178,11 @@ void TvShowWidgetTvShow::onDeleteImage()
 
 void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -1198,7 +1198,7 @@ void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
 
 void TvShowWidgetTvShow::onVotesChange(int value)
 {
-    if (!m_show || m_show->ratings().isEmpty()) {
+    if ((m_show == nullptr) || m_show->ratings().isEmpty()) {
         return;
     }
     m_show->ratings().back().voteCount = value;
@@ -1208,7 +1208,7 @@ void TvShowWidgetTvShow::onVotesChange(int value)
 
 void TvShowWidgetTvShow::onTop250Change(int value)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->setTop250(value);
@@ -1226,7 +1226,7 @@ void TvShowWidgetTvShow::onShowScraperProgress(TvShow* show, int current, int ma
 
 void TvShowWidgetTvShow::onStatusChange(int index)
 {
-    if (!m_show) {
+    if (m_show == nullptr) {
         return;
     }
     m_show->setStatus(ui->comboStatus->itemData(index).toString());

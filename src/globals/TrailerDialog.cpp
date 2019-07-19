@@ -79,8 +79,8 @@ TrailerDialog::~TrailerDialog()
 
 TrailerDialog* TrailerDialog::instance(QWidget* parent)
 {
-    static TrailerDialog* m_instance = new TrailerDialog(parent);
-    return m_instance;
+    static TrailerDialog* s_instance = new TrailerDialog(parent);
+    return s_instance;
 }
 
 void TrailerDialog::clear()

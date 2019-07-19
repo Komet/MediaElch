@@ -93,7 +93,7 @@ QString VideoBuster::defaultLanguageKey()
 void VideoBuster::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
-    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QString encodedSearch = helper::toLatin1PercentEncoding(searchStr);
     QUrl url(QString("https://www.videobuster.de/"
                      "titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1")
                  .arg(encodedSearch)
@@ -175,7 +175,7 @@ void VideoBuster::loadFinished()
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
-    if (!movie) {
+    if (movie == nullptr) {
         return;
     }
 
@@ -226,7 +226,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
     pos = 0;
     rx.setPattern(R"(<label>Produktion</label><br><a href="[^"]*">(.*)</a>)");
     while (infos.contains(MovieScraperInfos::Countries) && (pos = rx.indexIn(html, pos)) != -1) {
-        movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
+        movie->addCountry(helper::mapCountry(rx.cap(1).trimmed()));
         pos += rx.matchedLength();
     }
 
@@ -234,11 +234,11 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
     if (infos.contains(MovieScraperInfos::Certification)) {
         rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
         if (rx.indexIn(html) != -1) {
-            movie->setCertification(Helper::mapCertification(Certification::FSK(rx.cap(1))));
+            movie->setCertification(helper::mapCertification(Certification::FSK(rx.cap(1))));
         }
         rx.setPattern("Freigegeben ohne Altersbeschränkung");
         if (!movie->certification().isValid() && rx.indexIn(html) != -1) {
-            movie->setCertification(Helper::mapCertification(Certification::FSK("0")));
+            movie->setCertification(helper::mapCertification(Certification::FSK("0")));
         }
     }
 
@@ -286,7 +286,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
     rx.setPattern("<label>Studio</label><br><span itemprop=\"publisher\" itemscope "
                   "itemtype=\"http://schema.org/Organization\">.*<span itemprop=\"name\">(.*)</span></a></span>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1) {
-        movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
+        movie->addStudio(helper::mapStudio(rx.cap(1).trimmed()));
     }
 
     // Runtime
@@ -315,7 +315,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie* movie, QVector<MovieS
         pos = 0;
         rx.setPattern(R"(<a href="/genrelist\.php/.*">(.*)</a>)");
         while ((pos = rx.indexIn(html, pos)) != -1) {
-            movie->addGenre(Helper::mapGenre(rx.cap(1).trimmed()));
+            movie->addGenre(helper::mapGenre(rx.cap(1).trimmed()));
             pos += rx.matchedLength();
         }
     }

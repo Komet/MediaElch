@@ -54,17 +54,17 @@ void ImportDialog::reject()
         return;
     }
 
-    if (m_movie) {
+    if (m_movie != nullptr) {
         m_movie->controller()->abortDownloads();
         m_movie->deleteLater();
     }
 
-    if (m_concert) {
+    if (m_concert != nullptr) {
         m_concert->controller()->abortDownloads();
         m_concert->deleteLater();
     }
 
-    if (m_episode) {
+    if (m_episode != nullptr) {
         m_episode->deleteLater();
     }
 
@@ -256,7 +256,7 @@ void ImportDialog::onMovieChosen()
         infosToLoad = ui->movieSearchWidget->infosToLoad();
     }
 
-    if (m_movie) {
+    if (m_movie != nullptr) {
         m_movie->deleteLater();
     }
 
@@ -273,7 +273,7 @@ void ImportDialog::onMovieChosen()
 
 void ImportDialog::onConcertChosen()
 {
-    if (m_concert) {
+    if (m_concert != nullptr) {
         m_concert->deleteLater();
     }
 
@@ -293,7 +293,7 @@ void ImportDialog::onConcertChosen()
 
 void ImportDialog::onTvShowChosen()
 {
-    if (m_episode) {
+    if (m_episode != nullptr) {
         m_episode->deleteLater();
     }
 
@@ -405,7 +405,7 @@ void ImportDialog::onEpisodeLoadDone()
 void ImportDialog::onEpisodeDownloadFinished(DownloadManagerElement elem)
 {
     qDebug() << "got image";
-    if (!m_episode) {
+    if (m_episode == nullptr) {
         return;
     }
 
@@ -443,7 +443,7 @@ void ImportDialog::onImport()
             Renamer::replace(newFolderName, "year", m_movie->released().toString("yyyy"));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscType::BluRay);
@@ -451,7 +451,7 @@ void ImportDialog::onImport()
             Renamer::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
             Renamer::replaceCondition(newFolderName, "movieset", m_movie->set().name);
-            Helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this,
                     tr("Creating destination directory failed"),
@@ -470,14 +470,14 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "extension", fi.suffix());
             Renamer::replace(newFileName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId().toString());
             Renamer::replaceCondition(newFileName, "movieset", m_movie->set().name);
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::sanitizeFileName(newFileName);
+            helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
@@ -491,7 +491,7 @@ void ImportDialog::onImport()
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
             Renamer::replace(newFolderName, "season", m_episode->seasonString());
-            Helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFileName(newFolderName);
             dir.mkdir(newFolderName);
             dir.cd(newFolderName);
         }
@@ -508,13 +508,13 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "season", m_episode->seasonString());
             Renamer::replace(newFileName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFileName,
                 "3D",
                 m_episode->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::sanitizeFileName(newFileName);
+            helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
@@ -534,14 +534,14 @@ void ImportDialog::onImport()
             Renamer::replace(newFolderName, "year", m_concert->released().toString("yyyy"));
             Renamer::replace(newFolderName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscType::BluRay);
             Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscType::Dvd);
             Renamer::replaceCondition(
                 newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::sanitizeFileName(newFolderName);
+            helper::sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this,
                     tr("Creating destination directory failed"),
@@ -560,12 +560,12 @@ void ImportDialog::onImport()
             Renamer::replace(newFileName, "extension", fi.suffix());
             Renamer::replace(newFileName,
                 "resolution",
-                Helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Helper::sanitizeFileName(newFileName);
+            helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);

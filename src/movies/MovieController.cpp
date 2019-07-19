@@ -197,15 +197,15 @@ void MovieController::scraperLoadDone(MovieScraperInterface* scraper)
         setProperty("customMovieScraperLoads", property("customMovieScraperLoads").toInt() - 1);
         m_customScraperMutex.unlock();
         return;
-    } else {
-        m_customScraperMutex.unlock();
     }
+    m_customScraperMutex.unlock();
+
 
     setProperty("customMovieScraperLoads", QVariant());
 
     emit sigInfoLoadDone(m_movie);
 
-    if (!scraper) {
+    if (scraper == nullptr) {
         onFanartLoadDone(m_movie, QMap<ImageType, QVector<Poster>>());
         return;
     }
@@ -368,13 +368,13 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
     } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
-        Helper::resizeBackdrop(elem.data);
+        helper::resizeBackdrop(elem.data);
         m_movie->images().addExtraFanart(elem.data);
     } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(
             Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
         if (elem.imageType == ImageType::MovieBackdrop) {
-            Helper::resizeBackdrop(elem.data);
+            helper::resizeBackdrop(elem.data);
         }
         m_movie->images().setImage(elem.imageType, elem.data);
     }
