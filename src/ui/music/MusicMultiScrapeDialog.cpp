@@ -178,13 +178,13 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     QVector<Album*> queueAlbums;
     for (Artist* artist : m_artists) {
-        QueueItem item1;
+        QueueItem item1{};
         item1.album = nullptr;
         item1.artist = artist;
         m_queue.append(item1);
         if (ui->chkScrapeAllAlbums->isChecked()) {
             for (Album* album : artist->albums()) {
-                QueueItem item2;
+                QueueItem item2{};
                 item2.album = album;
                 item2.artist = nullptr;
                 m_queue.append(item2);
@@ -195,7 +195,7 @@ void MusicMultiScrapeDialog::onStartScraping()
 
     for (Album* album : m_albums) {
         if (!queueAlbums.contains(album)) {
-            QueueItem item;
+            QueueItem item{};
             item.album = album;
             item.artist = nullptr;
             m_queue.append(item);

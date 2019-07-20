@@ -198,7 +198,7 @@ void CustomMovieScraper::onLoadTmdbFinished()
 
     if (reply->error() == QNetworkReply::NoError) {
         QString imdbId;
-        QJsonParseError parseError;
+        QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
         reply->deleteLater();
         if (parseError.error != QJsonParseError::NoError) {

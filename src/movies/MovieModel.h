@@ -7,9 +7,6 @@
 #include <QModelIndex>
 #include <QVector>
 
-/**
- * @brief The MovieModel class
- */
 class MovieModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -33,7 +30,7 @@ public:
     void addMovie(Movie* movie);
     void update();
     void clear();
-    long countNewMovies();
+    int countNewMovies();
 
     static int mediaStatusToColumn(MediaStatusColumn column);
     static QString mediaStatusToText(MediaStatusColumn column);

@@ -34,7 +34,7 @@ private slots:
     void timeout();
 
 private:
-    Ui::Message* ui;
-    int m_id;
-    QTimer* m_timer;
+    Ui::Message* ui = nullptr;
+    int m_id = 0;
+    QTimer* m_timer = nullptr;
 };

@@ -38,7 +38,8 @@ Message::~Message()
 
 void Message::setType(int type)
 {
-    switch (type) {
+    auto t = static_cast<NotificationBox::NotificationType>(type);
+    switch (t) {
     case NotificationBox::NotificationInfo:
         setStyleSheet("#widget { border-left: 5px solid #5BC0DE; background-color: #F4F8FA; }");
         break;

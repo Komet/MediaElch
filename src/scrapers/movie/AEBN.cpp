@@ -31,7 +31,7 @@ AEBN::AEBN(QObject* parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage& lang : supportedLanguages()) {
+    for (const ScraperLanguage& lang : AEBN::supportedLanguages()) {
         m_box->addItem(lang.languageName, lang.languageKey);
     }
 

@@ -136,7 +136,7 @@ signals:
 
 private:
     QStringList m_files;
-    TvShow* m_parent;
+    TvShow* m_parent = nullptr;
     QString m_name;
     QString m_showTitle;
     Rating m_rating;
@@ -158,14 +158,14 @@ private:
     QString m_network;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;
-    EpisodeModelItem* m_modelItem;
+    EpisodeModelItem* m_modelItem = nullptr;
     bool m_thumbnailImageChanged = false;
     bool m_infoLoaded = false;
     bool m_infoFromNfoLoaded = false;
     bool m_hasChanged = false;
     int m_episodeId = -1;
     bool m_streamDetailsLoaded = false;
-    StreamDetails* m_streamDetails;
+    StreamDetails* m_streamDetails = nullptr;
     QString m_nfoContent;
     int m_databaseId = -1;
     bool m_syncNeeded = false;

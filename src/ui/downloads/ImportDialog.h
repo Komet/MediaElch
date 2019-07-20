@@ -54,7 +54,7 @@ private slots:
     void onEpisodeDownloadFinished(DownloadManagerElement elem);
 
 private:
-    Ui::ImportDialog* ui;
+    Ui::ImportDialog* ui = nullptr;
     QString m_type;
     QPointer<Movie> m_movie;
     QPointer<Concert> m_concert;
@@ -63,13 +63,13 @@ private:
     QStringList m_files;
     QStringList m_extraFiles;
     QString m_importDir;
-    bool m_separateFolders;
+    bool m_separateFolders = false;
     QTimer m_timer;
     QMap<QString, QString> m_filesToMove;
     QPointer<QThread> m_workerThread;
     QPointer<FileWorker> m_worker;
     QStringList m_newFiles;
-    DownloadManager* m_posterDownloadManager;
+    DownloadManager* m_posterDownloadManager = nullptr;
 
     void setDefaults(Renamer::RenameType renameType);
     void storeDefaults();

@@ -191,9 +191,9 @@ private:
     QStringList m_files;
     QString m_folderName;
 
-    int m_downloadsSize;
+    int m_downloadsSize = 0;
     bool m_hasChanged;
-    bool m_downloadsInProgress;
+    bool m_downloadsInProgress = false;
     bool m_inSeparateFolder;
     QVector<ConcertScraperInfos> m_infosToLoad;
     bool m_streamDetailsLoaded;

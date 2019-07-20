@@ -49,16 +49,16 @@ private slots:
     void onRenamed();
 
 private:
-    Ui::RenamerDialog* ui;
+    Ui::RenamerDialog* ui = nullptr;
 
     QVector<Movie*> m_movies;
     QVector<Concert*> m_concerts;
     QVector<TvShow*> m_shows;
     QVector<TvShowEpisode*> m_episodes;
-    Renamer::RenameType m_renameType;
-    bool m_filesRenamed;
+    Renamer::RenameType m_renameType = Renamer::RenameType::All;
+    bool m_filesRenamed = 0;
     mediaelch::FileFilter m_extraFiles;
-    bool m_renameErrorOccured;
+    bool m_renameErrorOccured = 0;
 
     void renameType(const bool isDryRun);
     void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);

@@ -81,7 +81,7 @@ private:
     Movie* m_lastMovie;
     QModelIndex m_lastModelIndex;
     static MovieFilesWidget* m_instance;
-    QMenu* m_contextMenu;
+    QMenu* m_contextMenu = nullptr;
     AlphabeticalList* m_alphaList;
     bool m_mouseIsIn;
 

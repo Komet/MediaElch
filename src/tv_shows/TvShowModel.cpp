@@ -168,8 +168,9 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
             }
         }
         break;
+    default: break;
     }
-    return QVariant();
+    return {};
 }
 
 const TvShowBaseModelItem& TvShowModel::getItem(const QModelIndex& index) const

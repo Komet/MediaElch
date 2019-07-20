@@ -172,9 +172,7 @@ QModelIndex ConcertModel::index(int row, int column, const QModelIndex& parent) 
     return createIndex(row, column);
 }
 
-/**
- * @brief Clears the current contents
- */
+/// @brief Clears the current contents
 void ConcertModel::clear()
 {
     if (m_concerts.empty()) {
@@ -188,22 +186,19 @@ void ConcertModel::clear()
     endRemoveRows();
 }
 
-/**
- * @brief Returns a list of all concerts
- * @return List of concerts
- */
+/// @brief Returns a list of all concerts
+/// @return List of concerts
 QVector<Concert*> ConcertModel::concerts()
 {
     return m_concerts;
 }
 
-/**
- * @brief Checks if there are new concerts (concerts where infoLoaded is false)
- * @return True if there are new concerts
- */
-long ConcertModel::countNewConcerts() const
+/// @brief Checks if there are new concerts (concerts where infoLoaded is false)
+/// @return True if there are new concerts
+int ConcertModel::countNewConcerts() const
 {
-    return std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert* concert) {
+    long result = std::count_if(m_concerts.cbegin(), m_concerts.cend(), [](const Concert* concert) {
         return !concert->controller()->infoLoaded();
     });
+    return static_cast<int>(result);
 }

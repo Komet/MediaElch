@@ -53,14 +53,14 @@ private slots:
     void myClear();
 
 private:
-    QLabel* m_loadingLabel;
-    QToolButton* m_clearButton;
-    LineEditType m_type;
-    bool m_showMagnifier;
-    QLabel* m_magnifierLabel;
+    QLabel* m_loadingLabel = nullptr;
+    QToolButton* m_clearButton = nullptr;
+    LineEditType m_type = LineEditType::TypeLoading;
+    bool m_showMagnifier = false;
+    QLabel* m_magnifierLabel = nullptr;
     QVector<QLabel*> m_filterLabels;
     QStringList m_styleSheets;
-    QLabel* m_moreLabel;
-    int m_paddingLeft;
+    QLabel* m_moreLabel = nullptr;
+    int m_paddingLeft = 0;
     void drawFilters();
 };

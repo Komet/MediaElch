@@ -40,9 +40,9 @@ private slots:
     void onChkDvdOrderToggled();
 
 private:
-    Ui::TvShowSearch* ui;
+    Ui::TvShowSearch* ui = nullptr;
     void clear();
     TvDbId m_scraperId;
     QVector<TvShowScraperInfos> m_infosToLoad;
-    TvShowType m_searchType;
+    TvShowType m_searchType = TvShowType::None;
 };

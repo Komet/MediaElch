@@ -42,7 +42,7 @@ private slots:
 
 private:
     Ui::MusicSearchWidget* ui;
-    int m_scraperNo;
+    int m_scraperNo = 0;
     QString m_scraperId;
     QString m_scraperId2;
     QVector<MusicScraperInfos> m_infosToLoad;

@@ -274,7 +274,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type)
 
     QVector<Poster> posters;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError);
 
     if (parseError.error != QJsonParseError::NoError) {

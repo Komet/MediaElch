@@ -17,9 +17,6 @@
 
 #include <memory>
 
-/**
- * @brief The Settings class
- */
 class Settings : public QObject
 {
     Q_OBJECT
@@ -167,7 +164,7 @@ private:
     ImportSettings m_importSettings;
     NetworkSettings m_networkSettings;
 
-    bool m_deleteArchives;
+    bool m_deleteArchives = false;
     QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
@@ -177,36 +174,36 @@ private:
     QPoint m_importDialogPosition;
     QSize m_makeMkvDialogSize;
     QPoint m_makeMkvDialogPosition;
-    bool m_mainWindowMaximized;
+    bool m_mainWindowMaximized = false;
     QByteArray m_mainSplitterState;
     QByteArray m_movieDuplicatesSplitterState;
-    bool m_debugModeActivated;
+    bool m_debugModeActivated = false;
     QString m_debugLogPath;
-    bool m_youtubePluginUrls;
-    bool m_downloadActorImages;
-    bool m_autoLoadStreamDetails;
+    bool m_youtubePluginUrls = false;
+    bool m_downloadActorImages = false;
+    bool m_autoLoadStreamDetails = false;
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
-    bool m_usePlotForOutline;
-    bool m_ignoreArticlesWhenSorting;
-    MovieSetArtworkType m_movieSetArtworkType;
+    bool m_usePlotForOutline = false;
+    bool m_ignoreArticlesWhenSorting = false;
+    MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::SingleSetFolder;
     QString m_movieSetArtworkDirectory;
     QVector<MediaStatusColumn> m_mediaStatusColumns;
-    bool m_tvShowDvdOrder;
-    bool m_dontShowDeleteImageConfirm;
+    bool m_tvShowDvdOrder = false;
+    bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfos, QString> m_customMovieScraper;
     QMap<TvShowScraperInfos, QString> m_customTvScraper;
-    int m_currentMovieScraper;
-    bool m_keepDownloadSource;
-    bool m_checkForUpdates;
-    bool m_showMissingEpisodesHint;
-    bool m_multiScrapeOnlyWithId;
-    bool m_multiScrapeSaveEach;
-    bool m_showAdultScrapers;
+    int m_currentMovieScraper = 0;
+    bool m_keepDownloadSource = false;
+    bool m_checkForUpdates = false;
+    bool m_showMissingEpisodesHint = false;
+    bool m_multiScrapeOnlyWithId = false;
+    bool m_multiScrapeSaveEach = false;
+    bool m_showAdultScrapers = false;
     QString m_startupSection;
-    bool m_donated;
+    bool m_donated = false;
     QString m_lastImagePath;
-    int m_extraFanartsMusicArtists;
+    int m_extraFanartsMusicArtists = 0;
 
     QPoint fixWindowPosition(QPoint p);
 };

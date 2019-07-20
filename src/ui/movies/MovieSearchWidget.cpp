@@ -136,7 +136,7 @@ void MovieSearchWidget::setupLanguageDropdown()
     if (m_currentScraper == nullptr) {
         ui->comboLanguage->addItem("Error", "error");
         ui->comboLanguage->blockSignals(false);
-        qCritical("Cannot set language dropdown in movie search widget");
+        qCritical() << "Cannot set language dropdown in movie search widget";
         return;
     }
 

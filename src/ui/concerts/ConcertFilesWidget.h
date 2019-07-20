@@ -68,7 +68,7 @@ private:
     ConcertProxyModel* m_concertProxyModel;
     Concert* m_lastConcert;
     QModelIndex m_lastModelIndex;
-    QMenu* m_contextMenu;
+    QMenu* m_contextMenu = nullptr;
     AlphabeticalList* m_alphaList;
     bool m_mouseIsIn;
 

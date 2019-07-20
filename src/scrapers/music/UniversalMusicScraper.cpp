@@ -303,7 +303,7 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem,
     QVector<MusicScraperInfos> infos)
 {
     if (elem.type.startsWith("tadb_")) {
-        QJsonParseError parseError;
+        QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {
             qWarning() << "Error parsing music json: " << parseError.errorString();
@@ -617,7 +617,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Album* album, QVector<MusicScraperInfos> infos)
 {
     if (elem.type == "tadb_data") {
-        QJsonParseError parseError;
+        QJsonParseError parseError{};
         const auto parsedJson = QJsonDocument::fromJson(elem.contents.toUtf8(), &parseError).object();
         if (parseError.error != QJsonParseError::NoError) {
             qWarning() << "Error parsing music json: " << parseError.errorString();

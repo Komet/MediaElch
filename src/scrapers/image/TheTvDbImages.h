@@ -85,11 +85,11 @@ private slots:
 
 private:
     QVector<ImageType> m_provides;
-    ImageType m_currentType;
-    int m_searchResultLimit;
-    TheTvDb* m_tvdb;
-    TvShow* m_dummyShow;
-    TvShowEpisode* m_dummyEpisode;
+    ImageType m_currentType = ImageType::None;
+    int m_searchResultLimit = 0;
+    TheTvDb* m_tvdb = nullptr;
+    TvShow* m_dummyShow = nullptr;
+    TvShowEpisode* m_dummyEpisode = nullptr;
     SeasonNumber m_season;
 
     void loadTvShowData(TvDbId tvdbId, ImageType type);

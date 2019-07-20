@@ -170,6 +170,7 @@ void MakeMkvCon::parseInfo(QString line)
         case 9: m_tracks[trackId].duration = value; break;
         case 11: m_tracks[trackId].size = value.toLongLong(); break;
         case 27: m_tracks[trackId].fileName = value; break;
+        default: break;
         }
     }
 

@@ -36,15 +36,15 @@ private slots:
     void setCheckBoxesEnabled();
 
 private:
-    Ui::MovieMultiScrapeDialog* ui;
+    Ui::MovieMultiScrapeDialog* ui = nullptr;
     QVector<Movie*> m_movies;
     QQueue<Movie*> m_queue;
     QPointer<Movie> m_currentMovie;
-    MovieScraperInterface* m_scraperInterface;
+    MovieScraperInterface* m_scraperInterface = nullptr;
     QMap<MovieScraperInterface*, QString> m_currentIds;
-    bool m_isImdb;
-    bool m_isTmdb;
-    bool m_executed;
+    bool m_isImdb = false;
+    bool m_isTmdb = false;
+    bool m_executed = false;
     QVector<MovieScraperInfos> m_infosToLoad;
     void loadMovieData(Movie* movie, ImdbId id);
     void loadMovieData(Movie* movie, TmdbId id);
