@@ -1,5 +1,5 @@
 ---
-Checks:                '*,-abseil-*, -android-*, -cert-*, -cppcoreguidelines-*, -clang-analyzer-*, -fuchsia-*, -google-*, -hicpp-*, -llvm-*, -misc-*, -modernize-*, -mpi-*, -objc-*, -openmp-*, -portability-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param'
+Checks:                '*,-abseil-*, -android-*, -cert-*, -cppcoreguidelines-*, -clang-analyzer-*, -fuchsia-*, -google-*, -hicpp-*, -llvm-*, -misc-*, -modernize-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     '^(?!build)/src'
 AnalyzeTemporaryDtors: false
@@ -20,10 +20,6 @@ FormatStyle:           file
 # llvm-*
 # misc-*
 # modernize-*
-# mpi-*
-# objc-*
-# openmp-*
-# portability-*
 # zircon-*
 # bugprone-narrowing-conversions           # Too many warnings
 # readability-uppercase-literal-suffix     # We use lowercase literals suffixes
