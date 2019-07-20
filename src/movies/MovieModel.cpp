@@ -208,7 +208,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
 QModelIndex MovieModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
-    return QModelIndex();
+    return {};
 }
 
 /**

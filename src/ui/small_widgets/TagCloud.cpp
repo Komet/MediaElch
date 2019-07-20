@@ -117,7 +117,6 @@ void TagCloud::drawTags(bool printAll)
         }
         badge->move(x, y);
         m_badges.append(badge);
-        x += badge->width() + m_horizontalSpace;
     }
 
     ui->scrollAreaWidgetContents->setFixedHeight(y + heightToAdd);

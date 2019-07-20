@@ -132,7 +132,7 @@ QSize ImageCache::imageSize(QString path)
         return helper::getImage(path).size();
     }
 
-    return QSize(parts.at(3).toInt(), parts.at(4).toInt());
+    return {parts.at(3).toInt(), parts.at(4).toInt()};
 }
 
 int ImageCache::getLastModified(const QString& fileName)

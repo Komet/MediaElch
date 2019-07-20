@@ -323,11 +323,11 @@ void MovieWidget::clear()
 
     blocked = ui->actors->blockSignals(true);
     ui->actors->setRowCount(0);
-    ui->actors->blockSignals(false);
+    ui->actors->blockSignals(blocked);
 
     blocked = ui->subtitles->blockSignals(true);
     ui->subtitles->setRowCount(0);
-    ui->subtitles->blockSignals(false);
+    ui->subtitles->blockSignals(blocked);
 
     ui->videoCodec->clear();
     ui->videoScantype->clear();

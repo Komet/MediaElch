@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <algorithm>
+#include <utility>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -21,7 +22,7 @@ using namespace std::chrono_literals;
 
 TvShow::TvShow(QString dir, QObject* parent) :
     QObject(parent),
-    m_dir{dir},
+    m_dir{std::move(dir)},
     m_runtime{0min},
     m_hasTune{false},
     m_downloadsInProgress{false},

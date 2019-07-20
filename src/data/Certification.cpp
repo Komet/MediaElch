@@ -2,8 +2,9 @@
 
 #include <QRegExp>
 #include <QString>
+#include <utility>
 
-Certification::Certification(QString certification) : m_certification(certification)
+Certification::Certification(QString certification) : m_certification(std::move(certification))
 {
 }
 

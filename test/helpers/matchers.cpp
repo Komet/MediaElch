@@ -1,8 +1,10 @@
 #include "test/helpers/matchers.h"
 
-QStringMatcherBase::QStringMatcherBase(const QString& operation, const QString& comparator) :
-    m_comparator(comparator),
-    m_operation(operation)
+#include <utility>
+
+QStringMatcherBase::QStringMatcherBase(QString operation, QString comparator) :
+    m_comparator(std::move(comparator)),
+    m_operation(std::move(operation))
 {
 }
 

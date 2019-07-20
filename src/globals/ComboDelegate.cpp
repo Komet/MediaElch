@@ -116,5 +116,5 @@ void ComboDelegate::updateEditorGeometry(QWidget* editor,
 QSize ComboDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     int width = QItemDelegate::sizeHint(option, index).width();
-    return QSize(width, 25);
+    return {width, 25};
 }

@@ -224,7 +224,7 @@ void StreamDetails::loadWithLibrary()
         if (!MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original"))).isEmpty()) {
             channels = MI2QString(mi.Get(Stream_Audio, i, QString2MI("Channel(s)_Original")));
         }
-        QRegExp rx("^\\D*(\\d*)\\D*");
+        QRegExp rx(R"(^\D*(\d*)\D*)");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1) {
             channels = rx.cap(1);
         } else {

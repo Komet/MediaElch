@@ -1,5 +1,5 @@
 ---
-Checks:                '*,-abseil-*, -android-*, -cert-*, -cppcoreguidelines-*, -clang-analyzer-*, -fuchsia-*, -google-*, -hicpp-*, -llvm-*, -misc-*, -modernize-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param'
+Checks:                '*,-abseil-*, -android-*, -cert-*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -hicpp-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     '^(?!build)/src'
 AnalyzeTemporaryDtors: false
@@ -13,19 +13,17 @@ FormatStyle:           file
 # android-*
 # cert-*
 # cppcoreguidelines-*
-# clang-analyzer-*
 # fuchsia-*
 # google-*
 # hicpp-*
 # llvm-*
 # misc-*
-# modernize-*
-# zircon-*
 # bugprone-narrowing-conversions           # Too many warnings
 # readability-uppercase-literal-suffix     # We use lowercase literals suffixes
 # readability-magic-numbers                # Used heavily in QColor constructors
 # readability-identifier-naming            # Somehow not stable; warnings don't tell what config parameter is responsible
 # performance-unnecessary-value-param      # Too many warnings; we still need to fix those
+# clang-analyzer-cplusplus.NewDeleteLeaks  # False positive with QTimer::singleShot
 
 CheckOptions:
   - key: bugprone-assert-side-effect.CheckFunctionCalls

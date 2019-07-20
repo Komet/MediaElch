@@ -48,15 +48,15 @@ private slots:
     void onDownloadFinished(DownloadManagerElement elem);
 
 private:
-    Concert* m_concert;
-    bool m_infoLoaded;
-    bool m_infoFromNfoLoaded;
+    Concert* m_concert = nullptr;
+    bool m_infoLoaded = false;
+    bool m_infoFromNfoLoaded = false;
     QVector<ConcertScraperInfos> m_infosToLoad;
-    DownloadManager* m_downloadManager;
-    bool m_downloadsInProgress;
-    int m_downloadsSize;
-    int m_downloadsLeft;
+    DownloadManager* m_downloadManager = nullptr;
+    bool m_downloadsInProgress = false;
+    int m_downloadsSize = 0;
+    int m_downloadsLeft = 0;
     QVector<ScraperData> m_loadsLeft;
-    bool m_loadDoneFired;
+    bool m_loadDoneFired = false;
     QMutex m_loadMutex;
 };

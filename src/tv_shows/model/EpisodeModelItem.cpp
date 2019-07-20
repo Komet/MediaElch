@@ -9,9 +9,7 @@
 #include "tv_shows/TvShowEpisode.h"
 #include "tv_shows/model/SeasonModelItem.h"
 
-EpisodeModelItem::~EpisodeModelItem()
-{
-}
+EpisodeModelItem::~EpisodeModelItem() = default;
 
 TvShowBaseModelItem* EpisodeModelItem::parent() const
 {

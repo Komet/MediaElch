@@ -8,7 +8,7 @@
 
 struct QStringMatcherBase : Catch::MatcherBase<QString>
 {
-    QStringMatcherBase(const QString& operation, const QString& comparator);
+    QStringMatcherBase(QString operation, QString comparator);
     std::string describe() const override;
 
     QString m_comparator;

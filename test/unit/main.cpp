@@ -6,6 +6,7 @@
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
-    const int res = Catch::Session().run(argc, argv);
+    Catch::Session session; // NOLINT(clang-analyzer-core.uninitialized.UndefReturn)
+    const int res = session.run(argc, argv);
     return res;
 }

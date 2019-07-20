@@ -96,7 +96,7 @@ MusicModelItem* MusicModel::getItem(const QModelIndex& index) const
 QModelIndex MusicModel::index(int row, int column, const QModelIndex& parent) const
 {
     if (parent.isValid() && parent.column() != 0) {
-        return QModelIndex();
+        return {};
     }
 
     MusicModelItem* parentItem = getItem(parent);
@@ -104,7 +104,7 @@ QModelIndex MusicModel::index(int row, int column, const QModelIndex& parent) co
     if (childItem != nullptr) {
         return createIndex(row, column, childItem);
     }
-    return QModelIndex();
+    return {};
 }
 
 MusicModelItem* MusicModel::appendChild(Artist* artist)
@@ -123,14 +123,14 @@ MusicModelItem* MusicModel::appendChild(Artist* artist)
 QModelIndex MusicModel::parent(const QModelIndex& index) const
 {
     if (!index.isValid()) {
-        return QModelIndex();
+        return {};
     }
 
     MusicModelItem* childItem = getItem(index);
     MusicModelItem* parentItem = childItem->parent();
 
     if (parentItem == m_rootItem) {
-        return QModelIndex();
+        return {};
     }
 
     return createIndex(parentItem->childNumber(), 0, parentItem);

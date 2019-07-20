@@ -51,19 +51,20 @@ private slots:
     void onSliderPositionChanged();
 
 private:
-    Ui::TrailerDialog* ui;
-    int m_providerNo;
+    Ui::TrailerDialog* ui = nullptr;
+    int m_providerNo = 0;
     QString m_providerId;
-    Movie* m_currentMovie;
+    Movie* m_currentMovie = nullptr;
     QVector<TrailerResult> m_currentTrailers;
     QNetworkAccessManager* m_qnam;
-    QNetworkReply* m_downloadReply;
+    QNetworkReply* m_downloadReply = nullptr;
     QTime m_downloadTime;
     QFile m_output;
-    bool m_downloadInProgress;
+    bool m_downloadInProgress = false;
     QString m_trailerFileName;
-    QVideoWidget* m_videoWidget;
-    QMediaPlayer* m_mediaPlayer;
-    qint64 m_totalTime;
+    QVideoWidget* m_videoWidget = nullptr;
+    QMediaPlayer* m_mediaPlayer = nullptr;
+    qint64 m_totalTime = 0;
+
     void clear();
 };

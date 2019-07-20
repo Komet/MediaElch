@@ -558,16 +558,16 @@ QMap<ColorLabel, QString> labels()
 QColor colorForLabel(ColorLabel label)
 {
     switch (label) {
-    case ColorLabel::Red: return QColor(252, 124, 126);
-    case ColorLabel::Orange: return QColor(253, 189, 65);
-    case ColorLabel::Yellow: return QColor(245, 228, 68);
-    case ColorLabel::Green: return QColor(182, 223, 55);
-    case ColorLabel::Blue: return QColor(132, 201, 253);
-    case ColorLabel::Purple: return QColor(226, 167, 253);
-    case ColorLabel::Grey: return QColor(200, 200, 200);
-    case ColorLabel::NoLabel: return QColor(0, 0, 0, 0);
+    case ColorLabel::Red: return {252, 124, 126};
+    case ColorLabel::Orange: return {253, 189, 65};
+    case ColorLabel::Yellow: return {245, 228, 68};
+    case ColorLabel::Green: return {182, 223, 55};
+    case ColorLabel::Blue: return {132, 201, 253};
+    case ColorLabel::Purple: return {226, 167, 253};
+    case ColorLabel::Grey: return {200, 200, 200};
+    case ColorLabel::NoLabel: return {0, 0, 0, 0};
     }
-    return QColor(0, 0, 0, 0);
+    return {0, 0, 0, 0};
 }
 
 QIcon iconForLabel(ColorLabel label)

@@ -224,7 +224,7 @@ void FilterWidget::addSelectedFilter()
 void FilterWidget::addFilterFromItem(QListWidgetItem* item)
 {
     m_list->hide();
-    Filter* filter = item->data(Qt::UserRole).value<Filter*>();
+    auto* filter = item->data(Qt::UserRole).value<Filter*>();
     if (filter == nullptr) {
         return;
     }

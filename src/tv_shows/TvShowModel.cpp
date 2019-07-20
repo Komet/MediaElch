@@ -223,12 +223,12 @@ TvShowModelItem* TvShowModel::appendChild(TvShow* show)
 QModelIndex TvShowModel::parent(const QModelIndex& index) const
 {
     if (!index.isValid()) {
-        return QModelIndex();
+        return {};
     }
 
     TvShowBaseModelItem* parentItem = getItem(index).parent();
     if (parentItem == nullptr || parentItem == &m_rootItem) {
-        return QModelIndex();
+        return {};
     }
 
     return createIndex(parentItem->indexInParent(), 0, parentItem);

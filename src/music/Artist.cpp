@@ -1,10 +1,12 @@
 #include "music/Artist.h"
 
+#include <utility>
+
 #include "media_centers/MediaCenterInterface.h"
 
 Artist::Artist(QString path, QObject* parent) :
     QObject(parent),
-    m_path{path},
+    m_path{std::move(path)},
     m_hasChanged{false},
     m_modelItem{nullptr},
     m_databaseId{-1},
@@ -499,8 +501,8 @@ QVector<DiscographyAlbum> Artist::discographyAlbums() const
 QVector<DiscographyAlbum*> Artist::discographyAlbumsPointer()
 {
     QVector<DiscographyAlbum*> albums;
-    for (int i = 0, n = m_discography.size(); i < n; i++) {
-        albums.append(&(m_discography[i]));
+    for (auto& i : m_discography) {
+        albums.append(&i);
     }
     return albums;
 }

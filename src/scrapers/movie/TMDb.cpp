@@ -65,7 +65,7 @@ TMDb::TMDb(QObject* parent) :
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
 
-    for (const ScraperLanguage& lang : supportedLanguages()) {
+    for (const ScraperLanguage& lang : TMDb::supportedLanguages()) {
         m_box->addItem(lang.languageName, lang.languageKey);
     }
 
