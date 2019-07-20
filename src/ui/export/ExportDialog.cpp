@@ -687,7 +687,7 @@ void ExportDialog::replaceImages(QString& m,
 
 bool ExportDialog::saveImageForType(const QString& type,
     const QSize& size,
-    const QDir& dir,
+    const QDir& /*dir*/,
     QString& destFile,
     const Movie* movie)
 {
@@ -726,7 +726,7 @@ bool ExportDialog::saveImageForType(const QString& type,
 
 bool ExportDialog::saveImageForType(const QString& type,
     const QSize& size,
-    const QDir& dir,
+    const QDir& /*dir*/,
     QString& destFile,
     const Concert* concert)
 {
@@ -767,7 +767,7 @@ bool ExportDialog::saveImageForType(const QString& type,
 
 bool ExportDialog::saveImageForType(const QString& type,
     const QSize& size,
-    const QDir& dir,
+    const QDir& /*dir*/,
     QString& destFile,
     const TvShow* tvShow)
 {
@@ -809,7 +809,7 @@ bool ExportDialog::saveImageForType(const QString& type,
 
 bool ExportDialog::saveImageForType(const QString& type,
     const QSize& size,
-    const QDir& dir,
+    const QDir& /*dir*/,
     QString& destFile,
     const TvShowEpisode* episode)
 {

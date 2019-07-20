@@ -101,7 +101,8 @@ void MusicWidget::onSaveInformation()
     if (artists.count() == 1 && albums.count() == 0 && ui->stackedWidget->currentIndex() == 0) {
         ui->artist->onSaveInformation();
         return;
-    } else if (artists.count() == 0 && albums.count() == 1 && ui->stackedWidget->currentIndex() == 1) {
+    }
+    if (artists.count() == 0 && albums.count() == 1 && ui->stackedWidget->currentIndex() == 1) {
         ui->album->onSaveInformation();
         return;
     }

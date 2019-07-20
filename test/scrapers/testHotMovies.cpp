@@ -56,7 +56,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[scraper][HotMovies][load_
         CHECK(genres[1] == "Spoofs / Parodies");
 
         const auto studios = m.studios();
-        REQUIRE(studios.size() >= 1);
+        REQUIRE(!studios.empty());
         CHECK(studios[0] == "Wicked Pictures");
 
         const auto actors = m.actors();

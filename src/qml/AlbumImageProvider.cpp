@@ -33,7 +33,7 @@ QImage AlbumImageProvider::requestImage(const QString& id, QSize* size, const QS
         QImage img = QImage::fromData(
             album->bookletModel()->data(album->bookletModel()->index(row, 0), Qt::UserRole + 4).toByteArray());
 
-        if (size) {
+        if (size != nullptr) {
             *size = QSize(img.width(), img.height());
         }
         if (requestedSize.width() > 0 || requestedSize.height() > 0) {

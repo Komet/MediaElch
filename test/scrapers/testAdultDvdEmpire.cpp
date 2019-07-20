@@ -52,7 +52,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[scraper][AdultDvdEmp
         CHECK_THAT(genres[1], StartsWith("Big"));
 
         const auto studios = m.studios();
-        REQUIRE(studios.size() >= 1);
+        REQUIRE(!studios.empty());
         CHECK(studios[0] == "Wicked Pictures");
 
         const auto actors = m.actors();

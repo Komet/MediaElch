@@ -258,10 +258,10 @@ void GlobalSettingsWidget::organize()
 void GlobalSettingsWidget::onDirTypeChanged(QComboBox* comboBox)
 {
     QComboBox* box = comboBox;
-    if (!box) {
+    if (box == nullptr) {
         box = static_cast<QComboBox*>(QObject::sender());
     }
-    if (!box) {
+    if (box == nullptr) {
         return;
     }
 

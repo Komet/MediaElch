@@ -127,9 +127,11 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         }
         if (role == Qt::UserRole + 5) {
             return movie->fileLastModified();
-        } else if (role == Qt::UserRole + 6) {
+        }
+        if (role == Qt::UserRole + 6) {
             return movie->syncNeeded();
-        } else if (role == Qt::FontRole) {
+        }
+        if (role == Qt::FontRole) {
             if (movie->hasChanged()) {
                 QFont font;
                 font.setItalic(true);

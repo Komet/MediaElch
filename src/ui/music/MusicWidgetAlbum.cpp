@@ -136,7 +136,7 @@ void MusicWidgetAlbum::setAlbum(Album* album)
 
 void MusicWidgetAlbum::onSetEnabled(bool enabled)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         ui->groupBox_3->setEnabled(false);
         return;
     }
@@ -174,7 +174,7 @@ void MusicWidgetAlbum::onClear()
     ui->cover->clear();
     ui->discArt->clear();
 
-    if (m_bookletWidget) {
+    if (m_bookletWidget != nullptr) {
         m_bookletWidget->setAlbum(nullptr);
     }
 
@@ -210,7 +210,7 @@ void MusicWidgetAlbum::onSaveInformation()
 
 void MusicWidgetAlbum::onStartScraperSearch()
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -219,7 +219,8 @@ void MusicWidgetAlbum::onStartScraperSearch()
 
     MusicSearch::instance()->exec("album",
         m_album->title(),
-        (m_album->artist().isEmpty() && m_album->artistObj()) ? m_album->artistObj()->name() : m_album->artist());
+        (m_album->artist().isEmpty() && (m_album->artistObj() != nullptr)) ? m_album->artistObj()->name()
+                                                                           : m_album->artist());
 
     if (MusicSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
@@ -236,7 +237,7 @@ void MusicWidgetAlbum::onStartScraperSearch()
 void MusicWidgetAlbum::updateAlbumInfo()
 {
     onClear();
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -270,7 +271,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
         styles << artist->styles();
         moods << artist->moods();
         for (int i = 0, n = artist->modelItem()->childNumber(); i < n; ++i) {
-            if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album()) {
+            if ((artist->modelItem()->child(i) != nullptr) && (artist->modelItem()->child(i)->album() != nullptr)) {
                 genres << artist->modelItem()->child(i)->album()->genres();
                 styles << artist->modelItem()->child(i)->album()->styles();
                 moods << artist->modelItem()->child(i)->album()->moods();
@@ -288,7 +289,7 @@ void MusicWidgetAlbum::updateAlbumInfo()
     ui->moodCloud->setTags(moods, m_album->moods());
 
     m_album->loadBooklets(Manager::instance()->mediaCenterInterface());
-    if (m_bookletWidget) {
+    if (m_bookletWidget != nullptr) {
         m_bookletWidget->setAlbum(m_album);
     }
 }
@@ -307,12 +308,12 @@ void MusicWidgetAlbum::updateImage(ImageType imageType, ClosableImage* image)
 
 void MusicWidgetAlbum::onItemChanged(QString text)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
     auto lineEdit = static_cast<QLineEdit*>(sender());
-    if (!lineEdit) {
+    if (lineEdit == nullptr) {
         return;
     }
 
@@ -336,7 +337,7 @@ void MusicWidgetAlbum::onItemChanged(QString text)
 
 void MusicWidgetAlbum::onReviewChanged()
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
     m_album->setReview(ui->review->toPlainText());
@@ -345,7 +346,7 @@ void MusicWidgetAlbum::onReviewChanged()
 
 void MusicWidgetAlbum::onYearChanged(int value)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
     m_album->setYear(value);
@@ -354,7 +355,7 @@ void MusicWidgetAlbum::onYearChanged(int value)
 
 void MusicWidgetAlbum::onRatingChanged(double value)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
     m_album->setRating(value);
@@ -363,7 +364,7 @@ void MusicWidgetAlbum::onRatingChanged(double value)
 
 void MusicWidgetAlbum::onRevertChanges()
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -375,7 +376,7 @@ void MusicWidgetAlbum::onRevertChanges()
 
 void MusicWidgetAlbum::onAddCloudItem(QString text)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -393,7 +394,7 @@ void MusicWidgetAlbum::onAddCloudItem(QString text)
 
 void MusicWidgetAlbum::onRemoveCloudItem(QString text)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -416,7 +417,7 @@ void MusicWidgetAlbum::onChooseImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -446,7 +447,7 @@ void MusicWidgetAlbum::onDeleteImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -457,7 +458,7 @@ void MusicWidgetAlbum::onDeleteImage()
 
 void MusicWidgetAlbum::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
@@ -484,7 +485,7 @@ void MusicWidgetAlbum::onLoadDone(Album* album)
         return;
     }
 
-    if (m_bookletWidget) {
+    if (m_bookletWidget != nullptr) {
         m_bookletWidget->setLoading(false);
     }
     onSetEnabled(true);
@@ -509,7 +510,7 @@ void MusicWidgetAlbum::onLoadingImages(Album* album, QVector<ImageType> imageTyp
         }
     }
 
-    if (m_bookletWidget && imageTypes.contains(ImageType::AlbumBooklet)) {
+    if ((m_bookletWidget != nullptr) && imageTypes.contains(ImageType::AlbumBooklet)) {
         m_bookletWidget->setLoading(true);
     }
 
@@ -538,7 +539,7 @@ void MusicWidgetAlbum::onSetImage(Album* album, ImageType type, QByteArray image
 void MusicWidgetAlbum::onBookletModelChanged()
 {
     auto model = static_cast<ImageModel*>(sender());
-    if (!model) {
+    if (model == nullptr) {
         return;
     }
     if (m_album != static_cast<Album*>(model->parent())) {
@@ -552,7 +553,7 @@ void MusicWidgetAlbum::onBookletModelChanged()
 
 void MusicWidgetAlbum::onAddBooklet()
 {
-    if (!m_album) {
+    if (m_album == nullptr) {
         return;
     }
 
@@ -564,7 +565,7 @@ void MusicWidgetAlbum::onAddBooklet()
     ImageDialog::instance()->exec(ImageType::AlbumBooklet);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
-        if (m_bookletWidget) {
+        if (m_bookletWidget != nullptr) {
             m_bookletWidget->setLoading(true);
         }
         emit sigSetActionSaveEnabled(false, MainWidgets::Music);
@@ -575,7 +576,7 @@ void MusicWidgetAlbum::onAddBooklet()
 
 void MusicWidgetAlbum::onBookletsDropped(QVector<QUrl> urls)
 {
-    if (m_bookletWidget) {
+    if (m_bookletWidget != nullptr) {
         m_bookletWidget->setLoading(true);
     }
     m_album->controller()->loadImages(ImageType::AlbumBooklet, urls);

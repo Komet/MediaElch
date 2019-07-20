@@ -130,7 +130,7 @@ void MusicWidgetArtist::setArtist(Artist* artist)
 
 void MusicWidgetArtist::onSetEnabled(bool enabled)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         ui->groupBox_3->setEnabled(false);
         return;
     }
@@ -202,7 +202,7 @@ void MusicWidgetArtist::onSaveInformation()
 
 void MusicWidgetArtist::onStartScraperSearch()
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -225,7 +225,7 @@ void MusicWidgetArtist::onStartScraperSearch()
 void MusicWidgetArtist::updateArtistInfo()
 {
     onClear();
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -292,12 +292,12 @@ void MusicWidgetArtist::updateImage(ImageType imageType, ClosableImage* image)
 
 void MusicWidgetArtist::onItemChanged(QString text)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
     auto lineEdit = static_cast<QLineEdit*>(sender());
-    if (!lineEdit) {
+    if (lineEdit == nullptr) {
         return;
     }
 
@@ -323,7 +323,7 @@ void MusicWidgetArtist::onItemChanged(QString text)
 
 void MusicWidgetArtist::onBiographyChanged()
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
     m_artist->setBiography(ui->biography->toPlainText());
@@ -332,7 +332,7 @@ void MusicWidgetArtist::onBiographyChanged()
 
 void MusicWidgetArtist::onRevertChanges()
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -343,7 +343,7 @@ void MusicWidgetArtist::onRevertChanges()
 
 void MusicWidgetArtist::onAddCloudItem(QString text)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -361,7 +361,7 @@ void MusicWidgetArtist::onAddCloudItem(QString text)
 
 void MusicWidgetArtist::onRemoveCloudItem(QString text)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -384,7 +384,7 @@ void MusicWidgetArtist::onChooseImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -414,7 +414,7 @@ void MusicWidgetArtist::onDeleteImage()
     }
 
     auto image = static_cast<ClosableImage*>(QObject::sender());
-    if (!image) {
+    if (image == nullptr) {
         return;
     }
 
@@ -425,7 +425,7 @@ void MusicWidgetArtist::onDeleteImage()
 
 void MusicWidgetArtist::onImageDropped(ImageType imageType, QUrl imageUrl)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
@@ -510,7 +510,7 @@ void MusicWidgetArtist::onSetImage(Artist* artist, ImageType type, QByteArray im
 
 void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray& image)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
     m_artist->removeExtraFanart(image);
@@ -519,7 +519,7 @@ void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray& image)
 
 void MusicWidgetArtist::onRemoveExtraFanart(const QString& file)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
     m_artist->removeExtraFanart(file);
@@ -528,7 +528,7 @@ void MusicWidgetArtist::onRemoveExtraFanart(const QString& file)
 
 void MusicWidgetArtist::onAddExtraFanart()
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -549,7 +549,7 @@ void MusicWidgetArtist::onAddExtraFanart()
 
 void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
     ui->fanarts->setLoading(true);
@@ -560,7 +560,7 @@ void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
 
 void MusicWidgetArtist::onAddAlbum()
 {
-    if (!m_artist) {
+    if (m_artist == nullptr) {
         return;
     }
 
@@ -585,12 +585,13 @@ void MusicWidgetArtist::onAddAlbum()
 void MusicWidgetArtist::onRemoveAlbum()
 {
     int row = ui->discography->currentRow();
-    if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected()) {
+    if ((m_artist == nullptr) || row < 0 || row >= ui->discography->rowCount()
+        || !ui->discography->currentItem()->isSelected()) {
         return;
     }
 
     auto album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
-    if (!album) {
+    if (album == nullptr) {
         return;
     }
     m_artist->removeDiscographyAlbum(album);

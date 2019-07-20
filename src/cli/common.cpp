@@ -17,17 +17,20 @@ MediaType mediaTypeFromString(QString str)
 {
     if ("all" == str) {
         return MediaType::All;
-    } else if ("movie" == str) {
-        return MediaType::Movie;
-    } else if ("tvshow" == str) {
-        return MediaType::TvShow;
-    } else if ("concert" == str) {
-        return MediaType::Concert;
-    } else if ("music" == str) {
-        return MediaType::Music;
-    } else {
-        return MediaType::Unknown;
     }
+    if ("movie" == str) {
+        return MediaType::Movie;
+    }
+    if ("tvshow" == str) {
+        return MediaType::TvShow;
+    }
+    if ("concert" == str) {
+        return MediaType::Concert;
+    }
+    if ("music" == str) {
+        return MediaType::Music;
+    }
+    return MediaType::Unknown;
 }
 
 void setVerbosity(int level)
