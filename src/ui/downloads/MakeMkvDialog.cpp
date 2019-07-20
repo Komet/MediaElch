@@ -349,7 +349,7 @@ void MakeMkvDialog::importFinished()
     if (m_movie->discType() != DiscType::BluRay && m_movie->discType() != DiscType::Dvd) {
         QStringList files;
         int partNo = 0;
-        for (QString file : m_movie->files()) {
+        for (const QString& file : m_movie->files()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             if (m_movie->files().count() > 1) {

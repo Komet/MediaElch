@@ -30,30 +30,32 @@ Storage::Storage(QObject* parent, QVector<ScraperSearchResult> results) : QObjec
 
 Storage::Storage(QObject* parent, QVector<MovieScraperInfos> infosToLoad) :
     QObject(parent),
-    m_movieInfosToLoad{infosToLoad}
+    m_movieInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<TvShowScraperInfos> infosToLoad) :
     QObject(parent),
-    m_showInfosToLoad{infosToLoad}
+    m_showInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<ConcertScraperInfos> infosToLoad) :
     QObject(parent),
-    m_concertInfosToLoad{infosToLoad}
+    m_concertInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 Storage::Storage(QObject* parent, QVector<MusicScraperInfos> infosToLoad) :
     QObject(parent),
-    m_musicInfosToLoad{infosToLoad}
+    m_musicInfosToLoad{std::move(infosToLoad)}
 {
 }
 
 
-Storage::Storage(QObject* parent, QVector<ImageType> infosToLoad) : QObject(parent), m_imageInfosToLoad{infosToLoad}
+Storage::Storage(QObject* parent, QVector<ImageType> infosToLoad) :
+    QObject(parent),
+    m_imageInfosToLoad{std::move(infosToLoad)}
 {
 }
 
@@ -61,7 +63,7 @@ Storage::Storage(QObject* parent, ExportTemplate* exportTemplate) : QObject(pare
 {
 }
 
-Storage::Storage(QObject* parent, QMap<MovieScraperInterface*, QString> ids) : QObject(parent), m_ids{ids}
+Storage::Storage(QObject* parent, QMap<MovieScraperInterface*, QString> ids) : QObject(parent), m_ids{std::move(ids)}
 {
 }
 
@@ -69,7 +71,7 @@ Storage::Storage(QObject* parent, QTableWidgetItem* item) : QObject(parent), m_t
 {
 }
 
-Storage::Storage(QObject* parent, QVector<TvShowEpisode*> episodes) : QObject(parent), m_episodes{episodes}
+Storage::Storage(QObject* parent, QVector<TvShowEpisode*> episodes) : QObject(parent), m_episodes{std::move(episodes)}
 {
 }
 
@@ -197,7 +199,7 @@ QVariant Storage::toVariant(QObject* parent, Album* album)
 
 QVariant Storage::toVariant(QObject* parent, QVector<ScraperSearchResult> results)
 {
-    Storage* const storage = new Storage(parent, results);
+    Storage* const storage = new Storage(parent, std::move(results));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -205,7 +207,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<ScraperSearchResult> result
 
 QVariant Storage::toVariant(QObject* parent, QVector<MovieScraperInfos> infosToLoad)
 {
-    Storage* const storage = new Storage(parent, infosToLoad);
+    Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -213,7 +215,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<MovieScraperInfos> infosToL
 
 QVariant Storage::toVariant(QObject* parent, QVector<TvShowScraperInfos> infosToLoad)
 {
-    Storage* const storage = new Storage(parent, infosToLoad);
+    Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -221,7 +223,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<TvShowScraperInfos> infosTo
 
 QVariant Storage::toVariant(QObject* parent, QVector<ConcertScraperInfos> infosToLoad)
 {
-    Storage* const storage = new Storage(parent, infosToLoad);
+    Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -229,7 +231,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<ConcertScraperInfos> infosT
 
 QVariant Storage::toVariant(QObject* parent, QVector<MusicScraperInfos> infosToLoad)
 {
-    Storage* const storage = new Storage(parent, infosToLoad);
+    Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -237,7 +239,7 @@ QVariant Storage::toVariant(QObject* parent, QVector<MusicScraperInfos> infosToL
 
 QVariant Storage::toVariant(QObject* parent, QVector<ImageType> infosToLoad)
 {
-    Storage* const storage = new Storage(parent, infosToLoad);
+    Storage* const storage = new Storage(parent, std::move(infosToLoad));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -253,7 +255,7 @@ QVariant Storage::toVariant(QObject* parent, ExportTemplate* exportTemplate)
 
 QVariant Storage::toVariant(QObject* parent, QMap<MovieScraperInterface*, QString> ids)
 {
-    Storage* const storage = new Storage(parent, ids);
+    Storage* const storage = new Storage(parent, std::move(ids));
     QVariant var;
     var.setValue(storage);
     return var;
@@ -269,7 +271,7 @@ QVariant Storage::toVariant(QObject* parent, QTableWidgetItem* item)
 
 QVariant Storage::toVariant(QObject* parent, QVector<TvShowEpisode*> episodes)
 {
-    Storage* const storage = new Storage(parent, episodes);
+    Storage* const storage = new Storage(parent, std::move(episodes));
     QVariant var;
     var.setValue(storage);
     return var;

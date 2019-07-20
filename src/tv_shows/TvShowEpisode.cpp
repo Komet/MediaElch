@@ -606,7 +606,7 @@ void TvShowEpisode::setSeason(SeasonNumber season)
  */
 void TvShowEpisode::setEpisode(EpisodeNumber episode)
 {
-    m_episode = std::move(episode);
+    m_episode = episode;
     setChanged(true);
 }
 
@@ -617,7 +617,7 @@ void TvShowEpisode::setEpisode(EpisodeNumber episode)
  */
 void TvShowEpisode::setDisplaySeason(SeasonNumber season)
 {
-    m_displaySeason = std::move(season);
+    m_displaySeason = season;
     setChanged(true);
 }
 
@@ -628,7 +628,7 @@ void TvShowEpisode::setDisplaySeason(SeasonNumber season)
  */
 void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
 {
-    m_displayEpisode = std::move(episode);
+    m_displayEpisode = episode;
     setChanged(true);
 }
 

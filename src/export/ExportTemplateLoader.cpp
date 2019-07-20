@@ -250,7 +250,7 @@ bool ExportTemplateLoader::removeDir(const QString& dirName)
     bool result = true;
     QDir dir(dirName);
     if (dir.exists(dirName)) {
-        for (QFileInfo info : dir.entryInfoList(
+        for (const QFileInfo& info : dir.entryInfoList(
                  QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
             if (info.isDir()) {
                 result = removeDir(info.absoluteFilePath());

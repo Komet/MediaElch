@@ -2,6 +2,7 @@
 #include "ui_TvShowMultiScrapeDialog.h"
 
 #include <QDebug>
+#include <utility>
 
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
@@ -445,7 +446,7 @@ void TvShowMultiScrapeDialog::onLoadDone(TvShow* show, QMap<ImageType, QVector<P
             downloadsSize++;
         } else if (m_infosToLoad.contains(TvShowScraperInfos::SeasonThumb) && it.key() == ImageType::TvShowSeasonThumb
                    && !it.value().isEmpty()) {
-            for (Poster p : it.value()) {
+            for (const Poster& p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
                     continue;
                 }
@@ -496,7 +497,7 @@ void TvShowMultiScrapeDialog::addDownload(ImageType imageType, QUrl url, TvShow*
 {
     DownloadManagerElement d;
     d.imageType = imageType;
-    d.url = url;
+    d.url = std::move(url);
     d.season = season;
     d.show = show;
     m_downloadManager->addDownload(d);
@@ -506,7 +507,7 @@ void TvShowMultiScrapeDialog::addDownload(ImageType imageType, QUrl url, TvShow*
 {
     DownloadManagerElement d;
     d.imageType = imageType;
-    d.url = url;
+    d.url = std::move(url);
     d.actor = actor;
     d.show = show;
     m_downloadManager->addDownload(d);
@@ -516,7 +517,7 @@ void TvShowMultiScrapeDialog::addDownload(ImageType imageType, QUrl url, TvShowE
 {
     DownloadManagerElement d;
     d.imageType = imageType;
-    d.url = url;
+    d.url = std::move(url);
     d.episode = episode;
     d.directDownload = true;
     m_downloadManager->addDownload(d);

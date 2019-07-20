@@ -423,7 +423,7 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                 movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
                 if (discType == DiscType::Single) {
                     QFileInfo mFi(files.first());
-                    for (QFileInfo subFi : mFi.dir().entryInfoList(
+                    for (const QFileInfo& subFi : mFi.dir().entryInfoList(
                              QStringList{"*.sub", "*.srt", "*.smi", "*.ssa"}, QDir::Files | QDir::NoDotAndDotDot)) {
                         QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
                         QStringList parts = subFileName.split(QRegExp(R"(\s+|\-+|\.+)"));

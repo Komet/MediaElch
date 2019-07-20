@@ -247,7 +247,7 @@ void KodiSync::onMovieListFinished()
     while (it.hasNext()) {
         it.next();
         if (it.key() == "movies" && !it.value().toList().empty()) {
-            for (QVariant var : it.value().toList()) {
+            for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("movieid").toInt() == 0) {
                     continue;
                 }
@@ -277,7 +277,7 @@ void KodiSync::onConcertListFinished()
     while (it.hasNext()) {
         it.next();
         if (it.key() == "musicvideos" && !it.value().toList().empty()) {
-            for (QVariant var : it.value().toList()) {
+            for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("musicvideoid").toInt() == 0) {
                     continue;
                 }
@@ -307,7 +307,7 @@ void KodiSync::onTvShowListFinished()
     while (it.hasNext()) {
         it.next();
         if (it.key() == "tvshows" && !it.value().toList().empty()) {
-            for (QVariant var : it.value().toList()) {
+            for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("tvshowid").toInt() == 0) {
                     continue;
                 }
@@ -337,7 +337,7 @@ void KodiSync::onEpisodeListFinished()
     while (it.hasNext()) {
         it.next();
         if (it.key() == "episodes" && !it.value().toList().empty()) {
-            for (QVariant var : it.value().toList()) {
+            for (const QVariant& var : it.value().toList()) {
                 if (var.toMap().value("episodeid").toInt() == 0) {
                     continue;
                 }
@@ -653,7 +653,7 @@ bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFil
         // construct a new stack
         QStringList stack;
         QStringList xbmcStack;
-        for (QString file : xbmcFiles) {
+        for (const QString& file : xbmcFiles) {
             QStringList parts = splitFile(file);
             if (parts.count() < level) {
                 return false;
@@ -665,7 +665,7 @@ bool KodiSync::compareFiles(const QStringList& files, const QStringList& xbmcFil
             xbmcStack << partsNew.join("/");
         }
 
-        for (QString file : files) {
+        for (const QString& file : files) {
             QStringList parts = splitFile(file);
             if (parts.count() < level) {
                 return false;

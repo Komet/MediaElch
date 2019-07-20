@@ -203,7 +203,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         appendDownloadElement(artist, "discogs", "discogs_data", QUrl(discogsUrl + "?type=Releases&subtype=Albums"));
     }
 
-    for (DownloadElement elem : m_artistDownloads[artist]) {
+    for (const DownloadElement& elem : m_artistDownloads[artist]) {
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
@@ -281,13 +281,13 @@ void UniversalMusicScraper::onArtistLoadFinished()
         return;
     }
 
-    for (DownloadElement elem : m_artistDownloads[artist]) {
+    for (const DownloadElement& elem : m_artistDownloads[artist]) {
         if (elem.source != m_prefer) {
             continue;
         }
         processDownloadElement(elem, artist, infos);
     }
-    for (DownloadElement elem : m_artistDownloads[artist]) {
+    for (const DownloadElement& elem : m_artistDownloads[artist]) {
         if (elem.source == m_prefer) {
             continue;
         }
@@ -522,7 +522,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         appendDownloadElement(album, "discogs", "discogs_data", QUrl(discogsUrl));
     }
 
-    for (DownloadElement elem : m_albumDownloads[album]) {
+    for (const DownloadElement& elem : m_albumDownloads[album]) {
         QNetworkRequest request(elem.url);
         request.setRawHeader(
             "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0");
@@ -597,13 +597,13 @@ void UniversalMusicScraper::onAlbumLoadFinished()
         return;
     }
 
-    for (DownloadElement elem : m_albumDownloads[album]) {
+    for (const DownloadElement& elem : m_albumDownloads[album]) {
         if (elem.source != m_prefer) {
             continue;
         }
         processDownloadElement(elem, album, infos);
     }
-    for (DownloadElement elem : m_albumDownloads[album]) {
+    for (const DownloadElement& elem : m_albumDownloads[album]) {
         if (elem.source == m_prefer) {
             continue;
         }

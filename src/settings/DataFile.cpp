@@ -57,8 +57,7 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
 
     QString baseName = fi.completeBaseName();
     if (stacked) {
-        QString f = fileName;
-        baseName = helper::stackedBaseName(f);
+        baseName = helper::stackedBaseName(fileName);
     }
     newFileName.replace("<baseFileName>", baseName);
 

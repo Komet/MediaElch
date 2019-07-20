@@ -29,7 +29,7 @@ using namespace ZenLib;
  */
 StreamDetails::StreamDetails(QObject* parent, QStringList files) :
     QObject(parent),
-    m_files(files),
+    m_files(std::move(files)),
     m_hdAudioCodecs{"dtshd_ma", "dtshd_hra", "truehd"},
     m_normalAudioCodecs{"DTS", "dts", "ac3", "eac3", "flac"},
     m_sdAudioCodecs{"mp3"}

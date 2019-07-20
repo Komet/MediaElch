@@ -69,7 +69,7 @@ void MovieSettingsWidget::loadSettings()
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
         QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
         QStringList filenames;
-        for (DataFile dataFile : dataFiles) {
+        for (const DataFile& dataFile : dataFiles) {
             filenames << dataFile.fileName();
         }
         lineEdit->setText(filenames.join(","));

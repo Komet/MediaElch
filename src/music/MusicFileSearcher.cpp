@@ -17,7 +17,7 @@ MusicFileSearcher::MusicFileSearcher(QObject* parent) :
 void MusicFileSearcher::setMusicDirectories(QVector<SettingsDir> directories)
 {
     m_directories.clear();
-    for (SettingsDir dir : directories) {
+    for (const SettingsDir& dir : directories) {
         if (dir.path.isReadable()) {
             qDebug() << "Adding music directory" << dir.path.path();
             m_directories.append(dir);
@@ -45,7 +45,7 @@ void MusicFileSearcher::reload(bool force)
 
     QMap<Artist*, QString> artistPaths;
     QMap<Album*, QString> albumPaths;
-    for (SettingsDir dir : m_directories) {
+    for (const SettingsDir& dir : m_directories) {
         if (m_aborted) {
             break;
         }

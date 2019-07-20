@@ -401,7 +401,7 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
     // clear gui
     Manager::instance()->tvShowModel()->clear();
 
-    for (SettingsDir dir : m_directories) {
+    for (const SettingsDir& dir : m_directories) {
         if (dir.autoReload || forceClear) {
             database().clearTvShows(dir.path.path());
         }
@@ -516,7 +516,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool forceReload)
 {
     QMap<QString, QVector<QStringList>> contents;
-    for (SettingsDir dir : m_directories) {
+    for (const SettingsDir& dir : m_directories) {
         if (m_aborted) {
             break;
         }
@@ -533,7 +533,7 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
 QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
 {
     QVector<TvShow*> dbShows;
-    for (SettingsDir dir : m_directories) {
+    for (const SettingsDir& dir : m_directories) {
         QVector<TvShow*> showsFromDatabase = database().shows(dir.path.path());
         if (!dir.autoReload && !forceReload && !showsFromDatabase.isEmpty()) {
             dbShows.append(showsFromDatabase);

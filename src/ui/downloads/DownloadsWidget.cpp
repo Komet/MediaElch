@@ -68,7 +68,7 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
-    for (SettingsDir settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
+    for (const SettingsDir& settingsDir : Settings::instance()->directorySettings().downloadDirectories()) {
         QString dir = settingsDir.path.path();
         QDirIterator it(dir,
             QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files,
@@ -450,7 +450,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
 
     bool sub = false;
     if (type == "movie") {
-        for (SettingsDir dir : Settings::instance()->directorySettings().movieDirectories()) {
+        for (const SettingsDir& dir : Settings::instance()->directorySettings().movieDirectories()) {
             detailBox->addItem(dir.path.path());
             sub = true;
         }
@@ -460,7 +460,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
             sub = true;
         }
     } else if (type == "concert") {
-        for (SettingsDir dir : Settings::instance()->directorySettings().concertDirectories()) {
+        for (const SettingsDir& dir : Settings::instance()->directorySettings().concertDirectories()) {
             detailBox->addItem(dir.path.path());
             sub = true;
         }
