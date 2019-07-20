@@ -208,13 +208,13 @@ void TheTvDbImages::tvShowEpisodeThumb(TvDbId tvdbId, SeasonNumber season, Episo
  */
 void TheTvDbImages::tvShowSeason(TvDbId tvdbId, SeasonNumber season)
 {
-    m_season = std::move(season);
+    m_season = season;
     loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster);
 }
 
 void TheTvDbImages::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season)
 {
-    m_season = std::move(season);
+    m_season = season;
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner);
 }
 

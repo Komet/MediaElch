@@ -111,7 +111,7 @@ QByteArray ArtistXmlWriter::getArtistXml()
             KodiXml::appendXmlNode(doc, elem);
         }
     }
-    for (QDomNode node : albumNodes) {
+    for (const QDomNode& node : albumNodes) {
         artistElem.removeChild(node);
     }
 

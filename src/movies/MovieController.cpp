@@ -183,7 +183,7 @@ QVector<MovieScraperInfos> MovieController::infosToLoad()
 
 void MovieController::setInfosToLoad(QVector<MovieScraperInfos> infos)
 {
-    m_infosToLoad = infos;
+    m_infosToLoad = std::move(infos);
 }
 
 /**
@@ -389,7 +389,7 @@ void MovieController::loadImage(ImageType type, QUrl url)
     DownloadManagerElement d;
     d.movie = m_movie;
     d.imageType = type;
-    d.url = url;
+    d.url = std::move(url);
     emit sigLoadingImages(m_movie, {type});
     m_downloadManager->addDownload(d);
 }

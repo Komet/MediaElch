@@ -152,7 +152,7 @@ bool KodiXml::saveMovie(Movie* movie)
         if (!dir.exists() && !movie->images().extraFanartToAdd().isEmpty()) {
             QDir(QFileInfo(movie->files().first()).absolutePath()).mkdir("extrafanart");
         }
-        for (QByteArray img : movie->images().extraFanartToAdd()) {
+        for (const QByteArray& img : movie->images().extraFanartToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -703,7 +703,7 @@ bool KodiXml::saveConcert(Concert* concert)
         if (!dir.exists() && !concert->extraFanartImagesToAdd().isEmpty()) {
             QDir(QFileInfo(concert->files().first()).absolutePath()).mkdir("extrafanart");
         }
-        for (QByteArray img : concert->extraFanartImagesToAdd()) {
+        for (const QByteArray& img : concert->extraFanartImagesToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -1008,7 +1008,7 @@ bool KodiXml::saveTvShow(TvShow* show)
         if (!dir.exists() && !show->extraFanartImagesToAdd().isEmpty()) {
             QDir(show->dir()).mkdir("extrafanart");
         }
-        for (QByteArray img : show->extraFanartImagesToAdd()) {
+        for (const QByteArray& img : show->extraFanartImagesToAdd()) {
             int num = 1;
             while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
                 ++num;
@@ -1819,7 +1819,7 @@ bool KodiXml::saveArtist(Artist* artist)
     if (!dir.exists() && !artist->extraFanartImagesToAdd().isEmpty()) {
         QDir(artist->path()).mkdir("extrafanart");
     }
-    for (QByteArray img : artist->extraFanartImagesToAdd()) {
+    for (const QByteArray& img : artist->extraFanartImagesToAdd()) {
         int num = 1;
         while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists()) {
             ++num;
@@ -2041,7 +2041,7 @@ void KodiXml::removeChildNodes(QDomDocument& doc, const QString& name)
             nodesToRemove.append(childNodes.at(i));
         }
     }
-    for (QDomNode node : nodesToRemove) {
+    for (const QDomNode& node : nodesToRemove) {
         rootNode.removeChild(node);
     }
 }

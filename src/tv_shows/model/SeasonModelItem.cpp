@@ -89,7 +89,7 @@ void SeasonModelItem::setSeason(QString season)
 
 void SeasonModelItem::setSeasonNumber(SeasonNumber seasonNumber)
 {
-    m_seasonNumber = std::move(seasonNumber);
+    m_seasonNumber = seasonNumber;
 }
 
 TvShow* SeasonModelItem::tvShow()

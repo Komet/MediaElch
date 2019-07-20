@@ -114,7 +114,7 @@ void ImageGallery::clear()
 void ImageGallery::setImages(QVector<ExtraFanart> images)
 {
     clear();
-    for (ExtraFanart fanart : images) {
+    for (const ExtraFanart& fanart : images) {
         auto label = new ClosableImage(m_imagesWidget);
         label->hide();
         label->setShowZoomAndResolution(m_showZoomAndResolution);

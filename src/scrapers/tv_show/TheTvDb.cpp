@@ -1168,7 +1168,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml,
 
         if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
             show->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
-            for (Actor actor : m_dummyMovie->actors()) {
+            for (const Actor& actor : m_dummyMovie->actors()) {
                 Actor a;
                 a.id = actor.id;
                 a.image = actor.image;
@@ -1294,7 +1294,7 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode* episode, QVect
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Actors, infosToLoad) && !m_dummyMovie->actors().isEmpty()) {
         episode->clear(QVector<TvShowScraperInfos>() << TvShowScraperInfos::Actors);
-        for (Actor actor : m_dummyMovie->actors()) {
+        for (const Actor& actor : m_dummyMovie->actors()) {
             Actor a;
             a.id = actor.id;
             a.image = actor.image;

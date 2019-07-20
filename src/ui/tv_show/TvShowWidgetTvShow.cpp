@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
+#include <utility>
 
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
@@ -614,7 +615,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             }
             downloadsSize++;
         } else if (it.key() == ImageType::TvShowSeasonThumb && !it.value().isEmpty()) {
-            for (Poster p : it.value()) {
+            for (const Poster& p : it.value()) {
                 if (thumbsForSeasons.contains(p.season)) {
                     continue;
                 }
@@ -979,25 +980,25 @@ void TvShowWidgetTvShow::onArtPageTwo()
  */
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
-    m_show->setName(text);
+    m_show->setName(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onImdbIdChange(QString text)
 {
-    m_show->setImdbId(ImdbId(text));
+    m_show->setImdbId(ImdbId(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onTvdbIdChange(QString text)
 {
-    m_show->setTvdbId(TvDbId(text));
+    m_show->setTvdbId(TvDbId(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onSortTitleChange(QString text)
 {
-    m_show->setSortTitle(text);
+    m_show->setSortTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1006,7 +1007,7 @@ void TvShowWidgetTvShow::onSortTitleChange(QString text)
  */
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
-    m_show->setCertification(Certification(text));
+    m_show->setCertification(Certification(std::move(text)));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1043,7 +1044,7 @@ void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
  */
 void TvShowWidgetTvShow::onStudioChange(QString studio)
 {
-    m_show->setNetwork(studio);
+    m_show->setNetwork(std::move(studio));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1109,7 +1110,7 @@ void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowExtraFanart;
-    d.url = imageUrl;
+    d.url = std::move(imageUrl);
     d.show = m_show;
     m_posterDownloadManager->addDownload(d);
     ui->buttonRevert->setVisible(true);
@@ -1189,7 +1190,7 @@ void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = imageType;
-    d.url = imageUrl;
+    d.url = std::move(imageUrl);
     d.show = m_show;
     m_posterDownloadManager->addDownload(d);
     image->setLoading(true);

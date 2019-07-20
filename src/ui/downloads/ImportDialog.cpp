@@ -339,9 +339,9 @@ QStringList ImportDialog::extraFiles()
 
 void ImportDialog::setImportDir(QString dir)
 {
-    for (SettingsDir settingsDir : QVector<SettingsDir>()
-                                       << Settings::instance()->directorySettings().movieDirectories()
-                                       << Settings::instance()->directorySettings().concertDirectories()) {
+    for (const SettingsDir& settingsDir : QVector<SettingsDir>()
+                                              << Settings::instance()->directorySettings().movieDirectories()
+                                              << Settings::instance()->directorySettings().concertDirectories()) {
         if (settingsDir.path == dir) {
             m_separateFolders = settingsDir.separateFolders;
             break;
@@ -460,7 +460,7 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        for (QString file : QStringList() << files() << extraFiles()) {
+        for (const QString& file : QStringList() << files() << extraFiles()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_movie->name());
@@ -496,7 +496,7 @@ void ImportDialog::onImport()
             dir.cd(newFolderName);
         }
 
-        for (QString file : QStringList() << files() << extraFiles()) {
+        for (const QString& file : QStringList() << files() << extraFiles()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
 
@@ -550,7 +550,7 @@ void ImportDialog::onImport()
             }
             dir.cd(newFolderName);
         }
-        for (QString file : QStringList() << files() << extraFiles()) {
+        for (const QString& file : QStringList() << files() << extraFiles()) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_concert->name());

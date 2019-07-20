@@ -490,7 +490,7 @@ QStringList Concert::tags() const
  */
 void Concert::setName(QString name)
 {
-    m_concert.name = name;
+    m_concert.name = std::move(name);
     setChanged(true);
 }
 
@@ -501,7 +501,7 @@ void Concert::setName(QString name)
  */
 void Concert::setArtist(QString artist)
 {
-    m_concert.artist = artist;
+    m_concert.artist = std::move(artist);
     setChanged(true);
 }
 
@@ -512,7 +512,7 @@ void Concert::setArtist(QString artist)
  */
 void Concert::setAlbum(QString album)
 {
-    m_concert.album = album;
+    m_concert.album = std::move(album);
     setChanged(true);
 }
 
@@ -523,7 +523,7 @@ void Concert::setAlbum(QString album)
  */
 void Concert::setOverview(QString overview)
 {
-    m_concert.overview = overview;
+    m_concert.overview = std::move(overview);
     setChanged(true);
 }
 
@@ -556,7 +556,7 @@ void Concert::setReleased(QDate released)
  */
 void Concert::setTagline(QString tagline)
 {
-    m_concert.tagline = tagline;
+    m_concert.tagline = std::move(tagline);
     setChanged(true);
 }
 
@@ -578,7 +578,7 @@ void Concert::setRuntime(std::chrono::minutes runtime)
  */
 void Concert::setCertification(Certification cert)
 {
-    m_concert.certification = cert;
+    m_concert.certification = std::move(cert);
     setChanged(true);
 }
 
@@ -589,7 +589,7 @@ void Concert::setCertification(Certification cert)
  */
 void Concert::setTrailer(QUrl trailer)
 {
-    m_concert.trailer = trailer;
+    m_concert.trailer = std::move(trailer);
     setChanged(true);
 }
 
@@ -611,7 +611,7 @@ void Concert::setPlayCount(int playcount)
  */
 void Concert::setLastPlayed(QDateTime lastPlayed)
 {
-    m_concert.lastPlayed = lastPlayed;
+    m_concert.lastPlayed = std::move(lastPlayed);
     setChanged(true);
 }
 
@@ -622,7 +622,7 @@ void Concert::setLastPlayed(QDateTime lastPlayed)
  */
 void Concert::setPosters(QVector<Poster> posters)
 {
-    m_concert.posters = posters;
+    m_concert.posters = std::move(posters);
     setChanged(true);
 }
 
@@ -637,7 +637,7 @@ void Concert::setPoster(int index, Poster poster)
     if (m_concert.posters.size() < index) {
         return;
     }
-    m_concert.posters[index] = poster;
+    m_concert.posters[index] = std::move(poster);
     setChanged(true);
 }
 
@@ -663,7 +663,7 @@ void Concert::setBackdrop(int index, Poster backdrop)
     if (m_concert.backdrops.size() < index) {
         return;
     }
-    m_concert.backdrops[index] = backdrop;
+    m_concert.backdrops[index] = std::move(backdrop);
     setChanged(true);
 }
 
@@ -732,7 +732,7 @@ void Concert::setMediaCenterId(int mediaCenterId)
  */
 void Concert::setTmdbId(TmdbId id)
 {
-    m_concert.tmdbId = id;
+    m_concert.tmdbId = std::move(id);
     setChanged(true);
 }
 
@@ -743,7 +743,7 @@ void Concert::setTmdbId(TmdbId id)
  */
 void Concert::setImdbId(ImdbId id)
 {
-    m_concert.imdbId = id;
+    m_concert.imdbId = std::move(id);
     setChanged(true);
 }
 
@@ -761,7 +761,7 @@ void Concert::setStreamDetailsLoaded(bool loaded)
  */
 void Concert::setNfoContent(QString content)
 {
-    m_nfoContent = content;
+    m_nfoContent = std::move(content);
 }
 
 /**

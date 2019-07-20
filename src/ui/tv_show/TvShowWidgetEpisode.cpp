@@ -833,7 +833,7 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
  */
 void TvShowWidgetEpisode::onNameChange(QString text)
 {
-    m_episode->setName(text);
+    m_episode->setName(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 
@@ -842,7 +842,7 @@ void TvShowWidgetEpisode::onNameChange(QString text)
  */
 void TvShowWidgetEpisode::onShowTitleChange(QString text)
 {
-    m_episode->setShowTitle(text);
+    m_episode->setShowTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 

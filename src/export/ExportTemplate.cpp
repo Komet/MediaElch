@@ -50,7 +50,7 @@ QString ExportTemplate::description() const
 
 void ExportTemplate::setExportSections(QVector<ExportSection> exportSections)
 {
-    m_exportSections = exportSections;
+    m_exportSections = std::move(exportSections);
 }
 
 QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
@@ -60,7 +60,7 @@ QVector<ExportTemplate::ExportSection> ExportTemplate::exportSections()
 
 void ExportTemplate::setIdentifier(QString identifier)
 {
-    m_identifier = identifier;
+    m_identifier = std::move(identifier);
 }
 
 QString ExportTemplate::identifier() const
@@ -80,7 +80,7 @@ bool ExportTemplate::isInstalled() const
 
 void ExportTemplate::setName(QString name)
 {
-    m_name = name;
+    m_name = std::move(name);
 }
 
 QString ExportTemplate::name() const
@@ -100,7 +100,7 @@ bool ExportTemplate::isRemote() const
 
 void ExportTemplate::setRemoteFile(QString remoteFile)
 {
-    m_remoteFile = remoteFile;
+    m_remoteFile = std::move(remoteFile);
 }
 
 QString ExportTemplate::remoteFile() const
@@ -110,7 +110,7 @@ QString ExportTemplate::remoteFile() const
 
 void ExportTemplate::setVersion(QString version)
 {
-    m_version = version;
+    m_version = std::move(version);
 }
 
 QString ExportTemplate::version() const
@@ -120,7 +120,7 @@ QString ExportTemplate::version() const
 
 void ExportTemplate::setRemoteVersion(QString remoteVersion)
 {
-    m_remoteVersion = remoteVersion;
+    m_remoteVersion = std::move(remoteVersion);
 }
 
 QString ExportTemplate::remoteVersion() const

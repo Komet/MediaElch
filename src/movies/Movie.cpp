@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <utility>
 
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
@@ -535,7 +536,7 @@ QStringList Movie::tags() const
  */
 void Movie::setName(QString name)
 {
-    m_name = name;
+    m_name = std::move(name);
     setChanged(true);
 }
 
@@ -546,7 +547,7 @@ void Movie::setName(QString name)
  */
 void Movie::setSortTitle(QString sortTitle)
 {
-    m_sortTitle = sortTitle;
+    m_sortTitle = std::move(sortTitle);
     setChanged(true);
 }
 
@@ -557,7 +558,7 @@ void Movie::setSortTitle(QString sortTitle)
  */
 void Movie::setOriginalName(QString originalName)
 {
-    m_originalName = originalName;
+    m_originalName = std::move(originalName);
     setChanged(true);
 }
 
@@ -568,7 +569,7 @@ void Movie::setOriginalName(QString originalName)
  */
 void Movie::setOverview(QString overview)
 {
-    m_overview = overview;
+    m_overview = std::move(overview);
     setChanged(true);
 }
 
@@ -601,7 +602,7 @@ void Movie::setReleased(QDate released)
  */
 void Movie::setTagline(QString tagline)
 {
-    m_tagline = tagline;
+    m_tagline = std::move(tagline);
     setChanged(true);
 }
 
@@ -612,7 +613,7 @@ void Movie::setTagline(QString tagline)
  */
 void Movie::setOutline(QString outline)
 {
-    m_outline = outline;
+    m_outline = std::move(outline);
     setChanged(true);
 }
 
@@ -634,7 +635,7 @@ void Movie::setRuntime(std::chrono::minutes runtime)
  */
 void Movie::setCertification(Certification certification)
 {
-    m_certification = certification;
+    m_certification = std::move(certification);
     setChanged(true);
 }
 
@@ -645,7 +646,7 @@ void Movie::setCertification(Certification certification)
  */
 void Movie::setWriter(QString writer)
 {
-    m_crew.setWriter(writer);
+    m_crew.setWriter(std::move(writer));
     setChanged(true);
 }
 
@@ -656,7 +657,7 @@ void Movie::setWriter(QString writer)
  */
 void Movie::setDirector(QString director)
 {
-    m_crew.setDirector(director);
+    m_crew.setDirector(std::move(director));
     setChanged(true);
 }
 
@@ -667,7 +668,7 @@ void Movie::setDirector(QString director)
  */
 void Movie::setTrailer(QUrl trailer)
 {
-    m_trailer = trailer;
+    m_trailer = std::move(trailer);
     setChanged(true);
 }
 
@@ -678,7 +679,7 @@ void Movie::setTrailer(QUrl trailer)
  */
 void Movie::setActors(QVector<Actor> actors)
 {
-    m_crew.setActors(actors);
+    m_crew.setActors(std::move(actors));
     setChanged(true);
 }
 
@@ -700,7 +701,7 @@ void Movie::setPlayCount(int playcount)
  */
 void Movie::setLastPlayed(QDateTime lastPlayed)
 {
-    m_lastPlayed = lastPlayed;
+    m_lastPlayed = std::move(lastPlayed);
     setChanged(true);
 }
 
@@ -733,7 +734,7 @@ void Movie::setTmdbId(TmdbId tmdbId)
  */
 void Movie::setSet(MovieSet set)
 {
-    m_set = set;
+    m_set = std::move(set);
     setChanged(true);
 }
 
@@ -798,12 +799,12 @@ void Movie::setMediaCenterId(int mediaCenterId)
  */
 void Movie::setFileLastModified(QDateTime modified)
 {
-    m_fileLastModified = modified;
+    m_fileLastModified = std::move(modified);
 }
 
 void Movie::setNfoContent(QString content)
 {
-    m_nfoContent = content;
+    m_nfoContent = std::move(content);
 }
 
 void Movie::setDatabaseId(int id)
@@ -825,7 +826,7 @@ void Movie::setSyncNeeded(bool syncNeeded)
  */
 void Movie::addActor(Actor actor)
 {
-    m_crew.addActor(actor);
+    m_crew.addActor(std::move(actor));
     setChanged(true);
 }
 
@@ -834,7 +835,7 @@ void Movie::addActor(Actor actor)
  * @param country Country to add
  * @see Movie::countries
  */
-void Movie::addCountry(QString country)
+void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
 {
     if (country.isEmpty()) {
         return;
@@ -848,7 +849,7 @@ void Movie::addCountry(QString country)
  * @param genre Genre to add
  * @see Movie::genres
  */
-void Movie::addGenre(QString genre)
+void Movie::addGenre(QString genre) // NOLINT // we require pass-by-value
 {
     if (genre.isEmpty()) {
         return;
@@ -862,7 +863,7 @@ void Movie::addGenre(QString genre)
  * @param studio Studio to add
  * @see Movie::studios
  */
-void Movie::addStudio(QString studio)
+void Movie::addStudio(QString studio) // NOLINT // we require pass-by-value
 {
     if (studio.isEmpty()) {
         return;
@@ -871,7 +872,7 @@ void Movie::addStudio(QString studio)
     setChanged(true);
 }
 
-void Movie::addTag(QString tag)
+void Movie::addTag(QString tag) // NOLINT // we require pass-by-value
 {
     if (m_tags.contains(tag)) {
         return;
@@ -1008,7 +1009,7 @@ QString Movie::localTrailerFileName() const
 
 void Movie::setDateAdded(QDateTime date)
 {
-    m_dateAdded = date;
+    m_dateAdded = std::move(date);
 }
 
 QDateTime Movie::dateAdded() const

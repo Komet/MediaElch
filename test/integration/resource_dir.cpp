@@ -1,6 +1,7 @@
 #include "test/integration/resource_dir.h"
 
 #include <QTextStream>
+#include <utility>
 
 static QDir s_resourceDir;
 static QDir s_tempDir;
@@ -12,7 +13,7 @@ QDir resourceDir()
 
 void setResourceDir(QDir dir)
 {
-    s_resourceDir = dir;
+    s_resourceDir = std::move(dir);
 }
 
 QString getFileContent(QString filename)
@@ -48,5 +49,5 @@ QDir tempDir()
 
 void setTempDir(QDir dir)
 {
-    s_tempDir = dir;
+    s_tempDir = std::move(dir);
 }

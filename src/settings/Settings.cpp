@@ -163,7 +163,7 @@ void Settings::loadSettings()
         DataFileType type = DataFileType(settings()->value("type").toInt());
         QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
-            for (DataFile initialDataFile : m_initialDataFilesFrodo) {
+            for (const DataFile& initialDataFile : m_initialDataFilesFrodo) {
                 if (initialDataFile.type() == type) {
                     fileName = initialDataFile.fileName();
                     break;
@@ -176,9 +176,9 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
-    for (DataFile initialDataFile : m_initialDataFilesFrodo) {
+    for (const DataFile& initialDataFile : m_initialDataFilesFrodo) {
         bool found = false;
-        for (DataFile df : dataFiles) {
+        for (const DataFile& df : dataFiles) {
             if (df.type() == initialDataFile.type()) {
                 found = true;
                 break;

@@ -117,7 +117,7 @@ bool isDvd(QString path, bool noSubFolder)
     filters << "VIDEO_TS"
             << "VIDEO TS";
     if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() > 0) {
-        for (const QString filter : filters) {
+        for (const QString& filter : filters) {
             dir.setPath(path + QDir::separator() + filter);
             if (dir.entryList(QStringList() << "VIDEO_TS.IFO").count() == 1) {
                 return true;

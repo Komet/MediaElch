@@ -473,7 +473,7 @@ void ExportDialog::replaceVars(QString& m, const TvShow* show, QDir dir, bool su
 
     QStringList actorNames;
     QStringList actorRoles;
-    for (Actor actor : show->actors()) {
+    for (const Actor& actor : show->actors()) {
         actorNames << actor.name;
         actorRoles << actor.role;
     }
