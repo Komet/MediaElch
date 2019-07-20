@@ -1,10 +1,12 @@
 #include "music/Album.h"
 
+#include <utility>
+
 #include "media_centers/MediaCenterInterface.h"
 
 Album::Album(QString path, QObject* parent) :
     QObject(parent),
-    m_path{path},
+    m_path{std::move(path)},
     m_hasChanged{false},
     m_rating{0},
     m_year{0},

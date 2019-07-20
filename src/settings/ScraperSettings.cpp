@@ -9,9 +9,7 @@ ScraperSettings::ScraperSettings(ScraperInterface& scraper) : m_scraper(scraper)
 {
 }
 
-ScraperSettings::~ScraperSettings()
-{
-}
+ScraperSettings::~ScraperSettings() = default;
 
 QString ScraperSettings::language(const QString& defaultValue) const
 {

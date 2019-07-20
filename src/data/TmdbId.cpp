@@ -2,8 +2,9 @@
 
 #include <QRegExp>
 #include <QString>
+#include <utility>
 
-TmdbId::TmdbId(QString tmdbId) : m_tmdbId(tmdbId)
+TmdbId::TmdbId(QString tmdbId) : m_tmdbId(std::move(tmdbId))
 {
 }
 

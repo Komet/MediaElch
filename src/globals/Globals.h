@@ -137,7 +137,7 @@ struct TrailerResult
     QString language;
     QUrl trailerUrl;
     QImage previewImage;
-    bool previewImageLoaded;
+    bool previewImageLoaded = false;
 };
 
 /**
@@ -519,7 +519,7 @@ enum class ColorLabel : int
 
 struct MovieDuplicate
 {
-    bool title;
-    bool imdbId;
-    bool tmdbId;
+    bool title = false;
+    bool imdbId = false;
+    bool tmdbId = false;
 };

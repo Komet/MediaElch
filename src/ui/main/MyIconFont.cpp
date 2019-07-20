@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QFontDatabase>
+#include <utility>
 
 class StarIconPainter : public MyIconFontIconPainter
 {
@@ -64,10 +65,10 @@ public:
             qRound(rect.top() + rect.height() * (1 - size)) - 1,
             qRound(rect.width() * size),
             qRound(rect.height() * size));
-        drawSize = qRound(starRect.height() * options.value("scale-factor").toFloat());
         painter->setBrush(starColor);
         painter->setPen(starColor);
 #ifdef Q_OS_MAC
+        drawSize = qRound(starRect.height() * options.value("scale-factor").toFloat());
         painter->setFont(QFont("", drawSize - 6));
 #else
         QFont f;
@@ -205,10 +206,10 @@ public:
 class MyIconFontIconPainterIconEngine : public QIconEngine
 {
 public:
-    MyIconFontIconPainterIconEngine(MyIconFont* awesome, MyIconFontIconPainter* painter, const QVariantMap& options) :
+    MyIconFontIconPainterIconEngine(MyIconFont* awesome, MyIconFontIconPainter* painter, QVariantMap options) :
         awesomeRef_(awesome),
         iconPainterRef_(painter),
-        options_(options)
+        options_(std::move(options))
     {
     }
 

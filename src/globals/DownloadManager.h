@@ -52,13 +52,13 @@ private slots:
 private:
     template<class T>
     void startNextDownloadType();
+    QNetworkAccessManager* qnam();
 
-    QNetworkReply* m_currentReply;
+    QNetworkReply* m_currentReply = nullptr;
     DownloadManagerElement m_currentDownloadElement;
     QQueue<DownloadManagerElement> m_queue;
-    QNetworkAccessManager* qnam();
-    bool m_downloading;
+    bool m_downloading = false;
     QMutex m_mutex;
     QTimer m_timer;
-    int m_retries;
+    int m_retries = 0;
 };

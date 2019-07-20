@@ -2,8 +2,9 @@
 
 #include <QRegExp>
 #include <QString>
+#include <utility>
 
-ImdbId::ImdbId(QString imdbId) : m_imdbId(imdbId), m_isValid{isValidFormat(m_imdbId)}
+ImdbId::ImdbId(QString imdbId) : m_imdbId(std::move(imdbId)), m_isValid{isValidFormat(m_imdbId)}
 {
 }
 

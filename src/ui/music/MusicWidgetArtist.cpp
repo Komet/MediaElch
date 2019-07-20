@@ -160,7 +160,7 @@ void MusicWidgetArtist::onClear()
 
     blocked = ui->discography->blockSignals(true);
     ui->discography->setRowCount(0);
-    ui->discography->blockSignals(false);
+    ui->discography->blockSignals(blocked);
 
     ui->genreCloud->clear();
     ui->styleCloud->clear();

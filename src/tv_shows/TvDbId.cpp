@@ -2,8 +2,9 @@
 
 #include <QRegExp>
 #include <QString>
+#include <utility>
 
-TvDbId::TvDbId(QString tvdbId) : m_tvdbId(tvdbId)
+TvDbId::TvDbId(QString tvdbId) : m_tvdbId(std::move(tvdbId))
 {
 }
 

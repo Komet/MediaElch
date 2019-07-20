@@ -680,7 +680,7 @@ void MainWindow::updateTvShows()
 void MainWindow::onMenu(QToolButton* button)
 {
     if (button == nullptr) {
-        button = static_cast<QToolButton*>(QObject::sender());
+        button = dynamic_cast<QToolButton*>(QObject::sender());
     }
 
     if (button == nullptr) {

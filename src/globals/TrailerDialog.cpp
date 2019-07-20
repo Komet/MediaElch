@@ -79,7 +79,7 @@ TrailerDialog::~TrailerDialog()
 
 TrailerDialog* TrailerDialog::instance(QWidget* parent)
 {
-    static TrailerDialog* s_instance = new TrailerDialog(parent);
+    static auto* s_instance = new TrailerDialog(parent);
     return s_instance;
 }
 

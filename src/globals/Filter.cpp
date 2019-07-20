@@ -1,5 +1,7 @@
 #include "Filter.h"
 
+#include <utility>
+
 #include "concerts/Concert.h"
 #include "movies/Movie.h"
 #include "tv_shows/TvShow.h"
@@ -62,9 +64,9 @@ Filter::Filter(QString text,
 }
 
 Filter::Filter(QString text, QString shortText, QStringList filterText, bool hasInfo, ColorLabel data) :
-    m_text{text},
-    m_shortText{shortText},
-    m_filterText{filterText},
+    m_text{std::move(text)},
+    m_shortText{std::move(shortText)},
+    m_filterText{std::move(filterText)},
     m_data{data},
     m_hasInfo{hasInfo}
 {

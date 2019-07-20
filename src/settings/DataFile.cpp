@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QStringList>
+#include <utility>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -14,7 +15,10 @@
  * @param fileName Name of this file
  * @param pos Position
  */
-DataFile::DataFile(DataFileType type, QString fileName, int pos) : m_fileName{fileName}, m_pos{pos}, m_type{type}
+DataFile::DataFile(DataFileType type, QString fileName, int pos) :
+    m_fileName{std::move(fileName)},
+    m_pos{pos},
+    m_type{type}
 {
 }
 

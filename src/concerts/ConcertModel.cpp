@@ -155,7 +155,7 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
 QModelIndex ConcertModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
-    return QModelIndex();
+    return {};
 }
 
 /**

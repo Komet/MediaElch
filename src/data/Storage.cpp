@@ -1,5 +1,7 @@
 #include "Storage.h"
 
+#include <utility>
+
 Storage::Storage(QObject* parent, Movie* movie) : QObject(parent), m_movie{QPointer<Movie>(movie)}
 {
 }
@@ -24,7 +26,7 @@ Storage::Storage(QObject* parent, Album* album) : QObject(parent), m_album{QPoin
 {
 }
 
-Storage::Storage(QObject* parent, QVector<ScraperSearchResult> results) : QObject(parent), m_results{results}
+Storage::Storage(QObject* parent, QVector<ScraperSearchResult> results) : QObject(parent), m_results{std::move(results)}
 {
 }
 

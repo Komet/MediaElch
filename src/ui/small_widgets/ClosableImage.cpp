@@ -360,22 +360,22 @@ void ClosableImage::clear()
 
 QRect ClosableImage::zoomRect()
 {
-    return QRect(0, height() - 16, 16, 16);
+    return {0, height() - 16, 16, 16};
 }
 
 QRect ClosableImage::captureRect()
 {
-    return QRect(20, height() - 16, 16, 16);
+    return {20, height() - 16, 16, 16};
 }
 
 QRect ClosableImage::closeRect()
 {
-    return QRect(width() - 25, 0, 24, 24);
+    return {width() - 25, 0, 24, 24};
 }
 
 QRect ClosableImage::imgRect()
 {
-    return QRect(0, 7, width() - 9, height() - 23);
+    return {0, 7, width() - 9, height() - 23};
 }
 
 void ClosableImage::closed()
