@@ -15,7 +15,7 @@ void loadConcertDataSync(ScraperInterfaceT& scraper, TmdbId ids, Concert& concer
 {
     QVector<ScraperSearchResult> results;
     QEventLoop loop;
-    loop.connect(concert.controller(), &ConcertController::sigInfoLoadDone, &loop, &QEventLoop::quit);
+    QEventLoop::connect(concert.controller(), &ConcertController::sigInfoLoadDone, &loop, &QEventLoop::quit);
     scraper.loadData(ids, &concert, infos);
     loop.exec();
 }

@@ -140,10 +140,10 @@ void MusicMultiScrapeDialog::reject()
 {
     disconnectScrapers();
     m_executed = false;
-    if (m_currentAlbum) {
+    if (m_currentAlbum != nullptr) {
         m_currentAlbum->controller()->abortDownloads();
     }
-    if (m_currentArtist) {
+    if (m_currentArtist != nullptr) {
         m_currentArtist->controller()->abortDownloads();
     }
     m_queue.clear();
@@ -152,11 +152,12 @@ void MusicMultiScrapeDialog::reject()
 
 void MusicMultiScrapeDialog::disconnectScrapers()
 {
-    for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers())
+    for (MusicScraperInterface* scraper : Manager::instance()->musicScrapers()) {
         disconnect(scraper,
             SIGNAL(sigSearchDone(QVector<ScraperSearchResult>)),
             this,
             SLOT(onSearchFinished(QVector<ScraperSearchResult>)));
+    }
 }
 
 void MusicMultiScrapeDialog::onStartScraping()
@@ -225,11 +226,11 @@ void MusicMultiScrapeDialog::scrapeNext()
         return;
     }
 
-    if (m_currentAlbum && ui->chkAutoSave->isChecked()) {
+    if ((m_currentAlbum != nullptr) && ui->chkAutoSave->isChecked()) {
         m_currentAlbum->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
-    if (m_currentArtist && ui->chkAutoSave->isChecked()) {
+    if ((m_currentArtist != nullptr) && ui->chkAutoSave->isChecked()) {
         m_currentArtist->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
@@ -241,9 +242,9 @@ void MusicMultiScrapeDialog::scrapeNext()
     QueueItem item = m_queue.dequeue();
     m_currentAlbum = item.album;
     m_currentArtist = item.artist;
-    if (m_currentAlbum) {
+    if (m_currentAlbum != nullptr) {
         ui->itemName->setText(m_currentAlbum->title().trimmed());
-    } else if (m_currentArtist) {
+    } else if (m_currentArtist != nullptr) {
         ui->itemName->setText(m_currentArtist->name().trimmed());
     }
     ui->itemCounter->setText(
@@ -251,7 +252,7 @@ void MusicMultiScrapeDialog::scrapeNext()
     ui->progressAll->setValue(ui->progressAll->maximum() - m_queue.size() - 1);
     ui->progressItem->setValue(0);
 
-    if (m_currentAlbum) {
+    if (m_currentAlbum != nullptr) {
         connect(m_currentAlbum->controller(),
             &AlbumController::sigLoadDone,
             this,
@@ -268,12 +269,13 @@ void MusicMultiScrapeDialog::scrapeNext()
                 m_scraperInterface,
                 m_albumInfosToLoad);
         } else {
-            m_scraperInterface->searchAlbum((m_currentAlbum->artist().isEmpty() && m_currentAlbum->artistObj())
-                                                ? m_currentAlbum->artistObj()->name().trimmed()
-                                                : m_currentAlbum->artist().trimmed(),
+            m_scraperInterface->searchAlbum(
+                (m_currentAlbum->artist().isEmpty() && (m_currentAlbum->artistObj() != nullptr))
+                    ? m_currentAlbum->artistObj()->name().trimmed()
+                    : m_currentAlbum->artist().trimmed(),
                 m_currentAlbum->title());
         }
-    } else if (m_currentArtist) {
+    } else if (m_currentArtist != nullptr) {
         connect(m_currentArtist->controller(),
             &ArtistController::sigLoadDone,
             this,
@@ -302,9 +304,9 @@ void MusicMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
         return;
     }
 
-    if (m_currentArtist) {
+    if (m_currentArtist != nullptr) {
         m_currentArtist->controller()->loadData(results.first().id, m_scraperInterface, m_artistInfosToLoad);
-    } else if (m_currentAlbum) {
+    } else if (m_currentAlbum != nullptr) {
         m_currentAlbum->controller()->loadData(
             results.first().id, results.first().id2, m_scraperInterface, m_albumInfosToLoad);
     }

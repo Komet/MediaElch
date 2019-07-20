@@ -39,7 +39,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 {
     SECTION("Empty movie")
     {
-        createAndCompareMovie("kodi_v18_movie_empty.nfo", [](Movie&) {});
+        createAndCompareMovie("kodi_v18_movie_empty.nfo", [](Movie& /*unused*/) {});
     }
 
     SECTION("read / write details: Alien 1979")

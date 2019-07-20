@@ -36,21 +36,29 @@ static Command commandFromString(const QString& command)
 {
     if ("list" == command) {
         return Command::List;
-    } else if ("reload" == command) {
+    }
+    if ("reload" == command) {
         return Command::Reload;
-    } else if ("add" == command) {
+    }
+    if ("add" == command) {
         return Command::Add;
-    } else if ("show" == command) {
+    }
+    if ("show" == command) {
         return Command::Show;
-    } else if ("sync" == command) {
+    }
+    if ("sync" == command) {
         return Command::Sync;
-    } else if ("info" == command) {
+    }
+    if ("info" == command) {
         return Command::Info;
-    } else if ("settings" == command) {
+    }
+    if ("settings" == command) {
         return Command::Settings;
-    } else if ("help" == command) {
+    }
+    if ("help" == command) {
         return Command::Help;
-    } else if ("version" == command) {
+    }
+    if ("version" == command) {
         return Command::Version;
     }
     return Command::Unknown;

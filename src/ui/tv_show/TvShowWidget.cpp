@@ -142,8 +142,8 @@ void TvShowWidget::onSaveInformation()
         ui->episodeWidget->onSaveInformation();
         TvShowFilesWidget::instance().updateProxy();
         return;
-    } else if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1
-               && ui->stackedWidget->currentIndex() == 2) {
+    }
+    if (shows.count() == 0 && episodes.count() == 0 && seasons.count() == 1 && ui->stackedWidget->currentIndex() == 2) {
         ui->seasonWidget->onSaveInformation();
         TvShowFilesWidget::instance().updateProxy();
         return;

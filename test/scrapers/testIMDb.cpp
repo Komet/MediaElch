@@ -20,7 +20,7 @@ void loadImdbSync(IMDB& scraper, QMap<MovieScraperInterface*, QString> ids, Movi
     // details, tags and posters are loaded.
     // This may be fixed with future versions.
     uint32_t count = 0;
-    loop.connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() {
+    QEventLoop::connect(movie.controller(), &MovieController::sigInfoLoadDone, [&]() {
         if (++count >= 2) {
             loop.quit();
         }
@@ -143,7 +143,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK_THAT(m.writer(), ContainsNot("Tim Robbins")); // is actually a star
 
         const auto genres = m.genres();
-        REQUIRE(genres.size() >= 1);
+        REQUIRE(!genres.empty());
         CHECK(genres[0] == "Drama");
 
         const auto tags = m.tags();
@@ -156,7 +156,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(studios[0] == "Castle Rock Entertainment");
 
         const auto countries = m.countries();
-        REQUIRE(countries.size() >= 1);
+        REQUIRE(!countries.empty());
         CHECK(countries[0] == "USA");
 
         const auto actors = m.actors();
@@ -234,7 +234,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK_THAT(m.writer(), Contains("Rajeev Kaul"));
 
         const auto genres = m.genres();
-        REQUIRE(genres.size() >= 1);
+        REQUIRE(!genres.empty());
         CHECK(genres[0] == "Action");
 
         const auto studios = m.studios();
@@ -242,7 +242,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data][requ
         CHECK(studios[0] == "Base Industries Group");
 
         const auto countries = m.countries();
-        REQUIRE(countries.size() >= 1);
+        REQUIRE(!countries.empty());
         CHECK(countries[0] == "India");
 
         const auto actors = m.actors();

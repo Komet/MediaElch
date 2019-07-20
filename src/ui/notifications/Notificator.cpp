@@ -12,7 +12,7 @@ Notificator::Notificator(QSystemTrayIcon* trayIcon, QWidget* parent) :
     m_parent(parent),
     m_trayIcon(trayIcon)
 {
-    if (m_trayIcon && m_trayIcon->supportsMessages()) {
+    if ((m_trayIcon != nullptr) && QSystemTrayIcon::supportsMessages()) {
         m_mode = QSystemTray;
     }
 #ifdef Q_OS_MAC
@@ -66,7 +66,7 @@ void Notificator::notify(Class cls, const QString& title, const QString& text, c
 Notificator* Notificator::instance(QSystemTrayIcon* trayIcon, QWidget* parent)
 {
     static Notificator* m_instance = nullptr;
-    if (!m_instance) {
+    if (m_instance == nullptr) {
         m_instance = new Notificator(trayIcon, parent);
     }
     return m_instance;

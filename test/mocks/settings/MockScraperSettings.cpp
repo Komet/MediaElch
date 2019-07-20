@@ -1,11 +1,11 @@
 #include "test/mocks/settings/MockScraperSettings.h"
 
-void MockScraperSettings::setString(const QString&, const QString&)
+void MockScraperSettings::setString(const QString& /*key*/, const QString& /*value*/)
 {
     // no-op
 }
 
-void MockScraperSettings::setBool(const QString&, bool)
+void MockScraperSettings::setBool(const QString& /*key*/, bool /*value*/)
 {
     // no-op
 }

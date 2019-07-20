@@ -24,7 +24,7 @@ MusicSearch::~MusicSearch()
 MusicSearch* MusicSearch::instance(QWidget* parent)
 {
     static MusicSearch* m_instance = nullptr;
-    if (!m_instance) {
+    if (m_instance == nullptr) {
         m_instance = new MusicSearch(parent);
     }
     return m_instance;

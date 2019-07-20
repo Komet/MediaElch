@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
     // Qt localization
     QTranslator qtTranslator;
     qtTranslator.load(":/i18n/qt_" + Settings::instance()->advanced()->locale().name());
-    app.installTranslator(&qtTranslator);
+    QApplication::installTranslator(&qtTranslator);
 
     // MediaElch localization
     QTranslator editTranslator;
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
     } else {
         editTranslator.load(Settings::instance()->advanced()->locale(), "MediaElch", "_", ":/i18n/", ".qm");
     }
-    app.installTranslator(&editTranslator);
+    QApplication::installTranslator(&editTranslator);
 
     // Load the system's settings, e.g. window position, etc.
     Settings::instance(QCoreApplication::instance())->loadSettings();
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
 
     MainWindow window;
     window.show();
-    int ret = app.exec();
+    int ret = QApplication::exec();
 
     if (data.isOpen()) {
         data.close();
