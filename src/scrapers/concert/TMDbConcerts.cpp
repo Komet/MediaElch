@@ -204,7 +204,7 @@ void TMDbConcerts::setupFinished()
         return;
     }
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
     reply->deleteLater();
     if (parseError.error != QJsonParseError::NoError) {
@@ -305,7 +305,7 @@ QVector<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int& nextPa
 {
     QVector<ScraperSearchResult> results;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
@@ -526,7 +526,7 @@ void TMDbConcerts::loadReleasesFinished()
 void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<ConcertScraperInfos> infos)
 {
     qDebug() << "Entered";
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "Error parsing concert info json " << parseError.errorString();

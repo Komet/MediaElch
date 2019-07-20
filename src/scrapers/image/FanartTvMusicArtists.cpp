@@ -150,7 +150,7 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
 
     QVector<Poster> posters;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     // The JSON contains one object with all URLs to fanart images
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 

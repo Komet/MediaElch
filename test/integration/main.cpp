@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 #endif
 
     QApplication app(argc, argv);
-    Catch::Session session;
+    Catch::Session session; // NOLINT(clang-analyzer-core.uninitialized.UndefReturn)
 
     std::string resourceDirString;
     std::string tempDirString;

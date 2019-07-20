@@ -21,6 +21,6 @@ private slots:
     void onBtnInstall();
 
 private:
-    Ui::ExportTemplateWidget* ui;
-    ExportTemplate* m_exportTemplate;
+    Ui::ExportTemplateWidget* ui = nullptr;
+    ExportTemplate* m_exportTemplate = nullptr;
 };

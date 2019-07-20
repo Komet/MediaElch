@@ -40,7 +40,7 @@ private:
 
     Ui::MovieDuplicates* ui;
     MovieProxyModel* m_movieProxyModel;
-    QMenu* m_contextMenu;
+    QMenu* m_contextMenu = nullptr;
 
     QMap<Movie*, QVector<Movie*>> m_duplicateMovies;
 };

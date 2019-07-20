@@ -59,11 +59,11 @@ private:
     bool m_infoFromNfoLoaded;
     QVector<MovieScraperInfos> m_infosToLoad;
     DownloadManager* m_downloadManager;
-    bool m_downloadsInProgress;
-    int m_downloadsSize;
-    int m_downloadsLeft;
+    bool m_downloadsInProgress = false;
+    int m_downloadsSize = 0;
+    int m_downloadsLeft = 0;
     QVector<ScraperData> m_loadsLeft;
-    bool m_loadDoneFired;
+    bool m_loadDoneFired = 0;
     QMutex m_loadMutex;
     QMutex m_customScraperMutex;
     bool m_forceFanartBackdrop;

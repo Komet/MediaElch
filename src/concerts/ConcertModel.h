@@ -5,9 +5,6 @@
 
 class Concert;
 
-/**
- * @brief The ConcertModel class
- */
 class ConcertModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -27,7 +24,7 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QModelIndex index(int row, int column, const QModelIndex& parent) const override;
     QModelIndex parent(const QModelIndex& child) const override;
-    long countNewConcerts() const;
+    int countNewConcerts() const;
     void update();
 
 private slots:

@@ -57,8 +57,8 @@ QVariant ImageModel::data(const QModelIndex& index, int role) const
     }
     case Qt::UserRole + 5: return m_images.indexOf(img);
     case Qt::UserRole + 6: return img->imageId();
+    default: return {};
     }
-    return QVariant();
 }
 
 int ImageModel::role(const QString& roleName) const

@@ -44,5 +44,5 @@ private:
     Ui::MusicFilesWidget* ui;
     static MusicFilesWidget* m_instance;
     MusicProxyModel* m_proxyModel;
-    QMenu* m_contextMenu;
+    QMenu* m_contextMenu = nullptr;
 };

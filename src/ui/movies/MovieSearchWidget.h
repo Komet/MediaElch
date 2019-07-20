@@ -44,13 +44,13 @@ private slots:
     void onLanguageChanged();
 
 private:
-    Ui::MovieSearchWidget* ui;
+    Ui::MovieSearchWidget* ui = nullptr;
     // QString m_scraperId;
     QString m_scraperMovieId;
     QVector<MovieScraperInfos> m_infosToLoad;
     QMap<MovieScraperInterface*, QString> m_customScraperIds;
-    MovieScraperInterface* m_currentCustomScraper;
-    MovieScraperInterface* m_currentScraper;
+    MovieScraperInterface* m_currentCustomScraper = nullptr;
+    MovieScraperInterface* m_currentScraper = nullptr;
     QString m_currentLanguage;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;

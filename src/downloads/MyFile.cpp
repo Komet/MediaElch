@@ -1,5 +1,6 @@
 #include "MyFile.h"
 
+#include <QDebug>
 #include <QFileInfo>
 
 MyFile::MyFile(const QString& name) : QFile(name)
@@ -9,7 +10,7 @@ MyFile::MyFile(const QString& name) : QFile(name)
 bool MyFile::copy(const QString& newName)
 {
     if (fileName().isEmpty()) {
-        qWarning("QFile::copy: Empty or null file name");
+        qWarning() << "QFile::copy: Empty or null file name";
         return false;
     }
     if (QFile(newName).exists()) {
@@ -30,7 +31,7 @@ bool MyFile::copy(const QString& newName)
                 out.close();
                 close();
             } else {
-                char block[4096];
+                char block[4096]; // NOLINT: This file neeeds a refactoring nonetheless; allow c array for now
                 qint64 totalRead = 0;
                 while (!atEnd()) {
                     qint64 in = read(block, sizeof(block));

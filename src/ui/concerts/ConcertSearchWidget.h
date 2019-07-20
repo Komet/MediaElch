@@ -36,7 +36,7 @@ private slots:
 
 private:
     Ui::ConcertSearchWidget* ui;
-    int m_scraperNo;
+    int m_scraperNo = 0;
     TmdbId m_scraperId;
     QVector<ConcertScraperInfos> m_infosToLoad;
 

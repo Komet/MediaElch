@@ -256,7 +256,7 @@ void TMDb::setupFinished()
         return;
     }
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
     reply->deleteLater();
     if (parseError.error != QJsonParseError::NoError) {
@@ -387,7 +387,7 @@ QVector<ScraperSearchResult> TMDb::parseSearch(QString json, int* nextPage, int 
 {
     QVector<ScraperSearchResult> results;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
     if (parseError.error != QJsonParseError::NoError) {
@@ -714,7 +714,7 @@ QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameter
 void TMDb::parseAndAssignInfos(QString json, Movie* movie, QVector<MovieScraperInfos> infos)
 {
     qDebug() << "Entered";
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "Error parsing info json " << parseError.errorString();

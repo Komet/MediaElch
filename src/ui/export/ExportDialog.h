@@ -35,8 +35,8 @@ private slots:
     void onBtnClose();
 
 private:
-    Ui::ExportDialog* ui;
-    bool m_canceled;
+    Ui::ExportDialog* ui = nullptr;
+    bool m_canceled = false;
 
     void parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, QVector<Movie*> movies);
     void parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate, QVector<Concert*> concerts);

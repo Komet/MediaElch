@@ -42,7 +42,7 @@ signals:
     void clicked();
 
 private:
-    Type m_badgeType;
+    Type m_badgeType = Type::LabelSuccess;
     bool m_active = false;
     bool m_closable = false;
     bool m_fontBold = true;

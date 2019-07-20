@@ -42,16 +42,16 @@ private slots:
     void onNewTotalTime(qint64 totalTime);
 
 private:
-    Ui::TvTunesDialog* ui;
-    TvShow* m_show;
-    qint64 m_totalTime;
-    QMediaPlayer* m_mediaPlayer;
-    QNetworkAccessManager* m_qnam;
-    QNetworkReply* m_downloadReply;
+    Ui::TvTunesDialog* ui = nullptr;
+    TvShow* m_show = nullptr;
+    qint64 m_totalTime = 0;
+    QMediaPlayer* m_mediaPlayer = nullptr;
+    QNetworkAccessManager* m_qnam = nullptr;
+    QNetworkReply* m_downloadReply = nullptr;
     QTime m_downloadTime;
     QFile m_output;
     QUrl m_themeUrl;
-    bool m_downloadInProgress;
-    bool m_fileDownloaded;
+    bool m_downloadInProgress = false;
+    bool m_fileDownloaded = false;
     void clear();
 };

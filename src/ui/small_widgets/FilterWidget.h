@@ -36,7 +36,7 @@ private slots:
     void removeLastFilter();
 
 private:
-    Ui::FilterWidget* ui;
+    Ui::FilterWidget* ui = nullptr;
     MainWidgets m_activeWidget;
 
     // Available filters for current widget
@@ -48,7 +48,7 @@ private:
     QVector<Filter*> m_availableConcertFilters;
     QVector<Filter*> m_availableMusicFilters;
 
-    QListWidget* m_list;
+    QListWidget* m_list = nullptr;
     QVector<Filter*> m_activeFilters;
     QMap<MainWidgets, QVector<Filter*>> m_storedFilters;
 

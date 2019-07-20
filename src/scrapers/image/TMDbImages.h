@@ -78,8 +78,8 @@ private slots:
 
 private:
     QVector<ImageType> m_provides;
-    int m_searchResultLimit;
-    TMDb* m_tmdb;
-    Movie* m_dummyMovie;
-    ImageType m_imageType;
+    int m_searchResultLimit = 0;
+    TMDb* m_tmdb = nullptr;
+    Movie* m_dummyMovie = nullptr;
+    ImageType m_imageType = ImageType::None;
 };

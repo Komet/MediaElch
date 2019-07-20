@@ -39,7 +39,7 @@ public:
     bool writeThumbUrlsToNfo() const;
 
 private:
-    bool m_debugLog;
+    bool m_debugLog = 0;
     QString m_logFile;
     QLocale m_locale;
     QStringList m_sortTokens;
@@ -53,11 +53,11 @@ private:
     QHash<QString, QString> m_certificationMappings;
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
-    bool m_forceCache;
-    bool m_portableMode;
-    int m_bookletCut;
-    bool m_writeThumbUrlsToNfo;
-    bool m_useFirstStudioOnly;
+    bool m_forceCache = false;
+    bool m_portableMode = false;
+    int m_bookletCut = 0;
+    bool m_writeThumbUrlsToNfo = false;
+    bool m_useFirstStudioOnly = false;
 
     QByteArray getAdvancedSettingsXml() const;
     void loadSettings();

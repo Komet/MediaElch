@@ -52,8 +52,8 @@ private:
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     DownloadManager* m_downloadManager;
-    bool m_downloadsInProgress;
-    int m_downloadsSize;
-    int m_downloadsLeft;
+    bool m_downloadsInProgress = false;
+    int m_downloadsSize = 0;
+    int m_downloadsLeft = 0;
     QVector<MusicScraperInfos> m_infosToLoad;
 };

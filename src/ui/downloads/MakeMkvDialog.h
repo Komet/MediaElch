@@ -39,12 +39,12 @@ private slots:
     void onImportProgress(int value, int max);
 
 private:
-    Ui::MakeMkvDialog* ui;
-    MakeMkvCon* m_makeMkvCon;
+    Ui::MakeMkvDialog* ui = nullptr;
+    MakeMkvCon* m_makeMkvCon = nullptr;
     QPointer<Movie> m_movie;
     QString m_title;
     QMap<int, QString> m_tracks;
-    bool m_importComplete;
+    bool m_importComplete = false;
     QString m_importDir;
 
     void setDefaults();

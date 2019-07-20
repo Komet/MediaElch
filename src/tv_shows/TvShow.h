@@ -202,7 +202,7 @@ private:
     QMap<SeasonNumber, QVector<Poster>> m_seasonBanners;
     QMap<SeasonNumber, QVector<Poster>> m_seasonThumbs;
     bool m_hasTune = false;
-    TvShowModelItem* m_modelItem;
+    TvShowModelItem* m_modelItem = nullptr;
     QString m_mediaCenterPath;
     int m_showId = -1;
     bool m_downloadsInProgress = false;

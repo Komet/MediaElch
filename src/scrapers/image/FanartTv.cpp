@@ -402,7 +402,7 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 
     QVector<Poster> posters;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     // The JSON contains one object with all URLs to fanart images
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
@@ -667,7 +667,7 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
 
     QVector<Poster> posters;
 
-    QJsonParseError parseError;
+    QJsonParseError parseError{};
     // The JSON contains one object with all URLs to fanart images
     const auto parsedJson = QJsonDocument::fromJson(json.toUtf8(), &parseError).object();
 
