@@ -75,6 +75,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     }
     KodiXml::appendXmlNode(doc, ratings);
 
+    KodiXml::setTextValue(doc, "userrating", QString::number(m_show.userRating()));
     KodiXml::setTextValue(doc, "top250", QString::number(m_show.top250()));
     KodiXml::setTextValue(doc, "episode", QString::number(m_show.episodes().count()));
     KodiXml::setTextValue(doc, "season", QString::number(m_show.seasons().count()));

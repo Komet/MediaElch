@@ -107,6 +107,9 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
             m_show.setChanged(true);
         }
     }
+    if (!domDoc.elementsByTagName("userrating").isEmpty()) {
+        m_show.setUserRating(domDoc.elementsByTagName("userrating").at(0).toElement().text().toDouble());
+    }
     if (!domDoc.elementsByTagName("top250").isEmpty()) {
         m_show.setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     }

@@ -38,6 +38,7 @@ public:
     QString dir() const;
     QVector<Rating>& ratings();
     const QVector<Rating>& ratings() const;
+    double userRating() const;
     int top250() const;
     QDate firstAired() const;
     QStringList genres() const;
@@ -86,6 +87,7 @@ public:
 
     void setName(QString name);
     void setShowTitle(QString title);
+    void setUserRating(double rating);
     void setTop250(int top250);
     void setFirstAired(QDate aired);
     void setGenres(QStringList genres);
@@ -181,6 +183,7 @@ private:
     QString m_showTitle;
     QString m_sortTitle;
     QVector<Rating> m_ratings;
+    double m_userRating = 0.0;
     int m_imdbTop250 = 0;
     QDate m_firstAired;
     std::chrono::minutes m_runtime;

@@ -421,6 +421,11 @@ const QVector<Rating>& TvShow::ratings() const
 {
     return m_ratings;
 }
+
+double TvShow::userRating() const
+{
+    return m_userRating;
+}
 /**
  * @property TvShow::tvdbId
  * @brief TheTvDb Id of the show
@@ -706,6 +711,12 @@ void TvShow::setName(QString name)
 void TvShow::setShowTitle(QString title)
 {
     m_showTitle = title;
+    setChanged(true);
+}
+
+void TvShow::setUserRating(double rating)
+{
+    m_userRating = rating;
     setChanged(true);
 }
 
@@ -1436,6 +1447,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
         out.append(QStringLiteral("    Role:  ").append(actor.role)).append(nl);
         out.append(QStringLiteral("    Thumb: ").append(actor.thumb)).append(nl);
     }
+    out.append(QStringLiteral("  User-Rating:   ").append(QString::number(show.userRating())).append(nl));
     /*
     for (const QString &studio: movie.studios())
         out.append(QString("  Studio:         ").append(studio)).append(nl);
