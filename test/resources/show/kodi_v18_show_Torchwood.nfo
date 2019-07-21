@@ -3,8 +3,8 @@
     <title>Torchwood</title>
     <showtitle>Torchwood</showtitle>
     <id>79511</id>
-    <uniqueid type="imdb">tt0485301</uniqueid>
     <uniqueid default="true" type="tvdb">79511</uniqueid>
+    <uniqueid type="imdb">tt0485301</uniqueid>
     <ratings>
         <rating default="true" max="10" name="tvdb">
             <value>8.4</value>
@@ -16,7 +16,6 @@
     <episode>0</episode>
     <season>0</season>
     <plot>Captain Jack Harkness is a man from the 51st century trapped in the past who leads the last remnants of the Torchwood Institute, a top secret British agency outside the government whose job it is to investigate alien goings on in the world, act in mankind's best interest, and, if needed, be the Earth's last line of defense.</plot>
-    <tagline></tagline>
     <mpaa>TV-MA</mpaa>
     <premiered>2006-10-22</premiered>
     <year>2006</year>
@@ -28,7 +27,7 @@
     <namedseason number="3">Children of Earth</namedseason>
     <namedseason number="4">Miracle Day</namedseason>
     <episodeguide>
-        <url post="yes" cache="auth.json">https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":79511}|Content-Type=application/json</url>
+        <url>https://api.thetvdb.com/login?{"apikey":"439DFEBA9D3059C6","id":79511}|Content-Type=application/json</url>
     </episodeguide>
     <genre>Adventure</genre>
     <genre>Crime</genre>

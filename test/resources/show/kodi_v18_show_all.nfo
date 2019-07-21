@@ -1,35 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <tvshow>
-  <title>Angels</title>
-  <showtitle>Angels</showtitle>
-  <sorttitle clear="true">TtvshowC15</sorttitle>
-  <uniqueid type="unknown" default="true">71035</uniqueid>
-  <ratings>
-    <rating max="10" name="default" default="true">
-      <value>8.6</value>
-      <votes>88</votes>
-    </rating>
-  </ratings>
-  <top250>4</top250>
-  <episode>0</episode>
-  <plot>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</plot>
-  <outline>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</outline>
-  <mpaa>TV-PG</mpaa>
-  <premiered>1999-10-05</premiered>
-  <studio>The WB</studio>
-  <tvdbid/>
-  <imdbid/>
-  <status>Ended</status>
-  <runtime>45</runtime>
-  <genre>Action / Comedy / Drama</genre>
-  <tag>BestTag</tag>
-  <actor>
-    <name>David Boreanaz</name>
-    <role>Angel</role>
-    <thumb>http://thetvdb.com/banners/actors/6309.jpg</thumb>
-  </actor>
-  <actor>
-    <name>Stephanie Romanov</name>
-    <role>Lilah Morgan</role>
-  </actor>
+    <title>Angels</title>
+    <showtitle>Angels</showtitle>
+    <sorttitle clear="true">TtvshowC15</sorttitle>
+    <id>71035</id>
+    <uniqueid default="true" type="tvdb">71035</uniqueid>
+    <ratings>
+        <rating default="true" max="10" name="default">
+            <value>8.6</value>
+            <votes>88</votes>
+        </rating>
+    </ratings>
+    <userrating>9.56</userrating>
+    <top250>4</top250>
+    <episode>0</episode>
+    <season>0</season>
+    <plot>Angel is an American television series, a spin-off from the television series Buffy the Vampire Slayer. Angel (David Boreanaz), a 240-year old vampire cursed with a conscience, haunts the dark streets of Los Angeles alone</plot>
+    <mpaa>TV-PG</mpaa>
+    <premiered>1999-10-05</premiered>
+    <year>1999</year>
+    <dateadded></dateadded>
+    <status>Ended</status>
+    <studio>The WB</studio>
+    <runtime>45</runtime>
+    <trailer></trailer>
+    <genre>Action</genre>
+    <genre>Comedy</genre>
+    <genre>Drama</genre>
+    <tag>BestTag</tag>
+    <thumb aspect="banner" preview="http://thetvdb.com/banners/graphical/71035-g7.jpg">http://thetvdb.com/banners/graphical/71035-g7.jpg</thumb>
+    <thumb aspect="poster" season="5" preview="http://thetvdb.com/banners/seasons/71035-5-2.jpg" type="season">http://thetvdb.com/banners/seasons/71035-5-2.jpg</thumb>
+    <actor>
+        <name>David Boreanaz</name>
+        <role>Angel</role>
+        <order>0</order>
+        <thumb>http://thetvdb.com/banners/actors/6309.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Stephanie Romanov</name>
+        <role>Lilah Morgan</role>
+        <order>1</order>
+        <thumb></thumb>
+    </actor>
 </tvshow>

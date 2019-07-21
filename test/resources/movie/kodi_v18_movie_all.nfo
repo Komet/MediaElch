@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <movie>
     <title>Allegiant</title>
     <originaltitle>Allegiant</originaltitle>
+    <sorttitle>TmovieFc10</sorttitle>
     <ratings>
         <rating default="true" name="IMDb">
             <value>5.8</value>
@@ -12,8 +13,10 @@
             <votes>784</votes>
         </rating>
     </ratings>
+    <userrating>0</userrating>
     <top250>240</top250>
     <year>2016</year>
+    <premiered>2016-03-09</premiered>
     <plot>Beatrice Prior and Tobias Eaton venture into the world outside of the fence and are taken into protective custody by a mysterious agency known as the Bureau of Genetic Welfare.</plot>
     <outline>TmovieFc02</outline>
     <tagline>Break the boundaries of your world</tagline>
@@ -22,13 +25,12 @@
     <playcount>1</playcount>
     <lastplayed>2017-09-06 12:44:12</lastplayed>
     <id>tt3410834</id>
+    <uniqueid default="true" type="imdb">tt3410834</uniqueid>
     <set>
         <name>Divergent Collection</name>
-        <overview/>
+        <overview></overview>
     </set>
-    <sorttitle>TmovieFc10</sorttitle>
     <trailer>TmovieFc19</trailer>
-    <watched>false</watched>
     <credits>Adam Cooper</credits>
     <credits>Bill Collage</credits>
     <credits>Stephen Chbosky</credits>
@@ -42,11 +44,13 @@
     <actor>
         <name>Shailene Woodley</name>
         <role>Beatrice "Tris" Prior</role>
+        <order>0</order>
         <thumb>http://image.tmdb.org/t/p/original/kkLbiTlBGNwJL9qHuVHeqCMNrEx.jpg</thumb>
     </actor>
     <actor>
         <name>Theo James</name>
         <role>Tobias "Four" Eaton</role>
+        <order>1</order>
         <thumb>http://image.tmdb.org/t/p/original/hLNSoQ3gc52X5VVb172yO3CuUEq.jpg</thumb>
     </actor>
     <fileinfo>
@@ -75,4 +79,8 @@
             <subtitle/>
         </streamdetails>
     </fileinfo>
+    <resume>
+        <position>0</position>
+        <total>0</total>
+    </resume>
 </movie>

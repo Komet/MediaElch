@@ -16,10 +16,13 @@ TEST_CASE("TV show XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
     SECTION("empty tvshow")
     {
         TvShow tvShow;
+        QString filename = "kodi_v16_show_empty.nfo";
+        CAPTURE(filename);
+
         mediaelch::kodi::TvShowXmlWriterV16 writer(tvShow);
         QString actual = writer.getTvShowXml().trimmed();
-        QString expected = getFileContent("show/kodi_v16_show_empty.nfo");
-        checkSameXml(expected, actual);
+        writeTempFile(filename, actual);
+        checkSameXml(getFileContent("show/" + filename), actual);
     }
 
     SECTION("read / write details: empty tvshow")
@@ -27,6 +30,7 @@ TEST_CASE("TV show XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
         TvShow tvShow;
         QString filename = "kodi_v16_show_empty.nfo";
         QString showContent = getFileContent("show/" + filename);
+        CAPTURE(filename);
 
         mediaelch::kodi::TvShowXmlReader reader(tvShow);
 

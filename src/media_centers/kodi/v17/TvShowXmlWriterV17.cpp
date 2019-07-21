@@ -36,21 +36,23 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     } else {
         KodiXml::removeChildNodes(doc, "sorttitle");
     }
-    // id
+    // id: Not used for Kodi import
     KodiXml::setTextValue(doc, "id", m_show.id().toString());
+
     // unique id: IMDb and TMDb
     KodiXml::removeChildNodes(doc, "uniqueid");
+    // one uniqueid is required
     {
-        QDomElement uniqueId = doc.createElement("uniqueid");
-        uniqueId.setAttribute("type", "imdb");
-        uniqueId.appendChild(doc.createTextNode(m_show.imdbId().toString()));
-        KodiXml::appendXmlNode(doc, uniqueId);
-    }
-    if (m_show.tvdbId().isValid()) {
         QDomElement uniqueId = doc.createElement("uniqueid");
         uniqueId.setAttribute("type", "tvdb");
         uniqueId.setAttribute("default", "true");
         uniqueId.appendChild(doc.createTextNode(m_show.tvdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
+    if (m_show.imdbId().isValid()) {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "imdb");
+        uniqueId.appendChild(doc.createTextNode(m_show.imdbId().toString()));
         KodiXml::appendXmlNode(doc, uniqueId);
     }
     // rating
@@ -178,6 +180,9 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
                 if (!poster.language.isEmpty()) {
                     elemSeason.setAttribute("language", poster.language);
                 }
+                if (!poster.thumbUrl.isEmpty()) {
+                    elemSeason.setAttribute("preview", poster.thumbUrl.toString());
+                }
                 elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 KodiXml::appendXmlNode(doc, elemSeason);
             }
@@ -192,6 +197,9 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
                 if (!banner.language.isEmpty()) {
                     elemSeason.setAttribute("language", banner.language);
                 }
+                if (!banner.thumbUrl.isEmpty()) {
+                    elemSeason.setAttribute("preview", banner.thumbUrl.toString());
+                }
                 elemSeason.appendChild(doc.createTextNode(banner.originalUrl.toString()));
                 KodiXml::appendXmlNode(doc, elemSeason);
             }
@@ -203,8 +211,10 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
 
-                if (poster.width > 0 && poster.height > 0) {
-                    elem.setAttribute("dim", QString("%1x%2").arg(poster.width).arg(poster.height));
+                if (poster.originalSize.isValid()) {
+                    const int w = poster.originalSize.width();
+                    const int h = poster.originalSize.height();
+                    elem.setAttribute("dim", QString("%1x%2").arg(w).arg(h));
                 }
 
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));

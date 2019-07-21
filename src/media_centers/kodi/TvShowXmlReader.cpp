@@ -245,8 +245,10 @@ void TvShowXmlReader::showFanartThumb(const QDomElement& element, QString thumbU
     }
     QStringList dimensions = element.attribute("dim").split("x");
     if (dimensions.size() == 2) {
-        p.width = dimensions.first().toInt();
-        p.height = dimensions.last().toInt();
+        QSize size;
+        size.setWidth(dimensions.first().toInt());
+        size.setHeight(dimensions.last().toInt());
+        p.originalSize = size;
     }
 
     m_show.addBackdrop(p);
