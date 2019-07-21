@@ -121,15 +121,62 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
 
         for (const Poster& poster : m_show.posters()) {
             QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
+            QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+            elem.setAttribute("aspect", aspect);
+            if (!poster.thumbUrl.isEmpty()) {
+                elem.setAttribute("preview", poster.thumbUrl.toString());
+            }
+            if (!poster.language.isEmpty()) {
+                elem.setAttribute("language", poster.language);
+            }
+            if (poster.season != SeasonNumber::NoSeason) {
+                elem.setAttribute("type", "season");
+                elem.setAttribute("season", poster.season.toString());
+            }
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             KodiXml::appendXmlNode(doc, elem);
+        }
 
-            QDomElement elemSeason = doc.createElement("thumb");
-            elemSeason.setAttribute("type", "season");
-            elemSeason.setAttribute("season", "-1");
-            elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            KodiXml::appendXmlNode(doc, elemSeason);
+        for (const Poster& banner : m_show.banners()) {
+            QDomElement elem = doc.createElement("thumb");
+            QString aspect = banner.aspect.isEmpty() ? "banner" : banner.aspect;
+            elem.setAttribute("aspect", aspect);
+            if (!banner.thumbUrl.isEmpty()) {
+                elem.setAttribute("preview", banner.thumbUrl.toString());
+            }
+            if (!banner.language.isEmpty()) {
+                elem.setAttribute("language", banner.language);
+            }
+            elem.appendChild(doc.createTextNode(banner.originalUrl.toString()));
+            KodiXml::appendXmlNode(doc, elem);
+        }
+
+        for (const Poster& poster : m_show.seasonPosters(SeasonNumber::NoSeason, true)) {
+            if (poster.season != SeasonNumber::NoSeason) {
+                QDomElement elemSeason = doc.createElement("thumb");
+                elemSeason.setAttribute("aspect", poster.aspect.isEmpty() ? "poster" : poster.aspect);
+                elemSeason.setAttribute("type", "season");
+                elemSeason.setAttribute("season", poster.season.toString());
+                if (!poster.language.isEmpty()) {
+                    elemSeason.setAttribute("language", poster.language);
+                }
+                elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                KodiXml::appendXmlNode(doc, elemSeason);
+            }
+        }
+
+        for (const Poster& banner : m_show.seasonBanners(SeasonNumber::NoSeason, true)) {
+            if (banner.season != SeasonNumber::NoSeason) {
+                QDomElement elemSeason = doc.createElement("thumb");
+                elemSeason.setAttribute("aspect", banner.aspect.isEmpty() ? "poster" : banner.aspect);
+                elemSeason.setAttribute("type", "season");
+                elemSeason.setAttribute("season", banner.season.toString());
+                if (!banner.language.isEmpty()) {
+                    elemSeason.setAttribute("language", banner.language);
+                }
+                elemSeason.appendChild(doc.createTextNode(banner.originalUrl.toString()));
+                KodiXml::appendXmlNode(doc, elemSeason);
+            }
         }
 
         if (!m_show.backdrops().isEmpty()) {
@@ -137,20 +184,15 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
             for (const Poster& poster : m_show.backdrops()) {
                 QDomElement elem = doc.createElement("thumb");
                 elem.setAttribute("preview", poster.thumbUrl.toString());
+
+                if (poster.width > 0 && poster.height > 0) {
+                    elem.setAttribute("dim", QString("%1x%2").arg(poster.width).arg(poster.height));
+                }
+
                 elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
                 fanartElem.appendChild(elem);
             }
             KodiXml::appendXmlNode(doc, fanartElem);
-        }
-
-        for (SeasonNumber season : m_show.seasons()) {
-            for (const Poster& poster : m_show.seasonPosters(season)) {
-                QDomElement elemSeason = doc.createElement("thumb");
-                elemSeason.setAttribute("type", "season");
-                elemSeason.setAttribute("season", season.toString());
-                elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-                KodiXml::appendXmlNode(doc, elemSeason);
-            }
         }
     }
 

@@ -15,6 +15,9 @@ public:
     void parseNfoDom(QDomDocument domDoc);
 
 private:
+    void showThumb(const QDomElement& element);
+    void showFanartThumb(const QDomElement& element, QString thumbUrl);
+
     TvShow& m_show;
 };
 

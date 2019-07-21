@@ -5,11 +5,11 @@
 
 SeasonNumber::SeasonNumber(int seasonNumber) :
     // Any number lower than 0 is regarded invalid => no episode number
-    m_seasonNumber(seasonNumber > -1 ? seasonNumber : -1)
+    m_seasonNumber(seasonNumber > -2 ? seasonNumber : -2)
 {
 }
 
-const SeasonNumber SeasonNumber::NoSeason = SeasonNumber(-1);
+const SeasonNumber SeasonNumber::NoSeason = SeasonNumber(-2);
 const SeasonNumber SeasonNumber::SpecialsSeason = SeasonNumber(0);
 
 bool SeasonNumber::operator==(const SeasonNumber& other) const
