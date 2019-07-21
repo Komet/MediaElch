@@ -118,8 +118,6 @@ QByteArray MovieXmlWriterV17::getMovieXml()
         KodiXml::appendXmlNode(doc, setElement);
     }
     KodiXml::setTextValue(doc, "trailer", helper::formatTrailerUrl(m_movie.trailer().toString()));
-    // TODO: is this required in v17?
-    KodiXml::setTextValue(doc, "watched", (m_movie.watched()) ? "true" : "false");
 
     QStringList writers;
     for (const QString& credit : m_movie.writer().split(",")) {
