@@ -63,6 +63,7 @@ private:
     void movieRatingV17(const QDomElement& element);
     void movieRatingV16(const QDomElement& element);
     void movieVoteCountV16(const QDomElement& element);
+    void movieResumeTime(const QDomElement& element);
 
     Movie& m_movie;
 };

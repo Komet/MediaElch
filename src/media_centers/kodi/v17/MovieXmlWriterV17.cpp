@@ -193,6 +193,21 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
     KodiXml::writeStreamDetails(doc, m_movie.streamDetails(), m_movie.subtitles());
 
+    // <resume>
+    //   <position>0.000000</position>
+    //   <total>0.000000</total>
+    // </resume>
+    KodiXml::removeChildNodes(doc, "resume");
+    ResumeTime time = m_movie.resumeTime();
+    QDomElement resumeElement = doc.createElement("resume");
+    QDomElement resumePositionElement = doc.createElement("position");
+    resumePositionElement.appendChild(doc.createTextNode(QString::number(time.position)));
+    QDomElement resumeTotalElement = doc.createElement("total");
+    resumeTotalElement.appendChild(doc.createTextNode(QString::number(time.total)));
+    resumeElement.appendChild(resumePositionElement);
+    resumeElement.appendChild(resumeTotalElement);
+    KodiXml::appendXmlNode(doc, resumeElement);
+
     return doc.toByteArray(4);
 }
 

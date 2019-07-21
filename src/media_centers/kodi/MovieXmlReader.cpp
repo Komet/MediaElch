@@ -53,6 +53,7 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     tagParsers.insert("userrating",    &MovieXmlReader::simpleDouble<&Movie::setUserRating>);
     tagParsers.insert("votes",         &MovieXmlReader::movieVoteCountV16);
     tagParsers.insert("dateadded",     &MovieXmlReader::simpleDateTime<&Movie::setDateAdded>);
+    tagParsers.insert("resume",        &MovieXmlReader::movieResumeTime);
     // clang-format on
 
     QDomNodeList nodes = movieElement.childNodes();
@@ -261,6 +262,32 @@ void MovieXmlReader::movieVoteCountV16(const QDomElement& element)
         m_movie.ratings().first().voteCount = value.replace(",", ".").replace(".", "").toInt();
         m_movie.setChanged(true);
     }
+}
+
+void MovieXmlReader::movieResumeTime(const QDomElement& element)
+{
+    auto positions = element.elementsByTagName("position");
+    auto totals = element.elementsByTagName("total");
+
+    mediaelch::ResumeTime time;
+
+    if (!positions.isEmpty()) {
+        bool ok = false;
+        const double position = positions.at(0).toElement().text().replace(",", ".").toDouble(&ok);
+        if (ok) {
+            time.position = position;
+        }
+    }
+
+    if (!totals.isEmpty()) {
+        bool ok = false;
+        const double total = totals.at(0).toElement().text().replace(",", ".").toDouble(&ok);
+        if (ok) {
+            time.total = total;
+        }
+    }
+
+    m_movie.setResumeTime(time);
 }
 
 } // namespace kodi

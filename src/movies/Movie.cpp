@@ -1010,11 +1010,23 @@ QString Movie::localTrailerFileName() const
 void Movie::setDateAdded(QDateTime date)
 {
     m_dateAdded = std::move(date);
+    setChanged(true);
+}
+
+void Movie::setResumeTime(mediaelch::ResumeTime time)
+{
+    m_resumeTime = time;
+    setChanged(true);
 }
 
 QDateTime Movie::dateAdded() const
 {
     return m_dateAdded;
+}
+
+mediaelch::ResumeTime Movie::resumeTime() const
+{
+    return m_resumeTime;
 }
 
 bool Movie::hasValidImdbId() const
@@ -1030,6 +1042,7 @@ bool Movie::hasImage(ImageType imageType) const
 void Movie::setDiscType(DiscType type)
 {
     m_discType = type;
+    setChanged(true);
 }
 
 DiscType Movie::discType() const
@@ -1061,6 +1074,7 @@ QVector<Subtitle*> Movie::subtitles() const
 void Movie::setSubtitles(const QVector<Subtitle*>& subtitles)
 {
     m_subtitles = subtitles;
+    setChanged(true);
 }
 
 void Movie::addSubtitle(Subtitle* subtitle, bool fromLoad)
@@ -1173,6 +1187,9 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
         out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);
         out.append(QString("    Thumb:    ").append(backdrop.thumbUrl.toString())).append(nl);
     }
+    out.append(QString("  Resume:")).append(nl);
+    out.append(QString("    Position: %1")).arg(movie.resumeTime().position).append(nl);
+    out.append(QString("    Total:    %1")).arg(movie.resumeTime().total).append(nl);
     dbg.nospace() << out;
     return dbg.maybeSpace();
 }
