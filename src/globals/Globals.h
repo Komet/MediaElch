@@ -140,9 +140,7 @@ struct TrailerResult
     bool previewImageLoaded = false;
 };
 
-/**
- * @brief The Poster struct
- */
+/// @brief The Poster struct
 struct Poster
 {
     QString id;
@@ -151,6 +149,7 @@ struct Poster
     QSize originalSize;
     QString language;
     QString hint;
+    QString aspect; // "aspect" attribute in Kodi NFO files
     SeasonNumber season{SeasonNumber::SpecialsSeason};
 };
 
