@@ -55,6 +55,15 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("showtitle").isEmpty()) {
         m_show.setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     }
+    QDomNodeList namedSeasons = domDoc.elementsByTagName("namedseason");
+    for (int i = 0; i < namedSeasons.size(); ++i) {
+        QDomElement seasonElement = namedSeasons.at(i).toElement();
+        SeasonNumber season(seasonElement.attribute("number", SeasonNumber::NoSeason.toString()).toInt());
+        QString name = seasonElement.text();
+        if (season != SeasonNumber::NoSeason) {
+            m_show.setSeasonName(season, name);
+        }
+    }
     // check for new ratings syntax
     if (!domDoc.elementsByTagName("ratings").isEmpty()) {
         // <ratings>

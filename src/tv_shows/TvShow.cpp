@@ -1247,6 +1247,16 @@ void TvShow::setDateAdded(const QDateTime& dateTime)
     setChanged(true);
 }
 
+const QMap<SeasonNumber, QString>& TvShow::seasonNameMappings() const
+{
+    return m_seasonNameMappings;
+}
+
+void TvShow::setSeasonName(SeasonNumber season, const QString& name)
+{
+    m_seasonNameMappings.insert(season, name);
+}
+
 int TvShow::top250() const
 {
     return m_imdbTop250;
