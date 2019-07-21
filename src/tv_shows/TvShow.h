@@ -55,7 +55,7 @@ public:
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
-    QVector<Poster> seasonPosters(SeasonNumber season) const;
+    QVector<Poster> seasonPosters(SeasonNumber season, bool returnAll = false) const;
     QVector<Poster> seasonBackdrops(SeasonNumber season) const;
     QVector<Poster> seasonBanners(SeasonNumber season, bool returnAll = false) const;
     QVector<Poster> seasonThumbs(SeasonNumber season, bool returnAll = false) const;

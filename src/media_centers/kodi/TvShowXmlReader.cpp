@@ -173,30 +173,66 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     }
     for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
         QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+        QDomElement thumbElement = domDoc.elementsByTagName("thumb").at(i).toElement();
+
         if (parentTag == "tvshow") {
-            QDomElement elem = domDoc.elementsByTagName("thumb").at(i).toElement();
-            Poster p;
-            p.originalUrl = QUrl(elem.text());
-            p.thumbUrl = QUrl(elem.text());
-            if (elem.hasAttribute("type") && elem.attribute("type") == "season") {
-                SeasonNumber season = SeasonNumber(elem.attribute("season").toInt());
-                if (season != SeasonNumber::NoSeason) {
-                    m_show.addSeasonPoster(season, p);
-                }
-            } else {
-                m_show.addPoster(p);
-            }
+            showThumb(thumbElement);
+
         } else if (parentTag == "fanart") {
             QString url = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().attribute("url");
-            Poster p;
-            p.originalUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            m_show.addBackdrop(p);
+            showFanartThumb(thumbElement, url);
         }
     }
 
     QFileInfo fi(m_show.dir() + "/theme.mp3");
     m_show.setHasTune(fi.isFile());
+}
+
+void TvShowXmlReader::showThumb(const QDomElement& element)
+{
+    QString aspect = element.attribute("aspect", "poster").toLower().trimmed();
+
+    Poster p;
+    p.originalUrl = QUrl(element.text());
+    p.thumbUrl = element.attribute("preview");
+    p.language = element.attribute("language");
+    p.aspect = aspect;
+
+    if (element.hasAttribute("type") && element.attribute("type").toLower() == "season") {
+        SeasonNumber season = SeasonNumber(element.attribute("season").toInt());
+        if (season != SeasonNumber::NoSeason) {
+            p.season = season;
+            if (aspect == "banner") {
+                m_show.addSeasonBanner(season, p);
+            } else {
+                m_show.addSeasonPoster(season, p);
+            }
+        }
+        return;
+    }
+
+    if (aspect == "banner") {
+        m_show.addBanner(p);
+        return;
+    }
+
+    m_show.addPoster(p);
+}
+
+void TvShowXmlReader::showFanartThumb(const QDomElement& element, QString thumbUrl)
+{
+    Poster p;
+    p.originalUrl = QUrl(thumbUrl + element.text());
+    if (!element.attribute("preview").isEmpty()) {
+        p.thumbUrl = QUrl(thumbUrl + element.attribute("preview"));
+    }
+    QStringList dimensions = element.attribute("dim").split("x");
+    if (dimensions.size() == 2) {
+        p.width = dimensions.first().toInt();
+        p.height = dimensions.last().toInt();
+    }
+
+    m_show.addBackdrop(p);
 }
 
 } // namespace kodi

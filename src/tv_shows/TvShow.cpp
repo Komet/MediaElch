@@ -521,12 +521,23 @@ QVector<Poster> TvShow::backdrops() const
     return m_backdrops;
 }
 
-QVector<Poster> TvShow::seasonPosters(SeasonNumber season) const
+QVector<Poster> TvShow::seasonPosters(SeasonNumber season, bool returnAll) const
 {
-    if (!m_seasonPosters.contains(season)) {
+    if (!m_seasonPosters.contains(season) && !returnAll) {
         return QVector<Poster>();
     }
-    return m_seasonPosters[season];
+    if (!returnAll) {
+        return m_seasonPosters[season];
+    }
+
+    QVector<Poster> posters;
+    QMapIterator<SeasonNumber, QVector<Poster>> it(m_seasonPosters);
+    while (it.hasNext()) {
+        it.next();
+        posters << it.value();
+    }
+
+    return posters;
 }
 
 QVector<Poster> TvShow::seasonBackdrops(SeasonNumber season) const

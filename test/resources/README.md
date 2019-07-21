@@ -28,3 +28,6 @@ and only for TV shows:
    - `<resume></resume>` (only for episodes)
    - `<aired></aired>`
    - `<code></code>`
+ - add common URL prefix to `<fanart>`; reason: MediaElch may add fanart from different domains so we don't add a `url` tag to `<fanart>` like Kodi does
+ - change order of thumb tag to ascending order of seasons
+ - set `<episode>` and `<season>` to `0` as they are determined by the actual number of scanned episodes and not a tag
