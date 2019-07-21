@@ -3,6 +3,7 @@
 #include "tv_shows/TvShow.h"
 
 #include <QDate>
+#include <QDateTime>
 #include <QDomDocument>
 #include <QFileInfo>
 #include <QUrl>
@@ -126,6 +127,10 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("premiered").isEmpty()) {
         m_show.setFirstAired(
             QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
+    }
+    if (!domDoc.elementsByTagName("dateadded").isEmpty()) {
+        m_show.setDateAdded(QDateTime::fromString(
+            domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     }
     if (!domDoc.elementsByTagName("studio").isEmpty()) {
         m_show.setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());

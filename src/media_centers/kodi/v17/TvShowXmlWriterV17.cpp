@@ -83,6 +83,7 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::setTextValue(doc, "mpaa", m_show.certification().toString());
     KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
     KodiXml::setTextValue(doc, "year", m_show.firstAired().toString("yyyy"));
+    KodiXml::setTextValue(doc, "dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     KodiXml::setTextValue(doc, "studio", m_show.network());
     KodiXml::setTextValue(doc, "status", m_show.status());
 

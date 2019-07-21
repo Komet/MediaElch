@@ -31,3 +31,6 @@ and only for TV shows:
  - add common URL prefix to `<fanart>`; reason: MediaElch may add fanart from different domains so we don't add a `url` tag to `<fanart>` like Kodi does
  - change order of thumb tag to ascending order of seasons
  - set `<episode>` and `<season>` to `0` as they are determined by the actual number of scanned episodes and not a tag
+ - remove following tags as they are not yet supported by MediaElch:
+  - `<playcount>0</playcount>`
+  - `<lastplayed></lastplayed>`
