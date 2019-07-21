@@ -5,6 +5,7 @@ add_library(
   ImageCache.cpp
   ImdbId.cpp
   Rating.cpp
+  ResumeTime.cpp
   Storage.cpp
   StreamDetails.cpp
   Subtitle.cpp
