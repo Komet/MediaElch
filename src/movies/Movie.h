@@ -3,6 +3,7 @@
 #include "data/Certification.h"
 #include "data/ImdbId.h"
 #include "data/Rating.h"
+#include "data/ResumeTime.h"
 #include "data/StreamDetails.h"
 #include "data/Subtitle.h"
 #include "data/TmdbId.h"
@@ -87,6 +88,7 @@ public:
     bool syncNeeded() const;
     bool hasLocalTrailer() const;
     QDateTime dateAdded() const;
+    mediaelch::ResumeTime resumeTime() const;
     bool hasValidImdbId() const;
     bool hasImage(ImageType imageType) const;
 
@@ -131,6 +133,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setDateAdded(QDateTime date);
+    void setResumeTime(mediaelch::ResumeTime time);
 
     void removeActor(Actor* actor);
     void removeCountry(QString* country);
@@ -211,6 +214,7 @@ private:
     DiscType m_discType;
     ColorLabel m_label;
     QVector<Subtitle*> m_subtitles;
+    mediaelch::ResumeTime m_resumeTime;
 };
 
 Q_DECLARE_METATYPE(Movie*)
