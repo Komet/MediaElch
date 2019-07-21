@@ -1,5 +1,5 @@
 ---
-Checks:                '*, -android-*, -cert-*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions'
+Checks:                '*, -cert-*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     '^(?!build)/src'
 AnalyzeTemporaryDtors: false
@@ -9,7 +9,6 @@ FormatStyle:           file
 # We disabled these checks because there are either false positives or too many warnings at the moment.
 # They will be enabled step by step.
 #
-# android-*
 # cert-*
 # cppcoreguidelines-*
 # fuchsia-*
