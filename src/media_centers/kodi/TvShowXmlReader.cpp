@@ -154,19 +154,20 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         m_show.addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     }
     for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
+        QDomElement actorElement = domDoc.elementsByTagName("actor").at(i).toElement();
         Actor a;
         a.imageHasChanged = false;
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty()) {
-            a.name =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
+        if (!actorElement.elementsByTagName("name").isEmpty()) {
+            a.name = actorElement.elementsByTagName("name").at(0).toElement().text();
         }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty()) {
-            a.role =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
+        if (!actorElement.elementsByTagName("role").isEmpty()) {
+            a.role = actorElement.elementsByTagName("role").at(0).toElement().text();
         }
-        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty()) {
-            a.thumb =
-                domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
+        if (!actorElement.elementsByTagName("thumb").isEmpty()) {
+            a.thumb = actorElement.elementsByTagName("thumb").at(0).toElement().text();
+        }
+        if (!actorElement.elementsByTagName("order").isEmpty()) {
+            a.order = actorElement.elementsByTagName("order").at(0).toElement().text().toInt();
         }
         m_show.addActor(a);
     }
