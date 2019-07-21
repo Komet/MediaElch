@@ -149,8 +149,6 @@ struct Poster
     QString hint;
     QString aspect; // "aspect" attribute in Kodi NFO files
     SeasonNumber season = SeasonNumber::NoSeason;
-    int width = 0;
-    int height = 0;
 };
 
 enum class TvShowType : int

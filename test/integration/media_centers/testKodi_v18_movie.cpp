@@ -39,7 +39,14 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 {
     SECTION("Empty movie")
     {
-        createAndCompareMovie("kodi_v18_movie_empty.nfo", [](Movie& /*unused*/) {});
+        Movie movie;
+        QString filename = "kodi_v18_movie_empty.nfo";
+        CAPTURE(filename);
+
+        mediaelch::kodi::MovieXmlWriterV18 writer(movie);
+        QString actual = writer.getMovieXml().trimmed();
+        writeTempFile(filename, actual);
+        checkSameXml(getFileContent("movie/" + filename), actual);
     }
 
     SECTION("read / write details: Alien 1979")
@@ -169,6 +176,9 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         mediaelch::kodi::MovieXmlWriterV18 writer(movie);
 
         QString actual = writer.getMovieXml().trimmed();
+        QString filename = "kodi_v18_movie_all.nfo";
+        CAPTURE(filename);
+        writeTempFile(filename, actual);
         checkSameXml(getFileContent("movie/kodi_v18_movie_all.nfo"), actual);
     }
 }

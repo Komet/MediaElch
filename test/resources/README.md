@@ -32,5 +32,8 @@ and only for TV shows:
  - change order of thumb tag to ascending order of seasons
  - set `<episode>` and `<season>` to `0` as they are determined by the actual number of scanned episodes and not a tag
  - remove following tags as they are not yet supported by MediaElch:
-  - `<playcount>0</playcount>`
-  - `<lastplayed></lastplayed>`
+   - `<playcount>0</playcount>`
+   - `<lastplayed></lastplayed>`
+   - `<tagline></tagline>`
+ - removed ` post="yes" cache="auth.json"` from `<episodeguide>` as it is a TVDBv2 feature which we don't yet support;
+   see https://forum.kodi.tv/showthread.php?tid=323588

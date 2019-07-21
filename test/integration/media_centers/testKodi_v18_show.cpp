@@ -40,8 +40,13 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
     SECTION("Empty tvshow")
     {
         TvShow tvShow;
+        QString filename = "kodi_v18_show_empty.nfo";
+        CAPTURE(filename);
+
         mediaelch::kodi::TvShowXmlWriterV18 writer(tvShow);
-        checkSameXml(getFileContent("show/kodi_v18_show_empty.nfo"), writer.getTvShowXml().trimmed());
+        QString actual = writer.getTvShowXml().trimmed();
+        writeTempFile(filename, actual);
+        checkSameXml(getFileContent("show/" + filename), actual);
     }
 
     SECTION("read / write details: Game of Thrones")
@@ -74,7 +79,6 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 Currently not yet supported:
 
   <originaltitle>TtvshowC09</originaltitle>
-  <userrating>3</userrating>
 
   These are listed on the Kodi wiki but seem to be wrong:
   <season>5</season>
@@ -82,11 +86,8 @@ Currently not yet supported:
   <displayepisode>-1</displayepisode>
   <playcount>0</playcount>
   <tagline>A tagline</tagline>
-  <lastplayed></lastplayed>
-  <year>1999</year>
   <aired></aired>
   <trailer></trailer>
-  <dateadded>2017-05-10 08:44:24</dateadded>
   <path>E:\TV Shows-Test - Copy\Angel\</path>
   <filenameandpath></filenameandpath>
   <basepath>E:\TV Shows-Test - Copy\Angel\</basepath>
@@ -121,8 +122,6 @@ Currently not yet supported:
       <poster>E:\TV Shows-Test - Copy\Angel\season05-poster.jpg</poster>
     </season>
   </art>
-  <thumb aspect="banner">http://thetvdb.com/banners/graphical/71035-g7.jpg</thumb>
-  <thumb aspect="poster" type="season" season="5">http://thetvdb.com/banners/seasons/71035-5-2.jpg</thumb>
   <fanart url="http://thetvdb.com/banners/">
     <thumb dim="1920x1080" colors="" preview="_cache/fanart/original/71035-6.jpg">fanart/original/71035-6.jpg</thumb>
     <thumb dim="1920x1080" colors="" preview="_cache/fanart/original/71035-18.jpg">fanart/original/71035-18.jpg</thumb>
@@ -131,23 +130,9 @@ Currently not yet supported:
   <episodeguide>
     <url cache="71035-en.xml">http://thetvdb.com/api/439DFEBA9D3059C6/series/71035/all/en.zip</url>
   </episodeguide>
-  <resume>
-    <position>0.000000</position>
-    <total>0.000000</total>
-  </resume>
 
   Todo:
-  - one node for each genre instead of one
-      <genre>Action</genre>
-      <genre>Comedy</genre>
-      <genre>Drama</genre>
-  - both id and uniqueid?
-      <id>71035</id>
   - distinguish between plot and overview
-  - remove following tags:
-      <tvdbid/>
-      <imdbid/>
-  - add <order>1</order> to <actor>
 
          */
 
@@ -163,6 +148,7 @@ Currently not yet supported:
             rating.maxRating = 10;
             show.ratings().push_back(rating);
         }
+        show.setUserRating(9.56);
         show.setCertification(Certification("TV-PG"));
         show.setRuntime(45min);
         show.setTop250(4);
@@ -179,11 +165,15 @@ Currently not yet supported:
         {
             Poster banner;
             banner.thumbUrl = "http://thetvdb.com/banners/graphical/71035-g7.jpg";
+            banner.originalUrl = "http://thetvdb.com/banners/graphical/71035-g7.jpg";
+            banner.originalSize = QSize(758, 140);
             show.addBanner(banner);
         }
         {
             Poster poster;
             poster.season = SeasonNumber(5);
+            poster.originalUrl = "http://thetvdb.com/banners/seasons/71035-5-2.jpg";
+            poster.originalSize = QSize(400, 578);
             poster.thumbUrl = "http://thetvdb.com/banners/seasons/71035-5-2.jpg";
             show.addSeasonPoster(SeasonNumber(5), poster);
         }
@@ -203,10 +193,10 @@ Currently not yet supported:
 
         mediaelch::kodi::TvShowXmlWriterV18 writer(show);
 
-        const QByteArray expectedNfo = R"(
-)";
-
         QString actual = writer.getTvShowXml().trimmed();
+        QString filename = "kodi_v18_show_all.nfo";
+        CAPTURE(filename);
+        writeTempFile(filename, actual);
         checkSameXml(getFileContent("show/kodi_v18_show_all.nfo"), actual);
     }
 }

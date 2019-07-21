@@ -797,14 +797,12 @@ void TvShow::setOverview(QString overview)
 }
 
 /**
- * @brief Sets the TheTvdbId
+ * @brief Sets the TheTvdbId; same as setId
  * @see TvShow::tvdbId
  */
 void TvShow::setTvdbId(TvDbId id)
 {
-    if (m_id.isValid()) {
-        m_id = id;
-    }
+    m_id = id;
     m_tvdbId = id;
     setChanged(true);
 }
@@ -812,6 +810,7 @@ void TvShow::setTvdbId(TvDbId id)
 void TvShow::setId(TvDbId id)
 {
     m_id = id;
+    m_tvdbId = id;
     setChanged(true);
 }
 

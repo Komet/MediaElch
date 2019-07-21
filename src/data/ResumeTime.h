@@ -13,4 +13,4 @@ struct ResumeTime
 
 } // namespace mediaelch
 
-QDebug operator<<(QDebug debug, const mediaelch::ResumeTime& id);
+QDebug operator<<(QDebug debug, const mediaelch::ResumeTime& time);
