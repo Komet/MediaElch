@@ -1236,6 +1236,17 @@ void TvShow::setStatus(const QString& status)
     setChanged(true);
 }
 
+QDateTime TvShow::dateAdded() const
+{
+    return m_dateAdded;
+}
+
+void TvShow::setDateAdded(const QDateTime& dateTime)
+{
+    m_dateAdded = dateTime;
+    setChanged(true);
+}
+
 int TvShow::top250() const
 {
     return m_imdbTop250;

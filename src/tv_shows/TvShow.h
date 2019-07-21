@@ -172,6 +172,9 @@ public:
     QString status() const;
     void setStatus(const QString& status);
 
+    QDateTime dateAdded() const;
+    void setDateAdded(const QDateTime& dateTime);
+
 signals:
     void sigLoaded(TvShow*);
     void sigChanged(TvShow*);
@@ -224,6 +227,7 @@ private:
     bool m_showMissingEpisodes = false;
     bool m_hideSpecialsInMissingEpisodes = false;
     QString m_status;
+    QDateTime m_dateAdded;
 
     QMap<ImageType, QByteArray> m_images;
     QMap<SeasonNumber, QMap<ImageType, QByteArray>> m_seasonImages;
