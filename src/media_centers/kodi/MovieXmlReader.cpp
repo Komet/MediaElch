@@ -187,9 +187,15 @@ void MovieXmlReader::movieActor(const QDomElement& actorElement)
 
 void MovieXmlReader::movieThumbnail(const QDomElement& thumbElement)
 {
+    QString aspect = thumbElement.attribute("aspect").trimmed();
+    // if (aspect == "set.poster") {
+    //     // TODO: special handling of set-posters, etc.
+    // }
+
     Poster p;
-    p.originalUrl = QUrl(thumbElement.toElement().text());
-    p.thumbUrl = QUrl(thumbElement.toElement().attribute("preview"));
+    p.originalUrl = QUrl(thumbElement.text());
+    p.thumbUrl = QUrl(thumbElement.attribute("preview"));
+    p.aspect = aspect;
     m_movie.images().addPoster(p);
 }
 

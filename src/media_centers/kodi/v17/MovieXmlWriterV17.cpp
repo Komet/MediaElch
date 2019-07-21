@@ -148,7 +148,8 @@ QByteArray MovieXmlWriterV17::getMovieXml()
 
         for (const Poster& poster : m_movie.images().posters()) {
             QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("aspect", "poster");
+            QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+            elem.setAttribute("aspect", aspect);
             elem.setAttribute("preview", poster.thumbUrl.toString());
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             KodiXml::appendXmlNode(doc, elem);
