@@ -84,13 +84,29 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
     KodiXml::setTextValue(doc, "premiered", m_show.firstAired().toString("yyyy-MM-dd"));
     KodiXml::setTextValue(doc, "year", m_show.firstAired().toString("yyyy"));
     KodiXml::setTextValue(doc, "dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
-    KodiXml::setTextValue(doc, "studio", m_show.network());
     KodiXml::setTextValue(doc, "status", m_show.status());
+    KodiXml::setTextValue(doc, "studio", m_show.network());
 
     if (m_show.runtime() > 0min) {
         KodiXml::setTextValue(doc, "runtime", QString::number(m_show.runtime().count()));
     } else if (!showElem.elementsByTagName("runtime").isEmpty()) {
         showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
+    }
+
+    // TODO: add trailer support
+    KodiXml::setTextValue(doc, "trailer", "");
+
+    KodiXml::removeChildNodes(doc, "namedseason");
+
+    for (auto namedSeason = m_show.seasonNameMappings().constBegin();
+         namedSeason != m_show.seasonNameMappings().constEnd();
+         ++namedSeason) {
+        QDomElement seasonElement = doc.createElement("namedseason");
+
+        seasonElement.setAttribute("number", namedSeason.key().toString());
+        seasonElement.appendChild(doc.createTextNode(namedSeason.value()));
+
+        KodiXml::appendXmlNode(doc, seasonElement);
     }
 
     if (!m_show.episodeGuideUrl().isEmpty()) {
