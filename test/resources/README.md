@@ -15,6 +15,7 @@ changes only for movies:
    - `<status></status>`
    - `<code></code>`
    - `<aired></aired>`
+ - changed resume time to != 0.0
 
 and only for TV shows:
 

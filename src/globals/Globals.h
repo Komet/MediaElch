@@ -87,9 +87,6 @@ enum class MainWidgets
     Downloads
 };
 
-/**
- * @brief The Actor struct
- */
 struct Actor
 {
     QString name;
@@ -97,7 +94,8 @@ struct Actor
     QString thumb;
     QByteArray image;
     QString id;
-    bool imageHasChanged{false};
+    int order = 0; // used by Kodi NFO
+    bool imageHasChanged = false;
 };
 Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)

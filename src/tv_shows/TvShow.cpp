@@ -809,12 +809,13 @@ void TvShow::setEpisodeGuideUrl(QString url)
     setChanged(true);
 }
 
-/**
- * @brief Adds an actor
- * @see TvShow::actors
- */
+/// @brief Adds an actor
+/// @see TvShow::actors
 void TvShow::addActor(Actor actor)
 {
+    if (actor.order == 0 && !m_actors.isEmpty()) {
+        actor.order = m_actors.last().order + 1;
+    }
     m_actors.append(actor);
     setChanged(true);
 }

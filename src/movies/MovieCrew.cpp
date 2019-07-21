@@ -38,6 +38,9 @@ void MovieCrew::setActors(QVector<Actor> actors)
 
 void MovieCrew::addActor(Actor actor)
 {
+    if (actor.order == 0 && !m_actors.isEmpty()) {
+        actor.order = m_actors.last().order + 1;
+    }
     m_actors.append(actor);
 }
 

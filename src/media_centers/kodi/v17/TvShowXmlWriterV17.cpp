@@ -156,7 +156,6 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
 
     KodiXml::removeChildNodes(doc, "actor");
 
-    int order = 0; // todo: save the order in the actor struct
     for (const Actor& actor : m_show.actors()) {
         QDomElement elem = doc.createElement("actor");
         QDomElement elemName = doc.createElement("name");
@@ -164,17 +163,16 @@ QByteArray TvShowXmlWriterV17::getTvShowXml()
         QDomElement elemOrder = doc.createElement("order");
         elemName.appendChild(doc.createTextNode(actor.name));
         elemRole.appendChild(doc.createTextNode(actor.role));
-        elemOrder.appendChild(doc.createTextNode(QString::number(order)));
+        elemOrder.appendChild(doc.createTextNode(QString::number(actor.order)));
         elem.appendChild(elemName);
         elem.appendChild(elemRole);
         elem.appendChild(elemOrder);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
             QDomElement elemThumb = doc.createElement("thumb");
             elemThumb.appendChild(doc.createTextNode(actor.thumb));
             elem.appendChild(elemThumb);
         }
         KodiXml::appendXmlNode(doc, elem);
-        ++order;
     }
 
     return doc.toByteArray(4);
