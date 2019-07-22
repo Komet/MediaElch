@@ -1,5 +1,5 @@
 ---
-Checks:                '*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions'
+Checks:                '*, -fuchsia-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     ''
 AnalyzeTemporaryDtors: false
@@ -9,9 +9,8 @@ FormatStyle:           file
 # We disabled these checks because there are either false positives or too many warnings at the moment.
 # They will be enabled step by step.
 #
-# fuchsia-*
+# fuchsia-*                                            # Too strict for any form of normal C++ programming; degrades C++ literally to C
 # google-*
-# llvm-*
 # misc-*
 # bugprone-narrowing-conversions                       # Too many warnings
 # readability-uppercase-literal-suffix                 # We use lowercase literals suffixes
@@ -33,6 +32,7 @@ FormatStyle:           file
 # cppcoreguidelines-narrowing-conversions              # Too many warnings
 # cppcoreguidelines-macro-usage                        # Qt marcros...
 # cppcoreguidelines-special-member-functions           # in qrc_*.cpp files
+# llvm-namespace-comment                               # Useful but qrc_*.cpp files again...
 
 CheckOptions:
   - key: bugprone-assert-side-effect.CheckFunctionCalls
