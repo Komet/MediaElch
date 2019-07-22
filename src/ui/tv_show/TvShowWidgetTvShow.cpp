@@ -155,7 +155,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     onSetEnabled(false);
 
-    connect(static_cast<TheTvDb*>(Manager::instance()->tvScrapers().at(0)),
+    connect(dynamic_cast<TheTvDb*>(Manager::instance()->tvScrapers().at(0)),
         &TheTvDb::sigLoadProgress,
         this,
         &TvShowWidgetTvShow::onShowScraperProgress);
@@ -1132,7 +1132,7 @@ void TvShowWidgetTvShow::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -1167,7 +1167,7 @@ void TvShowWidgetTvShow::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -1182,7 +1182,7 @@ void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
     if (m_show == nullptr) {
         return;
     }
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }

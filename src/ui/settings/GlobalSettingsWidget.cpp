@@ -135,8 +135,8 @@ void GlobalSettingsWidget::saveSettings()
         dir.separateFolders = ui->dirs->item(row, tableDirectorySeparateFoldersIndex)->checkState() == Qt::Checked;
         dir.autoReload = ui->dirs->item(row, tableDirectoryReloadIndex)->checkState() == Qt::Checked;
 
-        const int index = static_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex();
-        if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
+        const int index = dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, tableDirectoryTypeIndex))->currentIndex();
+        if (dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0) {
             movieDirectories.append(dir);
         } else if (index == 1) {
             tvShowDirectories.append(dir);
@@ -225,7 +225,7 @@ void GlobalSettingsWidget::organize()
     auto organizer = new MovieFilesOrganizer(this);
 
     int row = ui->dirs->currentRow();
-    if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
+    if (dynamic_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
         || ui->dirs->item(row, 2)->checkState() == Qt::Checked) {
         organizer->canceled(tr("Organizing movies does only work on "
                                "movies, not already sorted to "
@@ -259,7 +259,7 @@ void GlobalSettingsWidget::onDirTypeChanged(QComboBox* comboBox)
 {
     QComboBox* box = comboBox;
     if (box == nullptr) {
-        box = static_cast<QComboBox*>(QObject::sender());
+        box = dynamic_cast<QComboBox*>(QObject::sender());
     }
     if (box == nullptr) {
         return;
@@ -301,7 +301,7 @@ void GlobalSettingsWidget::dirListRowChanged(int currentRow)
     }
     ui->buttonRemoveDir->setDisabled(false);
     auto* typeWidget = ui->dirs->cellWidget(currentRow, 0);
-    if (typeWidget != nullptr && static_cast<QComboBox*>(typeWidget)->currentIndex() == 0
+    if (typeWidget != nullptr && dynamic_cast<QComboBox*>(typeWidget)->currentIndex() == 0
         && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
         ui->buttonMovieFilesToDirs->setDisabled(false);
     } else {

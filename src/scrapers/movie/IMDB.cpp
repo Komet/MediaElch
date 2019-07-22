@@ -125,7 +125,7 @@ void IMDB::search(QString searchStr)
 
 void IMDB::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -139,7 +139,7 @@ void IMDB::onSearchFinished()
 
 void IMDB::onSearchIdFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
@@ -224,7 +224,7 @@ void IMDB::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
 
 void IMDB::onLoadFinished()
 {
-    auto* reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
@@ -264,7 +264,7 @@ void IMDB::onLoadFinished()
 
 void IMDB::onTagsFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     if (movie == nullptr) {
@@ -284,7 +284,7 @@ void IMDB::onTagsFinished()
 
 void IMDB::onPosterLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     auto posterId = reply->url().fileName();
     reply->deleteLater();
     Movie* movie = reply->property("storage").value<Storage*>()->movie();

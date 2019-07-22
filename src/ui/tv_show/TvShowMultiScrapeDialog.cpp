@@ -576,7 +576,7 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
         return;
     }
 
-    auto episode = static_cast<TvShowEpisode*>(QObject::sender());
+    auto episode = dynamic_cast<TvShowEpisode*>(QObject::sender());
     if (episode == nullptr) {
         return;
     }

@@ -110,7 +110,7 @@ void VideoBuster::search(QString searchStr)
  */
 void VideoBuster::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
 
     QVector<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError) {
@@ -171,7 +171,7 @@ void VideoBuster::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* mov
  */
 void VideoBuster::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();

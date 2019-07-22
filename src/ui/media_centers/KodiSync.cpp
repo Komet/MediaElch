@@ -230,7 +230,7 @@ void KodiSync::startSync()
 
 void KodiSync::onMovieListFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
@@ -260,7 +260,7 @@ void KodiSync::onMovieListFinished()
 
 void KodiSync::onConcertListFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
@@ -290,7 +290,7 @@ void KodiSync::onConcertListFinished()
 
 void KodiSync::onTvShowListFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
@@ -320,7 +320,7 @@ void KodiSync::onTvShowListFinished()
 
 void KodiSync::onEpisodeListFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         qDebug() << "invalid response received";
         return;
@@ -490,7 +490,7 @@ void KodiSync::removeItems()
 
 void KodiSync::onRemoveFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply != nullptr) {
         reply->deleteLater();
     }
@@ -498,7 +498,7 @@ void KodiSync::onRemoveFinished()
     ui->progressBar->setValue(ui->progressBar->maximum()
                               - (m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count()
                                     + m_concertsToRemove.count()));
-    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty()
         || !m_episodesToRemove.isEmpty()) {

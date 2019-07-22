@@ -250,7 +250,7 @@ QString TMDb::country() const
  */
 void TMDb::setupFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -335,7 +335,7 @@ void TMDb::search(QString searchStr)
  */
 void TMDb::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -525,7 +525,7 @@ void TMDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
  */
 void TMDb::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
@@ -548,7 +548,7 @@ void TMDb::loadFinished()
  */
 void TMDb::loadCastsFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
@@ -571,7 +571,7 @@ void TMDb::loadCastsFinished()
  */
 void TMDb::loadTrailersFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* const movie = reply->property("storage").value<Storage*>()->movie();
     const QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
@@ -594,7 +594,7 @@ void TMDb::loadTrailersFinished()
  */
 void TMDb::loadImagesFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();
@@ -617,7 +617,7 @@ void TMDb::loadImagesFinished()
  */
 void TMDb::loadReleasesFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     reply->deleteLater();

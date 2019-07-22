@@ -198,7 +198,7 @@ QString TMDbConcerts::country() const
  */
 void TMDbConcerts::setupFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
@@ -261,7 +261,7 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    auto searchReply = static_cast<QNetworkReply*>(QObject::sender());
+    auto searchReply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QVector<ScraperSearchResult> results = searchReply->property("results").value<Storage*>()->results();
 
     if (searchReply->error() != QNetworkReply::NoError) {
@@ -430,7 +430,7 @@ void TMDbConcerts::loadData(TmdbId id, Concert* concert, QVector<ConcertScraperI
  */
 void TMDbConcerts::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
@@ -453,7 +453,7 @@ void TMDbConcerts::loadFinished()
  */
 void TMDbConcerts::loadTrailersFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
@@ -476,7 +476,7 @@ void TMDbConcerts::loadTrailersFinished()
  */
 void TMDbConcerts::loadImagesFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();
@@ -499,7 +499,7 @@ void TMDbConcerts::loadImagesFinished()
  */
 void TMDbConcerts::loadReleasesFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     QVector<ConcertScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->concertInfosToLoad();
     reply->deleteLater();

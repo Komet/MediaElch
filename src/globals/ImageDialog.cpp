@@ -416,8 +416,8 @@ void ImageDialog::renderTable()
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
         auto label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
-            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(
-                (getColumnWidth() - 10) * helper::devicePixelRatio(this), Qt::SmoothTransformation);
+            const int width = static_cast<int>((getColumnWidth() - 10) * helper::devicePixelRatio(this));
+            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth(width, Qt::SmoothTransformation);
             helper::setDevicePixelRatio(pixmap, helper::devicePixelRatio(this));
             label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
@@ -468,7 +468,7 @@ void ImageDialog::imageClicked(int row, int col)
             m_imageUrls.append(url);
             QByteArray ba;
             QBuffer buffer(&ba);
-            QImage img = static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
+            QImage img = dynamic_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
             img.save(&buffer, "jpg", 100);
             ui->gallery->addImage(ba, url.toString());
         }

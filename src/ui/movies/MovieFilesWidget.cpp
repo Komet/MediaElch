@@ -508,7 +508,7 @@ void MovieFilesWidget::selectMovie(Movie* movie)
 void MovieFilesWidget::onActionMediaStatusColumn()
 {
     m_contextMenu->close();
-    auto action = static_cast<QAction*>(QObject::sender());
+    auto action = dynamic_cast<QAction*>(QObject::sender());
     if (action == nullptr) {
         return;
     }
@@ -529,7 +529,7 @@ void MovieFilesWidget::onActionMediaStatusColumn()
 void MovieFilesWidget::onLabel()
 {
     m_contextMenu->close();
-    auto action = static_cast<QAction*>(QObject::sender());
+    auto action = dynamic_cast<QAction*>(QObject::sender());
     if (action == nullptr) {
         return;
     }

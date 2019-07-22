@@ -104,7 +104,7 @@ void SettingsWindow::onCancel()
 
 void SettingsWindow::onAction()
 {
-    auto triggeredAction = static_cast<QAction*>(sender());
+    auto triggeredAction = dynamic_cast<QAction*>(sender());
     for (QAction* action : ui->toolBar->actions()) {
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     }

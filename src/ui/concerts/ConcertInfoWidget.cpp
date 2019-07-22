@@ -6,6 +6,7 @@
 
 // Each change event listener requires the concert to be valid. This is a marco to avoid repitition.
 // do {} while() is used to force a semicolon after the use of this macro.
+// NOLINTNEXTLINE
 #define ME_REQUIRE_CONCERT_OR_RETURN                                                                                   \
     do {                                                                                                               \
         if (!m_concertController || !m_concertController->concert()) {                                                 \

@@ -43,7 +43,7 @@ void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
         movie->blockSignals(false);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(movie->name());
-        qApp->processEvents();
+        QApplication::processEvents();
     }
     accept();
 }
@@ -60,7 +60,7 @@ void LoadingStreamDetails::loadConcerts(QVector<Concert*> concerts)
         concert->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(concert->name());
-        qApp->processEvents();
+        QApplication::processEvents();
     }
     accept();
 }
@@ -77,7 +77,7 @@ void LoadingStreamDetails::loadTvShowEpisodes(QVector<TvShowEpisode*> episodes)
         episode->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
         ui->currentFile->setText(episode->name());
-        qApp->processEvents();
+        QApplication::processEvents();
     }
     accept();
 }

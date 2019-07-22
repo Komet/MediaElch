@@ -236,7 +236,7 @@ void RenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfig& co
             continue;
         }
 
-        qApp->processEvents();
+        QApplication::processEvents();
 
         Renamer::RenameError err = renamer.renameMovie(*movie);
         if (err != Renamer::RenameError::None) {
@@ -264,7 +264,7 @@ void RenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const Renam
             continue;
         }
 
-        qApp->processEvents();
+        QApplication::processEvents();
 
         Renamer::RenameError err = renamer.renameEpisode(*episode, episodesRenamed);
         if (err != Renamer::RenameError::None) {
@@ -340,7 +340,7 @@ void RenamerDialog::renameConcerts(QVector<Concert*> concerts, const RenamerConf
             continue;
         }
 
-        qApp->processEvents();
+        QApplication::processEvents();
 
         Renamer::RenameError err = renamer.renameConcert(*concert);
         if (err != Renamer::RenameError::None) {

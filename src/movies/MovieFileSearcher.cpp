@@ -256,7 +256,7 @@ int MovieFileSearcher::loadMoviesFromDirectory(const SettingsDir& movieDir,
     }
 
     emit currentDir(path);
-    qApp->processEvents();
+    QApplication::processEvents();
     Manager::instance()->database()->clearMovies(path);
     QMap<QString, QStringList> contents;
     if (!Settings::instance()->advanced()->movieFilters().hasFilter()) {

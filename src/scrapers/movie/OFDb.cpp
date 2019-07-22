@@ -135,7 +135,7 @@ void OFDb::search(QString searchStr)
  */
 void OFDb::searchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     QString searchStr = reply->property("searchString").toString();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
 
@@ -249,7 +249,7 @@ void OFDb::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
  */
 void OFDb::loadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();

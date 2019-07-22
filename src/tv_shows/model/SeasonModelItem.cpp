@@ -43,6 +43,7 @@ const QList<EpisodeModelItem*>& SeasonModelItem::episodes() const
 /// @brief Get the item's index in its parent item.
 int SeasonModelItem::indexInParent() const
 {
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
     return m_parentItem.seasons().indexOf(const_cast<SeasonModelItem*>(this));
 }
 

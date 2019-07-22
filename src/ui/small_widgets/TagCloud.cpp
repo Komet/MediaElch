@@ -147,7 +147,7 @@ void TagCloud::repositionTags()
 
 void TagCloud::mousePressEvent(QMouseEvent* event)
 {
-    Badge* child = static_cast<Badge*>(childAt(event->pos()));
+    Badge* child = dynamic_cast<Badge*>(childAt(event->pos()));
     if ((child == nullptr) || !child->inherits("Badge")) {
         return;
     }

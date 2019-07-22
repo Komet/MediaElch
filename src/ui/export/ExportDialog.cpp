@@ -203,7 +203,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate* exportTemplate, 
         replaceVars(m, movie, dir);
         movieList << m;
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
     listContent.replace(listMovieBlock, movieList.join("\n"));
@@ -336,7 +336,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate* exportTemplate
         replaceVars(c, concert, dir);
         concertList << c;
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 
     listContent.replace(listConcertBlock, concertList.join("\n"));
@@ -419,7 +419,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate,
         replaceVars(s, show, dir);
         tvShowList << s;
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
         for (TvShowEpisode* episode : show->episodes()) {
             if (episode->isDummy()) {
@@ -433,7 +433,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate* exportTemplate,
                 file.close();
             }
             ui->progressBar->setValue(ui->progressBar->value() + 1);
-            qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         }
     }
 

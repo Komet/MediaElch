@@ -77,7 +77,7 @@ void MovieDuplicates::detectDuplicates()
 
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         ++counter;
-        qApp->processEvents();
+        QApplication::processEvents();
 
         NotificationBox::instance()->progressBarProgress(
             counter, movieCount, Constants::MovieDuplicatesProgressMessageId);

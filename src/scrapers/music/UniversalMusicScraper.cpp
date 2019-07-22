@@ -81,7 +81,7 @@ void UniversalMusicScraper::searchArtist(QString searchStr)
 void UniversalMusicScraper::onSearchArtistFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
@@ -134,7 +134,7 @@ void UniversalMusicScraper::loadData(QString mbId, Artist* artist, QVector<Music
 
 void UniversalMusicScraper::onArtistRelsFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Artist* artist = reply->property("storage").value<Storage*>()->artist();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
@@ -219,7 +219,7 @@ void UniversalMusicScraper::onArtistLoadFinished()
 {
     QMutexLocker locker(&m_artistMutex);
 
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Artist* artist = reply->property("storage").value<Storage*>()->artist();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
@@ -364,7 +364,7 @@ void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 void UniversalMusicScraper::onSearchAlbumFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -460,7 +460,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId,
 
 void UniversalMusicScraper::onAlbumRelsFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Album* album = reply->property("storage").value<Storage*>()->album();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();
@@ -538,7 +538,7 @@ void UniversalMusicScraper::onAlbumLoadFinished()
 {
     QMutexLocker locker(&m_albumMutex);
 
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Album* album = reply->property("storage").value<Storage*>()->album();
     QVector<MusicScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->musicInfosToLoad();
     reply->deleteLater();

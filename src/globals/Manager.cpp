@@ -81,7 +81,7 @@ Manager* Manager::instance()
 {
     static Manager* s_instance = nullptr;
     if (s_instance == nullptr) {
-        s_instance = new Manager(qApp);
+        s_instance = new Manager(QApplication::instance());
     }
     return s_instance;
 }
@@ -247,7 +247,7 @@ QVector<ImageProviderInterface*> Manager::imageProviders()
 
 FanartTv* Manager::fanartTv()
 {
-    return static_cast<FanartTv*>(m_imageProviders.at(0));
+    return dynamic_cast<FanartTv*>(m_imageProviders.at(0));
 }
 
 Database* Manager::database()

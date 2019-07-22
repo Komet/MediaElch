@@ -80,7 +80,7 @@ void AdultDvdEmpire::search(QString searchStr)
 
 void AdultDvdEmpire::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -126,7 +126,7 @@ void AdultDvdEmpire::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* 
 
 void AdultDvdEmpire::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 

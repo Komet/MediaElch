@@ -190,7 +190,7 @@ void CustomMovieScraper::loadData(QMap<MovieScraperInterface*, QString> ids,
 
 void CustomMovieScraper::onLoadTmdbFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("movie").value<Storage*>()->movie();
     QVector<MovieScraperInfos> infos = reply->property("infosToLoad").value<Storage*>()->movieInfosToLoad();
     QMap<MovieScraperInterface*, QString> ids = reply->property("ids").value<Storage*>()->ids();

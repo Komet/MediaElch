@@ -45,7 +45,7 @@ void ExportTemplateLoader::getRemoteTemplates()
 void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 {
     QVector<ExportTemplate*> templates;
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         return;
     }
@@ -157,7 +157,7 @@ void ExportTemplateLoader::installTemplate(ExportTemplate* exportTemplate)
 
 void ExportTemplateLoader::onDownloadTemplateFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(sender());
     if (reply == nullptr) {
         return;
     }

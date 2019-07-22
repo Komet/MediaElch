@@ -130,7 +130,7 @@ void TvShowFilesWidget::scanForEpisodes()
     selectionModel->clearCurrentIndex();
     emit sigNothingSelected();
 
-    qApp->processEvents();
+    QApplication::processEvents();
 
     if (m_lastItem == nullptr || m_lastItem->tvShow() == nullptr) {
         return;
