@@ -71,7 +71,7 @@ int NotificationBox::showMessage(QString message, NotificationBox::NotificationT
     adjustSize();
     show();
     connect(msg, &Message::sigHideMessage, this, &NotificationBox::removeMessage);
-    // qApp->processEvents(QEventLoop::WaitForMoreEvents);
+    // QApplication::processEvents(QEventLoop::WaitForMoreEvents);
     return m_msgCounter;
 }
 

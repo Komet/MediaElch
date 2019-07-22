@@ -203,7 +203,7 @@ void ImageGallery::positionImages()
 
 void ImageGallery::onCloseImage()
 {
-    auto label = static_cast<ClosableImage*>(QObject::sender());
+    auto label = dynamic_cast<ClosableImage*>(QObject::sender());
     label->hide();
     label->deleteLater();
     m_imageLabels.removeOne(label);

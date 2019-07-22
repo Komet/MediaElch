@@ -1,5 +1,5 @@
 ---
-Checks:                '*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error'
+Checks:                '*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions'
 WarningsAsErrors:      ''
 HeaderFilterRegex:     ''
 AnalyzeTemporaryDtors: false
@@ -9,7 +9,6 @@ FormatStyle:           file
 # We disabled these checks because there are either false positives or too many warnings at the moment.
 # They will be enabled step by step.
 #
-# cppcoreguidelines-*
 # fuchsia-*
 # google-*
 # llvm-*
@@ -20,14 +19,20 @@ FormatStyle:           file
 # readability-identifier-naming                        # Somehow not stable; warnings don't tell what config parameter is responsible
 # performance-unnecessary-value-param                  # Too many warnings; we still need to fix those
 # clang-analyzer-cplusplus.NewDeleteLeaks              # False positive with QTimer::singleShot
-# cppcoreguidelines-pro-bounds-array-to-pointer-decay  # Nice but useless in qDebug() macros with string literals
 # modernize-avoid-c-arrays                             # qrc and moc files use c arrays...
 # hicpp-no-array-decay                                 # qrc and moc files use c arrays...
 # hicpp-avoid-c-arrays                                 # qrc and moc files use c arrays...
 # hicpp-uppercase-literal-suffix                       # we use lowercase literal suffixes; clang-tidy has not option for that, though
-# hicpp-special-member-functions                       # in qrc_*.cpp files: needs to be added to HeaderFilterRegex
+# hicpp-special-member-functions                       # in qrc_*.cpp files
 # cert-err58-cpp                                       # qrc and moc files use static storage duration objects that may throw
 # clang-diagnostic-error                               # warn but don't make warnings errors
+# cppcoreguidelines-pro-bounds-array-to-pointer-decay  # Nice but useless in qDebug() macros with string literals
+# cppcoreguidelines-owning-memory                      # we heavily use new and raw pointers
+# cppcoreguidelines-avoid-magic-numbers                # magic numbers in e.g. QColor
+# cppcoreguidelines-avoid-c-arrays                     # qrc and moc files use c arrays...
+# cppcoreguidelines-narrowing-conversions              # Too many warnings
+# cppcoreguidelines-macro-usage                        # Qt marcros...
+# cppcoreguidelines-special-member-functions           # in qrc_*.cpp files
 
 CheckOptions:
   - key: bugprone-assert-side-effect.CheckFunctionCalls

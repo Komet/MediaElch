@@ -329,7 +329,7 @@ void FanartTv::loadConcertData(TmdbId tmdbId, QVector<ImageType> types, Concert*
  */
 void FanartTv::onLoadMovieDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QVector<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -345,7 +345,7 @@ void FanartTv::onLoadMovieDataFinished()
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
@@ -364,7 +364,7 @@ void FanartTv::onLoadAllMovieDataFinished()
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Concert* concert = reply->property("storage").value<Storage*>()->concert();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
@@ -513,7 +513,7 @@ void FanartTv::loadTvShowData(TvDbId tvdbId, QVector<ImageType> types, TvShow* s
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QVector<Poster> posters;
     if (reply->error() == QNetworkReply::NoError) {
@@ -530,7 +530,7 @@ void FanartTv::onLoadTvShowDataFinished()
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     TvShow* show = reply->property("storage").value<Storage*>()->show();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;

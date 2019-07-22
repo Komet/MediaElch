@@ -213,7 +213,7 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
 
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
         || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         reply->deleteLater();

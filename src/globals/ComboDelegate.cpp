@@ -30,7 +30,7 @@ ComboDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option,
 void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     QString value = index.model()->data(index, Qt::EditRole).toString();
-    auto box = static_cast<QComboBox*>(editor);
+    auto box = dynamic_cast<QComboBox*>(editor);
     QStringList items;
     if (m_widget == MainWidgets::Movies && m_type == ComboDelegateType::Genres) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
@@ -100,7 +100,7 @@ void ComboDelegate::setEditorData(QWidget* editor, const QModelIndex& index) con
 
 void ComboDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    auto box = static_cast<QComboBox*>(editor);
+    auto box = dynamic_cast<QComboBox*>(editor);
     QString value = box->currentText();
     model->setData(index, value, Qt::EditRole);
 }

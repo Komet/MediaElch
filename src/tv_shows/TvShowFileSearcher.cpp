@@ -155,7 +155,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
         }
         seasonItems.value(episode->season())->appendEpisode(episode);
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-        qApp->processEvents();
+        QApplication::processEvents();
     }
 
     emit tvShowsLoaded();

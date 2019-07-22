@@ -84,7 +84,7 @@ void HotMovies::search(QString searchStr)
 
 void HotMovies::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -129,7 +129,7 @@ void HotMovies::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie
 
 void HotMovies::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {

@@ -617,7 +617,7 @@ void ConcertWidget::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -647,7 +647,7 @@ void ConcertWidget::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }

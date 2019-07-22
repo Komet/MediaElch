@@ -296,7 +296,7 @@ void MusicWidgetArtist::onItemChanged(QString text)
         return;
     }
 
-    auto lineEdit = static_cast<QLineEdit*>(sender());
+    auto lineEdit = dynamic_cast<QLineEdit*>(sender());
     if (lineEdit == nullptr) {
         return;
     }
@@ -383,7 +383,7 @@ void MusicWidgetArtist::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -413,7 +413,7 @@ void MusicWidgetArtist::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }

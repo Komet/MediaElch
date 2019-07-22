@@ -230,8 +230,8 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
 
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(0);
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
+            dynamic_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(0);
+            dynamic_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
             ui->tablePackages->setCellWidget(row, 4, nullptr);
         }
     }
@@ -303,7 +303,7 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
             } else {
                 label->setErrorMessage(tr("Extraction failed"));
             }
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(false);
+            dynamic_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(false);
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
@@ -323,8 +323,8 @@ void DownloadsWidget::onExtractorProgress(QString baseName, int progress)
 {
     for (int row = 0, n = ui->tablePackages->rowCount(); row < n; ++row) {
         if (ui->tablePackages->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
-            static_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(progress);
+            dynamic_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setShowProgress(true);
+            dynamic_cast<UnpackButtons*>(ui->tablePackages->cellWidget(row, 3))->setProgress(progress);
         }
     }
 }
@@ -426,7 +426,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
     if (sender != nullptr) {
         box = sender;
     } else {
-        box = static_cast<QComboBox*>(QObject::sender());
+        box = dynamic_cast<QComboBox*>(QObject::sender());
     }
     if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
@@ -445,7 +445,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
         return;
     }
 
-    auto detailBox = static_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
+    auto detailBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 4));
     detailBox->clear();
 
     bool sub = false;
@@ -466,7 +466,7 @@ void DownloadsWidget::onChangeImportType(int currentIndex, QComboBox* sender)
         }
     }
 
-    static_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5))->setButtonEnabled(sub);
+    dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5))->setButtonEnabled(sub);
 }
 
 void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)
@@ -475,7 +475,7 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)
     if (sender != nullptr) {
         box = sender;
     } else {
-        box = static_cast<QComboBox*>(QObject::sender());
+        box = dynamic_cast<QComboBox*>(QObject::sender());
     }
     if (currentIndex < 0 || currentIndex >= box->count()) {
         return;
@@ -497,8 +497,8 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox* sender)
         return;
     }
 
-    auto typeBox = static_cast<QComboBox*>(ui->tableImports->cellWidget(row, 3));
-    auto actions = static_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
+    auto typeBox = dynamic_cast<QComboBox*>(ui->tableImports->cellWidget(row, 3));
+    auto actions = dynamic_cast<ImportActions*>(ui->tableImports->cellWidget(row, 5));
     QString type = typeBox->itemData(typeBox->currentIndex(), Qt::UserRole).toString();
     actions->setType(type);
     if (type == "movie") {

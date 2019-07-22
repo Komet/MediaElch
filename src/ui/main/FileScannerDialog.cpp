@@ -150,7 +150,7 @@ void FileScannerDialog::onStartMovieScanner()
 {
     ui->progressBar->setValue(0);
     Manager::instance()->movieModel()->clear();
-    qApp->processEvents();
+    QApplication::processEvents();
     if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMovieScannerForce);
     } else {
@@ -173,7 +173,7 @@ void FileScannerDialog::onStartTvShowScanner()
 {
     ui->progressBar->setValue(0);
     Manager::instance()->tvShowModel()->clear();
-    qApp->processEvents();
+    QApplication::processEvents();
     if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartTvShowScannerForce);
     } else {
@@ -203,7 +203,7 @@ void FileScannerDialog::onStartConcertScanner()
 {
     ui->progressBar->setValue(0);
     Manager::instance()->concertModel()->clear();
-    qApp->processEvents();
+    QApplication::processEvents();
     if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartConcertScannerForce);
     } else {
@@ -225,7 +225,7 @@ void FileScannerDialog::onStartMusicScanner()
 {
     ui->progressBar->setValue(0);
     Manager::instance()->musicModel()->clear();
-    qApp->processEvents();
+    QApplication::processEvents();
     if (m_forceReload) {
         QTimer::singleShot(0, this, &FileScannerDialog::onStartMusicScannerForce);
     } else {
@@ -261,7 +261,7 @@ void FileScannerDialog::onProgress(int current, int max)
 void FileScannerDialog::onCurrentDir(QString dir)
 {
     ui->currentDir->setText(dir);
-    qApp->processEvents();
+    QApplication::processEvents();
 }
 
 void FileScannerDialog::setScanDir(QString dir)

@@ -295,7 +295,7 @@ void MovieMultiScrapeDialog::onSearchFinished(QVector<ScraperSearchResult> resul
     }
 
     if (m_scraperInterface->identifier() == CustomMovieScraper::scraperIdentifier) {
-        auto scraper = static_cast<MovieScraperInterface*>(QObject::sender());
+        auto scraper = dynamic_cast<MovieScraperInterface*>(QObject::sender());
         m_currentIds.insert(scraper, results.first().id);
         QVector<MovieScraperInterface*> searchScrapers =
             CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);

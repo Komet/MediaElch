@@ -142,7 +142,7 @@ void FanartTvMusic::albumThumbs(QString mbId)
 void FanartTvMusic::onSearchArtistFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -184,7 +184,7 @@ void FanartTvMusic::onSearchArtistFinished()
 void FanartTvMusic::onSearchAlbumFinished()
 {
     QVector<ScraperSearchResult> results;
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
@@ -235,7 +235,7 @@ void FanartTvMusic::onSearchAlbumFinished()
 
 void FanartTvMusic::onLoadArtistFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QVector<Poster> posters;
@@ -248,7 +248,7 @@ void FanartTvMusic::onLoadArtistFinished()
 
 void FanartTvMusic::onLoadAlbumFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     ImageType info = ImageType(reply->property("infoToLoad").toInt());
     reply->deleteLater();
     QVector<Poster> posters;
@@ -548,7 +548,7 @@ void FanartTvMusic::albumImages(Album* album, QString mbId, QVector<ImageType> t
 
 void FanartTvMusic::onLoadAllAlbumDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Album* album = reply->property("storage").value<Storage*>()->album();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;
@@ -563,7 +563,7 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
 
 void FanartTvMusic::onLoadAllArtistDataFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Artist* artist = reply->property("storage").value<Storage*>()->artist();
     reply->deleteLater();
     QMap<ImageType, QVector<Poster>> posters;

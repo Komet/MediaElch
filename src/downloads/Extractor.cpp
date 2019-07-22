@@ -68,7 +68,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 
 void Extractor::onReadyRead()
 {
-    auto process = static_cast<QProcess*>(QObject::sender());
+    auto* process = dynamic_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardOutput();
     QRegExp rx("([0-9]*)%");
     if (rx.indexIn(msg) != -1) {
@@ -78,7 +78,7 @@ void Extractor::onReadyRead()
 
 void Extractor::onReadyReadError()
 {
-    auto process = static_cast<QProcess*>(QObject::sender());
+    auto* process = dynamic_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardError();
     qDebug() << "ERROR" << msg;
     process->setProperty("hasError", true);
@@ -90,7 +90,7 @@ void Extractor::onFinished(int exitCode, QProcess::ExitStatus status)
 {
     Q_UNUSED(exitCode);
     Q_UNUSED(status);
-    auto process = static_cast<QProcess*>(QObject::sender());
+    auto* process = dynamic_cast<QProcess*>(QObject::sender());
     m_processes.removeAll(process);
     process->deleteLater();
     emit sigFinished(process->property("baseName").toString(), !process->property("hasError").toBool());

@@ -468,5 +468,6 @@ void TrailerDialog::onSliderPositionChanged()
     if (m_totalTime == 0) {
         return;
     }
-    m_mediaPlayer->setPosition(qRound(static_cast<float>(m_totalTime) * ui->seekSlider->value() / 100.0f));
+    m_mediaPlayer->setPosition(
+        qRound(static_cast<float>(m_totalTime) * static_cast<float>(ui->seekSlider->value()) / 100.0f));
 }

@@ -128,7 +128,7 @@ void AEBN::search(QString searchStr)
 
 void AEBN::onSearchFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -180,7 +180,7 @@ void AEBN::loadData(QMap<MovieScraperInterface*, QString> ids, Movie* movie, QVe
 
 void AEBN::onLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 
@@ -344,7 +344,7 @@ void AEBN::downloadActors(Movie* movie, QStringList actorIds)
 
 void AEBN::onActorLoadFinished()
 {
-    auto reply = static_cast<QNetworkReply*>(QObject::sender());
+    auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
     Movie* movie = reply->property("storage").value<Storage*>()->movie();
     QStringList actorIds = reply->property("actorIds").toStringList();
     QString actorId = reply->property("actorId").toString();

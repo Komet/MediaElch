@@ -169,7 +169,7 @@ void ScraperSettingsWidget::saveSettings()
     // Custom movie scraper
     QMap<MovieScraperInfos, QString> customMovieScraper;
     for (int row = 0, n = ui->customScraperTable->rowCount(); row < n; ++row) {
-        auto box = static_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
+        auto box = dynamic_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
         MovieScraperInfos info = MovieScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         customMovieScraper.insert(info, scraper);
@@ -179,7 +179,7 @@ void ScraperSettingsWidget::saveSettings()
     // tv scraper
     QMap<TvShowScraperInfos, QString> tvScraper;
     for (int row = 0, n = ui->tvScraperTable->rowCount(); row < n; ++row) {
-        auto box = static_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
+        auto box = dynamic_cast<QComboBox*>(ui->tvScraperTable->cellWidget(row, 1));
         TvShowScraperInfos info = TvShowScraperInfos(box->itemData(0, Qt::UserRole + 1).toInt());
         QString scraper = box->itemData(box->currentIndex()).toString();
         tvScraper.insert(info, scraper);

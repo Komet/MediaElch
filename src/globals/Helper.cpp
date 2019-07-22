@@ -814,12 +814,15 @@ QString secondsToTimeCode(quint32 duration)
     auto hours = static_cast<int>(duration % 24);
     auto days = static_cast<int>(duration / 24);
     if (hours == 0 && days == 0) {
-        return res.sprintf("%02d:%02d", minutes, seconds); // NOLINT(hicpp-vararg)
+        // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
+        return res.sprintf("%02d:%02d", minutes, seconds);
     }
     if (days == 0) {
-        return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds); // NOLINT(hicpp-vararg)
+        // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
+        return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);
     }
-    return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds); // NOLINT(hicpp-vararg)
+    // NOLINTNEXTLINE(hicpp-vararg, cppcoreguidelines-pro-type-vararg)
+    return res.sprintf("%dd%02d:%02d:%02d", days, hours, minutes, seconds);
 }
 
 } // namespace helper

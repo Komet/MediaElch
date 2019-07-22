@@ -22,7 +22,7 @@ AlphabeticalList::AlphabeticalList(QWidget* parent, MyTableView* parentTableView
 
 void AlphabeticalList::adjustSize()
 {
-    const int parentHeight = static_cast<QWidget*>(parent())->size().height();
+    const int parentHeight = dynamic_cast<QWidget*>(parent())->size().height();
     move(-width(), m_topSpace);
     setFixedHeight(parentHeight - m_topSpace - m_bottomSpace);
 }

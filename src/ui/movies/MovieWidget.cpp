@@ -929,13 +929,13 @@ void MovieWidget::saveInformation()
 
         NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
         NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
-        qApp->processEvents();
+        QApplication::processEvents();
         for (Movie* movie : movies) {
             counter++;
             if (movie->hasChanged()) {
                 NotificationBox::instance()->progressBarProgress(
                     counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
-                qApp->processEvents();
+                QApplication::processEvents();
                 movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
                 if (m_movie == movie) {
@@ -977,12 +977,12 @@ void MovieWidget::saveAll()
 
     NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
     NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
-    qApp->processEvents();
+    QApplication::processEvents();
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
             NotificationBox::instance()->progressBarProgress(
                 counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);
-            qApp->processEvents();
+            QApplication::processEvents();
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
             if (m_movie == movie) {
@@ -1606,7 +1606,7 @@ void MovieWidget::onChooseImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }
@@ -1648,7 +1648,7 @@ void MovieWidget::onDeleteImage()
         return;
     }
 
-    auto image = static_cast<ClosableImage*>(QObject::sender());
+    auto image = dynamic_cast<ClosableImage*>(QObject::sender());
     if (image == nullptr) {
         return;
     }

@@ -29,6 +29,7 @@ int MusicModelItem::childCount() const
 int MusicModelItem::childNumber() const
 {
     if (m_parentItem != nullptr) {
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
         return m_parentItem->m_childItems.indexOf(const_cast<MusicModelItem*>(this));
     }
 
