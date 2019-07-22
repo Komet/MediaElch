@@ -3,7 +3,7 @@
 #include <QRegExp>
 #include <QString>
 
-SeasonNumber::SeasonNumber(int seasonNumber) :
+SeasonNumber::SeasonNumber(int seasonNumber) noexcept :
     // Any number lower than 0 is regarded invalid => no episode number
     m_seasonNumber(seasonNumber > -2 ? seasonNumber : -2)
 {

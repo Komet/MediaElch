@@ -1,7 +1,7 @@
 ---
-Checks:                '*, -cert-*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions'
+Checks:                '*, -cppcoreguidelines-*, -fuchsia-*, -google-*, -llvm-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -performance-unnecessary-value-param, -clang-analyzer-cplusplus.NewDeleteLeaks, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -modernize-avoid-c-arrays, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -cert-err58-cpp, -clang-diagnostic-error'
 WarningsAsErrors:      ''
-HeaderFilterRegex:     '^(?!build)/src'
+HeaderFilterRegex:     ''
 AnalyzeTemporaryDtors: false
 FormatStyle:           file
 
@@ -9,7 +9,6 @@ FormatStyle:           file
 # We disabled these checks because there are either false positives or too many warnings at the moment.
 # They will be enabled step by step.
 #
-# cert-*
 # cppcoreguidelines-*
 # fuchsia-*
 # google-*
@@ -27,6 +26,8 @@ FormatStyle:           file
 # hicpp-avoid-c-arrays                                 # qrc and moc files use c arrays...
 # hicpp-uppercase-literal-suffix                       # we use lowercase literal suffixes; clang-tidy has not option for that, though
 # hicpp-special-member-functions                       # in qrc_*.cpp files: needs to be added to HeaderFilterRegex
+# cert-err58-cpp                                       # qrc and moc files use static storage duration objects that may throw
+# clang-diagnostic-error                               # warn but don't make warnings errors
 
 CheckOptions:
   - key: bugprone-assert-side-effect.CheckFunctionCalls

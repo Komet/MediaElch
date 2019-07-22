@@ -6,7 +6,7 @@ class EpisodeNumber
 {
 public:
     EpisodeNumber() = default;
-    explicit EpisodeNumber(int episodeNumber);
+    explicit EpisodeNumber(int episodeNumber)  noexcept;
 
     bool operator==(const EpisodeNumber& other) const;
     bool operator!=(const EpisodeNumber& other) const;
