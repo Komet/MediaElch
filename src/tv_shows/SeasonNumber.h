@@ -6,7 +6,7 @@ class SeasonNumber
 {
 public:
     SeasonNumber() = default;
-    explicit SeasonNumber(int seasonNumber);
+    explicit SeasonNumber(int seasonNumber) noexcept;
 
     bool operator==(const SeasonNumber& other) const;
     bool operator!=(const SeasonNumber& other) const;
