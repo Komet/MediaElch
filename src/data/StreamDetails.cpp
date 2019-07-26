@@ -272,7 +272,7 @@ QString StreamDetails::videoFormat(QString format, QString version) const
 
 /**
  * @brief Returns a modified audio format
- * @param format Original format, given by libstreaminfo
+ * @param codec Original codec format, given by libstreaminfo
  * @return Modified format
  */
 QString StreamDetails::audioFormat(const QString& codec, const QString& profile) const
