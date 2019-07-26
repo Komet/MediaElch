@@ -96,6 +96,5 @@ TvShowModelItem* TvShowRootModelItem::showAtIndex(int number) const
 
 void TvShowRootModelItem::onSigChanged(TvShowModelItem* show, SeasonModelItem* season, EpisodeModelItem* episode)
 {
-    qWarning() << "Up";
     emit sigChanged(show, season, episode);
 }
