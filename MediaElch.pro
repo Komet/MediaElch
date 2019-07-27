@@ -2,21 +2,37 @@
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
 lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
 
-DEFINES += QUAZIP_BUILD
-DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
-include(third_party/quazip/quazip/quazip.pri)
+contains ( CONFIG, USE_EXTERN_QUAZIP ) {
+    DEFINES += EXTERN_QUAZIP
+}
+
+! contains ( DEFINES, EXTERN_QUAZIP ) {
+    # using internal 3rd party QUAZIP
+    DEFINES += QUAZIP_BUILD
+    DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
+    include(third_party/quazip/quazip/quazip.pri)
+}
 
 TEMPLATE = app
 TARGET = MediaElch
 INCLUDEPATH += $$PWD/src
-INCLUDEPATH += $$PWD/third_party
+! contains ( DEFINES, EXTERN_QUAZIP ) {
+    # using internal 3rd party QUAZIP
+    INCLUDEPATH += $$PWD/third_party
+}
 
 QT += core gui network xml sql widgets multimedia multimediawidgets \
       concurrent qml quick quickwidgets opengl
 
 CONFIG += warn_on c++14
 
-LIBS += -lz
+! contains ( DEFINES, EXTERN_QUAZIP ) {
+    # using internal 3rd party QUAZIP
+    LIBS += -lz
+} else {
+    #using external quazip
+    LIBS += -lz -lquazip5
+}
 
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation

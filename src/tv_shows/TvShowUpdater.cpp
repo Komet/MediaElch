@@ -8,8 +8,13 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "quazip/quazip/quazip.h"
-#include "quazip/quazip/quazipfile.h"
+#ifndef EXTERN_QUAZIP
+    #include "quazip/quazip/quazip.h"
+    #include "quazip/quazip/quazipfile.h"
+#else
+    #include "quazip5/quazip.h"
+    #include "quazip5/quazipfile.h"
+#endif
 #include "scrapers/tv_show/TheTvDb.h"
 #include "tv_shows/TvShow.h"
 #include "ui/notifications/NotificationBox.h"
