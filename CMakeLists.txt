@@ -32,6 +32,11 @@ option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."   
 option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
 option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
+option(USE_EXTERN_QUAZIP       "Enable link-time-optimization. Increases link time." OFF)
+
+if(USE_EXTERN_QUAZIP)
+  add_definitions(-DEXTERN_QUAZIP)
+endif()
 # cmake-format: on
 
 find_package(Sanitizers)
@@ -109,11 +114,16 @@ find_package(
 # Subdirectories and main executable
 
 add_subdirectory(docs)
-add_subdirectory(third_party EXCLUDE_FROM_ALL)
+if(NOT USE_EXTERN_QUAZIP)
+  add_subdirectory(third_party EXCLUDE_FROM_ALL)
+endif()
 add_subdirectory(src)
 
 add_executable(mediaelch src/main.cpp)
 target_link_libraries(mediaelch PRIVATE libmediaelch)
+if(USE_EXTERN_QUAZIP)
+  add_library(quazip5 SHARED IMPORTED)
+endif()
 set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
 mediaelch_post_target_defaults(mediaelch)
 

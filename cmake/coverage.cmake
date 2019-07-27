@@ -6,6 +6,12 @@ include(${CMAKE_CURRENT_LIST_DIR}/Gcov.cmake)
 
 set(COVERAGE_ENABLED OFF BOOL)
 
+if(NOT USE_EXTERN_QUAZIP)
+  SET(LCOV_THIRDPARTY "\"*/third_party/*\"")
+else()
+  SET(LCOV_THIRDPARTY "\"*/third_party/catch2/*\"")
+endif()
+
 set(
   LCOV_EXCLUDE_COVERAGE
   ${LCOV_EXCLUDE_COVERAGE}
@@ -14,7 +20,7 @@ set(
   "\"*v1*\""
   "\"/usr/*\""
   "\"*/external/*\""
-  "\"*/third_party/*\""
+  ${LCOV_THIRDPARTY}
 )
 
 # Function to register a target for enabled coverage report. Use this function
