@@ -431,6 +431,7 @@ QVector<Movie*> Database::movies(QString path)
             movie->images().setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
             movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
             movie->setLabel(label);
+            movie->setChanged(false);
             movies.insert(query.value(query.record().indexOf("idMovie")).toInt(), movie);
         }
 

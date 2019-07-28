@@ -419,8 +419,9 @@ QVector<Movie*> MovieFileSearcher::loadAndStoreMoviesContents(QVector<MovieFileS
                 movie->setInSeparateFolder(con.inSeparateFolder);
                 movie->setFileLastModified(m_lastModifications.value(files.at(0)));
                 movie->setDiscType(discType);
-                movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
                 movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
+                movie->setChanged(false);
+                movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
                 if (discType == DiscType::Single) {
                     QFileInfo mFi(files.first());
                     for (const QFileInfo& subFi : mFi.dir().entryInfoList(
