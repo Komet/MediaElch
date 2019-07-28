@@ -8,6 +8,6 @@ target_link_libraries(
     Qt5::Widgets
     Qt5::Network
     Qt5::Sql
-    quazip
+    quazip5
 )
 mediaelch_post_target_defaults(mediaelch_export)

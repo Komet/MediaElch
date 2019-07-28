@@ -33,10 +33,6 @@ option(ENABLE_COVERAGE         "Add coverage information to binaries."          
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
 option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
 option(USE_EXTERN_QUAZIP       "Enable link-time-optimization. Increases link time." OFF)
-
-if(USE_EXTERN_QUAZIP)
-  add_definitions(-DEXTERN_QUAZIP)
-endif()
 # cmake-format: on
 
 find_package(Sanitizers)
@@ -79,6 +75,9 @@ function(mediaelch_post_target_defaults target)
   if(ENABLE_LTO)
     set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
   endif()
+  if(USE_EXTERN_QUAZIP)
+    target_compile_definitions(${target} PRIVATE EXTERN_QUAZIP)
+  endif()
 endfunction()
 
 # ------------------------------------------------------------------------------
@@ -114,16 +113,11 @@ find_package(
 # Subdirectories and main executable
 
 add_subdirectory(docs)
-if(NOT USE_EXTERN_QUAZIP)
-  add_subdirectory(third_party EXCLUDE_FROM_ALL)
-endif()
+add_subdirectory(third_party EXCLUDE_FROM_ALL)
 add_subdirectory(src)
 
 add_executable(mediaelch src/main.cpp)
 target_link_libraries(mediaelch PRIVATE libmediaelch)
-if(USE_EXTERN_QUAZIP)
-  add_library(quazip5 SHARED IMPORTED)
-endif()
 set_target_properties(mediaelch PROPERTIES OUTPUT_NAME "MediaElch")
 mediaelch_post_target_defaults(mediaelch)
 

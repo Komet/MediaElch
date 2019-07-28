@@ -24,6 +24,6 @@ target_link_libraries(
     Qt5::Network
     Qt5::Xml
     Qt5::MultimediaWidgets
-    quazip
+    quazip5
 )
 mediaelch_post_target_defaults(mediaelch_tvShows)
