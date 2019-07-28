@@ -7,9 +7,9 @@ include(${CMAKE_CURRENT_LIST_DIR}/Gcov.cmake)
 set(COVERAGE_ENABLED OFF BOOL)
 
 if(NOT USE_EXTERN_QUAZIP)
-  SET(LCOV_THIRDPARTY "\"*/third_party/*\"")
+  set(LCOV_THIRDPARTY "\"*/third_party/*\"")
 else()
-  SET(LCOV_THIRDPARTY "\"*/third_party/catch2/*\"")
+  set(LCOV_THIRDPARTY "\"*/third_party/catch2/*\"")
 endif()
 
 set(
