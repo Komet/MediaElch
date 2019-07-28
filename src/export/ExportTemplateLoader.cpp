@@ -7,11 +7,11 @@
 #include <QXmlStreamReader>
 
 #ifndef EXTERN_QUAZIP
-    #include "quazip/quazip/quazip.h"
-    #include "quazip/quazip/quazipfile.h"
+#include "quazip/quazip/quazip.h"
+#include "quazip/quazip/quazipfile.h"
 #else
-    #include "quazip5/quazip.h"
-    #include "quazip5/quazipfile.h"
+#include "quazip5/quazip.h"
+#include "quazip5/quazipfile.h"
 #endif
 #include "settings/Settings.h"
 
