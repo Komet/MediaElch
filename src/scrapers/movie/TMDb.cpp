@@ -669,11 +669,7 @@ QUrl TMDb::getMovieSearchUrl(const QString& searchStr, const UrlParameterMap& pa
     return QUrl{url.append(queries.toString())};
 }
 
-/**
- * @brief Get the movie URL for TMDb. Adds the API key.
- * @param search Search string. Will be percent encoded.
- * @param arguments A QMap of URL parameters. The values will be percent encoded.
- */
+/// @brief Get the movie URL for TMDb. Adds the API key.
 QUrl TMDb::getMovieUrl(QString movieId, ApiMovieDetails type, const UrlParameterMap& parameters) const
 {
     const auto typeStr = [type]() {
