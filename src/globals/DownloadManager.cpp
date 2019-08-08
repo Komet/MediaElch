@@ -24,30 +24,29 @@ QNetworkAccessManager* DownloadManager::qnam()
     return s_qnam;
 }
 
-/**
- * @brief Add given download and start downloading it
- * @param elem Element to download
- * @see DownloadManagerElement
- */
+/// @brief Add the given download element and start downloading it if the
+///        download progress hasn't started, yet.
+/// @param elem Element to download
+/// @see   DownloadManagerElement
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
-    qDebug() << "Entered, url=" << elem.url;
+    qDebug() << "Enqueue download | " << elem.url;
 
-    m_mutex.lock();
-    const bool startDownloading = m_queue.isEmpty() && !m_downloading;
-    m_queue.enqueue(elem);
-    m_mutex.unlock();
+    bool startDownloading = false;
+    {
+        QMutexLocker locker(&m_mutex);
+        startDownloading = m_queue.isEmpty() && !m_downloading;
+        m_queue.enqueue(elem);
+    }
 
     if (startDownloading) {
         startNextDownload();
     }
 }
 
-/**
- * @brief Aborts and clears all downloads and sets a list of new downloads
- * @param elements List of elements to download
- * @see DownloadManagerElement
- */
+/// @brief Aborts and clears all downloads and sets a list of new downloads
+/// @param elements List of elements to download
+/// @see   DownloadManagerElement
 void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
     if (m_downloading) {
@@ -55,21 +54,25 @@ void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
     }
 
     m_timer.stop();
-    m_mutex.lock();
-    m_queue.clear();
-    m_mutex.unlock();
+
+    {
+        QMutexLocker locker(&m_mutex);
+        m_queue.clear();
+    }
 
     for (const DownloadManagerElement& elem : elements) {
         addDownload(elem);
     }
 
+    QMutexLocker locker(&m_mutex);
     if (m_queue.isEmpty()) {
         QTimer::singleShot(0, this, SIGNAL(allDownloadsFinished()));
     }
 }
 
+/// Checks if all downloads of the current movie/tvshow/... have finished.
 template<class T>
-void DownloadManager::startNextDownloadType()
+void DownloadManager::checkAllDownloadsFinished()
 {
     int numDownloadsLeft = 0;
     for (int i = 0, n = m_queue.size(); i < n; ++i) {
@@ -89,19 +92,19 @@ void DownloadManager::startNextDownload()
 {
     m_timer.stop();
     if (m_currentDownloadElement.movie != nullptr) {
-        startNextDownloadType<Movie>();
+        checkAllDownloadsFinished<Movie>();
     }
     if (m_currentDownloadElement.show != nullptr) {
-        startNextDownloadType<TvShow>();
+        checkAllDownloadsFinished<TvShow>();
     }
     if (m_currentDownloadElement.concert != nullptr) {
-        startNextDownloadType<Concert>();
+        checkAllDownloadsFinished<Concert>();
     }
     if (m_currentDownloadElement.artist != nullptr) {
-        startNextDownloadType<Artist>();
+        checkAllDownloadsFinished<Artist>();
     }
     if (m_currentDownloadElement.album != nullptr) {
-        startNextDownloadType<Album>();
+        checkAllDownloadsFinished<Album>();
     }
 
     if (m_queue.isEmpty()) {
@@ -112,38 +115,40 @@ void DownloadManager::startNextDownload()
 
     m_timer.start(8000);
     m_downloading = true;
-    m_mutex.lock();
-    m_currentDownloadElement = m_queue.dequeue();
-    m_mutex.unlock();
+    {
+        QMutexLocker locker(&m_mutex);
+        m_currentDownloadElement = m_queue.dequeue();
+    }
+
     if (!m_currentDownloadElement.url.toString().startsWith("//")) {
         m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
         connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
         connect(m_currentReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
     }
 
+    QMutexLocker locker(&m_mutex);
     if (m_currentDownloadElement.imageType == ImageType::Actor
         || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
         if (m_currentDownloadElement.movie != nullptr) {
             int numDownloadsLeft = 0;
-            m_mutex.lock();
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
                 if (m_queue[i].movie == m_currentDownloadElement.movie) {
                     numDownloadsLeft++;
                 }
             }
-            m_mutex.unlock();
+            locker.unlock();
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
         } else if (m_currentDownloadElement.show != nullptr) {
             int numDownloadsLeft = 0;
-            m_mutex.lock();
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
                 if (m_queue[i].show == m_currentDownloadElement.show) {
                     numDownloadsLeft++;
                 }
             }
-            m_mutex.unlock();
+            locker.unlock();
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
         } else {
+            locker.unlock();
             emit downloadsLeft(m_queue.size());
         }
     }
@@ -155,14 +160,23 @@ void DownloadManager::startNextDownload()
             data = file.readAll();
             file.close();
         }
+
+        locker.relock();
         m_currentDownloadElement.data = data;
+
         if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
             && (m_currentDownloadElement.movie == nullptr)) {
             m_currentDownloadElement.actor->image = data;
+            locker.unlock();
+
         } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                    && !m_currentDownloadElement.directDownload) {
             m_currentDownloadElement.episode->setThumbnailImage(data);
+            locker.unlock();
+
         } else {
+            locker.unlock();
+
             emit sigDownloadFinished(m_currentDownloadElement);
         }
         startNextDownload();
@@ -232,17 +246,30 @@ void DownloadManager::downloadFinished()
     } else {
         data = m_currentReply->readAll();
     }
-    m_currentDownloadElement.data = data;
-    reply->deleteLater();
-    if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
-        && (m_currentDownloadElement.movie == nullptr)) {
+
+    {
+        QMutexLocker locker(&m_mutex);
+        m_currentDownloadElement.data = data;
+        reply->deleteLater();
+    }
+
+    QMutexLocker locker(&m_mutex);
+    if (m_currentDownloadElement.actor != nullptr                 //
+        && m_currentDownloadElement.imageType == ImageType::Actor //
+        && m_currentDownloadElement.movie == nullptr) {
         m_currentDownloadElement.actor->image = data;
+        locker.unlock();
+
     } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                && !m_currentDownloadElement.directDownload) {
         m_currentDownloadElement.episode->setThumbnailImage(data);
+        locker.unlock();
+
     } else {
+        locker.unlock();
         emit sigDownloadFinished(m_currentDownloadElement);
     }
+
     emit sigElemDownloaded(m_currentDownloadElement);
     startNextDownload();
 }

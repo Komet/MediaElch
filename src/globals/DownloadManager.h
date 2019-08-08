@@ -51,7 +51,7 @@ private slots:
 
 private:
     template<class T>
-    void startNextDownloadType();
+    void checkAllDownloadsFinished();
     QNetworkAccessManager* qnam();
 
     QNetworkReply* m_currentReply = nullptr;
