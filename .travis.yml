@@ -144,26 +144,24 @@ matrix:
 
   #----------------------------------------------------------------------------
 
-  - name: "Linux Qt 5.12.3 build + tests + coverage"
+  - name: "Ubuntu 18.04 with Qt 5.12.3 | build + tests + coverage"
     os: linux
-    dist: xenial
+    dist: bionic
     services:
       - xvfb
     addons:
       apt:
         sources:
-          - ubuntu-toolchain-r-test
-          - sourceline: ppa:beineri/opt-qt-5.12.3-xenial
+          - sourceline: ppa:ubuntu-toolchain-r/test
+          - sourceline: ppa:beineri/opt-qt-5.12.3-bionic
         packages:
-          - gcc-7
-          - g++-7
           - lcov
           - mesa-common-dev
           - libgl1-mesa-dev
           - python3-setuptools
           - python3-pip
           - ninja-build
-          - libcurl4-openssl-dev
+          - libcurl4-gnutls-dev
           - libmediainfo-dev
           - libpulse-dev
           - zlib1g-dev
@@ -176,22 +174,15 @@ matrix:
           - qt512wayland
           - qt512x11extras
           - qt512serialbus
-    env: CC=gcc-7 CXX=g++-7
-    before_install:
-      - sudo update-alternatives --install /usr/bin/gcov gcov $(which gcov-7) 10
-      - gcov --version
-      - lcov --version
     install:
       - pip3 install --user cmake --upgrade
-      - cmake --version
     before_script:
-      - export DISPLAY=:99.0
       - export PATH="/opt/${QT}/bin:$PATH"
       - mkdir build && cd build
-      - cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -GNinja
+      - cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -DDISABLE_UPDATER=ON -GNinja
     script:
-      - cmake --build . -j $(nproc) --target all
-      - cmake --build . -j $(nproc) --target coverage || echo "Coverage failed; currently allowed"
+      - ninja
+      - ninja coverage
     after_success:
       - bash <(curl -s https://codecov.io/bash) -f coverage-filtered.info || echo "Codecov did not collect coverage reports"
 

@@ -15,7 +15,7 @@ endif()
 set(
   LCOV_EXCLUDE_COVERAGE
   ${LCOV_EXCLUDE_COVERAGE}
-  "\"*/build/*\""
+  "\"${CMAKE_BINARY_DIR}/*\""
   "\"*/googletest/*\""
   "\"*v1*\""
   "\"/usr/*\""
