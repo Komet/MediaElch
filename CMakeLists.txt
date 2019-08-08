@@ -32,7 +32,8 @@ option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."   
 option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
 option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
-option(USE_EXTERN_QUAZIP       "Build against quazip Library."                       OFF)
+option(DISABLE_UPDATER         "Disable MediaElch's update check."                   OFF)
+option(USE_EXTERN_QUAZIP       "Build against the system's quazip library."          OFF)
 # cmake-format: on
 
 find_package(Sanitizers)
@@ -77,6 +78,9 @@ function(mediaelch_post_target_defaults target)
   endif()
   if(USE_EXTERN_QUAZIP)
     target_compile_definitions(${target} PRIVATE EXTERN_QUAZIP)
+  endif()
+  if(NOT DISABLE_UPDATER)
+    target_compile_definitions(${target} PRIVATE MEDIAELCH_UPDATER)
   endif()
 endfunction()
 

@@ -2,11 +2,11 @@
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
 lessThan(QT_MINOR_VERSION, 5): error(Qt 5.5 or higher is required!)
 
-contains ( CONFIG, USE_EXTERN_QUAZIP ) {
+contains(CONFIG, USE_EXTERN_QUAZIP) {
     DEFINES += EXTERN_QUAZIP
 }
 
-! contains ( DEFINES, EXTERN_QUAZIP ) {
+!contains(DEFINES, EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
     DEFINES += QUAZIP_BUILD
     DEFINES += QUAZIP_STATIC # Required by Quazip to export symbols
@@ -16,7 +16,7 @@ contains ( CONFIG, USE_EXTERN_QUAZIP ) {
 TEMPLATE = app
 TARGET = MediaElch
 INCLUDEPATH += $$PWD/src
-! contains ( DEFINES, EXTERN_QUAZIP ) {
+!contains(DEFINES, EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
     INCLUDEPATH += $$PWD/third_party
 }
@@ -26,12 +26,18 @@ QT += core gui network xml sql widgets multimedia multimediawidgets \
 
 CONFIG += warn_on c++14
 
-! contains ( DEFINES, EXTERN_QUAZIP ) {
+!contains(DEFINES, EXTERN_QUAZIP) {
     # using internal 3rd party QUAZIP
     LIBS += -lz
 } else {
     #using external quazip
     LIBS += -lz -lquazip5
+}
+
+!contains(CONFIG, DISABLE_UPDATER) {
+    DEFINES += MEDIAELCH_UPDATER
+} else {
+    message("Updater disabled")
 }
 
 unix:LIBS += -lcurl
