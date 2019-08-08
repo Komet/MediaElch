@@ -255,9 +255,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Start scanning for files
     QTimer::singleShot(0, m_fileScannerDialog, &FileScannerDialog::exec);
 
+#ifdef MEDIAELCH_UPDATER
     if (Settings::instance()->checkForUpdates()) {
+        qInfo() << "Searching for updates";
         Update::instance()->checkForUpdate();
     }
+#else
+    qDebug() << "Updater is disabled";
+#endif
 }
 
 /**

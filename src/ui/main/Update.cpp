@@ -2,7 +2,6 @@
 
 #include <QApplication>
 #include <QCheckBox>
-#include <QDebug>
 #include <QMessageBox>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -92,7 +91,7 @@ bool Update::checkIfNewVersion(QString msg, QString& version)
         return false;
     }
 
-    int result = helper::compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
+    const int result = helper::compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
     version = QString("MediaElch %1 - %2").arg(xmlVersion).arg(codeName);
 
     return (result == 1);

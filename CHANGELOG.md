@@ -44,6 +44,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Use `QVector<T>` instead of `QList<T>` as the default container
  - Reorganize project structure
  - Add CMake build system (#700)
+ - Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
 
 
 ## 2.6.0 - Ferenginar (2019-01-06)
