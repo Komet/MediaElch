@@ -492,8 +492,8 @@ void TvShowFilesWidget::renewModel(bool force)
     onViewUpdated();
 }
 
-/// @brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected
-/// @param index Proxy index of the selected item.
+/// @brief Emits sigTvShowSelected, sigSeasonSelected or sigEpisodeSelected based
+///        on which model item is selected
 void TvShowFilesWidget::onItemSelected(const QModelIndex& current, const QModelIndex& previous)
 {
     Q_UNUSED(previous);

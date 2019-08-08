@@ -110,7 +110,7 @@ void MovieFileSearcher::setMovieDirectories(QVector<SettingsDir> directories)
  * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
  * @deprecated
  */
-void MovieFileSearcher::scanDir(QString startPath,
+Q_DECL_DEPRECATED void MovieFileSearcher::scanDir(QString startPath,
     QString path,
     QVector<QStringList>& contents,
     bool separateFolders,
