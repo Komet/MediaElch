@@ -32,7 +32,7 @@ option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."   
 option(ENABLE_COVERAGE         "Add coverage information to binaries."               OFF)
 option(ENABLE_COLOR_OUTPUT     "Force produce ANSI-colored output (GNU/Clang only)."  ON)
 option(ENABLE_LTO              "Enable link-time-optimization. Increases link time." OFF)
-option(USE_EXTERN_QUAZIP       "Enable link-time-optimization. Increases link time." OFF)
+option(USE_EXTERN_QUAZIP       "Build against quazip Library."                       OFF)
 # cmake-format: on
 
 find_package(Sanitizers)
