@@ -474,27 +474,16 @@ QVector<Certification> TvShow::certifications() const
     return certifications;
 }
 
-/**
- * @property TvShow::actors
- * @brief Actors of the show
- * @return List of actors
- * @see TvShow::addActor
- * @see TvShow::setActors
- * @see TvSHow::removeActor
- */
-QVector<Actor> TvShow::actors() const
+const QVector<Actor>& TvShow::actors() const
 {
     return m_actors;
 }
 
-/**
- * @property TvShow::posters
- * @brief Tv Show posters
- * @return List of posters
- * @see TvShow::addPoster
- * @see TvShow::setPoster
- * @see TvShow::setPosters
- */
+QVector<Actor>& TvShow::actors()
+{
+    return m_actors;
+}
+
 QVector<Poster> TvShow::posters() const
 {
     return m_posters;
