@@ -44,20 +44,20 @@ ninja scraper_test
 ```
 
 If you don't like CMake's test output, you can also run MediaElch's tests on your own.
-There are two test executables in the build folder after compiling everything:
+There are three test executables in the build folder after compiling everything:
 
  - `build/test/unit/mediaelch_unit`
  - `build/test/scrapers/mediaelch_test_scrapers`
+ - `build/test/scrapers/mediaelch_test_integration`
 
-Both use CMake and therefore have the same command line interface. Replace `./test`
-with one of the above executables:
+All use CMake and therefore have the same command line interface, e.g.
 
 ```sh
 # Test options
-./test -h            # List Catch2 help
-./test -t            # List all tags
-./test -d yes        # Run *all* tests and print duration
-./test "[load_data]" # Run scraping tests (online test)
+./mediaelch_unit -h            # List Catch2 help
+./mediaelch_unit -t            # List all tags
+./mediaelch_unit -d yes        # Run *all* tests and print duration
+./mediaelch_unit "[load_data]" # Run scraping tests (online test)
 ```
 
 ## Code Coverage

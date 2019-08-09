@@ -10,7 +10,7 @@ User documentation can be found in `./user` and is created using Sphinx.
 
 You need to have Sphinx and the
 [Read the Docs Sphinx Theme](https://github.com/rtfd/sphinx_rtd_theme)
-installed. You have to options to build the end-user documentation.
+installed. You have two options to build the end-user documentation.
 Either use the provided CMake target `docs` or use Sphinx's Makefile.
 
 ```sh
@@ -24,8 +24,8 @@ cmake ..
 make docs
 ```
 
-### Publish User Documentation
-On Linux run: `./user/update_github_pages.sh`.
+### [Maintainers Only] Publish User Documentation
+Run: `./user/update_github_pages.sh`.  
 You can find our documentation on: http://mediaelch.github.io/mediaelch-doc/
 
 
