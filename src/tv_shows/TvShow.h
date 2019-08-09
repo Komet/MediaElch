@@ -52,7 +52,8 @@ public:
     ImdbId imdbId() const;
     QString episodeGuideUrl() const;
     QVector<Certification> certifications() const;
-    QVector<Actor> actors() const;
+    const QVector<Actor>& actors() const;
+    QVector<Actor>& actors();
     QVector<Poster> posters() const;
     QVector<Poster> backdrops() const;
     QVector<Poster> banners() const;
