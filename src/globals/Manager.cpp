@@ -68,21 +68,11 @@ Manager::Manager(QObject* parent) : QObject(parent)
     qRegisterMetaType<MusicModelItem*>("MusicModelItem*");
 }
 
-/**
- * @brief Manager::~Manager
- */
 Manager::~Manager() = default;
 
-/**
- * @brief Returns an instance of the Manager
- * @return Instance of Manager
- */
 Manager* Manager::instance()
 {
-    static Manager* s_instance = nullptr;
-    if (s_instance == nullptr) {
-        s_instance = new Manager(QApplication::instance());
-    }
+    static auto* s_instance = new Manager(QApplication::instance());
     return s_instance;
 }
 

@@ -119,10 +119,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
         &DownloadManager::sigDownloadFinished,
         this,
         &TvShowWidgetTvShow::onPosterDownloadFinished);
-    connect(m_posterDownloadManager,
-        SIGNAL(downloadsLeft(int, DownloadManagerElement)),
-        this,
-        SLOT(onDownloadsLeft(int, DownloadManagerElement)));
+    connect(m_posterDownloadManager, &DownloadManager::showDownloadsLeft, this, &TvShowWidgetTvShow::onDownloadsLeft);
     connect(ui->actors, &QTableWidget::itemSelectionChanged, this, &TvShowWidgetTvShow::onActorChanged);
     connect(ui->actor, &MyLabel::clicked, this, &TvShowWidgetTvShow::onChangeActorImage);
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRevertChanges);
@@ -722,8 +719,6 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
  */
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
-    qDebug() << "Entered";
-
     if (TvShow::seasonImageTypes().contains(elem.imageType)) {
         if (elem.imageType == ImageType::TvShowSeasonBackdrop) {
             helper::resizeBackdrop(elem.data);
@@ -766,7 +761,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
  */
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->name();
+    qDebug() << "Downloads finished for show:" << show->name();
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId + show->showId());
     if (show == m_show) {
         onSetEnabled(true);

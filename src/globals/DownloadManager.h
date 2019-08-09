@@ -15,9 +15,6 @@
 class Artist;
 class Album;
 
-/**
- * @brief The DownloadManager class
- */
 class DownloadManager : public QObject
 {
     Q_OBJECT
@@ -31,9 +28,11 @@ public:
     int downloadsLeftForShow(TvShow* show);
 
 signals:
-    void downloadProgress(DownloadManagerElement);
+    void sigDownloadProgress(DownloadManagerElement);
     void downloadsLeft(int);
-    void downloadsLeft(int, DownloadManagerElement);
+    void movieDownloadsLeft(int, DownloadManagerElement);
+    void showDownloadsLeft(int, DownloadManagerElement);
+
     void sigDownloadFinished(DownloadManagerElement);
     void sigElemDownloaded(DownloadManagerElement);
     void allDownloadsFinished();
@@ -53,6 +52,7 @@ private:
     template<class T>
     void checkAllDownloadsFinished();
     QNetworkAccessManager* qnam();
+    bool isLocalFile(const QUrl& url) const;
 
     QNetworkReply* m_currentReply = nullptr;
     DownloadManagerElement m_currentDownloadElement;
