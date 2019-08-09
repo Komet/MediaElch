@@ -6,12 +6,12 @@
     <message>
         <location filename="../../src/scrapers/movie/AEBN.cpp" line="39"/>
         <source>Straight</source>
-        <translation type="unfinished"></translation>
+        <translation>Hetero</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/AEBN.cpp" line="40"/>
         <source>Gay</source>
-        <translation type="unfinished"></translation>
+        <translation>Gay</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/AEBN.cpp" line="45"/>
@@ -169,32 +169,32 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="119"/>
         <source>MediaElch was built with &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>MediaElch werd gebouwd met &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="152"/>
         <source>Stream Details detection with &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Het herkennen van de stream details gebeurt met &lt;a href=&quot;https://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="162"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="172"/>
         <source>Bugs and wishes can be reported on &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</source>
-        <translation type="unfinished"></translation>
+        <translation>Bugs en nieuwe ideeën kunnen worden ingegeven op &lt;a href=&quot;https://github.com/Komet/MediaElch/issues&quot;&gt;GitHub&lt;/a&gt; .</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="199"/>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ontwikkelaar</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="205"/>
         <source>The information below is important for developers. Please provide if you need help.</source>
-        <translation type="unfinished"></translation>
+        <translation>De onderstaande informatie is belangrijk voor ontwikkelaars. Gelieve die in te geven als u ondersteuning wenst</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="233"/>
@@ -307,32 +307,32 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="105"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="106"/>
         <source>Delete Image</source>
         <translation>Afbeelding verwijderen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="112"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="113"/>
         <source>Zoom Image</source>
         <translation>Inzoomen op afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="118"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="119"/>
         <source>Capture random screenshot</source>
         <translation>Maak een willekeurige schermafdruk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="124"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="125"/>
         <source>Select another image</source>
         <translation>Selecteer een andere afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="405"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Really delete image?</source>
         <translation>Afbeelding daadwerkelijk verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="406"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Weet je zeker dat je deze afbeelding wilt verwijderen?</translation>
     </message>
@@ -595,7 +595,7 @@
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hier onder zie je de bestandsnamen die gebruikt worden voor het laden en opslaan van je concerten. Je kan ze aanpassen zoals je wil en als je verschillende bestanden wil gebruiken, gebruik dan een komma om ze te onderscheiden</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="27"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="../../src/scrapers/movie/CustomMovieScraper.cpp" line="364"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Onbekend</translation>
     </message>
 </context>
 <context>
@@ -874,8 +874,8 @@
         <translation>Importeer film met MakeMKV</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="214"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="354"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="350"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n bestand(en)</numerusform>
@@ -883,55 +883,55 @@
         </translation>
     </message>
     <message>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="308"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="304"/>
         <source>Extraction failed</source>
         <translation>Uitpakken mislukt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="291"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Uitpakken van %1 mislukt: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="306"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="302"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction finished</source>
         <translation>Uitpakken voltooid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction of %1 finished</source>
         <translation>Uitpakken van %1 voltooid</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="367"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="363"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="368"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
         <source>TV Show</source>
         <translation>TV Show</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="369"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
         <source>Concert</source>
         <translation>Concerten</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="529"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="525"/>
         <source>makemkvcon missing</source>
         <translation>Kan makemkvcon niet vinden</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="530"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vul aub het juiste pad voor makemkvcon in de MediaElch instellingen in.</translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1239,7 @@
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="51"/>
         <source>Blu-ray</source>
-        <translation type="unfinished"></translation>
+        <translation>Blu-ray</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="52"/>
@@ -1358,7 +1358,7 @@
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="353"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
         <source>Video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Codec</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="409"/>
@@ -1647,12 +1647,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="135"/>
         <source>IMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="411"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
@@ -1755,12 +1755,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
         <source>No information about video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen informatie over de video codec</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
         <source>No video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen video codec</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
@@ -1785,12 +1785,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
         <source>Movie has no IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Film heeft geen IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
         <source>No IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="462"/>
@@ -1823,12 +1823,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>Resolution 2160p</source>
-        <translation type="unfinished">Resolutie 1080p {2160p?}</translation>
+        <translation>Resolutie 2160p</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>2160p</source>
-        <translation type="unfinished">2160p</translation>
+        <translation>2160p</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
@@ -2213,7 +2213,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../../src/scrapers/movie/IMDB.cpp" line="33"/>
         <source>Load all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle tags laden</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/IMDB.cpp" line="89"/>
@@ -2282,8 +2282,8 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
         <translation>Nieuwe kolom</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="712"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="719"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="713"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
         <source>No images found</source>
         <translation>Geen afbeeldingen gevonden</translation>
     </message>
@@ -2328,22 +2328,22 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
         <translation>Standaard</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Choose Image</source>
         <translation>Kies afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Afbeeldingen (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="716"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="717"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Afbeeldingen aangeleverd door &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="721"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Help mee door afbeeldingen te uploaden naar &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -2604,17 +2604,17 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="17"/>
         <source>General Kodi Settings. MediaElch uses the Kodi version below for writing NFO files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Algemene Kodi parameters. MediaElch gebruikt de Kodi versie om de NFO bestanden aan te maken.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="29"/>
         <source>Kodi Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi versie</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="48"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"></translation>
+        <translation>Als je de synchronisatie wilt gebruiken moet je de webserver van Kodi aanzetten (Kodi (Settings -&gt; Services -&gt; Webserver).  Geef de poort in van de webserver (meestal 80 of 8080).</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="63"/>
@@ -2652,12 +2652,12 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi Synchronisatie</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeker jezelf dat je je bronnen in Kodi hebt toegevoegd en dat de webserver aanstaat (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="36"/>
@@ -2667,17 +2667,17 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit zorgt ervoor dat Kodi de gewijzigde films, concerten en TV programma&apos;s verwijderd. Aansluitend zal Kodi een library update uitvoeren en de verwijderde items weer toevoegen.</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet-bestaande items van Kodi&apos;s database verwijderen (Database opkuisen)</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi  gaat niet langer bestaande items van de database verwijderen.</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="70"/>
@@ -2687,7 +2687,7 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"></translation>
+        <translation>The velden &apos;laatst afgespeeld&apos; en &apos;afgespeeld&apos; zullen uit Kodi worden opgehaald.</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="108"/>
@@ -2706,60 +2706,60 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
         <translation>Begin</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="152"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="153"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vul je Kodi host en poortnummer in.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="225"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="226"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Gegevens ophalen uit Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="240"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="270"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="300"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="330"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="241"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="271"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="301"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="331"/>
         <source>Network error</source>
-        <translation type="unfinished"></translation>
+        <translation>Netwerkproblemen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="427"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="428"/>
         <source>Removing movies from database</source>
         <translation>Films aan het verwijderen uit de database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="442"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="443"/>
         <source>Removing concerts from database</source>
         <translation>Concerten aan het verwijderen uit de database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="457"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="458"/>
         <source>Removing TV shows from database</source>
         <translation>TV Programma&apos;s aan het verwijderen uit de database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="472"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="473"/>
         <source>Removing episodes from database</source>
         <translation>Afleveringen aan het verwijderen uit de database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="512"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="513"/>
         <source>Trigger scan for new items</source>
         <translation>Scan initieren voor nieuwe onderdelen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="528"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="529"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar. Kodi is nu bezig met het laden van je aangepaste items.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="548"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="549"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar. Kodi is nu de database aan het opkuisen.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="595"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="596"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Klaar. Aantal keren afgespeeld en laatste afspeeldatum zijn opgehaald.</translation>
     </message>
@@ -2791,55 +2791,55 @@ De folders die je muziek bevatten moeten submappen voor elke artiest die weer di
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.ui" line="75"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="91"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="94"/>
         <source>Movies</source>
         <translation>Films</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="119"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="125"/>
         <source>Movie Sets</source>
         <translation>Filmsets</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="147"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="156"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="175"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="187"/>
         <source>Certifications</source>
         <translation>Leeftijdskeuringen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="203"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="218"/>
         <source>Duplicates</source>
         <translation>kopieën</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="233"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="248"/>
         <source>Shows</source>
         <translation>Shows</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="249"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="267"/>
         <source>TV Shows</source>
         <translation>TV Programma&apos;s</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="279"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="295"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="297"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="316"/>
         <source>Concerts</source>
         <translation>Concerten</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="325"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="341"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="346"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="365"/>
         <source>Music</source>
         <translation>Muziek</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="371"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="387"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="395"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="414"/>
         <source>Import</source>
         <extracomment>Main menu entry
 ----------
@@ -2847,42 +2847,42 @@ Main menu entry (tooltip)</extracomment>
         <translation>Importeren</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="856"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="883"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="861"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="888"/>
         <source>Quit</source>
         <translation>Afsluiten</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="866"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="893"/>
         <source>About</source>
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="709"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="693"/>
         <source>Reload all Movies (%1)</source>
         <translation>Herladen van alle films (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="715"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="699"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Herladen van alle TV Programma&apos;s (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="710"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Herladen van alle Concerten (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="742"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Herlaad alle Downloads (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="748"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="732"/>
         <source>Reload Music (%1)</source>
         <translation>Herlaad Muziek (%1)</translation>
     </message>
@@ -3045,12 +3045,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="143"/>
         <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="150"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3068,7 +3068,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Open de detailpagina</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
@@ -3144,9 +3144,9 @@ Opdracht geannuleerd.</translation>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="28"/>
         <source>%n movies</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n films</numerusform>
+            <numerusform>%n films</numerusform>
         </translation>
     </message>
     <message>
@@ -3202,17 +3202,17 @@ Opdracht geannuleerd.</translation>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="549"/>
         <source>%n movie(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n film(s)</numerusform>
+            <numerusform>%n film(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
         <source>%1 of %n movie(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 van %n film(s)</numerusform>
+            <numerusform>%1 van %n film(s)</numerusform>
         </translation>
     </message>
 </context>
@@ -3247,49 +3247,49 @@ Opdracht geannuleerd.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="280"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="291"/>
         <source>Actors</source>
         <translation>Acteurs</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="281"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="292"/>
         <source>Extra Arts</source>
         <translation>Extra Arts</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="282"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="293"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="283"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="294"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="284"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="295"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="285"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="296"/>
         <source>Stream Details</source>
         <translation>Stream Details</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="286"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="297"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="287"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="298"/>
         <source>Local Trailer</source>
         <translation>Lokale Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="288"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="299"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3327,7 +3327,7 @@ Opdracht geannuleerd.</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Update enkel films met een IMDB Id/TheMovieDb Id</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3472,9 +3472,9 @@ Opdracht geannuleerd.</translation>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="199"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Srrapen van %n films is klaar.</numerusform>
+            <numerusform>Srrapen van %n films is klaar.</numerusform>
         </translation>
     </message>
 </context>
@@ -3507,7 +3507,8 @@ Opdracht geannuleerd.</translation>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indien je IMDB gebruikt kan je ook het IMDB Id als zoekterm gebruiken
+Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; voor. </translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="101"/>
@@ -3897,7 +3898,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="538"/>
         <source>User Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="588"/>
@@ -4020,7 +4021,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="630"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1077"/>
@@ -4261,25 +4262,25 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n artisten</numerusform>
+            <numerusform>%n artisten</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n albums</numerusform>
+            <numerusform>%n albums</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="143"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 van %n artisten</numerusform>
+            <numerusform>%1 van  %n artisten</numerusform>
         </translation>
     </message>
 </context>
@@ -4446,11 +4447,11 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Start Scrapen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="214"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="215"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Srrapen van %n items is klaar.</numerusform>
+            <numerusform>Srrapen van %n items is klaar.</numerusform>
         </translation>
     </message>
 </context>
@@ -4615,7 +4616,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hier onder zie je de bestandsnamen die gebruikt worden voor het laden en opslaan van je artisten en albums. Je kan ze aanpassen zoals je wil en als je verschillende bestanden wil gebruiken, gebruik dan een komma om ze te onderscheiden</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="32"/>
@@ -4653,23 +4654,23 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="105"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n albums</numerusform>
+            <numerusform>%n albums</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="124"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="164"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="125"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="165"/>
         <source>Saving changed Artists and Albums</source>
         <translation>Sla veranderde Artiest en Album op</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="142"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="189"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="143"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="190"/>
         <source>All Artists and Albums Saved</source>
         <translation>Alle Artiesten en Albums zijn opgeslagen</translation>
     </message>
@@ -4749,7 +4750,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="323"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Boekje</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="342"/>
@@ -4820,7 +4821,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; opgeslagen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="521"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="522"/>
         <source>Downloading images...</source>
         <translation>Afbeeldingen downloaden...</translation>
     </message>
@@ -5131,32 +5132,32 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="61"/>
+        <location filename="../../src/main.cpp" line="62"/>
         <source>Logfile could not be openened</source>
         <translation>Logbestand kon niet worden geopend</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="62"/>
+        <location filename="../../src/main.cpp" line="63"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Logfile %1 kon niet beschreven worden.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="78"/>
-        <source>Stylesheet could not be opened!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/main.cpp" line="79"/>
-        <source>The default stylesheet could not be openend for reading.</source>
-        <translation type="unfinished"></translation>
+        <source>Stylesheet could not be opened!</source>
+        <translation>Stylesheet kon niet worden geopend</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
+        <location filename="../../src/main.cpp" line="80"/>
+        <source>The default stylesheet could not be openend for reading.</source>
+        <translation>De standaard stylesheet kon niet worden geopend om te lezen.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
         <source>Do not ask again</source>
         <translation>Vraag dit niet nogmaals</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="51"/>
+        <location filename="../../src/ui/main/Update.cpp" line="50"/>
         <source>Don&apos;t check for updates</source>
         <translation>Niet controleren op updates</translation>
     </message>
@@ -5166,49 +5167,49 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Laat me deze tip niet opnieuw zien</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="546"/>
+        <location filename="../../src/globals/Helper.cpp" line="547"/>
         <source>No Label</source>
         <translation>Geen Label</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="547"/>
+        <location filename="../../src/globals/Helper.cpp" line="548"/>
         <source>Red</source>
         <translation>Rood</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="548"/>
+        <location filename="../../src/globals/Helper.cpp" line="549"/>
         <source>Orange</source>
         <translation>Oranje</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="549"/>
+        <location filename="../../src/globals/Helper.cpp" line="550"/>
         <source>Yellow</source>
         <translation>Geel</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="550"/>
+        <location filename="../../src/globals/Helper.cpp" line="551"/>
         <source>Green</source>
         <translation>Groen</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="551"/>
+        <location filename="../../src/globals/Helper.cpp" line="552"/>
         <source>Blue</source>
         <translation>Blauw</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="552"/>
+        <location filename="../../src/globals/Helper.cpp" line="553"/>
         <source>Purple</source>
         <translation>Paars</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="553"/>
+        <location filename="../../src/globals/Helper.cpp" line="554"/>
         <source>Grey</source>
         <translation>Grijs</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="235"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Film &lt;/b&gt; &quot;%1&quot; werd aangepast maar is niet bewaard</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="358"/>
@@ -5236,22 +5237,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="60"/>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append wordt voor GZIP niet ondersteund</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="66"/>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Het openen van een gzip voor zowel lezen als schrijven wordt niet ondersteund</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Je mag een gzip bestand openen voor het lezen of voor het schrijven. Welke is jou keuze?</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
+        <translation>gzopen() kon op het bestand niet worden uitgevoerd</translation>
     </message>
 </context>
 <context>
@@ -5259,12 +5260,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="147"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append is voor QuaZIODevice niet ondersteund</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="152"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::ReadWrite is voor QuaZIODevice niet ondersteund</translation>
     </message>
 </context>
 <context>
@@ -5355,33 +5356,33 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Concert(en) zullen worden hernoemd</numerusform>
+            <numerusform>%n Concert(en) zullen worden hernoemd</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Film(s) zullen worden hernoemd</numerusform>
+            <numerusform>%n Film(s) zullen worden hernoemd</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n TV Show(s) en %1</numerusform>
+            <numerusform>%n TV Show(s) en %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Episode(s) zullen worden hernoemd</numerusform>
+            <numerusform>%n Episode(s) zullen worden hernoemd</numerusform>
         </translation>
     </message>
     <message>
@@ -5392,17 +5393,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="263"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; werd aangepast maar werd niet bewaard.</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="287"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; werd aangepast maar werd niet bewaard.</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="339"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; werd aangepast maar werd niet bewaard.</translation>
     </message>
 </context>
 <context>
@@ -5505,7 +5506,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="682"/>
@@ -5544,7 +5545,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="101"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"></translation>
+        <translation>Combineer verschillende scrapers to je eigen scraper. Als je andere scrapers dan IMDB, The Movie DB en Fanart.tv gebruikt, kan het zijn dat je verschillende opzoekingen zal moeten uitvoeren omdat enkel zij een id delen</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="127"/>
@@ -5555,17 +5556,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="141"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Scraper</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="147"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer welke site jou voorkeur heeft voor elk element van een tv show en episode.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="178"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Site</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="208"/>
@@ -5712,7 +5713,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>SeasonModelItem</name>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="141"/>
+        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="142"/>
         <source>Season %1</source>
         <translation>Seizoen %1</translation>
     </message>
@@ -5928,7 +5929,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="165"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabisch</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="166"/>
@@ -5938,12 +5939,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="167"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinees (T)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="168"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinees (S)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="169"/>
@@ -5988,7 +5989,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="177"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Frans (Canada)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="178"/>
@@ -6038,12 +6039,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="187"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugees (Brazilië)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="188"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugees (Portugal)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="189"/>
@@ -6063,7 +6064,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="192"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spaans (Mexico)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="193"/>
@@ -6086,7 +6087,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="29"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabisch</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="30"/>
@@ -6096,12 +6097,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="31"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinees (T)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="32"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chinees(S)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="33"/>
@@ -6146,7 +6147,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="41"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Frans (Canada)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="42"/>
@@ -6196,12 +6197,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="51"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugees (Brazilië)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="52"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugees (Portugal)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="53"/>
@@ -6221,7 +6222,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="56"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spaans (Mexico)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="57"/>
@@ -6468,27 +6469,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="363"/>
         <source>Download Not Found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download iet gevonden (404)</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="367"/>
         <source>Download Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download Fout (%1)</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="414"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Netwerkproblemen</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="415"/>
         <source>Resource could not be played</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestand kan niet worden gespeeld</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="416"/>
         <source>Video format error</source>
-        <translation type="unfinished"></translation>
+        <translation>Video formaat fout</translation>
     </message>
 </context>
 <context>
@@ -6520,18 +6521,18 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n tv shows</numerusform>
+            <numerusform>%n tv shows</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodes</numerusform>
+            <numerusform>%n episodes</numerusform>
         </translation>
     </message>
     <message>
@@ -6598,14 +6599,15 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="429"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je moet de tv show een keer updaten om de ontbrekende episodes te kunnen zien.
+Daarna zal MediaElch bij elke opstart automatisch kijken of er nieuwe episodes zijn.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="617"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 van %n tv shows</numerusform>
+            <numerusform>%1 van  %n tv shows</numerusform>
         </translation>
     </message>
 </context>
@@ -6657,12 +6659,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Multi scrape TV Shows</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer de scraper en de infos die je wilt laden. MediaElch zal het beste resultaat voor elke tv show en episode gebruiken.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="46"/>
@@ -6787,17 +6789,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="376"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik de episode volgorde van de DVD</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="383"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Sla elke tv show/episode automatisch op na het scrapen</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="390"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Update enkel films met een TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="405"/>
@@ -6820,31 +6822,31 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>Start Scrapen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="351"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n tv shows</numerusform>
+            <numerusform>%n tv shows</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="353"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodes</numerusform>
+            <numerusform>%n episodes</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="354"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="355"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrapen van %1 en 2% is klaar.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="356"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="357"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="359"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrapen van %1 is klaar.</translation>
     </message>
 </context>
 <context>
@@ -6857,7 +6859,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
+        <translation>Als je met een TheTvDb id wil zoeken, gelieve dan eerst &quot;Id&quot; in te geven ( bvb id123).</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="64"/>
@@ -7083,7 +7085,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hier onder zie je de bestandsnamen die gebruikt worden voor het laden en opslaan van je tv shows. Je kan ze bewerken zoals je wilt, als je meerdere bestanden wil gebruiken scheid ze dan met een komma.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="27"/>
@@ -7166,16 +7168,16 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="109"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodes</numerusform>
+            <numerusform>%n episodes</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="63"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="68"/>
         <source>Updating TV Shows</source>
         <translation>TV Shows aan het updaten</translation>
     </message>
@@ -7191,7 +7193,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="185"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewaarde TV Shows en Episodes</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="232"/>
@@ -7686,7 +7688,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="415"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="450"/>
@@ -7721,17 +7723,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="348"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="367"/>
         <source>Continuing</source>
-        <translation type="unfinished"></translation>
+        <translation>Blijft doorgaan</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="372"/>
         <source>Ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="380"/>
@@ -7810,57 +7812,57 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="75"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Genre toevoegen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="80"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Tag toevoegen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="443"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="444"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; opgeslagen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="471"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="472"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelieve te wachten tot de tv show scraping klaar is.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="704"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="705"/>
         <source>Downloading images...</source>
         <translation>Afbeeldingen downloaden...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="856"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
         <source>Unknown Actor</source>
         <translation>Onbekende acteur</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="858"/>
         <source>Unknown Role</source>
         <translation>Onbekende rol</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Choose Image</source>
         <translation>Kies afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Afbeeldingen (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -8032,27 +8034,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheer zonder wachtwoord</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheer</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheer met wachtwoord</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit archief verwijderen</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"></translation>
+        <translation>Wachtwoord voor extractie</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
@@ -8062,25 +8064,25 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Archief verwijderen?</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wil je dit archief echt verwijderen?</translation>
     </message>
 </context>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="45"/>
+        <location filename="../../src/ui/main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Updates beschikbaar</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="46"/>
+        <location filename="../../src/ui/main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 is nu beschikbaar.&lt;br&gt;U kan het hier afhalen %2</translation>
     </message>
 </context>
 <context>

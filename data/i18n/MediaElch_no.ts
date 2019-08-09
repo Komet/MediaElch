@@ -307,32 +307,32 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="105"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="106"/>
         <source>Delete Image</source>
         <translation>Slett bilde</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="112"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="113"/>
         <source>Zoom Image</source>
         <translation>Zoom bilde</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="118"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="119"/>
         <source>Capture random screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="124"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="125"/>
         <source>Select another image</source>
         <translation>Velg et annet bilde</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="405"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Really delete image?</source>
         <translation>Vil du virkelig slette bildet?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="406"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Er du sikker på at du vil slette dette bildet?</translation>
     </message>
@@ -874,8 +874,8 @@
         <translation>Importer filmen med MakeMKV</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="214"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="354"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="350"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n fil(er)</numerusform>
@@ -883,53 +883,53 @@
         </translation>
     </message>
     <message>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="308"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="304"/>
         <source>Extraction failed</source>
         <translation>Extraction mislyktes</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="291"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Extraction av %1 mislyktes: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="306"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="302"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction finished</source>
         <translation>Extraction ferdig</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction of %1 finished</source>
         <translation>Extraction av %1 er ferdig</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="367"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="363"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="368"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
         <source>TV Show</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="369"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
         <source>Concert</source>
         <translation>Konserter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="529"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="525"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon mangler</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="530"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2282,8 +2282,8 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
         <translation>Ny kolonne</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="712"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="719"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="713"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
         <source>No images found</source>
         <translation>Ingen bilder funnet</translation>
     </message>
@@ -2328,22 +2328,22 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Choose Image</source>
         <translation>Velg bilde</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="716"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="717"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="721"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2706,60 +2706,60 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="152"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="153"/>
         <source>Please fill in your Kodi host and port.</source>
         <translation>Fyll inn din Kodi host og port.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="225"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="226"/>
         <source>Getting contents from Kodi</source>
         <translation>Får innholdet fra Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="240"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="270"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="300"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="330"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="241"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="271"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="301"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="331"/>
         <source>Network error</source>
         <translation>nettverksfeil</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="427"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="428"/>
         <source>Removing movies from database</source>
         <translation>Fjerne filmer fra biblioteket</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="442"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="443"/>
         <source>Removing concerts from database</source>
         <translation>Fjerne konserter fra biblioteket</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="457"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="458"/>
         <source>Removing TV shows from database</source>
         <translation>Fjerne TV-serier fra biblioteket</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="472"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="473"/>
         <source>Removing episodes from database</source>
         <translation>Fjerne episoder fra biblioteket</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="512"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="513"/>
         <source>Trigger scan for new items</source>
         <translation>Utløse scan for nye innhold</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="528"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="529"/>
         <source>Finished. Kodi is now loading your updated items.</source>
         <translation>Ferdig. Kodi laster nå dine oppdaterte elementer.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="548"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="549"/>
         <source>Finished. Kodi is now cleaning your database.</source>
         <translation>Ferdig. Kodi rudder nå biblioteket.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="595"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="596"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Ferdig. Spilleteller og siste spiltedato er oppdatert.</translation>
     </message>
@@ -2791,55 +2791,55 @@ Katalogene med musikken din må inneholde underkataloger for hver artist som inn
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.ui" line="75"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="91"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="94"/>
         <source>Movies</source>
         <translation>Filmer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="119"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="125"/>
         <source>Movie Sets</source>
         <translation>Samlinger</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="147"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="156"/>
         <source>Genres</source>
         <translation>Sjangere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="175"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="187"/>
         <source>Certifications</source>
         <translation>Aldersgrenser</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="203"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="218"/>
         <source>Duplicates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="233"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="248"/>
         <source>Shows</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="249"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="267"/>
         <source>TV Shows</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="279"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="295"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="297"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="316"/>
         <source>Concerts</source>
         <translation>Konserter</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="325"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="341"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="346"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="365"/>
         <source>Music</source>
         <translation>Musikk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="371"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="387"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="395"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="414"/>
         <source>Import</source>
         <extracomment>Main menu entry
 ----------
@@ -2847,42 +2847,42 @@ Main menu entry (tooltip)</extracomment>
         <translation>Importere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="856"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="883"/>
         <source>Settings</source>
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="861"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="888"/>
         <source>Quit</source>
         <translation>Avslutt</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="866"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="893"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="709"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="693"/>
         <source>Reload all Movies (%1)</source>
         <translation>Oppdater alle filmer (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="715"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="699"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Oppdater alle TV-serier (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="710"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Oppdater alle konserter (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="742"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Last alle nedlastinger (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="748"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="732"/>
         <source>Reload Music (%1)</source>
         <translation>Last musikk (%1)</translation>
     </message>
@@ -3247,47 +3247,47 @@ Operasjon kansellert.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="280"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="291"/>
         <source>Actors</source>
         <translation>Skuespillere</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="281"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="292"/>
         <source>Extra Arts</source>
         <translation>Ekstra arts</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="282"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="293"/>
         <source>Extra Fanarts</source>
         <translation>Ekstra fanarts</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="283"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="294"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="284"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="295"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="285"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="296"/>
         <source>Stream Details</source>
         <translation>Stream detaljer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="286"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="297"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="287"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="298"/>
         <source>Local Trailer</source>
         <translation type="unfinished">Lokale Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="288"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="299"/>
         <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4446,7 +4446,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Begynn skraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="214"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="215"/>
         <source>Scraping of %n items has finished.</source>
         <translation>
             <numerusform>Skraping av %n elementer er ferdig.</numerusform>
@@ -4662,14 +4662,14 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="124"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="164"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="125"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="165"/>
         <source>Saving changed Artists and Albums</source>
         <translation>Lager endret kunstnere og albumer</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="142"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="189"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="143"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="190"/>
         <source>All Artists and Albums Saved</source>
         <translation>Alle kunstnere og albumer lagret</translation>
     </message>
@@ -4820,7 +4820,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; lagret</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="521"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="522"/>
         <source>Downloading images...</source>
         <translation>Nedlasting av bildene ...</translation>
     </message>
@@ -5131,32 +5131,32 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="61"/>
+        <location filename="../../src/main.cpp" line="62"/>
         <source>Logfile could not be openened</source>
         <translation>Logfile kunne ikke åpnes</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="62"/>
+        <location filename="../../src/main.cpp" line="63"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Loggfilen %1 kunne ikke åpnes for skriving.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="78"/>
+        <location filename="../../src/main.cpp" line="79"/>
         <source>Stylesheet could not be opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="79"/>
+        <location filename="../../src/main.cpp" line="80"/>
         <source>The default stylesheet could not be openend for reading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
         <source>Do not ask again</source>
         <translation>Ikke spør igjen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="51"/>
+        <location filename="../../src/ui/main/Update.cpp" line="50"/>
         <source>Don&apos;t check for updates</source>
         <translation>Ikke se etter oppdateringer</translation>
     </message>
@@ -5166,42 +5166,42 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>Ikke vis dette tipset igjen</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="546"/>
+        <location filename="../../src/globals/Helper.cpp" line="547"/>
         <source>No Label</source>
         <translation>Ingen etikett</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="547"/>
+        <location filename="../../src/globals/Helper.cpp" line="548"/>
         <source>Red</source>
         <translation>Rød</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="548"/>
+        <location filename="../../src/globals/Helper.cpp" line="549"/>
         <source>Orange</source>
         <translation>Orange</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="549"/>
+        <location filename="../../src/globals/Helper.cpp" line="550"/>
         <source>Yellow</source>
         <translation>Gul</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="550"/>
+        <location filename="../../src/globals/Helper.cpp" line="551"/>
         <source>Green</source>
         <translation>Grønn</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="551"/>
+        <location filename="../../src/globals/Helper.cpp" line="552"/>
         <source>Blue</source>
         <translation>Blå</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="552"/>
+        <location filename="../../src/globals/Helper.cpp" line="553"/>
         <source>Purple</source>
         <translation>Lilla</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="553"/>
+        <location filename="../../src/globals/Helper.cpp" line="554"/>
         <source>Grey</source>
         <translation>Grå</translation>
     </message>
@@ -5712,7 +5712,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>SeasonModelItem</name>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="141"/>
+        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="142"/>
         <source>Season %1</source>
         <translation>Sesong %1</translation>
     </message>
@@ -6821,7 +6821,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
         <translation>Begynn skraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="351"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
         <source>%n tv shows</source>
         <translation type="unfinished">
             <numerusform>%n tv-serier</numerusform>
@@ -6829,7 +6829,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="353"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform>%n episoder</numerusform>
@@ -6837,13 +6837,13 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="354"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="355"/>
         <source>Scraping of %1 and %2 has finished.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="356"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="357"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="359"/>
         <source>Scraping of %1 has finished.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7176,7 +7176,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="63"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="68"/>
         <source>Updating TV Shows</source>
         <translation>Oppdatere TV-serier</translation>
     </message>
@@ -7811,57 +7811,57 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="75"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
         <translation>Sjangere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Legg sjanger</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="80"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Legg til tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="443"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="444"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; lagret</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="471"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="472"/>
         <source>Please wait while your tv show is scraped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="704"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="705"/>
         <source>Downloading images...</source>
         <translation>Nedlasting av bilder ...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="856"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
         <source>Unknown Actor</source>
         <translation>Ukjent skuespillere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="858"/>
         <source>Unknown Role</source>
         <translation>Ukjent rolle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Choose Image</source>
         <translation>Velg bilde</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -8074,12 +8074,12 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="45"/>
+        <location filename="../../src/ui/main/Update.cpp" line="44"/>
         <source>Updates available</source>
         <translation>Oppdateringer tilgjengelig</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="46"/>
+        <location filename="../../src/ui/main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 er nå tilgjengelig.&lt;br&gt;Få den nå på %2</translation>
     </message>

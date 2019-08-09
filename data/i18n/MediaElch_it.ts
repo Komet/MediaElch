@@ -179,7 +179,7 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="162"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;https://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="172"/>
@@ -204,12 +204,12 @@
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="242"/>
         <source>Movies</source>
-        <translation>Films</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="275"/>
         <source>TV Shows</source>
-        <translation>TV Shows</translation>
+        <translation>Serie TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/AboutDialog.ui" line="308"/>
@@ -301,38 +301,38 @@
     <message>
         <location filename="../../src/ui/movies/CertificationWidget.cpp" line="293"/>
         <source>All Movies Saved</source>
-        <translation>Tutti i Films salvati</translation>
+        <translation>Tutti i Film salvati</translation>
     </message>
 </context>
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="105"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="106"/>
         <source>Delete Image</source>
         <translation>Cancella immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="112"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="113"/>
         <source>Zoom Image</source>
         <translation>Zoom immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="118"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="119"/>
         <source>Capture random screenshot</source>
         <translation>Cattura schermata casuale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="124"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="125"/>
         <source>Select another image</source>
         <translation>Seleziona altra immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="405"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Really delete image?</source>
         <translation>Vuoi veramente cancellare l&apos;immagine?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="406"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Sei sicuro di cancellare l&apos;immagine?</translation>
     </message>
@@ -410,7 +410,7 @@
     <message>
         <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="41"/>
         <source>Files</source>
-        <translation>Files</translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertInfoWidget.ui" line="55"/>
@@ -577,12 +577,12 @@
     <message>
         <location filename="../../src/ui/concerts/ConcertSearchWidget.ui" line="208"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertSearchWidget.ui" line="211"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork</translation>
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertSearchWidget.ui" line="225"/>
@@ -595,17 +595,17 @@
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qui sotto puoi vedere i nomi dei file che verranno utilizzati per caricare e salvare i tuoi concerti. Puoi modificarli secondo le tue preferenze, se vuoi utilizzare file multipli separali con una virgola.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="27"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi utilizzare il segnaposto &lt;baseFileName&gt; che è il nome del file senza estensione.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="42"/>
         <source>Nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>NFO</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ConcertSettingsWidget.ui" line="49"/>
@@ -660,7 +660,7 @@
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="103"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipologia di scansione</translation>
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.ui" line="113"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="../../src/ui/concerts/ConcertWidget.ui" line="150"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanart Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/concerts/ConcertWidget.ui" line="172"/>
@@ -855,7 +855,7 @@
         <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="96"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="211"/>
         <source>Files</source>
-        <translation>Files</translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/DownloadsWidget.ui" line="101"/>
@@ -874,62 +874,62 @@
         <translation>Importa filmato con MakeMKV</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="214"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="354"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="210"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="350"/>
         <source>%n file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n file</numerusform>
+            <numerusform>%n file</numerusform>
         </translation>
     </message>
     <message>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="286"/>
         <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="308"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="304"/>
         <source>Extraction failed</source>
         <translation>Estrazione fallita</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="291"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="294"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="296"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="287"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="290"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="292"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>L&apos;estrazione di %1 ha fallito: %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="306"/>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="302"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction finished</source>
         <translation>Estrazione terminata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="320"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="316"/>
         <source>Extraction of %1 finished</source>
         <translation>Estrazione di %1 terminata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="367"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="363"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="368"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="364"/>
         <source>TV Show</source>
         <translation>Serie TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="369"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="365"/>
         <source>Concert</source>
         <translation>Concerti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="529"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="525"/>
         <source>makemkvcon missing</source>
         <translation>makemkvcon mancante</translation>
     </message>
     <message>
-        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="530"/>
+        <location filename="../../src/ui/downloads/DownloadsWidget.cpp" line="526"/>
         <source>Please set the correct path to makemkvcon in MediaElch&apos;s settings.</source>
         <translation>Prego impostare il percorso corretto di makemkvcon nelle impostazioni di MediaElch.</translation>
     </message>
@@ -965,7 +965,7 @@
     <message>
         <location filename="../../src/ui/export/ExportDialog.ui" line="68"/>
         <source>Movies</source>
-        <translation>Films</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/ExportDialog.ui" line="78"/>
@@ -1023,18 +1023,18 @@
     <message>
         <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="68"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema &quot;%1&quot; è stato installato correttamente</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="71"/>
         <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="82"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante la procedura del tema &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ExportSettingsWidget.cpp" line="79"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema &quot;%1&quot; è stato rimosso con successo.</translation>
     </message>
 </context>
 <context>
@@ -1106,7 +1106,7 @@
     <message>
         <location filename="../../src/downloads/Extractor.cpp" line="29"/>
         <source>No files to extract</source>
-        <translation>Non ci sono files da estrarre</translation>
+        <translation>Non ci sono file da estrarre</translation>
     </message>
     <message>
         <location filename="../../src/downloads/Extractor.cpp" line="39"/>
@@ -1239,7 +1239,7 @@
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="51"/>
         <source>Blu-ray</source>
-        <translation type="unfinished"></translation>
+        <translation>Blu-ray</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/image/FanartTv.cpp" line="52"/>
@@ -1358,7 +1358,7 @@
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="353"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="435"/>
         <source>Video codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Video codec</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="409"/>
@@ -1397,23 +1397,23 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>IL Film ha Extra Fanarts</translation>
+        <translation>Il Film ha Extra Fanart</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="440"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanart Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Il Film non ha Extra Fanarts</translation>
+        <translation>Il Film non ha Extra Fanart</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="441"/>
         <source>No Extra Fanarts</source>
-        <translation>Nessun Extra Fanarts</translation>
+        <translation>Nessun Extra Fanart</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="442"/>
@@ -1513,23 +1513,23 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <source>Movie has Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Il Film ha una miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="450"/>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>Movie has no Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Il Film non ha una miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="451"/>
         <source>No Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuna miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="452"/>
@@ -1647,12 +1647,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="135"/>
         <source>IMDb ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="411"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="418"/>
@@ -1765,7 +1765,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
         <source>Movie has no Tags</source>
-        <translation>Il Film nonha Tags</translation>
+        <translation>Il Film non ha Tags</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="419"/>
@@ -1780,7 +1780,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
         <source>IMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="412"/>
@@ -1828,7 +1828,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="464"/>
         <source>2160p</source>
-        <translation type="unfinished">2160p</translation>
+        <translation>2160p</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="465"/>
@@ -1869,7 +1869,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"></translation>
+        <translation>Channels 2.0</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="470"/>
@@ -1891,12 +1891,12 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="471"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Channels 5.1</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="472"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Channels 7.1</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="473"/>
@@ -1966,7 +1966,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
         <source>Movie has no external Subtitle</source>
-        <translation>Il Film non ha sottotitoli esterno</translation>
+        <translation>Il Film non ha sottotitoli esterni</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="481"/>
@@ -2035,7 +2035,7 @@
     <message>
         <location filename="../../src/ui/movies/GenreWidget.cpp" line="296"/>
         <source>All Movies Saved</source>
-        <translation>Tutti i Films salvati</translation>
+        <translation>Tutti i Film salvati</translation>
     </message>
 </context>
 <context>
@@ -2045,37 +2045,39 @@
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi una o più cartelle che contengono i tuoi Film, Serie TV, concerti, musica o file da importare.
+Gli Episodi delle Serie TV dovranno essere in sottocartelle con il nome della Serie.
+Le cartelle che contengono la tua musica dovranno contenere delle sottocartelle per ciascun artista le quali dovranno contenere cartelle per ciascun album.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="51"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="56"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="61"/>
         <source>Sep. folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartelle Sep.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="64"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Gli elementi sono in cartelle separate</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="69"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica all&apos;avvio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="72"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica automaticamente i contenuti all&apos;avvio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="82"/>
@@ -2090,54 +2092,54 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="96"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ordina Film in cartelle separate&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="99"/>
         <source>Organize</source>
-        <translation type="unfinished"></translation>
+        <translation>Organizza</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="126"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivia gli URL dei trailer nel formato del Plugin YouTube</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="140"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica e salva automaticamente i dettagli del flusso dai file</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="154"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignora gli articoli durante l&apos;ordinamento (&quot;The&quot;)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="168"/>
         <source>Download actor images</source>
-        <translation type="unfinished"></translation>
+        <translation>Download immagini degli attori</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="182"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca aggiornamenti all&apos;avvio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="196"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="215"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Parole da escludere dai nomi dei media (separate da virgole e non case-sensitive)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="222"/>
         <source>Startup section</source>
-        <translation type="unfinished"></translation>
+        <translation>Sezione di avvio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="39"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="189"/>
         <source>Movies</source>
-        <translation>Films</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="40"/>
@@ -2155,7 +2157,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="189"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musica</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="43"/>
@@ -2165,32 +2167,32 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="59"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli una cartella che contiene i tuoi Film, Serie TV o concerti</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="189"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="230"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Organizzare i Film funziona solamente con Film che non siano già ordinati in cartelle separate.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="238"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro?</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="240"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished"></translation>
+        <translation>Questa procedura ordina tutti i Film in questa cartella in sottocartelle separate basate sul nome del file. Clicca &quot;Ok&quot;, se è quello che vuoi fare.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="243"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="244"/>
@@ -2235,7 +2237,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../../src/image/ImageCapture.cpp" line="48"/>
         <location filename="../../src/image/ImageCapture.cpp" line="78"/>
         <source>Temporary output file could not be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file temporaneo di salvataggio non può essere aperto</translation>
     </message>
     <message>
         <location filename="../../src/image/ImageCapture.cpp" line="63"/>
@@ -2280,8 +2282,8 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>Nuova Colonna</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="712"/>
-        <location filename="../../src/globals/ImageDialog.cpp" line="719"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="713"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
         <source>No images found</source>
         <translation>Nessuna Immagine trovata</translation>
     </message>
@@ -2326,22 +2328,22 @@ The directories containg your music must contain subdirectories for each artist 
         <translation>Predefinita</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Choose Image</source>
         <translation>Scegli immagine</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="578"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="579"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Immagini (*.jpg *.jpeg *.png)</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="716"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="717"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Immagini fornite da &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/globals/ImageDialog.cpp" line="720"/>
+        <location filename="../../src/globals/ImageDialog.cpp" line="721"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
         <translation>Contribuite caricando immagini in &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -2415,12 +2417,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="81"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="91"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del file</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="108"/>
@@ -2430,12 +2432,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="115"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della cartella per la Stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="132"/>
         <source>Keep source files after import</source>
-        <translation>Conserva i files sorgenti dopo l&apos;importazione</translation>
+        <translation>Conserva i file sorgenti dopo l&apos;importazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/ImportDialog.ui" line="175"/>
@@ -2540,33 +2542,33 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="19"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella automaticamente gli archivi dopo l&apos;estrazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="33"/>
         <source>Path to unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso di unrar</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="45"/>
         <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="66"/>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.ui" line="54"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso di makemkvcon</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="49"/>
         <source>Choose unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli unrar</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ImportSettingsWidget.cpp" line="57"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -2594,7 +2596,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/tv_shows/ItemWidgetShow.ui" line="375"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizzazione necessaria</translation>
     </message>
 </context>
 <context>
@@ -2602,47 +2604,47 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="17"/>
         <source>General Kodi Settings. MediaElch uses the Kodi version below for writing NFO files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni generali per Kodi. MediaElch utilizza la seguente versione di Kodi per scrivere i file NFO.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="29"/>
         <source>Kodi Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione di Kodi</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="48"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"></translation>
+        <translation>Se vuoi utilizzare la funzionalità di sincronizzazione devi abilitare il webserver dentro Kodi (Impostazioni -&gt; Servizi -&gt; Webserver). Inserisci la porta del webserver qui (normalmente 80 o 8080).</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="63"/>
         <source>Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Host</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="70"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="77"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="84"/>
         <source>8080</source>
-        <translation type="unfinished">8080</translation>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="91"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Utente</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/KodiSettingsWidget.ui" line="98"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
 </context>
 <context>
@@ -2650,48 +2652,48 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizzazione con Kodi</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica di aver abilitato le cartelle di origine in Kodi e che il webserver sia attivo (Kodi -&gt; Impostazioni -&gt; Servizi -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna contenuti</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa procedura richiederà a Kodi di rimuovere tutti i Film, Serie TV o concerti che sono stati modificati. Dopo di che verrà lanciato un aggiornamento della libreria di Kodi e gli elementi rimossi verranno caricati nuovamente.</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi gli elementi non esistenti dal database di Kodi (Pulisci Libreria)</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi rimuoverà gli elementi che non esistono più dal tuo database.</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation type="unfinished"></translation>
+        <translation>Recupero lo stato degli elementi già visti</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"></translation>
+        <translation>I campi relativi all&apos;ultimo elemento riprodotto ed il conteggio delle riproduzioni verranno recuperati da Kodi</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="108"/>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="115"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="133"/>
@@ -2701,65 +2703,65 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../../src/ui/media_centers/KodiSync.ui" line="156"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="152"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="153"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserire host e porta di Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="225"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="226"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Recupero informazioni da Kodi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="240"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="270"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="300"/>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="330"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="241"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="271"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="301"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="331"/>
         <source>Network error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di rete</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="427"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="428"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimozione Film dal database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="442"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="443"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimozione concerti dal database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="457"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="458"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimozione Serie TV dal database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="472"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="473"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimozione episodi dal database</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="512"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="513"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"></translation>
+        <translation>Attiva la scansione per nuovi elementi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="528"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="529"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminato. Kodi adesso sta caricando i tuoi elementi aggiornati.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="548"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="549"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminato. Kodi adesso sta ripulendo il tuo database.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="595"/>
+        <location filename="../../src/ui/media_centers/KodiSync.cpp" line="596"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminato. Il conteggio riproduzioni e la data di ultima riproduzione dei tuoi elementi è stato aggiornato.</translation>
     </message>
 </context>
 <context>
@@ -2789,55 +2791,55 @@ The directories containg your music must contain subdirectories for each artist 
     </message>
     <message>
         <location filename="../../src/ui/main/MainWindow.ui" line="75"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="91"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="94"/>
         <source>Movies</source>
-        <translation>Films</translation>
+        <translation>Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="119"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="125"/>
         <source>Movie Sets</source>
         <translation>Gruppo di Film</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="147"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="156"/>
         <source>Genres</source>
         <translation>Generi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="175"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="187"/>
         <source>Certifications</source>
         <translation>Certifiazioni</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="203"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="218"/>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="233"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="248"/>
         <source>Shows</source>
-        <translation>Spettacoli</translation>
+        <translation>Serie TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="249"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="267"/>
         <source>TV Shows</source>
         <translation>Serie TV</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="279"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="295"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="297"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="316"/>
         <source>Concerts</source>
         <translation>Concerti</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="325"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="341"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="346"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="365"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musica</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="371"/>
-        <location filename="../../src/ui/main/MainWindow.ui" line="387"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="395"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="414"/>
         <source>Import</source>
         <extracomment>Main menu entry
 ----------
@@ -2845,44 +2847,44 @@ Main menu entry (tooltip)</extracomment>
         <translation>Importa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="856"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="883"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="861"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="888"/>
         <source>Quit</source>
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.ui" line="866"/>
+        <location filename="../../src/ui/main/MainWindow.ui" line="893"/>
         <source>About</source>
         <translation>Riguardo a</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="709"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="693"/>
         <source>Reload all Movies (%1)</source>
         <translation>Ricarico tutti i Film (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="715"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="699"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Ricarico tutte le Serie TV (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="710"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Ricarico tutti i Concerti (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="742"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="726"/>
         <source>Reload all Downloads (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica tutti i Download (%1)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="748"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="732"/>
         <source>Reload Music (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica Musica (%1)</translation>
     </message>
 </context>
 <context>
@@ -2890,17 +2892,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Scansione</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="92"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa Tracce</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="118"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"></translation>
+        <translation>Disco di backup</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="163"/>
@@ -2920,7 +2922,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="199"/>
         <source>Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnaposto</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="207"/>
@@ -2945,7 +2947,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="298"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnaposto</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="321"/>
@@ -2955,27 +2957,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="338"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero parte del file corrente</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="355"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="365"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del file</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="375"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome per file multipli</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="385"/>
         <source>Import directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.ui" line="429"/>
@@ -2990,12 +2992,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="208"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuna traccia selezionata</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="209"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare almeno una traccia che vuoi importare</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="245"/>
@@ -3020,12 +3022,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Importazione da MakeMKV terminata</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="384"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;importazione da MakeMKV è terminata</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/MakeMkvDialog.cpp" line="387"/>
@@ -3038,17 +3040,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="114"/>
         <source>Movie title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo del Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="143"/>
         <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicateItem.ui" line="150"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -3056,17 +3058,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.ui" line="67"/>
         <source>Detect duplicate movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Rileva Film duplicati</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="75"/>
         <source>Detecting duplicate movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rilevamento Film duplicati...</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="129"/>
         <source>Open Detail Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina dei dettagli</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieDuplicates.cpp" line="130"/>
@@ -3142,15 +3144,15 @@ Operazione cancellata</translation>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="28"/>
         <source>%n movies</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n film</numerusform>
+            <numerusform>%n film</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="58"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colonne di stato dei media</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="69"/>
@@ -3200,17 +3202,17 @@ Operazione cancellata</translation>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="549"/>
         <source>%n movie(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n film</numerusform>
+            <numerusform>%n film</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieFilesWidget.cpp" line="551"/>
         <source>%1 of %n movie(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 di %n film</numerusform>
+            <numerusform>%1 di %n film</numerusform>
         </translation>
     </message>
 </context>
@@ -3234,7 +3236,7 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movie_sets/MovieListDialog.ui" line="68"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi i film selezionati</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/MovieListDialog.ui" line="88"/>
@@ -3245,49 +3247,49 @@ Operazione cancellata</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="280"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="291"/>
         <source>Actors</source>
         <translation>Attori</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="281"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="292"/>
         <source>Extra Arts</source>
-        <translation>Extra Arts</translation>
+        <translation>Extra Art</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="282"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="293"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanart Extra</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="283"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="294"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="284"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="295"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="285"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="296"/>
         <source>Stream Details</source>
         <translation>Dettagli Stream</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="286"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="297"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="287"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="298"/>
         <source>Local Trailer</source>
-        <translation type="unfinished">Trailer interno</translation>
+        <translation>Trailer locale</translation>
     </message>
     <message>
-        <location filename="../../src/movies/MovieModel.cpp" line="288"/>
+        <location filename="../../src/movies/MovieModel.cpp" line="299"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -3325,7 +3327,7 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="366"/>
         <source>Update only movies with IMDb ID/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna solo film con IMDb ID/TheMOvieDb Id</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="164"/>
@@ -3425,7 +3427,7 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="264"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="314"/>
@@ -3440,7 +3442,7 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="359"/>
         <source>Automatically save each movie after scraping</source>
-        <translation>Salva automaticamente ogni Film dopo la ricerca</translation>
+        <translation>Salva automaticamente ogni Film dopo lo scraping</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="381"/>
@@ -3465,14 +3467,14 @@ Operazione cancellata</translation>
     <message>
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.ui" line="449"/>
         <source>Start Scraping</source>
-        <translation>Inizia la Ricerca</translation>
+        <translation>Inizia lo scraping</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/movies/MovieMultiScrapeDialog.cpp" line="199"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Scraping di %n film terminato.</numerusform>
+            <numerusform>Scraping di %n film terminato.</numerusform>
         </translation>
     </message>
 </context>
@@ -3505,7 +3507,8 @@ Operazione cancellata</translation>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="66"/>
         <source>When using IMDb you can also use the IMDb id as search query.
 If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando utilizzi IMDb puoi anche utilizzare l&apos;id IMDb come parametro di ricerca.
+Se vuoi cercare per un id di TMDb o OFDb devi farlo iniziare per &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="101"/>
@@ -3630,7 +3633,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="321"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieSearchWidget.ui" line="352"/>
@@ -3643,17 +3646,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qui sotto puoi vedere i nomi dei file che verranno utilizzati per caricare e salvare i tuoi Film. Puoi modificarli secondo le tue preferenze, se vuoi utilizzare file multipli separali con una virgola.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="27"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi utilizzare il segnaposto &lt;baseFileName&gt; che è il nome del file senza estensione.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="42"/>
         <source>Nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>NFO</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="49"/>
@@ -3688,69 +3691,69 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="151"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="185"/>
         <source>Movie outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinossi del Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="192"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa la trama quando la sinossi non è disponibile</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="199"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork per il Gruppo di Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="207"/>
         <source>Artwork next to movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork accanto ai Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="212"/>
         <source>Separate artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella separata per gli artwork</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="220"/>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome file del Poster per il Gruppo di Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="227"/>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="230"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="237"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome file dei Fanart per i Gruppi di Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="244"/>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="247"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="254"/>
         <source>Artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella Artwork</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="266"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli la cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="122"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli una cartella dove verranno salvati gli artwork dei tuoi Gruppi di Film</translation>
     </message>
 </context>
 <context>
@@ -3758,12 +3761,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="50"/>
         <source>Movie has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il Film è stato modificato. Click per annullare le modifiche.</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="76"/>
         <source>Movie Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="119"/>
@@ -3774,7 +3777,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/movies/MovieWidget.ui" line="139"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1169"/>
         <source>Files</source>
-        <translation>Files</translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="153"/>
@@ -3784,12 +3787,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="163"/>
         <source>Original Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome originale</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="173"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="183"/>
@@ -3860,17 +3863,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="384"/>
         <source>Insert YouTube Dummy Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci YouTube Dummy Link</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="403"/>
         <source>Download Trailer</source>
-        <translation>Scarica Trailer</translation>
+        <translation>Download Trailer</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="419"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Riproduci trailer locale</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="429"/>
@@ -3890,12 +3893,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="505"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="538"/>
         <source>User Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Voti utenti</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="588"/>
@@ -3910,7 +3913,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="610"/>
         <source>Outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinossi</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="640"/>
@@ -3956,12 +3959,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="823"/>
         <source>Extra Fanarts</source>
-        <translation>Fanarts Extra</translation>
+        <translation>Fanart Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="835"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il supporto per fanart extra è disponibile solo quando i tuoi film sono salvati in cartelle separate. Verifica le impostazioni se hai già salvato i tuoi film in cartelle separate.</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="855"/>
@@ -3986,7 +3989,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="919"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipologia di scansione</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1067"/>
@@ -4018,7 +4021,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="630"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1077"/>
@@ -4033,12 +4036,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1149"/>
         <source>External Subtitles</source>
-        <translation type="unfinished"></translation>
+        <translation>Sottotitoli esterni</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1179"/>
         <source>Forced</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzati</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1335"/>
@@ -4067,7 +4070,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1435"/>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1475"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1514"/>
@@ -4084,7 +4087,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1614"/>
         <source>Disc Art</source>
-        <translation>CD Art</translation>
+        <translation>Disc Art</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1654"/>
@@ -4187,12 +4190,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="947"/>
         <source>Movies Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Film salvati</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="996"/>
         <source>All Movies Saved</source>
-        <translation>Tutti i Films salvati</translation>
+        <translation>Tutti i Film salvati</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.cpp" line="1018"/>
@@ -4220,12 +4223,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/music/MusicFileSearcher.cpp" line="34"/>
         <source>Searching for Music...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricerca per Musica...</translation>
     </message>
     <message>
         <location filename="../../src/music/MusicFileSearcher.cpp" line="105"/>
         <source>Loading Music...</source>
-        <translation type="unfinished"></translation>
+        <translation>Caricamento Musica...</translation>
     </message>
 </context>
 <context>
@@ -4233,23 +4236,23 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n artista</numerusform>
+            <numerusform>%n artisti</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="24"/>
         <source>%n album(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n album</numerusform>
+            <numerusform>%n album</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="30"/>
         <source>Open Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri cartella</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="31"/>
@@ -4259,25 +4262,25 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n artista</numerusform>
+            <numerusform>%n artisti</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="141"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n album</numerusform>
+            <numerusform>%n album</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/music/MusicFilesWidget.cpp" line="143"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 di %n artista</numerusform>
+            <numerusform>%1 di %n artisti</numerusform>
         </translation>
     </message>
 </context>
@@ -4286,7 +4289,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="17"/>
         <source>Music Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Musica Multi Scraper</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="39"/>
@@ -4296,7 +4299,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="48"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di Nascita</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="61"/>
@@ -4306,27 +4309,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="74"/>
         <source>Years Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Anni di attività</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="87"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di morte</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="100"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di formazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="113"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di scioglimento</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="126"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="139"/>
@@ -4336,7 +4339,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="152"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Copertina</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="165"/>
@@ -4346,7 +4349,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="178"/>
         <source>Extra Fanarts</source>
-        <translation>Fanats Extra</translation>
+        <translation>Fanart Extra</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="191"/>
@@ -4361,12 +4364,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="217"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="230"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Stili</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="243"/>
@@ -4381,7 +4384,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="269"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di rilascio</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="282"/>
@@ -4396,7 +4399,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="308"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Recensione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="321"/>
@@ -4411,7 +4414,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="347"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Discografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="369"/>
@@ -4421,12 +4424,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="395"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrape tutti gli album degli artisti selezionati (e non solo gli album selezionati)</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="402"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva automaticamente ogni artista e album dopo lo scraping</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="449"/>
@@ -4441,14 +4444,14 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicMultiScrapeDialog.ui" line="485"/>
         <source>Start Scraping</source>
-        <translation>Inizia la Ricerca</translation>
+        <translation>Inizia la scraping</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="214"/>
+        <location filename="../../src/ui/music/MusicMultiScrapeDialog.cpp" line="215"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Scraping di %n elemento terminato.</numerusform>
+            <numerusform>Scraping di %n elementi terminato.</numerusform>
         </translation>
     </message>
 </context>
@@ -4490,37 +4493,37 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="150"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di Nascita</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="160"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di Formazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="170"/>
         <source>Years Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Anni di attività</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="180"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di scioglimento</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="190"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di morte</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="200"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="210"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Discografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="220"/>
@@ -4535,7 +4538,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="240"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Recensione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="250"/>
@@ -4550,7 +4553,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="270"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di rilascio</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="280"/>
@@ -4565,12 +4568,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="300"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Stili</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="310"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="320"/>
@@ -4595,7 +4598,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="360"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Copertina</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicSearchWidget.ui" line="370"/>
@@ -4613,37 +4616,37 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qui sotto puoi vedere i nomi dei file che verranno utilizzati per caricare e salvare i tuoi artisti e album. Puoi modificarli secondo le tue preferenze, se vuoi utilizzare file multipli separali con una virgola.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="32"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura artista</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="49"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Fanart Artista</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="66"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo Artista</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="83"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura Album</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="100"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Album Disc Art</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/MusicSettingsWidget.ui" line="117"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"></translation>
+        <translation>Download Extra Fanart per Artisti</translation>
     </message>
 </context>
 <context>
@@ -4651,25 +4654,25 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="105"/>
         <source>%n albums</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n album</numerusform>
+            <numerusform>%n album</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>MusicWidget</name>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="124"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="164"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="125"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="165"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio Artisti e Album modificati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="142"/>
-        <location filename="../../src/ui/music/MusicWidget.cpp" line="189"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="143"/>
+        <location filename="../../src/ui/music/MusicWidget.cpp" line="190"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti gli Artisti e gli Album sono stati salvati</translation>
     </message>
 </context>
 <context>
@@ -4677,12 +4680,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="53"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;Album è stato modificato. Click per annullare le modifiche.</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="79"/>
         <source>Album Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome dell&apos;album</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="114"/>
@@ -4692,7 +4695,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="134"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="155"/>
@@ -4722,22 +4725,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="204"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di rilascio</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="211"/>
         <source>Review</source>
-        <translation type="unfinished"></translation>
+        <translation>Recensione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="251"/>
         <source>MusicBrainz Album ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz Album ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="265"/>
         <source>MusicBrainz Release Group ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz Release Group ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="282"/>
@@ -4747,7 +4750,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="323"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Booklet</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="342"/>
@@ -4763,7 +4766,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="420"/>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="460"/>
         <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Copertina</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.ui" line="442"/>
@@ -4790,27 +4793,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="46"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="47"/>
         <source>Add Mood</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="51"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Stili</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="52"/>
         <source>Add Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Stile</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="201"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio Album...</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="207"/>
@@ -4818,7 +4821,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvato/i</translation>
     </message>
     <message>
-        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="521"/>
+        <location filename="../../src/ui/music/MusicWidgetAlbum.cpp" line="522"/>
         <source>Downloading images...</source>
         <translation>Download immagini...</translation>
     </message>
@@ -4828,12 +4831,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="53"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;artista è stato modificato. Click per annullare le modifiche.</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="79"/>
         <source>Artist Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome Artista</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="114"/>
@@ -4843,7 +4846,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="134"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="155"/>
@@ -4853,37 +4856,37 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="183"/>
         <source>Born</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di Nascita</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="190"/>
         <source>Formed</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di Formazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="197"/>
         <source>Years active</source>
-        <translation type="unfinished"></translation>
+        <translation>Anni di attività</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="204"/>
         <source>Disbanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di scioglimento</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="211"/>
         <source>Died</source>
-        <translation type="unfinished"></translation>
+        <translation>Data di morte</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="232"/>
         <source>Biography</source>
-        <translation type="unfinished"></translation>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="242"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"></translation>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="259"/>
@@ -4893,7 +4896,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="300"/>
         <source>Discography</source>
-        <translation type="unfinished"></translation>
+        <translation>Discografia</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="322"/>
@@ -4908,12 +4911,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="337"/>
         <source>Add Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiunti Album</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="347"/>
         <source>Remove Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi Album</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="373"/>
@@ -4935,7 +4938,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="513"/>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="645"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.ui" line="495"/>
@@ -4968,27 +4971,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="50"/>
         <source>Moods</source>
-        <translation type="unfinished"></translation>
+        <translation>Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="51"/>
         <source>Add Mood</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Mood</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="55"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation>Stili</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="56"/>
         <source>Add Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Stile</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="193"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio Artista...</translation>
     </message>
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="199"/>
@@ -5003,7 +5006,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/music/MusicWidgetArtist.cpp" line="568"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Album sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -5011,37 +5014,37 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="38"/>
         <source>Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrape</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="57"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="76"/>
         <source>Save All</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva Tutto</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="98"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina i file selezionati</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="117"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizzazione con Kodi</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="136"/>
         <source>Export Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Esporta Database</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="155"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="174"/>
@@ -5056,27 +5059,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/main/Navbar.ui" line="238"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dona</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="17"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrape (%1)</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="20"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva (%1)</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="24"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva Tutto (%1)</translation>
     </message>
     <message>
         <location filename="../../src/ui/main/Navbar.cpp" line="28"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica tutti i file (%1)</translation>
     </message>
 </context>
 <context>
@@ -5084,38 +5087,38 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="19"/>
         <source>Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Host</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="26"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="33"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome utente</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="40"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="67"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita Proxy</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="74"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/NetworkSettingsWidget.ui" line="82"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
 </context>
 <context>
@@ -5129,84 +5132,84 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="61"/>
+        <location filename="../../src/main.cpp" line="62"/>
         <source>Logfile could not be openened</source>
         <translation>Impossibile aprire il file di log</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="62"/>
+        <location filename="../../src/main.cpp" line="63"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Impossibile aprire il file di log %1 in scrittura.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="78"/>
-        <source>Stylesheet could not be opened!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/main.cpp" line="79"/>
-        <source>The default stylesheet could not be openend for reading.</source>
-        <translation type="unfinished"></translation>
+        <source>Stylesheet could not be opened!</source>
+        <translation>Impossibile aprire lo stylesheet</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
+        <location filename="../../src/main.cpp" line="80"/>
+        <source>The default stylesheet could not be openend for reading.</source>
+        <translation>Lo stylesheet di default non può essere aperto in lettura.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
         <source>Do not ask again</source>
         <translation>Non chiedere di nuovo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="51"/>
+        <location filename="../../src/ui/main/Update.cpp" line="50"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Non controllare gli aggiornamenti</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="433"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"></translation>
+        <translation>Non mostrare questo suggerimento di nuovo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="546"/>
+        <location filename="../../src/globals/Helper.cpp" line="547"/>
         <source>No Label</source>
         <translation>Nessuna etichetta</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="547"/>
+        <location filename="../../src/globals/Helper.cpp" line="548"/>
         <source>Red</source>
         <translation>Rosso</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="548"/>
+        <location filename="../../src/globals/Helper.cpp" line="549"/>
         <source>Orange</source>
         <translation>Arancio</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="549"/>
+        <location filename="../../src/globals/Helper.cpp" line="550"/>
         <source>Yellow</source>
         <translation>Giallo</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="550"/>
+        <location filename="../../src/globals/Helper.cpp" line="551"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="551"/>
+        <location filename="../../src/globals/Helper.cpp" line="552"/>
         <source>Blue</source>
         <translation>Blu</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="552"/>
+        <location filename="../../src/globals/Helper.cpp" line="553"/>
         <source>Purple</source>
         <translation>Viola</translation>
     </message>
     <message>
-        <location filename="../../src/globals/Helper.cpp" line="553"/>
+        <location filename="../../src/globals/Helper.cpp" line="554"/>
         <source>Grey</source>
         <translation>GRigio</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="235"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="358"/>
@@ -5234,22 +5237,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="60"/>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append non è supportato da GZIP</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="66"/>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Aprire gzip per leggere e scrivere contemporaneamente non è supportato</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="74"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi aprire un gzip o per leggere o per scrivere. Quale scegli?</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quagzipfile.cpp" line="80"/>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile gzopen() il file</translation>
     </message>
 </context>
 <context>
@@ -5257,12 +5260,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="147"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append non è supportato per QuaZIODevice</translation>
     </message>
     <message>
         <location filename="../../third_party/quazip/quazip/quaziodevice.cpp" line="152"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::ReadWrite non è supportato per QuaZIODevice</translation>
     </message>
 </context>
 <context>
@@ -5270,7 +5273,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../third_party/quazip/quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore API ZIP/UNZIP %1</translation>
     </message>
 </context>
 <context>
@@ -5278,12 +5281,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="17"/>
         <source>Renamer</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina Automatica</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="34"/>
         <source>Pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Pattern</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="68"/>
@@ -5293,7 +5296,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="78"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome per file multipli</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="95"/>
@@ -5303,22 +5306,22 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="105"/>
         <source>Rename Files</source>
-        <translation>Rinomina files</translation>
+        <translation>Rinomina i file</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="125"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della cartella</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="142"/>
         <source>File Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del file</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="149"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della cartella per la Stagione</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="156"/>
@@ -5328,7 +5331,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="179"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Risultati</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="272"/>
@@ -5338,7 +5341,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="295"/>
         <source>Dry Run</source>
-        <translation type="unfinished"></translation>
+        <translation>Esecuzione simulata</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.ui" line="305"/>
@@ -5348,38 +5351,38 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="37"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vedi %1 per aiuto ed esempi per come utilizzare la rinomina automatica.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="57"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Concerto sarà rinominato</numerusform>
+            <numerusform>%n Concerti saranno rinominati</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="58"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Film sarà rinominato</numerusform>
+            <numerusform>%n Film saranno rinominati</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="60"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Serie TV e %1</numerusform>
+            <numerusform>%n Serie TV e %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/renamer/RenamerDialog.cpp" line="61"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Episodio sarà rinominato</numerusform>
+            <numerusform>%n Episodi saranno rinominati</numerusform>
         </translation>
     </message>
     <message>
@@ -5390,17 +5393,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="263"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; è stato modificato ma non è stato salvato</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="287"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Serie TV&lt;/b&gt; &quot;%1&quot; è stata modificata ma non è stata salvata</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerDialog.cpp" line="339"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; è stato modificato ma non è stato salvato</translation>
     </message>
 </context>
 <context>
@@ -5408,12 +5411,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="29"/>
         <source>Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnaposto</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="515"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnaposto</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="494"/>
@@ -5433,7 +5436,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="294"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero parte del file corrente</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="171"/>
@@ -5468,7 +5471,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="447"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="479"/>
@@ -5483,27 +5486,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"></translation>
+        <translation>File/Cartella è un BluRay</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>File/Cartella è un DVD</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"></translation>
+        <translation>File è in 3D</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del Gruppo di Film</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="682"/>
@@ -5518,7 +5521,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di canali audio</translation>
     </message>
 </context>
 <context>
@@ -5532,7 +5535,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="27"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita gli scraper per film per adulti</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="95"/>
@@ -5548,27 +5551,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="127"/>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="173"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Elemento</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="141"/>
         <source>TV Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Scraper</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="147"/>
         <source>Select which site you prefer for each element of a tv show and episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona quale sito preferisci per ciascun elemento di una Serie TV e di un episodio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.ui" line="178"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Sito</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="208"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"></translation>
+        <translation>Non usare</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="254"/>
@@ -5693,13 +5696,13 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="276"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="277"/>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="313"/>
         <source>Unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation>Non supportato</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsWidget.cpp" line="304"/>
@@ -5710,7 +5713,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>SeasonModelItem</name>
     <message>
-        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="141"/>
+        <location filename="../../src/tv_shows/model/SeasonModelItem.cpp" line="142"/>
         <source>Season %1</source>
         <translation>Stagione %1</translation>
     </message>
@@ -5725,7 +5728,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="88"/>
         <source>Set Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del Gruppo</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="119"/>
@@ -5735,12 +5738,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="124"/>
         <source>Sorttitle</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="147"/>
         <source>Add movie to set</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Film ad un Gruppo</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="150"/>
@@ -5750,12 +5753,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="160"/>
         <source>Remove selected movie from set</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi il Film selezionato dal Gruppo</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="163"/>
         <source>Remove Movie</source>
-        <translation>Rimuovi film</translation>
+        <translation>Rimuovi il film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="185"/>
@@ -5772,7 +5775,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="231"/>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="309"/>
         <source>Full preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima completa</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.ui" line="245"/>
@@ -5790,12 +5793,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="62"/>
         <source>Add Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi un Gruppo di Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="63"/>
         <source>Delete Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi un Gruppo di Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="465"/>
@@ -5805,7 +5808,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/movie_sets/SetsWidget.cpp" line="491"/>
         <source>New Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo Gruppo di Film</translation>
     </message>
 </context>
 <context>
@@ -5823,7 +5826,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="162"/>
         <source>Kodi</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="206"/>
@@ -5835,7 +5838,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="220"/>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="223"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musica</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="62"/>
@@ -5845,17 +5848,17 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="69"/>
         <source>Save Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva impostazioni</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="79"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>toolBar</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="118"/>
         <source>Movies</source>
-        <translation>Films</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="129"/>
@@ -5870,7 +5873,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="151"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.ui" line="173"/>
@@ -5885,7 +5888,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/settings/SettingsWindow.cpp" line="180"/>
         <source>Settings saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni salvate</translation>
     </message>
 </context>
 <context>
@@ -5893,7 +5896,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="17"/>
         <source>Support MediaElch</source>
-        <translation type="unfinished"></translation>
+        <translation>Supporta MediaElch</translation>
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="30"/>
@@ -5903,7 +5906,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>MediaElch utilizza vari database di Film e Serie TV. Questi database necessitano del tuo aiuto per mantenere i propri servizi attivi e aggiornati gratuitamente. Se non vuoi donare puoi contribuire con informazioni e artwork mancanti se possibile.</translation>
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="127"/>
@@ -5913,7 +5916,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi pulsante donazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/support/SupportDialog.ui" line="172"/>
@@ -5926,7 +5929,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="165"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabo</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="166"/>
@@ -5936,12 +5939,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="167"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinese (T)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="168"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinese (S)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="169"/>
@@ -5986,7 +5989,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="177"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francese (Canada)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="178"/>
@@ -6036,12 +6039,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="187"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portoghese (Brasile)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="188"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portoghese (Portogallo)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="189"/>
@@ -6061,7 +6064,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="192"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spagnolo (Messico)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/TMDb.cpp" line="193"/>
@@ -6084,7 +6087,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="29"/>
         <source>Arabic</source>
-        <translation type="unfinished"></translation>
+        <translation>Arabo</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="30"/>
@@ -6094,12 +6097,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="31"/>
         <source>Chinese (T)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinese (T)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="32"/>
         <source>Chinese (S)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinese (S)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="33"/>
@@ -6144,7 +6147,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="41"/>
         <source>French (Canada)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francese (Canada)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="42"/>
@@ -6194,12 +6197,12 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="51"/>
         <source>Portuguese (Brazil)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portoghese (Brasile)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="52"/>
         <source>Portuguese (Portugal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portoghese (Portogallo)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="53"/>
@@ -6219,7 +6222,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="56"/>
         <source>Spanish (Mexico)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spagnolo (Messico)</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/TMDbConcerts.cpp" line="57"/>
@@ -6420,7 +6423,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/globals/TrailerDialog.ui" line="277"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.ui" line="308"/>
@@ -6430,7 +6433,7 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/globals/TrailerDialog.ui" line="331"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.ui" line="338"/>
@@ -6466,27 +6469,27 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="363"/>
         <source>Download Not Found (404)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download non trovato (404)</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="367"/>
         <source>Download Error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore Download (%1)</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="414"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di rete</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="415"/>
         <source>Resource could not be played</source>
-        <translation type="unfinished"></translation>
+        <translation>La risorsa non può essere riprodotta</translation>
     </message>
     <message>
         <location filename="../../src/globals/TrailerDialog.cpp" line="416"/>
         <source>Video format error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore con il formato video</translation>
     </message>
 </context>
 <context>
@@ -6518,18 +6521,18 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
         <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Serie TV</numerusform>
+            <numerusform>%n Serie TV</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="28"/>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="613"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodio</numerusform>
+            <numerusform>%n episodi</numerusform>
         </translation>
     </message>
     <message>
@@ -6580,30 +6583,31 @@ If you want to search by an TMDb or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="717"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra episodi mancanti</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="720"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi gli speciali negli episodi mancanti</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="428"/>
         <source>Show update needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Necessario aggiornare la Serie TV</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="429"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi aggiornare la Serie TV almeno una volta per mostrare gli episodi mancanti.
+Successivamente MediaElch cercherà automaticamente i nuovi episodi durante all&apos;avvio.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="617"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1 di %n Serie TV</numerusform>
+            <numerusform>%1 di %n Serie TV</numerusform>
         </translation>
     </message>
 </context>
@@ -6627,7 +6631,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="79"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="80"/>
@@ -6642,7 +6646,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="82"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Art Personaggi</translation>
     </message>
     <message>
         <location filename="../../src/tv_shows/TvShowModel.cpp" line="83"/>
@@ -6655,12 +6659,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="14"/>
         <source>TV Show Multi Scrape</source>
-        <translation type="unfinished"></translation>
+        <translation>Serie TV Multi Scrape</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="24"/>
         <source>Please select the infos you want to be loaded. MediaElch will use the best result for each tv show and episode you selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona le informazioni che vuoi scaricare. MediaElch utilizzerà i migliori risultati per ogni Serie TV e Episodio che hai selezionato.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="46"/>
@@ -6675,12 +6679,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="68"/>
         <source>Episode Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura Episodio</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="81"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura Stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="94"/>
@@ -6700,7 +6704,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="133"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="146"/>
@@ -6775,7 +6779,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="328"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="350"/>
@@ -6785,17 +6789,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="376"/>
         <source>Use DVD episode order</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza l&apos;ordine episodi del DVD</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="383"/>
         <source>Automatically save each tv show/episode after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva automaticamente ogni Serie TV/Episodio dopo lo scraping</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="390"/>
         <source>Update only tv shows/episodes with TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna solo Serie TV/Episodi con TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="405"/>
@@ -6815,34 +6819,34 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.ui" line="473"/>
         <source>Start Scraping</source>
-        <translation>Inizia la Ricerca</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="351"/>
-        <source>%n tv shows</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation>Inizia lo Scraping</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="352"/>
+        <source>%n tv shows</source>
+        <translation>
+            <numerusform>%n Serie TV</numerusform>
+            <numerusform>%n Serie TV</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="353"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodio</numerusform>
+            <numerusform>%n episodi</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="354"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="355"/>
         <source>Scraping of %1 and %2 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scraping di %1 e %2 terminato.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="356"/>
-        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="358"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="357"/>
+        <location filename="../../src/ui/tv_show/TvShowMultiScrapeDialog.cpp" line="359"/>
         <source>Scraping of %1 has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scraping di %1 terminato.</translation>
     </message>
 </context>
 <context>
@@ -6855,7 +6859,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
+        <translation>Se vuoi cercare per un id TheTVDb metti davanti &quot;id&quot; (es. id123).</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="64"/>
@@ -6875,7 +6879,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="123"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="133"/>
@@ -6970,7 +6974,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="330"/>
         <source>Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowSearch.ui" line="364"/>
@@ -7081,17 +7085,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="17"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qui sotto puoi vedere i nomi dei file che verranno utilizzati per caricare e salvare le tue Serie TV. Puoi modificarli secondo le tue preferenze, se vuoi utilizzare file multipli separali con una virgola.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="27"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi utilizzare il segnaposto &lt;baseFileName&gt; che è il nome del file senza estensione e per i poster delle stagioni &lt;seasonNumber&gt; che è il numero della stagione.</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="42"/>
         <source>Show nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra NFO</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="49"/>
@@ -7121,7 +7125,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="84"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Art Personaggi</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="91"/>
@@ -7131,17 +7135,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="98"/>
         <source>Season Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>Sfondo stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="105"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Episiodio NFO</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="112"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura Episodio</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="119"/>
@@ -7151,12 +7155,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="246"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura Stagione</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/TvShowSettingsWidget.ui" line="253"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
 </context>
 <context>
@@ -7164,18 +7168,18 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message numerus="yes">
         <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="109"/>
         <source>%n episodes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n episodio</numerusform>
+            <numerusform>%n episodi</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>TvShowUpdater</name>
     <message>
-        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="63"/>
+        <location filename="../../src/tv_shows/TvShowUpdater.cpp" line="68"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento Serie TV</translation>
     </message>
 </context>
 <context>
@@ -7189,7 +7193,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="185"/>
         <source>TV Shows and Episodes Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Serie TV ed Episodi salvati</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidget.cpp" line="232"/>
@@ -7217,7 +7221,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="152"/>
         <source>Files</source>
-        <translation>Files</translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="166"/>
@@ -7262,7 +7266,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="281"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="288"/>
@@ -7277,7 +7281,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="387"/>
         <source>dd.MM.yyyy HH:mm</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="295"/>
@@ -7292,12 +7296,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="346"/>
         <source>Display Episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra episodio</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="396"/>
         <source>Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Segnalibro</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="444"/>
@@ -7307,7 +7311,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="477"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="499"/>
@@ -7337,7 +7341,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="665"/>
         <source>Remove Director</source>
-        <translation>Elimina regista</translation>
+        <translation>Rimuovi regista</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="508"/>
@@ -7352,7 +7356,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="563"/>
         <source>Remove Writer</source>
-        <translation>Elimina autore</translation>
+        <translation>Rimuovi autore</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="712"/>
@@ -7397,7 +7401,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="892"/>
         <source>Scantype</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipologia di scansione</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="856"/>
@@ -7456,7 +7460,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="113"/>
         <source>Episode missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodio mancante</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="479"/>
@@ -7534,7 +7538,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="146"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="210"/>
@@ -7566,7 +7570,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.ui" line="116"/>
         <source>Season missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Stagione mancante</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetSeason.cpp" line="109"/>
@@ -7599,7 +7603,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="109"/>
         <source>Dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Dir</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="123"/>
@@ -7619,7 +7623,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="208"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="227"/>
@@ -7634,7 +7638,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="257"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="284"/>
@@ -7649,12 +7653,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="294"/>
         <source>TV Tune</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Tune</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="303"/>
         <source>Existing</source>
-        <translation type="unfinished"></translation>
+        <translation>Esistenti</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="310"/>
@@ -7679,12 +7683,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="133"/>
         <source>Sort Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titolo per ordinamento</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="415"/>
         <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
+        <translation>IMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="450"/>
@@ -7714,27 +7718,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="506"/>
         <source>Remove Actor</source>
-        <translation>Elimina attore</translation>
+        <translation>Rimuovi attore</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="348"/>
         <source>TheTVDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="367"/>
         <source>Continuing</source>
-        <translation type="unfinished"></translation>
+        <translation>Continua</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="372"/>
         <source>Ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminata</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="380"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="586"/>
@@ -7785,7 +7789,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="940"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1157"/>
@@ -7805,60 +7809,60 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="1110"/>
         <source>Character Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Art Personaggi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="75"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
         <translation>Generi</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="76"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
         <translation>Aggiungi genere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="80"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="81"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
         <translation>Aggiungi tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="443"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="444"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvato/i</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="471"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="472"/>
         <source>Please wait while your tv show is scraped</source>
-        <translation type="unfinished"></translation>
+        <translation>Attendere mentre la tua Serie TV viene scaricata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="704"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="705"/>
         <source>Downloading images...</source>
         <translation>Download immagini...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="856"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
         <source>Unknown Actor</source>
         <translation>Attore sconosciuto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="857"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="858"/>
         <source>Unknown Role</source>
         <translation>Ruolo sconosciuto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Choose Image</source>
         <translation>Scegli immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="938"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="939"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Immagini (*.jpg *.jpeg)</translation>
     </message>
@@ -7868,7 +7872,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvTunesDialog.ui" line="17"/>
         <source>TV Tunes</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Tunes</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvTunesDialog.ui" line="54"/>
@@ -7883,7 +7887,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/tv_show/TvTunesDialog.ui" line="141"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvTunesDialog.ui" line="148"/>
@@ -7997,17 +8001,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="42"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"></translation>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="43"/>
         <source>AllMusic</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutta la Musica</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="44"/>
         <source>Discogs</source>
-        <translation type="unfinished"></translation>
+        <translation>Discografia</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="46"/>
@@ -8017,7 +8021,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="48"/>
         <source>Prefer</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferito</translation>
     </message>
 </context>
 <context>
@@ -8025,60 +8029,60 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="45"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla estrazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="65"/>
         <source>Extract without password</source>
-        <translation type="unfinished"></translation>
+        <translation>Estrai senza password</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="68"/>
         <source>Extract</source>
-        <translation type="unfinished"></translation>
+        <translation>Estrai</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="75"/>
         <source>Extract with password</source>
-        <translation type="unfinished"></translation>
+        <translation>Estrai con passowrd</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.ui" line="95"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella questo archivio</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password di estrazione</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="65"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancellare l&apos;archivio ?</translation>
     </message>
     <message>
         <location filename="../../src/ui/downloads/UnpackButtons.cpp" line="66"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi veramente cancellare questo archivio ?</translation>
     </message>
 </context>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="45"/>
+        <location filename="../../src/ui/main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamenti disponibili</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="46"/>
+        <location filename="../../src/ui/main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 è disponibile. &lt;br&gt; Scaricalo da %2</translation>
     </message>
 </context>
 <context>
