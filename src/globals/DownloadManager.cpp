@@ -14,14 +14,17 @@ DownloadManager::DownloadManager(QObject* parent) : QObject(parent), m_downloadi
     connect(&m_timer, &QTimer::timeout, this, &DownloadManager::downloadTimeout);
 }
 
-/**
- * @brief Returns the network access manager
- * @return Network access manager object
- */
+/// @brief Returns the network access manager
+/// @return Network access manager object
 QNetworkAccessManager* DownloadManager::qnam()
 {
-    static auto s_qnam = new QNetworkAccessManager();
+    static auto* s_qnam = new QNetworkAccessManager();
     return s_qnam;
+}
+
+bool DownloadManager::isLocalFile(const QUrl& url) const
+{
+    return url.toString().startsWith("//");
 }
 
 /// @brief Add the given download element and start downloading it if the
@@ -30,14 +33,12 @@ QNetworkAccessManager* DownloadManager::qnam()
 /// @see   DownloadManagerElement
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
-    qDebug() << "Enqueue download | " << elem.url;
+    qDebug() << "Enqueue download |" << elem.url;
 
-    bool startDownloading = false;
-    {
-        QMutexLocker locker(&m_mutex);
-        startDownloading = m_queue.isEmpty() && !m_downloading;
-        m_queue.enqueue(elem);
-    }
+    QMutexLocker locker(&m_mutex);
+    bool startDownloading = m_queue.isEmpty() && !m_downloading;
+    m_queue.enqueue(elem);
+    locker.unlock();
 
     if (startDownloading) {
         startNextDownload();
@@ -49,22 +50,20 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
 /// @see   DownloadManagerElement
 void DownloadManager::setDownloads(QVector<DownloadManagerElement> elements)
 {
+    QMutexLocker locker(&m_mutex);
     if (m_downloading) {
         m_currentReply->abort();
     }
 
     m_timer.stop();
-
-    {
-        QMutexLocker locker(&m_mutex);
-        m_queue.clear();
-    }
+    m_queue.clear();
+    locker.unlock();
 
     for (const DownloadManagerElement& elem : elements) {
         addDownload(elem);
     }
 
-    QMutexLocker locker(&m_mutex);
+    locker.relock();
     if (m_queue.isEmpty()) {
         QTimer::singleShot(0, this, SIGNAL(allDownloadsFinished()));
     }
@@ -85,25 +84,29 @@ void DownloadManager::checkAllDownloadsFinished()
     }
 }
 
-/**
- * @brief Starts the next download
- */
 void DownloadManager::startNextDownload()
 {
+    QMutexLocker locker(&m_mutex);
+    if (m_downloading) {
+        qWarning() << "[DownloadManager] Can't start another one; this should not happen and may be a bug";
+        return;
+    }
+
+    DownloadManagerElement oldDownload = m_currentDownloadElement;
     m_timer.stop();
-    if (m_currentDownloadElement.movie != nullptr) {
+    if (oldDownload.movie != nullptr) {
         checkAllDownloadsFinished<Movie>();
     }
-    if (m_currentDownloadElement.show != nullptr) {
+    if (oldDownload.show != nullptr) {
         checkAllDownloadsFinished<TvShow>();
     }
-    if (m_currentDownloadElement.concert != nullptr) {
+    if (oldDownload.concert != nullptr) {
         checkAllDownloadsFinished<Concert>();
     }
-    if (m_currentDownloadElement.artist != nullptr) {
+    if (oldDownload.artist != nullptr) {
         checkAllDownloadsFinished<Artist>();
     }
-    if (m_currentDownloadElement.album != nullptr) {
+    if (oldDownload.album != nullptr) {
         checkAllDownloadsFinished<Album>();
     }
 
@@ -115,99 +118,96 @@ void DownloadManager::startNextDownload()
 
     m_timer.start(8000);
     m_downloading = true;
-    {
-        QMutexLocker locker(&m_mutex);
-        m_currentDownloadElement = m_queue.dequeue();
+
+    m_currentDownloadElement = m_queue.dequeue();
+    DownloadManagerElement download = m_currentDownloadElement;
+
+    if (!isLocalFile(download.url)) {
+        m_currentReply = qnam()->get(QNetworkRequest(download.url));
+        connect(m_currentReply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
+        connect(m_currentReply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
     }
 
-    if (!m_currentDownloadElement.url.toString().startsWith("//")) {
-        m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
-        connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_currentReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-    }
-
-    QMutexLocker locker(&m_mutex);
-    if (m_currentDownloadElement.imageType == ImageType::Actor
-        || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
-        if (m_currentDownloadElement.movie != nullptr) {
+    if (download.imageType == ImageType::Actor || download.imageType == ImageType::TvShowEpisodeThumb) {
+        if (download.movie != nullptr) {
             int numDownloadsLeft = 0;
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
-                if (m_queue[i].movie == m_currentDownloadElement.movie) {
+                if (m_queue[i].movie == download.movie) {
                     numDownloadsLeft++;
                 }
             }
             locker.unlock();
-            emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
-        } else if (m_currentDownloadElement.show != nullptr) {
+            emit movieDownloadsLeft(numDownloadsLeft, download);
+
+        } else if (download.show != nullptr) {
             int numDownloadsLeft = 0;
             for (int i = 0, n = m_queue.size(); i < n; ++i) {
-                if (m_queue[i].show == m_currentDownloadElement.show) {
+                if (m_queue[i].show == download.show) {
                     numDownloadsLeft++;
                 }
             }
             locker.unlock();
-            emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
+            emit showDownloadsLeft(numDownloadsLeft, download);
+
         } else {
             locker.unlock();
             emit downloadsLeft(m_queue.size());
         }
     }
 
-    if (m_currentDownloadElement.url.toString().startsWith("//")) {
-        QFile file(m_currentDownloadElement.url.toString());
+    locker.unlock();
+
+    if (isLocalFile(download.url)) {
+        QFile file(download.url.toString());
         QByteArray data;
         if (file.open(QIODevice::ReadOnly)) {
             data = file.readAll();
             file.close();
         }
 
-        locker.relock();
-        m_currentDownloadElement.data = data;
+        download.data = data;
 
-        if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
-            && (m_currentDownloadElement.movie == nullptr)) {
-            m_currentDownloadElement.actor->image = data;
-            locker.unlock();
+        if (download.actor != nullptr && download.imageType == ImageType::Actor && (download.movie == nullptr)) {
+            download.actor->image = data;
 
-        } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
-                   && !m_currentDownloadElement.directDownload) {
-            m_currentDownloadElement.episode->setThumbnailImage(data);
-            locker.unlock();
+        } else if (download.imageType == ImageType::TvShowEpisodeThumb && !download.directDownload) {
+            download.episode->setThumbnailImage(data);
 
         } else {
-            locker.unlock();
-
-            emit sigDownloadFinished(m_currentDownloadElement);
+            emit sigDownloadFinished(download);
         }
         startNextDownload();
     }
 }
 
-/**
- * @brief Called by the current network reply
- * @param received Received bytes
- * @param total Total bytes
- */
+/// @brief Called by the current network reply
+/// @param received Received bytes
+/// @param total Total bytes
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
+    QMutexLocker locker(&m_mutex);
     m_timer.start(5000);
     m_currentDownloadElement.bytesReceived = received;
     m_currentDownloadElement.bytesTotal = total;
-    emit downloadProgress(m_currentDownloadElement);
+    emit sigDownloadProgress(m_currentDownloadElement);
 }
 
-/**
- * @brief Stops the current download and prepends it to the queue
- */
+/// @brief Stops the current download and prepends it to the queue
 void DownloadManager::downloadTimeout()
 {
     if (!m_downloading) {
         return;
     }
-    qWarning() << "Download timed out" << m_currentDownloadElement.url;
+
+    QMutexLocker locker(&m_mutex);
+
+    qWarning() << "Download timed out:" << m_currentDownloadElement.url;
+    m_downloading = false;
     m_retries++;
+
     m_currentReply->abort();
     m_currentReply->deleteLater();
+
     if (m_retries <= 2) {
         qDebug() << "Restarting the download";
         m_queue.prepend(m_currentDownloadElement);
@@ -216,28 +216,28 @@ void DownloadManager::downloadTimeout()
         qDebug() << "Giving up on this file, tried 3 times";
         m_retries = 0;
     }
+
+    locker.unlock();
+
     startNextDownload();
 }
 
-/**
- * @brief Called by the current network reply
- * Starts the next download if there is one
- */
+/// @brief Called by the current network reply.
+///        Starts the next download if there is one.
 void DownloadManager::downloadFinished()
 {
-    qDebug() << "Entered";
-
     auto* reply = dynamic_cast<QNetworkReply*>(QObject::sender());
-    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302
-        || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+    const int returnCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (returnCode == 302 || returnCode == 301) {
         reply->deleteLater();
         m_currentReply =
             qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-        connect(m_currentReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
+        connect(m_currentReply, &QNetworkReply::finished, this, &DownloadManager::downloadFinished);
+        connect(m_currentReply, &QNetworkReply::downloadProgress, this, &DownloadManager::downloadProgress);
         return;
     }
 
+    QMutexLocker locker(&m_mutex);
     m_downloading = false;
     m_retries = 0;
     QByteArray data;
@@ -247,43 +247,38 @@ void DownloadManager::downloadFinished()
         data = m_currentReply->readAll();
     }
 
-    {
-        QMutexLocker locker(&m_mutex);
-        m_currentDownloadElement.data = data;
-        reply->deleteLater();
-    }
+    m_currentDownloadElement.data = data;
 
-    QMutexLocker locker(&m_mutex);
-    if (m_currentDownloadElement.actor != nullptr                 //
-        && m_currentDownloadElement.imageType == ImageType::Actor //
+    reply->deleteLater();
+
+    if (m_currentDownloadElement.actor != nullptr && m_currentDownloadElement.imageType == ImageType::Actor
         && m_currentDownloadElement.movie == nullptr) {
         m_currentDownloadElement.actor->image = data;
-        locker.unlock();
 
     } else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb
                && !m_currentDownloadElement.directDownload) {
         m_currentDownloadElement.episode->setThumbnailImage(data);
-        locker.unlock();
 
     } else {
+        DownloadManagerElement copy = m_currentDownloadElement;
         locker.unlock();
-        emit sigDownloadFinished(m_currentDownloadElement);
+        emit sigDownloadFinished(copy);
     }
 
-    emit sigElemDownloaded(m_currentDownloadElement);
+    DownloadManagerElement copy = m_currentDownloadElement;
+    locker.unlock();
+    emit sigElemDownloaded(copy);
     startNextDownload();
 }
 
-/**
- * @brief Aborts the current download and clears the queue
- */
+/// @brief Aborts the current download and clears the queue
 void DownloadManager::abortDownloads()
 {
     qDebug() << "Entered";
+    QMutexLocker locker(&m_mutex);
     m_timer.stop();
-    m_mutex.lock();
     m_queue.clear();
-    m_mutex.unlock();
+    locker.unlock();
     if (m_downloading) {
         m_currentReply->abort();
     }
@@ -314,7 +309,6 @@ int DownloadManager::downloadQueueSize()
  */
 int DownloadManager::downloadsLeftForShow(TvShow* show)
 {
-    qDebug() << "Entered, show=" << show->name();
     int left = 0;
     m_mutex.lock();
     for (int i = 0, n = m_queue.count(); i < n; ++i) {
@@ -323,6 +317,6 @@ int DownloadManager::downloadsLeftForShow(TvShow* show)
         }
     }
     m_mutex.unlock();
-    qDebug() << "Downloads left" << left;
+    qDebug() << "Downloads left for show " << show->name() << ":" << left;
     return left;
 }
