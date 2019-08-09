@@ -157,13 +157,11 @@ void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
  */
 void TvShowWidgetEpisode::onClear()
 {
-    bool blocked = false;
-
     ui->directors->setRowCount(0);
     ui->writers->setRowCount(0);
     ui->thumbnail->clear();
 
-    blocked = ui->episodeName->blockSignals(true);
+    bool blocked = ui->episodeName->blockSignals(true);
     ui->episodeName->clear();
     ui->episodeName->blockSignals(blocked);
 
