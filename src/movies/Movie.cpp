@@ -26,7 +26,6 @@ Movie::Movie(QStringList files, QObject* parent) :
     m_playcount{0},
     m_databaseId{-1},
     m_mediaCenterId{-1},
-    m_watched{false},
     m_hasChanged{false},
     m_inSeparateFolder{false},
     m_syncNeeded{false},
@@ -429,15 +428,9 @@ QString Movie::folderName() const
     return m_folderName;
 }
 
-/**
- * @property Movie::watched
- * @brief Holds the movies watched status
- * @return Watched status of the movie
- * @see Movie::hasWatched
- */
 bool Movie::watched() const
 {
-    return m_watched;
+    return m_playcount > 0;
 }
 
 /**
@@ -741,17 +734,6 @@ void Movie::setSet(MovieSet set)
 void Movie::setUserRating(double rating)
 {
     m_userRating = rating;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies watched status
- * @param watched Watched status of the movie
- * @see Movie::watched
- */
-void Movie::setWatched(bool watched)
-{
-    m_watched = watched;
     setChanged(true);
 }
 

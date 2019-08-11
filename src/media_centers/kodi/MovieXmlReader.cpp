@@ -116,11 +116,6 @@ void MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("trailer").isEmpty()) {
         m_movie.setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
     }
-    if (!domDoc.elementsByTagName("watched").isEmpty()) {
-        m_movie.setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true");
-    } else {
-        m_movie.setWatched(m_movie.playcount() > 0);
-    }
 
     QStringList writers;
     for (int i = 0, n = domDoc.elementsByTagName("credits").size(); i < n; i++) {

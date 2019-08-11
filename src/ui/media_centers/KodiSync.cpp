@@ -553,10 +553,9 @@ void KodiSync::onCleanFinished()
 void KodiSync::updateWatched()
 {
     for (Movie* movie : m_moviesToSync) {
-        int id = findId(movie->files(), m_xbmcMovies);
+        const int id = findId(movie->files(), m_xbmcMovies);
         if (id > 0) {
             movie->blockSignals(true);
-            movie->setWatched(m_xbmcMovies.value(id).playCount > 0);
             movie->setPlayCount(m_xbmcMovies.value(id).playCount);
             movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
             movie->blockSignals(false);
@@ -567,7 +566,7 @@ void KodiSync::updateWatched()
     }
 
     for (Concert* concert : m_concertsToSync) {
-        int id = findId(concert->files(), m_xbmcConcerts);
+        const int id = findId(concert->files(), m_xbmcConcerts);
         if (id > 0) {
             concert->blockSignals(true);
             concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
@@ -580,7 +579,7 @@ void KodiSync::updateWatched()
     }
 
     for (TvShowEpisode* episode : m_episodesToSync) {
-        int id = findId(episode->files(), m_xbmcEpisodes);
+        const int id = findId(episode->files(), m_xbmcEpisodes);
         if (id > 0) {
             episode->blockSignals(true);
             episode->setPlayCount(m_xbmcEpisodes.value(id).playCount);

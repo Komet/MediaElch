@@ -193,7 +193,6 @@ void MovieFilesWidget::markAsWatched()
     for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie* movie = Manager::instance()->movieModel()->movie(row);
-        movie->setWatched(true);
         if (movie->playcount() < 1) {
             movie->setPlayCount(1);
         }
@@ -213,12 +212,7 @@ void MovieFilesWidget::markAsUnwatched()
     for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie* movie = Manager::instance()->movieModel()->movie(row);
-        if (movie->watched()) {
-            movie->setWatched(false);
-        }
-        if (movie->playcount() != 0) {
-            movie->setPlayCount(0);
-        }
+        movie->setPlayCount(0);
     }
     if (ui->files->selectionModel()->selectedRows(0).count() > 0) {
         movieSelectedEmitter();
