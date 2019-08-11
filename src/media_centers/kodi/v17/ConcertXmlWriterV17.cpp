@@ -33,9 +33,29 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
     KodiXml::setTextValue(doc, "album", m_concert.album());
     KodiXml::setTextValue(doc, "id", m_concert.imdbId().toString());
     KodiXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
-    if (!m_concert.ratings().isEmpty()) {
-        KodiXml::setTextValue(doc, "rating", QString("%1").arg(m_concert.ratings().first().rating));
+
+    // rating
+    KodiXml::removeChildNodes(doc, "ratings");
+    QDomElement ratings = doc.createElement("ratings");
+    bool firstRating = true;
+    for (const Rating& rating : m_concert.ratings()) {
+        QDomElement ratingValueElement = doc.createElement("value");
+        ratingValueElement.appendChild(doc.createTextNode(QString::number(rating.rating)));
+        QDomElement votesElement = doc.createElement("votes");
+        votesElement.appendChild(doc.createTextNode(QString::number(rating.voteCount)));
+        QDomElement ratingElement = doc.createElement("rating");
+        ratingElement.setAttribute("name", rating.source);
+        ratingElement.setAttribute("default", firstRating ? "true" : "false");
+        if (rating.maxRating > 0) {
+            ratingElement.setAttribute("max", rating.maxRating);
+        }
+        ratingElement.appendChild(ratingValueElement);
+        ratingElement.appendChild(votesElement);
+        ratings.appendChild(ratingElement);
+        firstRating = false;
     }
+    KodiXml::appendXmlNode(doc, ratings);
+
     KodiXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
     KodiXml::setTextValue(doc, "plot", m_concert.overview());
     KodiXml::setTextValue(doc, "outline", m_concert.overview());
