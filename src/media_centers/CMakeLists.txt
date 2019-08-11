@@ -5,16 +5,19 @@ add_library(
   kodi/ConcertXmlReader.cpp
   kodi/ConcertXmlWriter.cpp
   kodi/EpisodeXmlReader.cpp
+  kodi/KodiNfoMeta.cpp
   kodi/MovieXmlReader.cpp
   kodi/MovieXmlWriter.cpp
-  kodi/KodiNfoMeta.cpp
-  kodi/v16/MovieXmlWriterV16.cpp
-  kodi/v17/MovieXmlWriterV17.cpp
-  kodi/v18/MovieXmlWriterV18.cpp
-  kodi/v16/TvShowXmlWriterV16.cpp
-  kodi/v17/TvShowXmlWriterV17.cpp
-  kodi/v18/TvShowXmlWriterV18.cpp
   kodi/TvShowXmlReader.cpp
+  kodi/v16/ConcertXmlWriterV16.cpp
+  kodi/v16/MovieXmlWriterV16.cpp
+  kodi/v16/TvShowXmlWriterV16.cpp
+  kodi/v17/ConcertXmlWriterV17.cpp
+  kodi/v17/MovieXmlWriterV17.cpp
+  kodi/v17/TvShowXmlWriterV17.cpp
+  kodi/v18/ConcertXmlWriterV18.cpp
+  kodi/v18/MovieXmlWriterV18.cpp
+  kodi/v18/TvShowXmlWriterV18.cpp
   KodiVersion.cpp
   KodiXml.cpp
   MediaCenterInterface.cpp

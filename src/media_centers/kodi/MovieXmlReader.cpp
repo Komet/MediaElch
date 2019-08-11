@@ -1,4 +1,4 @@
-#include "MovieXmlReader.h"
+#include "media_centers/kodi/MovieXmlReader.h"
 
 #include "movies/Movie.h"
 

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <QByteArray>
-#include <QDomElement>
-#include <QString>
 
 class Concert;
 
@@ -12,11 +10,8 @@ namespace kodi {
 class ConcertXmlWriter
 {
 public:
-    explicit ConcertXmlWriter(Concert& concert);
-    QByteArray getConcertXml();
-
-private:
-    Concert& m_concert;
+    virtual ~ConcertXmlWriter() = default;
+    virtual QByteArray getConcertXml() = 0;
 };
 
 } // namespace kodi
