@@ -73,6 +73,8 @@ void TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         //   </rating>
         // </ratings>
         auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
+        m_show.ratings().clear();
+
         for (int i = 0; i < ratings.length(); ++i) {
             Rating rating;
             auto ratingElement = ratings.at(i).toElement();

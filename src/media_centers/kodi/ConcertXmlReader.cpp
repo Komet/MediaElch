@@ -32,16 +32,66 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("album").isEmpty()) {
         m_concert.setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     }
-    if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        Rating rating;
-        rating.rating = domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble();
-        if (m_concert.ratings().isEmpty()) {
+
+    // check for new ratings syntax
+    if (!domDoc.elementsByTagName("ratings").isEmpty()) {
+        // <ratings>
+        //   <rating name="default" default="true">
+        //     <value>10</value>
+        //     <votes>10</votes>
+        //   </rating>
+        // </ratings>
+        auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
+        m_concert.ratings().clear();
+
+        for (int i = 0; i < ratings.length(); ++i) {
+            Rating rating;
+            auto ratingElement = ratings.at(i).toElement();
+            rating.source = ratingElement.attribute("name", "default");
+            bool ok = false;
+            const int max = ratingElement.attribute("max", "0").toInt(&ok);
+            if (ok && max > 0) {
+                rating.maxRating = max;
+            }
+            rating.rating =
+                ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
+            rating.voteCount = ratingElement.elementsByTagName("votes")
+                                   .at(0)
+                                   .toElement()
+                                   .text()
+                                   .replace(",", "")
+                                   .replace(".", "")
+                                   .toInt();
             m_concert.ratings().push_back(rating);
-        } else {
-            m_concert.ratings().first() = rating;
+            m_concert.setChanged(true);
         }
-        m_concert.setChanged(true);
+
+    } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
+        // otherwise use "old" syntax:
+        // <rating>10.0</rating>
+        // <votes>10.0</votes>
+        QString value = domDoc.elementsByTagName("rating").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            Rating rating;
+            rating.rating = value.replace(",", ".").toDouble();
+            if (!domDoc.elementsByTagName("votes").isEmpty()) {
+                rating.voteCount = domDoc.elementsByTagName("votes")
+                                       .at(0)
+                                       .toElement()
+                                       .text()
+                                       .replace(",", "")
+                                       .replace(".", "")
+                                       .toInt();
+            }
+            m_concert.ratings().clear();
+            m_concert.ratings().push_back(rating);
+            m_concert.setChanged(true);
+        }
     }
+    if (!domDoc.elementsByTagName("userrating").isEmpty()) {
+        m_concert.setUserRating(domDoc.elementsByTagName("userrating").at(0).toElement().text().toDouble());
+    }
+
     if (!domDoc.elementsByTagName("year").isEmpty()) {
         m_concert.setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
     }
