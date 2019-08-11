@@ -549,7 +549,12 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert* concert, QVector<C
     if (infos.contains(ConcertScraperInfos::Rating) && parsedJson.value("vote_average").toDouble(-1) >= 0) {
         Rating rating;
         rating.rating = parsedJson.value("vote_average").toDouble();
-        concert->setRating(rating);
+        if (concert->ratings().isEmpty()) {
+            concert->ratings().push_back(rating);
+        } else {
+            concert->ratings().first() = rating;
+        }
+        concert->setChanged(true);
     }
     if (infos.contains(ConcertScraperInfos::Tagline) && !parsedJson.value("tagline").toString().isEmpty()) {
         concert->setTagline(parsedJson.value("tagline").toString());

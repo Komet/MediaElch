@@ -361,7 +361,7 @@ void ConcertWidget::updateConcertInfo()
 {
     qDebug() << "Entered";
     if (m_concert == nullptr) {
-        qDebug() << "My concert is invalid";
+        qWarning() << "[ConcertWidget] Concert is invalid; can't update";
         return;
     }
 
