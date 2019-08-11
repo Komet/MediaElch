@@ -56,7 +56,6 @@ public:
     QVector<Poster> backdrops;
     QStringList extraFanarts;
 
-    bool watched{false};
     StreamDetails* streamDetails = nullptr;
     QMap<ImageType, QByteArray> images;
 };
@@ -137,7 +136,6 @@ public:
     void setBackdrops(QVector<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
     void setDownloadsSize(int downloadsLeft);

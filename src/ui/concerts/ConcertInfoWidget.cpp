@@ -251,15 +251,21 @@ void ConcertInfoWidget::onWatchedClicked()
     ME_REQUIRE_CONCERT_OR_RETURN;
     const bool active = !ui->badgeWatched->isActive();
     ui->badgeWatched->setActive(active);
-    m_concertController->concert()->setWatched(active);
+
+    Concert* concert = m_concertController->concert();
 
     if (active) {
-        if (m_concertController->concert()->playcount() < 1) {
-            ui->playcount->setValue(1);
-        }
-        if (!m_concertController->concert()->lastPlayed().isValid()) {
+        concert->setPlayCount(std::max(1, concert->playcount()));
+        ui->playcount->setValue(concert->playcount());
+
+        if (!concert->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
         }
+
+    } else {
+        concert->setPlayCount(0);
+        concert->setLastPlayed(QDateTime{});
+        ui->playcount->setValue(0);
     }
     emit infoChanged();
 }

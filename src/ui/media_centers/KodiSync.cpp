@@ -570,7 +570,6 @@ void KodiSync::updateWatched()
         int id = findId(concert->files(), m_xbmcConcerts);
         if (id > 0) {
             concert->blockSignals(true);
-            concert->setWatched(m_xbmcConcerts.value(id).playCount > 0);
             concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
             concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
             concert->blockSignals(false);

@@ -1,10 +1,10 @@
 #include "test/test_helpers.h"
 
+#include "concerts/Concert.h"
 #include "media_centers/KodiXml.h"
 #include "media_centers/kodi/ConcertXmlReader.h"
 #include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
 #include "test/integration/resource_dir.h"
-#include "concerts/Concert.h"
 
 #include <QDomDocument>
 #include <chrono>
