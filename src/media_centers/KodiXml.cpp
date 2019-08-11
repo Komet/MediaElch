@@ -11,10 +11,13 @@
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
+#include "media_centers/kodi/v16/ConcertXmlWriterV16.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
+#include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 #include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
+#include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 #include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
 #include "movies/Movie.h"
@@ -612,8 +615,18 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
 
 QByteArray KodiXml::getConcertXml(Concert* concert)
 {
-    mediaelch::kodi::ConcertXmlWriter writer(*concert);
-    return writer.getConcertXml();
+    using namespace mediaelch;
+    // @todo(bugwelle):
+    // I'm fully aware that this is bad coding style but writing this clean
+    // requires so much refactoring that writing this whole feature would be easier.
+    // It's on my todo list to refactor this. Maybe into a Kodi factory.
+    std::unique_ptr<kodi::ConcertXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::ConcertXmlWriterV16>(*concert); break;
+    case KodiVersion::v17: writer = std::make_unique<kodi::ConcertXmlWriterV17>(*concert); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::ConcertXmlWriterV18>(*concert); break;
+    }
+    return writer->getConcertXml();
 }
 
 /**

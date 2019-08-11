@@ -1,4 +1,4 @@
-#include "media_centers/kodi/MovieXmlWriter.h"
+#include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
 
 namespace mediaelch {
 namespace kodi {
