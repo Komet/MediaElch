@@ -1449,16 +1449,20 @@ void MovieWidget::onWatchedClicked()
         return;
     }
 
-    bool active = !ui->badgeWatched->isActive();
+    const bool active = !ui->badgeWatched->isActive();
     ui->badgeWatched->setActive(active);
-    m_movie->setWatched(active);
+
     if (active) {
-        if (m_movie->playcount() < 1) {
-            ui->playcount->setValue(1);
-        }
+        m_movie->setPlayCount(std::max(1, m_movie->playcount()));
+        ui->playcount->setValue(m_movie->playcount());
+
         if (!m_movie->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
         }
+    } else {
+        m_movie->setPlayCount(0);
+        m_movie->setLastPlayed(QDateTime{});
+        ui->playcount->setValue(0);
     }
     ui->buttonRevert->setVisible(true);
 }

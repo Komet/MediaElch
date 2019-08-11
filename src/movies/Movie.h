@@ -121,7 +121,6 @@ public:
     void setTmdbId(TmdbId tmdbId);
     void setSet(MovieSet set);
     void setUserRating(double rating);
-    void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
     void setDownloadsSize(int downloadsSize);
@@ -201,7 +200,6 @@ private:
     int m_movieId = -1;
     int m_databaseId = -1;
     int m_mediaCenterId = -1;
-    bool m_watched = false;
     bool m_hasChanged = false;
     bool m_inSeparateFolder = false;
     bool m_syncNeeded = false;

@@ -57,8 +57,8 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
     //         CHECK(concert.name() == "Rammstein in Amerika");
     //         REQUIRE(!concert.ratings().isEmpty());
     //         CHECK(concert.ratings().first().voteCount == 7653);
-    //         CHECK(concert.image(ImageType::ConcertPoster).size() == 176);  // TODO: currently every thumb is a poster...
-    //         CHECK(concert.image(ImageType::ConcertBackdrop).size() == 57); // <fanart>
+    //         CHECK(concert.image(ImageType::ConcertPoster).size() == 176);  // TODO: currently every thumb is a
+    //         poster... CHECK(concert.image(ImageType::ConcertBackdrop).size() == 57); // <fanart>
     //         CHECK(concert.certification() == Certification("Rated R"));
     //         CHECK(concert.artist() == "Rammstein");
     //     });
