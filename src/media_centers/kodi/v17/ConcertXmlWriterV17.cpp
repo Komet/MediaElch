@@ -31,8 +31,24 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
     KodiXml::setTextValue(doc, "title", m_concert.name());
     KodiXml::setTextValue(doc, "artist", m_concert.artist());
     KodiXml::setTextValue(doc, "album", m_concert.album());
+
+    // id
     KodiXml::setTextValue(doc, "id", m_concert.imdbId().toString());
-    KodiXml::setTextValue(doc, "tmdbid", m_concert.tmdbId().toString());
+    // unique id: IMDb and TMDb
+    KodiXml::removeChildNodes(doc, "uniqueid");
+    {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "imdb");
+        uniqueId.setAttribute("default", "true");
+        uniqueId.appendChild(doc.createTextNode(m_concert.imdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
+    if (m_concert.tmdbId().isValid()) {
+        QDomElement uniqueId = doc.createElement("uniqueid");
+        uniqueId.setAttribute("type", "tmdb");
+        uniqueId.appendChild(doc.createTextNode(m_concert.tmdbId().toString()));
+        KodiXml::appendXmlNode(doc, uniqueId);
+    }
 
     // rating
     KodiXml::removeChildNodes(doc, "ratings");
