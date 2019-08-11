@@ -368,15 +368,9 @@ bool Concert::streamDetailsLoaded() const
     return m_streamDetailsLoaded;
 }
 
-/**
- * @property Concert::watched
- * @brief Holds the concerts watched status
- * @return Watched status of the concert
- * @see Concert::hasWatched
- */
 bool Concert::watched() const
 {
-    return m_concert.watched;
+    return m_concert.playcount > 0;
 }
 
 /**
@@ -664,17 +658,6 @@ void Concert::setBackdrop(int index, Poster backdrop)
         return;
     }
     m_concert.backdrops[index] = std::move(backdrop);
-    setChanged(true);
-}
-
-/**
- * @brief Sets the concerts watched status
- * @param watched Watched status of the concert
- * @see Concert::watched
- */
-void Concert::setWatched(bool watched)
-{
-    m_concert.watched = watched;
     setChanged(true);
 }
 

@@ -108,17 +108,15 @@ void ConcertFilesWidget::markAsWatched()
     for (const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
-        concert->setWatched(true);
-        if (concert->playcount() < 1) {
-            concert->setPlayCount(1);
-}
+        concert->setPlayCount(std::max(1, concert->playcount()));
+
         if (!concert->lastPlayed().isValid()) {
             concert->setLastPlayed(QDateTime::currentDateTime());
-}
+        }
     }
     if (ui->files->selectionModel()->selectedRows(0).count() > 0) {
         concertSelectedEmitter();
-}
+    }
 }
 
 void ConcertFilesWidget::markAsUnwatched()
@@ -127,16 +125,12 @@ void ConcertFilesWidget::markAsUnwatched()
     for(const QModelIndex &index: ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
-        if (concert->watched()) {
-            concert->setWatched(false);
-}
-        if (concert->playcount() != 0) {
-            concert->setPlayCount(0);
-}
+        concert->setPlayCount(0);
+        concert->setLastPlayed(QDateTime{});
     }
     if (ui->files->selectionModel()->selectedRows(0).count() > 0) {
         concertSelectedEmitter();
-}
+    }
 }
 
 void ConcertFilesWidget::loadStreamDetails()
