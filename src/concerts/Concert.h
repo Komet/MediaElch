@@ -42,7 +42,7 @@ public:
 
     QDate releaseDate;
     QString tagline;
-    std::chrono::minutes runtime;
+    std::chrono::minutes runtime{0};
     Certification certification;
 
     QStringList genres;
@@ -71,7 +71,7 @@ class Concert final : public QObject
     Q_OBJECT
 
 public:
-    explicit Concert(QStringList files, QObject* parent = nullptr);
+    explicit Concert(QStringList files = {}, QObject* parent = nullptr);
     ~Concert() = default;
 
     ConcertController* controller() const;

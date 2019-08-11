@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<musicvideo>
+    <title></title>
+    <artist></artist>
+    <album></album>
+    <id></id>
+    <uniqueid default="true" type="imdb"></uniqueid>
+    <ratings/>
+    <year></year>
+    <plot></plot>
+    <outline></outline>
+    <tagline></tagline>
+    <mpaa></mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <trailer></trailer>
+    <watched>false</watched>
+    <genre></genre>
+</musicvideo>

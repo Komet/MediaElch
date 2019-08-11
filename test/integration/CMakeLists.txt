@@ -3,6 +3,7 @@ add_executable(
   main.cpp
   media_centers/testKodi_v16_movie.cpp
   media_centers/testKodi_v16_show.cpp
+  media_centers/testKodi_v18_concert.cpp
   media_centers/testKodi_v18_movie.cpp
   media_centers/testKodi_v18_show.cpp
   resource_dir.cpp
