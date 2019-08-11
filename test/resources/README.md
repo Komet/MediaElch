@@ -7,7 +7,7 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
  - replaced `&quot;` with `"` because `QDomText` does not escape them unless necessary
  - replaced `&apos;` with `'` because `QDomText` does not escape them unless necessary
 
-changes only for movies:
+## Changes only for movies
 
  - added empty `<sorttitle>` (not set by Kodi unless specified)
  - removed following tags because they're set by Kodi v17 but not used:
@@ -17,7 +17,7 @@ changes only for movies:
    - `<aired></aired>`
  - changed resume time to != 0.0
 
-and only for TV shows:
+## Changes only for TV shows
 
  - set `<outline>` with the contents with `<plot>`
  - remove following tags because they are unused in TV show NFO files (may be used in episode files)
@@ -37,3 +37,7 @@ and only for TV shows:
    - `<tagline></tagline>`
  - removed ` post="yes" cache="auth.json"` from `<episodeguide>` as it is a TVDBv2 feature which we don't yet support;
    see https://forum.kodi.tv/showthread.php?tid=323588
+
+## Changes only for concerts
+
+ - main tag `<movie>` renamed to `<musicvideo>`
