@@ -37,7 +37,9 @@ public:
     QString album;
     QString overview;
 
-    Rating rating;
+    QVector<Rating> ratings;
+    double userRating = 0.0;
+
     QDate releaseDate;
     QString tagline;
     std::chrono::minutes runtime;
@@ -81,7 +83,9 @@ public:
     QString artist() const;
     QString album() const;
     QString overview() const;
-    Rating rating() const;
+    QVector<Rating>& ratings();
+    const QVector<Rating>& ratings() const;
+    double userRating() const;
     QDate released() const;
     QString tagline() const;
     std::chrono::minutes runtime() const;
@@ -117,7 +121,7 @@ public:
     void setArtist(QString artist);
     void setAlbum(QString album);
     void setOverview(QString overview);
-    void setRating(Rating rating);
+    void setUserRating(double rating);
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setRuntime(std::chrono::minutes runtime);

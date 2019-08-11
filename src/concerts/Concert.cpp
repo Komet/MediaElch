@@ -70,10 +70,8 @@ void Concert::clear()
     m_nfoContent.clear();
 }
 
-/**
- * @brief Clears contents of the concert based on a list
- * @param infos List of infos which should be cleared
- */
+/// @brief Clears contents of the concert based on a list
+/// @param infos List of infos which should be cleared
 void Concert::clear(QVector<ConcertScraperInfos> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
@@ -95,7 +93,9 @@ void Concert::clear(QVector<ConcertScraperInfos> infos)
         m_concert.overview = "";
     }
     if (infos.contains(ConcertScraperInfos::Rating)) {
-        m_concert.rating = Rating{};
+        m_concert.ratings.clear();
+        m_concert.ratings.push_back(Rating{});
+        m_concert.userRating = 0.0;
     }
     if (infos.contains(ConcertScraperInfos::Released)) {
         m_concert.releaseDate = QDate(2000, 02, 30); // invalid date
@@ -194,14 +194,19 @@ QString Concert::overview() const
     return m_concert.overview;
 }
 
-/**
- * @brief Holds the concerts rating
- * @return Rating of the concert
- * @see Concert::setRating
- */
-Rating Concert::rating() const
+QVector<Rating>& Concert::ratings()
 {
-    return m_concert.rating;
+    return m_concert.ratings;
+}
+
+const QVector<Rating>& Concert::ratings() const
+{
+    return m_concert.ratings;
+}
+
+double Concert::userRating() const
+{
+    return m_concert.userRating;
 }
 
 /**
@@ -527,14 +532,9 @@ void Concert::setOverview(QString overview)
     setChanged(true);
 }
 
-/**
- * @brief Sets the concerts rating
- * @param rating Rating of the concert
- * @see Concert::rating
- */
-void Concert::setRating(Rating rating)
+void Concert::setUserRating(double userRating)
 {
-    m_concert.rating = std::move(rating);
+    m_concert.userRating = userRating;
     setChanged(true);
 }
 

@@ -35,7 +35,12 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("rating").isEmpty()) {
         Rating rating;
         rating.rating = domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble();
-        m_concert.setRating(rating);
+        if (m_concert.ratings().isEmpty()) {
+            m_concert.ratings().push_back(rating);
+        } else {
+            m_concert.ratings().first() = rating;
+        }
+        m_concert.setChanged(true);
     }
     if (!domDoc.elementsByTagName("year").isEmpty()) {
         m_concert.setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
