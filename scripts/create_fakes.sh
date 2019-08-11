@@ -40,13 +40,20 @@ showBaseOutDir="${outDir}/tvshows_en"
 # $1: TV Show directory
 create_fake_show() {
 	local showInputDir=${1}
-	local showName=$(basename $1)
-	local showOutDir="${showBaseOutDir}/${showName}"
+	local showName
+	local showOutDir
 
-	for season in ${showInputDir}/*.txt
+	showName=$(basename $1)
+	showOutDir="${showBaseOutDir}/${showName}"
+
+	for season in "${showInputDir}"/*.txt
 	do
-		local seasonFile=$(basename "${season}")
-		local seasonDir="${showOutDir}/${seasonFile%.*}" # Name without file extension
+		local seasonFile
+		local seasonDir # Name without file extension
+
+		seasonFile=$(basename "${season}")
+		seasonDir="${showOutDir}/${seasonFile%.*}"
+
 		mkdir -p "${seasonDir}";
 
 		while IFS= read -r episode
@@ -93,13 +100,20 @@ musicBaseOutDir="${outDir}/music"
 # $1: Music directory
 create_fake_music() {
 	local aristInputDir=${1}
-	local artistName=$(basename $1)
-	local artistOutDir="${musicBaseOutDir}/${artistName}"
+	local artistName
+	local artistOutDir
 
-	for album in ${aristInputDir}/*.txt
+	artistName=$(basename $1)
+	artistOutDir="${musicBaseOutDir}/${artistName}"
+
+	for album in "${aristInputDir}"/*.txt
 	do
-		local albumFile=$(basename "${album}")
-		local albumDir="${artistOutDir}/${albumFile%.*}" # Name without file extension
+		local albumFile
+		local albumDir # Name without file extension
+
+		albumFile=$(basename "${album}")
+		albumDir="${artistOutDir}/${albumFile%.*}"
+
 		mkdir -p "${albumDir}";
 
 		while IFS= read -r song

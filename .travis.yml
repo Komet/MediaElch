@@ -20,10 +20,10 @@ matrix:
   # dependencies.
   - name: "shellcheck linting"
     language: shell
+    before_script:
+      - shellcheck --version
     script:
-    - shellcheck --version
-    - find . ! -path "./build/*" -type f -name "*.sh" -exec shellcheck -x -e SC2086,SC1090 {} \+ ||
-      echo "Errors running shellcheck. Does not make this run fail, yet."
+      - ./scripts/run_shellcheck.sh
 
   - name: "cmake-format check"
     language: python

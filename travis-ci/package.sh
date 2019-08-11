@@ -178,7 +178,7 @@ create_appimage() {
 	fold_start "renaming"
 	print_info "Renaming .AppImage"
 	mv MediaElch-${VERSION}*.AppImage MediaElch_linux_${VERSION_NAME}.AppImage
-	chmod +x *.AppImage
+	chmod +x ./*.AppImage
 	fold_end
 }
 
@@ -263,9 +263,9 @@ package_zip() {
 	local MXELIB=${MXEDIR}/usr/${MXETARGET}
 	local FFMPEG_VERSION="ffmpeg-latest-win64-static"
 
-	for file in $(cat ${SCRIPT_DIR}/win/dll_list.txt); do
+	while IFS= read -r file; do
 		cp ${MXELIB}/${file} pkg-zip/MediaElch/
-	done
+	done < "${SCRIPT_DIR}/win/dll_list.txt"
 
 	mkdir -p pkg-zip/MediaElch/sqldrivers
 	cp ${MXELIB}/qt5/plugins/sqldrivers/qsqlite.dll                 pkg-zip/MediaElch/sqldrivers
@@ -301,7 +301,7 @@ package_zip() {
 	fold_start "zipping_exe"
 	print_info "Zipping 'MediaElch_win_${VERSION_NAME}.zip'"
 	pushd pkg-zip > /dev/null
-	zip -r "../MediaElch_win_${VERSION_NAME}.zip" *
+	zip -r "../MediaElch_win_${VERSION_NAME}.zip" ./*
 	popd > /dev/null
 	fold_end
 }

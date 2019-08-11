@@ -2,15 +2,20 @@
 
 ###########################################################
 # OS infos
-export OS_NAME="$(uname -s)"
-export OS_REV="$(uname -r)"
-export OS_MACH="$(uname -m)"
+OS_NAME="$(uname -s)"
+OS_REV="$(uname -r)"
+OS_MACH="$(uname -m)"
 
 if [ "${OS_NAME}" = "Linux" ]; then
-	export JOBS=$(grep '^processor' /proc/cpuinfo | wc -l)
+	 JOBS=$(grep -c '^processor' /proc/cpuinfo)
 else
-	export JOBS=2
+	JOBS=2
 fi
+
+export OS_NAME
+export OS_REV
+export OS_MACH
+export JOBS
 
 ###########################################################
 # Print
