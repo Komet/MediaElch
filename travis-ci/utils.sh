@@ -2,10 +2,11 @@
 
 ###########################################################
 # Important paths
+SCRIPT_DIR="$( cd "$(dirname "$0")" || exit 1; pwd -P )"
+PROJECT_DIR="$(readlink -f "${SCRIPT_DIR}/..")"
 
-export BIN_DIR=$(dirname $(which g++))
-export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-export PROJECT_DIR="${SCRIPT_DIR}/.."
+export SCRIPT_DIR
+export PROJECT_DIR
 
 ###########################################################
 # Travis CI folding
@@ -13,14 +14,14 @@ export PROJECT_DIR="${SCRIPT_DIR}/.."
 TRAVIS_LAST_FOLD=""
 
 fold_start() {
-	echo -e "travis_fold:start:$1"
+	echo "travis_fold:start:$1"
 	TRAVIS_LAST_FOLD="$1"
 }
 
 fold_end() {
-	if [ "$TRAVIS_LAST_FOLD" == "" ]; then
+	if [ "$TRAVIS_LAST_FOLD" = "" ]; then
 		return
 	fi
-	echo -e "travis_fold:end:$TRAVIS_LAST_FOLD"
+	echo "travis_fold:end:$TRAVIS_LAST_FOLD"
 	TRAVIS_LAST_FOLD=""
 }

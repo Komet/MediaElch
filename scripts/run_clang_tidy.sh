@@ -9,7 +9,7 @@ source scripts/utils.sh
 print_important "Building with clang-tidy and applying fixes"
 
 rm -rf build/clang-tidy
-mkdir build/clang-tidy
+mkdir -p build/clang-tidy
 cd build/clang-tidy
 
 print_info "clang-tidy build dir: $(pwd)"

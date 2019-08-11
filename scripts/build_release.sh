@@ -3,9 +3,14 @@
 set -e          # Exit on errors
 set -o pipefail # Unveils hidden failures
 
-export SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-export PROJECT_DIR="$( cd "${SCRIPT_DIR}/.." ; pwd -P )"
-export BUILD_DIR="${PROJECT_DIR}/build"
+SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+PROJECT_DIR="$( cd "${SCRIPT_DIR}/.." ; pwd -P )"
+BUILD_DIR="${PROJECT_DIR}/build"
+
+export SCRIPT_DIR
+export PROJECT_DIR
+export BUILD_DIR
+
 BUILD_OS=$1
 
 cd "${SCRIPT_DIR}"
@@ -33,7 +38,7 @@ confirm_build() {
 	echo ""
 	print_important "Do you want to build MediaElch for ${BUILD_OS} with these settings?"
 	print_important "The build will take between 5 and 20 minutes dependending on your machine."
-	read -s -p  "Press enter to continue"
+	read -r -s -p  "Press enter to continue"
 	echo ""
 	echo ""
 }
@@ -53,7 +58,7 @@ build_release_linux() {
 	echo ""
 
 	print_important "Building MediaElch (only warnings and errors shown)"
-	make -j $(nproc) 1>/dev/null
+	make -j "$(nproc)" 1>/dev/null
 	popd > /dev/null
 }
 

@@ -6,7 +6,7 @@ IFS=$'\n\t'
 # Script originally from https://github.com/TheAssassin/AppImageLauncher
 # Modified for use in MediaElch
 
-cd $(dirname "$(realpath -s "$0")")
+cd "$(dirname "$(realpath -s "$0")")"
 PROJECT_PATH="$(readlink -f ../..)"
 
 DISTROS=(
@@ -23,7 +23,7 @@ print_usage() {
 	echo "  $0 <distro>"
 	echo ""
 	echo "Distros:"
-	for distro in ${DISTROS[@]}; do
+	for distro in "${DISTROS[@]}"; do
 		echo " - ${distro}"
 	done
 	echo ""

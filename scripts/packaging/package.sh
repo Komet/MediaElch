@@ -54,10 +54,10 @@ gather_information() {
 	git submodule update --init
 
 	VERSION_FULL=$(sed -ne 's/.*AppVersionStr[^"]*"\(.*\)";/\1/p' Version.h)    # Format: 2.4.3-dev
-	VERSION=$(echo $VERSION_FULL | sed -e 's/-dev//')                           # Format: 2.4.3
+	VERSION=${VERSION_FULL//-dev/}                                              # Format: 2.4.3
 	GIT_VERSION_FULL=$(git describe --abbrev=12 | sed -e 's/-g.*$// ; s/^v//')  # Format: 2.4.3-123
-	GIT_VERSION=$(echo $GIT_VERSION_FULL | sed -e 's/-/./')                     # Format: 2.4.3
-	GIT_REVISION=$(echo $GIT_VERSION_FULL | sed -e 's/.*-// ; s/.*\..*//')      # Format: 123
+	GIT_VERSION=${GIT_VERSION_FULL//-/.}                                        # Format: 2.4.3
+	GIT_REVISION=${GIT_VERSION_FULL//*-/}                                       # Format: 123
 	GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 	# RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
 	GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
@@ -94,7 +94,7 @@ confirm_build() {
 	echo ""
 	print_important "Do you want to package MediaElch ${VERSION} for ${BUILD_OS} with these settings?"
 	print_important "It is recommended to clean your repository using \"git clean -fdx\"."
-	read -s -p  "Press enter to continue, Ctrl+C to cancel"
+	read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
 	echo ""
 }
 
@@ -150,7 +150,7 @@ package_appimage() {
 
 	echo ""
 	print_info "Installing MediaElch in subdirectory to create basic AppDir structure"
-	make INSTALL_ROOT=appdir -j$(nproc) install
+	make INSTALL_ROOT=appdir -j"$(nproc)" install
 	tree appdir/
 
 	#######################################################
@@ -213,8 +213,8 @@ package_appimage() {
 
 	echo ""
 	print_info "Renaming .AppImage"
-	mv MediaElch-${VERSION}*.AppImage MediaElch_linux_${VERSION_NAME}.AppImage
-	chmod +x *.AppImage
+	mv ./MediaElch-${VERSION}*.AppImage MediaElch_linux_${VERSION_NAME}.AppImage
+	chmod +x ./*.AppImage
 
 	print_success "Successfully created AppImage: "
 	print_success "    $(pwd)/MediaElch_linux_${VERSION_NAME}.AppImage"
@@ -253,7 +253,7 @@ prepare_deb() {
 	# New Version; Get rivision that is not in changelog
 	PPA_REVISION=0
 	while [ $PPA_REVISION -le "99" ]; do
-		PPA_REVISION=$(($PPA_REVISION+1))
+		PPA_REVISION=$((PPA_REVISION+1))
 		if [[ ! $(grep $VERSION-$PPA_REVISION debian/changelog) ]]; then
 			break
 		fi
@@ -293,7 +293,7 @@ package_and_upload_to_launchpad() {
 
 	print_important "\$ME_LAUNCHPAD_TYPE is: ${ME_LAUNCHPAD_TYPE} (can be either stable/nightly/test)"
 	print_important "Is this correct?"
-	[ "${no_confirm}" != "--no-confirm" ] && read -s -p  "Press enter to continue, Ctrl+C to cancel"
+	[ "${no_confirm}" != "--no-confirm" ] && read -r -s -p  "Press enter to continue, Ctrl+C to cancel"
 
 	if [ -z "$ME_SIGNING_KEY" ]; then
 		print_critical "\$ME_SIGNING_KEY is empty or not set! Must be a GPG key id"

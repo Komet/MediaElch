@@ -49,10 +49,12 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 		export MXETARGET="x86_64-w64-mingw32.shared"
 
 		# defs.sh is read by "configure.sh"
-		echo "#!/usr/bin/env bash"        >  ${SCRIPT_DIR}/defs.sh
-		echo "MXEDIR=\"${MXEDIR}\""       >> ${SCRIPT_DIR}/defs.sh
-		echo "MXEINFIX=\"${MXEINFIX}\""   >> ${SCRIPT_DIR}/defs.sh
-		echo "MXETARGET=\"${MXETARGET}\"" >> ${SCRIPT_DIR}/defs.sh
+		{
+			echo "#!/usr/bin/env bash"
+			echo "MXEDIR=\"${MXEDIR}\""
+			echo "MXEINFIX=\"${MXEINFIX}\""
+			echo "MXETARGET=\"${MXETARGET}\""
+		} > ${SCRIPT_DIR}/defs.sh
 
 		#######################################################
 		# Repositories
