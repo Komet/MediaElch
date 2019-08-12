@@ -186,7 +186,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->concertSplitter,                 &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
     connect(ui->musicSplitter,                   &QSplitter::splitterMoved, this, &MainWindow::moveSplitter);
 
-    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, [this]() { ui->tvShowFilesWidget->renewModel(false); });
+    connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, [this]() { ui->tvShowFilesWidget->renewModel(true); });
     connect(Manager::instance()->tvShowFileSearcher(), &TvShowFileSearcher::tvShowsLoaded, this, &MainWindow::updateTvShows);
     connect(m_fileScannerDialog,                       &QDialog::accepted,                 this, &MainWindow::setNewMarks);
     connect(ui->downloadsWidget,                       &DownloadsWidget::sigScanFinished,  this, &MainWindow::setNewMarks);
