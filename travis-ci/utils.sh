@@ -3,7 +3,7 @@
 ###########################################################
 # Important paths
 SCRIPT_DIR="$( cd "$(dirname "$0")" || exit 1; pwd -P )"
-PROJECT_DIR="$(readlink -f "${SCRIPT_DIR}/..")"
+PROJECT_DIR="${SCRIPT_DIR}/.."
 
 export SCRIPT_DIR
 export PROJECT_DIR
