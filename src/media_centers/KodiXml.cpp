@@ -12,12 +12,15 @@
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
 #include "media_centers/kodi/v16/ConcertXmlWriterV16.h"
+#include "media_centers/kodi/v16/EpisodeXmlWriterV16.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
 #include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
+#include "media_centers/kodi/v17/EpisodeXmlWriterV17.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 #include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
 #include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
+#include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
 #include "media_centers/kodi/v18/TvShowXmlWriterV18.h"
 #include "movies/Movie.h"
@@ -889,18 +892,8 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
         nfoContent = initialNfoContent;
     }
 
-    QString def;
-    QStringList baseNfoContent;
-    for (const QString& line : nfoContent.split("\n")) {
-        if (!line.startsWith("<?xml")) {
-            baseNfoContent << line;
-        } else {
-            def = line;
-        }
-    }
-    QString nfoContentWithRoot = QStringLiteral("%1\n<root>%2</root>").arg(def, baseNfoContent.join("\n"));
     QDomDocument domDoc;
-    domDoc.setContent(nfoContentWithRoot);
+    domDoc.setContent(mediaelch::kodi::EpisodeXmlReader::makeValidEpisodeXml(nfoContent));
 
     QDomNodeList episodeDetailsList = domDoc.elementsByTagName("episodedetails");
     if (episodeDetailsList.isEmpty()) {
@@ -1068,6 +1061,8 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
     const QByteArray xmlContent = getEpisodeXml(episodes);
     for (TvShowEpisode* subEpisode : episodes) {
         subEpisode->setNfoContent(xmlContent);
+        subEpisode->setSyncNeeded(true);
+        subEpisode->setChanged(false);
         Manager::instance()->database()->update(subEpisode);
     }
 
@@ -1154,77 +1149,14 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
 ///        to the same document to merge information.
 QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-
-    for (TvShowEpisode* subEpisode : episodes) {
-        writeTvShowEpisodeXml(xml, subEpisode);
-        subEpisode->setChanged(false);
-        subEpisode->setSyncNeeded(true);
+    using namespace mediaelch;
+    std::unique_ptr<kodi::EpisodeXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::EpisodeXmlWriterV16>(episodes); break;
+    case KodiVersion::v17: writer = std::make_unique<kodi::EpisodeXmlWriterV17>(episodes); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::EpisodeXmlWriterV18>(episodes); break;
     }
-
-    xml.writeEndDocument();
-    return xmlContent;
-}
-
-/**
- * @brief Writes tv show episode elements to an xml stream
- * @param xml XML stream
- * @param episode Episode to save
- */
-void KodiXml::writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episode)
-{
-    xml.writeStartElement("episodedetails");
-    xml.writeTextElement("imdbid", episode->imdbId().toString());
-    xml.writeTextElement("title", episode->name());
-    xml.writeTextElement("showtitle", episode->showTitle());
-    xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
-    xml.writeTextElement("votes", QString("%1").arg(episode->votes()));
-    xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
-    xml.writeTextElement("season", episode->season().toString());
-    xml.writeTextElement("episode", episode->episode().toString());
-    if (episode->displaySeason() != SeasonNumber::NoSeason) {
-        xml.writeTextElement("displayseason", episode->displaySeason().toString());
-    }
-    if (episode->displayEpisode() != EpisodeNumber::NoEpisode) {
-        xml.writeTextElement("displayepisode", episode->displayEpisode().toString());
-    }
-    xml.writeTextElement("plot", episode->overview());
-    xml.writeTextElement("outline", episode->overview());
-    xml.writeTextElement("mpaa", episode->certification().toString());
-    xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
-    xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    xml.writeTextElement("aired", episode->firstAired().toString("yyyy-MM-dd"));
-    xml.writeTextElement("studio", episode->network());
-    if (!episode->epBookmark().isNull() && QTime(0, 0, 0).secsTo(episode->epBookmark()) > 0) {
-        xml.writeTextElement("epbookmark", QString("%1").arg(QTime(0, 0, 0).secsTo(episode->epBookmark())));
-    }
-    for (const QString& writer : episode->writers()) {
-        xml.writeTextElement("credits", writer);
-    }
-
-    for (const QString& director : episode->directors()) {
-        xml.writeTextElement("director", director);
-    }
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
-        xml.writeTextElement("thumb", episode->thumbnail().toString());
-    }
-
-    for (const Actor& actor : episode->actors()) {
-        xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor.name);
-        xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-            xml.writeTextElement("thumb", actor.thumb);
-        }
-        xml.writeEndElement();
-    }
-
-    KodiXml::writeStreamDetails(xml, episode->streamDetails());
-
-    xml.writeEndElement();
+    return writer->getEpisodeXml();
 }
 
 QStringList KodiXml::extraFanartNames(Movie* movie)

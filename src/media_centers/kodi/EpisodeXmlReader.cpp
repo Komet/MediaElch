@@ -118,5 +118,25 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     }
 }
 
+QString EpisodeXmlReader::makeValidEpisodeXml(const QString& nfoContent)
+{
+    QString def;
+    QStringList baseNfoContent;
+    for (const QString& line : nfoContent.split("\n")) {
+        if (!line.startsWith("<?xml")) {
+            baseNfoContent << line;
+        } else {
+            def = line;
+        }
+    }
+
+    // This is a HACK around Kodi's invalid XML files. There can only be ONE root element in valid XML files.
+    // see https://kodi.wiki/view/NFO_files/TV_shows#TV_Episode_Tags
+    const QString nfoContentWithRoot =
+        QStringLiteral("%1\n<episodes>\n  %2</episodes>\n").arg(def, baseNfoContent.join("\n"));
+
+    return nfoContentWithRoot;
+}
+
 } // namespace kodi
 } // namespace mediaelch

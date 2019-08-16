@@ -12,6 +12,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_centers/KodiXml.h"
+#include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
 #include "movies/Movie.h"
 #include "music/Album.h"
 #include "music/Artist.h"
@@ -838,19 +839,15 @@ void Database::clearEpisodeList(int showsSettingsId)
 
 void Database::addEpisodeToShowList(TvShowEpisode* episode, int showsSettingsId, TvDbId tvdbid)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xmlWriter(&xmlContent);
-    xmlWriter.setAutoFormatting(true);
-    xmlWriter.writeStartDocument("1.0", true);
-    KodiXml::writeTvShowEpisodeXml(xmlWriter, episode);
-    xmlWriter.writeEndDocument();
+    mediaelch::kodi::EpisodeXmlWriterV18 xmlWriter({episode});
+    const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());
     query.prepare("SELECT idEpisode FROM showsEpisodes WHERE tvdbid=:tvdbid");
     query.bindValue(":tvdbid", tvdbid.toString());
     query.exec();
     if (query.next()) {
-        int idEpisode = query.value(0).toInt();
+        const int idEpisode = query.value(0).toInt();
         query.prepare("UPDATE showsEpisodes SET seasonNumber=:seasonNumber, episodeNumber=:episodeNumber, updated=1, "
                       "content=:content WHERE idEpisode=:idEpisode");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
