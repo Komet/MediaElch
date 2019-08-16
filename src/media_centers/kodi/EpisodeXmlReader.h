@@ -14,6 +14,8 @@ public:
     explicit EpisodeXmlReader(TvShowEpisode& episode);
     void parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails);
 
+    static QString makeValidEpisodeXml(const QString& nfoContent);
+
 private:
     TvShowEpisode& m_episode;
 };

@@ -38,6 +38,10 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
  - removed ` post="yes" cache="auth.json"` from `<episodeguide>` as it is a TVDBv2 feature which we don't yet support;
    see https://forum.kodi.tv/showthread.php?tid=323588
 
+## Changes for TV show episodes
+
+ - add root element `<episodes>` because multiple root elements are expected by Kodi which is actually invalid XML
+
 ## Changes only for concerts
 
  - main tag `<movie>` renamed to `<musicvideo>`

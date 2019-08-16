@@ -98,7 +98,6 @@ public:
     QString nfoFilePath(Artist* artist) override;
     QString nfoFilePath(Album* album) override;
 
-    static void writeTvShowEpisodeXml(QXmlStreamWriter& xml, TvShowEpisode* episode);
     static void writeStreamDetails(QXmlStreamWriter& xml, StreamDetails* streamDetails);
     static void writeStreamDetails(QDomDocument& doc,
         const StreamDetails* streamDetails,
