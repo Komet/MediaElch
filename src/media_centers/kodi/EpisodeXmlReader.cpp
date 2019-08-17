@@ -20,7 +20,7 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
 {
     // v17/v18 TvDbId
     if (!episodeDetails.elementsByTagName("id").isEmpty()) {
-        m_episode.setTvdbId(TvDbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
+        m_episode.setTvdbId(TvDbId(episodeDetails.elementsByTagName("id").at(0).toElement().text()));
     }
 
     // v16 TvDbId/ImdbId
@@ -75,14 +75,14 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     }
 
     // check for new ratings syntax
-    if (!domDoc.elementsByTagName("ratings").isEmpty()) {
+    if (!episodeDetails.elementsByTagName("ratings").isEmpty()) {
         // <ratings>
         //   <rating name="default" default="true">
         //     <value>10</value>
         //     <votes>10</votes>
         //   </rating>
         // </ratings>
-        auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
+        auto ratings = episodeDetails.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
         m_episode.ratings().clear();
 
         for (int i = 0; i < ratings.length(); ++i) {
@@ -107,16 +107,16 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
             m_episode.setChanged(true);
         }
 
-    } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
+    } else if (!episodeDetails.elementsByTagName("rating").isEmpty()) {
         // otherwise use "old" syntax:
         // <rating>10.0</rating>
         // <votes>10.0</votes>
-        QString value = domDoc.elementsByTagName("rating").at(0).toElement().text();
+        QString value = episodeDetails.elementsByTagName("rating").at(0).toElement().text();
         if (!value.isEmpty()) {
             Rating rating;
             rating.rating = value.replace(",", ".").toDouble();
-            if (!domDoc.elementsByTagName("votes").isEmpty()) {
-                rating.voteCount = domDoc.elementsByTagName("votes")
+            if (!episodeDetails.elementsByTagName("votes").isEmpty()) {
+                rating.voteCount = episodeDetails.elementsByTagName("votes")
                                        .at(0)
                                        .toElement()
                                        .text()
@@ -130,8 +130,8 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         }
     }
 
-    if (!domDoc.elementsByTagName("top250").isEmpty()) {
-        m_episode.setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("top250").isEmpty()) {
+        m_episode.setTop250(episodeDetails.elementsByTagName("top250").at(0).toElement().text().toInt());
     }
     if (!episodeDetails.elementsByTagName("plot").isEmpty()) {
         m_episode.setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
@@ -181,8 +181,8 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
     for (int i = 0, n = episodeDetails.elementsByTagName("director").size(); i < n; i++) {
         m_episode.addDirector(episodeDetails.elementsByTagName("director").at(i).toElement().text());
     }
-    for (int i = 0, n = domDoc.elementsByTagName("actor").size(); i < n; i++) {
-        QDomElement actorElement = domDoc.elementsByTagName("actor").at(i).toElement();
+    for (int i = 0, n = episodeDetails.elementsByTagName("actor").size(); i < n; i++) {
+        QDomElement actorElement = episodeDetails.elementsByTagName("actor").at(i).toElement();
         Actor a;
         a.imageHasChanged = false;
         if (!actorElement.elementsByTagName("name").isEmpty()) {
