@@ -121,7 +121,8 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
     SECTION("read / write details: American Dad - single episode")
     {
-        createAndCompareSingleEpisode("kodi_v18_episode_American_Dad_S02E01.nfo", [](TvShowEpisode& episode) {
+        QString filename = "kodi_v18_episode_American_Dad_S02E01.nfo";
+        createAndCompareSingleEpisode(filename, [](TvShowEpisode& episode) {
             // check some details
             CHECK(episode.name() == "Bullocks to Stan");
             CHECK(episode.certification() == Certification("TV-14"));
@@ -133,18 +134,20 @@ TEST_CASE("Episode XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
 
     SECTION("read / write details: American Dad - multi-episode")
     {
-        createAndCompareMultiEpisode(
-            "kodi_v18_episode_American_Dad_S02E03-S02E04.nfo", [](const QVector<TvShowEpisode*>& episodes) {
-                // check some details
-                REQUIRE(episodes.size() == 2);
-                {
-                    TvShowEpisode* e = episodes.at(0);
-                    CHECK(e->name() == "Con Heir");
-                }
-                {
-                    TvShowEpisode* e = episodes.at(1);
-                    CHECK(e->name() == "All About Steve");
-                }
-            });
+        QString filename = "kodi_v18_episode_American_Dad_S02E03-S02E04.nfo";
+        createAndCompareMultiEpisode(filename, [](const QVector<TvShowEpisode*>& episodes) {
+            // check some details
+            REQUIRE(episodes.size() == 2);
+            {
+                TvShowEpisode* e = episodes.at(0);
+                CHECK(e->name() == "Con Heir");
+                CHECK(e->actors().size() == 11);
+            }
+            {
+                TvShowEpisode* e = episodes.at(1);
+                CHECK(e->name() == "All About Steve");
+                CHECK(e->actors().size() == 16);
+            }
+        });
     }
 }

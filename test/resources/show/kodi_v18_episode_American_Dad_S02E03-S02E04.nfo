@@ -95,7 +95,7 @@
     <uniqueid type="tvdb" default="true">306167</uniqueid>
     <ratings>
         <rating name="tvdb" default="true" max="10">
-            <value>7.300000</value>
+            <value>7.3</value>
             <votes>43</votes>
         </rating>
     </ratings>
