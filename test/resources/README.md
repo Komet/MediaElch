@@ -6,6 +6,7 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
  - order of tags and attributes (defined by the order in a `QHash<QString>`)
  - replaced `&quot;` with `"` because `QDomText` does not escape them unless necessary
  - replaced `&apos;` with `'` because `QDomText` does not escape them unless necessary
+ - strip last zeroes from floating point numbers (e.g. `7.5000` => `7.5`)
 
 ## Changes only for movies
 
@@ -41,6 +42,28 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 ## Changes for TV show episodes
 
  - add root element `<episodes>` because multiple root elements are expected by Kodi which is actually invalid XML
+ - remove `<displayseason>` if its value is `< 0` (i.e. no season)
+ - remove `<displayepisode>` if its value is `< 0` (i.e. no episode)
+ - remove empty `<outline>`
+ - remove empty `<thumb>` tags inside `<actor>`
+
+### Tags to be implemented
+```xml
+<genre>...</genre>
+<tagline></tagline>
+<runtime>0</runtime>
+<premiered>2005-02-06</premiered>
+<year>2005</year>
+<status></status>
+<code></code>
+<trailer></trailer>
+<resume>
+    <position>0.0</position>
+    <total>0.0</total>
+</resume>
+<dateadded>2019-07-07 13:38:41</dateadded>
+```
+
 
 ## Changes only for concerts
 
