@@ -39,8 +39,27 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
     xml.writeTextElement("imdbid", episode->imdbId().toString());
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());
-    xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
-    xml.writeTextElement("votes", QString("%1").arg(episode->votes()));
+
+    // rating
+    if (!episode->ratings().isEmpty()) {
+        xml.writeStartElement("ratings");
+        bool firstRating = true;
+        for (const Rating& rating : episode->ratings()) {
+            xml.writeStartElement("rating");
+            xml.writeAttribute("name", rating.source);
+            xml.writeAttribute("default", firstRating ? "true" : "false");
+            if (rating.maxRating > 0) {
+                xml.writeAttribute("max", QString::number(rating.maxRating));
+            }
+            xml.writeTextElement("value", QString::number(rating.rating));
+            xml.writeTextElement("votes", QString::number(rating.voteCount));
+            xml.writeEndElement();
+            firstRating = false;
+        }
+        xml.writeEndElement();
+    }
+
+    xml.writeTextElement("userrating", QString::number(episode->userRating()));
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
     xml.writeTextElement("season", episode->season().toString());
     xml.writeTextElement("episode", episode->episode().toString());

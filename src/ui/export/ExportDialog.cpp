@@ -546,7 +546,9 @@ void ExportDialog::replaceVars(QString& m, TvShowEpisode* episode, QDir dir, boo
     m.replace("{{ EPISODE.TITLE }}", episode->name().toHtmlEscaped());
     m.replace("{{ EPISODE.SEASON }}", episode->seasonString().toHtmlEscaped());
     m.replace("{{ EPISODE.EPISODE }}", episode->episodeString().toHtmlEscaped());
-    m.replace("{{ EPISODE.RATING }}", QString::number(episode->rating(), 'f', 1));
+    if (!episode->ratings().isEmpty()) {
+        m.replace("{{ EPISODE.RATING }}", QString::number(episode->ratings().first().rating, 'f', 1));
+    }
     m.replace("{{ EPISODE.CERTIFICATION }}", episode->certification().toString().toHtmlEscaped());
     m.replace("{{ EPISODE.FIRST_AIRED }}",
         episode->firstAired().isValid() ? episode->firstAired().toString("yyyy-MM-dd") : "");

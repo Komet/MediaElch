@@ -333,8 +333,15 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->episode->setValue(m_episode->episode().toInt());
     ui->displaySeason->setValue(m_episode->displaySeason().toInt());
     ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
-    ui->rating->setValue(m_episode->rating());
-    ui->votes->setValue(m_episode->votes());
+
+    if (!m_episode->ratings().isEmpty()) {
+        ui->rating->setValue(m_episode->ratings().first().rating);
+        ui->votes->setValue(m_episode->ratings().first().voteCount);
+    } else {
+        ui->rating->setValue(0.0);
+        ui->votes->setValue(0.0);
+    }
+
     ui->top250->setValue(m_episode->top250());
     ui->firstAired->setDate(m_episode->firstAired());
     ui->playCount->setValue(m_episode->playCount());
@@ -880,12 +887,15 @@ void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * @brief Marks the episode as changed when the rating has changed
- */
 void TvShowWidgetEpisode::onRatingChange(double value)
 {
-    m_episode->setRating(value);
+    auto& ratings = m_episode->ratings();
+    if (ratings.isEmpty()) {
+        ratings.push_back({});
+    }
+
+    ratings.first().rating = value;
+    m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1095,7 +1105,14 @@ void TvShowWidgetEpisode::onVotesChange(int value)
     if (m_episode == nullptr) {
         return;
     }
-    m_episode->setVotes(value);
+
+    auto& ratings = m_episode->ratings();
+    if (ratings.isEmpty()) {
+        ratings.push_back({});
+    }
+
+    ratings.first().voteCount = value;
+    m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 
