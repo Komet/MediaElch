@@ -16,7 +16,7 @@ EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode& episode) : m_episode{episode}
 {
 }
 
-void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails)
+void EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
 {
     // v17/v18 TvDbId
     if (!episodeDetails.elementsByTagName("id").isEmpty()) {

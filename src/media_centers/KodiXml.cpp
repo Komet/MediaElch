@@ -925,7 +925,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
 
     // todo: move above code into reader as well
     mediaelch::kodi::EpisodeXmlReader reader(*episode);
-    reader.parseNfoDom(domDoc, episodeDetails);
+    reader.parseNfoDom(episodeDetails);
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
         loadStreamDetails(

@@ -12,7 +12,7 @@ class EpisodeXmlReader
 {
 public:
     explicit EpisodeXmlReader(TvShowEpisode& episode);
-    void parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails);
+    void parseNfoDom(QDomElement episodeDetails);
 
     static QString makeValidEpisodeXml(const QString& nfoContent);
 
