@@ -51,7 +51,7 @@ TEST_CASE("Episode XML writer for Kodi v16", "[data][tvshow][kodi][nfo]")
 
         QDomDocument doc;
         doc.setContent(episodeContent);
-        reader.parseNfoDom(doc, doc.elementsByTagName("episodedetails").at(0).toElement());
+        reader.parseNfoDom(doc.elementsByTagName("episodedetails").at(0).toElement());
 
         mediaelch::kodi::EpisodeXmlWriterV16 writer({&episode});
         QString actual = writer.getEpisodeXmlWithSingleRoot().trimmed();
