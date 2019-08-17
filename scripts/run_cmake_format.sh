@@ -8,11 +8,15 @@ IFS=$'\n\t'
 # If you develop for this project, please use `make cmake-format`.
 ###############################################################################
 
-cd "$( cd "$(dirname "$0")"; pwd -P )/.."
+cd "$(dirname "$0")/.."
+source scripts/utils.sh
 
-echo "Run cmake-format on all CMake files"
+print_important "Run cmake-format on all CMake files"
+
 find . ! -path "./build/*" ! -path "./third_party/*" \
     -type f \( -name "*.cmake" -o -name "CMakeLists.txt" \) \
     -exec cmake-format -c .cmake-format -i {} \+
 
 cmake-format -c .cmake-format -i third_party/CMakeLists.txt
+
+print_success "No issues found! Great! :-)"
