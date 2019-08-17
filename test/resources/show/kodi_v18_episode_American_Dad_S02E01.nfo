@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<episodes>
+  <episodedetails>
+    <id>306168</id>
+    <title>Bullocks to Stan</title>
+    <showtitle>American Dad!</showtitle>
+    <uniqueid type="tvdb" default="true">306168</uniqueid>
+    <ratings>
+        <rating name="tvdb" default="true" max="10">
+            <value>7.4</value>
+            <votes>44</votes>
+        </rating>
+    </ratings>
+    <userrating>0</userrating>
+    <top250>0</top250>
+    <season>2</season>
+    <episode>1</episode>
+    <displayseason>-1</displayseason>
+    <displayepisode>-1</displayepisode>
+    <plot>Stan finds Deputy Director Bullock, his supervisor, starting a relationship with Hayley. However, he can't risk saying or doing anything about it because he's up for a promotion at the CIA. Meanwhile, Steve finds Dick Cheney's BlackBerry and uses the contact numbers to play pranks on political figures from around the world.</plot>
+    <mpaa>TV-14</mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <aired>2005-09-11</aired>
+    <studio>TBS</studio>
+    <thumb>http://www.thetvdb.com/banners/episodes/73141/306168.jpg</thumb>
+    <actor>
+        <name>Seth MacFarlane</name>
+        <role>Stan Smith / Roger</role>
+        <order>1</order>
+        <thumb>http://www.thetvdb.com/banners/actors/402574.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Rachael MacFarlane</name>
+        <role>Hayley Smith</role>
+        <order>2</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23003.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Patrick Stewart</name>
+        <role>Avery Bullock</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/128821.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Dee Bradley Baker</name>
+        <role>Klaus</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23005.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Jeff Fischer</name>
+        <role>Jeff Fischer</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/449794.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Ralph Garman</name>
+        <role>Hazmat Guy</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/336581.jpg</thumb>
+    </actor>
+</episodedetails>
+</episodes>

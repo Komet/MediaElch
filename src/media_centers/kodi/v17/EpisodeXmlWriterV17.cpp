@@ -36,28 +36,42 @@ QByteArray EpisodeXmlWriterV17::getEpisodeXml()
 void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvShowEpisode* episode)
 {
     xml.writeStartElement("episodedetails");
-    xml.writeTextElement("imdbid", episode->imdbId().toString());
+    xml.writeTextElement("id", episode->tvdbId().toString());
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());
 
-    // rating
-    if (!episode->ratings().isEmpty()) {
-        xml.writeStartElement("ratings");
-        bool firstRating = true;
-        for (const Rating& rating : episode->ratings()) {
-            xml.writeStartElement("rating");
-            xml.writeAttribute("name", rating.source);
-            xml.writeAttribute("default", firstRating ? "true" : "false");
-            if (rating.maxRating > 0) {
-                xml.writeAttribute("max", QString::number(rating.maxRating));
-            }
-            xml.writeTextElement("value", QString::number(rating.rating));
-            xml.writeTextElement("votes", QString::number(rating.voteCount));
-            xml.writeEndElement();
-            firstRating = false;
-        }
+    // unique id: IMDb and TMDb
+    // one uniqueid is required
+    {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "tvdb");
+        xml.writeAttribute("default", "true");
+        xml.writeCharacters(episode->tvdbId().toString());
         xml.writeEndElement();
     }
+    if (episode->imdbId().isValid()) {
+        xml.writeStartElement("uniqueid");
+        xml.writeAttribute("type", "imdb");
+        xml.writeCharacters(episode->imdbId().toString());
+        xml.writeEndElement();
+    }
+
+    // rating
+    xml.writeStartElement("ratings");
+    bool firstRating = true;
+    for (const Rating& rating : episode->ratings()) {
+        xml.writeStartElement("rating");
+        xml.writeAttribute("name", rating.source);
+        xml.writeAttribute("default", firstRating ? "true" : "false");
+        if (rating.maxRating > 0) {
+            xml.writeAttribute("max", QString::number(rating.maxRating));
+        }
+        xml.writeTextElement("value", QString::number(rating.rating));
+        xml.writeTextElement("votes", QString::number(rating.voteCount));
+        xml.writeEndElement();
+        firstRating = false;
+    }
+    xml.writeEndElement();
 
     xml.writeTextElement("userrating", QString::number(episode->userRating()));
     xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
@@ -70,7 +84,9 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeTextElement("displayepisode", episode->displayEpisode().toString());
     }
     xml.writeTextElement("plot", episode->overview());
-    xml.writeTextElement("outline", episode->overview());
+    if (Settings::instance()->usePlotForOutline()) {
+        xml.writeTextElement("outline", episode->overview());
+    }
     xml.writeTextElement("mpaa", episode->certification().toString());
     xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
     xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
@@ -94,6 +110,7 @@ void EpisodeXmlWriterV17::writeSingleEpisodeDetails(QXmlStreamWriter& xml, TvSho
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
+        xml.writeTextElement("order", QString::number(actor.order));
         if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
             xml.writeTextElement("thumb", actor.thumb);
         }

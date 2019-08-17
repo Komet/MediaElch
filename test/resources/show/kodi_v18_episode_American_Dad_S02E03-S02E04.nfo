@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<episodes>
+  <episodedetails>
+    <id>306170</id>
+    <title>Con Heir</title>
+    <showtitle>American Dad!</showtitle>
+    <uniqueid type="tvdb" default="true">306170</uniqueid>
+    <ratings>
+        <rating name="tvdb" default="true" max="10">
+            <value>7</value>
+            <votes>38</votes>
+        </rating>
+    </ratings>
+    <userrating>0</userrating>
+    <top250>0</top250>
+    <season>2</season>
+    <episode>4</episode>
+    <displayseason>-1</displayseason>
+    <displayepisode>-1</displayepisode>
+    <plot>When Stan's father passes away, Stan reveals his real father is actually Jack Smith, a super suave spy. Jack convinces Stan to quit the CIA and work with him at the Scarlet Alliance, an ultra-secret spy group. Francine is upset with Stan, who is busy training with Jack for a mission involving uranium, artwork and terrorists. But when the FBI shows up at the Smiths' house looking for an international jewel thief, Francine suspects Jack is the fake.</plot>
+    <mpaa>TV-14</mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <aired>2005-10-02</aired>
+    <studio>TBS</studio>
+    <credits>Steve Hely</credits>
+    <director>Albert Calleros</director>
+    <thumb>http://www.thetvdb.com/banners/episodes/73141/306170.jpg</thumb>
+    <actor>
+        <name>Mike Henry</name>
+        <role></role>
+        <order>0</order>
+    </actor>
+    <actor>
+        <name>Patrick Stewart</name>
+        <role></role>
+        <order>1</order>
+        <thumb>http://www.thetvdb.com/banners/actors/128821.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Curtis Armstrong</name>
+        <role></role>
+        <order>2</order>
+    </actor>
+    <actor>
+        <name>Daran Norris</name>
+        <role></role>
+        <order>3</order>
+    </actor>
+    <actor>
+        <name>Martin Mull</name>
+        <role></role>
+        <order>4</order>
+    </actor>
+    <actor>
+        <name>Dee Bradley Baker</name>
+        <role></role>
+        <order>5</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23005.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Sherry Weston</name>
+        <role></role>
+        <order>6</order>
+    </actor>
+    <actor>
+        <name>Seth MacFarlane</name>
+        <role>Stan Smith / Roger</role>
+        <order>1</order>
+        <thumb>http://www.thetvdb.com/banners/actors/402574.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Rachael MacFarlane</name>
+        <role>Hayley Smith</role>
+        <order>2</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23003.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Jeff Fischer</name>
+        <role>Jeff Fischer</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/449794.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Ralph Garman</name>
+        <role>Hazmat Guy</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/336581.jpg</thumb>
+    </actor>
+</episodedetails>
+<episodedetails>
+    <id>306167</id>
+    <title>All About Steve</title>
+    <showtitle>American Dad!</showtitle>
+    <uniqueid type="tvdb" default="true">306167</uniqueid>
+    <ratings>
+        <rating name="tvdb" default="true" max="10">
+            <value>7.300000</value>
+            <votes>43</votes>
+        </rating>
+    </ratings>
+    <userrating>0</userrating>
+    <top250>0</top250>
+    <season>2</season>
+    <episode>3</episode>
+    <displayseason>-1</displayseason>
+    <displayepisode>-1</displayepisode>
+    <plot>When the CIA organizes a father-son baseball game, Stan is determined to show his co-workers that his son is masculine and athletic. Unfortunately, Steve is a geek, so Stan decides to lie and ditches him. But after getting a taste of his own treatment at work, Stan turns to Steve and his sci-fi knowledge to help capture a cyber-terrorist. Meanwhile, Roger goes incognito in a desperate attempt to interact with humans.</plot>
+    <mpaa>TV-14</mpaa>
+    <playcount>0</playcount>
+    <lastplayed></lastplayed>
+    <aired>2005-09-25</aired>
+    <studio>TBS</studio>
+    <credits>Matt McKenna</credits>
+    <credits>Chris McKenna (II)</credits>
+    <director>Mike Kim</director>
+    <thumb>http://www.thetvdb.com/banners/episodes/73141/306167.jpg</thumb>
+    <actor>
+        <name>Seth MacFarlane</name>
+        <role></role>
+        <order>0</order>
+        <thumb>http://www.thetvdb.com/banners/actors/402574.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Curtis Armstrong</name>
+        <role></role>
+        <order>1</order>
+    </actor>
+    <actor>
+        <name>Eddie Kaye Thomas</name>
+        <role></role>
+        <order>2</order>
+    </actor>
+    <actor>
+        <name>Stephen Root</name>
+        <role></role>
+        <order>3</order>
+    </actor>
+    <actor>
+        <name>Mike Henry</name>
+        <role></role>
+        <order>4</order>
+    </actor>
+    <actor>
+        <name>Daisuke Suzuki</name>
+        <role></role>
+        <order>5</order>
+    </actor>
+    <actor>
+        <name>Patrick Stewart</name>
+        <role></role>
+        <order>6</order>
+        <thumb>http://www.thetvdb.com/banners/actors/128821.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Mike Barker</name>
+        <role></role>
+        <order>7</order>
+    </actor>
+    <actor>
+        <name>Stephen Colbert</name>
+        <role></role>
+        <order>8</order>
+    </actor>
+    <actor>
+        <name>Brian Posehn</name>
+        <role></role>
+        <order>9</order>
+    </actor>
+    <actor>
+        <name>Jon Ross</name>
+        <role></role>
+        <order>10</order>
+    </actor>
+    <actor>
+        <name>Catero Colbert</name>
+        <role></role>
+        <order>11</order>
+    </actor>
+    <actor>
+        <name>Rachael MacFarlane</name>
+        <role>Hayley Smith</role>
+        <order>2</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23003.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Dee Bradley Baker</name>
+        <role>Klaus</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/23005.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Jeff Fischer</name>
+        <role>Jeff Fischer</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/449794.jpg</thumb>
+    </actor>
+    <actor>
+        <name>Ralph Garman</name>
+        <role>Hazmat Guy</role>
+        <order>3</order>
+        <thumb>http://www.thetvdb.com/banners/actors/336581.jpg</thumb>
+    </actor>
+</episodedetails>
+</episodes>

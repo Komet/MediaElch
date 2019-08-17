@@ -18,9 +18,40 @@ EpisodeXmlReader::EpisodeXmlReader(TvShowEpisode& episode) : m_episode{episode}
 
 void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetails)
 {
-    if (!episodeDetails.elementsByTagName("imdbid").isEmpty()) {
-        m_episode.setImdbId(ImdbId(episodeDetails.elementsByTagName("imdbid").at(0).toElement().text()));
+    // v17/v18 TvDbId
+    if (!episodeDetails.elementsByTagName("id").isEmpty()) {
+        m_episode.setTvdbId(TvDbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
+
+    // v16 TvDbId/ImdbId
+    if (!episodeDetails.elementsByTagName("tvdbid").isEmpty()) {
+        QString value = episodeDetails.elementsByTagName("tvdbid").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            m_episode.setTvdbId(TvDbId(value));
+        }
+    }
+    if (!episodeDetails.elementsByTagName("imdbid").isEmpty()) {
+        QString value = episodeDetails.elementsByTagName("imdbid").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            m_episode.setImdbId(ImdbId(value));
+        }
+    }
+
+    // v17 ids
+    auto uniqueIds = episodeDetails.elementsByTagName("uniqueid");
+    for (int i = 0; i < uniqueIds.size(); ++i) {
+        QDomElement element = uniqueIds.at(i).toElement();
+        QString type = element.attribute("type");
+        QString value = element.text().trimmed();
+        if (type == "imdb") {
+            m_episode.setImdbId(ImdbId(value));
+        } else if (type == "tvdb") {
+            m_episode.setTvdbId(TvDbId(value));
+        } else {
+            qWarning() << "[EpisodeXmlReader] Unsupported unique id type:" << type;
+        }
+    }
+
     if (!episodeDetails.elementsByTagName("title").isEmpty()) {
         m_episode.setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());
     }
@@ -162,6 +193,9 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         }
         if (!actorElement.elementsByTagName("thumb").isEmpty()) {
             a.thumb = actorElement.elementsByTagName("thumb").at(0).toElement().text();
+        }
+        if (!actorElement.elementsByTagName("order").isEmpty()) {
+            a.order = actorElement.elementsByTagName("order").at(0).toElement().text().toInt();
         }
         m_episode.addActor(a);
     }
