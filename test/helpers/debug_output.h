@@ -1,5 +1,8 @@
 #pragma once
 
+#include "tv_shows/EpisodeNumber.h"
+#include "tv_shows/SeasonNumber.h"
+
 #include <QString>
 #include <QUrl>
 #include <ostream>
@@ -22,4 +25,14 @@ inline std::ostream& operator<<(std::ostream& os, const QString& value)
 inline std::ostream& operator<<(std::ostream& os, const QUrl& value)
 {
     return os << value.toDisplayString();
+}
+
+inline std::ostream& operator<<(std::ostream& os, const EpisodeNumber& value)
+{
+    return os << value.toString();
+}
+
+inline std::ostream& operator<<(std::ostream& os, const SeasonNumber& value)
+{
+    return os << value.toString();
 }
