@@ -1046,7 +1046,6 @@ bool KodiXml::saveTvShow(TvShow* show)
  * @brief Saves a tv show episode
  * @param episode Episode to save
  * @return Saving success
- * @see KodiXml::writeTvShowEpisodeXml
  */
 bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
 {
@@ -1061,22 +1060,12 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
         }
     }
 
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    for (TvShowEpisode* subEpisode : episodes) {
-        writeTvShowEpisodeXml(xml, subEpisode);
-        subEpisode->setChanged(false);
-        subEpisode->setSyncNeeded(true);
-    }
-    xml.writeEndDocument();
-
     if (episode->files().isEmpty()) {
         qWarning() << "[KodiXml] Episode has no files";
         return false;
     }
 
+    const QByteArray xmlContent = getEpisodeXml(episodes);
     for (TvShowEpisode* subEpisode : episodes) {
         subEpisode->setNfoContent(xmlContent);
         Manager::instance()->database()->update(subEpisode);
@@ -1158,6 +1147,26 @@ QByteArray KodiXml::getTvShowXml(TvShow* show)
     case KodiVersion::v18: writer = std::make_unique<kodi::TvShowXmlWriterV18>(*show); break;
     }
     return writer->getTvShowXml();
+}
+
+/// @brief Get an NFO document for the given episode(s). If episodes.length() > 1,
+///        then we do multi-episode handling which means we write multiple <episodedetails>
+///        to the same document to merge information.
+QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+
+    for (TvShowEpisode* subEpisode : episodes) {
+        writeTvShowEpisodeXml(xml, subEpisode);
+        subEpisode->setChanged(false);
+        subEpisode->setSyncNeeded(true);
+    }
+
+    xml.writeEndDocument();
+    return xmlContent;
 }
 
 /**

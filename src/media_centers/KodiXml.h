@@ -115,6 +115,7 @@ private:
     QByteArray getMovieXml(Movie* movie);
     QByteArray getConcertXml(Concert* concert);
     QByteArray getTvShowXml(TvShow* show);
+    QByteArray getEpisodeXml(const QVector<TvShowEpisode*>& episodes);
     QByteArray getArtistXml(Artist* artist);
     QByteArray getAlbumXml(Album* album);
     bool loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc);
