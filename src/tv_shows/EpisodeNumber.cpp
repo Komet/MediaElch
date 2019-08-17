@@ -5,7 +5,7 @@
 
 EpisodeNumber::EpisodeNumber(int episodeNumber) noexcept :
     // Any number lower than 0 is regarded invalid => no episode number
-    m_episodeNumber(episodeNumber > -1 ? episodeNumber : -1)
+    m_episodeNumber(episodeNumber > -2 ? episodeNumber : -2)
 {
 }
 
