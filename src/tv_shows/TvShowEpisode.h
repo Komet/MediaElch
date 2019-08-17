@@ -37,8 +37,9 @@ public:
     QString showTitle() const;
     QString name() const;
     QString completeEpisodeName() const;
-    double rating() const;
-    int votes() const;
+    QVector<Rating>& ratings();
+    const QVector<Rating>& ratings() const;
+    double userRating() const;
     int top250() const;
     SeasonNumber season() const;
     EpisodeNumber episode() const;
@@ -75,8 +76,7 @@ public:
     void setShow(TvShow* show);
     void setName(QString name);
     void setShowTitle(QString showTitle);
-    void setRating(double rating);
-    void setVotes(int votes);
+    void setUserRating(double rating);
     void setTop250(int top250);
     void setSeason(SeasonNumber season);
     void setEpisode(EpisodeNumber episode);
@@ -139,7 +139,8 @@ private:
     TvShow* m_parent = nullptr;
     QString m_name;
     QString m_showTitle;
-    Rating m_rating;
+    QVector<Rating> m_ratings;
+    double m_userRating = 0.0;
     int m_imdbTop250 = 0;
     ImdbId m_imdbId;
     TvDbId m_tvdbId;

@@ -699,12 +699,25 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem,
     if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty()) {
         episode->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
     }
-    if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty()) {
-        episode->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toDouble());
+
+    if (infosToLoad.contains(TvShowScraperInfos::Rating)) {
+        if (episode->ratings().isEmpty()) {
+            Rating rating;
+            rating.source = "TVDb";
+            episode->ratings().push_back(rating);
+        }
+
+        if (!elem.elementsByTagName("Rating").isEmpty()) {
+            episode->ratings().first().rating = elem.elementsByTagName("Rating").at(0).toElement().text().toDouble();
+            episode->setChanged(true);
+        }
+        if (!elem.elementsByTagName("RatingCount").isEmpty()) {
+            episode->ratings().first().voteCount =
+                elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt();
+            episode->setChanged(true);
+        }
     }
-    if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("RatingCount").isEmpty()) {
-        episode->setVotes(elem.elementsByTagName("RatingCount").at(0).toElement().text().toInt());
-    }
+
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty()) {
         episode->setWriters(
             elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
@@ -1263,12 +1276,16 @@ void TheTvDb::parseAndAssignImdbInfos(QString xml, TvShowEpisode* episode, QVect
     }
 
     if (shouldLoadFromImdb(TvShowScraperInfos::Rating, infosToLoad)) {
+        if (episode->ratings().isEmpty()) {
+            episode->ratings().push_back({});
+        }
         if (!m_dummyMovie->ratings().isEmpty()) {
-            episode->setRating(m_dummyMovie->ratings().back().rating);
-            episode->setVotes(m_dummyMovie->ratings().back().voteCount);
+            episode->ratings().first() = m_dummyMovie->ratings().back();
+            episode->setChanged(true);
         }
         if (m_dummyMovie->top250() != 0) {
             episode->setTop250(m_dummyMovie->top250());
+            episode->setChanged(true);
         }
     }
 

@@ -42,14 +42,63 @@ void EpisodeXmlReader::parseNfoDom(QDomDocument domDoc, QDomElement episodeDetai
         m_episode.setDisplayEpisode(
             EpisodeNumber(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt()));
     }
-    if (!episodeDetails.elementsByTagName("rating").isEmpty()) {
-        m_episode.setRating(
-            episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
+
+    // check for new ratings syntax
+    if (!domDoc.elementsByTagName("ratings").isEmpty()) {
+        // <ratings>
+        //   <rating name="default" default="true">
+        //     <value>10</value>
+        //     <votes>10</votes>
+        //   </rating>
+        // </ratings>
+        auto ratings = domDoc.elementsByTagName("ratings").at(0).toElement().elementsByTagName("rating");
+        m_episode.ratings().clear();
+
+        for (int i = 0; i < ratings.length(); ++i) {
+            Rating rating;
+            auto ratingElement = ratings.at(i).toElement();
+            rating.source = ratingElement.attribute("name", "default");
+            bool ok = false;
+            int max = ratingElement.attribute("max", "0").toInt(&ok);
+            if (ok && max > 0) {
+                rating.maxRating = max;
+            }
+            rating.rating =
+                ratingElement.elementsByTagName("value").at(0).toElement().text().replace(",", ".").toDouble();
+            rating.voteCount = ratingElement.elementsByTagName("votes")
+                                   .at(0)
+                                   .toElement()
+                                   .text()
+                                   .replace(",", "")
+                                   .replace(".", "")
+                                   .toInt();
+            m_episode.ratings().push_back(rating);
+            m_episode.setChanged(true);
+        }
+
+    } else if (!domDoc.elementsByTagName("rating").isEmpty()) {
+        // otherwise use "old" syntax:
+        // <rating>10.0</rating>
+        // <votes>10.0</votes>
+        QString value = domDoc.elementsByTagName("rating").at(0).toElement().text();
+        if (!value.isEmpty()) {
+            Rating rating;
+            rating.rating = value.replace(",", ".").toDouble();
+            if (!domDoc.elementsByTagName("votes").isEmpty()) {
+                rating.voteCount = domDoc.elementsByTagName("votes")
+                                       .at(0)
+                                       .toElement()
+                                       .text()
+                                       .replace(",", "")
+                                       .replace(".", "")
+                                       .toInt();
+            }
+            m_episode.ratings().clear();
+            m_episode.ratings().push_back(rating);
+            m_episode.setChanged(true);
+        }
     }
-    if (!domDoc.elementsByTagName("votes").isEmpty()) {
-        m_episode.setVotes(
-            domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
-    }
+
     if (!domDoc.elementsByTagName("top250").isEmpty()) {
         m_episode.setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     }

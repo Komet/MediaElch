@@ -81,7 +81,7 @@ void TvShowEpisode::clear(QVector<TvShowScraperInfos> infos)
         m_certification = Certification::NoCertification;
     }
     if (infos.contains(TvShowScraperInfos::Rating)) {
-        m_rating = Rating();
+        m_ratings.clear();
     }
     if (infos.contains(TvShowScraperInfos::Director)) {
         m_directors.clear();
@@ -274,15 +274,19 @@ QString TvShowEpisode::showTitle() const
     return QString();
 }
 
-/**
- * @property TvShowEpisode::rating
- * @brief Rating of the episode
- * @return Rating
- * @see TvShowEpisode::setRating
- */
-double TvShowEpisode::rating() const
+QVector<Rating>& TvShowEpisode::ratings()
 {
-    return m_rating.rating;
+    return m_ratings;
+}
+
+const QVector<Rating>& TvShowEpisode::ratings() const
+{
+    return m_ratings;
+}
+
+double TvShowEpisode::userRating() const
+{
+    return m_userRating;
 }
 
 /**
@@ -577,14 +581,9 @@ void TvShowEpisode::setShowTitle(QString showTitle)
     setChanged(true);
 }
 
-/**
- * @brief Sets the rating
- * @param rating Rating
- * @see TvShowEpisode::rating
- */
-void TvShowEpisode::setRating(double rating)
+void TvShowEpisode::setUserRating(double rating)
 {
-    m_rating.rating = rating;
+    m_userRating = rating;
     setChanged(true);
 }
 
@@ -873,6 +872,9 @@ QVector<Actor> TvShowEpisode::actors() const
 
 void TvShowEpisode::addActor(Actor actor)
 {
+    if (actor.order == 0 && !m_actors.isEmpty()) {
+        actor.order = m_actors.last().order + 1;
+    }
     m_actors.append(actor);
     setChanged(true);
 }
@@ -928,17 +930,6 @@ void TvShowEpisode::setTvdbId(const TvDbId& tvdbId)
     setChanged(true);
 }
 
-int TvShowEpisode::votes() const
-{
-    return m_rating.voteCount;
-}
-
-void TvShowEpisode::setVotes(int votes)
-{
-    m_rating.voteCount = votes;
-    setChanged(true);
-}
-
 int TvShowEpisode::top250() const
 {
     return m_imdbTop250;
@@ -965,7 +956,12 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode& episode)
     out.append(QStringLiteral("  ShowTitle:     ").append(episode.showTitle()).append(nl));
     out.append(QStringLiteral("  Season:        %1").arg(episode.season().toPaddedString()).append(nl));
     out.append(QStringLiteral("  Episode:       %1").arg(episode.episode().toPaddedString()).append(nl));
-    out.append(QStringLiteral("  Rating:        %1").arg(episode.rating()).append(nl));
+    out.append(QString("  Ratings:").append(nl));
+    for (const Rating& rating : episode.ratings()) {
+        out.append(
+            QString("    %1: %2 (%3 votes)").arg(rating.source).arg(rating.rating).arg(rating.voteCount).append(nl));
+    }
+    out.append(QString("  User Rating:   ").append(QString::number(episode.userRating())).append(nl));
     out.append(QStringLiteral("  FirstAired:    ").append(episode.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  LastPlayed:    ").append(episode.lastPlayed().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  Playcount:     %1%2").arg(episode.playCount()).arg(nl));
