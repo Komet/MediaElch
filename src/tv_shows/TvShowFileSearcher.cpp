@@ -327,9 +327,8 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
 
 QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 {
-    QVector<EpisodeNumber> episodes;
     if (files.isEmpty()) {
-        return episodes;
+        return {};
     }
 
     QStringList filenameParts = files.at(0).split(QDir::separator());
@@ -346,24 +345,22 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         }
     }
 
-    QStringList patterns;
-    patterns << R"(S(\d+)[\._\-]?E(\d+))"
-             << "S(\\d+)EP(\\d+)"
-             << "(\\d+)x(\\d+)"
-             << "(\\d+)(\\d){2}"
-             << "Season[._ ]?(\\d+)[._ ]?Episode[._ ]?(\\d+)";
-    QRegExp rx;
-    rx.setCaseSensitivity(Qt::CaseInsensitive);
 
-    for (const QString& pattern : patterns) {
-        rx.setPattern(pattern);
+    QVector<EpisodeNumber> episodes;
+
+    /// Scans a given filename for a given pattern.
+    /// If mayBeAmbiguous is true, we apply a heuristic to avoid matching the video's resolution
+    auto scanWithPattern = [&](const QString& pattern, bool mayBeAmbiguous) -> bool {
+        QRegExp rx(pattern);
+        rx.setCaseSensitivity(Qt::CaseInsensitive);
+
         int pos = 0;
         int lastPos = -1;
         while ((pos = rx.indexIn(filename, pos)) != -1) {
             // if between the last match and this one are more than five characters: break
             // this way we can try to filter "false matches" like in "21x04 - Hammond vs. 6x6.mp4"
-            if (lastPos != -1 && lastPos < pos + 5) {
-                break;
+            if (mayBeAmbiguous && lastPos != -1 && lastPos < pos + 5) {
+                return true;
             }
             episodes << EpisodeNumber(rx.cap(2).toInt());
             pos += rx.matchedLength();
@@ -372,14 +369,34 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         pos = lastPos;
 
         // Pattern matched
-        if (!episodes.isEmpty()) {
-            if (episodes.count() == 1) {
-                rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
-                while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
-                    episodes << EpisodeNumber(rx.cap(1).toInt());
-                    pos += rx.matchedLength() - 1;
-                }
+        if (episodes.isEmpty()) {
+            return false;
+        }
+
+        if (episodes.count() == 1) {
+            rx.setPattern(R"(^[-_EeXx]+([0-9]+)($|[\-\._\sE]))");
+            while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
+                episodes << EpisodeNumber(rx.cap(1).toInt());
+                pos += rx.matchedLength() - 1;
             }
+        }
+        return true;
+    };
+
+    struct EpisodeNumberPattern
+    {
+        QString regex;
+        bool mayBeAmbiguous = false;
+    };
+
+    QVector<EpisodeNumberPattern> patterns{{R"(S(\d+)[._-]?E(\d+))", false},
+        {R"(S(\d+)EP(\d+))", false},
+        {R"(Season[._ ]?(\d+)[._ -]?Episode[._ ]?(\d+))", false},
+        {R"((\d+)x(\d+))", true},
+        {R"((\d+).(\d){2,4})", true}};
+
+    for (const auto& pattern : patterns) {
+        if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
             break;
         }
     }
