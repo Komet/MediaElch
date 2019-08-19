@@ -9,4 +9,6 @@ struct ThumbnailDimensions
     int height = 300;
 };
 
+bool operator==(ThumbnailDimensions lhs, ThumbnailDimensions rhs);
+
 } // namespace mediaelch

@@ -11,6 +11,7 @@
 
 Settings::Settings(QObject* parent) : QObject(parent), m_advancedSettings{new AdvancedSettings(parent)}
 {
+    m_advancedSettings->loadFromDefaultPath();
     qDebug() << m_advancedSettings;
 
     if (m_advancedSettings->portableMode()) {
