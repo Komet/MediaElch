@@ -1130,8 +1130,10 @@ void TvShowWidgetEpisode::onCaptureImage()
     if ((m_episode == nullptr) || m_episode->files().isEmpty()) {
         return;
     }
+    auto dimensions = Settings::instance()->advanced()->episodeThumbnailDimensions();
     QImage img;
-    if (!ImageCapture::captureImage(m_episode->files().first(), m_episode->streamDetails(), img)) {
+    if (!mediaelch::ImageCapture::captureImage(
+            m_episode->files().first(), m_episode->streamDetails(), dimensions, img)) {
         return;
     }
 

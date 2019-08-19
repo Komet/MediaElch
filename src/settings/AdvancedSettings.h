@@ -2,6 +2,7 @@
 
 #include "file/FileFilter.h"
 #include "globals/Globals.h"
+#include "image/ThumbnailDimensions.h"
 
 #include <QByteArray>
 #include <QHash>
@@ -32,11 +33,13 @@ public:
     QHash<QString, QString> certificationMappings() const;
     QHash<QString, QString> studioMappings() const;
     QHash<QString, QString> countryMappings() const;
+
     bool useFirstStudioOnly() const;
     bool forceCache() const;
     bool portableMode() const;
     int bookletCut() const;
     bool writeThumbUrlsToNfo() const;
+    mediaelch::ThumbnailDimensions episodeThumbnailDimensions() const;
 
 private:
     bool m_debugLog = 0;
@@ -53,6 +56,7 @@ private:
     QHash<QString, QString> m_certificationMappings;
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
+    mediaelch::ThumbnailDimensions m_episodeThumbnailDimensions;
     bool m_forceCache = false;
     bool m_portableMode = false;
     int m_bookletCut = 0;
