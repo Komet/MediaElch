@@ -1,7 +1,11 @@
-add_executable(
+add_executable(mediaelch_unit)
+
+target_sources(
   mediaelch_unit
+  PRIVATE
   main.cpp
   movie/testMovieFileSearcher.cpp
+  settings/testAdvancedSettings.cpp
   testCertification.cpp
   testImdbId.cpp
   tv_shows/testTvShowFileSearcher.cpp

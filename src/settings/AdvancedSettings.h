@@ -7,6 +7,7 @@
 #include <QByteArray>
 #include <QHash>
 #include <QObject>
+#include <QString>
 #include <QStringList>
 #include <QXmlStreamReader>
 
@@ -16,6 +17,9 @@ class AdvancedSettings : public QObject
 public:
     explicit AdvancedSettings(QObject* parent = nullptr);
     ~AdvancedSettings() override = default;
+
+    void loadFromDefaultPath();
+    void loadFromXml(QString xml);
 
     bool debugLog() const;
     QString logFile() const;
@@ -66,7 +70,7 @@ private:
     bool m_useFirstStudioOnly = false;
 
     QByteArray getAdvancedSettingsXml() const;
-    void loadSettings();
+    void loadSettings(QString xmlSource);
     void reset();
     void setLocale(QString locale);
     void loadLog(QXmlStreamReader& xml);

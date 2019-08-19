@@ -12,7 +12,17 @@ AdvancedSettings::AdvancedSettings(QObject* parent) : QObject(parent)
 {
     m_portableMode = false;
     m_bookletCut = 2;
-    loadSettings();
+}
+
+void AdvancedSettings::loadFromDefaultPath()
+{
+    qDebug() << "Loading advanced settings from...";
+    loadSettings(getAdvancedSettingsXml());
+}
+
+void AdvancedSettings::loadFromXml(QString xml)
+{
+    loadSettings(xml);
 }
 
 void AdvancedSettings::reset()
@@ -94,12 +104,11 @@ QByteArray AdvancedSettings::getAdvancedSettingsXml() const
     return xmlStr;
 }
 
-void AdvancedSettings::loadSettings()
+void AdvancedSettings::loadSettings(QString xmlSource)
 {
-    qDebug() << "Loading advanced settings...";
     reset();
 
-    QXmlStreamReader xml{getAdvancedSettingsXml()};
+    QXmlStreamReader xml{xmlSource};
 
     if (!xml.readNextStartElement() || xml.name().toString() != "advancedsettings") {
         qDebug() << "No advanced settings found!";
