@@ -41,8 +41,10 @@ public:
     bool writeThumbUrlsToNfo() const;
     mediaelch::ThumbnailDimensions episodeThumbnailDimensions() const;
 
+    friend QDebug operator<<(QDebug dbg, const AdvancedSettings& settings);
+
 private:
-    bool m_debugLog = 0;
+    bool m_debugLog = false;
     QString m_logFile;
     QLocale m_locale;
     QStringList m_sortTokens;
@@ -73,3 +75,6 @@ private:
     void loadFilters(QXmlStreamReader& xml);
     void loadMappings(QXmlStreamReader& xml, QHash<QString, QString>& map);
 };
+
+QDebug operator<<(QDebug dbg, const AdvancedSettings& movie);
+QDebug operator<<(QDebug dbg, const AdvancedSettings* movie);

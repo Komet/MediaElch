@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFile>
+#include <QTextStream>
 
 #include "Settings.h"
 
@@ -177,29 +178,6 @@ void AdvancedSettings::loadSettings()
             xml.skipCurrentElement();
         }
     }
-
-    qDebug() << "Advanced settings";
-    qDebug() << "    locale                " << m_locale;
-    qDebug() << "    debugLog              " << m_debugLog;
-    qDebug() << "    logFile               " << m_logFile;
-    qDebug() << "    forceCache            " << m_forceCache;
-    qDebug() << "    sortTokens            " << m_sortTokens;
-    qDebug() << "    movieFilters          " << m_movieFilters.filters();
-    qDebug() << "    concertFilters        " << m_concertFilters.filters();
-    qDebug() << "    tvShowFilters         " << m_tvShowFilters.filters();
-    qDebug() << "    subtitleFilters       " << m_subtitleFilters.filters();
-    qDebug() << "    genreMappings         " << m_genreMappings;
-    qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
-    qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
-    qDebug() << "    certificationMappings " << m_certificationMappings;
-    qDebug() << "    studioMappings        " << m_studioMappings;
-    qDebug() << "    countryMappings       " << m_countryMappings;
-    qDebug() << "    writeThumbUrlsToNfo   " << m_writeThumbUrlsToNfo;
-    qDebug() << "    episodeThumb dimensions:";
-    qDebug() << "      width:   " << m_episodeThumbnailDimensions.width;
-    qDebug() << "      height:  " << m_episodeThumbnailDimensions.height;
-    qDebug() << "    bookletCut            " << m_bookletCut;
-    qDebug() << "    useFirstStudioOnly    " << m_useFirstStudioOnly;
 }
 
 void AdvancedSettings::setLocale(QString locale)
@@ -415,4 +393,63 @@ mediaelch::ThumbnailDimensions AdvancedSettings::episodeThumbnailDimensions() co
 bool AdvancedSettings::useFirstStudioOnly() const
 {
     return m_useFirstStudioOnly;
+}
+
+QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
+{
+    QString nl = "\n";
+    QString s;
+    QTextStream out(&s);
+
+    auto printMap = [&nl](QTextStream& stream, const QHash<QString, QString>& map) {
+        QHashIterator<QString, QString> i(map);
+        while (i.hasNext()) {
+            i.next();
+            stream << "        " << i.key() << ": " << i.value() << nl;
+        }
+    };
+
+    out << "Advanced settings:" << nl;
+    out << "    locale:                  " << QLocale::languageToString(settings.m_locale.language()) << nl;
+    out << "    debugLog:                " << (settings.m_debugLog ? "true" : "false") << nl;
+    out << "    logFile:                 " << settings.m_logFile << nl;
+    out << "    forceCache:              " << (settings.m_forceCache ? "true" : "false") << nl;
+    out << "    sortTokens:              " << settings.m_sortTokens.join(", ") << nl;
+    out << "    movieFilters:            " << settings.m_movieFilters.filters().join(", ") << nl;
+    out << "    concertFilters:          " << settings.m_concertFilters.filters().join(", ") << nl;
+    out << "    tvShowFilters:           " << settings.m_tvShowFilters.filters().join(", ") << nl;
+    out << "    subtitleFilters:         " << settings.m_subtitleFilters.filters().join(", ") << nl;
+    out << "    genreMappings:           " << nl;
+    printMap(out, settings.m_genreMappings);
+
+    out << "    audioCodecMappings:      " << nl;
+    printMap(out, settings.m_audioCodecMappings);
+
+    out << "    videoCodecMappings:      " << nl;
+    printMap(out, settings.m_videoCodecMappings);
+
+    out << "    certificationMappings:   " << nl;
+    printMap(out, settings.m_certificationMappings);
+
+    out << "    studioMappings:          " << nl;
+    printMap(out, settings.m_studioMappings);
+
+    out << "    countryMappings:         " << nl;
+    printMap(out, settings.m_countryMappings);
+
+    out << "    writeThumbUrlsToNfo:     " << (settings.m_writeThumbUrlsToNfo ? "true" : "false") << nl;
+    out << "    episodeThumb dimensions: " << nl;
+    out << "        width:               " << settings.m_episodeThumbnailDimensions.width << nl;
+    out << "        height:              " << settings.m_episodeThumbnailDimensions.height << nl;
+    out << "    bookletCut:              " << settings.m_bookletCut << nl;
+    out << "    useFirstStudioOnly:      " << (settings.m_useFirstStudioOnly ? "true" : "false") << nl;
+
+    dbg.nospace().noquote() << *out.string();
+    return dbg.maybeSpace().maybeQuote();
+}
+
+QDebug operator<<(QDebug dbg, const AdvancedSettings* movie)
+{
+    dbg.nospace() << *movie;
+    return dbg.space();
 }

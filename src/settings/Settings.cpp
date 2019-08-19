@@ -11,6 +11,8 @@
 
 Settings::Settings(QObject* parent) : QObject(parent), m_advancedSettings{new AdvancedSettings(parent)}
 {
+    qDebug() << m_advancedSettings;
+
     if (m_advancedSettings->portableMode()) {
         qDebug() << "portable mode!";
         m_settings = new QSettings(Settings::applicationDir() + "/MediaElch.ini", QSettings::IniFormat, this);
