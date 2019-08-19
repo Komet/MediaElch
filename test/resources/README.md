@@ -16,7 +16,6 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
    - `<status></status>`
    - `<code></code>`
    - `<aired></aired>`
- - changed resume time to != 0.0
 
 ## Changes only for TV shows
 
