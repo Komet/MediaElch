@@ -882,7 +882,7 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
 
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            qWarning() << "[KodiXml] File" << nfoFile << "could not be opened for reading";
             return false;
         }
         nfoContent = QString::fromUtf8(file.readAll());
@@ -923,7 +923,6 @@ bool KodiXml::loadTvShowEpisode(TvShowEpisode* episode, QString initialNfoConten
         episodeDetails = episodeDetailsList.at(0).toElement();
     }
 
-    // todo: move above code into reader as well
     mediaelch::kodi::EpisodeXmlReader reader(*episode);
     reader.parseNfoDom(episodeDetails);
 

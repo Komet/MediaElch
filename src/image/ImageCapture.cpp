@@ -8,11 +8,13 @@
 #include "globals/Helper.h"
 #include "ui/notifications/NotificationBox.h"
 
+namespace mediaelch {
+
 ImageCapture::ImageCapture(QObject* parent) : QObject(parent)
 {
 }
 
-bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, QImage& img)
+bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, ThumbnailDimensions dim, QImage& img)
 {
     if (streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr) == nullptr) {
         streamDetails->loadStreamDetails();
@@ -33,13 +35,16 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, QIma
 
     QProcess ffmpeg;
     qsrand(QTime::currentTime().msec());
-    int duration = streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr).toInt();
+
+    unsigned duration =
+        streamDetails->videoDetails().value(StreamDetails::VideoDetails::DurationInSeconds, nullptr).toUInt();
+
     if (duration == 0) {
         NotificationBox::instance()->showMessage(
             tr("Could not detect runtime of file"), NotificationBox::NotificationError);
         return false;
     }
-    int t = qrand() % duration;
+    unsigned t = static_cast<unsigned>(qrand()) % duration;
     QString timeCode = helper::secondsToTimeCode(t);
 
     QTemporaryFile tmpFile;
@@ -82,7 +87,9 @@ bool ImageCapture::captureImage(QString file, StreamDetails* streamDetails, QIma
     img = QImage::fromData(tmpFile.readAll());
     tmpFile.close();
 
-    img = img.scaled(400, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    img = img.scaled(dim.width, dim.height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     return true;
 }
+
+} // namespace mediaelch

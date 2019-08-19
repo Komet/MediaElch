@@ -156,6 +156,7 @@ SOURCES += src/main.cpp \
     src/image/ImageCapture.cpp \
     src/image/ImageModel.cpp \
     src/image/ImageProxyModel.cpp \
+    src/image/ThumbnailDimensions.cpp \
     src/ui/image/ImageWidget.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
@@ -385,6 +386,7 @@ HEADERS  += Version.h \
     src/image/ImageCapture.h \
     src/image/ImageModel.h \
     src/image/ImageProxyModel.h \
+    src/image/ThumbnailDimensions.h \
     src/ui/image/ImageWidget.h \
     src/scrapers/image/FanartTv.h \
     src/scrapers/image/FanartTvMusic.h \

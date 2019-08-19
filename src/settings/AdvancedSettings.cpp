@@ -121,6 +121,27 @@ void AdvancedSettings::loadSettings()
         } else if (xml.name() == "writeThumbUrlsToNfo") {
             m_writeThumbUrlsToNfo = (xml.readElementText() == "true");
 
+        } else if (xml.name() == "episodeThumb") {
+            while (xml.readNextStartElement()) {
+                if (xml.name() == "width") {
+                    bool ok = false;
+                    int width = xml.readElementText().trimmed().toInt(&ok);
+                    if (ok) {
+                        m_episodeThumbnailDimensions.width = width;
+                    }
+
+                } else if (xml.name() == "height") {
+                    bool ok = false;
+                    int height = xml.readElementText().trimmed().toInt(&ok);
+                    if (ok) {
+                        m_episodeThumbnailDimensions.height = height;
+                    }
+                } else {
+                    qWarning() << "[AdvancedSettings] Found unsupported tag inside <episodeThumb>:" << xml.name();
+                    break;
+                }
+            }
+
         } else if (xml.name() == "bookletCut") {
             m_bookletCut = xml.readElementText().toInt();
 
@@ -174,6 +195,9 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    studioMappings        " << m_studioMappings;
     qDebug() << "    countryMappings       " << m_countryMappings;
     qDebug() << "    writeThumbUrlsToNfo   " << m_writeThumbUrlsToNfo;
+    qDebug() << "    episodeThumb dimensions:";
+    qDebug() << "      width:   " << m_episodeThumbnailDimensions.width;
+    qDebug() << "      height:  " << m_episodeThumbnailDimensions.height;
     qDebug() << "    bookletCut            " << m_bookletCut;
     qDebug() << "    useFirstStudioOnly    " << m_useFirstStudioOnly;
 }
@@ -381,6 +405,11 @@ int AdvancedSettings::bookletCut() const
 bool AdvancedSettings::writeThumbUrlsToNfo() const
 {
     return m_writeThumbUrlsToNfo;
+}
+
+mediaelch::ThumbnailDimensions AdvancedSettings::episodeThumbnailDimensions() const
+{
+    return m_episodeThumbnailDimensions;
 }
 
 bool AdvancedSettings::useFirstStudioOnly() const

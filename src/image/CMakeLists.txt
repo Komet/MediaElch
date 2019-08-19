@@ -1,5 +1,11 @@
-add_library(mediaelch_image OBJECT Image.cpp ImageCapture.cpp ImageModel.cpp
-                                   ImageProxyModel.cpp)
+add_library(
+  mediaelch_image OBJECT
+  Image.cpp
+  ImageCapture.cpp
+  ImageModel.cpp
+  ImageProxyModel.cpp
+  ThumbnailDimensions.cpp
+)
 
 target_link_libraries(
   mediaelch_image

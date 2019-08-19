@@ -45,6 +45,15 @@
     <writeThumbUrlsToNfo>true</writeThumbUrlsToNfo>
 
     <!--
+        Dimensions of generated episode thumbnails.
+        The aspect ratio of the original file will be respected, though.
+    -->
+    <episodeThumb>
+        <width>400</width>
+        <height>300</height>
+    </episodeThumb>
+
+    <!--
         When cutting a music album booklet in two pieces this percentage
         will be removed in the middle of the image.
     -->
