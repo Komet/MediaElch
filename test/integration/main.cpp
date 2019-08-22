@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     // Build a new parser on top of Catch's
     using namespace Catch::clara;
     auto cli = session.cli() // Get Catch's composite command line parser
-               | Opt(resourceDirString, "directory")["-w"]["--resource-dir"](
+               | Opt(resourceDirString, "directory")["--resource-dir"](
                    "The test directory which contains reference NFO files, etc.")
                | Opt(tempDirString, "directory")["--temp-dir"](
                    "The temporary directory to which result files can be written.");
@@ -77,7 +77,9 @@ int main(int argc, char** argv)
         setTempDir(tempDir);
 
     } catch (const std::runtime_error& error) {
+        std::cerr << "An exception was thrown:" << std::endl;
         std::cerr << error.what();
+        std::cerr.flush();
         return 1;
     }
 

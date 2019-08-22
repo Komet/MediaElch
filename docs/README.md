@@ -15,18 +15,14 @@ Either use the provided CMake target `docs` or use Sphinx's Makefile.
 
 ```sh
 # Create user documentation using Sphinx's Makefile
-cd docs/user
+cd docs/user/docs
 make html
-
-# Create Sphinx documentation using CMake
-mkdir build && cd $_
-cmake ..
-make docs
 ```
 
 ### [Maintainers Only] Publish User Documentation
-Run: `./user/update_github_pages.sh`.  
-You can find our documentation on: http://mediaelch.github.io/mediaelch-doc/
+
+Run: `./docs/user/update_github_pages.sh`.  
+You can find our documentation on: <http://mediaelch.github.io/mediaelch-doc/>
 
 
 ## Contributor / Developer Documentation
@@ -38,6 +34,7 @@ MediaElch.
 See [`contributing/README.md`](contributing/README.md) for the table-of-contents.
 
 ### Doxygen
+
 This project does not contain a `Doxyfile` as we have a custom CMake
 target for this.
 

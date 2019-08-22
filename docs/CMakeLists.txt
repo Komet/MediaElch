@@ -27,24 +27,3 @@ else()
   )
 
 endif()
-
-# ------------------------------------------------------------------------------
-# Sphinx User Documentation
-find_package(Sphinx)
-if(SPHINX_FOUND)
-  add_custom_target(
-    docs
-    COMMAND
-      ${SPHINX_EXECUTABLE} -M html
-      "${CMAKE_CURRENT_SOURCE_DIR}/user/docs/source"
-      "${CMAKE_CURRENT_BINARY_DIR}/user"
-    COMMAND
-      ${CMAKE_COMMAND} -E echo
-      "User documentation available at '${CMAKE_CURRENT_BINARY_DIR}/user/html/index.html'"
-    COMMENT "Build HTML documentation with Sphinx"
-  )
-
-else()
-  message("=> Sphinx needs to be installed to generate user documentation")
-
-endif()

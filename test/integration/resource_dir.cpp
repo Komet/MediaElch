@@ -14,19 +14,23 @@ QDir resourceDir()
 
 void setResourceDir(QDir dir)
 {
+    const bool success = dir.makeAbsolute();
+    if (!success) {
+        throw std::runtime_error(QString("Directory '%1' not found! Abort.").arg(dir.absolutePath()).toStdString());
+    }
     s_resourceDir = std::move(dir);
 }
 
 QString getFileContent(QString filename)
 {
-    QString filepath = resourceDir().filePath(filename);
+    QString filepath = resourceDir().absoluteFilePath(filename);
     QFile file(filepath);
     if (!file.exists()) {
-        throw std::runtime_error(QString("File %1 does not exist! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(QString("File '%1' does not exist! Abort.").arg(filepath).toStdString());
     }
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw std::runtime_error(QString("File %1 can't be opened for reading! Abort.").arg(filepath).toStdString());
+        throw std::runtime_error(QString("File '%1' can't be opened for reading! Abort.").arg(filepath).toStdString());
     }
 
     QTextStream in(&file);

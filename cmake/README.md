@@ -5,7 +5,6 @@ List of all modules and third party licenses that are used in this project.
 `warnings.cmake`
 `FindShellcheck.cmake`
 `FindCMakeFormat.cmake`
-`FindSphinx.cmake`
 `FindCppCheck.cmake`
  - custom implementation
 
