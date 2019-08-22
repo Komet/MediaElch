@@ -17,8 +17,9 @@ docker run --rm  -it -v $(pwd):/opt/mediaelch mediaelch-build:dev /bin/bash
 ```
 
 ## Notes on running tests
+
 Because our tests require a GUI (even unit tests at the moment) we need a
-display. You can accomplish this by using `xvfb`. Do run our coverage tests
+display. You can accomplish this by using `xvfb`. To run our coverage tests
 you can then use:
 
 ```sh

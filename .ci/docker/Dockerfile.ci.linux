@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:rolling
 
 LABEL maintainer="info@andremeyering.de"
 
@@ -10,6 +10,7 @@ LABEL maintainer="info@andremeyering.de"
 #  - Latest stable Clazy
 #  - Latest CMake (via pip) + cmake_format
 #  - Latest lcov from GitHub
+#  - shellcheck + cppcheck
 #####################################################################
 
 WORKDIR /opt
@@ -18,15 +19,45 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:ubuntu-toolchain-r/test && \
     apt-get update && \
-    apt-get install -y --no-install-recommends build-essential git wget curl \
-        zlib1g zlib1g-dev g++-10 gcc-10 \
-        libclang-11-dev clang-tidy-11 clang-tools-10 clang-format-11 clang-11 \
-        llvm-11-dev git-core xvfb lcov \
-        python3 python3-yaml python3-pip libjson-perl \
-        libncurses5-dev libncurses5 ninja-build doxygen \
-        libmediainfo-dev ffmpeg \
-        qt5-default qtmultimedia5-dev qtdeclarative5-dev \
-        libqt5opengl5 libqt5opengl5-dev && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        wget \
+        curl \
+        zlib1g \
+        zlib1g-dev \
+        g++-10 \
+        gcc-10 \
+        libclang-11-dev \
+        clang-tidy-11 \
+        clang-tools-10 \
+        clang-format-11 \
+        clang-11 \
+        llvm-11-dev && \
+    apt-get install -y --no-install-recommends \
+        shellcheck \
+        cppcheck \
+        xvfb \
+        lcov \
+        python3 \
+        python3-yaml \
+        python3-pip \
+        libjson-perl \
+        libncurses5-dev \
+        libncurses5 \
+        ninja-build \
+        doxygen \
+        graphviz \
+        libmediainfo-dev \
+        ffmpeg && \
+    apt-get install -y --no-install-recommends \
+        qt5-default \
+        qtmultimedia5-dev \
+        qtdeclarative5-dev \
+        qttools5-dev \
+        qttools5-dev-tools \
+        libqt5opengl5 \
+        libqt5opengl5-dev && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-10          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-10         10 && \

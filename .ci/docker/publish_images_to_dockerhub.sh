@@ -11,10 +11,10 @@ IFS=$'\n\t'
 # Change to this directory
 cd "$(dirname "$(realpath -s "$0")")"
 
-docker build -t mediaelch/mediaelch-ci-linux:latest -f Dockerfile.ci.linux .
+docker build --pull -t mediaelch/mediaelch-ci-linux:latest -f Dockerfile.ci.linux .
 docker push mediaelch/mediaelch-ci-linux:latest
 
 # Note: As of 2021-01-26, this fails.
 # mxe has an open issue for qtbase, see <https://github.com/mxe/mxe/issues/2590>
-docker build -t mediaelch/mediaelch-ci-win:latest -f Dockerfile.ci.windows .
+docker build --pull -t mediaelch/mediaelch-ci-win:latest -f Dockerfile.ci.windows .
 docker push mediaelch/mediaelch-ci-win:latest

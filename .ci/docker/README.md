@@ -3,9 +3,7 @@
 This directory contains Dockerfiles for the purpose of building
 and testing MediaElch on different operating systems.
 
-They are not yet integrated into our CI.
-
-They are not meant for release-binaries.
+They are only partially integrated into our CI.
 
 ## Usage
 
@@ -17,6 +15,12 @@ They are not meant for release-binaries.
 Note that these scripts will create their build folders in `MediaElch/build/build-distro`.
 You may wish to delete the build directory prior to executing above scripts.
 
+## Linux CI Docker Image
+
+`Dockerfile.ci.linux` is meant for our Jenkins pipeline.  It is rather large
+and contains a lot of tools for testing purposes.
+
+See `publish_images_to_dockerhub.sh` for more details.
 
 ## Windows MXE
 

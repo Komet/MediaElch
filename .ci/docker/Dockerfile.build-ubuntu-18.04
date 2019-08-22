@@ -11,6 +11,7 @@ RUN apt-get update && \
         libmediainfo-dev \
         ffmpeg \
         qt5-default \
+        qttools5-dev \
         qttools5-dev-tools \
         qtmultimedia5-dev \
         qtdeclarative5-dev \
