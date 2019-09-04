@@ -1,10 +1,11 @@
 # Changelog
 
-## Next Release (*tbd*)
-The next release will affect your scraper settings. You'll therefore have
-to reconfigure your scraper settings. You may also need to delete
-`MediaElch.sqlite`. See:
-https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings-stored
+## 2.6.2 - Ferenginar (2019-09-13)
+
+This release will affect your scraper settings. You'll therefore have to
+reconfigure your scraper settings. You may also need to delete `MediaElch.sqlite`.
+
+See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings-stored
 
 ### Bugfixes
 
@@ -38,7 +39,7 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Settings: Color paths red if directories are not readable (#730)
  - Add `{{ MOVIE.LABEL }}` placeholder in templates (#715)
  - Add experimental command line interface (#720)
- - Add userrating field
+ - Add userrating field to movies
  - Add Kodi v16/v17/v18 switcher (#719)
  - Make episode thumbnail size configurable in `advancedsettings.xml` (#776)
  - Add "avc" to "h264" video codec mapping to defaults (#728)
