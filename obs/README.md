@@ -57,7 +57,7 @@ osc commit
 ## Compress MediaElch (`.tar.gz`)
 
 ```sh
-export ME_VERSION=2.6.1
+export ME_VERSION=2.6.2
 # Clone latest version.
 git clone https://github.com/Komet/MediaElch.git MediaElch
 git submodule update --init

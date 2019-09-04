@@ -6,7 +6,7 @@ namespace mediaelch {
 namespace constants {
 
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.6.1-dev";
+constexpr char AppVersionStr[] = "2.6.2";
 constexpr char VersionName[] = "Ferenginar";
 constexpr char OrganizationName[] = "kvibes";
 

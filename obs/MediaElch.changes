@@ -1,54 +1,9 @@
 -------------------------------------------------------------------
+Sun Sep 15 12:00:00 UTC 2019 - info@andremeyering.de
+
+ - Updated MediaElch to v2.6.2
+
+-------------------------------------------------------------------
 Sun Jan 06 12:00:00 UTC 2019 - info@andremeyering.de
 
-## 2.6.0
-
-### Features
-
- - Add user documentation (#531)
- - Use HTTPS for scraping (#371)
- - Set UI language in `advancedsettings.xml` (#411)
- - Load *all* tags from IMDb (#469)
- - Add more audio and video codecs (#524, #530)
- - Remove deprecated Cinefacts (#370)
- - Remove deprecated Coverlib (#369)
- - Remove deprecated MediaPassion (#449)
- - Remove deprecated MovieMaze (#386)
- - Support KDE Breeze Dark theme (#407)
- - Use new Kodi XML syntax for movie set names (#554)
- - Add context menu in movie duplicate view (#591)
- - Add AEBN genre option (#590)
- - Select scraper language in movie search panel (#442)
- - Concert Renamer (#574)
- - Scrape TV show tags when using IMDb
- - Detect duplicate movies
- - Create subdirectories
-
-### Bugfixes
-
- - HD-Trailers scraper broken (#445)
- - OFDB movie scraper crashes MediaElch (#394)
- - IMDB movie poster not loaded (#385)
- - IMDB top 250 not scraped (#468)
- - IMDB outline/plot scraping broken (#456)
- - IMDB genres/studios/... scraping broken (#556)
- - studio name not exported (#392)
- - TvShow status not written to `.nfo` file (#380)
- - HTML entities in export not escaped (#391)
- - multi scraper does not load all episode thumbnails (#415)
- - studio mapping for TvShow episodes (#459)
- - using filters crashes MediaElch (#504)
- - wrong filter tooltips (#506)
- - concert extra fanart not saved (#529)
- - ADE search does not return results (#565)
- - backdrop not loaded using ADE (#519)
- - adult scrapers broken (#367)
- - VideoBuster does not load certification in special cases (#571)
- - *fanart.tv* music scraper broken
- - Placeholder `<showTitle>` does not work for renaming season folders (#553)
-
-### Improvements
-
- - UI: line break in tree views (#406)
- - UI: add 4k and 8k resolution flag (#446)
- - UI: show green ID flag only if IMDB is valid (#471)
+ - Updated MediaElch to v2.6.0

@@ -1,3 +1,43 @@
+mediaelch (2.6.2-1) vivid; urgency=low
+
+  * Fix IMDb tag scraping (#649)
+  * Fix TMDb issue with HTML characters in overview/plot (#651)
+  * `Ctrl+A` works in movie and concert section (#647)
+  * Fix crash when "Load missing episodes" is enabled (#669)
+  * Filter "Movie has no IMDb ID" is inversed (#680)
+  * Window positions not saved (#679)
+  * Country mappings not used in TMDb (#689)
+  * Windows: Stream Details do not load (#688)
+  * Crashes on macOS when scanning episodes due to a Qt bug (#641)
+  * Fix ADE scraper (#703, #725)
+  * Fix TV shows always beeing reloaded (#732)
+  * Fix incompatibilities with Kodi v17 NFO files (#719)
+  * Fix race-condition in DownloadManager (#766)
+  * Update French translation (#646)
+  * Add more subtitle formats (#661)
+  * UI: Fix list/table style for dark themes (#640)
+  * UI: Fix stuck splitter cursor (#659)
+  * UI: Restructured search windows (#660)
+  * Windows: Update MediaInfo (#688)
+  * Windows: Update to Qt 5.12 and fix style issues (#678)
+  * Kodi: Use new syntax for ratings for movies and tvshows (#516)
+  * Kodi: Add missing "aspect" attribute to thumbs (#665)
+  * Settings: Color paths red if directories are not readable (#730)
+  * Add `{{ MOVIE.LABEL }}` placeholder in templates (#715)
+  * Add experimental command line interface (#720)
+  * Add userrating field to movies
+  * Add Kodi v16/v17/v18 switcher (#719)
+  * Make episode thumbnail size configurable in `advancedsettings.xml` (#776)
+  * Implement ScraperSettings class for better mocking
+  * Use `QVector<T>` instead of `QList<T>` as the default container
+  * Reorganize project structure
+  * Add CMake build system (#700)
+  * Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
+  * Require Qt 5.6 or later (#780)
+
+
+ -- Andre Meyering <info@andremeyering.de>  Sun, 15 Sep 2019 12:00:00 +0200
+
 mediaelch (2.6.0-1) vivid; urgency=low
 
   * Add user documentation (#531)
