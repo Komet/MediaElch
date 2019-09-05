@@ -122,7 +122,7 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 		fold_start "update"
 		print_info "Add repositories + update"
 		sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-		sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-trusty
+		sudo add-apt-repository -y ppa:beineri/opt-${QT_PPA}-xenial
 		sudo apt-get -qq update
 		fold_end
 
@@ -133,9 +133,9 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 		print_info "Installing CMake using pip"
 		pip install --user cmake
 		print_info "Updating GCC"
-		sudo apt-get install -y g++-7 gcc-7
-		sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
-		sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+		sudo apt-get install -y g++-8 gcc-8
+		sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90
+		sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 		fold_end
 
 		#######################################################
@@ -153,7 +153,10 @@ if [ "$(lc "${OS_NAME}")" = "linux" ]; then
 
 		fold_start "install_other"
 		print_info "Installing other dependencies"
-		sudo apt-get install -y libcurl4-openssl-dev libmediainfo-dev libpulse-dev zlib1g-dev libzen-dev
+		sudo apt-get install -y \
+			libcurl4-openssl-dev libmediainfo-dev \
+			libpulse-dev zlib1g-dev libzen-dev \
+			libgl1-mesa-dev
 		fold_end
 	fi
 

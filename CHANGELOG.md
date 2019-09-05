@@ -40,13 +40,14 @@ https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-settings
  - Add Kodi v16/v17/v18 switcher (#719)
  - Make episode thumbnail size configurable in `advancedsettings.xml` (#776)
 
-### Internal Improvements
+### Internal Improvements and Changes
 
  - Implement ScraperSettings class for better mocking
  - Use `QVector<T>` instead of `QList<T>` as the default container
  - Reorganize project structure
  - Add CMake build system (#700)
  - Add `DISABLE_UPDATER` option in QMake and CMake for package maintainers (#763)
+ - Require Qt 5.6 or later (#780)
 
 
 ## 2.6.0 - Ferenginar (2019-01-06)
