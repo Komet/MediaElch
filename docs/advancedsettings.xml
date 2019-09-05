@@ -47,6 +47,7 @@
     <!--
         Dimensions of generated episode thumbnails.
         The aspect ratio of the original file will be respected, though.
+        Both have to be numbers >= 100.
     -->
     <episodeThumb>
         <width>400</width>

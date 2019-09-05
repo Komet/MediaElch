@@ -135,20 +135,21 @@ void AdvancedSettings::loadSettings(QString xmlSource)
             while (xml.readNextStartElement()) {
                 if (xml.name() == "width") {
                     bool ok = false;
-                    int width = xml.readElementText().trimmed().toInt(&ok);
-                    if (ok) {
+                    const int width = xml.readElementText().trimmed().toInt(&ok);
+                    if (ok && width >= 100) {
                         m_episodeThumbnailDimensions.width = width;
                     }
 
                 } else if (xml.name() == "height") {
                     bool ok = false;
-                    int height = xml.readElementText().trimmed().toInt(&ok);
-                    if (ok) {
+                    const int height = xml.readElementText().trimmed().toInt(&ok);
+                    if (ok && height >= 100) {
                         m_episodeThumbnailDimensions.height = height;
                     }
+
                 } else {
-                    qWarning() << "[AdvancedSettings] Found unsupported tag inside <episodeThumb>:" << xml.name();
-                    break;
+                    qWarning() << "[AdvancedSettings] Found unsupported xml tag inside <episodeThumb>:" << xml.name();
+                    xml.skipCurrentElement();
                 }
             }
 
@@ -184,6 +185,7 @@ void AdvancedSettings::loadSettings(QString xmlSource)
             loadFilters(xml);
 
         } else {
+            qWarning() << "[AdvancedSettings] Found unsupported xml tag:" << xml.name();
             xml.skipCurrentElement();
         }
     }

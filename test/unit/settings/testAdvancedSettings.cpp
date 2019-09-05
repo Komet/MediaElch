@@ -5,16 +5,22 @@
 
 #include <QString>
 
+static QString addBaseXml(QString xml)
+{
+    QString fullXml = R"xml(<?xml version="1.0" encoding="utf-8"?>
+<advancedsettings>
+)xml";
+    fullXml += xml;
+    fullXml += "\n</advancedsettings>\n";
+    return fullXml;
+}
+
 TEST_CASE("Advanced Settings XML", "[settings]")
 {
     SECTION("empty xml")
     {
-        QString emptyXml = R"xml(<?xml version="1.0" encoding="utf-8"?>
-<advancedsettings>
-</advancedsettings>
-)xml";
         AdvancedSettings settings;
-        settings.loadFromXml(emptyXml);
+        settings.loadFromXml(addBaseXml(""));
 
         AdvancedSettings defaults;
         // check a few defaults
@@ -26,17 +32,15 @@ TEST_CASE("Advanced Settings XML", "[settings]")
 
     SECTION("xml with content")
     {
-        QString emptyXml = R"xml(<?xml version="1.0" encoding="utf-8"?>
-<advancedsettings>
-    <log>
-        <debug>true</debug>
-        <file>./MediaElchTest.log</file>
-    </log>
-    <genres>
-        <map from="SciFi" to="Science Fiction" />
-    </genres>
-</advancedsettings>
-)xml";
+        QString emptyXml = addBaseXml(R"xml(
+            <log>
+                <debug>true</debug>
+                <file>./MediaElchTest.log</file>
+            </log>
+            <genres>
+                <map from="SciFi" to="Science Fiction" />
+            </genres>
+        )xml");
         AdvancedSettings settings;
         settings.loadFromXml(emptyXml);
 
@@ -44,5 +48,56 @@ TEST_CASE("Advanced Settings XML", "[settings]")
         CHECK(settings.logFile() == "./MediaElchTest.log");
         REQUIRE(settings.genreMappings().size() == 1);
         CHECK(settings.genreMappings()["SciFi"] == "Science Fiction");
+    }
+
+    SECTION("xml with invalid content: episodeThumb")
+    {
+        SECTION("negative values")
+        {
+            QString emptyXml = addBaseXml(R"xml(
+                <episodeThumb>
+                   <width>-0</width>
+                   <height>-100</height>
+                </episodeThumb>
+            )xml");
+
+            AdvancedSettings settings;
+            settings.loadFromXml(emptyXml);
+
+            CHECK(settings.episodeThumbnailDimensions().width == 400);
+            CHECK(settings.episodeThumbnailDimensions().height == 300);
+        }
+
+        SECTION("too small value values")
+        {
+            QString emptyXml = addBaseXml(R"xml(
+                <episodeThumb>
+                   <width>0</width>
+                   <height>66</height>
+                </episodeThumb>
+            )xml");
+
+            AdvancedSettings settings;
+            settings.loadFromXml(emptyXml);
+
+            CHECK(settings.episodeThumbnailDimensions().width == 400);
+            CHECK(settings.episodeThumbnailDimensions().height == 300);
+        }
+
+        SECTION("non-integer values")
+        {
+            QString emptyXml = addBaseXml(R"xml(
+                <episodeThumb>
+                   <width>-abc</width>
+                   <height>0.23</height>
+                </episodeThumb>
+            )xml");
+
+            AdvancedSettings settings;
+            settings.loadFromXml(emptyXml);
+
+            CHECK(settings.episodeThumbnailDimensions().width == 400);
+            CHECK(settings.episodeThumbnailDimensions().height == 300);
+        }
     }
 }
