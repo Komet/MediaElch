@@ -616,8 +616,6 @@ void TvShowFilesWidget::onViewUpdated()
         const int showCount = Manager::instance()->tvShowModel()->tvShows().count();
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", showCount).arg(rowCount));
     }
-
-    updateProxy(); // required or or new shows won't be shown at the top
 }
 
 void TvShowFilesWidget::updateProxy()
