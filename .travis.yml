@@ -91,10 +91,10 @@ matrix:
 
   #----------------------------------------------------------------------------
 
-  - name: "Linux Qt 5.10 build"
-    env: QT=qt510 QT_PPA=qt-5.10.1 CXX=g++ CC=gcc
+  - name: "Linux Qt 5.12 build"
+    env: QT=qt512 QT_PPA=qt-5.12.3 CXX=g++ CC=gcc
     os: linux
-    dist: trusty
+    dist: xenial
     install:
       - "travis-ci/install_dependencies.sh"
     before_script:
@@ -109,10 +109,10 @@ matrix:
 
   #----------------------------------------------------------------------------
 
-  - name: "Linux Qt 5.5 build"
-    env: QT=qt55 QT_PPA=qt551 CXX=g++ CC=gcc
+  - name: "Linux Qt 5.6 build"
+    env: QT=qt56 QT_PPA=qt563 CXX=g++ CC=gcc
     os: linux
-    dist: trusty
+    dist: xenial
     install:
       - "travis-ci/install_dependencies.sh"
     before_script:
