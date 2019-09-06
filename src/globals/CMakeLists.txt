@@ -8,6 +8,7 @@ add_library(
   ImageDialog.cpp
   ImagePreviewDialog.cpp
   Manager.cpp
+  MessageIds.cpp
   NameFormatter.cpp
   NetworkReplyWatcher.cpp
   TrailerDialog.cpp

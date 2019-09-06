@@ -2,6 +2,7 @@
 #include "ui_MusicWidget.h"
 
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 #include "music/Album.h"
 #include "music/Artist.h"
 #include "ui/notifications/NotificationBox.h"

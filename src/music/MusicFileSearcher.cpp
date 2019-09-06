@@ -6,6 +6,9 @@
 #include <QtConcurrent>
 
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
 MusicFileSearcher::MusicFileSearcher(QObject* parent) :
     QObject(parent),

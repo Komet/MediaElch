@@ -6,8 +6,9 @@
 #include <QNetworkRequest>
 
 #include "data/Storage.h"
-#include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
+
 #ifndef EXTERN_QUAZIP
 #include "quazip/quazip/quazip.h"
 #include "quazip/quazip/quazipfile.h"
@@ -15,6 +16,7 @@
 #include "quazip5/quazip.h"
 #include "quazip5/quazipfile.h"
 #endif
+
 #include "scrapers/tv_show/TheTvDb.h"
 #include "tv_shows/TvShow.h"
 #include "ui/notifications/NotificationBox.h"
