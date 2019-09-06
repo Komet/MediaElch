@@ -56,38 +56,34 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
         m_artist.setDisbanded(domDoc.elementsByTagName("disbanded").at(0).toElement().text());
     }
 
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+    QDomNodeList thumbElements = domDoc.elementsByTagName("thumb");
+    for (int i = 0, n = thumbElements.size(); i < n; i++) {
+        QString parentTag = thumbElements.at(i).parentNode().toElement().tagName();
+        QDomElement thumb = thumbElements.at(i).toElement();
+
+        Poster p;
+        p.originalUrl = thumb.text();
+        p.thumbUrl = thumb.attribute("preview").trimmed().isEmpty() ? p.originalUrl : thumb.attribute("preview");
+        p.aspect = thumb.attribute("aspect").trimmed();
+
         if (parentTag == "artist") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty()) {
-                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            } else {
-                p.thumbUrl = p.originalUrl;
-            }
             m_artist.addImage(ImageType::ArtistThumb, p);
+
         } else if (parentTag == "fanart") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty()) {
-                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-            } else {
-                p.thumbUrl = p.originalUrl;
-            }
             m_artist.addImage(ImageType::ArtistFanart, p);
         }
     }
 
-    for (int i = 0, n = domDoc.elementsByTagName("album").size(); i < n; i++) {
+    QDomNodeList albumElements = domDoc.elementsByTagName("album");
+    for (int i = 0, n = albumElements.size(); i < n; i++) {
+        QDomElement album = albumElements.at(i).toElement();
+
         DiscographyAlbum a;
-        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").isEmpty()) {
-            a.title =
-                domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").at(0).toElement().text();
+        if (!album.elementsByTagName("title").isEmpty()) {
+            a.title = album.elementsByTagName("title").at(0).toElement().text();
         }
-        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").isEmpty()) {
-            a.year =
-                domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").at(0).toElement().text();
+        if (!album.elementsByTagName("year").isEmpty()) {
+            a.year = album.elementsByTagName("year").at(0).toElement().text();
         }
         m_artist.addDiscographyAlbum(a);
     }
