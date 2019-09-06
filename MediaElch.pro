@@ -149,6 +149,7 @@ SOURCES += src/main.cpp \
     src/globals/ImageDialog.cpp \
     src/globals/ImagePreviewDialog.cpp \
     src/globals/Manager.cpp \
+    src/globals/MessageIds.cpp \
     src/globals/NameFormatter.cpp \
     src/globals/NetworkReplyWatcher.cpp \
     src/globals/TrailerDialog.cpp \
@@ -387,6 +388,7 @@ HEADERS  += Version.h \
     src/globals/ImagePreviewDialog.h \
     src/globals/LocaleStringCompare.h \
     src/globals/Manager.h \
+    src/globals/MessageIds.h \
     src/globals/NameFormatter.h \
     src/globals/NetworkReplyWatcher.h \
     src/globals/TrailerDialog.h \

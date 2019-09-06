@@ -1,10 +1,11 @@
 #pragma once
 
 #include "globals/Globals.h"
-#include "music/Album.h"
-#include "music/Artist.h"
 
 #include <QObject>
+
+class Album;
+class Artist;
 
 class MusicFileSearcher : public QObject
 {

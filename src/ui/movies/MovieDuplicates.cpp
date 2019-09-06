@@ -3,6 +3,7 @@
 
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 #include "movies/Movie.h"
 #include "movies/MovieProxyModel.h"
 #include "ui/movies/MovieDuplicateItem.h"

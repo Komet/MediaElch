@@ -8,11 +8,11 @@
 
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 #include "scrapers/tv_show/TheTvDb.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/tv_show/TvShowSearch.h"

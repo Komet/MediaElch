@@ -1,7 +1,6 @@
 #pragma once
 
 #include "data/Database.h"
-#include "globals/Globals.h"
 
 #include <QDir>
 #include <QString>

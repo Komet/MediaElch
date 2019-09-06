@@ -1,6 +1,5 @@
 #pragma once
 
-#include "globals/Globals.h"
 #include "tv_shows/TvShowEpisode.h"
 
 #include <QDir>

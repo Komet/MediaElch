@@ -13,6 +13,7 @@
 #include "data/Subtitle.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 
 MovieFileSearcher::MovieFileSearcher(QObject* parent) :
     QObject(parent),

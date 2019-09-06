@@ -9,6 +9,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "globals/MessageIds.h"
 #include "globals/TrailerDialog.h"
 #include "scrapers/movie/CustomMovieScraper.h"
 #include "ui/main/MainWindow.h"
