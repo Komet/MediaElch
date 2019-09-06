@@ -153,6 +153,7 @@ SOURCES += src/main.cpp \
     src/globals/MessageIds.cpp \
     src/globals/NameFormatter.cpp \
     src/globals/NetworkReplyWatcher.cpp \
+    src/globals/Poster.cpp \
     src/globals/ScraperInfos.cpp \
     src/globals/TrailerDialog.cpp \
     src/image/Image.cpp \
@@ -394,6 +395,7 @@ HEADERS  += Version.h \
     src/globals/MessageIds.h \
     src/globals/NameFormatter.h \
     src/globals/NetworkReplyWatcher.h \
+    src/globals/Poster.h \
     src/globals/ScraperInfos.h \
     src/globals/TrailerDialog.h \
     src/image/Image.h \

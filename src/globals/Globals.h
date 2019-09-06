@@ -1,7 +1,5 @@
 #pragma once
 
-#include "tv_shows/SeasonNumber.h"
-
 #include <QDate>
 #include <QDebug>
 #include <QDir>
@@ -95,19 +93,6 @@ struct TrailerResult
     QUrl trailerUrl;
     QImage previewImage;
     bool previewImageLoaded = false;
-};
-
-/// @brief The Poster struct
-struct Poster
-{
-    QString id;
-    QUrl originalUrl;
-    QUrl thumbUrl;
-    QSize originalSize;
-    QString language;
-    QString hint;
-    QString aspect; // "aspect" attribute in Kodi NFO files
-    SeasonNumber season = SeasonNumber::NoSeason;
 };
 
 enum class TvShowType : int

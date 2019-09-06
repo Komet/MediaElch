@@ -6,6 +6,7 @@
 #include <QVector>
 
 #include "globals/Globals.h"
+#include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
 
 class MediaCenterInterface;

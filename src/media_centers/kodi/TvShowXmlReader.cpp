@@ -1,5 +1,6 @@
 #include "TvShowXmlReader.h"
 
+#include "globals/Poster.h"
 #include "tv_shows/TvShow.h"
 
 #include <QDate>

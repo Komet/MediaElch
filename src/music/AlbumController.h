@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/DownloadManagerElement.h"
+#include "globals/Poster.h"
 #include "globals/ScraperInfos.h"
 
 #include <QObject>
