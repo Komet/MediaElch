@@ -11,14 +11,17 @@
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
+#include "media_centers/kodi/v16/ArtistXmlWriterV16.h"
 #include "media_centers/kodi/v16/ConcertXmlWriterV16.h"
 #include "media_centers/kodi/v16/EpisodeXmlWriterV16.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
+#include "media_centers/kodi/v17/ArtistXmlWriterV17.h"
 #include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
 #include "media_centers/kodi/v17/EpisodeXmlWriterV17.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 #include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
+#include "media_centers/kodi/v18/ArtistXmlWriterV18.h"
 #include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
 #include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
 #include "media_centers/kodi/v18/MovieXmlWriterV18.h"
@@ -1862,8 +1865,18 @@ bool KodiXml::saveAlbum(Album* album)
 
 QByteArray KodiXml::getArtistXml(Artist* artist)
 {
-    mediaelch::kodi::ArtistXmlWriter writer(*artist);
-    return writer.getArtistXml();
+    using namespace mediaelch;
+    // @todo(bugwelle):
+    // I'm fully aware that this is bad coding style but writing this clean
+    // requires so much refactoring that writing this whole feature would be easier.
+    // It's on my todo list to refactor this. Maybe into a Kodi factory.
+    std::unique_ptr<kodi::ArtistXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::ArtistXmlWriterV16>(*artist); break;
+    case KodiVersion::v17: writer = std::make_unique<kodi::ArtistXmlWriterV17>(*artist); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::ArtistXmlWriterV18>(*artist); break;
+    }
+    return writer->getArtistXml();
 }
 
 QByteArray KodiXml::getAlbumXml(Album* album)

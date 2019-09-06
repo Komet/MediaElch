@@ -4,19 +4,14 @@
 #include <QDomElement>
 #include <QString>
 
-class Artist;
-
 namespace mediaelch {
 namespace kodi {
 
 class ArtistXmlWriter
 {
 public:
-    explicit ArtistXmlWriter(Artist& artist);
-    QByteArray getArtistXml();
-
-private:
-    Artist& m_artist;
+    virtual ~ArtistXmlWriter() = default;
+    virtual QByteArray getArtistXml() = 0;
 };
 
 } // namespace kodi
