@@ -27,9 +27,15 @@ void ArtistXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("name").isEmpty()) {
         m_artist.setName(domDoc.elementsByTagName("name").at(0).toElement().text());
     }
-    if (!domDoc.elementsByTagName("genre").isEmpty()) {
-        m_artist.setGenres(
-            domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
+    {
+        QDomNodeList genreElements = domDoc.elementsByTagName("genre");
+        QStringList genres;
+        for (int i = 0, n = genreElements.size(); i < n; i++) {
+            genres << genreElements.at(i).toElement().text().split(" / ", QString::SkipEmptyParts);
+        }
+        if (!genres.isEmpty()) {
+            m_artist.setGenres(genres);
+        }
     }
     for (int i = 0, n = domDoc.elementsByTagName("style").size(); i < n; i++) {
         m_artist.addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
