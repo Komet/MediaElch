@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QComboBox>
 #include <QWidget>

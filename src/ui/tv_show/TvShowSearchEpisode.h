@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 #include "tv_shows/TvDbId.h"
 
 #include <QTableWidgetItem>

@@ -3,6 +3,7 @@
 #include "ArtistController.h"
 #include "MusicModelItem.h"
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QObject>
 

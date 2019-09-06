@@ -5,6 +5,7 @@
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/TvDbId.h"

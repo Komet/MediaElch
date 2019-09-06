@@ -2,6 +2,7 @@
 
 #include "data/TmdbId.h"
 #include "globals/DownloadManagerElement.h"
+#include "globals/ScraperInfos.h"
 
 #include <QMutex>
 #include <QObject>

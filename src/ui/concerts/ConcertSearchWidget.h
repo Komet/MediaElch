@@ -2,6 +2,7 @@
 
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QTableWidgetItem>
 #include <QWidget>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "data/TmdbId.h"
-#include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QDialog>
 
@@ -9,9 +9,6 @@ namespace Ui {
 class ConcertSearch;
 }
 
-/**
- * @brief The ConcertSearch class
- */
 class ConcertSearch : public QDialog
 {
     Q_OBJECT
