@@ -37,7 +37,7 @@ QByteArray ArtistXmlWriterV17::getArtistXml()
         KodiXml::removeChildNodes(doc, "allmusicid");
     }
     KodiXml::setTextValue(doc, "name", m_artist.name());
-    KodiXml::setTextValue(doc, "genre", m_artist.genres().join(" / "));
+    KodiXml::setListValue(doc, "genre", m_artist.genres());
     KodiXml::setListValue(doc, "style", m_artist.styles());
     KodiXml::setListValue(doc, "mood", m_artist.moods());
     KodiXml::setTextValue(doc, "yearsactive", m_artist.yearsActive());
