@@ -19,7 +19,7 @@ QByteArray ArtistXmlWriterV17::getArtistXml()
     QDomDocument doc;
     doc.setContent(m_artist.nfoContent());
     if (m_artist.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("artist"));
     }
