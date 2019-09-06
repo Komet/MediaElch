@@ -6,6 +6,7 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
  - order of tags and attributes (defined by the order in a `QHash<QString>`)
  - replaced `&quot;` with `"` because `QDomText` does not escape them unless necessary
  - replaced `&apos;` with `'` because `QDomText` does not escape them unless necessary
+ - replaced `&#x0A;` with linebreaks because `QDomText` does not escape linebreaks
  - strip last zeroes from floating point numbers (e.g. `7.5000` => `7.5`)
 
 ## Changes only for movies
@@ -67,3 +68,26 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 ## Changes only for concerts
 
  - main tag `<movie>` renamed to `<musicvideo>`
+
+
+## Changes only for artists (music)
+
+ - removed some tags as they are not yet supported by MediaElch (see next section)
+ - removed `<path></path>` tag as it is "Exported but not used on Import"
+   (from [Kodi wiki](https://kodi.wiki/view/NFO_files/Music#nfo_Tags))
+ - for testing, these tags were added to "AC/DC" (e.g. to have multiple genre tags):
+     - added another genre `Rock`
+     - added another mood `Really Energetic`
+     - added another style `Pop/Rock`
+
+### Tags to be implemented
+
+```xml
+<disambiguation></disambiguation>
+<gender></gender>
+<sortname></sortname>
+<type></type>
+<instruments></instruments>
+```
+
+Furthermore MediaElch should support multiple `yearsactive` tags.
