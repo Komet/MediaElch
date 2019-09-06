@@ -12,6 +12,13 @@
 class Movie;
 struct ScraperSearchResult;
 
+/// @brief Language name/key pair for scrapers. Used for settings.
+struct ScraperLanguage
+{
+    QString languageName;
+    QString languageKey;
+};
+
 /// @brief The MovieScraperInterface class
 /// This class is the base for every movie Scraper.
 class MovieScraperInterface : public QObject, public ScraperInterface
