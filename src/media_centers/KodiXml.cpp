@@ -5,6 +5,7 @@
 #include "globals/Manager.h"
 #include "image/Image.h"
 #include "media_centers/kodi/AlbumXmlReader.h"
+#include "media_centers/kodi/AlbumXmlWriter.h"
 #include "media_centers/kodi/ArtistXmlReader.h"
 #include "media_centers/kodi/ArtistXmlWriter.h"
 #include "media_centers/kodi/ConcertXmlReader.h"
@@ -12,16 +13,19 @@
 #include "media_centers/kodi/EpisodeXmlReader.h"
 #include "media_centers/kodi/MovieXmlReader.h"
 #include "media_centers/kodi/TvShowXmlReader.h"
+#include "media_centers/kodi/v16/AlbumXmlWriterV16.h"
 #include "media_centers/kodi/v16/ArtistXmlWriterV16.h"
 #include "media_centers/kodi/v16/ConcertXmlWriterV16.h"
 #include "media_centers/kodi/v16/EpisodeXmlWriterV16.h"
 #include "media_centers/kodi/v16/MovieXmlWriterV16.h"
 #include "media_centers/kodi/v16/TvShowXmlWriterV16.h"
+#include "media_centers/kodi/v17/AlbumXmlWriterV17.h"
 #include "media_centers/kodi/v17/ArtistXmlWriterV17.h"
 #include "media_centers/kodi/v17/ConcertXmlWriterV17.h"
 #include "media_centers/kodi/v17/EpisodeXmlWriterV17.h"
 #include "media_centers/kodi/v17/MovieXmlWriterV17.h"
 #include "media_centers/kodi/v17/TvShowXmlWriterV17.h"
+#include "media_centers/kodi/v18/AlbumXmlWriterV18.h"
 #include "media_centers/kodi/v18/ArtistXmlWriterV18.h"
 #include "media_centers/kodi/v18/ConcertXmlWriterV18.h"
 #include "media_centers/kodi/v18/EpisodeXmlWriterV18.h"
@@ -1835,62 +1839,18 @@ QByteArray KodiXml::getArtistXml(Artist* artist)
 
 QByteArray KodiXml::getAlbumXml(Album* album)
 {
-    QDomDocument doc;
-    doc.setContent(album->nfoContent());
-    if (album->nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
-        doc.insertBefore(node, doc.firstChild());
-        doc.appendChild(doc.createElement("album"));
+    using namespace mediaelch;
+    // @todo(bugwelle):
+    // I'm fully aware that this is bad coding style but writing this clean
+    // requires so much refactoring that writing this whole feature would be easier.
+    // It's on my todo list to refactor this. Maybe into a Kodi factory.
+    std::unique_ptr<kodi::AlbumXmlWriter> writer;
+    switch (m_version.version()) {
+    case KodiVersion::v16: writer = std::make_unique<kodi::AlbumXmlWriterV16>(*album); break;
+    case KodiVersion::v17: writer = std::make_unique<kodi::AlbumXmlWriterV17>(*album); break;
+    case KodiVersion::v18: writer = std::make_unique<kodi::AlbumXmlWriterV18>(*album); break;
     }
-
-    QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
-
-    if (!album->mbReleaseGroupId().isEmpty()) {
-        setTextValue(doc, "musicBrainzReleaseGroupID", album->mbReleaseGroupId());
-    } else {
-        removeChildNodes(doc, "musicBrainzReleaseGroupID");
-    }
-    if (!album->mbAlbumId().isEmpty()) {
-        setTextValue(doc, "musicBrainzAlbumID", album->mbAlbumId());
-    } else {
-        removeChildNodes(doc, "musicBrainzAlbumID");
-    }
-    if (!album->allMusicId().isEmpty()) {
-        setTextValue(doc, "allmusicid", album->allMusicId());
-    } else {
-        removeChildNodes(doc, "allmusicid");
-    }
-    setTextValue(doc, "title", album->title());
-    setTextValue(doc, "artist", album->artist());
-    setTextValue(doc, "genre", album->genres().join(" / "));
-    setListValue(doc, "style", album->styles());
-    setListValue(doc, "mood", album->moods());
-    setTextValue(doc, "review", album->review());
-    setTextValue(doc, "label", album->label());
-    setTextValue(doc, "releasedate", album->releaseDate());
-    if (album->rating() > 0) {
-        setTextValue(doc, "rating", QString("%1").arg(album->rating()));
-    } else {
-        removeChildNodes(doc, "rating");
-    }
-    if (album->year() > 0) {
-        setTextValue(doc, "year", QString("%1").arg(album->year()));
-    } else {
-        removeChildNodes(doc, "year");
-    }
-
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        removeChildNodes(doc, "thumb");
-
-        for (const Poster& poster : album->images(ImageType::AlbumThumb)) {
-            QDomElement elem = doc.createElement("thumb");
-            elem.setAttribute("preview", poster.thumbUrl.toString());
-            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
-            appendXmlNode(doc, elem);
-        }
-    }
-
-    return doc.toByteArray(4);
+    return writer->getAlbumXml();
 }
 
 QDomElement KodiXml::setTextValue(QDomDocument& doc, const QString& name, const QString& value)
