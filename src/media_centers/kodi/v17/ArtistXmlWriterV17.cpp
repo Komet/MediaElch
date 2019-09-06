@@ -53,7 +53,10 @@ QByteArray ArtistXmlWriterV17::getArtistXml()
 
         for (const Poster& poster : m_artist.images(ImageType::ArtistThumb)) {
             QDomElement elem = doc.createElement("thumb");
+            QString aspect = poster.aspect.isEmpty() ? "thumb" : poster.aspect;
+
             elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.setAttribute("aspect", aspect);
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             KodiXml::appendXmlNode(doc, elem);
         }
