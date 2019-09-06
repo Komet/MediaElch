@@ -141,6 +141,7 @@ SOURCES += src/main.cpp \
     src/export/ExportTemplate.cpp \
     src/export/ExportTemplateLoader.cpp \
     src/file/FileFilter.cpp \
+    src/globals/Actor.cpp \
     src/globals/ComboDelegate.cpp \
     src/globals/DownloadManager.cpp \
     src/globals/DownloadManagerElement.cpp \
@@ -379,6 +380,7 @@ HEADERS  += Version.h \
     src/export/ExportTemplate.h \
     src/export/ExportTemplateLoader.h \
     src/file/FileFilter.h \
+    src/globals/Actor.h \
     src/globals/ComboDelegate.h \
     src/globals/DownloadManager.h \
     src/globals/DownloadManagerElement.h \

@@ -4,6 +4,7 @@
 #include "data/ImdbId.h"
 #include "data/Rating.h"
 #include "data/StreamDetails.h"
+#include "globals/Actor.h"
 #include "globals/Globals.h"
 #include "globals/ScraperInfos.h"
 #include "tv_shows/EpisodeNumber.h"
@@ -20,9 +21,6 @@ class TvScraperInterface;
 class TvShow;
 class EpisodeModelItem;
 
-/**
- * @brief The TvShowEpisode class
- */
 class TvShowEpisode final : public QObject
 {
     Q_OBJECT
