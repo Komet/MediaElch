@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "globals/Poster.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 
@@ -83,9 +84,6 @@ private slots:
 private:
     Ui::ImageDialog* ui;
 
-    /**
-     * @brief The DownloadElement struct
-     */
     struct DownloadElement
     {
         QUrl thumbUrl;

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "data/Rating.h"
+#include "globals/Actor.h"
 #include "globals/Globals.h"
+#include "globals/Poster.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"
 #include "tv_shows/TvDbId.h"
@@ -13,15 +15,10 @@
 #include <QVector>
 #include <chrono>
 
-struct Actor;
-struct Poster;
 class MediaCenterInterface;
 class TvShowModelItem;
 class TvScraperInterface;
 
-/**
- * @brief The TvShow class
- */
 class TvShow final : public QObject
 {
     Q_OBJECT

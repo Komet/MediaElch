@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "globals/Poster.h"
 #include "image/ImageModel.h"
 #include "image/ImageProxyModel.h"
 #include "music/AlbumController.h"

@@ -12,6 +12,7 @@ add_library(
   MessageIds.cpp
   NameFormatter.cpp
   NetworkReplyWatcher.cpp
+  Poster.cpp
   ScraperInfos.cpp
   TrailerDialog.cpp
 )
