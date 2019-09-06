@@ -1,6 +1,7 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
 #include "settings/ScraperSettings.h"
 #include "tv_shows/TvDbId.h"

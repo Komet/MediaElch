@@ -1,5 +1,6 @@
 #pragma once
 
+#include "globals/ScraperInfos.h"
 #include "scrapers/music/MusicScraperInterface.h"
 
 #include <QComboBox>

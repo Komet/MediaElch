@@ -2,7 +2,7 @@
 
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
-#include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QDialog>
 #include <QMap>
@@ -16,9 +16,6 @@ class MovieSearch;
 
 class MovieScraperInterface;
 
-/**
- * @brief The MovieSearch class
- */
 class MovieSearch : public QDialog
 {
     Q_OBJECT

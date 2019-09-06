@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/ImdbId.h"
+#include "globals/ScraperInfos.h"
 #include "scrapers/tv_show/TvScraperInterface.h"
 #include "tv_shows/EpisodeNumber.h"
 #include "tv_shows/SeasonNumber.h"

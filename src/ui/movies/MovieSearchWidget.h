@@ -3,6 +3,7 @@
 #include "data/ImdbId.h"
 #include "data/TmdbId.h"
 #include "globals/Globals.h"
+#include "globals/ScraperInfos.h"
 
 #include <QMap>
 #include <QString>
