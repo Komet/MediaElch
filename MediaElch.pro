@@ -170,6 +170,7 @@ SOURCES += src/main.cpp \
     src/ui/main/MyIconFont.cpp \
     src/ui/main/Navbar.cpp \
     src/ui/main/Update.cpp \
+    src/media_centers/kodi/AlbumXmlReader.cpp \
     src/media_centers/kodi/ArtistXmlReader.cpp \
     src/media_centers/kodi/ArtistXmlWriter.cpp \
     src/media_centers/kodi/ConcertXmlReader.cpp \
@@ -403,6 +404,7 @@ HEADERS  += Version.h \
     src/ui/main/MyIconFont.h \
     src/ui/main/Navbar.h \
     src/ui/main/Update.h \
+    src/media_centers/kodi/AlbumXmlReader.h \
     src/media_centers/kodi/ArtistXmlReader.h \
     src/media_centers/kodi/ArtistXmlWriter.h \
     src/media_centers/kodi/ConcertXmlReader.h \

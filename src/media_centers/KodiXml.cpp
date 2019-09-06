@@ -4,6 +4,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "image/Image.h"
+#include "media_centers/kodi/AlbumXmlReader.h"
 #include "media_centers/kodi/ArtistXmlReader.h"
 #include "media_centers/kodi/ArtistXmlWriter.h"
 #include "media_centers/kodi/ConcertXmlReader.h"
@@ -1573,6 +1574,9 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
 
 bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
 {
+    if (album == nullptr) {
+        return false;
+    }
     album->clear();
     album->setHasChanged(false);
 
@@ -1601,58 +1605,8 @@ bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty()) {
-        album->setMbReleaseGroupId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty()) {
-        album->setMbAlbumId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("allmusicid").isEmpty()) {
-        album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("title").isEmpty()) {
-        album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("artist").isEmpty()) {
-        album->setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("genre").isEmpty()) {
-        album->setGenres(
-            domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("style").size(); i < n; i++) {
-        album->addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("mood").size(); i < n; i++) {
-        album->addMood(domDoc.elementsByTagName("mood").at(i).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("review").isEmpty()) {
-        album->setReview(domDoc.elementsByTagName("review").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("label").isEmpty()) {
-        album->setLabel(domDoc.elementsByTagName("label").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("releasedate").isEmpty()) {
-        album->setReleaseDate(domDoc.elementsByTagName("releasedate").at(0).toElement().text());
-    }
-    if (!domDoc.elementsByTagName("year").isEmpty()) {
-        album->setYear(domDoc.elementsByTagName("year").at(0).toElement().text().toInt());
-    }
-    if (!domDoc.elementsByTagName("rating").isEmpty()) {
-        album->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toDouble());
-    }
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        Poster p;
-        p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-        if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty()) {
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
-        } else {
-            p.thumbUrl = p.originalUrl;
-        }
-        album->addImage(ImageType::AlbumThumb, p);
-    }
-
-    album->setHasChanged(false);
+    mediaelch::kodi::AlbumXmlReader reader(*album);
+    reader.parseNfoDom(domDoc);
 
     return true;
 }
