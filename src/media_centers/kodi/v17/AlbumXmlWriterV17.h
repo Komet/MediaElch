@@ -3,6 +3,7 @@
 #include "media_centers/kodi/AlbumXmlWriter.h"
 
 #include <QByteArray>
+#include <QDomDocument>
 
 class Album;
 
@@ -17,6 +18,8 @@ public:
 
 private:
     Album& m_album;
+
+    void writeArtistCredits(QDomDocument& doc);
 };
 
 } // namespace kodi
