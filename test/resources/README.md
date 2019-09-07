@@ -86,7 +86,6 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 <disambiguation></disambiguation>
 <gender></gender>
 <sortname></sortname>
-<type></type>
 <instruments></instruments>
 ```
 
