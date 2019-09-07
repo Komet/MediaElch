@@ -19,7 +19,7 @@ QByteArray AlbumXmlWriterV16::getAlbumXml()
     QDomDocument doc;
     doc.setContent(m_album.nfoContent());
     if (m_album.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("album"));
     }
