@@ -19,7 +19,7 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
     QDomDocument doc;
     doc.setContent(m_album.nfoContent());
     if (m_album.nfoContent().isEmpty()) {
-        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes")");
+        QDomNode node = doc.createProcessingInstruction("xml", R"(version="1.0" encoding="UTF-8" standalone="yes" )");
         doc.insertBefore(node, doc.firstChild());
         doc.appendChild(doc.createElement("album"));
     }
@@ -27,14 +27,14 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
     QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
 
     if (!m_album.mbReleaseGroupId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicBrainzReleaseGroupID", m_album.mbReleaseGroupId());
+        KodiXml::setTextValue(doc, "musicbrainzreleasegroupid", m_album.mbReleaseGroupId());
     } else {
-        KodiXml::removeChildNodes(doc, "musicBrainzReleaseGroupID");
+        KodiXml::removeChildNodes(doc, "musicbrainzreleasegroupid");
     }
     if (!m_album.mbAlbumId().isEmpty()) {
-        KodiXml::setTextValue(doc, "musicBrainzAlbumID", m_album.mbAlbumId());
+        KodiXml::setTextValue(doc, "musicbrainzalbumid", m_album.mbAlbumId());
     } else {
-        KodiXml::removeChildNodes(doc, "musicBrainzAlbumID");
+        KodiXml::removeChildNodes(doc, "musicbrainzalbumid");
     }
     if (!m_album.allMusicId().isEmpty()) {
         KodiXml::setTextValue(doc, "allmusicid", m_album.allMusicId());
