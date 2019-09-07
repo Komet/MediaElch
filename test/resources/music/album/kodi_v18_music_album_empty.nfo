@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<album>
+    <title></title>
+    <artistdesc></artistdesc>
+    <scrapedmbid>false</scrapedmbid>
+    <review></review>
+    <type>album</type>
+    <label></label>
+    <releasedate></releasedate>
+    <albumArtistCredits>
+        <artist></artist>
+    </albumArtistCredits>
+</album>

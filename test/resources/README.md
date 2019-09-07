@@ -90,3 +90,21 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 ```
 
 Furthermore MediaElch should support multiple `yearsactive` tags.
+
+## Changes only for albumbs (music)
+
+ - removed `<path></path>` tag as it is "Exported but not used on Import"
+ - removed `<releasetype></releasetype>` as it's "not used when scanned"
+ - removed some tags as they are not yet supported by MediaElch (see next section)
+ - removed `<artistdesc></artistdesc>` as it is "not merged when scanned"
+
+### Tags to be implemented
+
+```xml
+<compilation>false</compilation>
+<userrating max="10">-1</userrating>
+<rating max="10">8.1</rating> <!-- max attribute -->
+<votes>-1</votes>
+<!-- MediaElch does not read this tag and instead uses the artist's id -->
+<musicBrainzArtistID>66c662b6-6e2f-4930-8610-912e24c63ed1</musicBrainzArtistID>
+```
