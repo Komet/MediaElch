@@ -42,7 +42,11 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
         KodiXml::removeChildNodes(doc, "allmusicid");
     }
     KodiXml::setTextValue(doc, "title", m_album.title());
-    KodiXml::setTextValue(doc, "artist", m_album.artist());
+    KodiXml::setTextValue(doc, "artistdesc", m_album.artist());
+
+    const bool hasMbId = (m_album.artistObj() != nullptr && !m_album.artistObj()->mbId().isEmpty());
+    KodiXml::setTextValue(doc, "scrapedmbid", hasMbId ? "true" : "false");
+
     KodiXml::setTextValue(doc, "genre", m_album.genres().join(" / "));
     KodiXml::setListValue(doc, "style", m_album.styles());
     KodiXml::setListValue(doc, "mood", m_album.moods());
@@ -72,7 +76,31 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
         }
     }
 
+    writeArtistCredits(doc);
+
     return doc.toByteArray(4);
+}
+
+void AlbumXmlWriterV17::writeArtistCredits(QDomDocument& doc)
+{
+    // <albumArtistCredits>
+    //   <artist>AC/DC</artist>
+    //   <musicBrainzArtistID>66c662b6-6e2f-4930-8610-912e24c63ed1</musicBrainzArtistID>
+    // </albumArtistCredits>
+    KodiXml::removeChildNodes(doc, "albumArtistCredits");
+
+    QDomElement creditsElement = doc.createElement("albumArtistCredits");
+    QDomElement artistElement = doc.createElement("artist");
+
+    artistElement.appendChild(doc.createTextNode(m_album.artist()));
+    creditsElement.appendChild(artistElement);
+
+    if (m_album.artistObj() != nullptr) {
+        QDomElement mbIdElement = doc.createElement("musicBrainzArtistID");
+        mbIdElement.appendChild(doc.createTextNode(m_album.artistObj()->mbId()));
+        creditsElement.appendChild(mbIdElement);
+    }
+    KodiXml::appendXmlNode(doc, creditsElement);
 }
 
 } // namespace kodi
