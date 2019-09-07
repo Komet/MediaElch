@@ -47,7 +47,7 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
     const bool hasMbId = (m_album.artistObj() != nullptr && !m_album.artistObj()->mbId().isEmpty());
     KodiXml::setTextValue(doc, "scrapedmbid", hasMbId ? "true" : "false");
 
-    KodiXml::setTextValue(doc, "genre", m_album.genres().join(" / "));
+    KodiXml::setListValue(doc, "genre", m_album.genres());
     KodiXml::setListValue(doc, "style", m_album.styles());
     KodiXml::setListValue(doc, "mood", m_album.moods());
     KodiXml::setTextValue(doc, "review", m_album.review());
