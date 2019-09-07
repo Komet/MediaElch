@@ -40,9 +40,15 @@ void AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
     if (!domDoc.elementsByTagName("artist").isEmpty()) {
         m_album.setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
     }
-    if (!domDoc.elementsByTagName("genre").isEmpty()) {
-        m_album.setGenres(
-            domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
+    {
+        QDomNodeList genreElements = domDoc.elementsByTagName("genre");
+        QStringList genres;
+        for (int i = 0, n = genreElements.size(); i < n; i++) {
+            genres << genreElements.at(i).toElement().text().split(" / ", QString::SkipEmptyParts);
+        }
+        if (!genres.isEmpty()) {
+            m_album.setGenres(genres);
+        }
     }
     for (int i = 0, n = domDoc.elementsByTagName("style").size(); i < n; i++) {
         m_album.addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
