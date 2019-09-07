@@ -47,6 +47,7 @@ QByteArray AlbumXmlWriterV17::getAlbumXml()
     KodiXml::setListValue(doc, "style", m_album.styles());
     KodiXml::setListValue(doc, "mood", m_album.moods());
     KodiXml::setTextValue(doc, "review", m_album.review());
+    KodiXml::setTextValue(doc, "type", "album"); // Kodi MediaType
     KodiXml::setTextValue(doc, "label", m_album.label());
     KodiXml::setTextValue(doc, "releasedate", m_album.releaseDate());
     if (m_album.rating() > 0) {
