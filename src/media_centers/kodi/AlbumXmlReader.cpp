@@ -13,12 +13,24 @@ AlbumXmlReader::AlbumXmlReader(Album& album) : m_album{album}
 
 void AlbumXmlReader::parseNfoDom(QDomDocument domDoc)
 {
+    // v16 CamelCase tag
     if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty()) {
         m_album.setMbReleaseGroupId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
     }
+    // v17 lowercase tag
+    if (!domDoc.elementsByTagName("musicbrainzreleasegroupid").isEmpty()) {
+        m_album.setMbReleaseGroupId(domDoc.elementsByTagName("musicbrainzreleasegroupid").at(0).toElement().text());
+    }
+
+    // v16 CamelCase tag
     if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty()) {
         m_album.setMbAlbumId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
     }
+    // v17 lowercase tag
+    if (!domDoc.elementsByTagName("musicbrainzalbumid").isEmpty()) {
+        m_album.setMbAlbumId(domDoc.elementsByTagName("musicbrainzalbumid").at(0).toElement().text());
+    }
+
     if (!domDoc.elementsByTagName("allmusicid").isEmpty()) {
         m_album.setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     }
