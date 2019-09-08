@@ -74,6 +74,7 @@ private slots:
     void onSortTitleChange(QString text);
     void onCertificationChange(QString text);
     void onRatingChange(double value);
+    void onUserRatingChange(double value);
     void onVotesChange(int value);
     void onTop250Change(int value);
     void onFirstAiredChange(QDate date);
