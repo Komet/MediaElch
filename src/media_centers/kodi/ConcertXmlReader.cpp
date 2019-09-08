@@ -128,17 +128,21 @@ void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
     for (int i = 0, n = domDoc.elementsByTagName("tag").size(); i < n; i++) {
         m_concert.addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     }
-    for (int i = 0, n = domDoc.elementsByTagName("thumb").size(); i < n; i++) {
-        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+
+    QDomNodeList thumbElements = domDoc.elementsByTagName("thumb");
+    for (int i = 0, n = thumbElements.size(); i < n; i++) {
+        QString parentTag = thumbElements.at(i).parentNode().toElement().tagName();
+        QDomElement thumb = thumbElements.at(i).toElement();
+
+        Poster p;
+        p.originalUrl = thumb.text();
+        p.thumbUrl = thumb.attribute("preview").trimmed().isEmpty() ? p.originalUrl : thumb.attribute("preview");
+        p.aspect = thumb.attribute("aspect").trimmed();
+
         if (parentTag == "musicvideo") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
             m_concert.addPoster(p);
+
         } else if (parentTag == "fanart") {
-            Poster p;
-            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
             m_concert.addBackdrop(p);
         }
     }

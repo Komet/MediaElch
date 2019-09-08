@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<musicvide>
+<musicvideo>
     <title>Rammstein in Amerika</title>
     <originaltitle>Rammstein in Amerika</originaltitle>
     <ratings>
-        <rating name="themoviedb" max="10" default="true">
-            <value>8.100000</value>
+        <rating default="true" max="10" name="themoviedb">
+            <value>8.1</value>
             <votes>15</votes>
         </rating>
     </ratings>
-    <userrating>0</userrating>
-    <top250>0</top250>
+    <userrating>9.98</userrating>
+    <top250>250</top250>
     <outline></outline>
     <plot>The concert film celebrates the band’s legendary show in New York’s Madison Square Garden – Rammstein’s return to the US after a ten-year absence. In HD and 5.1 surround sound.</plot>
     <tagline></tagline>
@@ -83,4 +83,4 @@
         <total>0.000000</total>
     </resume>
     <dateadded>2019-07-07 13:38:42</dateadded>
-</musicvide>
+</musicvideo>

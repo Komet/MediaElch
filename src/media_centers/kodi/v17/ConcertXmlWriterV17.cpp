@@ -71,6 +71,7 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
         firstRating = false;
     }
     KodiXml::appendXmlNode(doc, ratings);
+    KodiXml::setTextValue(doc, "userrating", QString::number(m_concert.userRating()));
 
     KodiXml::setTextValue(doc, "year", m_concert.released().toString("yyyy"));
     KodiXml::setTextValue(doc, "plot", m_concert.overview());
@@ -92,7 +93,10 @@ QByteArray ConcertXmlWriterV17::getConcertXml()
 
         for (const Poster& poster : m_concert.posters()) {
             QDomElement elem = doc.createElement("thumb");
+            QString aspect = poster.aspect.isEmpty() ? "poster" : poster.aspect;
+
             elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.setAttribute("aspect", aspect);
             elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
             KodiXml::appendXmlNode(doc, elem);
         }

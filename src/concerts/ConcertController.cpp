@@ -41,7 +41,7 @@ bool ConcertController::saveData(MediaCenterInterface* mediaCenterInterface)
     if (!m_concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         loadStreamDetailsFromFile();
     }
-    bool saved = mediaCenterInterface->saveConcert(m_concert);
+    const bool saved = mediaCenterInterface->saveConcert(m_concert);
     if (!m_infoLoaded) {
         m_infoLoaded = saved;
     }
