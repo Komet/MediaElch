@@ -6,6 +6,7 @@
     <id></id>
     <uniqueid default="true" type="imdb"></uniqueid>
     <ratings/>
+    <userrating>0</userrating>
     <year></year>
     <plot></plot>
     <outline></outline>

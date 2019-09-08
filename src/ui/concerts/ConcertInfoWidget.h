@@ -44,6 +44,7 @@ private slots:
     void onAlbumChange(QString text);
     void onTaglineChange(QString text);
     void onRatingChange(double value);
+    void onUserRatingChange(double value);
     void onReleasedChange(QDate date);
     void onRuntimeChange(int value);
     void onCertificationChange(QString text);

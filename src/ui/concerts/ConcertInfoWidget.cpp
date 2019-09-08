@@ -27,6 +27,7 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
     connect(ui->album,         &QLineEdit::textEdited,          this, &ConcertInfoWidget::onAlbumChange);
     connect(ui->tagline,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTaglineChange);
     connect(ui->rating,        SIGNAL(valueChanged(double)),    this, SLOT(onRatingChange(double)));
+    connect(ui->userRating,    SIGNAL(valueChanged(double)),    this, SLOT(onUserRatingChange(double)));
     connect(ui->trailer,       &QLineEdit::textEdited,          this, &ConcertInfoWidget::onTrailerChange);
     connect(ui->runtime,       SIGNAL(valueChanged(int)),       this, SLOT(onRuntimeChange(int)));
     connect(ui->playcount,     SIGNAL(valueChanged(int)),       this, SLOT(onPlayCountChange(int)));
@@ -36,6 +37,11 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
     connect(ui->lastPlayed,    &QDateTimeEdit::dateTimeChanged, this, &ConcertInfoWidget::onLastWatchedChange);
     connect(ui->overview,      &QTextEdit::textChanged,         this, &ConcertInfoWidget::onOverviewChange);
     // clang-format on
+
+    ui->rating->setSingleStep(0.1);
+    ui->rating->setMinimum(0.0);
+    ui->userRating->setSingleStep(0.1);
+    ui->userRating->setMinimum(0.0);
 }
 
 // Do NOT move the destructor into the header or unique_ptr requires a
@@ -55,6 +61,7 @@ void ConcertInfoWidget::updateConcertInfo()
     }
 
     ui->rating->blockSignals(true);
+    ui->userRating->blockSignals(true);
     ui->runtime->blockSignals(true);
     ui->playcount->blockSignals(true);
     ui->certification->blockSignals(true);
@@ -77,6 +84,7 @@ void ConcertInfoWidget::updateConcertInfo()
         ui->rating->setValue(0.0);
     }
 
+    ui->userRating->setValue(m_concertController->concert()->userRating());
     ui->released->setDate(m_concertController->concert()->released());
     ui->runtime->setValue(static_cast<int>(m_concertController->concert()->runtime().count()));
     ui->trailer->setText(m_concertController->concert()->trailer().toString());
@@ -98,6 +106,7 @@ void ConcertInfoWidget::updateConcertInfo()
         certifications.indexOf(m_concertController->concert()->certification().toString()));
 
     ui->rating->blockSignals(false);
+    ui->userRating->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
     ui->certification->blockSignals(false);
@@ -106,6 +115,8 @@ void ConcertInfoWidget::updateConcertInfo()
     ui->overview->blockSignals(false);
 
     ui->rating->setEnabled(
+        Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertRating));
+    ui->userRating->setEnabled(
         Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertRating));
     ui->tagline->setEnabled(
         Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeature::EditConcertTagline));
@@ -131,6 +142,7 @@ void ConcertInfoWidget::clear()
     ui->album->clear();
     ui->tagline->clear();
     ui->rating->clear();
+    ui->userRating->clear();
     ui->released->setDate(QDate::currentDate());
     ui->runtime->clear();
     ui->trailer->clear();
@@ -203,6 +215,14 @@ void ConcertInfoWidget::onRatingChange(double value)
 
     m_concertController->concert()->setChanged(true);
 
+    emit infoChanged();
+}
+
+/// @brief Marks the concert as changed when the userrating has changed
+void ConcertInfoWidget::onUserRatingChange(double value)
+{
+    ME_REQUIRE_CONCERT_OR_RETURN;
+    m_concertController->concert()->setUserRating(value);
     emit infoChanged();
 }
 
