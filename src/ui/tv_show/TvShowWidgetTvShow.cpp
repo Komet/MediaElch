@@ -141,6 +141,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
     connect(ui->rating,        SIGNAL(valueChanged(double)),     this, SLOT(onRatingChange(double)));
+    connect(ui->userRating,    SIGNAL(valueChanged(double)),     this, SLOT(onUserRatingChange(double)));
     connect(ui->votes,         SIGNAL(valueChanged(int)),        this, SLOT(onVotesChange(int)));
     connect(ui->top250,        SIGNAL(valueChanged(int)),        this, SLOT(onTop250Change(int)));
     connect(ui->firstAired,    &QDateTimeEdit::dateChanged,      this, &TvShowWidgetTvShow::onFirstAiredChange);
@@ -150,6 +151,11 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->runtime,       SIGNAL(valueChanged(int)),        this, SLOT(onRuntimeChange(int)));
     connect(ui->comboStatus,   SIGNAL(currentIndexChanged(int)), this, SLOT(onStatusChange(int)));
     // clang-format on
+
+    ui->rating->setSingleStep(0.1);
+    ui->rating->setMinimum(0.0);
+    ui->userRating->setSingleStep(0.1);
+    ui->userRating->setMinimum(0.0);
 
     onSetEnabled(false);
 
@@ -217,6 +223,10 @@ void TvShowWidgetTvShow::onClear()
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
     ui->rating->blockSignals(blocked);
+
+    blocked = ui->userRating->blockSignals(true);
+    ui->userRating->clear();
+    ui->userRating->blockSignals(blocked);
 
     blocked = ui->votes->blockSignals(true);
     ui->votes->clear();
@@ -309,6 +319,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->certification->blockSignals(true);
     ui->rating->blockSignals(true);
+    ui->userRating->blockSignals(true);
     ui->votes->blockSignals(true);
     ui->top250->blockSignals(true);
     ui->firstAired->blockSignals(true);
@@ -328,6 +339,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->rating->setValue(m_show->ratings().back().rating);
         ui->votes->setValue(m_show->ratings().back().voteCount);
     }
+    ui->userRating->setValue(m_show->userRating());
     ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
@@ -387,6 +399,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->certification->blockSignals(false);
     ui->rating->blockSignals(false);
+    ui->userRating->blockSignals(false);
     ui->votes->blockSignals(false);
     ui->top250->blockSignals(false);
     ui->firstAired->blockSignals(false);
@@ -1017,6 +1030,15 @@ void TvShowWidgetTvShow::onRatingChange(double value)
     }
     m_show->ratings().back().rating = value;
     m_show->setChanged(true);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onUserRatingChange(double value)
+{
+    if (m_show == nullptr) {
+        return;
+    }
+    m_show->setUserRating(value);
     ui->buttonRevert->setVisible(true);
 }
 
