@@ -17,12 +17,27 @@ ConcertXmlReader::ConcertXmlReader(Concert& concert) : m_concert{concert}
 
 void ConcertXmlReader::parseNfoDom(QDomDocument domDoc)
 {
+    // v16 imdbid
     if (!domDoc.elementsByTagName("id").isEmpty()) {
         m_concert.setImdbId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
     }
+    // v16 tmdbid
     if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
         m_concert.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
     }
+    // v17 ids
+    auto uniqueIds = domDoc.elementsByTagName("uniqueid");
+    for (int i = 0; i < uniqueIds.size(); ++i) {
+        QDomElement element = uniqueIds.at(i).toElement();
+        QString type = element.attribute("type");
+        QString value = element.text().trimmed();
+        if (type == "imdb") {
+            m_concert.setImdbId(ImdbId(value));
+        } else if (type == "tmdb") {
+            m_concert.setTmdbId(TmdbId(value));
+        }
+    }
+
     if (!domDoc.elementsByTagName("title").isEmpty()) {
         m_concert.setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     }
